@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Erste Schritte in R | Eine Einführung in R für die sozioökonomische Forschung</title>
+  <meta name="description" content="Das ist die Beschreibung." />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Erste Schritte in R | Eine Einführung in R für die sozioökonomische Forschung" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Das ist die Beschreibung." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Erste Schritte in R | Eine Einführung in R für die sozioökonomische Forschung" />
+  
+  <meta name="twitter:description" content="Das ist die Beschreibung." />
+  
+
+<meta name="author" content="Claudius Gräbner" />
+
+
+<meta name="date" content="2019-10-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R für die sozioökonomische Forschung</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Erste Schritte</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#allgemeine-infos-zu-r"><i class="fa fa-check"></i><b>2.1</b> Allgemeine Infos zu R</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#installation-von-r"><i class="fa fa-check"></i><b>2.2</b> Installation von R</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#die-r-studio-oberflache"><i class="fa fa-check"></i><b>2.3</b> Die R Studio Oberfläche</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#einrichtung-eines-r-projekts"><i class="fa fa-check"></i><b>2.4</b> Einrichtung eines R Projekts</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="intro.html"><a href="intro.html#ein-projekt-anlegen"><i class="fa fa-check"></i><b>2.4.1</b> Ein Projekt anlegen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#befehle-in-r-an-den-computer-ubermitteln"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#objekte-funktionen-und-zuweisungen"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#zwischenbillanz"><i class="fa fa-check"></i><b>3.3</b> Zwischenbillanz</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#grundlegende-objeke-in-r"><i class="fa fa-check"></i><b>3.4</b> Grundlegende Objeke in R</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="basics.html"><a href="basics.html#vektoren"><i class="fa fa-check"></i><b>3.4.1</b> Vektoren</a></li>
+<li class="chapter" data-level="3.4.2" data-path="basics.html"><a href="basics.html#ganze-zahlen-und-dezimalzahlen-integer-und-double"><i class="fa fa-check"></i><b>3.4.2</b> Ganze Zahlen und Dezimalzahlen (integer und double)</a></li>
+<li class="chapter" data-level="3.4.3" data-path="basics.html"><a href="basics.html#logische-werte-logical"><i class="fa fa-check"></i><b>3.4.3</b> Logische Werte (logical)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="basics.html"><a href="basics.html#worter-character"><i class="fa fa-check"></i><b>3.4.4</b> Wörter (character)</a></li>
+<li class="chapter" data-level="3.4.5" data-path="basics.html"><a href="basics.html#fehlende-werte-und-null"><i class="fa fa-check"></i><b>3.4.5</b> Fehlende Werte und NULL</a></li>
+<li class="chapter" data-level="3.4.6" data-path="basics.html"><a href="basics.html#matrizen-und-arrays"><i class="fa fa-check"></i><b>3.4.6</b> Matrizen und Arrays</a></li>
+<li class="chapter" data-level="3.4.7" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.4.7</b> Listen</a></li>
+<li class="chapter" data-level="3.4.8" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.4.8</b> Data Frames</a></li>
+<li class="chapter" data-level="3.4.9" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.4.9</b> Funktionen</a></li>
+<li class="chapter" data-level="3.4.10" data-path="basics.html"><a href="basics.html#optional-namespaces"><i class="fa fa-check"></i><b>3.4.10</b> Optional: Namespaces</a></li>
+<li class="chapter" data-level="3.4.11" data-path="basics.html"><a href="basics.html#optional-klassen-in-r"><i class="fa fa-check"></i><b>3.4.11</b> Optional: Klassen in R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#libraries"><i class="fa fa-check"></i><b>3.5</b> Libraries</a></li>
+<li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.6</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Eine Einführung in R für die sozioökonomische Forschung</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="basics" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Erste Schritte in R</h1>
+<p>Nach diesen (wichtigen) Vorbereitungsschritten wollen wir nun mit dem eigentlichen Programmieren anfangen. Zu diesem Zweck müssen wir uns mit der Syntax von R vertraut machen, also den Regeln, denen wir folgen müssen, wenn wir Code schreiben, damit der Computer versteht, was wir ihm eigentlich in R sagen wollen.</p>
+<div id="befehle-in-r-an-den-computer-ubermitteln" class="section level2">
+<h2><span class="header-section-number">3.1</span> Befehle in R an den Computer übermitteln</h2>
+<p>Grundsätzlich können wir über R Studio auf zwei Arten mit dem Computer “kommunizieren”: über die Konsole direkt, oder indem wir im Skriptbereit ein Skript schreiben und dies dann ausführen.</p>
+<p>Als Beispiel für die erste Möglichkeit wollen wir mit Hilfe von R die Zahlen <code>2</code> und <code>5</code> miteinander addieren. Zu diesem Zweick können wir einfach <code>2 + 2</code> in die Konsole eingeben, und den Begehl mit ‘Enter’ an den Computer senden. Da es sich beim Ausdruck <code>2 + 3</code> um korrekten R Code handelt, ‘versteht’ der Computer was wir von uns wollen und gibt uns das entsprechende Ergebnis aus:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>Auf diese Art und Weise könne wir R als einfachen Taschenrechner verwenden, denn für alle einfachen mathematischen Operationen können wir bestimmte Symbole als Operatoren verwenden. An dieser Stelle sei noch darauf hingewiesen, dass das Symbol <code>#</code> in R einen Kommentar einleitet, das heißt alles was in einer Zeile nach <code>#</code> steht wird vom Computer ignoriert und man kann sich einfach Notizen in seinem Code machen.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="co"># Addition</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span><span class="op">/</span><span class="dv">2</span> <span class="co"># Division</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">4</span><span class="op">*</span><span class="dv">2</span> <span class="co"># Multiplikation</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span><span class="op">**</span><span class="dv">2</span> <span class="co"># Potenzierung</span></code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<p>Alternativ können wir die Befehle in einem Skript aufschreiben, und dieses Skript dann ausführen. Während die Interaktion über die Konsole sinnvoll ist um die Effekte bestimmter Befehle auszuprobieren, bietet sich die Verwendung von Skripten an, wenn wir mit den Befehlen später weiter arbeiten wollen, oder sie anderen Menschen zugänglich zu machen.</p>
+<p>Die Berechnungen, die wir bisland durchgeführt haben sind zugegebenermaßen nicht sonderlich spannend. Um fortgeschrittene Operationen in R durchführen und verstehen zu können müssen wir uns zunächst mit den Konzepten von <strong>Objekten</strong>, <strong>Funktionen</strong> und <strong>Zuweisungen</strong> beschäftigen.</p>
+</div>
+<div id="objekte-funktionen-und-zuweisungen" class="section level2">
+<h2><span class="header-section-number">3.2</span> Objekte, Funktionen und Zuweisungen</h2>
+<blockquote>
+<p>To understand computations in R, two slogans are helpful: Everything that exists is an object. Everything that happens is a function call. —John Chambers</p>
+</blockquote>
+<p>Mit der Aussage ‘Alles in R ist ein Objekt’ ist gemeint, dass jede Zahl, jede Funktion, oder jeder Buchstabe in R ein Objekt ist, das irgendwo auf dem Speicher Ihres Rechners abgespeichert ist.</p>
+<p>In der Berechnung <code>2 + 3</code> ist die Zahl <code>2</code> genauso ein Objekt wie die Zahl <code>3</code> und die Additionsfunktion, die durch den Operator <code>+</code> aufgerufen wird.</p>
+<p>Mit der Aussage ‘Alles was in R passiert ist ein Funktionsaufruf’ ist gemeint, dass wenn wir R eine Berechnung durchführen lassen, tun wir dies indem wir eine Funktion aufrufen.</p>
+<p><strong>Funktionen</strong> sind Algorithmen, die bestimmte Routinen auf einen <em>Input</em> anwenden und dabei einen <em>Output</em> produzieren. Die Additionsfunktion, die wir in der Berechnung <code>2 + 3</code> aufgerufen haben hat als Input die beiden Zahlen <code>2</code> und <code>3</code> aufgenommen, hat auf sie die Routine der Addition angewandt und als Output die Zahl <code>5</code> ausgegeben. Der Output <code>5</code> ist dabei in R genauso ein Objekt wie die Inputs <code>2</code> und <code>3</code>, sowie die Funktion <code>+</code>.</p>
+<p>Ein ‘Problem’ ist, dass R im vorliegenden Falle den Output der Berechnung zwar ausgibt, wir danach aber keinen Zugriff darauf mehr haben:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>Falls wir den Output weiterverwenden wollen, macht es Sinn, dem Output Objekt einen Namen zu geben, damit wir später wieder darauf zugreifen können. Der Prozess einem Objekt einen Namen zu Geben wird <strong>Zuweisung</strong> oder <strong>Assignment</strong> genannt und durch die Funktion <code>assign</code> vorgenommen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">assign</span>(<span class="st">&quot;zwischenergebnis&quot;</span>, <span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span>)</code></pre></div>
+<p>Wir können nun das Ergebnis der Berechnung <code>2 + 3</code> aufrufen, indem wir in R den Namen des Output Objekts eingeben:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">zwischenergebnis</code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>Da Zuweisungen so eine große Rolle spielen und sehr häufig vorkommen gibt es auch für die Funktion <code>assign</code> eine Kurzschreibweise, nämlich <code>&lt;-</code>. Entsprechend sind die folgenden beiden Befehle äquivalent:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">assign</span>(<span class="st">&quot;zwischenergebnis&quot;</span>, <span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span>)
+zwischenergebnis &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></code></pre></div>
+<p>Entsprechend werden wir Zuweisungen immer mit dem <code>&lt;-</code> Operator durchführen.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<p>Wir können in R nicht beliebig Namen vergeben. Gültige (also: syntaktisch korrekte) Namen …</p>
+<ul>
+<li>enthalten nur Buchstaben, Zahlen und die Symbole <code>.</code> und <code>_</code></li>
+<li>fangen nicht mit <code>.</code> oder einer Zahl an!</li>
+</ul>
+<p>Zudem gibt es einige Wörter, die schlicht nicht als Name verwendet werden dürgen, z.B. <code>function</code>, <code>TRUE</code>, oder <code>if</code>. Die gesamte Liste verbotener Worte kann mit dem Befehl <code>?Reserved</code> ausgegeben werden.</p>
+<p>Wenn man einen Namen vergeben möchte, der nicht mit den gerade formulierten Regeln kompatibel ist, gibt R eine Fehlermeldung aus:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">TRUE</span> &lt;-<span class="st"> </span><span class="dv">5</span></code></pre></div>
+<pre><code>## Error in TRUE &lt;- 5: invalid (do_set) left-hand side to assignment</code></pre>
+<p>Zudem sollte man folgendes beachten:</p>
+<ul>
+<li>Namen sollten kurz und informativ sein; entsprechen ist <code>sample_mean</code> ein guter Name, <code>shit15_2</code> dagegen eher weniger</li>
+<li>Man sollte <strong>nie Umlaute in Namen verwenden</strong></li>
+<li>Auch wenn möglich, sollte man nie von R bereit gestellte Funktionen überschreiben. Eine Zuweisung wie <code>assign &lt;- 2</code> ist zwar möglich, führt in der Regel aber zu großem Unglück, weil man nicht mehr ganz einfach auf die zugrundeliegende Funktion zurückgreifen kann.</li>
+</ul>
+<blockquote>
+<p><strong>Hinweis</strong>: Alle aktuellen Namenszuweisungen sind im Bereich <code>Environment</code> in R Studio (Nr. 4 in der Abbildung oben) aufgelistet und können durch die Funktion <code>ls()</code> angezeigt werden.</p>
+</blockquote>
+<blockquote>
+<p><strong>Hinweis</strong>: Ein Objekt kann mehrere Namen haben, aber kein Name kann zu mehreren Objekten zeigen, da im Zweifel eine neue Zuweisung die alte Zuweisung überschreibt:</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">2</span> 
+y &lt;-<span class="st"> </span><span class="dv">2</span> <span class="co"># Das Objekt 2 hat nun zwei Namen</span>
+<span class="kw">print</span>(x)</code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(y)</code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">4</span> <span class="co"># Der Name &#39;x&#39; zeigt nun zum Objekt &#39;4&#39;, nicht mehr zu &#39;2&#39;</span>
+<span class="kw">print</span>(x)</code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>Aus dem bisher gelernten wurde deutlich, dass es sich sowohl bei <code>assign</code> als auch bei <code>+</code> um Funktionen handelt. Merkwürdig erscheint zunächst nur wie unterschiedlich diese Funktionen verwendet werden: Im Falle von <code>assign</code> schreiben wir zuerst den Funktionsnamen und dann in Klammern die unterschiedlichen Argumente der Funktion, im Falle von <code>+</code> schreiben wir den Funktionsnamen zwischen die Argumente der Funktion.</p>
+<p>Dies liegt daran, dass es in R prinzipiell vier verschiedene Arten gibt, Funktionen aufzurufen. Nur zwei davon sind allerdings aktuell von uns relevant.</p>
+<p>Die bei weitem wichtigste Variante ist die so genannte <em>Prefix-Form</em>. Dies ist die Form, die wir bei der überwältigenden Anzahl von Funktionen verwenden werden. Wir schreiben hier zunächst den Namen der Funktion (im Folgenden Beispiel <code>assign</code>), dann in Klammern die Argumente der Funktion, welche den Input und weitere Spezifikationen beinhalten (hier der Name <code>test</code> und die Zahl <code>2</code>):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">assign</span>(<span class="st">&quot;test&quot;</span>, <span class="dv">2</span>)</code></pre></div>
+<p>Ein hin und wieder auftretende Form ist die so genannte <em>Infix-Form</em>. Hier wird der Funktionsname zwischen die Argumente geschrieben. Dies ist, wie wir oben bereits bemerkt haben, bei vielen mathematischen Funktionen wie <code>+</code>, <code>-</code> oder <code>/</code> der Fall. Streng genommen ist die die Infix-Form aber nur eine <em>Abkürzung</em>, denn jeder Funktionsaufruf in Infix-Form kann auch in Prefix-Form geschrieben werden, wie folgendes Beispiel zeigt:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">`</span><span class="dt">+</span><span class="st">`</span>(<span class="dv">2</span>,<span class="dv">3</span>)</code></pre></div>
+<pre><code>## [1] 5</code></pre>
+</div>
+<div id="zwischenbillanz" class="section level2">
+<h2><span class="header-section-number">3.3</span> Zwischenbillanz</h2>
+<ul>
+<li>Wir können Befehle in R Studio an den Computer übermitteln indem wir (a) den R Code in die Konsole schreiben und Enter drücken oder (b) den Code in ein Skript schreiben und dann ausführen</li>
+<li>Alles in R existiert ist ein Objekt, alles was in R passiert ist ein Funktionenaufruf</li>
+<li>Wir können einem Objekt mit Hilfe von <code>&lt;-</code> einen Namen geben und dann später wieder aufrufen. Den Prozess der Namensgebung nennen wir <strong>Assignment</strong> und wir können uns alle aktuell von uns vergebenen Namen mit der Funktion <code>ls()</code> anzeigen lassen.</li>
+<li>Eine Funktion ist ein Objekt, das auf einen Input eine bestimmte Routine anwendet und einen Output produziert</li>
+<li>Die wichtigste Art, Funktionen aufzurufen ist, ihren Namen zu schreiben und danach die Argumente in Klammern anzugeben (Prefix Form, z.B. <code>assign(&quot;x&quot;, 2)</code>)</li>
+<li>Gerade bei mathematischen Funktionen wie <code>+</code> und <code>-</code> verwenden wir auch die Infix Form, bei der die Argumente vor und nach dem Funktionsnamen stehen (z.B. <code>2 + 3</code>)</li>
+</ul>
+</div>
+<div id="grundlegende-objeke-in-r" class="section level2">
+<h2><span class="header-section-number">3.4</span> Grundlegende Objeke in R</h2>
+<p>Wir haben bereits gelernt, dass alles was in R existiert ein Objekt ist. Wir haben aber auch schon gelernt, dass es unterschiedliche Arten von Objekten gibt: Zahlen, wie <code>2</code> oder <code>3</code> und Funktionen wie <code>assign</code>. Tatsächlich gibt es noch viel mehr Arten von Objekten. Ein gutes Verständnis der Objektarten ist Grundvoraussetzung später anspruchsvolle Programmierarufgaben zu lösen. Daher wollen wir uns im folgenden mit den wichtigsten Objektarten in R auseinandersetzen.</p>
+<div id="vektoren" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Vektoren</h3>
+<p>Vektoren sind einer der wichtigsten Objettypen in R. Quasi alle Daten mit denen wir in R arbeiten werden als Vektoren behandelt werden.</p>
+<p>Was Vektoren angeht gibt es wiederum die wichtige <strong>Unterscheidung von atomaren Vektoren und Listen</strong>. Beide bestehen ihrerseits aus Objekten und sie unterscheiden sich dadurch, dass atomare Vektoren nur aus Objekten des gleichen Typs bestehen können, Listen dagegen auch Objekte unterschiedlichen Typs beinhalten können.</p>
+<p>Entsprechend kann jeder atomare Vektor einem Typ zugeordnet werden, je nachdem welchen Typ seine Bestandteile haben. Hier sind insbesondere vier Typen relevant:</p>
+<ul>
+<li>Logische Werte (<code>logical</code>): es gibt zwei logische Werte, <code>TRUE</code> und <code>FALSE</code>, welche auch mit <code>T</code> oder <code>F</code> abgekürzt werden können</li>
+<li>Ganze Zahlen <code>integer</code>: das sollte im Prinzip selbsterklärend sein, allerding müssen den ganzen Zahln in R immer der Buchstabe <code>L</code>folgen, damit die Zahl tatsächlich als ganze Zahl interpretiert wird.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> Beispiele sind <code>1L</code>, <code>400L</code> oder <code>10L</code>.<br />
+</li>
+<li>Dezimalzahlen <code>double</code>: auch das sollte selbsterklärend sein; Beispiele wären <code>1.5</code>, <code>0.0</code>, oder <code>-500.32</code>.</li>
+<li>Ganze Zahlen und Dezimalzahlen werden häufig unter der Kategorie <code>numeric</code> zusammengefasst. Dies ist in der Praxis aber quasi nie hilfreich und man sollte diese Kategorie möglichst nie verwenden.</li>
+<li>Wörter (<code>character</code>): sie sind dadurch gekennzeichnet, dass sie auch Buchstaben enthalten können und am Anfang und Ende ein <code>&quot;</code> haben. Beispiele hier wären <code>&quot;Hallo&quot;</code>, <code>&quot;500&quot;</code> oder <code>&quot;1_2_Drei&quot;</code>.</li>
+<li>Es gibt noch zwei weitere besondere ‘Typen’, die strikt gesehen keine atomaren Vektoren darstellen, allerdings in diesem Kontext schon häufig auftauchen: <code>NULL</code>, was strikt genommen ein eigener Datentyp ist und immer die Länge 0 hat, sowie <code>NA</code>, das einen fehlenden Wert darstellt</li>
+</ul>
+<p>Hieraus ergibt sich folgende Aufteilung für Vektoren:</p>
+<p><img src="../figures/vector-classification.pdf" alt="drawing" width="300"/></p>
+<p>Wir werden nun die einzelnen Typen genauer betrachten. Vorher wollen wir jedoch noch die Funktion <code>typeof</code> einführen. Sie hilft uns in der Praxis den Typ eines Objekts herauszufinden. Dafür rufen wir einfach die Funktion <code>typeof</code> mit dem zu untersuchenden Objekt oder dessen Namen auf:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(2L)</code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="fl">22.0</span>
+<span class="kw">typeof</span>(x)</code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<p>Wir können auch explizit testen ob ein Objekt ein Objekt bestimmten Typs ist. Die generelle Syntax hierfür ist: <code>is.*()</code>, also z.B.:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="fl">1.0</span>
+<span class="kw">print</span>(
+  <span class="kw">is.integer</span>(x)
+  )</code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(
+  <span class="kw">is.double</span>(x)
+)</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>Die Funktion gibt als Output also immer einen logischen Wert aus, je nachdem ob die Inputs des entsprechenden Typs sind oder nicht.</p>
+<p>Bestimmte Objekte können in einen anderen Typ transformiert werden. Hier spricht man von <code>coercion</code> und die generelle Syntax hierfür ist: <code>as.*()</code>, also z.B.:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> &quot;2&quot;</span>
+<span class="kw">print</span>(
+  <span class="kw">typeof</span>(x)
+)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">as.double</span>(x)
+<span class="kw">print</span>(
+  <span class="kw">typeof</span>(x)
+)</code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<p>Allerdings ist eine Transformation nicht immer möglicht:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.double</span>(<span class="st">&quot;Hallo&quot;</span>)</code></pre></div>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1] NA</code></pre>
+<p>Da R nicht weiß wie man aus dem Wort ‘Hallo’ eine Dezimalzahl machen soll, transformiert er das Wort in einen ‘Fehlenden Wert’, der in R als <code>NA</code> bekannt ist und unten noch genauer diskutiert wird.</p>
+<p>Für die Grundtypen ergibt sich folgende logische Hierachie an trivialen Transformationen: <code>logical</code> → <code>integer</code> → <code>double</code> → <code>character</code>, d.h. man kann eine Dezimalzahl ohne Probleme in ein Wort transformieren, aber nicht umgekehrt:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">2</span>
+y &lt;-<span class="st"> </span><span class="kw">as.character</span>(x)
+<span class="kw">print</span>(y)</code></pre></div>
+<pre><code>## [1] &quot;2&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">as.double</span>(y) <span class="co"># Das funktioniert</span>
+<span class="kw">print</span>(z)</code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">k &lt;-<span class="st"> </span><span class="kw">as.double</span>(<span class="st">&quot;Hallo&quot;</span>) <span class="co"># Das nicht</span></code></pre></div>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(k)</code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<p>Da nicht immer ganz klar ist wann R bei Transformationen entgegen der gerade eingeführten Hierachie eine Warnung ausgibt und wann nicht sollte man hier immer besondere Vorsicht walten lassen!</p>
+<p>Zudem ist bei jeder Transformation Vorsicht geboten, da sie häufig Eigenschaften der Objekte implizit verändert. So führt eine Transformation von einer Dezimalzahl hin zu einer ganzen Zahl teils zu unerwartetem Rundungsverhalten:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="fl">1.99</span>
+<span class="kw">as.integer</span>(x)</code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>Auch führen Transformationen, die der eben genannten Hierachie zuwiderlaufen nicht zwangsweise zu Fehlern, sondern ‘lediglich’ zu unerwarteten Änderungen, die in jedem Fall vermieden werden sollten:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">as.logical</span>(<span class="dv">99</span>)
+<span class="kw">print</span>(z)</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>Häufig transformieren Funktionen ihre Argumente automatisch, was meistens hilfreich ist, manchmal aber auch gefährlich sein kann:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span>1L <span class="co"># Integer</span>
+y &lt;-<span class="st"> </span><span class="fl">2.0</span> <span class="co"># Double</span>
+z &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y
+<span class="kw">typeof</span>(z)</code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<p>Interessanterweise werden logische Werte ebenfalls transformiert:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+y &lt;-<span class="st"> </span><span class="ot">FALSE</span>
+z &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y <span class="co"># TRUE wird zu 1, FALSE zu 0</span>
+<span class="kw">print</span>(z) </code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>Daher sollte man immer den Überblick behalten, mit welchen Objekttypen man gerade arbeitet.</p>
+<p>Hier noch ein kurzer Überblick zu den Test- und Transformationsbefehlen:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Typ</th>
+<th>Test</th>
+<th>Transformation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>logical</td>
+<td><code>is.logical</code></td>
+<td><code>as.logical</code></td>
+</tr>
+<tr class="even">
+<td>double</td>
+<td><code>is.double</code></td>
+<td><code>as.double</code></td>
+</tr>
+<tr class="odd">
+<td>integer</td>
+<td><code>is.integer</code></td>
+<td><code>as.integer</code></td>
+</tr>
+<tr class="even">
+<td>character</td>
+<td><code>is.character</code></td>
+<td><code>as.character</code></td>
+</tr>
+<tr class="odd">
+<td>function</td>
+<td><code>is.function</code></td>
+<td><code>as.function</code></td>
+</tr>
+<tr class="even">
+<td>NA</td>
+<td><code>is.na</code></td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td>NULL</td>
+<td><code>is.null</code></td>
+<td><code>as.null</code></td>
+</tr>
+</tbody>
+</table>
+<p>Ein letzter Hinweis zu <strong>Skalaren</strong>. Unter Skalaren verstehen wir häufig ‘einzelne Zahlen’, z.B. <code>2</code>. Dieses Konzept gibt es in R nicht. <code>2</code> ist ein Vektor der Länge 1. Wir unterscheiden also vom Typ her nicht zwischen einem Vektor, der nur ein oder mehrere Elemente hat.</p>
+<p><strong>Hinweis:</strong> Um längere Vektoren zu erstellen, verwenden wir die Funktion <code>c()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)
+x</code></pre></div>
+<pre><code>## [1] 1 2 3</code></pre>
+<p>Da atomare Vektoren immer nur Objekte des gleichen Typs enthalten können, könnte man erwarten, dass es zu einem Fehler kommt, wenn wir Objete unterschiedlichen Type kombinieren wollen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="st">&quot;Hallo&quot;</span>)</code></pre></div>
+<p>Tatsächlich transformiert R die Objekte allerdings nach der oben beschriebenen Hierachie <code>logical</code> → <code>integer</code> → <code>double</code> → <code>character</code>. Da hier keine Warnung oder kein Fehler ausgegeben wird, sind derlei Transformationen eine gefährliche Fehlerquelle!</p>
+<p><strong>Hinweis:</strong> Die Länge eines Vektors kann mit der Funktion <code>length</code> bestimmt werden:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x =<span class="st">  </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)
+len_x &lt;-<span class="st"> </span><span class="kw">length</span>(x)
+len_x</code></pre></div>
+<pre><code>## [1] 3</code></pre>
+</div>
+<div id="ganze-zahlen-und-dezimalzahlen-integer-und-double" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Ganze Zahlen und Dezimalzahlen (integer und double)</h3>
+</div>
+<div id="logische-werte-logical" class="section level3">
+<h3><span class="header-section-number">3.4.3</span> Logische Werte (logical)</h3>
+</div>
+<div id="worter-character" class="section level3">
+<h3><span class="header-section-number">3.4.4</span> Wörter (character)</h3>
+</div>
+<div id="fehlende-werte-und-null" class="section level3">
+<h3><span class="header-section-number">3.4.5</span> Fehlende Werte und NULL</h3>
+</div>
+<div id="matrizen-und-arrays" class="section level3">
+<h3><span class="header-section-number">3.4.6</span> Matrizen und Arrays</h3>
+</div>
+<div id="listen" class="section level3">
+<h3><span class="header-section-number">3.4.7</span> Listen</h3>
+</div>
+<div id="data-frames" class="section level3">
+<h3><span class="header-section-number">3.4.8</span> Data Frames</h3>
+</div>
+<div id="funktionen" class="section level3">
+<h3><span class="header-section-number">3.4.9</span> Funktionen</h3>
+</div>
+<div id="optional-namespaces" class="section level3">
+<h3><span class="header-section-number">3.4.10</span> Optional: Namespaces</h3>
+</div>
+<div id="optional-klassen-in-r" class="section level3">
+<h3><span class="header-section-number">3.4.11</span> Optional: Klassen in R</h3>
+<ul>
+<li>class vs mode: unclass function</li>
+</ul>
+</div>
+</div>
+<div id="libraries" class="section level2">
+<h2><span class="header-section-number">3.5</span> Libraries</h2>
+<ul>
+<li>Was sind libraries?</li>
+<li>Wie installiert man sie? Wie installiert man von GitHub?</li>
+<li>Wie verwendet man sie?</li>
+<li>Immer am Anfang vom Skript verwenden</li>
+<li>Wie findet man libraries?</li>
+</ul>
+</div>
+<div id="kurzer-exkurs-zum-einlesen-und-schreiben-von-daten" class="section level2">
+<h2><span class="header-section-number">3.6</span> Kurzer Exkurs zum Einlesen und Schreiben von Daten</h2>
+<p>Zum Abschluss wollen wir noch kurz einige Befehle zum Einlesen von Daten einführen. Später werden wir uns ein ganzes Kapitel mit dem Einlesen und Schreiben von Daten beschäftigen, da dies in der Regel einen nicht unbeträchtlichen Teil der quantitativen Forschungsarbeit in Anspruch nimmt. An dieser Stelle wollen wir aber nur lernen, wie man einen angemessenen Datensatz in R einliest.</p>
+<p>R kann zahlreiche verschiedene Dateiformate einlesen, z.B. <code>csv</code>, <code>dta</code> oder <code>txt</code>, auch wenn für manche Formate bestimmte Libraries geladen sein müssen.</p>
+<p>Das gerade für kleinere Datensätze mit Abstand beste Format ist in der Regel <code>csv</code>, da ist von zahlreichen Programmen und auf allen Betriebssystemen gelesen und geschrieben werden kann.</p>
+<p>Für die Beispiele hier nehmen wir folgende Ordnerstruktur an:</p>
+<pre><code>2019-Methoden
+│   2019-Methoden.Rproj
+│
++---data
+│   │
+│   +---raw
+│   |    │  Rohdaten.csv
+|   |
+|   +---tidy</code></pre>
+<p>Um die Daten einzulesen verwenden wir das Paket <code>tidyverse</code>, die wir später genauer kennen lernen werden. Sie enthält viele nützliche Funktionen zur Arbeit mit Datensätzen. Zudem verwende ich das Paket <code>here</code> um relative Pfade immer von meinem Arbeitsverzeichnis aus angeben zu können.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(here)</code></pre></div>
+<p>Nehmen wir an, die Datei <code>Rohdaten.csv</code> sähe folgendermaßen aus:</p>
+<pre><code>Auto,Verbrauch,Zylinder,PS
+Ford Pantera L,15.8,8,264
+Ferrari Dino,19.7,6,175
+Maserati Bora,15,8,335
+Volvo 142E,21.4,4,109</code></pre>
+<p>Wie in einer typischen csv Datei sind die Spalten hier mit einem Komma getrennt. Um diese Datei einzulesen verwenden wir die Funktion <code>read_csv</code> mit dem Dateipfad als erstes Argument:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">auto_daten &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data/raw/Rohdaten.csv&quot;</span>))
+auto_daten</code></pre></div>
+<pre><code>## # A tibble: 4 x 4
+##   Auto           Verbrauch Zylinder    PS
+##   &lt;chr&gt;              &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
+## 1 Ford Pantera L      15.8        8   264
+## 2 Ferrari Dino        19.7        6   175
+## 3 Maserati Bora       15          8   335
+## 4 Volvo 142E          21.4        4   109</code></pre>
+<p>Wir haben nun einen Datensatz in R, mit dem wir dann weitere Analysen anstellen können. Nehmen wir einmal an, wir wollen eine weitere Spalte hinzufügen (Verbrauch/PS) und dann den Datensatz im Ordner <code>data/tidy</code> speichern. Ohne auf die Modifikation des Data Frames einzugehen können wir die Funktion <code>write_csv</code> verwenden um den Datensatz zu speichern. Hierzu geben wir den neuen dataframe als erstes, und den Pfad als zweites Argument an:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">auto_daten_neu &lt;-<span class="st"> </span>auto_daten <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Verbrauch_pro_PS=</span>Verbrauch<span class="op">/</span>PS)
+<span class="kw">write_csv</span>(auto_daten_neu, <span class="kw">here</span>(<span class="st">&quot;data/tidy/NeueDaten.csv&quot;</span>))</code></pre></div>
+<ul>
+<li>Einfache Beispiele zum Einlesen von Daten</li>
+<li>Mehr dazu in der dritten Section</li>
+</ul>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Theoretisch kann <code>&lt;-</code> auch andersherum verwendet werden: <code>2 + 3 -&gt; zwischenergebnis</code>. Das mag zwar auf den ersten Blick intuitiver erscheinen, da das aus <code>2 + 3</code> resultierende Objekt den Namen <code>zwischenergebnis</code> bekommt, also immer erst das Objekt erstellt wird und dann der Name zugewiesen wird, es führt jedoch zu deutlich weniger lesbarem Code und sollte daher nie verwendet werden. Ebensoweinig sollten Zuweisungen durch den <code>=</code> Operatur vorgenommen werden, auch wenn es im Fall <code>zwischenergebnis = 2 + 3</code> funktionieren würde. Namen <code>zwischenergebnis</code>.<a href="basics.html#fnref1">↩</a></p></li>
+<li id="fn2"><p>Diese auf den ersten Blick merkwürdige Syntax hat historische Gründe: als der integer Typ in die R Programmiersprache eingeführt wurde war er sehr stark an den Typ <code>long integer</code> in der Programmiersprache ‘C’ angelehnt. In C wurde ein solcher ‘long integer’ mit dem Suffix ‘l’ oder ‘L’ definiert, diese Regel wurde aus Kompatibilitätsgründen auch für R übernommen, jedoch nur mit ‘L’, da man Angst hatte, dass ‘l’ mit ‘i’ verwechselt wird, was in R für die imaginäre Komponente komplexer Zahlen verwendet wird.<a href="basics.html#fnref2">↩</a></p></li>
+<li id="fn3"><p>Das ist notwendig, da dieses Skript in R Markdown geschrieben ist und das Arbeitsverzeichnis automatisch auf den Ordner ändert, in dem das .Rmd file liegt. Mehr Information zum Schreiben von R Markdown finden Sie im Anhang. Dieser wird auch in der Vorlesung besprochen.<a href="basics.html#fnref3">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-basics.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["R-SocioEcon-dt.pdf", "R-SocioEcon-dt.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
