@@ -1,11 +1,6 @@
-# Erste Schritte {#intro}
+# Einrichtung {#einrichtung}
 
-## Allgemeine Infos zu R
-
-* Geschichte
-* Dialekte
-
-## Installation von R
+## Installation von R und R-Studio
 
 Die Installation von R ist in der Regel unproblematisch.
 Auf der [R homepage](https://www.r-project.org/) wählt man unter dem Reiter 
@@ -29,9 +24,7 @@ Vieles ergibt sich hier aber auch durch *working by doing*.
 Im folgenden werden nur die Bereiche der Oberfläche beschrieben, die am Anfang 
 unmittelbar relevant für uns sind.
 
-```{r}
-knitr::include_graphics("figures/r-studio-light-marked.png")
-```
+<img src="figures/r-studio-light-marked.png" width="100%" style="display: block; margin: auto;" />
 
 * Der **Skriptbereich** (1) ist ein Texteditor wie Notepad - nur mit 
 zusätzlichen Features wie Syntax Highlighting für R, sodass es uns leichter 
@@ -93,8 +86,6 @@ anzuschauen und ggf. eine andere Darstellungsversion zu wählen.
 Im folgenden werden wir lernen wie man ein neues R Projekt anlegt, R Code 
 schreiben und ausführen kann.
 
-### Ein Projekt anlegen
-
 Wann immer wir ein neues Programmierprojekt starten sollten wir dafür einen 
 eigenen Ordner anlegen und ein so genannten 'R Studio Projekt' erstellen.
 Das hilft uns den Überblick über unsere Arbeit zu behalten, und macht es einfach 
@@ -115,7 +106,8 @@ die folgenden Konzepte diskutieren:
 (1) das Konzept eines *Arbeitsverzeichnisses* (*working directory*) und 
 (2) die Unterscheidnug zwischen *absoluten* und *relativen* Pfaden.
 
-#### Arbeitsverzeichnisse und Pfade
+### Arbeitsverzeichnisse und Pfade
+
 Das **Arbeitsverzeichnis** ist ein Ordner auf dem Computer, in dem R 
 standardmäßig allen Output speichert. 
 Wenn wir mit Projekten arbeiten ist das Arbeitsverzeichnis der Ordner, in dem das 
@@ -123,15 +115,17 @@ R-Projektfile abgelegt ist, ansonsten ist es euer Benutzerverzeichnis.
 Wir können uns das Arbeitsverzeichnis mit der Funktion `getwd()` anzeigen lassen.
 In meinem Fall ist das Arbeitsverzeichnis das folgende:
 
-```{r, echo=FALSE}
-getwd()
+
+```
+## [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR"
 ```
 
 Wenn ich R nun sagen würde ein File unter dem Namen `test.pdf` speichern, würde 
 es am folgenden Ort gespeichert werden:
 
-```{r, echo=FALSE}
-paste0(getwd(), "/test.pdf")
+
+```
+## [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf"
 ```
 
 R geht in einem solchen Fall immer vom Arbeitsverzeichnis aus.
@@ -145,8 +139,9 @@ Computers, an.
 Wir würden R also *explizit* auffordern, das File an foldengem Ort zu 
 speichern:
 
-```{r, echo=FALSE}
-paste0(getwd(), "/test.pdf")
+
+```
+## [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf"
 ```
 
 Wir werden hier **immer** relative Pfade verwenden. 
@@ -159,7 +154,7 @@ teilen.
 Wir lernen mehr über dieses Thema wenn wir uns später mit Dateninput und -output 
 beschäftigen.
 
-#### Schritt 1: Projektordner anlegen
+### Schritt 1: Projektordner anlegen
 
 Zuerst müssen Sie sich für einen Ordner auf Ihrem Computer entscheiden, in dem
 alle Daten, die mit ihrem Projekt zu tun haben, also Daten, Skripte, Abbildungen, 
@@ -169,7 +164,7 @@ Sonderzeichen zu versehen, z.B. `SoSe19-Methodenkurs`.
 
 Dieser Schritt kann theoretisch auch gemeinsam mit Schritt 2 erfolgen.
 
-#### Schritt 2: Ein R-Studio Projekt im Projektordner erstellen
+### Schritt 2: Ein R-Studio Projekt im Projektordner erstellen
 
 Wir möchten nun R Studio mitteilen den in Schritt 1 erstellten Ordner als R
 Projekt zu behandeln. 
@@ -181,9 +176,7 @@ Um ein neues Projekt zu erstellen klickt ihr in R Studio auf den Button
 `Neues Projekt` (Nr. 10 in der obigen Abbildung) und ihr solltet folgendes
 Fenster sehen:
 
-```{r}
-knitr::include_graphics("figures/r-studio-new-project.png")
-```
+<img src="figures/r-studio-new-project.png" width="60%" style="display: block; margin: auto;" />
 
 Falls ihr in Schritt 1 den Projektordner bereits erstellt habt wählt ihr hier
 `Existing Directory`, ansonsten erstellt ihr einen neuen Projektordner gleich
@@ -192,15 +185,11 @@ mit dem Projektfile mit indem Sie `New Directory` auswählen.
 Falls Sie `Existing Directory` gewählt haben, wählen Sie in folgendem Fenster 
 einfach den vorher erstellten Ordner aus und klickt auf `Create Project`.
 
-```{r}
-knitr::include_graphics("figures/r-studio-new-project-exis-dir.png")
-```
+<img src="figures/r-studio-new-project-exis-dir.png" width="60%" style="display: block; margin: auto;" />
 
 Falls Sie `New Directory` gewählt habt landen Sie auf folgendem Fenster:
 
-```{r}
-knitr::include_graphics("figures/r-studio-new-project-new-dir.png")
-```
+<img src="figures/r-studio-new-project-new-dir.png" width="60%" style="display: block; margin: auto;" />
 
 Hier wählt ihr `New Project` aus, gebt dem Projekt in folgenden Fenster einen
 Namen (das wird der Name des Projektordners sein), wählt den Speicherort für den
@@ -211,7 +200,7 @@ befindet. Damit ist die formale Erstellung eines Projekts abgeschlossen.
 Es empfiehlt sich jedoch dringend gleich eine sinnvolle Unterordnerstruktur mit
 anzulegen.
 
-#### Scritt 3: Relevante Unterordner erstellen
+### Schritt 3: Relevante Unterordner erstellen
 
 Eine sinnvolle Unterordnerstruktur hilf (1) den Überblick über das eigene 
 Projekt nicht zu verlieren, (2) mit anderen über verschiedene Computer hinweg
@@ -286,7 +275,7 @@ insgesamt folgende Ordner und Datenstruktur:
 |   | Reading5.pdf
 ```
 
-#### Abschließende Bemerkungen
+## Abschließende Bemerkungen
 
 Eine gute Ordnerstruktur ist nicht nur absolut essenziell um selbst einen 
 Überblick über seine Forschungsprojekte zu behalten, sondern auch wenn man
