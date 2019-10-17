@@ -1,0 +1,34 @@
+#  Werkzeuge zur Datenverarbeitung {#data}
+
+```{r include=FALSE}
+knitr::opts_chunk$set(comment = "#>")
+```
+
+* Data frames in R und die Verwendung des tidyverse 
+* Fortschrittene Werkzeuge zum Einlesen und Speichern von Daten
+* Data cleaning, Deskriptive Statistiken berechnen (Mittelwerte von Gruppen etc.)
+* Daten direkt aus dme Internet einlesen: Beispiel Weltbankdaten
+
+
+
+Zum einen bin ich ein großer Fan von vielen tidyverse
+Paketen, gleichzeitig ist der Fokus von R Studio auf diese Pakete sehr gefährlich.
+Ich bin aber einer anderen Meinung was die Einsteigerfreundlichkeit vom `tidyverse` 
+andgeht: meiner Meinung nach machen diese Pakete die Arbeit mit Datensätzen sehr 
+einfach, und für kleine Datensätze (<500MB) benutze ich das `tidyverse` auch in
+meiner eigenen Forschung. Es sollte jedoch klar sein, dass es nur eine Option 
+unter mehreren ist, weswegen ich versuche in meinen Paketen vollständig auf 
+das `tidyverse` zu verzichten - auch weil es in puncto Performance deutlich 
+schlechter ist als z.B. [data.table](https://rdatatable.gitlab.io/data.table/), 
+das auch für mehrere hundert GB große Datensätze gut geeignet ist. 
+Aufgrund der Einsteigerfreundlichkeit werden wir hier für die Arbeit mit Datensätzen
+dennoch mit dem `tidyverse` arbeiten. Ich empfehle jedoch jedem, den 
+[folgenden kritischen Blogpost](https://github.com/matloff/TidyverseSkeptic)
+zu lesen und, falls Sie weiter mit R arbeiten, sich das Paket 
+[data.table](https://rdatatable.gitlab.io/data.table/) anzueignen.
+Das [offizielle Tutorial](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) 
+ist dafür gut geeignet, macht m.E. aber auch deutlich, 
+dass es für die ersten Schritte mit R etwas unintuitiver ist als das `tidyverse`.
+Dann können Sie das tun, was in einer diversen Sprache das einzig richtige ist:
+je nach Anwendungsfall das passende Paket wählen - ganz wie im Falle von Paradigmen
+in einer Pluralen Ökonomik.

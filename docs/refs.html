@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>R für die sozioökonomische Forschung</title>
+  <title>B Referenzen | R für die sozioökonomische Forschung</title>
   <meta name="description" content="Das ist die Beschreibung." />
   <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="R für die sozioökonomische Forschung" />
+  <meta property="og:title" content="B Referenzen | R für die sozioökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="R für die sozioökonomische Forschung" />
+  <meta name="twitter:title" content="B Referenzen | R für die sozioökonomische Forschung" />
   
   <meta name="twitter:description" content="Das ist die Beschreibung." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="markdown.html"/>
 
-<link rel="next" href="precons.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -166,122 +166,45 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">R für die sozioökonomische Forschung</h1>
-<p class="author"><em><a href="http://claudius-graebner.com/">Dr. Claudius Gräbner</a></em></p>
-<p class="date"><em>Versionskennung: 0.0.0.9000</em></p>
-</div>
-<div id="willkommen" class="section level1 unnumbered">
-<h1>Willkommen</h1>
-<p>Dieses Skript ist als Begleitung für die Lehrveranstaltung “Wissenschaftstheorie und Einführung in die Methoden der Sozioökonomie” im Master “Sozioökonomie” an der Universität Duisburg-Essen gedacht.</p>
-<p>Es enthält grundlegende Informationen über die Funktion der Programmiersprache R <span class="citation">(R Core Team <a href="#ref-R-Team">2018</a>)</span>. Einige Kapitel beziehen sich unmittelbar auf bestimmte Vorlesungstermine, andere sind als optionale Zusatzinformation gedacht. Gerade Menschen ohne Vorkenntnisse in R sollten unbedingt die ersten Kapitel vor dem vierten Vorlesungsterm lesen und verstehen. Bei Fragen können Sie sich gerne an Claudius Gräbner wenden.</p>
-<p>Die folgende Tabelle gibt einen Überblick über die Kapitel und die dazugehörigen Vorlesungstermine:</p>
-<table style="width:100%;">
-<colgroup>
-<col width="25%" />
-<col width="37%" />
-<col width="37%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Kapitel</th>
-<th align="left">Zentrale Inhalte</th>
-<th align="center">Verwandter Vorlesungstermin</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">1: Vorbemerkungen</td>
-<td align="left">Gründe für R; Besonderheiten von R</td>
-<td align="center">Vorbereitung</td>
-</tr>
-<tr class="even">
-<td align="center">2: Vorbereitung</td>
-<td align="left">Installation und Einrichtung von R und R Studio, Projektstrukturierung</td>
-<td align="center">Vorbereitung</td>
-</tr>
-<tr class="odd">
-<td align="center">3: Erste Schritte in R</td>
-<td align="left">Grundlegende Funktionen von R; Objekte in R; Pakete</td>
-<td align="center">Vorbereitung</td>
-</tr>
-<tr class="even">
-<td align="center">4: Ökonometrie I</td>
-<td align="left">Implementierung von uni- und multivariaten linearen Regressionsmodellen</td>
-<td align="center">T4 am 06.11.19</td>
-</tr>
-<tr class="odd">
-<td align="center">5: Datenaquise und -management</td>
-<td align="left">Einlesen und Schreiben sowie Manipulation von Datensätzen; deskriptive Statistik</td>
-<td align="center">T8 am 11.12.19</td>
-</tr>
-<tr class="even">
-<td align="center">6: Visualisierung</td>
-<td align="left">Erstellen von Grafiken</td>
-<td align="center">T8 am 11.12.19</td>
-</tr>
-<tr class="odd">
-<td align="center">7: Ökonometrie II</td>
-<td align="left">Mehr Konzepte der Ökonometrie</td>
-<td align="center">T9-10 am 8.&amp;15.1.20</td>
-</tr>
-<tr class="even">
-<td align="center">8: Ausblick</td>
-<td align="left">Ausblick zu weiteren Anwendungsmöglichkeiten</td>
-<td align="center">Optional</td>
-</tr>
-<tr class="odd">
-<td align="center">A: Einführung in Markdown</td>
-<td align="left">Wissenschaftliche Texte in R Markdown schreiben</td>
-<td align="center">Optional; relevant für Aufgabenblätter</td>
-</tr>
-<tr class="even">
-<td align="center">B: Einführung in Git und Github</td>
-<td align="left">Verwendung von Git und Github</td>
-<td align="center">Optional</td>
-</tr>
-</tbody>
-</table>
-<div id="anderungshistorie-wahrend-des-semesters" class="section level2 unnumbered">
-<h2>Änderungshistorie während des Semesters</h2>
-<p><em>An dieser Stelle werden alle wichtigen Updates des Skripts gesammelt.</em> <em>Die Versionsnummer hat folgende Struktur: <code>major</code>.<code>minor</code>.<code>patch</code></em> <em>Neue Kapitel erhöhen die <code>minor</code> Stelle, kleinere, aber signifikante</em> <em>Korrekturen werden als Patches gekennzeichnet.</em></p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Datum</th>
-<th align="left">Version</th>
-<th align="left">Wichtigste Änderungen</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">XX.XX.19</td>
-<td align="left">0.1.0</td>
-<td align="left">Erste Version veröffentlicht</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="lizenz" class="section level2 unnumbered">
-<h2>Lizenz</h2>
-<p><img src="figures/license.png" width="20%" style="display: block; margin: auto;" /></p>
-<p>Das gesamte Skript ist unter der <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a> lizensiert.</p>
+<div id="refs" class="section level1">
+<h1><span class="header-section-number">B</span> Referenzen</h1>
 
-</div>
-</div>
-<h3><span class="header-section-number">B</span> Referenzen</h3>
 <div id="refs" class="references">
-<div id="ref-R-Team">
+<div>
 <p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
 </div>
+<div>
+<p>Wickham, Hadley. 2019. <em>Advanced R</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/" class="uri">https://adv-r.hadley.nz/</a>.</p>
 </div>
+<div>
+<p>Wickham, Hadley, and Jennifer Bryan. 2019. <em>Advanced R</em>. 2nd ed. Sebastopol, CA: O’Reilly Media. <a href="https://r-pkgs.org/" class="uri">https://r-pkgs.org/</a>.</p>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
+<a href="markdown.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="precons.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
