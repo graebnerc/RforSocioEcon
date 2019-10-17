@@ -1,133 +1,121 @@
-\documentclass[]{book}
-\usepackage{lmodern}
+\documentclass[]{tufte-book}
+
+% ams
 \usepackage{amssymb,amsmath}
+
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
 \else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-  \else
-    \usepackage{fontspec}
-  \fi
+  \makeatletter
+  \@ifpackageloaded{fontspec}{}{\usepackage{fontspec}}
+  \makeatother
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \makeatletter
+  \@ifpackageloaded{soul}{
+     \renewcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace=15}#1}}
+     \renewcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace=10}#1}}
+   }{}
+  \makeatother
+
 \fi
-% use upquote if available, for straight quotes in verbatim environments
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
-}{}
+
+% graphix
+\usepackage{graphicx}
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+
+% booktabs
+\usepackage{booktabs}
+
+% url
+\usepackage{url}
+
+% hyperref
 \usepackage{hyperref}
-\hypersetup{unicode=true,
-            pdftitle={Eine Einführung in R für die sozioökonomische Forschung},
-            pdfauthor={Dr.~Claudius Gräbner},
-            pdfborder={0 0 0},
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
+
+% units.
+\usepackage{units}
+
+
+\setcounter{secnumdepth}{2}
+
+% citations
 \usepackage{natbib}
 \bibliographystyle{apalike}
+
+% pandoc syntax highlighting
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
 \newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
 % Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newenvironment{Shaded}{}{}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
 \newcommand{\ImportTok}[1]{#1}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
 \newcommand{\NormalTok}[1]{#1}
+
+% longtable
 \usepackage{longtable,booktabs}
-\usepackage{graphicx,grffile}
-\makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+% multiplecol
+\usepackage{multicol}
+
+% strikeout
+\usepackage[normalem]{ulem}
+
+% morefloats
+\usepackage{morefloats}
+
+
+% tightlist macro required by pandoc >= 1.14
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
 
-%%% Use protect on footnotes to avoid problems with footnotes in titles
-\let\rmarkdownfootnote\footnote%
-\def\footnote{\protect\rmarkdownfootnote}
-
-%%% Change title format to be more compact
-\usepackage{titling}
-
-% Create subtitle command for use in maketitle
-\providecommand{\subtitle}[1]{
-  \posttitle{
-    \begin{center}\large#1\end{center}
-    }
-}
-
-\setlength{\droptitle}{-2em}
-
-  \title{Eine Einführung in R für die sozioökonomische Forschung}
-    \pretitle{\vspace{\droptitle}\centering\huge}
-  \posttitle{\par}
-    \author{\href{http://claudius-graebner.com/}{Dr.~Claudius Gräbner}}
-    \preauthor{\centering\large\emph}
-  \postauthor{\par}
-      \predate{\centering\large\emph}
-  \postdate{\par}
-    \date{Versionskennung: 0.0.0.9000}
+% title / author / date
+\title{R für die sozioökonomische Forschung}
+\author{\href{http://claudius-graebner.com/}{Dr.~Claudius Gräbner}}
+\date{Versionskennung: 0.0.0.9000}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks = true,
+    linkcolor = {blue},
+    citecolor = {violet}}
+%\usepackage[top=2cm, bottom=2cm, left=2cm, right=4cm]{geometry}
 \makeatletter
 \def\thm@space@setup{%
   \thm@preskip=8pt plus 2pt minus 4pt
@@ -136,12 +124,16 @@
 \makeatother
 
 \begin{document}
+
 \maketitle
+
+
 
 {
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
+
 \chapter*{Willkommen}\label{willkommen}
 \addcontentsline{toc}{chapter}{Willkommen}
 
@@ -163,86 +155,86 @@ dazugehörigen Vorlesungstermine:
 
 \begin{longtable}[]{@{}clc@{}}
 \toprule
-\begin{minipage}[b]{0.10\columnwidth}\centering\strut
+\begin{minipage}[b]{0.24\columnwidth}\centering\strut
 Kapitel\strut
-\end{minipage} & \begin{minipage}[b]{0.24\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[b]{0.34\columnwidth}\raggedright\strut
 Zentrale Inhalte\strut
-\end{minipage} & \begin{minipage}[b]{0.38\columnwidth}\centering\strut
+\end{minipage} & \begin{minipage}[b]{0.34\columnwidth}\centering\strut
 Verwandter Vorlesungstermin\strut
 \end{minipage}\tabularnewline
 \midrule
 \endhead
-\begin{minipage}[t]{0.10\columnwidth}\centering\strut
+\begin{minipage}[t]{0.24\columnwidth}\centering\strut
 1: Vorbemerkungen\strut
-\end{minipage} & \begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright\strut
 Gründe für R; Besonderheiten von R\strut
-\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\centering\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\centering\strut
 Vorbereitung\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\centering\strut
+\begin{minipage}[t]{0.24\columnwidth}\centering\strut
 2: Vorbereitung\strut
-\end{minipage} & \begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright\strut
 Installation und Einrichtung von R und R Studio,
 Projektstrukturierung\strut
-\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\centering\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\centering\strut
 Vorbereitung\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\centering\strut
+\begin{minipage}[t]{0.24\columnwidth}\centering\strut
 3: Erste Schritte in R\strut
-\end{minipage} & \begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright\strut
 Grundlegende Funktionen von R; Objekte in R; Pakete\strut
-\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\centering\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\centering\strut
 Vorbereitung\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\centering\strut
-4: Einführung in die Regression\strut
-\end{minipage} & \begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+\begin{minipage}[t]{0.24\columnwidth}\centering\strut
+4: Ökonometrie I\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright\strut
 Implementierung von uni- und multivariaten linearen
 Regressionsmodellen\strut
-\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\centering\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\centering\strut
 T4 am 06.11.19\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\centering\strut
+\begin{minipage}[t]{0.24\columnwidth}\centering\strut
 5: Datenaquise und -management\strut
-\end{minipage} & \begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright\strut
 Einlesen und Schreiben sowie Manipulation von Datensätzen; deskriptive
 Statistik\strut
-\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\centering\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\centering\strut
 T8 am 11.12.19\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\centering\strut
+\begin{minipage}[t]{0.24\columnwidth}\centering\strut
 6: Visualisierung\strut
-\end{minipage} & \begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright\strut
 Erstellen von Grafiken\strut
-\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\centering\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\centering\strut
 T8 am 11.12.19\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\centering\strut
-7: Fortgeschrittene Ökonometrie\strut
-\end{minipage} & \begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+\begin{minipage}[t]{0.24\columnwidth}\centering\strut
+7: Ökonometrie II\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright\strut
 Mehr Konzepte der Ökonometrie\strut
-\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\centering\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\centering\strut
 T9-10 am 8.\&15.1.20\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\centering\strut
+\begin{minipage}[t]{0.24\columnwidth}\centering\strut
 8: Ausblick\strut
-\end{minipage} & \begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright\strut
 Ausblick zu weiteren Anwendungsmöglichkeiten\strut
-\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\centering\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\centering\strut
 Optional\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\centering\strut
+\begin{minipage}[t]{0.24\columnwidth}\centering\strut
 A: Einführung in Markdown\strut
-\end{minipage} & \begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright\strut
 Wissenschaftliche Texte in R Markdown schreiben\strut
-\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\centering\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\centering\strut
 Optional; relevant für Aufgabenblätter\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\centering\strut
+\begin{minipage}[t]{0.24\columnwidth}\centering\strut
 B: Einführung in Git und Github\strut
-\end{minipage} & \begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright\strut
 Verwendung von Git und Github\strut
-\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\centering\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\centering\strut
 Optional\strut
 \end{minipage}\tabularnewline
 \bottomrule
@@ -270,8 +262,11 @@ XX.XX.19 & 0.1.0 & Erste Version veröffentlicht\tabularnewline
 \section*{Lizenz}\label{lizenz}
 \addcontentsline{toc}{section}{Lizenz}
 
-Das gesamte Skript ist unter der Creative Commons
-Attribution-NonCommercial-ShareAlike 4.0 International License
+\begin{center}\includegraphics[width=0.2\linewidth]{figures/license} \end{center}
+
+Das gesamte Skript ist unter der
+\href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative
+Commons Attribution-NonCommercial-ShareAlike 4.0 International License}
 lizensiert.
 
 \chapter{Vorbemerkungen}\label{precons}
@@ -401,35 +396,18 @@ mit Erfahrungen in anderen Sprachen gleich einen Blick darauf werfen.
   verständlich zu machen, allerdings wird die recht aggressive
   `Vermarktung' und die teilweise inferiore Performance des Ansatzes
   auch
-  \href{https://github.com/matloff/TidyverseSkeptic}{kritisiert}.\footnote{Ich
-    stimme vielen Punkten dem hier zitierten Essays zu. Zum einen bin
-    ich ein großer Fan von vielen tidyverse Paketen, gleichzeitig ist
-    der Fokus von R Studio auf diese Pakete sehr gefährlich. Ich bin
-    aber einer anderen Meinung was die Einsteigerfreundlichkeit vom
-    \texttt{tidyverse} andgeht: meiner Meinung nach machen diese Pakete
-    die Arbeit mit Datensätzen sehr einfach, und für kleine Datensätze
-    (\textless{}500MB) benutze ich das \texttt{tidyverse} auch in meiner
-    eigenen Forschung. Es sollte jedoch klar sein, dass es nur eine
-    Option unter mehreren ist, weswegen ich versuche in meinen Paketen
-    vollständig auf das \texttt{tidyverse} zu verzichten - auch weil es
-    in puncto Performance deutlich schlechter ist als z.B.
-    \href{https://rdatatable.gitlab.io/data.table/}{data.table}, das
-    auch für mehrere hundert GB große Datensätze gut geeignet ist.
-    Aufgrund der Einsteigerfreundlichkeit werden wir hier für die Arbeit
-    mit Datensätzen dennoch mit dem \texttt{tidyverse} arbeiten. Ich
-    empfehle jedoch jedem, den
-    \href{https://github.com/matloff/TidyverseSkeptic}{folgenden
-    kritischen Blogpost} zu lesen und, falls Sie weiter mit R arbeiten,
-    sich das Paket
-    \href{https://rdatatable.gitlab.io/data.table/}{data.table}
-    anzueignen. Das
-    \href{https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html}{offizielle
-    Tutorial} ist dafür gut geeignet, macht m.E. aber auch deutlich,
-    dass es für die ersten Schritte mit R etwas unintuitiver ist als das
-    \texttt{tidyverse}. Dann können Sie das tun, was in einer diversen
-    Sprache das einzig richtige ist: je nach Anwendungsfall das passende
-    Paket wählen - ganz wie im Falle von Paradigmen in einer Pluralen
-    Ökonomik.}
+  \href{https://github.com/matloff/TidyverseSkeptic}{kritisiert}.\footnote{Zum
+    einen bin ich ein großer Fan von vielen tidyverse Paketen,
+    gleichzeitig ist der Fokus von R Studio auf diese Pakete sehr
+    gefährlich. Ich bin aber einer anderen Meinung was die
+    Einsteigerfreundlichkeit vom \texttt{tidyverse} andgeht: meiner
+    Meinung nach machen diese Pakete die Arbeit mit Datensätzen sehr
+    einfach, und für kleine Datensätze (\textless{}500MB) benutze ich
+    das \texttt{tidyverse} auch in meiner eigenen Forschung. Aufgrund
+    der Einsteigerfreundlichkeit werden wir hier für die Arbeit mit
+    Datensätzen trotz allem mit dem \texttt{tidyverse} arbeiten. Ich
+    weise jedoch auf die kritische Diskussion im entsprechenden Kapitel
+    des Skripts hin.}
 \item
   Da viele der Menschen, die R Pakete herstellen keine Programmierer
   sind, sind viele Pakete von einem Programmierstandpunkt aus nicht
@@ -825,7 +803,7 @@ Code machen.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{2} \CommentTok{# Addition}
+\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{2}  \CommentTok{# Addition}
 \end{Highlighting}
 \end{Shaded}
 
@@ -835,7 +813,7 @@ Code machen.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{2}\OperatorTok{/}\DecValTok{2} \CommentTok{# Division}
+\DecValTok{2}\OperatorTok{/}\DecValTok{2}  \CommentTok{# Division}
 \end{Highlighting}
 \end{Shaded}
 
@@ -845,7 +823,7 @@ Code machen.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{4}\OperatorTok{*}\DecValTok{2} \CommentTok{# Multiplikation}
+\DecValTok{4} \OperatorTok{*}\StringTok{ }\DecValTok{2}  \CommentTok{# Multiplikation}
 \end{Highlighting}
 \end{Shaded}
 
@@ -855,7 +833,7 @@ Code machen.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{3}\OperatorTok{**}\DecValTok{2} \CommentTok{# Potenzierung}
+\DecValTok{3}\OperatorTok{^}\DecValTok{2}  \CommentTok{# Potenzierung}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1032,8 +1010,8 @@ alte Zuweisung überschreibt:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\DecValTok{2} 
-\NormalTok{y <-}\StringTok{ }\DecValTok{2} \CommentTok{# Das Objekt 2 hat nun zwei Namen}
+\NormalTok{x <-}\StringTok{ }\DecValTok{2}
+\NormalTok{y <-}\StringTok{ }\DecValTok{2}  \CommentTok{# Das Objekt 2 hat nun zwei Namen}
 \KeywordTok{print}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
@@ -1054,7 +1032,7 @@ alte Zuweisung überschreibt:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\DecValTok{4} \CommentTok{# Der Name 'x' zeigt nun zum Objekt '4', nicht mehr zu '2'}
+\NormalTok{x <-}\StringTok{ }\DecValTok{4}  \CommentTok{# Der Name 'x' zeigt nun zum Objekt '4', nicht mehr zu '2'}
 \KeywordTok{print}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
@@ -1070,7 +1048,7 @@ Zuweisung kein Wert sichtbar ausgegeben:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{2} \CommentTok{# Keine Zuweisung, R gibt das Ergebnis in der Konsole aus}
+\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{2}  \CommentTok{# Keine Zuweisung, R gibt das Ergebnis in der Konsole aus}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1080,7 +1058,7 @@ Zuweisung kein Wert sichtbar ausgegeben:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{2} \CommentTok{# Zuweisung, R gibt das Ergebnis in der Konsole nicht aus}
+\NormalTok{x <-}\StringTok{ }\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{2}  \CommentTok{# Zuweisung, R gibt das Ergebnis in der Konsole nicht aus}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1104,9 +1082,7 @@ mit Zeilenumbrüchen arbeiten:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{print}\NormalTok{(}
-  \DecValTok{2}\OperatorTok{*}\DecValTok{8}
-\NormalTok{  )}
+\KeywordTok{print}\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\DecValTok{8}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1116,7 +1092,7 @@ mit Zeilenumbrüchen arbeiten:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{print}\NormalTok{(}\DecValTok{5}\OperatorTok{+}\NormalTok{x)}
+\KeywordTok{print}\NormalTok{(}\DecValTok{5} \OperatorTok{+}\StringTok{ }\NormalTok{x)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1163,7 +1139,7 @@ wollen können Sie folgendes eingeben:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{help}\NormalTok{(assign)}
-\KeywordTok{help}\NormalTok{(}\StringTok{"assign"}\NormalTok{) }\CommentTok{# äquivalent}
+\KeywordTok{help}\NormalTok{(}\StringTok{"assign"}\NormalTok{)  }\CommentTok{# äquivalent}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1199,7 +1175,7 @@ gibt als Output den Logarithmus dieser Zahl aus:
 #> [1] 0.6931472
 \end{verbatim}
 
-\subsubsection{Eine Funktion aufrufen}\label{eine-funktion-aufrufen}
+\textbf{Eine Funktion aufrufen}
 
 In R gibt es prinzipiell vier verschiedene Arten Funktionen aufzurufen.
 Nur zwei davon sind allerdings aktuell für uns relevant.
@@ -1237,7 +1213,7 @@ Prefix-Form geschrieben werden, wie folgendes Beispiel zeigt:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\StringTok{`}\DataTypeTok{+}\StringTok{`}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{3}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1245,8 +1221,7 @@ Prefix-Form geschrieben werden, wie folgendes Beispiel zeigt:
 #> [1] 5
 \end{verbatim}
 
-\subsubsection{Die Argumente einer
-Funktion}\label{die-argumente-einer-funktion}
+\textbf{Die Argumente einer Funktion}
 
 Die Argumente einer Funktion stellen zum einen den \emph{Input} für die
 in der Funktion implementierten Routine dar.
@@ -1257,7 +1232,7 @@ Zahlen:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1279,7 +1254,7 @@ unten) ignoriert bevor die Summe der Inputs gebildet wird wenn
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\OtherTok{NA}\NormalTok{) }
+\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\OtherTok{NA}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1289,7 +1264,7 @@ unten) ignoriert bevor die Summe der Inputs gebildet wird wenn
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\OtherTok{NA}\NormalTok{, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }
+\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1305,8 +1280,7 @@ Im Falle von \texttt{sum()} sehen wir hier sofort, dass die Funktion
 nehmen den zu addierenden Zahlen ein optionales Argument \texttt{na.rm}
 akzeptiert, welches den Standardwert \texttt{FALSE} annimmt.
 
-\subsubsection{Eigene Funktionen
-definieren}\label{eigene-funktionen-definieren}
+\textbf{Eigene Funktionen definieren}
 
 Sehr häufig möchten wir selbst Funktionen definieren. Das können wir mit
 dem reservierten Keyword \texttt{function} machen. Als Beispiel wollen
@@ -1317,10 +1291,10 @@ Pythagoras} die Länge der Hypothenuse bestimmt:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{pythagoras <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(a, b)\{}
-\NormalTok{  hypo_quadrat <-}\StringTok{ }\NormalTok{a}\OperatorTok{**}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{b}\OperatorTok{**}\DecValTok{2}
-\NormalTok{  hypo <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(hypo_quadrat) }\CommentTok{# sqrt() zieht die Quadratwurzel}
-  \KeywordTok{return}\NormalTok{(hypo)}
+\NormalTok{pythagoras <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(a, b) \{}
+\NormalTok{    hypo_quadrat <-}\StringTok{ }\NormalTok{a}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{b}\OperatorTok{^}\DecValTok{2}
+\NormalTok{    hypo <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(hypo_quadrat)  }\CommentTok{# sqrt() zieht die Quadratwurzel}
+    \KeywordTok{return}\NormalTok{(hypo)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -1384,10 +1358,10 @@ unserer Funktion \texttt{pythagoras} folgendermaßen aussehen:
 \CommentTok{#' @param b Die Länge der zweiten Kathete}
 \CommentTok{#' @return Die Länge der Hypothenuse des durch a und b definierten }
 \CommentTok{#'  rechtwinkligen Dreieckst}
-\NormalTok{pythagoras <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(a, b)\{}
-\NormalTok{  hypo_quadrat <-}\StringTok{ }\NormalTok{a}\OperatorTok{**}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{b}\OperatorTok{**}\DecValTok{2}
-\NormalTok{  hypo <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(hypo_quadrat) }\CommentTok{# sqrt() zieht die Quadratwurzel}
-  \KeywordTok{return}\NormalTok{(hypo)}
+\NormalTok{pythagoras <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(a, b) \{}
+\NormalTok{    hypo_quadrat <-}\StringTok{ }\NormalTok{a}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{b}\OperatorTok{^}\DecValTok{2}
+\NormalTok{    hypo <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(hypo_quadrat)  }\CommentTok{# sqrt() zieht die Quadratwurzel}
+    \KeywordTok{return}\NormalTok{(hypo)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -1395,8 +1369,7 @@ unserer Funktion \texttt{pythagoras} folgendermaßen aussehen:
 Die Dokumentation einer Funktion sollte also zumindest die Parameter und
 die Art des Outputs erklären.
 
-\subsubsection{Gründe für die Verwendung eigener
-Funktionen}\label{grunde-fur-die-verwendung-eigener-funktionen}
+\textbf{Gründe für die Verwendung eigener Funktionen}
 
 Eigene Funktionen zu definieren ist in der Praxis extrem hilfreich und
 es ist empfehlenswert Routinen, die mehrere Male verwendet werden
@@ -1505,7 +1478,7 @@ Namen auf:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\FloatTok{22.0}
+\NormalTok{x <-}\StringTok{ }\DecValTok{22}
 \KeywordTok{typeof}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
@@ -1519,7 +1492,7 @@ ist. Die generelle Syntax hierfür ist: \texttt{is.*()}, also z.B.:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\FloatTok{1.0}
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}
 \KeywordTok{is.integer}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
@@ -1548,9 +1521,7 @@ spricht man von \texttt{coercion} und die generelle Syntax hierfür ist:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{x <-}\StringTok{ "2"}
-\KeywordTok{print}\NormalTok{(}
-  \KeywordTok{typeof}\NormalTok{(x)}
-\NormalTok{)}
+\KeywordTok{print}\NormalTok{(}\KeywordTok{typeof}\NormalTok{(x))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1561,9 +1532,7 @@ spricht man von \texttt{coercion} und die generelle Syntax hierfür ist:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{x <-}\StringTok{ }\KeywordTok{as.double}\NormalTok{(x)}
-\KeywordTok{print}\NormalTok{(}
-  \KeywordTok{typeof}\NormalTok{(x)}
-\NormalTok{)}
+\KeywordTok{print}\NormalTok{(}\KeywordTok{typeof}\NormalTok{(x))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1610,7 +1579,7 @@ ein Wort transformieren, aber nicht umgekehrt:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{z <-}\StringTok{ }\KeywordTok{as.double}\NormalTok{(y) }\CommentTok{# Das funktioniert}
+\NormalTok{z <-}\StringTok{ }\KeywordTok{as.double}\NormalTok{(y)  }\CommentTok{# Das funktioniert}
 \KeywordTok{print}\NormalTok{(z)}
 \end{Highlighting}
 \end{Shaded}
@@ -1621,7 +1590,7 @@ ein Wort transformieren, aber nicht umgekehrt:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{k <-}\StringTok{ }\KeywordTok{as.double}\NormalTok{(}\StringTok{"Hallo"}\NormalTok{) }\CommentTok{# Das nicht}
+\NormalTok{k <-}\StringTok{ }\KeywordTok{as.double}\NormalTok{(}\StringTok{"Hallo"}\NormalTok{)  }\CommentTok{# Das nicht}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1679,8 +1648,8 @@ meistens hilfreich ist, manchmal aber auch gefährlich sein kann:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\NormalTok{1L }\CommentTok{# Integer}
-\NormalTok{y <-}\StringTok{ }\FloatTok{2.0} \CommentTok{# Double}
+\NormalTok{x <-}\StringTok{ }\NormalTok{1L  }\CommentTok{# Integer}
+\NormalTok{y <-}\StringTok{ }\DecValTok{2}  \CommentTok{# Double}
 \NormalTok{z <-}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y}
 \KeywordTok{typeof}\NormalTok{(z)}
 \end{Highlighting}
@@ -1696,8 +1665,8 @@ Interessanterweise werden logische Werte ebenfalls transformiert:
 \begin{Highlighting}[]
 \NormalTok{x <-}\StringTok{ }\OtherTok{TRUE}
 \NormalTok{y <-}\StringTok{ }\OtherTok{FALSE}
-\NormalTok{z <-}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y }\CommentTok{# TRUE wird zu 1, FALSE zu 0}
-\KeywordTok{print}\NormalTok{(z) }
+\NormalTok{z <-}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y  }\CommentTok{# TRUE wird zu 1, FALSE zu 0}
+\KeywordTok{print}\NormalTok{(z)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1749,7 +1718,7 @@ Dabei können auch Vektoren miteinander verbunden werden:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{3} \CommentTok{# Shortcut für: x <- c(1, 2, 3)}
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{3}  \CommentTok{# Shortcut für: x <- c(1, 2, 3)}
 \NormalTok{y <-}\StringTok{ }\DecValTok{4}\OperatorTok{:}\DecValTok{6}
 \NormalTok{z <-}\StringTok{ }\KeywordTok{c}\NormalTok{(x, y)}
 \NormalTok{z}
@@ -1781,7 +1750,7 @@ Fehlerquelle!
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x =}\StringTok{  }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{x =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
 \NormalTok{len_x <-}\StringTok{ }\KeywordTok{length}\NormalTok{(x)}
 \NormalTok{len_x}
 \end{Highlighting}
@@ -1843,7 +1812,7 @@ Es können auch längere Vektoren getestet werden:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{3}
-\NormalTok{x}\OperatorTok{<}\DecValTok{2}
+\NormalTok{x }\OperatorTok{<}\StringTok{ }\DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1856,7 +1825,7 @@ Tests können beliebig miteinander verknüpft werden:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{x <-}\StringTok{ }\NormalTok{1L}
-\NormalTok{x}\OperatorTok{>}\DecValTok{2} \OperatorTok{|}\StringTok{ }\NormalTok{x}\OperatorTok{<}\DecValTok{2} \OperatorTok{&}\StringTok{ }\NormalTok{(}\KeywordTok{is.double}\NormalTok{(x) }\OperatorTok{&}\StringTok{ }\NormalTok{x}\OperatorTok{!=}\DecValTok{0}\NormalTok{)}
+\NormalTok{x }\OperatorTok{>}\StringTok{ }\DecValTok{2} \OperatorTok{|}\StringTok{ }\NormalTok{x }\OperatorTok{<}\StringTok{ }\DecValTok{2} \OperatorTok{&}\StringTok{ }\NormalTok{(}\KeywordTok{is.double}\NormalTok{(x) }\OperatorTok{&}\StringTok{ }\NormalTok{x }\OperatorTok{!=}\StringTok{ }\DecValTok{0}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1870,11 +1839,10 @@ bestimmte Bedingung erfüllt ist:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{50} 
-\NormalTok{smaller_}\DecValTok{20}\NormalTok{ <-}\StringTok{ }\NormalTok{x}\OperatorTok{<}\DecValTok{20} 
-\KeywordTok{print}\NormalTok{(}
-  \KeywordTok{sum}\NormalTok{(smaller_}\DecValTok{20}\NormalTok{) }\CommentTok{# Wie viele Elemente sind kleiner als 20?}
-\NormalTok{  )}
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{50}
+\NormalTok{smaller_}\DecValTok{20}\NormalTok{ <-}\StringTok{ }\NormalTok{x }\OperatorTok{<}\StringTok{ }\DecValTok{20}
+\KeywordTok{print}\NormalTok{(}\KeywordTok{sum}\NormalTok{(smaller_}\DecValTok{20}\NormalTok{)  }\CommentTok{# Wie viele Elemente sind kleiner als 20?}
+\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1884,8 +1852,7 @@ bestimmte Bedingung erfüllt ist:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{print}\NormalTok{(}
-  \KeywordTok{sum}\NormalTok{(smaller_}\DecValTok{20}\OperatorTok{/}\KeywordTok{length}\NormalTok{(x)) }\CommentTok{# Wie hoch ist der Anteil von diesen Elementen?}
+\KeywordTok{print}\NormalTok{(}\KeywordTok{sum}\NormalTok{(smaller_}\DecValTok{20}\OperatorTok{/}\KeywordTok{length}\NormalTok{(x))  }\CommentTok{# Wie hoch ist der Anteil von diesen Elementen?}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -1912,7 +1879,7 @@ Symbol \texttt{\textquotesingle{}} oder \texttt{""} steht:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{y <-}\StringTok{ 'Auf Wiedersehen'}
+\NormalTok{y <-}\StringTok{ "Auf Wiedersehen"}
 \KeywordTok{typeof}\NormalTok{(y)}
 \end{Highlighting}
 \end{Shaded}
@@ -1932,7 +1899,8 @@ werden:
 \end{Shaded}
 
 \begin{verbatim}
-#> [1] "Hallo"           " und "           "Auf Wiedersehen"
+#> [1] "Hallo"           " und "          
+#> [3] "Auf Wiedersehen"
 \end{verbatim}
 
 Nützlich ist in diesem Zusammenhang die Funktion \texttt{paste()}, die
@@ -1947,8 +1915,10 @@ Elemente von mehreren Vektoren in Wörter transformiert und verbindet:
 \end{Shaded}
 
 \begin{verbatim}
-#>  [1] "Versuch Nr. 1"  "Versuch Nr. 2"  "Versuch Nr. 3"  "Versuch Nr. 4" 
-#>  [5] "Versuch Nr. 5"  "Versuch Nr. 6"  "Versuch Nr. 7"  "Versuch Nr. 8" 
+#>  [1] "Versuch Nr. 1"  "Versuch Nr. 2" 
+#>  [3] "Versuch Nr. 3"  "Versuch Nr. 4" 
+#>  [5] "Versuch Nr. 5"  "Versuch Nr. 6" 
+#>  [7] "Versuch Nr. 7"  "Versuch Nr. 8" 
 #>  [9] "Versuch Nr. 9"  "Versuch Nr. 10"
 \end{verbatim}
 
@@ -1965,8 +1935,9 @@ Elemente gesetzt wird:
 \end{Shaded}
 
 \begin{verbatim}
-#>  [1] "Tag: 1"  "Tag: 2"  "Tag: 3"  "Tag: 4"  "Tag: 5"  "Tag: 6"  "Tag: 7" 
-#>  [8] "Tag: 8"  "Tag: 9"  "Tag: 10"
+#>  [1] "Tag: 1"  "Tag: 2"  "Tag: 3"  "Tag: 4" 
+#>  [5] "Tag: 5"  "Tag: 6"  "Tag: 7"  "Tag: 8" 
+#>  [9] "Tag: 9"  "Tag: 10"
 \end{verbatim}
 
 \begin{quote}
@@ -2016,7 +1987,7 @@ einen bestimmten Wert annehmen:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\OtherTok{NA} \OperatorTok{|}\StringTok{ }\OtherTok{TRUE} \CommentTok{# Gibt immer TRUE, unabhängig vom Wert für NA}
+\OtherTok{NA} \OperatorTok{|}\StringTok{ }\OtherTok{TRUE}  \CommentTok{# Gibt immer TRUE, unabhängig vom Wert für NA}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2031,9 +2002,8 @@ Funktion \texttt{is.na} verwendet werden, und nicht etwa der Ausdruck
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DecValTok{5}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\DecValTok{10}\NormalTok{)}
-\KeywordTok{print}\NormalTok{(}
-\NormalTok{  x }\OperatorTok{==}\StringTok{ }\OtherTok{NA} \CommentTok{# Unklar da man nicht weiß ob alle NA für den gleichen Wert stehen}
-\NormalTok{  )}
+\KeywordTok{print}\NormalTok{(x }\OperatorTok{==}\StringTok{ }\OtherTok{NA}  \CommentTok{# Unklar da man nicht weiß ob alle NA für den gleichen Wert stehen}
+\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2043,9 +2013,7 @@ Funktion \texttt{is.na} verwendet werden, und nicht etwa der Ausdruck
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{print}\NormalTok{(}
-  \KeywordTok{is.na}\NormalTok{(x)}
-\NormalTok{)}
+\KeywordTok{print}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(x))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2058,7 +2026,7 @@ Ergebnis nicht \texttt{NA} sondern \texttt{NaN} (\emph{not a number}):
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{0} \OperatorTok{/}\StringTok{ }\DecValTok{0}
+\DecValTok{0}\OperatorTok{/}\DecValTok{0}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2088,7 +2056,7 @@ extrahiert werden:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{6}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{)}
 \NormalTok{x[}\DecValTok{1}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
@@ -2101,7 +2069,7 @@ Auf diese Weise können auch bestimmte Elemente modifiziert werden:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{6}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{)}
 \NormalTok{x[}\DecValTok{2}\NormalTok{] <-}\StringTok{ }\DecValTok{99}
 \NormalTok{x}
 \end{Highlighting}
@@ -2197,8 +2165,9 @@ hilft uns die allgemeinere Funktion \texttt{seq()}:
 \end{Shaded}
 
 \begin{verbatim}
-#>  [1]  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5
-#> [15]  8.0  8.5  9.0  9.5 10.0
+#>  [1]  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5
+#>  [9]  5.0  5.5  6.0  6.5  7.0  7.5  8.0  8.5
+#> [17]  9.0  9.5 10.0
 \end{verbatim}
 
 \begin{Shaded}
@@ -2245,7 +2214,7 @@ Vektors. Dafür können wir die Funktion \texttt{length()} verwenden:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{)}
 \KeywordTok{length}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
@@ -2285,7 +2254,7 @@ entfernt:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\OtherTok{NA}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\OtherTok{NA}\NormalTok{)}
 \KeywordTok{min}\NormalTok{(y)}
 \end{Highlighting}
 \end{Shaded}
@@ -2366,7 +2335,7 @@ Argument \texttt{na.rm}:
 
 \subsection{Matrizen}\label{matrizen}
 
-\subsubsection{Erstellen von Matrizen}\label{erstellen-von-matrizen}
+\textbf{Erstellen von Matrizen}
 
 Matrizen werden mit der Funktion \texttt{matrix()}erstellt. Diese
 Funktion nimmt als erstes Argument die Elemente der Matrix und dann die
@@ -2394,7 +2363,7 @@ extrahieren und ggf. Ersetzungen vornehmen:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{m_}\DecValTok{1}\NormalTok{[,}\DecValTok{1}\NormalTok{] }\CommentTok{# Erste Spalte}
+\NormalTok{m_}\DecValTok{1}\NormalTok{[, }\DecValTok{1}\NormalTok{]  }\CommentTok{# Erste Spalte}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2404,7 +2373,7 @@ extrahieren und ggf. Ersetzungen vornehmen:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{m_}\DecValTok{1}\NormalTok{[}\DecValTok{1}\NormalTok{,] }\CommentTok{# Erste Zeile}
+\NormalTok{m_}\DecValTok{1}\NormalTok{[}\DecValTok{1}\NormalTok{, ]  }\CommentTok{# Erste Zeile}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2414,7 +2383,7 @@ extrahieren und ggf. Ersetzungen vornehmen:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{m_}\DecValTok{1}\NormalTok{[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{] }\CommentTok{# Element [2,2]}
+\NormalTok{m_}\DecValTok{1}\NormalTok{[}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{]  }\CommentTok{# Element [2,2]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2422,7 +2391,7 @@ extrahieren und ggf. Ersetzungen vornehmen:
 #> [1] 17
 \end{verbatim}
 
-\subsubsection{Matrizenalgebra}\label{matrizenalgebra}
+\textbf{Matrizenalgebra}
 
 Matrizenalgebra spielt in vielen statistischen Anwendungen eine wichtige
 Rolle. In R ist es sehr einfach die typischen Rechenoperationen für
@@ -2442,8 +2411,8 @@ folgenden Matrizen verwenden:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{matrix_a <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{3}\NormalTok{), }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}
-\NormalTok{matrix_b <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{8}\NormalTok{), }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\NormalTok{matrix_a <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{3}\NormalTok{), }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\NormalTok{matrix_b <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{8}\NormalTok{), }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2457,7 +2426,7 @@ Skalar-Addition: \[4+\boldsymbol{A}=
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{4}\OperatorTok{+}\NormalTok{matrix_a}
+\DecValTok{4} \OperatorTok{+}\StringTok{ }\NormalTok{matrix_a}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2497,7 +2466,7 @@ Skalar-Multiplikation: \[2\cdot\boldsymbol{A}=
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{2}\OperatorTok{*}\NormalTok{matrix_a}
+\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{matrix_a}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2593,11 +2562,7 @@ Typs enthalten. Sie werden mit der Funktion \texttt{list()} erstellt:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{l_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}
-  \StringTok{"a"}\NormalTok{,}
-  \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{),}
-  \OtherTok{FALSE}
-\NormalTok{)}
+\NormalTok{l_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{), }\OtherTok{FALSE}\NormalTok{)}
 \KeywordTok{typeof}\NormalTok{(l_}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -2643,11 +2608,8 @@ Die einzelnen Elemente einer Liste können auch benannt werden:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{l_}\DecValTok{2}\NormalTok{ <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}
-  \StringTok{"erstes_element"}\NormalTok{ =}\StringTok{ "a"}\NormalTok{,}
-  \StringTok{"zweites_element"}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{),}
-  \StringTok{"drittes_element"}\NormalTok{ =}\StringTok{ }\OtherTok{FALSE}
-\NormalTok{)}
+\NormalTok{l_}\DecValTok{2}\NormalTok{ <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{erstes_element =} \StringTok{"a"}\NormalTok{, }\DataTypeTok{zweites_element =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }
+    \DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{), }\DataTypeTok{drittes_element =} \OtherTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2661,7 +2623,8 @@ Die Namen aller Elemente in der Liste erhalten wir mit der Funktion
 \end{Shaded}
 
 \begin{verbatim}
-#> [1] "erstes_element"  "zweites_element" "drittes_element"
+#> [1] "erstes_element"  "zweites_element"
+#> [3] "drittes_element"
 \end{verbatim}
 
 Um einzelne Elemente einer Liste auszulesen müssen wir \texttt{{[}{[}}
@@ -2702,11 +2665,7 @@ direkt aus einer Liste erstellen indem wir die Funktion
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{l_}\DecValTok{3}\NormalTok{ <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}
-  \StringTok{"a"}\NormalTok{ =}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{,}
-  \StringTok{"b"}\NormalTok{ =}\StringTok{ }\DecValTok{4}\OperatorTok{:}\DecValTok{6}\NormalTok{,}
-  \StringTok{"c"}\NormalTok{ =}\StringTok{ }\DecValTok{7}\OperatorTok{:}\DecValTok{9}
-\NormalTok{)}
+\NormalTok{l_}\DecValTok{3}\NormalTok{ <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{a =} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\DataTypeTok{b =} \DecValTok{4}\OperatorTok{:}\DecValTok{6}\NormalTok{, }\DataTypeTok{c =} \DecValTok{7}\OperatorTok{:}\DecValTok{9}\NormalTok{)}
 \NormalTok{df_}\DecValTok{3}\NormalTok{ <-}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(l_}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -2780,11 +2739,9 @@ umgewandelt werden:\footnote{Zur Geschichte dieses wirklich ärgerlichen
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df_}\DecValTok{4}\NormalTok{ <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
-  \StringTok{"gender"}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"male"}\NormalTok{, }\DecValTok{3}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\StringTok{"remale"}\NormalTok{, }\DecValTok{2}\NormalTok{)),}
-  \StringTok{"height"}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{89}\NormalTok{, }\DecValTok{75}\NormalTok{, }\DecValTok{80}\NormalTok{, }\DecValTok{66}\NormalTok{, }\DecValTok{50}\NormalTok{),}
-  \DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}
-\NormalTok{)}
+\NormalTok{df_}\DecValTok{4}\NormalTok{ <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{gender =} \KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"male"}\NormalTok{, }\DecValTok{3}\NormalTok{), }
+    \KeywordTok{rep}\NormalTok{(}\StringTok{"remale"}\NormalTok{, }\DecValTok{2}\NormalTok{)), }\DataTypeTok{height =} \KeywordTok{c}\NormalTok{(}\DecValTok{89}\NormalTok{, }\DecValTok{75}\NormalTok{, }\DecValTok{80}\NormalTok{, }
+    \DecValTok{66}\NormalTok{, }\DecValTok{50}\NormalTok{), }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
 \NormalTok{df_}\DecValTok{4}
 \end{Highlighting}
 \end{Shaded}
@@ -2819,7 +2776,7 @@ verwendet werden können:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df_}\DecValTok{4}\NormalTok{[}\DecValTok{1}\NormalTok{] }\CommentTok{# erste Spalte}
+\NormalTok{df_}\DecValTok{4}\NormalTok{[}\DecValTok{1}\NormalTok{]  }\CommentTok{# erste Spalte}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2834,7 +2791,7 @@ verwendet werden können:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df_}\DecValTok{4}\NormalTok{[, }\DecValTok{2}\NormalTok{] }\CommentTok{# Werte der zweiten Spalte}
+\NormalTok{df_}\DecValTok{4}\NormalTok{[, }\DecValTok{2}\NormalTok{]  }\CommentTok{# Werte der zweiten Spalte}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2844,17 +2801,18 @@ verwendet werden können:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df_}\DecValTok{4}\NormalTok{[[}\StringTok{"gender"}\NormalTok{]] }\CommentTok{# Abfrage funktioniert auch mit Spaltennamen}
+\NormalTok{df_}\DecValTok{4}\NormalTok{[[}\StringTok{"gender"}\NormalTok{]]  }\CommentTok{# Abfrage funktioniert auch mit Spaltennamen}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-#> [1] "male"   "male"   "male"   "remale" "remale"
+#> [1] "male"   "male"   "male"   "remale"
+#> [5] "remale"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df_}\DecValTok{4}\NormalTok{[}\StringTok{"gender"}\NormalTok{] }\CommentTok{# [ gibt als Output einen Data Frame}
+\NormalTok{df_}\DecValTok{4}\NormalTok{[}\StringTok{"gender"}\NormalTok{]  }\CommentTok{# [ gibt als Output einen Data Frame}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2869,7 +2827,7 @@ verwendet werden können:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df_}\DecValTok{4}\NormalTok{[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{, ] }\CommentTok{# Die ersten beiden Zeilen}
+\NormalTok{df_}\DecValTok{4}\NormalTok{[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{, ]  }\CommentTok{# Die ersten beiden Zeilen}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2881,7 +2839,7 @@ verwendet werden können:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df_}\DecValTok{4}\NormalTok{[}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{] }\CommentTok{# Zweite Wert der zweiten Spalte}
+\NormalTok{df_}\DecValTok{4}\NormalTok{[}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{]  }\CommentTok{# Zweite Wert der zweiten Spalte}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2963,10 +2921,7 @@ Allerdings haben wir selbst nach erfolgreicher Installation von
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
-  \DataTypeTok{a=}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{,}
-  \DataTypeTok{b=}\DecValTok{21}\OperatorTok{:}\DecValTok{25}
-\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{a =} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{, }\DataTypeTok{b =} \DecValTok{21}\OperatorTok{:}\DecValTok{25}\NormalTok{)}
 \KeywordTok{as.data.table}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
@@ -3078,7 +3033,7 @@ können das illustrieren indem wir den Namen des Objekts eingeben:
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7fc666904628>
+#> <bytecode: 0x7fba5e3fbbb8>
 #> <environment: namespace:plm>
 \end{verbatim}
 
@@ -3112,7 +3067,7 @@ Wenn wir die Funktion aus \texttt{dplyr} verwenden wollen, müssen wir
 #>     attributes(out) <- attributes(x)
 #>     out
 #> }
-#> <bytecode: 0x7fc6659682e0>
+#> <bytecode: 0x7fba6187b268>
 #> <environment: namespace:dplyr>
 \end{verbatim}
 
@@ -3144,10 +3099,18 @@ und nicht im Paket ``:
 \end{Shaded}
 
 \begin{verbatim}
-#>  [1] ".GlobalEnv"         "package:plm"        "package:dplyr"     
-#>  [4] "package:data.table" "package:stats"      "package:graphics"  
-#>  [7] "package:grDevices"  "package:utils"      "package:datasets"  
-#> [10] "package:methods"    "Autoloads"          "package:base"
+#>  [1] ".GlobalEnv"        
+#>  [2] "package:plm"       
+#>  [3] "package:dplyr"     
+#>  [4] "package:data.table"
+#>  [5] "package:stats"     
+#>  [6] "package:graphics"  
+#>  [7] "package:grDevices" 
+#>  [8] "package:utils"     
+#>  [9] "package:datasets"  
+#> [10] "package:methods"   
+#> [11] "Autoloads"         
+#> [12] "package:base"
 \end{verbatim}
 
 \begin{quote}
@@ -3253,8 +3216,7 @@ und den Pfad als zweites Argument an:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{auto_daten_neu <-}\StringTok{ }\NormalTok{auto_daten }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Verbrauch_pro_PS=}\NormalTok{Verbrauch}\OperatorTok{/}\NormalTok{PS)}
+\NormalTok{auto_daten_neu <-}\StringTok{ }\NormalTok{auto_daten }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Verbrauch_pro_PS =}\NormalTok{ Verbrauch}\OperatorTok{/}\NormalTok{PS)}
 \KeywordTok{write_csv}\NormalTok{(auto_daten_neu, }\KeywordTok{here}\NormalTok{(}\StringTok{"data/tidy/NeueDaten.csv"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
@@ -3284,6 +3246,7 @@ Sheet}
 \chapter{Referenzen}\label{refs}
 
 \bibliography{book.bib,packages.bib}
+
 
 
 \end{document}
