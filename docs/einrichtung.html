@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Einrichtung | R für die sozioökonomische Forschung</title>
+  <meta name="description" content="Das ist die Beschreibung." />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Einrichtung | R für die sozioökonomische Forschung" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Das ist die Beschreibung." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Einrichtung | R für die sozioökonomische Forschung" />
+  
+  <meta name="twitter:description" content="Das ist die Beschreibung." />
+  
+
+<meta name="author" content="Dr. Claudius Gräbner" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="precons.html"/>
+<link rel="next" href="basics.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R für die sozioökonomische Forschung</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Willkommen</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#anderungshistorie-wahrend-des-semesters"><i class="fa fa-check"></i>Änderungshistorie während des Semesters</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a><ul>
+<li class="chapter" data-level="1.1" data-path="precons.html"><a href="precons.html#warum-r"><i class="fa fa-check"></i><b>1.1</b> Warum R?</a></li>
+<li class="chapter" data-level="1.2" data-path="precons.html"><a href="precons.html#besonderheiten-von-r"><i class="fa fa-check"></i><b>1.2</b> Besonderheiten von R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="einrichtung.html"><a href="einrichtung.html"><i class="fa fa-check"></i><b>2</b> Einrichtung</a><ul>
+<li class="chapter" data-level="2.1" data-path="einrichtung.html"><a href="einrichtung.html#installation-von-r-und-r-studio"><i class="fa fa-check"></i><b>2.1</b> Installation von R und R-Studio</a></li>
+<li class="chapter" data-level="2.2" data-path="einrichtung.html"><a href="einrichtung.html#die-r-studio-oberflache"><i class="fa fa-check"></i><b>2.2</b> Die R Studio Oberfläche</a></li>
+<li class="chapter" data-level="2.3" data-path="einrichtung.html"><a href="einrichtung.html#einrichtung-eines-r-projekts"><i class="fa fa-check"></i><b>2.3</b> Einrichtung eines R Projekts</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="einrichtung.html"><a href="einrichtung.html#arbeitsverzeichnisse-und-pfade"><i class="fa fa-check"></i><b>2.3.1</b> Arbeitsverzeichnisse und Pfade</a></li>
+<li class="chapter" data-level="2.3.2" data-path="einrichtung.html"><a href="einrichtung.html#schritt-1-projektordner-anlegen"><i class="fa fa-check"></i><b>2.3.2</b> Schritt 1: Projektordner anlegen</a></li>
+<li class="chapter" data-level="2.3.3" data-path="einrichtung.html"><a href="einrichtung.html#schritt-2-ein-r-studio-projekt-im-projektordner-erstellen"><i class="fa fa-check"></i><b>2.3.3</b> Schritt 2: Ein R-Studio Projekt im Projektordner erstellen</a></li>
+<li class="chapter" data-level="2.3.4" data-path="einrichtung.html"><a href="einrichtung.html#schritt-3-relevante-unterordner-erstellen"><i class="fa fa-check"></i><b>2.3.4</b> Schritt 3: Relevante Unterordner erstellen</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="einrichtung.html"><a href="einrichtung.html#abschlieende-bemerkungen"><i class="fa fa-check"></i><b>2.4</b> Abschließende Bemerkungen</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#befehle-in-r-an-den-computer-ubermitteln"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#objekte-funktionen-und-zuweisungen"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#zwischenbillanz"><i class="fa fa-check"></i><b>3.3</b> Zwischenbillanz</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#grundlegende-objeke-in-r"><i class="fa fa-check"></i><b>3.4</b> Grundlegende Objeke in R</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.4.1</b> Funktionen</a></li>
+<li class="chapter" data-level="3.4.2" data-path="basics.html"><a href="basics.html#vektoren"><i class="fa fa-check"></i><b>3.4.2</b> Vektoren</a></li>
+<li class="chapter" data-level="3.4.3" data-path="basics.html"><a href="basics.html#logische-werte-logical"><i class="fa fa-check"></i><b>3.4.3</b> Logische Werte (logical)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="basics.html"><a href="basics.html#worter-character"><i class="fa fa-check"></i><b>3.4.4</b> Wörter (character)</a></li>
+<li class="chapter" data-level="3.4.5" data-path="basics.html"><a href="basics.html#fehlende-werte-und-null"><i class="fa fa-check"></i><b>3.4.5</b> Fehlende Werte und NULL</a></li>
+<li class="chapter" data-level="3.4.6" data-path="basics.html"><a href="basics.html#indizierung-und-ersetzung"><i class="fa fa-check"></i><b>3.4.6</b> Indizierung und Ersetzung</a></li>
+<li class="chapter" data-level="3.4.7" data-path="basics.html"><a href="basics.html#nutzliche-funktionen-fur-atomare-vektoren"><i class="fa fa-check"></i><b>3.4.7</b> Nützliche Funktionen für atomare Vektoren</a></li>
+<li class="chapter" data-level="3.4.8" data-path="basics.html"><a href="basics.html#matrizen"><i class="fa fa-check"></i><b>3.4.8</b> Matrizen</a></li>
+<li class="chapter" data-level="3.4.9" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.4.9</b> Listen</a></li>
+<li class="chapter" data-level="3.4.10" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.4.10</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#pakete"><i class="fa fa-check"></i><b>3.5</b> Pakete</a></li>
+<li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.6</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>A</b> Eine kurze Einführung in R Markdown</a></li>
+<li class="chapter" data-level="B" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i><b>B</b> Referenzen</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R für die sozioökonomische Forschung</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="einrichtung" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Einrichtung</h1>
+<div id="installation-von-r-und-r-studio" class="section level2">
+<h2><span class="header-section-number">2.1</span> Installation von R und R-Studio</h2>
+<p>Die Installation von R ist in der Regel unproblematisch. Auf der <a href="https://www.r-project.org/">R homepage</a> wählt man unter dem Reiter ‘Download’ den Link ‘CRAN’ aus, wählt einen Server in der Nähe und lädt sich dann die R Software herunter. Danach folgt man den Installationshinweisen.</p>
+<p>Im zweiten Schritt muss noch das Programm ‘R-Studio’ installiert werden. Hierbei handelt es sich um eine grafische Oberfläche für R, welche uns die Arbeit enorm erleichtern wird. Das Programm kann <a href="https://www.rstudio.com/products/rstudio/download/">hier</a> heruntergeladen werden. Bitte darauf achten ‘RStuio Desktop’ zu installieren.</p>
+</div>
+<div id="die-r-studio-oberflache" class="section level2">
+<h2><span class="header-section-number">2.2</span> Die R Studio Oberfläche</h2>
+<p>Nach dem Installationsprozess öffnen wir R Studio zum ersten Mal. Der folgende Screenshop zeigt die verschiedenen Elemente der Oberfläche, deren Funktion im folgenden kurz erläutert wird. Vieles ergibt sich hier aber auch durch <em>working by doing</em>. Im folgenden werden nur die Bereiche der Oberfläche beschrieben, die am Anfang unmittelbar relevant für uns sind.</p>
+<p><img src="figures/r-studio-light-marked.png" width="100%" style="display: block; margin: auto;" /></p>
+<ul>
+<li><p>Der <strong>Skriptbereich</strong> (1) ist ein Texteditor wie Notepad - nur mit zusätzlichen Features wie Syntax Highlighting für R, sodass es uns leichter fällt R Code zu schreiben. Hier werden wir unsere Skripte verfassen.</p></li>
+<li><p>Die <strong>Konsole</strong> (2) erlaubt es uns über R direkt mit unserem Computer zu interagieren. R ist eine Programmiersprache. Das bedeutet, wenn wir den Regeln der Sprache folgen und uns in einer für den Computer verständlicher Art und Weise ausdrücken, versteht der Computer was wir von ihm wollen und führt unsere Befehle aus. Wenn wir in die Konsole z.B. <code>2+2</code> eingeben, dann ist das valider R code. Wenn wir dann Enter drücken versteht der Computer unseren Befehl und führt die Berechnung aus. Die Konsole ist sehr praktisch und den Effekt von R Code direkt zu beobachten. Wenn wir etwas in der Console ausführen wollen, das wir vorher im <strong>Skriptbereich</strong> geschrieben haben, können wir den Text markieren und dann auf den Button <code>Run</code> (3) drücken: dann kopiert R Studio den Code in die Konsole und führt ihn aus.</p></li>
+<li><p>Für den Bereich oben rechts haben wir in der Standardkonfiguration von R Studio drei Optionen, die wir durch Klicken auf die Reiter auswählen können. Der Reiter <strong>Environment</strong> (4) zeigt uns alle bisher definierten Objekte an (mehr dazu später). Der Reiter <strong>History</strong> (5) zeigt an, welchen Code wir in der Vergangenheit ausgeführt haben. Der Reiter <strong>Connections</strong> (6) braucht uns aktuell nicht zu interessieren.</p></li>
+<li><p>Auch für den Bereich unten rechts haben wir mehrere Optionen: Der Bereich <strong>Files</strong> (7) zeigt uns unser Arbeitsverzeichnis mit allen Ordnern und Dateien an. Das ist das gleichte, was wir auch über den File Explorer unserer Betriebssystems sehen würden. Der Bereich <strong>Plots</strong> (8) zeigt uns eine Vorschau der Abbildungen, die wir durch unseren Code produzieren. Die anderen Bereiche brauchen uns aktuell noch nicht zu interessieren.</p></li>
+<li><p>Wenn wir ein neues R Skript erstellen wollen, können wir das über den Button <strong>Neu</strong> (9) erledigen. Wir klicken darauf und wählen die Option ‘R Skript’. Mit den alternativen Dateiformaten brauchen wir uns aktuell nicht beschäftigen.</p></li>
+<li><p>Der Botton <strong>Neues Projekt anlegen</strong> (10) erstellt eine neues R Studio Projekt - mehr dazu in Kürze.</p></li>
+<li><p>Der Button <strong>Öffnen</strong> (11) öffnet Dateien im Skriptbereich.</p></li>
+<li><p>Die beiden Buttons <strong>Speichern</strong> (12) und <strong>Alles speichern</strong> (13) speichern das aktuelle, bzw. alle im Skriptbereich geöffnenten Dateien.</p></li>
+</ul>
+<p>Die restlichen Buttons und Fenster in R Studio werden wir im Laufe der Zeit kennenlernen.</p>
+<p>Es macht Sinn, sich einmal die möglichen Einstellungsmöglichkeiten für R Studio anzuschauen und ggf. eine andere Darstellungsversion zu wählen.</p>
+</div>
+<div id="einrichtung-eines-r-projekts" class="section level2">
+<h2><span class="header-section-number">2.3</span> Einrichtung eines R Projekts</h2>
+<p>Im folgenden werden wir lernen wie man ein neues R Projekt anlegt, R Code schreiben und ausführen kann.</p>
+<p>Wann immer wir ein neues Programmierprojekt starten sollten wir dafür einen eigenen Ordner anlegen und ein so genannten ‘R Studio Projekt’ erstellen. Das hilft uns den Überblick über unsere Arbeit zu behalten, und macht es einfach Code untereinander auszutauschen.</p>
+<p>Ein Programmierprojekt kann ein Projekt für eine Hausarbeit sein, die Mitschriften für eine Vorlesungseinheit, oder einfach der Versuch ein bestimmtes Problem zu lösen, z.B. einen Datensatz zu visualisieren.</p>
+<p>Die Schritte zur Erstellung eines solchen Projekts sind immer die gleichen:</p>
+<ol style="list-style-type: decimal">
+<li>Einen Ordner für das Projekt anlegen.</li>
+<li>Ein R-Studio Projekt in diesem Ordner erstellen.</li>
+<li>Relevante Unterordner anlegen.</li>
+</ol>
+<p>Wir beschäftigen uns mit den Schritten gleich im Detail, müssen vorher aber noch die folgenden Konzepte diskutieren: (1) das Konzept eines <em>Arbeitsverzeichnisses</em> (<em>working directory</em>) und (2) die Unterscheidnug zwischen <em>absoluten</em> und <em>relativen</em> Pfaden.</p>
+<div id="arbeitsverzeichnisse-und-pfade" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Arbeitsverzeichnisse und Pfade</h3>
+<p>Das <strong>Arbeitsverzeichnis</strong> ist ein Ordner auf dem Computer, in dem R standardmäßig allen Output speichert. Wenn wir mit Projekten arbeiten ist das Arbeitsverzeichnis der Ordner, in dem das R-Projektfile abgelegt ist, ansonsten ist es euer Benutzerverzeichnis. Wir können uns das Arbeitsverzeichnis mit der Funktion <code>getwd()</code> anzeigen lassen. In meinem Fall ist das Arbeitsverzeichnis das folgende:</p>
+<pre><code>#&gt; [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR&quot;</code></pre>
+<p>Wenn ich R nun sagen würde ein File unter dem Namen <code>test.pdf</code> speichern, würde es am folgenden Ort gespeichert werden:</p>
+<pre><code>#&gt; [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf&quot;</code></pre>
+<p>R geht in einem solchen Fall immer vom Arbeitsverzeichnis aus. Da wir im vorliegenden Fall den Speicherort relativ zum Arbeitsverzeichnis angegeben haben,sprechen wir hier von einem <strong>relativen Pfad</strong>.</p>
+<p>Alternativ können wir den Speicherort auch als <strong>absoluten Pfad</strong> angeben. In diesem Fall geben wir den kompletten Pfad, ausgehend vom <a href="https://de.wikipedia.org/wiki/Stammverzeichnis">Root Verzeichnis</a> des Computers, an. Wir würden R also <em>explizit</em> auffordern, das File an foldengem Ort zu speichern:</p>
+<pre><code>#&gt; [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf&quot;</code></pre>
+<p>Wir werden hier <strong>immer</strong> relative Pfade verwenden. Relative Pfade fast immer die bessere Variante, da es uns erlaubt den gleichen Code auf verschiedenen Computern zu verwenden. Denn wir man an den absoluten Pfaden hier erkennen kann, sehen diese auf jedem Computer anders aus und es ist dementsprechend schwierig, Code miteinander zu teilen.</p>
+<p>Wir lernen mehr über dieses Thema wenn wir uns später mit Dateninput und -output beschäftigen.</p>
+</div>
+<div id="schritt-1-projektordner-anlegen" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Schritt 1: Projektordner anlegen</h3>
+<p>Zuerst müssen Sie sich für einen Ordner auf Ihrem Computer entscheiden, in dem alle Daten, die mit ihrem Projekt zu tun haben, also Daten, Skripte, Abbildungen, etc. gespeichert werden sollen und diesen Ordner gegebenenfalls neu erstellen. Es macht Sinn, einen solchen Ordner mit einem informativen Namen ohne Leer- und Sonderzeichen zu versehen, z.B. <code>SoSe19-Methodenkurs</code>.</p>
+<p>Dieser Schritt kann theoretisch auch gemeinsam mit Schritt 2 erfolgen.</p>
+</div>
+<div id="schritt-2-ein-r-studio-projekt-im-projektordner-erstellen" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Schritt 2: Ein R-Studio Projekt im Projektordner erstellen</h3>
+<p>Wir möchten nun R Studio mitteilen den in Schritt 1 erstellten Ordner als R Projekt zu behandeln. Damit wird nicht nur dieses Ordner als Root-Verzeichnis festgelegt, man kann auch die Arbeitshistorie eines Projekts leich wiederherstellen und es ist einfacher, das Projekt auf verschiedenen Computern zu bearbeiten.</p>
+<p>Um ein neues Projekt zu erstellen klickt ihr in R Studio auf den Button <code>Neues Projekt</code> (Nr. 10 in der obigen Abbildung) und ihr solltet folgendes Fenster sehen:</p>
+<p><img src="figures/r-studio-new-project.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Falls ihr in Schritt 1 den Projektordner bereits erstellt habt wählt ihr hier <code>Existing Directory</code>, ansonsten erstellt ihr einen neuen Projektordner gleich mit dem Projektfile mit indem Sie <code>New Directory</code> auswählen.</p>
+<p>Falls Sie <code>Existing Directory</code> gewählt haben, wählen Sie in folgendem Fenster einfach den vorher erstellten Ordner aus und klickt auf <code>Create Project</code>.</p>
+<p><img src="figures/r-studio-new-project-exis-dir.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Falls Sie <code>New Directory</code> gewählt habt landen Sie auf folgendem Fenster:</p>
+<p><img src="figures/r-studio-new-project-new-dir.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Hier wählt ihr <code>New Project</code> aus, gebt dem Projekt in folgenden Fenster einen Namen (das wird der Name des Projektordners sein), wählt den Speicherort für den Ordner aus und klickt auf <code>Create Project</code>.</p>
+<p>In beiden Fällen wurde nun ein Ordner erstellt, in dem sich ein File <code>***.RPorj</code> befindet. Damit ist die formale Erstellung eines Projekts abgeschlossen. Es empfiehlt sich jedoch dringend gleich eine sinnvolle Unterordnerstruktur mit anzulegen.</p>
+</div>
+<div id="schritt-3-relevante-unterordner-erstellen" class="section level3">
+<h3><span class="header-section-number">2.3.4</span> Schritt 3: Relevante Unterordner erstellen</h3>
+<p>Eine sinnvolle Unterordnerstruktur hilf (1) den Überblick über das eigene Projekt nicht zu verlieren, (2) mit anderen über verschiedene Computer hinweg zu kollaborieren und (3) Kollaborationsplattformen wie Github zu verwenden und replizierbare und für andere nachvollziehbare Forschungsarbeit zu betreiben.</p>
+<p>Die folgende Ordnerstruktur ist eine Empfehlung. In manchen Projekten werden Sie nicht alle hier vorgeschlagenen Unterordner brauchen, in anderen bietet sich die Verwendung von mehr Unterordnern an. Nichtsdestotrotz ist es ein guter Ausgangspunkt, den ich in den meisten meiner Forschungsprojekte auch so verwende.</p>
+<p>Insgesamt sollten die folgenden Ordner im Projektordner erstellt werden:</p>
+<ul>
+<li>Ein Ordner <code>data</code>, der alle Daten enthält, die im Rahmen des Projekts verwendet werden. Hier empfiehlt es sich zwei Unterordner anzulegen: Einen Ordner <code>raw</code>, der die Rohdaten enthält, so wie sie aus dem Internet runtergeladen wurden. Diese Rohdaten sollten <strong>niemals</strong> verändert werdden, ansonsten wird Ihre Arbeit nicht vollständig replizierbar werden und es kommt ggf. zu irreparablen Schäden. Alle Veränderungen der Daten sollten durch Skripte dokumentiert werdenn, die die Rohdaten als Input, und einen modifizierten Datensatz als Output generieren. Dieser modifizierte Datensatz sollte dann in Unterordner <code>tidy</code> gespeichert werden.</li>
+</ul>
+<blockquote>
+<p>Beispiel: Sie laden sich Daten zum BIP in Deutschland von Eurostat und Daten zu Arbeitslosigkeit von AMECO herunter. Beiden Datensätze sollten im Unterordner <code>data/raw</code> gespeichert werden. Mit einem Skript lesen Sie beide Datensätze ein und erstellen den kombinierten Datensatz <code>macro_data.csv</code>, den Sie im Ordner <code>data/tidy</code> speichern und für die weitere Analyse verwenden. Dadurch kann jede*r nachvollziehen wie die von Ihnen verwendeten Daten sich aus den Rohdaten ergeben haben und Ihre Arbeit bleibt komplett transparent.</p>
+</blockquote>
+<ul>
+<li><p>Ein Ordner <code>R</code>, der alle R Skripte enthält, also alle Textdokumente, die R Code enthalten.</p></li>
+<li><p>Ein Ordner <code>output</code>, in dem der Output ihrer Berechnungen, z.B. Tabellen oder Plots gespeichert werden können. Der Inhalt dieses Ordners sollte sich komplett mit den Inhalten der Ordner <code>data</code> und <code>R</code> replizieren lassen.</p></li>
+<li><p>Ein Ordner <code>text</code>, in dem Sie Ihre Verschriftlichungen speichern, z.B. das eigentliche Forschungspapier, ihre Hausarbeit oder Ihre Vorlesungsmitschriften.</p></li>
+<li><p>Einen Ordner <code>misc</code> in den Sie alles packen, was in keinen der anderen Ordner passt. Ein solcher Ordner ist wichtig und sie sollten nicht zuordbare Dateien nie in den Projektordner als solchen speichern.</p></li>
+</ul>
+<p>Wenn wir annehmen unser Projektordner heißt <code>2019-Methoden</code> ergibt sich damit insgesamt folgende Ordner und Datenstruktur:</p>
+<pre><code>2019-Methoden
+│   2019-Methoden.Rproj
+│
++---data
+│   │
+│   +---raw
+│   |    │  Rohdaten.csv
+|   |
+|   +---tidy
+|         | BearbeiteteDaten.csv
++---R
+|   | Skript1.R
+|
++---output
+|   | Abbildung1.pdf
+|
++---text
+|   | MeineNotizen.txt
+|
++---misc
+|   | AlterStuff.doc
+|   | Reading5.pdf</code></pre>
+</div>
+</div>
+<div id="abschlieende-bemerkungen" class="section level2">
+<h2><span class="header-section-number">2.4</span> Abschließende Bemerkungen</h2>
+<p>Eine gute Ordnerstruktur ist nicht nur absolut essenziell um selbst einen Überblick über seine Forschungsprojekte zu behalten, sondern auch wenn man mit anderen Menschen kollaborieren möchte. In einem solchen Fall sollte man auf jeden Fall eine Versionskontrolle wie Git und GitHub verwenden. Wir werden uns damit im nächsten Semester genauer beschäftigen, aber Sie werden merken, dass die Kollaboration durch eine gut durchdachte Ordnerstruktur massiv erleichtert wird.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="precons.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["R-SocioEcon-dt.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
