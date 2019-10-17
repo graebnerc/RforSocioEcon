@@ -1,7 +1,7 @@
 --- 
 title: "Eine Einführung in R für die sozioökonomische Forschung"
 author: "[Dr. Claudius Gräbner](http://claudius-graebner.com/)"
-date: "Datum: 2019-10-16 \n\n Versionskennung: 0.0.0.9000"
+date: "Versionskennung: 0.0.0.9000"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book

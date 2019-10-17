@@ -1,5 +1,7 @@
 # Einrichtung {#einrichtung}
 
+
+
 ## Installation von R und R-Studio
 
 Die Installation von R ist in der Regel unproblematisch.
@@ -24,9 +26,8 @@ Vieles ergibt sich hier aber auch durch *working by doing*.
 Im folgenden werden nur die Bereiche der Oberfläche beschrieben, die am Anfang 
 unmittelbar relevant für uns sind.
 
-```{r, echo=FALSE, fig.align='center', out.width='100%'}
-knitr::include_graphics("figures/r-studio-light-marked.png")
-```
+
+\begin{center}\includegraphics[width=1\linewidth]{figures/r-studio-light-marked} \end{center}
 
 * Der **Skriptbereich** (1) ist ein Texteditor wie Notepad - nur mit 
 zusätzlichen Features wie Syntax Highlighting für R, sodass es uns leichter 
@@ -117,15 +118,17 @@ R-Projektfile abgelegt ist, ansonsten ist es euer Benutzerverzeichnis.
 Wir können uns das Arbeitsverzeichnis mit der Funktion `getwd()` anzeigen lassen.
 In meinem Fall ist das Arbeitsverzeichnis das folgende:
 
-```{r, echo=FALSE}
-getwd()
+
+```
+#> [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR"
 ```
 
 Wenn ich R nun sagen würde ein File unter dem Namen `test.pdf` speichern, würde 
 es am folgenden Ort gespeichert werden:
 
-```{r, echo=FALSE}
-paste0(getwd(), "/test.pdf")
+
+```
+#> [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf"
 ```
 
 R geht in einem solchen Fall immer vom Arbeitsverzeichnis aus.
@@ -139,8 +142,9 @@ Computers, an.
 Wir würden R also *explizit* auffordern, das File an foldengem Ort zu 
 speichern:
 
-```{r, echo=FALSE}
-paste0(getwd(), "/test.pdf")
+
+```
+#> [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf"
 ```
 
 Wir werden hier **immer** relative Pfade verwenden. 
@@ -175,9 +179,8 @@ Um ein neues Projekt zu erstellen klickt ihr in R Studio auf den Button
 `Neues Projekt` (Nr. 10 in der obigen Abbildung) und ihr solltet folgendes
 Fenster sehen:
 
-```{r, echo=FALSE, fig.align='center', out.width='60%'}
-knitr::include_graphics("figures/r-studio-new-project.png")
-```
+
+\begin{center}\includegraphics[width=0.6\linewidth]{figures/r-studio-new-project} \end{center}
 
 Falls ihr in Schritt 1 den Projektordner bereits erstellt habt wählt ihr hier
 `Existing Directory`, ansonsten erstellt ihr einen neuen Projektordner gleich
@@ -186,15 +189,13 @@ mit dem Projektfile mit indem Sie `New Directory` auswählen.
 Falls Sie `Existing Directory` gewählt haben, wählen Sie in folgendem Fenster 
 einfach den vorher erstellten Ordner aus und klickt auf `Create Project`.
 
-```{r, echo=FALSE, fig.align='center', out.width='60%'}
-knitr::include_graphics("figures/r-studio-new-project-exis-dir.png")
-```
+
+\begin{center}\includegraphics[width=0.6\linewidth]{figures/r-studio-new-project-exis-dir} \end{center}
 
 Falls Sie `New Directory` gewählt habt landen Sie auf folgendem Fenster:
 
-```{r, echo=FALSE, fig.align='center', out.width='60%'}
-knitr::include_graphics("figures/r-studio-new-project-new-dir.png")
-```
+
+\begin{center}\includegraphics[width=0.6\linewidth]{figures/r-studio-new-project-new-dir} \end{center}
 
 Hier wählt ihr `New Project` aus, gebt dem Projekt in folgenden Fenster einen
 Namen (das wird der Name des Projektordners sein), wählt den Speicherort für den

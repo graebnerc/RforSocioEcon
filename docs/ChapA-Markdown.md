@@ -9,3 +9,4 @@ Deswegen sind auch alle Aufgabenzettel als Markdown Dokument abzugeben.
 
 > Markdown vs. R-Markdown
 
+[Cheat Sheet](https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)

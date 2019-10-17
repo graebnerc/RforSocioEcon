@@ -129,19 +129,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#objekte-funktionen-und-zuweisungen"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
 <li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#zwischenbillanz"><i class="fa fa-check"></i><b>3.3</b> Zwischenbillanz</a></li>
 <li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#grundlegende-objeke-in-r"><i class="fa fa-check"></i><b>3.4</b> Grundlegende Objeke in R</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="basics.html"><a href="basics.html#vektoren"><i class="fa fa-check"></i><b>3.4.1</b> Vektoren</a></li>
-<li class="chapter" data-level="3.4.2" data-path="basics.html"><a href="basics.html#ganze-zahlen-und-dezimalzahlen-integer-und-double"><i class="fa fa-check"></i><b>3.4.2</b> Ganze Zahlen und Dezimalzahlen (integer und double)</a></li>
+<li class="chapter" data-level="3.4.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.4.1</b> Funktionen</a></li>
+<li class="chapter" data-level="3.4.2" data-path="basics.html"><a href="basics.html#vektoren"><i class="fa fa-check"></i><b>3.4.2</b> Vektoren</a></li>
 <li class="chapter" data-level="3.4.3" data-path="basics.html"><a href="basics.html#logische-werte-logical"><i class="fa fa-check"></i><b>3.4.3</b> Logische Werte (logical)</a></li>
 <li class="chapter" data-level="3.4.4" data-path="basics.html"><a href="basics.html#worter-character"><i class="fa fa-check"></i><b>3.4.4</b> Wörter (character)</a></li>
 <li class="chapter" data-level="3.4.5" data-path="basics.html"><a href="basics.html#fehlende-werte-und-null"><i class="fa fa-check"></i><b>3.4.5</b> Fehlende Werte und NULL</a></li>
-<li class="chapter" data-level="3.4.6" data-path="basics.html"><a href="basics.html#matrizen-und-arrays"><i class="fa fa-check"></i><b>3.4.6</b> Matrizen und Arrays</a></li>
-<li class="chapter" data-level="3.4.7" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.4.7</b> Listen</a></li>
-<li class="chapter" data-level="3.4.8" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.4.8</b> Data Frames</a></li>
-<li class="chapter" data-level="3.4.9" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.4.9</b> Funktionen</a></li>
-<li class="chapter" data-level="3.4.10" data-path="basics.html"><a href="basics.html#optional-namespaces"><i class="fa fa-check"></i><b>3.4.10</b> Optional: Namespaces</a></li>
-<li class="chapter" data-level="3.4.11" data-path="basics.html"><a href="basics.html#optional-klassen-in-r"><i class="fa fa-check"></i><b>3.4.11</b> Optional: Klassen in R</a></li>
+<li class="chapter" data-level="3.4.6" data-path="basics.html"><a href="basics.html#indizierung-und-ersetzung"><i class="fa fa-check"></i><b>3.4.6</b> Indizierung und Ersetzung</a></li>
+<li class="chapter" data-level="3.4.7" data-path="basics.html"><a href="basics.html#nutzliche-funktionen-fur-atomare-vektoren"><i class="fa fa-check"></i><b>3.4.7</b> Nützliche Funktionen für atomare Vektoren</a></li>
+<li class="chapter" data-level="3.4.8" data-path="basics.html"><a href="basics.html#matrizen"><i class="fa fa-check"></i><b>3.4.8</b> Matrizen</a></li>
+<li class="chapter" data-level="3.4.9" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.4.9</b> Listen</a></li>
+<li class="chapter" data-level="3.4.10" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.4.10</b> Data Frames</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#libraries"><i class="fa fa-check"></i><b>3.5</b> Libraries</a></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#pakete"><i class="fa fa-check"></i><b>3.5</b> Pakete</a></li>
 <li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.6</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -206,12 +205,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="arbeitsverzeichnisse-und-pfade" class="section level3">
 <h3><span class="header-section-number">2.3.1</span> Arbeitsverzeichnisse und Pfade</h3>
 <p>Das <strong>Arbeitsverzeichnis</strong> ist ein Ordner auf dem Computer, in dem R standardmäßig allen Output speichert. Wenn wir mit Projekten arbeiten ist das Arbeitsverzeichnis der Ordner, in dem das R-Projektfile abgelegt ist, ansonsten ist es euer Benutzerverzeichnis. Wir können uns das Arbeitsverzeichnis mit der Funktion <code>getwd()</code> anzeigen lassen. In meinem Fall ist das Arbeitsverzeichnis das folgende:</p>
-<pre><code>## [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR&quot;</code></pre>
+<pre><code>#&gt; [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR&quot;</code></pre>
 <p>Wenn ich R nun sagen würde ein File unter dem Namen <code>test.pdf</code> speichern, würde es am folgenden Ort gespeichert werden:</p>
-<pre><code>## [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf&quot;</code></pre>
+<pre><code>#&gt; [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf&quot;</code></pre>
 <p>R geht in einem solchen Fall immer vom Arbeitsverzeichnis aus. Da wir im vorliegenden Fall den Speicherort relativ zum Arbeitsverzeichnis angegeben haben,sprechen wir hier von einem <strong>relativen Pfad</strong>.</p>
 <p>Alternativ können wir den Speicherort auch als <strong>absoluten Pfad</strong> angeben. In diesem Fall geben wir den kompletten Pfad, ausgehend vom <a href="https://de.wikipedia.org/wiki/Stammverzeichnis">Root Verzeichnis</a> des Computers, an. Wir würden R also <em>explizit</em> auffordern, das File an foldengem Ort zu speichern:</p>
-<pre><code>## [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf&quot;</code></pre>
+<pre><code>#&gt; [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf&quot;</code></pre>
 <p>Wir werden hier <strong>immer</strong> relative Pfade verwenden. Relative Pfade fast immer die bessere Variante, da es uns erlaubt den gleichen Code auf verschiedenen Computern zu verwenden. Denn wir man an den absoluten Pfaden hier erkennen kann, sehen diese auf jedem Computer anders aus und es ist dementsprechend schwierig, Code miteinander zu teilen.</p>
 <p>Wir lernen mehr über dieses Thema wenn wir uns später mit Dateninput und -output beschäftigen.</p>
 </div>
@@ -319,7 +318,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/Chap-intro.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/Chap-setup.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -334,6 +333,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
