@@ -1,15 +1,16 @@
 --- 
-title: "R für die sozioökonomische Forschung"
+title: "R für die sozio-ökonomische Forschung"
+subtitle: "Version 0.0.0.9001"
 author: "[Dr. Claudius Gräbner](http://claudius-graebner.com/)"
-date: "Versionskennung: 0.0.0.9000"
+date: "2019-10-18" 
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: rstudio/bookdown-demo
-description: "Das ist die Beschreibung."
+github-repo: graebnerc/RforSocioEcon
+description: "R Skript in der Version 0.0.0.9001."
 ---
 
 # Willkommen {-}
