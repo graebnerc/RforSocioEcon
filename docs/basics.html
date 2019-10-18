@@ -4,26 +4,27 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Erste Schritte in R | R für die sozioökonomische Forschung</title>
-  <meta name="description" content="Das ist die Beschreibung." />
+  <title>Chapter 3 Erste Schritte in R | R für die sozio-ökonomische Forschung</title>
+  <meta name="description" content="R Skript in der Version 0.0.0.9001." />
   <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Erste Schritte in R | R für die sozioökonomische Forschung" />
+  <meta property="og:title" content="Chapter 3 Erste Schritte in R | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Das ist die Beschreibung." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="R Skript in der Version 0.0.0.9001." />
+  <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Erste Schritte in R | R für die sozioökonomische Forschung" />
+  <meta name="twitter:title" content="Chapter 3 Erste Schritte in R | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="Das ist die Beschreibung." />
+  <meta name="twitter:description" content="R Skript in der Version 0.0.0.9001." />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
+<meta name="date" content="2019-10-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,7 +159,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R für die sozioökonomische Forschung</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R für die sozio-ökonomische Forschung</a>
           </h1>
         </div>
 
@@ -979,7 +980,7 @@ y &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(x)</code><
 #&gt; {
 #&gt;     UseMethod(&quot;lead&quot;)
 #&gt; }
-#&gt; &lt;bytecode: 0x7f80cff78508&gt;
+#&gt; &lt;bytecode: 0x7f8e72137f40&gt;
 #&gt; &lt;environment: namespace:plm&gt;</code></pre>
 <p>Aus der letzten Zeile wird ersichtlich, dass <code>lead</code> hier aus dem Paket <code>plm</code> kommt.</p>
 <p>Wenn wir die Funktion aus <code>dplyr</code> verwenden wollen, müssen wir <code>::</code> verwenden:</p>
@@ -1001,7 +1002,7 @@ y &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(x)</code><
 #&gt;     attributes(out) &lt;- attributes(x)
 #&gt;     out
 #&gt; }
-#&gt; &lt;bytecode: 0x7f80cd1d6530&gt;
+#&gt; &lt;bytecode: 0x7f8e6d2e74f8&gt;
 #&gt; &lt;environment: namespace:dplyr&gt;</code></pre>
 <p>Wenn es zu Maskierungen kommt ist es aber der Transparenz wegen besser in beiden Fällen <code>::</code> zu verwenden, also <code>plm::lead</code> und <code>dplyr::lead</code>.</p>
 <blockquote>
