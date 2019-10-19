@@ -1772,7 +1772,8 @@ Der `data.frame` ist eine besondere Art von Liste und ist ein in der
 Datenanalyse regelmäßig auftretender Datentyp.
 Gegensatz zu einer normalen Liste müssen bei einem `data.frame` alle Elemente
 die gleiche Länge aufweisen. 
-Das heißt man kann sich einen `data.frame` als eine rechteckige Liste vorstellen.
+Das heißt man kann sich einen `data.frame` als eine rechteckig angeordnete Liste 
+vorstellen.
 
 Wegen der engen Verwandschaft können wir einen `data.frame` direkt aus einer Liste
 erstellen indem wir die Funktion `as.data.frame()` verwenden:
@@ -2130,7 +2131,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7fe005e5c9a8>
+#> <bytecode: 0x7fbd3edd3108>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2161,7 +2162,7 @@ dplyr::lead
 #>     attributes(out) <- attributes(x)
 #>     out
 #> }
-#> <bytecode: 0x7fe0059b7dc8>
+#> <bytecode: 0x7fbd3e226768>
 #> <environment: namespace:dplyr>
 ```
 
@@ -2231,17 +2232,8 @@ gelesen und geschrieben werden kann.
 
 Für die Beispiele hier nehmen wir folgende Ordnerstruktur an:
 
-```
-2019-Methoden
-│   2019-Methoden.Rproj
-│
-+---data
-│   │
-│   +---raw
-│   |    │  Rohdaten.csv
-|   |
-|   +---tidy
-```
+
+\begin{center}\includegraphics[width=0.5\linewidth]{figures/chap3-data-folder} \end{center}
 
 Um die Daten einzulesen verwenden wir das Paket `tidyverse`, die wir später
 genauer kennen lernen werden. Sie enthält viele nützliche Funktionen zur 

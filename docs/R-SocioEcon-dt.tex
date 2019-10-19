@@ -143,12 +143,16 @@ Sozioökonomie'' im Master ``Sozioökonomie'' an der Universität
 Duisburg-Essen gedacht.
 
 Es enthält grundlegende Informationen über die Funktion der
-Programmiersprache R \citep{R-Team}. Einige Kapitel beziehen sich
-unmittelbar auf bestimmte Vorlesungstermine, andere sind als optionale
-Zusatzinformation gedacht. Gerade Menschen ohne Vorkenntnisse in R
-sollten unbedingt die ersten Kapitel vor dem vierten Vorlesungsterm
-lesen und verstehen. Bei Fragen können Sie sich gerne an Claudius
-Gräbner wenden.
+Programmiersprache R \citep{R-Team}.
+
+\section*{Verhältnis zur Vorlesung}\label{verhaltnis-zur-vorlesung}
+\addcontentsline{toc}{section}{Verhältnis zur Vorlesung}
+
+Einige Kapitel beziehen sich unmittelbar auf bestimmte
+Vorlesungstermine, andere sind als optionale Zusatzinformation gedacht.
+Gerade Menschen ohne Vorkenntnisse in R sollten unbedingt die ersten
+Kapitel vor dem vierten Vorlesungsterm lesen und verstehen. Bei Fragen
+können Sie sich gerne an Claudius Gräbner wenden.
 
 Die folgende Tabelle gibt einen Überblick über die Kapitel und die
 dazugehörigen Vorlesungstermine:
@@ -258,7 +262,7 @@ die \texttt{minor} Stelle, kleinere, aber signifikante}
 Datum & Version & Wichtigste Änderungen\tabularnewline
 \midrule
 \endhead
-XX.XX.19 & 0.1.0 & Erste Version veröffentlicht\tabularnewline
+19.10.19 & 0.1.0 & Erste Version veröffentlicht\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -2726,7 +2730,7 @@ Der \texttt{data.frame} ist eine besondere Art von Liste und ist ein in
 der Datenanalyse regelmäßig auftretender Datentyp. Gegensatz zu einer
 normalen Liste müssen bei einem \texttt{data.frame} alle Elemente die
 gleiche Länge aufweisen. Das heißt man kann sich einen
-\texttt{data.frame} als eine rechteckige Liste vorstellen.
+\texttt{data.frame} als eine rechteckig angeordnete Liste vorstellen.
 
 Wegen der engen Verwandschaft können wir einen \texttt{data.frame}
 direkt aus einer Liste erstellen indem wir die Funktion
@@ -3123,7 +3127,7 @@ können das illustrieren indem wir den Namen des Objekts eingeben:
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7fe005e5c9a8>
+#> <bytecode: 0x7fbd3edd3108>
 #> <environment: namespace:plm>
 \end{verbatim}
 
@@ -3157,7 +3161,7 @@ Wenn wir die Funktion aus \texttt{dplyr} verwenden wollen, müssen wir
 #>     attributes(out) <- attributes(x)
 #>     out
 #> }
-#> <bytecode: 0x7fe0059b7dc8>
+#> <bytecode: 0x7fbd3e226768>
 #> <environment: namespace:dplyr>
 \end{verbatim}
 
@@ -3236,17 +3240,7 @@ Betriebssystemen gelesen und geschrieben werden kann.
 
 Für die Beispiele hier nehmen wir folgende Ordnerstruktur an:
 
-\begin{verbatim}
-2019-Methoden
-│   2019-Methoden.Rproj
-│
-+---data
-│   │
-│   +---raw
-│   |    │  Rohdaten.csv
-|   |
-|   +---tidy
-\end{verbatim}
+\begin{center}\includegraphics[width=0.5\linewidth]{figures/chap3-data-folder} \end{center}
 
 Um die Daten einzulesen verwenden wir das Paket \texttt{tidyverse}, die
 wir später genauer kennen lernen werden. Sie enthält viele nützliche

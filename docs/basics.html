@@ -5,20 +5,20 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Erste Schritte in R | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="R Skript in der Version 0.0.0.9002." />
+  <meta name="description" content="R Skript in der Version 0.1.0" />
   <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Erste Schritte in R | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="R Skript in der Version 0.0.0.9002." />
+  <meta property="og:description" content="R Skript in der Version 0.1.0" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 3 Erste Schritte in R | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="R Skript in der Version 0.0.0.9002." />
+  <meta name="twitter:description" content="R Skript in der Version 0.1.0" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
@@ -107,6 +107,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Willkommen</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#verhaltnis-zur-vorlesung"><i class="fa fa-check"></i>Verhältnis zur Vorlesung</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#anderungshistorie-wahrend-des-semesters"><i class="fa fa-check"></i>Änderungshistorie während des Semesters</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
 </ul></li>
@@ -878,7 +879,7 @@ a_{11}\cdot b_{11} + a_{12}\cdot b_{21} &amp; a_{11}\cdot b_{21}+a_{12}\cdot b_{
 </div>
 <div id="data-frames" class="section level3">
 <h3><span class="header-section-number">3.4.10</span> Data Frames</h3>
-<p>Der <code>data.frame</code> ist eine besondere Art von Liste und ist ein in der Datenanalyse regelmäßig auftretender Datentyp. Gegensatz zu einer normalen Liste müssen bei einem <code>data.frame</code> alle Elemente die gleiche Länge aufweisen. Das heißt man kann sich einen <code>data.frame</code> als eine rechteckige Liste vorstellen.</p>
+<p>Der <code>data.frame</code> ist eine besondere Art von Liste und ist ein in der Datenanalyse regelmäßig auftretender Datentyp. Gegensatz zu einer normalen Liste müssen bei einem <code>data.frame</code> alle Elemente die gleiche Länge aufweisen. Das heißt man kann sich einen <code>data.frame</code> als eine rechteckig angeordnete Liste vorstellen.</p>
 <p>Wegen der engen Verwandschaft können wir einen <code>data.frame</code> direkt aus einer Liste erstellen indem wir die Funktion <code>as.data.frame()</code> verwenden:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">list</span>(
   <span class="st">&quot;a&quot;</span> =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,
@@ -1004,7 +1005,7 @@ y &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(x)</code><
 #&gt; {
 #&gt;     UseMethod(&quot;lead&quot;)
 #&gt; }
-#&gt; &lt;bytecode: 0x7fe9d9607618&gt;
+#&gt; &lt;bytecode: 0x7fe7dd3dfbd8&gt;
 #&gt; &lt;environment: namespace:plm&gt;</code></pre>
 <p>Aus der letzten Zeile wird ersichtlich, dass <code>lead</code> hier aus dem Paket <code>plm</code> kommt.</p>
 <p>Wenn wir die Funktion aus <code>dplyr</code> verwenden wollen, müssen wir <code>::</code> verwenden:</p>
@@ -1026,7 +1027,7 @@ y &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(x)</code><
 #&gt;     attributes(out) &lt;- attributes(x)
 #&gt;     out
 #&gt; }
-#&gt; &lt;bytecode: 0x7fe9d4f89f60&gt;
+#&gt; &lt;bytecode: 0x7fe7dbfa0390&gt;
 #&gt; &lt;environment: namespace:dplyr&gt;</code></pre>
 <p>Wenn es zu Maskierungen kommt ist es aber der Transparenz wegen besser in beiden Fällen <code>::</code> zu verwenden, also <code>plm::lead</code> und <code>dplyr::lead</code>.</p>
 <blockquote>
@@ -1053,15 +1054,7 @@ y &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(x)</code><
 <p>R kann zahlreiche verschiedene Dateiformate einlesen, z.B. <code>csv</code>, <code>dta</code> oder <code>txt</code>, auch wenn für manche Formate bestimmte Pakete geladen sein müssen.</p>
 <p>Das gerade für kleinere Datensätze mit Abstand beste Format ist in der Regel <code>csv</code>, da es von zahlreichen Programmen und auf allen Betriebssystemen gelesen und geschrieben werden kann.</p>
 <p>Für die Beispiele hier nehmen wir folgende Ordnerstruktur an:</p>
-<pre><code>2019-Methoden
-│   2019-Methoden.Rproj
-│
-+---data
-│   │
-│   +---raw
-│   |    │  Rohdaten.csv
-|   |
-|   +---tidy</code></pre>
+<p><img src="figures/chap3-data-folder.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Um die Daten einzulesen verwenden wir das Paket <code>tidyverse</code>, die wir später genauer kennen lernen werden. Sie enthält viele nützliche Funktionen zur Arbeit mit Datensätzen. Zudem verwende ich das Paket <code>here</code> um relative Pfade immer von meinem Arbeitsverzeichnis aus angeben zu können.<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 <span class="kw">library</span>(here)</code></pre></div>
