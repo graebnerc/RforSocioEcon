@@ -1,7 +1,5 @@
 # Einrichtung {#einrichtung}
 
-
-
 ## Installation von R und R-Studio
 
 Die Installation von R ist in der Regel unproblematisch.
@@ -119,7 +117,7 @@ In meinem Fall ist das Arbeitsverzeichnis das folgende:
 
 
 ```
-#> [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR"
+## [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR"
 ```
 
 Wenn ich R nun sagen würde ein File unter dem Namen `test.pdf` speichern, würde 
@@ -127,7 +125,7 @@ es am folgenden Ort gespeichert werden:
 
 
 ```
-#> [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf"
+## [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf"
 ```
 
 R geht in einem solchen Fall immer vom Arbeitsverzeichnis aus.
@@ -143,7 +141,7 @@ speichern:
 
 
 ```
-#> [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf"
+## [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf"
 ```
 
 Wir werden hier **immer** relative Pfade verwenden. 

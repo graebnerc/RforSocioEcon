@@ -1,6 +1,8 @@
 # Einrichtung {#einrichtung}
 
-
+```{r include=FALSE}
+knitr::opts_chunk$set(comment = "#>")
+```
 
 ## Installation von R und R-Studio
 
@@ -20,13 +22,15 @@ Bitte darauf achten 'RStuio Desktop' zu installieren.
 ## Die R Studio Oberfläche
 
 Nach dem Installationsprozess öffnen wir R Studio zum ersten Mal.
-Der folgende Screenshop zeigt die verschiedenen Elemente der Oberfläche, deren 
+Der folgende Screenshot zeigt die verschiedenen Elemente der Oberfläche, deren 
 Funktion im folgenden kurz erläutert wird.
-Vieles ergibt sich hier aber auch durch *working by doing*.
+Vieles ergibt sich hier aber auch durch *learning by doing*.
 Im folgenden werden nur die Bereiche der Oberfläche beschrieben, die am Anfang 
 unmittelbar relevant für uns sind.
 
-<img src="figures/r-studio-light-marked.png" width="100%" style="display: block; margin: auto;" />
+```{r, echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics("figures/r-studio-light-marked.png")
+```
 
 * Der **Skriptbereich** (1) ist ein Texteditor wie Notepad - nur mit 
 zusätzlichen Features wie Syntax Highlighting für R, sodass es uns leichter 
@@ -41,7 +45,7 @@ versteht der Computer was wir von ihm wollen und führt unsere Befehle aus.
 Wenn wir in die Konsole z.B. `2+2` eingeben, dann ist das valider R code. 
 Wenn wir dann Enter drücken versteht der Computer unseren Befehl und führt die 
 Berechnung aus.
-Die Konsole ist sehr praktisch und den Effekt von R Code direkt zu beobachten.
+Die Konsole ist sehr praktisch um den Effekt von R Code direkt zu beobachten.
 Wenn wir etwas in der Console ausführen wollen, das wir vorher im 
 **Skriptbereich** geschrieben haben, können wir den Text markieren und dann auf 
 den Button `Run` (3) drücken: dann kopiert R Studio den Code in die Konsole und 
@@ -58,7 +62,7 @@ Der Reiter **Connections** (6) braucht uns aktuell nicht zu interessieren.
 * Auch für den Bereich unten rechts haben wir mehrere Optionen: 
 Der Bereich **Files** (7) zeigt uns unser Arbeitsverzeichnis mit allen Ordnern 
 und Dateien an. 
-Das ist das gleichte, was wir auch über den File Explorer unserer Betriebssystems 
+Das ist das gleiche, was wir auch über den File Explorer unserer Betriebssystems 
 sehen würden.
 Der Bereich **Plots** (8) zeigt uns eine Vorschau der Abbildungen, die wir durch 
 unseren Code produzieren.
@@ -88,7 +92,7 @@ anzuschauen und ggf. eine andere Darstellungsversion zu wählen.
 Im folgenden werden wir lernen wie man ein neues R Projekt anlegt, R Code 
 schreiben und ausführen kann.
 
-Wann immer wir ein neues Programmierprojekt starten sollten wir dafür einen 
+Wann immer wir ein neues Programmierprojekt starten, sollten wir dafür einen 
 eigenen Ordner anlegen und ein so genannten 'R Studio Projekt' erstellen.
 Das hilft uns den Überblick über unsere Arbeit zu behalten, und macht es einfach 
 Code untereinander auszutauschen.
@@ -111,28 +115,27 @@ die folgenden Konzepte diskutieren:
 ### Arbeitsverzeichnisse und Pfade
 
 Das **Arbeitsverzeichnis** ist ein Ordner auf dem Computer, in dem R 
-standardmäßig allen Output speichert. 
+standardmäßig sämtlichen Output speichert und von dem aus es auf Datensätze und
+anderen Input zugreift. 
 Wenn wir mit Projekten arbeiten ist das Arbeitsverzeichnis der Ordner, in dem das 
 R-Projektfile abgelegt ist, ansonsten ist es euer Benutzerverzeichnis.
 Wir können uns das Arbeitsverzeichnis mit der Funktion `getwd()` anzeigen lassen.
 In meinem Fall ist das Arbeitsverzeichnis das folgende:
 
-
-```
-#> [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR"
+```{r, echo=FALSE}
+getwd()
 ```
 
 Wenn ich R nun sagen würde ein File unter dem Namen `test.pdf` speichern, würde 
 es am folgenden Ort gespeichert werden:
 
-
-```
-#> [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf"
+```{r, echo=FALSE}
+paste0(getwd(), "/test.pdf")
 ```
 
 R geht in einem solchen Fall immer vom Arbeitsverzeichnis aus.
 Da wir im vorliegenden Fall den Speicherort relativ zum Arbeitsverzeichnis 
-angegeben haben,sprechen wir hier von einem **relativen Pfad**.
+angegeben haben, sprechen wir hier von einem **relativen Pfad**.
 
 Alternativ können wir den Speicherort auch als **absoluten Pfad** angeben. In
 diesem Fall geben wir den kompletten Pfad, ausgehend vom 
@@ -141,15 +144,14 @@ Computers, an.
 Wir würden R also *explizit* auffordern, das File an foldengem Ort zu 
 speichern:
 
-
-```
-#> [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf"
+```{r, echo=FALSE}
+paste0(getwd(), "/test.pdf")
 ```
 
 Wir werden hier **immer** relative Pfade verwenden. 
-Relative Pfade fast immer die bessere Variante, da es uns erlaubt den gleichen 
-Code auf verschiedenen Computern zu verwenden. 
-Denn wir man an den absoluten Pfaden hier  erkennen kann, sehen diese auf jedem 
+Relative Pfade sind fast immer die bessere Variante, da es uns erlaubt den 
+gleichen Code auf verschiedenen Computern zu verwenden. 
+Denn wiw man an den absoluten Pfaden erkennen kann, sehen diese auf jedem 
 Computer anders aus und es ist dementsprechend schwierig, Code miteinander zu
 teilen.
 
@@ -174,35 +176,41 @@ Damit wird nicht nur dieses Ordner als Root-Verzeichnis festgelegt, man kann
 auch die Arbeitshistorie eines Projekts leich wiederherstellen und es ist 
 einfacher, das Projekt auf verschiedenen Computern zu bearbeiten.
 
-Um ein neues Projekt zu erstellen klickt ihr in R Studio auf den Button 
-`Neues Projekt` (Nr. 10 in der obigen Abbildung) und ihr solltet folgendes
+Um ein neues Projekt zu erstellen klicken Sie in R Studio auf den Button 
+`Neues Projekt` (Nr. 10 in der obigen Abbildung) und Sie sollten folgendes
 Fenster sehen:
 
-<img src="figures/r-studio-new-project.png" width="60%" style="display: block; margin: auto;" />
+```{r, echo=FALSE, fig.align='center', out.width='60%'}
+knitr::include_graphics("figures/r-studio-new-project.png")
+```
 
-Falls ihr in Schritt 1 den Projektordner bereits erstellt habt wählt ihr hier
-`Existing Directory`, ansonsten erstellt ihr einen neuen Projektordner gleich
+Falls Sie in Schritt 1 den Projektordner bereits erstellt haben wählen Sie hier
+`Existing Directory`, ansonsten erstellen Sie einen neuen Projektordner gleich
 mit dem Projektfile mit indem Sie `New Directory` auswählen.
 
 Falls Sie `Existing Directory` gewählt haben, wählen Sie in folgendem Fenster 
 einfach den vorher erstellten Ordner aus und klickt auf `Create Project`.
 
-<img src="figures/r-studio-new-project-exis-dir.png" width="60%" style="display: block; margin: auto;" />
+```{r, echo=FALSE, fig.align='center', out.width='60%'}
+knitr::include_graphics("figures/r-studio-new-project-exis-dir.png")
+```
 
 Falls Sie `New Directory` gewählt habt landen Sie auf folgendem Fenster:
 
-<img src="figures/r-studio-new-project-new-dir.png" width="60%" style="display: block; margin: auto;" />
+```{r, echo=FALSE, fig.align='center', out.width='60%'}
+knitr::include_graphics("figures/r-studio-new-project-new-dir.png")
+```
 
-Hier wählt ihr `New Project` aus, gebt dem Projekt in folgenden Fenster einen
-Namen (das wird der Name des Projektordners sein), wählt den Speicherort für den
-Ordner aus und klickt auf `Create Project`.
+Hier wählen Sie `New Project` aus, geben dem Projekt in folgenden Fenster einen
+Namen (das wird der Name des Projektordners sein), wählen den Speicherort für den
+Ordner aus und klicken auf `Create Project`.
 
-In beiden Fällen wurde nun ein Ordner erstellt, in dem sich ein File `***.RPorj`
+In beiden Fällen wurde nun ein Ordner erstellt, in dem sich ein File `*.Rproj`
 befindet. Damit ist die formale Erstellung eines Projekts abgeschlossen. 
 Es empfiehlt sich jedoch dringend gleich eine sinnvolle Unterordnerstruktur mit
 anzulegen.
 
-### Schritt 3: Relevante Unterordner erstellen
+### Schritt 3: Relevante Unterordner erstellen {#unterordner}
 
 Eine sinnvolle Unterordnerstruktur hilf (1) den Überblick über das eigene 
 Projekt nicht zu verlieren, (2) mit anderen über verschiedene Computer hinweg
@@ -220,11 +228,11 @@ Insgesamt sollten die folgenden Ordner im Projektordner erstellt werden:
 * Ein Ordner `data`, der alle Daten enthält, die im Rahmen des Projekts 
 verwendet werden. Hier empfiehlt es sich zwei Unterordner anzulegen:
 Einen Ordner `raw`, der die Rohdaten enthält, so wie sie aus dem Internet 
-runtergeladen wurden. Diese Rohdaten sollten **niemals** verändert werdden, 
+runtergeladen wurden. Diese Rohdaten sollten **niemals** verändert werden, 
 ansonsten wird Ihre Arbeit nicht vollständig replizierbar werden und es kommt 
 ggf. zu irreparablen Schäden. Alle Veränderungen der Daten sollten durch Skripte
 dokumentiert werdenn, die die Rohdaten als Input, und einen modifizierten 
-Datensatz als Output generieren. Dieser modifizierte Datensatz sollte dann in 
+Datensatz als Output generieren. Dieser modifizierte Datensatz sollte dann im 
 Unterordner `tidy` gespeichert werden.
 
 > Beispiel: Sie laden sich Daten zum BIP in Deutschland von Eurostat und 
@@ -246,35 +254,14 @@ mit den Inhalten der Ordner `data` und `R` replizieren lassen.
 eigentliche Forschungspapier, ihre Hausarbeit oder Ihre Vorlesungsmitschriften.
 
 * Einen Ordner `misc` in den Sie alles packen, was in keinen der anderen 
-Ordner passt. Ein solcher Ordner ist wichtig und sie sollten nicht zuordbare
+Ordner passt. Ein solcher Ordner ist wichtig und Sie sollten nicht zuordbare
 Dateien nie in den Projektordner als solchen speichern.
 
 Wenn wir annehmen unser Projektordner heißt `2019-Methoden` ergibt sich damit 
 insgesamt folgende Ordner und Datenstruktur:
 
-```
-2019-Methoden
-│   2019-Methoden.Rproj
-│
-+---data
-│   │
-│   +---raw
-│   |    │  Rohdaten.csv
-|   |
-|   +---tidy
-|         | BearbeiteteDaten.csv
-+---R
-|   | Skript1.R
-|
-+---output
-|   | Abbildung1.pdf
-|
-+---text
-|   | MeineNotizen.txt
-|
-+---misc
-|   | AlterStuff.doc
-|   | Reading5.pdf
+```{r, echo=FALSE, fig.align='center', out.height=='25%'}
+knitr::include_graphics("figures/wd-structure.png")
 ```
 
 ## Abschließende Bemerkungen
