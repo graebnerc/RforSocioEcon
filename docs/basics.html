@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Erste Schritte in R | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="R Skript in der Version 0.0.0.9001." />
+  <meta name="description" content="R Skript in der Version 0.0.0.9002." />
   <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Erste Schritte in R | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="R Skript in der Version 0.0.0.9001." />
+  <meta property="og:description" content="R Skript in der Version 0.0.0.9002." />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 3 Erste Schritte in R | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="R Skript in der Version 0.0.0.9001." />
+  <meta name="twitter:description" content="R Skript in der Version 0.0.0.9002." />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2019-10-18" />
+<meta name="date" content="2019-10-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="einrichtung.html"/>
-<link rel="next" href="markdown.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -121,14 +121,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.3.1" data-path="einrichtung.html"><a href="einrichtung.html#arbeitsverzeichnisse-und-pfade"><i class="fa fa-check"></i><b>2.3.1</b> Arbeitsverzeichnisse und Pfade</a></li>
 <li class="chapter" data-level="2.3.2" data-path="einrichtung.html"><a href="einrichtung.html#schritt-1-projektordner-anlegen"><i class="fa fa-check"></i><b>2.3.2</b> Schritt 1: Projektordner anlegen</a></li>
 <li class="chapter" data-level="2.3.3" data-path="einrichtung.html"><a href="einrichtung.html#schritt-2-ein-r-studio-projekt-im-projektordner-erstellen"><i class="fa fa-check"></i><b>2.3.3</b> Schritt 2: Ein R-Studio Projekt im Projektordner erstellen</a></li>
-<li class="chapter" data-level="2.3.4" data-path="einrichtung.html"><a href="einrichtung.html#schritt-3-relevante-unterordner-erstellen"><i class="fa fa-check"></i><b>2.3.4</b> Schritt 3: Relevante Unterordner erstellen</a></li>
+<li class="chapter" data-level="2.3.4" data-path="einrichtung.html"><a href="einrichtung.html#unterordner"><i class="fa fa-check"></i><b>2.3.4</b> Schritt 3: Relevante Unterordner erstellen</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="einrichtung.html"><a href="einrichtung.html#abschlieende-bemerkungen"><i class="fa fa-check"></i><b>2.4</b> Abschließende Bemerkungen</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a><ul>
 <li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#befehle-in-r-an-den-computer-ubermitteln"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
 <li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#objekte-funktionen-und-zuweisungen"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
-<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#zwischenbillanz"><i class="fa fa-check"></i><b>3.3</b> Zwischenbillanz</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#zusammenfassung"><i class="fa fa-check"></i><b>3.3</b> Zusammenfassung</a></li>
 <li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#grundlegende-objeke-in-r"><i class="fa fa-check"></i><b>3.4</b> Grundlegende Objeke in R</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.4.1</b> Funktionen</a></li>
 <li class="chapter" data-level="3.4.2" data-path="basics.html"><a href="basics.html#vektoren"><i class="fa fa-check"></i><b>3.4.2</b> Vektoren</a></li>
@@ -137,16 +137,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.4.5" data-path="basics.html"><a href="basics.html#fehlende-werte-und-null"><i class="fa fa-check"></i><b>3.4.5</b> Fehlende Werte und NULL</a></li>
 <li class="chapter" data-level="3.4.6" data-path="basics.html"><a href="basics.html#indizierung-und-ersetzung"><i class="fa fa-check"></i><b>3.4.6</b> Indizierung und Ersetzung</a></li>
 <li class="chapter" data-level="3.4.7" data-path="basics.html"><a href="basics.html#nutzliche-funktionen-fur-atomare-vektoren"><i class="fa fa-check"></i><b>3.4.7</b> Nützliche Funktionen für atomare Vektoren</a></li>
-<li class="chapter" data-level="3.4.8" data-path="basics.html"><a href="basics.html#matrizen"><i class="fa fa-check"></i><b>3.4.8</b> Matrizen</a></li>
-<li class="chapter" data-level="3.4.9" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.4.9</b> Listen</a></li>
+<li class="chapter" data-level="3.4.8" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.4.8</b> Listen</a></li>
+<li class="chapter" data-level="3.4.9" data-path="basics.html"><a href="basics.html#matrizen"><i class="fa fa-check"></i><b>3.4.9</b> Matrizen</a></li>
 <li class="chapter" data-level="3.4.10" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.4.10</b> Data Frames</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#pakete"><i class="fa fa-check"></i><b>3.5</b> Pakete</a></li>
 <li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.6</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>A</b> Eine kurze Einführung in R Markdown</a></li>
-<li class="chapter" data-level="B" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i><b>B</b> Referenzen</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -169,11 +167,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="basics" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Erste Schritte in R</h1>
-<p>Nach diesen (wichtigen) Vorbereitungsschritten wollen wir nun mit dem eigentlichen Programmieren anfangen. Zu diesem Zweck müssen wir uns mit der Syntax von R vertraut machen, also den Regeln, denen wir folgen müssen, wenn wir Code schreiben, damit der Computer versteht, was wir ihm eigentlich in R sagen wollen.</p>
+<p>Nach diesen (wichtigen) Vorbereitungsschritten wollen wir nun mit dem eigentlichen Programmieren anfangen. Zu diesem Zweck müssen wir uns mit der Syntax von R vertraut machen, also mit den Regeln, denen wir folgen müssen, wenn wir Code schreiben, damit der Computer versteht, was wir ihm eigentlich in R sagen wollen.</p>
 <div id="befehle-in-r-an-den-computer-ubermitteln" class="section level2">
 <h2><span class="header-section-number">3.1</span> Befehle in R an den Computer übermitteln</h2>
-<p>Grundsätzlich können wir über R Studio auf zwei Arten mit dem Computer “kommunizieren”: über die Konsole direkt, oder indem wir im Skriptbereit ein Skript schreiben und dies dann ausführen.</p>
-<p>Als Beispiel für die erste Möglichkeit wollen wir mit Hilfe von R die Zahlen <code>2</code> und <code>5</code> miteinander addieren. Zu diesem Zweick können wir einfach <code>2 + 2</code> in die Konsole eingeben, und den Begehl mit ‘Enter’ an den Computer senden. Da es sich beim Ausdruck <code>2 + 3</code> um korrekten R Code handelt, ‘versteht’ der Computer was wir von uns wollen und gibt uns das entsprechende Ergebnis aus:</p>
+<p>Grundsätzlich können wir über R Studio auf zwei Arten mit dem Computer “kommunizieren”: über die Konsole direkt, oder indem wir im Skriptbereich ein Skript schreiben und dies dann ausführen.</p>
+<p>Als Beispiel für die erste Möglichkeit wollen wir mit Hilfe von R die Zahlen <code>2</code> und <code>5</code> miteinander addieren. Zu diesem Zweck können wir einfach <code>2 + 2</code> in die Konsole eingeben, und den Befehl mit ‘Enter’ an den Computer senden. Da es sich beim Ausdruck <code>2 + 3</code> um korrekten R Code handelt, ‘versteht’ der Computer was wir von ihm wollen und gibt uns das entsprechende Ergebnis aus:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></code></pre></div>
 <pre><code>#&gt; [1] 5</code></pre>
 <p>Auf diese Art und Weise könne wir R als einfachen Taschenrechner verwenden, denn für alle einfachen mathematischen Operationen können wir bestimmte Symbole als Operatoren verwenden. An dieser Stelle sei noch darauf hingewiesen, dass das Symbol <code>#</code> in R einen Kommentar einleitet, das heißt alles was in einer Zeile nach <code>#</code> steht wird vom Computer ignoriert und man kann sich einfach Notizen in seinem Code machen.</p>
@@ -185,7 +183,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <pre><code>#&gt; [1] 8</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span><span class="op">**</span><span class="dv">2</span> <span class="co"># Potenzierung</span></code></pre></div>
 <pre><code>#&gt; [1] 9</code></pre>
-<p>Alternativ können wir die Befehle in einem Skript aufschreiben, und dieses Skript dann ausführen. Während die Interaktion über die Konsole sinnvoll ist um die Effekte bestimmter Befehle auszuprobieren, bietet sich die Verwendung von Skripten an, wenn wir mit den Befehlen später weiter arbeiten wollen, oder sie anderen Menschen zugänglich zu machen.</p>
+<p>Alternativ können wir die Befehle in einem Skript aufschreiben, und dieses Skript dann ausführen. Während die Interaktion über die Konsole sinnvoll ist um die Effekte bestimmter Befehle auszuprobieren, bietet sich die Verwendung von Skripten an, wenn wir mit den Befehlen später weiter arbeiten wollen, oder sie anderen Menschen zugänglich zu machen. Den das Skript können wir als Datei auf unserem Computer speichern, vorzugsweise im Unterordner <code>R</code> unseres R-Projekts (siehe Abschnitt <a href="einrichtung.html#unterordner">Relevante Unterordner erstellen</a>), und dann später weiterverwenden.</p>
 <p>Die Berechnungen, die wir bisland durchgeführt haben sind zugegebenermaßen nicht sonderlich spannend. Um fortgeschrittene Operationen in R durchführen und verstehen zu können müssen wir uns zunächst mit den Konzepten von <strong>Objekten</strong>, <strong>Funktionen</strong> und <strong>Zuweisungen</strong> beschäftigen.</p>
 </div>
 <div id="objekte-funktionen-und-zuweisungen" class="section level2">
@@ -222,6 +220,7 @@ zwischenergebnis &lt;-<span class="st"> </span><span class="dv">2</span> <span c
 <ul>
 <li>Namen sollten kurz und informativ sein; entsprechen ist <code>sample_mean</code> ein guter Name, <code>shit15_2</code> dagegen eher weniger</li>
 <li>Man sollte <strong>nie Umlaute in Namen verwenden</strong></li>
+<li>R ist <em>case sensitive</em>, d.h. <code>mean_value</code> ist ein anderer Name als <code>Mean_Value</code></li>
 <li>Auch wenn möglich, sollte man nie von R bereit gestellte Funktionen überschreiben. Eine Zuweisung wie <code>assign &lt;- 2</code> ist zwar möglich, führt in der Regel aber zu großem Unglück, weil man nicht mehr ganz einfach auf die zugrundeliegende Funktion zurückgreifen kann.</li>
 </ul>
 <blockquote>
@@ -240,40 +239,26 @@ y &lt;-<span class="st"> </span><span class="dv">2</span> <span class="co"># Das
 <span class="kw">print</span>(x)</code></pre></div>
 <pre><code>#&gt; [1] 4</code></pre>
 <blockquote>
-<p><strong>Hinweis</strong>: Wie Sie bereits bemerkt haben wird nach einer Zuweisung kein Wert sichtbar ausgegeben:</p>
+<p><strong>Hinweis</strong>: Wie Sie vielleicht bereits bemerkt haben wird nach einer Zuweisung kein Wert sichtbar ausgegeben:</p>
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="co"># Keine Zuweisung, R gibt das Ergebnis in der Konsole aus</span></code></pre></div>
 <pre><code>#&gt; [1] 4</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="co"># Zuweisung, R gibt das Ergebnis in der Konsole nicht aus</span></code></pre></div>
-<blockquote>
-<p>Wenn wir das Ergebnis einer Zuweisung in der Konsole ausgeben wollen, können wir entweder das resultierende Objekt aufrufen oder, insbesondere wenn es nicht der letzte Befehl in einer von Befehlen ist, die Funktion <code>print</code> verwenden. Der besseren Übersicht halber können wir auch mit Zeilenumbrüchen arbeiten:</p>
-</blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(x)</code></pre></div>
-<pre><code>#&gt; [1] 4</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(
-  <span class="dv">2</span><span class="op">*</span><span class="dv">8</span>
-  )</code></pre></div>
-<pre><code>#&gt; [1] 16</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="dv">5</span><span class="op">+</span>x)</code></pre></div>
-<pre><code>#&gt; [1] 9</code></pre>
 </div>
-<div id="zwischenbillanz" class="section level2">
-<h2><span class="header-section-number">3.3</span> Zwischenbillanz</h2>
+<div id="zusammenfassung" class="section level2">
+<h2><span class="header-section-number">3.3</span> Zusammenfassung</h2>
 <ul>
 <li>Wir können Befehle in R Studio an den Computer übermitteln indem wir (a) den R Code in die Konsole schreiben und Enter drücken oder (b) den Code in ein Skript schreiben und dann ausführen</li>
 <li>Alles was in R <em>existiert</em> ist ein Objekt, alles was in R <em>passiert</em> ist ein Funktionsaufruf</li>
 <li>Wir können einem Objekt mit Hilfe von <code>&lt;-</code> einen Namen geben und dann später wieder aufrufen. Den Prozess der Namensgebung nennen wir <strong>Assignment</strong> und wir können uns alle aktuell von uns vergebenen Namen mit der Funktion <code>ls()</code> anzeigen lassen.</li>
 <li>Eine Funktion ist ein Objekt, das auf einen Input eine bestimmte Routine anwendet und einen Output produziert</li>
-<li>Die wichtigste Art, Funktionen aufzurufen ist, ihren Namen zu schreiben und danach die Argumente in Klammern anzugeben (Prefix Form, z.B. <code>assign(&quot;x&quot;, 2)</code>)</li>
-<li>Gerade bei mathematischen Funktionen wie <code>+</code> und <code>-</code> verwenden wir auch die Infix Form, bei der die Argumente vor und nach dem Funktionsnamen stehen (z.B. <code>2 + 3</code>)</li>
 </ul>
-<p>An dieser Stelle sei noch auf die Hilfefunktion <code>help()</code> hingewiesen. Falls Sie Informationen über ein Objekt bekommen wollen können Sie so weitere Informationen bekommen. Wenn Sie z.B. genauere Informationen über die Verwendung der Funktion <code>assign</code> erhalten wollen können Sie folgendes eingeben:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(assign)
-<span class="kw">help</span>(<span class="st">&quot;assign&quot;</span>) <span class="co"># äquivalent</span></code></pre></div>
+<p>An dieser Stelle sei noch auf die Hilfefunktion <code>help()</code> hingewiesen. Falls Sie Informationen über ein Objekt bekommen wollen können Sie so weitere Informationen bekommen. Wenn Sie z.B. genauere Informationen über die Verwendung der Funktion <code>assign</code> erhalten wollen, können Sie Folgendes eingeben:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(assign)</code></pre></div>
 </div>
 <div id="grundlegende-objeke-in-r" class="section level2">
 <h2><span class="header-section-number">3.4</span> Grundlegende Objeke in R</h2>
-<p>Wir haben bereits gelernt, dass alles was in R existiert ein Objekt ist. Wir haben aber auch schon gelernt, dass es unterschiedliche Typen von Objekten gibt: Zahlen, wie <code>2</code> oder <code>3</code> und Funktionen wie <code>assign</code>.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> Tatsächlich gibt es noch viel mehr Arten von Objekten. Ein gutes Verständnis der Objektarten ist Grundvoraussetzung später anspruchsvolle Programmierarufgaben zu lösen. Daher wollen wir uns im folgenden mit den wichtigsten Objektarten in R auseinandersetzen.</p>
+<p>Wir haben bereits gelernt, dass alles was in R existiert ein Objekt ist. Wir haben aber auch schon gelernt, dass es unterschiedliche Typen von Objekten gibt: Zahlen, wie <code>2</code> oder <code>3</code> und Funktionen wie <code>assign</code>.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> Tatsächlich gibt es noch viel mehr Arten von Objekten. Ein gutes Verständnis der Objektarten ist Grundvoraussetzung später anspruchsvolle Programmieraufgaben zu lösen. Daher wollen wir uns im Folgenden mit den wichtigsten Objektarten in R auseinandersetzen.</p>
 <div id="funktionen" class="section level3">
 <h3><span class="header-section-number">3.4.1</span> Funktionen</h3>
 <p>Wie oben bereits kurz erwähnt handelt es sich bei Funktionen um Algorithmen, die bestimmte Routinen auf einen <em>Input</em> anwenden und dabei einen <em>Output</em> produzieren.</p>
@@ -301,55 +286,67 @@ y &lt;-<span class="st"> </span><span class="dv">2</span> <span class="co"># Das
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="ot">NA</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) </code></pre></div>
 <pre><code>#&gt; [1] 10</code></pre>
 <p>Wenn wir wissen wollen, welche Argumente eine Funktion akzeptiert ist es immer eine gute Idee über die Funktion <code>help()</code> einen Blick in die Dokumentation zu werfen!</p>
-<p>Im Falle von <code>sum()</code> sehen wir hier sofort, dass die Funktion nehmen den zu addierenden Zahlen ein optionales Argument <code>na.rm</code> akzeptiert, welches den Standardwert <code>FALSE</code> annimmt.</p>
+<p>Im Falle von <code>sum()</code> sehen wir hier sofort, dass die Funktion neben den zu addierenden Zahlen ein optionales Argument <code>na.rm</code> akzeptiert, welches den Standardwert <code>FALSE</code> annimmt.</p>
 <p><strong>Eigene Funktionen definieren</strong></p>
 <p>Sehr häufig möchten wir selbst Funktionen definieren. Das können wir mit dem reservierten Keyword <code>function</code> machen. Als Beispiel wollen wir eine Funktion <code>pythagoras</code> definieren, die als Argumente die Seitenlängen der Katheten eines rechtwinkligen Dreiecks annimmt und über den <a href="https://de.wikipedia.org/wiki/Satz_des_Pythagoras">Satz des Pythagoras</a> die Länge der Hypothenuse bestimmt:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pythagoras &lt;-<span class="st"> </span><span class="cf">function</span>(a, b){
-  hypo_quadrat &lt;-<span class="st"> </span>a<span class="op">**</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>b<span class="op">**</span><span class="dv">2</span>
-  hypo &lt;-<span class="st"> </span><span class="kw">sqrt</span>(hypo_quadrat) <span class="co"># sqrt() zieht die Quadratwurzel</span>
-  <span class="kw">return</span>(hypo)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pythagoras &lt;-<span class="st"> </span><span class="cf">function</span>(kathete_<span class="dv">1</span>, kathete_<span class="dv">2</span>){
+  hypo_quadrat &lt;-<span class="st"> </span>kathete_<span class="dv">1</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>kathete_<span class="dv">2</span><span class="op">**</span><span class="dv">2</span>
+  l_hypothenuse &lt;-<span class="st"> </span><span class="kw">sqrt</span>(hypo_quadrat) <span class="co"># sqrt() zieht die Quadratwurzel</span>
+  <span class="kw">return</span>(l_hypothenuse)
 }</code></pre></div>
 <p>Wir definieren eine Funktion durch die Funktion <code>function()</code>. In der Regel beginnen wir die Definition indem wir der zu erstellenden mit einem Namen assoziieren (hier: ‘pythagoras’) damit wir sie später auch verwenden können.</p>
-<p>Die Argumente für <code>function</code> sind dann die Argumente, welche die zu definierende Funktion annehmen soll, in diesem Fall <code>a</code> und <code>b</code>. Danach beginnen wir den ‘function body’, also den Code für die Routine, welche die Funktion ausführen soll, mit einer geschweiften Klammer.</p>
-<p>Innerhalb des <em>function bodies</em> wird dann die entsprechende Routine implementiert. Alle Namen, die innerhalb des <em>function bodies</em> verwendet werden gehen nach dem Funktionsaufruf verloren:<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a></p>
-<p>Am Ende der Routine kann man mit dem Keyword <code>return</code> explizit machen welchen Wert die Funktion als Output ausgeben soll.<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a> Wenn wir die Funktion nun aufrufen wird die oben definierte Routine ausgeführt:</p>
+<p>Die Argumente für <code>function</code> sind dann die Argumente, welche die zu definierende Funktion annehmen soll, in diesem Fall <code>kathete_1</code> und <code>kathete_2</code>. Danach beginnen wir den ‘function body’, also den Code für die Routine, welche die Funktion ausführen soll, mit einer geschweiften Klammer.</p>
+<p>Innerhalb des <em>function bodies</em> wird dann die entsprechende Routine implementiert. Im vorliegenden Beispiel definieren wir zunächst die Summe der Werte von <code>kathete_1</code> und <code>kathete_2</code> als ein Zwischenergebnis, welches hier <code>hypo_quadrat</code> genannt wird. Dies ist der häufig unter <span class="math inline">\(c^2=a^2 + b^2\)</span> bekannte Teil des Satz von Pythagoras. Da wir an der ‘normalen’ Länge der Hypothenuse interesssiert sind, ziehen wir mit der Funktion <code>sqrt()</code> noch die Wurzel von <code>hypo_quadrat</code>, und geben dem resultierenden Objekt den Namen <code>l_hypothenuse</code>, welches in der letzten Zeile mit Hilfe des Keywords <code>return</code> als der Wert definiert wird, den die Funktion als Output ausgibt.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a></p>
+<p>Am Ende der Routine kann man mit dem Keyword <code>return</code> explizit machen welchen Wert die Funktion als Output ausgeben soll. Wenn wir die Funktion nun aufrufen wird die oben definierte Routine ausgeführt:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pythagoras</span>(<span class="dv">2</span>, <span class="dv">4</span>)</code></pre></div>
 <pre><code>#&gt; [1] 4.472136</code></pre>
+<p>Beachten Sie, dass alle Objet Namen, die innerhalb des <em>function bodies</em> verwendet werden gehen nach dem Funktionsaufruf verloren:<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a> Deswegen kommt es im vorliegenden Falle zu einem Fehler, da <code>hypo_quadrat</code> nur innerhalb des <em>function bodies</em> existiert:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pythagoras &lt;-<span class="st"> </span><span class="cf">function</span>(kathete_<span class="dv">1</span>, kathete_<span class="dv">2</span>){
+  hypo_quadrat &lt;-<span class="st"> </span>kathete_<span class="dv">1</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>kathete_<span class="dv">2</span><span class="op">**</span><span class="dv">2</span>
+  l_hypothenuse &lt;-<span class="st"> </span><span class="kw">sqrt</span>(hypo_quadrat) <span class="co"># sqrt() zieht die Quadratwurzel</span>
+  <span class="kw">return</span>(l_hypothenuse)
+}
+x &lt;-<span class="st"> </span><span class="kw">pythagoras</span>(<span class="dv">2</span>, <span class="dv">4</span>)
+hypo_quadrat</code></pre></div>
+<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;hypo_quadrat&#39; not found</code></pre>
 <p>Es ist immer eine gute Idee, die selbst definierten Funktionen zu dokumentieren - nicht nur wenn wir sie auch anderen zur Verfügung stellen wollen, sondern auch damit wir selbst nach einer möglichen Pause unseren Code noch gut verstehen können. Nichts ist frustrierender als nach einer mehrwöchigen Pause viele Stunden investieren zu müssen, den eigens programmierten Code zu entschlüsseln!</p>
 <p>Die Dokumentation von Funktionen kann mit Hilfe von einfachen Kommentaren erfolgen, ich empfehle jedoch sofort sich die <a href="https://r-pkgs.org/man.html#man-functions">hier beschriebenen Konventionen</a> anzugewöhnen. In diesem Falle würde eine Dokumentation unserer Funktion <code>pythagoras</code> folgendermaßen aussehen:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&#39; Berechne die Länge der Hypothenuse in einem rechtwinkligen Dreieck</span>
 <span class="co">#&#39; </span>
 <span class="co">#&#39; Diese Funktion nimmt als Argumente die Längen der beiden Katheten eines</span>
 <span class="co">#&#39;  rechtwinkligen Dreiecks und berechnet daraus die Länge der Hypothenuse.</span>
-<span class="co">#&#39; @param a Die Länge der ersten Kathete</span>
-<span class="co">#&#39; @param b Die Länge der zweiten Kathete</span>
+<span class="co">#&#39; @param kathete_1 Die Länge der ersten Kathete</span>
+<span class="co">#&#39; @param kathete_2 Die Länge der zweiten Kathete</span>
 <span class="co">#&#39; @return Die Länge der Hypothenuse des durch a und b definierten </span>
 <span class="co">#&#39;  rechtwinkligen Dreieckst</span>
-pythagoras &lt;-<span class="st"> </span><span class="cf">function</span>(a, b){
-  hypo_quadrat &lt;-<span class="st"> </span>a<span class="op">**</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>b<span class="op">**</span><span class="dv">2</span>
-  hypo &lt;-<span class="st"> </span><span class="kw">sqrt</span>(hypo_quadrat) <span class="co"># sqrt() zieht die Quadratwurzel</span>
-  <span class="kw">return</span>(hypo)
+pythagoras &lt;-<span class="st"> </span><span class="cf">function</span>(kathete_<span class="dv">1</span>, kathete_<span class="dv">2</span>){
+  hypo_quadrat &lt;-<span class="st"> </span>kathete_<span class="dv">1</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>kathete_<span class="dv">2</span><span class="op">**</span><span class="dv">2</span>
+  l_hypothenuse &lt;-<span class="st"> </span><span class="kw">sqrt</span>(hypo_quadrat) <span class="co"># sqrt() zieht die Quadratwurzel</span>
+  <span class="kw">return</span>(l_hypothenuse)
 }</code></pre></div>
+<p>Die Dokumentation wird also direkt vor die Definition der Funktion gesetzt. In der ersten Zeile gibt man der Funktion einen maximal einzeiligen Titel, der nicht länger als 80 Zeichen sein sollte und die Funktion prägnant beschreibt.</p>
+<p>Dann, nach einer Lehrzeile wird genauer beschrieben was die Funktion macht. Danach werden die Argumente der Funktion beschrieben. Für jedes Argument beginnen wir die Reihe mit <code>@param</code>, gefolgt von dem Namen des Arguments und dann einer kurzen Beschreibung.</p>
+<p>Nach den Argumenten beschreiben wir noch kurz was der Output der Funktion ist. Diese Zeile wird mit <code>@return</code> begonnen.</p>
 <p>Die Dokumentation einer Funktion sollte also zumindest die Parameter und die Art des Outputs erklären.</p>
 <p><strong>Gründe für die Verwendung eigener Funktionen</strong></p>
 <p>Eigene Funktionen zu definieren ist in der Praxis extrem hilfreich und es ist empfehlenswert Routinen, die mehrere Male verwendet werden grundsätzlich als Funktionen zu schreiben. Dafür gibt es mehrere Gründe:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Der Code wird kürzer und transparenter</strong> Zwar ist kurzer Code nicht notwendigerweise leichter zu verstehen als langer, aber Funktionen können besonders gut dokumentiert werden (am besten indem man den hier beschriebenen Konventionen folgt).</li>
-<li><strong>Funktionen bieten Struktur</strong> Funktionen fassen in der Regel Ihre Vorstellung davon zusammen, wie ein bestimmtes Problem zu lösen ist. Da man sich diese Gedanken nicht ständig neu machen möchte ist es sinnvoll sie einmalig in einer Funktion zusammen zu fassen.</li>
-<li><strong>Funktionen erleichtern Korrekturen</strong> Wenn Sie merken, dass Sie in der Implementierung einer Routine einen Fehler gemacht haben müssen Sie im besten Falle nur einmal die Definition der Funktion korrigieren - im schlimmsten Falle müssen sie in ihrem Code nach der Routine suchen und sie in jedem einzelnen Anwendungsfall erneut korrigieren.</li>
+<li><strong>Der Code wird kürzer und transparenter.</strong> Zwar ist kurzer Code nicht notwendigerweise leichter zu verstehen als langer, aber Funktionen können besonders gut dokumentiert werden (am besten indem man den hier beschriebenen Konventionen folgt).</li>
+<li><strong>Funktionen bieten Struktur.</strong> Funktionen fassen in der Regel Ihre Vorstellung davon zusammen, wie ein bestimmtes Problem zu lösen ist. Da man sich diese Gedanken nicht ständig neu machen möchte ist es sinnvoll sie einmalig in einer Funktion zusammen zu fassen.</li>
+<li><strong>Funktionen erleichtern Korrekturen.</strong> Wenn Sie merken, dass Sie in der Implementierung einer Routine einen Fehler gemacht haben müssen Sie im besten Falle nur einmal die Definition der Funktion korrigieren - im schlimmsten Falle müssen sie in ihrem Code nach der Routine suchen und sie in jedem einzelnen Anwendungsfall erneut korrigieren.</li>
 </ol>
-<p>Es gibt noch viele weitere Gründe dafür, Funktionen häufig zu verwenden. Viele hängen mit dem Entwicklerprinzip <a href="https://de.wikipedia.org/wiki/Don%E2%80%99t_repeat_yourself">DRY</a> zusammen.</p>
+<p>Es gibt noch viele weitere Gründe dafür, Funktionen häufig zu verwenden. Viele hängen mit dem Entwicklerprinzip <a href="https://de.wikipedia.org/wiki/Don%E2%80%99t_repeat_yourself">DRY</a> (“Don’t Repeat Yourself”) zusammen.</p>
 </div>
 <div id="vektoren" class="section level3">
 <h3><span class="header-section-number">3.4.2</span> Vektoren</h3>
-<p>Vektoren sind einer der wichtigsten Objettypen in R. Quasi alle Daten mit denen wir in R arbeiten werden als Vektoren behandelt werden.</p>
+<p>Vektoren sind einer der wichtigsten Objektypen in R. Quasi alle Daten mit denen wir in R arbeiten werden als Vektoren behandelt.</p>
 <p>Was Vektoren angeht gibt es wiederum die wichtige <strong>Unterscheidung von atomaren Vektoren und Listen</strong>. Beide bestehen ihrerseits aus Objekten und sie unterscheiden sich dadurch, dass atomare Vektoren nur aus Objekten des gleichen Typs bestehen können, Listen dagegen auch Objekte unterschiedlichen Typs beinhalten können.</p>
 <p>Entsprechend kann jeder atomare Vektor einem Typ zugeordnet werden, je nachdem welchen Typ seine Bestandteile haben. Hier sind insbesondere vier Typen relevant:</p>
 <ul>
-<li>Logische Werte (<code>logical</code>): es gibt zwei logische Werte, <code>TRUE</code> und <code>FALSE</code>, welche auch mit <code>T</code> oder <code>F</code> abgekürzt werden können</li>
-<li>Ganze Zahlen <code>integer</code>: das sollte im Prinzip selbsterklärend sein, allerding müssen den ganzen Zahln in R immer der Buchstabe <code>L</code>folgen, damit die Zahl tatsächlich als ganze Zahl interpretiert wird.<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a> Beispiele sind <code>1L</code>, <code>400L</code> oder <code>10L</code>.<br />
+<li><code>logical</code> (logische Werte): es gibt zwei logische Werte, <code>TRUE</code> und <code>FALSE</code>, welche auch mit <code>T</code> oder <code>F</code> abgekürzt werden können</li>
+<li><code>integer</code> (ganze Zahlen): das sollte im Prinzip selbsterklärend sein, allerding muss den ganzen Zahlen in R immer der Buchstabe <code>L</code> folgen, damit die Zahl tatsächlich als ganze Zahl interpretiert wird.<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a> Beispiele sind <code>1L</code>, <code>400L</code> oder <code>10L</code>.<br />
 </li>
-<li>Dezimalzahlen <code>double</code>: auch das sollte selbsterklärend sein; Beispiele wären <code>1.5</code>, <code>0.0</code>, oder <code>-500.32</code>.</li>
+<li><code>double</code> (Dezimalzahlen): auch das sollte selbsterklärend sein; Beispiele wären <code>1.5</code>, <code>0.0</code>, oder <code>-500.32</code>.</li>
 <li>Ganze Zahlen und Dezimalzahlen werden häufig unter der Kategorie <code>numeric</code> zusammengefasst. Dies ist in der Praxis aber quasi nie hilfreich und man sollte diese Kategorie möglichst nie verwenden.</li>
 <li>Wörter (<code>character</code>): sie sind dadurch gekennzeichnet, dass sie auch Buchstaben enthalten können und am Anfang und Ende ein <code>&quot;</code> haben. Beispiele hier wären <code>&quot;Hallo&quot;</code>, <code>&quot;500&quot;</code> oder <code>&quot;1_2_Drei&quot;</code>.</li>
 <li>Es gibt noch zwei weitere besondere ‘Typen’, die strikt gesehen keine atomaren Vektoren darstellen, allerdings in diesem Kontext schon häufig auftauchen: <code>NULL</code>, was strikt genommen ein eigener Datentyp ist und immer die Länge 0 hat, sowie <code>NA</code>, das einen fehlenden Wert darstellt</li>
@@ -368,7 +365,7 @@ pythagoras &lt;-<span class="st"> </span><span class="cf">function</span>(a, b){
 <pre><code>#&gt; [1] FALSE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.double</span>(x)</code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
-<p>Die Funktion gibt als Output also immer einen logischen Wert aus, je nachdem ob die Inputs des entsprechenden Typs sind oder nicht.</p>
+<p>Diese Funktion gibt als Output also immer einen logischen Wert aus, je nachdem ob die Inputs des entsprechenden Typs sind oder nicht.</p>
 <p>Bestimmte Objekte können in einen anderen Typ transformiert werden. Hier spricht man von <code>coercion</code> und die generelle Syntax hierfür ist: <code>as.*()</code>, also z.B.:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> &quot;2&quot;</span>
 <span class="kw">print</span>(
@@ -402,7 +399,7 @@ y &lt;-<span class="st"> </span><span class="kw">as.character</span>(x)
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="fl">1.99</span>
 <span class="kw">as.integer</span>(x)</code></pre></div>
 <pre><code>#&gt; [1] 1</code></pre>
-<p>Auch führen Transformationen, die der eben genannten Hierachie zuwiderlaufen nicht zwangsweise zu Fehlern, sondern ‘lediglich’ zu unerwarteten Änderungen, die in jedem Fall vermieden werden sollten:</p>
+<p>Auch führen Transformationen, die der eben genannten Hierachie zuwiderlaufen, nicht zwangsweise zu Fehlern, sondern ‘lediglich’ zu unerwarteten Änderungen, die in jedem Fall vermieden werden sollten:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">as.logical</span>(<span class="dv">99</span>)
 <span class="kw">print</span>(z)</code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
@@ -466,7 +463,7 @@ z &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </s
 </tr>
 </tbody>
 </table>
-<p>Ein letzter Hinweis zu <strong>Skalaren</strong>. Unter Skalaren verstehen wir häufig ‘einzelne Zahlen’, z.B. <code>2</code>. Dieses Konzept gibt es in R nicht. <code>2</code> ist ein Vektor der Länge 1. Wir unterscheiden also vom Typ her nicht zwischen einem Vektor, der nur ein oder mehrere Elemente hat.</p>
+<p>Ein letzter Hinweis zu <strong>Skalaren</strong>. Unter Skalaren verstehen wir in der Regel ‘einzelne Zahlen’, z.B. <code>2</code>. Dieses Konzept gibt es in R nicht. <code>2</code> ist ein Vektor der Länge 1. Wir unterscheiden also vom Typ her nicht zwischen einem Vektor, der nur ein oder mehrere Elemente hat.</p>
 <p><strong>Hinweis:</strong> Um längere Vektoren zu erstellen, verwenden wir die Funktion <code>c()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)
 x</code></pre></div>
@@ -607,8 +604,14 @@ x_axis</code></pre></div>
 <pre><code>#&gt;  [1] &quot;Tag: 1&quot;  &quot;Tag: 2&quot;  &quot;Tag: 3&quot;  &quot;Tag: 4&quot;  &quot;Tag: 5&quot;  &quot;Tag: 6&quot;  &quot;Tag: 7&quot; 
 #&gt;  [8] &quot;Tag: 8&quot;  &quot;Tag: 9&quot;  &quot;Tag: 10&quot;</code></pre>
 <blockquote>
-<p>Hinweis: Hier haben wir ein Beispiel für das so genannte ‘Recycling’ gesehen: da der Vektor <code>c(&quot;Tag&quot;)</code> kürzer war als der Vektor <code>tag_nr</code> wird <code>c(&quot;Tag&quot;)</code> einfach kopiert damit die Operation mit <code>paste()</code> Sinn ergibt. Recycling ist oft praktisch, aber manchmal auch schädlich, nämlich dann, wenn man eigentlich davon ausgeht eine Operation mit zwei gleich langen Vektoren durchzuführen, dies aber tatsächlich nicht tut. In einem solchen Fall führt Recycling dazu, dass keine Fehlermeldung ausgegeben wird.</p>
+<p>Hinweis: Hier haben wir ein Beispiel für das so genannte ‘Recycling’ gesehen: da der Vektor <code>c(&quot;Tag&quot;)</code> kürzer war als der Vektor <code>tag_nr</code> wird <code>c(&quot;Tag&quot;)</code> einfach kopiert damit die Operation mit <code>paste()</code> Sinn ergibt. Recycling ist oft praktisch, aber manchmal auch schädlich, nämlich dann, wenn man eigentlich davon ausgeht eine Operation mit zwei gleich langen Vektoren durchzuführen, dies aber tatsächlich nicht tut. In einem solchen Fall führt Recycling dazu, dass keine Fehlermeldung ausgegeben wird. Ein Beispiel dafür gibt folgender Code, in dem die Intention klar die Verbindung aller Wochentage zu Zahlen ist und einfach ein Wochentag vergessen wurde:</p>
 </blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tage &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;Tag &quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">7</span>, <span class="st">&quot;:&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
+tag_namen &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Montag&quot;</span>, <span class="st">&quot;Dienstag&quot;</span>, <span class="st">&quot;Mittwoch&quot;</span>, <span class="st">&quot;Donnerstag&quot;</span>, <span class="st">&quot;Freitag&quot;</span>, <span class="st">&quot;Samstag&quot;</span>)
+<span class="kw">paste</span>(tage, tag_namen)</code></pre></div>
+<pre><code>#&gt; [1] &quot;Tag 1: Montag&quot;     &quot;Tag 2: Dienstag&quot;   &quot;Tag 3: Mittwoch&quot;  
+#&gt; [4] &quot;Tag 4: Donnerstag&quot; &quot;Tag 5: Freitag&quot;    &quot;Tag 6: Samstag&quot;   
+#&gt; [7] &quot;Tag 7: Montag&quot;</code></pre>
 </div>
 <div id="fehlende-werte-und-null" class="section level3">
 <h3><span class="header-section-number">3.4.5</span> Fehlende Werte und NULL</h3>
@@ -619,14 +622,12 @@ x_axis</code></pre></div>
 <p>Die meisten Operationen die <code>NA</code> als einen Input bekommen geben auch als Output <code>NA</code> aus, weil unklar ist wie die Operation mit unterschiedlichen Werten für den fehlenden Wert ausgehen würde:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="ot">NA</span></code></pre></div>
 <pre><code>#&gt; [1] NA</code></pre>
-<p>Einzige Ausnahmen sind Operationen, die undabhängig vom fehlenden Wert einen bestimmten Wert annehmen:</p>
+<p>Einzige Ausnahmen sind Operationen, die unabhängig vom fehlenden Wert einen bestimmten Wert annehmen:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">NA</span> <span class="op">|</span><span class="st"> </span><span class="ot">TRUE</span> <span class="co"># Gibt immer TRUE, unabhängig vom Wert für NA</span></code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
 <p>Um zu testen ob ein Vektor <code>x</code> fehlende Werte enthält sollte die Funktion <code>is.na</code> verwendet werden, und nicht etwa der Ausdruck <code>x==NA</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">NA</span>, <span class="dv">5</span>, <span class="ot">NA</span>, <span class="dv">10</span>)
-<span class="kw">print</span>(
-  x <span class="op">==</span><span class="st"> </span><span class="ot">NA</span> <span class="co"># Unklar da man nicht weiß ob alle NA für den gleichen Wert stehen</span>
-  )</code></pre></div>
+<span class="kw">print</span>(x <span class="op">==</span><span class="st"> </span><span class="ot">NA</span>) <span class="co"># Unklar, da man nicht weiß, ob alle NA für den gleichen Wert stehen</span></code></pre></div>
 <pre><code>#&gt; [1] NA NA NA NA</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(
   <span class="kw">is.na</span>(x)
@@ -663,7 +664,7 @@ x</code></pre></div>
 </div>
 <div id="nutzliche-funktionen-fur-atomare-vektoren" class="section level3">
 <h3><span class="header-section-number">3.4.7</span> Nützliche Funktionen für atomare Vektoren</h3>
-<p>Hier sollten nur eingige Funktionen erwähnt werden, die im Kontext von atomaren Vektoren besonders praktisch sind,<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a> inbesondere wenn es darum geht solche Vektoren herzustellen, bzw. Rechenoperationen mit ihnen durchzuführen.</p>
+<p>Hier sollen nur einige Funktionen erwähnt werden, die im Kontext von atomaren Vektoren besonders praktisch sind,<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a> inbesondere wenn es darum geht solche Vektoren herzustellen, bzw. Rechenoperationen mit ihnen durchzuführen.</p>
 <p><strong>Herstellung von atomaren Vektoren</strong>:</p>
 <p>Eine Sequenz ganzer Zahlen wird in der Regel sehr häufig gebraucht. Entsprechend gibt es den hilfreichen Shortcut<code>:</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
@@ -673,16 +674,22 @@ x</code></pre></div>
 y</code></pre></div>
 <pre><code>#&gt;  [1] 10  9  8  7  6  5  4  3  2  1</code></pre>
 <p>Häufig möchten wir jedoch eine kompliziertere Sequenz bauen. In dem Fall hilft uns die allgemeinere Funktion <code>seq()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dt">by =</span> <span class="fl">0.5</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>)
 <span class="kw">print</span>(x)</code></pre></div>
+<pre><code>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<p>In diesem Fall ist <code>seq()</code> äquivalent zu <code>:</code>. <code>seq</code> erlaubt aber mehrere optionale Argumente: so können wir mit <code>by</code> die Schrittlänge zwischen den einzelnen Zahlen definieren.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dt">by =</span> <span class="fl">0.5</span>)
+<span class="kw">print</span>(y)</code></pre></div>
 <pre><code>#&gt;  [1]  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5
 #&gt; [15]  8.0  8.5  9.0  9.5 10.0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2</span>, <span class="dv">8</span>, <span class="dt">length.out =</span> <span class="dv">4</span>)
-<span class="kw">print</span>(y)</code></pre></div>
-<pre><code>#&gt; [1] 2 4 6 8</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">10</span>, <span class="dv">25</span>, <span class="dt">along.with =</span> y)
+<p>Wenn wir die Länge des resultierenden Vektors festlegen wollen und die Schrittlänge von R automatisch festgelegt werden soll, können wir dies mit dem Argument <code>length.out</code> machen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2</span>, <span class="dv">8</span>, <span class="dt">length.out =</span> <span class="dv">4</span>)
 <span class="kw">print</span>(z)</code></pre></div>
-<pre><code>#&gt; [1] 10 15 20 25</code></pre>
+<pre><code>#&gt; [1] 2 4 6 8</code></pre>
+<p>Und wenn wir einen Vektor in der Länge eines anderen Vektors erstellen wollen, bietet sich das Argument <code>along.with</code> an. Dies wird häufig für das Erstellen von Indexvektoren verwendet. In einem solchen Fall müssen wir die Indexzahlen nicht direkt angeben:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z_index &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">along.with =</span> z)
+<span class="kw">print</span>(z_index)</code></pre></div>
+<pre><code>#&gt; [1] 1 2 3 4</code></pre>
 <p>Auch häufig möchten wir einen bestimmten Wert wiederholen. Das geht mit der Funktion <code>rep</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, <span class="dv">5</span>)
 <span class="kw">print</span>(x)</code></pre></div>
@@ -710,14 +717,56 @@ y</code></pre></div>
 <pre><code>#&gt; [1] NA</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">var</span>(y, <span class="dt">na.rm =</span> T)</code></pre></div>
 <pre><code>#&gt; [1] 1.666667</code></pre>
-<p>Ebenfalls häufig sind wir an der <strong>Summe</strong>, bzw, dem <strong>Produkt</strong> aller Elemente des Vektors interessiert. <code>sum()</code> und <code>prod</code> helfen weiter und auch sie kennen das optionale Argument <code>na.rm</code>:</p>
+<p>Ebenfalls häufig sind wir an der <strong>Summe</strong>, bzw, dem <strong>Produkt</strong> aller Elemente des Vektors interessiert. <code>sum()</code> und <code>prod()</code> helfen weiter und auch sie kennen das optionale Argument <code>na.rm</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(x)</code></pre></div>
 <pre><code>#&gt; [1] 10</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prod</span>(y, <span class="dt">na.rm =</span> T)</code></pre></div>
 <pre><code>#&gt; [1] 24</code></pre>
 </div>
+<div id="listen" class="section level3">
+<h3><span class="header-section-number">3.4.8</span> Listen</h3>
+<p>Im Gegensatz zu atomaren Vektoren können Listen Objekte verschiedenen Typs enthalten. Sie werden mit der Funktion <code>list()</code> erstellt:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="st">&quot;a&quot;</span>,
+  <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),
+  <span class="ot">FALSE</span>
+)
+<span class="kw">typeof</span>(l_<span class="dv">1</span>)</code></pre></div>
+<pre><code>#&gt; [1] &quot;list&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l_<span class="dv">1</span></code></pre></div>
+<pre><code>#&gt; [[1]]
+#&gt; [1] &quot;a&quot;
+#&gt; 
+#&gt; [[2]]
+#&gt; [1] 1 2 3
+#&gt; 
+#&gt; [[3]]
+#&gt; [1] FALSE</code></pre>
+<p>Wir können Listen mit der Funktion <code>str()</code> inspizieren. In diesem Fall erhalten wir unmittelbar Informationen über die Art der Elemente:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(l_<span class="dv">1</span>)</code></pre></div>
+<pre><code>#&gt; List of 3
+#&gt;  $ : chr &quot;a&quot;
+#&gt;  $ : num [1:3] 1 2 3
+#&gt;  $ : logi FALSE</code></pre>
+<p>Die einzelnen Elemente einer Liste können auch benannt werden:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="st">&quot;erstes_element&quot;</span> =<span class="st"> &quot;a&quot;</span>,
+  <span class="st">&quot;zweites_element&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),
+  <span class="st">&quot;drittes_element&quot;</span> =<span class="st"> </span><span class="ot">FALSE</span>
+)</code></pre></div>
+<p>Die Namen aller Elemente in der Liste erhalten wir mit der Funktion <code>names()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(l_<span class="dv">2</span>)</code></pre></div>
+<pre><code>#&gt; [1] &quot;erstes_element&quot;  &quot;zweites_element&quot; &quot;drittes_element&quot;</code></pre>
+<p>Um einzelne Elemente einer Liste auszulesen müssen wir <code>[[</code> anstatt <code>[</code> verwemden. Wir können dann entweder Elemente nach ihrer Position oder ihren Namen auswählen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l_<span class="dv">2</span>[[<span class="dv">1</span>]]</code></pre></div>
+<pre><code>#&gt; [1] &quot;a&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l_<span class="dv">2</span>[[<span class="st">&quot;erstes_element&quot;</span>]]</code></pre></div>
+<pre><code>#&gt; [1] &quot;a&quot;</code></pre>
+<p>Im folgenden wollen wir uns noch mit zwei speziellen Typen beschäftigen, die weniger fundamental als die bislang diskutierten sind, jedoch häufig in der alltäglichen Arbeit vorkommen: Matrizen und Data Frames.</p>
+</div>
 <div id="matrizen" class="section level3">
-<h3><span class="header-section-number">3.4.8</span> Matrizen</h3>
+<h3><span class="header-section-number">3.4.9</span> Matrizen</h3>
+<p>Bei Matrizen handelt es sich um zweidimensionale Objekte mit Zeilen und Spalten, bei denen es sich jeweils um atomare Vektoren handelt.</p>
 <p><strong>Erstellen von Matrizen</strong></p>
 <p>Matrizen werden mit der Funktion <code>matrix()</code>erstellt. Diese Funktion nimmt als erstes Argument die Elemente der Matrix und dann die Spezifikation der Anzahl von Zeilen (<code>nrow</code>) und/oder der Anzahl von Spalten (<code>ncol</code>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">11</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">nrow =</span> <span class="dv">5</span>)
@@ -735,6 +784,18 @@ m_<span class="dv">1</span></code></pre></div>
 <pre><code>#&gt; [1] 11 16</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m_<span class="dv">1</span>[<span class="dv">2</span>,<span class="dv">2</span>] <span class="co"># Element [2,2]</span></code></pre></div>
 <pre><code>#&gt; [1] 17</code></pre>
+<blockquote>
+<p><strong>Optionaler Hinweis:</strong> Matrizen sind weniger ‘fundamantal’ als atomare Vektoren. Entsprechend gibt uns <code>typeof()</code> für eine Matrix auch den Typ der enthaltenen atomaren Vektoren an:</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(m_<span class="dv">1</span>)</code></pre></div>
+<pre><code>#&gt; [1] &quot;integer&quot;</code></pre>
+<blockquote>
+<p>Um zu testen ob es sich bei einem Objekt um eine Matrix handelt verwenden wir entsprechend <code>is.matrix()</code>:</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.matrix</span>(m_<span class="dv">1</span>)</code></pre></div>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.matrix</span>(<span class="fl">2.0</span>)</code></pre></div>
+<pre><code>#&gt; [1] FALSE</code></pre>
 <p><strong>Matrizenalgebra</strong></p>
 <p>Matrizenalgebra spielt in vielen statistischen Anwendungen eine wichtige Rolle. In R ist es sehr einfach die typischen Rechenoperationen für Matrizen zu implementieren. Hier nur ein paar Beispiele, für die wir die folgenden Matrizen verwenden:</p>
 <p><span class="math display">\[A = \left( 
@@ -798,8 +859,7 @@ a_{12}\cdot b_{12} &amp; a_{22}\cdot b_{22}\\
 \begin{array}{rrr}                                
 a_{11}\cdot b_{11} + a_{12}\cdot b_{21} &amp; a_{11}\cdot b_{21}+a_{12}\cdot b_{22}\\                     a_{21}\cdot b_{11} + a_{22}\cdot b_{21} &amp; a_{21}\cdot b_{12}+a_{22}\cdot b_{22}\\                     
 \end{array}
-\right)
-\]</span></p>
+\right)\]</span></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matrix_a <span class="op">%*%</span><span class="st"> </span>matrix_b</code></pre></div>
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]   24   50
@@ -816,49 +876,9 @@ a_{11}\cdot b_{11} + a_{12}\cdot b_{21} &amp; a_{11}\cdot b_{21}+a_{12}\cdot b_{
 <p>Die minimalen Abweichungen sind auf machinelle Rundungsfehler zurückzuführen und treten häufig auf.</p>
 <p>Es gibt im Internet zahlreiche gute Überblicksartikel zum Thema Matrizenalgebra in R, z.B. <a href="https://www.statmethods.net/advstats/matrix.html">hier</a> oder in größerem Umfang <a href="https://www.math.uh.edu/~jmorgan/Math6397/day13/LinearAlgebraR-Handout.pdf">hier</a>.</p>
 </div>
-<div id="listen" class="section level3">
-<h3><span class="header-section-number">3.4.9</span> Listen</h3>
-<p>Im Gegensatz zu atomaren Vektoren können Listen Objekte verschiedenen Typs enthalten. Sie werden mit der Funktion <code>list()</code> erstellt:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">list</span>(
-  <span class="st">&quot;a&quot;</span>,
-  <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),
-  <span class="ot">FALSE</span>
-)
-<span class="kw">typeof</span>(l_<span class="dv">1</span>)</code></pre></div>
-<pre><code>#&gt; [1] &quot;list&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l_<span class="dv">1</span></code></pre></div>
-<pre><code>#&gt; [[1]]
-#&gt; [1] &quot;a&quot;
-#&gt; 
-#&gt; [[2]]
-#&gt; [1] 1 2 3
-#&gt; 
-#&gt; [[3]]
-#&gt; [1] FALSE</code></pre>
-<p>Wir können Listen mit der Funktion <code>str()</code> inspizieren. In diesem Fall erhalten wir unmittelbar Informationen über die Art der Elemente:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(l_<span class="dv">1</span>)</code></pre></div>
-<pre><code>#&gt; List of 3
-#&gt;  $ : chr &quot;a&quot;
-#&gt;  $ : num [1:3] 1 2 3
-#&gt;  $ : logi FALSE</code></pre>
-<p>Die einzelnen Elemente einer Liste können auch benannt werden:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">list</span>(
-  <span class="st">&quot;erstes_element&quot;</span> =<span class="st"> &quot;a&quot;</span>,
-  <span class="st">&quot;zweites_element&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),
-  <span class="st">&quot;drittes_element&quot;</span> =<span class="st"> </span><span class="ot">FALSE</span>
-)</code></pre></div>
-<p>Die Namen aller Elemente in der Liste erhalten wir mit der Funktion <code>names()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(l_<span class="dv">2</span>)</code></pre></div>
-<pre><code>#&gt; [1] &quot;erstes_element&quot;  &quot;zweites_element&quot; &quot;drittes_element&quot;</code></pre>
-<p>Um einzelne Elemente einer Liste auszulesen müssen wir <code>[[</code> anstatt <code>[</code> verwemden. Wir können dann entweder Elemente nach ihrer Position oder ihren Namen auswählen:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l_<span class="dv">2</span>[[<span class="dv">1</span>]]</code></pre></div>
-<pre><code>#&gt; [1] &quot;a&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l_<span class="dv">2</span>[[<span class="st">&quot;erstes_element&quot;</span>]]</code></pre></div>
-<pre><code>#&gt; [1] &quot;a&quot;</code></pre>
-</div>
 <div id="data-frames" class="section level3">
 <h3><span class="header-section-number">3.4.10</span> Data Frames</h3>
-<p>Der <code>data.frame</code> ist eine besondere Art von Liste und ist der in ein in der Datenanalyse regelmäßig auftretender Datentyp. Gegensatz zu einer normalen Liste müssen bei einem <code>data.frame</code> alle Elemente die gleiche Länge aufweisen. Das heißt man kann sich einen <code>data.frame</code> als eine rechteckige Liste vorstellen.</p>
+<p>Der <code>data.frame</code> ist eine besondere Art von Liste und ist ein in der Datenanalyse regelmäßig auftretender Datentyp. Gegensatz zu einer normalen Liste müssen bei einem <code>data.frame</code> alle Elemente die gleiche Länge aufweisen. Das heißt man kann sich einen <code>data.frame</code> als eine rechteckige Liste vorstellen.</p>
 <p>Wegen der engen Verwandschaft können wir einen <code>data.frame</code> direkt aus einer Liste erstellen indem wir die Funktion <code>as.data.frame()</code> verwenden:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">list</span>(
   <span class="st">&quot;a&quot;</span> =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,
@@ -866,7 +886,7 @@ a_{11}\cdot b_{11} + a_{12}\cdot b_{21} &amp; a_{11}\cdot b_{21}+a_{12}\cdot b_{
   <span class="st">&quot;c&quot;</span> =<span class="st"> </span><span class="dv">7</span><span class="op">:</span><span class="dv">9</span>
 )
 df_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(l_<span class="dv">3</span>)</code></pre></div>
-<p>Wenn wir R nach dem Typ von <code>df_3</code> sehen wir, dass es sich weiterhin um eine Liste handelt:</p>
+<p>Wenn wir R nach dem Typ von <code>df_3</code> fragen, sehen wir, dass es sich weiterhin um eine Liste handelt:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(df_<span class="dv">3</span>)</code></pre></div>
 <pre><code>#&gt; [1] &quot;list&quot;</code></pre>
 <p>Allerdings können wir testen ob <code>df_3</code> ein <code>data.frame</code> ist indem wir <code>is.data.frame</code> benutzen:</p>
@@ -884,9 +904,14 @@ df_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">as.d
 #&gt; 
 #&gt; $c
 #&gt; [1] 7 8 9</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_<span class="dv">3</span></code></pre></div>
+<pre><code>#&gt;   a b c
+#&gt; 1 1 4 7
+#&gt; 2 2 5 8
+#&gt; 3 3 6 9</code></pre>
 <p>Die andere Möglichkeit einen <code>data.frame</code> zu erstellen ist direkt über die Funktion <code>data.frame()</code>, wobei es hier in der Regel ratsam ist das optionale Argument <code>stringsAsFactors</code> auf <code>FALSE</code> zu setzen, da sonst Wörter in so genannte Faktoren umgewandelt werden:<a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="st">&quot;gender&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;male&quot;</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="st">&quot;remale&quot;</span>, <span class="dv">2</span>)),
+  <span class="st">&quot;gender&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;male&quot;</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="st">&quot;female&quot;</span>, <span class="dv">2</span>)),
   <span class="st">&quot;height&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">89</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">66</span>, <span class="dv">50</span>),
   <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>
 )
@@ -895,34 +920,33 @@ df_<span class="dv">4</span></code></pre></div>
 #&gt; 1   male     89
 #&gt; 2   male     75
 #&gt; 3   male     80
-#&gt; 4 remale     66
-#&gt; 5 remale     50</code></pre>
-<p>Data frames sind das klassische Objekt um eingelesene Daten zu repräsentieren. Wenn Sie sich z.B. Daten zum BIP in Deutschland aus dem Internet runterladen und diese Daten dann in R einlesen, werden diese Daten zunächst einmal als <code>data.frame</code> repräsentiert.<a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a> Diese Repräsentation erlaubt dann eine einfache Analyse und Manipulation der Daten.</p>
+#&gt; 4 female     66
+#&gt; 5 female     50</code></pre>
+<p>Data Frames sind das klassische Objekt um eingelesene Daten zu repräsentieren. Wenn Sie sich z.B. Daten zum BIP in Deutschland aus dem Internet runterladen und diese Daten dann in R einlesen, werden diese Daten zunächst einmal als <code>data.frame</code> repräsentiert.<a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a> Diese Repräsentation erlaubt dann eine einfache Analyse und Manipulation der Daten.</p>
 <p>Zwar gibt es eine eigene Vorlesung zur Bearbeitung von Daten, wir wollen aber schon hier einige zentrale Befehle im Zusammenhang von Data Frames einführen.</p>
-<p>Joer sei jedoch schon angemerkt, dass um Zeilen, Spalten oder einzelne Elemente auszuwählen verwenden die gleichen Befehle wie bei Matrizen verwendet werden können:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_<span class="dv">4</span>[<span class="dv">1</span>] <span class="co"># erste Spalte</span></code></pre></div>
-<pre><code>#&gt;   gender
-#&gt; 1   male
-#&gt; 2   male
-#&gt; 3   male
-#&gt; 4 remale
-#&gt; 5 remale</code></pre>
+<p>An dieser Stelle sei jedoch schon angemerkt, dass um Zeilen, Spalten oder einzelne Elemente auszuwählen verwenden die gleichen Befehle wie bei Matrizen verwendet werdenkönnen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_<span class="dv">4</span>[, <span class="dv">1</span>] <span class="co"># erste Spalte</span></code></pre></div>
+<pre><code>#&gt; [1] &quot;male&quot;   &quot;male&quot;   &quot;male&quot;   &quot;female&quot; &quot;female&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_<span class="dv">4</span>[, <span class="dv">2</span>] <span class="co"># Werte der zweiten Spalte</span></code></pre></div>
 <pre><code>#&gt; [1] 89 75 80 66 50</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_<span class="dv">4</span>[[<span class="st">&quot;gender&quot;</span>]] <span class="co"># Abfrage funktioniert auch mit Spaltennamen</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;male&quot;   &quot;male&quot;   &quot;male&quot;   &quot;remale&quot; &quot;remale&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_<span class="dv">4</span>[<span class="st">&quot;gender&quot;</span>] <span class="co"># [ gibt als Output einen Data Frame</span></code></pre></div>
+<p>Die Abfrage funktioniert nicht nur mit Indices, sondern auch mit Spaltennamen:<a href="#fn11" class="footnoteRef" id="fnref11"><sup>11</sup></a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_<span class="dv">4</span>[[<span class="st">&quot;gender&quot;</span>]] </code></pre></div>
+<pre><code>#&gt; [1] &quot;male&quot;   &quot;male&quot;   &quot;male&quot;   &quot;female&quot; &quot;female&quot;</code></pre>
+<p>Wenn wir <code>[</code> anstatt von <code>[[</code> verwenden erhalten wir als Output einen (reduzierten) Data Frame:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_<span class="dv">4</span>[<span class="st">&quot;gender&quot;</span>] </code></pre></div>
 <pre><code>#&gt;   gender
 #&gt; 1   male
 #&gt; 2   male
 #&gt; 3   male
-#&gt; 4 remale
-#&gt; 5 remale</code></pre>
+#&gt; 4 female
+#&gt; 5 female</code></pre>
+<p>Es können auch mehrere Zeilen ausgewählt werden:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_<span class="dv">4</span>[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, ] <span class="co"># Die ersten beiden Zeilen</span></code></pre></div>
 <pre><code>#&gt;   gender height
 #&gt; 1   male     89
 #&gt; 2   male     75</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_<span class="dv">4</span>[<span class="dv">2</span>, <span class="dv">2</span>] <span class="co"># Zweite Wert der zweiten Spalte</span></code></pre></div>
+<p>Oder einzelne Werte:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_<span class="dv">4</span>[<span class="dv">2</span>, <span class="dv">2</span>] <span class="co"># Zweiter Wert der zweiten Spalte</span></code></pre></div>
 <pre><code>#&gt; [1] 75</code></pre>
 <p>Dies können wir uns zu Nutze machen um den Typ der einzelnen Spalten herauszufinden:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(df_<span class="dv">4</span>[[<span class="st">&quot;gender&quot;</span>]])</code></pre></div>
@@ -931,13 +955,13 @@ df_<span class="dv">4</span></code></pre></div>
 </div>
 <div id="pakete" class="section level2">
 <h2><span class="header-section-number">3.5</span> Pakete</h2>
-<p>Bei Paketen handelt es sich eine Kombination aus R Code, Daten, Dokumentationen und Tests. Sie sind der beste Weg, reproduzierbaren Code zu erstellen und frei zugänglich zu machen. Zwar werden Pakete häufig der Öffentlichkeit zugänglich gemacht, z.B. über GitHub oder CRAN. Es ist aber genauso hilfreich, Pakete für den privaten Gerbrauch zu schreiben, z.B. um für bestimmte Routinen Funktionen zu programmieren, zu dokumentieren und in verschiedenen Projekten verfügbar zu machen.<a href="#fn11" class="footnoteRef" id="fnref11"><sup>11</sup></a></p>
+<p>Bei Paketen handelt es sich um eine Kombination aus R Code, Daten, Dokumentationen und Tests. Sie sind der beste Weg, reproduzierbaren Code zu erstellen und frei zugänglich zu machen. Zwar werden Pakete häufig der Öffentlichkeit zugänglich gemacht, z.B. über GitHub oder CRAN. Es ist aber genauso hilfreich, Pakete für den privaten Gerbrauch zu schreiben, z.B. um für bestimmte Routinen Funktionen zu programmieren, zu dokumentieren und in verschiedenen Projekten verfügbar zu machen.<a href="#fn12" class="footnoteRef" id="fnref12"><sup>12</sup></a></p>
 <p>Die Tatsache, dass viele Menschen statistische Probleme lösen indem sie bestimmte Routinen entwickeln, diese dann generalisieren und über Pakete der ganzen R Community frei verfügbar machen, ist einer der Hauptgründe für den Erfolg und die breite Anwendbarkeit von R.</p>
-<p>Wenn man R startet haben wir Zugriff eine eine gewisse Anzahl von Funktionen, vordefinierten Variablen und Datensätzen. Die Gesamtheit dieser Objekte wird in der Regel <code>base R</code> genannt, weil wir alle Funktionalitäten ohne weiteres nutzen können.</p>
-<p>Die Funktion <code>assign</code>, zum Beispiel, ist Teil von <code>base R</code>: wir starten R und können Sie ohne weiteres verwenden.</p>
+<p>Wenn man R startet haben wir Zugriff auf eine gewisse Anzahl von Funktionen, vordefinierten Variablen und Datensätzen. Die Gesamtheit dieser Objekte wird in der Regel <code>base R</code> genannt, weil wir alle Funktionalitäten ohne Weiteres nutzen können.</p>
+<p>Die Funktion <code>assign</code>, zum Beispiel, ist Teil von <code>base R</code>: wir starten R und können Sie ohne Weiteres verwenden.</p>
 <p>Im Prinzip kann so gut wie jedwede statistische Prozedur in <code>base R</code> implementiert werden. Dies ist aber häufig zeitaufwendig und fehleranfällig: wie wir am Beispiel von Funktionen gelernt haben, sollten häufig verwendete Routinen im Rahmen von einer Funktion implementiert werden, die dann immer wieder angewendet werden kann. Das reduziert nicht nur Fehler, sondern macht den Code besser verständlich.</p>
-<p>Pakete folgen dem gleichn Prinzip, nur tragen sie die Idee noch weiter: hier wollen wir die Funktionen auch über ein einzelnes R Projekt hinaus nutzbar machen, sodass sie nicht in jedem Projekt neu definiert werden müssen, sondern zentral nutzbar gemacht und dokumentiert werden.</p>
-<p>Um ein Paket in R zu nutzen muss es zunächst installiert werden. Für Pakete, die auf der zentralen R Pakete Plattform CRAN verfügbar sind, geht dies mit der Funktion <code>install.packages</code>. Wenn wir z.B. das Paket <code>data.table</code> installieren wollen geht das mit dem folgenden Befehl:</p>
+<p>Pakete folgen dem gleichen Prinzip, nur tragen sie die Idee noch weiter: hier wollen wir die Funktionen auch über ein einzelnes R Projekt hinaus nutzbar machen, sodass sie nicht in jedem Projekt neu definiert werden müssen, sondern zentral nutzbar gemacht und dokumentiert werden.</p>
+<p>Um ein Paket in R zu nutzen, muss es zunächst installiert werden. Für Pakete, die auf der zentralen R Pakete Plattform CRAN verfügbar sind, geht dies mit der Funktion <code>install.packages</code>. Wenn wir z.B. das Paket <code>data.table</code> installieren wollen geht das mit dem folgenden Befehl:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;data.table&quot;</span>)</code></pre></div>
 <p>Das Paket <code>data.table</code> enthält viele Objekte, welche die Arbeit mit großen Datensätzen enorm erleichtern. Darunter ist eine verbesserte Version des <code>data.frame</code>, der <code>data.table</code>. Wir können einen <code>data.frame</code> mit Hilfe der Funktion <code>as.data.table()</code> in einen <code>data.table</code> umwandeln.</p>
 <p>Allerdings haben wir selbst nach erfolgreicher Installation von <code>data.table</code> nicht direkt Zugriff auf diese Funktion:</p>
@@ -962,7 +986,7 @@ y</code></pre></div>
 y &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(x)</code></pre></div>
 <p>Der Übersicht halber sollte das für alle in einem Skript verwendeten Pakete ganz am Anfang des Skripts gemacht werden. So sieht man auch unmittelbar welche Pakete für das Skript installiert sein müssen.</p>
 <p>Grundsätzlich sollte man in jedem Skript nur die Pakete mit <code>library()</code> einlesen, die auch tatsächlich verwendet werden. Ansonsten lädt man unnötigerweise viele Objekte und verliert den Überblick woher eine bestimmte Funktion eigentlich kommt. Außerdem ist es schwieriger für andere das Skript zu verwenden, weil unter Umständen viele Pakete unnötigerweise installiert werden müssen.</p>
-<p>Da Pakete denzentral von verschiedensten Menschen hergestellt werden besteht die Gefahr, dass Objekte in unterschiedlichen Paketen den gleichen Namen bekommen. Da in R ein Name nur zu einem Objekt gehören kann, werden beim Einladen mehrerer Pakete eventuell Namen überschrieben, oder ‘maskiert’. Dies wird am Anfang beim Einlesen der Pakete mitgeteilt, gerät aber leicht in Vergessenheit und kann zu sehr kryptischen Fehlermeldungen führen.</p>
+<p>Da Pakete dezentral von verschiedensten Menschen hergestellt werden, besteht die Gefahr, dass Objekte in unterschiedlichen Paketen den gleichen Namen bekommen. Da in R ein Name nur zu einem Objekt gehören kann, werden beim Einladen mehrerer Pakete eventuell Namen überschrieben, oder ‘maskiert’. Dies wird am Anfang beim Einlesen der Pakete mitgeteilt, gerät aber leicht in Vergessenheit und kann zu sehr kryptischen Fehlermeldungen führen.</p>
 <p>Wir wollen das kurz anhand der beiden Pakete <code>dplyr</code> und <code>plm</code> illustrieren:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(plm)</code></pre></div>
@@ -980,7 +1004,7 @@ y &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(x)</code><
 #&gt; {
 #&gt;     UseMethod(&quot;lead&quot;)
 #&gt; }
-#&gt; &lt;bytecode: 0x7f8e72137f40&gt;
+#&gt; &lt;bytecode: 0x7fe9d9607618&gt;
 #&gt; &lt;environment: namespace:plm&gt;</code></pre>
 <p>Aus der letzten Zeile wird ersichtlich, dass <code>lead</code> hier aus dem Paket <code>plm</code> kommt.</p>
 <p>Wenn wir die Funktion aus <code>dplyr</code> verwenden wollen, müssen wir <code>::</code> verwenden:</p>
@@ -1002,14 +1026,14 @@ y &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(x)</code><
 #&gt;     attributes(out) &lt;- attributes(x)
 #&gt;     out
 #&gt; }
-#&gt; &lt;bytecode: 0x7f8e6d2e74f8&gt;
+#&gt; &lt;bytecode: 0x7fe9d4f89f60&gt;
 #&gt; &lt;environment: namespace:dplyr&gt;</code></pre>
 <p>Wenn es zu Maskierungen kommt ist es aber der Transparenz wegen besser in beiden Fällen <code>::</code> zu verwenden, also <code>plm::lead</code> und <code>dplyr::lead</code>.</p>
 <blockquote>
 <p><strong>Hinweis</strong>: Alle von Konflikten betroffenen Objekte können mit der Funktion <code>conflicts()</code> angezeigt werden.</p>
 </blockquote>
 <blockquote>
-<p>**Optionale <a href="Info:**" class="uri">Info:**</a> Um zu überprüfen in welcher Reihenfolge R nach Objekten sucht, kann die Funktion <code>search</code> verwendet werden. Wenn ein Objekt aufgerufen wird schaut R zuerst im ersten Element des Vektors nach, der globalen Umgebung. Wenn das Objekt dort nicht gefunden wird, schaut es im zweiten, etc. Wie man hier auch erkennen kann, werden einige Pakete standardmäßig eingelesen. Wenn ein Objekt nirgends gefunden wird gibt R einen Fehler aus. Im vorliegenden Falle zeigt uns die Funktion, dass er erst im Paket <code>nach der Funktion</code> sucht, und nicht im Paket ``:</p>
+<p><strong>Optionale Info</strong>: Um zu überprüfen in welcher Reihenfolge R nach Objekten sucht, kann die Funktion <code>search</code> verwendet werden. Wenn ein Objekt aufgerufen wird schaut R zuerst im ersten Element des Vektors nach, der globalen Umgebung. Wenn das Objekt dort nicht gefunden wird, schaut es im zweiten, etc. Wie man hier auch erkennen kann, werden einige Pakete standardmäßig eingelesen. Wenn ein Objekt nirgends gefunden wird gibt R einen Fehler aus. Im vorliegenden Falle zeigt uns die Funktion, dass er erst im Paket <code>plm</code> nach der Funktion <code>lead()</code> sucht, und nicht im Paket <code>dplyr</code>:</p>
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">search</span>()</code></pre></div>
 <pre><code>#&gt;  [1] &quot;.GlobalEnv&quot;         &quot;package:plm&quot;        &quot;package:dplyr&quot;     
@@ -1025,9 +1049,9 @@ y &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(x)</code><
 </div>
 <div id="kurzer-exkurs-zum-einlesen-und-schreiben-von-daten" class="section level2">
 <h2><span class="header-section-number">3.6</span> Kurzer Exkurs zum Einlesen und Schreiben von Daten</h2>
-<p>Zum Abschluss wollen wir noch kurz einige Befehle zum Einlesen von Daten einführen. Später werden wir uns ein ganzes Kapitel mit dem Einlesen und Schreiben von Daten beschäftigen, da dies in der Regel einen nicht unbeträchtlichen Teil der quantitativen Forschungsarbeit in Anspruch nimmt. An dieser Stelle wollen wir aber nur lernen, wie man einen angemessenen Datensatz in R einliest.</p>
-<p>R kann zahlreiche verschiedene Dateiformate einlesen, z.B. <code>csv</code>, <code>dta</code> oder <code>txt</code>, auch wenn für manche Formate bestimmte Libraries geladen sein müssen.</p>
-<p>Das gerade für kleinere Datensätze mit Abstand beste Format ist in der Regel <code>csv</code>, da ist von zahlreichen Programmen und auf allen Betriebssystemen gelesen und geschrieben werden kann.</p>
+<p>Zum Abschluss wollen wir noch kurz einige Befehle zum Einlesen von Daten einführen. Später werden wir uns ein ganzes Kapitel mit dem Einlesen und Schreiben von Daten beschäftigen, da dies in der Regel einen nicht unbeträchtlichen Teil der quantitativen Forschungsarbeit in Anspruch nimmt. An dieser Stelle wollen wir aber nur lernen, wie man einen Datensatz in R einliest.</p>
+<p>R kann zahlreiche verschiedene Dateiformate einlesen, z.B. <code>csv</code>, <code>dta</code> oder <code>txt</code>, auch wenn für manche Formate bestimmte Pakete geladen sein müssen.</p>
+<p>Das gerade für kleinere Datensätze mit Abstand beste Format ist in der Regel <code>csv</code>, da es von zahlreichen Programmen und auf allen Betriebssystemen gelesen und geschrieben werden kann.</p>
 <p>Für die Beispiele hier nehmen wir folgende Ordnerstruktur an:</p>
 <pre><code>2019-Methoden
 │   2019-Methoden.Rproj
@@ -1038,7 +1062,7 @@ y &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(x)</code><
 │   |    │  Rohdaten.csv
 |   |
 |   +---tidy</code></pre>
-<p>Um die Daten einzulesen verwenden wir das Paket <code>tidyverse</code>, die wir später genauer kennen lernen werden. Sie enthält viele nützliche Funktionen zur Arbeit mit Datensätzen. Zudem verwende ich das Paket <code>here</code> um relative Pfade immer von meinem Arbeitsverzeichnis aus angeben zu können.<a href="#fn12" class="footnoteRef" id="fnref12"><sup>12</sup></a></p>
+<p>Um die Daten einzulesen verwenden wir das Paket <code>tidyverse</code>, die wir später genauer kennen lernen werden. Sie enthält viele nützliche Funktionen zur Arbeit mit Datensätzen. Zudem verwende ich das Paket <code>here</code> um relative Pfade immer von meinem Arbeitsverzeichnis aus angeben zu können.<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 <span class="kw">library</span>(here)</code></pre></div>
 <p>Nehmen wir an, die Datei <code>Rohdaten.csv</code> sähe folgendermaßen aus:</p>
@@ -1057,9 +1081,8 @@ auto_daten</code></pre></div>
 #&gt; 2 Ferrari Dino        19.7        6   175
 #&gt; 3 Maserati Bora       15          8   335
 #&gt; 4 Volvo 142E          21.4        4   109</code></pre>
-<p>Wir haben nun einen Datensatz in R, mit dem wir dann weitere Analysen anstellen können. Nehmen wir einmal an, wir wollen eine weitere Spalte hinzufügen (Verbrauch/PS) und dann den Datensatz im Ordner <code>data/tidy</code> speichern. Ohne auf die Modifikation des Data Frames einzugehen können wir die Funktion <code>write_csv</code> verwenden um den Datensatz zu speichern. Hierzu geben wir den neuen dataframe als erstes, und den Pfad als zweites Argument an:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">auto_daten_neu &lt;-<span class="st"> </span>auto_daten <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Verbrauch_pro_PS=</span>Verbrauch<span class="op">/</span>PS)
+<p>Wir haben nun einen Datensatz in R, mit dem wir dann weitere Analysen anstellen können. Nehmen wir einmal an, wir wollen eine weitere Spalte hinzufügen (Verbrauch/PS) und dann den Datensatz im Ordner <code>data/tidy</code> speichern. Ohne auf die Modifikation des Data Frames einzugehen können wir die Funktion <code>write_csv</code> verwenden um den Datensatz zu speichern. Hierzu geben wir den neuen Data Frame als erstes, und den Pfad als zweites Argument an:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">auto_daten_neu &lt;-<span class="st"> </span><span class="kw">mutate</span>(auto_daten, <span class="dt">Verbrauch_pro_PS=</span>Verbrauch<span class="op">/</span>PS)
 <span class="kw">write_csv</span>(auto_daten_neu, <span class="kw">here</span>(<span class="st">&quot;data/tidy/NeueDaten.csv&quot;</span>))</code></pre></div>
 <p>Es wird ein späteres Kapitel (und einen späteren Vorlesungstermin) geben, in dem wir uns im Detail mit dem Lesen, Schreiben und Manipulieren von Datensätzen beschäftigen.</p>
 
@@ -1068,7 +1091,37 @@ auto_daten</code></pre></div>
 
 
 
-<h3><span class="header-section-number">B</span> Referenzen</h3>
+<div id="refs" class="references">
+<div>
+<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley. 2019. <em>Advanced R</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/" class="uri">https://adv-r.hadley.nz/</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Jennifer Bryan. 2019. <em>Advanced R</em>. 2nd ed. Sebastopol, CA: O’Reilly Media. <a href="https://r-pkgs.org/" class="uri">https://r-pkgs.org/</a>.</p>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-Packages">
 <p>Wickham, Hadley, and Jennifer Bryan. 2019. <em>Advanced R</em>. 2nd ed. Sebastopol, CA: O’Reilly Media. <a href="https://r-pkgs.org/" class="uri">https://r-pkgs.org/</a>.</p>
@@ -1077,17 +1130,18 @@ auto_daten</code></pre></div>
 <div class="footnotes">
 <hr />
 <ol start="2">
-<li id="fn2"><p>Theoretisch kann <code>&lt;-</code> auch andersherum verwendet werden: <code>2 + 3 -&gt; zwischenergebnis</code>. Das mag zwar auf den ersten Blick intuitiver erscheinen, da das aus <code>2 + 3</code> resultierende Objekt den Namen <code>zwischenergebnis</code> bekommt, also immer erst das Objekt erstellt wird und dann der Name zugewiesen wird, es führt jedoch zu deutlich weniger lesbarem Code und sollte daher nie verwendet werden. Ebensoweinig sollten Zuweisungen durch den <code>=</code> Operatur vorgenommen werden, auch wenn es im Fall <code>zwischenergebnis = 2 + 3</code> funktionieren würde. Namen <code>zwischenergebnis</code>.<a href="basics.html#fnref2">↩</a></p></li>
+<li id="fn2"><p>Theoretisch kann <code>&lt;-</code> auch andersherum verwendet werden: <code>2 + 3 -&gt; zwischenergebnis</code>. Das mag zwar auf den ersten Blick intuitiver erscheinen, da das aus <code>2 + 3</code> resultierende Objekt den Namen <code>zwischenergebnis</code> bekommt, also immer erst das Objekt erstellt wird und dann der Name zugewiesen wird, es führt jedoch zu deutlich weniger lesbarem Code und sollte daher nie verwendet werden. Ebensoweinig sollten Zuweisungen durch den <code>=</code> Operatur vorgenommen werden, auch wenn es im Fall <code>zwischenergebnis = 2 + 3</code> funktionieren würde.<a href="basics.html#fnref2">↩</a></p></li>
 <li id="fn3"><p>Wie wir unten lernen werden sind <code>2</code> und <code>3</code> in erster Linie keine Zahlen, sondern Vektoren der Länge 1, und gelten erst in nächster Instanz als ‘Zahl’ (genauer: ‘double’).<a href="basics.html#fnref3">↩</a></p></li>
-<li id="fn4"><p>Das liegt daran, dass Funktionen ihr eigenes <a href="https://adv-r.hadley.nz/environments.html">environment</a> haben.<a href="basics.html#fnref4">↩</a></p></li>
-<li id="fn5"><p>Das ist strikt genommen nicht notwendig, aber der Übersichtlichkeit werden wir immer <code>return</code> verwenden. Eine interessante Debatte darüber ob man <code>return</code> verwenden sollte oder nicht findet sich <a href="https://stackoverflow.com/questions/11738823/explicitly-calling-return-in-a-function-or-not">hier</a>.<a href="basics.html#fnref5">↩</a></p></li>
+<li id="fn4"><p>Das ist strikt genommen nicht notwendig, aber der Übersichtlichkeit werden wir immer <code>return</code> verwenden. Eine interessante Debatte darüber ob man <code>return</code> verwenden sollte oder nicht findet sich <a href="https://stackoverflow.com/questions/11738823/explicitly-calling-return-in-a-function-or-not">hier</a>.<a href="basics.html#fnref4">↩</a></p></li>
+<li id="fn5"><p>Das liegt daran, dass Funktionen ihr eigenes <a href="https://adv-r.hadley.nz/environments.html">environment</a> haben.<a href="basics.html#fnref5">↩</a></p></li>
 <li id="fn6"><p>Diese auf den ersten Blick merkwürdige Syntax hat historische Gründe: als der integer Typ in die R Programmiersprache eingeführt wurde war er sehr stark an den Typ <code>long integer</code> in der Programmiersprache ‘C’ angelehnt. In C wurde ein solcher ‘long integer’ mit dem Suffix ‘l’ oder ‘L’ definiert, diese Regel wurde aus Kompatibilitätsgründen auch für R übernommen, jedoch nur mit ‘L’, da man Angst hatte, dass ‘l’ mit ‘i’ verwechselt wird, was in R für die imaginäre Komponente komplexer Zahlen verwendet wird.<a href="basics.html#fnref6">↩</a></p></li>
-<li id="fn7"><p>Für viele typische Aufgaben gibt es in R bereits eine vordefinierte Funktion. Am einfachsten findet man diese durch schlichtes Googlen.<a href="basics.html#fnref7">↩</a></p></li>
+<li id="fn7"><p>Für viele typische Aufgaben gibt es in R bereits eine vordefinierte Funktion. Am einfachsten findet man diese durch googlen.<a href="basics.html#fnref7">↩</a></p></li>
 <li id="fn8"><p>Gerade bei sehr großen Data Frames möchte man oft nur die ersten paar Elemente inspizieren. Das ist mit der Funktion <code>head()</code> möglich.<a href="basics.html#fnref8">↩</a></p></li>
 <li id="fn9"><p>Zur Geschichte dieses wirklich ärgerlichen Verhaltens siehe <a href="https://simplystatistics.org/2015/07/24/stringsasfactors-an-unauthorized-biography/">diesen Blog</a>.<a href="basics.html#fnref9">↩</a></p></li>
 <li id="fn10"><p>Das ist nicht ganz korrekt, weil es mittlerweilse Erweiterungen gibt, welche den <code>data.frame</code> mit effizienteren Objekten ersetzen, z.B. dem <code>tibble</code> oder dem <code>data.table</code>. Der Umgang mit diesen Objekten ist jedoch sehr ähnlich zum <code>data.frame</code>.<a href="basics.html#fnref10">↩</a></p></li>
-<li id="fn11"><p><span class="citation">Wickham and Bryan (<a href="#ref-Packages">2019</a>)</span> bietet eine exzellente Einführung in das Programmieren von R Paketen.<a href="basics.html#fnref11">↩</a></p></li>
-<li id="fn12"><p>Das ist notwendig, da dieses Skript in R Markdown geschrieben ist und das Arbeitsverzeichnis automatisch auf den Ordner ändert, in dem das .Rmd file liegt. Mehr Information zum Schreiben von R Markdown finden Sie im Anhang. Dieser wird auch in der Vorlesung besprochen.<a href="basics.html#fnref12">↩</a></p></li>
+<li id="fn11"><p>Anstelle von <code>[[</code> kann auch der Shortcut <code>$</code> verwendet werden. Das werden wir aufgrund der größeren Transparenz von <code>[[</code> hier jedoch nicht verwenden.<a href="basics.html#fnref11">↩</a></p></li>
+<li id="fn12"><p><span class="citation">Wickham and Bryan (<a href="#ref-Packages">2019</a>)</span> bietet eine exzellente Einführung in das Programmieren von R Paketen.<a href="basics.html#fnref12">↩</a></p></li>
+<li id="fn13"><p>Das ist notwendig, da dieses Skript in R Markdown geschrieben ist und das Arbeitsverzeichnis automatisch auf den Ordner ändert, in dem das .Rmd file liegt. Mehr Information zum Schreiben von R Markdown finden Sie im Anhang. Dieser wird auch in der Vorlesung besprochen.<a href="basics.html#fnref13">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -1095,8 +1149,8 @@ auto_daten</code></pre></div>
           </div>
         </div>
       </div>
-<a href="einrichtung.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="einrichtung.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
