@@ -1233,7 +1233,8 @@ Der `data.frame` ist eine besondere Art von Liste und ist ein in der
 Datenanalyse regelmäßig auftretender Datentyp.
 Gegensatz zu einer normalen Liste müssen bei einem `data.frame` alle Elemente
 die gleiche Länge aufweisen. 
-Das heißt man kann sich einen `data.frame` als eine rechteckige Liste vorstellen.
+Das heißt man kann sich einen `data.frame` als eine rechteckig angeordnete Liste 
+vorstellen.
 
 Wegen der engen Verwandschaft können wir einen `data.frame` direkt aus einer Liste
 erstellen indem wir die Funktion `as.data.frame()` verwenden:
@@ -1526,16 +1527,8 @@ gelesen und geschrieben werden kann.
 
 Für die Beispiele hier nehmen wir folgende Ordnerstruktur an:
 
-```
-2019-Methoden
-│   2019-Methoden.Rproj
-│
-+---data
-│   │
-│   +---raw
-│   |    │  Rohdaten.csv
-|   |
-|   +---tidy
+```{r, echo=FALSE, fig.align='center', out.width='50%'}
+knitr::include_graphics("figures/chap3-data-folder.png")
 ```
 
 Um die Daten einzulesen verwenden wir das Paket `tidyverse`, die wir später
