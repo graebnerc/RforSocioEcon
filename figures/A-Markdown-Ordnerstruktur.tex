@@ -1,0 +1,61 @@
+\documentclass[border=5pt]{standalone}
+\usepackage[edges]{forest}
+
+\definecolor{folderbg}{RGB}{124,166,198}
+\definecolor{folderborder}{RGB}{110,144,169}
+
+\def\Size{4pt}
+\tikzset{
+  folder/.pic={
+    \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
+      (-1.05*\Size,0.2\Size+5pt) rectangle ++(.75*\Size,-0.2\Size-5pt);  
+    \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
+      (-1.15*\Size,-\Size) rectangle (1.15*\Size,\Size);
+  }
+}
+
+\forestset{is file/.style={edge path'/.expanded={%
+        ([xshift=5pt]!u.parent anchor)},
+        inner sep=1pt},
+    this folder size/.style={edge path'/.expanded={%
+        ([xshift=\forestregister{folder indent}]!u.parent anchor) |- (.child anchor) pic[solid]{folder=#1}}, inner ysep=0.6*#1},
+    folder tree indent/.style={before computing xy={l=#1}},
+    folder icons/.style={folder, this folder size=#1, folder tree indent=3*#1},
+    folder icons/.default={12pt},
+}
+
+\begin{document}
+
+\begin{forest}
+  for tree={
+    font=\ttfamily,
+    grow'=0,
+    child anchor=west,
+    parent anchor=south,
+    anchor=west,
+    calign=first,
+    inner xsep=7pt,
+    edge path={
+      \noexpand\path [draw, \forestoption{edge}]
+      (!u.south west) +(7.5pt,0) |- (.child anchor) pic {folder} \forestoption{edge label};
+    },
+    before typesetting nodes={
+      if n=1
+        {insert before={[,phantom]}}
+        {}
+    },
+    fit=band,
+    before computing xy={l=15pt},
+  }  
+[MarkdownProject
+  [data
+  [BIP-Data.csv, is file]],
+  [R
+  [R-Skript.R, is file], 
+  [OurMarkdown.Rmd, is file]
+  ]
+  [Output]
+]
+\end{forest}
+
+\end{document}
