@@ -1,13 +1,12 @@
 # Wiederholung: Statistik und Stochastik {#stat-stoch}
 
-In diesem Kapitel werden Grundlagen der Wahrscheinlichkeitstheorie und der 
-deskriptiven Statistik wiederholt. 
-Dabei soll vor allem der für die agenwandte Statistik grundlegende 
-Zusammenhang zwischen den beiden Bereichen im Vordergrund stehen:
+In diesem Kapitel werden zunächst grundlegende Konzepte der deskriptiven 
+Statistik wiederholt und dabei deren Implementierung in R beschrieben.
+Insbesondere beschäftigen wir uns mit klassischen deskriptiven Kennzahlen zur 
+Beschreibung von Datensätzen (Abschnitt X),...
 
-...
 
-```{r, message=FALSE}
+```r
 library(here)
 library(tidyverse)
 library(ggpubr)
@@ -28,17 +27,11 @@ Die Stochastik entwickelt dabei Modelle, welche diese Zufallsexperimenten und de
 mögliche Ausgänge beschreiben und dabei den möglichen Ausgängen 
 Wahrscheinlichkeiten zuordnern. 
 Diese Modelle werden *Wahrscheinlichkeitsmodelle* genannt.
-
 In der Statistik versuchen wir anhand von beobachteten Daten herauszufinden,
 welches Wahrscheinlichkeitsmodell gut geeignet ist, den die Daten generierenden
 Prozess (*data generating process* - DGP) zu beschreiben. 
 Das ist der Grund warum man für Statistik auch immer Kenntnisse der Stochastik
 braucht.
-
-> Kurz gesagt: in der Stochastik wollen wir mit Hilfe von 
-Wahrscheinlichkeitsmodellen Daten vorhersagen, in der Statistik mit Hilfe 
-bekannter Daten Rückschlüsse auf die zugrundeliegenden Wahrscheinlichkeitsmodelle
-schließen.
 
 ## Grundbegriffe der Stochastik
 
@@ -290,38 +283,7 @@ im Statistikbuch Ihres Vertrauens oder auf
 Im folgenden sehen wir eine Darstellung der Wahrscheinlichkeitsverteilung
 der Binomialverteilung für verschiedene Parameterwerte:
 
-```{r, warning=FALSE, fig.align='center', echo=FALSE, fig.height=3}
-x_vals <- seq(0, 45, 1)
-y_vals_pdf <- data.frame(
-  x = x_vals,
-  "n=50, p=0.4" = dbinom(x_vals, size = 50, prob = 0.4),
-  "n=25, p=0.4" = dbinom(x_vals, size = 25, prob = 0.4),
-  "n=25, p=0.6" = dbinom(x_vals, size = 25, prob = 0.6),
-  "n=50, p=0.6" = dbinom(x_vals, size = 50, prob = 0.6),
-  "n=50, p=0.2" = dbinom(x_vals, size = 50, prob = 0.1)
-) %>%
-  gather("Parameter", "y", -x)
-
-pdf_plot <- ggplot(y_vals_pdf, 
-                   aes(x=x, y=y, color=Parameter)
-                   ) +
-  geom_line() + geom_point() +
-  guides(color = guide_legend(title = TeX("$Parameter$"), 
-                              title.position = "top")) + 
-  theme_icae() +
-  ggtitle("PMF der Binomialverteilung") +
-  scale_x_continuous(expand = c(0,0)) +
-  scale_y_continuous(expand = expand_scale(c(0,0), c(0, 0.1))) +
-  scale_color_icae(palette = "mixed", discrete = T,
-                   labels = unname(TeX(c("$n = 50, p = 0.4", 
-                                         "$n = 25, p = 0.4", 
-                                         "$n = 25, p = 0.6", 
-                                         "$n = 50, p = 0.6",
-                                         "$n = 50, p = 0.2")))
-                   ) +  theme(legend.position = "bottom", 
-        legend.title = element_text())
-pdf_plot
-```
+<img src="ChapA-WdhlStatistik1_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" />
 
 
 R stellt uns einige nützliche Funktionen bereit, mit denen wir typische 
@@ -332,51 +294,29 @@ beobachten, also $\mathbb{P}(X=x)$ geht das mit der Funktion `dbinom()`.
 Die notwendigen Argumente sind `x` für den interessierenden x-Wert,
 `size` für den Parameter $n$ und `prob` für den Parameter $p$:
 
-```{r}
+
+```r
 dbinom(x = 10, size = 50, prob = 0.25)
+```
+
+```
+## [1] 0.09851841
 ```
 
 Das bedeutet, wenn $X \propto B(50, 0.25)$, dann: $\mathbb{P}(X=10)=0.09852$.
 Die folgende Abbildung illustriert dies:
 
-```{r, warning=FALSE, fig.align='center', echo=FALSE, fig.height=2}
-x_vals <- seq(0, 50, 1)
-x_val <- 10
-anzahl_versuche <- 50
-p_erfolg <- 0.25
-
-y_val <- dbinom(x = x_val, 
-                size = anzahl_versuche, 
-                prob = p_erfolg)
-
-ggplot(data.frame(x = x_vals, y=dbinom(x_vals, anzahl_versuche, 0.25))) +
-  geom_line(aes(x=x, y=y)) +
-  ylab(TeX("Wahrscheinlichkeit $P(X=x)$")) +
-  xlab("Anzahl Erfolge (x)") +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) + 
-  scale_x_continuous(expand = c(0, 0), breaks = x_vals, limits = c(0, 30)) +
-  ggtitle(TeX("Binomialverteilung mit $p=0.25$ und $n=50$")) +
-  geom_segment(aes(x = x_val, y = 0, 
-                   xend = x_val, yend = y_val),
-               colour = "#800080") +
-    geom_segment(aes(x = 0, y = y_val, 
-                   xend = x_val, yend = y_val),
-               colour = "#800080") +
-  geom_segment(aes(x = 3, y = y_val+0.01,
-                   xend = 0, yend=y_val+0.0001),
-               arrow = arrow(length = unit(0.03, "npc")),
-               colour = "#800080") +
-  annotate("text", 
-           x = 4, y =0.1125, 
-           label = "0.098",
-           colour = "#800080") +
-  theme_icae()
-```
+<img src="ChapA-WdhlStatistik1_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" />
 
 Natürlich können wir an die Funktion auch einen atomaren Vektor als erstes 
 Argument übergeben:
-```{r}
+
+```r
 dbinom(x = 5:10, size = 50, prob = 0.25)
+```
+
+```
+## [1] 0.004937859 0.012344647 0.025864974 0.046341412 0.072086641 0.098518410
 ```
 
 
@@ -392,46 +332,19 @@ erhalten wir mit der Funktion `pbinom()`, welche quasi die gleichen Argumente
 benötigt wie `dbinom()`. 
 Nur gibt es anstatt des Parameters `x` jetzt einen Parameter `q`:
 
-```{r}
+
+```r
 pbinom(q = 10, size = 50, prob = 0.25)
+```
+
+```
+## [1] 0.2622023
 ```
 
 Die Wahrscheinlichkeit 5 oder weniger Erfolge bei 5 Versuchen und einer 
 Erfolgswahrscheinlichkeit von 25% zu erzielen beträgt also 25.2%:
 
-```{r, warning=FALSE, fig.align='center', echo=FALSE, fig.height=2}
-x_vals <- seq(0, 50, 1)
-x_val <- 10
-anzahl_versuche <- 50
-p_erfolg <- 0.25
-
-y_val <- pbinom(q = x_val, 
-                size = anzahl_versuche, 
-                prob = p_erfolg)
-
-ggplot(data.frame(x = x_vals, y=pbinom(x_vals, anzahl_versuche, 0.25))) +
-  geom_line(aes(x=x, y=y)) +
-  ylab(TeX("Wahrscheinlichkeit $P(X\\leq x)$")) +
-  xlab("Anzahl Erfolge (x)") +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) + 
-  scale_x_continuous(expand = c(0, 0), breaks = x_vals, limits = c(0, 30)) +
-  ggtitle(TeX("Kumulierte Wahrscheinlichkeitsfunktion der Binomialverteilung mit $p=0.25$ und $n=50$")) +
-  geom_segment(aes(x = x_val, y = 0, 
-                   xend = x_val, yend = y_val),
-               colour = "#800080") +
-    geom_segment(aes(x = 0, y = y_val, 
-                   xend = x_val, yend = y_val),
-               colour = "#800080") +
-  geom_segment(aes(x = 3, y = y_val+0.075,
-                   xend = 0, yend=y_val+0.0001),
-               arrow = arrow(length = unit(0.03, "npc")),
-               colour = "#800080") +
-  annotate("text", 
-           x = 4, y =y_val+0.075, 
-           label = "0.26",
-           colour = "#800080") +
-  theme_icae()
-```
+<img src="ChapA-WdhlStatistik1_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" />
 
 Schlussendlich können wir die Funktion `qbinom()`, welche als ersten Input eine
 Wahrscheinlichkeit `p` akzeptiert und dann den kleinsten Wert $x$ findet,
@@ -440,56 +353,34 @@ für den gilt, dass $\mathbb{P}(X=x)\geq p$.
 Wenn wir also wissen möchten wie viele Erfolge mit einer Wahrscheinlichkeit von
 50% mindestens zu erwarten sind, dann schreiben wir:
 
-```{r}
+
+```r
 qbinom(p = 0.5, size = 50, prob = 0.25)
+```
+
+```
+## [1] 12
 ```
 
 Es gilt also: $\mathbb{P}(X=12)\geq p$.
 
 Wir können dies grafisch verdeutlichen:
 
-```{r, warning=FALSE, fig.align='center', echo=FALSE, fig.height=2}
-p_vals <- seq(0, 1, 0.001)
-p_vals_breaks <- seq(0, 1, 0.1)
-anzahl_versuche <- 50
-p_erfolg <- 0.25
-x_val <- 0.5
-y_val <- qbinom(p = 0.5, 
-                size = anzahl_versuche, 
-                prob = p_erfolg)
-
-ggplot(data.frame(x = p_vals, y=qbinom(p_vals, anzahl_versuche, 0.25))) +
-  geom_line(aes(x=x, y=y)) +
-  ylab(TeX("Wahrscheinlichkeit $P(X\\leq x)$")) +
-  xlab("Anzahl Erfolge (x)") +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.00))) + 
-  scale_x_continuous(expand = c(0, 0), breaks = p_vals_breaks) +
-  ggtitle(TeX("Invertierte CDF der Binomialverteilung mit $p=0.25$ und $n=50$")) +
-  geom_segment(aes(x = x_val, y = 0,
-                   xend = x_val, yend = y_val),
-               colour = "#800080") +
-    geom_segment(aes(x = 0, y = y_val,
-                   xend = x_val, yend = y_val),
-               colour = "#800080") +
-  geom_segment(aes(x = 0.125, y = y_val+8,
-                   xend = 0, yend=y_val),
-               arrow = arrow(length = unit(0.03, "npc")),
-               colour = "#800080") +
-  annotate("text",
-           x = 0.13, y =y_val+9,
-           label = "12",
-           colour = "#800080") +
-  theme_icae()
-```
+<img src="ChapA-WdhlStatistik1_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" />
 
 Möchten wir schließlich eine bestimmte Menge an **Realisierungen** aus einer
 Binomialverteilung ziehen geht das mit `rbinom()`, welches drei Argumente 
 verlangt: `n` für die Anzahl der zu ziehenden Realisierungen, sowie `size` und
 `prob` als da Paramter $n$ und $p$ der Binomialverteilung:
 
-```{r}
+
+```r
 sample_binom <- rbinom(n = 5, size = 10, prob = 0.4)
 sample_binom
+```
+
+```
+## [1] 5 5 4 3 2
 ```
 
 
@@ -516,26 +407,7 @@ $$P_\lambda(x)=\frac{\lambda^x}{x!}e^{-\lambda}$$
 Die folgende Abbildung zeigt wie sich die Wahrscheinlichkeitsfunktion für
 unterschiedliche Werte von $\lambda$ manifestiert:
 
-```{r, warning=FALSE, fig.align='center', echo=FALSE, fig.height=2}
-x_range <- 0:18
-lambda_1 <- data.frame(x=x_range, y=dpois(x_range, lambda = 1), lambda="1")
-lambda_4 <- data.frame(x=x_range, y=dpois(x_range, lambda = 4), lambda="4")
-lambda_8 <- data.frame(x=x_range, y=dpois(x_range, lambda = 8), lambda="8")
-lambdas <- do.call(rbind, list(lambda_1, lambda_4, lambda_8))
-
-ggplot(lambdas) +
-  geom_point(aes(x=x, y=y, color=lambda, group=lambda)) +
-  geom_line(aes(x=x, y=y, color=lambda, group=lambda)) + 
-  scale_fill_discrete(name = "New Legend Title") +
-  scale_y_continuous(expand = expand_scale(c(0,0), c(0,0.025))) +
-  scale_x_continuous(expand = expand_scale(c(0,0), c(0,0))) +
-  scale_color_icae(palette = "mixed", discrete = T) +
-  ggtitle(TeX("Die Poisson-Verteilung für verschiedene $\\lambda$")) +
-  guides(color = guide_legend(title = TeX("$\\lambda$"), 
-                             title.position = "top")) + 
-  theme_icae() + theme(legend.title = element_text(), 
-                       legend.position = "right")
-```
+<img src="ChapA-WdhlStatistik1_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" />
 
 Wir können die Verteilung mit sehr ähnlichen Funktionen wie bei der 
 Binomialverteilung analysieren. Nur die Parameter müssen entsprechend angepasst
@@ -546,82 +418,22 @@ Möchten wir die Wahrscheinlichkeit bereichnen, genau $x$ Erfolge zu
 beobachten, also $\mathbb{P}(X=x)$ geht das mit der Funktion `dpois()`.
 Das einzige notwendige Argument ist `lambda`:
 
-```{r}
+
+```r
 dpois(5, lambda = 4)
 ```
 
-```{r, warning=FALSE, fig.align='center', echo=FALSE, fig.height=2}
-x_range <- 0:18
-x_val <- 5
-y_val <- dpois(5, lambda = 4)
-lambda_1 <- data.frame(x=x_range, y=dpois(x_range, lambda = 1), lambda="1")
-lambda_4 <- data.frame(x=x_range, y=dpois(x_range, lambda = 4), lambda="4")
-lambda_8 <- data.frame(x=x_range, y=dpois(x_range, lambda = 8), lambda="8")
-lambdas <- do.call(rbind, list(lambda_1, lambda_4, lambda_8))
-
-ggplot(lambda_4) +
-  geom_point(aes(x=x, y=y, color=lambda, group=lambda)) +
-  geom_line(aes(x=x, y=y, color=lambda, group=lambda)) + 
-  scale_y_continuous(expand = expand_scale(c(0,0), c(0,0.025))) +
-  scale_x_continuous(expand = expand_scale(c(0,0), c(0,0))) +
-  scale_fill_discrete(name = "New Legend Title") +
-  scale_color_icae(palette = "mixed", discrete = T) +
-  ggtitle(TeX("Die Poisson-Verteilung für verschiedene $\\lambda$")) +
-  geom_segment(aes(x = x_val, y = 0, 
-                   xend = x_val, yend = y_val),
-               colour = "#800080") +
-  geom_segment(aes(x = 0, y = y_val, 
-                   xend = x_val, yend = y_val),
-               colour = "#800080") +
-  geom_segment(aes(x = 3, y = y_val+0.05,
-                   xend = 0, yend=y_val+0.0001),
-               arrow = arrow(length = unit(0.03, "npc")),
-               colour = "#800080") +
-  annotate("text", 
-           x = 3.8, y =y_val+0.0525, 
-           label = "0.156",
-           colour = "#800080") +
-  guides(color = guide_legend(title = TeX("$\\lambda$"), 
-                             title.position = "top")) + 
-  theme_icae() + theme(legend.title = element_text(), 
-                       legend.position = "right")
 ```
+## [1] 0.1562935
+```
+
+<img src="ChapA-WdhlStatistik1_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" />
 
 Informationen über die CDF erhalten wir über die Funktion `ppois()`, die zwei
 Argumente, `q` und `lambda`, annimmt.
 
 
-```{r, warning=FALSE, fig.align='center', echo=FALSE, fig.height=2}
-x_vals <- seq(0, 20, 1)
-lambda_val <- 4
-x_val <- 5
-
-y_val <- ppois(q = x_val, 
-                lambda = lambda_val)
-
-ggplot(data.frame(x = x_vals, y=ppois(x_vals, lambda = lambda_val))) +
-  geom_line(aes(x=x, y=y)) +
-  ylab(TeX("Wahrscheinlichkeit $P(X\\leq x)$")) +
-  xlab("x") +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) + 
-  scale_x_continuous(expand = c(0, 0), breaks = x_vals, limits = c(0, 15)) +
-  ggtitle(TeX("Kumulierte Wahrscheinlichkeitsfunktion der Poisson-Verteilung mit $\\lambda = 4$")) +
-  geom_segment(aes(x = x_val, y = 0,
-                   xend = x_val, yend = y_val),
-               colour = "#800080") +
-    geom_segment(aes(x = 0, y = y_val,
-                   xend = x_val, yend = y_val),
-               colour = "#800080") +
-  geom_segment(aes(x = 3, y = y_val+0.075,
-                   xend = 0, yend=y_val+0.0001),
-               arrow = arrow(length = unit(0.03, "npc")),
-               colour = "#800080") +
-  annotate("text",
-           x = 3.4, y =y_val+0.075,
-           label = as.character(round(y_val, 2)),
-           colour = "#800080") +
-  theme_icae()
-```
+<img src="ChapA-WdhlStatistik1_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" />
 
 Mit der Funktion `qpois()` finden wir für eine
 Wahrscheinlichkeit `p` den kleinsten Wert $x$,
@@ -630,54 +442,34 @@ für den gilt, dass $\mathbb{P}(X=x)\geq p$.
 Wenn wir also wissen möchten wie viele Erfolge mit einer Wahrscheinlichkeit von
 50% mindestens zu erwarten sind, dann schreiben wir:
 
-```{r}
+
+```r
 qpois(p = 0.5, lambda = 4)
+```
+
+```
+## [1] 4
 ```
 
 Es gilt also: $\mathbb{P}(X=4)\geq 0.5$.
 
 Wir können dies grafisch verdeutlichen:
 
-```{r, warning=FALSE, fig.align='center', echo=FALSE, fig.height=2}
-p_vals <- seq(0, 1, 0.001)
-p_vals_breaks <- seq(0, 1, 0.1)
-lambda_val <- 4
-x_val <- 0.5
-y_val <- qpois(p = x_val, 
-               lambda = lambda_val)
-
-ggplot(data.frame(x = p_vals, y=qpois(p_vals, lambda_val))) +
-  geom_line(aes(x=x, y=y)) +
-  xlab(TeX("Wahrscheinlichkeit $P(X\\geq x)$")) +
-  ylab("Anzahl Erfolge") +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.00))) + 
-  scale_x_continuous(expand = c(0, 0), breaks = p_vals_breaks) +
-  ggtitle(TeX("Invertierte CDF der Poisson-Verteilung mit $\\lambda = 4$")) +
-  geom_segment(aes(x = x_val, y = 0,
-                   xend = x_val, yend = y_val),
-               colour = "#800080") +
-    geom_segment(aes(x = 0, y = y_val,
-                   xend = x_val, yend = y_val),
-               colour = "#800080") +
-  geom_segment(aes(x = 0.125, y = y_val+1.5,
-                   xend = 0, yend=y_val),
-               arrow = arrow(length = unit(0.03, "npc")),
-               colour = "#800080") +
-  annotate("text",
-           x = 0.14, y =y_val+1.5,
-           label = as.character(y_val),
-           colour = "#800080") +
-  theme_icae()
-```
+<img src="ChapA-WdhlStatistik1_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" />
 
 Möchten wir schließlich eine bestimmte Menge an **Realisierungen** der ZV aus einer
 Poisson-Verteilung ziehen geht das mit `rpois()`, welches zwei notwendige
 Argumente annimmt: `n` für die Anzahl der Realisierungen und `lambda` für den
 Parameter $\lambda$:
 
-```{r}
+
+```r
 pois_sample <- rpois(n = 5, lambda = 4)
 pois_sample
+```
+
+```
+## [1] 2 3 4 5 3
 ```
 
 
@@ -780,44 +572,7 @@ $$\mathbb{P}(X\leq q(\alpha))=\alpha$$
 
 Im folgenden werden das $0.25$ und $0.5$-Quantil visuell dargestellt:
 
-```{r, warning=FALSE, fig.align='center', echo=FALSE, fig.height=3}
-x_vals <- seq(-4, 4, 0.01)
-
-quant_05 <- qnorm(0.5, mean = 0, sd = 1)
-quant_025 <- qnorm(0.25, mean = 0, sd = 1)
-
-q05_plot <- ggplot(data.frame(x = x_vals, y=dnorm(x_vals, mean=0, sd=1))) +
-  geom_line(aes(x=x, y=y)) +
-  ylab(TeX("$P(x)$")) +
-  xlab("x") +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) + 
-  scale_x_continuous(expand = c(0, 0)) +
-  ggtitle(TeX("Dichte der Normalverteilung mit $\\mu = 0$ und $\\sigma = 1$")) +
-  stat_function(fun = dnorm, xlim = c(-4, quant_05), geom = "area", 
-                fill = "#800080", alpha=0.5) +
-  annotate("text",
-           x = quant_05, y = dnorm(quant_05)+0.025,
-           label = paste0("q(0.5)=", round(quant_05, 2)),
-           colour = "#800080") +
-  theme_icae()
-
-q025_plot <- ggplot(data.frame(x = x_vals, y=dnorm(x_vals, mean=0, sd=1))) +
-  geom_line(aes(x=x, y=y)) +
-  ylab(TeX("$P(x)$")) +
-  xlab("x") +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) + 
-  scale_x_continuous(expand = c(0, 0)) +
-  ggtitle(TeX("Dichte der Normalverteilung mit $\\mu = 0$ und $\\sigma = 1$")) +
-  stat_function(fun = dnorm, xlim = c(-4, quant_025), geom = "area", 
-                fill = "steelblue", alpha=0.5) +
-  annotate("text",
-           x = -2, y = dnorm(quant_025)-0.025,
-           label = paste0("q(0.25)=", round(quant_025, 2)),
-           colour = "steelblue") +
-  theme_icae()
-
-ggpubr::ggarrange(q05_plot, q025_plot, ncol = 2)
-```
+<img src="ChapA-WdhlStatistik1_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" />
 
 
 Abschließend wollen wir nun noch einmal die Definitionen der Kennzahlen und
@@ -844,27 +599,20 @@ und ihre Varianz mit $Var(X)=\frac{(b-a)^2}{12}$ gegeben.
 
 Ihre Dichtefunktion für $[a,b]=[0,4]$ ist im folgenden dargestellt:
 
-```{r, warning=FALSE, fig.align='center', echo=FALSE, fig.height=2}
-x_min <- 0
-x_max <- 4
-x_vals <- seq(x_min, x_max, 0.01)
-ggplot(data.frame(x = x_vals, y=dunif(x_vals, min = x_min, max = x_max))) +
-  geom_line(aes(x=x, y=y)) +
-  ylab(TeX("$P(x)$")) +
-  xlab("x") +
-  scale_y_continuous(limits = c(0,1), expand = expand_scale(c(0, 0), c(0, 0.05))) + 
-  scale_x_continuous(expand = c(0, 0)) +
-  ggtitle(TeX("Dichte der Uniformverteilung mit $a = 0$ und $b = 4$")) +
-  theme_icae()
-```
+<img src="ChapA-WdhlStatistik1_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" />
 
 
 Die Abkürung in R für die Uniformverteilung ist `unif`. Endsprechend berechnen
 wir Werte für die Dichte mit `dunif()`, welches lediglich die Argumente `a` und 
 `b` für die Grenzen des Intervalls benötigt:
 
-```{r}
+
+```r
 dunif(seq(2,3, 0.1), min = 0, max = 4)
+```
+
+```
+##  [1] 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25
 ```
 
 Wie wir sehen erhalten wir hier immer den gleichen Wert $\frac{1}{b-a}$, was 
@@ -875,39 +623,30 @@ beschrieben bei stetigen ZV 0 ist.
 
 Die CDF berechnen wir entsprechend mit `punif()`.
 Wenn $X\propto U(0,4)$ erhalten wir $\mathbb{P}(X\leq3)$ entprechend mit:
-```{r}
+
+```r
 punif(0.8, min = 0, max = 4)
 ```
 
-```{r, warning=FALSE, fig.align='center', echo=FALSE, fig.height=2}
-x_min <- 0
-x_max <- 1
-x_vals <- seq(x_min, x_max, 0.1)
-x_val <- 0.8
-y_val <- punif(x_val, min = x_min, max = x_max)
-ggplot(data.frame(x = x_vals, y=dunif(x_vals, min=x_min, max=x_max))) +
-  ylab(TeX("$P(x)$")) +
-  xlab("x") +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.1))) + 
-  scale_x_continuous(breaks = x_vals, limits = c(x_min, x_max), expand = c(0, 0)) +
-  ggtitle(TeX("CDF der Uniformverteilung mit $a = 0$ und $b = 1$")) +
-  stat_function(fun = punif, xlim = c(0, x_val), geom = "area", 
-                fill = "steelblue", alpha=0.5) +
-  annotate("text",
-           x = x_val, y = punif(x_val)+0.035,
-           label = round(y_val, 2),
-           colour = "steelblue") +
-  theme_icae()
 ```
+## [1] 0.2
+```
+
+<img src="ChapA-WdhlStatistik1_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" />
 
 Auch ansonsten können wir die Syntax der diskreten Verteilungen mehr oder weniger
 übernehmen: `qunif()` akzeptiert die gleichen Parameter wie `punif()` und 
 gibt uns Werte der inversen CDF, und `runif()` kann verwendet werden um 
 Realisierungen einer uniform verteilten ZV zu generieren:
 
-```{r}
+
+```r
 uniform_sample <- runif(5, min = 0, max = 4)
 uniform_sample
+```
+
+```
+## [1] 3.8622589 0.3727306 2.8418428 2.6730040 0.0137953
 ```
 
 
@@ -947,68 +686,7 @@ Werte können in R aber leicht über die Funktion `pnorm` (s.u.) abgerufen werde
 Im folgenden sind die PDF und CDF für exemplarische Parameterkombinationen
 dargestellt:
 
-```{r, warning=FALSE, fig.align='center', echo=FALSE, fig.height=3}
-x_vals <- seq(-8, 8, 0.1)
-y_vals_pdf <- data.frame(
-  "x" = x_vals,
-  "mu=0, sigma=0.25" = dnorm(x_vals, mean = 0, sd = 0.5),
-  "mu=0, sigma=1" = dnorm(x_vals, mean = 0, sd = 1),
-  "mu=0, sigma=2" = dnorm(x_vals, mean = 0, sd = 2),
-  "mu=2, sigma=1" = dnorm(x_vals, mean = 2, sd = 1)
-) %>%
-  gather("Parameter", "y", -x)
-
-y_vals_cdf <- data.frame(
-  "x" = x_vals,
-  "mu=0, sigma=0.25" = pnorm(x_vals, mean = 0, sd = 0.5),
-  "mu=0, sigma=1" = pnorm(x_vals, mean = 0, sd = 1),
-  "mu=0, sigma=2" = pnorm(x_vals, mean = 0, sd = 2),
-  "mu=2, sigma=1" = pnorm(x_vals, mean = 2, sd = 1)
-) %>%
-  gather("Parameter", "y", -x)
-
-pdf_plot <- ggplot(y_vals_pdf, 
-                   aes(x=x, y=y, color=Parameter)
-                   ) +
-  geom_line() +
-  guides(color = guide_legend(title = TeX("Parameter"), 
-                              title.position = "top")) + 
-  theme_icae() +
-  ggtitle("PDF der Normalverteilung") +
-  scale_x_continuous(expand = c(0,0)) +
-  scale_y_continuous(expand = expand_scale(c(0,0), c(0, 0.1))) +
-  scale_color_icae(palette = "mixed", discrete = T,
-                   labels = unname(TeX(c("$\\mu = 0, \\sigma = 0.25", 
-                                         "$\\mu = 0, \\sigma = 1", 
-                                         "$\\mu = 0, \\sigma = 2", 
-                                         "$\\mu = 2, \\sigma = 1")))
-                   ) +
-  theme(legend.position = "bottom", 
-        legend.title = element_text())
-
-cdf_plot <- ggplot(y_vals_cdf, 
-                   aes(x=x, y=y, color=Parameter)
-                   ) +
-  geom_line() +
-  guides(color = guide_legend(title = TeX("Parameter"), 
-                              title.position = "top")) + 
-  theme_icae() +
-  ggtitle("CDF der Normalverteilung") +
-  scale_x_continuous(expand = c(0,0)) +
-  scale_y_continuous(expand = expand_scale(c(0,0), c(0, 0.1))) +
-  scale_color_icae(palette = "mixed", discrete = T,
-                   labels = unname(TeX(c("$\\mu = 0, \\sigma = 0.25", 
-                                         "$\\mu = 0, \\sigma = 1", 
-                                         "$\\mu = 0, \\sigma = 2", 
-                                         "$\\mu = 2, \\sigma = 1")))
-                   ) +
-  theme(legend.position = "bottom", 
-        legend.title = element_text())
-
-full_plot <- ggarrange(pdf_plot, cdf_plot, ncol = 2, 
-                       legend = "bottom", common.legend = T)
-full_plot
-```
+<img src="ChapA-WdhlStatistik1_files/figure-html/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" />
 
 
 
@@ -1016,12 +694,38 @@ Die Abkürzung in R ist `norm`. Alle Funktionen nehmen die Paramter $\mu$ und
 $\sigma$ (nicht $\sigma^2$) über `mean` und `sd` als notwendige Argumente. 
 Ansonsten ist die Verwendung äquivalent zu den vorherigen Beispielen:
 
-```{r}
+
+```r
 dnorm(c(0.5, 0.75), mean = 1, sd = 2) # relative Wahrscheinlichkeiten über PDF
+```
+
+```
+## [1] 0.1933341 0.1979188
+```
+
+```r
 pnorm(c(0.5, 0.75), mean = 1, sd = 2) # Werte der CDF
+```
+
+```
+## [1] 0.4012937 0.4502618
+```
+
+```r
 qnorm(c(0.5, 0.75), mean = 1, sd = 2) # Werte der I-CDF
+```
+
+```
+## [1] 1.00000 2.34898
+```
+
+```r
 norm_sample <- rnorm(5, mean = 1, sd = 2) # 5 Realisierungen der ZV
 norm_sample
+```
+
+```
+## [1] -0.9164327 -0.6124527  2.1022381 -4.3706221  0.9370133
 ```
 
 ### Beispiel: die Exponentialverteilung
@@ -1044,59 +748,7 @@ $$F(x)=1- e^{-\lambda x} $$
 
 Beide Verteilungen sind im folgenden dargestellt:
 
-```{r, warning=FALSE, fig.align='center', echo=FALSE, fig.height=3}
-x_vals <- seq(0, 10, 0.1)
-y_vals_pdf <- data.frame(
-  x = x_vals,
-  `0.1` = dexp(x_vals, rate = 0.1),
-  `0.5` = dexp(x_vals, rate = 0.5),
-  `1` = dexp(x_vals, rate = 1),
-  `2` = dexp(x_vals, rate = 2)
-) %>%
-  gather("lambda", "y", -x) %>%
-  mutate(lambda=substr(lambda, 2, 4))
-
-y_vals_cdf <- data.frame(
-  x = x_vals,
-  `0.1` = pexp(x_vals, rate = 0.1),
-  `0.5` = pexp(x_vals, rate = 0.5),
-  `1` = pexp(x_vals, rate = 1),
-  `2` = pexp(x_vals, rate = 2)
-) %>%
-  gather("lambda", "y", -x) %>%
-  mutate(lambda=substr(lambda, 2, 4))
-
-pdf_plot <- ggplot(y_vals_pdf, 
-                   aes(x=x, y=y, color=lambda)
-                   ) +
-  geom_line() +
-  guides(color = guide_legend(title = TeX("$\\lambda$"), 
-                              title.position = "top")) + 
-  theme_icae() +
-  ggtitle("PDF") +
-  scale_x_continuous(expand = c(0,0)) +
-  scale_y_continuous(expand = expand_scale(c(0,0), c(0, 0.1))) +
-  scale_color_icae(palette = "mixed", discrete = T) +
-  theme(legend.position = "right", 
-        legend.title = element_text())
-
-cdf_plot <- ggplot(y_vals_cdf, 
-                   aes(x=x, y=y, color=lambda)
-                   ) +
-  geom_line() +
-  guides(color = guide_legend(title = TeX("$\\lambda$"), 
-                              title.position = "top")) + 
-  theme_icae() +
-  ggtitle("CDF") +
-  scale_x_continuous(expand = c(0,0)) +
-  scale_y_continuous(expand = expand_scale(c(0,0), c(0, 0.1))) +
-  scale_color_icae(palette = "mixed", discrete = T) +
-  theme(legend.position = "right", 
-        legend.title = element_text())
-
-full_plot <- ggarrange(pdf_plot, cdf_plot, ncol = 2)
-full_plot
-```
+<img src="ChapA-WdhlStatistik1_files/figure-html/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" />
 
 Der Erwartungswert und die Varianz sind für die Exponentialverteilung 
 äquivalent und hängen ausschließlich von $\lambda$ ab: 
@@ -1105,12 +757,38 @@ $\mathbb{E}(X)=\sigma_X=\frac{1}{\lambda}$.
 Die Abkürzung in R ist `exp`. Alle Funktionen nehmen den Paramter $\lambda$ über
 das Argument `rate` an:
 
-```{r}
+
+```r
 dexp(c(0.5, 0.75), rate = 1) # relative Wahrscheinlichkeiten über PDF
+```
+
+```
+## [1] 0.6065307 0.4723666
+```
+
+```r
 pexp(c(0.5, 0.75), rate = 1) # Werte der CDF
+```
+
+```
+## [1] 0.3934693 0.5276334
+```
+
+```r
 qexp(c(0.5, 0.75), rate = 1) # Werte der I-CDF
+```
+
+```
+## [1] 0.6931472 1.3862944
+```
+
+```r
 exp_sample <- rexp(5, rate = 1) # 5 Realisierungen der ZV
 exp_sample
+```
+
+```
+## [1] 0.6889096 1.3983929 0.1513648 0.4991785 1.0245428
 ```
 
 Es gibt übrigens einen 
@@ -1156,7 +834,8 @@ mit $N$ kontinuiertlichen Beobachtungen $x_1, x_2, ..., x_n$ zu tun haben.
 Für die direkte Anwendung in R verwenden wir einen Datensatz zu ökonomischen 
 Journalen:
 
-```{r}
+
+```r
 data("Journals", package = "AER")
 ```
 
@@ -1166,11 +845,16 @@ Das **arithmetische Mittel** ist ein klassisches Lagemaß und definiert als:
 $$\bar{x}=\frac{1}{N}\sum_{i=1}^Nx_i$$
 In R wird das arithmetische Mittel mit der Funktion `mean()` berechnet:
 
-```{r}
+
+```r
 avg_preis <- mean(Journals[["price"]])
 avg_preis
 ```
-Der durchschnittliche Preis der Journale ist also `r avg_preis`.
+
+```
+## [1] 417.7222
+```
+Der durchschnittliche Preis der Journale ist also 417.7222222.
 
 Die **Standardabweichung** ist dagegen ein Maß für die Streuung der Daten
 und wird als die Quadratwurzel der *Varianz* definiert:
@@ -1180,7 +864,8 @@ $$s=\sqrt{Var}=\sqrt{\frac{1}{N-1}\sum_{i=1}^N\left(x-\bar{x}\right)^2}$$
 Wir verwenden in R die Funktionen `var()` und `sd()` um Varianz und 
 Standardabweichung zu berechnen:
 
-```{r}
+
+```r
 preis_var <- var(Journals[["price"]])
 preis_sd <- sd(Journals[["price"]])
 cat(paste0(
@@ -1189,17 +874,34 @@ cat(paste0(
 ))
 ```
 
+```
+## Varianz: 148868.335816263
+## Standardabweichung: 385.834596448094
+```
+
 Das $\alpha$-**Quantil** eines Datensatzes ist der Wert, bei dem $\alpha\cdot 100\%$
 der Datenwerte kleiner und $(1-\alpha)\cdot 100\%$ der Datenwerte kleiner sind.
 In R können wir Quantile einfach mit der Funktion `` berechnen.
 Diese Funktion akzeptiert als erstes Argument einen Vektor von Daten und als
 zweites Argument ein oder mehrere Werte für $\alpha$:
 
-```{r}
+
+```r
 quantile(Journals[["price"]], 0.5)
 ```
-```{r}
+
+```
+## 50% 
+## 282
+```
+
+```r
 quantile(Journals[["price"]], c(0.25, 0.5, 0.75))
+```
+
+```
+##    25%    50%    75% 
+## 134.50 282.00 540.75
 ```
 
 Diese Werte können folgendermaßen interpretiert werden:
@@ -1216,22 +918,38 @@ Wie im Kapitel XXX für `mean()` und `sd()` erklärt, akzeptiert auch die Funkti
 `quantile()` das optionale Argument `na.rm`, mit dem fehlende Werte vor der 
 Berechnung eliminiert werden können:
 
-```{r, error=TRUE}
+
+```r
 test_daten <- c(1:10, NA)
 quantile(test_daten, 0.75)
 ```
-```{r}
+
+```
+## Error in quantile.default(test_daten, 0.75): missing values and NaN's not allowed if 'na.rm' is FALSE
+```
+
+```r
 quantile(test_daten, 0.75, na.rm = T)
+```
+
+```
+##  75% 
+## 7.75
 ```
 
 Ein häufig verwendetes Steuungsmaß, das im Gegensatz zu Standardabweichung und
 Varianz robust gegen Ausreißer ist, ist die **Quartilsdifferenz**:
 
-```{r}
+
+```r
 quantil_25 <- quantile(Journals[["price"]], 0.25, names = F)
 quantil_75 <- quantile(Journals[["price"]], 0.75, names = F)
 quant_differenz <- quantil_75 - quantil_25
 quant_differenz
+```
+
+```
+## [1] 406.25
 ```
 
 Das optionale Argument `names=FALSE` unterdrückt die Benennung der Ergebnisse.
@@ -1258,8 +976,13 @@ Wir könnten uns nun fragen, ob dickere Journale teurer sind.
 Dazu können wir, wenn wir uns nur für den linearen Zusammenhang interessieren,
 den Pearson-Korrelationskoeffizienten mit der Funktion `cor()` berechnen:
 
-```{r}
+
+```r
 cor(Journals[["price"]], Journals[["pages"]], method = "pearson")
+```
+
+```
+## [1] 0.4937243
 ```
 
 Über das Argument `method` können auch andere Korrelationsmaße berechnet werden:
@@ -1285,96 +1008,7 @@ können dem gleichen Korrelationskoeffizienten sehr unterschiedliche nicht-linea
 Zusammenhänge zugrunde liegen:
 
 
-```{r, fig.align='center', echo=FALSE}
-c0_1a <- -50:50
-c0_1b <- sapply(-50:50, function(x) x**2)
-c0_1 <- ggplot(data.frame(x=c0_1a, 
-                          y=c0_1b
-                          ),
-       aes(x=x, y=y)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggtitle(paste0("Korrelation: ", 
-                 round(cor(c0_1a, c0_1b, method = "pearson"), 2))) +
-  theme_icae()
-
-c0_2a <- -50:50
-c0_2b <- sapply(-50:50, function(x) -x**2)
-c0_2 <- ggplot(data.frame(x=c0_2a, 
-                          y=c0_2b
-                          ),
-       aes(x=x, y=y)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggtitle(paste0("Korrelation: ", 
-                 round(cor(c0_2a, c0_2b, method = "pearson"), 2))) +
-  theme_icae()
-
-set.seed(123)
-data = mvrnorm(n=100, 
-               mu=c(0, 0), 
-               Sigma=matrix(c(2.5, 1, 1, 2.5), 
-                            nrow=2), 
-               empirical=TRUE)
-c0_3a = data[, 1]  
-c0_3b = data[, 2] 
-c0_3 <- ggplot(data.frame(x=c0_3a, 
-                          y=c0_3b
-                          ),
-       aes(x=x, y=y)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggtitle(paste0("Korrelation: ", 
-                 round(cor(c0_3a, c0_3b, method = "pearson"), 2))) +
-  theme_icae()
-
-set.seed(123)
-data = mvrnorm(n=100, 
-               mu=c(0, 0), 
-               Sigma=matrix(c(2.5, 0.0, 0.0, 2.0), 
-                            nrow=2), 
-               empirical=TRUE)
-c0_4a = data[, 1]  
-c0_4b = data[, 2] 
-c0_4 <- ggplot(data.frame(x=c0_4a, 
-                          y=c0_4b
-                          ),
-       aes(x=x, y=y)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggtitle(paste0("Korrelation: ", 
-                 round(cor(c0_4a, c0_4b, method = "pearson"), 2))) +
-  theme_icae()
-
-
-c0_5a <- seq(-1, 1, 0.01)
-c0_5b <- sapply(c0_5a, function(x) x+1.1)
-
-c0_5 <- ggplot(data.frame(x=c0_5a, 
-                          y=c0_5b
-                          ),
-       aes(x=x, y=y)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggtitle(paste0("Korrelation: ", 
-                 round(cor(c0_5a, c0_5b, method = "pearson"), 2))) +
-  theme_icae()
-
-
-data_sin <- data.frame( x=seq(-10, 11.75, 0.01)) %>%
-  mutate(y=sin(x))
-c0_6 <- ggplot(data_sin,
-       aes(x=x, y=y)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggtitle(paste0("Korrelation: ", 
-                 round(cor(data_sin$x, data_sin$y, method = "pearson"), 2))) +
-  theme_icae()
-
-ggpubr::ggarrange(c0_1, c0_2,
-                  c0_4,c0_6, 
-                  ncol = 2, nrow = 2)
-```
+<img src="ChapA-WdhlStatistik1_files/figure-html/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" />
 
 Daher ist es immer wichtig die Daten auch visuell zu inspizieren. 
 Datenvisualisierung ist aber so wichtig, dass sie in einem eigenen Kapitel 
