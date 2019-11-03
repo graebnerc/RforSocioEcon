@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Erste Schritte in R | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="R Skript in der Version 0.1.0" />
+  <meta name="description" content="R Skript in der Version 0.2.0" />
   <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Erste Schritte in R | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="R Skript in der Version 0.1.0" />
+  <meta property="og:description" content="R Skript in der Version 0.2.0" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 3 Erste Schritte in R | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="R Skript in der Version 0.1.0" />
+  <meta name="twitter:description" content="R Skript in der Version 0.2.0" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2019-10-19" />
+<meta name="date" content="2019-11-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="einrichtung.html"/>
-
+<link rel="next" href="markdown.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -146,6 +146,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.6</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>A</b> Eine kurze Einführung in R Markdown</a><ul>
+<li class="chapter" data-level="A.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>A.1</b> Markdown vs. R-Markdown</a></li>
+<li class="chapter" data-level="A.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>A.2</b> Installation von R-Markdown</a></li>
+<li class="chapter" data-level="A.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>A.3</b> Der R-Markdown Workflow</a><ul>
+<li class="chapter" data-level="A.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>A.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
+<li class="chapter" data-level="A.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>A.3.2</b> Der Titelblock</a></li>
+<li class="chapter" data-level="A.3.3" data-path="markdown.html"><a href="markdown.html#der-textkorper"><i class="fa fa-check"></i><b>A.3.3</b> Der Textkörper</a></li>
+<li class="chapter" data-level="A.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>A.3.4</b> Kompillieren von Dokumenten</a></li>
+</ul></li>
+<li class="chapter" data-level="A.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>A.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
+<li class="chapter" data-level="A.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>A.5</b> Weitere Quellen</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -1005,7 +1017,7 @@ y &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(x)</code><
 #&gt; {
 #&gt;     UseMethod(&quot;lead&quot;)
 #&gt; }
-#&gt; &lt;bytecode: 0x7fe7dd3dfbd8&gt;
+#&gt; &lt;bytecode: 0x7fa1ae088e40&gt;
 #&gt; &lt;environment: namespace:plm&gt;</code></pre>
 <p>Aus der letzten Zeile wird ersichtlich, dass <code>lead</code> hier aus dem Paket <code>plm</code> kommt.</p>
 <p>Wenn wir die Funktion aus <code>dplyr</code> verwenden wollen, müssen wir <code>::</code> verwenden:</p>
@@ -1027,7 +1039,7 @@ y &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(x)</code><
 #&gt;     attributes(out) &lt;- attributes(x)
 #&gt;     out
 #&gt; }
-#&gt; &lt;bytecode: 0x7fe7dbfa0390&gt;
+#&gt; &lt;bytecode: 0x7fa1a9cf9650&gt;
 #&gt; &lt;environment: namespace:dplyr&gt;</code></pre>
 <p>Wenn es zu Maskierungen kommt ist es aber der Transparenz wegen besser in beiden Fällen <code>::</code> zu verwenden, also <code>plm::lead</code> und <code>dplyr::lead</code>.</p>
 <blockquote>
@@ -1084,36 +1096,7 @@ auto_daten</code></pre></div>
 
 
 
-<div id="refs" class="references">
-<div>
-<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
 </div>
-<div>
-<p>Wickham, Hadley. 2019. <em>Advanced R</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/" class="uri">https://adv-r.hadley.nz/</a>.</p>
-</div>
-<div>
-<p>Wickham, Hadley, and Jennifer Bryan. 2019. <em>Advanced R</em>. 2nd ed. Sebastopol, CA: O’Reilly Media. <a href="https://r-pkgs.org/" class="uri">https://r-pkgs.org/</a>.</p>
-</div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-Packages">
@@ -1142,8 +1125,8 @@ auto_daten</code></pre></div>
           </div>
         </div>
       </div>
-<a href="einrichtung.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="einrichtung.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

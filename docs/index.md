@@ -1,8 +1,8 @@
 --- 
 title: "R für die sozio-ökonomische Forschung"
-subtitle: "Version 0.1.0"
+subtitle: "Version 0.2.0"
 author: "[Dr. Claudius Gräbner](http://claudius-graebner.com/)"
-date: "2019-10-19" 
+date: "2019-11-03" 
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -10,7 +10,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: graebnerc/RforSocioEcon
-description: "R Skript in der Version 0.1.0"
+description: "R Skript in der Version 0.2.0"
 ---
 
 # Willkommen {-}
@@ -60,6 +60,7 @@ Dafür wird im Moodle ein extra Bereich eingerichtet.
 Datum    | Version | Wichtigste Änderungen         |
 :--------+:--------+:------------------------------|
 19.10.19 | 0.1.0    | Erste Version veröffentlicht |
+03.11.19 | 0.2.0    | Markdown-Anhang hinzugefügt  |
 
 ## Lizenz {-}
 

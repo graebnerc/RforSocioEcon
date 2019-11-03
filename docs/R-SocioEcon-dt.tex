@@ -105,10 +105,10 @@
 % title / author / date
 \title{R für die sozio-ökonomische Forschung}
 \author{\href{http://claudius-graebner.com/}{Dr.~Claudius Gräbner}}
-\date{2019-10-19}
+\date{2019-11-03}
 
 \usepackage{booktabs}
-\usepackage{amsthm}
+\usepackage{amsthm, amssymb, mathrsfs}
 \usepackage{xcolor}
 \usepackage{hyperref}
 \hypersetup{
@@ -263,6 +263,7 @@ Datum & Version & Wichtigste Änderungen\tabularnewline
 \midrule
 \endhead
 19.10.19 & 0.1.0 & Erste Version veröffentlicht\tabularnewline
+03.11.19 & 0.2.0 & Markdown-Anhang hinzugefügt\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -3127,7 +3128,7 @@ können das illustrieren indem wir den Namen des Objekts eingeben:
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7fbd3edd3108>
+#> <bytecode: 0x7fea78f33d10>
 #> <environment: namespace:plm>
 \end{verbatim}
 
@@ -3161,7 +3162,7 @@ Wenn wir die Funktion aus \texttt{dplyr} verwenden wollen, müssen wir
 #>     attributes(out) <- attributes(x)
 #>     out
 #> }
-#> <bytecode: 0x7fbd3e226768>
+#> <bytecode: 0x7fea7868d1f0>
 #> <environment: namespace:dplyr>
 \end{verbatim}
 
@@ -3311,6 +3312,274 @@ Manipulieren von Datensätzen beschäftigen.
 
 \appendix
 
+
+\chapter{Eine kurze Einführung in R Markdown}\label{markdown}
+
+Hier gibt es eine kurze Einführung in \texttt{R\ Markdown}. Wir
+beschränken uns dabei auf die grundlegende Idee von Markdown, da die
+konkrete Syntax im Internet an zahlreichen Stellen wunderbar erläutert
+ist und man das konkrete Schreiben am besten in der Anwendung lernt.
+
+\section{Markdown vs.~R-Markdown}\label{markdown-vs.r-markdown}
+
+Bei \texttt{Markdown} handelt es sich um eine sehr einfache
+Auszeichnungssprache, d.h. eine Programmiersprache, mit der schön
+formatierte Texte erstellt werden können und die gleichzeitig auch für
+Menschen sehr einfach lesbar ist. Dateien, die in Markdown geschrieben
+sind, sind gewöhnlicherweise an der Endung \texttt{.md} zu erkennen.
+
+R-Markdown stellt man sich am besten als eine Kombination von Markdown
+und R vor: R-Markdown Dateien, die immer durch die Dateiendung
+\texttt{.Rmd} gekennzeichnet sind, bestehen sowohl aus Markdown-Code,
+als auch aus R-Code. Das bedeutet, dass man sein Forschungsprojekt
+gleichzeitig erklären und durchführen kann. Im Prinzip können ganze
+Forschungspapiere in R-Markdown verfasst werden und damit vollständig
+reproduzierbar gestaltet werden.
+
+\section{Installation von R-Markdown}\label{installation-von-r-markdown}
+
+Für den Fall, dass Sie mit R-Studio arbeiten brauchen Sie lediglich das
+Paket \texttt{rmarkdown} zu installieren:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"rmarkdown"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Das Standardformat für R-Markdown Dokumente ist html. Wenn Sie aber auch
+PDF Dokumente erstellen wollen, müssen Sie auf Ihrem Computer
+\href{https://www.latex-project.org/}{LaTex} installieren. Hierfür
+finden sich zahlreiche Anleitungen im Internet (z.B.
+\href{https://www.latex-tutorial.com/installation/}{hier} oder
+\href{https://www.latex-project.org/get/}{hier}).
+
+\section{Der R-Markdown Workflow}\label{der-r-markdown-workflow}
+
+\subsection{Ein neues R-Markdown Dokument
+erstellen}\label{ein-neues-r-markdown-dokument-erstellen}
+
+R-Studio macht es Ihnen sehr leicht R-Markdown Dokumente zu erstellen.
+Klicken Sie einfach auf den Button \texttt{Neu} und wählen dort dann
+\texttt{R\ Markdown} aus, wie auf folgendem Screenshot zu sehen ist:
+
+\begin{center}\includegraphics[width=0.75\linewidth]{/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/figures/A-Markdown-NewFile} \end{center}
+
+Im folgenden Fenster können Sie getrost die Standardeinstellungen so wie
+vorgeschlagen belassen, da Sie alles später noch sehr leicht ändern
+können.
+
+Sie sehen nun eine Datei, das bereits einigen Beispielcode enthält und
+damit schon einen Großteil der Syntax illustriert.
+
+Ein R-Markdown Dokument besteht in der Regel aus zwei Teilen: dem
+Titelblock und dem darunter folgenden Dokumentenkörper:
+
+\begin{center}\includegraphics[width=0.75\linewidth]{/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/figures/A-Markdown-Title} \end{center}
+
+\subsection{Der Titelblock}\label{der-titelblock}
+
+Der Titelblock ist immer durch zwei Zeilen mit dem Inhalt
+``\texttt{-\/-\/-}'' oben und unten abgegrenzt. Die Syntax des
+Titelblocks folgt der Sprache
+\href{https://de.wikipedia.org/wiki/YAML}{YAML}, aber das hat wenig
+praktische Relevanz. Im Titelblock werden alle globalen Einstellungen
+für das Dokument vorgenommen. Für einfache Dokumente muss nur wenig an
+den Standardeinstellungen geändert werden, aber im Laufe der Zeit werden
+Sie merken, dass Sie über den YAML-Block Ihr Dokument zu ganz großen
+Teilen individualisieren können. In der Regel finden Sie alle Antworten
+durch Googlen, daher werde ich hier nicht weiter auf den Header
+eingehen.
+
+\subsection{Der Textkörper}\label{der-textkorper}
+
+Der Textkörper besteht aus normalem Text, welcher in der Markdown Syntax
+geschrieben ist, und so genannten \emph{Chunks}. Für die wirklich
+einfache Syntax für normalen Text gibt es zahlreiche gute Anleitungen im
+Internet, z.B. dieses eingängige
+\href{https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf}{Cheat
+Sheet}.
+
+Innerhalb der Chunks können Sie Code in einer beliebigen
+Programmiersprache schreiben, insbesondere auch in R. Die Syntax
+unterscheidet sich dabei überhaupt nicht von einem normalen R Skript.
+
+Um einen Chunk zu Ihrem Dokument hinzuzufügen klicken Sie oben rechts im
+Skripbereich auf `Insert' und wählen \texttt{R} aus:
+
+\begin{center}\includegraphics[width=0.75\linewidth]{/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/figures/A-Markdown-Chunk1} \end{center}
+
+Daraufhin wird an der Stelle des Cursors ein Chunk in Ihr Dokument
+eingefügt. Dieser Chunk wird in der ersten und letzten Zeile durch
+\texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}} begrenzt.
+In der ersten Zeile wird zusätzlich innerhalb von geschweiften Klammern
+die Programmiersprache des Chunks definiert:
+
+\begin{center}\includegraphics[width=0.75\linewidth]{/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/figures/A-Markdown-Chunk3} \end{center}
+
+Darüber hinaus kann das Ausführverhalten für den Chunk durch weitere
+Argumente innerhalb der geschweiften Klammer weiter spezifiziert werden.
+
+Häufig möchten Sie z.B., dass der Code im Chunk zwar im Dokument
+angezeigt, aber nicht ausgeführt werden soll. Dies können Sie durch die
+Option \texttt{eval=FALSE} erreichen. In diesem Fall sähe Ihr Chunk so
+aus:
+
+\begin{center}\includegraphics[width=0.75\linewidth]{/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/figures/A-Markdown-Chunk4} \end{center}
+
+In diesem Beispiel wird die Zuweisung \texttt{x\ \textless{}-\ 4} bei
+der Kompillierung des Dokuments nicht ausgeführt.
+
+Eine gute Übersicht über die Optionen, die Ihnen offen stehen, finden
+Sie
+\href{https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf}{hier}
+oder durch Googlen.
+
+Sie können einzelne Chunks auch schon vor dem Kompillieren des Dokuments
+ausführen indem Sie auf das Play-Zeichen oben links beim Chunk drücken.
+Damit erhalten Sie eine Vorschau auf das Ergebnis.
+
+\subsection{Kompillieren von
+Dokumenten}\label{kompillieren-von-dokumenten}
+
+Der Prozess, der aus dem Quellcode ihres Dokuments (also allem was in
+der \texttt{.Rmd} Datei geschrieben ist) das fertige Dokument erstellt,
+wird \emph{Kompillieren} genannt. Dabei wird aus dem \texttt{.Rmd}
+Dokument ein gut lesbares \texttt{.html} oder \texttt{.pdf} Dokument
+erstellt, wobei alle Chunks normal ausgeführt werden (es sei denn dies
+wird durch die Option \texttt{eval=FALSE} verhindert).
+
+Grundsätzlich gibt es zwei Möglichkeiten ein Dokument zu kompillieren:
+über die entsprechende R-Funktion, oder über den Knit-Button in
+R-Studio.
+
+Die klassische Variante verwendet die Funktion \texttt{render()} aus dem
+Paket \texttt{rmarkdown}. Die wichtigsten Argumente sind dabei die
+folgenden: \texttt{input} spezifiziert die zu kompillierende
+\texttt{.Rmd}-Datei, \texttt{output\_format} das für den Output
+gewünschte Format\footnote{R-Markdown Dateien können in sehr viele
+  verschiedene Formate kompilliert werden, das am häufigsten verwendete
+  Format ist jedoch \texttt{html}. Eine Übersicht finden Sie
+  \href{https://bookdown.org/yihui/rmarkdown/output-formats.html}{hier}.}
+und \texttt{output\_file} den Pfad und den Namen der zu erstellenden
+Outputdatei.
+
+Wenn Sie also das Dokument \texttt{FirstMarkdown.Rmd} kompillieren
+wollen und den Output unter \texttt{Output/OurMarkdown.html} als
+html-Datei speichern wollen, dann können Sie das mit folgendem Code,
+vorausgesetzt die Datei \texttt{FirstMarkdown.Rmd} liegt im Unterordner
+\texttt{R}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{render}\NormalTok{(}\DataTypeTok{input =} \StringTok{"R/FirstMarkdown.Rmd"}\NormalTok{, }\DataTypeTok{output_format =} \StringTok{"html"}\NormalTok{, }
+    \DataTypeTok{output_file =} \StringTok{"output/FirstMarkdown.html"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Weitere Informationen zu den Parametern finden Sie wie immer über die
+\texttt{help()} Funktion. Alternativ können Sie auch den Button
+\texttt{Knit} in der R-Studio Oberfläche verwenden. Das ist in der Regel
+bequemer, lässt aber weniger Individualisierung zu.
+
+\section{Relative Pfade in
+Markdown-Dokumenten}\label{relative-pfade-in-markdown-dokumenten}
+
+Der problematischste Teil beim Arbeiten mit R-Markdown ist der Umgang
+mit relativen Pfaden. Um das Problem zu illustrieren nehmen wir einmal
+folgende Ordnerstruktur an, wobei der Ordner \texttt{MarkdownProject}
+unser Arbeitsverzeichnis ist:
+
+\begin{center}\includegraphics[height=0.25\textheight]{/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/figures/A-Markdown-Ordnerstruktur} \end{center}
+
+Das Problem ist nun, dass wenn Sie eine R-Markdown Datei kompillieren,
+diese Datei alle Pfade \textbf{nicht} ausgehend von Ihrem
+Arbeitsverzeichnis interpretiert, sondern vom \emph{Speicherort} der
+\texttt{.Rmd}-Datei. Das ist natürlich hochproblematisch, denn stellen
+Sie sich vor, Sie möchten in Ihrem R-Markdown-Skript die Datei
+\texttt{data/BIP-Data.csv} einlesen. Normalerweise würden Sie dafür den
+folgenden Code verwenden:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bip_data <-}\StringTok{ }\KeywordTok{fread}\NormalTok{(}\StringTok{"data/BIP-Data.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Zwar würde der Code in einem R-Skript, z.B. in \texttt{R/R-Skript.R}
+perfekt funktionieren. In einem R-Markdown Dokument, das nicht im
+Arbeitsverzeichnis direkt gespeichert ist, jedoch nicht. Da in
+R-Markdown-Dokumenten alle Pfade relativ des Speicherorts des Dokuments
+interpretiert werden, müssten wir hier schreiben:\footnote{Mit
+  \texttt{../} bewegt man sich bei einem relativen Pfad einen Ordner
+  nach oben.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bip_data <-}\StringTok{ }\KeywordTok{fread}\NormalTok{(}\StringTok{"../data/BIP-Data.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Das wäre allerdings unschön, weil wir dann unterschiedlichen Codes in
+Skripten und in R-Markdown-Dokumenten verwenden müssten und das Ganze
+dadurch deutlich verwirrender werden würde.
+
+Es wäre also schön, wenn R automatisch wüsste, was das
+Arbeitsverzeichnis des aktuellen Projekts ist und dieses automatisch
+berücksichtigt, unabhängig davon ob wir mit einem \texttt{.R} oder
+\texttt{.Rmd} Dokument arbeiten und wo dieses Dokument innerhalb unserer
+Projekt-Struktur gespeichert ist.
+
+Zum Glück können wir genau das mit Hilfe des Pakets
+\href{https://github.com/jennybc/here_here}{here} erreichen.\footnote{Tatsächlich
+  ist \texttt{here} dermaßen praktisch, dass ich empfehle grundsätzlich
+  alle Pfade in jedem Projekt - ob R-Markdown oder nicht - mit Hilfe von
+  \texttt{here} anzugeben.} Das Paket enthält eine Funktion
+\texttt{here()} die als Argument einen Dateinamen oder einen relativen
+Pfad akzeptiert, und daraus einen absoluten Pfad auf dem Computer, auf
+dem der Code gerade ausgeführt wird, konstruiert.
+
+Wir können also unseren Code von oben einfach folgendermaßen
+umschreiben:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bip_data <-}\StringTok{ }\KeywordTok{fread}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data/BIP-Data.csv"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+In dieser Form funktioniert er sowohl in \texttt{.R} als auch
+\texttt{.Rmd} Dateien ohne Probleme.
+
+\begin{quote}
+\textbf{Hinweis I:} Die Funktion \texttt{here()} verwendet verschiedene
+Heuristiken um das Arbeitsverzeichnis des aktuellen Projekt
+herauszufinden. Darunter fällt auch das Suchen nach einer
+\texttt{.Rproj} Datei. Überhaupt funktionieren die Heuristiken in der
+Regel wunderbar und können für Ihren konkreten Fall über die Funktion
+\texttt{dr\_here()} angezeigt werden. Um ganz sicherzugehen sollte man
+aber immer in das Arbeitsverzeichnis eine Datei \texttt{.here} ablegen.
+Diese kann manuell, oder über die Funktion \texttt{set\_here()},
+erstellt werden.
+\end{quote}
+
+\begin{quote}
+\textbf{Hinweis II:} Die Verwendung von \texttt{here()} ist essenziell,
+wenn Ihre R-Markdown Dokumente auf mehreren Computern funktionieren
+sollen. Daher ist die Verwendung in den Arbeitsblättern
+\textbf{verpflichtend}.
+\end{quote}
+
+\section{Weitere Quellen}\label{weitere-quellen}
+
+Eine gute Übersicht über die häufigsten Befehle enthält dieses
+\href{https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf}{Cheat
+Sheet}. Eine sehr umfangreiche Einführung bietet das Online-Buch
+\href{https://bookdown.org/yihui/rmarkdown/}{R Markdown: The Definitive
+Guide}. Aber auch darüber hinaus finden sich im Internet zahlreiche
+Beispiele für die R-Markdown-Syntax. Dieses Skript wurde übrigens in
+\href{https://bookdown.org/yihui/bookdown/}{R Bookdown}, einer
+Erweiterung von R-Markdown für Bücher, geschrieben.
 
 \bibliography{book.bib,packages.bib}
 
