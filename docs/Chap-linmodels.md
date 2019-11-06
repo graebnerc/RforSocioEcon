@@ -64,7 +64,7 @@ zwei Parameter, $\beta_0$ und $\beta_1$, die wir mit Hilfe unserer Daten
 schätzen möchten. Wir laden uns also Daten zum Haushaltseinkommen und zum BIP
 aus dem Internet herunter und inspizieren die Daten zunächst visuell:
 
-<img src="Chap-linmodels_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+![](Chap-linmodels_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
 
 > Der Zusammenhang scheint gut zu unserem linearen Modell oben zu passen, sodass
 wir das Modell mit Hilfe der Daten schätzen um konkrete Werte für $\beta_0$ und
@@ -86,7 +86,7 @@ schaetzung_bip
 #>   -184.0780       0.7064
 ```
 
-<img src="Chap-linmodels_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+![](Chap-linmodels_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
 
 > In dieser Abbildung korrespondiert $\beta_0$ zum Achensabschnitt und $\beta_1$
 zur Steigung der Konsumgerade. Wir können $\beta_0$ als die Konsumausgaben
@@ -129,11 +129,12 @@ beschriebenen Konzepte.
 
 Nachdem wir den [Ablauf einer Regressionsanalyse](#stat-ablauf) kurz 
 zusammengefasst haben, generalisieren wir das Gelernte noch für den 
-[multivariaten Fall](#lin-multi), also den Fall wenn wir mehr als eine 
+[multiplen Fall](#lin-multi), also den Fall wenn wir mehr als eine 
 $x$-Variable in unserem Modell verwenden.
 
 Am Schluss finden Sie ein konkretes [Anwendungsbeispiel](#lin-beispiel), bei dem 
-wir eine lineare Regression von Anfang an implementieren. (*Hinweis: dieser Abschnitt wird später ergänzt*)
+wir eine lineare Regression von Anfang an implementieren. 
+(*Hinweis: dieser Abschnitt wird später ergänzt*)
 
 
 ## Grundlagen der einfachen linearen Regression {#lin-grundlagen}
@@ -147,8 +148,8 @@ theoretisches Modell folgendermaßen aussieht:
 $$Y_i = \beta_0 + \beta_1 x_i + \epsilon_i$$
 
 Alles was auf der linken Seite vom `=` steht bezeichnen wir als die LHS 
-(engl. \textit{left hand side}), alles auf der rechten Seite als RHS 
-(engl. \textit{right hand side}).
+(engl. *left hand side*), alles auf der rechten Seite als RHS 
+(engl. *right hand side*).
 
 Wir bezeichnen $Y_i$ als die **abhängige Variable** 
 (auch: *Zielvariable* oder *erklärte Variable*). 
@@ -187,11 +188,12 @@ Die $\epsilon_i$ sind als ZV definiert und da wir $Y_i$ als eine Funktion von
 $x_i$ und $\epsilon_i$ interpretieren sind die $Y_i$ auch ZV - und dementsprechend
 groß geschrieben. Die Fehlerterme werden per Konvention nie groß geschrieben - 
 wahrscheinlich weil sich das für Fehler nicht gehört. Wer es ganz genau nehmen
-würde, müsste sie aber auch groß schreiben, denn sie sind als ZV definiert, und 
+würde, müsste sie aber auch groß schreiben, denn sie sind als ZV definiert und 
 diese werden eigentlich groß geschrieben.
 
-Die Annahme von $\mathbb{E}(\epsilon_i)$, also die Annahme, dass der Erwartungswert
-für jeden Fehler gleich Null ist, ist zentral: wir gehen davon aus, dass unser 
+Die Annahme von $\mathbb{E}(\epsilon_i)=0$, also die Annahme, dass der Erwartungswert
+für jeden Fehler gleich Null ist, ist neben der Annahme, dass wir einen linearen
+Zusammenhang modellieren zentral: wir gehen davon aus, dass unser 
 Modell im Mittel stimmt.
 Unter dieser Annahme gibt es keine *systematischen* Abweichungen der $Y_i$ von
 der über $\beta_0$ und $\beta_1$ definierten Regressionsgeraden.
@@ -208,11 +210,11 @@ Konzept eines Schätzers sehr fremd ist, schauen Sie doch mal in den
 Wir suchen also nach den Werten für $\beta_0$ und $\beta_1$ sodass die 
 resultierende Gerade möglichst nahe an allen $Y_i$ Werten in folgendem Graph ist:
 
-<img src="Chap-linmodels_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+![](Chap-linmodels_files/figure-latex/unnamed-chunk-8-1.pdf)<!-- --> 
 
 Wenn wir das händisch machen würden, könnten wir versuchen die Abstände zwischen
 den einzelnen $Y_i$ und der Regressionsgerade messen und letztere so lange 
-rumschieben, bis die Summe der Abstände möglichst klein ist.
+herumschieben, bis die Summe der Abstände möglichst klein ist.
 In gewisser Weise ist das genau das, was wir in der Praxis auch machen. 
 Nur arbeiten wir nicht mit den Abständen als solchen, denn dann würden sich 
 positive und negative Abstände ja ausgleichen. 
@@ -222,22 +224,22 @@ auch als **Kleinste-Quadrate Methode** (engl. *ordinary least squares* - OLS)
 bekannt.^[Warum summiert man nicht die Absolutwerte der Abweichungen, sondern
 ihre quadrierten Werte? Das hat technische Gründe: mit quadrierten Werten lässt
 sich einfach leichter rechnen als mit Absolutwerten.]
+Die dadurch definierten Schätzer $\hat{\beta}_0$ und $\hat{\beta}_1$ sind 
+entsprechend als *OLS-Schätzer* bekannt.
 
 Wir bezeichnen die Abweichung von $Y_i$ zu Regressionsgeraden als *Residuum* $r_i$.
 Wie in der Abbildung zu sehen ist, gilt für die Abweichung von der 
-Regressionsgeraden für die einzelnen $Y_i$: $r_i=(Y_i-\beta_0-\beta_1x_i)$.
-Wir suchen also nach den Werten für $\beta_0$ und $\beta_1$ für die die Summe
-aller Residuen minimal ist. 
-In anderen Worten, unsere *Schätzer* $\hat{\beta}_0$ und $\hat{\beta}_1$ sind 
-definiert als:
+Regressionsgeraden für die einzelnen $Y_i$: $r_i=(Y_i-\hat{\beta}_0-\hat{\beta}_1x_i)$.
+Wir suchen also nach den Werten für $\hat{\beta}_0$ und $\hat{\beta}_1$ für die die Summe
+aller Residuen minimal ist:
 
 $$\hat{\beta}_0, \hat{\beta}_1 =\text{argmin}_{\beta_0, \beta_1} \sum_{i=1}^n(Y_i-\beta_0-\beta_1x_i)^2$$
 
 Dabei bedeutet $\text{argmin}_{\beta_0, \beta_1}$: wähle die Werte für 
 $\beta_0$ und $\beta_1$, welche den nachfolgenden Ausdruck minimieren.
 
-Diesen Ausdruck kann man analytisch solang umformen bis gilt:^[Jede\*r Interessierte
-findet die genaue Herleitung am Ende dieses Kapitels.]
+Diesen Ausdruck kann man analytisch so lange umformen bis gilt:^[Jede\*r Interessierte
+findet die genaue Herleitung sehr einfach im Internet oder in der Kursliteratur.]
 
 $$\hat{\beta}_1 = \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}$$
 und
@@ -287,12 +289,12 @@ Entsprechend ergibt sich für $\hat{\beta}_0$:
 $$\hat{\beta_0}=\bar{y}-\hat{\beta}_1\bar{x}=3.614-3.08\cdot 0.3=2.69$$
 
 In R können wir für diese Rechnung wie gesagt die Funktion `lm()` verwenden.
-In der praxis sind für uns vor allem die folgenden zwei Argumente von `lm()` 
+In der Praxis sind für uns vor allem die folgenden zwei Argumente von `lm()` 
 relevant: `formula` und `data`.
 
 Über `data` informieren wir `lm` über den Datensatz, der für die Schätzung 
 verwendet werden soll.
-Dieser Datensatz muss in Form eines `data.frame`s oder eines vergleichbaren
+Dieser Datensatz muss als `data.frame` oder vergleichbares
 Objekt vorliegen.
 
 Über `formula` teilen wir `lm` dann die zu schätzende Formel mit.
@@ -365,7 +367,7 @@ Werte mit Hilfe unseres Modell vorhersagen wollen.
 Zum Abschluss hier noch einmal die Daten mit der von uns gerade berechneten 
 Regressionsgeraden:
 
-<img src="Chap-linmodels_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+![](Chap-linmodels_files/figure-latex/unnamed-chunk-15-1.pdf)<!-- --> 
 
 
 Zwar wissen wir jetzt, wie wir eine einfache lineare Regression schätzen, 
@@ -374,6 +376,9 @@ Unsere bisherige Tätigkeiten korrespondieren zu der im
 [Anhang zur schließenden Statistik](#stat-rep) beschriebenen *Parameterschätzung*.
 Wir wollen aber auch noch die anderen beiden Verfahren, Hypothesentests und Konfidenzintervalle, 
 abdecken und lernen wie wir die Güte unserer Schätzung besser einschätzen können.
+
+Zuvor wollen wir aber noch einmal genauer überprüfen, welche Annahmen genau
+erfüllt sein müssen, damit die OLS-Prozedur auch funktioniert.
 
 ### Annahmen für den OLS Schätzer
 
@@ -386,13 +391,15 @@ prüfen ob die entsprechenden Annahmen für den Anwendungsfall plausibel sind.
 Daher wollen wir uns im Folgenden etwas genauer mit diesen Annahmen vertraut 
 machen. 
 
-Zwar schwankt die genaue Anzahl der Annahmen je nach Formulierung, in der Essenz handelt es sich aber um folgende:
+Zwar schwankt die genaue Anzahl der Annahmen je nach Formulierung, in der 
+Essenz handelt es sich aber um folgende:
 
-1. **A1: Erwartungswert der Fehler gleich Null**: $\mathbb{E}(\epsilon=0$ 
+1. **A1: Erwartungswert der Fehler gleich Null**: $\mathbb{E}(\epsilon=0)$ 
 Diese Annahmen setzt voraus, dass $\epsilon$ keine Struktur hat und im Mittel 
 gleich Null ist. Das ist plausibel, denn würden wir Informationen über eine 
 Struktur in $\epsilon$ haben, bedeutet das, dass wir eine weitere erklärende 
-Variable in das Modell aufnehmen könnten, welche diese Struktur explizit macht. 
+Variable in das Modell aufnehmen könnten, welche diese Struktur explizit macht,
+oder die lineare Strukur des Modells ändern könnten. 
 Die Annahme impliziert auch, dass der Zusammenhang zwischen der erklärten und 
 erklärenden Variablen auch tatsächlich linear ist. Grob ausgedrückt: wir nehmen 
 hier an, dass wir unser Modell clever spezifiziert haben.
@@ -403,16 +410,17 @@ Variablen gibt. Die Annahme wäre verletzt, wenn für größere Werte von $x$ di
 Messgenauigkeit drastisch in eine Richtung hin abnehmen würde. 
 
 3. **A3: Konstante Varianz der Fehlerterme** Diese Annahme wird auch 
-**Homoskedastizität** genannt und sagt einfach: 
+**Homoskedastizität** genannt und sagt einfach: $Var(\epsilon_i)=\sigma^2\forall i$
 
 4. **A4: Keine Autokorrelation der Fehlerterme** Die Annahme verlangt, dass die 
 Fehler nicht untereinander korreliert sind: 
-$Cov(\epsilon_i, \epsilon_j)=0, \quad \forall i,j$. Das kann vor allem ein 
+$Cov(\epsilon_i, \epsilon_j)=0 \forall i,j$. Das kann vor allem ein 
 Problem sein, wenn die gleichen erklärenden Variablen zu unterschiedlichen 
 Zeitpunkten gemessen werden.
 
-5. **A5: ** Normalverteilung der Fehlerterme: diese Annahme ist notwendig für 
-die Hypothesentests und Berechnung von Konfidenzintervallen für die Schätzer. 
+5. **A5: Normalverteilung der Fehlerterme:** $\epsilon\propto\mathcal{N}(0,\sigma^2)$ 
+Niese Annahme ist notwendig für die Hypothesentests und Berechnung von 
+Konfidenzintervallen für die Schätzer. 
 
 Diese Annahmen bilden die Grundlage für das so genannte **Gauss-Markov-Theorem**, 
 gemäß dem der OLS-Schätzer für lineare der beste konsistente Schätzer ist, 
@@ -440,8 +448,8 @@ Es ist wichtig zu beachten, dass wir eine Regression mit OLS schätzen können u
 keine Fehlermeldungen bekommen, obwohl die Annahmen für OLS nicht erfüllt sind. 
 In diesem Fall sind die Ergebnisse jedoch möglicherweise irreführend. 
 Daher ist es immer wichtig, die Korrektheit der Annahmen zu überprüfen und
-weitere Kennzahlen der Regression zu überprüfen. 
-Methoden dafür lernen wir später in diesem Kaptel kennen.
+weitere Kennzahlen der Regression zu betrachten 
+Methoden dafür lernen wir nun genauer kennen.
 
 ## Kennzahlen in der linearen Regression {#lin-kennzahlen}
 
@@ -454,7 +462,7 @@ wie viel 'Variation' der abhängigen Variable $Y_i$ durch die Regression erklär
 wird. 
 Als Maß für die Variation wird dabei die Summe der quadrierten Abweichungen von
 $Y_i$ von seinem Mittelwert verwendet, auch $TSS$ (für engl. 
-*Total Sum of Squares* - 'erklärte Abweichungsquadratsumme') genannt:
+*Total Sum of Squares* - 'Summe der Quadrate der Totalen Abweichungen') genannt:
 
 $$TSS=\sum_{i=1}^n(Y_i-\bar{Y})^2$$
 In R:
@@ -473,20 +481,21 @@ tss
 Diese Werte sind in folgender Abbildung für unseren Beispieldatensatz von 
 oben grafisch dargestellt:
 
-<img src="Chap-linmodels_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+![](Chap-linmodels_files/figure-latex/unnamed-chunk-17-1.pdf)<!-- --> 
 
 Die TSS wollen wir nun aufteilen in eine Komponente, die in unserer Regression
 erklärt wird, und eine Komponente, die nicht erklärt werden kann. 
 Bei letzterer handelt es sich um die Abweichungen der geschätzten Werte $\hat{Y_i}$
 und den tatsächlichen Werten $Y_i$, den oben definierten Residuen $r_i$.
-Entsprechend definieren wir die *Residual Sum of Squares (RSS)* als:
+Entsprechend definieren wir die *Residual Sum of Squares (RSS)* 
+(dt.: *Residuenquadratsumme*) als:
 
 $$RSS=\sum_i^n\epsilon_i^2$$
 In R:
 
 
 ```r
-rss <- sum(schaetzung$residuals**2)
+rss <- sum(schaetzung[["residuals"]]**2)
 rss
 ```
 
@@ -497,9 +506,10 @@ rss
 
 Diese sehen wir hier:
 
-<img src="Chap-linmodels_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+![](Chap-linmodels_files/figure-latex/unnamed-chunk-19-1.pdf)<!-- --> 
 
-Was noch fehlt sind die *Explained Sum of Squares (ESS)*, also die Variation
+Was noch fehlt sind die *Explained Sum of Squares (ESS)* 
+(dt. *Summe der Quadrate der Erklärten Abweichungen*), also die Variation
 in der abhängigen Variable, die durch die Regression erklärt wird.
 Dabei handelt es sich um die quadrierte Differenz zwischen $\bar{Y}$ und den
 geschätzten Werten $\hat{Y}$:
@@ -519,7 +529,7 @@ ess
 
 Und grafisch:
 
-<img src="Chap-linmodels_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+![](Chap-linmodels_files/figure-latex/unnamed-chunk-21-1.pdf)<!-- --> 
 
 Für die drei gerade eingeführten Teile der Gesamtvarianz gilt im Übrigen:
 
@@ -567,9 +577,9 @@ tautologischer Zusammenhang geschätzt wurde.
 
 Ein großer Nachteil vom $R^2$ ist, dass es größer wird sobald wir einfach mehr
 erklärende Variablen in unsere Regression aufnehmen. 
-Warum? Da eine neue Variable unmöglich $TSS$ verändern kann (denn die 
-erklärenden Variablen kommen in der Formel für TSS nicht vor), aber immer zumindest
-ein bisschen die ESS erhöht.
+Warum? Eine neue Variable kann unmöglich $TSS$ verändern (denn die 
+erklärenden Variablen kommen in der Formel für TSS nicht vor), aber erhöht immer 
+zumindest ein bisschen die ESS.
 Wenn unser alleiniges Ziel also die Maximierung von $R^2$ wäre, dann müssten wir
 einfach ganz viele erklärenden Variablen in unser Modell aufnehmen.
 Das kann ja nicht Sinn sozioökonomischer Forschung sein!
@@ -607,7 +617,7 @@ Variabel ohne gute theoretische Begründung aufnehmen!
 
 Wie sicher können wir uns mit den geschätzten Parametern für $\beta_0$ und $\beta_1$
 sein? 
-Wenn z.B. $\beta_1>0$ bedeutet das wirklich, dass wir einen positiven Effekt 
+Wenn z.B. $\hat{\beta}_1>0$ bedeutet das wirklich, dass wir einen positiven Effekt 
 gefunden haben? 
 Immerhin sind ja unsere Fehler ZV und vielleicht haben wir einfach zufällig 
 eine Stichprobe erhoben, wo der Effekt von $x_1$ positiv erscheint, tatsächlich 
@@ -617,7 +627,7 @@ können wir uns die Annahme, dass unsere Fehler normalverteilt sind, zu Nutze
 machen und testen wir plausibel die tatsächliche Existenz eines Effekts ist.
 
 Wir verlassen nun also das Gebiet der reinen Parameterschätzung und beschäftigen 
-uns mit Hypothesentests und Konfidenzintervalle für unsere Schätzer $\hat{\beta}_0$
+uns mit Hypothesentests und Konfidenzintervallen für unsere Schätzer $\hat{\beta}_0$
 und $\hat{\beta}_1$.
 Das ist analog zu den im [Anhang zur schließenden Statistik](#stat-rep) 
 besprochenen Herangehensweisen.
@@ -669,7 +679,7 @@ x <- runif(sample_size, 0, 10)
 ```
 
 > Nun erstellen wir mit Hilfe einer Schleife 1000 Realisierungen der Daten. 
-Wir können uns das wie 200 Erhebungen vorstellen. Für jede dieser Realisierungen
+Wir können uns das wie 1000 Erhebungen vorstellen. Für jede dieser Realisierungen
 schätzen wir dann die lineare Regressionsgleichung von oben:
 
 
@@ -692,7 +702,7 @@ for (i in 1:n_datensaetze){
 
 > Nun können wir die Streuung der Schätzer direkt visualisieren:
 
-<img src="Chap-linmodels_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+![](Chap-linmodels_files/figure-latex/unnamed-chunk-27-1.pdf)<!-- --> 
 
 > Wie wir sehen, treffen die Schätzer im Mittel den richtigen Wert, streuen aber 
 auch. Die Varianz gibt dabei die Breite des jeweiligen Histograms an und je 
@@ -752,7 +762,7 @@ was ein Hypothesentest ist.] mit $H_0: \beta_0=0$ und $H_1: \beta_0 \neq 0$.
 
 Für einen Hypothesentest brauchen wir zunächst eine Teststatistik, also die 
 Verteilung für den Schätzer wenn $H_0$ wahr wäre.
-Da wir annahmen, dass die Fehlerterme in unserem Fall normalverteilt sind, ist 
+Da wir annehmen, dass die Fehlerterme in unserem Fall normalverteilt sind, ist 
 das in unserem Falle eine $t$-Verteilung mit $n-2$ Freiheitsgraden.^[Warum jetzt
 genau eine $t$-Verteilung und keine Normalverteilung? Das liegt daran, dass wir
 die Varianz unserer Fehler $\sigma$ nicht beobachten können und durch $\hat{\sigma}$
@@ -760,11 +770,12 @@ geschätzt haben. Das führt dazu, dass die resultierende Teststatistik nicht me
 normalverteilt ist. Mir zunehmendem Stichprobenumfang wird die Abweichung immer
 irrelevanter, jedoch ist die t-Verteilung so einfach zu handhaben, dass man sie
 eigentlich immer benutzen kann.]
-Dann können wir schauen wie wahrscheinlich unser tatsächlicher Schätzwert unter
+Damit können wir überprüfen wie wahrscheinlich unser Schätzwert unter
 der $H_0$ wäre. Wenn er sehr unwahrscheinlich wäre, würden wir $H_0$ verwerfen.
 
 Die Wahrscheinlichkeit, dass wir unseren Schätzer unseren Schätzer gefunden
 hätten, wenn $H_0$ wahr wäre wird durch den $p$-Wert des Schätzers angegeben.
+Dieser findet sich in der Spalte `Pr(>|t|)`.
 In unserem Fall mit $\hat{\beta}_1$ ist dieser Wert mit $2\cdot 10^{-16}$ extrem 
 klein. Das bedeutet, wenn $H_0: \beta_1=0$ wahr wäre, würden wir unseren Wert
 für $\hat{\beta}_1$ mit einer Wahrscheinlichkeit nahe Null beobachten. 
@@ -813,6 +824,10 @@ nicht mit *sozioökonomischer Relevanz* zu tun hat:
 ein Effekt kann hochsignifikant, aber extrem klein sein.
 Dennoch ist die Signifikanz eine wichtige und häufig verwendete Kennzahl für
 jede lineare Regression.
+Gleichzeitig ist die wissenschaftliche Praxis, nur Studien mit signifikanten
+Ergebnissen ernst zu nehmen, sehr problematisch, Stichwork 
+[p-Hacking](https://de.wikipedia.org/wiki/P-Hacking).
+Wir diskutieren dieses Problem später im Rahmen der Veranstaltung
 
 ### Konfidenzintervalle für die Schätzer
 
@@ -826,7 +841,7 @@ werden können.
 
 Um diese Intervalle für eine Schätzun in R zu konstruieren verwenden wir die 
 Funktion `confint`, die als erstes Argument das geschätzte Modell und
-als Argument `level` das Signifikanzniveau $\alpha$ akzeptiert:
+als Argument `level` das Signifikanzniveau $1-\alpha$ akzeptiert:
 
 
 ```r
@@ -880,7 +895,7 @@ datensatz <- data.frame(
 Wie wir im folgenden sehen ist die geschätzte Gerade nicht exakt deckungsgleich
 zur 'wahren' Gerade, aber doch durchaus nahe dran:
 
-<img src="Chap-linmodels_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+![](Chap-linmodels_files/figure-latex/unnamed-chunk-32-1.pdf)<!-- --> 
 
 Grundsätzlich gilt, dass die erwartete Deckung der beiden dann höher ist wenn
 (1) die Annahmen für die einfache lineare Regression gut erfüllt sind und 
@@ -898,7 +913,7 @@ Kapitels aufschieben:
 
 
 
-<img src="Chap-linmodels_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+![](Chap-linmodels_files/figure-latex/unnamed-chunk-34-1.pdf)<!-- --> 
 
 
 ### Residuenanalyse
@@ -915,24 +930,34 @@ schaetzung_bip[["residuals"]]
 Wir wollen nun die Residuen verwenden um die folgenden Annahmen unseres 
 Regressionsmodells zu überprüfen:
 
-1. $\mathbb{E}(\epsilon_i)=0$
+1. **A1:** $\mathbb{E}(\epsilon_i)=0$
 
-2. $COV(\epsilon_i, \epsilon_j)=0, \quad \forall i, j$
+2. **A3: ** $Var(\epsilon_i)=\sigma^2\forall i$
 
-3. $\epsilon \propto \mathcal(N)(0, \sigma^2)$
+2. **A4: ** $Cov(\epsilon_i, \epsilon_j)=0 \forall i,j$
 
-Um die ersten beiden Annahmen zu überpüfen bilden wir die $\epsilon_i$ gegen 
-$\hat{Y}$ und erhalten so den so genannten *Tukey-Anscombe-Plot$:
+3. **A5:** $\epsilon \propto \mathcal{N}(0, \sigma^2)$
 
-<img src="Chap-linmodels_files/figure-html/unnamed-chunk-36-1.png" width="672" />
+Um die ersten drei Annahmen zu überpüfen bilden wir die $\epsilon_i$ gegen 
+$\hat{Y}$ ab und erhalten so den so genannten **Tukey-Anscombe-Plot**:
 
+![](Chap-linmodels_files/figure-latex/unnamed-chunk-36-1.pdf)<!-- --> 
+
+
+Hier geht es nun darum eine Struktur zu erkennen. 
+Wenn alle Annahmen korrekt sind, sehen wir nur eine unstrukturierte Punktewolke.
 In dem vorliegenden Fall können wir aufgrund der wenigen Datenpunkte den Plot
-nur mit großer Schwerierigkeit interpretieren. 
-Auf den ersten Blick sehen wir hier aber keine systematischen Abweichungen,
-sodass ein Abweichen von den ersten beiden Annahmen zumindest nicht unmittelbar
-ersichtlich ist. 
+aber nur mit großer Schwerierigkeit interpretieren - auch deswegen sind große
+Stichproben immer Besser.
+Es scheint aber so zu sein, dass die Varianz der Fehler mit $x_i$ steigt, also
+A3 möglicherweise verletzt ist - zum Glück kann man den OLS-Schätzer leicht
+modifizieren um damit umzugehen.
+Ansonsten ist keine Struktur zumindest unmittelbar ersichtlich.
 
-<img src="Chap-linmodels_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+Als nächstes wollen die Annahme normalverteilter Residuen überprüfen.
+Das geht mit dem so genannten **Q-Q-Plot**:
+
+![](Chap-linmodels_files/figure-latex/unnamed-chunk-37-1.pdf)<!-- --> 
 
 Bei normalverteilten Residuen würden die Punkte möglichst exakt auf der Linie
 liegen. Das ist hier nur bedingt der Fall, deswegen sollten wir skeptisch 
@@ -958,7 +983,7 @@ vor allem theoretisch identifiziert werden muss.
 Insgesamt ergibt sich aus den eben beschriebenen Schritten also folgendes 
 Vorgehen bei einer Regression:
 
-1. Aufstellen des statistischen modells
+1. Aufstellen des statistischen Modells
 
 2. Erheben und Aufbereitung der Daten
 
@@ -1039,7 +1064,7 @@ summary(reg)
 #> F-statistic: 57.38 on 1 and 178 DF,  p-value: 1.888e-12
 ```
 
-Allerdings macht es auch Sinn, dass beliebte Journale teurer sind.
+Allerdings macht es auch Sinn anzunehmen, dass beliebte Journale teurer sind.
 Daher würden wir gerne die Anzahl der Zitationen in das obige Modell als zweite 
 erklärende Variable aufnehmen. In diesem Fall würden wir mit einem *multiplen* 
 linearen Modell arbeiten:
@@ -1098,6 +1123,8 @@ werden. Das ist die berühmte *ceteris paribus* Formen.
 Der geschätzte Wert für `Seitenanzahl` sagt uns dementsprechend: "*Ceteris paribus*, 
 also alle anderen Einflussfaktoren fix gehalten, geht ein um eine Seite dickeres 
 Journal mit einem um $0.6$ Dollar höherem Abo-Preis einher."
+Beachten Sie den relevanten Unterschied zur einfachen Regression, die sehr 
+wahrscheinlich unter dem oben angesprochenen *omitted variable bias* gelitten hat.
 
 Der zweite zu beachtende Aspekt bezieht sich auf die Korrelation der verschiedenen 
 erklärenden Variablen. Die Annahmen für OLS schließen an sich nur so genannte 
