@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>D Wiederholung: Drei Verfahren der schließenden Statistik | R für die sozio-ökonomische Forschung</title>
+  <meta name="description" content="R Skript in der Version 0.3.0" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="D Wiederholung: Drei Verfahren der schließenden Statistik | R für die sozio-ökonomische Forschung" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="R Skript in der Version 0.3.0" />
+  <meta name="github-repo" content="graebnerc/RforSocioEcon" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="D Wiederholung: Drei Verfahren der schließenden Statistik | R für die sozio-ökonomische Forschung" />
+  
+  <meta name="twitter:description" content="R Skript in der Version 0.3.0" />
+  
+
+<meta name="author" content="Dr. Claudius Gräbner" />
+
+
+<meta name="date" content="2019-11-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="desk-stat.html"/>
+<link rel="next" href="refs.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R für die sozioökonomische Forschung</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Willkommen</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#verhaltnis-zur-vorlesung"><i class="fa fa-check"></i>Verhältnis zur Vorlesung</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#anderungshistorie-wahrend-des-semesters"><i class="fa fa-check"></i>Änderungshistorie während des Semesters</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a><ul>
+<li class="chapter" data-level="1.1" data-path="precons.html"><a href="precons.html#warum-r"><i class="fa fa-check"></i><b>1.1</b> Warum R?</a></li>
+<li class="chapter" data-level="1.2" data-path="precons.html"><a href="precons.html#besonderheiten-von-r"><i class="fa fa-check"></i><b>1.2</b> Besonderheiten von R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="einrichtung.html"><a href="einrichtung.html"><i class="fa fa-check"></i><b>2</b> Einrichtung</a><ul>
+<li class="chapter" data-level="2.1" data-path="einrichtung.html"><a href="einrichtung.html#installation-von-r-und-r-studio"><i class="fa fa-check"></i><b>2.1</b> Installation von R und R-Studio</a></li>
+<li class="chapter" data-level="2.2" data-path="einrichtung.html"><a href="einrichtung.html#die-r-studio-oberflache"><i class="fa fa-check"></i><b>2.2</b> Die R Studio Oberfläche</a></li>
+<li class="chapter" data-level="2.3" data-path="einrichtung.html"><a href="einrichtung.html#einrichtung-eines-r-projekts"><i class="fa fa-check"></i><b>2.3</b> Einrichtung eines R Projekts</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="einrichtung.html"><a href="einrichtung.html#arbeitsverzeichnisse-und-pfade"><i class="fa fa-check"></i><b>2.3.1</b> Arbeitsverzeichnisse und Pfade</a></li>
+<li class="chapter" data-level="2.3.2" data-path="einrichtung.html"><a href="einrichtung.html#schritt-1-projektordner-anlegen"><i class="fa fa-check"></i><b>2.3.2</b> Schritt 1: Projektordner anlegen</a></li>
+<li class="chapter" data-level="2.3.3" data-path="einrichtung.html"><a href="einrichtung.html#schritt-2-ein-r-studio-projekt-im-projektordner-erstellen"><i class="fa fa-check"></i><b>2.3.3</b> Schritt 2: Ein R-Studio Projekt im Projektordner erstellen</a></li>
+<li class="chapter" data-level="2.3.4" data-path="einrichtung.html"><a href="einrichtung.html#unterordner"><i class="fa fa-check"></i><b>2.3.4</b> Schritt 3: Relevante Unterordner erstellen</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="einrichtung.html"><a href="einrichtung.html#abschlieende-bemerkungen"><i class="fa fa-check"></i><b>2.4</b> Abschließende Bemerkungen</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#befehle-in-r-an-den-computer-ubermitteln"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#objekte-funktionen-und-zuweisungen"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#zusammenfassung"><i class="fa fa-check"></i><b>3.3</b> Zusammenfassung</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#grundlegende-objeke-in-r"><i class="fa fa-check"></i><b>3.4</b> Grundlegende Objeke in R</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.4.1</b> Funktionen</a></li>
+<li class="chapter" data-level="3.4.2" data-path="basics.html"><a href="basics.html#vektoren"><i class="fa fa-check"></i><b>3.4.2</b> Vektoren</a></li>
+<li class="chapter" data-level="3.4.3" data-path="basics.html"><a href="basics.html#logische-werte-logical"><i class="fa fa-check"></i><b>3.4.3</b> Logische Werte (logical)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="basics.html"><a href="basics.html#worter-character"><i class="fa fa-check"></i><b>3.4.4</b> Wörter (character)</a></li>
+<li class="chapter" data-level="3.4.5" data-path="basics.html"><a href="basics.html#fehlende-werte-und-null"><i class="fa fa-check"></i><b>3.4.5</b> Fehlende Werte und NULL</a></li>
+<li class="chapter" data-level="3.4.6" data-path="basics.html"><a href="basics.html#indizierung-und-ersetzung"><i class="fa fa-check"></i><b>3.4.6</b> Indizierung und Ersetzung</a></li>
+<li class="chapter" data-level="3.4.7" data-path="basics.html"><a href="basics.html#nutzliche-funktionen-fur-atomare-vektoren"><i class="fa fa-check"></i><b>3.4.7</b> Nützliche Funktionen für atomare Vektoren</a></li>
+<li class="chapter" data-level="3.4.8" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.4.8</b> Listen</a></li>
+<li class="chapter" data-level="3.4.9" data-path="basics.html"><a href="basics.html#matrizen"><i class="fa fa-check"></i><b>3.4.9</b> Matrizen</a></li>
+<li class="chapter" data-level="3.4.10" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.4.10</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#pakete"><i class="fa fa-check"></i><b>3.5</b> Pakete</a></li>
+<li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.6</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>A</b> Eine kurze Einführung in R Markdown</a><ul>
+<li class="chapter" data-level="A.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>A.1</b> Markdown vs. R-Markdown</a></li>
+<li class="chapter" data-level="A.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>A.2</b> Installation von R-Markdown</a></li>
+<li class="chapter" data-level="A.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>A.3</b> Der R-Markdown Workflow</a><ul>
+<li class="chapter" data-level="A.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>A.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
+<li class="chapter" data-level="A.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>A.3.2</b> Der Titelblock</a></li>
+<li class="chapter" data-level="A.3.3" data-path="markdown.html"><a href="markdown.html#der-textkorper"><i class="fa fa-check"></i><b>A.3.3</b> Der Textkörper</a></li>
+<li class="chapter" data-level="A.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>A.3.4</b> Kompillieren von Dokumenten</a></li>
+</ul></li>
+<li class="chapter" data-level="A.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>A.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
+<li class="chapter" data-level="A.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>A.5</b> Weitere Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="stat-stoch.html"><a href="stat-stoch.html"><i class="fa fa-check"></i><b>B</b> Wiederholung: Wahrscheinlichkeitstheorie</a><ul>
+<li class="chapter" data-level="B.1" data-path="stat-stoch.html"><a href="stat-stoch.html#einleitung-wahrscheinlichkeitstheorie-und-statistik"><i class="fa fa-check"></i><b>B.1</b> Einleitung: Wahrscheinlichkeitstheorie und Statistik</a></li>
+<li class="chapter" data-level="B.2" data-path="stat-stoch.html"><a href="stat-stoch.html#grundbegriffe-der-wahrscheinlichkeitstheorie"><i class="fa fa-check"></i><b>B.2</b> Grundbegriffe der Wahrscheinlichkeitstheorie</a></li>
+<li class="chapter" data-level="B.3" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.3</b> Diskrete Wahrscheinlichkeitsmodelle</a><ul>
+<li class="chapter" data-level="B.3.1" data-path="stat-stoch.html"><a href="stat-stoch.html#bayes-theorem-und-gesetz-der-total-wahrscheinlichkeiten"><i class="fa fa-check"></i><b>B.3.1</b> Bayes Theorem und Gesetz der total Wahrscheinlichkeiten</a></li>
+<li class="chapter" data-level="B.3.2" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-zufallsvariablen"><i class="fa fa-check"></i><b>B.3.2</b> Diskrete Zufallsvariablen</a></li>
+<li class="chapter" data-level="B.3.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-binomial-verteilung"><i class="fa fa-check"></i><b>B.3.3</b> Beispiel: die Binomial-Verteilung</a></li>
+<li class="chapter" data-level="B.3.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-poisson-verteilung"><i class="fa fa-check"></i><b>B.3.4</b> Beispiel: die Poisson-Verteilung</a></li>
+<li class="chapter" data-level="B.3.5" data-path="stat-stoch.html"><a href="stat-stoch.html#hinweise-zu-diskreten-wahrscheinlichkeitsverteilungen"><i class="fa fa-check"></i><b>B.3.5</b> Hinweise zu diskreten Wahrscheinlichkeitsverteilungen</a></li>
+</ul></li>
+<li class="chapter" data-level="B.4" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.4</b> Stetige Wahrscheinlichkeitsmodelle</a><ul>
+<li class="chapter" data-level="B.4.1" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-zv"><i class="fa fa-check"></i><b>B.4.1</b> Stetige ZV</a></li>
+<li class="chapter" data-level="B.4.2" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-uniformverteilung"><i class="fa fa-check"></i><b>B.4.2</b> Beispiel: die Uniformverteilung</a></li>
+<li class="chapter" data-level="B.4.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-normalverteilung"><i class="fa fa-check"></i><b>B.4.3</b> Beispiel: die Normalverteilung</a></li>
+<li class="chapter" data-level="B.4.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-exponentialverteilung"><i class="fa fa-check"></i><b>B.4.4</b> Beispiel: die Exponentialverteilung</a></li>
+</ul></li>
+<li class="chapter" data-level="B.5" data-path="stat-stoch.html"><a href="stat-stoch.html#zusammenfassung-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.5</b> Zusammenfassung Wahrscheinlichkeitsmodelle</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>C</b> Wiederholung: Deskriptive Statistik</a><ul>
+<li class="chapter" data-level="C.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>C.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
+<li class="chapter" data-level="C.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmae"><i class="fa fa-check"></i><b>C.2</b> Korrelationsmaße</a></li>
+<li class="chapter" data-level="C.3" data-path="desk-stat.html"><a href="desk-stat.html#hinweise-zur-quantitativen-und-visuellen-datenbeschreibung"><i class="fa fa-check"></i><b>C.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
+<li class="chapter" data-level="C.4" data-path="desk-stat.html"><a href="desk-stat.html#zusamenfassung"><i class="fa fa-check"></i><b>C.4</b> Zusamenfassung</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>D</b> Wiederholung: Drei Verfahren der schließenden Statistik</a><ul>
+<li class="chapter" data-level="D.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschatzung"><i class="fa fa-check"></i><b>D.1</b> Punktschätzung</a></li>
+<li class="chapter" data-level="D.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>D.2</b> Hypothesentests</a></li>
+<li class="chapter" data-level="D.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>D.3</b> Berechnung von Konfidenzintervallen</a></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i><b>E</b> Referenzen</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R für die sozio-ökonomische Forschung</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="stat-rep" class="section level1">
+<h1><span class="header-section-number">D</span> Wiederholung: Drei Verfahren der schließenden Statistik</h1>
+<p>In diesem Kapitel werden wir drei zentrale Verfahren der schließenden Statistik wiederholen. Dabei schließen wir unmittelbar an die beiden vorangegangenen Kapitel zur <a href="stat-stoch.html#stat-stoch">Wahrscheinlichkeitstheorie</a> und <a href="desk-stat.html#desk-stat">deskriptiven Statistik</a> an: mit Hilfe der Wahrscheinlichkeitstheorie beschreiben wir mögliche Prozesse, die unsere Daten generiert haben könnten (DGP - <em>data generating processes</em>). Mit Hilfe der deskriptiven Statistik beschreiben wir unsere Daten und wählen auf dieser Basis Kandidaten für den DGP und sinnvolle Schätzverfahren aus. In der <em>schließenden Statistik</em> geht es nun genau um diese Schätzverfahren, die es uns erlauben von unseren Daten Rückschlüsse auf die DGP zu ziehen. Eine andere Art dies auszudrücken ist: mit Hilfe der schließenden Statistik wollen wir durch Analyse unserer Stichprobe auf die Gesamtpopulation, aus der die Stichprobe gezogen wurde schließen - und dabei möglichst die Unsicherheit, die diesem Schließprozess inhärent ist genau quantifizieren.</p>
+<p>Natürlich ist wie immer Vorsicht geboten: wie bei der deskriptiven Statistik suggerieren viele der quantitativen Methoden der schließenden Statistik eine Genauigkeit und Exaktheit, die in der Wirklichkeit an der Korrektheit vieler Annahmen hängt. Man darf daher nicht den Fehler machen, die ‘genauen’ Ergebnisse der schließenden Statistik unhinterfragt zu glauben. Gleichzeitig darf man sie auch nicht verteufeln, denn viele Annahmen kann man mit ein wenig formalem Geschick und theoretischen Kenntnissen auch sinnvoll hinsichtlich ihrer Angemessenheit überprüfen.</p>
+<p>Dafür ist es wichtig, die Grundlagen der schließenden Statistik gut verstanden zu haben. In diesem Kapitel wiederholen wir diese Grundlagen grob und kombinieren die Wiederholung mit einer Einführung in die entsprechenden Befehle in R.</p>
+<p>Wie oben bereits angekündigt gehen wir in der Regel gehen wir davon aus, dass die von uns beobachteten Daten das Resultat eines gewissen Zufallsprozesses ist, den wir mit Hilfe der Wahrscheinlichkeitstheorie mathematisch beschreiben können. Da wir den DGP aber nicht direkt beobachten können, müssen wir auf Basis von empirischen Hinweisen und theoretischem Wissen entscheiden, welches Wahrscheinlichkeitsmodell wir unserer Analyse zugrunde legen. Sobald wir das getan haben, versuchen wir die Parameter, die für das von uns ausgewählte wahrscheinlichkeitstheoretische Modell relevant sind, so zu wählen, dass sie die Daten möglichst gut erklären können. Man nennt derlei Ansätze in der Statistik <strong>parametrische Verfahren</strong>, weil man mit den Daten die Parameter eines Modells bestimmen will, das man vorher selbst ausgewählt hat. Alternativ gibt es auch <strong>nicht-parametrische Verfahren</strong>: hier wird auch das Modell auf Basis der Daten bestimmt. Hier beschäftigen wir uns jedoch nur mit den parametrischen Verfahren.</p>
+<p>In diesem Kontext sind drei Vorgehen in der statistischen Analyse besonders gängig:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Punktschätzung:</strong></p></li>
+<li><p><strong>Statistische Tests:</strong></p></li>
+<li><p><strong>Konfidenzintervalle</strong></p></li>
+</ol>
+<p>Wir wollen die verschiedenen Vorgehensweisen auf anhand eines Beispiels durchspielen: Nehnem wir an wir haben einen Datensatz und wir nehmen an, dass diese Daten von einer <em>Binominalverteilung</em> stammen.<a href="#fn28" class="footnoteRef" id="fnref28"><sup>28</sup></a> Wir wissen, dass die Binominalverteilung durch zwei Parameter spezifiziert wird: <span class="math inline">\(n\)</span> als die Anzahl der Versuche und <span class="math inline">\(p\)</span> als die Erfolgswahrscheinlichkeit für den einzelnen Versuch. Wir sind nun daran interessiert auf Basis von unseren Daten Aussagen über den Paramter <span class="math inline">\(p\)</span> der zugrundeliegenden Binominalverteilung zu treffen.<a href="#fn29" class="footnoteRef" id="fnref29"><sup>29</sup></a></p>
+<p>Wenn wir einen konkreten Wert für <span class="math inline">\(p\)</span> herausbekommen wollen müssen wir ein Verfahren der <em>Punktschätzung</em> wählen.<br />
+Wenn wir wissen wollen ob ein bestimmter Wert für <span class="math inline">\(p\)</span> gegeben der Daten plausibel ist, dann sollten wir mit <em>statistischen Tests</em> (oder ‘Hypothesentests’) arbeiten. Wenn wir schließlich ein Intervall für <span class="math inline">\(p\)</span> spezifizieren wollen, das mit den Beobachtungen kompatibel ist, dann suchen wir nach einem <em>Konfidenzintervall</em> für <span class="math inline">\(p\)</span>.</p>
+<p>Im folgenden werden die drei Verfahren in größerem Detail besprochen. Der Code in diesem Kapitel verwendet dabei die folgenden Pakete:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(here)
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(ggpubr)
+<span class="kw">library</span>(latex2exp)
+<span class="kw">library</span>(icaeDesign)
+<span class="kw">library</span>(AER)
+<span class="kw">library</span>(MASS)</code></pre></div>
+<div id="punktschatzung" class="section level2">
+<h2><span class="header-section-number">D.1</span> Punktschätzung</h2>
+<p>Bei der Punktschätzung geht es darum auf Basis der Daten konkrete Werte für die Parameter der den Daten zugrundeliegenden Verteilung zu schätzen. In der Regel bezeichnet man den Parameter, den man schätzen möchte, mit dem Symbol <span class="math inline">\(\theta\)</span>. Der Grund ist Faulheit und bessere Lesbarkeit: man kann dann nämlich die selbe Notation verwenden, egal welche zugrundeliegende Verteilung man vorher ausgewählt hat.</p>
+<p>Im vorliegenden Fall wollen wir also einen konkreten Wert für <span class="math inline">\(\theta\)</span> auf Basis der Daten schätzen. Dabei ist ganz wichtig zu beachten, dass wir den wahren Wert von <span class="math inline">\(\theta\)</span> in der Regel nicht kennen und auch nie genau kennen lernen werden.</p>
+<p>Um zwischen dem wahren Wert von <span class="math inline">\(\theta\)</span> und dem Schätzer für <span class="math inline">\(\theta\)</span> in unserer Notation unterscheiden zu können, verwenden wir das <span class="math inline">\(\hat{\cdot}\)</span>-Symbol. Entsprechend bezeichnet <span class="math inline">\(\hat{\theta}\)</span> einen <strong>Schätzer</strong> für <span class="math inline">\(\theta\)</span>.</p>
+<p>Ein Schätzer ist dabei eine Funktion, die als Input unsere Daten nimmt, und als Output einen Wert ausgibt, der eine möglichst gute Schätzung für <span class="math inline">\(\theta\)</span> darstellt. Entsprechend können wir für eine Stichprobe vom Umfang <span class="math inline">\(n\)</span> schreiben:</p>
+<p><span class="math display">\[\hat{\theta}: \mathbb{R}^n \rightarrow \mathbb{R}, \quad \hat{\theta}=\hat{\theta}(x_1,...,x_n)\]</span></p>
+<p>Damit ist auch klar, dass es sich bei einem Schätzer um eine Zufallsvariable (ZV) handelt: Funktionen von ZV sind selbst ZV und unsere Daten <span class="math inline">\(x_1,...,x_n\)</span> interpretieren wir ja als Realisierungen von ZV <span class="math inline">\(X_1,...,X_n\)</span>. Der unbekannt wahre Wert <span class="math inline">\(\theta\)</span> ist dagegen keine ZV.</p>
+<blockquote>
+<p><strong>Hinweis: Schätzer vs. geschätzter Wert</strong> Die Unterscheidung zwischen einem Schätzer (<em>estimator</em>) und einem geschätzten Wert (<em>estimate</em>) ist in der Statistik zentral: der Schätzer beschreibt die Prozedur einen geschätzten Wert zu bekommen. Er nimmt in der Regel die Form einer Formel oder eines Algorithmus an. Der <em>geschätzte Wert</em> ist für einen konkreten Anwendungsfall der Wert, den der Schätzer liefert.</p>
+</blockquote>
+<p>Die Konstruktion von Schätzern ist keine einfache Aufgabe. Wir lernen im Laufe der Veranstaltungen verschiedene Methoden, wie die <em>Momentenmethode</em> und die <em>Maximum-Likelihood Methode</em> genauer kennen.</p>
+</div>
+<div id="hypothesentests" class="section level2">
+<h2><span class="header-section-number">D.2</span> Hypothesentests</h2>
+<p>Wir verwenden statistische Tests um Fragen der folgenden Art zu beantworten: gegeben der Daten die wir sehen und der Annahmen, die wir treffen, ist ein bestimmter Wert für Parameter <span class="math inline">\(\theta\)</span> plausibel?</p>
+<blockquote>
+<p><strong>Beispiel:</strong> Das klassische Beispiel ist die Frage, ob eine Münze manipuliert wurde oder nicht. Wenn wir beim Ereignis ‘Zahl’ von Erfolg sprechen, dann können wir <span class="math inline">\(n\)</span> Münzwürfe als Binomialverteilung mit <span class="math inline">\(B(n,p)\)</span> modellieren. Bei einer nicht manipulierten Münze wäre <span class="math inline">\(p=0.5\)</span>: die Wahrscheinlichkeit, dass wir das Ereignis ‘Zahl’ erleben liegt beim einzelnen Wurf bei 50%. Nennen wir das unsere Ausgangs-, oder <em>Nullhypothese</em>. Zur Überprüfung dieser Hypothese werfen wir die Münze nun 100 mal. Nehmen wir nun an, dass wir das Ereignis ‘Zahl’ in 60 von 100 Würfen beobachten. Bedeutet das, dass unsere Nullhypothese von <span class="math inline">\(p=0.5\)</span> plausibel ist? Um diese Frage zu beantworten fragen wir uns, wie wahrscheinlich es bei <span class="math inline">\(p=0.5\)</span> wäre, tatsächlich 60 mal Zahl zu beobachten. Diese Wahrscheinlichkeit können wir berechnen, aus Tabellen auslesen oder von R bestimmen lassen (die genaue Verwendung der Funktion <code>binom.test()</code> wird unten genauer besprochen):</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b_test_object &lt;-<span class="st"> </span><span class="kw">binom.test</span>(<span class="dt">x =</span> <span class="dv">60</span>, <span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">p =</span> <span class="fl">0.5</span>)
+b_test_object[[<span class="st">&quot;p.value&quot;</span>]]</code></pre></div>
+<pre><code>## [1] 0.05688793</code></pre>
+<blockquote>
+<p>Die Wahrscheinlichkeit liegt also bei 5.7 %. Dies ist der so genannte p-Wert. In der Regel lehnt man eine Hypothese ab, wenn <span class="math inline">\(p&lt;0.1\)</span> oder <span class="math inline">\(p&lt;0.05\)</span>. Im vorliegenden Falle ist unsere Hypothese einer fairen Münze aber kompatibel mit der Beobachtung von 60 mal Zahl.</p>
+</blockquote>
+<p>Wir wollen nun das Vorgehen aus dem Beispiel generalisieren und das standardmäßige Vorgehen bei einem statistischen Test zusammenfassen:<a href="#fn30" class="footnoteRef" id="fnref30"><sup>30</sup></a></p>
+<p><strong>1. Schritt: Aufstellen eines wahrscheinlichkeitstheoretischen Modells</strong> Zunächst müssen wir eine Annahme über den Prozess treffen, welcher der Generierung unserer Daten zugrunde liegt. Im Beispiel oben haben wir eine Binomialverteilung <span class="math inline">\(\mathcal{B}(n,p)\)</span> angenommen. Diese Entscheidung muss auf Basis von theoretischen und empirischen Überlegungen getroffen werden. Für diskrete Daten macht es z.B. keinen Sinn eine stetige Verteilung anzunehmen und umgekehrt.</p>
+<p><strong>2. Schritt: Formulierung der Nullhypothese</strong> Die Hypothese, die wir mit unseren Daten testen wollen wird <strong>Nullhypothese</strong> genannt. Wir wollen also immer fragen, ob <span class="math inline">\(H_0\)</span> gegeben der Daten plausibel ist. Die Formulierung von <span class="math inline">\(H_0\)</span> wird also durch unser Erkenntnisinteresse bestimmt. In der Regel formulieren wir eine Hypothese, die wir verwerfen wollen als <span class="math inline">\(H_0\)</span>.<a href="#fn31" class="footnoteRef" id="fnref31"><sup>31</sup></a> Wenn wir also die Hypothese bezüglich eines Parameters <span class="math inline">\(\theta\)</span> testen wollen, dass <span class="math inline">\(\beta\neq 0\)</span>, dann formulieren wir <span class="math inline">\(H_0: \theta = 0\)</span>. Anders formuliert: wir möchten andere mit den Daten überzeugen, dass <span class="math inline">\(H_0\)</span> falsch ist.</p>
+<p>Aus der Nullhypothese und unserem Erkenntnisinteresse ergibt sich die <strong>Alternativhypothese</strong> <span class="math inline">\(H_1\)</span>. Sie umfasst alle interessierenden Ereignsse, die <span class="math inline">\(H_0\)</span> widersprechen. Je nach dem wie wir <span class="math inline">\(H_1\)</span> formulieren unterscheiden wir folgende Arten von Hypothesentests:</p>
+<p><span class="math inline">\(H_0: \theta=0\)</span> und <span class="math inline">\(H_1: \theta\neq 0\)</span>: hier sprechen wir von einem <strong>zwei-seitigen Test</strong>, denn wir machen keine Aussage darüber ob die Alternative zu <span class="math inline">\(H_0\)</span> entweder in <span class="math inline">\(\theta&gt;0\)</span> oder <span class="math inline">\(\theta&lt;0\)</span> liegt. Gemeinsam decken <span class="math inline">\(H_0\)</span> und <span class="math inline">\(H_1\)</span> hier alle möglichen Ereignisse ab.</p>
+<p><span class="math inline">\(H_0: \theta=0\)</span> und <span class="math inline">\(H_1: \theta&gt; 0\)</span>: Hier sprechen wir von einem <strong>einseitigen Test nach oben</strong>. Wir fragen uns hier nur ob <span class="math inline">\(\theta\)</span> größer ist als 0. Der Fall, dass <span class="math inline">\(\theta&lt;0\)</span>, wird nicht beachtet. Natürlich können wir den einseitigen Test auch andersherum formulieren als <span class="math inline">\(H_0: \theta=0\)</span> und <span class="math inline">\(H_1: \theta&lt; 0\)</span>. Dann sprechen wir von einem <strong>einseitigen Test nach unten</strong>.</p>
+<blockquote>
+<p><strong>Beispiel:</strong> Wenn wir unser Münzbeispiel von oben betrachten können wir die drei verschiedenen Testarten folgendermaßen konkretisieren: beim <em>zweiseitigen Test</em> wäre <span class="math inline">\(H_0: p=0.5\)</span> und <span class="math inline">\(H_1: p\neq 0.5\)</span> und wir würden ganz allgemein fragen ob die Münze manipuliert ist. Beim <strong>einseitigen Test nach oben</strong> würden wir <span class="math inline">\(H_0: p=0.5\)</span> und <span class="math inline">\(H_1: p&gt;0.5\)</span> testen und damit fragen ob die Münze <em>zugunsten von Zahl</em> manipuliert wurde. Wir lassen dabei die Möglichkeit, dass die Münze zugunsten von Kopf manipuliert wurde völlig außen vor. Beim <strong>einseitigen Test nach unten</strong> wäre es genau umgekehrt: <span class="math inline">\(H_0: p=0.5\)</span> und <span class="math inline">\(H_1: p&lt;0.5\)</span>. KONKRETE BERECHNUNGEN FÜR DEN P WERT</p>
+</blockquote>
+<p><strong>3. Schritt: Berechnung einer Teststatistik</strong> Wir überlegen nun welche Verteilung unserer Daten wir erwarten würden <em>wenn die Nullhypothese korrekt wäre</em>. Wenn wir im ersten Schritt also eine Binomialverteilung mit <span class="math inline">\(n=100\)</span> angenommen haben und <span class="math inline">\(H_0: p=0.5\)</span>, dann würden wir vermuten, dass unsere Daten gemäß <span class="math inline">\(B(n, 0.5)\)</span> verteilt sind.<a href="#fn32" class="footnoteRef" id="fnref32"><sup>32</sup></a> Diese theoretische Verteilung können wir dann mit den tatsächlichen Daten vergleichen und fragen, wie wahrscheinlich es ist diese Daten tatsächlich so beobachten zu können wenn <span class="math inline">\(H_0\)</span> wahr wäre:</p>
+<p><img src="ChapA-SchliesendeStatistik_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>4. Schritt: Festlegung des Signifikanzniveaus</strong>: Wir müssen nun festlegen welches Risiko wir bereit sind einzugehen, unsere Nullhypothese <span class="math inline">\(H_0\)</span> zu verwerfen, obwohl sie eigentlich richtig ist. Die maximale Wahrscheinlichkeit für dieses unglückliche Ereigns bezeichnen wir mit <span class="math inline">\(\alpha\)</span> uns sie bestimmt unser Signifikanzniveau. Typischweise nimmt man als Standardwert <span class="math inline">\(\alpha=0.05\)</span>, d.h. wir konstruieren unsere Test so, dass die Wahrscheinlichkeit, dass wir <span class="math inline">\(H_0\)</span> fälschlicherweise verwerfen maximal <span class="math inline">\(\alpha=0.05\)</span> beträgt. Mit anderen Worten, wir legen hier die Wahrscheinlichkeit für einen <strong>Fehler 1. Art</strong> explizit fest.<a href="#fn33" class="footnoteRef" id="fnref33"><sup>33</sup></a></p>
+<p>Aus dem gewählten Signifikanzniveau ergibt sich dann der <strong>Verwerfungsbereich</strong> für unsere Nullhypothese. Wenn unsere beobachteten Daten im Verwerfungsbereich liegen wollen wir <span class="math inline">\(H_0\)</span> als verworfen betrachten.<a href="#fn34" class="footnoteRef" id="fnref34"><sup>34</sup></a> Es ergibt sich logisch aus dem vorher gesagten, dass ein höheres <span class="math inline">\(\alpha\)</span> mit einem größeren Verwerfungsbereich einhergeht.</p>
+<p>Der Verwerfungsbereich für das oben darstellte Beispiel mit <span class="math inline">\(H_0: \theta=0\)</span> und <span class="math inline">\(H_1: \theta\neq 0\)</span> ergibt sich für <span class="math inline">\(\alpha=0.05\)</span> also folgendermaßen:</p>
+<p><img src="ChapA-SchliesendeStatistik_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>5. Schritt: Die Entscheidung</strong> Wenn sich die beobachtbaren Daten im Verwerfungsbereich befinden wollen wir <span class="math inline">\(H_0\)</span> verwerfen und die Nullhypothese entsprechend als verworfen ansehen. Falls nicht kann die Nullhypothese nicht verworfen werden - was aber nicht bedeutet, dass sie <em>verifiziert</em> wurde. Letzteres ist mit statistischen Tests nicht möglich.</p>
+<p>In <code>R</code> werden die gerade besprochenen Tests in der Regel in einer Funktion zusammengefasst. Die Wahl der Funktion wird dabei von der im ersten Schritt angenommenen Verteilung bestimmt. Im Falle der Binomialverteilung verwenden wir die Funktion <code>binom.test()</code>, welche eine Liste mit relevanten Informationen über den Test erstellt. Es macht Sinn, dieser Liste einen Namen zuzuweisen und dann die relevanten Informationen explizit abzurufen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b_test_object &lt;-<span class="st"> </span><span class="kw">binom.test</span>(<span class="dt">x =</span> <span class="dv">60</span>, <span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)
+<span class="kw">typeof</span>(b_test_object)</code></pre></div>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<p>Bevor wir uns mit dem Ergebnis befassen wollen wir uns die notwendigen Argumente von <code>binom.test()</code> genauer anschauen (eine gute Erläuterung liefert wie immer <code>help(binom.test)</code>).</p>
+<p>Über das Argument <code>x</code> informieren wir R über die tatsächlich beobachtete Anzahl von Erfolgen (in unserem Fall hier 60). Das Argument <code>n</code> spezifiziert die Anzahl der Beobachtungen. Mit <code>p</code> geben wir den unter <span class="math inline">\(H_0\)</span> angenommenen Wert für die Erfolgswahrscheinlichkeit an. Mit dem Argument <code>alternative</code> informieren wir R schließlich darüber ob wir einen zweiseitigen (<code>alternative = &quot;two.sided&quot;</code>), einen einseitigen Test nach oben (<code>alternative = &quot;greater&quot;</code>) oder einen einseitigen Test nach unten (<code>alternative = &quot;less&quot;</code>) durchführen wollen.</p>
+<p>Wenn wir einen Überblick über die Ergebnisse bekommen wollen können wir das Objekt direkt aufrufen. Die Liste wurde innerhalb der Funktion <code>binom.test</code> so modifiziert, dass uns die Zusammenfassung visuell ansprechend aufbereitet angezeigt wird:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b_test_object</code></pre></div>
+<pre><code>## 
+##  Exact binomial test
+## 
+## data:  60 and 100
+## number of successes = 60, number of trials = 100, p-value =
+## 0.05689
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.4972092 0.6967052
+## sample estimates:
+## probability of success 
+##                    0.6</code></pre>
+<p>Die Überschrift macht deutlich was für ein Test durchgeführt wurde und die ersten beiden Zeilen fassen noch einmal die Daten zusammen. In der zweiten Zeile findet sich zudem der <strong>p-Wert</strong>. Der p-Wert gibt die Wahrscheinlichkeit an, mit der die beobacheten Daten unter <span class="math inline">\(H_0\)</span> tatsächlich beobachtet werden können. Wir können den p-Wert aus der theoretischen Verteilung von oben auf der y-Achse ablesen, wenn wir den beobachteten Wert auf der x-Achse suchen:</p>
+<p><img src="ChapA-SchliesendeStatistik_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Die nächste Zeile formuliert dann die Alternativhypothese aus (und hängt entsprechend vom Argument <code>alternative</code> ab). Die Zeilen danach geben das 95%-Intervall an (mehr dazu im nächsten Abschnitt) und den Punktschätzer für den zu testenden Parameter (siehe vorheriger Abschnitt).</p>
+<p>Wenn wir wissen wollen welche Informationen die so erstellte Liste sonst noch für uns bereit hält, bzw. wie wir diese Informationen direkt ausgeben lassen können, sollten wir uns die Struktur der Liste genauer ansehen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(b_test_object)</code></pre></div>
+<pre><code>## List of 9
+##  $ statistic  : Named num 60
+##   ..- attr(*, &quot;names&quot;)= chr &quot;number of successes&quot;
+##  $ parameter  : Named num 100
+##   ..- attr(*, &quot;names&quot;)= chr &quot;number of trials&quot;
+##  $ p.value    : num 0.0569
+##  $ conf.int   : num [1:2] 0.497 0.697
+##   ..- attr(*, &quot;conf.level&quot;)= num 0.95
+##  $ estimate   : Named num 0.6
+##   ..- attr(*, &quot;names&quot;)= chr &quot;probability of success&quot;
+##  $ null.value : Named num 0.5
+##   ..- attr(*, &quot;names&quot;)= chr &quot;probability of success&quot;
+##  $ alternative: chr &quot;two.sided&quot;
+##  $ method     : chr &quot;Exact binomial test&quot;
+##  $ data.name  : chr &quot;60 and 100&quot;
+##  - attr(*, &quot;class&quot;)= chr &quot;htest&quot;</code></pre>
+<p>Wir sehen hier, dass wir viele der Werte wie bei Listen üblich direkt anwählen können, z.B. den p-Wert:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b_test_object[[<span class="st">&quot;p.value&quot;</span>]]</code></pre></div>
+<pre><code>## [1] 0.05688793</code></pre>
+<p>Oder das den Punktschätzer für <span class="math inline">\(p\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b_test_object[[<span class="st">&quot;estimate&quot;</span>]]</code></pre></div>
+<pre><code>## probability of success 
+##                    0.6</code></pre>
+<p>Wenn wir eine andere Verteilung annehmen, verwenden wir auch eine andere Testfunktion, das Prinzip ist aber sehr ähnlich. Wollen wir z.B. für einen beobachtbaren Datensatz die Hypothese testen, ob der Datensatz aus einer Normalverteilung mit dem Erwartungswert <span class="math inline">\(\mu=0.5\)</span> stammen könnte, würden wir die Funktion <code>t.test()</code> verwenden.</p>
+<p>Zum Abschluss dieses Abschnitts wollen wir kurz auf die <em>Macht von statistischen Tests</em> (engl: <em>Power</em>) und auf die <em>Wahl zwischen einseitigen und zweiseitigen Tests</em> eingehen.</p>
+<p><strong>Die Macht eines Tests und Fehler 1. und 2. Art</strong>:</p>
+<p>Wir sprechen von einem <em>Fehler 1. Art</em> wenn wir auf Basis eines Tests <span class="math inline">\(H_0\)</span> verwerfen obwohl sie eigentlich richtig ist. Von einem <em>Fehler 2. Art</em> sprechen wir, wenn wir <span class="math inline">\(H_0\)</span> nicht verwerfen, obwohl <span class="math inline">\(H_0\)</span> eigentlich falsch ist.</p>
+<p>In der Wissenschaft hat es sich ergeben, dass man vor allem auf den Fehler 1. Art schaut. Denn man möchte auf gar keinen Fall eine Nullhypothese verwerfen, obwohl sie eigentlich richtig ist. In der Praxis würde dies bedeuten, eine Aussage zu vorschnell zu treffen. Deswegen wählt man in den empirischen Studien das Signifikanzniveau so, dass die Wahrscheinlichkeit für einen Fehler 1. Art sehr klein ist, in der Regel 5%.</p>
+<p>Leider geht damit eine vergleichsweise hohe Wahrscheinlichkeit für einen <em>Fehler 2. Art</em> einher, denn die beiden Fehler sind untrennbar miteinender verbunden: reduzieren wir bei gleichbleibender Stichprobengröße die Wahrscheinlichkeit für einen Fehler 1. Art, erhöhen wir damit die Wahrscheinlichkeit für einen Fehler 2. Art und umgekehrt.</p>
+<p>Dennoch ist auch ein Fehler 2. Art relevant. Die Wahrscheinlichkeit für einen solchen Fehler ist invers mit der <strong>Macht</strong> (engl: <em>power</em>) eines Tests verbunden, die definiert ist als:</p>
+<p><span class="math display">\[\text{Macht}=1-\mathbb{P}(\text{Fehler 2. Art})\]</span></p>
+<p>Eine vertiefte Diskussion von Macht und dem Trade-Off zwischen Fehlern 1. und 2. Art findet zu einem späteren Zeitpunkt in der Vorlesung statt.</p>
+<p><strong>Die Wahl zwischen einseitigen und zweiseitigen Tests</strong>:</p>
+<p>Wir haben oben am Beispiel der potenziell manipulierten Münze folgendermaßen zwischen einseitigen und zweiseitigen Tests unterschieden: Beim zwei-seitigen Test testen wir <span class="math inline">\(H_0: p=0.5\)</span> gegen <span class="math inline">\(H_1: p\neq 0.5\)</span>. Wir überprüfen also ob die Münze entweder zugunsten oder zulasten von Zahl manipuliert wurde.</p>
+<p>Beim einseitigen Test testen wir nur gegen eine Alternative: <span class="math inline">\(H_0: p=0.5\)</span> bleibt gleich allerdings ist die Alternativhypothese nun entweder <span class="math inline">\(H_1: p&lt;0.5\)</span> oder <span class="math inline">\(H_1: p&gt;0.5\)</span>. Im ersten Fall überprüfen wir also nur ob die Münze zugunsten von Zahl manipuliert wurde, im zweiten Fall nur ob die Münze zugunsten von Kopf manipuliert wurde.</p>
+<p>Man mag sich nun fragen wo der Vorteil von einseitigen Tests liegt, erscheint der zweiseitige Test doch allgemeiner. Letzteres ist zwar richtig, allerdings ist die Macht des zweiseitigen Tests im Vergleich zum einseitigen Tests deutlich geringer. Das bedeutet, dass wenn möglich immer der einseitige Test verwendet werden soll. Die Beurteilung ob ein einseitiger oder zweiseitiger Test angemessen ist, muss auf Basis von Vorwissen getroffen werden, und häufig spielen theoretische Überlegungen oder Kontextwissen eine wichtige Rolle.</p>
+</div>
+<div id="berechnung-von-konfidenzintervallen" class="section level2">
+<h2><span class="header-section-number">D.3</span> Berechnung von Konfidenzintervallen</h2>
+<p>Konfidenzintervalle für einen Parameter geben eine Antwort auf die Frage: <em>“Welche Werte für den interessierenden Parameter sind mit unseren Daten kompatibel?”</em> Wie bei Hypothesentests müssen wir zur Berechnung von Konfidenzintervallen ein Signifikanzniveau <span class="math inline">\(\alpha\)</span> festlegen. Das liegt daran, dass zwischen Konfidenzintervallen und Hypothesentests eine enge Verbindung besteht: ein Konfidenzintervall <span class="math inline">\(I_{\alpha}\)</span> besteht aus allen Parameterwerten, die bei einem zweiseitigen Hypothesentest zum Signifikanzniveau <span class="math inline">\(\alpha\)</span> als Nullhypothese nicht verworfen werden können.</p>
+<p>Wir haben oben auch schon gesehen, dass das Konfidenzintervall ganz leicht aus den typischen Test-Funktionen in R ausgelesen werden kann. Für das Beispiel der Binomialverteilung schreiben wir daher nur:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b_test_object &lt;-<span class="st"> </span><span class="kw">binom.test</span>(<span class="dt">x =</span> <span class="dv">60</span>, <span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)
+b_test_object[[<span class="st">&quot;conf.int&quot;</span>]]</code></pre></div>
+<pre><code>## [1] 0.4972092 0.6967052
+## attr(,&quot;conf.level&quot;)
+## [1] 0.95</code></pre>
+<p>Die Interpretation dieses Intervals ist dabei die folgende: wenn der zugrundeliegende Datengenerierungsprozess sehr häufig wiederholt werden würde, dann würde 95% der jeweils berechneten 95%-Konfidenzintervalle diesen wahren Wert enthalten. Wir können <strong>auf gar keinen Fall</strong> behaupten, dass ein bestimmtes Konfidenzintervall den wahren Parameterwert mit einer Wahrscheinlichkeit von <span class="math inline">\(95\)</span>% enthält. Eine solche Aussage macht auch keinen Sinn: der wahre Wert ist - wie eingangs beschrieben - keine Zufallsvariable.<a href="#fn35" class="footnoteRef" id="fnref35"><sup>35</sup></a></p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="28">
+<li id="fn28"><p>Wenn Sie nicht mehr wissen, was eine Binominalverteilung ist finden Sie im <a href="stat-stoch.html#stat-stoch">Anhang zur Wahrscheinlichkeitstheorie</a> eine Erläuternug.<a href="stat-rep.html#fnref28">↩</a></p></li>
+<li id="fn29"><p>Die Annahme, dass die Daten <em>überhaupt</em> von einer Binominalverteilung stammen wird hier nicht in Frage gestellt! Das ist genau die Vor-Annahme, die wir bei parametrischen Verfahren treffen müssen.<a href="stat-rep.html#fnref29">↩</a></p></li>
+<li id="fn30"><p>Wir beschränken uns hier auf so genannte <em>parametrische</em> Tests. Das bedeutet, dass wir zunächst ein bestimmtes Modell für den Datengenerierungsprozess annehmen. Im Beispiel war dieses Modell die Binomialverteilung. Es gibt auch Tests, die ohne eine solche Annahme auskommen. Sie werden <em>nicht-parametrisch</em> genannt und später in dem Kurs besprochen.<a href="stat-rep.html#fnref30">↩</a></p></li>
+<li id="fn31"><p>An machen Stellen der sozial- und wirtschaftswissenschaftlichen Literatur wird anstelle von “verwerfen” auch das Wort “falsifizieren” benutzt um die Zurückweisung der Null-Hypothese zu umschreiben. Diese Wortwahl ist allerdings irreführend, da hier nicht Aussagen aus einer Theorie widerlegt werden, die einen gewissen Zusammenhang behaupten. Im Gegensatz wird die Hypothese zurückgewiesen, dass der vermutete Zusammenhang eben nicht besteht - die zu Grunde gelegte Theorie wird also durch die Zurückweisung der Null-Hypothese im Normalfall nicht widerlegt sondern vielmehr bestätigt.<a href="stat-rep.html#fnref31">↩</a></p></li>
+<li id="fn32"><p>In der Praxis wird die Berechnung der Teststatistik durch eine R Funktion in einem der nächsten Schritte übernommen, aber es macht Sinn, sich das grundsätzliche Vorgehen dennoch in dieser Sequenz bewusst zu machen.<a href="stat-rep.html#fnref32">↩</a></p></li>
+<li id="fn33"><p>Wir sprechen von einem <em>Fehler 1. Art</em> wenn wir auf Basis eines Tests <span class="math inline">\(H_0\)</span> verwerfen obwohl sie eigentlich richtig ist. Von einem <em>Fehler 2. Art</em> sprechen wir, wenn wir <span class="math inline">\(H_0\)</span> nicht verwerfen, obwohl <span class="math inline">\(H_0\)</span> eigentlich falsch ist.<a href="stat-rep.html#fnref33">↩</a></p></li>
+<li id="fn34"><p>Ganz im Sinne von Popper können mit Hilfe von statistischen Tests alle Hypothesen immer nur verworfen werden. Verifizieren können wir nichts!<a href="stat-rep.html#fnref34">↩</a></p></li>
+<li id="fn35"><p>Diese Interpretation ist etwas sperrig und das hängt mit dem <a href="https://de.wikipedia.org/wiki/Frequentistischer_Wahrscheinlichkeitsbegriff">frequentistischen Wahrscheinlichkeitsbegriff</a> zusammen, den wir hier verwenden. Einen philosophisch attraktiveren Weg stellt der <a href="https://de.wikipedia.org/wiki/Bayesscher_Wahrscheinlichkeitsbegriff">bayessche Wahrscheinlichkeitsbegriff</a>, auf dem die die Bayesianische Statistik aufbaut. Letztere werden wir hier allerdings nicht behandeln können<a href="stat-rep.html#fnref35">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="desk-stat.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="refs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["R-SocioEcon-dt.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

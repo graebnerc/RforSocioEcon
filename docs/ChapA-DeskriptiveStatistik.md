@@ -30,7 +30,8 @@ Hilfe deskriptiver Statistik besser verstehen.
 
 Der Code in diesem Kapitel verwendet die folgenden Pakete:
 
-```{r, message=FALSE}
+
+```r
 library(here)
 library(tidyverse)
 library(data.table)
@@ -44,9 +45,34 @@ library(MASS)
 Für die direkte Anwendung in R verwenden wir einen Datensatz zu ökonomischen 
 Journalen:
 
-```{r}
+
+```r
 journal_daten <- fread(here("data/tidy/journaldaten.csv"))
 head(journal_daten)
+```
+
+```
+##    Kuerzel                                               Titel
+## 1:    APEL                   Asian-Pacific Economic Literature
+## 2:  SAJoEH           South African Journal of Economic History
+## 3:      CE                             Computational Economics
+## 4:  MEPiTE MOCT-MOST Economic Policy in Transitional Economics
+## 5:    JoSE                          Journal of Socio-Economics
+## 6:   LabEc                                    Labour Economics
+##                    Verlag Society Preis Seitenanzahl Buchstaben_pS
+## 1:              Blackwell      no   123          440          3822
+## 2: So Afr ec history assn      no    20          309          1782
+## 3:                 Kluwer      no   443          567          2924
+## 4:                 Kluwer      no   276          520          3234
+## 5:               Elsevier      no   295          791          3024
+## 6:               Elsevier      no   344          609          2967
+##    Zitationen Gruendung Abonnenten           Bereich
+## 1:         21      1986         14           General
+## 2:         22      1986         59  Economic History
+## 3:         22      1987         17       Specialized
+## 4:         22      1991          2      Area Studies
+## 5:         24      1972         96 Interdisciplinary
+## 6:         24      1994         15             Labor
 ```
 
 Dieser Datensatz enthält Informationen über Preise, Seiten, Zitationen und
@@ -66,12 +92,17 @@ Das **arithmetische Mittel** ist ein klassisches Lagemaß und definiert als:
 $$\bar{x}=\frac{1}{N}\sum_{i=1}^Nx_i$$
 In R wird das arithmetische Mittel mit der Funktion `mean()` berechnet:
 
-```{r}
+
+```r
 avg_preis <- mean(journal_daten[["Preis"]])
 avg_preis
 ```
 
-Der durchschnittliche Preis der Journale ist also `r avg_preis`.
+```
+## [1] 417.7222
+```
+
+Der durchschnittliche Preis der Journale ist also 417.7222222.
 
 Die **Standardabweichung** ist dagegen ein Maß für die Streuung der Daten
 und wird als die Quadratwurzel der *Varianz* definiert:^[Man beachte den im 
@@ -82,7 +113,8 @@ $$s_x=\sqrt{Var(x)}=\sqrt{\frac{1}{N-1}\sum_{i=1}^N\left(x_i-\bar{x}\right)^2}$$
 Wir verwenden in R die Funktionen `var()` und `sd()` um Varianz und 
 Standardabweichung zu berechnen:
 
-```{r}
+
+```r
 preis_var <- var(journal_daten[["Preis"]])
 preis_sd <- sd(journal_daten[["Preis"]])
 cat(paste0(
@@ -91,17 +123,34 @@ cat(paste0(
 ))
 ```
 
+```
+## Varianz: 148868.335816263
+## Standardabweichung: 385.834596448094
+```
+
 Das $\alpha$-**Quantil** eines Datensatzes ist der Wert, bei dem $\alpha\cdot 100\%$
 der Datenwerte kleiner und $(1-\alpha)\cdot 100\%$ der Datenwerte kleiner sind.
 In R können wir Quantile einfach mit der Funktion `quantile()` berechnen.
 Diese Funktion akzeptiert als erstes Argument einen Vektor von Daten und als
 zweites Argument ein oder mehrere Werte für $\alpha$:
 
-```{r}
+
+```r
 quantile(journal_daten[["Preis"]], 0.5)
 ```
-```{r}
+
+```
+## 50% 
+## 282
+```
+
+```r
 quantile(journal_daten[["Preis"]], c(0.25, 0.5, 0.75))
+```
+
+```
+##    25%    50%    75% 
+## 134.50 282.00 540.75
 ```
 
 Diese Werte können folgendermaßen interpretiert werden:
@@ -120,22 +169,38 @@ akzeptieren auch die Funktionen `mean()`, `var()`, `sd()` und `quantile()` das
 optionale Argument `na.rm`, mit dem fehlende Werte vor der Berechnung eliminiert 
 werden können:
 
-```{r, error=TRUE}
+
+```r
 test_daten <- c(1:10, NA)
 quantile(test_daten, 0.75)
 ```
-```{r}
+
+```
+## Error in quantile.default(test_daten, 0.75): missing values and NaN's not allowed if 'na.rm' is FALSE
+```
+
+```r
 quantile(test_daten, 0.75, na.rm = T)
+```
+
+```
+##  75% 
+## 7.75
 ```
 
 Ein häufig verwendetes Steuungsmaß, das im Gegensatz zu Standardabweichung und
 Varianz robust gegen Ausreißer ist, ist die **Quartilsdifferenz**:
 
-```{r}
+
+```r
 quantil_25 <- quantile(journal_daten[["Preis"]], 0.25, names = F)
 quantil_75 <- quantile(journal_daten[["Preis"]], 0.75, names = F)
 quant_differenz <- quantil_75 - quantil_25
 quant_differenz
+```
+
+```
+## [1] 406.25
 ```
 
 Das optionale Argument `names=FALSE` unterdrückt die Benennung der Ergebnisse.
@@ -192,9 +257,14 @@ Wir könnten uns nun fragen, ob dickere Journale tendenziell teurer sind.
 Dazu können wir, wenn wir uns nur für den linearen Zusammenhang interessieren,
 den Pearson-Korrelationskoeffizienten mit der Funktion `cor()` berechnen:
 
-```{r}
+
+```r
 cor(journal_daten[["Preis"]], journal_daten[["Seitenanzahl"]], 
     method = "pearson")
+```
+
+```
+## [1] 0.4937243
 ```
 
 Wir sehen also, dass es tatsächlich einen mittleren positiven linearen 
@@ -225,96 +295,8 @@ können dem gleichen Korrelationskoeffizienten sehr unterschiedliche nicht-linea
 Zusammenhänge zugrunde liegen:
 
 
-```{r, fig.align='center', echo=FALSE}
-c0_1a <- -50:50
-c0_1b <- sapply(-50:50, function(x) x**2)
-c0_1 <- ggplot(data.frame(x=c0_1a, 
-                          y=c0_1b
-                          ),
-       aes(x=x, y=y)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggtitle(paste0("Korrelation: ", 
-                 round(cor(c0_1a, c0_1b, method = "pearson"), 2))) +
-  theme_icae()
 
-c0_2a <- -50:50
-c0_2b <- sapply(-50:50, function(x) -x**2)
-c0_2 <- ggplot(data.frame(x=c0_2a, 
-                          y=c0_2b
-                          ),
-       aes(x=x, y=y)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggtitle(paste0("Korrelation: ", 
-                 round(cor(c0_2a, c0_2b, method = "pearson"), 2))) +
-  theme_icae()
-
-set.seed(123)
-data = mvrnorm(n=100, 
-               mu=c(0, 0), 
-               Sigma=matrix(c(2.5, 1, 1, 2.5), 
-                            nrow=2), 
-               empirical=TRUE)
-c0_3a = data[, 1]  
-c0_3b = data[, 2] 
-c0_3 <- ggplot(data.frame(x=c0_3a, 
-                          y=c0_3b
-                          ),
-       aes(x=x, y=y)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggtitle(paste0("Korrelation: ", 
-                 round(cor(c0_3a, c0_3b, method = "pearson"), 2))) +
-  theme_icae()
-
-set.seed(123)
-data = mvrnorm(n=100, 
-               mu=c(0, 0), 
-               Sigma=matrix(c(2.5, 0.0, 0.0, 2.0), 
-                            nrow=2), 
-               empirical=TRUE)
-c0_4a = data[, 1]  
-c0_4b = data[, 2] 
-c0_4 <- ggplot(data.frame(x=c0_4a, 
-                          y=c0_4b
-                          ),
-       aes(x=x, y=y)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggtitle(paste0("Korrelation: ", 
-                 round(cor(c0_4a, c0_4b, method = "pearson"), 2))) +
-  theme_icae()
-
-
-c0_5a <- seq(-1, 1, 0.01)
-c0_5b <- sapply(c0_5a, function(x) x+1.1)
-
-c0_5 <- ggplot(data.frame(x=c0_5a, 
-                          y=c0_5b
-                          ),
-       aes(x=x, y=y)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggtitle(paste0("Korrelation: ", 
-                 round(cor(c0_5a, c0_5b, method = "pearson"), 2))) +
-  theme_icae()
-
-
-data_sin <- data.frame( x=seq(-10, 11.75, 0.01)) %>%
-  mutate(y=sin(x))
-c0_6 <- ggplot(data_sin,
-       aes(x=x, y=y)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggtitle(paste0("Korrelation: ", 
-                 round(cor(data_sin$x, data_sin$y, method = "pearson"), 2))) +
-  theme_icae()
-
-ggpubr::ggarrange(c0_1, c0_2,
-                  c0_4,c0_6, 
-                  ncol = 2, nrow = 2)
-```
+\begin{center}\includegraphics{ChapA-DeskriptiveStatistik_files/figure-latex/unnamed-chunk-11-1} \end{center}
 
 Daher ist es immer wichtig die Daten auch visuell zu inspizieren. 
 Datenvisualisierung ist aber so wichtig, dass sie in einem eigenen Kapitel 
@@ -338,61 +320,36 @@ deutlich.
 
 Der Datensatz ist in jeder R Installation vorhanden:
 
-```{r}
+
+```r
 data("anscombe")
 head(anscombe)
+```
+
+```
+##   x1 x2 x3 x4   y1   y2    y3   y4
+## 1 10 10 10  8 8.04 9.14  7.46 6.58
+## 2  8  8  8  8 6.95 8.14  6.77 5.76
+## 3 13 13 13  8 7.58 8.74 12.74 7.71
+## 4  9  9  9  8 8.81 8.77  7.11 8.84
+## 5 11 11 11  8 8.33 9.26  7.81 8.47
+## 6 14 14 14  8 9.96 8.10  8.84 7.04
 ```
 
 Die folgende Tabelle gibt die Werte der quantitativen Kennzahlen an:
 
 | Kennzahl | Wert  |
 |----------|------|
-| Mittelwert von $x$ | ```r round(mean(anscombe$x1), 2)``` |
-| Mittelwert von $y$ | ```r round(mean(anscombe$y1), 2)``` |
-| Varianz von $x$ | ```r round(var(anscombe$x1), 2)``` |
-| Varianz von $y$ | ```r round(var(anscombe$y1), 2)``` |
-| Korrelation zw. $x$ und $y$ | ```r round(cor(anscombe$x1, anscombe$y1), 2)``` |
+| Mittelwert von $x$ | ``9`` |
+| Mittelwert von $y$ | ``7.5`` |
+| Varianz von $x$ | ``11`` |
+| Varianz von $y$ | ``4.13`` |
+| Korrelation zw. $x$ und $y$ | ``0.82`` |
 
 Die grafische Inspektion zeigt, wie unterschiedlich die Datensätze tatsächlich 
 sind:
 
-```{r, echo=FALSE}
-ans_1 <- ggplot(anscombe, 
-                aes(x=x1, y=y1)) +
-  geom_point() +
-  xlab("x") + 
-  ylab("y") +
-  ggtitle("Der erste Datensatz aus Ascombe's Quartett") +
-  theme_icae()
-
-ans_2 <- ggplot(anscombe, 
-                aes(x=x2, y=y2)) +
-  geom_point() +
-  xlab("x") + 
-  ylab("y") +
-  ggtitle("Der zweite Datensatz aus Ascombe's Quartett") +
-  theme_icae()
-
-ans_3 <- ggplot(anscombe, 
-                aes(x=x3, y=y3)) +
-  geom_point() +
-  xlab("x") + 
-  ylab("y") +
-  ggtitle("Der dritte Datensatz aus Ascombe's Quartett") +
-  theme_icae()
-
-ans_4 <- ggplot(anscombe, 
-                aes(x=x4, y=y4)) +
-  geom_point() +
-  xlab("x") + 
-  ylab("y") +
-  ggtitle("Der vierte Datensatz aus Ascombe's Quartett") +
-  theme_icae()
-
-ans_full <- ggarrange(ans_1, ans_2, ans_3, ans_4,
-                      ncol = 2, nrow = 2)
-ans_full
-```
+![](ChapA-DeskriptiveStatistik_files/figure-latex/unnamed-chunk-13-1.pdf)<!-- --> 
 
 Interessanterweise ist bis heute nicht bekannt wie @Anscombe seinen Datensatz
 erstellt hat.

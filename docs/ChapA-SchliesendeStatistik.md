@@ -85,7 +85,8 @@ für $p$.
 Im folgenden werden die drei Verfahren in größerem Detail besprochen.
 Der Code in diesem Kapitel verwendet dabei die folgenden Pakete:
 
-```{r, message=FALSE}
+
+```r
 library(here)
 library(tidyverse)
 library(ggpubr)
@@ -160,13 +161,18 @@ wäre, tatsächlich 60 mal Zahl zu beobachten. Diese Wahrscheinlichkeit können 
 berechnen, aus Tabellen auslesen oder von R bestimmen lassen (die genaue 
 Verwendung der Funktion `binom.test()` wird unten genauer besprochen):
 
-```{r}
+
+```r
 b_test_object <- binom.test(x = 60, n = 100, p = 0.5)
 b_test_object[["p.value"]]
 ```
 
+```
+## [1] 0.05688793
+```
+
 > Die Wahrscheinlichkeit liegt also bei 
-`r round(b_test_object[["p.value"]], 3)*100` %. 
+5.7 %. 
 Dies ist der so genannte p-Wert.
 In der Regel lehnt man eine Hypothese ab, wenn $p<0.1$ oder $p<0.05$. Im 
 vorliegenden Falle ist unsere Hypothese einer fairen Münze aber kompatibel mit
@@ -251,25 +257,8 @@ Diese theoretische Verteilung können wir dann mit den tatsächlichen Daten
 vergleichen und fragen, wie wahrscheinlich es ist diese Daten tatsächlich so
 beobachten zu können wenn $H_0$ wahr wäre:
   
-```{r, fig.align='center', echo=FALSE}
-ggplot(data.frame(x = c(0, 100)), aes(x = x)) +
-  stat_function(fun = dbinom, args = list(size = 100, prob=0.5)) +
-  ylab("Wahrscheinlichkeit") +
-  xlab("Anzahl Erfolge (Zahl)") +
-  scale_y_continuous(expand = c(0, 0)) + 
-  ggtitle(TeX("Theoretische Verteilung unter $H_0$")) +
-  geom_segment(aes(x = 60, y = 0, 
-                   xend = 60, yend = dbinom(60, 100, 0.5)),
-               colour = "#800080") +
-  geom_segment(aes(x = 75, y =0.02, 
-                   xend = 60, yend =0),
-               arrow = arrow(length = unit(0.03, "npc")),
-               colour = "#800080") +
-  geom_text(aes(x = 75, y =0.02), nudge_x = 5, nudge_y = 0.002, 
-            label = "Eingetretenes Ereignis", 
-            colour = "#800080") +
-  theme_icae()
-```
+
+\begin{center}\includegraphics{ChapA-SchliesendeStatistik_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
 **4. Schritt: Festlegung des Signifikanzniveaus**:
 Wir müssen nun festlegen welches Risiko wir bereit sind einzugehen, unsere 
@@ -297,46 +286,8 @@ Der Verwerfungsbereich für das oben darstellte Beispiel mit
 $H_0: \theta=0$ und $H_1: \theta\neq 0$ ergibt sich für 
 $\alpha=0.05$ also folgendermaßen:
   
-```{r, fig.align='center', echo=FALSE}
-lower_end <- data.frame(y=dbinom(0:45, size = 100, prob=0.5),
-                        x=0:45)
-upper_end <- data.frame(y=dbinom(55:100, size = 100, prob=0.5),
-                        x=55:100)
-ggplot(data.frame(x = c(0, 100)), aes(x = x)) +
-  stat_function(fun = dbinom, args = list(size = 100, prob=0.5)) +
-  geom_ribbon(data = lower_end, aes(x=x, ymin=0, ymax=y), 
-              fill="#800080", alpha=0.75) + 
-  geom_ribbon(data = upper_end, aes(x=x, ymin=0, ymax=y), 
-              fill="#800080", alpha=0.75) + 
-  ylab("Wahrscheinlichkeit") +
-  xlab("Anzahl Erfolge (Zahl)") +
-  scale_y_continuous(expand = c(0, 0)) + 
-  ggtitle(TeX("Theoretische Verteilung unter $H_0$")) +
-  geom_segment(aes(x = 55, y = 0, 
-                   xend = 55, yend = dbinom(55, 100, 0.5)),
-               colour = "#800080") +
-  geom_segment(aes(x = 45, y = 0, 
-                   xend = 45, yend = dbinom(45, 100, 0.5)),
-               colour = "#800080") +
-  geom_segment(aes(x = 45, y = 0.02, 
-                   xend = 25, yend = 0.02),
-               arrow = arrow(length = unit(0.03, "npc")),
-               colour = "#800080") +
-  geom_text(aes(x = 20, y =0.025), nudge_x = 0, nudge_y = 0.002,
-            label = "Ablehnung wegen unwahrscheinlich\n weniger Erfolge",
-            colour = "#800080") +
-  geom_segment(aes(x = 55, y = 0, 
-                   xend = 55, yend = dbinom(55, 100, 0.5)),
-               colour = "#800080") +
-  geom_segment(aes(x = 55, y = 0.02, 
-                   xend = 75, yend = 0.02),
-               arrow = arrow(length = unit(0.03, "npc")),
-               colour = "#800080") +
-  geom_text(aes(x = 80, y =0.025), nudge_x = 0, nudge_y = 0.002,
-            label = "Ablehnung wegen unwahrscheinlich\n vieler Erfolge",
-            colour = "#800080") +
-  theme_icae()
-```
+
+\begin{center}\includegraphics{ChapA-SchliesendeStatistik_files/figure-latex/unnamed-chunk-4-1} \end{center}
 
 **5. Schritt: Die Entscheidung**
 Wenn sich die beobachtbaren Daten im Verwerfungsbereich befinden wollen wir $H_0$
@@ -354,9 +305,14 @@ welche eine Liste mit relevanten Informationen über den Test erstellt.
 Es macht Sinn, dieser Liste einen Namen zuzuweisen und dann die relevanten 
 Informationen explizit abzurufen:
   
-```{r}
+
+```r
 b_test_object <- binom.test(x = 60, n = 100, p = 0.5, alternative = "two.sided")
 typeof(b_test_object)
+```
+
+```
+## [1] "list"
 ```
 
 Bevor wir uns mit dem Ergebnis befassen wollen wir uns die notwendigen Argumente
@@ -376,8 +332,24 @@ Objekt direkt aufrufen. Die Liste wurde innerhalb der Funktion `binom.test`
 so modifiziert, dass uns die Zusammenfassung visuell ansprechend aufbereitet
 angezeigt wird:
   
-```{r}
+
+```r
 b_test_object
+```
+
+```
+## 
+## 	Exact binomial test
+## 
+## data:  60 and 100
+## number of successes = 60, number of trials = 100, p-value =
+## 0.05689
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.4972092 0.6967052
+## sample estimates:
+## probability of success 
+##                    0.6
 ```
 
 Die Überschrift macht deutlich was für ein Test durchgeführt wurde und die 
@@ -388,30 +360,8 @@ $H_0$ tatsächlich beobachtet werden können.
 Wir können den p-Wert aus der theoretischen Verteilung von oben auf der y-Achse 
 ablesen, wenn wir den beobachteten Wert auf der x-Achse suchen:
   
-```{r, fig.align='center', echo=FALSE, fig.height=2}
-x_observed <- 60
-ggplot(data.frame(x = c(0, 100)), aes(x = x)) +
-  stat_function(fun = dbinom, args = list(size = 100, prob=0.5)) +
-  ylab("Wahrscheinlichkeit") +
-  xlab("Anzahl Erfolge (Zahl)") +
-  scale_y_continuous(expand = c(0, 0)) + 
-  scale_x_continuous(expand = c(0, 0)) +
-  ggtitle(TeX("Theoretische Verteilung unter $H_0$")) +
-  geom_segment(aes(x = 0, y = dbinom(x_observed, 100, 0.5), 
-                   xend = x_observed, yend = dbinom(x_observed, 100, 0.5)),
-               colour = "#800080") +
-  geom_segment(aes(x = x_observed, y = 0, 
-                   xend = x_observed, yend = dbinom(x_observed, 100, 0.5)),
-               colour = "#800080") +
-  geom_segment(aes(x = 10, y =dbinom(x_observed, 100, 0.5)+0.01, 
-                   xend = 1, yend=dbinom(x_observed, 100, 0.5)+0.0001),
-               arrow = arrow(length = unit(0.03, "npc")),
-               colour = "#800080") +
-  geom_text(aes(x = 10, y =0.02), nudge_x = 5, nudge_y = 0.002, 
-            label = "p-Wert", 
-            colour = "#800080") + 
-  theme_icae()
-```
+
+\begin{center}\includegraphics{ChapA-SchliesendeStatistik_files/figure-latex/unnamed-chunk-7-1} \end{center}
 
 Die nächste Zeile formuliert dann die Alternativhypothese aus (und hängt entsprechend
 vom Argument `alternative` ab). 
@@ -422,21 +372,52 @@ Wenn wir wissen wollen welche Informationen die so erstellte Liste sonst noch f�
 uns bereit hält, bzw. wie wir diese Informationen direkt ausgeben lassen können, 
 sollten wir uns die Struktur der Liste genauer ansehen:
   
-```{r}
+
+```r
 str(b_test_object)
+```
+
+```
+## List of 9
+##  $ statistic  : Named num 60
+##   ..- attr(*, "names")= chr "number of successes"
+##  $ parameter  : Named num 100
+##   ..- attr(*, "names")= chr "number of trials"
+##  $ p.value    : num 0.0569
+##  $ conf.int   : num [1:2] 0.497 0.697
+##   ..- attr(*, "conf.level")= num 0.95
+##  $ estimate   : Named num 0.6
+##   ..- attr(*, "names")= chr "probability of success"
+##  $ null.value : Named num 0.5
+##   ..- attr(*, "names")= chr "probability of success"
+##  $ alternative: chr "two.sided"
+##  $ method     : chr "Exact binomial test"
+##  $ data.name  : chr "60 and 100"
+##  - attr(*, "class")= chr "htest"
 ```
 
 Wir sehen hier, dass wir viele der Werte wie bei Listen üblich direkt anwählen
 können, z.B. den p-Wert:
   
-```{r}
+
+```r
 b_test_object[["p.value"]]
+```
+
+```
+## [1] 0.05688793
 ```
 
 Oder das den Punktschätzer für $p$:
   
-```{r}
+
+```r
 b_test_object[["estimate"]]
+```
+
+```
+## probability of success 
+##                    0.6
 ```
 
 Wenn wir eine andere Verteilung annehmen, verwenden wir auch eine andere Testfunktion,
@@ -515,9 +496,16 @@ Wir haben oben auch schon gesehen, dass das Konfidenzintervall ganz leicht aus
 den typischen Test-Funktionen in R ausgelesen werden kann. 
 Für das Beispiel der Binomialverteilung schreiben wir daher nur:
   
-```{r}
+
+```r
 b_test_object <- binom.test(x = 60, n = 100, p = 0.5, alternative = "two.sided")
 b_test_object[["conf.int"]]
+```
+
+```
+## [1] 0.4972092 0.6967052
+## attr(,"conf.level")
+## [1] 0.95
 ```
 
 

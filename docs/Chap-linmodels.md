@@ -1,8 +1,6 @@
 # Lineare statistische Modelle in R {#linmodel}
 
-```{r include=FALSE}
-knitr::opts_chunk$set(comment = "#>")
-```
+
 
 ## Einleitung und Überblick 
 
@@ -19,7 +17,8 @@ Konzept nicht verstehen und konsultieren Sie ansonsten ein Statistiklehrbuch
 
 In diesem Kapitel werden die folgenden R Pakete verwendet:
 
-```{r, message=FALSE}
+
+```r
 library(here)
 library(tidyverse)
 library(data.table)
@@ -49,14 +48,7 @@ identifizieren, sondern auch die der Regression zugrundeliegenden Annahmen zu
 Bevor wir uns Schritt für Schritt mit der Regression auseinandersetzen wollen
 wir uns noch ein konkretes Beispiel anschauen. 
 
-```{r, echo=FALSE}
-daten <- data.frame(
-  Konsum = c(3081.5, 3240.6, 3407.6, 3566.5, 3708.7, 3822.3, 3972.7, 4064.6, 
-             4132.2, 4105.8, 4219.8, 4343.6, 4486, 4595.3, 4714.1),
-  BIP = c(4620.3, 4803.7, 5140.1, 5323.5, 5487.7, 5649.5, 5865.2, 6062, 6136.3, 
-          6079.4, 6244.4, 6389.6, 6610.7, 6742.1, 6928.4)
-) 
-```
+
 
 ### Einführungsbeispiel
 
@@ -72,30 +64,29 @@ zwei Parameter, $\beta_0$ und $\beta_1$, die wir mit Hilfe unserer Daten
 schätzen möchten. Wir laden uns also Daten zum Haushaltseinkommen und zum BIP
 aus dem Internet herunter und inspizieren die Daten zunächst visuell:
 
-```{r, echo=FALSE}
-ggplot(daten, aes(y=Konsum, x=BIP)) + geom_point() + 
-  ggtitle("Konsumausgaben und BIP") + theme_icae() 
-```
+<img src="Chap-linmodels_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 > Der Zusammenhang scheint gut zu unserem linearen Modell oben zu passen, sodass
 wir das Modell mit Hilfe der Daten schätzen um konkrete Werte für $\beta_0$ und
 $\beta_1$ zu identifizieren:
 
-```{r}
+
+```r
 schaetzung_bip <- lm(Konsum~BIP, data = daten)
 schaetzung_bip
 ```
 
-```{r, echo=FALSE, warning=FALSE}
-ggplot(daten, aes(y=Konsum, x=BIP)) + 
-  geom_abline(intercept = schaetzung_bip[["coefficients"]][1],
-              slope = schaetzung_bip[["coefficients"]][2], alpha=.5) +
-  geom_point() + 
-  annotate(geom = "text", hjust=0,
-           label = TeX("Steigung der Geraden: $\\hat{\\beta}_1=0.71$"), x=5600, y=3750) +
-  # scale_x_continuous(limits = c(0, 7000), expand = c(0,0)) +
-  ggtitle("Konsumausgaben und BIP") + theme_icae() 
 ```
+#> 
+#> Call:
+#> lm(formula = Konsum ~ BIP, data = daten)
+#> 
+#> Coefficients:
+#> (Intercept)          BIP  
+#>   -184.0780       0.7064
+```
+
+<img src="Chap-linmodels_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
 > In dieser Abbildung korrespondiert $\beta_0$ zum Achensabschnitt und $\beta_1$
 zur Steigung der Konsumgerade. Wir können $\beta_0$ als die Konsumausgaben
@@ -107,13 +98,18 @@ Auf dieser Basis können wir auch ausrechnen, wie hoch die Konsumausgaben in
 einer Volkswirtschaftslehre mit einem BIP von 8000 wäre, indem wir uns einfach an 
 der geschätzten Gerade bis zu diesem Betrag fortbewegen. 
 
-```{r}
+
+```r
 beta_0 <- schaetzung_bip[["coefficients"]][1]
 beta_1 <- schaetzung_bip[["coefficients"]][2]
 unname(beta_0 + beta_1*8000)
 ```
 
-> Im aktuellen Beispiel wären das also ```r round(unname(beta_0 + beta_1*8000), 2)``` Euro.
+```
+#> [1] 5467.186
+```
+
+> Im aktuellen Beispiel wären das also ``5467.19`` Euro.
 
 ### Überblick über die Inhalte des Kapitels
 
@@ -133,12 +129,11 @@ beschriebenen Konzepte.
 
 Nachdem wir den [Ablauf einer Regressionsanalyse](#stat-ablauf) kurz 
 zusammengefasst haben, generalisieren wir das Gelernte noch für den 
-[multiplen Fall](#lin-multi), also den Fall wenn wir mehr als eine 
+[multivariaten Fall](#lin-multi), also den Fall wenn wir mehr als eine 
 $x$-Variable in unserem Modell verwenden.
 
 Am Schluss finden Sie ein konkretes [Anwendungsbeispiel](#lin-beispiel), bei dem 
-wir eine lineare Regression von Anfang an implementieren. 
-(*Hinweis: dieser Abschnitt wird später ergänzt*)
+wir eine lineare Regression von Anfang an implementieren. (*Hinweis: dieser Abschnitt wird später ergänzt*)
 
 
 ## Grundlagen der einfachen linearen Regression {#lin-grundlagen}
@@ -152,8 +147,8 @@ theoretisches Modell folgendermaßen aussieht:
 $$Y_i = \beta_0 + \beta_1 x_i + \epsilon_i$$
 
 Alles was auf der linken Seite vom `=` steht bezeichnen wir als die LHS 
-(engl. *left hand side*), alles auf der rechten Seite als RHS 
-(engl. *right hand side*).
+(engl. \textit{left hand side}), alles auf der rechten Seite als RHS 
+(engl. \textit{right hand side}).
 
 Wir bezeichnen $Y_i$ als die **abhängige Variable** 
 (auch: *Zielvariable* oder *erklärte Variable*). 
@@ -192,12 +187,11 @@ Die $\epsilon_i$ sind als ZV definiert und da wir $Y_i$ als eine Funktion von
 $x_i$ und $\epsilon_i$ interpretieren sind die $Y_i$ auch ZV - und dementsprechend
 groß geschrieben. Die Fehlerterme werden per Konvention nie groß geschrieben - 
 wahrscheinlich weil sich das für Fehler nicht gehört. Wer es ganz genau nehmen
-würde, müsste sie aber auch groß schreiben, denn sie sind als ZV definiert und 
+würde, müsste sie aber auch groß schreiben, denn sie sind als ZV definiert, und 
 diese werden eigentlich groß geschrieben.
 
-Die Annahme von $\mathbb{E}(\epsilon_i)=0$, also die Annahme, dass der Erwartungswert
-für jeden Fehler gleich Null ist, ist neben der Annahme, dass wir einen linearen
-Zusammenhang modellieren zentral: wir gehen davon aus, dass unser 
+Die Annahme von $\mathbb{E}(\epsilon_i)$, also die Annahme, dass der Erwartungswert
+für jeden Fehler gleich Null ist, ist zentral: wir gehen davon aus, dass unser 
 Modell im Mittel stimmt.
 Unter dieser Annahme gibt es keine *systematischen* Abweichungen der $Y_i$ von
 der über $\beta_0$ und $\beta_1$ definierten Regressionsgeraden.
@@ -214,49 +208,11 @@ Konzept eines Schätzers sehr fremd ist, schauen Sie doch mal in den
 Wir suchen also nach den Werten für $\beta_0$ und $\beta_1$ sodass die 
 resultierende Gerade möglichst nahe an allen $Y_i$ Werten in folgendem Graph ist:
 
-```{r, echo=FALSE, warning=FALSE}
-set.seed(123)
-wahres_b0 <- 3
-wahres_b1 <- 1.4
-cols_used <- get_icae_colors(2, palette_used = "mixed")
-
-stichproben_n <- 10
-x <- 1:stichproben_n * 0.1
-fehler <- rnorm(stichproben_n, mean = 0, sd = 1)
-y <- rep(NA, stichproben_n)
-
-for (i in 1:stichproben_n){
-  y[i] <- wahres_b0 + wahres_b1*x[i] + fehler[i]
-}
-datensatz <- data.frame(
-  x = x,
-  y = y
-)
-ggplot(datensatz, aes(x=x, y=y)) +
-  geom_point() +
-  geom_abline(aes(color="Geschätzte Werte", 
-                  intercept = wahres_b0, 
-                  slope = wahres_b1), 
-              alpha=0.75, show.legend = TRUE) +
-  scale_color_manual(values = c("Geschätzte Werte"=cols_used[1], 
-                                "Wahre Werte"=cols_used[2])
-                     ) + 
-  geom_segment(aes(x = x[6], y = y[6],
-                   xend = x[6], yend=y[6]-fehler[6]),
-               arrow = arrow(length = unit(0.03, "npc"), ends = "both"),
-               colour = "#800080") +
-  annotate(geom = "text", 
-           label=TeX("$r_6=Y_6 - \\beta_0 - \\beta_1 x_6$"), 
-           x = x[6]-0.09, 
-           y = y[6]-0.75, 
-           colour = "#800080") +
-  theme_icae() + 
-  theme(legend.position = "none")
-```
+<img src="Chap-linmodels_files/figure-html/unnamed-chunk-8-1.png" width="672" />
 
 Wenn wir das händisch machen würden, könnten wir versuchen die Abstände zwischen
 den einzelnen $Y_i$ und der Regressionsgerade messen und letztere so lange 
-herumschieben, bis die Summe der Abstände möglichst klein ist.
+rumschieben, bis die Summe der Abstände möglichst klein ist.
 In gewisser Weise ist das genau das, was wir in der Praxis auch machen. 
 Nur arbeiten wir nicht mit den Abständen als solchen, denn dann würden sich 
 positive und negative Abstände ja ausgleichen. 
@@ -266,22 +222,22 @@ auch als **Kleinste-Quadrate Methode** (engl. *ordinary least squares* - OLS)
 bekannt.^[Warum summiert man nicht die Absolutwerte der Abweichungen, sondern
 ihre quadrierten Werte? Das hat technische Gründe: mit quadrierten Werten lässt
 sich einfach leichter rechnen als mit Absolutwerten.]
-Die dadurch definierten Schätzer $\hat{\beta}_0$ und $\hat{\beta}_1$ sind 
-entsprechend als *OLS-Schätzer* bekannt.
 
 Wir bezeichnen die Abweichung von $Y_i$ zu Regressionsgeraden als *Residuum* $r_i$.
 Wie in der Abbildung zu sehen ist, gilt für die Abweichung von der 
-Regressionsgeraden für die einzelnen $Y_i$: $r_i=(Y_i-\hat{\beta}_0-\hat{\beta}_1x_i)$.
-Wir suchen also nach den Werten für $\hat{\beta}_0$ und $\hat{\beta}_1$ für die die Summe
-aller Residuen minimal ist:
+Regressionsgeraden für die einzelnen $Y_i$: $r_i=(Y_i-\beta_0-\beta_1x_i)$.
+Wir suchen also nach den Werten für $\beta_0$ und $\beta_1$ für die die Summe
+aller Residuen minimal ist. 
+In anderen Worten, unsere *Schätzer* $\hat{\beta}_0$ und $\hat{\beta}_1$ sind 
+definiert als:
 
 $$\hat{\beta}_0, \hat{\beta}_1 =\text{argmin}_{\beta_0, \beta_1} \sum_{i=1}^n(Y_i-\beta_0-\beta_1x_i)^2$$
 
 Dabei bedeutet $\text{argmin}_{\beta_0, \beta_1}$: wähle die Werte für 
 $\beta_0$ und $\beta_1$, welche den nachfolgenden Ausdruck minimieren.
 
-Diesen Ausdruck kann man analytisch so lange umformen bis gilt:^[Jede\*r Interessierte
-findet die genaue Herleitung sehr einfach im Internet oder in der Kursliteratur.]
+Diesen Ausdruck kann man analytisch solang umformen bis gilt:^[Jede\*r Interessierte
+findet die genaue Herleitung am Ende dieses Kapitels.]
 
 $$\hat{\beta}_1 = \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}$$
 und
@@ -295,34 +251,27 @@ vergleichen.
 
 Dazu betrachten wir folgenden (artifiziellen) Datensatz:
 
-```{r, echo=FALSE}
-set.seed(123)
-wahres_b0 <- 3
-wahres_b1 <- 1.4
 
-stichproben_n <- 5
-x <- 1:stichproben_n * 0.1
-fehler <- rnorm(stichproben_n, mean = 0, sd = 1)
-y <- rep(NA, stichproben_n)
 
-for (i in 1:stichproben_n){
-  y[i] <- wahres_b0 + wahres_b1*x[i] + fehler[i]
-}
-datensatz <- data.frame(
-  x = x,
-  y = round(y, 2)
-)
-```
-```{r}
+```r
 datensatz
+```
+
+```
+#>     x    y
+#> 1 0.1 2.58
+#> 2 0.2 3.05
+#> 3 0.3 4.98
+#> 4 0.4 3.63
+#> 5 0.5 3.83
 ```
 
 Zuerst berechnen wir $\hat{\beta}_1$:
 
 $$\hat{\beta}_1 = \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}$$
 
-Dazu brauchen wir zunächst $\bar{x}$, das ist in diesem Fall ```r mean(datensatz$x)```,
-und $\bar{y}$, in unserem Fall ```r mean(datensatz$y)```.
+Dazu brauchen wir zunächst $\bar{x}$, das ist in diesem Fall ``0.3``,
+und $\bar{y}$, in unserem Fall ``3.614``.
 Dann können wir bereits rechnen:
 
 $$\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})=(0.1-0.3)(2.58-3.614)+(0.2-0.3)(3.05-3.614)\\+(0.3-0.3)(4.98-3.614)+(0.4-0.3)(3.63-3.614)+(0.5-0.3)(3.83-3.614)=0.308$$
@@ -338,12 +287,12 @@ Entsprechend ergibt sich für $\hat{\beta}_0$:
 $$\hat{\beta_0}=\bar{y}-\hat{\beta}_1\bar{x}=3.614-3.08\cdot 0.3=2.69$$
 
 In R können wir für diese Rechnung wie gesagt die Funktion `lm()` verwenden.
-In der Praxis sind für uns vor allem die folgenden zwei Argumente von `lm()` 
+In der praxis sind für uns vor allem die folgenden zwei Argumente von `lm()` 
 relevant: `formula` und `data`.
 
 Über `data` informieren wir `lm` über den Datensatz, der für die Schätzung 
 verwendet werden soll.
-Dieser Datensatz muss als `data.frame` oder vergleichbares
+Dieser Datensatz muss in Form eines `data.frame`s oder eines vergleichbaren
 Objekt vorliegen.
 
 Über `formula` teilen wir `lm` dann die zu schätzende Formel mit.
@@ -352,7 +301,8 @@ Wir können die Formel entweder direkt als `y~x` an `lm()` übergeben, oder
 wir speichern sie vorher als `character` und verwenden die Funktion `as.formula()`.
 Entsprechend sind die folgenden beiden Befehle äquivalent:
 
-```{r, eval=FALSE}
+
+```r
 lm(y~x, data = datensatz)
 reg_formel <- as.formula("y~x")
 lm(reg_formel, data = datensatz)
@@ -360,10 +310,28 @@ lm(reg_formel, data = datensatz)
 
 Der Output von `lm()` ist eine Liste mit mehreren interessanten Informationen:
 
-```{r}
+
+```r
 schaetzung <- lm(y~x, data = datensatz)
 typeof(schaetzung)
+```
+
+```
+#> [1] "list"
+```
+
+```r
 schaetzung
+```
+
+```
+#> 
+#> Call:
+#> lm(formula = y ~ x, data = datensatz)
+#> 
+#> Coefficients:
+#> (Intercept)            x  
+#>        2.69         3.08
 ```
 
 Die von `lm()` produzierte Liste enthält also die basalsten Informationen
@@ -373,7 +341,8 @@ haben, da wir die gleichen Werte herausbekommen haben.
 Wenn wir noch genauer wissen wollen, wie die Ergebnisliste aufgebaut ist, können
 wir die Funktion `str()` verwenden:
 
-```{r, eval=FALSE}
+
+```r
 str(schaetzung)
 ```
 
@@ -381,8 +350,14 @@ Da die Liste aber tatsächlich sehr lang ist, wird dieser Code hier nicht
 ausgeführt. Es sei aber darauf hingewiesen, dass wir die geschätzen Werte 
 auf folgende Art und Weise direkt ausgeben lassen können:
 
-```{r}
+
+```r
 schaetzung[["coefficients"]]
+```
+
+```
+#> (Intercept)           x 
+#>        2.69        3.08
 ```
 
 Dies ist in der Praxis häufig nützlich, z.B. wenn wir wie in der Einleitung
@@ -390,29 +365,7 @@ Werte mit Hilfe unseres Modell vorhersagen wollen.
 Zum Abschluss hier noch einmal die Daten mit der von uns gerade berechneten 
 Regressionsgeraden:
 
-```{r, echo=FALSE, warning=FALSE}
-ggplot(datensatz, aes(x=x, y=y)) +
-  geom_point() +
-  geom_abline(aes(color="Geschätzte Werte", 
-                  intercept = schaetzung[["coefficients"]][1], 
-                  slope = schaetzung[["coefficients"]][2]), 
-              alpha=0.75, show.legend = TRUE, color=get_icae_colors("dark blue")) +
-  scale_x_continuous(limits = c(0, 0.55), expand = c(0, 0)) +
-  geom_segment(aes(x = 0.1, y = 3.5,
-                   xend = 0, yend=schaetzung[["coefficients"]][1]),
-               arrow = arrow(length = unit(0.03, "npc")),
-               colour =  get_icae_colors("purple")) +
-  annotate(geom = "text", 
-           label=TeX("$\\beta_0 = 2.69$"), 
-           x = 0.1, y = 3.6,
-           colour = get_icae_colors("purple")) +
-    annotate(geom = "text", 
-           label=TeX("Steigung: $\\beta_1 = 3.08$"), 
-           x = 0.28, y = 3.8,
-           colour = get_icae_colors("purple")) +
-  theme_icae() + 
-  theme(legend.position = "none")
-```
+<img src="Chap-linmodels_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 
 
 Zwar wissen wir jetzt, wie wir eine einfache lineare Regression schätzen, 
@@ -421,9 +374,6 @@ Unsere bisherige Tätigkeiten korrespondieren zu der im
 [Anhang zur schließenden Statistik](#stat-rep) beschriebenen *Parameterschätzung*.
 Wir wollen aber auch noch die anderen beiden Verfahren, Hypothesentests und Konfidenzintervalle, 
 abdecken und lernen wie wir die Güte unserer Schätzung besser einschätzen können.
-
-Zuvor wollen wir aber noch einmal genauer überprüfen, welche Annahmen genau
-erfüllt sein müssen, damit die OLS-Prozedur auch funktioniert.
 
 ### Annahmen für den OLS Schätzer
 
@@ -436,15 +386,13 @@ prüfen ob die entsprechenden Annahmen für den Anwendungsfall plausibel sind.
 Daher wollen wir uns im Folgenden etwas genauer mit diesen Annahmen vertraut 
 machen. 
 
-Zwar schwankt die genaue Anzahl der Annahmen je nach Formulierung, in der 
-Essenz handelt es sich aber um folgende:
+Zwar schwankt die genaue Anzahl der Annahmen je nach Formulierung, in der Essenz handelt es sich aber um folgende:
 
-1. **A1: Erwartungswert der Fehler gleich Null**: $\mathbb{E}(\epsilon=0)$ 
+1. **A1: Erwartungswert der Fehler gleich Null**: $\mathbb{E}(\epsilon=0$ 
 Diese Annahmen setzt voraus, dass $\epsilon$ keine Struktur hat und im Mittel 
 gleich Null ist. Das ist plausibel, denn würden wir Informationen über eine 
 Struktur in $\epsilon$ haben, bedeutet das, dass wir eine weitere erklärende 
-Variable in das Modell aufnehmen könnten, welche diese Struktur explizit macht,
-oder die lineare Strukur des Modells ändern könnten. 
+Variable in das Modell aufnehmen könnten, welche diese Struktur explizit macht. 
 Die Annahme impliziert auch, dass der Zusammenhang zwischen der erklärten und 
 erklärenden Variablen auch tatsächlich linear ist. Grob ausgedrückt: wir nehmen 
 hier an, dass wir unser Modell clever spezifiziert haben.
@@ -455,17 +403,16 @@ Variablen gibt. Die Annahme wäre verletzt, wenn für größere Werte von $x$ di
 Messgenauigkeit drastisch in eine Richtung hin abnehmen würde. 
 
 3. **A3: Konstante Varianz der Fehlerterme** Diese Annahme wird auch 
-**Homoskedastizität** genannt und sagt einfach: $Var(\epsilon_i)=\sigma^2\forall i$
+**Homoskedastizität** genannt und sagt einfach: 
 
 4. **A4: Keine Autokorrelation der Fehlerterme** Die Annahme verlangt, dass die 
 Fehler nicht untereinander korreliert sind: 
-$Cov(\epsilon_i, \epsilon_j)=0 \forall i,j$. Das kann vor allem ein 
+$Cov(\epsilon_i, \epsilon_j)=0, \quad \forall i,j$. Das kann vor allem ein 
 Problem sein, wenn die gleichen erklärenden Variablen zu unterschiedlichen 
 Zeitpunkten gemessen werden.
 
-5. **A5: Normalverteilung der Fehlerterme:** $\epsilon\propto\mathcal{N}(0,\sigma^2)$ 
-Niese Annahme ist notwendig für die Hypothesentests und Berechnung von 
-Konfidenzintervallen für die Schätzer. 
+5. **A5: ** Normalverteilung der Fehlerterme: diese Annahme ist notwendig für 
+die Hypothesentests und Berechnung von Konfidenzintervallen für die Schätzer. 
 
 Diese Annahmen bilden die Grundlage für das so genannte **Gauss-Markov-Theorem**, 
 gemäß dem der OLS-Schätzer für lineare der beste konsistente Schätzer ist, 
@@ -493,8 +440,8 @@ Es ist wichtig zu beachten, dass wir eine Regression mit OLS schätzen können u
 keine Fehlermeldungen bekommen, obwohl die Annahmen für OLS nicht erfüllt sind. 
 In diesem Fall sind die Ergebnisse jedoch möglicherweise irreführend. 
 Daher ist es immer wichtig, die Korrektheit der Annahmen zu überprüfen und
-weitere Kennzahlen der Regression zu betrachten 
-Methoden dafür lernen wir nun genauer kennen.
+weitere Kennzahlen der Regression zu überprüfen. 
+Methoden dafür lernen wir später in diesem Kaptel kennen.
 
 ## Kennzahlen in der linearen Regression {#lin-kennzahlen}
 
@@ -507,190 +454,52 @@ wie viel 'Variation' der abhängigen Variable $Y_i$ durch die Regression erklär
 wird. 
 Als Maß für die Variation wird dabei die Summe der quadrierten Abweichungen von
 $Y_i$ von seinem Mittelwert verwendet, auch $TSS$ (für engl. 
-*Total Sum of Squares* - 'Summe der Quadrate der Totalen Abweichungen') genannt:
+*Total Sum of Squares* - 'erklärte Abweichungsquadratsumme') genannt:
 
 $$TSS=\sum_{i=1}^n(Y_i-\bar{Y})^2$$
 In R:
 
-```{r}
+
+```r
 tss <- sum((datensatz$y - mean(datensatz$y))**2)
 tss
+```
+
+```
+#> [1] 3.30012
 ```
 
 
 Diese Werte sind in folgender Abbildung für unseren Beispieldatensatz von 
 oben grafisch dargestellt:
 
-```{r, echo=FALSE, warning=FALSE}
-ggplot(datensatz, aes(x=x, y=y)) +
-  geom_point() +
-  geom_abline(aes(color="Geschätzte Werte", 
-                  intercept = mean(datensatz$y), 
-                  slope = 0), 
-              alpha=0.75, show.legend = TRUE, color=get_icae_colors("dark blue")) +
-  scale_x_continuous(limits = c(0, 0.55), expand = c(0, 0)) +
-  geom_segment(aes(x = 0.1, y = 3.9,
-                   xend = 0, yend=mean(datensatz$y)),
-               arrow = arrow(length = unit(0.03, "npc")),
-               colour =  get_icae_colors("dark blue")) +
-    geom_segment(aes(
-      x = datensatz$x[1], y = datensatz$y[1],
-      xend = datensatz$x[1], yend=mean(datensatz$y)
-      ),
-      arrow = arrow(length = unit(0.01, "npc"), ends = "both"),
-      colour =  get_icae_colors("dark red")
-      ) +
-    geom_segment(aes(
-      x = datensatz$x[2], y = datensatz$y[2],
-      xend = datensatz$x[2], yend=mean(datensatz$y)
-      ),
-      arrow = arrow(length = unit(0.01, "npc"), ends = "both"),
-      colour =  get_icae_colors("dark red")
-      ) +
-    geom_segment(aes(
-      x = datensatz$x[3], y = datensatz$y[3],
-      xend = datensatz$x[3], yend=mean(datensatz$y)
-      ),
-      arrow = arrow(length = unit(0.01, "npc"), ends = "both"),
-      colour =  get_icae_colors("dark red")
-      ) +
-    geom_segment(aes(
-      x = datensatz$x[4], y = datensatz$y[4],
-      xend = datensatz$x[4], yend=mean(datensatz$y)
-      ),
-      arrow = arrow(length = unit(0.01, "npc"), ends = "both"),
-      colour =  get_icae_colors("dark red")
-      ) +
-    geom_segment(aes(
-      x = datensatz$x[5], y = datensatz$y[5],
-      xend = datensatz$x[5], yend=mean(datensatz$y)
-      ),
-      arrow = arrow(length = unit(0.01, "npc"), ends = "both"),
-      colour =  get_icae_colors("dark red")
-      ) +
-  annotate(geom = "text", 
-           label=TeX("$\\bar{Y} = 3.614$"), 
-           x = datensatz$x[1], y = 4,
-           colour = get_icae_colors("dark blue")) +
-    annotate(geom = "text", 
-           label=TeX("$Y_1-\\bar{Y} = -1$"), 
-           x = datensatz$x[1]-0.05, y = 3,
-           colour = get_icae_colors("dark red")) +
-      annotate(geom = "text", 
-           label=TeX("$Y_2-\\bar{Y} = -0.56$"), 
-           x = datensatz$x[2]-0.038, y = 3.25,
-           colour = get_icae_colors("dark red")) +
-      annotate(geom = "text", 
-           label=TeX("$Y_3-\\bar{Y} = 1.4$"), 
-           x = datensatz$x[3]-0.038, y = 4.45,
-           colour = get_icae_colors("dark red")) +
-      annotate(geom = "text", 
-           label=TeX("$Y_4-\\bar{Y} = 0.02$"), 
-           x = datensatz$x[4]-0.038, y = 3.7,
-           colour = get_icae_colors("dark red")) +
-      annotate(geom = "text", 
-           label=TeX("$Y_5-\\bar{Y} = 0.22$"), 
-           x = datensatz$x[5]-0.038, y = 3.75,
-           colour = get_icae_colors("dark red")) + 
-      annotate(geom = "text", 
-           label=TeX("$TSS = 3.3$"), 
-           x = 0.45, y = 3.0,
-           colour = get_icae_colors("dark red")) +   
-  theme_icae() + 
-  theme(legend.position = "none")
-```
+<img src="Chap-linmodels_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
 Die TSS wollen wir nun aufteilen in eine Komponente, die in unserer Regression
 erklärt wird, und eine Komponente, die nicht erklärt werden kann. 
 Bei letzterer handelt es sich um die Abweichungen der geschätzten Werte $\hat{Y_i}$
 und den tatsächlichen Werten $Y_i$, den oben definierten Residuen $r_i$.
-Entsprechend definieren wir die *Residual Sum of Squares (RSS)* 
-(dt.: *Residuenquadratsumme*) als:
+Entsprechend definieren wir die *Residual Sum of Squares (RSS)* als:
 
 $$RSS=\sum_i^n\epsilon_i^2$$
 In R:
 
-```{r}
-rss <- sum(schaetzung[["residuals"]]**2)
+
+```r
+rss <- sum(schaetzung$residuals**2)
 rss
+```
+
+```
+#> [1] 2.35148
 ```
 
 
 Diese sehen wir hier:
 
-```{r, echo=FALSE, warning=FALSE}
-ggplot(datensatz, aes(x=x, y=y)) +
-  geom_point() +
-  geom_abline(aes(color="Geschätzte Werte", 
-                  intercept = schaetzung[["coefficients"]][1], 
-                  slope = schaetzung[["coefficients"]][2]), 
-              alpha=0.75, show.legend = TRUE, color=get_icae_colors("dark blue")) +
-  scale_x_continuous(limits = c(0, 0.55), expand = c(0, 0)) +
-    geom_segment(aes(
-      x = datensatz$x[1], y = datensatz$y[1],
-      xend = datensatz$x[1], yend=schaetzung$fitted.values[1]
-      ),
-      arrow = arrow(length = unit(0.01, "npc"), ends = "both"),
-      colour =  get_icae_colors("dark blue")
-      ) +
-    geom_segment(aes(
-      x = datensatz$x[2], y = datensatz$y[2],
-      xend = datensatz$x[2], yend=schaetzung$fitted.values[2]
-      ),
-      arrow = arrow(length = unit(0.01, "npc"), ends = "both"),
-      colour =  get_icae_colors("dark blue")
-      ) +
-    geom_segment(aes(
-      x = datensatz$x[3], y = datensatz$y[3],
-      xend = datensatz$x[3], yend=schaetzung$fitted.values[3]
-      ),
-      arrow = arrow(length = unit(0.01, "npc"), ends = "both"),
-      colour =  get_icae_colors("dark blue")
-      ) +
-    geom_segment(aes(
-      x = datensatz$x[4], y = datensatz$y[4],
-      xend = datensatz$x[4], yend=schaetzung$fitted.values[4]
-      ),
-      arrow = arrow(length = unit(0.01, "npc"), ends = "both"),
-      colour =  get_icae_colors("dark blue")
-      ) +
-    geom_segment(aes(
-      x = datensatz$x[5], y = datensatz$y[5],
-      xend = datensatz$x[5], yend=schaetzung$fitted.values[5]
-      ),
-      arrow = arrow(length = unit(0.01, "npc"), ends = "both"),
-      colour =  get_icae_colors("dark blue")
-      ) +
-    annotate(geom = "text", 
-           label=TeX("$\\epsilon_1$"), 
-           x = datensatz$x[1]-0.007, y = 2.75,
-           colour = get_icae_colors("dark blue")) +
-      annotate(geom = "text", 
-           label=TeX("$\\epsilon_2$"), 
-           x = datensatz$x[2]-0.008, y = 3.15,
-           colour = get_icae_colors("dark blue")) +
-      annotate(geom = "text", 
-           label=TeX("$\\epsilon_3$"), 
-           x = datensatz$x[3]-0.008, y = 4.45,
-           colour = get_icae_colors("dark blue")) +
-      annotate(geom = "text", 
-           label=TeX("$\\epsilon_4$"), 
-           x = datensatz$x[4]-0.008, y = 3.8,
-           colour = get_icae_colors("dark blue")) +
-      annotate(geom = "text", 
-           label=TeX("$\\epsilon_5$"), 
-           x = datensatz$x[5]-0.008, y = 3.95,
-           colour = get_icae_colors("dark blue")) + 
-      annotate(geom = "text", 
-           label=TeX("$RSS = 2.35148$"), 
-           x = 0.45, y = 3.0,
-           colour = get_icae_colors("dark blue")) +   
-  theme_icae() + 
-  theme(legend.position = "none")
-```
+<img src="Chap-linmodels_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 
-Was noch fehlt sind die *Explained Sum of Squares (ESS)* 
-(dt. *Summe der Quadrate der Erklärten Abweichungen*), also die Variation
+Was noch fehlt sind die *Explained Sum of Squares (ESS)*, also die Variation
 in der abhängigen Variable, die durch die Regression erklärt wird.
 Dabei handelt es sich um die quadrierte Differenz zwischen $\bar{Y}$ und den
 geschätzten Werten $\hat{Y}$:
@@ -698,95 +507,19 @@ geschätzten Werten $\hat{Y}$:
 $$ESS=\sum_{i=1}^n(\hat{Y}_i-\bar{Y})^2$$
 Diese ergibt sich in R als:
 
-```{r}
+
+```r
 ess <- sum((schaetzung[["fitted.values"]] - mean(datensatz$y))**2)
 ess
 ```
 
+```
+#> [1] 0.94864
+```
+
 Und grafisch:
 
-```{r, warning=FALSE, echo=FALSE}
-ggplot(datensatz, aes(x=x, y=y)) +
-  geom_point() +
-  geom_abline(aes(color="Geschätzte Werte", 
-                  intercept = schaetzung[["coefficients"]][1], 
-                  slope = schaetzung[["coefficients"]][2]), 
-              alpha=0.75, show.legend = TRUE, color=get_icae_colors("dark blue")) +
-    geom_abline(aes(color="Geschätzte Werte", 
-                  intercept = mean(datensatz$y), 
-                  slope = 0), 
-              alpha=0.75, show.legend = TRUE, color=get_icae_colors("dark red")) +
-    geom_segment(aes(x = 0.1, y = 3.9,
-                   xend = 0, yend=mean(datensatz$y)),
-               arrow = arrow(length = unit(0.03, "npc")),
-               colour =  get_icae_colors("dark red")) +
-    annotate(geom = "text", 
-           label=TeX("$\\bar{Y} = 3.614$"), 
-           x = datensatz$x[1], y = 4,
-           colour = get_icae_colors("dark red")) +
-  scale_x_continuous(limits = c(0, 0.55), expand = c(0, 0)) +
-    geom_segment(aes(
-      x = datensatz$x[1], y = schaetzung$fitted.values[1],
-      xend = datensatz$x[1], yend = mean(datensatz$y)
-      ),
-      arrow = arrow(length = unit(0.01, "npc"), ends = "both"),
-      colour =  get_icae_colors("dark blue")
-      ) +
-    geom_segment(aes(
-      x = datensatz$x[2], y = schaetzung$fitted.values[2],
-      xend = datensatz$x[2], yend = mean(datensatz$y)
-      ),
-      arrow = arrow(length = unit(0.01, "npc"), ends = "both"),
-      colour =  get_icae_colors("dark blue")
-      ) +
-    geom_segment(aes(
-      x = datensatz$x[3], y = schaetzung$fitted.values[3],
-      xend = datensatz$x[3], yend = mean(datensatz$y)
-      ),
-      arrow = arrow(length = unit(0.01, "npc"), ends = "both"),
-      colour =  get_icae_colors("dark blue")
-      ) +
-    geom_segment(aes(
-      x = datensatz$x[4], y = schaetzung$fitted.values[4],
-      xend = datensatz$x[4], yend = mean(datensatz$y)
-      ),
-      arrow = arrow(length = unit(0.01, "npc"), ends = "both"),
-      colour =  get_icae_colors("dark blue")
-      ) +
-    geom_segment(aes(
-      x = datensatz$x[5], y = schaetzung$fitted.values[5],
-      xend = datensatz$x[5], yend = mean(datensatz$y)
-      ),
-      arrow = arrow(length = unit(0.01, "npc"), ends = "both"),
-      colour =  get_icae_colors("dark blue")
-      ) +
-    annotate(geom = "text",
-           label=TeX("$\\hat{Y}_1-\\bar{Y}$"),
-           x = datensatz$x[1]-0.017, y = 3.25,
-           colour = get_icae_colors("dark blue")) +
-      annotate(geom = "text",
-           label=TeX("$\\hat{Y}_2-\\bar{Y}$"),
-           x = datensatz$x[2]-0.018, y = 3.4,
-           colour = get_icae_colors("dark blue")) +
-      annotate(geom = "text",
-           label=TeX("$\\hat{Y}_3-\\bar{Y}$"),
-           x = datensatz$x[3]-0.018, y = 3.7,
-           colour = get_icae_colors("dark blue")) +
-      annotate(geom = "text",
-           label=TeX("$\\hat{Y}_4-\\bar{Y}$"),
-           x = datensatz$x[4]-0.018, y = 3.75,
-           colour = get_icae_colors("dark blue")) +
-      annotate(geom = "text",
-           label=TeX("$\\hat{Y}_5-\\bar{Y}$"),
-           x = datensatz$x[5]-0.018, y = 3.95,
-           colour = get_icae_colors("dark blue")) +
-      annotate(geom = "text",
-           label=TeX("$ESS = 0.94864$"),
-           x = 0.45, y = 3.0,
-           colour = get_icae_colors("dark blue")) +
-  theme_icae() + 
-  theme(legend.position = "none")
-```
+<img src="Chap-linmodels_files/figure-html/unnamed-chunk-21-1.png" width="672" />
 
 Für die drei gerade eingeführten Teile der Gesamtvarianz gilt im Übrigen:
 
@@ -800,18 +533,28 @@ $$R^2=\frac{ESS}{TSS}=1-\frac{RSS}{TSS}$$
 
 Wir können das für unseren Anwendungsfall natürlich händisch berechnen:
 
-```{r}
+
+```r
 r_sq_manual <- ess / tss
 r_sq_manual
+```
+
+```
+#> [1] 0.2874562
 ```
 
 Leider wird diese Größe im Output von `lm()` direkt nicht ausgegeben.
 Wir können aber einen ausführlicheren Output unserer Regression mit der Funktion
 `summary()` erstellen, dort ist das $R^2$ dann auch enthalten:
 
-```{r}
+
+```r
 info_schaetzung <- summary(schaetzung)
 info_schaetzung[["r.squared"]]
+```
+
+```
+#> [1] 0.2874562
 ```
 
 In unserem Fall erklärt unser Modell als ca. 28% der Gesamtvarianz der 
@@ -824,9 +567,9 @@ tautologischer Zusammenhang geschätzt wurde.
 
 Ein großer Nachteil vom $R^2$ ist, dass es größer wird sobald wir einfach mehr
 erklärende Variablen in unsere Regression aufnehmen. 
-Warum? Eine neue Variable kann unmöglich $TSS$ verändern (denn die 
-erklärenden Variablen kommen in der Formel für TSS nicht vor), aber erhöht immer 
-zumindest ein bisschen die ESS.
+Warum? Da eine neue Variable unmöglich $TSS$ verändern kann (denn die 
+erklärenden Variablen kommen in der Formel für TSS nicht vor), aber immer zumindest
+ein bisschen die ESS erhöht.
 Wenn unser alleiniges Ziel also die Maximierung von $R^2$ wäre, dann müssten wir
 einfach ganz viele erklärenden Variablen in unser Modell aufnehmen.
 Das kann ja nicht Sinn sozioökonomischer Forschung sein!
@@ -844,8 +587,13 @@ Das adjustierte $R^2$, häufig als $\bar{R}^2$ bezeichnet, ist definiert als:
 $$\bar{R}^2=1-\frac{\sum_{i=1}^n\epsilon^2/(N-K-1)}{\sum_{i=1}^n(Y_i-\bar{Y})^2/(N-1)}$$
 Um dieses Maß aus unserem Ergebnisobjekts auszugeben schreiben wir:
 
-```{r}
+
+```r
 info_schaetzung[["adj.r.squared"]]
+```
+
+```
+#> [1] 0.04994162
 ```
 
 Leider hat es keine so eindeutige Interpretation wie das $R^2$, aber es sollte
@@ -859,7 +607,7 @@ Variabel ohne gute theoretische Begründung aufnehmen!
 
 Wie sicher können wir uns mit den geschätzten Parametern für $\beta_0$ und $\beta_1$
 sein? 
-Wenn z.B. $\hat{\beta}_1>0$ bedeutet das wirklich, dass wir einen positiven Effekt 
+Wenn z.B. $\beta_1>0$ bedeutet das wirklich, dass wir einen positiven Effekt 
 gefunden haben? 
 Immerhin sind ja unsere Fehler ZV und vielleicht haben wir einfach zufällig 
 eine Stichprobe erhoben, wo der Effekt von $x_1$ positiv erscheint, tatsächlich 
@@ -869,7 +617,7 @@ können wir uns die Annahme, dass unsere Fehler normalverteilt sind, zu Nutze
 machen und testen wir plausibel die tatsächliche Existenz eines Effekts ist.
 
 Wir verlassen nun also das Gebiet der reinen Parameterschätzung und beschäftigen 
-uns mit Hypothesentests und Konfidenzintervallen für unsere Schätzer $\hat{\beta}_0$
+uns mit Hypothesentests und Konfidenzintervalle für unsere Schätzer $\hat{\beta}_0$
 und $\hat{\beta}_1$.
 Das ist analog zu den im [Anhang zur schließenden Statistik](#stat-rep) 
 besprochenen Herangehensweisen.
@@ -907,7 +655,8 @@ Aber wie sehr streuen die geschätzten Werte um diesen wahren Wert?
 Zunächst erstellen wir den künstlichen Datensatz. Dazu spezifizieren wir zunächst
 die Grundstruktur des DGT:
 
-```{r}
+
+```r
 set.seed(123)
 true_DGP <- function(x, b0, b1){
   y <- b0 + b1*x + rnorm(length(x), 0, 5)
@@ -920,10 +669,11 @@ x <- runif(sample_size, 0, 10)
 ```
 
 > Nun erstellen wir mit Hilfe einer Schleife 1000 Realisierungen der Daten. 
-Wir können uns das wie 1000 Erhebungen vorstellen. Für jede dieser Realisierungen
+Wir können uns das wie 200 Erhebungen vorstellen. Für jede dieser Realisierungen
 schätzen wir dann die lineare Regressionsgleichung von oben:
 
-```{r}
+
+```r
 set.seed(123)
 n_datensaetze <- 1000
 beta_0_estimates <- rep(NA, n_datensaetze)
@@ -942,34 +692,7 @@ for (i in 1:n_datensaetze){
 
 > Nun können wir die Streuung der Schätzer direkt visualisieren:
 
-```{r, echo=FALSE, warning=FALSE}
-beta_0_plot <- ggplot(
-  data.frame(x=beta_0_estimates), aes(x=x)
-  ) +
-  geom_histogram(binwidth = 0.25, aes(y=..density..)) +
-  geom_vline(xintercept = beta_0_wahr) +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.1))) +
-  ylab(TeX("Relative Häufigkeit von $\\hat{\\beta_0}}$")) +
-  xlab(TeX("$\\hat{\\beta_0}}$")) +
-  ggtitle(TeX("Streuung von $\\hat{\\beta_0}}$")) + 
-  annotate(geom = "text", label=TeX("$\\beta_0$"), x = beta_0_wahr-0.25, y=0.45) + 
-  theme_icae()
-
-beta_1_plot <- ggplot(
-  data.frame(x=beta_1_estimates), aes(x=x)
-  ) +
-  geom_histogram(binwidth = 0.05, aes(y=..density..)) +
-  geom_vline(xintercept = beta_1_wahr) +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.1))) +
-  ylab(TeX("Relative Häufigkeit von $\\hat{\\beta_1}}$")) +
-  xlab(TeX("$\\hat{\\beta_1}}$")) +
-  ggtitle(TeX("Streuung von $\\hat{\\beta_1}}$")) + 
-  annotate(geom = "text", label=TeX("$\\beta_1$"), 
-           x = beta_1_wahr-0.05, y=2.8) + 
-  theme_icae()
-
-ggarrange(beta_0_plot, beta_1_plot, ncol = 2)
-```
+<img src="Chap-linmodels_files/figure-html/unnamed-chunk-27-1.png" width="672" />
 
 > Wie wir sehen, treffen die Schätzer im Mittel den richtigen Wert, streuen aber 
 auch. Die Varianz gibt dabei die Breite des jeweiligen Histograms an und je 
@@ -989,8 +712,30 @@ Er wird aufgrund seiner Wichtigkeit auch in der Summary jeder Schätzung
 angegeben. 
 Hier betrachten wir die Schätzung aus dem einführenden Beispiel:
 
-```{r}
+
+```r
 summary(schaetzung_bip)
+```
+
+```
+#> 
+#> Call:
+#> lm(formula = Konsum ~ BIP, data = daten)
+#> 
+#> Residuals:
+#>     Min      1Q  Median      3Q     Max 
+#> -39.330  -8.601   1.761  14.769  31.306 
+#> 
+#> Coefficients:
+#>               Estimate Std. Error t value Pr(>|t|)    
+#> (Intercept) -1.841e+02  4.626e+01  -3.979  0.00157 ** 
+#> BIP          7.064e-01  7.827e-03  90.247  < 2e-16 ***
+#> ---
+#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#> 
+#> Residual standard error: 20.29 on 13 degrees of freedom
+#> Multiple R-squared:  0.9984,	Adjusted R-squared:  0.9983 
+#> F-statistic:  8145 on 1 and 13 DF,  p-value: < 2.2e-16
 ```
 
 Sie sind hier unter `Std. Error` zu finden. 
@@ -1007,7 +752,7 @@ was ein Hypothesentest ist.] mit $H_0: \beta_0=0$ und $H_1: \beta_0 \neq 0$.
 
 Für einen Hypothesentest brauchen wir zunächst eine Teststatistik, also die 
 Verteilung für den Schätzer wenn $H_0$ wahr wäre.
-Da wir annehmen, dass die Fehlerterme in unserem Fall normalverteilt sind, ist 
+Da wir annahmen, dass die Fehlerterme in unserem Fall normalverteilt sind, ist 
 das in unserem Falle eine $t$-Verteilung mit $n-2$ Freiheitsgraden.^[Warum jetzt
 genau eine $t$-Verteilung und keine Normalverteilung? Das liegt daran, dass wir
 die Varianz unserer Fehler $\sigma$ nicht beobachten können und durch $\hat{\sigma}$
@@ -1015,12 +760,11 @@ geschätzt haben. Das führt dazu, dass die resultierende Teststatistik nicht me
 normalverteilt ist. Mir zunehmendem Stichprobenumfang wird die Abweichung immer
 irrelevanter, jedoch ist die t-Verteilung so einfach zu handhaben, dass man sie
 eigentlich immer benutzen kann.]
-Damit können wir überprüfen wie wahrscheinlich unser Schätzwert unter
+Dann können wir schauen wie wahrscheinlich unser tatsächlicher Schätzwert unter
 der $H_0$ wäre. Wenn er sehr unwahrscheinlich wäre, würden wir $H_0$ verwerfen.
 
 Die Wahrscheinlichkeit, dass wir unseren Schätzer unseren Schätzer gefunden
 hätten, wenn $H_0$ wahr wäre wird durch den $p$-Wert des Schätzers angegeben.
-Dieser findet sich in der Spalte `Pr(>|t|)`.
 In unserem Fall mit $\hat{\beta}_1$ ist dieser Wert mit $2\cdot 10^{-16}$ extrem 
 klein. Das bedeutet, wenn $H_0: \beta_1=0$ wahr wäre, würden wir unseren Wert
 für $\hat{\beta}_1$ mit einer Wahrscheinlichkeit nahe Null beobachten. 
@@ -1029,8 +773,30 @@ Tatsächlich würden wir diese Hypothese auf quasi jedem beliebigen
 Signifikanzniveau verwerfen. Daher ist der Schätzer in der Zusammenfassung mit
 drei Sternen gekennzeichnet:
 
-```{r}
+
+```r
 summary(schaetzung_bip)
+```
+
+```
+#> 
+#> Call:
+#> lm(formula = Konsum ~ BIP, data = daten)
+#> 
+#> Residuals:
+#>     Min      1Q  Median      3Q     Max 
+#> -39.330  -8.601   1.761  14.769  31.306 
+#> 
+#> Coefficients:
+#>               Estimate Std. Error t value Pr(>|t|)    
+#> (Intercept) -1.841e+02  4.626e+01  -3.979  0.00157 ** 
+#> BIP          7.064e-01  7.827e-03  90.247  < 2e-16 ***
+#> ---
+#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#> 
+#> Residual standard error: 20.29 on 13 degrees of freedom
+#> Multiple R-squared:  0.9984,	Adjusted R-squared:  0.9983 
+#> F-statistic:  8145 on 1 and 13 DF,  p-value: < 2.2e-16
 ```
 
 Grundsätzlich gilt, dass wir $H_0: \beta_i = 0$ auf dem $\alpha$-Signifikanzniveau
@@ -1047,10 +813,6 @@ nicht mit *sozioökonomischer Relevanz* zu tun hat:
 ein Effekt kann hochsignifikant, aber extrem klein sein.
 Dennoch ist die Signifikanz eine wichtige und häufig verwendete Kennzahl für
 jede lineare Regression.
-Gleichzeitig ist die wissenschaftliche Praxis, nur Studien mit signifikanten
-Ergebnissen ernst zu nehmen, sehr problematisch, Stichwork 
-[p-Hacking](https://de.wikipedia.org/wiki/P-Hacking).
-Wir diskutieren dieses Problem später im Rahmen der Veranstaltung
 
 ### Konfidenzintervalle für die Schätzer
 
@@ -1064,10 +826,17 @@ werden können.
 
 Um diese Intervalle für eine Schätzun in R zu konstruieren verwenden wir die 
 Funktion `confint`, die als erstes Argument das geschätzte Modell und
-als Argument `level` das Signifikanzniveau $1-\alpha$ akzeptiert:
+als Argument `level` das Signifikanzniveau $\alpha$ akzeptiert:
 
-```{r}
+
+```r
 confint(schaetzung_bip, level=0.95)
+```
+
+```
+#>                    2.5 %      97.5 %
+#> (Intercept) -284.0209372 -84.1350533
+#> BIP            0.6894978   0.7233183
 ```
 
 Für $\hat{\beta}_1$ ist das 95%-Konfidenzintervall also $[0.69, 0.72]$. 
@@ -1087,7 +856,8 @@ Die Funktion `set.seed()` verwenden wir um den
 zu kalibrieren, dass bei jedem Durchlaufen des Skripts die gleichen Realisierungen
 der ZV gezogen werden und die Ergebnisse somit reproduzierbar sind.]
 
-```{r}
+
+```r
 set.seed(123)
 wahres_b0 <- 3
 wahres_b1 <- 1.4
@@ -1110,29 +880,7 @@ datensatz <- data.frame(
 Wie wir im folgenden sehen ist die geschätzte Gerade nicht exakt deckungsgleich
 zur 'wahren' Gerade, aber doch durchaus nahe dran:
 
-```{r, echo=FALSE}
-reg_obj <- lm(y~x, data = datensatz)
-gesch_b0 <- reg_obj[["coefficients"]][1]
-gesch_b1 <- reg_obj[["coefficients"]][2]
-
-cols_used <- get_icae_colors(2, palette_used = "mixed")
-
-ggplot(datensatz, aes(x=x, y=y)) +
-  geom_point() +
-  geom_abline(aes(color="Geschätzte Werte", 
-                  intercept = gesch_b0, 
-                  slope = gesch_b1), 
-              alpha=0.75, show.legend = TRUE) +
-  geom_abline(aes(color="Wahre Werte", 
-                  intercept = wahres_b0, 
-                  slope = wahres_b1), 
-              alpha=0.75, show.legend = TRUE) +
-  scale_color_manual(values = c("Geschätzte Werte"=cols_used[1], 
-                                "Wahre Werte"=cols_used[2])
-                     ) + 
-  theme_icae() + 
-  theme(legend.position = "bottom")
-```
+<img src="Chap-linmodels_files/figure-html/unnamed-chunk-32-1.png" width="672" />
 
 Grundsätzlich gilt, dass die erwartete Deckung der beiden dann höher ist wenn
 (1) die Annahmen für die einfache lineare Regression gut erfüllt sind und 
@@ -1148,70 +896,9 @@ beeinflusst, wobei wir die formale Begründung warum das so ist bis ans Ende des
 Kapitels aufschieben:
 
 
-```{r, echo=FALSE}
-plot_data <- function(n_val, wahres_b0, wahres_b1){
-  for (n in n_val){
-  x <- runif(n_val, min = 0, max = 10)
-  fehler <- rnorm(n_val, mean = 0, sd = 3)
-  y <- rep(NA, n_val)
-  for (i in 1:n_val){
-    y[i] <- wahres_b0 + wahres_b1*x[i] + fehler[i]
-    }
-  data <- data.frame(
-    x = x,
-    y = y
-  )
-  }
-  
-  cols_used <- get_icae_colors(2, palette_used = "mixed")
-  reg_obj <- lm(y~x, data = data)
-  gesch_b0 <- reg_obj[["coefficients"]][1]
-  gesch_b1 <- reg_obj[["coefficients"]][2]
-  
-  ggplot(data, aes(x=x, y=y)) +
-    geom_point() +
-    geom_abline(aes(color="Geschätzte Werte", 
-                  intercept = gesch_b0, 
-                  slope = gesch_b1), 
-              alpha=0.75, show.legend = TRUE) +
-    geom_abline(aes(color="Wahre Werte", 
-                  intercept = wahres_b0, 
-                  slope = wahres_b1), 
-              alpha=0.75, show.legend = TRUE) +
-    annotate(geom="text",
-             label=TeX(paste0("$\\hat{\\beta_0} =", round(gesch_b0, 2), "$,  $",  
-                       "\ \\hat{\\beta_1} =", round(gesch_b1, 2), " $")), 
-             x = 7.5, y = 0) +
-    scale_color_manual(values = c("Geschätzte Werte"=cols_used[1], 
-                                "Wahre Werte"=cols_used[2])
-                     ) + 
-    scale_x_continuous(limits = c(0, 10), expand = c(0,0)) +
-    scale_y_continuous(limits = c(-5, 25), expand = c(0,0)) +
-    ggtitle(paste0("Stichprobengröße: ", n_val)) +
-    theme_icae() + 
-    theme(legend.position = "bottom")
-}
-```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-set.seed(234)
-wahres_b0 <- 3
-wahres_b1 <- 1.4
-  
-stichproben_n <- c(5, 10, 25, 100)
 
-plot_liste <- lapply(stichproben_n, plot_data, 
-                     wahres_b0, wahres_b1)
-
-full_plot <- ggarrange(plotlist = plot_liste, ncol = 2, nrow = 2, 
-          common.legend = T, legend = "bottom")
-
-annotate_figure(full_plot, 
-                text_grob(TeX(paste0("Regressionen mit $\\beta_0 = ",
-                                     wahres_b0, "$ und $\\beta_1 = ", 
-                                     wahres_b1, "$")), 
-                          face = "bold", size = 14))
-```
+<img src="Chap-linmodels_files/figure-html/unnamed-chunk-34-1.png" width="672" />
 
 
 ### Residuenanalyse
@@ -1220,58 +907,32 @@ Eine sehr hilfreiche Art, die Modellannahmen von oben zu überprüfen ist die
 Analyse der Residuen. 
 Diese sind im Ergebnisobjekt der Regression gespeichert:
 
-```{r, eval=FALSE}
+
+```r
 schaetzung_bip[["residuals"]]
 ```
 
 Wir wollen nun die Residuen verwenden um die folgenden Annahmen unseres 
 Regressionsmodells zu überprüfen:
 
-1. **A1:** $\mathbb{E}(\epsilon_i)=0$
+1. $\mathbb{E}(\epsilon_i)=0$
 
-2. **A3: ** $Var(\epsilon_i)=\sigma^2\forall i$
+2. $COV(\epsilon_i, \epsilon_j)=0, \quad \forall i, j$
 
-2. **A4: ** $Cov(\epsilon_i, \epsilon_j)=0 \forall i,j$
+3. $\epsilon \propto \mathcal(N)(0, \sigma^2)$
 
-3. **A5:** $\epsilon \propto \mathcal{N}(0, \sigma^2)$
+Um die ersten beiden Annahmen zu überpüfen bilden wir die $\epsilon_i$ gegen 
+$\hat{Y}$ und erhalten so den so genannten *Tukey-Anscombe-Plot$:
 
-Um die ersten drei Annahmen zu überpüfen bilden wir die $\epsilon_i$ gegen 
-$\hat{Y}$ ab und erhalten so den so genannten **Tukey-Anscombe-Plot**:
+<img src="Chap-linmodels_files/figure-html/unnamed-chunk-36-1.png" width="672" />
 
-```{r, echo=FALSE}
-ggplot(
-  data.frame(
-    GefitteteWerte=schaetzung_bip[["fitted.values"]],
-    Residuen=schaetzung_bip[["residuals"]]),
-  aes(x=GefitteteWerte, y=Residuen)
-  ) +
-  ggtitle("Tukey-Anscombe-Plot") +
-  geom_hline(yintercept = 0) + 
-  geom_point() +
-  theme_icae()
-```
-
-
-Hier geht es nun darum eine Struktur zu erkennen. 
-Wenn alle Annahmen korrekt sind, sehen wir nur eine unstrukturierte Punktewolke.
 In dem vorliegenden Fall können wir aufgrund der wenigen Datenpunkte den Plot
-aber nur mit großer Schwerierigkeit interpretieren - auch deswegen sind große
-Stichproben immer Besser.
-Es scheint aber so zu sein, dass die Varianz der Fehler mit $x_i$ steigt, also
-A3 möglicherweise verletzt ist - zum Glück kann man den OLS-Schätzer leicht
-modifizieren um damit umzugehen.
-Ansonsten ist keine Struktur zumindest unmittelbar ersichtlich.
+nur mit großer Schwerierigkeit interpretieren. 
+Auf den ersten Blick sehen wir hier aber keine systematischen Abweichungen,
+sodass ein Abweichen von den ersten beiden Annahmen zumindest nicht unmittelbar
+ersichtlich ist. 
 
-Als nächstes wollen die Annahme normalverteilter Residuen überprüfen.
-Das geht mit dem so genannten **Q-Q-Plot**:
-
-```{r,echo=FALSE}
-ggplot(data.frame(Residuen=schaetzung_bip[["residuals"]]),
-       aes(sample=Residuen)) + 
-  stat_qq() + stat_qq_line() +
-  ggtitle("Q-Q-Plot für die Residuen") +
-  theme_icae()
-```
+<img src="Chap-linmodels_files/figure-html/unnamed-chunk-37-1.png" width="672" />
 
 Bei normalverteilten Residuen würden die Punkte möglichst exakt auf der Linie
 liegen. Das ist hier nur bedingt der Fall, deswegen sollten wir skeptisch 
@@ -1297,7 +958,7 @@ vor allem theoretisch identifiziert werden muss.
 Insgesamt ergibt sich aus den eben beschriebenen Schritten also folgendes 
 Vorgehen bei einer Regression:
 
-1. Aufstellen des statistischen Modells
+1. Aufstellen des statistischen modells
 
 2. Erheben und Aufbereitung der Daten
 
@@ -1321,10 +982,28 @@ Zudem ist die Implementierung in R nicht wirklich schwieriger.
 Im folgenden wollen wir einen Beispieldatensatz verwenden, in dem Informationen 
 über Informationen über die Preise von ökonomischen Journalen gesammelt sind:
 
-```{r}
+
+```r
 journal_data <- fread(here("data/tidy/journaldaten.csv")) %>%
   select(Titel, Preis, Seitenanzahl, Zitationen)
 head(journal_data)
+```
+
+```
+#>                                                  Titel Preis Seitenanzahl
+#> 1:                   Asian-Pacific Economic Literature   123          440
+#> 2:           South African Journal of Economic History    20          309
+#> 3:                             Computational Economics   443          567
+#> 4: MOCT-MOST Economic Policy in Transitional Economics   276          520
+#> 5:                          Journal of Socio-Economics   295          791
+#> 6:                                    Labour Economics   344          609
+#>    Zitationen
+#> 1:         21
+#> 2:         22
+#> 3:         22
+#> 4:         22
+#> 5:         24
+#> 6:         24
 ```
 
 In einer einfachen linearen Regression könnten wir z.B. folgendes Modell schätzen:
@@ -1333,12 +1012,34 @@ $$PREIS_i = \beta_0 + \beta_1 SEITEN + \epsilon$$
 
 Das würden wir mit folgendem Befehl in R implementieren:
 
-```{r}
+
+```r
 reg <- lm(Preis~Seitenanzahl, data=journal_data)
 summary(reg)
 ```
 
-Allerdings macht es auch Sinn anzunehmen, dass beliebte Journale teurer sind.
+```
+#> 
+#> Call:
+#> lm(formula = Preis ~ Seitenanzahl, data = journal_data)
+#> 
+#> Residuals:
+#>      Min       1Q   Median       3Q      Max 
+#> -1157.56  -190.54   -40.72   179.59  1329.30 
+#> 
+#> Coefficients:
+#>              Estimate Std. Error t value Pr(>|t|)    
+#> (Intercept)  56.74315   53.85199   1.054    0.293    
+#> Seitenanzahl  0.43610    0.05757   7.575 1.89e-12 ***
+#> ---
+#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#> 
+#> Residual standard error: 336.5 on 178 degrees of freedom
+#> Multiple R-squared:  0.2438,	Adjusted R-squared:  0.2395 
+#> F-statistic: 57.38 on 1 and 178 DF,  p-value: 1.888e-12
+```
+
+Allerdings macht es auch Sinn, dass beliebte Journale teurer sind.
 Daher würden wir gerne die Anzahl der Zitationen in das obige Modell als zweite 
 erklärende Variable aufnehmen. In diesem Fall würden wir mit einem *multiplen* 
 linearen Modell arbeiten:
@@ -1349,7 +1050,8 @@ $$PREIS_i = \beta_0 + \beta_1 SEITEN + \beta_2 ZITATE + \epsilon$$
 Tatsächlich ist die einzige Änderungen, die wir auf der technischen Seite machen 
 müssen, die Inklusion der neuen erklärenden Variable in die Schätzgleichung:
 
-```{r}
+
+```r
 reg <- lm(Preis~Seitenanzahl + Seitenanzahl + Zitationen, data=journal_data)
 ```
 
@@ -1360,8 +1062,32 @@ Wenn wir uns die Zusammenfassung dieses Objekts anschauen, sehen wir einen sehr
 ähnlichen Output als für den einfachen linearen Fall, nur dass wir eine weitere 
 Zeile für die neue erklärende Variable haben:
 
-```{r}
+
+```r
 summary(reg)
+```
+
+```
+#> 
+#> Call:
+#> lm(formula = Preis ~ Seitenanzahl + Seitenanzahl + Zitationen, 
+#>     data = journal_data)
+#> 
+#> Residuals:
+#>      Min       1Q   Median       3Q      Max 
+#> -1346.70  -173.48   -38.83   138.32  1259.00 
+#> 
+#> Coefficients:
+#>              Estimate Std. Error t value Pr(>|t|)    
+#> (Intercept)  -3.72002   52.80969  -0.070    0.944    
+#> Seitenanzahl  0.59413    0.06477   9.173  < 2e-16 ***
+#> Zitationen   -0.10872    0.02393  -4.544 1.02e-05 ***
+#> ---
+#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#> 
+#> Residual standard error: 319.3 on 177 degrees of freedom
+#> Multiple R-squared:  0.3228,	Adjusted R-squared:  0.3151 
+#> F-statistic: 42.18 on 2 and 177 DF,  p-value: 1.049e-15
 ```
 
 Zwei Punkte sind bei der multiplen Regression zu beachten:
@@ -1372,8 +1098,6 @@ werden. Das ist die berühmte *ceteris paribus* Formen.
 Der geschätzte Wert für `Seitenanzahl` sagt uns dementsprechend: "*Ceteris paribus*, 
 also alle anderen Einflussfaktoren fix gehalten, geht ein um eine Seite dickeres 
 Journal mit einem um $0.6$ Dollar höherem Abo-Preis einher."
-Beachten Sie den relevanten Unterschied zur einfachen Regression, die sehr 
-wahrscheinlich unter dem oben angesprochenen *omitted variable bias* gelitten hat.
 
 Der zweite zu beachtende Aspekt bezieht sich auf die Korrelation der verschiedenen 
 erklärenden Variablen. Die Annahmen für OLS schließen an sich nur so genannte 
