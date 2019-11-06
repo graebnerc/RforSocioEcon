@@ -446,7 +446,7 @@ sample_binom
 ```
 
 ```
-## [1] 7 1 4 3 4
+## [1] 4 6 6 5 3
 ```
 
 > **Anwendungsbeispiel Binomialverteilung:** Unser Zufallsexperiment besteht
