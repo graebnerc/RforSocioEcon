@@ -31,7 +31,7 @@ das Paket `rmarkdown` zu installieren:
 
 
 ```r
-install.packages("rmarkdown")
+install.packages('rmarkdown')
 ```
 
 Das Standardformat für R-Markdown Dokumente ist html. 
@@ -158,8 +158,9 @@ dann können Sie das mit folgendem Code, vorausgesetzt die Datei
 
 
 ```r
-render(input = "R/FirstMarkdown.Rmd", output_format = "html", 
-    output_file = "output/FirstMarkdown.html")
+render(input = "R/FirstMarkdown.Rmd", 
+       output_format = "html", 
+       output_file = "output/FirstMarkdown.html")
 ```
 
 Weitere Informationen zu den Parametern finden Sie wie immer über die `help()`

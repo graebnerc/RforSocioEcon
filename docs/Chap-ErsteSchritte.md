@@ -39,7 +39,7 @@ vom Computer ignoriert und man kann sich einfach Notizen in seinem Code machen.
 
 
 ```r
-2 + 2  # Addition
+2 + 2 # Addition
 ```
 
 ```
@@ -48,7 +48,7 @@ vom Computer ignoriert und man kann sich einfach Notizen in seinem Code machen.
 
 
 ```r
-2/2  # Division
+2/2 # Division
 ```
 
 ```
@@ -57,7 +57,7 @@ vom Computer ignoriert und man kann sich einfach Notizen in seinem Code machen.
 
 
 ```r
-4 * 2  # Multiplikation
+4*2 # Multiplikation
 ```
 
 ```
@@ -66,7 +66,7 @@ vom Computer ignoriert und man kann sich einfach Notizen in seinem Code machen.
 
 
 ```r
-3^2  # Potenzierung
+3**2 # Potenzierung
 ```
 
 ```
@@ -211,8 +211,8 @@ Zuweisung überschreibt:
 
 
 ```r
-x <- 2
-y <- 2  # Das Objekt 2 hat nun zwei Namen
+x <- 2 
+y <- 2 # Das Objekt 2 hat nun zwei Namen
 print(x)
 ```
 
@@ -229,7 +229,7 @@ print(y)
 ```
 
 ```r
-x <- 4  # Der Name 'x' zeigt nun zum Objekt '4', nicht mehr zu '2'
+x <- 4 # Der Name 'x' zeigt nun zum Objekt '4', nicht mehr zu '2'
 print(x)
 ```
 
@@ -242,7 +242,7 @@ Zuweisung kein Wert sichtbar ausgegeben:
 
 
 ```r
-2 + 2  # Keine Zuweisung, R gibt das Ergebnis in der Konsole aus
+2 + 2 # Keine Zuweisung, R gibt das Ergebnis in der Konsole aus
 ```
 
 ```
@@ -251,7 +251,7 @@ Zuweisung kein Wert sichtbar ausgegeben:
 
 
 ```r
-x <- 2 + 2  # Zuweisung, R gibt das Ergebnis in der Konsole nicht aus
+x <- 2 + 2 # Zuweisung, R gibt das Ergebnis in der Konsole nicht aus
 ```
 
 
@@ -347,7 +347,7 @@ folgendes Beispiel zeigt:
 ```
 
 ```r
-2 + 3
+`+`(2,3)
 ```
 
 ```
@@ -364,7 +364,7 @@ Zahlen (ihr 'Input') und berechnet die Summe dieser Zahlen:
 
 
 ```r
-sum(1, 2, 3, 4)
+sum(1,2,3,4)
 ```
 
 ```
@@ -383,7 +383,7 @@ wenn `na.rm` den Wert `TRUE` hat:
 
 
 ```r
-sum(1, 2, 3, 4, NA)
+sum(1,2,3,4,NA) 
 ```
 
 ```
@@ -392,7 +392,7 @@ sum(1, 2, 3, 4, NA)
 
 
 ```r
-sum(1, 2, 3, 4, NA, na.rm = TRUE)
+sum(1,2,3,4,NA, na.rm = TRUE) 
 ```
 
 ```
@@ -420,10 +420,10 @@ die Länge der Hypothenuse bestimmt:
 
 
 ```r
-pythagoras <- function(kathete_1, kathete_2) {
-    hypo_quadrat <- kathete_1^2 + kathete_2^2
-    l_hypothenuse <- sqrt(hypo_quadrat)  # sqrt() zieht die Quadratwurzel
-    return(l_hypothenuse)
+pythagoras <- function(kathete_1, kathete_2){
+  hypo_quadrat <- kathete_1**2 + kathete_2**2
+  l_hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
+  return(l_hypothenuse)
 }
 ```
 
@@ -473,10 +473,10 @@ innerhalb des *function bodies* existiert:
 
 
 ```r
-pythagoras <- function(kathete_1, kathete_2) {
-    hypo_quadrat <- kathete_1^2 + kathete_2^2
-    l_hypothenuse <- sqrt(hypo_quadrat)  # sqrt() zieht die Quadratwurzel
-    return(l_hypothenuse)
+pythagoras <- function(kathete_1, kathete_2){
+  hypo_quadrat <- kathete_1**2 + kathete_2**2
+  l_hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
+  return(l_hypothenuse)
 }
 x <- pythagoras(2, 4)
 hypo_quadrat
@@ -509,10 +509,10 @@ folgendermaßen aussehen:
 #' @param kathete_2 Die Länge der zweiten Kathete
 #' @return Die Länge der Hypothenuse des durch a und b definierten 
 #'  rechtwinkligen Dreieckst
-pythagoras <- function(kathete_1, kathete_2) {
-    hypo_quadrat <- kathete_1^2 + kathete_2^2
-    l_hypothenuse <- sqrt(hypo_quadrat)  # sqrt() zieht die Quadratwurzel
-    return(l_hypothenuse)
+pythagoras <- function(kathete_1, kathete_2){
+  hypo_quadrat <- kathete_1**2 + kathete_2**2
+  l_hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
+  return(l_hypothenuse)
 }
 ```
 
@@ -619,7 +619,7 @@ typeof(2L)
 ```
 
 ```r
-x <- 22
+x <- 22.0
 typeof(x)
 ```
 
@@ -632,7 +632,7 @@ Die generelle Syntax hierfür ist: `is.*()`, also z.B.:
 
 
 ```r
-x <- 1
+x <- 1.0
 is.integer(x)
 ```
 
@@ -658,7 +658,9 @@ Hier spricht man von `coercion` und die generelle Syntax hierfür ist:
 
 ```r
 x <- "2"
-print(typeof(x))
+print(
+  typeof(x)
+)
 ```
 
 ```
@@ -667,7 +669,9 @@ print(typeof(x))
 
 ```r
 x <- as.double(x)
-print(typeof(x))
+print(
+  typeof(x)
+)
 ```
 
 ```
@@ -710,7 +714,7 @@ print(y)
 ```
 
 ```r
-z <- as.double(y)  # Das funktioniert
+z <- as.double(y) # Das funktioniert
 print(z)
 ```
 
@@ -719,7 +723,7 @@ print(z)
 ```
 
 ```r
-k <- as.double("Hallo")  # Das nicht
+k <- as.double("Hallo") # Das nicht
 ```
 
 ```
@@ -772,8 +776,8 @@ hilfreich ist, manchmal aber auch gefährlich sein kann:
 
 
 ```r
-x <- 1L  # Integer
-y <- 2  # Double
+x <- 1L # Integer
+y <- 2.0 # Double
 z <- x + y
 typeof(z)
 ```
@@ -788,8 +792,8 @@ Interessanterweise werden logische Werte ebenfalls transformiert:
 ```r
 x <- TRUE
 y <- FALSE
-z <- x + y  # TRUE wird zu 1, FALSE zu 0
-print(z)
+z <- x + y # TRUE wird zu 1, FALSE zu 0
+print(z) 
 ```
 
 ```
@@ -834,7 +838,7 @@ Dabei können auch Vektoren miteinander verbunden werden:
 
 
 ```r
-x <- 1:3  # Shortcut für: x <- c(1, 2, 3)
+x <- 1:3 # Shortcut für: x <- c(1, 2, 3)
 y <- 4:6
 z <- c(x, y)
 z
@@ -864,7 +868,7 @@ werden:
 
 
 ```r
-x = c(1, 2, 3)
+x =  c(1, 2, 3)
 len_x <- length(x)
 len_x
 ```
@@ -912,7 +916,7 @@ Es können auch längere Vektoren getestet werden:
 
 ```r
 x <- 1:3
-x < 2
+x<2
 ```
 
 ```
@@ -925,7 +929,7 @@ Tests können beliebig miteinander verknüpft werden:
 
 ```r
 x <- 1L
-x > 2 | x < 2 & (is.double(x) & x != 0)
+x>2 | x<2 & (is.double(x) & x!=0)
 ```
 
 ```
@@ -937,10 +941,11 @@ wird, ist es einfach zu testen wie häufig eine bestimmte Bedingung erfüllt ist
 
 
 ```r
-x <- 1:50
-smaller_20 <- x < 20
-print(sum(smaller_20)  # Wie viele Elemente sind kleiner als 20?
-)
+x <- 1:50 
+smaller_20 <- x<20 
+print(
+  sum(smaller_20) # Wie viele Elemente sind kleiner als 20?
+  )
 ```
 
 ```
@@ -948,7 +953,8 @@ print(sum(smaller_20)  # Wie viele Elemente sind kleiner als 20?
 ```
 
 ```r
-print(sum(smaller_20/length(x))  # Wie hoch ist der Anteil von diesen Elementen?
+print(
+  sum(smaller_20/length(x)) # Wie hoch ist der Anteil von diesen Elementen?
 )
 ```
 
@@ -974,7 +980,7 @@ typeof(x)
 ```
 
 ```r
-y <- "Auf Wiedersehen"
+y <- 'Auf Wiedersehen'
 typeof(y)
 ```
 
@@ -991,8 +997,7 @@ z
 ```
 
 ```
-#> [1] "Hallo"           " und "          
-#> [3] "Auf Wiedersehen"
+#> [1] "Hallo"           " und "           "Auf Wiedersehen"
 ```
 
 Nützlich ist in diesem Zusammenhang die Funktion `paste()`, die Elemente von 
@@ -1006,10 +1011,8 @@ y
 ```
 
 ```
-#>  [1] "Versuch Nr. 1"  "Versuch Nr. 2" 
-#>  [3] "Versuch Nr. 3"  "Versuch Nr. 4" 
-#>  [5] "Versuch Nr. 5"  "Versuch Nr. 6" 
-#>  [7] "Versuch Nr. 7"  "Versuch Nr. 8" 
+#>  [1] "Versuch Nr. 1"  "Versuch Nr. 2"  "Versuch Nr. 3"  "Versuch Nr. 4" 
+#>  [5] "Versuch Nr. 5"  "Versuch Nr. 6"  "Versuch Nr. 7"  "Versuch Nr. 8" 
 #>  [9] "Versuch Nr. 9"  "Versuch Nr. 10"
 ```
 
@@ -1025,9 +1028,8 @@ x_axis
 ```
 
 ```
-#>  [1] "Tag: 1"  "Tag: 2"  "Tag: 3"  "Tag: 4" 
-#>  [5] "Tag: 5"  "Tag: 6"  "Tag: 7"  "Tag: 8" 
-#>  [9] "Tag: 9"  "Tag: 10"
+#>  [1] "Tag: 1"  "Tag: 2"  "Tag: 3"  "Tag: 4"  "Tag: 5"  "Tag: 6"  "Tag: 7" 
+#>  [8] "Tag: 8"  "Tag: 9"  "Tag: 10"
 ```
 
 
@@ -1044,15 +1046,13 @@ ein Wochentag vergessen wurde:
 
 ```r
 tage <- paste("Tag ", 1:7, ":", sep = "")
-tag_namen <- c("Montag", "Dienstag", "Mittwoch", 
-    "Donnerstag", "Freitag", "Samstag")
+tag_namen <- c("Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag")
 paste(tage, tag_namen)
 ```
 
 ```
-#> [1] "Tag 1: Montag"     "Tag 2: Dienstag"  
-#> [3] "Tag 3: Mittwoch"   "Tag 4: Donnerstag"
-#> [5] "Tag 5: Freitag"    "Tag 6: Samstag"   
+#> [1] "Tag 1: Montag"     "Tag 2: Dienstag"   "Tag 3: Mittwoch"  
+#> [4] "Tag 4: Donnerstag" "Tag 5: Freitag"    "Tag 6: Samstag"   
 #> [7] "Tag 7: Montag"
 ```
 
@@ -1090,7 +1090,7 @@ bestimmten Wert annehmen:
 
 
 ```r
-NA | TRUE  # Gibt immer TRUE, unabhängig vom Wert für NA
+NA | TRUE # Gibt immer TRUE, unabhängig vom Wert für NA
 ```
 
 ```
@@ -1103,7 +1103,7 @@ verwendet werden, und nicht etwa der Ausdruck `x==NA`:
 
 ```r
 x <- c(NA, 5, NA, 10)
-print(x == NA)  # Unklar, da man nicht weiß, ob alle NA für den gleichen Wert stehen
+print(x == NA) # Unklar, da man nicht weiß, ob alle NA für den gleichen Wert stehen
 ```
 
 ```
@@ -1111,7 +1111,9 @@ print(x == NA)  # Unklar, da man nicht weiß, ob alle NA für den gleichen Wert 
 ```
 
 ```r
-print(is.na(x))
+print(
+  is.na(x)
+)
 ```
 
 ```
@@ -1123,7 +1125,7 @@ nicht `NA` sondern `NaN` (*not a number*):
 
 
 ```r
-0/0
+0 / 0
 ```
 
 ```
@@ -1150,7 +1152,7 @@ werden:
 
 
 ```r
-x <- c(2, 4, 6)
+x <- c(2,4,6)
 x[1]
 ```
 
@@ -1161,7 +1163,7 @@ x[1]
 Auf diese Weise können auch bestimmte Elemente modifiziert werden:
 
 ```r
-x <- c(2, 4, 6)
+x <- c(2,4,6)
 x[2] <- 99
 x
 ```
@@ -1260,9 +1262,8 @@ print(y)
 ```
 
 ```
-#>  [1]  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5
-#>  [9]  5.0  5.5  6.0  6.5  7.0  7.5  8.0  8.5
-#> [17]  9.0  9.5 10.0
+#>  [1]  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5
+#> [15]  8.0  8.5  9.0  9.5 10.0
 ```
 
 Wenn wir die Länge des resultierenden Vektors festlegen wollen und die 
@@ -1318,7 +1319,7 @@ Dafür können wir die Funktion `length()` verwenden:
 
 
 ```r
-x <- c(1, 2, 3, 4)
+x <- c(1,2,3,4)
 length(x)
 ```
 
@@ -1354,7 +1355,7 @@ Rechenoperation entfernt:
 
 
 ```r
-y <- c(1, 2, 3, 4, NA)
+y <- c(1,2,3,4,NA)
 min(y)
 ```
 
@@ -1431,7 +1432,11 @@ Sie werden mit der Funktion `list()` erstellt:
 
 
 ```r
-l_1 <- list("a", c(1, 2, 3), FALSE)
+l_1 <- list(
+  "a",
+  c(1,2,3),
+  FALSE
+)
 typeof(l_1)
 ```
 
@@ -1474,8 +1479,11 @@ Die einzelnen Elemente einer Liste können auch benannt werden:
 
 
 ```r
-l_2 <- list(erstes_element = "a", zweites_element = c(1, 
-    2, 3), drittes_element = FALSE)
+l_2 <- list(
+  "erstes_element" = "a",
+  "zweites_element" = c(1,2,3),
+  "drittes_element" = FALSE
+)
 ```
 
 Die Namen aller Elemente in der Liste erhalten wir mit der Funktion `names()`:
@@ -1486,8 +1494,7 @@ names(l_2)
 ```
 
 ```
-#> [1] "erstes_element"  "zweites_element"
-#> [3] "drittes_element"
+#> [1] "erstes_element"  "zweites_element" "drittes_element"
 ```
 
 Um einzelne Elemente einer Liste auszulesen müssen wir `[[` anstatt `[` verwemden.
@@ -1546,7 +1553,7 @@ und ggf. Ersetzungen vornehmen:
 
 
 ```r
-m_1[, 1]  # Erste Spalte
+m_1[,1] # Erste Spalte
 ```
 
 ```
@@ -1555,7 +1562,7 @@ m_1[, 1]  # Erste Spalte
 
 
 ```r
-m_1[1, ]  # Erste Zeile
+m_1[1,] # Erste Zeile
 ```
 
 ```
@@ -1564,7 +1571,7 @@ m_1[1, ]  # Erste Zeile
 
 
 ```r
-m_1[2, 2]  # Element [2,2]
+m_1[2,2] # Element [2,2]
 ```
 
 ```
@@ -1598,7 +1605,7 @@ is.matrix(m_1)
 
 
 ```r
-is.matrix(2)
+is.matrix(2.0)
 ```
 
 ```
@@ -1626,8 +1633,8 @@ $$A = \left(
 \end{array}\right)$$
 
 ```r
-matrix_a <- matrix(c(1, 5, 6, 3), ncol = 2)
-matrix_b <- matrix(c(0, 4, 2, 8), ncol = 2)
+matrix_a <- matrix(c(1,5,6,3), ncol = 2)
+matrix_b <- matrix(c(0,4,2,8), ncol = 2)
 ```
 
 Skalar-Addition:
@@ -1641,7 +1648,7 @@ $$4+\boldsymbol{A}=
 
 
 ```r
-4 + matrix_a
+4+matrix_a
 ```
 
 ```
@@ -1682,7 +1689,7 @@ $$2\cdot\boldsymbol{A}=
 
 
 ```r
-2 * matrix_a
+2*matrix_a
 ```
 
 ```
@@ -1780,7 +1787,11 @@ erstellen indem wir die Funktion `as.data.frame()` verwenden:
 
 
 ```r
-l_3 <- list(a = 1:3, b = 4:6, c = 7:9)
+l_3 <- list(
+  "a" = 1:3,
+  "b" = 4:6,
+  "c" = 7:9
+)
 df_3 <- as.data.frame(l_3)
 ```
 Wenn wir R nach dem Typ von `df_3` fragen, sehen wir, dass es sich weiterhin um 
@@ -1857,9 +1868,11 @@ genannte Faktoren umgewandelt werden:^[Zur Geschichte dieses wirklich
 
 
 ```r
-df_4 <- data.frame(gender = c(rep("male", 3), 
-    rep("female", 2)), height = c(89, 75, 80, 
-    66, 50), stringsAsFactors = FALSE)
+df_4 <- data.frame(
+  "gender" = c(rep("male", 3), rep("female", 2)),
+  "height" = c(89, 75, 80, 66, 50),
+  stringsAsFactors = FALSE
+)
 df_4
 ```
 
@@ -1890,17 +1903,16 @@ verwendet werdenkönnen:
 
 
 ```r
-df_4[, 1]  # erste Spalte
+df_4[, 1] # erste Spalte
 ```
 
 ```
-#> [1] "male"   "male"   "male"   "female"
-#> [5] "female"
+#> [1] "male"   "male"   "male"   "female" "female"
 ```
 
 
 ```r
-df_4[, 2]  # Werte der zweiten Spalte
+df_4[, 2] # Werte der zweiten Spalte
 ```
 
 ```
@@ -1913,18 +1925,17 @@ aufgrund der größeren Transparenz von `[[` hier jedoch nicht verwenden.]
 
 
 ```r
-df_4[["gender"]]
+df_4[["gender"]] 
 ```
 
 ```
-#> [1] "male"   "male"   "male"   "female"
-#> [5] "female"
+#> [1] "male"   "male"   "male"   "female" "female"
 ```
 Wenn wir `[` anstatt von `[[` verwenden erhalten wir als Output einen (reduzierten)
 Data Frame:
 
 ```r
-df_4["gender"]
+df_4["gender"] 
 ```
 
 ```
@@ -1939,7 +1950,7 @@ df_4["gender"]
 Es können auch mehrere Zeilen ausgewählt werden:
 
 ```r
-df_4[1:2, ]  # Die ersten beiden Zeilen
+df_4[1:2, ] # Die ersten beiden Zeilen
 ```
 
 ```
@@ -1951,7 +1962,7 @@ df_4[1:2, ]  # Die ersten beiden Zeilen
 Oder einzelne Werte:
 
 ```r
-df_4[2, 2]  # Zweiter Wert der zweiten Spalte
+df_4[2, 2] # Zweiter Wert der zweiten Spalte
 ```
 
 ```
@@ -2029,7 +2040,10 @@ nicht direkt Zugriff auf diese Funktion:
 
 
 ```r
-x <- data.frame(a = 1:5, b = 21:25)
+x <- data.frame(
+  a=1:5,
+  b=21:25
+)
 as.data.table(x)
 ```
 
@@ -2131,7 +2145,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7fea78f33d10>
+#> <bytecode: 0x7fcbcf8a7968>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2162,7 +2176,7 @@ dplyr::lead
 #>     attributes(out) <- attributes(x)
 #>     out
 #> }
-#> <bytecode: 0x7fea7868d1f0>
+#> <bytecode: 0x7fcbcbd0cc08>
 #> <environment: namespace:dplyr>
 ```
 
@@ -2189,18 +2203,10 @@ search()
 ```
 
 ```
-#>  [1] ".GlobalEnv"        
-#>  [2] "package:plm"       
-#>  [3] "package:dplyr"     
-#>  [4] "package:data.table"
-#>  [5] "package:stats"     
-#>  [6] "package:graphics"  
-#>  [7] "package:grDevices" 
-#>  [8] "package:utils"     
-#>  [9] "package:datasets"  
-#> [10] "package:methods"   
-#> [11] "Autoloads"         
-#> [12] "package:base"
+#>  [1] ".GlobalEnv"         "package:plm"        "package:dplyr"     
+#>  [4] "package:data.table" "package:stats"      "package:graphics"  
+#>  [7] "package:grDevices"  "package:utils"      "package:datasets"  
+#> [10] "package:methods"    "Autoloads"          "package:base"
 ```
 
 
@@ -2294,7 +2300,7 @@ Argument an:
 
 
 ```r
-auto_daten_neu <- mutate(auto_daten, Verbrauch_pro_PS = Verbrauch/PS)
+auto_daten_neu <- mutate(auto_daten, Verbrauch_pro_PS=Verbrauch/PS)
 write_csv(auto_daten_neu, here("data/tidy/NeueDaten.csv"))
 ```
 
