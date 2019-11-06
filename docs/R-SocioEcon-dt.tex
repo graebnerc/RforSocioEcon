@@ -1,111 +1,131 @@
-\documentclass[]{tufte-book}
-
-% ams
+\documentclass[]{book}
+\usepackage{lmodern}
 \usepackage{amssymb,amsmath}
-
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
 \else % if luatex or xelatex
-  \makeatletter
-  \@ifpackageloaded{fontspec}{}{\usepackage{fontspec}}
-  \makeatother
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
-  \makeatletter
-  \@ifpackageloaded{soul}{
-     \renewcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace=15}#1}}
-     \renewcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace=10}#1}}
-   }{}
-  \makeatother
-
 \fi
-
-% graphix
-\usepackage{graphicx}
-\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
-
-% booktabs
-\usepackage{booktabs}
-
-% url
-\usepackage{url}
-
-% hyperref
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
 \usepackage{hyperref}
-
-% units.
-\usepackage{units}
-
-
-\setcounter{secnumdepth}{2}
-
-% citations
+\hypersetup{unicode=true,
+            pdftitle={R für die sozio-ökonomische Forschung},
+            pdfauthor={Dr.~Claudius Gräbner},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
 \usepackage{natbib}
 \bibliographystyle{apalike}
-
-% pandoc syntax highlighting
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
 \newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
 % Add ',fontsize=\small' for more characters per line
-\newenvironment{Shaded}{}{}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\ImportTok}[1]{#1}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\NormalTok}[1]{#1}
-
-% longtable
 \usepackage{longtable,booktabs}
-
-% multiplecol
-\usepackage{multicol}
-
-% strikeout
-\usepackage[normalem]{ulem}
-
-% morefloats
-\usepackage{morefloats}
-
-
-% tightlist macro required by pandoc >= 1.14
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
 
-% title / author / date
-\title{R für die sozio-ökonomische Forschung}
-\author{\href{http://claudius-graebner.com/}{Dr.~Claudius Gräbner}}
-\date{2019-11-03}
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{R für die sozio-ökonomische Forschung}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \subtitle{Version 0.3.0}
+  \author{\href{http://claudius-graebner.com/}{Dr.~Claudius Gräbner}}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{2019-11-06}
 
 \usepackage{booktabs}
 \usepackage{amsthm, amssymb, mathrsfs}
@@ -115,7 +135,7 @@
     colorlinks = true,
     linkcolor = {blue},
     citecolor = {violet}}
-%\usepackage[top=2cm, bottom=2cm, left=2cm, right=4cm]{geometry}
+\usepackage[a4paper,width=150mm,top=20mm,bottom=20mm,left=20mm,right=20mm,bindingoffset=6mm]{geometry}
 \makeatletter
 \def\thm@space@setup{%
   \thm@preskip=8pt plus 2pt minus 4pt
@@ -124,16 +144,12 @@
 \makeatother
 
 \begin{document}
-
 \maketitle
-
-
 
 {
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-
 \chapter*{Willkommen}\label{willkommen}
 \addcontentsline{toc}{chapter}{Willkommen}
 
@@ -235,7 +251,32 @@ Wissenschaftliche Texte in R Markdown schreiben\strut
 Optional; relevant für Aufgabenblätter\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.24\columnwidth}\centering\strut
-B: Einführung in Git und Github\strut
+B: Wiederholung: Wahrscheinlichkeitstheorie\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright\strut
+Wiederholung grundlegender Konzepte der Wahrscheinlichkeitstheorie und
+ihrer Implementierung in R\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\centering\strut
+Optional; wird für die quantitativen VL vorausgesetzt\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.24\columnwidth}\centering\strut
+C: Wiederholung: Deskriptive Statistik\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright\strut
+Wiederholung grundlegender Konzepte der deskriptiven Statistik und ihrer
+Implementierung in R\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\centering\strut
+Optional; wird für die quantitativen VL vorausgesetzt\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.24\columnwidth}\centering\strut
+C: Wiederholung: Drei grundlegende Verfahren der schließenden
+Statistik\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright\strut
+Wiederholung von Parameterschätzung, Hypothesentests und
+Konfidenzintervalle und deren Implementierung in R\strut
+\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\centering\strut
+Optional; wird für die quantitativen VL vorausgesetzt\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.24\columnwidth}\centering\strut
+E: Einführung in Git und Github\strut
 \end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright\strut
 Verwendung von Git und Github\strut
 \end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\centering\strut
@@ -259,11 +300,43 @@ die \texttt{minor} Stelle, kleinere, aber signifikante}
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule
-Datum & Version & Wichtigste Änderungen\tabularnewline
+\begin{minipage}[b]{0.13\columnwidth}\raggedright\strut
+Datum\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\raggedright\strut
+Version\strut
+\end{minipage} & \begin{minipage}[b]{0.41\columnwidth}\raggedright\strut
+Wichtigste Änderungen\strut
+\end{minipage}\tabularnewline
 \midrule
 \endhead
-19.10.19 & 0.1.0 & Erste Version veröffentlicht\tabularnewline
-03.11.19 & 0.2.0 & Markdown-Anhang hinzugefügt\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+19.10.19\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+0.1.0\strut
+\end{minipage} & \begin{minipage}[t]{0.41\columnwidth}\raggedright\strut
+Erste Version veröffentlicht\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+03.11.19\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+0.2.0\strut
+\end{minipage} & \begin{minipage}[t]{0.41\columnwidth}\raggedright\strut
+Markdown-Anhang hinzugefügt\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+04.11.19\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+0.3.0\strut
+\end{minipage} & \begin{minipage}[t]{0.41\columnwidth}\raggedright\strut
+Anhänge zur Wiederholung grundlegender Statistik hinzugefügt\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+06.11.19\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+0.4.0\strut
+\end{minipage} & \begin{minipage}[t]{0.41\columnwidth}\raggedright\strut
+Kapitel zu linearen Modellen hinzugefügt\strut
+\end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -746,7 +819,7 @@ verwenden. Wir werden uns damit im nächsten Semester genauer
 beschäftigen, aber Sie werden merken, dass die Kollaboration durch eine
 gut durchdachte Ordnerstruktur massiv erleichtert wird.
 
-\chapter{Erste Schritte in R}\label{basics}
+\hypertarget{basics}{\chapter{Erste Schritte in R}\label{basics}}
 
 Nach diesen (wichtigen) Vorbereitungsschritten wollen wir nun mit dem
 eigentlichen Programmieren anfangen. Zu diesem Zweck müssen wir uns mit
@@ -788,7 +861,7 @@ Code machen.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{2}  \CommentTok{# Addition}
+\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{2} \CommentTok{# Addition}
 \end{Highlighting}
 \end{Shaded}
 
@@ -798,7 +871,7 @@ Code machen.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{2}\OperatorTok{/}\DecValTok{2}  \CommentTok{# Division}
+\DecValTok{2}\OperatorTok{/}\DecValTok{2} \CommentTok{# Division}
 \end{Highlighting}
 \end{Shaded}
 
@@ -808,7 +881,7 @@ Code machen.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{4} \OperatorTok{*}\StringTok{ }\DecValTok{2}  \CommentTok{# Multiplikation}
+\DecValTok{4}\OperatorTok{*}\DecValTok{2} \CommentTok{# Multiplikation}
 \end{Highlighting}
 \end{Shaded}
 
@@ -818,7 +891,7 @@ Code machen.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{3}\OperatorTok{^}\DecValTok{2}  \CommentTok{# Potenzierung}
+\DecValTok{3}\OperatorTok{**}\DecValTok{2} \CommentTok{# Potenzierung}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1001,8 +1074,8 @@ alte Zuweisung überschreibt:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\DecValTok{2}
-\NormalTok{y <-}\StringTok{ }\DecValTok{2}  \CommentTok{# Das Objekt 2 hat nun zwei Namen}
+\NormalTok{x <-}\StringTok{ }\DecValTok{2} 
+\NormalTok{y <-}\StringTok{ }\DecValTok{2} \CommentTok{# Das Objekt 2 hat nun zwei Namen}
 \KeywordTok{print}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
@@ -1023,7 +1096,7 @@ alte Zuweisung überschreibt:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\DecValTok{4}  \CommentTok{# Der Name 'x' zeigt nun zum Objekt '4', nicht mehr zu '2'}
+\NormalTok{x <-}\StringTok{ }\DecValTok{4} \CommentTok{# Der Name 'x' zeigt nun zum Objekt '4', nicht mehr zu '2'}
 \KeywordTok{print}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
@@ -1039,7 +1112,7 @@ einer Zuweisung kein Wert sichtbar ausgegeben:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{2}  \CommentTok{# Keine Zuweisung, R gibt das Ergebnis in der Konsole aus}
+\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{2} \CommentTok{# Keine Zuweisung, R gibt das Ergebnis in der Konsole aus}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1049,7 +1122,7 @@ einer Zuweisung kein Wert sichtbar ausgegeben:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{2}  \CommentTok{# Zuweisung, R gibt das Ergebnis in der Konsole nicht aus}
+\NormalTok{x <-}\StringTok{ }\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{2} \CommentTok{# Zuweisung, R gibt das Ergebnis in der Konsole nicht aus}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1157,7 +1230,7 @@ Prefix-Form geschrieben werden, wie folgendes Beispiel zeigt:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{3}
+\StringTok{`}\DataTypeTok{+}\StringTok{`}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1176,7 +1249,7 @@ Zahlen:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{)}
+\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1198,7 +1271,7 @@ unten) ignoriert bevor die Summe der Inputs gebildet wird wenn
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\OtherTok{NA}\NormalTok{)}
+\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\OtherTok{NA}\NormalTok{) }
 \end{Highlighting}
 \end{Shaded}
 
@@ -1208,7 +1281,7 @@ unten) ignoriert bevor die Summe der Inputs gebildet wird wenn
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\OtherTok{NA}\NormalTok{, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }
 \end{Highlighting}
 \end{Shaded}
 
@@ -1235,10 +1308,10 @@ Pythagoras} die Länge der Hypothenuse bestimmt:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{pythagoras <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(kathete_}\DecValTok{1}\NormalTok{, kathete_}\DecValTok{2}\NormalTok{) \{}
-\NormalTok{    hypo_quadrat <-}\StringTok{ }\NormalTok{kathete_}\DecValTok{1}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{kathete_}\DecValTok{2}\OperatorTok{^}\DecValTok{2}
-\NormalTok{    l_hypothenuse <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(hypo_quadrat)  }\CommentTok{# sqrt() zieht die Quadratwurzel}
-    \KeywordTok{return}\NormalTok{(l_hypothenuse)}
+\NormalTok{pythagoras <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(kathete_}\DecValTok{1}\NormalTok{, kathete_}\DecValTok{2}\NormalTok{)\{}
+\NormalTok{  hypo_quadrat <-}\StringTok{ }\NormalTok{kathete_}\DecValTok{1}\OperatorTok{**}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{kathete_}\DecValTok{2}\OperatorTok{**}\DecValTok{2}
+\NormalTok{  l_hypothenuse <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(hypo_quadrat) }\CommentTok{# sqrt() zieht die Quadratwurzel}
+  \KeywordTok{return}\NormalTok{(l_hypothenuse)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -1294,10 +1367,10 @@ existiert:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{pythagoras <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(kathete_}\DecValTok{1}\NormalTok{, kathete_}\DecValTok{2}\NormalTok{) \{}
-\NormalTok{    hypo_quadrat <-}\StringTok{ }\NormalTok{kathete_}\DecValTok{1}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{kathete_}\DecValTok{2}\OperatorTok{^}\DecValTok{2}
-\NormalTok{    l_hypothenuse <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(hypo_quadrat)  }\CommentTok{# sqrt() zieht die Quadratwurzel}
-    \KeywordTok{return}\NormalTok{(l_hypothenuse)}
+\NormalTok{pythagoras <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(kathete_}\DecValTok{1}\NormalTok{, kathete_}\DecValTok{2}\NormalTok{)\{}
+\NormalTok{  hypo_quadrat <-}\StringTok{ }\NormalTok{kathete_}\DecValTok{1}\OperatorTok{**}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{kathete_}\DecValTok{2}\OperatorTok{**}\DecValTok{2}
+\NormalTok{  l_hypothenuse <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(hypo_quadrat) }\CommentTok{# sqrt() zieht die Quadratwurzel}
+  \KeywordTok{return}\NormalTok{(l_hypothenuse)}
 \NormalTok{\}}
 \NormalTok{x <-}\StringTok{ }\KeywordTok{pythagoras}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{)}
 \NormalTok{hypo_quadrat}
@@ -1331,10 +1404,10 @@ unserer Funktion \texttt{pythagoras} folgendermaßen aussehen:
 \CommentTok{#' @param kathete_2 Die Länge der zweiten Kathete}
 \CommentTok{#' @return Die Länge der Hypothenuse des durch a und b definierten }
 \CommentTok{#'  rechtwinkligen Dreieckst}
-\NormalTok{pythagoras <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(kathete_}\DecValTok{1}\NormalTok{, kathete_}\DecValTok{2}\NormalTok{) \{}
-\NormalTok{    hypo_quadrat <-}\StringTok{ }\NormalTok{kathete_}\DecValTok{1}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{kathete_}\DecValTok{2}\OperatorTok{^}\DecValTok{2}
-\NormalTok{    l_hypothenuse <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(hypo_quadrat)  }\CommentTok{# sqrt() zieht die Quadratwurzel}
-    \KeywordTok{return}\NormalTok{(l_hypothenuse)}
+\NormalTok{pythagoras <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(kathete_}\DecValTok{1}\NormalTok{, kathete_}\DecValTok{2}\NormalTok{)\{}
+\NormalTok{  hypo_quadrat <-}\StringTok{ }\NormalTok{kathete_}\DecValTok{1}\OperatorTok{**}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{kathete_}\DecValTok{2}\OperatorTok{**}\DecValTok{2}
+\NormalTok{  l_hypothenuse <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(hypo_quadrat) }\CommentTok{# sqrt() zieht die Quadratwurzel}
+  \KeywordTok{return}\NormalTok{(l_hypothenuse)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -1464,7 +1537,7 @@ Namen auf:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\DecValTok{22}
+\NormalTok{x <-}\StringTok{ }\FloatTok{22.0}
 \KeywordTok{typeof}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
@@ -1478,7 +1551,7 @@ ist. Die generelle Syntax hierfür ist: \texttt{is.*()}, also z.B.:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\DecValTok{1}
+\NormalTok{x <-}\StringTok{ }\FloatTok{1.0}
 \KeywordTok{is.integer}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
@@ -1507,7 +1580,9 @@ spricht man von \texttt{coercion} und die generelle Syntax hierfür ist:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{x <-}\StringTok{ "2"}
-\KeywordTok{print}\NormalTok{(}\KeywordTok{typeof}\NormalTok{(x))}
+\KeywordTok{print}\NormalTok{(}
+  \KeywordTok{typeof}\NormalTok{(x)}
+\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1518,7 +1593,9 @@ spricht man von \texttt{coercion} und die generelle Syntax hierfür ist:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{x <-}\StringTok{ }\KeywordTok{as.double}\NormalTok{(x)}
-\KeywordTok{print}\NormalTok{(}\KeywordTok{typeof}\NormalTok{(x))}
+\KeywordTok{print}\NormalTok{(}
+  \KeywordTok{typeof}\NormalTok{(x)}
+\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1565,7 +1642,7 @@ ein Wort transformieren, aber nicht umgekehrt:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{z <-}\StringTok{ }\KeywordTok{as.double}\NormalTok{(y)  }\CommentTok{# Das funktioniert}
+\NormalTok{z <-}\StringTok{ }\KeywordTok{as.double}\NormalTok{(y) }\CommentTok{# Das funktioniert}
 \KeywordTok{print}\NormalTok{(z)}
 \end{Highlighting}
 \end{Shaded}
@@ -1576,7 +1653,7 @@ ein Wort transformieren, aber nicht umgekehrt:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{k <-}\StringTok{ }\KeywordTok{as.double}\NormalTok{(}\StringTok{"Hallo"}\NormalTok{)  }\CommentTok{# Das nicht}
+\NormalTok{k <-}\StringTok{ }\KeywordTok{as.double}\NormalTok{(}\StringTok{"Hallo"}\NormalTok{) }\CommentTok{# Das nicht}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1634,8 +1711,8 @@ meistens hilfreich ist, manchmal aber auch gefährlich sein kann:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\NormalTok{1L  }\CommentTok{# Integer}
-\NormalTok{y <-}\StringTok{ }\DecValTok{2}  \CommentTok{# Double}
+\NormalTok{x <-}\StringTok{ }\NormalTok{1L }\CommentTok{# Integer}
+\NormalTok{y <-}\StringTok{ }\FloatTok{2.0} \CommentTok{# Double}
 \NormalTok{z <-}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y}
 \KeywordTok{typeof}\NormalTok{(z)}
 \end{Highlighting}
@@ -1651,8 +1728,8 @@ Interessanterweise werden logische Werte ebenfalls transformiert:
 \begin{Highlighting}[]
 \NormalTok{x <-}\StringTok{ }\OtherTok{TRUE}
 \NormalTok{y <-}\StringTok{ }\OtherTok{FALSE}
-\NormalTok{z <-}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y  }\CommentTok{# TRUE wird zu 1, FALSE zu 0}
-\KeywordTok{print}\NormalTok{(z)}
+\NormalTok{z <-}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y }\CommentTok{# TRUE wird zu 1, FALSE zu 0}
+\KeywordTok{print}\NormalTok{(z) }
 \end{Highlighting}
 \end{Shaded}
 
@@ -1704,7 +1781,7 @@ Dabei können auch Vektoren miteinander verbunden werden:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{3}  \CommentTok{# Shortcut für: x <- c(1, 2, 3)}
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{3} \CommentTok{# Shortcut für: x <- c(1, 2, 3)}
 \NormalTok{y <-}\StringTok{ }\DecValTok{4}\OperatorTok{:}\DecValTok{6}
 \NormalTok{z <-}\StringTok{ }\KeywordTok{c}\NormalTok{(x, y)}
 \NormalTok{z}
@@ -1736,7 +1813,7 @@ Fehlerquelle!
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{x =}\StringTok{  }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
 \NormalTok{len_x <-}\StringTok{ }\KeywordTok{length}\NormalTok{(x)}
 \NormalTok{len_x}
 \end{Highlighting}
@@ -1798,7 +1875,7 @@ Es können auch längere Vektoren getestet werden:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{3}
-\NormalTok{x }\OperatorTok{<}\StringTok{ }\DecValTok{2}
+\NormalTok{x}\OperatorTok{<}\DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1811,7 +1888,7 @@ Tests können beliebig miteinander verknüpft werden:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{x <-}\StringTok{ }\NormalTok{1L}
-\NormalTok{x }\OperatorTok{>}\StringTok{ }\DecValTok{2} \OperatorTok{|}\StringTok{ }\NormalTok{x }\OperatorTok{<}\StringTok{ }\DecValTok{2} \OperatorTok{&}\StringTok{ }\NormalTok{(}\KeywordTok{is.double}\NormalTok{(x) }\OperatorTok{&}\StringTok{ }\NormalTok{x }\OperatorTok{!=}\StringTok{ }\DecValTok{0}\NormalTok{)}
+\NormalTok{x}\OperatorTok{>}\DecValTok{2} \OperatorTok{|}\StringTok{ }\NormalTok{x}\OperatorTok{<}\DecValTok{2} \OperatorTok{&}\StringTok{ }\NormalTok{(}\KeywordTok{is.double}\NormalTok{(x) }\OperatorTok{&}\StringTok{ }\NormalTok{x}\OperatorTok{!=}\DecValTok{0}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1825,10 +1902,11 @@ bestimmte Bedingung erfüllt ist:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{50}
-\NormalTok{smaller_}\DecValTok{20}\NormalTok{ <-}\StringTok{ }\NormalTok{x }\OperatorTok{<}\StringTok{ }\DecValTok{20}
-\KeywordTok{print}\NormalTok{(}\KeywordTok{sum}\NormalTok{(smaller_}\DecValTok{20}\NormalTok{)  }\CommentTok{# Wie viele Elemente sind kleiner als 20?}
-\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{50} 
+\NormalTok{smaller_}\DecValTok{20}\NormalTok{ <-}\StringTok{ }\NormalTok{x}\OperatorTok{<}\DecValTok{20} 
+\KeywordTok{print}\NormalTok{(}
+  \KeywordTok{sum}\NormalTok{(smaller_}\DecValTok{20}\NormalTok{) }\CommentTok{# Wie viele Elemente sind kleiner als 20?}
+\NormalTok{  )}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1838,7 +1916,8 @@ bestimmte Bedingung erfüllt ist:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{print}\NormalTok{(}\KeywordTok{sum}\NormalTok{(smaller_}\DecValTok{20}\OperatorTok{/}\KeywordTok{length}\NormalTok{(x))  }\CommentTok{# Wie hoch ist der Anteil von diesen Elementen?}
+\KeywordTok{print}\NormalTok{(}
+  \KeywordTok{sum}\NormalTok{(smaller_}\DecValTok{20}\OperatorTok{/}\KeywordTok{length}\NormalTok{(x)) }\CommentTok{# Wie hoch ist der Anteil von diesen Elementen?}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -1865,7 +1944,7 @@ Symbol \texttt{\textquotesingle{}} oder \texttt{""} steht:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{y <-}\StringTok{ "Auf Wiedersehen"}
+\NormalTok{y <-}\StringTok{ 'Auf Wiedersehen'}
 \KeywordTok{typeof}\NormalTok{(y)}
 \end{Highlighting}
 \end{Shaded}
@@ -1885,8 +1964,7 @@ werden:
 \end{Shaded}
 
 \begin{verbatim}
-#> [1] "Hallo"           " und "          
-#> [3] "Auf Wiedersehen"
+#> [1] "Hallo"           " und "           "Auf Wiedersehen"
 \end{verbatim}
 
 Nützlich ist in diesem Zusammenhang die Funktion \texttt{paste()}, die
@@ -1901,10 +1979,8 @@ Elemente von mehreren Vektoren in Wörter transformiert und verbindet:
 \end{Shaded}
 
 \begin{verbatim}
-#>  [1] "Versuch Nr. 1"  "Versuch Nr. 2" 
-#>  [3] "Versuch Nr. 3"  "Versuch Nr. 4" 
-#>  [5] "Versuch Nr. 5"  "Versuch Nr. 6" 
-#>  [7] "Versuch Nr. 7"  "Versuch Nr. 8" 
+#>  [1] "Versuch Nr. 1"  "Versuch Nr. 2"  "Versuch Nr. 3"  "Versuch Nr. 4" 
+#>  [5] "Versuch Nr. 5"  "Versuch Nr. 6"  "Versuch Nr. 7"  "Versuch Nr. 8" 
 #>  [9] "Versuch Nr. 9"  "Versuch Nr. 10"
 \end{verbatim}
 
@@ -1921,9 +1997,8 @@ Elemente gesetzt wird:
 \end{Shaded}
 
 \begin{verbatim}
-#>  [1] "Tag: 1"  "Tag: 2"  "Tag: 3"  "Tag: 4" 
-#>  [5] "Tag: 5"  "Tag: 6"  "Tag: 7"  "Tag: 8" 
-#>  [9] "Tag: 9"  "Tag: 10"
+#>  [1] "Tag: 1"  "Tag: 2"  "Tag: 3"  "Tag: 4"  "Tag: 5"  "Tag: 6"  "Tag: 7" 
+#>  [8] "Tag: 8"  "Tag: 9"  "Tag: 10"
 \end{verbatim}
 
 \begin{quote}
@@ -1942,16 +2017,14 @@ Wochentage zu Zahlen ist und einfach ein Wochentag vergessen wurde:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{tage <-}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\StringTok{"Tag "}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\DecValTok{7}\NormalTok{, }\StringTok{":"}\NormalTok{, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
-\NormalTok{tag_namen <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Montag"}\NormalTok{, }\StringTok{"Dienstag"}\NormalTok{, }\StringTok{"Mittwoch"}\NormalTok{, }
-    \StringTok{"Donnerstag"}\NormalTok{, }\StringTok{"Freitag"}\NormalTok{, }\StringTok{"Samstag"}\NormalTok{)}
+\NormalTok{tag_namen <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Montag"}\NormalTok{, }\StringTok{"Dienstag"}\NormalTok{, }\StringTok{"Mittwoch"}\NormalTok{, }\StringTok{"Donnerstag"}\NormalTok{, }\StringTok{"Freitag"}\NormalTok{, }\StringTok{"Samstag"}\NormalTok{)}
 \KeywordTok{paste}\NormalTok{(tage, tag_namen)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-#> [1] "Tag 1: Montag"     "Tag 2: Dienstag"  
-#> [3] "Tag 3: Mittwoch"   "Tag 4: Donnerstag"
-#> [5] "Tag 5: Freitag"    "Tag 6: Samstag"   
+#> [1] "Tag 1: Montag"     "Tag 2: Dienstag"   "Tag 3: Mittwoch"  
+#> [4] "Tag 4: Donnerstag" "Tag 5: Freitag"    "Tag 6: Samstag"   
 #> [7] "Tag 7: Montag"
 \end{verbatim}
 
@@ -1991,7 +2064,7 @@ einen bestimmten Wert annehmen:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\OtherTok{NA} \OperatorTok{|}\StringTok{ }\OtherTok{TRUE}  \CommentTok{# Gibt immer TRUE, unabhängig vom Wert für NA}
+\OtherTok{NA} \OperatorTok{|}\StringTok{ }\OtherTok{TRUE} \CommentTok{# Gibt immer TRUE, unabhängig vom Wert für NA}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2006,7 +2079,7 @@ Funktion \texttt{is.na} verwendet werden, und nicht etwa der Ausdruck
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DecValTok{5}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\DecValTok{10}\NormalTok{)}
-\KeywordTok{print}\NormalTok{(x }\OperatorTok{==}\StringTok{ }\OtherTok{NA}\NormalTok{)  }\CommentTok{# Unklar, da man nicht weiß, ob alle NA für den gleichen Wert stehen}
+\KeywordTok{print}\NormalTok{(x }\OperatorTok{==}\StringTok{ }\OtherTok{NA}\NormalTok{) }\CommentTok{# Unklar, da man nicht weiß, ob alle NA für den gleichen Wert stehen}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2016,7 +2089,9 @@ Funktion \texttt{is.na} verwendet werden, und nicht etwa der Ausdruck
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{print}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(x))}
+\KeywordTok{print}\NormalTok{(}
+  \KeywordTok{is.na}\NormalTok{(x)}
+\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2029,7 +2104,7 @@ Ergebnis nicht \texttt{NA} sondern \texttt{NaN} (\emph{not a number}):
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{0}\OperatorTok{/}\DecValTok{0}
+\DecValTok{0} \OperatorTok{/}\StringTok{ }\DecValTok{0}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2059,7 +2134,7 @@ extrahiert werden:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{6}\NormalTok{)}
 \NormalTok{x[}\DecValTok{1}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
@@ -2072,7 +2147,7 @@ Auf diese Weise können auch bestimmte Elemente modifiziert werden:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{6}\NormalTok{)}
 \NormalTok{x[}\DecValTok{2}\NormalTok{] <-}\StringTok{ }\DecValTok{99}
 \NormalTok{x}
 \end{Highlighting}
@@ -2183,9 +2258,8 @@ die Schrittlänge zwischen den einzelnen Zahlen definieren.
 \end{Shaded}
 
 \begin{verbatim}
-#>  [1]  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5
-#>  [9]  5.0  5.5  6.0  6.5  7.0  7.5  8.0  8.5
-#> [17]  9.0  9.5 10.0
+#>  [1]  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5
+#> [15]  8.0  8.5  9.0  9.5 10.0
 \end{verbatim}
 
 Wenn wir die Länge des resultierenden Vektors festlegen wollen und die
@@ -2241,7 +2315,7 @@ Vektors. Dafür können wir die Funktion \texttt{length()} verwenden:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
 \KeywordTok{length}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
@@ -2281,7 +2355,7 @@ entfernt:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\OtherTok{NA}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\OtherTok{NA}\NormalTok{)}
 \KeywordTok{min}\NormalTok{(y)}
 \end{Highlighting}
 \end{Shaded}
@@ -2367,7 +2441,11 @@ Typs enthalten. Sie werden mit der Funktion \texttt{list()} erstellt:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{l_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{), }\OtherTok{FALSE}\NormalTok{)}
+\NormalTok{l_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}
+  \StringTok{"a"}\NormalTok{,}
+  \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{),}
+  \OtherTok{FALSE}
+\NormalTok{)}
 \KeywordTok{typeof}\NormalTok{(l_}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -2413,8 +2491,11 @@ Die einzelnen Elemente einer Liste können auch benannt werden:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{l_}\DecValTok{2}\NormalTok{ <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{erstes_element =} \StringTok{"a"}\NormalTok{, }\DataTypeTok{zweites_element =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }
-    \DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{), }\DataTypeTok{drittes_element =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{l_}\DecValTok{2}\NormalTok{ <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}
+  \StringTok{"erstes_element"}\NormalTok{ =}\StringTok{ "a"}\NormalTok{,}
+  \StringTok{"zweites_element"}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{),}
+  \StringTok{"drittes_element"}\NormalTok{ =}\StringTok{ }\OtherTok{FALSE}
+\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2428,8 +2509,7 @@ Die Namen aller Elemente in der Liste erhalten wir mit der Funktion
 \end{Shaded}
 
 \begin{verbatim}
-#> [1] "erstes_element"  "zweites_element"
-#> [3] "drittes_element"
+#> [1] "erstes_element"  "zweites_element" "drittes_element"
 \end{verbatim}
 
 Um einzelne Elemente einer Liste auszulesen müssen wir \texttt{{[}{[}}
@@ -2493,7 +2573,7 @@ extrahieren und ggf. Ersetzungen vornehmen:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{m_}\DecValTok{1}\NormalTok{[, }\DecValTok{1}\NormalTok{]  }\CommentTok{# Erste Spalte}
+\NormalTok{m_}\DecValTok{1}\NormalTok{[,}\DecValTok{1}\NormalTok{] }\CommentTok{# Erste Spalte}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2503,7 +2583,7 @@ extrahieren und ggf. Ersetzungen vornehmen:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{m_}\DecValTok{1}\NormalTok{[}\DecValTok{1}\NormalTok{, ]  }\CommentTok{# Erste Zeile}
+\NormalTok{m_}\DecValTok{1}\NormalTok{[}\DecValTok{1}\NormalTok{,] }\CommentTok{# Erste Zeile}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2513,7 +2593,7 @@ extrahieren und ggf. Ersetzungen vornehmen:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{m_}\DecValTok{1}\NormalTok{[}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{]  }\CommentTok{# Element [2,2]}
+\NormalTok{m_}\DecValTok{1}\NormalTok{[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{] }\CommentTok{# Element [2,2]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2554,7 +2634,7 @@ verwenden wir entsprechend \texttt{is.matrix()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{is.matrix}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\KeywordTok{is.matrix}\NormalTok{(}\FloatTok{2.0}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2582,8 +2662,8 @@ folgenden Matrizen verwenden:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{matrix_a <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{3}\NormalTok{), }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}
-\NormalTok{matrix_b <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{8}\NormalTok{), }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\NormalTok{matrix_a <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{3}\NormalTok{), }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\NormalTok{matrix_b <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{8}\NormalTok{), }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2597,7 +2677,7 @@ Skalar-Addition: \[4+\boldsymbol{A}=
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{4} \OperatorTok{+}\StringTok{ }\NormalTok{matrix_a}
+\DecValTok{4}\OperatorTok{+}\NormalTok{matrix_a}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2637,7 +2717,7 @@ Skalar-Multiplikation: \[2\cdot\boldsymbol{A}=
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{matrix_a}
+\DecValTok{2}\OperatorTok{*}\NormalTok{matrix_a}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2739,7 +2819,11 @@ direkt aus einer Liste erstellen indem wir die Funktion
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{l_}\DecValTok{3}\NormalTok{ <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{a =} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\DataTypeTok{b =} \DecValTok{4}\OperatorTok{:}\DecValTok{6}\NormalTok{, }\DataTypeTok{c =} \DecValTok{7}\OperatorTok{:}\DecValTok{9}\NormalTok{)}
+\NormalTok{l_}\DecValTok{3}\NormalTok{ <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}
+  \StringTok{"a"}\NormalTok{ =}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{,}
+  \StringTok{"b"}\NormalTok{ =}\StringTok{ }\DecValTok{4}\OperatorTok{:}\DecValTok{6}\NormalTok{,}
+  \StringTok{"c"}\NormalTok{ =}\StringTok{ }\DecValTok{7}\OperatorTok{:}\DecValTok{9}
+\NormalTok{)}
 \NormalTok{df_}\DecValTok{3}\NormalTok{ <-}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(l_}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -2826,9 +2910,11 @@ umgewandelt werden:\footnote{Zur Geschichte dieses wirklich ärgerlichen
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df_}\DecValTok{4}\NormalTok{ <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{gender =} \KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"male"}\NormalTok{, }\DecValTok{3}\NormalTok{), }
-    \KeywordTok{rep}\NormalTok{(}\StringTok{"female"}\NormalTok{, }\DecValTok{2}\NormalTok{)), }\DataTypeTok{height =} \KeywordTok{c}\NormalTok{(}\DecValTok{89}\NormalTok{, }\DecValTok{75}\NormalTok{, }\DecValTok{80}\NormalTok{, }
-    \DecValTok{66}\NormalTok{, }\DecValTok{50}\NormalTok{), }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{df_}\DecValTok{4}\NormalTok{ <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \StringTok{"gender"}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"male"}\NormalTok{, }\DecValTok{3}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\StringTok{"female"}\NormalTok{, }\DecValTok{2}\NormalTok{)),}
+  \StringTok{"height"}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{89}\NormalTok{, }\DecValTok{75}\NormalTok{, }\DecValTok{80}\NormalTok{, }\DecValTok{66}\NormalTok{, }\DecValTok{50}\NormalTok{),}
+  \DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}
+\NormalTok{)}
 \NormalTok{df_}\DecValTok{4}
 \end{Highlighting}
 \end{Shaded}
@@ -2863,18 +2949,17 @@ bei Matrizen verwendet werdenkönnen:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df_}\DecValTok{4}\NormalTok{[, }\DecValTok{1}\NormalTok{]  }\CommentTok{# erste Spalte}
+\NormalTok{df_}\DecValTok{4}\NormalTok{[, }\DecValTok{1}\NormalTok{] }\CommentTok{# erste Spalte}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-#> [1] "male"   "male"   "male"   "female"
-#> [5] "female"
+#> [1] "male"   "male"   "male"   "female" "female"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df_}\DecValTok{4}\NormalTok{[, }\DecValTok{2}\NormalTok{]  }\CommentTok{# Werte der zweiten Spalte}
+\NormalTok{df_}\DecValTok{4}\NormalTok{[, }\DecValTok{2}\NormalTok{] }\CommentTok{# Werte der zweiten Spalte}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2889,13 +2974,12 @@ Spaltennamen:\footnote{Anstelle von \texttt{{[}{[}} kann auch der
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df_}\DecValTok{4}\NormalTok{[[}\StringTok{"gender"}\NormalTok{]]}
+\NormalTok{df_}\DecValTok{4}\NormalTok{[[}\StringTok{"gender"}\NormalTok{]] }
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-#> [1] "male"   "male"   "male"   "female"
-#> [5] "female"
+#> [1] "male"   "male"   "male"   "female" "female"
 \end{verbatim}
 
 Wenn wir \texttt{{[}} anstatt von \texttt{{[}{[}} verwenden erhalten wir
@@ -2903,7 +2987,7 @@ als Output einen (reduzierten) Data Frame:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df_}\DecValTok{4}\NormalTok{[}\StringTok{"gender"}\NormalTok{]}
+\NormalTok{df_}\DecValTok{4}\NormalTok{[}\StringTok{"gender"}\NormalTok{] }
 \end{Highlighting}
 \end{Shaded}
 
@@ -2920,7 +3004,7 @@ Es können auch mehrere Zeilen ausgewählt werden:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df_}\DecValTok{4}\NormalTok{[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{, ]  }\CommentTok{# Die ersten beiden Zeilen}
+\NormalTok{df_}\DecValTok{4}\NormalTok{[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{, ] }\CommentTok{# Die ersten beiden Zeilen}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2934,7 +3018,7 @@ Oder einzelne Werte:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df_}\DecValTok{4}\NormalTok{[}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{]  }\CommentTok{# Zweiter Wert der zweiten Spalte}
+\NormalTok{df_}\DecValTok{4}\NormalTok{[}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{] }\CommentTok{# Zweiter Wert der zweiten Spalte}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3016,7 +3100,10 @@ Allerdings haben wir selbst nach erfolgreicher Installation von
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{a =} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{, }\DataTypeTok{b =} \DecValTok{21}\OperatorTok{:}\DecValTok{25}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{a=}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{,}
+  \DataTypeTok{b=}\DecValTok{21}\OperatorTok{:}\DecValTok{25}
+\NormalTok{)}
 \KeywordTok{as.data.table}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
@@ -3128,7 +3215,7 @@ können das illustrieren indem wir den Namen des Objekts eingeben:
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7fea78f33d10>
+#> <bytecode: 0x7fcbcf8a7968>
 #> <environment: namespace:plm>
 \end{verbatim}
 
@@ -3162,7 +3249,7 @@ Wenn wir die Funktion aus \texttt{dplyr} verwenden wollen, müssen wir
 #>     attributes(out) <- attributes(x)
 #>     out
 #> }
-#> <bytecode: 0x7fea7868d1f0>
+#> <bytecode: 0x7fcbcbd0cc08>
 #> <environment: namespace:dplyr>
 \end{verbatim}
 
@@ -3194,18 +3281,10 @@ die Funktion, dass er erst im Paket \texttt{plm} nach der Funktion
 \end{Shaded}
 
 \begin{verbatim}
-#>  [1] ".GlobalEnv"        
-#>  [2] "package:plm"       
-#>  [3] "package:dplyr"     
-#>  [4] "package:data.table"
-#>  [5] "package:stats"     
-#>  [6] "package:graphics"  
-#>  [7] "package:grDevices" 
-#>  [8] "package:utils"     
-#>  [9] "package:datasets"  
-#> [10] "package:methods"   
-#> [11] "Autoloads"         
-#> [12] "package:base"
+#>  [1] ".GlobalEnv"         "package:plm"        "package:dplyr"     
+#>  [4] "package:data.table" "package:stats"      "package:graphics"  
+#>  [7] "package:grDevices"  "package:utils"      "package:datasets"  
+#> [10] "package:methods"    "Autoloads"          "package:base"
 \end{verbatim}
 
 \begin{quote}
@@ -3301,7 +3380,7 @@ erstes, und den Pfad als zweites Argument an:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{auto_daten_neu <-}\StringTok{ }\KeywordTok{mutate}\NormalTok{(auto_daten, }\DataTypeTok{Verbrauch_pro_PS =}\NormalTok{ Verbrauch}\OperatorTok{/}\NormalTok{PS)}
+\NormalTok{auto_daten_neu <-}\StringTok{ }\KeywordTok{mutate}\NormalTok{(auto_daten, }\DataTypeTok{Verbrauch_pro_PS=}\NormalTok{Verbrauch}\OperatorTok{/}\NormalTok{PS)}
 \KeywordTok{write_csv}\NormalTok{(auto_daten_neu, }\KeywordTok{here}\NormalTok{(}\StringTok{"data/tidy/NeueDaten.csv"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
@@ -3343,7 +3422,7 @@ Paket \texttt{rmarkdown} zu installieren:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"rmarkdown"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{'rmarkdown'}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3472,8 +3551,9 @@ vorausgesetzt die Datei \texttt{FirstMarkdown.Rmd} liegt im Unterordner
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{render}\NormalTok{(}\DataTypeTok{input =} \StringTok{"R/FirstMarkdown.Rmd"}\NormalTok{, }\DataTypeTok{output_format =} \StringTok{"html"}\NormalTok{, }
-    \DataTypeTok{output_file =} \StringTok{"output/FirstMarkdown.html"}\NormalTok{)}
+\KeywordTok{render}\NormalTok{(}\DataTypeTok{input =} \StringTok{"R/FirstMarkdown.Rmd"}\NormalTok{, }
+       \DataTypeTok{output_format =} \StringTok{"html"}\NormalTok{, }
+       \DataTypeTok{output_file =} \StringTok{"output/FirstMarkdown.html"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3581,8 +3661,2200 @@ Beispiele für die R-Markdown-Syntax. Dieses Skript wurde übrigens in
 \href{https://bookdown.org/yihui/bookdown/}{R Bookdown}, einer
 Erweiterung von R-Markdown für Bücher, geschrieben.
 
-\bibliography{book.bib,packages.bib}
+\hypertarget{stat-stoch}{\chapter{Wiederholung:
+Wahrscheinlichkeitstheorie}\label{stat-stoch}}
 
+In diesem Kapitel werden Grundlagen der Wahrscheinlichkeitstheorie
+wiederholt. Die zentralen Themen sind dabei:
+
+\begin{itemize}
+\tightlist
+\item
+  Der Zusammenhang zwischen Wahrscheinlichkeitstheorie und Statistik
+\item
+  Grundbegriffe der Wahrscheinlichkeitstheorie und Statistik
+\item
+  Zufallsvariablen
+\item
+  Diskrete und stetige Verteilungen
+\end{itemize}
+
+Grundkonzepte der deskriptiven und schließenden Statistik (insb.
+Parameterschätzung, Hypothesentests und die Berechnung von
+Konfidenzintervallen) werden in den beiden Anhängen
+\protect\hyperlink{desk-stat}{zur deskriptiven} und
+\protect\hyperlink{stat-rep}{schließenden Statistik} wiederholt.
+
+Für den Code in diesem Kapitel werden die folgenden Pakete verwendet:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(here)}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(ggpubr)}
+\KeywordTok{library}\NormalTok{(latex2exp)}
+\KeywordTok{library}\NormalTok{(icaeDesign)}
+\KeywordTok{library}\NormalTok{(data.table)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Einleitung: Wahrscheinlichkeitstheorie und
+Statistik}\label{einleitung-wahrscheinlichkeitstheorie-und-statistik}
+
+Statistik und Wahrscheinlichkeitstheorie sind untrennbar miteinander
+verbunden. In der Wahrscheinlichkeitstheorie beschäftigt man sich mit
+Modellen von Zufallsprozessen, also Prozessen, deren Ausgang nicht exakt
+vorhersehbar ist. Häufig spricht man von \emph{Zufallsexperimenten}.
+
+Die Wahrscheinlichkeitstheorie entwickelt dabei Modelle, welche diese
+Zufallsexperimenten und deren mögliche Ausgänge beschreiben und dabei
+den möglichen Ausgängen Wahrscheinlichkeiten zuordnern. Diese Modelle
+werden \emph{Wahrscheinlichkeitsmodelle} genannt.
+
+In der Statistik versuchen wir anhand von beobachteten Daten
+herauszufinden, welches Wahrscheinlichkeitsmodell gut geeignet ist, den
+die Daten generierenden Prozess (\emph{data generating process} - DGP)
+zu beschreiben. Das ist der Grund warum man für Statistik auch immer
+Kenntnisse der Wahrscheinlichkeitstheorie braucht.
+
+\begin{quote}
+Kurz gesagt: in der Wahrscheinlichkeitstheorie wollen wir mit Hilfe von
+Wahrscheinlichkeitsmodellen Daten vorhersagen, in der Statistik mit
+Hilfe bekannter Daten Rückschlüsse auf die zugrundeliegenden
+Wahrscheinlichkeitsmodelle ziehen.
+\end{quote}
+
+\section{Grundbegriffe der
+Wahrscheinlichkeitstheorie}\label{grundbegriffe-der-wahrscheinlichkeitstheorie}
+
+Ein wahrscheinlichkeitstheoretisches Modell besteht \emph{immer} aus den
+folgenden drei Komponenten:
+
+\textbf{Ergebnisraum}: diese Menge \(\Omega\) enthält alle möglichen
+Ergebnisse des modellierten Zufallsexperiments. Das einzelne Ergebnis
+bezeichnen wir mit \(\omega\).
+
+\begin{quote}
+\textbf{Beispiel:} Handelt es sich bei dem Zufallsexperiment um das
+Werfen eines normalen sechseitigen Würfels gilt
+\(\Omega=\{1,2,3,4,5,6\}\). Wenn der Würfen gefallen ist, bezeichnen wir
+die oben liegende Zahl als das Ergebnis \(\omega\) des Würfelwurfs,
+wobei hier gilt \(\omega_1=\) ``Der Würfel zeigt 1'', u.s.w.
+\end{quote}
+
+\textbf{Ereignisse:} unter Ereignissen \(A, B, C,...\) verstehen wir die
+Teilmengen des Ergebnisraums. Ein Ereignis enthält ein oder mehrere
+Elemente des Ergebnisraums. Enthält ein Ereignis genau ein Element,
+sprechen wir von einem \emph{Elementarereignis}.
+
+\begin{quote}
+\textbf{Beispiel:} ``Es wird eine gerade Zahl gewürfelt'' ist ein
+mögliches Ereignis im oben beschriebenen Zufallsexperiment. Das Ereignis
+- nennen wir es hier \(A\) - tritt ein, wenn ein Würfelwurf mit dem
+Ergebnis ``2'', ``4'' oder ``6'' endet. Also:
+\(A=\{\omega_2, \omega_4, \omega_6\}\) Das Ereignis \(B\) ``Es wird eine
+2 gewürfelt'' tritt nur ein, wenn das Ergebnis des Würfelwurfs eine 2
+ist: \(B=\{\omega_2\}\). Entsprechend nennen wir es ein
+\emph{Elementarereignis}.
+\end{quote}
+
+Da es sich bei Ereignissen um Mengen handelt können wir die typischen
+mengentheoretischen Konzepte wie `Vereinigung', `Differenz' oder
+`Komplement' zu ihrer Beschreibung verwenden:
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Konzept & Symbol & Übersetzung\tabularnewline
+\midrule
+\endhead
+Schnittmenge & \(A\cap B\) & \(A\) und \(B\)\tabularnewline
+Vereinigung & \(A\cup B\) & \(A\) und/oder \(B\)\tabularnewline
+Komplement & \(A^c\) & Nicht \(A\)\tabularnewline
+Differenz & \(A \setminus B = A\cap B^c\) & \(A\) ohne
+\(B\)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\textbf{Wahrscheinlichkeiten}: jedem \emph{Ereignis} \(A\) wird eine
+Wahrscheinlichkeit \(\mathbb{P}(A)\) zugeordnet. Wahrscheinlichkeiten
+können aber nicht beliebige Zahlen sein. Vielmehr müssen sie im Einklang
+mit den drei \emph{Axiomen von Kolmogorow} stehen:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Für jedes Ereignis \(A\) gilt: \(0\leq\mathbb{P}(A)\leq1\)
+\item
+  Das sichere Ereignis \(\Omega\) umfasst den ganzen Ergebnisraum und es
+  gilt entsprechend \(\mathbb{P}(\Omega)=1\).
+\item
+  Es gilt: \(\mathbb{P}(A\cup B) = \mathbb{P}(A)+\mathbb{P}(B)\) falls
+  \(A\cap B=\emptyset\), also wenn sich A und B gegenseitig
+  ausschließen.
+\end{enumerate}
+
+Aus diesen Axiomen lassen sich eine ganze Menge Sätze heraus ableiten,
+auf die wir im folgenden aber nicht besonders eingehen wollen. Die
+Grundidee ist aber, bestimmten Ereignissen von Anfang an bestimmte
+Wahrscheinlichkeiten zuzuordnen, und die Wahrscheinlichkeiten für andere
+Ereignisse dann aus den eben beschriebenen Regeln abzuleiten.
+
+Je nach Art des Ergebnisraums \(\Omega\) unterscheiden wir zwei
+grundsätzlich verschiedene Arten von Wahrscheinlichkeitsmodellen: ist
+\(\Omega\) \textbf{abzählbar} handelt es sich um ein \textbf{diskretes
+Wahrscheinlichkeitsmodell}. Der Würfelwurf oder ein Münzwurf sind
+hierfür Beispiele: die Menge der möglichen Ergebnisse ist hier klar
+abzählbar.\footnote{Wir nennen eine Menge abzählbar wenn sie mit Hilfe
+  der ganzen Zahlen \(\mathbb{N}\) indiziert werden kann. Das bedeutet,
+  dass auch unendlich große Mengen als abzählbar gelten können.}
+
+Ist \(\Omega\) \textbf{nicht abzählbar} handelt es sich dagegen um ein
+\textbf{stetiges Wahrscheinlichkeitsmodell}. Ein Beispiel hierfür wäre
+das Fallenlassen von Steinen und die Messung der Falldauer. Die
+einzelnen Ereignisse wären dann die Falldauer und es würde gelten, dass
+\(\Omega=\mathbb{R^+}\) und \(\mathbb{R^+}\) ist nicht abzählbar.
+
+Welches Modell für den konkreten Anwendungsfall vorzuziehen ist, muss
+auf Basis von theoretischen Überlegungen entschieden werden.
+
+\section{Diskrete
+Wahrscheinlichkeitsmodelle}\label{diskrete-wahrscheinlichkeitsmodelle}
+
+Wenn wir die Wahrscheinlichkeit für das Eintreten eines Ereignisses
+\(A\) erfahren möchten können wir im Falle eines diskreten Ergebnisraums
+einfach die Eintrittswahrscheinlichkeiten für alle Ergebnisse, die zu
+\(A\) gehören, aufsummieren:
+
+\[ \mathbb{P}(A)=\sum_{\omega\in A} \mathbb{P}(\{\omega\})\]
+
+\begin{quote}
+\textbf{Beispiel:} Beim Werfen eines sechseitigen Würfels ist die
+Wahrscheinlichkeit für das Ereignst ``Es wird eine gerade Zahl
+gewürfelt'':
+\(\mathbb{P}(2)+\mathbb{P}(4)+\mathbb{P}(6)=\frac{1}{6}+\frac{1}{6}+\frac{1}{6}=\frac{1}{2}\).
+\end{quote}
+
+Von Interesse ist häufig aus den Wahrscheinlichkeiten für zwei
+Ereignisse, \(A\) und \(B\), die Wahrscheinlichkeit für \(A\cap B\),
+also die Wahrscheinlichkeit, dass beide Ereignisse auftreten, zu
+berechnen. Leider ist das nur im Spezialfall der \textbf{stochastischen
+Unabhängigkeit} möglich. Stochastische Unabhängigkeit kann immer dann
+sinnvollerweise angenommen werden, wenn zwischen den beteiligten
+Ereignissen kein kausaler Zusammenhang besteht. In diesem Fall gilt
+dann:
+
+\[\mathbb{P}(A\cap B) = \mathbb{P}(A)\cdot\mathbb{P}(B)\]
+
+\begin{quote}
+\textbf{Beispiel für stochastische Unabhängigkeit}: Es ist plausibel
+anzunehmen, dass es keinen kausalen Zusammenhang zwischen zwei
+aufeinanderfolgenden Münzwürfen gibt. Entsprechend sind die Ereignisse
+\(A\): ``Zahl im ersten Wurf'' und \(B\): ``Kopf im zweiten Wurf''
+stochastisch unabhängig und
+\(\mathbb{P}(A\cap B)=\mathbb{P}(A)\cdot \mathbb{P}(B)=\frac{1}{4}\).
+\end{quote}
+
+\begin{quote}
+\textbf{Beispiel für stochastische Abhängigkeit}: Ein anderer Fall liegt
+vor, wenn wir die Ereignisse \(C\): ``Die Summe beider Würfe ist 6'' und
+\(D\): ``Der erste Wurf zeigt eine 2.'' betrachten. Hier ist
+offensichtlich, dass ein kausaler Zusammenhang zwischen den beiden
+Würfen und den Ereignissen besteht. Es gilt:
+\(\mathbb{P}(C\cap D)=\mathbb{P}(\{2, 4\})=\frac{1}{36}\). Würden wir
+die Wahrscheinlichkeiten einfach multiplizieren erhielten wir allerdings
+\(\mathbb{P}(C)\cdot \mathbb{P}(D)=\frac{5}{36}\cdot\frac{1}{6}=\frac{5}{216}\),
+wobei \(\mathbb{P}(C)=\frac{5}{36}\).
+\end{quote}
+
+Ein weiteres wichtiges Konzept ist das der \textbf{bedingten
+Wahrscheinlichkeit}: die bedingten Wahrscheinlichkeit von \(A\) gegeben
+\(B\), \(\mathbb{P}(A|B)\), bezeichnet die Wahrscheindlichkeit für
+\(A\), wenn wir wissen, dass \(B\) bereits eingetreten ist.
+
+Es gilt dabei:\footnote{An der Formel wird noch einmal deutlich, dass
+  wenn \(A\) und \(B\) stochastisch unabhängig sind wir nichts von \(B\)
+  über \(A\) und umgekehrt lernen können, also gilt:
+  \(\mathbb{P}(A|B)=\mathbb{P}(A)\) und
+  \(\mathbb{P}(B|A)=\mathbb{P}(B)\).}
+
+\[\mathbb{P}(A|B)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}\]
+
+\begin{quote}
+\textbf{Beispiel:} Sei \(A\): ``Der Würfel zeigt eine 6'' und \(B\):
+``Der Würfelwurf zeigt eine gerade Zahl''. Wenn wir bereits wissen, dass
+\(B\) eingetreten ist, ist \(\mathbb{P}(A)\) nicht mehr \(\frac{1}{6}\),
+weil wir ja wissen, dass 1, 3 und 5 nicht auftreten können. Vielmehr
+gilt \(\mathbb{P}(A|B)=\frac{1/6}{1/2}=\frac{1}{3}\).
+\end{quote}
+
+\subsection{Bayes Theorem und Gesetz der total
+Wahrscheinlichkeiten}\label{bayes-theorem-und-gesetz-der-total-wahrscheinlichkeiten}
+
+Ganz wichtig: es gilt \emph{nicht notwendigerweise}
+\(\mathbb{P}(A|B)=\mathbb{P}(B|A)\). Vielmehr gilt nach dem \textbf{Satz
+von Bayes}:
+
+\[\mathbb{P}(A|B)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}=\frac{\mathbb{P}(B|A)\mathbb{P}(A)}{\mathbb{P}(B)}\]
+
+Ein in Beweisen sehr häufig verwendeter Zusammenhang ist das
+\textbf{Gesetz der totalen Wahrscheinlichkeit}: seien \(A_1,...,A_k\)
+Ergeignisse, die sich nicht überschneiden und gemeinsam den kompletten
+Ereignisraum \(\Omega\) abdecken, dann gilt:
+
+\[\mathbb{P}(B)=\sum_{i=1}^k\mathbb{P}(B|A_k)\mathbb{P}(A_k)\]
+
+Auch wenn das erst einmal sperrig aussieht, ist der Zusammenhang sehr
+praktisch und wird häufig in Beweisen in der Stochastik verwendet.
+
+\subsection{Diskrete Zufallsvariablen}\label{diskrete-zufallsvariablen}
+
+Bei Zufallsvariablen (ZV) handelt es sich um besondere
+\emph{Funktionen}. Die Definitionsmenge einer Zufallsvariable ist immer
+der zurgundeliegende Ergebnisraum \(\Omega\), die Zielmenge ist i.d.R.
+\(\mathbb{R}\), sodass gilt:
+
+\[X:\Omega\rightarrow\mathbb{R}, \omega \mapsto X(\omega)\]
+
+Im Kontext von ZV sprechen wir häufig nicht von dem zugrundeliegenden
+Ergebnisraum \(\Omega\), sondern - inhaltlich äquivalent - vom
+\emph{Wertebereich von X}, bezeichnet als \(W_X\).
+
+In der Regel bezeichnen wir Zufallsvariablen (ZV) mit Großbuchstaben und
+die konkrete Realisation einer ZV mit einem Kleinbuchstaben, sodass
+\(\mathbb{P}(X=x)\) die Wahrscheinlichkeit angibt, dass die ZV \(X\) den
+konkreten Wert \(x\) annimmt. Bei \(x\) sprechen wir von einer
+\emph{Realisierung} der ZV \(X\). Wir nehmen für die weitere Notation
+an, dass \(W_X=\{x_1, x_2,...,x_K\}\) und bezeichnen das einzelne
+Element mit \(x_k\) mit \(1\leq k\leq K\).
+
+Dies bedeutet streng genommen, dass die ZV selbst nicht als zufällig
+definiert wird. Zufällig ist nur der Input \(\omega\) der entsprechenden
+Funktion \(X: \Omega\rightarrow X(\omega)\), also z.B. ein Würfelwurf.
+Der funktionale Zusammenhang zwischen Funktionswert \(X(\omega)\) und
+dem Input \(\omega\) ist hingegen eindeutig.
+
+Das bedeutet streng genommen, dass die ZV nicht \emph{selbst} zufällig
+ist, sondern ihr Input \(\omega\). Das impliziert, dass wenn ein
+Zufallsexperiment zweimal das gleiche Ergebnis \(\omega\) hat, ist auch
+der Wert \(X(\omega)\) der gleiche.
+
+Das mag im Moment ein wenig nach `Pfennigfuchserei' aussehen, die
+Unterscheidung zwischen dem nicht-zufälligem funtionalen Zusammenhangs,
+aber einem zufälligen Input bei ZV ist wichtig, um den Sinn in vielen
+fortgeschrittenen Beiträgen im Bereich der Ökonometrie zu sehen.
+
+Den unterschiedlichen Realisierungen von einer ZV haben jeweils
+Wahrscheinlichkeiten, die von den Wahrscheinlichkeiten der
+zugrundeliegenden Ergebnisse des modellierten Zufallsexperiments
+abhängen.
+
+Produkte und Summen von ZV sind selbst wieder Zufallsvariables. Man
+addiert bzw. multipliziert ZV indem man ihre Werte addiert bzw.
+mutlipliziert.
+
+Im Falle von diskreten ZV können wir eine Liste erstellen, die für alle
+möglichen Werte \(x_k\in W_X\) die jeweilige Wahrscheinlichkeit
+\(\mathbb{P}(X=x_k)\) angibt.\footnote{Aus den \emph{Kolmogorow Axiomen}
+  oben ergibt sich, dass die Summe all dieser Wahrscheinlichkeiten 1
+  ergeben muss: \(\sum_{k\geq 1}\mathbb{P}(X=x_k)=1\).} Diese Liste
+nennen wir \textbf{Wahrscheinlichkeitsverteilung} (\emph{Probability
+Mass Function}, PMF) von \(X\) und sie werden häufig visuell
+dargestellen. Um diese Liste zu erstellen verwenden wir die zu \(X\)
+gehörende \textbf{Wahrscheinlichkeitsfunktion}, (\(p(x_k)\)),die uns für
+jedes Ergebnis die zugehörige Wahrscheinlichkeit gibt:\footnote{Zu jeder
+  Wahrscheinlichkeitsverteilung gibt es eine eindeutige
+  Wahrscheinlichkeitsfunktion und jede Wahrscheinlichkeitsfunktion
+  definiert umgekehrt eine eindeutig bestimmte diskrete
+  Wahrscheinlichkeitsverteilung.}
+
+\[p(x_k)=\mathbb{P}(X=x_k)\]
+
+Wenn wir eine ZV analysieren tun wir dies in der Regel durch eine
+Analyse ihrer Wahrscheinlichkeitsverteilung. Zur genaueren Beschreibung
+einer ZV wird entsprechend häufig einfach die
+Wahrscheinlichkeitsfunktion angegeben.
+
+Im folgenden wollen wir einige häufig auftretende
+Wahrscheinlichkeitsverteilungen kurz besprechen. Am Ende des Abschnitts
+findet sich dann ein tabellarischer Überblick. Doch vorher wollen wir
+uns noch mit den wichtigsten \textbf{Kennzahlen einer Verteilung}
+vertraut machen. Denn wie Sie sich vorstellen können sind
+Wahrscheinlichkeitsverteilungen als Listen, die alle möglichen
+Realisierungen einer ZV enthalten ziemlich umständlich zu handhaben.
+Daher beschreiben wir Wahrscheinlichkeitsverteilungen nicht indem wir
+eine Liste beschreiben, sondern indem wir bestimmte Kennzahlen zu ihrer
+Beschreibung verwenden. Die wichtigsten Kennzahlen einer ZV \(X\) sind
+der \textbf{Erwartungswert} \(\mathbb{E}(x)\) als \emph{Lageparameter}
+und die \textbf{Standardabweichung} \(\sigma(X)\) als
+\emph{Streuungsmaß}.
+
+Der Erwartungswert ist definitert als die nach ihrer Wahrscheinlichkeit
+gewichtete Summe aller Elemente im Wertebereich von \(X\) und gibt damit
+die mittlere Lage der Wahrscheinlichkeitsverteilung an. Wenn \(W_X\) der
+Wertebereich von \(X\) ist, dann gilt:
+
+\[\mathbb{E}(x)=\mu_X=\sum_{x_k\in W_X}p(x_k)x_k\]
+
+\begin{quote}
+Beispiel: Der Erwartungswert einer ZV \(X\), die das Werfen eines fairen
+Würfels beschreibt ist:
+\(\mathbb{E}(X)=\sum_{k=1}^6k\cdot\frac{1}{6}=3.5\).
+\end{quote}
+
+Wie wir \protect\hyperlink{stat-re}{später} sehen werden, wird der
+Erwartungswert in der empirischen Praxis häufig über den Mittelwert
+einer Stichprobe identifiziert.
+
+Ein gängiges Maß für die Streuung einer Verteilung \(X\) ist die Varianz
+\(Var(X)\) oder ihre Quadratwurzel, die Standardabweichung,
+\(\sigma(X)=\sqrt{Var(X)}\). Letztere wird häufiger verwendet, weil sie
+die gleiche Einheit hat wie \(X\):
+
+\[Var(X)=\sum_{x_k\in W_X}\left[x_k-\mathbb{E}(X)\right]^2 p(x_k)\]
+
+\begin{quote}
+Beispiel: Die Standardabweichung einer ZV \(X\), die das Werfen eines
+fairen Würfels beschreibt ist:
+\(\sigma_X=\sqrt{\sum_{k}^6\left[x_k-\mathbb{E}(X)\right]^2 p(x_k)}=\sqrt{5.83}\approx 2.414\).
+\end{quote}
+
+Im folgenden wollen wir uns einige der am häufigsten verwendeten ZV und
+ihre Verteilungen genauer ansehen. Am Ende der Beschreibung jeder
+Funktion folgt ein Beispiel für eine Anwendung. Wenn Ihnen die
+theoretischen Ausführungen am Anfang etwas kryptisch erscheinen,
+empfiehlt es sich vielleicht erst einmal das Anwendungsbeispiel
+anzusehen.
+
+\subsection{Beispiel: die
+Binomial-Verteilung}\label{beispiel-die-binomial-verteilung}
+
+Die vielleicht bekannteste diskrete Wahrscheinlichkeitsverteilung ist
+die Binomialverteilung \(\mathcal{B}(n,p)\). Mit ihr modelliert man
+Zufallsexperimente, die aus einer Reihe von Aktionen bestehen, die
+entweder zum `Erfolg' oder `Misserfolg' führen.
+
+Die Binomialverteilung ist eine Verteilung mit zwei \textbf{Parametern}.
+Parameter sind Werte, welche die Struktur der Verteilung bestimmen. In
+der Statistik sind wir häufig daran interessiert, die Paramter einer
+Verteilung zu bestimmen. Im Falle der Binomialverteilung gibt es die
+folgenden zwei Parameter: \(p\) gibt die Erfolgswahrscheinlichkeit einer
+einzelnen Aktion an (und es muss daher gelten \(p\in[0,1]\)) und \(n\)
+gibt die Anzahl der Aktionen an. Daher auch die Kurzschreibweise
+\(\mathcal{B}(n,p)\).
+
+\begin{quote}
+\textbf{Beispiel:} Wenn wir eine faire Münze zehn Mal werfen, können wir
+das mit einer Binomialverteilung mit \(p=0.5\) und \(n=10\) modellieren.
+\end{quote}
+
+Die \emph{Wahrscheinlichkeitsfunktion} \(p(x)\) der Binomialverteilung
+ist die folgende, wobei \(x\) die Anzahl der Erfolge darstellt:
+
+\[\mathbb{P}(X=x)=p(x)=\binom{n}{x}p^x(1-p)^{n-x}\] Dies ergibt sich aus
+den grundlegenden Wahrscheinlichkeitsgesetzen: \(\binom{n}{x}\) ist der
+\href{https://de.wikipedia.org/wiki/Binomialkoeffizient}{Binomialkoeffizient}
+und gibt uns die Anzahl der Möglichkeiten wie man bei \(n\) Versuchen
+\(x\) Erfolge erziehlen kann. Dies multiplizieren wir mit der
+Wahrscheinlichkeit \(x\)-mal einen Erfolg zu erziehlen und \(n-x\)-mal
+einen Misserfolg zu erziehlen.
+
+Wenn die ZV \(X\) einer Binomialverteilung mit bestimmten Parametern
+\(p\) und \(n\) folgt, dann schreiben wir \(P \propto \mathcal{B}(n,p)\)
+und es gilt, dass \(\mathbb{E}(X)=np\) und
+\(\sigma(X)=\sqrt{np(1-p)}\).\footnote{Die Herleitung finden Sie im
+  Statistikbuch Ihres Vertrauens oder auf
+  \href{https://de.wikipedia.org/wiki/Binomialverteilung\#Erwartungswert}{Wikipedia}.}
+
+Im folgenden sehen wir eine Darstellung der
+Wahrscheinlichkeitsverteilung der Binomialverteilung für verschiedene
+Parameterwerte:
+
+\begin{center}\includegraphics{ChapA-Wahrscheinlichkeitstheorie_files/figure-latex/unnamed-chunk-2-1} \end{center}
+
+R stellt uns einige nützliche Funktionen bereit, mit denen wir typische
+Rechenaufgaben einfach lösen können:
+
+Möchten wir die Wahrscheinlichkeit berechnen, genau \(x\) Erfolge zu
+beobachten, also \(\mathbb{P}(X=x)\) geht das mit der Funktion
+\texttt{dbinom()}. Die notwendigen Argumente sind \texttt{x} für den
+interessierenden x-Wert, \texttt{size} für den Parameter \(n\) und
+\texttt{prob} für den Parameter \(p\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dbinom}\NormalTok{(}\DataTypeTok{x =} \DecValTok{10}\NormalTok{, }\DataTypeTok{size =} \DecValTok{50}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.25}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.09851841
+\end{verbatim}
+
+Das bedeutet, wenn \(X \propto B(50, 0.25)\), dann:
+\(\mathbb{P}(X=10)=0.09852\). Die folgende Abbildung illustriert dies:
+
+\begin{center}\includegraphics{ChapA-Wahrscheinlichkeitstheorie_files/figure-latex/unnamed-chunk-4-1} \end{center}
+
+Natürlich können wir an die Funktion auch einen atomaren Vektor als
+erstes Argument übergeben:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dbinom}\NormalTok{(}\DataTypeTok{x =} \DecValTok{5}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{size =} \DecValTok{50}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.25}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.004937859 0.012344647 0.025864974 0.046341412 0.072086641 0.098518410
+\end{verbatim}
+
+Häufig sind wir auch an der \textbf{kumulierten
+Wahrscheinlichkeitsfunktion} interessiert. Während uns die
+Wahrscheinlichkeitsfunktion die Wahrscheinlichkeit für genau \(x\)
+Erfolge angibt, also \(\mathbb{P}(X=x)\), gibt uns die \emph{kumulierte}
+Wahrscheinlichkeitsfunktion die Wahrscheinlichkeit für \(x\) oder
+weniger Erfolge, also \(\mathbb{P}(X\leq x)\).
+
+Die entsprechenden Werte für die kumulierten Wahrscheinlichkeitsfunktion
+erhalten wir mit der Funktion \texttt{pbinom()}, welche quasi die
+gleichen Argumente benötigt wie \texttt{dbinom()}. Nur gibt es anstatt
+des Parameters \texttt{x} jetzt einen Parameter \texttt{q}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pbinom}\NormalTok{(}\DataTypeTok{q =} \DecValTok{10}\NormalTok{, }\DataTypeTok{size =} \DecValTok{50}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.25}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2622023
+\end{verbatim}
+
+Die Wahrscheinlichkeit 5 oder weniger Erfolge bei 5 Versuchen und einer
+Erfolgswahrscheinlichkeit von 25\% zu erzielen beträgt also 25.2\%:
+
+\begin{center}\includegraphics{ChapA-Wahrscheinlichkeitstheorie_files/figure-latex/unnamed-chunk-7-1} \end{center}
+
+Schlussendlich haben wir die Funktion \texttt{qbinom()}, welche als
+ersten Input eine Wahrscheinlichkeit \texttt{p} akzeptiert und dann den
+kleinsten Wert \(x\) findet, für den gilt, dass
+\(\mathbb{P}(X=x)\geq p\).
+
+Wenn wir also wissen möchten wie viele Erfolge mit einer
+Wahrscheinlichkeit von 50\% mindestens zu erwarten sind, dann schreiben
+wir:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qbinom}\NormalTok{(}\DataTypeTok{p =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{size =} \DecValTok{50}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.25}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12
+\end{verbatim}
+
+Es gilt also: \(\mathbb{P}(X=12)\geq p\).
+
+Wir können dies grafisch verdeutlichen:
+
+\begin{center}\includegraphics{ChapA-Wahrscheinlichkeitstheorie_files/figure-latex/unnamed-chunk-9-1} \end{center}
+
+Möchten wir schließlich eine bestimmte Menge an \textbf{Realisierungen}
+aus einer Binomialverteilung ziehen geht das mit \texttt{rbinom()},
+welches drei Argumente verlangt: \texttt{n} für die Anzahl der zu
+ziehenden Realisierungen, sowie \texttt{size} und \texttt{prob} als da
+Paramter \(n\) und \(p\) der Binomialverteilung:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sample_binom <-}\StringTok{ }\KeywordTok{rbinom}\NormalTok{(}\DataTypeTok{n =} \DecValTok{5}\NormalTok{, }\DataTypeTok{size =} \DecValTok{10}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.4}\NormalTok{)}
+\NormalTok{sample_binom}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7 1 4 3 4
+\end{verbatim}
+
+\begin{quote}
+\textbf{Anwendungsbeispiel Binomialverteilung:} Unser Zufallsexperiment
+besteht aus dem zehnmaligen Werfen einer fairen Münze. Unter `Erfolg'
+verstehen wir das Werfen von `Zahl'. Nehmen wir an, wir führen das
+Zufallsexperiment 100 Mal durch, werfen also insgesamt 10 Mal die Münze
+und schreiben jeweils auf, wie häufig wir dabei einen Erfolg verbuchen
+konnten. Wenn wir unsere Ergebnisse aufmalen, indem wir auf der x-Achse
+die Anzahl der Erfolge, und auf der y-Achse die Anzahl der Experimente
+mit genau dieser Anzahl an Erfolgen aufmalen erhalten wir ein Histogram,
+das ungefähr so aussieht:
+\end{quote}
+
+\includegraphics{ChapA-Wahrscheinlichkeitstheorie_files/figure-latex/unnamed-chunk-11-1.pdf}
+\textgreater{} Aus der Logik der Konstruktion des Zufallsexperiments und
+der Inspektion unserer Daten können wir schließen, dass die
+Binomialverteilung eine sinnvolle Beschreibung des Zufallsexperiments
+und der daraus entstandenen Stichprobe von 100 Münzwurfergebnissen ist.
+Da wir eine faire M+nze geworfen haben macht es Sinn für die
+Binomialverteilung \(p=0.5\) anzunehmen, und da wir in jedem einzelnen
+Experiment die Münze 10 Mal geworfen haben für \(n=10\). Wenn wir die
+mit \(=10\) und \(p=0.5\) parametrisierte theoretische
+Binomialverteilung nehmen und ihre theoretische Verteilungsfunktion über
+die Aufzeichnungen unserer Ergebnisse legen, können wir uns in dieser
+Vermutung bestärkt führen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x=}\NormalTok{munzwurfe), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{x)) }\OperatorTok{+}
+\StringTok{  }\CommentTok{#geom_histogram(bins = wurzanzahl) +}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data=}\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{table}\NormalTok{(munzwurfe)), }
+             \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{munzwurfe, }\DataTypeTok{y=}\NormalTok{Freq)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x=}\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{max}\NormalTok{(munzwurfe), }\DecValTok{1}\NormalTok{), }
+                               \DataTypeTok{y=}\KeywordTok{dbinom}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{max}\NormalTok{(munzwurfe), }\DecValTok{1}\NormalTok{), }\DataTypeTok{prob =}\NormalTok{ p_zahl, }
+                                        \DataTypeTok{size =}\NormalTok{ wurfe_pro_experiment)}\OperatorTok{*}\NormalTok{wurzanzahl), }
+             \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{x, }\DataTypeTok{y=}\NormalTok{y)}
+\NormalTok{             ) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x=}\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{max}\NormalTok{(munzwurfe), }\DecValTok{1}\NormalTok{), }
+                               \DataTypeTok{y=}\KeywordTok{dbinom}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{max}\NormalTok{(munzwurfe), }\DecValTok{1}\NormalTok{), }\DataTypeTok{prob =}\NormalTok{ p_zahl, }
+                                        \DataTypeTok{size =}\NormalTok{ wurfe_pro_experiment)}\OperatorTok{*}\NormalTok{wurzanzahl), }
+             \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{x, }\DataTypeTok{y=}\NormalTok{y, }\DataTypeTok{color=}\StringTok{"Theoretische Verteilung"}\NormalTok{), }\DataTypeTok{alpha=}\FloatTok{0.5}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{1}
+\NormalTok{             ) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{expand =} \KeywordTok{expand_scale}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))) }\OperatorTok{+}
+\StringTok{  }\CommentTok{#scale_color_manual(values=c("blue", "red"), name=c("Theoretische Verteilung", "Empirische Verteilung")) +}
+\StringTok{  }\KeywordTok{theme_icae}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ChapA-Wahrscheinlichkeitstheorie_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\subsection{Beispiel: die
+Poisson-Verteilung}\label{beispiel-die-poisson-verteilung}
+
+Bei der Poisson-Verteilung handelt es sich um die Standardverteilung für
+unbeschränkte Zähldaten, also diskrete Daten, die kein natürliches
+Maximum haben.
+
+Bei der Poisson-Verteilung handelt es sich um eine
+\textbf{ein-parametrische} Funktion, deren einziger Parameter
+\(\lambda>0\) ist. \(\lambda\) wird häufig als die mittlere
+Ereignishäufigkeit interpretiert und ist \textbf{zugleich Erwartungswert
+als auch Varianz} der Verteilung:
+\(\mathbb{E}(P_\lambda)=Var(P_\lambda)=\lambda\).
+
+Ihre Definitionsmenge ist \(\mathbb{N}\), also alle natürlichen Zahlen -
+daher ist sie im Gegensatz zur Binomialverteilung geeignet, wenn die
+Definitionsmenge der Verteilung keine natürliche Grenze hat.
+
+Die \textbf{Wahrscheinlichkeitsfunktion} der Poisson-Verteilung hat die
+folgende Form:
+
+\[P_\lambda(x)=\frac{\lambda^x}{x!}e^{-\lambda}\] Die folgende Abbildung
+zeigt wie sich die Wahrscheinlichkeitsfunktion für unterschiedliche
+Werte von \(\lambda\) manifestiert:
+
+\begin{center}\includegraphics{ChapA-Wahrscheinlichkeitstheorie_files/figure-latex/unnamed-chunk-13-1} \end{center}
+
+Wir können die Verteilung mit sehr ähnlichen Funktionen wie bei der
+Binomialverteilung analysieren. Nur die Parameter müssen entsprechend
+angepasst werden, da es bei der Poisson-Verteilung jetzt nur noch einen
+Paramter (\texttt{lambda}) gibt.
+
+Möchten wir die Wahrscheinlichkeit bereichnen, genau \(x\) Erfolge zu
+beobachten, also \(\mathbb{P}(X=x)\) geht das mit der Funktion
+\texttt{dpois()}. Das einzige notwendige Argument ist \texttt{lambda}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dpois}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DataTypeTok{lambda =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1562935
+\end{verbatim}
+
+\begin{center}\includegraphics{ChapA-Wahrscheinlichkeitstheorie_files/figure-latex/unnamed-chunk-15-1} \end{center}
+
+Informationen über die CDF erhalten wir über die Funktion
+\texttt{ppois()}, die zwei Argumente, \texttt{q} und \texttt{lambda},
+annimmt.
+
+\begin{center}\includegraphics{ChapA-Wahrscheinlichkeitstheorie_files/figure-latex/unnamed-chunk-16-1} \end{center}
+
+Mit der Funktion \texttt{qpois()} finden wir für eine Wahrscheinlichkeit
+\texttt{p} den kleinsten Wert \(x\), für den gilt, dass
+\(\mathbb{P}(X=x)\geq p\).
+
+Wenn wir also wissen möchten wie viele Erfolge mit einer
+Wahrscheinlichkeit von 50\% mindestens zu erwarten sind, dann schreiben
+wir:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qpois}\NormalTok{(}\DataTypeTok{p =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{lambda =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+Es gilt also: \(\mathbb{P}(X=4)\geq 0.5\).
+
+Wir können dies grafisch verdeutlichen:
+
+\begin{center}\includegraphics{ChapA-Wahrscheinlichkeitstheorie_files/figure-latex/unnamed-chunk-18-1} \end{center}
+
+Möchten wir schließlich eine bestimmte Menge an \textbf{Realisierungen}
+der ZV aus einer Poisson-Verteilung ziehen geht das mit
+\texttt{rpois()}, welches zwei notwendige Argumente annimmt: \texttt{n}
+für die Anzahl der Realisierungen und \texttt{lambda} für den Parameter
+\(\lambda\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pois_sample <-}\StringTok{ }\KeywordTok{rpois}\NormalTok{(}\DataTypeTok{n =} \DecValTok{5}\NormalTok{, }\DataTypeTok{lambda =} \DecValTok{4}\NormalTok{)}
+\NormalTok{pois_sample}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3 8 4 4 3
+\end{verbatim}
+
+\subsection{Hinweise zu diskreten
+Wahrscheinlichkeitsverteilungen}\label{hinweise-zu-diskreten-wahrscheinlichkeitsverteilungen}
+
+Wie Sie vielleicht bereits bemerkt haben sind die R Befehle für
+verschiedene Verteilungen alle gleich aufgebaut. Wenn \texttt{*} für die
+Abkürzung einer bestimmten Verteilung steht, können wir mit der Funktion
+\texttt{d*()} die Werte der Wahrscheinlichkeitsverteilung, mit
+\texttt{p*()} die Werte der kumulierten Wahrscheinlichkeitsverteilung
+und mit \texttt{q*()} die der Quantilsfunktion berechnen Mit
+\texttt{r*()} werden Realisierungen von Zufallszahlen realisiert. Für
+das Beispiel der Binomialverteilung, welcher die Abkürzung
+\texttt{binom} zugewiesen wurde, heißen die Funktionen entsprechend
+\texttt{dbinom()}, \texttt{pbinom()}, \texttt{qbinom()} und
+\texttt{rbinom()}.
+
+Die folgende Tabelle gibt einen Überblick über gängige Abkürzungen und
+die Parameter der oben besprochenen diskreten Verteilungen.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Verteilung & Abkürzung & Parameter\tabularnewline
+\midrule
+\endhead
+Binomialverteilung & \texttt{binom} & \texttt{size},
+\texttt{prob}\tabularnewline
+Poisson-Verteilung & \texttt{pois} & \texttt{lambda}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\section{Stetige
+Wahrscheinlichkeitsmodelle}\label{stetige-wahrscheinlichkeitsmodelle}
+
+\subsection{Stetige ZV}\label{stetige-zv}
+
+In vorangegangen Abschnitt haben wir uns mit diskreten
+Wahrscheinlichkeitsmodellen beschäftigt. Die diesen Modellen
+zugrundeliegenden ZV hatten einen abzählbaren Wertebereich. Häufig
+interessieren wir uns aber für ZV mit einem nicht abzählbaren
+Wertebereich, z.B. \(\mathbb{R}\) oder \([0,1]\).\footnote{Die
+  Intervallschreibweise \([0,1]\) ist potenziell verwirrent. Es gilt:
+  \([a,b]=\{x\in\mathbb{R} | a\leq x \leq b\}\) (geschlossenes
+  Intervall), \((a,b)=\{x\in\mathbb{R} | a < x < b\}\) (offenes
+  Intervall), \((a,b)=\{x\in\mathbb{R} | a < x \leq b\}\)(linksoffenes
+  Intervall) und
+  \((a,b)=\{x\in\mathbb{R} | a \leq x < b\}\)(rechtsoffenes Intervall).}
+
+Bei stetigen Wahrscheinlichkeitsmodellen liegen zwischen zwei Punkten
+unendlich viele Punkte. Das hat bedeutende Implikationen für die Angabe
+von Wahrscheinlichkeiten. Im Gegensatz zu diskreten
+Wahrscheinlichkeitsmodellen hat demnach jeder einzelne Punkt im
+Wertebereich der ZV die Wahrscheinlichkeit 0:
+
+\[\mathbb{P}(X=x_k)=0 \quad \forall x_k \in W_X\] wobei \(W_X\) für den
+Wertebereich von ZV \(X\) steht
+
+Als Lösung werden Wahrscheinlichkeiten bei stetigen ZV nicht als
+Punktwahrscheinlichkeiten, sondern als Intervallwahrscheinlichkeiten
+angeben. Aus \(\mathbb{P}(X=x)\) im diskreten Fall wird im stetigen Fall
+also:
+
+\[\mathbb{P}(a<X\leq b), \quad a<b\]
+
+Bei dieser Funktion sprechen wir von einer \emph{kumulative
+Verteilungsfunktion} \(F(x)=\mathbb{P}(X\leq x)\), wobei immer gilt:
+
+\[\mathbb{P}(a<X\leq b) = F(b)-F(a)\]
+
+Wann immer wir im diskreten Fall eine Wahrscheinlichkeitsfunktion
+verwendet haben um eine ZV zu beschreiben, verwenden wir im stetigen
+Fall die \textbf{Dichtefunktion} (\emph{probability densitity function}
+- PDF) einer ZV. Hierbei handelt es sich um eine integrierbare und
+nicht-negative Funktion \(f(x)\geq 0 \forall x\in \mathbb{R}\) mit
+\(\int_{-\infty}^{\infty}f(x)dx=1\) für die gilt:
+
+\[\mathbb{P}([a,b])=\int_a^bf(x)dx\]
+
+Dementsprechend können wir den Ausdruck für die kumulative
+Verteilungsfunktion von oben ergänzen:
+
+\[\mathbb{P}(a<X\leq b) = F(b)-F(a)=\int_a^bf(x)dx\]
+
+Man sieht hier, dass die Dichtefunktion einer ZV die Ableitung ihrer
+kumulative Verteilungsfunktion ist. Wie oben beschrieben können wir die
+Werte an einzlnen Punkten nicht als \emph{absolute} Wahrscheinlichkeiten
+interpretieren, da die Wahrscheinlichkeit für einzelne Punkte immer
+gleich 0 ist. Wir können aber die Werte der PDF an zwei oder mehr
+Punkten vergleichen um die \emph{relative} Wahrscheinlichkeit der
+einzelnen Punkte zu bekommen.
+
+Wie bei den diskreten ZV beschreiben wir eine ZV mit Hilfe von
+bestimmten Kennzahlen, wie dem \textbf{Erwartungswert}, der
+\textbf{Varianz} und den \textbf{Quantilen}. Diese sind quasi äquivalent
+zum diskreten Fall definiert, nur eben über Integrale (wir vergleichen
+alle folgenden Definitionen mit ihrem diskreten Pendant am Ende des
+Abschnitts). Für den Erwartungswert der ZV \(X\) gilt somit:
+
+\[\mathbb{E}(X)=\int_{-\infty}^{\infty}xf(x)dx\]
+
+Für die Varianz und die Standardabweichung entsprechend:
+
+\[Var(X)= \mathbb{E}(X-\mathbb{E}\left(X)\right)^2=\int_{-\infty}^{\infty}(x-\mathbb{E}(X))^2f(x)dx\]
+
+\[\sigma_X=\sqrt{Var(X)}\]
+
+Und, schlussendlich, gilt für das \(\alpha\)-Quantil \(q(\alpha)\):
+
+\[\mathbb{P}(X\leq q(\alpha))=\alpha\]
+
+Im folgenden werden das \(0.25\) und \(0.5\)-Quantil visuell
+dargestellt:
+
+\begin{center}\includegraphics{ChapA-Wahrscheinlichkeitstheorie_files/figure-latex/unnamed-chunk-20-1} \end{center}
+
+Abschließend wollen wir nun noch einmal die Definitionen der Kennzahlen
+und charakteristischer Verteilungen für den stetigen und diskreten Fall
+vergleichen:
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\begin{minipage}[b]{0.17\columnwidth}\raggedright\strut
+Bezeichnung\strut
+\end{minipage} & \begin{minipage}[b]{0.38\columnwidth}\raggedright\strut
+Diskreter Fall\strut
+\end{minipage} & \begin{minipage}[b]{0.37\columnwidth}\raggedright\strut
+Stetiger Fall\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.17\columnwidth}\raggedright\strut
+Erwartungswert\strut
+\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\raggedright\strut
+\(\mathbb{E}(x)=\sum_{x\in W_X}\mathbb{P}(X=x)x\)\strut
+\end{minipage} & \begin{minipage}[t]{0.37\columnwidth}\raggedright\strut
+\(\mathbb{E}(X)=\int_{-\infty}^{\infty}xf(x)dx\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright\strut
+Varianz\strut
+\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\raggedright\strut
+\(Var(X)=\sum_{x\in W_X}\left[x-\mathbb{E}(X)\right]^2 \mathbb{P}(X=x)x\)\strut
+\end{minipage} & \begin{minipage}[t]{0.37\columnwidth}\raggedright\strut
+\(Var(X)= \mathbb{E}(X-\mathbb{E}\left(X)\right)^2\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright\strut
+Standard-abweichung\strut
+\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\raggedright\strut
+\(\sqrt{Var(X)}\)\strut
+\end{minipage} & \begin{minipage}[t]{0.37\columnwidth}\raggedright\strut
+\(\sqrt{Var(X)}\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright\strut
+\(\alpha\)-Quantil\strut
+\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\raggedright\strut
+\(\mathbb{P}(X\leq q(\alpha))=\alpha\)\strut
+\end{minipage} & \begin{minipage}[t]{0.37\columnwidth}\raggedright\strut
+\(\mathbb{P}(X\leq q(\alpha))=\alpha\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright\strut
+Dichtefunktion (PDF)\strut
+\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\raggedright\strut
+NA\strut
+\end{minipage} & \begin{minipage}[t]{0.37\columnwidth}\raggedright\strut
+\(\mathbb{P}([a,b])=\int_a^bf(x)dx\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright\strut
+Wahrsch's-funktion (PMF)\strut
+\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\raggedright\strut
+\(p(x_k)=\mathbb{P}(X=x_k)\)\strut
+\end{minipage} & \begin{minipage}[t]{0.37\columnwidth}\raggedright\strut
+NA\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright\strut
+Kumulierte Verteilungsfunktion (CDF)\strut
+\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\raggedright\strut
+\(\mathbb{P}(X\leq x)\)\strut
+\end{minipage} & \begin{minipage}[t]{0.37\columnwidth}\raggedright\strut
+\(F(x)=\mathbb{P}(X\leq x)\)\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Analog zum diskreten Fall wollen wir uns nun die am häufigsten
+vorkommenden stetigen Verteilungen noch einmal genauer anschauen.
+
+\subsection{Beispiel: die
+Uniformverteilung}\label{beispiel-die-uniformverteilung}
+
+Die Uniformverteilung kann auch einem beliebigen Intervall \([a,b]\) mit
+\(a<b\) definiert werden und ist dadurch gekennzeichnet, dass die Dichte
+über \([a,b]\) vollkommen konstant ist. Ihre einzigen Parameter sind die
+Grenzen des Intervalls, \(a\) und \(b\).
+
+Da bei stetigen Verteilungen die Dichte für aller Werte außerhalb des
+Wertebereichs per definitionem gleich Null ist, haben wir folgenden
+Ausdruck für die Dichte der Uniformverteilung:
+
+\[f(x)=
+\begin{cases} 
+      \frac{1}{b-a} & a\leq x \leq b \\
+      0 & \text{sonst} \left(x\notin W_X\right)
+   \end{cases}
+   \] Auch der Erwartungswert ist dann intuitiv definiert, er liegt
+nämlich genau in der Mitte des Intervalls \([a,b]\). Er ist definiert
+als \(\mathbb{E}(X)=\frac{a+b}{2}\) und ihre Varianz mit
+\(Var(X)=\frac{(b-a)^2}{12}\) gegeben.
+
+Ihre Dichtefunktion für \([a,b]=[2,4]\) ist im folgenden dargestellt:
+
+\begin{center}\includegraphics{ChapA-Wahrscheinlichkeitstheorie_files/figure-latex/unnamed-chunk-21-1} \end{center}
+
+Die Abkürung in R für die Uniformverteilung ist \texttt{unif}.
+Endsprechend berechnen wir Werte für die Dichte mit \texttt{dunif()},
+welches lediglich die Argumente \texttt{a} und \texttt{b} für die
+Grenzen des Intervalls benötigt:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dunif}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\FloatTok{0.1}\NormalTok{), }\DataTypeTok{min =} \DecValTok{0}\NormalTok{, }\DataTypeTok{max =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25
+\end{verbatim}
+
+Wie wir sehen erhalten wir hier immer den gleichen Wert
+\(\frac{1}{b-a}\), was die zentrale Eigenschaft der Uniformverteilung
+ist. Hier wird auch deutlich, dass dieser Wert die \emph{relative}
+Wahrscheinlichkeit angibt, da die absolute Wahrscheinlichkeit für jeden
+einzelnen Wert wie oben beschrieben bei stetigen ZV 0 ist.
+
+Die CDF berechnen wir entsprechend mit \texttt{punif()}. Wenn
+\(X\propto U(0,4)\) erhalten wir \(\mathbb{P}(X\leq3)\) entprechend mit:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{punif}\NormalTok{(}\FloatTok{0.8}\NormalTok{, }\DataTypeTok{min =} \DecValTok{0}\NormalTok{, }\DataTypeTok{max =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2
+\end{verbatim}
+
+\begin{center}\includegraphics{ChapA-Wahrscheinlichkeitstheorie_files/figure-latex/unnamed-chunk-24-1} \end{center}
+
+Auch ansonsten können wir die Syntax der diskreten Verteilungen mehr
+oder weniger übernehmen: \texttt{qunif()} akzeptiert die gleichen
+Parameter wie \texttt{punif()} und gibt uns Werte der inversen CDF.
+\texttt{runif()} kann verwendet werden um Realisierungen einer uniform
+verteilten ZV zu generieren:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uniform_sample <-}\StringTok{ }\KeywordTok{runif}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DataTypeTok{min =} \DecValTok{0}\NormalTok{, }\DataTypeTok{max =} \DecValTok{4}\NormalTok{)}
+\NormalTok{uniform_sample}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.5209862 1.4563675 1.1529571 0.6825809 0.6886870
+\end{verbatim}
+
+\subsection{Beispiel: die
+Normalverteilung}\label{beispiel-die-normalverteilung}
+
+Die wahrscheinlich bekannteste stetige Verteilung ist die
+Normalverteilung. Das liegt nicht nur daran, dass viele natürliche
+Phänomene als die Realisierung einer normalverteilten ZV modelliert
+werden können, sondern auch weil es sich mit der Normalverteilung in der
+Regel sehr einfach rechnen ist. Sie ist also häufig auch einfach eine
+bequeme Annahme.
+
+Bei der Normalverteilung handelt es sich um eine
+\textbf{zwei-parametrige} Verteilung über den Wertebereich
+\(W_X=\mathbb{R}\). Die beiden Parameter sind \(\mu\) und \(\sigma^2\),
+welche unmittelbar als Erwartungswert (\(\mathbb{E}(X)=\mu\)) und
+Varianz (\(Var(X)=\sigma^2\)) gelten. Wir schreiben
+\(X\propto \mathscr{N}(\mu, \sigma^2)\) wenn für die PDF von \(X\) gilt:
+
+\[f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}} \]
+
+Unter der \textbf{Standard-Normalverteilung} verstehen wir eine
+Normalverteilung mit den Paramtern \(\mu=0\) und \(\sigma=1\).\footnote{Viele
+  Tabellen mit bestimmten Kennzahlen der Normalverteilung beziehen sich
+  auf die Standard-Normalverteilung. Wenn man diese Werte verwenden
+  will, muss man die tatsächlich verwendete Stichprobe ggf. erst
+  \href{https://de.wikipedia.org/wiki/Standardisierung_(Statistik)}{z-transformieren}.
+  Unter letzterem versteht man die \emph{Normalisierung} einer ZV sodass
+  sie den Erwartungswert 0 und die Varianz 1 besitzt. Dies geht i.d.R.
+  für jede ZV \(X\) recht einfach über die Formel
+  \(Z=\frac{X-\mu}{\sigma}\), wobei \(Z\) die standartisierte ZV,
+  \(\mu\) den Erwartungswert und \(\sigma\) die Standardabweichung von
+  \(X\) bezeichnet} Sie verfügt über die deutlich vereinfachte PDF:
+
+\[f(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}x^2}\]
+
+Die CDF der Normalverteilung ist analytisch nicht einfach darzustellen,
+die Werte können in R aber leicht über die Funktion \texttt{pnorm}
+(s.u.) abgerufen werden.
+
+Im folgenden sind die PDF und CDF für exemplarische
+Parameterkombinationen dargestellt:
+
+\begin{center}\includegraphics{ChapA-Wahrscheinlichkeitstheorie_files/figure-latex/unnamed-chunk-26-1} \end{center}
+
+Die Abkürzung in R ist \texttt{norm}. Alle Funktionen nehmen die
+Paramter \(\mu\) und \(\sigma\) (nicht \(\sigma^2\)) über \texttt{mean}
+und \texttt{sd} als notwendige Argumente. Ansonsten ist die Verwendung
+äquivalent zu den vorherigen Beispielen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dnorm}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.75}\NormalTok{), }\DataTypeTok{mean =} \DecValTok{1}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{2}\NormalTok{) }\CommentTok{# relative Wahrscheinlichkeiten über PDF}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1933341 0.1979188
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pnorm}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.75}\NormalTok{), }\DataTypeTok{mean =} \DecValTok{1}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{2}\NormalTok{) }\CommentTok{# Werte der CDF}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4012937 0.4502618
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qnorm}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.75}\NormalTok{), }\DataTypeTok{mean =} \DecValTok{1}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{2}\NormalTok{) }\CommentTok{# Werte der I-CDF}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.00000 2.34898
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{norm_sample <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{1}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{2}\NormalTok{) }\CommentTok{# 5 Realisierungen der ZV}
+\NormalTok{norm_sample}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  0.9099446 -0.5698089 -2.3358839  0.2395470  2.8379932
+\end{verbatim}
+
+\begin{quote}
+\textbf{Beispiel zum Zusammenhang} \texttt{dnorm()} und \texttt{qnorm()}
+\end{quote}
+
+\subsection{Beispiel: die
+Exponentialverteilung}\label{beispiel-die-exponentialverteilung}
+
+Sehr häufig wird uns auch die Exponentialverteilung begegnen. Außerhalb
+der Ökonomik wird sie v.a. zur Modellierung von Zerfallsprozessen oder
+Wartezeiten verwendet, in der Ökonomik spielt sie in der
+Wachstumstheorie eine zentrale Rolle. Es handelt sich bei der
+Exponentialverteilung um eine \textbf{ein-parametrige} Verteilung mit
+Parameter \(\lambda \in \mathbb{R}^+\) und mit dem Wertebereich
+\(W_X=[0, \infty ]\).
+
+Die PDF der Exponentialverteilung ist:
+
+\[f(x)=\begin{cases}
+0 & x < 0\\
+\lambda e^{-\lambda x} & x \geq 0
+\end{cases}\]
+
+wobei \(e\) die
+\href{https://de.wikipedia.org/wiki/Eulersche_Zahl}{Eulersche Zahl} ist.
+Die CDF ist entsprechend:
+
+\[F(x)=\begin{cases}
+0 & x < 0\\
+1-e^{-\lambda x} & x \geq 0
+\end{cases}\]
+
+Beide Verteilungen sind im folgenden dargestellt:
+
+\begin{center}\includegraphics{ChapA-Wahrscheinlichkeitstheorie_files/figure-latex/unnamed-chunk-28-1} \end{center}
+
+Der Erwartungswert und die Varianz sind für die Exponentialverteilung
+äquivalent und hängen ausschließlich von \(\lambda\) ab:
+\(\mathbb{E}(X)=\sigma_X=\frac{1}{\lambda}\).
+
+Die Abkürzung in R ist \texttt{exp}. Alle Funktionen nehmen den Paramter
+\(\lambda\) über das Argument \texttt{rate} an:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dexp}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.75}\NormalTok{), }\DataTypeTok{rate =} \DecValTok{1}\NormalTok{) }\CommentTok{# relative Wahrscheinlichkeiten über PDF}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6065307 0.4723666
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pexp}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.75}\NormalTok{), }\DataTypeTok{rate =} \DecValTok{1}\NormalTok{) }\CommentTok{# Werte der CDF}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3934693 0.5276334
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qexp}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.75}\NormalTok{), }\DataTypeTok{rate =} \DecValTok{1}\NormalTok{) }\CommentTok{# Werte der I-CDF}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6931472 1.3862944
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{exp_sample <-}\StringTok{ }\KeywordTok{rexp}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DataTypeTok{rate =} \DecValTok{1}\NormalTok{) }\CommentTok{# 5 Realisierungen der ZV}
+\NormalTok{exp_sample}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8232605 0.4757590 3.4635949 1.2740277 1.0814852
+\end{verbatim}
+
+Es gibt übrigens einen
+\href{https://www.exponentialverteilung.de/vers/beweise/uebergang_poissonverteilung.html}{wichtigen
+Zusammenhang} zwischen der stetigen Exponential- und der diskreten
+Poisson-Verteilung.
+
+\section{Zusammenfassung
+Wahrscheinlichkeitsmodelle}\label{zusammenfassung-wahrscheinlichkeitsmodelle}
+
+Die folgende Tabelle fasst noch einmal alle Wahscheinlichkeitsmodelle
+zusammen, die wir bislang betrachtet haben:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+Verteilung & Art & Abkürzung & Parameter\tabularnewline
+\midrule
+\endhead
+Binomialverteilung & Diskret & \texttt{binom} & \texttt{size},
+\texttt{prob}\tabularnewline
+Poisson-Verteilung & Diskret & \texttt{pois} &
+\texttt{lambda}\tabularnewline
+Uniform-Verteilung & Kontinuierlich & \texttt{punif} & \texttt{min},
+\texttt{max}\tabularnewline
+Normalverteilung & Kontinuierlich & \texttt{norm} & \texttt{mean},
+\texttt{sd}\tabularnewline
+Exponential-Verteilung & Kontinuierlich & \texttt{exp} &
+\texttt{rate}\tabularnewline
+\bottomrule
+\end{longtable}
+
+In der statistischen Praxis sind das die Modelle, die wir verwenden, die
+DGP (\emph{data generating processes}) zu beschreiben - also die
+Prozesse, welche die Daten, die wir in unserer Forschung verwenden,
+generiert haben.
+
+Deswegen sprechen Statistiker*innen auch häufig von
+\emph{Populationsmodellen}. Am besten stellt man es sich mit Hilfe der
+\texttt{r*()} Funktionen vor: man nimmt an, dass es einen DGP gibt, und
+unsere Daten der Output der \texttt{r*()}-Funktion zum Ziehen von
+Realisierungen sind. Mit dem Begriff des Populationsmodells macht man
+dabei deutlich, dass unsere Stichprobe nur eine Stichprobe darstellt -
+und nicht die gesamte Population aller möglichen Realisierungen des DGP.
+
+Nun wird auch deutlich, warum Kenntnisse in der
+Wahrscheinlichkeitsrechnung so wichtig sind: wenn wir statistisch mit
+Daten arbeiten, dann versuchen wir in der Regel über die Daten
+Rückschlüsse auf den DGP zu schließen. Dafür müssen wir zunächst einmal
+eine grobe Struktur für den DGP annehmen, und dafür brauchen wir
+Kenntnisse in der Wahrscheinlichkeitsrechnung und für den entsprechenden
+Anwendungsfall konkrete Vorannahmen. Dann können wir, gegeben unsere
+Daten, unsere Beschreibung des DGP verfeinern.
+
+Im Großteil dieses Kurses bedeutet das, dass wir für den DGP ein
+bestimmtes Wahrscheinlichkeitsmodell annehmen und dann auf Basis unserer
+Daten die Parameter für dieses Modell schätzen wollen. Dieses Vorgehen
+nennen wir \emph{parametrisch}, weil wir hier vor allem Parameter
+schätzen wollen.\footnote{Die Alternative, \emph{nicht-parametrische}
+  Verfahren, nehmen kein konkretes Wahrscheinlichkeitsmodell an, sondern
+  wählen das Modell auch auf Basis der Daten.}
+
+\hypertarget{desk-stat}{\chapter{Wiederholung: Deskriptive
+Statistik}\label{desk-stat}}
+
+Bevor wir uns im \protect\hyperlink{stat-rep}{nächsten Anhang} mit dem
+Schluss von den Daten auf die Parameter des zugrundeliegenden
+Wahrscheinlichkeitsmodells beschäftigen, wollen wir uns im Folgenden
+noch mit Methoden der deskriptiven Statistik beschäftigen: denn zum
+einen setzt dieser Rückschluss der Daten auf das Populationsmodell
+voraus, dass wir uns überhaupt mit den Daten auseinandergesetzt haben,
+zum anderen sollte die Wahl des zugrundeliegenden Populationsmodell und
+der Art der Schätzung auf Basis der Daten erfolgen - und auch dafür
+benötigen wir Methoden der deskriptiven Statistik.
+
+Die Methoden der deskriptiven Statistik helfen uns die Daten, die wir
+erhoben haben möglichst gut zu \emph{beschreiben}. Die
+\emph{deskriptive} Statistik grenzt sich von der \emph{induktiven}
+Statistik davon ab, dass wir keine Aussagen über unseren Datensatz
+hinaus treffen wollen: wenn unser Datensatz also z.B. aus 1000
+Schüler\emph{innen besteht treffen wir mit den Methoden der deskriptiven
+Statistik nur Aussagen über genau diese 1000 Schüler}innen. Mit Methoden
+der \emph{induktiven} Statistik würden wir versuchen Aussagen über
+Schüler*innen im Allgemeinen, zumindest über mehr als diese 1000
+Schüler*innen zu treffen. Das ist genau der am Ende des vorherigen
+Anhangs angesprochene Schluss von den Daten auf den \emph{data
+generating process} (DGP).
+
+In diesem Abschnitt beschäftigen wir uns zunächst nur mit der
+deskriptiven Statistik. Das ist konsistent mit dem praktischen Vorgehen:
+bevor wir irgendwelche Methoden der induktiven Statistik anwenden müssen
+wir immer zunächst unsere Daten mit Hilfe deskriptiver Statistik besser
+verstehen.
+
+Der Code in diesem Kapitel verwendet die folgenden Pakete:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(here)}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(data.table)}
+\KeywordTok{library}\NormalTok{(ggpubr)}
+\KeywordTok{library}\NormalTok{(latex2exp)}
+\KeywordTok{library}\NormalTok{(icaeDesign)}
+\KeywordTok{library}\NormalTok{(MASS)}
+\end{Highlighting}
+\end{Shaded}
+
+Für die direkte Anwendung in R verwenden wir einen Datensatz zu
+ökonomischen Journalen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{journal_daten <-}\StringTok{ }\KeywordTok{fread}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data/tidy/journaldaten.csv"}\NormalTok{))}
+\KeywordTok{head}\NormalTok{(journal_daten)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Kuerzel                                               Titel
+## 1:    APEL                   Asian-Pacific Economic Literature
+## 2:  SAJoEH           South African Journal of Economic History
+## 3:      CE                             Computational Economics
+## 4:  MEPiTE MOCT-MOST Economic Policy in Transitional Economics
+## 5:    JoSE                          Journal of Socio-Economics
+## 6:   LabEc                                    Labour Economics
+##                    Verlag Society Preis Seitenanzahl Buchstaben_pS
+## 1:              Blackwell      no   123          440          3822
+## 2: So Afr ec history assn      no    20          309          1782
+## 3:                 Kluwer      no   443          567          2924
+## 4:                 Kluwer      no   276          520          3234
+## 5:               Elsevier      no   295          791          3024
+## 6:               Elsevier      no   344          609          2967
+##    Zitationen Gruendung Abonnenten           Bereich
+## 1:         21      1986         14           General
+## 2:         22      1986         59  Economic History
+## 3:         22      1987         17       Specialized
+## 4:         22      1991          2      Area Studies
+## 5:         24      1972         96 Interdisciplinary
+## 6:         24      1994         15             Labor
+\end{verbatim}
+
+Dieser Datensatz enthält Informationen über Preise, Seiten, Zitationen
+und Abonennten von 180 Journalen aus der Ökonomik im Jahr
+2004.\footnote{Bei den hier verwendeten Daten handelt es sich um eine
+  Übersetzung des Datensatzes \texttt{Journals} aus dem Paket
+  \texttt{AER} \citep{AER}.}
+
+\section{Kennzahlen zur Lage und Streuung der
+Daten}\label{kennzahlen-zur-lage-und-streuung-der-daten}
+
+Die am häufigsten verwendeten Kennzahlen der deskriptiven Statistik sind
+das \textbf{arithmetische Mittel}, die \textbf{Standardabweichung} und
+die \textbf{Quantile}. Für die folgenden Illustrationen nehmen wir an,
+dass wir es mit einem Datensatz mit \(N\) kontinuiertlichen
+Beobachtungen \(x_1, x_2, ..., x_n\) zu tun haben.
+
+Das \textbf{arithmetische Mittel} ist ein klassisches Lagemaß und
+definiert als:
+
+\[\bar{x}=\frac{1}{N}\sum_{i=1}^Nx_i\] In R wird das arithmetische
+Mittel mit der Funktion \texttt{mean()} berechnet:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{avg_preis <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(journal_daten[[}\StringTok{"Preis"}\NormalTok{]])}
+\NormalTok{avg_preis}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 417.7222
+\end{verbatim}
+
+Der durchschnittliche Preis der Journale ist also 417.7222222.
+
+Die \textbf{Standardabweichung} ist dagegen ein Maß für die Streuung der
+Daten und wird als die Quadratwurzel der \emph{Varianz}
+definiert:\footnote{Man beachte den im Vergleich zur Varianzformel für
+  theoretische Modelle modifizierten Nenner \(N-1\)!}
+
+\[s_x=\sqrt{Var(x)}=\sqrt{\frac{1}{N-1}\sum_{i=1}^N\left(x_i-\bar{x}\right)^2}\]
+
+Wir verwenden in R die Funktionen \texttt{var()} und \texttt{sd()} um
+Varianz und Standardabweichung zu berechnen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{preis_var <-}\StringTok{ }\KeywordTok{var}\NormalTok{(journal_daten[[}\StringTok{"Preis"}\NormalTok{]])}
+\NormalTok{preis_sd <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(journal_daten[[}\StringTok{"Preis"}\NormalTok{]])}
+\KeywordTok{cat}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}
+  \StringTok{"Varianz: "}\NormalTok{, preis_var, }\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
+  \StringTok{"Standardabweichung: "}\NormalTok{, preis_sd}
+\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Varianz: 148868.335816263
+## Standardabweichung: 385.834596448094
+\end{verbatim}
+
+Das \(\alpha\)-\textbf{Quantil} eines Datensatzes ist der Wert, bei dem
+\(\alpha\cdot 100\%\) der Datenwerte kleiner und
+\((1-\alpha)\cdot 100\%\) der Datenwerte kleiner sind. In R können wir
+Quantile einfach mit der Funktion \texttt{quantile()} berechnen. Diese
+Funktion akzeptiert als erstes Argument einen Vektor von Daten und als
+zweites Argument ein oder mehrere Werte für \(\alpha\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{quantile}\NormalTok{(journal_daten[[}\StringTok{"Preis"}\NormalTok{]], }\FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 50% 
+## 282
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{quantile}\NormalTok{(journal_daten[[}\StringTok{"Preis"}\NormalTok{]], }\KeywordTok{c}\NormalTok{(}\FloatTok{0.25}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.75}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    25%    50%    75% 
+## 134.50 282.00 540.75
+\end{verbatim}
+
+Diese Werte können folgendermaßen interpretiert werden: 25\% der
+Journale kosten weniger als 134.5 Dollar, 50\% der Journale kosten
+weniger als 282 Dollar und 75\% kosten weniger als 540.75 Dollar.
+
+Dabei wird das \(0.5\)-Quantil auch \textbf{Median} genannt. Wie beim
+Mittelwert handelt es sich hier um einen Lageparameter, der allerdings
+robuster gegenüber Extremwerten ist, da es sich nur auf die Reihung der
+Datenpunkte bezieht, nicht auf ihren numerischen Wert.\footnote{Wenn das
+  teuerste Journal sich im Preis verdoppelt erhöht dies den Mittelwert
+  beträchtlich, ändert den Median aber nicht.}
+
+Wie im Kapitel \protect\hyperlink{basics}{Erste Schritte in R} für
+\texttt{mean()} und \texttt{sd()} erklärt, akzeptieren auch die
+Funktionen \texttt{mean()}, \texttt{var()}, \texttt{sd()} und
+\texttt{quantile()} das optionale Argument \texttt{na.rm}, mit dem
+fehlende Werte vor der Berechnung eliminiert werden können:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{test_daten <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\OtherTok{NA}\NormalTok{)}
+\KeywordTok{quantile}\NormalTok{(test_daten, }\FloatTok{0.75}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in quantile.default(test_daten, 0.75): missing values and NaN's not allowed if 'na.rm' is FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{quantile}\NormalTok{(test_daten, }\FloatTok{0.75}\NormalTok{, }\DataTypeTok{na.rm =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  75% 
+## 7.75
+\end{verbatim}
+
+Ein häufig verwendetes Steuungsmaß, das im Gegensatz zu
+Standardabweichung und Varianz robust gegen Ausreißer ist, ist die
+\textbf{Quartilsdifferenz}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{quantil_}\DecValTok{25}\NormalTok{ <-}\StringTok{ }\KeywordTok{quantile}\NormalTok{(journal_daten[[}\StringTok{"Preis"}\NormalTok{]], }\FloatTok{0.25}\NormalTok{, }\DataTypeTok{names =}\NormalTok{ F)}
+\NormalTok{quantil_}\DecValTok{75}\NormalTok{ <-}\StringTok{ }\KeywordTok{quantile}\NormalTok{(journal_daten[[}\StringTok{"Preis"}\NormalTok{]], }\FloatTok{0.75}\NormalTok{, }\DataTypeTok{names =}\NormalTok{ F)}
+\NormalTok{quant_differenz <-}\StringTok{ }\NormalTok{quantil_}\DecValTok{75} \OperatorTok{-}\StringTok{ }\NormalTok{quantil_}\DecValTok{25}
+\NormalTok{quant_differenz}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 406.25
+\end{verbatim}
+
+Das optionale Argument \texttt{names=FALSE} unterdrückt die Benennung
+der Ergebnisse. Wenn wir das nicht machen würde, würde
+\texttt{quant\_differenz} verwirrenderweise den Namen \texttt{75\%}
+tragen.
+
+\section{Korrelationsmaße}\label{korrelationsmae}
+
+Wie im Beispiel der Journale in diesem Kapitel erheben wir für einzelne
+Untersuchungsobjekte in der Regel mehr als eine Ausprägung. Im
+vorliegenden Falle haben wir das einzelne Journal z.B. Informationen
+unter anderem über Preis, Dicke und Zitationen. Häufig möchten wir
+wissen wie diese verschiedene Ausprägungen miteinender in Beziehung
+stehen. Zum Beispiel möchten wir wissen, ob dickere Journale tendenziell
+teurer sind. Neben der wichtigen grafischen Inspektion der Daten, zu der
+es ein eigenes Kapitel geben wird, gibt es dafür wichtige quantitative
+Maße, die häufig in den Bereich der Korrelationsmaße fallen.
+
+Das einfachste Korrelationsmaß ist die empirische \textbf{Ko-Varianz},
+die zwei stetige Ausprägungen \(x\) und \(y\) folgendermaßen definiert
+ist:
+
+\[s_{xy}=\frac{1}{N-1}\sum_{n=1}^N\left(x_i-\bar{x}\right)\left(y_i-\bar{y}\right) \]
+
+Wenn wir die empirische Kovarianz für den Bereich \([-1, 1]\) normieren
+erhalten wir die \textbf{empirische Korrelation} dieser Ausprägungen
+Handelt es sich bei den beiden Ausprägung um stetige Ausprägungen nennen
+wir das resultierende Maß den
+\textbf{Pearson-Korrelationskoeffizienten}:
+
+\[\rho_{x,y}=\frac{s_{xy}}{s_xs_y}, \quad \rho\in[-1,1]\]
+
+wobei \(s_{xy}\) die Kovarianz der Ausprägungen \(x\) und \(y\) und
+\(s_x\) und \(s_y\) deren Standardabweichung bezeichnet.
+
+Der so definierte Korrelationskoeffizient informiert uns über die
+Richtung und die Stärke des \textbf{linearen Zusammenhangs} zwischen
+\(x\) und \(y\). Wenn \(\rho_{x,y}>0\) liegt ein positiver linearer
+Zusammenhang vor, d.h. größere Werte von \(x_i\) treten in der Tendenz
+mit größeren Werten von \(y_i\) auf. Hierbei gilt, dass
+\(\rho_{x,y}=1 \leftrightarrow y_i = a + b x_i\) für \(a\in \mathbb{R}\)
+und \(b>0\) Umgekehrt gilt, dass wenn \(\rho_{x,y}<0\) ein negativer
+linearer Zusammenhang vorliegt und
+\(\rho_{x,y}=-1 \leftrightarrow y_i = a + b x_i\) für
+\(a\in \mathbb{R}\) und \(b<0\). Bei \(\rho_{x,y}=0\) liegt \textbf{kein
+linearer} Zusammenhang zwischen den Ausprägungen vor.
+
+Wie wir unten sehen werden, enthält \(\rho\) keine Informationen über
+nicht-lineare Zusammenhänge zwischen \(x\) und \(y\). Vorsicht bei der
+Interpretation ist also angebracht.
+
+In unserem Datensatz haben wir z.B. Informationen über die Seitenzahl
+(Spalte \texttt{Seiten}) und den Preis von Journalen (Spalte
+\texttt{Preis}). Wir könnten uns nun fragen, ob dickere Journale
+tendenziell teurer sind. Dazu können wir, wenn wir uns nur für den
+linearen Zusammenhang interessieren, den
+Pearson-Korrelationskoeffizienten mit der Funktion \texttt{cor()}
+berechnen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor}\NormalTok{(journal_daten[[}\StringTok{"Preis"}\NormalTok{]], journal_daten[[}\StringTok{"Seitenanzahl"}\NormalTok{]], }
+    \DataTypeTok{method =} \StringTok{"pearson"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4937243
+\end{verbatim}
+
+Wir sehen also, dass es tatsächlich einen mittleren positiven linearen
+Zusammenhang zwischen Preis und Seitenzahl zu geben scheint.
+
+Über das Argument \texttt{method} der Funktion \texttt{cor()} können
+auch andere Korrelationsmaße berechnet werden: der
+\href{https://de.wikipedia.org/wiki/Rangkorrelationskoeffizient\#Spearman'scher_Rangkorrelationskoeffizient}{Spearman-Korrelationskoeffizient}
+(\texttt{method=\textquotesingle{}spearman\textquotesingle{}}) oder der
+\href{https://de.wikipedia.org/wiki/Rangkorrelationskoeffizient\#Kendall'sches_Tau}{Kendall-Korrelationskoeffizient}
+(\texttt{method=\textquotesingle{}kendall\textquotesingle{}}) sind
+beides Maße, die nur die Ränge der Ausprägungen und nicht deren
+numerische Werte berücksichtigen. Dies macht sie immun gegen Ausreißer
+und wir müssen keine Annahme über die Art der Korrelation machen wie
+beim Pearson-Korrelationskoeffizient, der nur lineare Zusammenhänge
+quantifiziert. Gleichzeitig gehen uns natürlich auch viele Informationen
+verloren. Das richtige Maß ist wie immer kontextabhängig und muss
+entsprechend theoretisch begründet werden.
+
+Darüber hinaus erlaubt die Funktion \texttt{cor()} über das Argument
+\texttt{use} noch den Umgang mit fehlenden Werten genauer zu
+spezifizieren. Wenn Sie an der (nicht-standartisierten) Ko-Varianz
+interessiert sind, können Sie diese über die Funktion \texttt{cov()}
+berechnen, die analog zu \texttt{cor()} funktioniert.
+
+In jedem Fall ist bei der Interpretation von Korrelationen Vorsicht
+angebracht: da der Korrelationskoeffizient nur die Stärke des
+\emph{linearen} Zusammenhangs misst, können dem gleichen
+Korrelationskoeffizienten sehr unterschiedliche nicht-lineare
+Zusammenhänge zugrunde liegen:
+
+\begin{center}\includegraphics{ChapA-DeskriptiveStatistik_files/figure-latex/unnamed-chunk-11-1} \end{center}
+
+Daher ist es immer wichtig die Daten auch visuell zu inspizieren.
+Datenvisualisierung ist aber so wichtig, dass sie in einem eigenen
+Kapitel behandelt wird.
+
+\section{Hinweise zur quantitativen und visuellen
+Datenbeschreibung}\label{hinweise-zur-quantitativen-und-visuellen-datenbeschreibung}
+
+Wie das Beispiel der Korrelationsmaße gerade demonstriert hat, ist bei
+der Verwendung von quantitativen Maßen zur Beschreibung von Datensätzen
+immer große Vorsicht geboten. Sie sollten daher \emph{immer} gemeinsam
+mit grafischen Darstellungsformen, wie Streudiagrammen oder Histogrammen
+verwendet werden.
+
+Eine schöne Illustration ist \href{}{Anscombe's Quartett}
+\citep{Anscombe}. Dabei handelt es sich um vier Datensätze, die alle
+(fast exakt) gleiche deskriptive Statistiken aufweisen, jedoch
+offensichtlich sehr unterschiedlich sind. Diese offensichtlichen
+Unterschiede werden aber nur durch grafische Inspektion deutlich.
+
+Der Datensatz ist in jeder R Installation vorhanden:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(}\StringTok{"anscombe"}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(anscombe)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   x1 x2 x3 x4   y1   y2    y3   y4
+## 1 10 10 10  8 8.04 9.14  7.46 6.58
+## 2  8  8  8  8 6.95 8.14  6.77 5.76
+## 3 13 13 13  8 7.58 8.74 12.74 7.71
+## 4  9  9  9  8 8.81 8.77  7.11 8.84
+## 5 11 11 11  8 8.33 9.26  7.81 8.47
+## 6 14 14 14  8 9.96 8.10  8.84 7.04
+\end{verbatim}
+
+Die folgende Tabelle gibt die Werte der quantitativen Kennzahlen an:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Kennzahl & Wert\tabularnewline
+\midrule
+\endhead
+Mittelwert von \(x\) & \texttt{9}\tabularnewline
+Mittelwert von \(y\) & \texttt{7.5}\tabularnewline
+Varianz von \(x\) & \texttt{11}\tabularnewline
+Varianz von \(y\) & \texttt{4.13}\tabularnewline
+Korrelation zw. \(x\) und \(y\) & \texttt{0.82}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Die grafische Inspektion zeigt, wie unterschiedlich die Datensätze
+tatsächlich sind:
+
+\includegraphics{ChapA-DeskriptiveStatistik_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+Interessanterweise ist bis heute nicht bekannt wie \citet{Anscombe}
+seinen Datensatz erstellt hat. Für neuere Sammlungen von Datensätzen,
+die das gleiche Phänomen illustrieren siehe z.B. \citet{AnscombeNew1}
+oder \citet{AnscombeNew2} . Eine sehr schöne Illustration der Idee
+findet sich auch auf
+\href{https://www.autodeskresearch.com/publications/samestats}{dieser
+Homepage}, die vom Autor von \citet{AnscombeNew2} gestaltet wurde.
+
+\section{Zusamenfassung}\label{zusamenfassung}
+
+In der folgenden Tabelle wollen wir noch einmal die hier besprochenen
+Funktionen für den Themenbereich `Deskriptive Statistik' zusammenfassen:
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\begin{minipage}[b]{0.13\columnwidth}\raggedright\strut
+Maßzahl\strut
+\end{minipage} & \begin{minipage}[b]{0.33\columnwidth}\raggedright\strut
+Funktion\strut
+\end{minipage} & \begin{minipage}[b]{0.46\columnwidth}\raggedright\strut
+Beschreibung\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+Mittelwert\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright\strut
+\texttt{mean()}\strut
+\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\raggedright\strut
+Wichtiges Lagemaß; arithmetisches Mittel der Daten\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+Varianz\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright\strut
+\texttt{var()}\strut
+\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\raggedright\strut
+Maß für die Streuung; Einheit oft schwer interpretiertbar\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+Standardabweichung\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright\strut
+\texttt{sd()}\strut
+\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\raggedright\strut
+Üblichstes Maß für die Streuung\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+\(\alpha\)-Quantil\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright\strut
+\texttt{quantile()}\strut
+\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\raggedright\strut
+\(\alpha\cdot 100\%\) der Werte sind kleiner \(\alpha\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+Median\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright\strut
+\texttt{quantile(0.5)}\strut
+\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\raggedright\strut
+Robustes Lagemaß; die Hälfte der Daten sind größer/kleiner\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+Ko-Varianz (num. Daten)\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright\strut
+\texttt{cov(method\ =\ \textquotesingle{}pearson\textquotesingle{})}\strut
+\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\raggedright\strut
+Nicht-normierter linearer Zusammenhang\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+Ko-Varianz (Ränge)\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright\strut
+\texttt{cov(method\ =\ \textquotesingle{}kendall\textquotesingle{})}\strut
+\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\raggedright\strut
+Ko-Varianz der Ränge nach der Kendall-Methode\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+Ko-Varianz (Ränge)\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright\strut
+\texttt{cov(method\ =\ \textquotesingle{}spearman\textquotesingle{})}\strut
+\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\raggedright\strut
+Ko-Varianz der Ränge nach der Spearman-Methode\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+Pearson Korrelationskoeffizient\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright\strut
+\texttt{cor(method\ =\ \textquotesingle{}pearson\textquotesingle{})}\strut
+\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\raggedright\strut
+In \([-1, 1]\) normierter linearer Zusammenhang\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+Spearman-Korrelationskoeffizient\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright\strut
+\texttt{cor(method\ =\ \textquotesingle{}kendall\textquotesingle{})}\strut
+\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\raggedright\strut
+Korrelation der Ränge nach der Kendall-Methode\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+Kendall-Korrelationskoeffizient\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright\strut
+\texttt{cor(method\ =\ \textquotesingle{}spearman\textquotesingle{})}\strut
+\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\raggedright\strut
+Korrelation der Ränge nach der Spearman-Methode\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{stat-rep}{\chapter{Wiederholung: Drei Verfahren der
+schließenden Statistik}\label{stat-rep}}
+
+In diesem Kapitel werden wir drei zentrale Verfahren der schließenden
+Statistik wiederholen. Dabei schließen wir unmittelbar an die beiden
+vorangegangenen Kapitel zur
+\protect\hyperlink{stat-stoch}{Wahrscheinlichkeitstheorie} und
+\protect\hyperlink{desk-stat}{deskriptiven Statistik} an: mit Hilfe der
+Wahrscheinlichkeitstheorie beschreiben wir mögliche Prozesse, die unsere
+Daten generiert haben könnten (DGP - \emph{data generating processes}).
+Mit Hilfe der deskriptiven Statistik beschreiben wir unsere Daten und
+wählen auf dieser Basis Kandidaten für den DGP und sinnvolle
+Schätzverfahren aus. In der \emph{schließenden Statistik} geht es nun
+genau um diese Schätzverfahren, die es uns erlauben von unseren Daten
+Rückschlüsse auf die DGP zu ziehen. Eine andere Art dies auszudrücken
+ist: mit Hilfe der schließenden Statistik wollen wir durch Analyse
+unserer Stichprobe auf die Gesamtpopulation, aus der die Stichprobe
+gezogen wurde schließen - und dabei möglichst die Unsicherheit, die
+diesem Schließprozess inhärent ist genau quantifizieren.
+
+Natürlich ist wie immer Vorsicht geboten: wie bei der deskriptiven
+Statistik suggerieren viele der quantitativen Methoden der schließenden
+Statistik eine Genauigkeit und Exaktheit, die in der Wirklichkeit an der
+Korrektheit vieler Annahmen hängt. Man darf daher nicht den Fehler
+machen, die `genauen' Ergebnisse der schließenden Statistik
+unhinterfragt zu glauben. Gleichzeitig darf man sie auch nicht
+verteufeln, denn viele Annahmen kann man mit ein wenig formalem Geschick
+und theoretischen Kenntnissen auch sinnvoll hinsichtlich ihrer
+Angemessenheit überprüfen.
+
+Dafür ist es wichtig, die Grundlagen der schließenden Statistik gut
+verstanden zu haben. In diesem Kapitel wiederholen wir diese Grundlagen
+grob und kombinieren die Wiederholung mit einer Einführung in die
+entsprechenden Befehle in R.
+
+Wie oben bereits angekündigt gehen wir in der Regel gehen wir davon aus,
+dass die von uns beobachteten Daten das Resultat eines gewissen
+Zufallsprozesses ist, den wir mit Hilfe der Wahrscheinlichkeitstheorie
+mathematisch beschreiben können. Da wir den DGP aber nicht direkt
+beobachten können, müssen wir auf Basis von empirischen Hinweisen und
+theoretischem Wissen entscheiden, welches Wahrscheinlichkeitsmodell wir
+unserer Analyse zugrunde legen. Sobald wir das getan haben, versuchen
+wir die Parameter, die für das von uns ausgewählte
+wahrscheinlichkeitstheoretische Modell relevant sind, so zu wählen, dass
+sie die Daten möglichst gut erklären können. Man nennt derlei Ansätze in
+der Statistik \textbf{parametrische Verfahren}, weil man mit den Daten
+die Parameter eines Modells bestimmen will, das man vorher selbst
+ausgewählt hat. Alternativ gibt es auch \textbf{nicht-parametrische
+Verfahren}: hier wird auch das Modell auf Basis der Daten bestimmt. Hier
+beschäftigen wir uns jedoch nur mit den parametrischen Verfahren.
+
+In diesem Kontext sind drei Vorgehen in der statistischen Analyse
+besonders gängig:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Punktschätzung:}
+\item
+  \textbf{Statistische Tests:}
+\item
+  \textbf{Konfidenzintervalle}
+\end{enumerate}
+
+Wir wollen die verschiedenen Vorgehensweisen auf anhand eines Beispiels
+durchspielen: Nehnem wir an wir haben einen Datensatz und wir nehmen an,
+dass diese Daten von einer \emph{Binominalverteilung} stammen.\footnote{Wenn
+  Sie nicht mehr wissen, was eine Binominalverteilung ist finden Sie im
+  \protect\hyperlink{stat-stoch}{Anhang zur Wahrscheinlichkeitstheorie}
+  eine Erläuternug.} Wir wissen, dass die Binominalverteilung durch zwei
+Parameter spezifiziert wird: \(n\) als die Anzahl der Versuche und \(p\)
+als die Erfolgswahrscheinlichkeit für den einzelnen Versuch. Wir sind
+nun daran interessiert auf Basis von unseren Daten Aussagen über den
+Paramter \(p\) der zugrundeliegenden Binominalverteilung zu
+treffen.\footnote{Die Annahme, dass die Daten \emph{überhaupt} von einer
+  Binominalverteilung stammen wird hier nicht in Frage gestellt! Das ist
+  genau die Vor-Annahme, die wir bei parametrischen Verfahren treffen
+  müssen.}
+
+Wenn wir einen konkreten Wert für \(p\) herausbekommen wollen müssen wir
+ein Verfahren der \emph{Punktschätzung} wählen.\\
+Wenn wir wissen wollen ob ein bestimmter Wert für \(p\) gegeben der
+Daten plausibel ist, dann sollten wir mit \emph{statistischen Tests}
+(oder `Hypothesentests') arbeiten. Wenn wir schließlich ein Intervall
+für \(p\) spezifizieren wollen, das mit den Beobachtungen kompatibel
+ist, dann suchen wir nach einem \emph{Konfidenzintervall} für \(p\).
+
+Im folgenden werden die drei Verfahren in größerem Detail besprochen.
+Der Code in diesem Kapitel verwendet dabei die folgenden Pakete:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(here)}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(ggpubr)}
+\KeywordTok{library}\NormalTok{(latex2exp)}
+\KeywordTok{library}\NormalTok{(icaeDesign)}
+\KeywordTok{library}\NormalTok{(AER)}
+\KeywordTok{library}\NormalTok{(MASS)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Punktschätzung}\label{punktschatzung}
+
+Bei der Punktschätzung geht es darum auf Basis der Daten konkrete Werte
+für die Parameter der den Daten zugrundeliegenden Verteilung zu
+schätzen. In der Regel bezeichnet man den Parameter, den man schätzen
+möchte, mit dem Symbol \(\theta\). Der Grund ist Faulheit und bessere
+Lesbarkeit: man kann dann nämlich die selbe Notation verwenden, egal
+welche zugrundeliegende Verteilung man vorher ausgewählt hat.
+
+Im vorliegenden Fall wollen wir also einen konkreten Wert für \(\theta\)
+auf Basis der Daten schätzen. Dabei ist ganz wichtig zu beachten, dass
+wir den wahren Wert von \(\theta\) in der Regel nicht kennen und auch
+nie genau kennen lernen werden.
+
+Um zwischen dem wahren Wert von \(\theta\) und dem Schätzer für
+\(\theta\) in unserer Notation unterscheiden zu können, verwenden wir
+das \(\hat{\cdot}\)-Symbol. Entsprechend bezeichnet \(\hat{\theta}\)
+einen \textbf{Schätzer} für \(\theta\).
+
+Ein Schätzer ist dabei eine Funktion, die als Input unsere Daten nimmt,
+und als Output einen Wert ausgibt, der eine möglichst gute Schätzung für
+\(\theta\) darstellt. Entsprechend können wir für eine Stichprobe vom
+Umfang \(n\) schreiben:
+
+\[\hat{\theta}: \mathbb{R}^n \rightarrow \mathbb{R}, \quad \hat{\theta}=\hat{\theta}(x_1,...,x_n)\]
+
+Damit ist auch klar, dass es sich bei einem Schätzer um eine
+Zufallsvariable (ZV) handelt: Funktionen von ZV sind selbst ZV und
+unsere Daten \(x_1,...,x_n\) interpretieren wir ja als Realisierungen
+von ZV \(X_1,...,X_n\). Der unbekannt wahre Wert \(\theta\) ist dagegen
+keine ZV.
+
+\begin{quote}
+\textbf{Hinweis: Schätzer vs.~geschätzter Wert} Die Unterscheidung
+zwischen einem Schätzer (\emph{estimator}) und einem geschätzten Wert
+(\emph{estimate}) ist in der Statistik zentral: der Schätzer beschreibt
+die Prozedur einen geschätzten Wert zu bekommen. Er nimmt in der Regel
+die Form einer Formel oder eines Algorithmus an. Der \emph{geschätzte
+Wert} ist für einen konkreten Anwendungsfall der Wert, den der Schätzer
+liefert.
+\end{quote}
+
+Die Konstruktion von Schätzern ist keine einfache Aufgabe. Wir lernen im
+Laufe der Veranstaltungen verschiedene Methoden, wie die
+\emph{Momentenmethode} und die \emph{Maximum-Likelihood Methode} genauer
+kennen.
+
+\section{Hypothesentests}\label{hypothesentests}
+
+Wir verwenden statistische Tests um Fragen der folgenden Art zu
+beantworten: gegeben der Daten die wir sehen und der Annahmen, die wir
+treffen, ist ein bestimmter Wert für Parameter \(\theta\) plausibel?
+
+\begin{quote}
+\textbf{Beispiel:} Das klassische Beispiel ist die Frage, ob eine Münze
+manipuliert wurde oder nicht. Wenn wir beim Ereignis `Zahl' von Erfolg
+sprechen, dann können wir \(n\) Münzwürfe als Binomialverteilung mit
+\(B(n,p)\) modellieren. Bei einer nicht manipulierten Münze wäre
+\(p=0.5\): die Wahrscheinlichkeit, dass wir das Ereignis `Zahl' erleben
+liegt beim einzelnen Wurf bei 50\%. Nennen wir das unsere Ausgangs-,
+oder \emph{Nullhypothese}. Zur Überprüfung dieser Hypothese werfen wir
+die Münze nun 100 mal. Nehmen wir nun an, dass wir das Ereignis `Zahl'
+in 60 von 100 Würfen beobachten. Bedeutet das, dass unsere Nullhypothese
+von \(p=0.5\) plausibel ist? Um diese Frage zu beantworten fragen wir
+uns, wie wahrscheinlich es bei \(p=0.5\) wäre, tatsächlich 60 mal Zahl
+zu beobachten. Diese Wahrscheinlichkeit können wir berechnen, aus
+Tabellen auslesen oder von R bestimmen lassen (die genaue Verwendung der
+Funktion \texttt{binom.test()} wird unten genauer besprochen):
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b_test_object <-}\StringTok{ }\KeywordTok{binom.test}\NormalTok{(}\DataTypeTok{x =} \DecValTok{60}\NormalTok{, }\DataTypeTok{n =} \DecValTok{100}\NormalTok{, }\DataTypeTok{p =} \FloatTok{0.5}\NormalTok{)}
+\NormalTok{b_test_object[[}\StringTok{"p.value"}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.05688793
+\end{verbatim}
+
+\begin{quote}
+Die Wahrscheinlichkeit liegt also bei 5.7 \%. Dies ist der so genannte
+p-Wert. In der Regel lehnt man eine Hypothese ab, wenn \(p<0.1\) oder
+\(p<0.05\). Im vorliegenden Falle ist unsere Hypothese einer fairen
+Münze aber kompatibel mit der Beobachtung von 60 mal Zahl.
+\end{quote}
+
+Wir wollen nun das Vorgehen aus dem Beispiel generalisieren und das
+standardmäßige Vorgehen bei einem statistischen Test
+zusammenfassen:\footnote{Wir beschränken uns hier auf so genannte
+  \emph{parametrische} Tests. Das bedeutet, dass wir zunächst ein
+  bestimmtes Modell für den Datengenerierungsprozess annehmen. Im
+  Beispiel war dieses Modell die Binomialverteilung. Es gibt auch Tests,
+  die ohne eine solche Annahme auskommen. Sie werden
+  \emph{nicht-parametrisch} genannt und später in dem Kurs besprochen.}
+
+\textbf{1. Schritt: Aufstellen eines wahrscheinlichkeitstheoretischen
+Modells} Zunächst müssen wir eine Annahme über den Prozess treffen,
+welcher der Generierung unserer Daten zugrunde liegt. Im Beispiel oben
+haben wir eine Binomialverteilung \(\mathcal{B}(n,p)\) angenommen. Diese
+Entscheidung muss auf Basis von theoretischen und empirischen
+Überlegungen getroffen werden. Für diskrete Daten macht es z.B. keinen
+Sinn eine stetige Verteilung anzunehmen und umgekehrt.
+
+\textbf{2. Schritt: Formulierung der Nullhypothese} Die Hypothese, die
+wir mit unseren Daten testen wollen wird \textbf{Nullhypothese} genannt.
+Wir wollen also immer fragen, ob \(H_0\) gegeben der Daten plausibel
+ist. Die Formulierung von \(H_0\) wird also durch unser
+Erkenntnisinteresse bestimmt. In der Regel formulieren wir eine
+Hypothese, die wir verwerfen wollen als \(H_0\).\footnote{An machen
+  Stellen der sozial- und wirtschaftswissenschaftlichen Literatur wird
+  anstelle von ``verwerfen'' auch das Wort ``falsifizieren'' benutzt um
+  die Zurückweisung der Null-Hypothese zu umschreiben. Diese Wortwahl
+  ist allerdings irreführend, da hier nicht Aussagen aus einer Theorie
+  widerlegt werden, die einen gewissen Zusammenhang behaupten. Im
+  Gegensatz wird die Hypothese zurückgewiesen, dass der vermutete
+  Zusammenhang eben nicht besteht - die zu Grunde gelegte Theorie wird
+  also durch die Zurückweisung der Null-Hypothese im Normalfall nicht
+  widerlegt sondern vielmehr bestätigt.} Wenn wir also die Hypothese
+bezüglich eines Parameters \(\theta\) testen wollen, dass
+\(\beta\neq 0\), dann formulieren wir \(H_0: \theta = 0\). Anders
+formuliert: wir möchten andere mit den Daten überzeugen, dass \(H_0\)
+falsch ist.
+
+Aus der Nullhypothese und unserem Erkenntnisinteresse ergibt sich die
+\textbf{Alternativhypothese} \(H_1\). Sie umfasst alle interessierenden
+Ereignsse, die \(H_0\) widersprechen. Je nach dem wie wir \(H_1\)
+formulieren unterscheiden wir folgende Arten von Hypothesentests:
+
+\(H_0: \theta=0\) und \(H_1: \theta\neq 0\): hier sprechen wir von einem
+\textbf{zwei-seitigen Test}, denn wir machen keine Aussage darüber ob
+die Alternative zu \(H_0\) entweder in \(\theta>0\) oder \(\theta<0\)
+liegt. Gemeinsam decken \(H_0\) und \(H_1\) hier alle möglichen
+Ereignisse ab.
+
+\(H_0: \theta=0\) und \(H_1: \theta> 0\): Hier sprechen wir von einem
+\textbf{einseitigen Test nach oben}. Wir fragen uns hier nur ob
+\(\theta\) größer ist als 0. Der Fall, dass \(\theta<0\), wird nicht
+beachtet. Natürlich können wir den einseitigen Test auch andersherum
+formulieren als \(H_0: \theta=0\) und \(H_1: \theta< 0\). Dann sprechen
+wir von einem \textbf{einseitigen Test nach unten}.
+
+\begin{quote}
+\textbf{Beispiel:} Wenn wir unser Münzbeispiel von oben betrachten
+können wir die drei verschiedenen Testarten folgendermaßen
+konkretisieren: beim \emph{zweiseitigen Test} wäre \(H_0: p=0.5\) und
+\(H_1: p\neq 0.5\) und wir würden ganz allgemein fragen ob die Münze
+manipuliert ist. Beim \textbf{einseitigen Test nach oben} würden wir
+\(H_0: p=0.5\) und \(H_1: p>0.5\) testen und damit fragen ob die Münze
+\emph{zugunsten von Zahl} manipuliert wurde. Wir lassen dabei die
+Möglichkeit, dass die Münze zugunsten von Kopf manipuliert wurde völlig
+außen vor. Beim \textbf{einseitigen Test nach unten} wäre es genau
+umgekehrt: \(H_0: p=0.5\) und \(H_1: p<0.5\). KONKRETE BERECHNUNGEN FÜR
+DEN P WERT
+\end{quote}
+
+\textbf{3. Schritt: Berechnung einer Teststatistik} Wir überlegen nun
+welche Verteilung unserer Daten wir erwarten würden \emph{wenn die
+Nullhypothese korrekt wäre}. Wenn wir im ersten Schritt also eine
+Binomialverteilung mit \(n=100\) angenommen haben und \(H_0: p=0.5\),
+dann würden wir vermuten, dass unsere Daten gemäß \(B(n, 0.5)\) verteilt
+sind.\footnote{In der Praxis wird die Berechnung der Teststatistik durch
+  eine R Funktion in einem der nächsten Schritte übernommen, aber es
+  macht Sinn, sich das grundsätzliche Vorgehen dennoch in dieser Sequenz
+  bewusst zu machen.} Diese theoretische Verteilung können wir dann mit
+den tatsächlichen Daten vergleichen und fragen, wie wahrscheinlich es
+ist diese Daten tatsächlich so beobachten zu können wenn \(H_0\) wahr
+wäre:
+
+\begin{center}\includegraphics{ChapA-SchliesendeStatistik_files/figure-latex/unnamed-chunk-3-1} \end{center}
+
+\textbf{4. Schritt: Festlegung des Signifikanzniveaus}: Wir müssen nun
+festlegen welches Risiko wir bereit sind einzugehen, unsere
+Nullhypothese \(H_0\) zu verwerfen, obwohl sie eigentlich richtig ist.
+Die maximale Wahrscheinlichkeit für dieses unglückliche Ereigns
+bezeichnen wir mit \(\alpha\) uns sie bestimmt unser Signifikanzniveau.
+Typischweise nimmt man als Standardwert \(\alpha=0.05\), d.h. wir
+konstruieren unsere Test so, dass die Wahrscheinlichkeit, dass wir
+\(H_0\) fälschlicherweise verwerfen maximal \(\alpha=0.05\) beträgt. Mit
+anderen Worten, wir legen hier die Wahrscheinlichkeit für einen
+\textbf{Fehler 1. Art} explizit fest.\footnote{Wir sprechen von einem
+  \emph{Fehler 1. Art} wenn wir auf Basis eines Tests \(H_0\) verwerfen
+  obwohl sie eigentlich richtig ist. Von einem \emph{Fehler 2. Art}
+  sprechen wir, wenn wir \(H_0\) nicht verwerfen, obwohl \(H_0\)
+  eigentlich falsch ist.}
+
+Aus dem gewählten Signifikanzniveau ergibt sich dann der
+\textbf{Verwerfungsbereich} für unsere Nullhypothese. Wenn unsere
+beobachteten Daten im Verwerfungsbereich liegen wollen wir \(H_0\) als
+verworfen betrachten.\footnote{Ganz im Sinne von Popper können mit Hilfe
+  von statistischen Tests alle Hypothesen immer nur verworfen werden.
+  Verifizieren können wir nichts!} Es ergibt sich logisch aus dem vorher
+gesagten, dass ein höheres \(\alpha\) mit einem größeren
+Verwerfungsbereich einhergeht.
+
+Der Verwerfungsbereich für das oben darstellte Beispiel mit
+\(H_0: \theta=0\) und \(H_1: \theta\neq 0\) ergibt sich für
+\(\alpha=0.05\) also folgendermaßen:
+
+\begin{center}\includegraphics{ChapA-SchliesendeStatistik_files/figure-latex/unnamed-chunk-4-1} \end{center}
+
+\textbf{5. Schritt: Die Entscheidung} Wenn sich die beobachtbaren Daten
+im Verwerfungsbereich befinden wollen wir \(H_0\) verwerfen und die
+Nullhypothese entsprechend als verworfen ansehen. Falls nicht kann die
+Nullhypothese nicht verworfen werden - was aber nicht bedeutet, dass sie
+\emph{verifiziert} wurde. Letzteres ist mit statistischen Tests nicht
+möglich.
+
+In \texttt{R} werden die gerade besprochenen Tests in der Regel in einer
+Funktion zusammengefasst. Die Wahl der Funktion wird dabei von der im
+ersten Schritt angenommenen Verteilung bestimmt. Im Falle der
+Binomialverteilung verwenden wir die Funktion \texttt{binom.test()},
+welche eine Liste mit relevanten Informationen über den Test erstellt.
+Es macht Sinn, dieser Liste einen Namen zuzuweisen und dann die
+relevanten Informationen explizit abzurufen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b_test_object <-}\StringTok{ }\KeywordTok{binom.test}\NormalTok{(}\DataTypeTok{x =} \DecValTok{60}\NormalTok{, }\DataTypeTok{n =} \DecValTok{100}\NormalTok{, }\DataTypeTok{p =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\KeywordTok{typeof}\NormalTok{(b_test_object)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "list"
+\end{verbatim}
+
+Bevor wir uns mit dem Ergebnis befassen wollen wir uns die notwendigen
+Argumente von \texttt{binom.test()} genauer anschauen (eine gute
+Erläuterung liefert wie immer \texttt{help(binom.test)}).
+
+Über das Argument \texttt{x} informieren wir R über die tatsächlich
+beobachtete Anzahl von Erfolgen (in unserem Fall hier 60). Das Argument
+\texttt{n} spezifiziert die Anzahl der Beobachtungen. Mit \texttt{p}
+geben wir den unter \(H_0\) angenommenen Wert für die
+Erfolgswahrscheinlichkeit an. Mit dem Argument \texttt{alternative}
+informieren wir R schließlich darüber ob wir einen zweiseitigen
+(\texttt{alternative\ =\ "two.sided"}), einen einseitigen Test nach oben
+(\texttt{alternative\ =\ "greater"}) oder einen einseitigen Test nach
+unten (\texttt{alternative\ =\ "less"}) durchführen wollen.
+
+Wenn wir einen Überblick über die Ergebnisse bekommen wollen können wir
+das Objekt direkt aufrufen. Die Liste wurde innerhalb der Funktion
+\texttt{binom.test} so modifiziert, dass uns die Zusammenfassung visuell
+ansprechend aufbereitet angezeigt wird:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b_test_object}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Exact binomial test
+## 
+## data:  60 and 100
+## number of successes = 60, number of trials = 100, p-value =
+## 0.05689
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.4972092 0.6967052
+## sample estimates:
+## probability of success 
+##                    0.6
+\end{verbatim}
+
+Die Überschrift macht deutlich was für ein Test durchgeführt wurde und
+die ersten beiden Zeilen fassen noch einmal die Daten zusammen. In der
+zweiten Zeile findet sich zudem der \textbf{p-Wert}. Der p-Wert gibt die
+Wahrscheinlichkeit an, mit der die beobacheten Daten unter \(H_0\)
+tatsächlich beobachtet werden können. Wir können den p-Wert aus der
+theoretischen Verteilung von oben auf der y-Achse ablesen, wenn wir den
+beobachteten Wert auf der x-Achse suchen:
+
+\begin{center}\includegraphics{ChapA-SchliesendeStatistik_files/figure-latex/unnamed-chunk-7-1} \end{center}
+
+Die nächste Zeile formuliert dann die Alternativhypothese aus (und hängt
+entsprechend vom Argument \texttt{alternative} ab). Die Zeilen danach
+geben das 95\%-Intervall an (mehr dazu im nächsten Abschnitt) und den
+Punktschätzer für den zu testenden Parameter (siehe vorheriger
+Abschnitt).
+
+Wenn wir wissen wollen welche Informationen die so erstellte Liste sonst
+noch für uns bereit hält, bzw. wie wir diese Informationen direkt
+ausgeben lassen können, sollten wir uns die Struktur der Liste genauer
+ansehen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(b_test_object)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 9
+##  $ statistic  : Named num 60
+##   ..- attr(*, "names")= chr "number of successes"
+##  $ parameter  : Named num 100
+##   ..- attr(*, "names")= chr "number of trials"
+##  $ p.value    : num 0.0569
+##  $ conf.int   : num [1:2] 0.497 0.697
+##   ..- attr(*, "conf.level")= num 0.95
+##  $ estimate   : Named num 0.6
+##   ..- attr(*, "names")= chr "probability of success"
+##  $ null.value : Named num 0.5
+##   ..- attr(*, "names")= chr "probability of success"
+##  $ alternative: chr "two.sided"
+##  $ method     : chr "Exact binomial test"
+##  $ data.name  : chr "60 and 100"
+##  - attr(*, "class")= chr "htest"
+\end{verbatim}
+
+Wir sehen hier, dass wir viele der Werte wie bei Listen üblich direkt
+anwählen können, z.B. den p-Wert:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b_test_object[[}\StringTok{"p.value"}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.05688793
+\end{verbatim}
+
+Oder das den Punktschätzer für \(p\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b_test_object[[}\StringTok{"estimate"}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## probability of success 
+##                    0.6
+\end{verbatim}
+
+Wenn wir eine andere Verteilung annehmen, verwenden wir auch eine andere
+Testfunktion, das Prinzip ist aber sehr ähnlich. Wollen wir z.B. für
+einen beobachtbaren Datensatz die Hypothese testen, ob der Datensatz aus
+einer Normalverteilung mit dem Erwartungswert \(\mu=0.5\) stammen
+könnte, würden wir die Funktion \texttt{t.test()} verwenden.
+
+Zum Abschluss dieses Abschnitts wollen wir kurz auf die \emph{Macht von
+statistischen Tests} (engl: \emph{Power}) und auf die \emph{Wahl
+zwischen einseitigen und zweiseitigen Tests} eingehen.
+
+\textbf{Die Macht eines Tests und Fehler 1. und 2. Art}:
+
+Wir sprechen von einem \emph{Fehler 1. Art} wenn wir auf Basis eines
+Tests \(H_0\) verwerfen obwohl sie eigentlich richtig ist. Von einem
+\emph{Fehler 2. Art} sprechen wir, wenn wir \(H_0\) nicht verwerfen,
+obwohl \(H_0\) eigentlich falsch ist.
+
+In der Wissenschaft hat es sich ergeben, dass man vor allem auf den
+Fehler 1. Art schaut. Denn man möchte auf gar keinen Fall eine
+Nullhypothese verwerfen, obwohl sie eigentlich richtig ist. In der
+Praxis würde dies bedeuten, eine Aussage zu vorschnell zu treffen.
+Deswegen wählt man in den empirischen Studien das Signifikanzniveau so,
+dass die Wahrscheinlichkeit für einen Fehler 1. Art sehr klein ist, in
+der Regel 5\%.
+
+Leider geht damit eine vergleichsweise hohe Wahrscheinlichkeit für einen
+\emph{Fehler 2. Art} einher, denn die beiden Fehler sind untrennbar
+miteinender verbunden: reduzieren wir bei gleichbleibender
+Stichprobengröße die Wahrscheinlichkeit für einen Fehler 1. Art, erhöhen
+wir damit die Wahrscheinlichkeit für einen Fehler 2. Art und umgekehrt.
+
+Dennoch ist auch ein Fehler 2. Art relevant. Die Wahrscheinlichkeit für
+einen solchen Fehler ist invers mit der \textbf{Macht} (engl:
+\emph{power}) eines Tests verbunden, die definiert ist als:
+
+\[\text{Macht}=1-\mathbb{P}(\text{Fehler 2. Art})\]
+
+Eine vertiefte Diskussion von Macht und dem Trade-Off zwischen Fehlern
+1. und 2. Art findet zu einem späteren Zeitpunkt in der Vorlesung statt.
+
+\textbf{Die Wahl zwischen einseitigen und zweiseitigen Tests}:
+
+Wir haben oben am Beispiel der potenziell manipulierten Münze
+folgendermaßen zwischen einseitigen und zweiseitigen Tests
+unterschieden: Beim zwei-seitigen Test testen wir \(H_0: p=0.5\) gegen
+\(H_1: p\neq 0.5\). Wir überprüfen also ob die Münze entweder zugunsten
+oder zulasten von Zahl manipuliert wurde.
+
+Beim einseitigen Test testen wir nur gegen eine Alternative:
+\(H_0: p=0.5\) bleibt gleich allerdings ist die Alternativhypothese nun
+entweder \(H_1: p<0.5\) oder \(H_1: p>0.5\). Im ersten Fall überprüfen
+wir also nur ob die Münze zugunsten von Zahl manipuliert wurde, im
+zweiten Fall nur ob die Münze zugunsten von Kopf manipuliert wurde.
+
+Man mag sich nun fragen wo der Vorteil von einseitigen Tests liegt,
+erscheint der zweiseitige Test doch allgemeiner. Letzteres ist zwar
+richtig, allerdings ist die Macht des zweiseitigen Tests im Vergleich
+zum einseitigen Tests deutlich geringer. Das bedeutet, dass wenn möglich
+immer der einseitige Test verwendet werden soll. Die Beurteilung ob ein
+einseitiger oder zweiseitiger Test angemessen ist, muss auf Basis von
+Vorwissen getroffen werden, und häufig spielen theoretische Überlegungen
+oder Kontextwissen eine wichtige Rolle.
+
+\section{Berechnung von
+Konfidenzintervallen}\label{berechnung-von-konfidenzintervallen}
+
+Konfidenzintervalle für einen Parameter geben eine Antwort auf die
+Frage: \emph{``Welche Werte für den interessierenden Parameter sind mit
+unseren Daten kompatibel?''} Wie bei Hypothesentests müssen wir zur
+Berechnung von Konfidenzintervallen ein Signifikanzniveau \(\alpha\)
+festlegen. Das liegt daran, dass zwischen Konfidenzintervallen und
+Hypothesentests eine enge Verbindung besteht: ein Konfidenzintervall
+\(I_{\alpha}\) besteht aus allen Parameterwerten, die bei einem
+zweiseitigen Hypothesentest zum Signifikanzniveau \(\alpha\) als
+Nullhypothese nicht verworfen werden können.
+
+Wir haben oben auch schon gesehen, dass das Konfidenzintervall ganz
+leicht aus den typischen Test-Funktionen in R ausgelesen werden kann.
+Für das Beispiel der Binomialverteilung schreiben wir daher nur:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b_test_object <-}\StringTok{ }\KeywordTok{binom.test}\NormalTok{(}\DataTypeTok{x =} \DecValTok{60}\NormalTok{, }\DataTypeTok{n =} \DecValTok{100}\NormalTok{, }\DataTypeTok{p =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\NormalTok{b_test_object[[}\StringTok{"conf.int"}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4972092 0.6967052
+## attr(,"conf.level")
+## [1] 0.95
+\end{verbatim}
+
+Die Interpretation dieses Intervals ist dabei die folgende: wenn der
+zugrundeliegende Datengenerierungsprozess sehr häufig wiederholt werden
+würde, dann würde 95\% der jeweils berechneten 95\%-Konfidenzintervalle
+diesen wahren Wert enthalten. Wir können \textbf{auf gar keinen Fall}
+behaupten, dass ein bestimmtes Konfidenzintervall den wahren
+Parameterwert mit einer Wahrscheinlichkeit von \(95\)\% enthält. Eine
+solche Aussage macht auch keinen Sinn: der wahre Wert ist - wie eingangs
+beschrieben - keine Zufallsvariable.\footnote{Diese Interpretation ist
+  etwas sperrig und das hängt mit dem
+  \href{https://de.wikipedia.org/wiki/Frequentistischer_Wahrscheinlichkeitsbegriff}{frequentistischen
+  Wahrscheinlichkeitsbegriff} zusammen, den wir hier verwenden. Einen
+  philosophisch attraktiveren Weg stellt der
+  \href{https://de.wikipedia.org/wiki/Bayesscher_Wahrscheinlichkeitsbegriff}{bayessche
+  Wahrscheinlichkeitsbegriff}, auf dem die die Bayesianische Statistik
+  aufbaut. Letztere werden wir hier allerdings nicht behandeln können}
+
+\chapter{Referenzen}\label{refs}
+
+\bibliography{book.bib,packages.bib}
 
 
 \end{document}
