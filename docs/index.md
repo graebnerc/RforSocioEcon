@@ -1,8 +1,8 @@
 --- 
 title: "R für die sozio-ökonomische Forschung"
-subtitle: "Version 0.4.0"
+subtitle: "Version 0.5.0"
 author: "[Dr. Claudius Gräbner](http://claudius-graebner.com/)"
-date: "2019-11-06" 
+date: "2019-11-10" 
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -10,10 +10,13 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: graebnerc/RforSocioEcon
-description: "R Skript in der Version 0.4.0"
+description: "R Skript in der Version 0.5.0"
 ---
 
 # Willkommen {-}
+
+
+\begin{center}\includegraphics{figures/title_page} \end{center}
 
 Dieses Skript ist als Begleitung für die Lehrveranstaltung 
 "Wissenschaftstheorie und Einführung in die Methoden der Sozioökonomie"
@@ -52,6 +55,11 @@ Kapitel              | Zentrale Inhalte            | Verwandter Vorlesungstermin
 Das Skript ist *work in progress* und jegliches Feedback ist sehr willkommen.
 Dafür wird im Moodle ein extra Bereich eingerichtet.
 
+## Danksagung {-}
+
+Ich möchte mich bei Jakob Kapeller und Anika Radkowitsch für das regelmäßige 
+Feedback und die guten Hinweise bedanken. Am *work-in-progress*-Charakter
+des Skripts haben sie natürlich keine Mitschuld.
 
 ## Änderungshistorie während des Semesters {-}
 
@@ -66,6 +74,7 @@ Datum    | Version | Wichtigste Änderungen         |
 03.11.19 | 0.2.0    | Markdown-Anhang hinzugefügt  |
 04.11.19 | 0.3.0    | Anhänge zur Wiederholung grundlegender Statistik hinzugefügt  |
 06.11.19 | 0.4.0    | Kapitel zu linearen Modellen hinzugefügt  |
+10.11.19 | 0.5.0    | Kapitel zur Datenaufbereitung hinzugefügt  |
 
 ## Lizenz {-}
 

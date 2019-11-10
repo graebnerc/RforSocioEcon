@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Datenkunde und Datenaufbereitung | R für die sozio-ökonomische Forschung</title>
+  <meta name="description" content="R Skript in der Version 0.5.0" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Datenkunde und Datenaufbereitung | R für die sozio-ökonomische Forschung" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="R Skript in der Version 0.5.0" />
+  <meta name="github-repo" content="graebnerc/RforSocioEcon" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Datenkunde und Datenaufbereitung | R für die sozio-ökonomische Forschung" />
+  
+  <meta name="twitter:description" content="R Skript in der Version 0.5.0" />
+  
+
+<meta name="author" content="Dr. Claudius Gräbner" />
+
+
+<meta name="date" content="2019-11-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R für die sozioökonomische Forschung</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Willkommen</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#verhaltnis-zur-vorlesung"><i class="fa fa-check"></i>Verhältnis zur Vorlesung</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#anderungshistorie-wahrend-des-semesters"><i class="fa fa-check"></i>Änderungshistorie während des Semesters</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>1</b> Datenkunde und Datenaufbereitung</a><ul>
+<li class="chapter" data-level="1.1" data-path="data.html"><a href="data.html#data-arten"><i class="fa fa-check"></i><b>1.1</b> Arten von Daten</a></li>
+<li class="chapter" data-level="1.2" data-path="data.html"><a href="data.html#data-get"><i class="fa fa-check"></i><b>1.2</b> Datenakquise</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="data.html"><a href="data.html#exkurs-1-landercodes-ubersetzen"><i class="fa fa-check"></i><b>1.2.1</b> Exkurs 1: Ländercodes übersetzen</a></li>
+<li class="chapter" data-level="1.2.2" data-path="data.html"><a href="data.html#data-download-R"><i class="fa fa-check"></i><b>1.2.2</b> Exkurs 2: Daten direkt mit R herunterladen</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="data.html"><a href="data.html#data-read-write"><i class="fa fa-check"></i><b>1.3</b> Daten einlesen und schreiben</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="data.html"><a href="data.html#einlesen-von-datensatzen"><i class="fa fa-check"></i><b>1.3.1</b> Einlesen von Datensätzen</a></li>
+<li class="chapter" data-level="1.3.2" data-path="data.html"><a href="data.html#speichern-von-daten"><i class="fa fa-check"></i><b>1.3.2</b> Speichern von Daten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="data.html"><a href="data.html#data-wrangling"><i class="fa fa-check"></i><b>1.4</b> Verarbeitung von Daten (‘data wrangling’)</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="data.html"><a href="data.html#das-konzept-von-tidy-data"><i class="fa fa-check"></i><b>1.4.1</b> Das Konzept von ‘tidy data’</a></li>
+<li class="chapter" data-level="1.4.2" data-path="data.html"><a href="data.html#data-long-wide"><i class="fa fa-check"></i><b>1.4.2</b> Von langen und breiten Datensätzen</a></li>
+<li class="chapter" data-level="1.4.3" data-path="data.html"><a href="data.html#data-merge"><i class="fa fa-check"></i><b>1.4.3</b> Zusammenführen von Daten</a></li>
+<li class="chapter" data-level="1.4.4" data-path="data.html"><a href="data.html#date-select"><i class="fa fa-check"></i><b>1.4.4</b> Datensätze filtern und selektieren</a></li>
+<li class="chapter" data-level="1.4.5" data-path="data.html"><a href="data.html#data-summary"><i class="fa fa-check"></i><b>1.4.5</b> Datensätze zusammenfassen</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="data.html"><a href="data.html#data-role"><i class="fa fa-check"></i><b>1.5</b> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</a></li>
+<li class="chapter" data-level="1.6" data-path="data.html"><a href="data.html#data-packages"><i class="fa fa-check"></i><b>1.6</b> Anmerkungen zu Paketen</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R für die sozio-ökonomische Forschung</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Datenkunde und Datenaufbereitung</h1>
+<p>In diesem Kapitel geht es um den auf den ersten Blick unspannendsten Teil der Forschung: Datenaufbereitung und -management. Gleichzeitig ist es einer der wichtigsten Schritte: ohne Daten können viele Forschungsfragen nicht angemessen beantwortet werden.</p>
+<p><img src="figures/chap-data-Ablaufschema.png" style="display: block; margin: auto;" /></p>
+<p>In diesem Kaptitel liegt der Fokus auf den ersten beiden Abschnitten, der Akquise und der Aufbereitung ihrer Daten. Laut <a href="https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/">dieser Umfrage</a> verwenden Datenspezialisten regelmäßig 80% ihrer Arbeitszeit auf diese beiden Schritte. Um hier also Zeit und Nerven zu sparen ist es wichtig, sich mit den grundlegenden Arbeitsschritten und Algorithmen vertraut zu machen. Zum Glück ist R sehr gut zur reproduzierbaren Datenaufbereitung geeignet und stellt dank vieler hilfreicher Pakete eine große Hilfe in diesem wichtigen Prozess dar.</p>
+<p>Ein zentrales Anliegen dieses Abschnitts liegt darin, Ihnen Methoden zur <em>reproduzierbaren</em> und <em>transparenten</em> Datenaufbereitung an die Hand zu geben. Für eine glaubwürdige Forschungsarbeit ist es unerlässlich, dass der Weg von der Datenerhebung hin zum Forschungsergebnis, also der gesamte Prozess in der obigen Abbildung, transparent und nachvollziehbar ist. Daher muss der Datenaufbereitungsprozess gut dokumentiert werden. Dank skriptbasierter Sprachen wie R ist das im Prinzip ein Kinderspiel.</p>
+<p>Wenn Sie nömlich alle Arbeitsschritte nach der Datenerhebung in R durchführen, müssen Sie einfach nur Ihre Skripte aufheben - und schon haben Sie die beste Dokumentation, die man sich wünschen kann. Das wichtige bei diesem Prozess: Sie dürfen <strong>nie die Rohdaten selbst verändern</strong>.</p>
+<p>Alle Änderungen an den Rohdaten müssen durch ein R Skript vorgenommen werden, und die veränderten Daten müssen unter neuem Namen gespeichert werden. Wenn Sie sich das einmal angewöhnt haben, können Sie nicht nur vollkommen transparent in Ihrer Forschung sein, sie können auch nicht aus Versehen und unwiderruflich ihre wertvollen Rohdaten zerstören.</p>
+<p>Und wenn Sie sich mit den grundlegenden Algorithmen einmal vertraut gemacht haben kann Datenaufbereitung wider Erwarten auch wirklich Spaß machen!</p>
+<p>Dieses Kapitel folgt dem typischen Arbeitsablauf eines Forschungsprojektes und beschäftigt sich mit den ersten beiden Abschnitten aus der obigen Grafik, der Daten-Akquise und der Daten-Aufbereitung, wobei letztere im Mittelpunkt stehen soll. Entsprechend ist das Kapitel folgendermaßen strukturiert:</p>
+<p>Als erstes werden wir uns einen Überblick über die verschiedenen <a href="data.html#data-arten">Arten von Daten</a> verschaffen. Danach geht es los mit der <a href="data.html#data-get">Datenakquise</a>. Hier lernen wir, wie man Daten aus häufig verwendeten Datenbanken direkt über R herunterlädt. Als nächstes werden Funktionen zum <a href="data.html#data-read-write">Lesen und Schreiben von Datensätzen</a> und typische Herausforderungen in diesem Prozess besprochen. Danach kommt ein sehr umfangreicher Block zum Thema <a href="data.html#data-wrangling">Datenaufbereitung</a>, in dem Sie lernen, wie Sie Ihre Rohdaten in ein Format überführen, das für die statistische Analyse geeignet ist. Zum Abschluss des Kapitels wird noch die <a href="data.html#data-role">Rolle des Datenmanagements für transparente Forschung</a> verdeutlicht und auf die Debatten über die Ko-Existenz <a href="data.html#data-packages">verschiedener Pakete für die Datenaufbereitung in R</a> hingewisen.</p>
+<p>Die Pakete, die im Rahmen dieses Kapitels verwendet werden sind die Folgenden:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(countrycode)
+<span class="kw">library</span>(here)
+<span class="kw">library</span>(WDI)
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(data.table)
+<span class="kw">library</span>(R.utils)
+<span class="kw">library</span>(haven)</code></pre></div>
+<blockquote>
+<p><strong>Disclaimer</strong>: In diesem Kapitel verwenden wir für die Arbeit mit Daten vor allem Pakete aus dem so genannten <a href="https://www.tidyverse.org/">tidyverse</a>. Ich habe mich für diese Pakete entschieden, weil es meiner Meinung nach die für R-Beginner am einfachsten zu lernenden Pakete sind und sie zu sehr einfach zu lesendem Code führen. Zudem sind sie sehr weit verbreitet. Es gibt aber auch sehr gute Alternativen und gerade für sehr große Datensätze kommen Sie nicht an dem Paket <a href="https://rdatatable.gitlab.io/data.table/">data.table</a> vorbei. Die Rolle des <code>tidyverse</code> und der Debatte um die Pakete in R wird am Ende des Kapitels beschrieben. Bis dahin verweise ich häufig auf weitere Quellen, in denen die Implementierung der Arbeitsschritte in anderen Paketen als dem <code>tidyverse</code> beschrieben wird.</p>
+</blockquote>
+<div id="data-arten" class="section level2">
+<h2><span class="header-section-number">1.1</span> Arten von Daten</h2>
+<p>Es gibt verschiedene mehr oder weniger konsistente Klassifizierungen von Daten, die jeweils auf unterschiedliche Aspekte von Daten oder auch Variablen abziehlen.</p>
+<p>Eine sehr prominente Unterscheidung wird zwischen <strong>quantitativen</strong> und <strong>qualitativen Daten</strong> getroffen. Bei <em>quantitativen</em> Daten handelt es sich grob gesagt um <em>numerische</em> Daten, also Daten, die Sie in Zahlen ausdrücken können. ‘Größe’, ‘Preis’, ‘BIP’ oder ‘Gehalt’ sind typische Beispiele. <em>Qualitative</em> Daten werden intuitiv <em>nicht-numerisch</em> ausgedrückt. Häufig handelt es sich um text-basierte oder beschreibende Daten. In der Praxis werden Sie aber merken, dass die Grenze zwischen quantitativen und qualitativen Daten häufig deutlich schwammiger ist, als man das auf den ersten Blick glauben möchte, denn häufig werden qualitative Beschreibungen quantifiziert und dann mit typischen quantitativen Methoden analysiert. Auch werden s.g. <em>mixed methods</em>-Ansätze immer beliebter, in denen die Unterscheidung noch undeutlicher wird.</p>
+<p>Eine andere, vor allem in der Psychologie verbreitete Unterscheidung ist die zwischen <strong>manifesten</strong> und <strong>latenten Variablen</strong>. <em>Manifeste</em> Variablen sind direkt beobachtbar und ihre Bedeutung ist häufig klar. Die <em>Körpergröße</em> ist z.B. eindeutig messbar und jede*r weiß was damit gemeint ist.</p>
+<p><em>Latente</em> Variablen sind <strong>nicht</strong> direkt beobachtbar und sind häufig erklärungsbedürftig. <em>Nutzen</em> ist zum Beispiel nicht beobachtbar.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> Zudem muss in der Regel erst einmal deutlich gemacht werden, was mit dem Begriff genau gemeint ist.</p>
+<p>Ein großer Teil von Forschungsarbeit ist die <strong>Operationalisierung</strong> einer latenten Variable durch eine oder mehrere manifeste Variablen. Wir sprechen dann davon, dass eine oder mehrere manifeste Variablen als Indikator für eine latente Variable verwendet werden. <em>Wirtschaftliche Entwicklung</em> z.B. ist als solche nicht direkt beobachtbar und wird häufig durch das BIP operationalisiert<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> Der <em>Human Development Index</em> ist der Versuch, wirtschaftliche Entwicklung durch mehr als eine manifeste Variable zu operationalisieren, also durch beobachtbare Variablen messbar zu machen. Eine solche Operationalisierung ist natürlich immer kritisch zu hinterfragen und ist nicht selten ein Einfallstor für subjektive und manchmal auch manipulative Wertentscheidungen.</p>
+<p>In der Praxis sehr relevant ist zudem die Unterscheidung der <strong>vier Skalenniveaus von Daten</strong>, da die Art der Skala bestimmt, welche Methode angemessen ist um die Daten zu analysieren. Hier wird zwischen <strong>nominal</strong>, <strong>ordinal</strong>, <strong>intervall</strong> und <strong>verhältnis</strong> skalierten Daten unterschieden, wobei intervall- und verhältnis-skalierte Daten häufig unter dem Label <strong>kardinal</strong>-skalierte Daten zusammen gefasst werden:</p>
+<p><img src="figures/data-data-classification.png" style="display: block; margin: auto;" /></p>
+<p>Wir sprechen von <strong>nominalskalierten</strong> Daten wenn wir den einzelnen Ausprägungen der Daten zwar bestimmte Werte oder eindeutige Beschreibungen zuordnen können, diese aber keine natürliche Rangfolge aufweisen. So können wir einer Person eine Haarfarbe zuordnen, allerdings die verschiedenen Haarfarben in keine natürliche Rangfolge einordnen. Im Effekt können wir die einzelnen Ausprägungen zwar zählen, aber sonst keine komplexeren mathematischen Operationen ausführen.</p>
+<p>In R werden solche Daten in der Regel als <code>character</code> oder als <code>factor</code> beschrieben. Die einzelnen Ausprägungen eines Faktors können mit der Funktion <code>table</code> gezählt werden. Der häufigste wird dabei ‘Modus’ genannt:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beobachtete_haarfarben &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Brau&quot;</span>, <span class="st">&quot;Schwarz&quot;</span>, 
+                            <span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Braun&quot;</span>, <span class="st">&quot;Braun&quot;</span>)
+<span class="kw">typeof</span>(beobachtete_haarfarben)</code></pre></div>
+<pre><code>#&gt; [1] &quot;character&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beobachtete_haarfarben &lt;-<span class="st"> </span><span class="kw">factor</span>(beobachtete_haarfarben)
+<span class="kw">typeof</span>(beobachtete_haarfarben)</code></pre></div>
+<pre><code>#&gt; [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(beobachtete_haarfarben)</code></pre></div>
+<pre><code>#&gt; beobachtete_haarfarben
+#&gt;   Blond    Brau   Braun Schwarz 
+#&gt;       2       1       2       1</code></pre>
+<p>Bei der Funktion <code>as.factor()</code> können Sie die Ausprägungen auch selbst spezifizieren. Das ist vor allem dann wichtig, wenn eine Ausprägung nicht vorkommt:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beobachtete_haarfarben &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Brau&quot;</span>, <span class="st">&quot;Schwarz&quot;</span>, 
+                            <span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Braun&quot;</span>, <span class="st">&quot;Braun&quot;</span>)
+beobachtete_haarfarben &lt;-<span class="st"> </span><span class="kw">factor</span>(beobachtete_haarfarben, 
+                                 <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Braun&quot;</span>, 
+                                          <span class="st">&quot;Schwarz&quot;</span>, <span class="st">&quot;Glatze&quot;</span>))
+<span class="kw">table</span>(beobachtete_haarfarben)</code></pre></div>
+<pre><code>#&gt; beobachtete_haarfarben
+#&gt;   Blond   Braun Schwarz  Glatze 
+#&gt;       2       2       1       0</code></pre>
+<p>Bei <strong>ordinalskalierten</strong> Daten können die einzelnen Ausprägungen in eine klare Rangfolge gebracht werden, aber die Abstände sind nicht sinnvoll interpretiertbar. Das klassische Beispiel sind Schulnoten: eine ‘1’ ist besser als eine ‘2’, aber weder ist eine 1 ‘doppelt so gut’ wie eine 2, noch sind zwei einser genauso gut wie eine 2.</p>
+<p>Ordinalskalierte Daten werden in R am besten auch als <code>factor</code> behandelt, allerdings müssen Sie die Reihenfolge explizit spezifizieren:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">noten &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="kw">rep</span>(<span class="dv">3</span>, <span class="dv">6</span>), <span class="kw">rep</span>(<span class="dv">4</span>, <span class="dv">2</span>), <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">3</span>))
+noten</code></pre></div>
+<pre><code>#&gt;  [1] 1 1 1 2 2 2 2 3 3 3 3 3 3 4 4 5 5 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">noten &lt;-<span class="st"> </span><span class="kw">factor</span>(noten, <span class="dt">levels =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">ordered =</span> T)
+noten</code></pre></div>
+<pre><code>#&gt;  [1] 1 1 1 2 2 2 2 3 3 3 3 3 3 4 4 5 5 5
+#&gt; Levels: 1 &lt; 2 &lt; 3 &lt; 4 &lt; 5 &lt; 6</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(noten)</code></pre></div>
+<pre><code>#&gt; noten
+#&gt; 1 2 3 4 5 6 
+#&gt; 3 4 6 2 3 0</code></pre>
+<p>Um bei bestehenden Faktoren die Reihenfolge zu spezifizieren verwenden Sie die Funktion <code>ordered()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">noten &lt;-<span class="st"> </span><span class="kw">factor</span>(noten, <span class="dt">levels =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">ordered =</span> F)
+noten</code></pre></div>
+<pre><code>#&gt;  [1] 1 1 1 2 2 2 2 3 3 3 3 3 3 4 4 5 5 5
+#&gt; Levels: 1 2 3 4 5 6</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">noten &lt;-<span class="st"> </span><span class="kw">ordered</span>(noten, <span class="dt">levels =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)
+noten</code></pre></div>
+<pre><code>#&gt;  [1] 1 1 1 2 2 2 2 3 3 3 3 3 3 4 4 5 5 5
+#&gt; Levels: 1 &lt; 2 &lt; 3 &lt; 4 &lt; 5 &lt; 6</code></pre>
+<p>Da wir ordinal-skalierte Daten ordnen können, ist es hier z.B. auch möglich empirische Quantile zu berechnen. Allerdings müssen wir bei der Funktion noch <code>type=1</code> oder <code>type=3</code> ergänzen, um einen Quantilsalgorithmus zu wählen, der auch mit Faktoren funktioniert:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(noten, <span class="dt">type =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>#&gt;   0%  25%  50%  75% 100% 
+#&gt;    1    2    3    4    5 
+#&gt; Levels: 1 &lt; 2 &lt; 3 &lt; 4 &lt; 5 &lt; 6</code></pre>
+<p>Bei <strong>intervall-skalierten</strong> Daten können wir die Ausprägungen nicht nur in eine Rangfolge bringen, sondern auch die Abstände zwischen den Ausprägungen sinnvoll interpretieren. Während es bei Noten also keinen Sinn macht mathematische Operationen wir ‘Addition’ oder ‘Substraktion’ zu verwenden (und die Abstände entsprechend nicht konsistent zu interpretieren sind), ist dies bei intervallskalierten Daten wie z.B. Jahreszahlen möglich: zwischen 1999 und 2005 liegt der gleiche Abstand wie zwischen 2009 und 2015. Entsprechend werden intervall-skalierte Daten in in der Regel als <code>integer</code> oder <code>double</code> gespeichert und wir können Kennzahlen wie den Mittelwert oder die Varianz bereichnen.</p>
+<p>Allerdings verfügen intervall-skalierte Daten über keinen absoluten Nullpunkt, sodass Divisionen und Multiplikationen keinen Sinn machen. Das ist bei <strong>verhältnis-skalierten</strong> Daten wie Gewicht, Preis oder Alter anders. Das kann man am besten an folgendem Beispiel illustrieren:</p>
+<blockquote>
+<p><strong>Beispiel: Inverall- vs. verhältnis-skalierte Temperaturen</strong> Wenn wir die Temperatur in Grad Celsius messen haben wir eine Skala ohne absoluten Nullpunkt. Entsprechend können wir nicht sagen, dass 20 Grad Celsius doppelt so warm sind wie 40 Grad Celsius, nur das der Abstand der Gleiche ist wie zwischen 10 und 30 Grad Celsius. Das wird deutlich, wenn wir uns fragen ob 10 Grad Celsius doppelt so warm wären wie -10 Grad Celsius. Eine Lösung ist die Temperatur in Kelvin anzugeben, denn für Kelvin ist ein absoluter Nullpunkt definiert. Entsprechend können wir auch sagen, dass 20 Kelvin halb so warm ist wie 40 Kelvin - wobei beides ziemlich kalt wäre.</p>
+</blockquote>
+<p>Entsprechend machen bestimmte Korrelationsmaße, insbesondere der prominente Pearson-Korrelationskoeffizient nur für verhältnis-skalierte Daten Sinn. Da sowohl intervall- als auch verhältnis-skalierte Daten als <code>double</code> oder ìnteger` repräsentiert werden ist Vorsicht geboten: wir müssen immer selbst entscheiden welche Maße wir für die Daten berechnen und R gibt uns keinen Fehler aus, wenn wir für zwei intervall-skalierte Variablen den Pearson-Korrelationskoeffizienten berechnen wollen.</p>
+<p>Die folgende Tabelle fasst das noch einmal zusammen:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="21%" />
+<col width="17%" />
+<col width="32%" />
+<col width="28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Skalenniveau</strong></th>
+<th><strong>Beispiel</strong></th>
+<th><strong>Messbare Eigenschaften</strong></th>
+<th><strong>Typisches R Objekt</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nominal</td>
+<td>Haarfarbe, Telefonnummer</td>
+<td>Häufigkeit</td>
+<td><code>character</code>, <code>factor</code></td>
+</tr>
+<tr class="even">
+<td>Ordinal</td>
+<td>Schulnote, Zufriedenheit</td>
+<td>Häufigkeit, Rangfolge</td>
+<td><code>factor</code></td>
+</tr>
+<tr class="odd">
+<td>Intervall</td>
+<td>Temperatur in C<span class="math inline">\(^\circ\)</span>, Jahreszahl</td>
+<td>Häufigkeit, Rangfolge, Abstand</td>
+<td><code>integer</code>, <code>double</code></td>
+</tr>
+<tr class="even">
+<td>Verhältnis</td>
+<td>Preise, Alter</td>
+<td>Häufigkeit, Rangfolge, Abstand, abs. Nullpunkt</td>
+<td><code>integer</code>, <code>double</code></td>
+</tr>
+</tbody>
+</table>
+<p>Wie oben erwähnt bestimmt das Skalenniveau die anwendbaren statistischen Operationen und Maße. Zur Illustration fasst die folgende Tabelle zusammen, welche uns bislang bekannten statistischen Maße für welche Skalenniveaus definiert sind:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center"><strong>Nominal</strong></th>
+<th align="center"><strong>Ordinal</strong></th>
+<th align="center"><strong>Intervall</strong></th>
+<th align="center"><strong>Verhältnis</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Modus</strong></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Quantile</strong></td>
+<td align="center"><span class="math inline">\(\times\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Interquantilsabstand</strong></td>
+<td align="center"><span class="math inline">\(\times\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Rankkorrelation</strong></td>
+<td align="center"><span class="math inline">\(\times\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Mittelwert</strong></td>
+<td align="center"><span class="math inline">\(\times\)</span></td>
+<td align="center"><span class="math inline">\(\times\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Varianz</strong></td>
+<td align="center"><span class="math inline">\(\times\)</span></td>
+<td align="center"><span class="math inline">\(\times\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Pearson-Korrelation</strong></td>
+<td align="center"><span class="math inline">\(\times\)</span></td>
+<td align="center"><span class="math inline">\(\times\)</span></td>
+<td align="center"><span class="math inline">\(\times\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Wahrscheinlich kennen Sie auch noch die Unterscheidung zwischen <strong>diskreten</strong> und <strong>stetigen</strong> Werten. Diese Kategorisierungen ist jedoch nicht vollkommen konsistent mit den Skalenniveaus: zwar sind kardinale Daten in der Tendenz eher stetig und nominale, bzw. ordinale Daten eher diskret, allerdings gibt es auch diskrete kardinale Daten (aber keine stetigen nominalen Daten).</p>
+<blockquote>
+<p><strong>Hinweis zum Angeben:</strong> Aus der Skalierung oben wird ersichtlich, dass man mit ordinal-skalierten Daten keine Durchschnitte bilden darf - man kann sie ja noch nicht einmla addieren. Ein Bereich wo dieser fundamentalen Regel ständig Gewalt angetan wird ist die Schule: wer hat noch nicht einmal von einer Durchschnittsnote gehört? Zum Glück gehört das bei uns an der Universität der Vergangenheit an…</p>
+</blockquote>
+</div>
+<div id="data-get" class="section level2">
+<h2><span class="header-section-number">1.2</span> Datenakquise</h2>
+<p>Der erste Schritt in der Arbeit mit Daten ist immer die Akquise der Daten. Je nach verwendeter Methode und Fragestellung ist das mehr oder weniger Arbeit. Im einfachsten Fall sind die von Ihnen benötigten Daten bereits erhoben und über das Internet frei zugänglich. Das trifft z.B. auf viele makroökonomische Indikatoren, wie das BIP, den Gini oder die Arbeitslosigkeit zu. In diesem Falle müssen Sie einfach nur noch die passende Quelle finden,<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> laden die Daten herunter und machen beim nächsten Schritt zum <a href="data.html#data-read-write">Einlesen von Datensätzen</a> weiter, oder überlegen ob sie die Daten sogar <a href="data.html#data-download-R">direkt mit R herunterladen</a> wollen.</p>
+<div id="exkurs-1-landercodes-ubersetzen" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Exkurs 1: Ländercodes übersetzen</h3>
+<p>Gerade wenn Sie mit makroökonomischen Daten arbeiten werden Sie häufig in Kontakt mit Ländercodes kommen. In vielen Danksätzen werden Länder unterschiedlich abgekürzt. So mögen manche Datensätze zwar ausgeschriebene Ländernamen wie “Deutschland” verwenden, andere verwenden aber eher den <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">iso3c-Code</a> “DEU”, während wieder andere den <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">iso2c-Code</a> “DE” verwenden. Wenn Sie sich dann Daten vom IWF herunterladen wundern Sie sich vielleicht, dass Deutschland dort mit der Zahl <code>134</code> kodiert wird.</p>
+<p>Zum Glück gibt es ein R-Paket, das die Übersetzung der Codes kinderleicht macht: <code>countrycode</code> <span class="citation">(Arel-Bundock, Enevoldsen, and Yetman <a href="#ref-R-countrycode">2018</a>)</span>. Es stellt Ihnen unter anderem die Funktion <code>countrycode()</code> zur Verfügung, mit der Sie die Codes einfach übersetzen können. Die Funktion benötigt die folgenden Argumente: <code>sourcevar</code> akzeptiert einen <code>character</code> oder einen Vektor mit den zu übersetzenden Ländercodes. <code>origin</code> gibt die Form dieser Codes an und <code>destination</code> spezifiziert den Code in den Sie die <code>sourcevar</code> übersetzen wollen. Die Abkürzungen finden Sie in der Hilfefunkion von <code>countrycode()</code>.</p>
+<p>Nehmen wir einmal an, wir möchten die <code>iso2c</code>-Codes für Frankreich und die Schweiz herausfinden. Das geht folgendermaßen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">countrycode</span>(
+  <span class="dt">sourcevar =</span> <span class="kw">c</span>(<span class="st">&quot;Frankreich&quot;</span>, <span class="st">&quot;Schweiz&quot;</span>), 
+  <span class="dt">origin =</span> <span class="st">&quot;country.name.de&quot;</span>, 
+  <span class="dt">destination =</span> <span class="st">&quot;iso3c&quot;</span>)</code></pre></div>
+<pre><code>#&gt; [1] &quot;FRA&quot; &quot;CHE&quot;</code></pre>
+<p>In diesem Fall verdeutlicht <code>origin=&quot;country.name.de&quot;</code>, dass wir die Originalnamen auf Deutsch angegeben haben und <code>destination=&quot;iso2c&quot;</code> dass wir in <code>iso2c</code> übersetzen wollen.</p>
+<p>Wenn wir wissen wollen welches Land sich hinter der IWF Nummer <code>112</code> verbirgt schreiben wir:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">countrycode</span>(
+  <span class="dt">sourcevar =</span> <span class="kw">c</span>(<span class="st">&quot;112&quot;</span>), 
+  <span class="dt">origin =</span> <span class="st">&quot;imf&quot;</span>,
+  <span class="dt">destination =</span> <span class="st">&quot;country.name.de&quot;</span>)</code></pre></div>
+<pre><code>#&gt; [1] &quot;Großbritannien&quot;</code></pre>
+<p>Die Funktion <code>countrycode()</code> kennt bereits alle wichtigen Ländercodes. Schauen Sie in der Hilfefunktion nach wie die Codes abgekürzt werden. Aber manchmal möchten Sie vielleicht eine besonders ausgefallene Übersetzung durchführen. In einem solchen Falle können Sie <code>countrycode()</code> über das Argument <code>custom_dict</code> auch einen <code>data.frame</code> mit dem neuen Code übergeben und die Funktion ansonsten äquivalent nutzen.</p>
+<p>Grundsätzlich empfehle ich Ihnen in Ihrer Arbeit möglichst auf das Ausschreiben von Ländernamen zu verzichten und stattdessen mit eindeutigeren Kürzeln zu arbeiten. Ich arbeite z.B. immer mit den <code>iso3c</code>-Codes, da sie trotzdem sehr intuitiv lesbar sind.</p>
+<p>Das Problem mit ausgeschriebenen Ländernamen lässt sich anhand der Tschechischen Republik gut verdeutlichen. Der <code>iso3c</code>-Code ist hier eindeutig <code>CZE</code>, allerding verwenden manche Datenbanken den Namen ‘Czechia’ und andere ‘Czech Republik’. Das <code>countrycode</code>-Paket übersezt beide Namen in <code>CZE</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">countrycode</span>(<span class="st">&quot;Czech Republic&quot;</span>, <span class="st">&quot;country.name&quot;</span>, <span class="st">&quot;iso3c&quot;</span>)</code></pre></div>
+<pre><code>#&gt; [1] &quot;CZE&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">countrycode</span>(<span class="st">&quot;Czechia&quot;</span>, <span class="st">&quot;country.name&quot;</span>, <span class="st">&quot;iso3c&quot;</span>)</code></pre></div>
+<pre><code>#&gt; [1] &quot;CZE&quot;</code></pre>
+<p>Das kann manchmal zu Problemen beim Zusammenführen von Datensätzen führen, da R nicht von sich aus weiß, dass ‘Czechia’ und ‘Czech Republik’ das gleiche Land meinen. Da die Ländercodes immer eindeutig sind empfehle ich daher immer mit den Kürzeln zu arbeiten und beim ersten Übersetzen immer besondern vorsichtig zu sein.</p>
+</div>
+<div id="data-download-R" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> Exkurs 2: Daten direkt mit R herunterladen</h3>
+<p>Manchmal können Sie sich viel Arbeit sparen indem Sie die Daten direkt in R über eine so genannte <a href="https://de.wikipedia.org/wiki/Programmierschnittstelle">API</a> herunterladen. Das bedeutet, dass Sie über R einen direkten Zugang zum Server mit den Daten herstellen und die Daten direkt in R einladen. Das hat den Vorteil, dass die Daten in der Regel bereits in einem gut weiterzuverarbeitenden Zustand sind und dass aus Ihrem Code unmittelbar ersichtlich wird wo Ihre Rohdaten herkommen.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a></p>
+<p>Es lohnt sich daher, gerade wenn Sie aus einer Quelle mehrere Daten beziehen wollen, nachzuschauen ob ein R Paket oder eine besondere API verfügbar ist. Im folgenden möchte das Vorgehen mit dem Paket <a href="https://github.com/vincentarelbundock/WDI">WDI</a> <span class="citation">(Arel-Bundock <a href="#ref-R-WDI">2019</a>)</span>, welches Ihnen Zugriff auf die <a href="https://data.worldbank.org/">Weltbankdaten</a> ermöglicht, illustrieren.</p>
+<p>Das Paket <code>WDI</code> stellt Funktionen sowohl zum Suchen als auch zum direkten Download von Daten aus der Datenbank der Weltbank zur Verfügung. Diese Datenbank ist extrem nützlich, weil sie makroökonomische Indikatoren für die ganze Welt aus verschiedenen Quellen bündelt.</p>
+<p>Als erstes müssen Sie den Code des von Ihnen gewünschten Indikators herausfinden. Dazu gehen Sie am besten auf die <a href="https://data.worldbank.org/">Startseite</a> der Weltbankdatenbank und suchen dort nach den Indikatoren ihrer Wahl. Nehmen wir einmal an, Sie wollen Daten zum Export und zur Arbeitslosigkeit für Deutschland und Österreich für die Jahre 2012-2014 haben.</p>
+<p>Sie suchen also nach den Indikatoren und lesen den Code aus der URL des Indikators ab:<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a></p>
+<p><img src="figures/chap-data-world-bank.png" style="display: block; margin: auto;" /></p>
+<p>Über die Weltbankseite finden Sie heraus, dass die beiden von Ihnen gesuchten Indikatoren mit <code>NE.EXP.GNFS.ZS</code> und <code>SL.UEM.TOTL.ZS</code> kodiert sind Nun verwenden Sie die Funktion <code>WDI::WDI()</code> um direkt auf die Daten zuzugreifen. Die Funktion benötigt dabei die folgenden Argumente: <code>country</code> verlangt nach einem Vektor mit Länderkürzeln. Der <code>countrycode</code>-Code für die von der Weltbank geforderten Kürzel ist <code>wb</code> und es ist entsprechend einfach diesen Vektor zu erstellen. Das zweite relevante Argument ist <code>indicator</code> und benötigt einen Vektor der gewünschten Indikatoren. Über die Argumente <code>start</code> und <code>stop</code> geben Sie das erste und letzte gewünschte Beobachtungsjahr an. Die weiteren Argumente sind nicht von unmittelbarem Interesse.</p>
+<p>Nun können Sie die Funktion <code>WDI::WDI()</code> folgendermaßen verwenden um Export- und Arbeitslosendaten für Deutschland und Österreich zwischen 2012 und 2014 zu bekommen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t_beginn &lt;-<span class="st"> </span><span class="dv">2012</span>
+t_ende &lt;-<span class="st"> </span><span class="dv">2014</span>
+laender &lt;-<span class="st"> </span><span class="kw">countrycode</span>(<span class="kw">c</span>(<span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Austria&quot;</span>), 
+                       <span class="st">&quot;country.name&quot;</span>, <span class="st">&quot;wb&quot;</span>)
+indikatores &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;NE.EXP.GNFS.ZS&quot;</span>, <span class="st">&quot;SL.UEM.TOTL.ZS&quot;</span>)
+
+daten &lt;-<span class="st"> </span>WDI<span class="op">::</span><span class="kw">WDI</span>(
+  <span class="dt">country =</span> laender, 
+  <span class="dt">indicator =</span> indikatores,
+  <span class="dt">start =</span> t_beginn,
+  <span class="dt">end =</span> t_ende
+)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daten</code></pre></div>
+<pre><code>#&gt;    iso2c country year NE.EXP.GNFS.ZS SL.UEM.TOTL.ZS
+#&gt; 1:    AT Austria 2012       53.97368          4.865
+#&gt; 2:    AT Austria 2013       53.44129          5.335
+#&gt; 3:    AT Austria 2014       53.38658          5.620
+#&gt; 4:    DE Germany 2012       45.98254          5.379
+#&gt; 5:    DE Germany 2013       45.39788          5.231
+#&gt; 6:    DE Germany 2014       45.64482          4.981</code></pre>
+<p>Mit derlei Paketen können Sie sich häufig viel Zeit sparen, insbesondere wenn Sie mehrere Datensätze von der gleichen Quelle benötigen.</p>
+</div>
+</div>
+<div id="data-read-write" class="section level2">
+<h2><span class="header-section-number">1.3</span> Daten einlesen und schreiben</h2>
+<div id="einlesen-von-datensatzen" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> Einlesen von Datensätzen</h3>
+<p>Wenige Arbeitsschritte können so frustrierende sein wie das Einlesen von Daten. Sie können sich gar nicht vorstellen was hier alles schiefgehen kann! Aber kein Grund zur übertriebenen Sorge: wir können viel Frustration vermeiden wenn wir am Anfang unserer Karriere ausreichend Zeit in die absoluten Grundlagen von Einlesefunktionen investieren. Also, auch wenn die nächsten Zeilen etwas trocken wirken: sie werden Ihnen später viel Zeit ersparen!</p>
+<p>Das am weiteseten verbreitete Datenformat ist csv. ‘csv’ steht für ‘comma separated values’ und diese Dateien sind einfache Textdateien, in denen Spalten mit bestimmten Symbolen, in der Regel einem Komma, getrennt sind. Aufgrund dieser Einfachheit sind diese Dateien auf allen Plattformen und quasi von allen Programmen ohne Probleme lesbar.</p>
+<p>In R gibt es verschiedene Möglichkeiten csv-Dateien einzulesen. Die mit Abstand beste Option ist dabei die Funktion <code>fread()</code> aus dem Paket <code>data.table</code>, da sie nicht nur sehr flexibel spezifiziert werden kann, sondern auch deutlich schneller als andere Funktionen arbeitet.</p>
+<p>Wir gehen im folgenden davon aus, dass wir die Datei <code>data/tidy/export_daten.csv</code> einlesen wollen. Die Datei sieht im Rohformat folgendermaßen aus:</p>
+<pre><code>iso2c,year,Exporte
+AT,2012,53.97
+AT,2013,53.44
+AT,2014,53.38</code></pre>
+<p>Es handelt sich also um eine sehr standardmäßige csv-Datei, die wir einfach mit der Funktion <code>fread()</code> einlesen können. Dazu übergeben wir <code>fread()</code> nur das einzige wirklich notwendige Argument: den Dateipfad. Der besseren Übersicht halber sollte dieser immer separat definiert werden:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.csv&quot;</span>)
+daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad)
+daten</code></pre></div>
+<pre><code>#&gt;    iso2c year Exporte
+#&gt; 1:    AT 2012   53.97
+#&gt; 2:    AT 2013   53.44
+#&gt; 3:    AT 2014   53.38</code></pre>
+<p>Vielleicht fragen Sie sich wie <code>fread()</code> die Spalten bezüglich ihres <a href="#basics-types-vectors">Datentyps</a> interpretiert hat? Das können wir folgendermaßen überprüfen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(daten<span class="op">$</span>year)</code></pre></div>
+<pre><code>#&gt; [1] &quot;integer&quot;</code></pre>
+<p>In der Regel funktioniert die automatische Typerkennung von <code>fread()</code> sehr gut. Ich empfehle dennoch die Typen immer manuell zu spezifizieren, aus folgenden Gründen: (1) Sie merken leichter wenn es mit einer Spalte ein Problem gibt, z.B. wenn in einer Spalte, die ausschließlich aus Zahlen besteht ein Wort vorkommt. Wenn Sie diese Spalte nicht manuell als <code>double</code> spezifizieren würden würde <code>fread()</code> sie einfach still und heimlich als <code>character</code> verstehen und Sie wundern sich später, warum Sie für die Spalte keinen Durchschnitt berechnen können; (2) ihr Code wird leichter lesbar und (3) der Lesevorgang wird signifikant beschleunigt.</p>
+<p>Sie können die Spaltentypen manuell über das Argument <code>colClasses</code> einstellen, indem Sie einfach einen Vektor mit den Datentypen angeben:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.csv&quot;</span>)
+daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad, 
+               <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;character&quot;</span>, <span class="st">&quot;double&quot;</span>, <span class="st">&quot;double&quot;</span>))
+<span class="kw">typeof</span>(daten<span class="op">$</span>year)</code></pre></div>
+<pre><code>#&gt; [1] &quot;double&quot;</code></pre>
+<p>Da es bei sehr großen Dateien einen extremen Unterschied macht ob Sie die Spaltentypen angeben oder nicht macht es in einem solchen Fall häufig Sinn, zunächst mal nur die erste Zeile des Datensatzes einzulesen, sich anzuschauen welche Typen die Spalten haben sollten und dann den gesamten Datensatz mit den richtig spezifizierten Spaltentypen einzuladen. Sie können nur die erste Zeile einladen indem Sie das Argument <code>nrows</code> verwenden:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.csv&quot;</span>)
+daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad, 
+               <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;character&quot;</span>, <span class="st">&quot;double&quot;</span>, <span class="st">&quot;double&quot;</span>),
+               <span class="dt">nrows =</span> <span class="dv">1</span>)
+daten</code></pre></div>
+<pre><code>#&gt;    iso2c year Exporte
+#&gt; 1:    AT 2012   53.97</code></pre>
+<p>Manchmal möchten Sie auch nur eine bestimmte Auswahl an Spalten einlesen. Auch das kann bei großen Datensätzen viel Zeit sparen. Wenn wir oben nur das Jahr und die Anzahl der Exporte haben spezifizieren wir das über das Argument ``:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.csv&quot;</span>)
+daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad, 
+               <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;character&quot;</span>, <span class="st">&quot;double&quot;</span>, <span class="st">&quot;double&quot;</span>),
+               <span class="dt">nrows =</span> <span class="dv">1</span>, 
+               <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;iso2c&quot;</span>, <span class="st">&quot;Exporte&quot;</span>))
+daten</code></pre></div>
+<pre><code>#&gt;    iso2c Exporte
+#&gt; 1:    AT   53.97</code></pre>
+<p>Die Beispiel-Datei oben war sehr angenehm formatiert. Häufig werden aber andere Spalten- und Dezimalkennzeichen verwendet. Gerade in Deutschland ist es verbreitet, Spalten mit <code>;</code> zu trennen und das Komma als Dezimaltrenner zu verwenden. Unsere Beispiel-Datei oben sähe dann so aus:</p>
+<pre><code>iso2c;year;Exporte
+AT;2012;53,97
+AT;2013;53,44
+AT;2014;53,38</code></pre>
+<p>Zum Glück können wir das Spaltentrennzeichen über das Argument <code>sep</code> und das Kommatrennzeichen über das Argument <code>dec</code> manuell spezifizieren:<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten_dt.csv&quot;</span>)
+daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad, 
+               <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;character&quot;</span>, <span class="st">&quot;double&quot;</span>, <span class="st">&quot;double&quot;</span>), 
+               <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, 
+               <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>
+               )
+daten</code></pre></div>
+<pre><code>#&gt;    iso2c year Exporte
+#&gt; 1:    AT 2012   53.97
+#&gt; 2:    AT 2013   53.44
+#&gt; 3:    AT 2014   53.38</code></pre>
+<p><code>fread()</code> verfügt noch über viele weitere Spezifizierungsmöglichkeiten, die Sie sich am besten am konkreten Anwendungsfall vertraut machen. Auch ein Blick in die Hilfeseite ist recht illustrativ. Für die meisten Anwendungsfälle sind sie jetzt aber gut aufgestellt.</p>
+<blockquote>
+<p><strong>Anmerkungen zu komprimierten Dateien:</strong> Häufig werden Sie auch komprimierte Dateien einlesen wollen. Gerade komprimierte csv-Dateien kommen häufig vor. In den meisten Fällen können Sie diese Dateien direkt mit <code>fread()</code> einlesen. Falls nicht, können Sie fread aber auch dem entsprechenden UNIX-Befehl zum Entpacken als Argument <code>cmd</code> übergeben, also z.B. <code>fread(&quot;unzip -p data/gezipte_daten.csv.bz2&quot;)</code>. Weitere Informationen finden Sie sehr einfach im Internet.</p>
+</blockquote>
+<p>Auch wenn csv-Dateien die am weitesten verbreiteten Daten sind: es gibt natürlich noch viele weitere Formate mit denen Sie in Kontakt kommen werden. Hier möchte ich exemplarisch auf drei weitere Formate eingehen:</p>
+<p>R verfügt über zwei ‘hauseigene’ Formate, die sich extrem gut zum Speichern von größeren Daten eignen, aber eben nur von R geöffnet werden können. Diese Dateien enden mit <code>.rds</code>, bzw. mit <code>.RData</code> oder <code>.Rda</code>, wobei <code>.Rda</code> nur eine Abkürzung für <code>.RData</code> ist.</p>
+<p>Dabei gilt, dass <code>.rds</code>-Dateien einzelne R-Objekte enthalten, z.B. einen einzelnen Datensatz, aber auch jedes andere Objekt (Vektor, Liste, etc.) kann als <code>.rds</code>-Dateie gespeichert werden. Solche Dateien können mit der Funktion <code>readRDS()</code> gelesen werden, die als einziges Argument den Dateinamen annimmt:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.rds&quot;</span>)
+daten &lt;-<span class="st"> </span><span class="kw">readRDS</span>(daten_pfad)
+daten</code></pre></div>
+<pre><code>#&gt;   Land Jahr BIP
+#&gt; 1  DEU 2011   1
+#&gt; 2  DEU 2012   2</code></pre>
+<p><code>.RData</code>-Dateien können auch mehrere Objekte enthalten. Zudem gibt die entsprechende Funktion <code>load()</code> kein Objekt aus, dem Sie einen Namen zuweisen können. Vielmehr behalten die Objekte den Namen, mit dem sie ursprünglich gespeichert wurden. In diesem Fall wurden in der Datei <code>data/tidy/test_daten.RData</code> der Datensatz <code>test_dat</code> und der Vektor <code>test_vec</code> gespeichert. Entsprechend sind sie nach dem Einlesen verfügbar:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">here</span>(<span class="st">&quot;data/tidy/test_daten.RData&quot;</span>))
+test_dat</code></pre></div>
+<pre><code>#&gt;   a b
+#&gt; 1 1 3
+#&gt; 2 2 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test_vec</code></pre></div>
+<pre><code>#&gt; [1] &quot;Test Vektor&quot;</code></pre>
+<p>Die Verwendung von <code>.RData</code> ist besonders dann hilfreich, wenn Sie mehrere Objekte speichern wollen und wenn einige dieser Objekte keine Datensätze sind, für die auch andere Formate zur Verfügung stehen.</p>
+<p>Ein in der Ökonomik häufig verwendetes Format ist das von der Software <a href="https://de.wikipedia.org/wiki/Stata">STATA</a> verwendete Format <code>.dta</code>. Um Dateien in diesem Format speichern zu können verwenden Sie die Funktion <code>read_dta()</code> aus dem Paket <a href="https://github.com/tidyverse/haven">haven</a> <span class="citation">(Wickham and Miller <a href="#ref-R-haven">2019</a>)</span>, die als einziges Argumente den Dateinamen akzeptiert:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daten &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.dta&quot;</span>)
+daten</code></pre></div>
+<pre><code>#&gt; [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/data/tidy/export_daten.dta&quot;</code></pre>
+<p>Das Paket <a href="https://github.com/tidyverse/haven">haven</a> stellt auch Funktionen zum Lesen von SAS oder SPSS-Dateien bereit.</p>
+</div>
+<div id="speichern-von-daten" class="section level3">
+<h3><span class="header-section-number">1.3.2</span> Speichern von Daten</h3>
+<p>Im Vergleich zum Einlesen von Daten ist das Schreiben deutlich einfacher, weil sich die Daten ja bereits in einem vernünftigen Format befinden. Die größte Frage hier ist also: in welchem Dateiformat sollten Sie Ihre Daten speichern?</p>
+<p>In der großen Mehrheit der Fälle ist diese Frage klar mit <code>.csv</code> zu beantworten. Dieses Format ist einfach zu lesen und absolut plattformkompatibel. Es hat auch nicht die schlechtesten Eigenschaften was Lese- und Schreibgeschwindigkeit angeht, insbesondere wenn man die Daten komprimiert.</p>
+<p>Die schnellste und meines Erachtens mit Abstand beste Funktion zum Schreiben von csv-Dateien ist die Funktion <code>fwrite()</code> aus dem Paket <code>data.table</code>. Angenommen wir wollen haben einen Datensatz <code>test_data</code>, den wir im Unterordner <code>data/tidy</code> als <code>test_data.csv</code> speichern wollen. Das geht mit <code>fwrite()</code> ganz einfach:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datei_name &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/test_data.csv&quot;</span>)
+<span class="kw">fwrite</span>(test_data, <span class="dt">file =</span> datei_name)</code></pre></div>
+<p>Neben dem zu schreibenden Objekt als erstem Argument benötigen Sie noch das Argument <code>file</code>, welches den Namen und Pfad der zu schreibenden Datei spezifiziert. Der Übersicht halber ist es oft empfehlenswert diesen Pfad zuerst als <code>character</code>-Objekt zu speichern und dann an die Funktion <code>fwrite()</code> zu übergeben.</p>
+<p><code>fwrite()</code> akzeptiert noch einige weitere optionale Argumente, die Sie im Großteil der Fälle aber nicht benötigen. Schauen Sie bei Interesse einfach einmal in die Hilfefunktion!</p>
+<p>Falls Ihr Datensatz im csv-Format doch zu groß ist, Sie aber aufgrund von Kompatibilitätsanforderungen kein spezialisiertes Format benutzen wollen, bietet es sich an die csv-Datei zu komprimieren. Natürlich könnten Sie das händisch in Ihrem Datei-Explorer machen, aber das ist natürlich vollkommen überholt. Sie können das gleich in R miterledigen indem Sie z.B. die Funktion <code>gzip</code> aus dem Paket <code>R.utils</code> <span class="citation">(Bengtsson <a href="#ref-R-R.utils">2019</a>)</span> verwenden:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">csv_datei_name &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/test_data.csv&quot;</span>)
+<span class="kw">fwrite</span>(test_data, <span class="dt">file =</span> csv_datei_name)
+<span class="kw">gzip</span>(csv_datei_name,
+      <span class="dt">destname=</span><span class="kw">paste0</span>(csv_datei_name, <span class="st">&quot;.gz&quot;</span>), 
+      <span class="dt">overwrite =</span> <span class="ot">TRUE</span>, <span class="dt">remove=</span><span class="ot">TRUE</span>)</code></pre></div>
+<p>Diese Funktion akzeptiert als erstes Argument den Pfad zu der zu komprimierenden Datei, also zweites Argument (<code>destname</code>) den Namen, den die komprimierte Datei tragen soll und einige weitere optionale Argumente. Häufig bietet sich <code>overwrite = TRUE</code> an, um alte Versionen der komprimierten Datei im Zweifel zu überschreiben, und <code>remove=TRUE</code> um die un-komprimierte Datei nach erfolgter Komprimierung zu löschen.</p>
+<blockquote>
+<p><strong>Hinweise zu verschiedenen zip-Formaten:</strong> Die Funktion <code>gzip()</code> komprimiert eine Datei mit dem <a href="https://de.wikipedia.org/wiki/Gzip">GNU zip Algorithmus</a>. Die resultierende komprimierten Dateien sollten mit der zusätzlichen Endung <code>.gz</code> gekennzeichnet werden. <code>gzip()</code> ist eine relativ schnell arbeitende Funktion, allerdings mit mäßigen Kompressionseigenschaften. Wenn Sie bereit sind längere Arbeitszeit für ein besseres Kompressionsergebnis in Kauf zu nehmen, sollten Sie sich die Funktion <code>bzip2()</code> ansehen, welche den <a href="https://de.wikipedia.org/wiki/Bzip2">bzip2-Algorithmus</a> implementiert. Dieser hat eine deutlich bessere Kompressionsrate (die komprimierten Dateien sind also deutlich kleiner), allerdings ist <code>bzip2()</code> auch deutlich langsamer als <code>gzip()</code>. Dateien, die mit <code>bzip2()</code> komprimiert wurden, sollten mit der Endung <code>.bz2</code> gekennzeichnet werden. Entsprechend sieht der Code von oben mit <code>bzip2()</code> anstatt <code>gzip()</code> folgendermaßen aus:</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">csv_datei_name &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/test_data.csv&quot;</span>)
+<span class="kw">fwrite</span>(test_data, csv_datei_name)
+<span class="kw">bzip2</span>(csv_datei_name,
+      <span class="dt">destname=</span><span class="kw">paste0</span>(csv_datei_name, <span class="st">&quot;.bz2&quot;</span>), 
+      <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<blockquote>
+<p>Einen Vergleich der Kompressionseigenschaften und Lese- und Schreibgeschwindigkeiten ist immer auch kontextabhängig, im Internet finden sich viele Diskussionen zu dem Thema. Am Anfang sind Sie mit <code>gzip()</code> und <code>bzip2()</code> aber eigentlich für alle relevanten Fälle gut aufgestellt.</p>
+</blockquote>
+<p>Ich möchte Ihnen noch zwei R-spezifische Formate vorstellen: <code>.Rdata</code> und <code>.rds</code>, die deutliche Geschwindigkeits- und Komprimierungsvorteile gegenüber dem csv-Format haben und dabei trotzdem vollkommen plattformkompatibel sind. Einziger Nachteil: alle Irren, die nicht R benutzen, können Ihre Daten nicht öffnen. Manchmal mag das eine verdiente Strafe, manchmal aber auch ein Ausschlusskriterium sein.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>(test_data,  <span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.rds&quot;</span>))</code></pre></div>
+<p>Mit dem Argument <code>compress</code> können Sie hier übrigens die Kompressionsart auswählen. Ähnlich wie oben gilt, dass <code>gz</code> am schnellsten und <code>bz</code> am stärksten ist. <code>xz</code> liegt in der Mitte.</p>
+<p>Wenn Sie mehrere Objekte auf einmal speichern möchten können Sie das über das Format <code>.RData</code> machen. Die entsprechende Funktion ist <code>save()</code>. Zwar können Sie einfach alle zu speichernden Objekte als die ersten Argumente an die Funktion übergeben, es ist aber übersichtlicher das über das Argument <code>list</code> zu erledigen. Der folgende Code speichert die beiden Objekte <code>test_data</code> und <code>daten</code> in der Datei <code>&quot;data/tidy/datensammlung.Rdata&quot;</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(<span class="dt">list=</span><span class="kw">c</span>(<span class="st">&quot;test_data&quot;</span>, <span class="st">&quot;daten&quot;</span>), 
+     <span class="dt">file=</span><span class="kw">here</span>(<span class="st">&quot;data/tidy/datensammlung.RData&quot;</span>))</code></pre></div>
+<p>Wie <code>saveRDS()</code> können Sie bei <code>save()</code> über das Argument <code>compress</code> den Kompressionsalgorithmus auswählen, allerdings können Sie mit <code>compression_level</code> zusätzlich noch die Stärke von <code>1</code> (schnell, aber wenig Kompression) bis <code>9</code> (langsamer, aber starke Kompression) auswählen.</p>
+<p>Da gerade in der Ökonomik auch häufig mit der kostenpflichtigen Software <a href="https://de.wikipedia.org/wiki/Stata">STATA</a> gearbeitet wird, möchte ich noch kurz erkläutern, wie man einen Datensatz im STATA-Format <code>.dta</code> speichern kann. Dazu verwenden wir die Funktion <code>write_dta()</code> aus dem Paket <a href="https://github.com/tidyverse/haven">haven</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(haven)
+<span class="kw">write_dta</span>(test_data, 
+          <span class="kw">here</span>(<span class="st">&quot;data/tidy/test_daten.dta&quot;</span>))</code></pre></div>
+<p>Für <code>SAS</code>- und <code>SPSS</code>-Daten gibt es ähnliche Funktionen, die ebenfalls durch das <a href="https://github.com/tidyverse/haven">haven</a>-Paket bereitgestellt werden.</p>
+<blockquote>
+<p><strong>Hinweis:</strong> Gerade bei großen Datensätzen kommt es wirklich sehr auf die Lese- und Schreibgeschwindigkeit von Funktionen an. Auch stellt sich hier die Frage nach dem besten Dateiformat noch einmal viel deutlicher als das bei kleinen Datensätzen der Fall ist und sich die Formatfrage vor allem um das Thema ‘Kompatibilität’ dreht. Einige nette Beiträge, die verschiedene Funktionen und Formate bezüglich ihrer Geschwindigkeit vergleichen finden Sie z.B. <a href="">hier</a> oder <a href="">hier</a>.</p>
+</blockquote>
+</div>
+</div>
+<div id="data-wrangling" class="section level2">
+<h2><span class="header-section-number">1.4</span> Verarbeitung von Daten (‘data wrangling’)</h2>
+<p>Nachdem Sie ihre Daten erhoben müssen Sie die Rohdaten in eine Form bringen, mit der Sie sinnvoll weiterarbeiten können. Dieser Prozess wird oft als ‘Datenaufbereitung’ bezeichnet und stellt häufig einen der zeitaufwändigsten Arbeitsschritt in der Forschungsarbeit dar: Laut <a href="https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/">dieser Umfrage</a> macht es sogar 60 % der Arbeitszeit von Datenspezialisten aus. Entsprechend wichtig ist es, sich mit den typischen Arbeitsschritten und Algorithmen vertraut zu machen um in diesem aufwendigen Arbeitsschritt Zeit zu sparen.</p>
+<p>Ein großer Problem in der Forschungspraxis ist häufig, dass Forscher*innen den Datenaufbereitungsprozess nicht richtig dokumentieren. In diesem Fall ist unklar was für Änderungen an den Rohdaten vorgenommen wurden bevor die eigentliche Analyse begonnen wurde. Das führt zu unreproduzierbarer und intransparenter Forschung. Daher ist es wichtig, alle Änderungen, die Sie im Rahmen der Datenaufbereitung vornehmen zu dokumentieren.</p>
+<p>Am einfachsten ist es, für die Datenaufbereitung einfach ein R-Skript zu schreiben, in dem Sie die Rohdaten einlesen und am Ende die aufbereiteten Daten unter neuem Namen speichern. <strong>Nie</strong> sollten Sie ihre Rohdaten überschreiben! Damit sind Sie in Ihrer Forschung vollkommen transparent und es entsteht Ihnen im Prinzip keine Mehrarbeit.</p>
+<p>In diesem Abschnitt wollen wir Lösungen für die typischen Herausforderungen, die während der Datenaufbereitung auftreten, entwickeln. Dafür beschäftigen wir uns zunächst mit dem gewünschten Ergebnis: sogenannter <a href="#data-tidy-daty">tidy data</a>. Diese Art von Datensätzen sollte das Ergebnis jeder Datenaufbereitung sein.</p>
+<p>Auf dem Weg zu <em>tidy data</em> bedarf es häufig einer <a href="data.html#data-long-wide">Transformation von langen und breiten Datensätzen</a>. Außerdem werden Sie häufig mehrere <a href="#data-merge-data">Datensätze zusammenführen</a> und Ihre <a href="#data-select">Daten filtern und selektieren</a> aggregieren. Zudem möchten Sie manchmal Daten auch <a href="#data-sumamry">reduzieren und zusammenfassen</a>.</p>
+<blockquote>
+<p><strong>Beispiel für berühmte Menschen mit miserabler Datenaufbereitung: Der Reinhart-Rogoff Skandal</strong><br />
+Eines der dramatischsten Beispiel für Fehler in der Datenaufbereitung mit katastrophalen realweltlichen Implikationen ist der <a href="https://www.newyorker.com/news/john-cassidy/the-reinhart-and-rogoff-controversy-a-summing-up">Reinhart-Rogoff-Skandal</a> Carmen Reinhart und Kenneth Rogoff haben in ihrem einflussreichen Paper <a href="http://scholar.harvard.edu/files/rogoff/files/growth_in_time_debt_aer.pdf">Growth in a Time of Debt</a> einen negativen Effekt von übermäßiger Staatsverschuldung auf wirtschaftliches Wachstum festgestellt. Als der PhD-Student <a href="https://en.wikipedia.org/wiki/Thomas_Herndon">Thomas Herndon</a> während eines Seminars das Paper replizieren sollte bekam er Probleme. Dankenswerterweise sendete ihm Carmen Reinhard den Datensatz zu, allerdings stellte sich heraus, dass durch einen Excel-Fehler einige Länder aus der Stichprobe gefallen waren. Mit der kompletten Stichprobe löste sich der im ursprünglichen Paper identifizierte Zusammenhang auf <span class="citation">(Herndon, Ash, and Pollin <a href="#ref-Herndon">2013</a>)</span>. Das ist besonders dramatisch, da das Paper nicht nur zahlreiche Preise gewonnen hat, sondern auch als wichtige Begründung für die in Europa implementierte Austeritätspolitik fungierte. Nun kann man darüber diskutieren, wen hier die größte Schuld trifft und ob es wirklich ein Versehen war, aber klar ist: wäre der Datenaufbereitungsprozess transparent und offen durchgeführt und dokumentiert worden, wäre der Fehler wahrscheinlich deutlich einfacher und früher gefunden worden.</p>
+</blockquote>
+<div id="das-konzept-von-tidy-data" class="section level3">
+<h3><span class="header-section-number">1.4.1</span> Das Konzept von ‘tidy data’</h3>
+<p>Die Rohdatensätze, die wir erheben oder aus dem Internet herunterladen haben oft eine abenteuerliche Form und wir können in der Regel nicht direkt mit der statistischen Analyse anfangen. Die meisten Statistik-Pakete und Funktionen setzen eine bestimmte ‘aufgeräumte’ Form der Daten voraus. <span class="citation">Wickham (<a href="#ref-tidy">2014</a>)</span> beschreibt diese Form als <code>tidy data</code><a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a> und es ist unser Ziel durch die Datenaufbereitung die verschiedenen Rohdatensätze in <code>tidy data</code> zu verwandeln. Die daraus resultierenden Datensätze können dann separat gespeichert werden, damit wir die Datenaufbereitung nicht jedes Mal erneut durchführen müssen (im Abschnitt <a href="#data-final-thoughts">Abschließende Bemerkungen</a> wird ein entsprechender Vorschlag für eine hilfreiche Ordnerstruktur beschrieben).</p>
+<p>Aber was zeichnet <code>tidy data</code> aus? Wie von <span class="citation">Wickham (<a href="#ref-tidy">2014</a>)</span> beschrieben kann ein Datensatz auf vielerlei Art und Weise ‘unordentlich’ sein, aber nur auf eine Art und Weise ‘tidy’. Eine ‘tidy’ Datensatz ist durch folgende drei Eigenschaften gekennzeichnet:</p>
+<ol style="list-style-type: decimal">
+<li>Jede <strong>Spalte</strong> korrespondiert zu genau einer <strong>Variable</strong></li>
+<li>Jede <strong>Zeile</strong> korrespondiert zu genau einer <strong>Beobachtung</strong></li>
+<li>Jede <strong>Zelle</strong> korrespondiert zu einem einzelnen <strong>Wert</strong></li>
+</ol>
+<p>Punkt (1) verlangt, dass jede Spalte zu einer Variable korrespondiert und es keine Spalten gibt, die zu keiner Variable korrespondieren. Wenn wir also Daten zum BIP in verschiedenen Ländern über die Zeit erheben impliziert das, dass wir es mit drei Variablen zu tun haben: dem <code>Land</code>, dem <code>Jahr</code> und dem <code>BIP</code>. Entsprechend sollte unser Datensatze genau drei Spalten haben, die jeweils zu diesen Variablen korrespondieren.</p>
+<p>Punkt (2) verlangt, dass jede Zeile zu genau einer Beobachtung korrespondiert. In unserem Beispiel sollte also jede Zeile zu der Beobachtung des BIP in genau einem Land zu genau einem Zeitraum korrespondieren - und z.B. nicht die Beobachtungen für ein einziges Land zu allen möglichen Zeiträumen sammenln.</p>
+<p>Punkt (3) ist meistens in unseren Anwendungsfällen ohnehin erfüllt. Er verlangt, dass jede Zelle in unserem Datensatz genau einen Wert enthält, und z.B. nicht nochmal eine Liste mit mehreren Werten, wie es ja bei einem <code>data.frame</code> auch <a href="https://ryouready.wordpress.com/2016/07/18/populating-data-frame-cells-with-more-than-one-value/">möglich wäre</a>.</p>
+<blockquote>
+<p><strong>Beispiel ‘tidy data’</strong>: Der folgende Datensatz ist ‘tidy’ im gerade beschriebenen Sinn:</p>
+</blockquote>
+<pre><code>#&gt;   Land Jahr  Exporte Arbeitslosigkeit
+#&gt; 1   AT 2013 53.44129            5.335
+#&gt; 2   AT 2014 53.38658            5.620
+#&gt; 3   DE 2013 45.39788            5.231
+#&gt; 4   DE 2014 45.64482            4.981</code></pre>
+<blockquote>
+<p>Wir haben vier Spalten, die jeweils zu einer der drei Variablen <code>Land</code>, <code>Jahr</code>, <code>Exporte</code> und <code>Arbeitslosigkeit</code> korrespondieren. Jede Zeile korrespondiert zur Beobachtung von <code>BIP</code> und <code>Exporte</code> in genau einem Jahr in genau einem Land. Und die einzelnen Zellen enthalten genau einen Wert, jeweils für das Land, das Jahr, die Exporte und die Arbeitslosigkeit.</p>
+</blockquote>
+<blockquote>
+<p><strong>Beispiel: Verstoß gegen (1) </strong>: Der folgende Datensatz, welcher nur Informationen zu den Exporten und für das Jahr 2013 enthält, ist nicht ‘tidy’, da er gegen Anforderung (1) verstößt:</p>
+</blockquote>
+<pre><code>#&gt;   Land Variable     2014
+#&gt; 1   AT  Exporte 53.38658
+#&gt; 2   DE  Exporte 45.64482</code></pre>
+<blockquote>
+<p>Hier haben wir drei Variablen, <code>Land</code>, <code>Jahr</code> und <code>Exporte</code>, aber die Spalte <code>2013</code> korrespondiert zu einer Ausprägung der Variable <code>Jahr</code>, aber nicht zur Variablen als solchen. Die Bedeutung dieser Unterscheidung wird im nächsten Beispiel deutlich.</p>
+</blockquote>
+<blockquote>
+<p><strong>Beispiel: Verstoß gegen (1) und (2):</strong> Wenn wir in dem Datensatz aus dem ersten Datensatz alle Informationen belassen würde er in der gerade dargestellten Form sowohl gegen (1) als auch (2) verstoßen:</p>
+</blockquote>
+<pre><code>#&gt;   Land         Variable     2013     2014
+#&gt; 1   AT Arbeitslosigkeit  5.33500  5.62000
+#&gt; 2   AT          Exporte 53.44129 53.38658
+#&gt; 3   DE Arbeitslosigkeit  5.23100  4.98100
+#&gt; 4   DE          Exporte 45.39788 45.64482</code></pre>
+<blockquote>
+<p>Jetzt ist nicht nur die Anforderung, dass jede Spalte zu einer Variable korrespondiert, verletzt, sondern auch die Anforderung, dass jede Zeile zu genau einer Beobachtung korrespondiert, da wir wegen der zwei Jahre in jeder Zeile zwei Beobachtungen haben. Ebenfalls sehr häufig kommt folgendes Format vor, das ebenfalls (1) und (2) widerspricht:</p>
+</blockquote>
+<pre><code>#&gt;   Land Jahr         Variable     Wert
+#&gt; 1   AT 2013          Exporte 53.44129
+#&gt; 2   AT 2014          Exporte 53.38658
+#&gt; 3   DE 2013          Exporte 45.39788
+#&gt; 4   DE 2014          Exporte 45.64482
+#&gt; 5   AT 2013 Arbeitslosigkeit  5.33500
+#&gt; 6   AT 2014 Arbeitslosigkeit  5.62000
+#&gt; 7   DE 2013 Arbeitslosigkeit  5.23100
+#&gt; 8   DE 2014 Arbeitslosigkeit  4.98100</code></pre>
+<blockquote>
+<p><strong>Beispiel: Verstoß gegen (3)</strong> Verstöße gegen die dritte Anforderung kommen in der Praxis in der Regel seltener vor, sind aber auch unschön:</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Land=</span><span class="kw">c</span>(<span class="st">&quot;DE&quot;</span>, <span class="st">&quot;AT&quot;</span>))
+d<span class="op">$</span><span class="st">`</span><span class="dt">Wichtige Industrien</span><span class="st">`</span> &lt;-<span class="st">  </span><span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;Autos&quot;</span>, <span class="st">&quot;Medikamente&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;Stahlproduktion&quot;</span>, <span class="st">&quot;Holz&quot;</span>))
+d</code></pre></div>
+<pre><code>#&gt;   Land   Wichtige Industrien
+#&gt; 1   DE    Autos, Medikamente
+#&gt; 2   AT Stahlproduktion, Holz</code></pre>
+</div>
+<div id="data-long-wide" class="section level3">
+<h3><span class="header-section-number">1.4.2</span> Von langen und breiten Datensätzen</h3>
+<p>Die Datenaufbereitung umfasst häufig das Wechseln zwischen der so genannten ‘langen’ (oder’gestapelten’) und ‘breiten’ (‘ungestapelten’) Datenform. Die erste ist für die statistische Verarbeitung, die zweite für das menschliche Auge besser geeignet.</p>
+<p>‘Lange’ Daten haben in der Regel viele Zeilen und wenige Spalten. Alle <code>tidy</code> Datensätze sind im langen Datenformat. ‘Breite’ Daten haben mehr Spalten und weniger Zeilen und sind häufig das, was wir aus dem Internet herunterladen. Im folgenden ist der gleiche Datensatz einmal im langen und einmal im breiten Format dargestellt.</p>
+<p>Zuerst das ‘lange’ Format, in dem wir verhältnismäßig viele Zeilen haben:</p>
+<pre><code>#&gt;   Land Jahr  Exporte
+#&gt; 1   AT 2013 53.44129
+#&gt; 2   AT 2014 53.38658
+#&gt; 3   DE 2013 45.39788
+#&gt; 4   DE 2014 45.64482</code></pre>
+<p>Und hier das ‘breite’ Format mit verhältnismäßig mehr Spalten:</p>
+<pre><code>#&gt;   Land Variable     2013     2014
+#&gt; 1   AT  Exporte 53.44129 53.38658
+#&gt; 2   DE  Exporte 45.39788 45.64482</code></pre>
+<p>Häufig werden Sie während Ihrer Datenaufbereitung mehrmals zwischen den beiden Formaten hin und her wechseln, da für manche Aufgaben das eine, für andere das andere Format besser ist (siehe <a href="data.html#data-summary">unten</a>). Um zwischen den Formaten hin und herzuwechseln verwenden wir vor allem die Funktionen <code>pivot_longer()</code> und <code>pivot_wider()</code> aus dem Paket <a href="https://github.com/tidyverse/tidyr">tidyr</a> <span class="citation">(Wickham and Henry <a href="#ref-R-tidyr">2019</a>)</span>, welches auch Teil des <code>tidyverse</code> ist.<a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a></p>
+<p>Wir verwenden <code>pivot_longer()</code> um einen Datensätz ‘länger’ zu machen. Wir verwenden dazu folgenden Datensatz als Ausgangsbeispiel, der Werte für die Arbeitslosigkeit in Deutschland und Österreich in zwei Jahren enthält:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_wide</code></pre></div>
+<pre><code>#&gt;   Land  2013  2014
+#&gt; 1   AT 5.335 5.620
+#&gt; 2   DE 5.231 4.981</code></pre>
+<p>Das erste Argument für <code>pivot_longer()</code> heißt <code>data</code> und nimmt den Datensatz, den wir länger machen wollen. In unserem Beispiel also <code>data_wide</code>.</p>
+<p>Das zweite Argument heißt <code>cols</code> und beschreibt die Spalten an denen Änderungen vorgenommen werden sollen. In unserem Falle sind das die Spalten <code>2013</code> und <code>2014</code>. Um hier eine Liste von Spaltennamen zu übergeben verwenden wir die Hilfsfuntion <code>one_of()</code>, die es uns erlaubt die Spaltennamen als <code>character</code> zu schreiben. Das Argumtent wird also als <code>cols=one_of(&quot;2013&quot;, &quot;2014&quot;)</code> spezifiziert.</p>
+<p>Das dritte Argument, <code>names_to</code> akzeptiert einen <code>character</code>, der den Namen der neu zu schaffenden Spalte beschreibt. In unserem Fall macht es Sinn, diese Spalte <code>Jahr</code> zu nennen.</p>
+<p>Das vierte Argument, <code>values_to</code> spezifiziert den Namen der Spalte, welche die Werte des verlängerten Datensatzes beschreibt. In unserem Falle bietet sich der Name <code>Arbeitslosenquote</code>, da es bei dem Datensat um Arbeitslosenquotenstatistiken handelt.</p>
+<p>Insgesamt erhalten wir damit den folgenden Funktionsaufruf:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_long &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> data_wide,
+                          <span class="dt">cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;2013&quot;</span>, <span class="st">&quot;2014&quot;</span>), 
+                          <span class="dt">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, 
+                          <span class="dt">values_to =</span> <span class="st">&quot;Arbeitslosenquote&quot;</span>)
+data_long</code></pre></div>
+<pre><code>#&gt; # A tibble: 4 x 3
+#&gt;   Land  Jahr  Arbeitslosenquote
+#&gt;   &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;
+#&gt; 1 AT    2013               5.34
+#&gt; 2 AT    2014               5.62
+#&gt; 3 DE    2013               5.23
+#&gt; 4 DE    2014               4.98</code></pre>
+<p>Wenn wir den umgekehrten Weg gehen wollen, also einen langen Datensatz ‘breiter’ machen wollen, verwenden wir die Funktion <code>pivot_wider()</code>. Hier wird die Anzahl der Zeilen reduziert und die Anzahl der Spalten erhäht. Gehen wir einmal vom gerade produzierten Datensatz aus:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_long</code></pre></div>
+<pre><code>#&gt; # A tibble: 4 x 3
+#&gt;   Land  Jahr  Arbeitslosenquote
+#&gt;   &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;
+#&gt; 1 AT    2013               5.34
+#&gt; 2 AT    2014               5.62
+#&gt; 3 DE    2013               5.23
+#&gt; 4 DE    2014               4.98</code></pre>
+<p>Die Funktion <code>pivot_wider()</code> verlangt als ersten Argumten wieder <code>data</code>, also den zu manipulierenden Datensatz. Hier ist das <code>data_long</code>.</p>
+<p>Das zweite Argument, <code>id_cols</code>, legt die Spalten fest, die nicht verändert werden sollen, weil sie die Beobachtung als solche spezifizieren. In unserem Fall ist das die Spalte <code>Land</code>, aber manchmal ist das auch mehr als eine Spalte. In dem Fall ist die Verwendung der Funktion <code>one_of()</code> wie im Beispiel oben notwendig, im Falle von einer Spalte wie hier ist das optional.</p>
+<p>Das dritte Argument, <code>names_from</code> verlangt nach den Spalten, deren Inhalte im breiten Datensatz als einzelne Spalten aufgeteilt werden sollen. In unserem Falle wäre das die Spalte <code>Jahr</code>, weil wir in unserem breiten Datensatz ja separate Spalten für die einzelnen Jahre haben wollen.</p>
+<p>Das vierte Argumten ist <code>values_from</code> spezifiziert die Spalte aus der die Werte für die neuen Spalten genommen werden sollen. In unserem Falle wäre das die Spalte <code>Arbeitslosenquote</code>, da wir ja in die Spalten für die einzelnen Jahre die Arbeitslosenquoten schreiben wollen.</p>
+<p>Insgesamt sieht der Funktionsaufruf also so aus:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_wide_neu &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">data =</span> data_long,
+                             <span class="dt">id_cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>), 
+                             <span class="dt">names_from =</span> <span class="st">&quot;Jahr&quot;</span>, 
+                             <span class="dt">values_from =</span> <span class="st">&quot;Arbeitslosenquote&quot;</span>)
+data_wide_neu</code></pre></div>
+<pre><code>#&gt; # A tibble: 2 x 3
+#&gt;   Land  `2013` `2014`
+#&gt;   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+#&gt; 1 AT      5.34   5.62
+#&gt; 2 DE      5.23   4.98</code></pre>
+<p>Zum Schluss möchten wir uns noch ein Beispiel ansehen indem wir beide Befehle nacheinander verwenden. Betrachten wir folgenden Datensatz, der Beobachtungen sowohl zur Arbeitslosenquote also auch zu den Exporten enthält:</p>
+<pre><code>#&gt; # A tibble: 4 x 5
+#&gt;   Land  Variable         `2012` `2013` `2014`
+#&gt;   &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+#&gt; 1 AT    Exporte           54.0   53.4   53.4 
+#&gt; 2 AT    Arbeitslosigkeit   4.86   5.34   5.62
+#&gt; 3 DE    Exporte           46.0   45.4   45.6 
+#&gt; 4 DE    Arbeitslosigkeit   5.38   5.23   4.98</code></pre>
+<p>Eine <code>tidy</code> Version dieses Datensatzes sähe so aus:</p>
+<pre><code>#&gt; # A tibble: 6 x 4
+#&gt;   Land  Jahr  Exporte Arbeitslosigkeit
+#&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;            &lt;dbl&gt;
+#&gt; 1 AT    2012     54.0             4.86
+#&gt; 2 AT    2013     53.4             5.34
+#&gt; 3 AT    2014     53.4             5.62
+#&gt; 4 DE    2012     46.0             5.38
+#&gt; 5 DE    2013     45.4             5.23
+#&gt; 6 DE    2014     45.6             4.98</code></pre>
+<p>Leider ist diese Transformation nicht in einem Schritt zu machen. Als erstes müssen wir nämlich den Datensatz länger machen, indem die Jahre in ihre eigene Spalte gepackt werden, und dann muss der Datensatz breiter gemacht werden indem die Variablen <code>Exporte</code> und <code>Arbeitslosigkeit</code> ihre eigene Spalte bekommen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_al_exp_longer &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> data_al_exp, 
+                                   <span class="dt">cols =</span> <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>), 
+                                   <span class="dt">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, 
+                                   <span class="dt">values_to =</span> <span class="st">&quot;Wert&quot;</span>)
+<span class="kw">head</span>(data_al_exp_longer, <span class="dv">2</span>)</code></pre></div>
+<pre><code>#&gt; # A tibble: 2 x 4
+#&gt;   Land  Variable Jahr   Wert
+#&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;
+#&gt; 1 AT    Exporte  2012   54.0
+#&gt; 2 AT    Exporte  2013   53.4</code></pre>
+<p>Beachten Sie wie wir diesmal das Argument <code>cols</code> spezifiziert haben: anstatt alle Jahre in die Funktion <code>one_of()</code> zu schreiben, haben wir stattdessen die Spalten spezifiziert, die <em>nicht</em> bearbeitet werden sollen und das mit einem <code>-</code> vor <code>one_of()</code> gekennzeichnet. Das ist vor allem dann hilfreich wenn wir sehr viele Spalten zusammenfassen wollen, was häufig vorkommt, wenn es sich bei den Spalten um Jahre handelt.</p>
+<p>Als nächstes wollen die diesen Datensatz nun breiter machen, um schließlich unser gewünschtes Endergebnis zu erhalten:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_al_exp_tidy &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">data =</span> data_al_exp_longer, 
+                                <span class="dt">id_cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>), 
+                                <span class="dt">values_from =</span> <span class="st">&quot;Wert&quot;</span>, 
+                                <span class="dt">names_from =</span> <span class="st">&quot;Variable&quot;</span>)
+data_al_exp_tidy</code></pre></div>
+<pre><code>#&gt; # A tibble: 6 x 4
+#&gt;   Land  Jahr  Exporte Arbeitslosigkeit
+#&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;            &lt;dbl&gt;
+#&gt; 1 AT    2012     54.0             4.86
+#&gt; 2 AT    2013     53.4             5.34
+#&gt; 3 AT    2014     53.4             5.62
+#&gt; 4 DE    2012     46.0             5.38
+#&gt; 5 DE    2013     45.4             5.23
+#&gt; 6 DE    2014     45.6             4.98</code></pre>
+<p>Insgesamt sähe der Code damit folgendermaßen aus:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_al_exp_longer &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> data_al_exp, 
+                                   <span class="dt">cols =</span> <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>), 
+                                   <span class="dt">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, 
+                                   <span class="dt">values_to =</span> <span class="st">&quot;Wert&quot;</span>)
+
+data_al_exp_tidy &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">data =</span> data_al_exp_longer, 
+                                <span class="dt">id_cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>), 
+                                <span class="dt">values_from =</span> <span class="st">&quot;Wert&quot;</span>, 
+                                <span class="dt">names_from =</span> <span class="st">&quot;Variable&quot;</span>)</code></pre></div>
+<p>Da die Kombination solcher Schritte in der Praxis sehr häufig vorkommt und man die vielen Zuweisungen der Übersicht halber vermeiden möchte, bieten die Pakete des <code>tidyverse</code> eine schöne Möglichkeit, den Code zu verkürzen: die so genannte <strong>Pipe</strong> <code>%&gt;%</code>.</p>
+<p>Mit <code>%&gt;%</code> geben Sie ein Objekt direkt an die nächste Funktion weiter. Dort wird das Ergebnis des vorherigen Aufrufs automatisch als erstes Argument verwendet. Wir könnten also auch schreiben:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_al_exp_tidy &lt;-<span class="st"> </span>data_al_exp <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">pivot_longer</span>(
+    <span class="dt">cols =</span> <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>), 
+    <span class="dt">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, 
+    <span class="dt">values_to =</span> <span class="st">&quot;Wert&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">pivot_wider</span>(
+    <span class="dt">id_cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>), 
+    <span class="dt">values_from =</span> <span class="st">&quot;Wert&quot;</span>, 
+    <span class="dt">names_from =</span> <span class="st">&quot;Variable&quot;</span>)</code></pre></div>
+<p>Das ist gleich viel besser lesbar! In der ersten Zeile schreiben wir nur das Ausgangsobjekt <code>data_al_exp</code> hin, das über <code>%&gt;%</code> dann unmittelbar als erstes Argument an <code>pivot_longer()</code> übergeben wird. Da es sich beim ersten Argumetn um <code>data</code> handelt ist das genau das was wir wollen.</p>
+<p>Das Schreiben mit <code>%&gt;%</code> führt in der Regel zu sehr transparentem und nochvollziehbarem Code, da Sie die einzelnen Manipulationsschritte schön von oben nach unten nachlesen können.</p>
+<blockquote>
+<p><strong>Tipp:</strong> Streng genommen gibt <code>%&gt;%</code> den Output der aktuellen Zeile nicht automatisch als erstes Argument für den Funktionsaufruf der nächsten Zeile weiter. Das ist nur das Standardverfahren. Eigentlich gibt es den Output als <code>.</code> weiter. Wir könnten also auch expliziter schreiben:</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_al_exp_tidy &lt;-<span class="st"> </span>data_al_exp <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">pivot_longer</span>(
+    <span class="dt">data =</span> .,
+    <span class="dt">cols =</span> <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>), 
+    <span class="dt">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, 
+    <span class="dt">values_to =</span> <span class="st">&quot;Wert&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">pivot_wider</span>(
+    <span class="dt">data =</span> .,
+    <span class="dt">id_cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>), 
+    <span class="dt">values_from =</span> <span class="st">&quot;Wert&quot;</span>, 
+    <span class="dt">names_from =</span> <span class="st">&quot;Variable&quot;</span>)</code></pre></div>
+<blockquote>
+<p>Das ist hilfreich, wenn Sie den Output einer Zeile nicht als erstes, sondern z.B. als zweites Argument in der nächsen Funktion verwenden wollen. Dann verwenden Sie den <code>.</code> einfach explizit da wo Sie ihn brauchen. Da Sie die Argumente ja nicht in der richtigen Reihenfolge angeben müssen solange die Namen stimmen funktioniert also auch folgender Code:</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_al_exp_tidy &lt;-<span class="st"> </span>data_al_exp <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">pivot_longer</span>(
+    <span class="dt">cols =</span> <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>), 
+    <span class="dt">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, 
+    <span class="dt">values_to =</span> <span class="st">&quot;Wert&quot;</span>,
+    <span class="dt">data =</span> .) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">pivot_wider</span>(
+    <span class="dt">id_cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>), 
+    <span class="dt">values_from =</span> <span class="st">&quot;Wert&quot;</span>, 
+    <span class="dt">names_from =</span> <span class="st">&quot;Variable&quot;</span>,
+    <span class="dt">data =</span> .)</code></pre></div>
+<p>Beide Funktionen, <code>pivot_wider()</code> and <code>pivot_longer()</code> können noch viel komplexere Probleme lösen. Für derlei Anwendungen verweisen wir aktuell noch auf die offizielle <a href="https://tidyr.tidyverse.org/articles/pivot.html">Dokumentation</a>.</p>
+</div>
+<div id="data-merge" class="section level3">
+<h3><span class="header-section-number">1.4.3</span> Zusammenführen von Daten</h3>
+<p>Häufig möchten Sie mehrere Datensätze zusammenführen. Nehmen wir an, Sie hätten einen Datensatz, der Informationen über das BIP in verschiedenen Ländern über die Zeit enthält, und einen zweiten Datensatz, der Informationen über die Einkommensungleichheit in ähnlichen Ländern enthält.</p>
+<pre><code>#&gt;   Jahr Land BIP
+#&gt; 1 2010  DEU   1
+#&gt; 2 2011  DEU   2
+#&gt; 3 2012  DEU   3
+#&gt; 4 2010  AUT   4
+#&gt; 5 2011  AUT   5
+#&gt; 6 2012  AUT   6</code></pre>
+<pre><code>#&gt;   year country Gini
+#&gt; 1 2010     DEU    1
+#&gt; 2 2011     DEU    2
+#&gt; 3 2012     AUT    3
+#&gt; 4 2013     AUT    4</code></pre>
+<p>Um den Zusammenhang zwischen Einkommensungleichheit und BIP zu untersuchen, möchten Sie die Datensätze zusammenführen, und dabei die Länder und Jahre richtig kombinieren.</p>
+<p>Eine solche Situation tritt häufig auf. Zum Glück hat das Paket <code>dplyr</code>, das ein Teil des <code>tidyverse</code> darstellt, für jede Situation die passende Funktion parat. Insgesamt gibt es im Paket die folgenden Funktionen, die alle dafür verwendet werden können, zwei Datensätze zusammenzuführen: <code>inner_join()</code>, <code>left_join()</code>, <code>right_join()</code>, <code>full_join()</code>, <code>semi_join()</code>, <code>nest_join()</code> und <code>anti_join()</code>.</p>
+<p>Wir vergleichen nun das Verhalten der verschiedenen Funktionen mit Hilfe der beiden Beispiel-Datensätze zum BIP und zur Ungleichheit und fassen sie am Ende des Abschnitts nochmals in einer Tabelle zusammen.</p>
+<p>Wie alle Funktionen der <code>*_join()</code>-Familie verlangt <code>left_join()</code> zwei notwendige Argumente, <code>x</code> und <code>y</code>, welche die beiden zu verbindenden Datensätze spezifizieren. Wir nennen dabei <code>x</code> den ‘linken’ und <code>y</code> den ‘rechten’ Datensatz.</p>
+<p>Die Funktion <code>left_join()</code> sollten Sie verewnden, wenn Sie zu allen Zeilen in <code>x</code> (dem ‘linken’ Datensatz) die passenden Werte aus <code>y</code> hinzufügen wollen. Wenn eine Beobachtung nur in <code>y</code> vorkommt, wird diese im finalen Datensatz nicht berücksichtigt. Wenn eine Beobachtung nur in <code>x</code> vorkommt, wird in den Spalten aus <code>y</code> der Wert <code>NA</code> eingefügt. Man könnte sagen, der ‘linke’ Datensatz hat in <code>left_join()</code> ‘Priorität’.</p>
+<p>Um zu spezifizieren gemäß welcher Spalten die Datensätze verbunden werden sollen können wir über das optionale Argument <code>id</code> die ‘ID-Spalten’ definieren. Diese Spalten identifizieren eine gemeinsame Beobachtung in <code>x</code> und <code>y</code>. In unserem Beispiel von oben wären das die Spalten <code>Jahr</code> (in <code>data_bip</code>) und <code>year</code> (in <code>data_gini</code>) sowie <code>Land</code> (in <code>data_bip</code>) und <code>country</code> (in <code>data_gini</code>). Um die Datensätze so zu kombinieren, dass wir die Daten den Ländern und Jahren entsprechend zusammenführen schreiben wir: <code>by=c(&quot;Jahr&quot;=&quot;year&quot;, &quot;Land&quot;=&quot;country&quot;)</code>, also den Spaltennamen in <code>x</code> auf die linke Seite von <code>=</code> und das Pendant in <code>y</code> auf der rechten Seite vom <code>=</code>.</p>
+<p>Im Falle von <code>left_join()</code> ergibt sich also:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_bip_gini_left_join &lt;-<span class="st"> </span><span class="kw">left_join</span>(data_BIP, data_gini, 
+                                     <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))
+data_bip_gini_left_join</code></pre></div>
+<pre><code>#&gt;   Jahr Land BIP Gini
+#&gt; 1 2010  DEU   1    1
+#&gt; 2 2011  DEU   2    2
+#&gt; 3 2012  DEU   3   NA
+#&gt; 4 2010  AUT   4   NA
+#&gt; 5 2011  AUT   5   NA
+#&gt; 6 2012  AUT   6    3</code></pre>
+<p>Wie Sie gesehen haben enthält <code>data_BIP</code> mehr Beobachtungen als <code>data_gini</code>. Wenn <code>data_BIP</code> als ‘linker’ Datensatz verwendet wird, werden alle Beobachtungen von <code>data_gini</code> ‘angefügt’, und die Beobachtungen, für die es keine Ginis gibt, erhalten ein <code>NA</code>.</p>
+<p>Verwenden wir dagegen <code>data_gini</code>als linken und <code>data_BIP</code> als ‘rechten’ Datensatz gibt <code>left_join()</code> einen kürzeren gemeinsamen Datensatz aus, da es nur die Beobachtungen aus dem rechten Datensatz übernimmt, für die es ein Pendant im linken Datensatz gibt.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_gini_bip_left_join &lt;-<span class="st"> </span><span class="kw">left_join</span>(data_gini, data_BIP, 
+                                     <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;year&quot;</span>=<span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;country&quot;</span>=<span class="st">&quot;Land&quot;</span>))
+data_gini_bip_left_join</code></pre></div>
+<pre><code>#&gt;   year country Gini BIP
+#&gt; 1 2010     DEU    1   1
+#&gt; 2 2011     DEU    2   2
+#&gt; 3 2012     AUT    3   6
+#&gt; 4 2013     AUT    4  NA</code></pre>
+<p>Die Funktion <code>inner_join()</code> unterscheidet sich von <code>left_join()</code> darin, dass nur die Zeilen in den gemeinsamen Datensatz übernimmt, die sowohl in <code>x</code> als auch <code>y</code> enthalten sind:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_bip_gini_left_join &lt;-<span class="st"> </span><span class="kw">inner_join</span>(data_BIP, data_gini, 
+                                      <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))
+data_bip_gini_left_join</code></pre></div>
+<pre><code>#&gt;   Jahr Land BIP Gini
+#&gt; 1 2010  DEU   1    1
+#&gt; 2 2011  DEU   2    2
+#&gt; 3 2012  AUT   6    3</code></pre>
+<p>Das Verhalten von <code>right_join()</code> ist analog zu <code>left_join()</code>, nur hat hier der ‘rechte’ Datensatz, also der dem Argument <code>y</code> übergebene Datensatz Priorität:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_gini_bip_right_join &lt;-<span class="st"> </span><span class="kw">right_join</span>(data_gini, data_BIP, 
+                                       <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;year&quot;</span>=<span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;country&quot;</span>=<span class="st">&quot;Land&quot;</span>))
+data_gini_bip_right_join</code></pre></div>
+<pre><code>#&gt;   year country Gini BIP
+#&gt; 1 2010     DEU    1   1
+#&gt; 2 2011     DEU    2   2
+#&gt; 3 2012     DEU   NA   3
+#&gt; 4 2010     AUT   NA   4
+#&gt; 5 2011     AUT   NA   5
+#&gt; 6 2012     AUT    3   6</code></pre>
+<p>Wenn Sie keinem der beiden Datensätze eine Priorität einräumen möchten und alle Zeilen in jedem Fall behalten wollen, dann wählen Sie am besten die Funktion <code>full_join()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_bip_gini_full_join &lt;-<span class="st"> </span><span class="kw">full_join</span>(data_BIP, data_gini, 
+                                      <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))
+data_bip_gini_full_join</code></pre></div>
+<pre><code>#&gt;   Jahr Land BIP Gini
+#&gt; 1 2010  DEU   1    1
+#&gt; 2 2011  DEU   2    2
+#&gt; 3 2012  DEU   3   NA
+#&gt; 4 2010  AUT   4   NA
+#&gt; 5 2011  AUT   5   NA
+#&gt; 6 2012  AUT   6    3
+#&gt; 7 2013  AUT  NA    4</code></pre>
+<p><code>semi_join()</code> und <code>anti_join()</code> funktionieren ein wenig anders als die bisher vorgestellten Funktionen, da sie Datensätze strikt genommen nicht zusammenführen. Vielmehr filtern Sie die Zeilen von <code>x</code> gemäß der in <code>y</code> vorkommenden Werte.</p>
+<p><code>semi_join()</code> produziert einen Datensatz, der alle Spalten und Zeilen von <code>x</code> enthält, für die es auch in <code>y</code> einen entsprechenden Wert gibt. Der resultierende Datensatz enthält aber <em>nur die Spalten vom linken Datensatz</em> (<code>x</code>):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_bip_gini_semi_join &lt;-<span class="st"> </span><span class="kw">semi_join</span>(data_BIP, data_gini, 
+                                     <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))
+data_bip_gini_semi_join</code></pre></div>
+<pre><code>#&gt;   Jahr Land BIP
+#&gt; 1 2010  DEU   1
+#&gt; 2 2011  DEU   2
+#&gt; 3 2012  AUT   6</code></pre>
+<p><code>anti_join()</code> ist quasi das ‘Spiegelbild’ zu <code>semi_join()</code>: genau wie <code>semi_join()</code> produziert es einen Datensatz, der nur die Spalten von <code>x</code> enthält, und zwar diese, für die es in <code>y</code> <strong>keinen</strong> entsprechenden Wert gibt:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_bip_gini_anti_join &lt;-<span class="st"> </span><span class="kw">anti_join</span>(data_BIP, data_gini, 
+                                     <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))
+data_bip_gini_anti_join</code></pre></div>
+<pre><code>#&gt;   Jahr Land BIP
+#&gt; 1 2012  DEU   3
+#&gt; 2 2010  AUT   4
+#&gt; 3 2011  AUT   5</code></pre>
+<p>Zum Schluss kommen wir mit <code>nest_join()</code> zu der komplexesten Funktion in der <code>*_join()</code>-Familie. Hier wird für jede Zeile im linken Datensatz in einer neuen Spalte ein ganzer <code>data.frame</code><a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a> hinzugefügt, der alle Zeilen vom rechten Datensatz enthält, die zu der entsprechenden Zeile passen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_bip_gini_nest_join &lt;-<span class="st"> </span><span class="kw">nest_join</span>(data_BIP, data_gini, 
+                                     <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))
+data_bip_gini_nest_join</code></pre></div>
+<pre><code>#&gt;   Jahr Land BIP y
+#&gt; 1 2010  DEU   1 1
+#&gt; 2 2011  DEU   2 2
+#&gt; 3 2012  DEU   3  
+#&gt; 4 2010  AUT   4  
+#&gt; 5 2011  AUT   5  
+#&gt; 6 2012  AUT   6 3</code></pre>
+<p>Wenn wir die angehängten <code>data.frame</code>s inspizieren:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_bip_gini_nest_join[[<span class="st">&quot;y&quot;</span>]][[<span class="dv">1</span>]] <span class="co"># erste Zeile der neuen Spalte</span></code></pre></div>
+<pre><code>#&gt;   Gini
+#&gt; 1    1</code></pre>
+<p>In der Praxis werden Sie <code>nest_join()</code> wenig verwenden, es ist wegen seiner Flexibilität jedoch für das Programmieren extrem hilfreich.</p>
+<p>Wie Sie vielleicht bemerkt haben, haben die Funktionen der <code>*_join()</code>-Familie sehr ähnliche Argumente: so verlangen alle <code>*_join()</code>-Funktionen als die ersten beiden Argumente <code>x</code> und <code>y</code> zwei Datensätze, die als <code>data.frame</code> oder vergleichbares Objekt vorliegen sollten, so wie <code>data_BIP</code> und <code>data_Gini</code> in unserem Beispiel.</p>
+<p>Das dritte (optionale) Argument <code>by</code>, welches die ID-Spalten spezifiziert, ist ebenfalls bei allen Funktionen gleich. Achtung: wenn sie <code>by</code> nicht explizit spezifizieren verwenden die Funktionen alle Spalten mit gleichen Namen als ID-Spalten. Zwar geben Sie zu Ihrer Info eine Warnung aus, aber Sie sollten das trotzdem immer vermeiden und möglichst explizit sein. Daher sollte <code>by</code> immer explizit gesetzt werden!</p>
+<p>Darüber hinaus findet sich das optionale Argument <code>suffix</code> sowohl bei <code>inner_join()</code>, <code>left_join()</code>, <code>right_join()</code> als auch <code>full_join()</code>. Hier spezifizieren Sie eine Zeichenkette, die verwendet wird um Spalten, die in beiden Datensätzen vorkommen, aber keine ID-Spalten sind, im gemeinsamen Datensatz voneinander abzugrenzen. Standardmäßig ist dieses Argument auf <code>.x, .y</code> eingestellt. Das bedeutet, dass wenn beide Datensätze eine Spalte <code>Schulden</code> haben, diese aber nicht als ID-Spalte verwendet wird, beide Spalten als <code>Schulden.x</code> und <code>Schulden.y</code> in den gemeinsamen Datensatz aufgenommen werden:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">debt_data_IWF &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Land=</span><span class="kw">c</span>(<span class="st">&quot;DEU&quot;</span>, <span class="st">&quot;GRC&quot;</span>), <span class="dt">Schulden=</span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">50</span>))
+debt_data_WELTBANK &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Land=</span><span class="kw">c</span>(<span class="st">&quot;GRC&quot;</span>, <span class="st">&quot;DEU&quot;</span>), <span class="dt">Schulden=</span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">25</span>))
+debt_data &lt;-<span class="st"> </span><span class="kw">full_join</span>(debt_data_IWF, debt_data_WELTBANK, 
+                       <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Land&quot;</span>))
+debt_data</code></pre></div>
+<pre><code>#&gt;   Land Schulden.x Schulden.y
+#&gt; 1  DEU         10         25
+#&gt; 2  GRC         50        100</code></pre>
+<p>Oder mit explizitem <code>suffix</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">debt_data &lt;-<span class="st"> </span><span class="kw">full_join</span>(debt_data_IWF, debt_data_WELTBANK, 
+                       <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Land&quot;</span>), 
+                       <span class="dt">suffix=</span><span class="kw">c</span>(<span class="st">&quot;.IWF&quot;</span>, <span class="st">&quot;.WELTBANK&quot;</span>))
+debt_data</code></pre></div>
+<pre><code>#&gt;   Land Schulden.IWF Schulden.WELTBANK
+#&gt; 1  DEU           10                25
+#&gt; 2  GRC           50               100</code></pre>
+<p>Abschließend fassen wir noch die Funktionen in einer Tabelle zusammen, wobei ’DS’für ’Datensatz steht, mit <code>x</code> der linke und <code>y</code> der rechte Datensatz gemeint ist, wie in den Argumennten von <code>*_join()</code>.</p>
+<table style="width:89%;">
+<colgroup>
+<col width="15%" />
+<col width="37%" />
+<col width="36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Funktion</th>
+<th>Effekt</th>
+<th>Veränderung <code>nrow(DS)</code>?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>left_join()</code></td>
+<td><code>x</code> an <code>y</code> anhängen</td>
+<td>Unmöglich</td>
+</tr>
+<tr class="even">
+<td><code>right_join()</code></td>
+<td><code>y</code> an <code>x</code> anhängen</td>
+<td>Möglich</td>
+</tr>
+<tr class="odd">
+<td><code>inner_join()</code></td>
+<td>In <code>x</code> und <code>y</code> vorhandene Beobachtungen von <code>y</code> and <code>x</code> anhängen</td>
+<td>Reduktion möglich</td>
+</tr>
+<tr class="even">
+<td><code>full_join()</code></td>
+<td><code>x</code> und <code>y</code> kombinieren</td>
+<td>Vergrößerung möglich</td>
+</tr>
+<tr class="odd">
+<td><code>semi_join()</code></td>
+<td>Reduktion von <code>x</code> auf gemeinsame Beobachtungen</td>
+<td>Reduktion möglich</td>
+</tr>
+<tr class="even">
+<td><code>anti_join()</code></td>
+<td>Reduktion von <code>x</code> auf ungeteilte Beobachtungen</td>
+<td>Reduktion möglich</td>
+</tr>
+<tr class="odd">
+<td><code>nest_join()</code></td>
+<td>Neue Spalte in <code>x</code> mit <code>data.frame</code>, der alle passenden Beobachtungen aus <code>y</code> enthält.</td>
+<td>Unmöglich</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Tipp:</strong> das Zusammenführen von Datensätzen ist extrem fehleranfällig. Häufig werden Probleme mit den Rohdaten hier offensichtlich. Daher ist es immer eine gute Idee, den zusammengeführten Datensatz genau zu inspizieren. Zumindest sollte man überprüfen ob die Anzahl an Zeilen so wie erwartet ist und ob durch das Zusammenführen Duplikate entstanden sind. Letzteres kann gerade in der Arbeit mit makroökonomischen Daten häufig vorkommen, wenn in einem Datensatz z.B. zwischen Ost-Deutschland und West-Deutschland unterschieden wird und man vorher die Namen aber in Länderkürzen überführt hat. In diesem Fall trefen um 1990 herum häufig Duplikate auf. Damit kann man umgehen, man muss es aber erst einmal merken. Ich benutze z.B. immer die folgende selbst geschriebene Funktion um zu überprüfen ob es in einem neu generierten Datensatz auch keine Duplikate gibt:</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&#39; Test uniqueness of data table</span>
+<span class="co">#&#39;</span>
+<span class="co">#&#39; Tests whether a data.table has unique rows.</span>
+<span class="co">#&#39;</span>
+<span class="co">#&#39; @param data_table A data frame of data table of which uniqueness should</span>
+<span class="co">#&#39;  be tested.</span>
+<span class="co">#&#39; @param index_vars Vector of strings, which specify the columns of</span>
+<span class="co">#&#39;  data_table according to which uniqueness should be tested</span>
+<span class="co">#&#39;  (e.g. country and year).</span>
+<span class="co">#&#39; @return TRUE if data_table is unique, FALSE and a warning if it is not.</span>
+<span class="co">#&#39; @import data.table</span>
+test_uniqueness &lt;-<span class="st"> </span><span class="cf">function</span>(data_table, index_vars, <span class="dt">print_pos=</span><span class="ot">TRUE</span>){
+  data_table &lt;-<span class="st"> </span>data.table<span class="op">::</span><span class="kw">as.data.table</span>(data_table)
+  <span class="cf">if</span> (<span class="kw">nrow</span>(data_table)<span class="op">!=</span>data.table<span class="op">::</span><span class="kw">uniqueN</span>(data_table, <span class="dt">by =</span> index_vars)){
+    <span class="kw">warning</span>(<span class="kw">paste0</span>(<span class="st">&quot;Rows in the data.table: &quot;</span>, <span class="kw">nrow</span>(data_table),
+                   <span class="st">&quot;, rows in the unique data.table:&quot;</span>,
+                   data.table<span class="op">::</span><span class="kw">uniqueN</span>(data_table, <span class="dt">by =</span> index_vars)))
+    <span class="kw">return</span>(<span class="ot">FALSE</span>)
+  } <span class="cf">else</span> {
+    <span class="cf">if</span> (print_pos){
+      <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&quot;No duplicates in &quot;</span>, <span class="kw">as.list</span>(<span class="kw">sys.call</span>()[[<span class="dv">2</span>]])))
+    }
+    <span class="kw">return</span>(<span class="ot">TRUE</span>)
+  }
+}</code></pre></div>
+<blockquote>
+<p>Hier ein kleines Anwendungsbeispiel:</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_bip_gini_full_join &lt;-<span class="st"> </span><span class="kw">full_join</span>(data_BIP, data_gini, 
+                                      <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))
+<span class="kw">test_uniqueness</span>(data_bip_gini_full_join, 
+                <span class="dt">index_vars =</span> <span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;Land&quot;</span>))</code></pre></div>
+<pre><code>#&gt; [1] &quot;No duplicates in data_bip_gini_full_join&quot;</code></pre>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<blockquote>
+<p>Die folgende Situation tritt häufiger auf: in den Daten werden für die Wendezeit getrennte Daten für West-Deutschland und das vereinigte Deutschland angegeben, aber die <code>countrycode</code> Funktion differenziert nicht zwischen den Namen wenn sie sie in Ländercodes übersetzt. In der Folge entstehen Duplikate, die beim Zusammenführen der Daten dann offensichtlich werden (können):</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bip_data</code></pre></div>
+<pre><code>#&gt;   Land Jahr BIP
+#&gt; 1  DEU 1989   1
+#&gt; 2  DEU 1990   2
+#&gt; 3  DEU 1991   3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gini_data</code></pre></div>
+<pre><code>#&gt;           Land Jahr Gini
+#&gt; 1 West Germany 1989    1
+#&gt; 2      Germany 1989    2
+#&gt; 3 West Germany 1990    3
+#&gt; 4      Germany 1990    4
+#&gt; 5      Germany 1991    5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gini_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(gini_data, <span class="dt">Land=</span><span class="kw">countrycode</span>(Land, <span class="st">&quot;country.name&quot;</span>, <span class="st">&quot;iso3c&quot;</span>))
+full_data &lt;-<span class="st"> </span><span class="kw">full_join</span>(bip_data, gini_data, 
+                       <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>))
+full_data</code></pre></div>
+<pre><code>#&gt;   Land Jahr BIP Gini
+#&gt; 1  DEU 1989   1    1
+#&gt; 2  DEU 1989   1    2
+#&gt; 3  DEU 1990   2    3
+#&gt; 4  DEU 1990   2    4
+#&gt; 5  DEU 1991   3    5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">test_uniqueness</span>(full_data, 
+                <span class="dt">index_vars =</span> <span class="kw">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>))</code></pre></div>
+<pre><code>#&gt; Warning in test_uniqueness(full_data, index_vars = c(&quot;Land&quot;, &quot;Jahr&quot;)): Rows
+#&gt; in the data.table: 5, rows in the unique data.table:3</code></pre>
+<pre><code>#&gt; [1] FALSE</code></pre>
+<blockquote>
+<p><strong>Alternative in data.table:</strong> Eine Anleitung für das Zusammenführen von Datensätzem im <code>data.table</code>-Format finde sich <a href="https://stackoverflow.com/questions/34598139/left-join-using-data-table">hier</a>.</p>
+</blockquote>
+</div>
+<div id="date-select" class="section level3">
+<h3><span class="header-section-number">1.4.4</span> Datensätze filtern und selektieren</h3>
+<p>Sehr häufig haben Sie einen Rohdatensatz erhoben und benötigen für die weitere Analyse nur einen Teil dieses Datensatzes. Zwei Szenarien sind denkbar: zum einen möchten Sie bestimmte Spalten nicht verwendent. Wie sprechen dann davon den Datensatz zu <em>selektieren</em>. Zum anderen möchten sie vielleicht nur Beobachtungen verwenden, die eine bestimmte Bedingung erfüllen, z.B. im Zeitraum 2012-2014 erhoben zu sein. In diesem Fall sprechen wir von <em>filtern</em>.</p>
+<p>Wir lernen hier wie wir diese beiden Aufgaben mit den Funktionen <code>filter()</code> und <code>select()</code> aus dem Paket <code>dplyr</code>, welches auch Teil des <code>tidyverse</code> ist, lösen können.</p>
+<p>Betrachten wir folgenden Beispieldatensatz:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_al_exp_tidy</code></pre></div>
+<pre><code>#&gt; # A tibble: 6 x 4
+#&gt;   Land  Jahr  Exporte Arbeitslosigkeit
+#&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;            &lt;dbl&gt;
+#&gt; 1 AT    2012     54.0             4.86
+#&gt; 2 AT    2013     53.4             5.34
+#&gt; 3 AT    2014     53.4             5.62
+#&gt; 4 DE    2012     46.0             5.38
+#&gt; 5 DE    2013     45.4             5.23
+#&gt; 6 DE    2014     45.6             4.98</code></pre>
+<p>Um einzelne Spalten zu selektieren verwenden wir die Funktion <code>select()</code>. Diese verlangt als erstes Argument den zu manipulierenden Datensatz und danach die Namen oder Indices der Spalten, die behalten oder eliminiert werden sollen. Spalten die behalten werden sollen werden einfach benannt, bei Spalten, die eliminiert werden sollen schreiben Sie ein <code>-</code> vor den Namen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(
+  <span class="kw">select</span>(data_al_exp_tidy, Land, Exporte), 
+  <span class="dv">2</span>)</code></pre></div>
+<pre><code>#&gt; # A tibble: 2 x 2
+#&gt;   Land  Exporte
+#&gt;   &lt;chr&gt;   &lt;dbl&gt;
+#&gt; 1 AT       54.0
+#&gt; 2 AT       53.4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(
+  <span class="kw">select</span>(data_al_exp_tidy, <span class="op">-</span>Exporte), 
+  <span class="dv">2</span>)</code></pre></div>
+<pre><code>#&gt; # A tibble: 2 x 3
+#&gt;   Land  Jahr  Arbeitslosigkeit
+#&gt;   &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+#&gt; 1 AT    2012              4.86
+#&gt; 2 AT    2013              5.34</code></pre>
+<p>Häufig ist es besser die Namen der Spalten als <code>character</code> zu übergeben. In diesem Fall können Sie wieder die Hilfsfunktion <code>one_of()</code> verwenden:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(
+  <span class="kw">select</span>(data_al_exp_tidy, <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>)), 
+  <span class="dv">2</span>)</code></pre></div>
+<pre><code>#&gt; # A tibble: 2 x 2
+#&gt;   Land  Jahr 
+#&gt;   &lt;chr&gt; &lt;chr&gt;
+#&gt; 1 AT    2012 
+#&gt; 2 AT    2013</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(
+  <span class="kw">select</span>(data_al_exp_tidy, <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>)), 
+  <span class="dv">2</span>)</code></pre></div>
+<pre><code>#&gt; # A tibble: 2 x 2
+#&gt;   Exporte Arbeitslosigkeit
+#&gt;     &lt;dbl&gt;            &lt;dbl&gt;
+#&gt; 1    54.0             4.86
+#&gt; 2    53.4             5.34</code></pre>
+<blockquote>
+<p><strong>Tipp: Spalten auswählen:</strong> Die Funktion <code>one_of()</code> erlaubt es Spalten mit sehr nützlichen Hilfsfunktionen auszuwählen. Manchmal möchten Sie z.B. alle Spalten auswählen, die mit <code>year_</code> anfangen, oder auf eine Zahl enden. Schauen Sie sich für solche Fälle einmal die <a href="https://www.rdocumentation.org/packages/dplyr/versions/0.7.2/topics/select_helpers">select_helpers</a> an.</p>
+</blockquote>
+<p>Wie im Abschnitt zu <a href="data.html#data-long-wide">langen und weiten Daten</a> bereits beschrieben bietet sich in solchen Fällen die Pipe <code>%&gt;%</code> an um Ihren Code zu vereinfachen und besser lesbar zu machen. Es hat sich eingebürgert in die erste Zeile immer den Ausgangsdatensatz zu schreiben und select dann in der nächsten Zeile mit implizitem ersten Argument zu verwenden:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_al_exp_selected &lt;-<span class="st"> </span>data_al_exp_tidy <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;Exporte&quot;</span>))
+<span class="kw">head</span>(data_al_exp_selected, <span class="dv">2</span>)</code></pre></div>
+<pre><code>#&gt; # A tibble: 2 x 3
+#&gt;   Land  Jahr  Exporte
+#&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;
+#&gt; 1 AT    2012     54.0
+#&gt; 2 AT    2013     53.4</code></pre>
+<p>Als nächstes wollen wir den Datensatz nach bestimmten Bedingungen filtern. Dabei ist es wichtig, sich an die <a href="#basics-logic">logischen Operatoren</a> zu erinnern, denn diese verwenden wir um Datensätze zu filtern.</p>
+<p>Die Funktion <code>filter()</code> akzeptiert als erstes Argument den Datensatz. Wie oben folgen wir der Konvention das in der Regel implizit über <code>%&gt;%</code> zu übergeben. Danach können wir beliebig viele logische Abfragen, jeweils durch Komma getrennt, an die Funktion übergeben. Wenn wir z.B. nur Beobachtungen für Österreich nach 2012 im Datensatz belassen wollen geht das mit:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_al_exp_filtered &lt;-<span class="st"> </span>data_al_exp_tidy <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(Land <span class="op">==</span><span class="st"> &quot;AT&quot;</span>,
+         Jahr <span class="op">&gt;</span><span class="st"> </span><span class="dv">2012</span>)
+data_al_exp_filtered</code></pre></div>
+<pre><code>#&gt; # A tibble: 2 x 4
+#&gt;   Land  Jahr  Exporte Arbeitslosigkeit
+#&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;            &lt;dbl&gt;
+#&gt; 1 AT    2013     53.4             5.34
+#&gt; 2 AT    2014     53.4             5.62</code></pre>
+<p>Anstatt dem <code>,</code>, welches implizit für <code>&amp;</code> steht, können wir auch beliebig komplizierte logische Abfragen einbauen. Wenn wir z.B. nur Beobachtungen wollen, die für Österreich im Jahr 2012 oder 2014 und für Deutschland 2013 sind oder mit einer Arbeitslosigkeit über 5.3 % einhergehen, geht das mit:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_al_exp_filtered &lt;-<span class="st"> </span>data_al_exp_tidy <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(
+    (Land <span class="op">==</span><span class="st"> &quot;AT&quot;</span> <span class="op">&amp;</span><span class="st"> </span>Jahr <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">2014</span>)) <span class="op">|</span><span class="st"> </span>(Land<span class="op">==</span><span class="st">&quot;DE&quot;</span> <span class="op">&amp;</span><span class="st"> </span>Arbeitslosigkeit<span class="op">&gt;</span><span class="fl">5.3</span>)
+    )
+data_al_exp_filtered</code></pre></div>
+<pre><code>#&gt; # A tibble: 3 x 4
+#&gt;   Land  Jahr  Exporte Arbeitslosigkeit
+#&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;            &lt;dbl&gt;
+#&gt; 1 AT    2012     54.0             4.86
+#&gt; 2 AT    2014     53.4             5.62
+#&gt; 3 DE    2012     46.0             5.38</code></pre>
+<p>Zuletzt wollen wir noch sehen wie wir einzelne <strong>Spalten umbenennen</strong> können. Das geht ganz einfach mit der Funktion <code>rename()</code>, welche als erstes Argument den Datensatz, und dann die Umbennenungsvorgänge in der Form <code>Name_neu = Name_alt</code> verlangt.</p>
+<p>Als Beispiel:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_al_exp_tidy <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">country=</span>Land, 
+         <span class="dt">year_observation=</span>Jahr, 
+         <span class="dt">exports=</span>Exporte, 
+         <span class="dt">unemployment=</span>Arbeitslosigkeit)</code></pre></div>
+<pre><code>#&gt; # A tibble: 6 x 4
+#&gt;   country year_observation exports unemployment
+#&gt;   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;        &lt;dbl&gt;
+#&gt; 1 AT      2012                54.0         4.86
+#&gt; 2 AT      2013                53.4         5.34
+#&gt; 3 AT      2014                53.4         5.62
+#&gt; 4 DE      2012                46.0         5.38
+#&gt; 5 DE      2013                45.4         5.23
+#&gt; 6 DE      2014                45.6         4.98</code></pre>
+<p>Als abschließendes Beispiel sehen wir hier noch den Code mit dem wir aus dem Beispieldatensatz die Spalte zur Arbeitslogigkeit herausselektieren und nur die Beobachtungen für Deutschland nach 2012 betrachten und die Spaltennamen dabei noch ins Englische übersetzen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_al_exp_tidy <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(
+    <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Arbeitslosigkeit&quot;</span>)
+    ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(
+    Jahr<span class="op">&gt;</span><span class="dv">2012</span>,
+    Land<span class="op">==</span><span class="st">&quot;DE&quot;</span>
+    ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">rename</span>(
+    <span class="dt">country=</span>Land, 
+    <span class="dt">year_observation=</span>Jahr, 
+    <span class="dt">exports=</span>Exporte)</code></pre></div>
+<pre><code>#&gt; # A tibble: 2 x 3
+#&gt;   country year_observation exports
+#&gt;   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;
+#&gt; 1 DE      2013                45.4
+#&gt; 2 DE      2014                45.6</code></pre>
+<blockquote>
+<p><strong>Alternative Implementierung mit</strong> <code>data.table</code>: wie diese Operationen mit dem high-performance Paket <code>data.table</code> durchgeführt werden können wird <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">hier</a> sehr gut erläutert.</p>
+</blockquote>
+</div>
+<div id="data-summary" class="section level3">
+<h3><span class="header-section-number">1.4.5</span> Datensätze zusammenfassen</h3>
+<p>In diesem letzten Abschnitt werden wir lernen wie Sie Datensätze erweitern oder zusammenfassen. So möchten Sie häufig eine neue Variable als eine Kombination bestehender Variablen berechnen oder Ihren Datensatz zusammenfassen, z.B. indem Sie über alle Beobachtungen über die Zeit für einzelne Länder den Mittelwert bilden. Zu diesem Zweck werden wir hier die Funktionern <code>mutate()</code>, <code>summarise()</code> und <code>group_by()</code> aus dem Paket <a href="https://github.com/tidyverse/dplyr">dplyr</a> <span class="citation">(Wickham et al. <a href="#ref-R-dplyr">2019</a>)</span> verwenden.</p>
+<p>Wir verwenden <code>mutate()</code> um bestehende Spalten zu verändern oder neue Spalten zu erstellen. Betrachten wir dafür folgenden Beispieldatensatz:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(unemp_data_wb)</code></pre></div>
+<pre><code>#&gt;    country year laborforce_female workforce_total population_total
+#&gt; 1:      AT 2010          46.13933         4276558          8363404
+#&gt; 2:      AT 2011          46.33455         4305310          8391643
+#&gt; 3:      AT 2012          46.50653         4352701          8429991
+#&gt; 4:      AT 2013          46.57752         4394285          8479823
+#&gt; 5:      AT 2014          46.70688         4412800          8546356
+#&gt; 6:      AT 2015          46.67447         4460833          8642699</code></pre>
+<p>Angenommen wir möchten das Land mit den <code>iso3c</code>-Codes anstatt der <code>iso2c</code>-Codes angeben, dann könnten wir mit der Funktion <code>mutate()</code> die Spalte <code>country</code> ganz einfach verändern:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unemp_data_wb &lt;-<span class="st"> </span>unemp_data_wb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">country =</span> <span class="kw">countrycode</span>(country, <span class="st">&quot;iso2c&quot;</span>, <span class="st">&quot;iso3c&quot;</span>)
+    )
+<span class="kw">head</span>(unemp_data_wb, <span class="dv">2</span>)</code></pre></div>
+<pre><code>#&gt;   country year laborforce_female workforce_total population_total
+#&gt; 1     AUT 2010          46.13933         4276558          8363404
+#&gt; 2     AUT 2011          46.33455         4305310          8391643</code></pre>
+<p>Wir schreiben also einfach den Namen der zu verändernden Spalte und den neuen Ausdruck hinter das <code>=</code>. Wir können mit <code>mutate()</code> aber auch einfach neue Spalten erstellen, wenn der Name links vom <code>=</code> noch nicht als Spalte im Datensatz existiert.</p>
+<p>Wenn wir nun z.B. wissen möchten, wie viele Frauen absolut in Deutschland und Österreich zur Erwerbsbevölkerung gehören müssen wir den prozentualen Anteil mit der Anzahl an Erwerbstätigen multiplizieren. Das bedeutet, wir müssen die Spalten <code>laborforce_female</code> und <code>workforce_total</code> multiplizieren und durch 100 Teilen, da laborforce_female in Prozent angegeben ist. Das machen wir mit der Funktion <code>mutate()</code>, wobei wir eine neue Spalte mit dem Namen <code>workers_female_total</code> erstellen wollen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unemp_data_wb &lt;-<span class="st"> </span>unemp_data_wb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">workers_female_total =</span> laborforce_female<span class="op">*</span>workforce_total<span class="op">/</span><span class="dv">100</span>
+    )
+<span class="kw">head</span>(unemp_data_wb, <span class="dv">2</span>)</code></pre></div>
+<pre><code>#&gt;   country year laborforce_female workforce_total population_total
+#&gt; 1     AUT 2010          46.13933         4276558          8363404
+#&gt; 2     AUT 2011          46.33455         4305310          8391643
+#&gt;   workers_female_total
+#&gt; 1              1973175
+#&gt; 2              1994846</code></pre>
+<p>Vielleicht sind wir für unseren Anwendungsfall gar nicht so sehr an der Veränderung über die Zeit interessiert, sondern wollen die durchschnittliche Anzahl an Frauen in der Erwerbsbevölkerung berechnen? Das würde bedeuten, dass wir die Anzahl der Spalten in unserem Datensatz reduzieren - etwas das bei der Anwendung von <code>mutate()</code> nie passieren würde. Dafür gibt es die Funktion <code>summarise()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unemp_data_wb_summarized &lt;-<span class="st"> </span>unemp_data_wb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(
+    <span class="dt">fem_workers_avg =</span> <span class="kw">mean</span>(workers_female_total)
+    )
+unemp_data_wb_summarized</code></pre></div>
+<pre><code>#&gt;   fem_workers_avg
+#&gt; 1        10761223</code></pre>
+<p>Wie Sie sehen funktioniert die Syntax quasi äquivalent zu <code>mutate()</code>, allerdings kondensiert <code>summarize()</code> den gesammten Datensatz auf die definierte Zahl.</p>
+<p>Im gerade berechneten Durchschnitt sind sowohl die Werte für Deutschland als auch Österreich eingegangen. Das erscheint erst einmal irreführend, es wäre wohl besser einen Durchschnittswert jeweils für Deutschland und Österreich getrennt zu bekommen. Das können wir erreichen, indem wir den Datensatz vor der Anwendung von <code>summarise()</code> <strong>gruppieren</strong>. Das funktioniert mit der Funktion <code>group_by()</code>, die als Argumente die Spalten, nach denen wir gruppieren wollen, akzeptiert. Sie sollten sich in jedem Fall angewöhnen, nach dem Gruppieren den Datensatz mit <code>ungroup()</code> wieder in den ursprünglichen Zustand zurückzuführen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unemp_data_wb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(
+    <span class="dt">fem_workers_avg =</span> <span class="kw">mean</span>(workers_female_total)
+    ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ungroup</span>()</code></pre></div>
+<pre><code>#&gt; # A tibble: 2 x 2
+#&gt;   country fem_workers_avg
+#&gt;   &lt;chr&gt;             &lt;dbl&gt;
+#&gt; 1 AUT            2042685.
+#&gt; 2 DEU           19479761.</code></pre>
+<p>Natürlich können Sie <code>group_by()</code> auch im Zusammenhang mit <code>mutate()</code> oder anderen Funktionen verwenden. Wie Sie sehen ist der Effekt aber durchaus unterschiedlich:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unemp_data_wb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">fem_workers_avg =</span> <span class="kw">mean</span>(workers_female_total)
+    ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ungroup</span>()</code></pre></div>
+<pre><code>#&gt; # A tibble: 14 x 7
+#&gt;    country  year laborforce_fema… workforce_total population_total
+#&gt;    &lt;chr&gt;   &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;            &lt;dbl&gt;
+#&gt;  1 AUT      2010             46.1         4276558          8363404
+#&gt;  2 AUT      2011             46.3         4305310          8391643
+#&gt;  3 AUT      2012             46.5         4352701          8429991
+#&gt;  4 AUT      2013             46.6         4394285          8479823
+#&gt;  5 AUT      2014             46.7         4412800          8546356
+#&gt;  6 AUT      2015             46.7         4460833          8642699
+#&gt;  7 AUT      2016             46.7         4531193          8736668
+#&gt;  8 DEU      2010             45.6        42014274         81776930
+#&gt;  9 DEU      2011             45.9        41674901         80274983
+#&gt; 10 DEU      2012             45.9        41767969         80425823
+#&gt; 11 DEU      2013             46.1        42161170         80645605
+#&gt; 12 DEU      2014             46.2        42415215         80982500
+#&gt; 13 DEU      2015             46.3        42731868         81686611
+#&gt; 14 DEU      2016             46.4        43182140         82348669
+#&gt; # … with 2 more variables: workers_female_total &lt;dbl&gt;,
+#&gt; #   fem_workers_avg &lt;dbl&gt;</code></pre>
+<p>Der Datensatz wird nicht verkleinert und keine Spalte geht verloren. Je nach Anwendungsfall ist also die Verwendung von <code>mutate()</code> oder <code>summarise()</code> im Zusammenspiel mit <code>group_by()</code> angemessen.</p>
+<p>Im folgenden möchten wir uns noch ein etwas komplexeres Beispiel anschauen: wir möchten zunächst die jährliche Veränderung in der absoluten Anzahl der weiblichen Erwertbstätigen in Österreich und Deutschland beschäftigen und dann vergleichen ob dieser Wert größer ist als das Bevölkerungswachstum in dieser Zeit. Dazu verwenden wir die Funktion <code>dplyr::lag()</code> um den Wert eine Zeile über dem aktuellen Wert zu bekommen.<a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a> Zuletzt wollen wir nur noch die berechneten Spalten im Datensatz behalten.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unemp_data_wb_growth &lt;-<span class="st"> </span>unemp_data_wb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">pop_growth=</span>(
+      population_total<span class="op">-</span><span class="kw">lag</span>(population_total))<span class="op">/</span><span class="kw">lag</span>(population_total),
+    <span class="dt">fem_force_growth=</span>(
+      workers_female_total<span class="op">-</span><span class="kw">lag</span>(workers_female_total))<span class="op">/</span><span class="kw">lag</span>(workers_female_total)
+    ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">fem_force_growth_bigger=</span>fem_force_growth<span class="op">&gt;</span>pop_growth) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;pop_growth&quot;</span>, 
+                <span class="st">&quot;fem_force_growth&quot;</span>, <span class="st">&quot;fem_force_growth_bigger&quot;</span>))
+unemp_data_wb_growth</code></pre></div>
+<pre><code>#&gt; # A tibble: 14 x 5
+#&gt;    country  year pop_growth fem_force_growth fem_force_growth_bigger
+#&gt;    &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;            &lt;dbl&gt; &lt;lgl&gt;                  
+#&gt;  1 AUT      2010   NA               NA       NA                     
+#&gt;  2 AUT      2011    0.00338          0.0110  TRUE                   
+#&gt;  3 AUT      2012    0.00457          0.0148  TRUE                   
+#&gt;  4 AUT      2013    0.00591          0.0111  TRUE                   
+#&gt;  5 AUT      2014    0.00785          0.00700 FALSE                  
+#&gt;  6 AUT      2015    0.0113           0.0102  FALSE                  
+#&gt;  7 AUT      2016    0.0109           0.0166  TRUE                   
+#&gt;  8 DEU      2010   NA               NA       NA                     
+#&gt;  9 DEU      2011   -0.0184          -0.00206 TRUE                   
+#&gt; 10 DEU      2012    0.00188          0.00311 TRUE                   
+#&gt; 11 DEU      2013    0.00273          0.0145  TRUE                   
+#&gt; 12 DEU      2014    0.00418          0.00813 TRUE                   
+#&gt; 13 DEU      2015    0.00869          0.00993 TRUE                   
+#&gt; 14 DEU      2016    0.00810          0.0126  TRUE</code></pre>
+<p>Besonders hilfreich sind die Versionen von <code>mutate()</code> und <code>summarize()</code>, welche mehrere Spalten auf einmal bearbeiten. Wir möchten hier nicht im Detail darauf eingehen, aber einen kurzen Einblick in diese Funktionalität geben. Angenommen Sie wollen das durchschnittliche Wachstum in Deutschland und Österreich sowohl für das Bevölkerungswachstum als auch das Wachstum der weiblichen Erwerbsbevölkerung berechnen. Ausgehen vom letzten Datensatz</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unemp_data_wb_growth_avg &lt;-<span class="st"> </span>unemp_data_wb_growth <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>fem_force_growth_bigger)
+<span class="kw">head</span>(unemp_data_wb_growth_avg, <span class="dv">2</span>)</code></pre></div>
+<pre><code>#&gt; # A tibble: 2 x 4
+#&gt;   country  year pop_growth fem_force_growth
+#&gt;   &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;            &lt;dbl&gt;
+#&gt; 1 AUT      2010   NA                NA     
+#&gt; 2 AUT      2011    0.00338           0.0110</code></pre>
+<p>geht das folgendermaßen mit der Funktion <code>summarise_all()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unemp_data_wb_growth_avg <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise_all</span>(mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ungroup</span>()</code></pre></div>
+<pre><code>#&gt; # A tibble: 2 x 3
+#&gt;   country pop_growth fem_force_growth
+#&gt;   &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;
+#&gt; 1 AUT        0.00731          0.0118 
+#&gt; 2 DEU        0.00120          0.00771</code></pre>
+<p>Eine schöne Übersicht über diese praktischen Funktionen gibt es <a href="https://dplyr.tidyverse.org/reference/scoped.html">hier</a>.</p>
+<p>Es gibt noch zahlreiche hilfreiche Erweiterungen zu den Funktionen <code>mutate()</code>, <code>summarize()</code>, <code>group_by()</code> und Co. Schauen Sie doch mal auf die Homepage des Pakets <a href="https://github.com/tidyverse/dplyr">dplyr</a>. Ansonsten können Sie durch Googlen eigentlich immer eine passgenaue Lösung für Ihr Problem herausfinden - auch wenn es beim ersten Mal häufig ein wenig dauert.</p>
+</div>
+</div>
+<div id="data-role" class="section level2">
+<h2><span class="header-section-number">1.5</span> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</h2>
+<p>Das zentrale Leitmotiv dieses Kapitels war die Idee, dass <strong>die Datenaufbereitung vom ersten Schritt an reproduzierbar und transparent</strong> sein sollte. Wenn Sie gefragt wurden wie Ihre Ergebnisse zustande gekommen sind, sollten Sie in der Lage sein, jeden einzelnen Arbeitsschritt seit der ersten Akquise der Daten offenzulegen, bzw. nachvollziebar zu machen.</p>
+<p>Es ist ein zentraler Nachteil von <em>point-and-click</em>-Software, bei der eine Reproduktion bedeuten würde, dass Sie jeden einzelnen Mausklick vor dem Rechner wiederholen, bzw. erklären müssten. Zum Glück ist das mit Skript-basierten Sprachen wie R anders: Sie können einfach ein Skript <code>Datenaufbereitung.R</code> anlegen, in dem Sie die aus dem Internet heruntergeladenen Daten in den für die Analyse aufbereiteten Datensatz umwandeln. Wenn dann jemand wissen möchte, wo die Daten, die Sie in Ihrer Analyse verwenden, herkommen, brauchen Sie der Person nur die Quelle der Daten zu nennen und ihr Skript zu zeigen. So ist es für Sie auch leicht Ihre Analyse mit geupdateten Daten zu aktualisieren.</p>
+<p>Daher hat sich in der Praxis häufig die folgende oder eine ähnliche Ordnerstruktur bewährt:</p>
+<p><img src="figures/chap-data-Ordnerstruktur.png" style="display: block; margin: auto;" /></p>
+<p>Der Vorteil an dieser Ordnerstruktur ist, dass Sie die Rohdaten in einem separaten Ordner gespeichert haben und so explizit vom Rest ihres Workflows abgrenzen. Denn: <strong>Rohdaten sollten nie bearbeitet werden</strong>. Zu leicht geht in Vergessenheit welche Änderungen tatsächlich vorgenommen wurden und ihre Forschung wird dadurch nicht mehr repliziertbar - weder für Sie noch für andere. Alle für die weiteren Änderungen an den Rohdaten sollten über ein Skript vorgenommen werden, sodass immer klar ist wie sie von den Rohdaten zu den Analysedaten kommen.</p>
+<p>Diese bearbeiteten Daten können in einem zweiten Unterordner (hier: <code>tidy</code>) gespeichert werden, damit Sie für Ihre Analyse nicht immer die Daten neu aufbereiten müssen. Gerade bei großen Datensätzen kann das nämlich sehr lange dauern. Wichtig ist aber, dass die Daten in <code>tidy</code> immer mit Hilfe eines Skripts aus den Daten in <code>raw</code> wiederhergestellt werden können.</p>
+<p>In der Praxis würden Sie also aus den Daten in <code>raw</code>, die entweder direkt aus dem Internet geladen wurden oder direkt aus einem Experiment hervorgegangen sind, per Skript <code>Datenaufbereitung.R</code> den Datensatz <code>AufbereiteteDaten.csv</code> erstellen. Dabei können auch mehrere Rohdatensätze zusammengeführt werden. Dieser kann dann in der weiteren Analyse verwendet werden, z.B. im Skript <code>StatistischeAnalyse.R</code>, das dann einen Output in Form einer Daten <code>WunderbarerErgebnisplot.pdf</code> produziert.</p>
+<p>Der Vorteil: wenn jemand genau wissen möchte, wie <code>WunderbarerErgebnisplot.pdf</code> produziert wurde können Sie sämtliche Schritte ausgehend von den vollkommen unangetasteten Rohdaten transparent machen. Durch die Trennung unterschiedlicher Arbeitsschritte - wie Datenaufbereitung und statistische Analyse - bleibt ihr Projekt zudem übersichtlich.</p>
+</div>
+<div id="data-packages" class="section level2">
+<h2><span class="header-section-number">1.6</span> Anmerkungen zu Paketen</h2>
+<p>In diesem Kapitel wurden gleich mehrere Pakete aus dem <code>tidyverse</code>, einer Sammlung von Paketen, verwendet. Zwar schätze ich das <code>tidyverse</code> sehr, gleichzeitig ist der Fokus von R Studio auf diese Pakete zumindest potenziell problematisch. Dies wird in dieserm <a href="https://github.com/matloff/TidyverseSkeptic">kritischen Blogpost</a> sehr schön beschrieben.</p>
+<p>Was die Einsteigerfreundlichkeit vom <code>tidyverse</code> angeht, bin ich jedoch anderer Meinung als der Verfasser: meiner Meinung nach machen diese Pakete die Arbeit mit Datensätzen sehr einfach, und für kleine Datensätze (&lt;500MB) benutze ich das <code>tidyverse</code> auch in meiner eigenen Forschung. Es sollte jedoch klar sein, dass es nur eine Option unter mehreren ist, weswegen ich versuche in meinen Paketen vollständig auf das <code>tidyverse</code> zu verzichten - auch weil es in puncto Performance deutlich schlechter ist als z.B. <a href="https://rdatatable.gitlab.io/data.table/">data.table</a> <span class="citation">(Dowle and Srinivasan <a href="#ref-R-data.table">2019</a>)</span>, das auch für mehrere hundert GB große Datensätze gut geeignet ist.</p>
+<p>Aufgrund der Einsteigerfreundlichkeit habe ich aber entschlossen, in diesem Skript häufig mit dem <code>tidyverse</code> zu arbeiten. Ich empfehle jedoch jedem, den <a href="https://github.com/matloff/TidyverseSkeptic">folgenden kritischen Blogpost</a> zu lesen und, falls Sie weiter mit R arbeiten, sich das Paket <a href="https://rdatatable.gitlab.io/data.table/">data.table</a> <span class="citation">(Dowle and Srinivasan <a href="#ref-R-data.table">2019</a>)</span> anzueignen. Das <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">offizielle Tutorial</a> ist dafür gut geeignet, macht m.E. aber auch deutlich, dass es für die ersten Schritte mit R etwas unintuitiver ist als das <code>tidyverse</code>.</p>
+<p>Wenn Sie später einmal beide Ansätze beherrschen,können Sie das tun, was in einer diversen Sprache wie R das einzig richtige ist: je nach Anwendungsfall das passende Paket wählen - ganz wie im Falle von Paradigmen in einer Pluralen Ökonomik.</p>
+
+<div id="refs" class="references">
+<div>
+<p>Arel-Bundock, Vincent. 2019. <em>WDI: World Development Indicators (World Bank)</em>. <a href="https://CRAN.R-project.org/package=WDI" class="uri">https://CRAN.R-project.org/package=WDI</a>.</p>
+</div>
+<div>
+<p>Arel-Bundock, Vincent, Nils Enevoldsen, and CJ Yetman. 2018. “Countrycode: An R Package to Convert Country Names and Country Codes.” <em>Journal of Open Source Software</em> 3 (28): 848. <a href="https://doi.org/10.21105/joss.00848" class="uri">https://doi.org/10.21105/joss.00848</a>.</p>
+</div>
+<div>
+<p>Bengtsson, Henrik. 2019. <em>R.utils: Various Programming Utilities</em>. <a href="https://CRAN.R-project.org/package=R.utils" class="uri">https://CRAN.R-project.org/package=R.utils</a>.</p>
+</div>
+<div>
+<p>Dowle, Matt, and Arun Srinivasan. 2019. <em>Data.table: Extension of ‘Data.frame‘</em>. <a href="https://CRAN.R-project.org/package=data.table" class="uri">https://CRAN.R-project.org/package=data.table</a>.</p>
+</div>
+<div>
+<p>Herndon, Thomas, Michael Ash, and Robert Pollin. 2013. “Does high public debt consistently stifle economic growth? A critique of Reinhart and Rogoff.” <em>Cambridge Journal of Economics</em> 38 (2): 257–79. doi:<a href="https://doi.org/10.1093/cje/bet075">10.1093/cje/bet075</a>.</p>
+</div>
+<div>
+<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley. 2014. “Tidy Data.” <em>The Journal of Statistical Software</em> 59 (10). doi:<a href="https://doi.org/10.18637/jss.v059.i10">10.18637/jss.v059.i10</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Lionel Henry. 2019. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Evan Miller. 2019. <em>Haven: Import and Export ’Spss’, ’Stata’ and ’Sas’ Files</em>. <a href="https://CRAN.R-project.org/package=haven" class="uri">https://CRAN.R-project.org/package=haven</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2019. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-WDI">
+<p>Arel-Bundock, Vincent. 2019. <em>WDI: World Development Indicators (World Bank)</em>. <a href="https://CRAN.R-project.org/package=WDI" class="uri">https://CRAN.R-project.org/package=WDI</a>.</p>
+</div>
+<div id="ref-R-countrycode">
+<p>Arel-Bundock, Vincent, Nils Enevoldsen, and CJ Yetman. 2018. “Countrycode: An R Package to Convert Country Names and Country Codes.” <em>Journal of Open Source Software</em> 3 (28): 848. <a href="https://doi.org/10.21105/joss.00848" class="uri">https://doi.org/10.21105/joss.00848</a>.</p>
+</div>
+<div id="ref-R-R.utils">
+<p>Bengtsson, Henrik. 2019. <em>R.utils: Various Programming Utilities</em>. <a href="https://CRAN.R-project.org/package=R.utils" class="uri">https://CRAN.R-project.org/package=R.utils</a>.</p>
+</div>
+<div id="ref-R-data.table">
+<p>Dowle, Matt, and Arun Srinivasan. 2019. <em>Data.table: Extension of ‘Data.frame‘</em>. <a href="https://CRAN.R-project.org/package=data.table" class="uri">https://CRAN.R-project.org/package=data.table</a>.</p>
+</div>
+<div id="ref-Herndon">
+<p>Herndon, Thomas, Michael Ash, and Robert Pollin. 2013. “Does high public debt consistently stifle economic growth? A critique of Reinhart and Rogoff.” <em>Cambridge Journal of Economics</em> 38 (2): 257–79. doi:<a href="https://doi.org/10.1093/cje/bet075">10.1093/cje/bet075</a>.</p>
+</div>
+<div id="ref-tidy">
+<p>Wickham, Hadley. 2014. “Tidy Data.” <em>The Journal of Statistical Software</em> 59 (10). doi:<a href="https://doi.org/10.18637/jss.v059.i10">10.18637/jss.v059.i10</a>.</p>
+</div>
+<div id="ref-R-tidyr">
+<p>Wickham, Hadley, and Lionel Henry. 2019. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a>.</p>
+</div>
+<div id="ref-R-haven">
+<p>Wickham, Hadley, and Evan Miller. 2019. <em>Haven: Import and Export ’Spss’, ’Stata’ and ’Sas’ Files</em>. <a href="https://CRAN.R-project.org/package=haven" class="uri">https://CRAN.R-project.org/package=haven</a>.</p>
+</div>
+<div id="ref-R-dplyr">
+<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2019. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Das klassische Beispiel in der Psychologie ist ‘Intelligenz’,<a href="data.html#fnref1">↩</a></p></li>
+<li id="fn2"><p>Interessanterweise hat der ‘Erfinder’ des modernen BIP Simon Kurznets in <span class="citation">(<span class="citeproc-not-found" data-reference-id="BIP"><strong>???</strong></span>)</span> davon abgeraten, diese Operationalisierung als Indikator für wirtschaftliche Entwicklung zu verwenden.<a href="data.html#fnref2">↩</a></p></li>
+<li id="fn3"><p>Das bedeutet natürlich nicht, dass Sie (a) diesen Daten blind vertrauen sollten und (b) Ihre Daten tatsächlich die <a href="https://de.wikipedia.org/wiki/Latentes_Variablenmodell">latente Variable</a> messen, an der Sie interessiert sind. Häufig besteht großer Dissens mit welchem Maß welche latente Variable gemessen werden kann. Entsprechend geht der Auswahl der Daten häufig viel Zeit des theoretischen Überlegens voraus. Hier gehen wir davon aus, dass Sie sich über die richtigen Daten schon im Klaren sind.<a href="data.html#fnref3">↩</a></p></li>
+<li id="fn4"><p>Da ein solcher Code nur funktioniert wenn Sie mit dem Internet verbunden sind und Sie die Daten ja nicht jedes Mal von neuem herunterladen wollen macht es Sinn, die Daten nach dem Runterladen abzuspeichern, auch um den konkreten Datensatz, mit dem Sie Ihre Ergebnisse bekommen haben, zu konservieren.<a href="data.html#fnref4">↩</a></p></li>
+<li id="fn5"><p>Zwar gibt es im <code>WDI</code>-Paket auch die Funktion <code>WDI::WDIsearch()</code>, mit der Sie Datensätze direkt suchen können, allerdings funktioniert das nach meiner Erfahrung nach nicht optimal.<a href="data.html#fnref5">↩</a></p></li>
+<li id="fn6"><p>Auch hier gilt, dass die automatische Erkennung von <code>fread()</code> schon sehr gut funktioniert, aber die manuelle Eingabe immer sicherer und transparenter ist.<a href="data.html#fnref6">↩</a></p></li>
+<li id="fn7"><p>Wie <a href="http://www.win-vector.com/blog/2019/05/what-is-tidy-data/">hier beschrieben</a> ist das Konzept von ‘tidy data’ nicht neu: Statistiker*innen sprechen bei einem ‘tidy’ Datensatz häufig von einer ‘Datenmatrix’. Wer sich mehr mit der zugrundeliegenden Theorie beschäftigen möchte sollte zunächst die <a href="https://en.wikipedia.org/wiki/Codd%27s_12_rules">12 Regeln von Edgar Codd</a> und ihre Begründung nachlesen.<a href="data.html#fnref7">↩</a></p></li>
+<li id="fn8"><p>Die Funktionen <code>pivot_longer()</code> und <code>pivot_wider()</code> wurden in der neuesten Version von <code>tidyr</code> eingeführt. Achten Sie also darauf, dass Sie die neueste Version installiert haben. Sie ersetzen die Funktionen <code>spread()</code> und <code>gather()</code>, die natürlich noch weiterhin funktionieren und die Sie in älterem Code sicher noch häufig finden werden. In diesem <a href="https://www.tidyverse.org/blog/2019/09/tidyr-1-0-0/">Blog-Post</a> beschreibt Chefentwickler Hadley Wickham die neuen Funktionen und grenzt Sie von den älteren Implementierungen ab.<a href="data.html#fnref8">↩</a></p></li>
+<li id="fn9"><p>Eigentlich ein <a href="https://r4ds.had.co.nz/tibbles.html">tibble</a>.<a href="data.html#fnref9">↩</a></p></li>
+<li id="fn10"><p>Es gibt neben den Funktionen <code>dplyr::lag()</code> und <code>dplyr::lead()</code> auch die Funktionen <code>dplyr::first()</code> und <code>dplyr::last()</code>, die Sie verwenden können um Änderungen über den gesamten Zeitraum zu berechnen. Achten Sie jedoch auf den möglichen Konflikt zwischen den Funktionen <code>data.table::first()</code> und <code>dplyr::first()</code> sowie <code>data.table::last()</code> und <code>dplyr::last()</code>!<a href="data.html#fnref10">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["R-SocioEcon-dt.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
