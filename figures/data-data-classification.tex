@@ -4,7 +4,7 @@
 \forestset{
   direction switch/.style={
     for tree={edge+=thick, font=\sffamily},
-    where level>=2{folder, grow'=0}{for children=forked edge},
+    where level>=1{folder, grow'=0}{for children=forked edge},
     where level=4{}{draw},
   },
 }
@@ -14,20 +14,14 @@
   % forest preamble: determine layout and format of tree
   direction switch
   [Daten
-    [Quantitative Daten
-      [Stetige Daten
+      [Kardinal-skalierte Daten
         [Intervall-skalierte Daten]
         [Verhältnisdaten]
       ]
-      [Diskrete Daten
+      [Nominal-skalierte Daten
       ]
-    ]
-    [Qualitative Daten
-      [Nominale Daten
+      [Ordinal-skalierte Daten
       ]
-      [Ordinale Daten
-      ]
-    ]
   ]
 \end{forest}
 \end{document}
