@@ -1305,7 +1305,24 @@ data_bip_gini_anti_join
 
 Zum Schluss kommen wir mit `nest_join()` zu der komplexesten Funktion in der
 `*_join()`-Familie.
+Hier wird für jede Zeile im linken Datensatz in einer neuen Spalte ein ganzer
+`data.frame`^[Eigentlich ein [tibble](https://r4ds.had.co.nz/tibbles.html).] hinzugefügt,
+der alle Zeilen vom rechten Datensatz enthält, die zu der entsprechenden Zeile passen:
 
+```{r}
+data_bip_gini_nest_join <- nest_join(data_BIP, data_gini, 
+                                     by=c("Jahr"="year", "Land"="country"))
+data_bip_gini_nest_join
+```
+
+Wenn wir die angehängten `data.frame`s inspizieren:
+
+```{r}
+data_bip_gini_nest_join[["y"]][[1]] # erste Zeile der neuen Spalte
+```
+
+In der Praxis werden Sie `nest_join()` wenig verwenden, es ist wegen seiner 
+Flexibilität jedoch für das Programmieren extrem hilfreich.
 
 Wie Sie vielleicht bemerkt haben, haben die Funktionen der `*_join()`-Familie
 sehr ähnliche Argumente:
@@ -1347,17 +1364,20 @@ debt_data <- full_join(debt_data_IWF, debt_data_WELTBANK,
 debt_data
 ```
 
-Abschließend fassen wir noch die Funktionen in einer Tabelle zusammen:
+Abschließend fassen wir noch die Funktionen in einer Tabelle zusammen, wobei 
+'DS'für 'Datensatz steht, mit `x` der linke und `y` der rechte Datensatz 
+gemeint ist, wie in den Argumennten von `*_join()`.
 
-| Funktion | Effekt | Reduduktion von Zeilen? | Duplikation von Zeilen? |
-|----------+--------+-------------------------+-------------------------|
-| `left_join()` | | Möglich |
-| `right_join()` |  | Möglich |
-| `inner_join()` |  | Möglich | Möglich |
-| `full_join()` |  | ? | ? |
-| `semi_join()` |  | ? | Nicht möglich |
-| `nest_join()` |  | ? | ? | ? |
-| `anti_join()` |  | ? | ? | ? |
+| Funktion | Effekt                   | Veränderung `nrow(DS)`? | 
+|----------+--------------------------+-------------------------|
+| `left_join()` | `x` an `y` anhängen | Unmöglich |
+| `right_join()` | `y` an `x` anhängen | Möglich |
+| `inner_join()` | In `x` und `y` vorhandene Beobachtungen von `y` and `x` anhängen | Reduktion möglich | 
+| `full_join()` | `x` und `y` kombinieren | Vergrößerung möglich | 
+| `semi_join()` | Reduktion von `x` auf gemeinsame Beobachtungen | Reduktion möglich | 
+| `anti_join()` | Reduktion von `x` auf ungeteilte Beobachtungen | Reduktion möglich | 
+| `nest_join()` | Neue Spalte in `x` mit `data.frame`, der alle passenden Beobachtungen aus `y` enthält. | Unmöglich | 
+
 
 > **Tipp:** das Zusammenführen von Datensätzen ist extrem fehleranfällig. Häufig
 werden Probleme mit den Rohdaten hier offensichtlich. Daher ist es immer eine 
