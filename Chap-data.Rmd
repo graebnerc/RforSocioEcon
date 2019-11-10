@@ -186,7 +186,7 @@ Wenn Sie sich dann Daten vom IWF herunterladen wundern Sie sich vielleicht, dass
 Deutschland dort mit der Zahl `134` kodiert wird.
 
 Zum Glück gibt es ein R-Paket, das die Übersetzung der Codes kinderleicht macht:
-`countrycode`.
+`countrycode` [@R-countrycode].
 Es stellt Ihnen unter anderem die Funktion `countrycode()` zur Verfügung, mit der
 Sie die Codes einfach übersetzen können. Die Funktion benötigt die folgenden 
 Argumente:
@@ -268,7 +268,7 @@ konservieren.]
 Es lohnt sich daher, gerade wenn Sie aus einer Quelle mehrere Daten beziehen wollen,
 nachzuschauen ob ein R Paket oder eine besondere API verfügbar ist. 
 Im folgenden möchte das Vorgehen mit dem Paket
-[WDI](https://github.com/vincentarelbundock/WDI), welches Ihnen Zugriff
+[WDI](https://github.com/vincentarelbundock/WDI) [@R-WDI], welches Ihnen Zugriff
 auf die [Weltbankdaten](https://data.worldbank.org/) ermöglicht, 
 illustrieren.
 
@@ -529,7 +529,7 @@ für die auch andere Formate zur Verfügung stehen.
 Ein in der Ökonomik häufig verwendetes Format ist das von der Software 
 [STATA](https://de.wikipedia.org/wiki/Stata) verwendete Format `.dta`.
 Um Dateien in diesem Format speichern zu können verwenden Sie die Funktion
-`read_dta()` aus dem Paket [haven](https://github.com/tidyverse/haven), 
+`read_dta()` aus dem Paket [haven](https://github.com/tidyverse/haven) [@R-haven], 
 die als einziges Argumente den Dateinamen akzeptiert:
 
 ```{r}
@@ -587,7 +587,7 @@ es sich an die csv-Datei zu komprimieren.
 Natürlich könnten Sie das händisch in Ihrem Datei-Explorer machen, aber das ist 
 natürlich vollkommen überholt. 
 Sie können das gleich in R miterledigen indem Sie z.B. die Funktion `gzip`
-aus dem Paket `R.utils` verwenden:
+aus dem Paket `R.utils` [@R-R.utils] verwenden:
 
 ```{r, eval=FALSE}
 csv_datei_name <- here("data/tidy/test_data.csv")
@@ -729,8 +729,27 @@ Außerdem werden Sie häufig mehrere
 [Daten filtern und selektieren](#data-select) aggregieren.
 Zudem möchten Sie manchmal Daten auch [reduzieren und zusammenfassen](#data-sumamry).
 
-> **Beispiel für berühmte Menschen mit miserabler Datenaufbereitung: Der Reinhard-Rogoff Skandal**  
-
+> **Beispiel für berühmte Menschen mit miserabler Datenaufbereitung: Der Reinhart-Rogoff Skandal**  
+Eines der dramatischsten Beispiel für Fehler in der Datenaufbereitung mit 
+katastrophalen realweltlichen Implikationen ist der 
+[Reinhart-Rogoff-Skandal](https://www.newyorker.com/news/john-cassidy/the-reinhart-and-rogoff-controversy-a-summing-up)
+Carmen Reinhart und Kenneth Rogoff haben in ihrem einflussreichen Paper
+[Growth in a Time of Debt](http://scholar.harvard.edu/files/rogoff/files/growth_in_time_debt_aer.pdf)
+einen negativen Effekt von übermäßiger Staatsverschuldung auf wirtschaftliches
+Wachstum festgestellt.
+Als der PhD-Student [Thomas Herndon](https://en.wikipedia.org/wiki/Thomas_Herndon)
+während eines Seminars das Paper replizieren sollte bekam er Probleme.
+Dankenswerterweise sendete ihm Carmen Reinhard den Datensatz zu, allerdings
+stellte sich heraus, dass durch einen Excel-Fehler einige Länder aus der 
+Stichprobe gefallen waren. Mit der kompletten Stichprobe löste sich der im
+ursprünglichen Paper identifizierte Zusammenhang auf [@Herndon].
+Das ist besonders dramatisch, da das Paper nicht nur zahlreiche Preise gewonnen
+hat, sondern auch als wichtige Begründung für die in Europa implementierte
+Austeritätspolitik fungierte.
+Nun kann man darüber diskutieren, wen hier die größte Schuld trifft und ob es
+wirklich ein Versehen war, aber klar ist: wäre der Datenaufbereitungsprozess
+transparent und offen durchgeführt und dokumentiert worden, wäre der Fehler 
+wahrscheinlich deutlich einfacher und früher gefunden worden.
 
 ### Das Konzept von 'tidy data'
 
@@ -888,12 +907,12 @@ Formaten hin und her wechseln, da für manche Aufgaben das eine, für andere das
 andere Format besser ist (siehe [unten](#data-summary)).
 Um zwischen den Formaten hin und herzuwechseln verwenden wir vor allem die 
 Funktionen `pivot_longer()` und `pivot_wider()` aus dem Paket 
-[tidyr](https://github.com/tidyverse/tidyr), welches auch Teil des `tidyverse` ist.^[
-Die Funktionen `pivot_longer()` und `pivot_wider()` wurden in der neuesten Version
-von `tidyr` eingeführt. Achten Sie also darauf, dass Sie die neueste Version
-installiert haben. Sie ersetzen die Funktionen `spread()` und `gather()`, die
-natürlich noch weiterhin funktionieren und die Sie in älterem Code sicher noch
-häufig finden werden. 
+[tidyr](https://github.com/tidyverse/tidyr) [@R-tidyr], welches auch Teil des 
+`tidyverse` ist.^[Die Funktionen `pivot_longer()` und `pivot_wider()` wurden in 
+der neuesten Version von `tidyr` eingeführt. Achten Sie also darauf, dass Sie 
+die neueste Version installiert haben. Sie ersetzen die Funktionen `spread()` und 
+`gather()`, die natürlich noch weiterhin funktionieren und die Sie in älterem Code 
+sicher noch häufig finden werden. 
 In diesem [Blog-Post](https://www.tidyverse.org/blog/2019/09/tidyr-1-0-0/)
 beschreibt Chefentwickler Hadley Wickham die neuen Funktionen und grenzt Sie
 von den älteren Implementierungen ab.]
@@ -1574,8 +1593,9 @@ zusammenfassen.
 So möchten Sie häufig eine neue Variable als eine Kombination bestehender 
 Variablen berechnen oder Ihren Datensatz zusammenfassen, z.B. indem Sie über alle
 Beobachtungen über die Zeit für einzelne Länder den Mittelwert bilden. Zu diesem
-Zweck werden wir hier die Funktionern `mutate()`, `summarise()` und
-`group_by()` aus dem Paket `dplyr()` verwenden.
+Zweck werden wir hier die Funktionern `mutate()`, `summarise()` und `group_by()` 
+aus dem Paket [dplyr](https://github.com/tidyverse/dplyr) 
+[@R-dplyr] verwenden.
 
 Wir verwenden `mutate()` um bestehende Spalten zu verändern oder neue Spalten zu
 erstellen. 
@@ -1703,11 +1723,16 @@ weiblichen Erwertbstätigen in Österreich und Deutschland beschäftigen und
 dann vergleichen ob dieser Wert größer ist als das Bevölkerungswachstum in dieser
 Zeit.
 Dazu verwenden wir die Funktion `dplyr::lag()` um den Wert eine Zeile
-über dem aktuellen Wert zu bekommen.
+über dem aktuellen Wert zu bekommen.^[Es gibt neben den Funktionen `dplyr::lag()` und
+`dplyr::lead()` auch die Funktionen `dplyr::first()` und `dplyr::last()`, die 
+Sie verwenden können um Änderungen über den gesamten Zeitraum zu berechnen.
+Achten Sie jedoch auf den möglichen Konflikt zwischen den Funktionen 
+`data.table::first()` und `dplyr::first()` sowie `data.table::last()` und
+`dplyr::last()`!]
 Zuletzt wollen wir nur noch die berechneten Spalten im Datensatz behalten.
 
 ```{r}
-unemp_data_wb %>%
+unemp_data_wb_growth <- unemp_data_wb %>%
   group_by(country) %>%
   mutate(
     pop_growth=(
@@ -1719,8 +1744,35 @@ unemp_data_wb %>%
   mutate(fem_force_growth_bigger=fem_force_growth>pop_growth) %>%
   select(one_of("country", "year", "pop_growth", 
                 "fem_force_growth", "fem_force_growth_bigger"))
+unemp_data_wb_growth
 ```
 
+Besonders hilfreich sind die Versionen von `mutate()` und `summarize()`, 
+welche mehrere Spalten auf einmal bearbeiten. Wir möchten hier nicht im 
+Detail darauf eingehen, aber einen kurzen Einblick in diese Funktionalität 
+geben. Angenommen Sie wollen das durchschnittliche Wachstum in Deutschland und
+Österreich sowohl für das Bevölkerungswachstum als auch das Wachstum der 
+weiblichen Erwerbsbevölkerung berechnen.
+Ausgehen vom letzten Datensatz
+
+```{r}
+unemp_data_wb_growth_avg <- unemp_data_wb_growth %>%
+  select(-fem_force_growth_bigger)
+head(unemp_data_wb_growth_avg, 2)
+```
+
+geht das folgendermaßen mit der Funktion `summarise_all()`:
+
+```{r}
+unemp_data_wb_growth_avg %>%
+  select(-year) %>%
+  group_by(country) %>%
+  summarise_all(mean, na.rm=TRUE) %>%
+  ungroup()
+```
+
+Eine schöne Übersicht über diese praktischen Funktionen gibt es 
+[hier](https://dplyr.tidyverse.org/reference/scoped.html).
 
 Es gibt noch zahlreiche hilfreiche Erweiterungen zu den Funktionen `mutate()`,
 `summarize()`, `group_by()` und Co. Schauen Sie doch mal auf die Homepage des
@@ -1804,14 +1856,14 @@ Datensätzen sehr einfach, und für kleine Datensätze (<500MB) benutze ich das
 Es sollte jedoch klar sein, dass es nur eine Option 
 unter mehreren ist, weswegen ich versuche in meinen Paketen vollständig auf 
 das `tidyverse` zu verzichten - auch weil es in puncto Performance deutlich 
-schlechter ist als z.B. [data.table](https://rdatatable.gitlab.io/data.table/), 
-das auch für mehrere hundert GB große Datensätze gut geeignet ist. 
+schlechter ist als z.B. [data.table](https://rdatatable.gitlab.io/data.table/) 
+[@R-data.table], das auch für mehrere hundert GB große Datensätze gut geeignet ist. 
 
 Aufgrund der Einsteigerfreundlichkeit habe ich aber entschlossen, in diesem Skript
 häufig mit dem `tidyverse` zu arbeiten. Ich empfehle jedoch jedem, den 
 [folgenden kritischen Blogpost](https://github.com/matloff/TidyverseSkeptic)
 zu lesen und, falls Sie weiter mit R arbeiten, sich das Paket 
-[data.table](https://rdatatable.gitlab.io/data.table/) anzueignen.
+[data.table](https://rdatatable.gitlab.io/data.table/) [@R-data.table] anzueignen.
 Das [offizielle Tutorial](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) 
 ist dafür gut geeignet, macht m.E. aber auch deutlich, 
 dass es für die ersten Schritte mit R etwas unintuitiver ist als das `tidyverse`.
