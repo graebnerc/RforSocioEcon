@@ -8,11 +8,17 @@ In diesem Kapitel geht es um den auf den ersten Blick unspannendsten Teil der
 Forschung: Datenaufbereitung und -management.
 Gleichzeitig ist es einer der wichtigsten Schritte: 
 ohne Daten können viele Forschungsfragen nicht angemessen beantwortet werden.
-Lauf [dieser Umfrage](https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/)
-verwenden Datenspezialisten regelmäßig 80\% ihrer Arbeitszeit auf Datenerhebung und
--aufbereitung.
 
-Um bei diesem zentralen Schritt also Zeit und Nerven zu sparen ist es wichtig, 
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics("figures/chap-data-Ablaufschema.png")
+```
+
+In diesem Kaptitel liegt der Fokus auf den ersten beiden Abschnitten, der Akquise
+und der Aufbereitung ihrer Daten.
+Laut [dieser Umfrage](https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/)
+verwenden Datenspezialisten regelmäßig 80\% ihrer Arbeitszeit auf diese beiden
+Schritte.
+Um hier also Zeit und Nerven zu sparen ist es wichtig, 
 sich mit den grundlegenden Arbeitsschritten und Algorithmen vertraut zu machen.
 Zum Glück ist R sehr gut zur reproduzierbaren Datenaufbereitung geeignet und 
 stellt dank vieler hilfreicher Pakete eine große Hilfe in diesem wichtigen 
@@ -21,7 +27,8 @@ Prozess dar.
 Ein zentrales Anliegen dieses Abschnitts liegt darin, Ihnen Methoden zur 
 *reproduzierbaren* und *transparenten* Datenaufbereitung an die Hand zu geben.
 Für eine glaubwürdige Forschungsarbeit ist es unerlässlich, dass der Weg von der
-Datenerhebung hin zum Forschungsergebnis transparent und nachvollziehbar ist.
+Datenerhebung hin zum Forschungsergebnis, also der gesamte Prozess in der obigen
+Abbildung, transparent und nachvollziehbar ist.
 Daher muss der Datenaufbereitungsprozess gut dokumentiert werden.
 Dank skriptbasierter Sprachen wie R ist das im Prinzip ein Kinderspiel.
 
@@ -40,7 +47,10 @@ Und wenn Sie sich mit den grundlegenden Algorithmen einmal vertraut gemacht habe
 kann Datenaufbereitung wider Erwarten auch wirklich Spaß machen!
 
 Dieses Kapitel folgt dem typischen Arbeitsablauf eines Forschungsprojektes und 
-ist entsprechend folgndermaßen strukturiert:
+beschäftigt sich mit den ersten beiden Abschnitten aus der obigen Grafik, der
+Daten-Akquise und der Daten-Aufbereitung, wobei letztere im Mittelpunkt stehen
+soll.
+Entsprechend ist das Kapitel folgendermaßen strukturiert:
 
 Als erstes werden wir uns einen Überblick über die verschiedenen 
 [Arten von Daten](#data-arten) verschaffen. 
@@ -84,8 +94,12 @@ der Arbeitsschritte in anderen Paketen als dem `tidyverse` beschrieben wird.
 
 ## Arten von Daten {#data-arten}
 
-Die gröbste Unterscheidung kann zwischen **quantitativen** und **qualitativen**
-Daten getroffen werden. 
+Es gibt verschiedene mehr oder weniger konsistente Klassifizierungen von 
+Daten, die jeweils auf unterschiedliche Aspekte von Daten oder auch
+Variablen abziehlen.
+
+Eine sehr prominente Unterscheidung wird zwischen **quantitativen** und 
+**qualitativen Daten** getroffen. 
 Bei *quantitativen* Daten handelt es sich grob gesagt um *numerische* Daten, also
 Daten, die Sie in Zahlen ausdrücken können. 'Größe', 'Preis', 'BIP' oder 'Gehalt'
 sind typische Beispiele.
@@ -98,7 +112,36 @@ quantifiziert und dann mit typischen quantitativen Methoden analysiert.
 Auch werden s.g. *mixed methods*-Ansätze immer beliebter, in denen die Unterscheidung
 noch undeutlicher wird.
 
-Wirklich relevant ist jedoch die Unterscheidung der 
+Eine andere, vor allem in der Psychologie verbreitete Unterscheidung ist die 
+zwischen **manifesten** und **latenten Variablen**.
+*Manifeste* Variablen sind direkt beobachtbar und ihre Bedeutung ist häufig 
+klar. 
+Die *Körpergröße* ist z.B. eindeutig messbar und jede\*r weiß was damit gemeint
+ist.
+
+*Latente* Variablen sind **nicht** direkt beobachtbar und sind häufig 
+erklärungsbedürftig.
+*Nutzen* ist zum Beispiel nicht beobachtbar.^[Das klassische Beispiel in der
+Psychologie ist 'Intelligenz',]
+Zudem muss in der Regel erst einmal deutlich gemacht werden, was mit dem Begriff
+genau gemeint ist.
+
+Ein großer Teil von Forschungsarbeit ist die **Operationalisierung** einer latenten 
+Variable durch eine oder mehrere manifeste Variablen.
+Wir sprechen dann davon, dass eine oder mehrere manifeste Variablen als Indikator 
+für eine latente Variable verwendet werden.
+*Wirtschaftliche Entwicklung* z.B. ist als solche nicht direkt beobachtbar und wird
+häufig durch das BIP operationalisiert^[Interessanterweise hat der 'Erfinder' des 
+modernen BIP Simon Kurznets in @BIP davon abgeraten, diese Operationalisierung
+als Indikator für wirtschaftliche Entwicklung zu verwenden.]
+Der *Human Development Index* ist der Versuch, wirtschaftliche Entwicklung durch
+mehr als eine manifeste Variable zu operationalisieren, also durch beobachtbare
+Variablen messbar zu machen.
+Eine solche Operationalisierung ist natürlich immer kritisch zu hinterfragen und
+ist nicht selten ein Einfallstor für subjektive und manchmal auch manipulative
+Wertentscheidungen.
+
+In der Praxis sehr relevant ist zudem die Unterscheidung der 
 **vier Skalenniveaus von Daten**, da die Art der Skala bestimmt, 
 welche Methode angemessen ist um die Daten zu analysieren. 
 Hier wird zwischen **nominal**, **ordinal**, **intervall** und **verhältnis** 
@@ -109,7 +152,112 @@ Daten häufig unter dem Label **kardinal**-skalierte Daten zusammen gefasst werd
 knitr::include_graphics("figures/data-data-classification.png")
 ```
 
-TODO: EINZELNE NIVEAUS UND R BESCHREIBEN
+Wir sprechen von **nominalskalierten** Daten wenn wir den einzelnen Ausprägungen
+der Daten zwar bestimmte Werte oder eindeutige Beschreibungen zuordnen können, 
+diese aber keine natürliche Rangfolge aufweisen.
+So können wir einer Person eine Haarfarbe zuordnen, allerdings die verschiedenen
+Haarfarben in keine natürliche Rangfolge einordnen. 
+Im Effekt können wir die einzelnen Ausprägungen zwar zählen, aber sonst keine 
+komplexeren mathematischen Operationen ausführen.
+
+In R werden solche Daten in der Regel als `character` oder als `factor` beschrieben.
+Die einzelnen Ausprägungen eines Faktors können mit der Funktion `table` gezählt
+werden. Der häufigste wird dabei 'Modus' genannt:
+
+```{r}
+beobachtete_haarfarben <- c("Blond", "Brau", "Schwarz", 
+                            "Blond", "Braun", "Braun")
+typeof(beobachtete_haarfarben)
+beobachtete_haarfarben <- factor(beobachtete_haarfarben)
+typeof(beobachtete_haarfarben)
+table(beobachtete_haarfarben)
+```
+
+Bei der Funktion `as.factor()` können Sie die Ausprägungen auch selbst
+spezifizieren. Das ist vor allem dann wichtig, wenn eine Ausprägung nicht
+vorkommt:
+
+```{r}
+beobachtete_haarfarben <- c("Blond", "Brau", "Schwarz", 
+                            "Blond", "Braun", "Braun")
+beobachtete_haarfarben <- factor(beobachtete_haarfarben, 
+                                 levels=c("Blond", "Braun", 
+                                          "Schwarz", "Glatze"))
+table(beobachtete_haarfarben)
+```
+
+
+Bei **ordinalskalierten** Daten können die einzelnen Ausprägungen in eine 
+klare Rangfolge gebracht werden, aber die Abstände sind nicht sinnvoll 
+interpretiertbar.
+Das klassische Beispiel sind Schulnoten: eine '1' ist besser als eine '2', aber 
+weder ist eine 1 'doppelt so gut' wie eine 2, noch sind zwei einser genauso gut
+wie eine 2.
+
+Ordinalskalierte Daten werden in R am besten auch als `factor` behandelt, allerdings
+müssen Sie die Reihenfolge explizit spezifizieren:
+
+```{r}
+noten <- c(rep(1, 3), rep(2, 4), rep(3, 6), rep(4, 2), rep(5, 3))
+noten
+noten <- factor(noten, levels = 1:6, ordered = T)
+noten
+table(noten)
+```
+
+Um bei bestehenden Faktoren die Reihenfolge zu spezifizieren verwenden Sie die
+Funktion `ordered()`:
+
+```{r}
+noten <- factor(noten, levels = 1:6, ordered = F)
+noten
+noten <- ordered(noten, levels = 1:6)
+noten
+```
+
+Da wir ordinal-skalierte Daten ordnen können, ist es hier z.B. auch möglich 
+empirische Quantile zu berechnen. 
+Allerdings müssen wir bei der Funktion noch `type=1` oder `type=3` ergänzen, um
+einen Quantilsalgorithmus zu wählen, der auch mit Faktoren funktioniert:
+
+```{r}
+quantile(noten, type = 1)
+```
+
+Bei **intervall-skalierten** Daten können wir die Ausprägungen nicht nur in eine
+Rangfolge bringen, sondern auch die Abstände zwischen den Ausprägungen sinnvoll
+interpretieren. 
+Während es bei Noten also keinen Sinn macht mathematische Operationen wir 'Addition'
+oder 'Substraktion' zu verwenden (und die Abstände entsprechend nicht konsistent zu
+interpretieren sind), ist dies bei intervallskalierten Daten wie z.B. Jahreszahlen
+möglich: 
+zwischen 1999 und 2005 liegt der gleiche Abstand wie zwischen 2009 und 2015.
+Entsprechend werden intervall-skalierte Daten in in der Regel als `integer` oder
+`double` gespeichert und wir können Kennzahlen wie den Mittelwert oder die Varianz
+bereichnen.
+
+Allerdings verfügen intervall-skalierte Daten über keinen absoluten Nullpunkt, 
+sodass Divisionen und Multiplikationen keinen Sinn machen. 
+Das ist bei **verhältnis-skalierten** Daten wie Gewicht, Preis oder Alter anders.
+Das kann man am besten an folgendem Beispiel illustrieren:
+
+> **Beispiel: Inverall- vs. verhältnis-skalierte Temperaturen**
+Wenn wir die Temperatur in Grad Celsius messen haben wir eine Skala ohne absoluten
+Nullpunkt. Entsprechend können wir nicht sagen, dass 20 Grad Celsius doppelt 
+so warm sind wie 40 Grad Celsius, nur das der Abstand der Gleiche ist wie 
+zwischen 10 und 30 Grad Celsius. Das wird deutlich, wenn wir uns fragen ob 10
+Grad Celsius doppelt so warm wären wie -10 Grad Celsius.
+Eine Lösung ist die Temperatur in Kelvin anzugeben, denn für Kelvin ist ein 
+absoluter Nullpunkt definiert. Entsprechend können wir auch sagen, dass 20 
+Kelvin halb so warm ist wie 40 Kelvin - wobei beides ziemlich kalt wäre.
+
+Entsprechend machen bestimmte Korrelationsmaße, insbesondere der prominente 
+Pearson-Korrelationskoeffizient nur für verhältnis-skalierte Daten Sinn.
+Da sowohl intervall- als auch verhältnis-skalierte Daten als `double` oder ìnteger`
+repräsentiert werden ist Vorsicht geboten: wir müssen immer selbst entscheiden
+welche Maße wir für die Daten berechnen und R gibt uns keinen Fehler aus, wenn
+wir für zwei intervall-skalierte Variablen den Pearson-Korrelationskoeffizienten
+berechnen wollen.
 
 Die folgende Tabelle fasst das noch einmal zusammen:
 
