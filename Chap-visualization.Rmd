@@ -1,17 +1,119 @@
-# Datenkunde {#vis}
+# Visualisierung von Daten {#vis}
 
 ```{r include=FALSE}
 knitr::opts_chunk$set(comment = "#>")
 ```
 
-* Base R vs ggplot 
-* Beispiele für Standardplots in ggplot
+
+```{r, warning=FALSE, message=FALSE}
+library(here)
+library(tidyverse)
+library(icaeDesign)
+```
+
+```{r, eval=FALSE}
+library(devtools)
+devtools::install_github("graebnerc/icaeDesign")
+```
+
+
+* Noch die Arbeit mit Arbeitsverzeichnissen
+
+## Grundlagen von `ggplot2`
+
+### `ggplot2` vs. `base plot`
+
+### Elemente eines `ggplot`
+
+### Speichern von Plots und Ordnerstruktur
+
+### Beispiel Workflow
+
+## Arten von Datenvisualisierung
+
+* hier dann die verschiedenen Arten von Plots, jeweils mit Frage, die sie
+beantworten und ggplot Funktion
+* Evtl. Themen
+
+```{r, echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics(
+  path = here("figures/chap-vis-chart-selection.jpg"), 
+  auto_pdf = T)
+```
+
+### Allgemeine best practive Hinweise zu Abbildungen
+
+* Standardspezifikationen für Themen, wie genau ein Thema spezialisiert wird ist
+weiter unten erklärt; die Funktion `theme_icae()` ist äquivalent zu folgendem
+Aufruf von `theme()` am Ende des ggplot-Workflows
+
+### Zusammenfassung 
+
+Die folgende Tabelle fasst die hier diskutierten Visualisierungsmöglichkeiten
+noch einmal kurz zusammen.
+
+| **Art** | **Anwendungsgebiet/Frage** | **Relevante Funktion** |
+|---------+----------------------------+------------------------|
+| Balkendiagramm | | |
+| Gebietschart | | |
+| Linienchart | | |
+| Histogram | | |
+| Streudiagramm | | |
+| 3d-Arealplot | | |
+| Kuchendiagramm | | |
+| Puzzlechart (Complexity) | | |
+| Bubble-Chart | | |
+
+
+## Beispiele aus der Praxis und fortgeschrittene Themen
+
+### Regressionsgerade
+
+### Mehrere Plots in einer Abbildung
+
+### Farbenmanagement
+
+### Style Guidelines
+
+### ggplot Themen
+
+## Typische Fehler in der Datenvisualisierung vermeiden
+
+Hier implementieren wir die Beispiele aus @schwabischVis
+
+### Unglück 1: Liniengraphen
+
+### Unglück 2: Clutter-Graphen
+
+### Unglück 3:Der Barchart
+
+### Unglück 4: Der 3D-Barchart
+
+### Unglück 5: Der unbalancierte Graph
+
+### Unglück 6: Der Spaghetti-Graph
+
+### Unglück 7: Barcharts 
+
+### Unglück 8: Gelabelte Barcharts 
+
+### Unglück 9: Noch mehr Barcharts
+
+
+## Lügen mit (grafischer) Statistik 
+
+* Hier ein paar Beispiele wie man mit Abbildungen lügen kann
 
 
 
 
+## Links und weiterführende Literatur
 
-## Links
+@schwabischVis wurde bereits erwähnt und ist eine konstruktive Auseinandersetzung
+mit typischen Visualisierungsfehlern, die auch tatsächlich in Top-Journalen
+gemacht wurden. Besonders wichtig: konstruktive Verbesserungsvorschläge sind
+gleich mit dabei.
+
 [R Graph Gallery](https://www.r-graph-gallery.com/)
 
 
