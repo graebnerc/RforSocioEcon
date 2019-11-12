@@ -8,6 +8,7 @@
 library(here)
 library(tidyverse)
 library(icaeDesign)
+library(data.table)
 ```
 
 
@@ -224,14 +225,280 @@ Analog zu der gerade vorgestellten [Theorie](#grammar) besteht jeder`ggplot`
 aus den folgenden Komponenten:
 
 
+
 Das macht es einfach eine Grafik sukzessive zu ändern: 
 wenn Sie z.B. von einem Streudiagramm zu einem Liniendiagramm wechseln wollen
 müssen Sie nur die `geoms` ändern - die restlichen Komponenten des Plots 
 können identisch bleiben.
 
-### Speichern von Plots und Ordnerstruktur
+Wir betrachten folgendes Minimalbeispiel:
+
+
+
 
 ### Beispiel Workflow
+
+Hier betrachten wir den Workflow einer einfachen Grafik.
+Sie werden [unten]()
+noch diverse Techniken lernen, wie Sie diese Grafik recht einfach aufhübschen
+können.
+Übrigens ist die Reihenfolge der Schritte nicht weiter relevant, lediglich
+der erste Schritt muss vor den anderen kommen. 
+Was den Rest angeht sind Sie aber in der Praxis recht flexibel.
+
+**1. Schritt: Aufbereitung der Daten** Ihre Daten sollten 'tidy' sein, genauso
+wie im [letzten Kapitel](#data) beschrieben. Im folgenden gehen wir davon aus,
+dass wir einen entsprechend aufbereiteten Datensatz haben:
+
+
+```
+#>   Land Jahr HandelGDP
+#> 1  AUT 1965  48.23931
+#> 2  AUT 1966  48.92554
+#> 3  AUT 1967  48.30854
+#> 4  AUT 1968  49.01388
+#> 5  AUT 1969  52.72526
+#> 6  AUT 1970  54.86039
+```
+
+Dieser kleine Beispieldatensatz enthält Informationen über das Verhältnis
+von Handelsströmen und BIP in Österreich seit 1965.
+
+
+**2. Schritt: Auswahl des Standarddatensatzes und der Variablen**
+Wir entscheiden uns, dass der gerade aufbereitete Datensatz die Basis für unsere
+Visualisierung darstellen soll. Natürlich können wir auch noch Daten aus anderen
+Datensätzen hinzufügen, aber dieser Datensatz soll unser *Standard-Datensatz* für
+die Grafik sein, die verwendet wird wenn wir nichts anderes spezifizieren.
+Genauso spezifizieren wir die *Standard-Ästetik-Links* für die Abbildung.
+Eine Ästetik ist z.B. die Größe, Farbe oder Achse der Abbildung.
+Es ist hilfreich am Anfang Standardwerte für die Verknüpfung von Variablen
+aus dem Datensatz mit Ästetiken in der Grafik zu spezifizieren.
+
+Im Beispiel wollen wir die Variable `Jahr` mit der x-Achse und die Variable 
+`HandelGDP` mit der y-Achse verbinden. 
+Da es sich um die Standardwerte handelt werden Sie in der Funktion
+`ggplot()` spezifiziert:
+
+
+```r
+aut_trade_plot <- ggplot(data = aut_trade, 
+                   mapping = aes(x = Jahr, 
+                                 y = HandelGDP)
+                   )
+```
+
+`ggplot()` erstellt das Grafik-Objekt, bei dem es sich um eine recht 
+komplexe Liste handelt:
+
+
+```r
+typeof(aut_trade_plot)
+```
+
+```
+#> [1] "list"
+```
+
+Die Funktion `ggplot()` wird in der Regel mit zwei Argumenten verwendet:
+`data` spezifiziert den Standard-Datensatz für die Grafik und `mapping` die 
+*aesthetic mappings*, welche die Variablen in `data` zu den ästhetischen 
+Komponenten der Grafik verlinken.
+Wenn Sie den optionalen Abschnitt zur [Grammar of Graphics](#grammar) gelesen
+haben, werden Sie die Konzepte sofort wiedererkennen!
+
+Wie oben beschrieben wird die Grafik bei `ggplot2` erst erstellt, wenn Sie das
+Grafik-Objet mit einer `print`-Funktion aufrufen. Das passiert automatisch, 
+wenn Sie das Objekt als solches aufrufen:
+
+
+```r
+aut_trade_plot
+```
+
+<img src="Chap-visualization_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+
+Da wir bislang nur die Standardwerte definiert haben ist die Grafik noch recht
+leer. Zumindest sehen wir, dass die Achsen die Variablen unseres Datensatzes
+wiedergeben.
+
+
+**3. Schritt: Hinzfügen von Ebenen mit geometrischen Objekten**
+Als nächstes wollen wir R darüber informieren mit welchen geometrischen Objekten
+die Ästetiken auf dem Plot dargestellt werden sollen.
+Im vorliegenden Fall möchten wir z.B. unsere Beobachtungen mit einer Linie
+visualisieren.
+Das geht mit der Funktion `geom_line()`: sie fügt einen `geom` der Art 'Linie' 
+hinzu. Im übrigen sind die Namen für alle verschiedenen `geoms` gleich aufgebaut,
+es ist immer `geom_*(),` wobei `*` für die Abkürzung des entsprechenden
+`geoms` steht.^[Eine Liste aller möglichen `geoms` finden Sie 
+[hier](https://ggplot2.tidyverse.org/reference/).]
+
+Da wir zu unserer Grafik `aut_trade_plot` eine Ebene hinzufüen wollen verwenden
+wir einfach den Operator `+`:
+
+
+```r
+aut_trade_plot <- aut_trade_plot + 
+  geom_line()
+aut_trade_plot
+```
+
+<img src="Chap-visualization_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+
+Dieses Prinzip, am Anfang ein Grafikobjekt zu definieren und dann neue Elemente
+Stück für Stück mit `+` hinzuzufügen ist das Grundprinzip von `ggplot2`.
+Auch hier ist die Verbindung zu Wickham's [Grammar of Graphics](#grammar) 
+offensichtlich.
+
+Im Beispiel haben wir `geom_line()` ohne ein einziges Argument 
+aufgerufen. 
+Wir könnten die Argumente `data` und `mapping` verwenden, aber da wir hier die
+in Schritt 1 definierten Standardwerte verwenden besteht dazu keine Veranlassung.
+Möglich wäre noch mit Hilfe des Argumente `stat` die Daten vor der Abbildung
+zu transformieren (z.B. würde...) oder mit `position` die Positionen der 
+Linie verändern (z.B....).
+
+Wir können durchaus mehrere Ebenen nacheinander hinzufügen. 
+Wenn wir die einzelnen Beobachtungen z.B. noch durch Punkte verdeutlichen 
+wollen, dann können wir einfach eine weitere Ebene mit dem `geom` 'Point'
+hinzufügen. 
+Das geht mit der Funktion `geom_point()` und da wir die gleichen 
+Standardwerte wie vorher verwenden sind hier auch keine Argumente nötig.
+Der besseren Übersicht gebe ich ab jetzt alle Schritte auf einmal an:
+
+
+```r
+aut_trade_plot <- aut_trade_plot +
+  geom_point()
+aut_trade_plot
+```
+
+<img src="Chap-visualization_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+
+
+```r
+aut_trade_plot <- aut_trade_plot +
+  stat_smooth()
+aut_trade_plot
+```
+
+<img src="Chap-visualization_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+
+**4. Schritt: Anpassen der Skalen**
+
+
+```r
+aut_trade_plot <- aut_trade_plot +
+  scale_y_continuous(name = "Handel / BIP",  
+                     limits = c(0, 110), 
+                     breaks = seq(0, 110, 10),
+                     expand = expand_scale(mult = c(0, 0), 
+                                           add = c(0, 5))
+                     ) +
+  scale_x_continuous(breaks = seq(1960, 2018, 5), expand = c(0, 0))
+aut_trade_plot
+```
+
+<img src="Chap-visualization_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+
+**5. Schritt: Titel**
+
+Ein Titel ist zu Ihrer Grafik schnell mit der Funktion `ggtitle()` hinzugefügt.
+Mit dem Argument `label` spezifizieren Sie den Titel, mit dem optionalen 
+Argument `subtitle` den Untertitel:
+
+
+```r
+aut_trade_plot <- aut_trade_plot +
+  ggtitle(label = "Handel und BIP in Österreich", 
+          subtitle = "Die Entwicklung zwischen 1965 und 2018")
+aut_trade_plot
+```
+
+<img src="Chap-visualization_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+
+**6. Schritt: Grundlegende Veränderungen mit `theme()`**
+
+Einen Überblick über alle möglichen Spezifikationen, die Sie mit `theme()` 
+vornehmen können finden Sie [hier](https://ggplot2.tidyverse.org/reference/theme.html).
+Es gibt auch zahlreiche vorgefertigte Themen, die bestimmte Standard-Spezifikationen
+vornehmen. Eine Übersicht finden Sie 
+[hier](https://ggplot2.tidyverse.org/reference/ggtheme.html).
+
+
+```r
+#
+```
+
+
+> **Tipp:** Wenn Ihnen die Abbildungen im Skript bisland und auf den Slides
+gefallen haben können Sie gerne mein Standard-Thema verwenden. Sie können 
+in `ggplot2` nämlich typische Anpassungen, die Sie mit `theme()` regelmäßig
+durchführen, auch automatisieren und eigene Themen verwenden. 
+Das Thema, das ich verwende ist Teil des Pakets 
+[icaeDesign](https://github.com/graebnerc/icaeDesign) und kann durch
+die Funktion `theme_icae()` verwendet werden. Unser Beispielplot sähe damit
+folgendermaßen aus:
+
+
+```r
+aut_trade_plot <- aut_trade_plot + theme_icae()
+aut_trade_plot
+```
+
+<img src="Chap-visualization_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+
+Das ist nicht so schlecht, allerdings ist der Untertitel hässlich.
+Da ich selbst so gut wie nie Untertitel verwende ist das aktuell im Thema nicht
+berücksichtigt. 
+Zum Glück können wir mit `theme()` auch nach einem benutzerdefinierten Theme
+noch weitere Modifikationen vornehmen:
+
+
+```r
+aut_trade_plot + 
+  theme(plot.subtitle = element_text(hjust = 0.5))
+```
+
+<img src="Chap-visualization_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+
+
+**7. Schritt: Ihre Grafik abspeichern**
+
+Zum Schluss können wir noch unsere Grafik speichern. 
+Das machen wir ganz einfach mit der Funktion `ggsave()`, die als wichtigste
+Argumente
+`filename`
+`plot`
+`width` und `height`^[Standardmäßig werden Breite und Höhe in Inch angegeben.
+Mit der Funktion `unit()` können Sie aber ganz einfach beliebige Einheiten
+verwenden, z.B. `width = unit(2, "cm")`. In der Praxis probieren Sie einfach
+herum bis Sie die richtige Kombination von Höhe und Breite gefunden haben.
+Für Abbildungen, die aus nur einem Plot bestehen ist `6:4` häufig ein guter
+Ausgangspunkt.]
+
+
+```r
+ggsave(filename = here("output/trade_ts.pdf"), 
+       plot = aut_trade_plot, 
+       width = 9, 
+       height = 6)
+```
+
+
+Achten Sie auf die Beibehaltung einer übersichtlichen Ordnerstruktur.
+Abbildungen sollten immer im Ordner `output` gespeichert werden!
+
+> **Tipp: Das richtige Format** 
+Wenn nicht irgendwelche gewichtigen Gründe dagegen sprechen (z.B. dass Sie
+Ihre Grafik auf einer Website verwenden wollen) dann sollten Sie Ihre Grafik
+immer als PDF speichern. Da es sich dabei um eine 
+[vektorbasierte Grafik](https://de.wikipedia.org/wiki/Vektorgrafik)
+handelt bleiben Sie sehr flexibel was das spätere Vergrößern oder Verkleiner
+der Grafik angeht.
+Wenn Sie kein PDF verwenden können ist in der Regel PNG die erste Alternative.
+
 
 ## Arten von Datenvisualisierung
 
