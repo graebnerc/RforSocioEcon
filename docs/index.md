@@ -2,7 +2,7 @@
 title: "R für die sozio-ökonomische Forschung"
 subtitle: "Version 0.5.0"
 author: "[Dr. Claudius Gräbner](http://claudius-graebner.com/)"
-date: "2019-11-12" 
+date: "2019-11-17" 
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -15,7 +15,8 @@ description: "R Skript in der Version 0.5.0"
 
 # Willkommen {-}
 
-<img src="figures/title_page.png" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{figures/title_page} \end{center}
 
 Dieses Skript ist als Begleitung für die Lehrveranstaltung 
 "Wissenschaftstheorie und Einführung in die Methoden der Sozioökonomie"
@@ -77,7 +78,8 @@ Datum    | Version | Wichtigste Änderungen         |
 
 ## Lizenz {-}
 
-<img src="figures/license.png" width="20%" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics[width=0.2\linewidth]{figures/license} \end{center}
 
 Das gesamte Skript ist unter der 
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/)
