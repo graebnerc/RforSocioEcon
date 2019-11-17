@@ -1893,14 +1893,15 @@ ggplot(oecd_data_plot) +
                color="grey") +
   geom_point(
     aes(x=COU, 
-        y=Women), 
-    color=farbe_w, 
+        y=Women, 
+        color="Frauen"), 
     size=3 ) +
   geom_point(
     aes(x=COU, 
-        y=Men), 
-    color=farbe_m, 
+        y=Men,
+        color="Männer"), 
     size=3 ) +
+  scale_color_manual(values = c("Männer"=farbe_m, "Frauen"=farbe_w), name="Geschlecht") +
   geom_text(
     aes(x=COU, y=Women, label=COU), 
     nudge_y = -0.25, hjust=1, color=rgb(110, 113, 123, maxColorValue = 255)
@@ -1914,7 +1915,10 @@ ggplot(oecd_data_plot) +
        caption = "Quelle: OECD, eigene Darstellung.") +
   theme_icae() +
   theme(
-    legend.position = "bottom",
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    legend.position = c(0.8, 0.1),
+    legend.title = element_text(), 
     panel.border = element_blank(), 
     axis.title.y = element_blank(), 
     axis.line.y = element_blank(), 
@@ -1938,6 +1942,11 @@ x-Achse sonst nach links zu wenig Platz für die Länderbezeichnungen lassen wü
 Text genau bei dem y-Wert aus `aes()` aufhört, also linksbündig formatiert wird
 (`hjust=0` korrespondiert entsprechend zu rechsbündigem, `hjust=0.5` zu
 mittig formatierem Text).
+* Mit `scale_color_manual()` erstellen wir eine manuelle Tabelle, da wir die
+Farben für Mönner und Frauen in unterschiedlichen Layer plaziert haben. Wichtig
+ist, dass die Farbzuschreibung als *aesthetic mapping* definiert wird, da wir
+sonst keine Legende erstellen können. Die Syntax der Funktion ist dafür 
+selbsterklärend.
 
 ## Lügen mit grafischer Statistik {#vis-lies}
 
