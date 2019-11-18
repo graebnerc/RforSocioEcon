@@ -7,7 +7,7 @@ output:
 
 
 
-In diesem Kapitel werden die folgenden Pakete verwendet:
+## Verwendete Pakete {-}
 
 
 ```r
@@ -33,6 +33,9 @@ Um das Paket `icaeDesign` zu installieren müssen Sie foldendermaßen vorgehen:
 library(devtools)
 devtools::install_github("graebnerc/icaeDesign")
 ```
+
+## Einleitung {-}
+
 In diesem Kapitel lernen Sie mit Hilfe des Pakets `ggplot2` Ihre Daten
 ansprechend zu visualisieren.
 

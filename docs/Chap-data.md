@@ -29,10 +29,10 @@ Abbildung, transparent und nachvollziehbar ist.
 Daher muss der Datenaufbereitungsprozess gut dokumentiert werden.
 Dank skriptbasierter Sprachen wie R ist das im Prinzip ein Kinderspiel.
 
-Wenn Sie nömlich alle Arbeitsschritte nach der Datenerhebung in R durchführen, 
+Wenn Sie nämlich alle Arbeitsschritte nach der Datenerhebung in R durchführen, 
 müssen Sie einfach nur Ihre Skripte aufheben - und schon haben Sie die beste 
 Dokumentation, die man sich wünschen kann.
-Das wichtige bei diesem Prozess: Sie dürfen **nie die Rohdaten selbst verändern**.
+Das Wichtigste bei diesem Prozess: Sie dürfen **nie die Rohdaten selbst verändern**.
 
 Alle Änderungen an den Rohdaten müssen durch ein R Skript vorgenommen werden, und
 die veränderten Daten müssen unter neuem Namen gespeichert werden. 
@@ -63,7 +63,7 @@ Zum Abschluss des Kapitels wird noch die
 und auf die Debatten über die Ko-Existenz [verschiedener Pakete für die 
 Datenaufbereitung in R](#data-packages) hingewisen.
 
-Die Pakete, die im Rahmen dieses Kapitels verwendet werden sind die Folgenden:
+## Verwendete Pakete {-}
 
 
 ```r
@@ -94,7 +94,7 @@ der Arbeitsschritte in anderen Paketen als dem `tidyverse` beschrieben wird.
 
 Es gibt verschiedene mehr oder weniger konsistente Klassifizierungen von 
 Daten, die jeweils auf unterschiedliche Aspekte von Daten oder auch
-Variablen abziehlen.
+Variablen abzielen.
 
 Eine sehr prominente Unterscheidung wird zwischen **quantitativen** und 
 **qualitativen Daten** getroffen. 
@@ -107,11 +107,10 @@ In der Praxis werden Sie aber merken, dass die Grenze zwischen quantitativen und
 qualitativen Daten häufig deutlich schwammiger ist, als man das auf den ersten 
 Blick glauben möchte, denn häufig werden qualitative Beschreibungen 
 quantifiziert und dann mit typischen quantitativen Methoden analysiert.
-Auch werden s.g. *mixed methods*-Ansätze immer beliebter, in denen die Unterscheidung
-noch undeutlicher wird.
+Auch werden s.g. *mixed methods*-Ansätze immer beliebter.
 
-Eine andere, vor allem in der Psychologie verbreitete Unterscheidung ist die 
-zwischen **manifesten** und **latenten Variablen**.
+Vor allem in der Psychologie unterscheidet man zwischen **manifesten** und 
+**latenten Variablen**.
 *Manifeste* Variablen sind direkt beobachtbar und ihre Bedeutung ist häufig 
 klar. 
 Die *Körpergröße* ist z.B. eindeutig messbar und jede\*r weiß was damit gemeint
@@ -129,7 +128,7 @@ Variable durch eine oder mehrere manifeste Variablen.
 Wir sprechen dann davon, dass eine oder mehrere manifeste Variablen als Indikator 
 für eine latente Variable verwendet werden.
 *Wirtschaftliche Entwicklung* z.B. ist als solche nicht direkt beobachtbar und wird
-häufig durch das BIP operationalisiert^[Interessanterweise hat der 'Erfinder' des 
+häufig durch das BIP operationalisiert.^[Interessanterweise hat der 'Erfinder' des 
 modernen BIP Simon Kurznets in @BIP davon abgeraten, diese Operationalisierung
 als Indikator für wirtschaftliche Entwicklung zu verwenden.]
 Der *Human Development Index* ist der Versuch, wirtschaftliche Entwicklung durch
@@ -143,7 +142,7 @@ In der Praxis sehr relevant ist zudem die Unterscheidung der
 **vier Skalenniveaus von Daten**, da die Art der Skala bestimmt, 
 welche Methode angemessen ist um die Daten zu analysieren. 
 Hier wird zwischen **nominal**, **ordinal**, **intervall** und **verhältnis** 
-skalierten Daten unterschieden, wobei intervall- und verhältnis-skalierte 
+skalierten Daten unterschieden, wobei intervall- und verhältnisskalierte 
 Daten häufig unter dem Label **kardinal**-skalierte Daten zusammen gefasst werden:
 
 
@@ -154,8 +153,12 @@ der Daten zwar bestimmte Werte oder eindeutige Beschreibungen zuordnen können,
 diese aber keine natürliche Rangfolge aufweisen.
 So können wir einer Person eine Haarfarbe zuordnen, allerdings die verschiedenen
 Haarfarben in keine natürliche Rangfolge einordnen. 
-Im Effekt können wir die einzelnen Ausprägungen zwar zählen, aber sonst keine 
-komplexeren mathematischen Operationen ausführen.
+Genausowenig können wir z.B. Tiere in die Kategorien "Hund", "Katze" und 
+"Sonstiges" einordnen, aber eine natürliche Rangfolge dieser Kategorien gibt es
+nicht.
+Als Konsequenz können wir die einzelnen Ausprägungen zwar zählen, aber sonst keine 
+komplexeren mathematischen Operationen - wie z.B. die Berechnung eines Mittelwerts - 
+ausführen.
 
 In R werden solche Daten in der Regel als `character` oder als `factor` beschrieben.
 Die einzelnen Ausprägungen eines Faktors können mit der Funktion `table` gezählt
@@ -163,7 +166,7 @@ werden. Der häufigste wird dabei 'Modus' genannt:
 
 
 ```r
-beobachtete_haarfarben <- c("Blond", "Brau", "Schwarz", 
+beobachtete_haarfarben <- c("Blond", "Braun", "Schwarz", 
                             "Blond", "Braun", "Braun")
 typeof(beobachtete_haarfarben)
 ```
@@ -187,8 +190,8 @@ table(beobachtete_haarfarben)
 
 ```
 #> beobachtete_haarfarben
-#>   Blond    Brau   Braun Schwarz 
-#>       2       1       2       1
+#>   Blond   Braun Schwarz 
+#>       2       3       1
 ```
 
 Bei der Funktion `as.factor()` können Sie die Ausprägungen auch selbst
@@ -197,7 +200,7 @@ vorkommt:
 
 
 ```r
-beobachtete_haarfarben <- c("Blond", "Brau", "Schwarz", 
+beobachtete_haarfarben <- c("Blond", "Braun", "Schwarz", 
                             "Blond", "Braun", "Braun")
 beobachtete_haarfarben <- factor(beobachtete_haarfarben, 
                                  levels=c("Blond", "Braun", 
@@ -208,7 +211,7 @@ table(beobachtete_haarfarben)
 ```
 #> beobachtete_haarfarben
 #>   Blond   Braun Schwarz  Glatze 
-#>       2       2       1       0
+#>       2       3       1       0
 ```
 
 
@@ -242,17 +245,9 @@ noten
 #> Levels: 1 < 2 < 3 < 4 < 5 < 6
 ```
 
-```r
-table(noten)
-```
-
-```
-#> noten
-#> 1 2 3 4 5 6 
-#> 3 4 6 2 3 0
-```
-
-Um bei bestehenden Faktoren die Reihenfolge zu spezifizieren verwenden Sie die
+Wir erkennen, dass der Faktor geordnet ist daran, adss bei der Auflistung der
+Levels das Symbol `<` verwendet wird um die Reihenfolge zu illutrieren.
+Um bei bestehenden Faktoren die Reihenfolge zu spezifizieren, verwenden Sie die
 Funktion `ordered()`:
 
 
@@ -278,8 +273,11 @@ noten
 
 Da wir ordinal-skalierte Daten ordnen können, ist es hier z.B. auch möglich 
 empirische Quantile zu berechnen. 
-Allerdings müssen wir bei der Funktion noch `type=1` oder `type=3` ergänzen, um
-einen Quantilsalgorithmus zu wählen, der auch mit Faktoren funktioniert:
+Allerdings müssen wir bei der Funktion noch das Argument `type=1` oder `type=3`^[
+Eine Beschreibung der unterschiedlichen Algorithmen finden Sie über 
+`help(quantile)`.] 
+ergänzen, um einen Quantilsalgorithmus zu wählen, der auch mit Faktoren 
+funktioniert:
 
 
 ```r
@@ -292,7 +290,7 @@ quantile(noten, type = 1)
 #> Levels: 1 < 2 < 3 < 4 < 5 < 6
 ```
 
-Bei **intervall-skalierten** Daten können wir die Ausprägungen nicht nur in eine
+Bei **intervallskalierten** Daten können wir die Ausprägungen nicht nur in eine
 Rangfolge bringen, sondern auch die Abstände zwischen den Ausprägungen sinnvoll
 interpretieren. 
 Während es bei Noten also keinen Sinn macht mathematische Operationen wir 'Addition'
@@ -306,10 +304,10 @@ bereichnen.
 
 Allerdings verfügen intervall-skalierte Daten über keinen absoluten Nullpunkt, 
 sodass Divisionen und Multiplikationen keinen Sinn machen. 
-Das ist bei **verhältnis-skalierten** Daten wie Gewicht, Preis oder Alter anders.
+Das ist bei **verhältnisskalierten** Daten wie Gewicht, Preis oder Alter anders.
 Das kann man am besten an folgendem Beispiel illustrieren:
 
-> **Beispiel: Inverall- vs. verhältnis-skalierte Temperaturen**
+> **Beispiel: Inverall- vs. verhältnisskalierte Temperaturen**
 Wenn wir die Temperatur in Grad Celsius messen haben wir eine Skala ohne absoluten
 Nullpunkt. Entsprechend können wir nicht sagen, dass 20 Grad Celsius doppelt 
 so warm sind wie 40 Grad Celsius, nur das der Abstand der Gleiche ist wie 
@@ -319,13 +317,10 @@ Eine Lösung ist die Temperatur in Kelvin anzugeben, denn für Kelvin ist ein
 absoluter Nullpunkt definiert. Entsprechend können wir auch sagen, dass 20 
 Kelvin halb so warm ist wie 40 Kelvin - wobei beides ziemlich kalt wäre.
 
-Entsprechend machen bestimmte Korrelationsmaße, insbesondere der prominente 
-Pearson-Korrelationskoeffizient nur für verhältnis-skalierte Daten Sinn.
-Da sowohl intervall- als auch verhältnis-skalierte Daten als `double` oder ìnteger`
-repräsentiert werden ist Vorsicht geboten: wir müssen immer selbst entscheiden
+Da sowohl intervall- als auch verhältnis-skalierte Daten als `double` oder `integer`
+repräsentiert werden, ist Vorsicht geboten: wir müssen immer selbst entscheiden
 welche Maße wir für die Daten berechnen und R gibt uns keinen Fehler aus, wenn
-wir für zwei intervall-skalierte Variablen den Pearson-Korrelationskoeffizienten
-berechnen wollen.
+wir für zwei intervall-skalierte Variablen ein Verhältnis berechnen wollen.
 
 Die folgende Tabelle fasst das noch einmal zusammen:
 
@@ -348,19 +343,19 @@ bekannten statistischen Maße für welche Skalenniveaus definiert sind:
 | **Rankkorrelation** |  $\times$ | $\checkmark$ | $\checkmark$ | $\checkmark$ |
 | **Mittelwert** |  $\times$ | $\times$ | $\checkmark$ | $\checkmark$ |
 | **Varianz** | $\times$ | $\times$ | $\checkmark$ | $\checkmark$ |
-| **Pearson-Korrelation** | $\times$ | $\times$ | $\times$ | $\checkmark$ |
+| **Pearson-Korrelation** | $\times$ | $\times$ | $\checkmark$ | $\checkmark$ |
 
 Wahrscheinlich kennen Sie auch noch die Unterscheidung zwischen **diskreten** und
 **stetigen** Werten.
-Diese Kategorisierungen ist jedoch nicht vollkommen konsistent mit den 
+Diese Kategorisierungen ist nicht vollkommen konsistent mit den 
 Skalenniveaus: zwar sind kardinale Daten in der Tendenz eher stetig und nominale, bzw.
 ordinale Daten eher diskret, allerdings gibt es auch diskrete kardinale Daten 
 (aber keine stetigen nominalen Daten).
 
 > **Hinweis zum Angeben:** Aus der Skalierung oben wird ersichtlich, dass man 
 mit ordinal-skalierten Daten keine Durchschnitte bilden darf - man kann sie ja
-noch nicht einmla addieren. Ein Bereich wo dieser fundamentalen Regel ständig 
-Gewalt angetan wird ist die Schule: wer hat noch nicht einmal von einer 
+noch nicht einmal addieren. Ein Bereich wo dieser fundamentalen Regel ständig 
+Gewalt angetan wird ist die Schule: wer hat noch nie von einer 
 Durchschnittsnote gehört? Zum Glück gehört das bei uns an der Universität der 
 Vergangenheit an...
 
@@ -505,7 +500,7 @@ konservieren.]
 
 Es lohnt sich daher, gerade wenn Sie aus einer Quelle mehrere Daten beziehen wollen,
 nachzuschauen ob ein R Paket oder eine besondere API verfügbar ist. 
-Im folgenden möchte das Vorgehen mit dem Paket
+Im Folgenden möchte das Vorgehen mit dem Paket
 [WDI](https://github.com/vincentarelbundock/WDI) [@R-WDI], welches Ihnen Zugriff
 auf die [Weltbankdaten](https://data.worldbank.org/) ermöglicht, 
 illustrieren.
@@ -593,7 +588,7 @@ ausreichend Zeit in die absoluten Grundlagen von Einlesefunktionen investieren.
 Also, auch wenn die nächsten Zeilen etwas trocken wirken: sie werden Ihnen
 später viel Zeit ersparen!
 
-Das am weiteseten verbreitete Datenformat ist csv.
+Das am weitesten verbreitete Dateiformat ist csv.
 'csv' steht für 'comma separated values' und diese Dateien sind einfache 
 Textdateien, in denen Spalten mit bestimmten Symbolen, in der Regel einem Komma,
 getrennt sind.
@@ -605,7 +600,7 @@ Die mit Abstand beste Option ist dabei die Funktion `fread()` aus dem Paket
 `data.table`, da sie nicht nur sehr flexibel spezifiziert werden kann, sondern
 auch deutlich schneller als andere Funktionen arbeitet.
 
-Wir gehen im folgenden davon aus, dass wir die Datei `data/tidy/export_daten.csv`
+Wir gehen im Folgenden davon aus, dass wir die Datei `data/tidy/export_daten.csv`
 einlesen wollen.
 Die Datei sieht im Rohformat folgendermaßen aus:
 
@@ -653,10 +648,10 @@ In der Regel funktioniert die automatische Typerkennung von `fread()` sehr gut.
 Ich empfehle dennoch die Typen immer manuell zu spezifizieren, aus folgenden 
 Gründen: (1) Sie merken leichter wenn es mit einer Spalte ein Problem gibt,
 z.B. wenn in einer Spalte, die ausschließlich aus Zahlen besteht ein Wort 
-vorkommt. Wenn Sie diese Spalte nicht manuell als `double` spezifizieren würden 
+vorkommt. Wenn Sie diese Spalte nicht manuell als `double` spezifizieren würden, 
 würde `fread()` sie einfach still und heimlich als `character` verstehen und Sie
 wundern sich später, warum Sie für die Spalte keinen Durchschnitt berechnen können;
-(2) ihr Code wird leichter lesbar und (3) der Lesevorgang wird signifikant 
+(2) Ihr Code wird leichter lesbar und (3) der Lesevorgang wird deutlich 
 beschleunigt.
 
 Sie können die Spaltentypen manuell über das Argument `colClasses` einstellen, 
@@ -699,7 +694,7 @@ daten
 Manchmal möchten Sie auch nur eine bestimmte Auswahl an Spalten einlesen.
 Auch das kann bei großen Datensätzen viel Zeit sparen.
 Wenn wir oben nur das Jahr und die Anzahl der Exporte haben spezifizieren wir
-das über das Argument ``:
+das über das Argument `select`:
 
 
 ```r
@@ -755,19 +750,20 @@ daten
 `fread()` verfügt noch über viele weitere Spezifizierungsmöglichkeiten, die Sie
 sich am besten am konkreten Anwendungsfall vertraut machen.
 Auch ein Blick in die Hilfeseite ist recht illustrativ. 
-Für die meisten Anwendungsfälle sind sie jetzt aber gut aufgestellt.
+Für die meisten Anwendungsfälle sind Sie jetzt aber gut aufgestellt.
 
 > **Anmerkungen zu komprimierten Dateien:** Häufig werden Sie auch komprimierte 
 Dateien einlesen wollen. Gerade komprimierte csv-Dateien kommen häufig vor.
 In den meisten Fällen können Sie diese Dateien direkt mit `fread()` einlesen.
-Falls nicht, können Sie fread aber auch dem entsprechenden UNIX-Befehl zum 
+Falls nicht, können Sie `fread()` aber auch dem entsprechenden UNIX-Befehl zum 
 Entpacken als Argument `cmd` übergeben, also z.B. 
 `fread("unzip -p data/gezipte_daten.csv.bz2")`. Weitere Informationen finden
 Sie sehr einfach im Internet.
 
 Auch wenn csv-Dateien die am weitesten verbreiteten Daten sind: 
 es gibt natürlich noch viele weitere Formate mit denen Sie in Kontakt kommen werden.
-Hier möchte ich exemplarisch auf drei weitere Formate eingehen:
+Hier möchte ich exemplarisch auf drei weitere Formate (`.rds`, `.rdata` und 
+`.dta`) eingehen:
 
 R verfügt über zwei 'hauseigene' Formate, die sich extrem gut zum Speichern von
 größeren Daten eignen, aber eben nur von R geöffnet werden können. 
@@ -829,18 +825,23 @@ für die auch andere Formate zur Verfügung stehen.
 
 Ein in der Ökonomik häufig verwendetes Format ist das von der Software 
 [STATA](https://de.wikipedia.org/wiki/Stata) verwendete Format `.dta`.
-Um Dateien in diesem Format speichern zu können verwenden Sie die Funktion
+Um Dateien in diesem Format lesen zu können verwenden Sie die Funktion
 `read_dta()` aus dem Paket [haven](https://github.com/tidyverse/haven) [@R-haven], 
 die als einziges Argumente den Dateinamen akzeptiert:
 
 
 ```r
-daten <- here("data/tidy/export_daten.dta")
-daten
+dta_datei <- here("data/tidy/export_daten.dta")
+dta_daten <- read_dta(dta_datei)
+head(dta_daten, 2)
 ```
 
 ```
-#> [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/data/tidy/export_daten.dta"
+#> # A tibble: 2 x 3
+#>   iso2c  year Exporte
+#>   <chr> <dbl>   <dbl>
+#> 1 AT     2012    54.0
+#> 2 AT     2013    53.4
 ```
 
 Das Paket [haven](https://github.com/tidyverse/haven) stellt auch Funktionen zum 
@@ -863,7 +864,7 @@ angeht, insbesondere wenn man die Daten komprimiert.
 
 Die schnellste und meines Erachtens mit Abstand beste Funktion zum Schreiben von
 csv-Dateien ist die Funktion `fwrite()` aus dem Paket `data.table`.
-Angenommen wir wollen haben einen Datensatz `test_data`, den wir im Unterordner 
+Angenommen wir haben einen Datensatz `test_data`, den wir im Unterordner 
 `data/tidy` als `test_data.csv` speichern wollen.
 Das geht mit `fwrite()` ganz einfach:
 
@@ -944,12 +945,14 @@ sein.
 
 
 ```r
-saveRDS(test_data,  here("data/tidy/export_daten.rds"))
+saveRDS(object = test_data,  file = here("data/tidy/export_daten.rds"))
 ```
 
-Mit dem Argument `compress` können Sie hier übrigens die Kompressionsart 
-auswählen. Ähnlich wie oben gilt, dass `gz` am schnellsten und `bz` am 
-stärksten ist. `xz` liegt in der Mitte.
+Wie Sie sehen sind zwei Argumente zentral: das erste Argument, `object` 
+spezifiziert das zu speichernde Objekt und `file` den Dateipfad.
+Darüber hinaus können Sie mit dem optionalen Argument `compress` hier die 
+Kompressionsart auswählen. Ähnlich wie oben gilt, dass `gz` am schnellsten und 
+`bz` am stärksten ist. `xz` liegt in der Mitte.
 
 Wenn Sie mehrere Objekte auf einmal speichern möchten können Sie das über das 
 Format `.RData` machen.
@@ -993,7 +996,9 @@ Schreibgeschwindigkeit von Funktionen an. Auch stellt sich hier die Frage nach
 dem besten Dateiformat noch einmal viel deutlicher als das bei kleinen Datensätzen
 der Fall ist und sich die Formatfrage vor allem um das Thema 'Kompatibilität' 
 dreht. Einige nette Beiträge, die verschiedene Funktionen und Formate bezüglich
-ihrer Geschwindigkeit vergleichen finden Sie z.B. [hier]() oder  [hier]().
+ihrer Geschwindigkeit vergleichen finden Sie z.B. 
+[hier](https://csgillespie.github.io/efficientR/efficient-inputoutput.html) oder  
+[hier](https://data.nozav.org/post/2019-r-data-frame-benchmark/).
 
 ## Verarbeitung von Daten ('data wrangling') {#data-wrangling}
 

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 Datenkunde und Datenaufbereitung | R für die sozio-ökonomische Forschung</title>
+  <title>Chapter 5 Datenkunde und Datenaufbereitung | R für die sozio-ökonomische Forschung</title>
   <meta name="description" content="R Skript in der Version 0.5.0" />
   <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 Datenkunde und Datenaufbereitung | R für die sozio-ökonomische Forschung" />
+  <meta property="og:title" content="Chapter 5 Datenkunde und Datenaufbereitung | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 Datenkunde und Datenaufbereitung | R für die sozio-ökonomische Forschung" />
+  <meta name="twitter:title" content="Chapter 5 Datenkunde und Datenaufbereitung | R für die sozio-ökonomische Forschung" />
   
   <meta name="twitter:description" content="R Skript in der Version 0.5.0" />
   
@@ -24,15 +24,15 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2019-11-10" />
+<meta name="date" content="2019-11-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-
+<link rel="prev" href="linmodel.html"/>
+<link rel="next" href="vis.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -112,25 +112,162 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#anderungshistorie-wahrend-des-semesters"><i class="fa fa-check"></i>Änderungshistorie während des Semesters</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>1</b> Datenkunde und Datenaufbereitung</a><ul>
-<li class="chapter" data-level="1.1" data-path="data.html"><a href="data.html#data-arten"><i class="fa fa-check"></i><b>1.1</b> Arten von Daten</a></li>
-<li class="chapter" data-level="1.2" data-path="data.html"><a href="data.html#data-get"><i class="fa fa-check"></i><b>1.2</b> Datenakquise</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="data.html"><a href="data.html#exkurs-1-landercodes-ubersetzen"><i class="fa fa-check"></i><b>1.2.1</b> Exkurs 1: Ländercodes übersetzen</a></li>
-<li class="chapter" data-level="1.2.2" data-path="data.html"><a href="data.html#data-download-R"><i class="fa fa-check"></i><b>1.2.2</b> Exkurs 2: Daten direkt mit R herunterladen</a></li>
+<li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a><ul>
+<li class="chapter" data-level="1.1" data-path="precons.html"><a href="precons.html#warum-r"><i class="fa fa-check"></i><b>1.1</b> Warum R?</a></li>
+<li class="chapter" data-level="1.2" data-path="precons.html"><a href="precons.html#besonderheiten-von-r"><i class="fa fa-check"></i><b>1.2</b> Besonderheiten von R</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="data.html"><a href="data.html#data-read-write"><i class="fa fa-check"></i><b>1.3</b> Daten einlesen und schreiben</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="data.html"><a href="data.html#einlesen-von-datensatzen"><i class="fa fa-check"></i><b>1.3.1</b> Einlesen von Datensätzen</a></li>
-<li class="chapter" data-level="1.3.2" data-path="data.html"><a href="data.html#speichern-von-daten"><i class="fa fa-check"></i><b>1.3.2</b> Speichern von Daten</a></li>
+<li class="chapter" data-level="2" data-path="einrichtung.html"><a href="einrichtung.html"><i class="fa fa-check"></i><b>2</b> Einrichtung</a><ul>
+<li class="chapter" data-level="2.1" data-path="einrichtung.html"><a href="einrichtung.html#installation-von-r-und-r-studio"><i class="fa fa-check"></i><b>2.1</b> Installation von R und R-Studio</a></li>
+<li class="chapter" data-level="2.2" data-path="einrichtung.html"><a href="einrichtung.html#die-r-studio-oberflache"><i class="fa fa-check"></i><b>2.2</b> Die R Studio Oberfläche</a></li>
+<li class="chapter" data-level="2.3" data-path="einrichtung.html"><a href="einrichtung.html#einrichtung-eines-r-projekts"><i class="fa fa-check"></i><b>2.3</b> Einrichtung eines R Projekts</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="einrichtung.html"><a href="einrichtung.html#arbeitsverzeichnisse-und-pfade"><i class="fa fa-check"></i><b>2.3.1</b> Arbeitsverzeichnisse und Pfade</a></li>
+<li class="chapter" data-level="2.3.2" data-path="einrichtung.html"><a href="einrichtung.html#schritt-1-projektordner-anlegen"><i class="fa fa-check"></i><b>2.3.2</b> Schritt 1: Projektordner anlegen</a></li>
+<li class="chapter" data-level="2.3.3" data-path="einrichtung.html"><a href="einrichtung.html#schritt-2-ein-r-studio-projekt-im-projektordner-erstellen"><i class="fa fa-check"></i><b>2.3.3</b> Schritt 2: Ein R-Studio Projekt im Projektordner erstellen</a></li>
+<li class="chapter" data-level="2.3.4" data-path="einrichtung.html"><a href="einrichtung.html#unterordner"><i class="fa fa-check"></i><b>2.3.4</b> Schritt 3: Relevante Unterordner erstellen</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="data.html"><a href="data.html#data-wrangling"><i class="fa fa-check"></i><b>1.4</b> Verarbeitung von Daten (‘data wrangling’)</a><ul>
-<li class="chapter" data-level="1.4.1" data-path="data.html"><a href="data.html#das-konzept-von-tidy-data"><i class="fa fa-check"></i><b>1.4.1</b> Das Konzept von ‘tidy data’</a></li>
-<li class="chapter" data-level="1.4.2" data-path="data.html"><a href="data.html#data-long-wide"><i class="fa fa-check"></i><b>1.4.2</b> Von langen und breiten Datensätzen</a></li>
-<li class="chapter" data-level="1.4.3" data-path="data.html"><a href="data.html#data-merge"><i class="fa fa-check"></i><b>1.4.3</b> Zusammenführen von Daten</a></li>
-<li class="chapter" data-level="1.4.4" data-path="data.html"><a href="data.html#date-select"><i class="fa fa-check"></i><b>1.4.4</b> Datensätze filtern und selektieren</a></li>
-<li class="chapter" data-level="1.4.5" data-path="data.html"><a href="data.html#data-summary"><i class="fa fa-check"></i><b>1.4.5</b> Datensätze zusammenfassen</a></li>
+<li class="chapter" data-level="2.4" data-path="einrichtung.html"><a href="einrichtung.html#abschlieende-bemerkungen"><i class="fa fa-check"></i><b>2.4</b> Abschließende Bemerkungen</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="data.html"><a href="data.html#data-role"><i class="fa fa-check"></i><b>1.5</b> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</a></li>
-<li class="chapter" data-level="1.6" data-path="data.html"><a href="data.html#data-packages"><i class="fa fa-check"></i><b>1.6</b> Anmerkungen zu Paketen</a></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#befehle-in-r-an-den-computer-ubermitteln"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#objekte-funktionen-und-zuweisungen"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#zusammenfassung"><i class="fa fa-check"></i><b>3.3</b> Zusammenfassung</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#grundlegende-objeke-in-r"><i class="fa fa-check"></i><b>3.4</b> Grundlegende Objeke in R</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.4.1</b> Funktionen</a></li>
+<li class="chapter" data-level="3.4.2" data-path="basics.html"><a href="basics.html#basics-types-vectors"><i class="fa fa-check"></i><b>3.4.2</b> Vektoren</a></li>
+<li class="chapter" data-level="3.4.3" data-path="basics.html"><a href="basics.html#basics-logic"><i class="fa fa-check"></i><b>3.4.3</b> Logische Werte (logical)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="basics.html"><a href="basics.html#worter-character"><i class="fa fa-check"></i><b>3.4.4</b> Wörter (character)</a></li>
+<li class="chapter" data-level="3.4.5" data-path="basics.html"><a href="basics.html#fehlende-werte-und-null"><i class="fa fa-check"></i><b>3.4.5</b> Fehlende Werte und NULL</a></li>
+<li class="chapter" data-level="3.4.6" data-path="basics.html"><a href="basics.html#indizierung-und-ersetzung"><i class="fa fa-check"></i><b>3.4.6</b> Indizierung und Ersetzung</a></li>
+<li class="chapter" data-level="3.4.7" data-path="basics.html"><a href="basics.html#nutzliche-funktionen-fur-atomare-vektoren"><i class="fa fa-check"></i><b>3.4.7</b> Nützliche Funktionen für atomare Vektoren</a></li>
+<li class="chapter" data-level="3.4.8" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.4.8</b> Listen</a></li>
+<li class="chapter" data-level="3.4.9" data-path="basics.html"><a href="basics.html#matrizen"><i class="fa fa-check"></i><b>3.4.9</b> Matrizen</a></li>
+<li class="chapter" data-level="3.4.10" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.4.10</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#pakete"><i class="fa fa-check"></i><b>3.5</b> Pakete</a></li>
+<li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.6</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>4</b> Lineare statistische Modelle in R</a><ul>
+<li class="chapter" data-level="4.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-uberblick"><i class="fa fa-check"></i><b>4.1</b> Einleitung und Überblick</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="linmodel.html"><a href="linmodel.html#einfuhrung-in-die-lineare-regression"><i class="fa fa-check"></i><b>4.1.1</b> Einführung in die lineare Regression</a></li>
+<li class="chapter" data-level="4.1.2" data-path="linmodel.html"><a href="linmodel.html#einfuhrungsbeispiel"><i class="fa fa-check"></i><b>4.1.2</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="4.1.3" data-path="linmodel.html"><a href="linmodel.html#uberblick-uber-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>4.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>4.2</b> Grundlagen der einfachen linearen Regression</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="linmodel.html"><a href="linmodel.html#grundlegende-begriffe"><i class="fa fa-check"></i><b>4.2.1</b> Grundlegende Begriffe</a></li>
+<li class="chapter" data-level="4.2.2" data-path="linmodel.html"><a href="linmodel.html#schatzung-mit-der-kleinste-quadrate-methode"><i class="fa fa-check"></i><b>4.2.2</b> Schätzung mit der Kleinste-Quadrate-Methode</a></li>
+<li class="chapter" data-level="4.2.3" data-path="linmodel.html"><a href="linmodel.html#annahmen-fur-den-ols-schatzer"><i class="fa fa-check"></i><b>4.2.3</b> Annahmen für den OLS Schätzer</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="linmodel.html"><a href="linmodel.html#lin-kennzahlen"><i class="fa fa-check"></i><b>4.3</b> Kennzahlen in der linearen Regression</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="linmodel.html"><a href="linmodel.html#erklarte-varianz-und-das-r2"><i class="fa fa-check"></i><b>4.3.1</b> Erklärte Varianz und das <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="4.3.2" data-path="linmodel.html"><a href="linmodel.html#hypothesentests-und-statistische-signifikanz"><i class="fa fa-check"></i><b>4.3.2</b> Hypothesentests und statistische Signifikanz</a></li>
+<li class="chapter" data-level="4.3.3" data-path="linmodel.html"><a href="linmodel.html#konfidenzintervalle-fur-die-schatzer"><i class="fa fa-check"></i><b>4.3.3</b> Konfidenzintervalle für die Schätzer</a></li>
+<li class="chapter" data-level="4.3.4" data-path="linmodel.html"><a href="linmodel.html#zur-rolle-der-stichprobengroe"><i class="fa fa-check"></i><b>4.3.4</b> Zur Rolle der Stichprobengröße</a></li>
+<li class="chapter" data-level="4.3.5" data-path="linmodel.html"><a href="linmodel.html#residuenanalyse"><i class="fa fa-check"></i><b>4.3.5</b> Residuenanalyse</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="linmodel.html"><a href="linmodel.html#stat-ablauf"><i class="fa fa-check"></i><b>4.4</b> Zum Ablauf einer Regression</a></li>
+<li class="chapter" data-level="4.5" data-path="linmodel.html"><a href="linmodel.html#lin-multi"><i class="fa fa-check"></i><b>4.5</b> Multiple lineare Regression</a></li>
+<li class="chapter" data-level="4.6" data-path="linmodel.html"><a href="linmodel.html#anwendungsbeispiel"><i class="fa fa-check"></i><b>4.6</b> Anwendungsbeispiel</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>5</b> Datenkunde und Datenaufbereitung</a><ul>
+<li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="5.1" data-path="data.html"><a href="data.html#data-arten"><i class="fa fa-check"></i><b>5.1</b> Arten von Daten</a></li>
+<li class="chapter" data-level="5.2" data-path="data.html"><a href="data.html#data-get"><i class="fa fa-check"></i><b>5.2</b> Datenakquise</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="data.html"><a href="data.html#exkurs-1-landercodes-ubersetzen"><i class="fa fa-check"></i><b>5.2.1</b> Exkurs 1: Ländercodes übersetzen</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data.html"><a href="data.html#data-download-R"><i class="fa fa-check"></i><b>5.2.2</b> Exkurs 2: Daten direkt mit R herunterladen</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="data.html"><a href="data.html#data-read-write"><i class="fa fa-check"></i><b>5.3</b> Daten einlesen und schreiben</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="data.html"><a href="data.html#einlesen-von-datensatzen"><i class="fa fa-check"></i><b>5.3.1</b> Einlesen von Datensätzen</a></li>
+<li class="chapter" data-level="5.3.2" data-path="data.html"><a href="data.html#speichern-von-daten"><i class="fa fa-check"></i><b>5.3.2</b> Speichern von Daten</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="data.html"><a href="data.html#data-wrangling"><i class="fa fa-check"></i><b>5.4</b> Verarbeitung von Daten (‘data wrangling’)</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="data.html"><a href="data.html#das-konzept-von-tidy-data"><i class="fa fa-check"></i><b>5.4.1</b> Das Konzept von ‘tidy data’</a></li>
+<li class="chapter" data-level="5.4.2" data-path="data.html"><a href="data.html#data-long-wide"><i class="fa fa-check"></i><b>5.4.2</b> Von langen und breiten Datensätzen</a></li>
+<li class="chapter" data-level="5.4.3" data-path="data.html"><a href="data.html#data-merge"><i class="fa fa-check"></i><b>5.4.3</b> Zusammenführen von Daten</a></li>
+<li class="chapter" data-level="5.4.4" data-path="data.html"><a href="data.html#date-select"><i class="fa fa-check"></i><b>5.4.4</b> Datensätze filtern und selektieren</a></li>
+<li class="chapter" data-level="5.4.5" data-path="data.html"><a href="data.html#data-summary"><i class="fa fa-check"></i><b>5.4.5</b> Datensätze zusammenfassen</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="data.html"><a href="data.html#data-role"><i class="fa fa-check"></i><b>5.5</b> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</a></li>
+<li class="chapter" data-level="5.6" data-path="data.html"><a href="data.html#data-packages"><i class="fa fa-check"></i><b>5.6</b> Anmerkungen zu Paketen</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>6</b> Visualisierung von Daten</a><ul>
+<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#verwendete-pakete-1"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
+<li class="chapter" data-level="6.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>6.1</b> Optional: Theoretische Grundlagen</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="vis.html"><a href="vis.html#vis-base-ggplot2"><i class="fa fa-check"></i><b>6.1.1</b> <code>ggplot2</code> vs. <code>base plot</code></a></li>
+<li class="chapter" data-level="6.1.2" data-path="vis.html"><a href="vis.html#grammar"><i class="fa fa-check"></i><b>6.1.2</b> Einleitung zu Wickham’s <em>grammar of graphics</em></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="vis.html"><a href="vis.html#vis-elemente"><i class="fa fa-check"></i><b>6.2</b> Grundlegende Elemente von <code>ggplot2</code>-Grafiken</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="vis.html"><a href="vis.html#elemente-eines-ggplot"><i class="fa fa-check"></i><b>6.2.1</b> Elemente eines <code>ggplot</code></a></li>
+<li class="chapter" data-level="6.2.2" data-path="vis.html"><a href="vis.html#beispiel-workflow"><i class="fa fa-check"></i><b>6.2.2</b> Beispiel Workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="vis.html"><a href="vis.html#arten-von-datenvisualisierung"><i class="fa fa-check"></i><b>6.3</b> Arten von Datenvisualisierung</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="vis.html"><a href="vis.html#allgemeine-tipps-zum-grafikdesign"><i class="fa fa-check"></i><b>6.3.1</b> Allgemeine Tipps zum Grafikdesign</a></li>
+<li class="chapter" data-level="6.3.2" data-path="vis.html"><a href="vis.html#streu--oder-blasendiagramm"><i class="fa fa-check"></i><b>6.3.2</b> Streu- oder Blasendiagramm</a></li>
+<li class="chapter" data-level="6.3.3" data-path="vis.html"><a href="vis.html#linienchart"><i class="fa fa-check"></i><b>6.3.3</b> Linienchart</a></li>
+<li class="chapter" data-level="6.3.4" data-path="vis.html"><a href="vis.html#histogramme-und-dichteplots"><i class="fa fa-check"></i><b>6.3.4</b> Histogramme und Dichteplots</a></li>
+<li class="chapter" data-level="6.3.5" data-path="vis.html"><a href="vis.html#balkendiagramme"><i class="fa fa-check"></i><b>6.3.5</b> Balkendiagramme</a></li>
+<li class="chapter" data-level="6.3.6" data-path="vis.html"><a href="vis.html#vis-pie"><i class="fa fa-check"></i><b>6.3.6</b> Kuchendiagramme</a></li>
+<li class="chapter" data-level="6.3.7" data-path="vis.html"><a href="vis.html#vis-kinds-summary"><i class="fa fa-check"></i><b>6.3.7</b> Zusammenfassung</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="vis.html"><a href="vis.html#vis-adv"><i class="fa fa-check"></i><b>6.4</b> Beispiele aus der Praxis und fortgeschrittene Themen</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="vis.html"><a href="vis.html#regressionsgerade"><i class="fa fa-check"></i><b>6.4.1</b> Regressionsgerade</a></li>
+<li class="chapter" data-level="6.4.2" data-path="vis.html"><a href="vis.html#vis-viele-plots"><i class="fa fa-check"></i><b>6.4.2</b> Mehrere Plots in einer Abbildung</a></li>
+<li class="chapter" data-level="6.4.3" data-path="vis.html"><a href="vis.html#mehr-zu-den-skalen-expand_scale-und-skalentransformation"><i class="fa fa-check"></i><b>6.4.3</b> Mehr zu den Skalen: <code>expand_scale()</code> und Skalentransformation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="vis.html"><a href="vis.html#vis-fehler"><i class="fa fa-check"></i><b>6.5</b> Typische Fehler in der Datenvisualisierung vermeiden</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="vis.html"><a href="vis.html#clutterplots-und-ihre-tranformation-zum-beschrifteten-streudiagramm"><i class="fa fa-check"></i><b>6.5.1</b> Clutterplots und ihre Tranformation zum beschrifteten Streudiagramm</a></li>
+<li class="chapter" data-level="6.5.2" data-path="vis.html"><a href="vis.html#ein-unbalancierter-plot"><i class="fa fa-check"></i><b>6.5.2</b> Ein ‘unbalancierter’ Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="vis.html"><a href="vis.html#vis-lies"><i class="fa fa-check"></i><b>6.6</b> Lügen mit grafischer Statistik</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="vis.html"><a href="vis.html#klassiker-1-kontraintuitiver-nullpunkt"><i class="fa fa-check"></i><b>6.6.1</b> Klassiker 1: Kontraintuitiver ‘Nullpunkt’</a></li>
+<li class="chapter" data-level="6.6.2" data-path="vis.html"><a href="vis.html#klassiker-2-geschickt-gewahlter-zeitraum-und-clever-gewahlte-achsenabschnitte"><i class="fa fa-check"></i><b>6.6.2</b> Klassiker 2: Geschickt gewählter Zeitraum und clever gewählte Achsenabschnitte</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="vis.html"><a href="vis.html#vis-links"><i class="fa fa-check"></i><b>6.7</b> Links und weiterführende Literatur</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>A</b> Eine kurze Einführung in R Markdown</a><ul>
+<li class="chapter" data-level="A.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>A.1</b> Markdown vs. R-Markdown</a></li>
+<li class="chapter" data-level="A.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>A.2</b> Installation von R-Markdown</a></li>
+<li class="chapter" data-level="A.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>A.3</b> Der R-Markdown Workflow</a><ul>
+<li class="chapter" data-level="A.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>A.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
+<li class="chapter" data-level="A.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>A.3.2</b> Der Titelblock</a></li>
+<li class="chapter" data-level="A.3.3" data-path="markdown.html"><a href="markdown.html#der-textkorper"><i class="fa fa-check"></i><b>A.3.3</b> Der Textkörper</a></li>
+<li class="chapter" data-level="A.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>A.3.4</b> Kompillieren von Dokumenten</a></li>
+</ul></li>
+<li class="chapter" data-level="A.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>A.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
+<li class="chapter" data-level="A.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>A.5</b> Weitere Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="stat-stoch.html"><a href="stat-stoch.html"><i class="fa fa-check"></i><b>B</b> Wiederholung: Wahrscheinlichkeitstheorie</a><ul>
+<li class="chapter" data-level="" data-path="stat-stoch.html"><a href="stat-stoch.html#verwendete-pakete-2"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="B.1" data-path="stat-stoch.html"><a href="stat-stoch.html#einleitung-wahrscheinlichkeitstheorie-und-statistik"><i class="fa fa-check"></i><b>B.1</b> Einleitung: Wahrscheinlichkeitstheorie und Statistik</a></li>
+<li class="chapter" data-level="B.2" data-path="stat-stoch.html"><a href="stat-stoch.html#grundbegriffe-der-wahrscheinlichkeitstheorie"><i class="fa fa-check"></i><b>B.2</b> Grundbegriffe der Wahrscheinlichkeitstheorie</a></li>
+<li class="chapter" data-level="B.3" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.3</b> Diskrete Wahrscheinlichkeitsmodelle</a><ul>
+<li class="chapter" data-level="B.3.1" data-path="stat-stoch.html"><a href="stat-stoch.html#bayes-theorem-und-gesetz-der-total-wahrscheinlichkeiten"><i class="fa fa-check"></i><b>B.3.1</b> Bayes Theorem und Gesetz der total Wahrscheinlichkeiten</a></li>
+<li class="chapter" data-level="B.3.2" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-zufallsvariablen"><i class="fa fa-check"></i><b>B.3.2</b> Diskrete Zufallsvariablen</a></li>
+<li class="chapter" data-level="B.3.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-binomial-verteilung"><i class="fa fa-check"></i><b>B.3.3</b> Beispiel: die Binomial-Verteilung</a></li>
+<li class="chapter" data-level="B.3.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-poisson-verteilung"><i class="fa fa-check"></i><b>B.3.4</b> Beispiel: die Poisson-Verteilung</a></li>
+<li class="chapter" data-level="B.3.5" data-path="stat-stoch.html"><a href="stat-stoch.html#hinweise-zu-diskreten-wahrscheinlichkeitsverteilungen"><i class="fa fa-check"></i><b>B.3.5</b> Hinweise zu diskreten Wahrscheinlichkeitsverteilungen</a></li>
+</ul></li>
+<li class="chapter" data-level="B.4" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.4</b> Stetige Wahrscheinlichkeitsmodelle</a><ul>
+<li class="chapter" data-level="B.4.1" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-zv"><i class="fa fa-check"></i><b>B.4.1</b> Stetige ZV</a></li>
+<li class="chapter" data-level="B.4.2" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-uniformverteilung"><i class="fa fa-check"></i><b>B.4.2</b> Beispiel: die Uniformverteilung</a></li>
+<li class="chapter" data-level="B.4.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-normalverteilung"><i class="fa fa-check"></i><b>B.4.3</b> Beispiel: die Normalverteilung</a></li>
+<li class="chapter" data-level="B.4.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-exponentialverteilung"><i class="fa fa-check"></i><b>B.4.4</b> Beispiel: die Exponentialverteilung</a></li>
+</ul></li>
+<li class="chapter" data-level="B.5" data-path="stat-stoch.html"><a href="stat-stoch.html#zusammenfassung-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.5</b> Zusammenfassung Wahrscheinlichkeitsmodelle</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>C</b> Wiederholung: Deskriptive Statistik</a><ul>
+<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-und-datensatze"><i class="fa fa-check"></i>Verwendete Pakete und Datensätze</a></li>
+<li class="chapter" data-level="C.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>C.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
+<li class="chapter" data-level="C.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmae"><i class="fa fa-check"></i><b>C.2</b> Korrelationsmaße</a></li>
+<li class="chapter" data-level="C.3" data-path="desk-stat.html"><a href="desk-stat.html#hinweise-zur-quantitativen-und-visuellen-datenbeschreibung"><i class="fa fa-check"></i><b>C.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
+<li class="chapter" data-level="C.4" data-path="desk-stat.html"><a href="desk-stat.html#zusamenfassung"><i class="fa fa-check"></i><b>C.4</b> Zusamenfassung</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>D</b> Wiederholung: Drei Verfahren der schließenden Statistik</a><ul>
+<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-3"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="D.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschatzung"><i class="fa fa-check"></i><b>D.1</b> Punktschätzung</a></li>
+<li class="chapter" data-level="D.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>D.2</b> Hypothesentests</a></li>
+<li class="chapter" data-level="D.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>D.3</b> Berechnung von Konfidenzintervallen</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -153,17 +290,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="data" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Datenkunde und Datenaufbereitung</h1>
+<h1><span class="header-section-number">Chapter 5</span> Datenkunde und Datenaufbereitung</h1>
 <p>In diesem Kapitel geht es um den auf den ersten Blick unspannendsten Teil der Forschung: Datenaufbereitung und -management. Gleichzeitig ist es einer der wichtigsten Schritte: ohne Daten können viele Forschungsfragen nicht angemessen beantwortet werden.</p>
 <p><img src="figures/chap-data-Ablaufschema.png" style="display: block; margin: auto;" /></p>
 <p>In diesem Kaptitel liegt der Fokus auf den ersten beiden Abschnitten, der Akquise und der Aufbereitung ihrer Daten. Laut <a href="https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/">dieser Umfrage</a> verwenden Datenspezialisten regelmäßig 80% ihrer Arbeitszeit auf diese beiden Schritte. Um hier also Zeit und Nerven zu sparen ist es wichtig, sich mit den grundlegenden Arbeitsschritten und Algorithmen vertraut zu machen. Zum Glück ist R sehr gut zur reproduzierbaren Datenaufbereitung geeignet und stellt dank vieler hilfreicher Pakete eine große Hilfe in diesem wichtigen Prozess dar.</p>
 <p>Ein zentrales Anliegen dieses Abschnitts liegt darin, Ihnen Methoden zur <em>reproduzierbaren</em> und <em>transparenten</em> Datenaufbereitung an die Hand zu geben. Für eine glaubwürdige Forschungsarbeit ist es unerlässlich, dass der Weg von der Datenerhebung hin zum Forschungsergebnis, also der gesamte Prozess in der obigen Abbildung, transparent und nachvollziehbar ist. Daher muss der Datenaufbereitungsprozess gut dokumentiert werden. Dank skriptbasierter Sprachen wie R ist das im Prinzip ein Kinderspiel.</p>
-<p>Wenn Sie nömlich alle Arbeitsschritte nach der Datenerhebung in R durchführen, müssen Sie einfach nur Ihre Skripte aufheben - und schon haben Sie die beste Dokumentation, die man sich wünschen kann. Das wichtige bei diesem Prozess: Sie dürfen <strong>nie die Rohdaten selbst verändern</strong>.</p>
+<p>Wenn Sie nämlich alle Arbeitsschritte nach der Datenerhebung in R durchführen, müssen Sie einfach nur Ihre Skripte aufheben - und schon haben Sie die beste Dokumentation, die man sich wünschen kann. Das Wichtigste bei diesem Prozess: Sie dürfen <strong>nie die Rohdaten selbst verändern</strong>.</p>
 <p>Alle Änderungen an den Rohdaten müssen durch ein R Skript vorgenommen werden, und die veränderten Daten müssen unter neuem Namen gespeichert werden. Wenn Sie sich das einmal angewöhnt haben, können Sie nicht nur vollkommen transparent in Ihrer Forschung sein, sie können auch nicht aus Versehen und unwiderruflich ihre wertvollen Rohdaten zerstören.</p>
 <p>Und wenn Sie sich mit den grundlegenden Algorithmen einmal vertraut gemacht haben kann Datenaufbereitung wider Erwarten auch wirklich Spaß machen!</p>
 <p>Dieses Kapitel folgt dem typischen Arbeitsablauf eines Forschungsprojektes und beschäftigt sich mit den ersten beiden Abschnitten aus der obigen Grafik, der Daten-Akquise und der Daten-Aufbereitung, wobei letztere im Mittelpunkt stehen soll. Entsprechend ist das Kapitel folgendermaßen strukturiert:</p>
 <p>Als erstes werden wir uns einen Überblick über die verschiedenen <a href="data.html#data-arten">Arten von Daten</a> verschaffen. Danach geht es los mit der <a href="data.html#data-get">Datenakquise</a>. Hier lernen wir, wie man Daten aus häufig verwendeten Datenbanken direkt über R herunterlädt. Als nächstes werden Funktionen zum <a href="data.html#data-read-write">Lesen und Schreiben von Datensätzen</a> und typische Herausforderungen in diesem Prozess besprochen. Danach kommt ein sehr umfangreicher Block zum Thema <a href="data.html#data-wrangling">Datenaufbereitung</a>, in dem Sie lernen, wie Sie Ihre Rohdaten in ein Format überführen, das für die statistische Analyse geeignet ist. Zum Abschluss des Kapitels wird noch die <a href="data.html#data-role">Rolle des Datenmanagements für transparente Forschung</a> verdeutlicht und auf die Debatten über die Ko-Existenz <a href="data.html#data-packages">verschiedener Pakete für die Datenaufbereitung in R</a> hingewisen.</p>
-<p>Die Pakete, die im Rahmen dieses Kapitels verwendet werden sind die Folgenden:</p>
+<div id="verwendete-pakete" class="section level2 unnumbered">
+<h2>Verwendete Pakete</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(countrycode)
 <span class="kw">library</span>(here)
 <span class="kw">library</span>(WDI)
@@ -174,18 +312,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <blockquote>
 <p><strong>Disclaimer</strong>: In diesem Kapitel verwenden wir für die Arbeit mit Daten vor allem Pakete aus dem so genannten <a href="https://www.tidyverse.org/">tidyverse</a>. Ich habe mich für diese Pakete entschieden, weil es meiner Meinung nach die für R-Beginner am einfachsten zu lernenden Pakete sind und sie zu sehr einfach zu lesendem Code führen. Zudem sind sie sehr weit verbreitet. Es gibt aber auch sehr gute Alternativen und gerade für sehr große Datensätze kommen Sie nicht an dem Paket <a href="https://rdatatable.gitlab.io/data.table/">data.table</a> vorbei. Die Rolle des <code>tidyverse</code> und der Debatte um die Pakete in R wird am Ende des Kapitels beschrieben. Bis dahin verweise ich häufig auf weitere Quellen, in denen die Implementierung der Arbeitsschritte in anderen Paketen als dem <code>tidyverse</code> beschrieben wird.</p>
 </blockquote>
+</div>
 <div id="data-arten" class="section level2">
-<h2><span class="header-section-number">1.1</span> Arten von Daten</h2>
-<p>Es gibt verschiedene mehr oder weniger konsistente Klassifizierungen von Daten, die jeweils auf unterschiedliche Aspekte von Daten oder auch Variablen abziehlen.</p>
-<p>Eine sehr prominente Unterscheidung wird zwischen <strong>quantitativen</strong> und <strong>qualitativen Daten</strong> getroffen. Bei <em>quantitativen</em> Daten handelt es sich grob gesagt um <em>numerische</em> Daten, also Daten, die Sie in Zahlen ausdrücken können. ‘Größe’, ‘Preis’, ‘BIP’ oder ‘Gehalt’ sind typische Beispiele. <em>Qualitative</em> Daten werden intuitiv <em>nicht-numerisch</em> ausgedrückt. Häufig handelt es sich um text-basierte oder beschreibende Daten. In der Praxis werden Sie aber merken, dass die Grenze zwischen quantitativen und qualitativen Daten häufig deutlich schwammiger ist, als man das auf den ersten Blick glauben möchte, denn häufig werden qualitative Beschreibungen quantifiziert und dann mit typischen quantitativen Methoden analysiert. Auch werden s.g. <em>mixed methods</em>-Ansätze immer beliebter, in denen die Unterscheidung noch undeutlicher wird.</p>
-<p>Eine andere, vor allem in der Psychologie verbreitete Unterscheidung ist die zwischen <strong>manifesten</strong> und <strong>latenten Variablen</strong>. <em>Manifeste</em> Variablen sind direkt beobachtbar und ihre Bedeutung ist häufig klar. Die <em>Körpergröße</em> ist z.B. eindeutig messbar und jede*r weiß was damit gemeint ist.</p>
-<p><em>Latente</em> Variablen sind <strong>nicht</strong> direkt beobachtbar und sind häufig erklärungsbedürftig. <em>Nutzen</em> ist zum Beispiel nicht beobachtbar.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> Zudem muss in der Regel erst einmal deutlich gemacht werden, was mit dem Begriff genau gemeint ist.</p>
-<p>Ein großer Teil von Forschungsarbeit ist die <strong>Operationalisierung</strong> einer latenten Variable durch eine oder mehrere manifeste Variablen. Wir sprechen dann davon, dass eine oder mehrere manifeste Variablen als Indikator für eine latente Variable verwendet werden. <em>Wirtschaftliche Entwicklung</em> z.B. ist als solche nicht direkt beobachtbar und wird häufig durch das BIP operationalisiert<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> Der <em>Human Development Index</em> ist der Versuch, wirtschaftliche Entwicklung durch mehr als eine manifeste Variable zu operationalisieren, also durch beobachtbare Variablen messbar zu machen. Eine solche Operationalisierung ist natürlich immer kritisch zu hinterfragen und ist nicht selten ein Einfallstor für subjektive und manchmal auch manipulative Wertentscheidungen.</p>
-<p>In der Praxis sehr relevant ist zudem die Unterscheidung der <strong>vier Skalenniveaus von Daten</strong>, da die Art der Skala bestimmt, welche Methode angemessen ist um die Daten zu analysieren. Hier wird zwischen <strong>nominal</strong>, <strong>ordinal</strong>, <strong>intervall</strong> und <strong>verhältnis</strong> skalierten Daten unterschieden, wobei intervall- und verhältnis-skalierte Daten häufig unter dem Label <strong>kardinal</strong>-skalierte Daten zusammen gefasst werden:</p>
+<h2><span class="header-section-number">5.1</span> Arten von Daten</h2>
+<p>Es gibt verschiedene mehr oder weniger konsistente Klassifizierungen von Daten, die jeweils auf unterschiedliche Aspekte von Daten oder auch Variablen abzielen.</p>
+<p>Eine sehr prominente Unterscheidung wird zwischen <strong>quantitativen</strong> und <strong>qualitativen Daten</strong> getroffen. Bei <em>quantitativen</em> Daten handelt es sich grob gesagt um <em>numerische</em> Daten, also Daten, die Sie in Zahlen ausdrücken können. ‘Größe’, ‘Preis’, ‘BIP’ oder ‘Gehalt’ sind typische Beispiele. <em>Qualitative</em> Daten werden intuitiv <em>nicht-numerisch</em> ausgedrückt. Häufig handelt es sich um text-basierte oder beschreibende Daten. In der Praxis werden Sie aber merken, dass die Grenze zwischen quantitativen und qualitativen Daten häufig deutlich schwammiger ist, als man das auf den ersten Blick glauben möchte, denn häufig werden qualitative Beschreibungen quantifiziert und dann mit typischen quantitativen Methoden analysiert. Auch werden s.g. <em>mixed methods</em>-Ansätze immer beliebter.</p>
+<p>Vor allem in der Psychologie unterscheidet man zwischen <strong>manifesten</strong> und <strong>latenten Variablen</strong>. <em>Manifeste</em> Variablen sind direkt beobachtbar und ihre Bedeutung ist häufig klar. Die <em>Körpergröße</em> ist z.B. eindeutig messbar und jede*r weiß was damit gemeint ist.</p>
+<p><em>Latente</em> Variablen sind <strong>nicht</strong> direkt beobachtbar und sind häufig erklärungsbedürftig. <em>Nutzen</em> ist zum Beispiel nicht beobachtbar.<a href="#fn22" class="footnoteRef" id="fnref22"><sup>22</sup></a> Zudem muss in der Regel erst einmal deutlich gemacht werden, was mit dem Begriff genau gemeint ist.</p>
+<p>Ein großer Teil von Forschungsarbeit ist die <strong>Operationalisierung</strong> einer latenten Variable durch eine oder mehrere manifeste Variablen. Wir sprechen dann davon, dass eine oder mehrere manifeste Variablen als Indikator für eine latente Variable verwendet werden. <em>Wirtschaftliche Entwicklung</em> z.B. ist als solche nicht direkt beobachtbar und wird häufig durch das BIP operationalisiert.<a href="#fn23" class="footnoteRef" id="fnref23"><sup>23</sup></a> Der <em>Human Development Index</em> ist der Versuch, wirtschaftliche Entwicklung durch mehr als eine manifeste Variable zu operationalisieren, also durch beobachtbare Variablen messbar zu machen. Eine solche Operationalisierung ist natürlich immer kritisch zu hinterfragen und ist nicht selten ein Einfallstor für subjektive und manchmal auch manipulative Wertentscheidungen.</p>
+<p>In der Praxis sehr relevant ist zudem die Unterscheidung der <strong>vier Skalenniveaus von Daten</strong>, da die Art der Skala bestimmt, welche Methode angemessen ist um die Daten zu analysieren. Hier wird zwischen <strong>nominal</strong>, <strong>ordinal</strong>, <strong>intervall</strong> und <strong>verhältnis</strong> skalierten Daten unterschieden, wobei intervall- und verhältnisskalierte Daten häufig unter dem Label <strong>kardinal</strong>-skalierte Daten zusammen gefasst werden:</p>
 <p><img src="figures/data-data-classification.png" style="display: block; margin: auto;" /></p>
-<p>Wir sprechen von <strong>nominalskalierten</strong> Daten wenn wir den einzelnen Ausprägungen der Daten zwar bestimmte Werte oder eindeutige Beschreibungen zuordnen können, diese aber keine natürliche Rangfolge aufweisen. So können wir einer Person eine Haarfarbe zuordnen, allerdings die verschiedenen Haarfarben in keine natürliche Rangfolge einordnen. Im Effekt können wir die einzelnen Ausprägungen zwar zählen, aber sonst keine komplexeren mathematischen Operationen ausführen.</p>
+<p>Wir sprechen von <strong>nominalskalierten</strong> Daten wenn wir den einzelnen Ausprägungen der Daten zwar bestimmte Werte oder eindeutige Beschreibungen zuordnen können, diese aber keine natürliche Rangfolge aufweisen. So können wir einer Person eine Haarfarbe zuordnen, allerdings die verschiedenen Haarfarben in keine natürliche Rangfolge einordnen. Genausowenig können wir z.B. Tiere in die Kategorien “Hund”, “Katze” und “Sonstiges” einordnen, aber eine natürliche Rangfolge dieser Kategorien gibt es nicht. Als Konsequenz können wir die einzelnen Ausprägungen zwar zählen, aber sonst keine komplexeren mathematischen Operationen - wie z.B. die Berechnung eines Mittelwerts - ausführen.</p>
 <p>In R werden solche Daten in der Regel als <code>character</code> oder als <code>factor</code> beschrieben. Die einzelnen Ausprägungen eines Faktors können mit der Funktion <code>table</code> gezählt werden. Der häufigste wird dabei ‘Modus’ genannt:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beobachtete_haarfarben &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Brau&quot;</span>, <span class="st">&quot;Schwarz&quot;</span>, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beobachtete_haarfarben &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Braun&quot;</span>, <span class="st">&quot;Schwarz&quot;</span>, 
                             <span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Braun&quot;</span>, <span class="st">&quot;Braun&quot;</span>)
 <span class="kw">typeof</span>(beobachtete_haarfarben)</code></pre></div>
 <pre><code>#&gt; [1] &quot;character&quot;</code></pre>
@@ -194,10 +333,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <pre><code>#&gt; [1] &quot;integer&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(beobachtete_haarfarben)</code></pre></div>
 <pre><code>#&gt; beobachtete_haarfarben
-#&gt;   Blond    Brau   Braun Schwarz 
-#&gt;       2       1       2       1</code></pre>
+#&gt;   Blond   Braun Schwarz 
+#&gt;       2       3       1</code></pre>
 <p>Bei der Funktion <code>as.factor()</code> können Sie die Ausprägungen auch selbst spezifizieren. Das ist vor allem dann wichtig, wenn eine Ausprägung nicht vorkommt:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beobachtete_haarfarben &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Brau&quot;</span>, <span class="st">&quot;Schwarz&quot;</span>, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beobachtete_haarfarben &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Braun&quot;</span>, <span class="st">&quot;Schwarz&quot;</span>, 
                             <span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Braun&quot;</span>, <span class="st">&quot;Braun&quot;</span>)
 beobachtete_haarfarben &lt;-<span class="st"> </span><span class="kw">factor</span>(beobachtete_haarfarben, 
                                  <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Braun&quot;</span>, 
@@ -205,7 +344,7 @@ beobachtete_haarfarben &lt;-<span class="st"> </span><span class="kw">factor</sp
 <span class="kw">table</span>(beobachtete_haarfarben)</code></pre></div>
 <pre><code>#&gt; beobachtete_haarfarben
 #&gt;   Blond   Braun Schwarz  Glatze 
-#&gt;       2       2       1       0</code></pre>
+#&gt;       2       3       1       0</code></pre>
 <p>Bei <strong>ordinalskalierten</strong> Daten können die einzelnen Ausprägungen in eine klare Rangfolge gebracht werden, aber die Abstände sind nicht sinnvoll interpretiertbar. Das klassische Beispiel sind Schulnoten: eine ‘1’ ist besser als eine ‘2’, aber weder ist eine 1 ‘doppelt so gut’ wie eine 2, noch sind zwei einser genauso gut wie eine 2.</p>
 <p>Ordinalskalierte Daten werden in R am besten auch als <code>factor</code> behandelt, allerdings müssen Sie die Reihenfolge explizit spezifizieren:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">noten &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="kw">rep</span>(<span class="dv">3</span>, <span class="dv">6</span>), <span class="kw">rep</span>(<span class="dv">4</span>, <span class="dv">2</span>), <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">3</span>))
@@ -215,11 +354,7 @@ noten</code></pre></div>
 noten</code></pre></div>
 <pre><code>#&gt;  [1] 1 1 1 2 2 2 2 3 3 3 3 3 3 4 4 5 5 5
 #&gt; Levels: 1 &lt; 2 &lt; 3 &lt; 4 &lt; 5 &lt; 6</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(noten)</code></pre></div>
-<pre><code>#&gt; noten
-#&gt; 1 2 3 4 5 6 
-#&gt; 3 4 6 2 3 0</code></pre>
-<p>Um bei bestehenden Faktoren die Reihenfolge zu spezifizieren verwenden Sie die Funktion <code>ordered()</code>:</p>
+<p>Wir erkennen, dass der Faktor geordnet ist daran, adss bei der Auflistung der Levels das Symbol <code>&lt;</code> verwendet wird um die Reihenfolge zu illutrieren. Um bei bestehenden Faktoren die Reihenfolge zu spezifizieren, verwenden Sie die Funktion <code>ordered()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">noten &lt;-<span class="st"> </span><span class="kw">factor</span>(noten, <span class="dt">levels =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">ordered =</span> F)
 noten</code></pre></div>
 <pre><code>#&gt;  [1] 1 1 1 2 2 2 2 3 3 3 3 3 3 4 4 5 5 5
@@ -228,17 +363,17 @@ noten</code></pre></div>
 noten</code></pre></div>
 <pre><code>#&gt;  [1] 1 1 1 2 2 2 2 3 3 3 3 3 3 4 4 5 5 5
 #&gt; Levels: 1 &lt; 2 &lt; 3 &lt; 4 &lt; 5 &lt; 6</code></pre>
-<p>Da wir ordinal-skalierte Daten ordnen können, ist es hier z.B. auch möglich empirische Quantile zu berechnen. Allerdings müssen wir bei der Funktion noch <code>type=1</code> oder <code>type=3</code> ergänzen, um einen Quantilsalgorithmus zu wählen, der auch mit Faktoren funktioniert:</p>
+<p>Da wir ordinal-skalierte Daten ordnen können, ist es hier z.B. auch möglich empirische Quantile zu berechnen. Allerdings müssen wir bei der Funktion noch das Argument <code>type=1</code> oder <code>type=3</code><a href="#fn24" class="footnoteRef" id="fnref24"><sup>24</sup></a> ergänzen, um einen Quantilsalgorithmus zu wählen, der auch mit Faktoren funktioniert:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(noten, <span class="dt">type =</span> <span class="dv">1</span>)</code></pre></div>
 <pre><code>#&gt;   0%  25%  50%  75% 100% 
 #&gt;    1    2    3    4    5 
 #&gt; Levels: 1 &lt; 2 &lt; 3 &lt; 4 &lt; 5 &lt; 6</code></pre>
-<p>Bei <strong>intervall-skalierten</strong> Daten können wir die Ausprägungen nicht nur in eine Rangfolge bringen, sondern auch die Abstände zwischen den Ausprägungen sinnvoll interpretieren. Während es bei Noten also keinen Sinn macht mathematische Operationen wir ‘Addition’ oder ‘Substraktion’ zu verwenden (und die Abstände entsprechend nicht konsistent zu interpretieren sind), ist dies bei intervallskalierten Daten wie z.B. Jahreszahlen möglich: zwischen 1999 und 2005 liegt der gleiche Abstand wie zwischen 2009 und 2015. Entsprechend werden intervall-skalierte Daten in in der Regel als <code>integer</code> oder <code>double</code> gespeichert und wir können Kennzahlen wie den Mittelwert oder die Varianz bereichnen.</p>
-<p>Allerdings verfügen intervall-skalierte Daten über keinen absoluten Nullpunkt, sodass Divisionen und Multiplikationen keinen Sinn machen. Das ist bei <strong>verhältnis-skalierten</strong> Daten wie Gewicht, Preis oder Alter anders. Das kann man am besten an folgendem Beispiel illustrieren:</p>
+<p>Bei <strong>intervallskalierten</strong> Daten können wir die Ausprägungen nicht nur in eine Rangfolge bringen, sondern auch die Abstände zwischen den Ausprägungen sinnvoll interpretieren. Während es bei Noten also keinen Sinn macht mathematische Operationen wir ‘Addition’ oder ‘Substraktion’ zu verwenden (und die Abstände entsprechend nicht konsistent zu interpretieren sind), ist dies bei intervallskalierten Daten wie z.B. Jahreszahlen möglich: zwischen 1999 und 2005 liegt der gleiche Abstand wie zwischen 2009 und 2015. Entsprechend werden intervall-skalierte Daten in in der Regel als <code>integer</code> oder <code>double</code> gespeichert und wir können Kennzahlen wie den Mittelwert oder die Varianz bereichnen.</p>
+<p>Allerdings verfügen intervall-skalierte Daten über keinen absoluten Nullpunkt, sodass Divisionen und Multiplikationen keinen Sinn machen. Das ist bei <strong>verhältnisskalierten</strong> Daten wie Gewicht, Preis oder Alter anders. Das kann man am besten an folgendem Beispiel illustrieren:</p>
 <blockquote>
-<p><strong>Beispiel: Inverall- vs. verhältnis-skalierte Temperaturen</strong> Wenn wir die Temperatur in Grad Celsius messen haben wir eine Skala ohne absoluten Nullpunkt. Entsprechend können wir nicht sagen, dass 20 Grad Celsius doppelt so warm sind wie 40 Grad Celsius, nur das der Abstand der Gleiche ist wie zwischen 10 und 30 Grad Celsius. Das wird deutlich, wenn wir uns fragen ob 10 Grad Celsius doppelt so warm wären wie -10 Grad Celsius. Eine Lösung ist die Temperatur in Kelvin anzugeben, denn für Kelvin ist ein absoluter Nullpunkt definiert. Entsprechend können wir auch sagen, dass 20 Kelvin halb so warm ist wie 40 Kelvin - wobei beides ziemlich kalt wäre.</p>
+<p><strong>Beispiel: Inverall- vs. verhältnisskalierte Temperaturen</strong> Wenn wir die Temperatur in Grad Celsius messen haben wir eine Skala ohne absoluten Nullpunkt. Entsprechend können wir nicht sagen, dass 20 Grad Celsius doppelt so warm sind wie 40 Grad Celsius, nur das der Abstand der Gleiche ist wie zwischen 10 und 30 Grad Celsius. Das wird deutlich, wenn wir uns fragen ob 10 Grad Celsius doppelt so warm wären wie -10 Grad Celsius. Eine Lösung ist die Temperatur in Kelvin anzugeben, denn für Kelvin ist ein absoluter Nullpunkt definiert. Entsprechend können wir auch sagen, dass 20 Kelvin halb so warm ist wie 40 Kelvin - wobei beides ziemlich kalt wäre.</p>
 </blockquote>
-<p>Entsprechend machen bestimmte Korrelationsmaße, insbesondere der prominente Pearson-Korrelationskoeffizient nur für verhältnis-skalierte Daten Sinn. Da sowohl intervall- als auch verhältnis-skalierte Daten als <code>double</code> oder ìnteger` repräsentiert werden ist Vorsicht geboten: wir müssen immer selbst entscheiden welche Maße wir für die Daten berechnen und R gibt uns keinen Fehler aus, wenn wir für zwei intervall-skalierte Variablen den Pearson-Korrelationskoeffizienten berechnen wollen.</p>
+<p>Da sowohl intervall- als auch verhältnis-skalierte Daten als <code>double</code> oder <code>integer</code> repräsentiert werden, ist Vorsicht geboten: wir müssen immer selbst entscheiden welche Maße wir für die Daten berechnen und R gibt uns keinen Fehler aus, wenn wir für zwei intervall-skalierte Variablen ein Verhältnis berechnen wollen.</p>
 <p>Die folgende Tabelle fasst das noch einmal zusammen:</p>
 <table style="width:100%;">
 <colgroup>
@@ -340,21 +475,21 @@ noten</code></pre></div>
 <td><strong>Pearson-Korrelation</strong></td>
 <td align="center"><span class="math inline">\(\times\)</span></td>
 <td align="center"><span class="math inline">\(\times\)</span></td>
-<td align="center"><span class="math inline">\(\times\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
 <td align="center"><span class="math inline">\(\checkmark\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>Wahrscheinlich kennen Sie auch noch die Unterscheidung zwischen <strong>diskreten</strong> und <strong>stetigen</strong> Werten. Diese Kategorisierungen ist jedoch nicht vollkommen konsistent mit den Skalenniveaus: zwar sind kardinale Daten in der Tendenz eher stetig und nominale, bzw. ordinale Daten eher diskret, allerdings gibt es auch diskrete kardinale Daten (aber keine stetigen nominalen Daten).</p>
+<p>Wahrscheinlich kennen Sie auch noch die Unterscheidung zwischen <strong>diskreten</strong> und <strong>stetigen</strong> Werten. Diese Kategorisierungen ist nicht vollkommen konsistent mit den Skalenniveaus: zwar sind kardinale Daten in der Tendenz eher stetig und nominale, bzw. ordinale Daten eher diskret, allerdings gibt es auch diskrete kardinale Daten (aber keine stetigen nominalen Daten).</p>
 <blockquote>
-<p><strong>Hinweis zum Angeben:</strong> Aus der Skalierung oben wird ersichtlich, dass man mit ordinal-skalierten Daten keine Durchschnitte bilden darf - man kann sie ja noch nicht einmla addieren. Ein Bereich wo dieser fundamentalen Regel ständig Gewalt angetan wird ist die Schule: wer hat noch nicht einmal von einer Durchschnittsnote gehört? Zum Glück gehört das bei uns an der Universität der Vergangenheit an…</p>
+<p><strong>Hinweis zum Angeben:</strong> Aus der Skalierung oben wird ersichtlich, dass man mit ordinal-skalierten Daten keine Durchschnitte bilden darf - man kann sie ja noch nicht einmal addieren. Ein Bereich wo dieser fundamentalen Regel ständig Gewalt angetan wird ist die Schule: wer hat noch nie von einer Durchschnittsnote gehört? Zum Glück gehört das bei uns an der Universität der Vergangenheit an…</p>
 </blockquote>
 </div>
 <div id="data-get" class="section level2">
-<h2><span class="header-section-number">1.2</span> Datenakquise</h2>
-<p>Der erste Schritt in der Arbeit mit Daten ist immer die Akquise der Daten. Je nach verwendeter Methode und Fragestellung ist das mehr oder weniger Arbeit. Im einfachsten Fall sind die von Ihnen benötigten Daten bereits erhoben und über das Internet frei zugänglich. Das trifft z.B. auf viele makroökonomische Indikatoren, wie das BIP, den Gini oder die Arbeitslosigkeit zu. In diesem Falle müssen Sie einfach nur noch die passende Quelle finden,<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> laden die Daten herunter und machen beim nächsten Schritt zum <a href="data.html#data-read-write">Einlesen von Datensätzen</a> weiter, oder überlegen ob sie die Daten sogar <a href="data.html#data-download-R">direkt mit R herunterladen</a> wollen.</p>
+<h2><span class="header-section-number">5.2</span> Datenakquise</h2>
+<p>Der erste Schritt in der Arbeit mit Daten ist immer die Akquise der Daten. Je nach verwendeter Methode und Fragestellung ist das mehr oder weniger Arbeit. Im einfachsten Fall sind die von Ihnen benötigten Daten bereits erhoben und über das Internet frei zugänglich. Das trifft z.B. auf viele makroökonomische Indikatoren, wie das BIP, den Gini oder die Arbeitslosigkeit zu. In diesem Falle müssen Sie einfach nur noch die passende Quelle finden,<a href="#fn25" class="footnoteRef" id="fnref25"><sup>25</sup></a> laden die Daten herunter und machen beim nächsten Schritt zum <a href="data.html#data-read-write">Einlesen von Datensätzen</a> weiter, oder überlegen ob sie die Daten sogar <a href="data.html#data-download-R">direkt mit R herunterladen</a> wollen.</p>
 <div id="exkurs-1-landercodes-ubersetzen" class="section level3">
-<h3><span class="header-section-number">1.2.1</span> Exkurs 1: Ländercodes übersetzen</h3>
+<h3><span class="header-section-number">5.2.1</span> Exkurs 1: Ländercodes übersetzen</h3>
 <p>Gerade wenn Sie mit makroökonomischen Daten arbeiten werden Sie häufig in Kontakt mit Ländercodes kommen. In vielen Danksätzen werden Länder unterschiedlich abgekürzt. So mögen manche Datensätze zwar ausgeschriebene Ländernamen wie “Deutschland” verwenden, andere verwenden aber eher den <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">iso3c-Code</a> “DEU”, während wieder andere den <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">iso2c-Code</a> “DE” verwenden. Wenn Sie sich dann Daten vom IWF herunterladen wundern Sie sich vielleicht, dass Deutschland dort mit der Zahl <code>134</code> kodiert wird.</p>
 <p>Zum Glück gibt es ein R-Paket, das die Übersetzung der Codes kinderleicht macht: <code>countrycode</code> <span class="citation">(Arel-Bundock, Enevoldsen, and Yetman <a href="#ref-R-countrycode">2018</a>)</span>. Es stellt Ihnen unter anderem die Funktion <code>countrycode()</code> zur Verfügung, mit der Sie die Codes einfach übersetzen können. Die Funktion benötigt die folgenden Argumente: <code>sourcevar</code> akzeptiert einen <code>character</code> oder einen Vektor mit den zu übersetzenden Ländercodes. <code>origin</code> gibt die Form dieser Codes an und <code>destination</code> spezifiziert den Code in den Sie die <code>sourcevar</code> übersetzen wollen. Die Abkürzungen finden Sie in der Hilfefunkion von <code>countrycode()</code>.</p>
 <p>Nehmen wir einmal an, wir möchten die <code>iso2c</code>-Codes für Frankreich und die Schweiz herausfinden. Das geht folgendermaßen:</p>
@@ -380,12 +515,12 @@ noten</code></pre></div>
 <p>Das kann manchmal zu Problemen beim Zusammenführen von Datensätzen führen, da R nicht von sich aus weiß, dass ‘Czechia’ und ‘Czech Republik’ das gleiche Land meinen. Da die Ländercodes immer eindeutig sind empfehle ich daher immer mit den Kürzeln zu arbeiten und beim ersten Übersetzen immer besondern vorsichtig zu sein.</p>
 </div>
 <div id="data-download-R" class="section level3">
-<h3><span class="header-section-number">1.2.2</span> Exkurs 2: Daten direkt mit R herunterladen</h3>
-<p>Manchmal können Sie sich viel Arbeit sparen indem Sie die Daten direkt in R über eine so genannte <a href="https://de.wikipedia.org/wiki/Programmierschnittstelle">API</a> herunterladen. Das bedeutet, dass Sie über R einen direkten Zugang zum Server mit den Daten herstellen und die Daten direkt in R einladen. Das hat den Vorteil, dass die Daten in der Regel bereits in einem gut weiterzuverarbeitenden Zustand sind und dass aus Ihrem Code unmittelbar ersichtlich wird wo Ihre Rohdaten herkommen.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a></p>
-<p>Es lohnt sich daher, gerade wenn Sie aus einer Quelle mehrere Daten beziehen wollen, nachzuschauen ob ein R Paket oder eine besondere API verfügbar ist. Im folgenden möchte das Vorgehen mit dem Paket <a href="https://github.com/vincentarelbundock/WDI">WDI</a> <span class="citation">(Arel-Bundock <a href="#ref-R-WDI">2019</a>)</span>, welches Ihnen Zugriff auf die <a href="https://data.worldbank.org/">Weltbankdaten</a> ermöglicht, illustrieren.</p>
+<h3><span class="header-section-number">5.2.2</span> Exkurs 2: Daten direkt mit R herunterladen</h3>
+<p>Manchmal können Sie sich viel Arbeit sparen indem Sie die Daten direkt in R über eine so genannte <a href="https://de.wikipedia.org/wiki/Programmierschnittstelle">API</a> herunterladen. Das bedeutet, dass Sie über R einen direkten Zugang zum Server mit den Daten herstellen und die Daten direkt in R einladen. Das hat den Vorteil, dass die Daten in der Regel bereits in einem gut weiterzuverarbeitenden Zustand sind und dass aus Ihrem Code unmittelbar ersichtlich wird wo Ihre Rohdaten herkommen.<a href="#fn26" class="footnoteRef" id="fnref26"><sup>26</sup></a></p>
+<p>Es lohnt sich daher, gerade wenn Sie aus einer Quelle mehrere Daten beziehen wollen, nachzuschauen ob ein R Paket oder eine besondere API verfügbar ist. Im Folgenden möchte das Vorgehen mit dem Paket <a href="https://github.com/vincentarelbundock/WDI">WDI</a> <span class="citation">(Arel-Bundock <a href="#ref-R-WDI">2019</a>)</span>, welches Ihnen Zugriff auf die <a href="https://data.worldbank.org/">Weltbankdaten</a> ermöglicht, illustrieren.</p>
 <p>Das Paket <code>WDI</code> stellt Funktionen sowohl zum Suchen als auch zum direkten Download von Daten aus der Datenbank der Weltbank zur Verfügung. Diese Datenbank ist extrem nützlich, weil sie makroökonomische Indikatoren für die ganze Welt aus verschiedenen Quellen bündelt.</p>
 <p>Als erstes müssen Sie den Code des von Ihnen gewünschten Indikators herausfinden. Dazu gehen Sie am besten auf die <a href="https://data.worldbank.org/">Startseite</a> der Weltbankdatenbank und suchen dort nach den Indikatoren ihrer Wahl. Nehmen wir einmal an, Sie wollen Daten zum Export und zur Arbeitslosigkeit für Deutschland und Österreich für die Jahre 2012-2014 haben.</p>
-<p>Sie suchen also nach den Indikatoren und lesen den Code aus der URL des Indikators ab:<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a></p>
+<p>Sie suchen also nach den Indikatoren und lesen den Code aus der URL des Indikators ab:<a href="#fn27" class="footnoteRef" id="fnref27"><sup>27</sup></a></p>
 <p><img src="figures/chap-data-world-bank.png" style="display: block; margin: auto;" /></p>
 <p>Über die Weltbankseite finden Sie heraus, dass die beiden von Ihnen gesuchten Indikatoren mit <code>NE.EXP.GNFS.ZS</code> und <code>SL.UEM.TOTL.ZS</code> kodiert sind Nun verwenden Sie die Funktion <code>WDI::WDI()</code> um direkt auf die Daten zuzugreifen. Die Funktion benötigt dabei die folgenden Argumente: <code>country</code> verlangt nach einem Vektor mit Länderkürzeln. Der <code>countrycode</code>-Code für die von der Weltbank geforderten Kürzel ist <code>wb</code> und es ist entsprechend einfach diesen Vektor zu erstellen. Das zweite relevante Argument ist <code>indicator</code> und benötigt einen Vektor der gewünschten Indikatoren. Über die Argumente <code>start</code> und <code>stop</code> geben Sie das erste und letzte gewünschte Beobachtungsjahr an. Die weiteren Argumente sind nicht von unmittelbarem Interesse.</p>
 <p>Nun können Sie die Funktion <code>WDI::WDI()</code> folgendermaßen verwenden um Export- und Arbeitslosendaten für Deutschland und Österreich zwischen 2012 und 2014 zu bekommen:</p>
@@ -413,13 +548,13 @@ daten &lt;-<span class="st"> </span>WDI<span class="op">::</span><span class="kw
 </div>
 </div>
 <div id="data-read-write" class="section level2">
-<h2><span class="header-section-number">1.3</span> Daten einlesen und schreiben</h2>
+<h2><span class="header-section-number">5.3</span> Daten einlesen und schreiben</h2>
 <div id="einlesen-von-datensatzen" class="section level3">
-<h3><span class="header-section-number">1.3.1</span> Einlesen von Datensätzen</h3>
+<h3><span class="header-section-number">5.3.1</span> Einlesen von Datensätzen</h3>
 <p>Wenige Arbeitsschritte können so frustrierende sein wie das Einlesen von Daten. Sie können sich gar nicht vorstellen was hier alles schiefgehen kann! Aber kein Grund zur übertriebenen Sorge: wir können viel Frustration vermeiden wenn wir am Anfang unserer Karriere ausreichend Zeit in die absoluten Grundlagen von Einlesefunktionen investieren. Also, auch wenn die nächsten Zeilen etwas trocken wirken: sie werden Ihnen später viel Zeit ersparen!</p>
-<p>Das am weiteseten verbreitete Datenformat ist csv. ‘csv’ steht für ‘comma separated values’ und diese Dateien sind einfache Textdateien, in denen Spalten mit bestimmten Symbolen, in der Regel einem Komma, getrennt sind. Aufgrund dieser Einfachheit sind diese Dateien auf allen Plattformen und quasi von allen Programmen ohne Probleme lesbar.</p>
+<p>Das am weitesten verbreitete Dateiformat ist csv. ‘csv’ steht für ‘comma separated values’ und diese Dateien sind einfache Textdateien, in denen Spalten mit bestimmten Symbolen, in der Regel einem Komma, getrennt sind. Aufgrund dieser Einfachheit sind diese Dateien auf allen Plattformen und quasi von allen Programmen ohne Probleme lesbar.</p>
 <p>In R gibt es verschiedene Möglichkeiten csv-Dateien einzulesen. Die mit Abstand beste Option ist dabei die Funktion <code>fread()</code> aus dem Paket <code>data.table</code>, da sie nicht nur sehr flexibel spezifiziert werden kann, sondern auch deutlich schneller als andere Funktionen arbeitet.</p>
-<p>Wir gehen im folgenden davon aus, dass wir die Datei <code>data/tidy/export_daten.csv</code> einlesen wollen. Die Datei sieht im Rohformat folgendermaßen aus:</p>
+<p>Wir gehen im Folgenden davon aus, dass wir die Datei <code>data/tidy/export_daten.csv</code> einlesen wollen. Die Datei sieht im Rohformat folgendermaßen aus:</p>
 <pre><code>iso2c,year,Exporte
 AT,2012,53.97
 AT,2013,53.44
@@ -432,10 +567,10 @@ daten</code></pre></div>
 #&gt; 1:    AT 2012   53.97
 #&gt; 2:    AT 2013   53.44
 #&gt; 3:    AT 2014   53.38</code></pre>
-<p>Vielleicht fragen Sie sich wie <code>fread()</code> die Spalten bezüglich ihres <a href="#basics-types-vectors">Datentyps</a> interpretiert hat? Das können wir folgendermaßen überprüfen:</p>
+<p>Vielleicht fragen Sie sich wie <code>fread()</code> die Spalten bezüglich ihres <a href="basics.html#basics-types-vectors">Datentyps</a> interpretiert hat? Das können wir folgendermaßen überprüfen:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(daten<span class="op">$</span>year)</code></pre></div>
 <pre><code>#&gt; [1] &quot;integer&quot;</code></pre>
-<p>In der Regel funktioniert die automatische Typerkennung von <code>fread()</code> sehr gut. Ich empfehle dennoch die Typen immer manuell zu spezifizieren, aus folgenden Gründen: (1) Sie merken leichter wenn es mit einer Spalte ein Problem gibt, z.B. wenn in einer Spalte, die ausschließlich aus Zahlen besteht ein Wort vorkommt. Wenn Sie diese Spalte nicht manuell als <code>double</code> spezifizieren würden würde <code>fread()</code> sie einfach still und heimlich als <code>character</code> verstehen und Sie wundern sich später, warum Sie für die Spalte keinen Durchschnitt berechnen können; (2) ihr Code wird leichter lesbar und (3) der Lesevorgang wird signifikant beschleunigt.</p>
+<p>In der Regel funktioniert die automatische Typerkennung von <code>fread()</code> sehr gut. Ich empfehle dennoch die Typen immer manuell zu spezifizieren, aus folgenden Gründen: (1) Sie merken leichter wenn es mit einer Spalte ein Problem gibt, z.B. wenn in einer Spalte, die ausschließlich aus Zahlen besteht ein Wort vorkommt. Wenn Sie diese Spalte nicht manuell als <code>double</code> spezifizieren würden, würde <code>fread()</code> sie einfach still und heimlich als <code>character</code> verstehen und Sie wundern sich später, warum Sie für die Spalte keinen Durchschnitt berechnen können; (2) Ihr Code wird leichter lesbar und (3) der Lesevorgang wird deutlich beschleunigt.</p>
 <p>Sie können die Spaltentypen manuell über das Argument <code>colClasses</code> einstellen, indem Sie einfach einen Vektor mit den Datentypen angeben:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.csv&quot;</span>)
 daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad, 
@@ -450,7 +585,7 @@ daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad,
 daten</code></pre></div>
 <pre><code>#&gt;    iso2c year Exporte
 #&gt; 1:    AT 2012   53.97</code></pre>
-<p>Manchmal möchten Sie auch nur eine bestimmte Auswahl an Spalten einlesen. Auch das kann bei großen Datensätzen viel Zeit sparen. Wenn wir oben nur das Jahr und die Anzahl der Exporte haben spezifizieren wir das über das Argument ``:</p>
+<p>Manchmal möchten Sie auch nur eine bestimmte Auswahl an Spalten einlesen. Auch das kann bei großen Datensätzen viel Zeit sparen. Wenn wir oben nur das Jahr und die Anzahl der Exporte haben spezifizieren wir das über das Argument <code>select</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.csv&quot;</span>)
 daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad, 
                <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;character&quot;</span>, <span class="st">&quot;double&quot;</span>, <span class="st">&quot;double&quot;</span>),
@@ -464,7 +599,7 @@ daten</code></pre></div>
 AT;2012;53,97
 AT;2013;53,44
 AT;2014;53,38</code></pre>
-<p>Zum Glück können wir das Spaltentrennzeichen über das Argument <code>sep</code> und das Kommatrennzeichen über das Argument <code>dec</code> manuell spezifizieren:<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a></p>
+<p>Zum Glück können wir das Spaltentrennzeichen über das Argument <code>sep</code> und das Kommatrennzeichen über das Argument <code>dec</code> manuell spezifizieren:<a href="#fn28" class="footnoteRef" id="fnref28"><sup>28</sup></a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten_dt.csv&quot;</span>)
 daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad, 
                <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;character&quot;</span>, <span class="st">&quot;double&quot;</span>, <span class="st">&quot;double&quot;</span>), 
@@ -476,11 +611,11 @@ daten</code></pre></div>
 #&gt; 1:    AT 2012   53.97
 #&gt; 2:    AT 2013   53.44
 #&gt; 3:    AT 2014   53.38</code></pre>
-<p><code>fread()</code> verfügt noch über viele weitere Spezifizierungsmöglichkeiten, die Sie sich am besten am konkreten Anwendungsfall vertraut machen. Auch ein Blick in die Hilfeseite ist recht illustrativ. Für die meisten Anwendungsfälle sind sie jetzt aber gut aufgestellt.</p>
+<p><code>fread()</code> verfügt noch über viele weitere Spezifizierungsmöglichkeiten, die Sie sich am besten am konkreten Anwendungsfall vertraut machen. Auch ein Blick in die Hilfeseite ist recht illustrativ. Für die meisten Anwendungsfälle sind Sie jetzt aber gut aufgestellt.</p>
 <blockquote>
-<p><strong>Anmerkungen zu komprimierten Dateien:</strong> Häufig werden Sie auch komprimierte Dateien einlesen wollen. Gerade komprimierte csv-Dateien kommen häufig vor. In den meisten Fällen können Sie diese Dateien direkt mit <code>fread()</code> einlesen. Falls nicht, können Sie fread aber auch dem entsprechenden UNIX-Befehl zum Entpacken als Argument <code>cmd</code> übergeben, also z.B. <code>fread(&quot;unzip -p data/gezipte_daten.csv.bz2&quot;)</code>. Weitere Informationen finden Sie sehr einfach im Internet.</p>
+<p><strong>Anmerkungen zu komprimierten Dateien:</strong> Häufig werden Sie auch komprimierte Dateien einlesen wollen. Gerade komprimierte csv-Dateien kommen häufig vor. In den meisten Fällen können Sie diese Dateien direkt mit <code>fread()</code> einlesen. Falls nicht, können Sie <code>fread()</code> aber auch dem entsprechenden UNIX-Befehl zum Entpacken als Argument <code>cmd</code> übergeben, also z.B. <code>fread(&quot;unzip -p data/gezipte_daten.csv.bz2&quot;)</code>. Weitere Informationen finden Sie sehr einfach im Internet.</p>
 </blockquote>
-<p>Auch wenn csv-Dateien die am weitesten verbreiteten Daten sind: es gibt natürlich noch viele weitere Formate mit denen Sie in Kontakt kommen werden. Hier möchte ich exemplarisch auf drei weitere Formate eingehen:</p>
+<p>Auch wenn csv-Dateien die am weitesten verbreiteten Daten sind: es gibt natürlich noch viele weitere Formate mit denen Sie in Kontakt kommen werden. Hier möchte ich exemplarisch auf drei weitere Formate (<code>.rds</code>, <code>.rdata</code> und <code>.dta</code>) eingehen:</p>
 <p>R verfügt über zwei ‘hauseigene’ Formate, die sich extrem gut zum Speichern von größeren Daten eignen, aber eben nur von R geöffnet werden können. Diese Dateien enden mit <code>.rds</code>, bzw. mit <code>.RData</code> oder <code>.Rda</code>, wobei <code>.Rda</code> nur eine Abkürzung für <code>.RData</code> ist.</p>
 <p>Dabei gilt, dass <code>.rds</code>-Dateien einzelne R-Objekte enthalten, z.B. einen einzelnen Datensatz, aber auch jedes andere Objekt (Vektor, Liste, etc.) kann als <code>.rds</code>-Dateie gespeichert werden. Solche Dateien können mit der Funktion <code>readRDS()</code> gelesen werden, die als einziges Argument den Dateinamen annimmt:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.rds&quot;</span>)
@@ -498,17 +633,22 @@ test_dat</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test_vec</code></pre></div>
 <pre><code>#&gt; [1] &quot;Test Vektor&quot;</code></pre>
 <p>Die Verwendung von <code>.RData</code> ist besonders dann hilfreich, wenn Sie mehrere Objekte speichern wollen und wenn einige dieser Objekte keine Datensätze sind, für die auch andere Formate zur Verfügung stehen.</p>
-<p>Ein in der Ökonomik häufig verwendetes Format ist das von der Software <a href="https://de.wikipedia.org/wiki/Stata">STATA</a> verwendete Format <code>.dta</code>. Um Dateien in diesem Format speichern zu können verwenden Sie die Funktion <code>read_dta()</code> aus dem Paket <a href="https://github.com/tidyverse/haven">haven</a> <span class="citation">(Wickham and Miller <a href="#ref-R-haven">2019</a>)</span>, die als einziges Argumente den Dateinamen akzeptiert:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daten &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.dta&quot;</span>)
-daten</code></pre></div>
-<pre><code>#&gt; [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/data/tidy/export_daten.dta&quot;</code></pre>
+<p>Ein in der Ökonomik häufig verwendetes Format ist das von der Software <a href="https://de.wikipedia.org/wiki/Stata">STATA</a> verwendete Format <code>.dta</code>. Um Dateien in diesem Format lesen zu können verwenden Sie die Funktion <code>read_dta()</code> aus dem Paket <a href="https://github.com/tidyverse/haven">haven</a> <span class="citation">(Wickham and Miller <a href="#ref-R-haven">2019</a>)</span>, die als einziges Argumente den Dateinamen akzeptiert:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dta_datei &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.dta&quot;</span>)
+dta_daten &lt;-<span class="st"> </span><span class="kw">read_dta</span>(dta_datei)
+<span class="kw">head</span>(dta_daten, <span class="dv">2</span>)</code></pre></div>
+<pre><code>#&gt; # A tibble: 2 x 3
+#&gt;   iso2c  year Exporte
+#&gt;   &lt;chr&gt; &lt;dbl&gt;   &lt;dbl&gt;
+#&gt; 1 AT     2012    54.0
+#&gt; 2 AT     2013    53.4</code></pre>
 <p>Das Paket <a href="https://github.com/tidyverse/haven">haven</a> stellt auch Funktionen zum Lesen von SAS oder SPSS-Dateien bereit.</p>
 </div>
 <div id="speichern-von-daten" class="section level3">
-<h3><span class="header-section-number">1.3.2</span> Speichern von Daten</h3>
+<h3><span class="header-section-number">5.3.2</span> Speichern von Daten</h3>
 <p>Im Vergleich zum Einlesen von Daten ist das Schreiben deutlich einfacher, weil sich die Daten ja bereits in einem vernünftigen Format befinden. Die größte Frage hier ist also: in welchem Dateiformat sollten Sie Ihre Daten speichern?</p>
 <p>In der großen Mehrheit der Fälle ist diese Frage klar mit <code>.csv</code> zu beantworten. Dieses Format ist einfach zu lesen und absolut plattformkompatibel. Es hat auch nicht die schlechtesten Eigenschaften was Lese- und Schreibgeschwindigkeit angeht, insbesondere wenn man die Daten komprimiert.</p>
-<p>Die schnellste und meines Erachtens mit Abstand beste Funktion zum Schreiben von csv-Dateien ist die Funktion <code>fwrite()</code> aus dem Paket <code>data.table</code>. Angenommen wir wollen haben einen Datensatz <code>test_data</code>, den wir im Unterordner <code>data/tidy</code> als <code>test_data.csv</code> speichern wollen. Das geht mit <code>fwrite()</code> ganz einfach:</p>
+<p>Die schnellste und meines Erachtens mit Abstand beste Funktion zum Schreiben von csv-Dateien ist die Funktion <code>fwrite()</code> aus dem Paket <code>data.table</code>. Angenommen wir haben einen Datensatz <code>test_data</code>, den wir im Unterordner <code>data/tidy</code> als <code>test_data.csv</code> speichern wollen. Das geht mit <code>fwrite()</code> ganz einfach:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datei_name &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/test_data.csv&quot;</span>)
 <span class="kw">fwrite</span>(test_data, <span class="dt">file =</span> datei_name)</code></pre></div>
 <p>Neben dem zu schreibenden Objekt als erstem Argument benötigen Sie noch das Argument <code>file</code>, welches den Namen und Pfad der zu schreibenden Datei spezifiziert. Der Übersicht halber ist es oft empfehlenswert diesen Pfad zuerst als <code>character</code>-Objekt zu speichern und dann an die Funktion <code>fwrite()</code> zu übergeben.</p>
@@ -532,8 +672,8 @@ daten</code></pre></div>
 <p>Einen Vergleich der Kompressionseigenschaften und Lese- und Schreibgeschwindigkeiten ist immer auch kontextabhängig, im Internet finden sich viele Diskussionen zu dem Thema. Am Anfang sind Sie mit <code>gzip()</code> und <code>bzip2()</code> aber eigentlich für alle relevanten Fälle gut aufgestellt.</p>
 </blockquote>
 <p>Ich möchte Ihnen noch zwei R-spezifische Formate vorstellen: <code>.Rdata</code> und <code>.rds</code>, die deutliche Geschwindigkeits- und Komprimierungsvorteile gegenüber dem csv-Format haben und dabei trotzdem vollkommen plattformkompatibel sind. Einziger Nachteil: alle Irren, die nicht R benutzen, können Ihre Daten nicht öffnen. Manchmal mag das eine verdiente Strafe, manchmal aber auch ein Ausschlusskriterium sein.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>(test_data,  <span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.rds&quot;</span>))</code></pre></div>
-<p>Mit dem Argument <code>compress</code> können Sie hier übrigens die Kompressionsart auswählen. Ähnlich wie oben gilt, dass <code>gz</code> am schnellsten und <code>bz</code> am stärksten ist. <code>xz</code> liegt in der Mitte.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>(<span class="dt">object =</span> test_data,  <span class="dt">file =</span> <span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.rds&quot;</span>))</code></pre></div>
+<p>Wie Sie sehen sind zwei Argumente zentral: das erste Argument, <code>object</code> spezifiziert das zu speichernde Objekt und <code>file</code> den Dateipfad. Darüber hinaus können Sie mit dem optionalen Argument <code>compress</code> hier die Kompressionsart auswählen. Ähnlich wie oben gilt, dass <code>gz</code> am schnellsten und <code>bz</code> am stärksten ist. <code>xz</code> liegt in der Mitte.</p>
 <p>Wenn Sie mehrere Objekte auf einmal speichern möchten können Sie das über das Format <code>.RData</code> machen. Die entsprechende Funktion ist <code>save()</code>. Zwar können Sie einfach alle zu speichernden Objekte als die ersten Argumente an die Funktion übergeben, es ist aber übersichtlicher das über das Argument <code>list</code> zu erledigen. Der folgende Code speichert die beiden Objekte <code>test_data</code> und <code>daten</code> in der Datei <code>&quot;data/tidy/datensammlung.Rdata&quot;</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(<span class="dt">list=</span><span class="kw">c</span>(<span class="st">&quot;test_data&quot;</span>, <span class="st">&quot;daten&quot;</span>), 
      <span class="dt">file=</span><span class="kw">here</span>(<span class="st">&quot;data/tidy/datensammlung.RData&quot;</span>))</code></pre></div>
@@ -544,12 +684,13 @@ daten</code></pre></div>
           <span class="kw">here</span>(<span class="st">&quot;data/tidy/test_daten.dta&quot;</span>))</code></pre></div>
 <p>Für <code>SAS</code>- und <code>SPSS</code>-Daten gibt es ähnliche Funktionen, die ebenfalls durch das <a href="https://github.com/tidyverse/haven">haven</a>-Paket bereitgestellt werden.</p>
 <blockquote>
-<p><strong>Hinweis:</strong> Gerade bei großen Datensätzen kommt es wirklich sehr auf die Lese- und Schreibgeschwindigkeit von Funktionen an. Auch stellt sich hier die Frage nach dem besten Dateiformat noch einmal viel deutlicher als das bei kleinen Datensätzen der Fall ist und sich die Formatfrage vor allem um das Thema ‘Kompatibilität’ dreht. Einige nette Beiträge, die verschiedene Funktionen und Formate bezüglich ihrer Geschwindigkeit vergleichen finden Sie z.B. <a href="">hier</a> oder <a href="">hier</a>.</p>
+<p><strong>Hinweis:</strong> Gerade bei großen Datensätzen kommt es wirklich sehr auf die Lese- und Schreibgeschwindigkeit von Funktionen an. Auch stellt sich hier die Frage nach dem besten Dateiformat noch einmal viel deutlicher als das bei kleinen Datensätzen der Fall ist und sich die Formatfrage vor allem um das Thema ‘Kompatibilität’ dreht. Einige nette Beiträge, die verschiedene Funktionen und Formate bezüglich ihrer Geschwindigkeit vergleichen finden Sie z.B. <a href="https://csgillespie.github.io/efficientR/efficient-inputoutput.html">hier</a> oder<br />
+<a href="https://data.nozav.org/post/2019-r-data-frame-benchmark/">hier</a>.</p>
 </blockquote>
 </div>
 </div>
 <div id="data-wrangling" class="section level2">
-<h2><span class="header-section-number">1.4</span> Verarbeitung von Daten (‘data wrangling’)</h2>
+<h2><span class="header-section-number">5.4</span> Verarbeitung von Daten (‘data wrangling’)</h2>
 <p>Nachdem Sie ihre Daten erhoben müssen Sie die Rohdaten in eine Form bringen, mit der Sie sinnvoll weiterarbeiten können. Dieser Prozess wird oft als ‘Datenaufbereitung’ bezeichnet und stellt häufig einen der zeitaufwändigsten Arbeitsschritt in der Forschungsarbeit dar: Laut <a href="https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/">dieser Umfrage</a> macht es sogar 60 % der Arbeitszeit von Datenspezialisten aus. Entsprechend wichtig ist es, sich mit den typischen Arbeitsschritten und Algorithmen vertraut zu machen um in diesem aufwendigen Arbeitsschritt Zeit zu sparen.</p>
 <p>Ein großer Problem in der Forschungspraxis ist häufig, dass Forscher*innen den Datenaufbereitungsprozess nicht richtig dokumentieren. In diesem Fall ist unklar was für Änderungen an den Rohdaten vorgenommen wurden bevor die eigentliche Analyse begonnen wurde. Das führt zu unreproduzierbarer und intransparenter Forschung. Daher ist es wichtig, alle Änderungen, die Sie im Rahmen der Datenaufbereitung vornehmen zu dokumentieren.</p>
 <p>Am einfachsten ist es, für die Datenaufbereitung einfach ein R-Skript zu schreiben, in dem Sie die Rohdaten einlesen und am Ende die aufbereiteten Daten unter neuem Namen speichern. <strong>Nie</strong> sollten Sie ihre Rohdaten überschreiben! Damit sind Sie in Ihrer Forschung vollkommen transparent und es entsteht Ihnen im Prinzip keine Mehrarbeit.</p>
@@ -560,8 +701,8 @@ daten</code></pre></div>
 Eines der dramatischsten Beispiel für Fehler in der Datenaufbereitung mit katastrophalen realweltlichen Implikationen ist der <a href="https://www.newyorker.com/news/john-cassidy/the-reinhart-and-rogoff-controversy-a-summing-up">Reinhart-Rogoff-Skandal</a> Carmen Reinhart und Kenneth Rogoff haben in ihrem einflussreichen Paper <a href="http://scholar.harvard.edu/files/rogoff/files/growth_in_time_debt_aer.pdf">Growth in a Time of Debt</a> einen negativen Effekt von übermäßiger Staatsverschuldung auf wirtschaftliches Wachstum festgestellt. Als der PhD-Student <a href="https://en.wikipedia.org/wiki/Thomas_Herndon">Thomas Herndon</a> während eines Seminars das Paper replizieren sollte bekam er Probleme. Dankenswerterweise sendete ihm Carmen Reinhard den Datensatz zu, allerdings stellte sich heraus, dass durch einen Excel-Fehler einige Länder aus der Stichprobe gefallen waren. Mit der kompletten Stichprobe löste sich der im ursprünglichen Paper identifizierte Zusammenhang auf <span class="citation">(Herndon, Ash, and Pollin <a href="#ref-Herndon">2013</a>)</span>. Das ist besonders dramatisch, da das Paper nicht nur zahlreiche Preise gewonnen hat, sondern auch als wichtige Begründung für die in Europa implementierte Austeritätspolitik fungierte. Nun kann man darüber diskutieren, wen hier die größte Schuld trifft und ob es wirklich ein Versehen war, aber klar ist: wäre der Datenaufbereitungsprozess transparent und offen durchgeführt und dokumentiert worden, wäre der Fehler wahrscheinlich deutlich einfacher und früher gefunden worden.</p>
 </blockquote>
 <div id="das-konzept-von-tidy-data" class="section level3">
-<h3><span class="header-section-number">1.4.1</span> Das Konzept von ‘tidy data’</h3>
-<p>Die Rohdatensätze, die wir erheben oder aus dem Internet herunterladen haben oft eine abenteuerliche Form und wir können in der Regel nicht direkt mit der statistischen Analyse anfangen. Die meisten Statistik-Pakete und Funktionen setzen eine bestimmte ‘aufgeräumte’ Form der Daten voraus. <span class="citation">Wickham (<a href="#ref-tidy">2014</a>)</span> beschreibt diese Form als <code>tidy data</code><a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a> und es ist unser Ziel durch die Datenaufbereitung die verschiedenen Rohdatensätze in <code>tidy data</code> zu verwandeln. Die daraus resultierenden Datensätze können dann separat gespeichert werden, damit wir die Datenaufbereitung nicht jedes Mal erneut durchführen müssen (im Abschnitt <a href="#data-final-thoughts">Abschließende Bemerkungen</a> wird ein entsprechender Vorschlag für eine hilfreiche Ordnerstruktur beschrieben).</p>
+<h3><span class="header-section-number">5.4.1</span> Das Konzept von ‘tidy data’</h3>
+<p>Die Rohdatensätze, die wir erheben oder aus dem Internet herunterladen haben oft eine abenteuerliche Form und wir können in der Regel nicht direkt mit der statistischen Analyse anfangen. Die meisten Statistik-Pakete und Funktionen setzen eine bestimmte ‘aufgeräumte’ Form der Daten voraus. <span class="citation">Wickham (<a href="#ref-tidy">2014</a>)</span> beschreibt diese Form als <code>tidy data</code><a href="#fn29" class="footnoteRef" id="fnref29"><sup>29</sup></a> und es ist unser Ziel durch die Datenaufbereitung die verschiedenen Rohdatensätze in <code>tidy data</code> zu verwandeln. Die daraus resultierenden Datensätze können dann separat gespeichert werden, damit wir die Datenaufbereitung nicht jedes Mal erneut durchführen müssen (im Abschnitt <a href="#data-final-thoughts">Abschließende Bemerkungen</a> wird ein entsprechender Vorschlag für eine hilfreiche Ordnerstruktur beschrieben).</p>
 <p>Aber was zeichnet <code>tidy data</code> aus? Wie von <span class="citation">Wickham (<a href="#ref-tidy">2014</a>)</span> beschrieben kann ein Datensatz auf vielerlei Art und Weise ‘unordentlich’ sein, aber nur auf eine Art und Weise ‘tidy’. Eine ‘tidy’ Datensatz ist durch folgende drei Eigenschaften gekennzeichnet:</p>
 <ol style="list-style-type: decimal">
 <li>Jede <strong>Spalte</strong> korrespondiert zu genau einer <strong>Variable</strong></li>
@@ -622,7 +763,7 @@ d</code></pre></div>
 #&gt; 2   AT Stahlproduktion, Holz</code></pre>
 </div>
 <div id="data-long-wide" class="section level3">
-<h3><span class="header-section-number">1.4.2</span> Von langen und breiten Datensätzen</h3>
+<h3><span class="header-section-number">5.4.2</span> Von langen und breiten Datensätzen</h3>
 <p>Die Datenaufbereitung umfasst häufig das Wechseln zwischen der so genannten ‘langen’ (oder’gestapelten’) und ‘breiten’ (‘ungestapelten’) Datenform. Die erste ist für die statistische Verarbeitung, die zweite für das menschliche Auge besser geeignet.</p>
 <p>‘Lange’ Daten haben in der Regel viele Zeilen und wenige Spalten. Alle <code>tidy</code> Datensätze sind im langen Datenformat. ‘Breite’ Daten haben mehr Spalten und weniger Zeilen und sind häufig das, was wir aus dem Internet herunterladen. Im folgenden ist der gleiche Datensatz einmal im langen und einmal im breiten Format dargestellt.</p>
 <p>Zuerst das ‘lange’ Format, in dem wir verhältnismäßig viele Zeilen haben:</p>
@@ -635,7 +776,7 @@ d</code></pre></div>
 <pre><code>#&gt;   Land Variable     2013     2014
 #&gt; 1   AT  Exporte 53.44129 53.38658
 #&gt; 2   DE  Exporte 45.39788 45.64482</code></pre>
-<p>Häufig werden Sie während Ihrer Datenaufbereitung mehrmals zwischen den beiden Formaten hin und her wechseln, da für manche Aufgaben das eine, für andere das andere Format besser ist (siehe <a href="data.html#data-summary">unten</a>). Um zwischen den Formaten hin und herzuwechseln verwenden wir vor allem die Funktionen <code>pivot_longer()</code> und <code>pivot_wider()</code> aus dem Paket <a href="https://github.com/tidyverse/tidyr">tidyr</a> <span class="citation">(Wickham and Henry <a href="#ref-R-tidyr">2019</a>)</span>, welches auch Teil des <code>tidyverse</code> ist.<a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a></p>
+<p>Häufig werden Sie während Ihrer Datenaufbereitung mehrmals zwischen den beiden Formaten hin und her wechseln, da für manche Aufgaben das eine, für andere das andere Format besser ist (siehe <a href="data.html#data-summary">unten</a>). Um zwischen den Formaten hin und herzuwechseln verwenden wir vor allem die Funktionen <code>pivot_longer()</code> und <code>pivot_wider()</code> aus dem Paket <a href="https://github.com/tidyverse/tidyr">tidyr</a> <span class="citation">(Wickham and Henry <a href="#ref-R-tidyr">2019</a>)</span>, welches auch Teil des <code>tidyverse</code> ist.<a href="#fn30" class="footnoteRef" id="fnref30"><sup>30</sup></a></p>
 <p>Wir verwenden <code>pivot_longer()</code> um einen Datensätz ‘länger’ zu machen. Wir verwenden dazu folgenden Datensatz als Ausgangsbeispiel, der Werte für die Arbeitslosigkeit in Deutschland und Österreich in zwei Jahren enthält:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_wide</code></pre></div>
 <pre><code>#&gt;   Land  2013  2014
@@ -781,7 +922,7 @@ data_al_exp_tidy &lt;-<span class="st"> </span><span class="kw">pivot_wider</spa
 <p>Beide Funktionen, <code>pivot_wider()</code> and <code>pivot_longer()</code> können noch viel komplexere Probleme lösen. Für derlei Anwendungen verweisen wir aktuell noch auf die offizielle <a href="https://tidyr.tidyverse.org/articles/pivot.html">Dokumentation</a>.</p>
 </div>
 <div id="data-merge" class="section level3">
-<h3><span class="header-section-number">1.4.3</span> Zusammenführen von Daten</h3>
+<h3><span class="header-section-number">5.4.3</span> Zusammenführen von Daten</h3>
 <p>Häufig möchten Sie mehrere Datensätze zusammenführen. Nehmen wir an, Sie hätten einen Datensatz, der Informationen über das BIP in verschiedenen Ländern über die Zeit enthält, und einen zweiten Datensatz, der Informationen über die Einkommensungleichheit in ähnlichen Ländern enthält.</p>
 <pre><code>#&gt;   Jahr Land BIP
 #&gt; 1 2010  DEU   1
@@ -870,7 +1011,7 @@ data_bip_gini_anti_join</code></pre></div>
 #&gt; 1 2012  DEU   3
 #&gt; 2 2010  AUT   4
 #&gt; 3 2011  AUT   5</code></pre>
-<p>Zum Schluss kommen wir mit <code>nest_join()</code> zu der komplexesten Funktion in der <code>*_join()</code>-Familie. Hier wird für jede Zeile im linken Datensatz in einer neuen Spalte ein ganzer <code>data.frame</code><a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a> hinzugefügt, der alle Zeilen vom rechten Datensatz enthält, die zu der entsprechenden Zeile passen:</p>
+<p>Zum Schluss kommen wir mit <code>nest_join()</code> zu der komplexesten Funktion in der <code>*_join()</code>-Familie. Hier wird für jede Zeile im linken Datensatz in einer neuen Spalte ein ganzer <code>data.frame</code><a href="#fn31" class="footnoteRef" id="fnref31"><sup>31</sup></a> hinzugefügt, der alle Zeilen vom rechten Datensatz enthält, die zu der entsprechenden Zeile passen:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_bip_gini_nest_join &lt;-<span class="st"> </span><span class="kw">nest_join</span>(data_BIP, data_gini, 
                                      <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))
 data_bip_gini_nest_join</code></pre></div>
@@ -1029,7 +1170,7 @@ full_data</code></pre></div>
 </blockquote>
 </div>
 <div id="date-select" class="section level3">
-<h3><span class="header-section-number">1.4.4</span> Datensätze filtern und selektieren</h3>
+<h3><span class="header-section-number">5.4.4</span> Datensätze filtern und selektieren</h3>
 <p>Sehr häufig haben Sie einen Rohdatensatz erhoben und benötigen für die weitere Analyse nur einen Teil dieses Datensatzes. Zwei Szenarien sind denkbar: zum einen möchten Sie bestimmte Spalten nicht verwendent. Wie sprechen dann davon den Datensatz zu <em>selektieren</em>. Zum anderen möchten sie vielleicht nur Beobachtungen verwenden, die eine bestimmte Bedingung erfüllen, z.B. im Zeitraum 2012-2014 erhoben zu sein. In diesem Fall sprechen wir von <em>filtern</em>.</p>
 <p>Wir lernen hier wie wir diese beiden Aufgaben mit den Funktionen <code>filter()</code> und <code>select()</code> aus dem Paket <code>dplyr</code>, welches auch Teil des <code>tidyverse</code> ist, lösen können.</p>
 <p>Betrachten wir folgenden Beispieldatensatz:</p>
@@ -1089,7 +1230,7 @@ full_data</code></pre></div>
 #&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;
 #&gt; 1 AT    2012     54.0
 #&gt; 2 AT    2013     53.4</code></pre>
-<p>Als nächstes wollen wir den Datensatz nach bestimmten Bedingungen filtern. Dabei ist es wichtig, sich an die <a href="#basics-logic">logischen Operatoren</a> zu erinnern, denn diese verwenden wir um Datensätze zu filtern.</p>
+<p>Als nächstes wollen wir den Datensatz nach bestimmten Bedingungen filtern. Dabei ist es wichtig, sich an die <a href="basics.html#basics-logic">logischen Operatoren</a> zu erinnern, denn diese verwenden wir um Datensätze zu filtern.</p>
 <p>Die Funktion <code>filter()</code> akzeptiert als erstes Argument den Datensatz. Wie oben folgen wir der Konvention das in der Regel implizit über <code>%&gt;%</code> zu übergeben. Danach können wir beliebig viele logische Abfragen, jeweils durch Komma getrennt, an die Funktion übergeben. Wenn wir z.B. nur Beobachtungen für Österreich nach 2012 im Datensatz belassen wollen geht das mit:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_al_exp_filtered &lt;-<span class="st"> </span>data_al_exp_tidy <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(Land <span class="op">==</span><span class="st"> &quot;AT&quot;</span>,
@@ -1151,7 +1292,7 @@ data_al_exp_filtered</code></pre></div>
 </blockquote>
 </div>
 <div id="data-summary" class="section level3">
-<h3><span class="header-section-number">1.4.5</span> Datensätze zusammenfassen</h3>
+<h3><span class="header-section-number">5.4.5</span> Datensätze zusammenfassen</h3>
 <p>In diesem letzten Abschnitt werden wir lernen wie Sie Datensätze erweitern oder zusammenfassen. So möchten Sie häufig eine neue Variable als eine Kombination bestehender Variablen berechnen oder Ihren Datensatz zusammenfassen, z.B. indem Sie über alle Beobachtungen über die Zeit für einzelne Länder den Mittelwert bilden. Zu diesem Zweck werden wir hier die Funktionern <code>mutate()</code>, <code>summarise()</code> und <code>group_by()</code> aus dem Paket <a href="https://github.com/tidyverse/dplyr">dplyr</a> <span class="citation">(Wickham et al. <a href="#ref-R-dplyr">2019</a>)</span> verwenden.</p>
 <p>Wir verwenden <code>mutate()</code> um bestehende Spalten zu verändern oder neue Spalten zu erstellen. Betrachten wir dafür folgenden Beispieldatensatz:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(unemp_data_wb)</code></pre></div>
@@ -1232,7 +1373,7 @@ unemp_data_wb_summarized</code></pre></div>
 #&gt; # … with 2 more variables: workers_female_total &lt;dbl&gt;,
 #&gt; #   fem_workers_avg &lt;dbl&gt;</code></pre>
 <p>Der Datensatz wird nicht verkleinert und keine Spalte geht verloren. Je nach Anwendungsfall ist also die Verwendung von <code>mutate()</code> oder <code>summarise()</code> im Zusammenspiel mit <code>group_by()</code> angemessen.</p>
-<p>Im folgenden möchten wir uns noch ein etwas komplexeres Beispiel anschauen: wir möchten zunächst die jährliche Veränderung in der absoluten Anzahl der weiblichen Erwertbstätigen in Österreich und Deutschland beschäftigen und dann vergleichen ob dieser Wert größer ist als das Bevölkerungswachstum in dieser Zeit. Dazu verwenden wir die Funktion <code>dplyr::lag()</code> um den Wert eine Zeile über dem aktuellen Wert zu bekommen.<a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a> Zuletzt wollen wir nur noch die berechneten Spalten im Datensatz behalten.</p>
+<p>Im folgenden möchten wir uns noch ein etwas komplexeres Beispiel anschauen: wir möchten zunächst die jährliche Veränderung in der absoluten Anzahl der weiblichen Erwertbstätigen in Österreich und Deutschland beschäftigen und dann vergleichen ob dieser Wert größer ist als das Bevölkerungswachstum in dieser Zeit. Dazu verwenden wir die Funktion <code>dplyr::lag()</code> um den Wert eine Zeile über dem aktuellen Wert zu bekommen.<a href="#fn32" class="footnoteRef" id="fnref32"><sup>32</sup></a> Zuletzt wollen wir nur noch die berechneten Spalten im Datensatz behalten.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unemp_data_wb_growth &lt;-<span class="st"> </span>unemp_data_wb <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(
@@ -1288,7 +1429,7 @@ unemp_data_wb_growth</code></pre></div>
 </div>
 </div>
 <div id="data-role" class="section level2">
-<h2><span class="header-section-number">1.5</span> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</h2>
+<h2><span class="header-section-number">5.5</span> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</h2>
 <p>Das zentrale Leitmotiv dieses Kapitels war die Idee, dass <strong>die Datenaufbereitung vom ersten Schritt an reproduzierbar und transparent</strong> sein sollte. Wenn Sie gefragt wurden wie Ihre Ergebnisse zustande gekommen sind, sollten Sie in der Lage sein, jeden einzelnen Arbeitsschritt seit der ersten Akquise der Daten offenzulegen, bzw. nachvollziebar zu machen.</p>
 <p>Es ist ein zentraler Nachteil von <em>point-and-click</em>-Software, bei der eine Reproduktion bedeuten würde, dass Sie jeden einzelnen Mausklick vor dem Rechner wiederholen, bzw. erklären müssten. Zum Glück ist das mit Skript-basierten Sprachen wie R anders: Sie können einfach ein Skript <code>Datenaufbereitung.R</code> anlegen, in dem Sie die aus dem Internet heruntergeladenen Daten in den für die Analyse aufbereiteten Datensatz umwandeln. Wenn dann jemand wissen möchte, wo die Daten, die Sie in Ihrer Analyse verwenden, herkommen, brauchen Sie der Person nur die Quelle der Daten zu nennen und ihr Skript zu zeigen. So ist es für Sie auch leicht Ihre Analyse mit geupdateten Daten zu aktualisieren.</p>
 <p>Daher hat sich in der Praxis häufig die folgende oder eine ähnliche Ordnerstruktur bewährt:</p>
@@ -1299,61 +1440,14 @@ unemp_data_wb_growth</code></pre></div>
 <p>Der Vorteil: wenn jemand genau wissen möchte, wie <code>WunderbarerErgebnisplot.pdf</code> produziert wurde können Sie sämtliche Schritte ausgehend von den vollkommen unangetasteten Rohdaten transparent machen. Durch die Trennung unterschiedlicher Arbeitsschritte - wie Datenaufbereitung und statistische Analyse - bleibt ihr Projekt zudem übersichtlich.</p>
 </div>
 <div id="data-packages" class="section level2">
-<h2><span class="header-section-number">1.6</span> Anmerkungen zu Paketen</h2>
+<h2><span class="header-section-number">5.6</span> Anmerkungen zu Paketen</h2>
 <p>In diesem Kapitel wurden gleich mehrere Pakete aus dem <code>tidyverse</code>, einer Sammlung von Paketen, verwendet. Zwar schätze ich das <code>tidyverse</code> sehr, gleichzeitig ist der Fokus von R Studio auf diese Pakete zumindest potenziell problematisch. Dies wird in dieserm <a href="https://github.com/matloff/TidyverseSkeptic">kritischen Blogpost</a> sehr schön beschrieben.</p>
 <p>Was die Einsteigerfreundlichkeit vom <code>tidyverse</code> angeht, bin ich jedoch anderer Meinung als der Verfasser: meiner Meinung nach machen diese Pakete die Arbeit mit Datensätzen sehr einfach, und für kleine Datensätze (&lt;500MB) benutze ich das <code>tidyverse</code> auch in meiner eigenen Forschung. Es sollte jedoch klar sein, dass es nur eine Option unter mehreren ist, weswegen ich versuche in meinen Paketen vollständig auf das <code>tidyverse</code> zu verzichten - auch weil es in puncto Performance deutlich schlechter ist als z.B. <a href="https://rdatatable.gitlab.io/data.table/">data.table</a> <span class="citation">(Dowle and Srinivasan <a href="#ref-R-data.table">2019</a>)</span>, das auch für mehrere hundert GB große Datensätze gut geeignet ist.</p>
 <p>Aufgrund der Einsteigerfreundlichkeit habe ich aber entschlossen, in diesem Skript häufig mit dem <code>tidyverse</code> zu arbeiten. Ich empfehle jedoch jedem, den <a href="https://github.com/matloff/TidyverseSkeptic">folgenden kritischen Blogpost</a> zu lesen und, falls Sie weiter mit R arbeiten, sich das Paket <a href="https://rdatatable.gitlab.io/data.table/">data.table</a> <span class="citation">(Dowle and Srinivasan <a href="#ref-R-data.table">2019</a>)</span> anzueignen. Das <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">offizielle Tutorial</a> ist dafür gut geeignet, macht m.E. aber auch deutlich, dass es für die ersten Schritte mit R etwas unintuitiver ist als das <code>tidyverse</code>.</p>
 <p>Wenn Sie später einmal beide Ansätze beherrschen,können Sie das tun, was in einer diversen Sprache wie R das einzig richtige ist: je nach Anwendungsfall das passende Paket wählen - ganz wie im Falle von Paradigmen in einer Pluralen Ökonomik.</p>
 
-<div id="refs" class="references">
-<div>
-<p>Arel-Bundock, Vincent. 2019. <em>WDI: World Development Indicators (World Bank)</em>. <a href="https://CRAN.R-project.org/package=WDI" class="uri">https://CRAN.R-project.org/package=WDI</a>.</p>
-</div>
-<div>
-<p>Arel-Bundock, Vincent, Nils Enevoldsen, and CJ Yetman. 2018. “Countrycode: An R Package to Convert Country Names and Country Codes.” <em>Journal of Open Source Software</em> 3 (28): 848. <a href="https://doi.org/10.21105/joss.00848" class="uri">https://doi.org/10.21105/joss.00848</a>.</p>
-</div>
-<div>
-<p>Bengtsson, Henrik. 2019. <em>R.utils: Various Programming Utilities</em>. <a href="https://CRAN.R-project.org/package=R.utils" class="uri">https://CRAN.R-project.org/package=R.utils</a>.</p>
-</div>
-<div>
-<p>Dowle, Matt, and Arun Srinivasan. 2019. <em>Data.table: Extension of ‘Data.frame‘</em>. <a href="https://CRAN.R-project.org/package=data.table" class="uri">https://CRAN.R-project.org/package=data.table</a>.</p>
-</div>
-<div>
-<p>Herndon, Thomas, Michael Ash, and Robert Pollin. 2013. “Does high public debt consistently stifle economic growth? A critique of Reinhart and Rogoff.” <em>Cambridge Journal of Economics</em> 38 (2): 257–79. doi:<a href="https://doi.org/10.1093/cje/bet075">10.1093/cje/bet075</a>.</p>
-</div>
-<div>
-<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
-</div>
-<div>
-<p>Wickham, Hadley. 2014. “Tidy Data.” <em>The Journal of Statistical Software</em> 59 (10). doi:<a href="https://doi.org/10.18637/jss.v059.i10">10.18637/jss.v059.i10</a>.</p>
-</div>
-<div>
-<p>Wickham, Hadley, and Lionel Henry. 2019. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a>.</p>
-</div>
-<div>
-<p>Wickham, Hadley, and Evan Miller. 2019. <em>Haven: Import and Export ’Spss’, ’Stata’ and ’Sas’ Files</em>. <a href="https://CRAN.R-project.org/package=haven" class="uri">https://CRAN.R-project.org/package=haven</a>.</p>
-</div>
-<div>
-<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2019. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
 </div>
 </div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-R-WDI">
@@ -1386,17 +1480,18 @@ unemp_data_wb_growth</code></pre></div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="1">
-<li id="fn1"><p>Das klassische Beispiel in der Psychologie ist ‘Intelligenz’,<a href="data.html#fnref1">↩</a></p></li>
-<li id="fn2"><p>Interessanterweise hat der ‘Erfinder’ des modernen BIP Simon Kurznets in <span class="citation">(<span class="citeproc-not-found" data-reference-id="BIP"><strong>???</strong></span>)</span> davon abgeraten, diese Operationalisierung als Indikator für wirtschaftliche Entwicklung zu verwenden.<a href="data.html#fnref2">↩</a></p></li>
-<li id="fn3"><p>Das bedeutet natürlich nicht, dass Sie (a) diesen Daten blind vertrauen sollten und (b) Ihre Daten tatsächlich die <a href="https://de.wikipedia.org/wiki/Latentes_Variablenmodell">latente Variable</a> messen, an der Sie interessiert sind. Häufig besteht großer Dissens mit welchem Maß welche latente Variable gemessen werden kann. Entsprechend geht der Auswahl der Daten häufig viel Zeit des theoretischen Überlegens voraus. Hier gehen wir davon aus, dass Sie sich über die richtigen Daten schon im Klaren sind.<a href="data.html#fnref3">↩</a></p></li>
-<li id="fn4"><p>Da ein solcher Code nur funktioniert wenn Sie mit dem Internet verbunden sind und Sie die Daten ja nicht jedes Mal von neuem herunterladen wollen macht es Sinn, die Daten nach dem Runterladen abzuspeichern, auch um den konkreten Datensatz, mit dem Sie Ihre Ergebnisse bekommen haben, zu konservieren.<a href="data.html#fnref4">↩</a></p></li>
-<li id="fn5"><p>Zwar gibt es im <code>WDI</code>-Paket auch die Funktion <code>WDI::WDIsearch()</code>, mit der Sie Datensätze direkt suchen können, allerdings funktioniert das nach meiner Erfahrung nach nicht optimal.<a href="data.html#fnref5">↩</a></p></li>
-<li id="fn6"><p>Auch hier gilt, dass die automatische Erkennung von <code>fread()</code> schon sehr gut funktioniert, aber die manuelle Eingabe immer sicherer und transparenter ist.<a href="data.html#fnref6">↩</a></p></li>
-<li id="fn7"><p>Wie <a href="http://www.win-vector.com/blog/2019/05/what-is-tidy-data/">hier beschrieben</a> ist das Konzept von ‘tidy data’ nicht neu: Statistiker*innen sprechen bei einem ‘tidy’ Datensatz häufig von einer ‘Datenmatrix’. Wer sich mehr mit der zugrundeliegenden Theorie beschäftigen möchte sollte zunächst die <a href="https://en.wikipedia.org/wiki/Codd%27s_12_rules">12 Regeln von Edgar Codd</a> und ihre Begründung nachlesen.<a href="data.html#fnref7">↩</a></p></li>
-<li id="fn8"><p>Die Funktionen <code>pivot_longer()</code> und <code>pivot_wider()</code> wurden in der neuesten Version von <code>tidyr</code> eingeführt. Achten Sie also darauf, dass Sie die neueste Version installiert haben. Sie ersetzen die Funktionen <code>spread()</code> und <code>gather()</code>, die natürlich noch weiterhin funktionieren und die Sie in älterem Code sicher noch häufig finden werden. In diesem <a href="https://www.tidyverse.org/blog/2019/09/tidyr-1-0-0/">Blog-Post</a> beschreibt Chefentwickler Hadley Wickham die neuen Funktionen und grenzt Sie von den älteren Implementierungen ab.<a href="data.html#fnref8">↩</a></p></li>
-<li id="fn9"><p>Eigentlich ein <a href="https://r4ds.had.co.nz/tibbles.html">tibble</a>.<a href="data.html#fnref9">↩</a></p></li>
-<li id="fn10"><p>Es gibt neben den Funktionen <code>dplyr::lag()</code> und <code>dplyr::lead()</code> auch die Funktionen <code>dplyr::first()</code> und <code>dplyr::last()</code>, die Sie verwenden können um Änderungen über den gesamten Zeitraum zu berechnen. Achten Sie jedoch auf den möglichen Konflikt zwischen den Funktionen <code>data.table::first()</code> und <code>dplyr::first()</code> sowie <code>data.table::last()</code> und <code>dplyr::last()</code>!<a href="data.html#fnref10">↩</a></p></li>
+<ol start="22">
+<li id="fn22"><p>Das klassische Beispiel in der Psychologie ist ‘Intelligenz’,<a href="data.html#fnref22">↩</a></p></li>
+<li id="fn23"><p>Interessanterweise hat der ‘Erfinder’ des modernen BIP Simon Kurznets in <span class="citation">Kuznets (<a href="#ref-BIP">1934</a>)</span> davon abgeraten, diese Operationalisierung als Indikator für wirtschaftliche Entwicklung zu verwenden.<a href="data.html#fnref23">↩</a></p></li>
+<li id="fn24"><p>Eine Beschreibung der unterschiedlichen Algorithmen finden Sie über <code>help(quantile)</code>.<a href="data.html#fnref24">↩</a></p></li>
+<li id="fn25"><p>Das bedeutet natürlich nicht, dass Sie (a) diesen Daten blind vertrauen sollten und (b) Ihre Daten tatsächlich die <a href="https://de.wikipedia.org/wiki/Latentes_Variablenmodell">latente Variable</a> messen, an der Sie interessiert sind. Häufig besteht großer Dissens mit welchem Maß welche latente Variable gemessen werden kann. Entsprechend geht der Auswahl der Daten häufig viel Zeit des theoretischen Überlegens voraus. Hier gehen wir davon aus, dass Sie sich über die richtigen Daten schon im Klaren sind.<a href="data.html#fnref25">↩</a></p></li>
+<li id="fn26"><p>Da ein solcher Code nur funktioniert wenn Sie mit dem Internet verbunden sind und Sie die Daten ja nicht jedes Mal von neuem herunterladen wollen macht es Sinn, die Daten nach dem Runterladen abzuspeichern, auch um den konkreten Datensatz, mit dem Sie Ihre Ergebnisse bekommen haben, zu konservieren.<a href="data.html#fnref26">↩</a></p></li>
+<li id="fn27"><p>Zwar gibt es im <code>WDI</code>-Paket auch die Funktion <code>WDI::WDIsearch()</code>, mit der Sie Datensätze direkt suchen können, allerdings funktioniert das nach meiner Erfahrung nach nicht optimal.<a href="data.html#fnref27">↩</a></p></li>
+<li id="fn28"><p>Auch hier gilt, dass die automatische Erkennung von <code>fread()</code> schon sehr gut funktioniert, aber die manuelle Eingabe immer sicherer und transparenter ist.<a href="data.html#fnref28">↩</a></p></li>
+<li id="fn29"><p>Wie <a href="http://www.win-vector.com/blog/2019/05/what-is-tidy-data/">hier beschrieben</a> ist das Konzept von ‘tidy data’ nicht neu: Statistiker*innen sprechen bei einem ‘tidy’ Datensatz häufig von einer ‘Datenmatrix’. Wer sich mehr mit der zugrundeliegenden Theorie beschäftigen möchte sollte zunächst die <a href="https://en.wikipedia.org/wiki/Codd%27s_12_rules">12 Regeln von Edgar Codd</a> und ihre Begründung nachlesen.<a href="data.html#fnref29">↩</a></p></li>
+<li id="fn30"><p>Die Funktionen <code>pivot_longer()</code> und <code>pivot_wider()</code> wurden in der neuesten Version von <code>tidyr</code> eingeführt. Achten Sie also darauf, dass Sie die neueste Version installiert haben. Sie ersetzen die Funktionen <code>spread()</code> und <code>gather()</code>, die natürlich noch weiterhin funktionieren und die Sie in älterem Code sicher noch häufig finden werden. In diesem <a href="https://www.tidyverse.org/blog/2019/09/tidyr-1-0-0/">Blog-Post</a> beschreibt Chefentwickler Hadley Wickham die neuen Funktionen und grenzt Sie von den älteren Implementierungen ab.<a href="data.html#fnref30">↩</a></p></li>
+<li id="fn31"><p>Eigentlich ein <a href="https://r4ds.had.co.nz/tibbles.html">tibble</a>.<a href="data.html#fnref31">↩</a></p></li>
+<li id="fn32"><p>Es gibt neben den Funktionen <code>dplyr::lag()</code> und <code>dplyr::lead()</code> auch die Funktionen <code>dplyr::first()</code> und <code>dplyr::last()</code>, die Sie verwenden können um Änderungen über den gesamten Zeitraum zu berechnen. Achten Sie jedoch auf den möglichen Konflikt zwischen den Funktionen <code>data.table::first()</code> und <code>dplyr::first()</code> sowie <code>data.table::last()</code> und <code>dplyr::last()</code>!<a href="data.html#fnref32">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -1404,8 +1499,8 @@ unemp_data_wb_growth</code></pre></div>
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="linmodel.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="vis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
