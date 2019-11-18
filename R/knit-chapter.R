@@ -6,4 +6,4 @@ prev_chapter <- here("ChapA-WdhlStatistik1.Rmd")
 vis_chap <- here("Chap-visualization.Rmd")
 data_chap <- here("Chap-data.Rmd")
 
-preview_chapter(input=data_chap, output_dir=here("docs"))
+preview_chapter(input=vis_chap, output_dir=here("docs"))
