@@ -557,7 +557,7 @@ hängen mit dem Entwicklerprinzip
 [DRY](https://de.wikipedia.org/wiki/Don%E2%80%99t_repeat_yourself) 
 ("Don't Repeat Yourself") zusammen.
 
-### Vektoren
+### Vektoren {#basics-types-vectors}
 
 Vektoren sind einer der wichtigsten Objektypen in R. 
 Quasi alle Daten mit denen wir in R arbeiten werden als Vektoren behandelt.
@@ -877,7 +877,7 @@ len_x
 #> [1] 3
 ```
 
-### Logische Werte (logical)
+### Logische Werte (logical) {#basics-logic}
 
 Die logischen Werte `TRUE` und `FALSE` sind häufig das Ergebnis von logischen
 Abfragen, z.B. 'Ist 2 größer als 1?'. 
@@ -2145,7 +2145,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7f9be67d3fb0>
+#> <bytecode: 0x7f9f75f110d8>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2176,7 +2176,7 @@ dplyr::lead
 #>     attributes(out) <- attributes(x)
 #>     out
 #> }
-#> <bytecode: 0x7f9be6885360>
+#> <bytecode: 0x7f9f72663f00>
 #> <environment: namespace:dplyr>
 ```
 

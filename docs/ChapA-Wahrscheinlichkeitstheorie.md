@@ -13,7 +13,7 @@ und die Berechnung von Konfidenzintervallen) werden in den beiden
 Anhängen [zur deskriptiven](#desk-stat) und 
 [schließenden Statistik](#stat-rep) wiederholt.
 
-Für den Code in diesem Kapitel werden die folgenden Pakete verwendet:
+## Verwendete Pakete {-}
 
 
 ```r
@@ -446,7 +446,7 @@ sample_binom
 ```
 
 ```
-## [1] 4 6 6 5 3
+## [1] 3 3 6 6 5
 ```
 
 > **Anwendungsbeispiel Binomialverteilung:** Unser Zufallsexperiment besteht
