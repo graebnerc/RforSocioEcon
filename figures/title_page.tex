@@ -2,7 +2,7 @@
 
 \usepackage{booktabs}
 \usepackage{amsthm, amssymb, mathrsfs}
-\usepackage{xcolor}
+\usepackage{xcolor, changepage}
 \usepackage{setspace}
 \usepackage{hyperref}
 \hypersetup{
@@ -30,14 +30,14 @@ angle=0,
 opacity=1.0,
 contents={
 \begin{tikzpicture}[remember picture,overlay]
- \path [fill=DueMain] (-0.5\paperwidth,5) rectangle (0.5\paperwidth,10);  
+ \path [fill=DueMain] (-0.5\paperwidth,5) rectangle (0.5\paperwidth,10);
 \end{tikzpicture}
 }
 }
 
-\makeatletter                       
-\def\printauthor{%                  
-    {\large \@author}}              
+\makeatletter
+\def\printauthor{%
+    {\large \@author}}
 \makeatother
 \author{%
     Dr. Claudius Gräbner \\
@@ -53,14 +53,14 @@ contents={
 \begin{document}
 \begin{titlepage}
 \BgThispage
-\newgeometry{left=1cm,right=4cm}
+\newgeometry{top=3.0cm,left=1cm,right=4cm}
 \vspace*{2cm}
 \noindent
+\onehalfspacing
 \textcolor{white}{\bigsf R für die \mbox{sozioökonomische} Forschung}
-\vspace*{3.0cm}\par
-%\vspace*{1.0cm}\par
-% Aktuelle Version: 0.5.0 (\today)\\
-%\vspace*{2.0cm}\par
+\vspace*{1.2cm}\par
+Aktuelle Version: 0.5.0 (\today)\\
+\vspace*{2.0cm}\par
 \noindent
 \begin{minipage}{0.35\linewidth}
     \begin{flushright}
@@ -74,11 +74,17 @@ contents={
 %
 \begin{minipage}{0.6\linewidth}
 \vspace{5pt}
-    \begin{abstract} 
-Dieses Skript begleitet die Lehrveranstaltung `Methoden der Sozioökonomie` von Prof. Jakob Kapeller und Dr. Claudius Gräbner im Master `Sozioökonomie` an der Universität Duisburg-Essen im Wintersemester 2019/20.
+\begin{adjustwidth}{25pt}{25pt}
+\raggedright
+Dieses Skript begleitet die Lehrveranstaltung `Methoden der Sozioökonomie` von
+Prof. Jakob Kapeller und Dr. Claudius Gräbner im Master `Sozioökonomie` an der
+Universität Duisburg-Essen im Wintersemester 2019/20.
 
-Feedback über Moodle oder die \href{https://github.com/graebnerc/RforSocioEcon}{Github Seite} des Skripts ist sehr willkommen.
-    \end{abstract}
+Feedback über Moodle oder
+\href{https://github.com/graebnerc/RforSocioEcon}{Github} ist
+sehr willkommen.
+\end{adjustwidth}
+
 \end{minipage}
 
 \vspace{0.25cm}
