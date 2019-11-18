@@ -1,15 +1,54 @@
+\usepackage[utf8]{inputenc}
 \usepackage{booktabs}
 \usepackage{amsthm, amssymb, mathrsfs}
-\usepackage{xcolor}
+\usepackage{xcolor, changepage}
+\definecolor{DueMain}{RGB}{0,76,147}
+\usepackage{setspace}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks = true,
-    linkcolor = {blue},
-    citecolor = {violet}}
-\usepackage[a4paper,width=150mm,top=20mm,bottom=20mm,left=20mm,right=20mm,bindingoffset=6mm]{geometry}
+    linkcolor = {DueMain},
+    urlcolor = {DueMain},
+    citecolor = {DueMain}}
+\usepackage[top=20mm,bottom=20mm,left=20mm,right=20mm]{geometry} %bindingoffset=6mm
 \makeatletter
 \def\thm@space@setup{%
   \thm@preskip=8pt plus 2pt minus 4pt
   \thm@postskip=\thm@preskip
 }
 \makeatother
+
+% Neu fuer Titel
+\usepackage[some]{background}
+
+
+\DeclareFixedFont{\bigsf}{T1}{phv}{b}{n}{1.5cm}
+
+\backgroundsetup{
+scale=1,
+angle=0,
+opacity=1.0,
+contents={
+\begin{tikzpicture}[remember picture,overlay]
+ \path [fill=DueMain] (-0.5\paperwidth,5) rectangle (0.5\paperwidth,10);
+\end{tikzpicture}
+}
+}
+
+\makeatletter
+\def\printauthor{%
+    {\large \@author}}
+\makeatother
+\author{%
+    Dr. Claudius Gräbner \\
+    Institut für Sozioökonomie \\
+    Universität Duisburg-Essen\\
+    \href{mailto:claudius.graebner@uni-due.com}{claudius.graebner@uni-due.com}\\
+    \href{www.claudius-graebner.com}{https://claudius-graebner.com/}
+    %\vspace{40pt} \\
+    %Author 2 name \\
+    %Department name \\
+    %\texttt{email2@example.com}
+    }
+
+\AtBeginDocument{\let\maketitle\relax}

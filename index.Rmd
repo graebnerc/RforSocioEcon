@@ -1,6 +1,6 @@
 --- 
 title: "R für die sozio-ökonomische Forschung"
-subtitle: "Version 0.4.0"
+subtitle: "Version 0.5.0"
 author: "[Dr. Claudius Gräbner](http://claudius-graebner.com/)"
 date: "`r Sys.Date()`" 
 site: bookdown::bookdown_site
@@ -10,10 +10,14 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: graebnerc/RforSocioEcon
-description: "R Skript in der Version 0.4.0"
+description: "R Skript in der Version 0.5.0"
 ---
 
 # Willkommen {-}
+
+```{r, echo=FALSE, fig.align='center', out.height=='100%'}
+knitr::include_graphics("figures/title_page.png")
+```
 
 Dieses Skript ist als Begleitung für die Lehrveranstaltung 
 "Wissenschaftstheorie und Einführung in die Methoden der Sozioökonomie"
@@ -36,22 +40,30 @@ Vorlesungstermine:
 Kapitel              | Zentrale Inhalte            | Verwandter Vorlesungstermin |
 |:------------------:|:----------------------------|:---------------------------:|
 | 1: Vorbemerkungen | Gründe für R; Besonderheiten von R | Vorbereitung |
-| 2: Vorbereitung | Installation und Einrichtung von R und R Studio, Projektstrukturierung | Vorbereitung |
+| 2: Einrichtung | Installation und Einrichtung von R und R Studio, Projektstrukturierung | Vorbereitung |
 | 3: Erste Schritte in R | Grundlegende Funktionen von R; Objekte in R; Pakete | Vorbereitung |
-| 4: Ökonometrie I | Implementierung von uni- und multivariaten linearen Regressionsmodellen | T4 am 06.11.19 |
-| 5: Datenaquise und -management | Einlesen und Schreiben sowie Manipulation von Datensätzen; deskriptive Statistik | T8 am 11.12.19 |
-| 6: Visualisierung | Erstellen von Grafiken | T8 am 11.12.19 |
-| 7: Ökonometrie II | Mehr Konzepte der Ökonometrie | T9-10 am 8.&15.1.20|
+| 4: Lineare statistische Modelle in R | Implementierung von uni- und multivariaten linearen Regressionsmodellen | T4 am 06.11.19 |
+| 5: Datenkunde und -aufbereitung | Einlesen und Schreiben sowie Aufbereitung von Datensätzen | T7 am 27.11.19 |
+| 6: Visualisierung | Erstellen von Grafiken | T7 am 27.11.19 |
+| 7: Fortgeschrittene Ökonometrie | Weitere Konzepte der Ökonometrie | T9-10 am 8.&15.1.20|
 | 8: Ausblick | Ausblick zu weiteren Anwendungsmöglichkeiten | Optional |
-| A: Einführung in Markdown | Wissenschaftliche Texte in R Markdown schreiben |Optional; relevant für Aufgabenblätter|
-| B: Wiederholung: Wahrscheinlichkeitstheorie  | Wiederholung grundlegender Konzepte der Wahrscheinlichkeitstheorie und ihrer Implementierung in R | Optional; wird für die quantitativen VL vorausgesetzt |
-| C: Wiederholung: Deskriptive Statistik  | Wiederholung grundlegender Konzepte der deskriptiven Statistik und ihrer Implementierung in R | Optional; wird für die quantitativen VL vorausgesetzt |
-| C: Wiederholung: Drei grundlegende Verfahren der schließenden Statistik  | Wiederholung von Parameterschätzung, Hypothesentests und Konfidenzintervalle und deren Implementierung in R| Optional; wird für die quantitativen VL vorausgesetzt |
-| E: Einführung in Git und Github | Verwendung von Git und Github | Optional |
+| A1: Einführung in Markdown | Wissenschaftliche Texte in R Markdown schreiben |Optional; relevant für Aufgabenblätter|
+| A2: Wiederholung: Wahrscheinlichkeitstheorie  | Wiederholung grundlegender Konzepte der Wahrscheinlichkeitstheorie und ihrer Implementierung in R | Optional; wird für die quantitativen VL vorausgesetzt |
+| A3: Wiederholung: Deskriptive Statistik  | Wiederholung grundlegender Konzepte der deskriptiven Statistik und ihrer Implementierung in R | Optional; wird für die quantitativen VL vorausgesetzt |
+| A4: Wiederholung: Drei grundlegende Verfahren der schließenden Statistik  | Wiederholung von Parameterschätzung, Hypothesentests und Konfidenzintervalle und deren Implementierung in R| Optional; wird für die quantitativen VL vorausgesetzt |
+| A5: Einführung in Git und Github | Verwendung von Git und Github | Optional |
 
 Das Skript ist *work in progress* und jegliches Feedback ist sehr willkommen.
 Dafür wird im Moodle ein extra Bereich eingerichtet.
+Selbstverständlich können Sie Feedback auch den 
+[Issue-Tracker auf Github](https://github.com/graebnerc/RforSocioEcon/issues) 
+verwenden. Dort ist auch der Quellcode des Skripts verfügbar.
 
+## Danksagung {-}
+
+Ich möchte mich bei Jakob Kapeller und Anika Radkowitsch für das regelmäßige 
+Feedback und die guten Hinweise bedanken. Am *work-in-progress*-Charakter
+des Skripts haben sie natürlich keine Mitschuld.
 
 ## Änderungshistorie während des Semesters {-}
 
@@ -66,6 +78,7 @@ Datum    | Version | Wichtigste Änderungen         |
 03.11.19 | 0.2.0    | Markdown-Anhang hinzugefügt  |
 04.11.19 | 0.3.0    | Anhänge zur Wiederholung grundlegender Statistik hinzugefügt  |
 06.11.19 | 0.4.0    | Kapitel zu linearen Modellen hinzugefügt  |
+18.11.19 | 0.5.0    | Kapitel zur Datenaufbereitung und Visualisierung hinzugefügt; kleinere Korrekturen im Kapitel zu lin. Modellen  |
 
 ## Lizenz {-}
 

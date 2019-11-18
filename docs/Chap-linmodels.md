@@ -56,7 +56,7 @@ wir uns noch ein konkretes Beispiel anschauen.
 zusätzliches Einkommen auf die Konsumausgaben in einer Volkswirtschaft auswirken. 
 Daher stellen wir folgendes Modell auf:
 
-$$C_i = \beta_0 + \beta_1 Y_i + u_i$$
+$$C_i = \beta_0 + \beta_1 Y_i + \epsilon_i$$
 
 > wobei $C_i$ für die Konsumausgaben und $Y_i$ für das BIP steht. 
 Diese Gleichung stellt unser statistisches Modell dar. Es hat
@@ -930,15 +930,13 @@ schaetzung_bip[["residuals"]]
 Wir wollen nun die Residuen verwenden um die folgenden Annahmen unseres 
 Regressionsmodells zu überprüfen:
 
-1. **A1:** $\mathbb{E}(\epsilon_i)=0$
-
-2. **A3: ** $Var(\epsilon_i)=\sigma^2\forall i$
+1. **A3: ** $Var(\epsilon_i)=\sigma^2\forall i$
 
 2. **A4: ** $Cov(\epsilon_i, \epsilon_j)=0 \forall i,j$
 
 3. **A5:** $\epsilon \propto \mathcal{N}(0, \sigma^2)$
 
-Um die ersten drei Annahmen zu überpüfen bilden wir die $\epsilon_i$ gegen 
+Um die ersten beiden Annahmen zu überpüfen bilden wir die $\epsilon_i$ gegen 
 $\hat{Y}$ ab und erhalten so den so genannten **Tukey-Anscombe-Plot**:
 
 ![](Chap-linmodels_files/figure-latex/unnamed-chunk-36-1.pdf)<!-- --> 
