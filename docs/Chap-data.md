@@ -1002,17 +1002,17 @@ ihrer Geschwindigkeit vergleichen finden Sie z.B.
 
 ## Verarbeitung von Daten ('data wrangling') {#data-wrangling}
 
-Nachdem Sie ihre Daten erhoben müssen Sie die Rohdaten in eine Form bringen, mit
-der Sie sinnvoll weiterarbeiten können.
+Nachdem Sie ihre Daten erhoben haben, müssen Sie die Rohdaten in eine Form 
+bringen, mit der Sie sinnvoll weiterarbeiten können.
 Dieser Prozess wird oft als 'Datenaufbereitung' bezeichnet und stellt häufig 
-einen der zeitaufwändigsten Arbeitsschritt in der Forschungsarbeit dar:
+einen der zeitaufwändigsten Arbeitsschritte in der Forschungsarbeit dar:
 Laut [dieser Umfrage](https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/)
 macht es sogar 60 \% der Arbeitszeit von Datenspezialisten aus.
 Entsprechend wichtig ist es, sich mit den typischen Arbeitsschritten und 
 Algorithmen vertraut zu machen um in diesem aufwendigen Arbeitsschritt Zeit zu
 sparen.
 
-Ein großer Problem in der Forschungspraxis ist häufig, dass Forscher*innen den
+Ein großes Problem in der Forschungspraxis ist häufig, dass Forscher*innen den
 Datenaufbereitungsprozess nicht richtig dokumentieren. 
 In diesem Fall ist unklar was für Änderungen an den Rohdaten vorgenommen wurden
 bevor die eigentliche Analyse begonnen wurde.
@@ -1027,8 +1027,8 @@ Namen speichern.
 Damit sind Sie in Ihrer Forschung vollkommen transparent und es entsteht Ihnen 
 im Prinzip keine Mehrarbeit.
 
-In diesem Abschnitt wollen wir Lösungen für die typischen Herausforderungen, 
-die während der Datenaufbereitung auftreten, entwickeln. 
+In diesem Abschnitt lernen Sie Lösungen für die typischen Herausforderungen, 
+die während der Datenaufbereitung auftreten, kennen 
 Dafür beschäftigen wir uns zunächst mit dem gewünschten Ergebnis: sogenannter
 [tidy data](#data-tidy-daty). 
 Diese Art von Datensätzen sollte das Ergebnis jeder Datenaufbereitung sein.
@@ -1037,19 +1037,19 @@ Auf dem Weg zu *tidy data* bedarf es häufig einer
 [Transformation von langen und breiten Datensätzen](#data-long-wide).
 Außerdem werden Sie häufig mehrere 
 [Datensätze zusammenführen](#data-merge-data) und Ihre 
-[Daten filtern und selektieren](#data-select) aggregieren.
+[Daten filtern, selektieren und aggregieren](#data-select).
 Zudem möchten Sie manchmal Daten auch [reduzieren und zusammenfassen](#data-sumamry).
 
 > **Beispiel für berühmte Menschen mit miserabler Datenaufbereitung: Der Reinhart-Rogoff Skandal**  
-Eines der dramatischsten Beispiel für Fehler in der Datenaufbereitung mit 
+Eines der dramatischsten Beispiele für Fehler in der Datenaufbereitung mit 
 katastrophalen realweltlichen Implikationen ist der 
-[Reinhart-Rogoff-Skandal](https://www.newyorker.com/news/john-cassidy/the-reinhart-and-rogoff-controversy-a-summing-up)
+[Reinhart-Rogoff-Skandal](https://www.newyorker.com/news/john-cassidy/the-reinhart-and-rogoff-controversy-a-summing-up).
 Carmen Reinhart und Kenneth Rogoff haben in ihrem einflussreichen Paper
 [Growth in a Time of Debt](http://scholar.harvard.edu/files/rogoff/files/growth_in_time_debt_aer.pdf)
 einen negativen Effekt von übermäßiger Staatsverschuldung auf wirtschaftliches
 Wachstum festgestellt.
 Als der PhD-Student [Thomas Herndon](https://en.wikipedia.org/wiki/Thomas_Herndon)
-während eines Seminars das Paper replizieren sollte bekam er Probleme.
+während eines Seminars das Paper replizieren sollte, bekam er Probleme.
 Dankenswerterweise sendete ihm Carmen Reinhard den Datensatz zu, allerdings
 stellte sich heraus, dass durch einen Excel-Fehler einige Länder aus der 
 Stichprobe gefallen waren. Mit der kompletten Stichprobe löste sich der im
@@ -1057,10 +1057,9 @@ ursprünglichen Paper identifizierte Zusammenhang auf [@Herndon].
 Das ist besonders dramatisch, da das Paper nicht nur zahlreiche Preise gewonnen
 hat, sondern auch als wichtige Begründung für die in Europa implementierte
 Austeritätspolitik fungierte.
-Nun kann man darüber diskutieren, wen hier die größte Schuld trifft und ob es
-wirklich ein Versehen war, aber klar ist: wäre der Datenaufbereitungsprozess
-transparent und offen durchgeführt und dokumentiert worden, wäre der Fehler 
-wahrscheinlich deutlich einfacher und früher gefunden worden.
+Klar ist: wäre der Datenaufbereitungsprozess transparent und offen durchgeführt 
+und dokumentiert worden, wäre der Fehler wahrscheinlich deutlich einfacher und 
+früher gefunden worden.
 
 ### Das Konzept von 'tidy data'
 
@@ -1197,7 +1196,7 @@ d
 ### Von langen und breiten Datensätzen {#data-long-wide}
 
 Die Datenaufbereitung umfasst häufig das Wechseln zwischen der so genannten 
-'langen' (oder'gestapelten') und 'breiten' ('ungestapelten') Datenform.
+'langen' (oder 'gestapelten') und 'breiten' ('ungestapelten') Datenform.
 Die erste ist für die statistische Verarbeitung, die zweite für das 
 menschliche Auge besser geeignet.
 
@@ -1301,7 +1300,7 @@ data_long
 
 Wenn wir den umgekehrten Weg gehen wollen, also einen langen Datensatz 'breiter'
 machen wollen, verwenden wir die Funktion `pivot_wider()`.
-Hier wird die Anzahl der Zeilen reduziert und die Anzahl der Spalten erhäht.
+Hier wird die Anzahl der Zeilen reduziert und die Anzahl der Spalten erhöht
 Gehen wir einmal vom gerade produzierten Datensatz aus:
 
 
@@ -1319,8 +1318,8 @@ data_long
 #> 4 DE    2014               4.98
 ```
 
-Die Funktion `pivot_wider()` verlangt als ersten Argumten wieder `data`, also
-den zu manipulierenden Datensatz. Hier ist das `data_long`.
+Die Funktion `pivot_wider()` verlangt als erstes Argumt wieder `data`, also
+den zu manipulierenden Datensatz. Im Beispiel ist das `data_long`.
 
 Das zweite Argument, `id_cols`, legt die Spalten fest, die nicht verändert 
 werden sollen, weil sie die Beobachtung als solche spezifizieren. In unserem 
@@ -1331,7 +1330,7 @@ notwendig, im Falle von einer Spalte wie hier ist das optional.
 Das dritte Argument, `names_from` verlangt nach den Spalten, deren Inhalte im 
 breiten Datensatz als einzelne Spalten aufgeteilt werden sollen. 
 In unserem Falle wäre das die Spalte `Jahr`, weil wir in unserem breiten 
-Datensatz ja separate Spalten für die einzelnen Jahre haben wollen.
+Datensatz separate Spalten für die einzelnen Jahre haben wollen.
 
 Das vierte Argumten ist `values_from` spezifiziert die Spalte aus der die 
 Werte für die neuen Spalten genommen werden sollen. 
@@ -1393,7 +1392,11 @@ Leider ist diese Transformation nicht in einem Schritt zu machen.
 Als erstes müssen wir nämlich den Datensatz länger machen, indem die Jahre
 in ihre eigene Spalte gepackt werden, und dann muss der Datensatz breiter 
 gemacht werden indem die Variablen `Exporte` und `Arbeitslosigkeit` ihre
-eigene Spalte bekommen:
+eigene Spalte bekommen.
+Wir machen uns dabei zu Nutze, dass wir dem Argument `cols` auch die Namen der 
+Spalten geben können, die wir *nicht* transformieren wollen. Dazu stellen wir
+der Liste der Namen ein `-` voran und R wird entsprechend alle hier nicht
+genannten Spalten für die Transformation verwenden:
 
 
 ```r
@@ -1419,8 +1422,8 @@ die Spalten spezifiziert, die *nicht* bearbeitet werden sollen und das mit einem
 Das ist vor allem dann hilfreich wenn wir sehr viele Spalten zusammenfassen 
 wollen, was häufig vorkommt, wenn es sich bei den Spalten um Jahre handelt.
 
-Als nächstes wollen die diesen Datensatz nun breiter machen, um schließlich
-unser gewünschtes Endergebnis zu erhalten:
+Um unser gewünschtes Endergebnis zu erhalten müssen wir diesen Datensatz nun nur
+noch breiter machen:
 
 
 ```r
@@ -1482,10 +1485,10 @@ data_al_exp_tidy <- data_al_exp %>%
 ```
 
 Das ist gleich viel besser lesbar! 
-In der ersten Zeile schreiben wir nur das Ausgangsobjekt `data_al_exp` hin, 
-das über `%>%` dann unmittelbar als erstes Argument an `pivot_longer()` übergeben
-wird. Da es sich beim ersten Argumetn um `data` handelt ist das genau das was wir
-wollen.
+In der ersten Zeile schreiben wir nur das Ausgangsobjekt `data_al_exp`, 
+welches über `%>%` dann unmittelbar als erstes Argument an `pivot_longer()` 
+übergeben wird. Da es sich beim ersten Argumetn um `data` handelt ist das genau 
+das was wir wollen.
 
 Das Schreiben mit `%>%` führt in der Regel zu sehr transparentem und 
 nochvollziehbarem Code, da Sie die einzelnen Manipulationsschritte schön von 
@@ -1534,7 +1537,7 @@ data_al_exp_tidy <- data_al_exp %>%
 
 Beide Funktionen, `pivot_wider()` and `pivot_longer()` können noch viel 
 komplexere Probleme lösen. 
-Für derlei Anwendungen verweisen wir aktuell noch auf die offizielle
+Für weitere Anwendungen verweisen wir auf die offizielle
 [Dokumentation](https://tidyr.tidyverse.org/articles/pivot.html).
 
 
@@ -1570,7 +1573,6 @@ Um den Zusammenhang zwischen Einkommensungleichheit und BIP zu untersuchen,
 möchten Sie die Datensätze zusammenführen, und dabei die Länder und Jahre richtig
 kombinieren.
 
-Eine solche Situation tritt häufig auf. 
 Zum Glück hat das Paket `dplyr`, das ein Teil des `tidyverse` darstellt, für jede
 Situation die passende Funktion parat. 
 Insgesamt gibt es im Paket die folgenden Funktionen, die alle dafür verwendet 
@@ -1624,12 +1626,7 @@ data_bip_gini_left_join
 #> 6 2012  AUT   6    3
 ```
 
-Wie Sie gesehen haben enthält `data_BIP` mehr Beobachtungen als `data_gini`.
-Wenn `data_BIP` als 'linker' Datensatz verwendet wird, werden alle Beobachtungen von
-`data_gini` 'angefügt', und die Beobachtungen, für die es keine Ginis gibt, erhalten
-ein `NA`.
-
-Verwenden wir dagegen `data_gini`als linken und `data_BIP` als 'rechten' Datensatz 
+Verwenden wir dagegen `data_gini` als linken und `data_BIP` als 'rechten' Datensatz 
 gibt `left_join()` einen kürzeren gemeinsamen Datensatz aus, da es nur die 
 Beobachtungen aus dem rechten Datensatz übernimmt, für die es ein Pendant im 
 linken Datensatz gibt.
@@ -1846,11 +1843,11 @@ debt_data
 ```
 
 Abschließend fassen wir noch die Funktionen in einer Tabelle zusammen, wobei 
-'DS'für 'Datensatz steht, mit `x` der linke und `y` der rechte Datensatz 
+'DS' für 'Datensatz steht, mit `x` der linke und `y` der rechte Datensatz 
 gemeint ist, wie in den Argumennten von `*_join()`.
 
-| Funktion | Effekt                   | Veränderung `nrow(DS)`? | 
-|----------+--------------------------+-------------------------|
+| Funktion | Effekt                   | Veränderung Anzahl Zeilen? | 
+|----------+--------------------------+----------------------------|
 | `left_join()` | `x` an `y` anhängen | Unmöglich |
 | `right_join()` | `y` an `x` anhängen | Möglich |
 | `inner_join()` | In `x` und `y` vorhandene Beobachtungen von `y` and `x` anhängen | Reduktion möglich | 
@@ -1878,7 +1875,7 @@ merken. Ich benutze z.B. immer die folgende selbst geschriebene Funktion um zu
 #'
 #' Tests whether a data.table has unique rows.
 #'
-#' @param data_table A data frame of data table of which uniqueness should
+#' @param data_table A data frame or data table of which uniqueness should
 #'  be tested.
 #' @param index_vars Vector of strings, which specify the columns of
 #'  data_table according to which uniqueness should be tested
@@ -1922,8 +1919,8 @@ test_uniqueness(data_bip_gini_full_join,
 
 > Die folgende Situation tritt häufiger auf: in den Daten werden für die Wendezeit
 getrennte Daten für West-Deutschland und das vereinigte Deutschland angegeben, 
-aber die `countrycode` Funktion differenziert nicht zwischen den Namen wenn sie
-sie in Ländercodes übersetzt. In der Folge entstehen Duplikate, die beim 
+aber die `countrycode` Funktion differenziert nicht zwischen den Namen wenn Sie
+sie in Ländercodes übersetzen. In der Folge entstehen Duplikate, die beim 
 Zusammenführen der Daten dann offensichtlich werden (können):
 
 
@@ -1975,8 +1972,8 @@ test_uniqueness(full_data,
 ```
 
 ```
-#> Warning in test_uniqueness(full_data, index_vars = c("Land", "Jahr")): Rows
-#> in the data.table: 5, rows in the unique data.table:3
+#> Warning in test_uniqueness(full_data, index_vars = c("Land", "Jahr")): Rows in
+#> the data.table: 5, rows in the unique data.table:3
 ```
 
 ```
@@ -1985,7 +1982,7 @@ test_uniqueness(full_data,
 
 
 > **Alternative in data.table:** Eine Anleitung für das Zusammenführen von
-Datensätzem im `data.table`-Format finde sich 
+Datensätzem im `data.table`-Format findet sich 
 [hier](https://stackoverflow.com/questions/34598139/left-join-using-data-table).
 
 ### Datensätze filtern und selektieren {#date-select}
@@ -1993,8 +1990,8 @@ Datensätzem im `data.table`-Format finde sich
 Sehr häufig haben Sie einen Rohdatensatz erhoben und benötigen für die 
 weitere Analyse nur einen Teil dieses Datensatzes.
 Zwei Szenarien sind denkbar: 
-zum einen möchten Sie bestimmte Spalten nicht verwendent. 
-Wie sprechen dann davon den Datensatz zu *selektieren*.
+zum einen möchten Sie bestimmte Spalten nicht verwenden. 
+Wir sprechen dann davon den Datensatz zu *selektieren*.
 Zum anderen möchten sie vielleicht nur Beobachtungen verwenden, die eine
 bestimmte Bedingung erfüllen, z.B. im Zeitraum 2012-2014 erhoben zu sein.
 In diesem Fall sprechen wir von *filtern*.
@@ -2059,6 +2056,9 @@ head(
 ```
 
 Häufig ist es besser die Namen der Spalten als `character` zu übergeben.
+Das ist nicht nur besser lesbar, Sie haben es später auch einfacher komplexere
+Vorgänge zu programmieren indem Sie Funktionen schreiben, die den Namen von 
+Spalten als Argumente akzeptieren.
 In diesem Fall können Sie wieder die Hilfsfunktion `one_of()` verwenden:
 
 
@@ -2120,8 +2120,8 @@ head(data_al_exp_selected, 2)
 ```
 
 Als nächstes wollen wir den Datensatz nach bestimmten Bedingungen filtern.
-Dabei ist es wichtig, sich an die [logischen Operatoren](#basics-logic) zu erinnern,
-denn diese verwenden wir um Datensätze zu filtern.
+Dabei ist es wichtig, die [logischen Operatoren](#basics-logic) zu kennen,
+denn diese werden verwendet um Datensätze zu filtern.
 
 Die Funktion `filter()` akzeptiert als erstes Argument den Datensatz.
 Wie oben folgen wir der Konvention das in der Regel implizit über `%>%` zu
@@ -2149,8 +2149,9 @@ data_al_exp_filtered
 
 Anstatt dem `,`, welches implizit für `&` steht, können wir auch beliebig 
 komplizierte logische Abfragen einbauen. Wenn wir z.B. nur Beobachtungen wollen, 
-die für Österreich im Jahr 2012 oder 2014 und für Deutschland 2013 sind oder mit
-einer Arbeitslosigkeit über 5.3 \% einhergehen, geht das mit:
+die für Österreich im Jahr 2012 oder 2014 und für Deutschland 2013 erhoben wurden
+und in Deutschland zudem mit einer Arbeitslosigkeit über 5.3 \% einhergehen,
+geht das mit:
 
 
 ```r
@@ -2198,10 +2199,14 @@ data_al_exp_tidy %>%
 #> 6 DE      2014                45.6         4.98
 ```
 
-Als abschließendes Beispiel sehen wir hier noch den Code mit dem wir aus dem
-Beispieldatensatz die Spalte zur Arbeitslogigkeit herausselektieren und nur
-die Beobachtungen für Deutschland nach 2012 betrachten und die Spaltennamen 
-dabei noch ins Englische übersetzen:
+Als abschließendes Beispiel kombinieren wir die neuen Funktionen und betrachten 
+den Code, mit dem wir 
+
+1. aus dem Beispieldatensatz die Spalte zur Arbeitslosigkeit herausselektieren 
+
+2. nur die Beobachtungen für Deutschland nach 2012 betrachten und 
+
+3. die Spaltennamen dabei noch ins Englische übersetzen:
 
 
 ```r
@@ -2229,17 +2234,18 @@ data_al_exp_tidy %>%
 
 > **Alternative Implementierung mit** `data.table`: 
 wie diese Operationen mit dem high-performance Paket `data.table` durchgeführt
-werden können wird [hier](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) 
+werden können, wird 
+[hier](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) 
 sehr gut erläutert.
 
 ### Datensätze zusammenfassen {#data-summary}
 
-In diesem letzten Abschnitt werden wir lernen wie Sie Datensätze erweitern oder
+In diesem letzten Abschnitt werden Sie lernen wie Sie Datensätze erweitern oder
 zusammenfassen. 
-So möchten Sie häufig eine neue Variable als eine Kombination bestehender 
+So können Sie eine neue Variable als eine Kombination bestehender 
 Variablen berechnen oder Ihren Datensatz zusammenfassen, z.B. indem Sie über alle
 Beobachtungen über die Zeit für einzelne Länder den Mittelwert bilden. Zu diesem
-Zweck werden wir hier die Funktionern `mutate()`, `summarise()` und `group_by()` 
+Zweck werden wir hier die Funktionen `mutate()`, `summarise()` und `group_by()` 
 aus dem Paket [dplyr](https://github.com/tidyverse/dplyr) 
 [@R-dplyr] verwenden.
 
@@ -2289,8 +2295,8 @@ neuen Ausdruck hinter das `=`.
 Wir können mit `mutate()` aber auch einfach neue Spalten erstellen, wenn der
 Name links vom `=` noch nicht als Spalte im Datensatz existiert.
 
-Wenn wir nun z.B. wissen möchten, wie viele Frauen absolut in Deutschland und 
-Österreich zur Erwerbsbevölkerung gehören müssen wir den prozentualen Anteil mit 
+Wenn Sie nun z.B. wissen möchten, wie viele Frauen absolut in Deutschland und 
+Österreich zur Erwerbsbevölkerung gehören, müssen wir den prozentualen Anteil mit 
 der Anzahl an Erwerbstätigen multiplizieren.
 Das bedeutet, wir müssen die Spalten `laborforce_female` und `workforce_total`
 multiplizieren und durch 100 Teilen, da laborforce_female in Prozent angegeben ist. 
@@ -2320,7 +2326,8 @@ Veränderung über die Zeit interessiert, sondern wollen die
 durchschnittliche Anzahl an Frauen in der Erwerbsbevölkerung berechnen?
 Das würde bedeuten, dass wir die Anzahl der Spalten in unserem Datensatz 
 reduzieren - etwas das bei der Anwendung von `mutate()` nie passieren würde.
-Dafür gibt es die Funktion `summarise()`:
+Dafür gibt es die Funktion `summarise()`:^[Die Funktionen `summarize()` und 
+`summarise()` sind Synonyme.]
 
 
 ```r
@@ -2336,13 +2343,13 @@ unemp_data_wb_summarized
 #> 1        10761223
 ```
 
-Wie Sie sehen funktioniert die Syntax quasi äquivalent zu `mutate()`, allerdings
-kondensiert `summarize()` den gesammten Datensatz auf die definierte Zahl. 
+Wie Sie sehen, funktioniert die Syntax quasi äquivalent zu `mutate()`, allerdings
+kondensiert `summarise()` den gesammten Datensatz auf die definierte Zahl. 
 
 Im gerade berechneten Durchschnitt sind sowohl die Werte für Deutschland als auch
 Österreich eingegangen. Das erscheint erst einmal irreführend, es wäre wohl 
 besser einen Durchschnittswert jeweils für Deutschland und Österreich getrennt
-zu bekommen.
+zu berechnen
 Das können wir erreichen, indem wir den Datensatz vor der Anwendung von 
 `summarise()` **gruppieren**.
 Das funktioniert mit der Funktion `group_by()`, die als Argumente die 
@@ -2400,21 +2407,21 @@ unemp_data_wb %>%
 #> 12 DEU      2014             46.2        42415215         80982500
 #> 13 DEU      2015             46.3        42731868         81686611
 #> 14 DEU      2016             46.4        43182140         82348669
-#> # ... with 2 more variables: workers_female_total <dbl>,
-#> #   fem_workers_avg <dbl>
+#> # ... with 2 more variables: workers_female_total <dbl>, fem_workers_avg <dbl>
 ```
 
 Der Datensatz wird nicht verkleinert und keine Spalte geht verloren. 
+Dafür wiederholen sich die Werte in der neu geschaffenen Spalte.
 Je nach Anwendungsfall ist also die Verwendung von `mutate()` oder 
 `summarise()` im Zusammenspiel mit `group_by()` angemessen.
 
-Im folgenden möchten wir uns noch ein etwas komplexeres Beispiel anschauen:
-wir möchten zunächst die jährliche Veränderung in der absoluten Anzahl der 
+Im Folgenden werden wir uns noch ein etwas komplexeres Beispiel anschauen:
+wir werden zunächst die jährliche Veränderung in der absoluten Anzahl der 
 weiblichen Erwertbstätigen in Österreich und Deutschland beschäftigen und
 dann vergleichen ob dieser Wert größer ist als das Bevölkerungswachstum in dieser
 Zeit.
-Dazu verwenden wir die Funktion `dplyr::lag()` um den Wert eine Zeile
-über dem aktuellen Wert zu bekommen.^[Es gibt neben den Funktionen `dplyr::lag()` und
+Dazu verwenden wir die Funktion `dplyr::lag()` um den Wert vor dem aktuellen 
+Wert zu bekommen.^[Es gibt neben den Funktionen `dplyr::lag()` und
 `dplyr::lead()` auch die Funktionen `dplyr::first()` und `dplyr::last()`, die 
 Sie verwenden können um Änderungen über den gesamten Zeitraum zu berechnen.
 Achten Sie jedoch auf den möglichen Konflikt zwischen den Funktionen 
@@ -2460,8 +2467,8 @@ unemp_data_wb_growth
 ```
 
 Besonders hilfreich sind die Versionen von `mutate()` und `summarize()`, 
-welche mehrere Spalten auf einmal bearbeiten. Wir möchten hier nicht im 
-Detail darauf eingehen, aber einen kurzen Einblick in diese Funktionalität 
+welche mehrere Spalten auf einmal bearbeiten. Ich werde hier nicht im 
+Detail darauf eingehen, sondern einen kurzen Einblick in diese Funktionalität 
 geben. Angenommen Sie wollen das durchschnittliche Wachstum in Deutschland und
 Österreich sowohl für das Bevölkerungswachstum als auch das Wachstum der 
 weiblichen Erwerbsbevölkerung berechnen.
@@ -2516,7 +2523,7 @@ dauert.
 Das zentrale Leitmotiv dieses Kapitels war die Idee, dass
 **die Datenaufbereitung vom ersten Schritt an reproduzierbar und transparent**
 sein sollte.
-Wenn Sie gefragt wurden wie Ihre Ergebnisse zustande gekommen sind, sollten Sie
+Wenn Sie gefragt werden, wie Ihre Ergebnisse zustande gekommen sind, sollten Sie
 in der Lage sein, jeden einzelnen Arbeitsschritt seit der ersten Akquise der
 Daten offenzulegen, bzw. nachvollziebar zu machen.
 
@@ -2527,7 +2534,7 @@ Zum Glück ist das mit Skript-basierten Sprachen wie R anders:
 Sie können einfach ein Skript `Datenaufbereitung.R` anlegen, in dem Sie die aus
 dem Internet heruntergeladenen Daten in den für die Analyse aufbereiteten Datensatz
 umwandeln.
-Wenn dann jemand wissen möchte, wo die Daten, die Sie in Ihrer Analyse verwenden, 
+Wenn jemand wissen möchte, wo die Daten, die Sie in Ihrer Analyse verwenden, 
 herkommen, brauchen Sie der Person nur die Quelle der Daten zu nennen und ihr 
 Skript zu zeigen.
 So ist es für Sie auch leicht Ihre Analyse mit geupdateten Daten zu aktualisieren.
@@ -2542,10 +2549,10 @@ Der Vorteil an dieser Ordnerstruktur ist, dass Sie die Rohdaten in einem separat
 Ordner gespeichert haben und so explizit vom Rest ihres Workflows abgrenzen.
 Denn: **Rohdaten sollten nie bearbeitet werden**. 
 Zu leicht geht in Vergessenheit welche Änderungen tatsächlich vorgenommen wurden
-und ihre Forschung wird dadurch nicht mehr repliziertbar - weder für Sie noch
+und ihre Forschung wird dadurch nicht mehr replizierbar - weder für Sie noch
 für andere.
-Alle für die weiteren Änderungen an den Rohdaten sollten über ein Skript vorgenommen
-werden, sodass immer klar ist wie sie von den Rohdaten zu den Analysedaten kommen.
+Alle weiteren Änderungen an den Rohdaten sollten über ein Skript vorgenommen
+werden, sodass immer klar ist wie Sie von den Rohdaten zu den Analysedaten kommen.
 
 Diese bearbeiteten Daten können in einem zweiten Unterordner (hier: `tidy`)
 gespeichert werden, damit Sie für Ihre Analyse nicht immer die Daten neu 
@@ -2559,7 +2566,7 @@ Internet geladen wurden oder direkt aus einem Experiment hervorgegangen sind, pe
 Skript `Datenaufbereitung.R` den Datensatz `AufbereiteteDaten.csv` erstellen.
 Dabei können auch mehrere Rohdatensätze zusammengeführt werden.
 Dieser kann dann in der weiteren Analyse verwendet werden, z.B. im Skript
-`StatistischeAnalyse.R`, das dann einen Output in Form einer Daten
+`StatistischeAnalyse.R`, das dann einen Output in Form einer Datei
 `WunderbarerErgebnisplot.pdf` produziert.
 
 Der Vorteil: wenn jemand genau wissen möchte, wie `WunderbarerErgebnisplot.pdf`
@@ -2575,7 +2582,7 @@ In diesem Kapitel wurden gleich mehrere Pakete aus dem
 `tidyverse`, einer Sammlung von Paketen, verwendet.
 Zwar schätze ich das `tidyverse` sehr, gleichzeitig ist der Fokus von R Studio auf 
 diese Pakete zumindest potenziell problematisch.
-Dies wird in dieserm [kritischen Blogpost](https://github.com/matloff/TidyverseSkeptic)
+Dies wird in diesem [kritischen Blogpost](https://github.com/matloff/TidyverseSkeptic)
 sehr schön beschrieben.
 
 Was die Einsteigerfreundlichkeit vom `tidyverse` angeht, bin ich jedoch anderer 
@@ -2597,7 +2604,7 @@ Das [offizielle Tutorial](https://cran.r-project.org/web/packages/data.table/vig
 ist dafür gut geeignet, macht m.E. aber auch deutlich, 
 dass es für die ersten Schritte mit R etwas unintuitiver ist als das `tidyverse`.
 
-Wenn Sie später einmal beide Ansätze beherrschen,können Sie das tun, was in einer 
+Wenn Sie später einmal beide Ansätze beherrschen, können Sie das tun, was in einer 
 diversen Sprache wie R das einzig richtige ist:
 je nach Anwendungsfall das passende Paket wählen - ganz wie im Falle von Paradigmen
 in einer Pluralen Ökonomik.

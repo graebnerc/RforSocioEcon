@@ -343,8 +343,7 @@ b_test_object
 ## 	Exact binomial test
 ## 
 ## data:  60 and 100
-## number of successes = 60, number of trials = 100, p-value =
-## 0.05689
+## number of successes = 60, number of trials = 100, p-value = 0.05689
 ## alternative hypothesis: true probability of success is not equal to 0.5
 ## 95 percent confidence interval:
 ##  0.4972092 0.6967052
