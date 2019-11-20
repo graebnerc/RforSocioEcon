@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Einrichtung | R für die sozio-ökonomische Forschung</title>
+  <meta name="description" content="R Skript in der Version 0.5.1" />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Einrichtung | R für die sozio-ökonomische Forschung" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="R Skript in der Version 0.5.1" />
+  <meta name="github-repo" content="graebnerc/RforSocioEcon" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Einrichtung | R für die sozio-ökonomische Forschung" />
+  
+  <meta name="twitter:description" content="R Skript in der Version 0.5.1" />
+  
+
+<meta name="author" content="Dr. Claudius Gräbner" />
+
+
+<meta name="date" content="2019-11-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="precons.html"/>
+<link rel="next" href="basics.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R für die sozioökonomische Forschung</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Willkommen</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#verhältnis-zur-vorlesung"><i class="fa fa-check"></i>Verhältnis zur Vorlesung</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie-während-des-semesters"><i class="fa fa-check"></i>Änderungshistorie während des Semesters</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a><ul>
+<li class="chapter" data-level="1.1" data-path="precons.html"><a href="precons.html#warum-r"><i class="fa fa-check"></i><b>1.1</b> Warum R?</a></li>
+<li class="chapter" data-level="1.2" data-path="precons.html"><a href="precons.html#besonderheiten-von-r"><i class="fa fa-check"></i><b>1.2</b> Besonderheiten von R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="einrichtung.html"><a href="einrichtung.html"><i class="fa fa-check"></i><b>2</b> Einrichtung</a><ul>
+<li class="chapter" data-level="2.1" data-path="einrichtung.html"><a href="einrichtung.html#installation-von-r-und-r-studio"><i class="fa fa-check"></i><b>2.1</b> Installation von R und R-Studio</a></li>
+<li class="chapter" data-level="2.2" data-path="einrichtung.html"><a href="einrichtung.html#die-r-studio-oberfläche"><i class="fa fa-check"></i><b>2.2</b> Die R Studio Oberfläche</a></li>
+<li class="chapter" data-level="2.3" data-path="einrichtung.html"><a href="einrichtung.html#einrichtung-eines-r-projekts"><i class="fa fa-check"></i><b>2.3</b> Einrichtung eines R Projekts</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="einrichtung.html"><a href="einrichtung.html#arbeitsverzeichnisse-und-pfade"><i class="fa fa-check"></i><b>2.3.1</b> Arbeitsverzeichnisse und Pfade</a></li>
+<li class="chapter" data-level="2.3.2" data-path="einrichtung.html"><a href="einrichtung.html#schritt-1-projektordner-anlegen"><i class="fa fa-check"></i><b>2.3.2</b> Schritt 1: Projektordner anlegen</a></li>
+<li class="chapter" data-level="2.3.3" data-path="einrichtung.html"><a href="einrichtung.html#schritt-2-ein-r-studio-projekt-im-projektordner-erstellen"><i class="fa fa-check"></i><b>2.3.3</b> Schritt 2: Ein R-Studio Projekt im Projektordner erstellen</a></li>
+<li class="chapter" data-level="2.3.4" data-path="einrichtung.html"><a href="einrichtung.html#unterordner"><i class="fa fa-check"></i><b>2.3.4</b> Schritt 3: Relevante Unterordner erstellen</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="einrichtung.html"><a href="einrichtung.html#abschließende-bemerkungen"><i class="fa fa-check"></i><b>2.4</b> Abschließende Bemerkungen</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#befehle-in-r-an-den-computer-übermitteln"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#objekte-funktionen-und-zuweisungen"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#zusammenfassung"><i class="fa fa-check"></i><b>3.3</b> Zusammenfassung</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#grundlegende-objeke-in-r"><i class="fa fa-check"></i><b>3.4</b> Grundlegende Objeke in R</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.4.1</b> Funktionen</a></li>
+<li class="chapter" data-level="3.4.2" data-path="basics.html"><a href="basics.html#basics-types-vectors"><i class="fa fa-check"></i><b>3.4.2</b> Vektoren</a></li>
+<li class="chapter" data-level="3.4.3" data-path="basics.html"><a href="basics.html#basics-logic"><i class="fa fa-check"></i><b>3.4.3</b> Logische Werte (logical)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="basics.html"><a href="basics.html#wörter-character"><i class="fa fa-check"></i><b>3.4.4</b> Wörter (character)</a></li>
+<li class="chapter" data-level="3.4.5" data-path="basics.html"><a href="basics.html#fehlende-werte-und-null"><i class="fa fa-check"></i><b>3.4.5</b> Fehlende Werte und NULL</a></li>
+<li class="chapter" data-level="3.4.6" data-path="basics.html"><a href="basics.html#indizierung-und-ersetzung"><i class="fa fa-check"></i><b>3.4.6</b> Indizierung und Ersetzung</a></li>
+<li class="chapter" data-level="3.4.7" data-path="basics.html"><a href="basics.html#nützliche-funktionen-für-atomare-vektoren"><i class="fa fa-check"></i><b>3.4.7</b> Nützliche Funktionen für atomare Vektoren</a></li>
+<li class="chapter" data-level="3.4.8" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.4.8</b> Listen</a></li>
+<li class="chapter" data-level="3.4.9" data-path="basics.html"><a href="basics.html#matrizen"><i class="fa fa-check"></i><b>3.4.9</b> Matrizen</a></li>
+<li class="chapter" data-level="3.4.10" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.4.10</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#pakete"><i class="fa fa-check"></i><b>3.5</b> Pakete</a></li>
+<li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.6</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>4</b> Lineare statistische Modelle in R</a><ul>
+<li class="chapter" data-level="4.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>4.1</b> Einleitung und Überblick</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>4.1.1</b> Einführung in die lineare Regression</a></li>
+<li class="chapter" data-level="4.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>4.1.2</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="4.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>4.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>4.2</b> Grundlagen der einfachen linearen Regression</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="linmodel.html"><a href="linmodel.html#grundlegende-begriffe"><i class="fa fa-check"></i><b>4.2.1</b> Grundlegende Begriffe</a></li>
+<li class="chapter" data-level="4.2.2" data-path="linmodel.html"><a href="linmodel.html#schätzung-mit-der-kleinste-quadrate-methode"><i class="fa fa-check"></i><b>4.2.2</b> Schätzung mit der Kleinste-Quadrate-Methode</a></li>
+<li class="chapter" data-level="4.2.3" data-path="linmodel.html"><a href="linmodel.html#annahmen-für-den-ols-schätzer"><i class="fa fa-check"></i><b>4.2.3</b> Annahmen für den OLS Schätzer</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="linmodel.html"><a href="linmodel.html#lin-kennzahlen"><i class="fa fa-check"></i><b>4.3</b> Kennzahlen in der linearen Regression</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="linmodel.html"><a href="linmodel.html#erklärte-varianz-und-das-r2"><i class="fa fa-check"></i><b>4.3.1</b> Erklärte Varianz und das <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="4.3.2" data-path="linmodel.html"><a href="linmodel.html#hypothesentests-und-statistische-signifikanz"><i class="fa fa-check"></i><b>4.3.2</b> Hypothesentests und statistische Signifikanz</a></li>
+<li class="chapter" data-level="4.3.3" data-path="linmodel.html"><a href="linmodel.html#konfidenzintervalle-für-die-schätzer"><i class="fa fa-check"></i><b>4.3.3</b> Konfidenzintervalle für die Schätzer</a></li>
+<li class="chapter" data-level="4.3.4" data-path="linmodel.html"><a href="linmodel.html#zur-rolle-der-stichprobengröße"><i class="fa fa-check"></i><b>4.3.4</b> Zur Rolle der Stichprobengröße</a></li>
+<li class="chapter" data-level="4.3.5" data-path="linmodel.html"><a href="linmodel.html#residuenanalyse"><i class="fa fa-check"></i><b>4.3.5</b> Residuenanalyse</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="linmodel.html"><a href="linmodel.html#stat-ablauf"><i class="fa fa-check"></i><b>4.4</b> Zum Ablauf einer Regression</a></li>
+<li class="chapter" data-level="4.5" data-path="linmodel.html"><a href="linmodel.html#lin-multi"><i class="fa fa-check"></i><b>4.5</b> Multiple lineare Regression</a></li>
+<li class="chapter" data-level="4.6" data-path="linmodel.html"><a href="linmodel.html#anwendungsbeispiel"><i class="fa fa-check"></i><b>4.6</b> Anwendungsbeispiel</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>5</b> Datenkunde und Datenaufbereitung</a><ul>
+<li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="5.1" data-path="data.html"><a href="data.html#data-arten"><i class="fa fa-check"></i><b>5.1</b> Arten von Daten</a></li>
+<li class="chapter" data-level="5.2" data-path="data.html"><a href="data.html#data-get"><i class="fa fa-check"></i><b>5.2</b> Datenakquise</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="data.html"><a href="data.html#exkurs-1-ländercodes-übersetzen"><i class="fa fa-check"></i><b>5.2.1</b> Exkurs 1: Ländercodes übersetzen</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data.html"><a href="data.html#data-download-R"><i class="fa fa-check"></i><b>5.2.2</b> Exkurs 2: Daten direkt mit R herunterladen</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="data.html"><a href="data.html#data-read-write"><i class="fa fa-check"></i><b>5.3</b> Daten einlesen und schreiben</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="data.html"><a href="data.html#einlesen-von-datensätzen"><i class="fa fa-check"></i><b>5.3.1</b> Einlesen von Datensätzen</a></li>
+<li class="chapter" data-level="5.3.2" data-path="data.html"><a href="data.html#speichern-von-daten"><i class="fa fa-check"></i><b>5.3.2</b> Speichern von Daten</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="data.html"><a href="data.html#data-wrangling"><i class="fa fa-check"></i><b>5.4</b> Verarbeitung von Daten (‘data wrangling’)</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="data.html"><a href="data.html#das-konzept-von-tidy-data"><i class="fa fa-check"></i><b>5.4.1</b> Das Konzept von ‘tidy data’</a></li>
+<li class="chapter" data-level="5.4.2" data-path="data.html"><a href="data.html#data-long-wide"><i class="fa fa-check"></i><b>5.4.2</b> Von langen und breiten Datensätzen</a></li>
+<li class="chapter" data-level="5.4.3" data-path="data.html"><a href="data.html#data-merge"><i class="fa fa-check"></i><b>5.4.3</b> Zusammenführen von Daten</a></li>
+<li class="chapter" data-level="5.4.4" data-path="data.html"><a href="data.html#date-select"><i class="fa fa-check"></i><b>5.4.4</b> Datensätze filtern und selektieren</a></li>
+<li class="chapter" data-level="5.4.5" data-path="data.html"><a href="data.html#data-summary"><i class="fa fa-check"></i><b>5.4.5</b> Datensätze zusammenfassen</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="data.html"><a href="data.html#data-role"><i class="fa fa-check"></i><b>5.5</b> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</a></li>
+<li class="chapter" data-level="5.6" data-path="data.html"><a href="data.html#data-packages"><i class="fa fa-check"></i><b>5.6</b> Anmerkungen zu Paketen</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>6</b> Visualisierung von Daten</a><ul>
+<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#verwendete-pakete-1"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
+<li class="chapter" data-level="6.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>6.1</b> Optional: Theoretische Grundlagen</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="vis.html"><a href="vis.html#vis-base-ggplot2"><i class="fa fa-check"></i><b>6.1.1</b> <code>ggplot2</code> vs. <code>base plot</code></a></li>
+<li class="chapter" data-level="6.1.2" data-path="vis.html"><a href="vis.html#grammar"><i class="fa fa-check"></i><b>6.1.2</b> Einleitung zu Wickham’s <em>grammar of graphics</em></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="vis.html"><a href="vis.html#vis-elemente"><i class="fa fa-check"></i><b>6.2</b> Grundlegende Elemente von <code>ggplot2</code>-Grafiken</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="vis.html"><a href="vis.html#elemente-eines-ggplot"><i class="fa fa-check"></i><b>6.2.1</b> Elemente eines <code>ggplot</code></a></li>
+<li class="chapter" data-level="6.2.2" data-path="vis.html"><a href="vis.html#beispiel-workflow"><i class="fa fa-check"></i><b>6.2.2</b> Beispiel Workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="vis.html"><a href="vis.html#arten-von-datenvisualisierung"><i class="fa fa-check"></i><b>6.3</b> Arten von Datenvisualisierung</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="vis.html"><a href="vis.html#allgemeine-tipps-zum-grafikdesign"><i class="fa fa-check"></i><b>6.3.1</b> Allgemeine Tipps zum Grafikdesign</a></li>
+<li class="chapter" data-level="6.3.2" data-path="vis.html"><a href="vis.html#streu--oder-blasendiagramm"><i class="fa fa-check"></i><b>6.3.2</b> Streu- oder Blasendiagramm</a></li>
+<li class="chapter" data-level="6.3.3" data-path="vis.html"><a href="vis.html#linienchart"><i class="fa fa-check"></i><b>6.3.3</b> Linienchart</a></li>
+<li class="chapter" data-level="6.3.4" data-path="vis.html"><a href="vis.html#histogramme-und-dichteplots"><i class="fa fa-check"></i><b>6.3.4</b> Histogramme und Dichteplots</a></li>
+<li class="chapter" data-level="6.3.5" data-path="vis.html"><a href="vis.html#balkendiagramme"><i class="fa fa-check"></i><b>6.3.5</b> Balkendiagramme</a></li>
+<li class="chapter" data-level="6.3.6" data-path="vis.html"><a href="vis.html#vis-pie"><i class="fa fa-check"></i><b>6.3.6</b> Kuchendiagramme</a></li>
+<li class="chapter" data-level="6.3.7" data-path="vis.html"><a href="vis.html#vis-kinds-summary"><i class="fa fa-check"></i><b>6.3.7</b> Zusammenfassung</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="vis.html"><a href="vis.html#vis-adv"><i class="fa fa-check"></i><b>6.4</b> Beispiele aus der Praxis und fortgeschrittene Themen</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="vis.html"><a href="vis.html#regressionsgerade"><i class="fa fa-check"></i><b>6.4.1</b> Regressionsgerade</a></li>
+<li class="chapter" data-level="6.4.2" data-path="vis.html"><a href="vis.html#vis-viele-plots"><i class="fa fa-check"></i><b>6.4.2</b> Mehrere Plots in einer Abbildung</a></li>
+<li class="chapter" data-level="6.4.3" data-path="vis.html"><a href="vis.html#mehr-zu-den-skalen-expand_scale-und-skalentransformation"><i class="fa fa-check"></i><b>6.4.3</b> Mehr zu den Skalen: <code>expand_scale()</code> und Skalentransformation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="vis.html"><a href="vis.html#vis-fehler"><i class="fa fa-check"></i><b>6.5</b> Typische Fehler in der Datenvisualisierung vermeiden</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="vis.html"><a href="vis.html#clutterplots-und-ihre-tranformation-zum-beschrifteten-streudiagramm"><i class="fa fa-check"></i><b>6.5.1</b> Clutterplots und ihre Tranformation zum beschrifteten Streudiagramm</a></li>
+<li class="chapter" data-level="6.5.2" data-path="vis.html"><a href="vis.html#ein-unbalancierter-plot"><i class="fa fa-check"></i><b>6.5.2</b> Ein ‘unbalancierter’ Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="vis.html"><a href="vis.html#vis-lies"><i class="fa fa-check"></i><b>6.6</b> Lügen mit grafischer Statistik</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="vis.html"><a href="vis.html#klassiker-1-kontraintuitiver-nullpunkt"><i class="fa fa-check"></i><b>6.6.1</b> Klassiker 1: Kontraintuitiver ‘Nullpunkt’</a></li>
+<li class="chapter" data-level="6.6.2" data-path="vis.html"><a href="vis.html#klassiker-2-geschickt-gewählter-zeitraum-und-clever-gewählte-achsenabschnitte"><i class="fa fa-check"></i><b>6.6.2</b> Klassiker 2: Geschickt gewählter Zeitraum und clever gewählte Achsenabschnitte</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="vis.html"><a href="vis.html#vis-links"><i class="fa fa-check"></i><b>6.7</b> Links und weiterführende Literatur</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>A</b> Eine kurze Einführung in R Markdown</a><ul>
+<li class="chapter" data-level="A.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>A.1</b> Markdown vs. R-Markdown</a></li>
+<li class="chapter" data-level="A.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>A.2</b> Installation von R-Markdown</a></li>
+<li class="chapter" data-level="A.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>A.3</b> Der R-Markdown Workflow</a><ul>
+<li class="chapter" data-level="A.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>A.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
+<li class="chapter" data-level="A.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>A.3.2</b> Der Titelblock</a></li>
+<li class="chapter" data-level="A.3.3" data-path="markdown.html"><a href="markdown.html#der-textkörper"><i class="fa fa-check"></i><b>A.3.3</b> Der Textkörper</a></li>
+<li class="chapter" data-level="A.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>A.3.4</b> Kompillieren von Dokumenten</a></li>
+</ul></li>
+<li class="chapter" data-level="A.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>A.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
+<li class="chapter" data-level="A.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>A.5</b> Weitere Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="stat-stoch.html"><a href="stat-stoch.html"><i class="fa fa-check"></i><b>B</b> Wiederholung: Wahrscheinlichkeitstheorie</a><ul>
+<li class="chapter" data-level="" data-path="stat-stoch.html"><a href="stat-stoch.html#verwendete-pakete-2"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="B.1" data-path="stat-stoch.html"><a href="stat-stoch.html#einleitung-wahrscheinlichkeitstheorie-und-statistik"><i class="fa fa-check"></i><b>B.1</b> Einleitung: Wahrscheinlichkeitstheorie und Statistik</a></li>
+<li class="chapter" data-level="B.2" data-path="stat-stoch.html"><a href="stat-stoch.html#grundbegriffe-der-wahrscheinlichkeitstheorie"><i class="fa fa-check"></i><b>B.2</b> Grundbegriffe der Wahrscheinlichkeitstheorie</a></li>
+<li class="chapter" data-level="B.3" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.3</b> Diskrete Wahrscheinlichkeitsmodelle</a><ul>
+<li class="chapter" data-level="B.3.1" data-path="stat-stoch.html"><a href="stat-stoch.html#bayes-theorem-und-gesetz-der-total-wahrscheinlichkeiten"><i class="fa fa-check"></i><b>B.3.1</b> Bayes Theorem und Gesetz der total Wahrscheinlichkeiten</a></li>
+<li class="chapter" data-level="B.3.2" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-zufallsvariablen"><i class="fa fa-check"></i><b>B.3.2</b> Diskrete Zufallsvariablen</a></li>
+<li class="chapter" data-level="B.3.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-binomial-verteilung"><i class="fa fa-check"></i><b>B.3.3</b> Beispiel: die Binomial-Verteilung</a></li>
+<li class="chapter" data-level="B.3.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-poisson-verteilung"><i class="fa fa-check"></i><b>B.3.4</b> Beispiel: die Poisson-Verteilung</a></li>
+<li class="chapter" data-level="B.3.5" data-path="stat-stoch.html"><a href="stat-stoch.html#hinweise-zu-diskreten-wahrscheinlichkeitsverteilungen"><i class="fa fa-check"></i><b>B.3.5</b> Hinweise zu diskreten Wahrscheinlichkeitsverteilungen</a></li>
+</ul></li>
+<li class="chapter" data-level="B.4" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.4</b> Stetige Wahrscheinlichkeitsmodelle</a><ul>
+<li class="chapter" data-level="B.4.1" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-zv"><i class="fa fa-check"></i><b>B.4.1</b> Stetige ZV</a></li>
+<li class="chapter" data-level="B.4.2" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-uniformverteilung"><i class="fa fa-check"></i><b>B.4.2</b> Beispiel: die Uniformverteilung</a></li>
+<li class="chapter" data-level="B.4.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-normalverteilung"><i class="fa fa-check"></i><b>B.4.3</b> Beispiel: die Normalverteilung</a></li>
+<li class="chapter" data-level="B.4.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-exponentialverteilung"><i class="fa fa-check"></i><b>B.4.4</b> Beispiel: die Exponentialverteilung</a></li>
+</ul></li>
+<li class="chapter" data-level="B.5" data-path="stat-stoch.html"><a href="stat-stoch.html#zusammenfassung-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.5</b> Zusammenfassung Wahrscheinlichkeitsmodelle</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>C</b> Wiederholung: Deskriptive Statistik</a><ul>
+<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-und-datensätze"><i class="fa fa-check"></i>Verwendete Pakete und Datensätze</a></li>
+<li class="chapter" data-level="C.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>C.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
+<li class="chapter" data-level="C.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmaße"><i class="fa fa-check"></i><b>C.2</b> Korrelationsmaße</a></li>
+<li class="chapter" data-level="C.3" data-path="desk-stat.html"><a href="desk-stat.html#hinweise-zur-quantitativen-und-visuellen-datenbeschreibung"><i class="fa fa-check"></i><b>C.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
+<li class="chapter" data-level="C.4" data-path="desk-stat.html"><a href="desk-stat.html#zusamenfassung"><i class="fa fa-check"></i><b>C.4</b> Zusamenfassung</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>D</b> Wiederholung: Drei Verfahren der schließenden Statistik</a><ul>
+<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-3"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="D.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>D.1</b> Punktschätzung</a></li>
+<li class="chapter" data-level="D.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>D.2</b> Hypothesentests</a></li>
+<li class="chapter" data-level="D.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>D.3</b> Berechnung von Konfidenzintervallen</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R für die sozio-ökonomische Forschung</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="einrichtung" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Einrichtung</h1>
+<div id="installation-von-r-und-r-studio" class="section level2">
+<h2><span class="header-section-number">2.1</span> Installation von R und R-Studio</h2>
+<p>Die Installation von R ist in der Regel unproblematisch. Auf der <a href="https://www.r-project.org/">R homepage</a> wählt man unter dem Reiter ‘Download’ den Link ‘CRAN’ aus, wählt einen Server in der Nähe und lädt sich dann die R Software herunter. Danach folgt man den Installationshinweisen.</p>
+<p>Im zweiten Schritt muss noch das Programm ‘R-Studio’ installiert werden. Hierbei handelt es sich um eine grafische Oberfläche für R, welche uns die Arbeit enorm erleichtern wird. Das Programm kann <a href="https://www.rstudio.com/products/rstudio/download/">hier</a> heruntergeladen werden. Bitte darauf achten ‘RStuio Desktop’ zu installieren.</p>
+</div>
+<div id="die-r-studio-oberfläche" class="section level2">
+<h2><span class="header-section-number">2.2</span> Die R Studio Oberfläche</h2>
+<p>Nach dem Installationsprozess öffnen wir R Studio zum ersten Mal. Der folgende Screenshot zeigt die verschiedenen Elemente der Oberfläche, deren Funktion im folgenden kurz erläutert wird. Vieles ergibt sich hier aber auch durch <em>learning by doing</em>. Im folgenden werden nur die Bereiche der Oberfläche beschrieben, die am Anfang unmittelbar relevant für uns sind.</p>
+<p><img src="figures/r-studio-light-marked.png" width="100%" style="display: block; margin: auto;" /></p>
+<ul>
+<li><p>Der <strong>Skriptbereich</strong> (1) ist ein Texteditor wie Notepad - nur mit zusätzlichen Features wie Syntax Highlighting für R, sodass es uns leichter fällt R Code zu schreiben. Hier werden wir unsere Skripte verfassen.</p></li>
+<li><p>Die <strong>Konsole</strong> (2) erlaubt es uns über R direkt mit unserem Computer zu interagieren. R ist eine Programmiersprache. Das bedeutet, wenn wir den Regeln der Sprache folgen und uns in einer für den Computer verständlicher Art und Weise ausdrücken, versteht der Computer was wir von ihm wollen und führt unsere Befehle aus. Wenn wir in die Konsole z.B. <code>2+2</code> eingeben, dann ist das valider R code. Wenn wir dann Enter drücken versteht der Computer unseren Befehl und führt die Berechnung aus. Die Konsole ist sehr praktisch um den Effekt von R Code direkt zu beobachten. Wenn wir etwas in der Console ausführen wollen, das wir vorher im <strong>Skriptbereich</strong> geschrieben haben, können wir den Text markieren und dann auf den Button <code>Run</code> (3) drücken: dann kopiert R Studio den Code in die Konsole und führt ihn aus.</p></li>
+<li><p>Für den Bereich oben rechts haben wir in der Standardkonfiguration von R Studio drei Optionen, die wir durch Klicken auf die Reiter auswählen können. Der Reiter <strong>Environment</strong> (4) zeigt uns alle bisher definierten Objekte an (mehr dazu später). Der Reiter <strong>History</strong> (5) zeigt an, welchen Code wir in der Vergangenheit ausgeführt haben. Der Reiter <strong>Connections</strong> (6) braucht uns aktuell nicht zu interessieren.</p></li>
+<li><p>Auch für den Bereich unten rechts haben wir mehrere Optionen: Der Bereich <strong>Files</strong> (7) zeigt uns unser Arbeitsverzeichnis mit allen Ordnern und Dateien an. Das ist das gleiche, was wir auch über den File Explorer unserer Betriebssystems sehen würden. Der Bereich <strong>Plots</strong> (8) zeigt uns eine Vorschau der Abbildungen, die wir durch unseren Code produzieren. Die anderen Bereiche brauchen uns aktuell noch nicht zu interessieren.</p></li>
+<li><p>Wenn wir ein neues R Skript erstellen wollen, können wir das über den Button <strong>Neu</strong> (9) erledigen. Wir klicken darauf und wählen die Option ‘R Skript’. Mit den alternativen Dateiformaten brauchen wir uns aktuell nicht beschäftigen.</p></li>
+<li><p>Der Botton <strong>Neues Projekt anlegen</strong> (10) erstellt eine neues R Studio Projekt - mehr dazu in Kürze.</p></li>
+<li><p>Der Button <strong>Öffnen</strong> (11) öffnet Dateien im Skriptbereich.</p></li>
+<li><p>Die beiden Buttons <strong>Speichern</strong> (12) und <strong>Alles speichern</strong> (13) speichern das aktuelle, bzw. alle im Skriptbereich geöffnenten Dateien.</p></li>
+</ul>
+<p>Die restlichen Buttons und Fenster in R Studio werden wir im Laufe der Zeit kennenlernen.</p>
+<p>Es macht Sinn, sich einmal die möglichen Einstellungsmöglichkeiten für R Studio anzuschauen und ggf. eine andere Darstellungsversion zu wählen.</p>
+</div>
+<div id="einrichtung-eines-r-projekts" class="section level2">
+<h2><span class="header-section-number">2.3</span> Einrichtung eines R Projekts</h2>
+<p>Im folgenden werden wir lernen wie man ein neues R Projekt anlegt, R Code schreiben und ausführen kann.</p>
+<p>Wann immer wir ein neues Programmierprojekt starten, sollten wir dafür einen eigenen Ordner anlegen und ein so genannten ‘R Studio Projekt’ erstellen. Das hilft uns den Überblick über unsere Arbeit zu behalten, und macht es einfach Code untereinander auszutauschen.</p>
+<p>Ein Programmierprojekt kann ein Projekt für eine Hausarbeit sein, die Mitschriften für eine Vorlesungseinheit, oder einfach der Versuch ein bestimmtes Problem zu lösen, z.B. einen Datensatz zu visualisieren.</p>
+<p>Die Schritte zur Erstellung eines solchen Projekts sind immer die gleichen:</p>
+<ol style="list-style-type: decimal">
+<li>Einen Ordner für das Projekt anlegen.</li>
+<li>Ein R-Studio Projekt in diesem Ordner erstellen.</li>
+<li>Relevante Unterordner anlegen.</li>
+</ol>
+<p>Wir beschäftigen uns mit den Schritten gleich im Detail, müssen vorher aber noch die folgenden Konzepte diskutieren: (1) das Konzept eines <em>Arbeitsverzeichnisses</em> (<em>working directory</em>) und (2) die Unterscheidnug zwischen <em>absoluten</em> und <em>relativen</em> Pfaden.</p>
+<div id="arbeitsverzeichnisse-und-pfade" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Arbeitsverzeichnisse und Pfade</h3>
+<p>Das <strong>Arbeitsverzeichnis</strong> ist ein Ordner auf dem Computer, in dem R standardmäßig sämtlichen Output speichert und von dem aus es auf Datensätze und anderen Input zugreift. Wenn wir mit Projekten arbeiten ist das Arbeitsverzeichnis der Ordner, in dem das R-Projektfile abgelegt ist, ansonsten ist es euer Benutzerverzeichnis. Wir können uns das Arbeitsverzeichnis mit der Funktion <code>getwd()</code> anzeigen lassen. In meinem Fall ist das Arbeitsverzeichnis das folgende:</p>
+<pre><code>#&gt; [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR&quot;</code></pre>
+<p>Wenn ich R nun sagen würde ein File unter dem Namen <code>test.pdf</code> speichern, würde es am folgenden Ort gespeichert werden:</p>
+<pre><code>#&gt; [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf&quot;</code></pre>
+<p>R geht in einem solchen Fall immer vom Arbeitsverzeichnis aus. Da wir im vorliegenden Fall den Speicherort relativ zum Arbeitsverzeichnis angegeben haben, sprechen wir hier von einem <strong>relativen Pfad</strong>.</p>
+<p>Alternativ können wir den Speicherort auch als <strong>absoluten Pfad</strong> angeben. In diesem Fall geben wir den kompletten Pfad, ausgehend vom <a href="https://de.wikipedia.org/wiki/Stammverzeichnis">Root Verzeichnis</a> des Computers, an. Wir würden R also <em>explizit</em> auffordern, das File an foldengem Ort zu speichern:</p>
+<pre><code>#&gt; [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf&quot;</code></pre>
+<p>Wir werden hier <strong>immer</strong> relative Pfade verwenden. Relative Pfade sind fast immer die bessere Variante, da es uns erlaubt den gleichen Code auf verschiedenen Computern zu verwenden. Denn wiw man an den absoluten Pfaden erkennen kann, sehen diese auf jedem Computer anders aus und es ist dementsprechend schwierig, Code miteinander zu teilen.</p>
+<p>Wir lernen mehr über dieses Thema wenn wir uns später mit Dateninput und -output beschäftigen.</p>
+</div>
+<div id="schritt-1-projektordner-anlegen" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Schritt 1: Projektordner anlegen</h3>
+<p>Zuerst müssen Sie sich für einen Ordner auf Ihrem Computer entscheiden, in dem alle Daten, die mit ihrem Projekt zu tun haben, also Daten, Skripte, Abbildungen, etc. gespeichert werden sollen und diesen Ordner gegebenenfalls neu erstellen. Es macht Sinn, einen solchen Ordner mit einem informativen Namen ohne Leer- und Sonderzeichen zu versehen, z.B. <code>SoSe19-Methodenkurs</code>.</p>
+<p>Dieser Schritt kann theoretisch auch gemeinsam mit Schritt 2 erfolgen.</p>
+</div>
+<div id="schritt-2-ein-r-studio-projekt-im-projektordner-erstellen" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Schritt 2: Ein R-Studio Projekt im Projektordner erstellen</h3>
+<p>Wir möchten nun R Studio mitteilen den in Schritt 1 erstellten Ordner als R Projekt zu behandeln. Damit wird nicht nur dieses Ordner als Root-Verzeichnis festgelegt, man kann auch die Arbeitshistorie eines Projekts leich wiederherstellen und es ist einfacher, das Projekt auf verschiedenen Computern zu bearbeiten.</p>
+<p>Um ein neues Projekt zu erstellen klicken Sie in R Studio auf den Button <code>Neues Projekt</code> (Nr. 10 in der obigen Abbildung) und Sie sollten folgendes Fenster sehen:</p>
+<p><img src="figures/r-studio-new-project.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Falls Sie in Schritt 1 den Projektordner bereits erstellt haben wählen Sie hier <code>Existing Directory</code>, ansonsten erstellen Sie einen neuen Projektordner gleich mit dem Projektfile mit indem Sie <code>New Directory</code> auswählen.</p>
+<p>Falls Sie <code>Existing Directory</code> gewählt haben, wählen Sie in folgendem Fenster einfach den vorher erstellten Ordner aus und klickt auf <code>Create Project</code>.</p>
+<p><img src="figures/r-studio-new-project-exis-dir.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Falls Sie <code>New Directory</code> gewählt habt landen Sie auf folgendem Fenster:</p>
+<p><img src="figures/r-studio-new-project-new-dir.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Hier wählen Sie <code>New Project</code> aus, geben dem Projekt in folgenden Fenster einen Namen (das wird der Name des Projektordners sein), wählen den Speicherort für den Ordner aus und klicken auf <code>Create Project</code>.</p>
+<p>In beiden Fällen wurde nun ein Ordner erstellt, in dem sich ein File <code>*.Rproj</code> befindet. Damit ist die formale Erstellung eines Projekts abgeschlossen. Es empfiehlt sich jedoch dringend gleich eine sinnvolle Unterordnerstruktur mit anzulegen.</p>
+</div>
+<div id="unterordner" class="section level3">
+<h3><span class="header-section-number">2.3.4</span> Schritt 3: Relevante Unterordner erstellen</h3>
+<p>Eine sinnvolle Unterordnerstruktur hilf (1) den Überblick über das eigene Projekt nicht zu verlieren, (2) mit anderen über verschiedene Computer hinweg zu kollaborieren und (3) Kollaborationsplattformen wie Github zu verwenden und replizierbare und für andere nachvollziehbare Forschungsarbeit zu betreiben.</p>
+<p>Die folgende Ordnerstruktur ist eine Empfehlung. In manchen Projekten werden Sie nicht alle hier vorgeschlagenen Unterordner brauchen, in anderen bietet sich die Verwendung von mehr Unterordnern an. Nichtsdestotrotz ist es ein guter Ausgangspunkt, den ich in den meisten meiner Forschungsprojekte auch so verwende.</p>
+<p>Insgesamt sollten die folgenden Ordner im Projektordner erstellt werden:</p>
+<ul>
+<li>Ein Ordner <code>data</code>, der alle Daten enthält, die im Rahmen des Projekts verwendet werden. Hier empfiehlt es sich zwei Unterordner anzulegen: Einen Ordner <code>raw</code>, der die Rohdaten enthält, so wie sie aus dem Internet runtergeladen wurden. Diese Rohdaten sollten <strong>niemals</strong> verändert werden, ansonsten wird Ihre Arbeit nicht vollständig replizierbar werden und es kommt ggf. zu irreparablen Schäden. Alle Veränderungen der Daten sollten durch Skripte dokumentiert werdenn, die die Rohdaten als Input, und einen modifizierten Datensatz als Output generieren. Dieser modifizierte Datensatz sollte dann im Unterordner <code>tidy</code> gespeichert werden.</li>
+</ul>
+<blockquote>
+<p>Beispiel: Sie laden sich Daten zum BIP in Deutschland von Eurostat und Daten zu Arbeitslosigkeit von AMECO herunter. Beiden Datensätze sollten im Unterordner <code>data/raw</code> gespeichert werden. Mit einem Skript lesen Sie beide Datensätze ein und erstellen den kombinierten Datensatz <code>macro_data.csv</code>, den Sie im Ordner <code>data/tidy</code> speichern und für die weitere Analyse verwenden. Dadurch kann jede*r nachvollziehen wie die von Ihnen verwendeten Daten sich aus den Rohdaten ergeben haben und Ihre Arbeit bleibt komplett transparent.</p>
+</blockquote>
+<ul>
+<li><p>Ein Ordner <code>R</code>, der alle R Skripte enthält, also alle Textdokumente, die R Code enthalten.</p></li>
+<li><p>Ein Ordner <code>output</code>, in dem der Output ihrer Berechnungen, z.B. Tabellen oder Plots gespeichert werden können. Der Inhalt dieses Ordners sollte sich komplett mit den Inhalten der Ordner <code>data</code> und <code>R</code> replizieren lassen.</p></li>
+<li><p>Ein Ordner <code>text</code>, in dem Sie Ihre Verschriftlichungen speichern, z.B. das eigentliche Forschungspapier, ihre Hausarbeit oder Ihre Vorlesungsmitschriften.</p></li>
+<li><p>Einen Ordner <code>misc</code> in den Sie alles packen, was in keinen der anderen Ordner passt. Ein solcher Ordner ist wichtig und Sie sollten nicht zuordbare Dateien nie in den Projektordner als solchen speichern.</p></li>
+</ul>
+<p>Wenn wir annehmen unser Projektordner heißt <code>2019-Methoden</code> ergibt sich damit insgesamt folgende Ordner und Datenstruktur:</p>
+<p><img src="figures/wd-structure.png" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="abschließende-bemerkungen" class="section level2">
+<h2><span class="header-section-number">2.4</span> Abschließende Bemerkungen</h2>
+<p>Eine gute Ordnerstruktur ist nicht nur absolut essenziell um selbst einen Überblick über seine Forschungsprojekte zu behalten, sondern auch wenn man mit anderen Menschen kollaborieren möchte. In einem solchen Fall sollte man auf jeden Fall eine Versionskontrolle wie Git und GitHub verwenden. Wir werden uns damit im nächsten Semester genauer beschäftigen, aber Sie werden merken, dass die Kollaboration durch eine gut durchdachte Ordnerstruktur massiv erleichtert wird.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="precons.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["R-SocioEcon-dt.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

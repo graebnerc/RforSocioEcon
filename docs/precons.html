@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Vorbemerkungen | R für die sozio-ökonomische Forschung</title>
+  <meta name="description" content="R Skript in der Version 0.5.1" />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Vorbemerkungen | R für die sozio-ökonomische Forschung" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="R Skript in der Version 0.5.1" />
+  <meta name="github-repo" content="graebnerc/RforSocioEcon" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Vorbemerkungen | R für die sozio-ökonomische Forschung" />
+  
+  <meta name="twitter:description" content="R Skript in der Version 0.5.1" />
+  
+
+<meta name="author" content="Dr. Claudius Gräbner" />
+
+
+<meta name="date" content="2019-11-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="einrichtung.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R für die sozioökonomische Forschung</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Willkommen</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#verhältnis-zur-vorlesung"><i class="fa fa-check"></i>Verhältnis zur Vorlesung</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie-während-des-semesters"><i class="fa fa-check"></i>Änderungshistorie während des Semesters</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a><ul>
+<li class="chapter" data-level="1.1" data-path="precons.html"><a href="precons.html#warum-r"><i class="fa fa-check"></i><b>1.1</b> Warum R?</a></li>
+<li class="chapter" data-level="1.2" data-path="precons.html"><a href="precons.html#besonderheiten-von-r"><i class="fa fa-check"></i><b>1.2</b> Besonderheiten von R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="einrichtung.html"><a href="einrichtung.html"><i class="fa fa-check"></i><b>2</b> Einrichtung</a><ul>
+<li class="chapter" data-level="2.1" data-path="einrichtung.html"><a href="einrichtung.html#installation-von-r-und-r-studio"><i class="fa fa-check"></i><b>2.1</b> Installation von R und R-Studio</a></li>
+<li class="chapter" data-level="2.2" data-path="einrichtung.html"><a href="einrichtung.html#die-r-studio-oberfläche"><i class="fa fa-check"></i><b>2.2</b> Die R Studio Oberfläche</a></li>
+<li class="chapter" data-level="2.3" data-path="einrichtung.html"><a href="einrichtung.html#einrichtung-eines-r-projekts"><i class="fa fa-check"></i><b>2.3</b> Einrichtung eines R Projekts</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="einrichtung.html"><a href="einrichtung.html#arbeitsverzeichnisse-und-pfade"><i class="fa fa-check"></i><b>2.3.1</b> Arbeitsverzeichnisse und Pfade</a></li>
+<li class="chapter" data-level="2.3.2" data-path="einrichtung.html"><a href="einrichtung.html#schritt-1-projektordner-anlegen"><i class="fa fa-check"></i><b>2.3.2</b> Schritt 1: Projektordner anlegen</a></li>
+<li class="chapter" data-level="2.3.3" data-path="einrichtung.html"><a href="einrichtung.html#schritt-2-ein-r-studio-projekt-im-projektordner-erstellen"><i class="fa fa-check"></i><b>2.3.3</b> Schritt 2: Ein R-Studio Projekt im Projektordner erstellen</a></li>
+<li class="chapter" data-level="2.3.4" data-path="einrichtung.html"><a href="einrichtung.html#unterordner"><i class="fa fa-check"></i><b>2.3.4</b> Schritt 3: Relevante Unterordner erstellen</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="einrichtung.html"><a href="einrichtung.html#abschließende-bemerkungen"><i class="fa fa-check"></i><b>2.4</b> Abschließende Bemerkungen</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#befehle-in-r-an-den-computer-übermitteln"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#objekte-funktionen-und-zuweisungen"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#zusammenfassung"><i class="fa fa-check"></i><b>3.3</b> Zusammenfassung</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#grundlegende-objeke-in-r"><i class="fa fa-check"></i><b>3.4</b> Grundlegende Objeke in R</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.4.1</b> Funktionen</a></li>
+<li class="chapter" data-level="3.4.2" data-path="basics.html"><a href="basics.html#basics-types-vectors"><i class="fa fa-check"></i><b>3.4.2</b> Vektoren</a></li>
+<li class="chapter" data-level="3.4.3" data-path="basics.html"><a href="basics.html#basics-logic"><i class="fa fa-check"></i><b>3.4.3</b> Logische Werte (logical)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="basics.html"><a href="basics.html#wörter-character"><i class="fa fa-check"></i><b>3.4.4</b> Wörter (character)</a></li>
+<li class="chapter" data-level="3.4.5" data-path="basics.html"><a href="basics.html#fehlende-werte-und-null"><i class="fa fa-check"></i><b>3.4.5</b> Fehlende Werte und NULL</a></li>
+<li class="chapter" data-level="3.4.6" data-path="basics.html"><a href="basics.html#indizierung-und-ersetzung"><i class="fa fa-check"></i><b>3.4.6</b> Indizierung und Ersetzung</a></li>
+<li class="chapter" data-level="3.4.7" data-path="basics.html"><a href="basics.html#nützliche-funktionen-für-atomare-vektoren"><i class="fa fa-check"></i><b>3.4.7</b> Nützliche Funktionen für atomare Vektoren</a></li>
+<li class="chapter" data-level="3.4.8" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.4.8</b> Listen</a></li>
+<li class="chapter" data-level="3.4.9" data-path="basics.html"><a href="basics.html#matrizen"><i class="fa fa-check"></i><b>3.4.9</b> Matrizen</a></li>
+<li class="chapter" data-level="3.4.10" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.4.10</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#pakete"><i class="fa fa-check"></i><b>3.5</b> Pakete</a></li>
+<li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.6</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>4</b> Lineare statistische Modelle in R</a><ul>
+<li class="chapter" data-level="4.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>4.1</b> Einleitung und Überblick</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>4.1.1</b> Einführung in die lineare Regression</a></li>
+<li class="chapter" data-level="4.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>4.1.2</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="4.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>4.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>4.2</b> Grundlagen der einfachen linearen Regression</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="linmodel.html"><a href="linmodel.html#grundlegende-begriffe"><i class="fa fa-check"></i><b>4.2.1</b> Grundlegende Begriffe</a></li>
+<li class="chapter" data-level="4.2.2" data-path="linmodel.html"><a href="linmodel.html#schätzung-mit-der-kleinste-quadrate-methode"><i class="fa fa-check"></i><b>4.2.2</b> Schätzung mit der Kleinste-Quadrate-Methode</a></li>
+<li class="chapter" data-level="4.2.3" data-path="linmodel.html"><a href="linmodel.html#annahmen-für-den-ols-schätzer"><i class="fa fa-check"></i><b>4.2.3</b> Annahmen für den OLS Schätzer</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="linmodel.html"><a href="linmodel.html#lin-kennzahlen"><i class="fa fa-check"></i><b>4.3</b> Kennzahlen in der linearen Regression</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="linmodel.html"><a href="linmodel.html#erklärte-varianz-und-das-r2"><i class="fa fa-check"></i><b>4.3.1</b> Erklärte Varianz und das <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="4.3.2" data-path="linmodel.html"><a href="linmodel.html#hypothesentests-und-statistische-signifikanz"><i class="fa fa-check"></i><b>4.3.2</b> Hypothesentests und statistische Signifikanz</a></li>
+<li class="chapter" data-level="4.3.3" data-path="linmodel.html"><a href="linmodel.html#konfidenzintervalle-für-die-schätzer"><i class="fa fa-check"></i><b>4.3.3</b> Konfidenzintervalle für die Schätzer</a></li>
+<li class="chapter" data-level="4.3.4" data-path="linmodel.html"><a href="linmodel.html#zur-rolle-der-stichprobengröße"><i class="fa fa-check"></i><b>4.3.4</b> Zur Rolle der Stichprobengröße</a></li>
+<li class="chapter" data-level="4.3.5" data-path="linmodel.html"><a href="linmodel.html#residuenanalyse"><i class="fa fa-check"></i><b>4.3.5</b> Residuenanalyse</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="linmodel.html"><a href="linmodel.html#stat-ablauf"><i class="fa fa-check"></i><b>4.4</b> Zum Ablauf einer Regression</a></li>
+<li class="chapter" data-level="4.5" data-path="linmodel.html"><a href="linmodel.html#lin-multi"><i class="fa fa-check"></i><b>4.5</b> Multiple lineare Regression</a></li>
+<li class="chapter" data-level="4.6" data-path="linmodel.html"><a href="linmodel.html#anwendungsbeispiel"><i class="fa fa-check"></i><b>4.6</b> Anwendungsbeispiel</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>5</b> Datenkunde und Datenaufbereitung</a><ul>
+<li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="5.1" data-path="data.html"><a href="data.html#data-arten"><i class="fa fa-check"></i><b>5.1</b> Arten von Daten</a></li>
+<li class="chapter" data-level="5.2" data-path="data.html"><a href="data.html#data-get"><i class="fa fa-check"></i><b>5.2</b> Datenakquise</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="data.html"><a href="data.html#exkurs-1-ländercodes-übersetzen"><i class="fa fa-check"></i><b>5.2.1</b> Exkurs 1: Ländercodes übersetzen</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data.html"><a href="data.html#data-download-R"><i class="fa fa-check"></i><b>5.2.2</b> Exkurs 2: Daten direkt mit R herunterladen</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="data.html"><a href="data.html#data-read-write"><i class="fa fa-check"></i><b>5.3</b> Daten einlesen und schreiben</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="data.html"><a href="data.html#einlesen-von-datensätzen"><i class="fa fa-check"></i><b>5.3.1</b> Einlesen von Datensätzen</a></li>
+<li class="chapter" data-level="5.3.2" data-path="data.html"><a href="data.html#speichern-von-daten"><i class="fa fa-check"></i><b>5.3.2</b> Speichern von Daten</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="data.html"><a href="data.html#data-wrangling"><i class="fa fa-check"></i><b>5.4</b> Verarbeitung von Daten (‘data wrangling’)</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="data.html"><a href="data.html#das-konzept-von-tidy-data"><i class="fa fa-check"></i><b>5.4.1</b> Das Konzept von ‘tidy data’</a></li>
+<li class="chapter" data-level="5.4.2" data-path="data.html"><a href="data.html#data-long-wide"><i class="fa fa-check"></i><b>5.4.2</b> Von langen und breiten Datensätzen</a></li>
+<li class="chapter" data-level="5.4.3" data-path="data.html"><a href="data.html#data-merge"><i class="fa fa-check"></i><b>5.4.3</b> Zusammenführen von Daten</a></li>
+<li class="chapter" data-level="5.4.4" data-path="data.html"><a href="data.html#date-select"><i class="fa fa-check"></i><b>5.4.4</b> Datensätze filtern und selektieren</a></li>
+<li class="chapter" data-level="5.4.5" data-path="data.html"><a href="data.html#data-summary"><i class="fa fa-check"></i><b>5.4.5</b> Datensätze zusammenfassen</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="data.html"><a href="data.html#data-role"><i class="fa fa-check"></i><b>5.5</b> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</a></li>
+<li class="chapter" data-level="5.6" data-path="data.html"><a href="data.html#data-packages"><i class="fa fa-check"></i><b>5.6</b> Anmerkungen zu Paketen</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>6</b> Visualisierung von Daten</a><ul>
+<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#verwendete-pakete-1"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
+<li class="chapter" data-level="6.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>6.1</b> Optional: Theoretische Grundlagen</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="vis.html"><a href="vis.html#vis-base-ggplot2"><i class="fa fa-check"></i><b>6.1.1</b> <code>ggplot2</code> vs. <code>base plot</code></a></li>
+<li class="chapter" data-level="6.1.2" data-path="vis.html"><a href="vis.html#grammar"><i class="fa fa-check"></i><b>6.1.2</b> Einleitung zu Wickham’s <em>grammar of graphics</em></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="vis.html"><a href="vis.html#vis-elemente"><i class="fa fa-check"></i><b>6.2</b> Grundlegende Elemente von <code>ggplot2</code>-Grafiken</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="vis.html"><a href="vis.html#elemente-eines-ggplot"><i class="fa fa-check"></i><b>6.2.1</b> Elemente eines <code>ggplot</code></a></li>
+<li class="chapter" data-level="6.2.2" data-path="vis.html"><a href="vis.html#beispiel-workflow"><i class="fa fa-check"></i><b>6.2.2</b> Beispiel Workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="vis.html"><a href="vis.html#arten-von-datenvisualisierung"><i class="fa fa-check"></i><b>6.3</b> Arten von Datenvisualisierung</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="vis.html"><a href="vis.html#allgemeine-tipps-zum-grafikdesign"><i class="fa fa-check"></i><b>6.3.1</b> Allgemeine Tipps zum Grafikdesign</a></li>
+<li class="chapter" data-level="6.3.2" data-path="vis.html"><a href="vis.html#streu--oder-blasendiagramm"><i class="fa fa-check"></i><b>6.3.2</b> Streu- oder Blasendiagramm</a></li>
+<li class="chapter" data-level="6.3.3" data-path="vis.html"><a href="vis.html#linienchart"><i class="fa fa-check"></i><b>6.3.3</b> Linienchart</a></li>
+<li class="chapter" data-level="6.3.4" data-path="vis.html"><a href="vis.html#histogramme-und-dichteplots"><i class="fa fa-check"></i><b>6.3.4</b> Histogramme und Dichteplots</a></li>
+<li class="chapter" data-level="6.3.5" data-path="vis.html"><a href="vis.html#balkendiagramme"><i class="fa fa-check"></i><b>6.3.5</b> Balkendiagramme</a></li>
+<li class="chapter" data-level="6.3.6" data-path="vis.html"><a href="vis.html#vis-pie"><i class="fa fa-check"></i><b>6.3.6</b> Kuchendiagramme</a></li>
+<li class="chapter" data-level="6.3.7" data-path="vis.html"><a href="vis.html#vis-kinds-summary"><i class="fa fa-check"></i><b>6.3.7</b> Zusammenfassung</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="vis.html"><a href="vis.html#vis-adv"><i class="fa fa-check"></i><b>6.4</b> Beispiele aus der Praxis und fortgeschrittene Themen</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="vis.html"><a href="vis.html#regressionsgerade"><i class="fa fa-check"></i><b>6.4.1</b> Regressionsgerade</a></li>
+<li class="chapter" data-level="6.4.2" data-path="vis.html"><a href="vis.html#vis-viele-plots"><i class="fa fa-check"></i><b>6.4.2</b> Mehrere Plots in einer Abbildung</a></li>
+<li class="chapter" data-level="6.4.3" data-path="vis.html"><a href="vis.html#mehr-zu-den-skalen-expand_scale-und-skalentransformation"><i class="fa fa-check"></i><b>6.4.3</b> Mehr zu den Skalen: <code>expand_scale()</code> und Skalentransformation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="vis.html"><a href="vis.html#vis-fehler"><i class="fa fa-check"></i><b>6.5</b> Typische Fehler in der Datenvisualisierung vermeiden</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="vis.html"><a href="vis.html#clutterplots-und-ihre-tranformation-zum-beschrifteten-streudiagramm"><i class="fa fa-check"></i><b>6.5.1</b> Clutterplots und ihre Tranformation zum beschrifteten Streudiagramm</a></li>
+<li class="chapter" data-level="6.5.2" data-path="vis.html"><a href="vis.html#ein-unbalancierter-plot"><i class="fa fa-check"></i><b>6.5.2</b> Ein ‘unbalancierter’ Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="vis.html"><a href="vis.html#vis-lies"><i class="fa fa-check"></i><b>6.6</b> Lügen mit grafischer Statistik</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="vis.html"><a href="vis.html#klassiker-1-kontraintuitiver-nullpunkt"><i class="fa fa-check"></i><b>6.6.1</b> Klassiker 1: Kontraintuitiver ‘Nullpunkt’</a></li>
+<li class="chapter" data-level="6.6.2" data-path="vis.html"><a href="vis.html#klassiker-2-geschickt-gewählter-zeitraum-und-clever-gewählte-achsenabschnitte"><i class="fa fa-check"></i><b>6.6.2</b> Klassiker 2: Geschickt gewählter Zeitraum und clever gewählte Achsenabschnitte</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="vis.html"><a href="vis.html#vis-links"><i class="fa fa-check"></i><b>6.7</b> Links und weiterführende Literatur</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>A</b> Eine kurze Einführung in R Markdown</a><ul>
+<li class="chapter" data-level="A.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>A.1</b> Markdown vs. R-Markdown</a></li>
+<li class="chapter" data-level="A.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>A.2</b> Installation von R-Markdown</a></li>
+<li class="chapter" data-level="A.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>A.3</b> Der R-Markdown Workflow</a><ul>
+<li class="chapter" data-level="A.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>A.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
+<li class="chapter" data-level="A.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>A.3.2</b> Der Titelblock</a></li>
+<li class="chapter" data-level="A.3.3" data-path="markdown.html"><a href="markdown.html#der-textkörper"><i class="fa fa-check"></i><b>A.3.3</b> Der Textkörper</a></li>
+<li class="chapter" data-level="A.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>A.3.4</b> Kompillieren von Dokumenten</a></li>
+</ul></li>
+<li class="chapter" data-level="A.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>A.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
+<li class="chapter" data-level="A.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>A.5</b> Weitere Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="stat-stoch.html"><a href="stat-stoch.html"><i class="fa fa-check"></i><b>B</b> Wiederholung: Wahrscheinlichkeitstheorie</a><ul>
+<li class="chapter" data-level="" data-path="stat-stoch.html"><a href="stat-stoch.html#verwendete-pakete-2"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="B.1" data-path="stat-stoch.html"><a href="stat-stoch.html#einleitung-wahrscheinlichkeitstheorie-und-statistik"><i class="fa fa-check"></i><b>B.1</b> Einleitung: Wahrscheinlichkeitstheorie und Statistik</a></li>
+<li class="chapter" data-level="B.2" data-path="stat-stoch.html"><a href="stat-stoch.html#grundbegriffe-der-wahrscheinlichkeitstheorie"><i class="fa fa-check"></i><b>B.2</b> Grundbegriffe der Wahrscheinlichkeitstheorie</a></li>
+<li class="chapter" data-level="B.3" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.3</b> Diskrete Wahrscheinlichkeitsmodelle</a><ul>
+<li class="chapter" data-level="B.3.1" data-path="stat-stoch.html"><a href="stat-stoch.html#bayes-theorem-und-gesetz-der-total-wahrscheinlichkeiten"><i class="fa fa-check"></i><b>B.3.1</b> Bayes Theorem und Gesetz der total Wahrscheinlichkeiten</a></li>
+<li class="chapter" data-level="B.3.2" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-zufallsvariablen"><i class="fa fa-check"></i><b>B.3.2</b> Diskrete Zufallsvariablen</a></li>
+<li class="chapter" data-level="B.3.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-binomial-verteilung"><i class="fa fa-check"></i><b>B.3.3</b> Beispiel: die Binomial-Verteilung</a></li>
+<li class="chapter" data-level="B.3.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-poisson-verteilung"><i class="fa fa-check"></i><b>B.3.4</b> Beispiel: die Poisson-Verteilung</a></li>
+<li class="chapter" data-level="B.3.5" data-path="stat-stoch.html"><a href="stat-stoch.html#hinweise-zu-diskreten-wahrscheinlichkeitsverteilungen"><i class="fa fa-check"></i><b>B.3.5</b> Hinweise zu diskreten Wahrscheinlichkeitsverteilungen</a></li>
+</ul></li>
+<li class="chapter" data-level="B.4" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.4</b> Stetige Wahrscheinlichkeitsmodelle</a><ul>
+<li class="chapter" data-level="B.4.1" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-zv"><i class="fa fa-check"></i><b>B.4.1</b> Stetige ZV</a></li>
+<li class="chapter" data-level="B.4.2" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-uniformverteilung"><i class="fa fa-check"></i><b>B.4.2</b> Beispiel: die Uniformverteilung</a></li>
+<li class="chapter" data-level="B.4.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-normalverteilung"><i class="fa fa-check"></i><b>B.4.3</b> Beispiel: die Normalverteilung</a></li>
+<li class="chapter" data-level="B.4.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-exponentialverteilung"><i class="fa fa-check"></i><b>B.4.4</b> Beispiel: die Exponentialverteilung</a></li>
+</ul></li>
+<li class="chapter" data-level="B.5" data-path="stat-stoch.html"><a href="stat-stoch.html#zusammenfassung-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.5</b> Zusammenfassung Wahrscheinlichkeitsmodelle</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>C</b> Wiederholung: Deskriptive Statistik</a><ul>
+<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-und-datensätze"><i class="fa fa-check"></i>Verwendete Pakete und Datensätze</a></li>
+<li class="chapter" data-level="C.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>C.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
+<li class="chapter" data-level="C.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmaße"><i class="fa fa-check"></i><b>C.2</b> Korrelationsmaße</a></li>
+<li class="chapter" data-level="C.3" data-path="desk-stat.html"><a href="desk-stat.html#hinweise-zur-quantitativen-und-visuellen-datenbeschreibung"><i class="fa fa-check"></i><b>C.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
+<li class="chapter" data-level="C.4" data-path="desk-stat.html"><a href="desk-stat.html#zusamenfassung"><i class="fa fa-check"></i><b>C.4</b> Zusamenfassung</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>D</b> Wiederholung: Drei Verfahren der schließenden Statistik</a><ul>
+<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-3"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="D.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>D.1</b> Punktschätzung</a></li>
+<li class="chapter" data-level="D.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>D.2</b> Hypothesentests</a></li>
+<li class="chapter" data-level="D.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>D.3</b> Berechnung von Konfidenzintervallen</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R für die sozio-ökonomische Forschung</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="precons" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Vorbemerkungen</h1>
+<div id="warum-r" class="section level2">
+<h2><span class="header-section-number">1.1</span> Warum R?</h2>
+<p>Im folgenden gebe ich einen kurzen Überblick über die Gründe, die uns bewegt haben den Methodenkurs auf R aufzubauen. Die Liste ist sicherlich nicht abschließend (siehe auch <span class="citation">Wickham (<a href="#ref-adv-r">2019</a>)</span>).</p>
+<ul>
+<li>Die R Community gilt als besonders freundlich und hilfsbereit. Gerade weil viele Menschen, die R benutzen praktizierende Datenwissenschaftler*innen sind werden praktische Probleme breit und konstruktiv in den einschlägigen Foren diskutiert und es ist in der Regel leicht Lösungen für Probleme zu finde, sobald man selbst ein bestimmtes Level an Programmierkenntnissen erlangt hat.
+<ul>
+<li>Auch gibt es großartige Online Foren und Newsletter, die es einem einfacher und unterhaltsamer machen, seine R Kenntnisse stetig zu verbessern und zusätzlich viele neue Dinge zu lernen. Besonders empfehlen kann ich <a href="https://www.r-bloggers.com/">R-Bloggers</a>, eine Sammlung von Blog Artikeln, die R verwenden und neben Inspirationen für die Verwendung von R häufig inhaltlich sehr interessant sind; <a href="https://rweekly.org/">rweekly</a>, ein Newsletter, der ebenfalls interessante Infos zu R enthält sowie die <a href="https://rladies.org/">R-Ladies Community</a>, die sich besonders das Empowerment von Minderheiten in der Programmierwelt zur Aufgabe gemacht hat.</li>
+<li>Selbstverständlich werden zahlreiche R Probleme auch auf <a href="https://stackoverflow.com/tags/r/info">StackOverflow</a> disktuiert. Häufig ist das der Ort, an dem man Antworten auf seine Fragen findet. Allerdings ist es gerade am Anfang unter Umständen schwierig die häufig sehr fortgeschrittenen Lösungen zu verstehen.</li>
+</ul></li>
+<li><p>R ist eine offene und freie Programmiersprache, die auf allen bekannten Betriebssystemen läuft. Im Gegensatz zu Programmen wie SPSS und STATA, für die Universitäten jedes Semester viele Tausend Euro bezahlen müssen und die dann umständlich über Serverlizenzen abgerufen werden müssen. Auch für Studierende sind die Preise alles andere als gering. R dagegen ist frei und inklusiv, und auch Menschen mit weniger Geld können sie benutzen. Gerade vor dem Hintergrund der Rolle von Wissenschaft in einer demokratischen und freien Gesellschaft und in der Kooperation mit Wissenschaftler*innen aus ärmeren Ländern ist dies extrem wichtig.</p></li>
+<li>R verfügt über ein hervorragendes Package System. Das bedeutet, dass es recht einfach ist, neue Pakete zu schreiben und damit die Funktionalitäten von R zu erweitern. In der Kombination mit der Open Source Charakter von R bedeutet das, dass R nie wirklich <em>out of date</em> ist, und dass neuere Entwicklungen der Statistik und Datenwissenschaften, und immer mehr auch in der VWL, recht zügig in R implementiert werden. Insbesondere wenn es um statistische Analysen, <em>machine learning</em>, Visualisierungen oder Datenmanagement und -manipulation geht: für alles gibt es Pakete in R und irgendjemand hat ihr Problem mit hoher Wahrscheinlichkeit schon einmal gelöst und Sie können davon profitieren.
+<ul>
+<li>R ist - zusammen mit Python - mittlerweile die <em>lingua franca</em> im Bereich Statistik und Machine Learning.</li>
+</ul></li>
+<li><p>Integration mit Git, Markdown, Latex und anderen Tools erlaubt einen integrierten Workflow, in dem Sie im Optimalfall euer Paper in der gleichen Umgebung schreiben wie den Code für eure statistische Analyse. Diesen Vorteil werden Sie bereits bei der Bearbeitung der Aufgabenzettel genießen können, da diese in teilweise in R Markdown zu lösen und abzugeben sind. Das bedeutet, dass Coding und Schreiben der Antworten im gleichen Dokument vorgenommen werden können. Auch dieses Skript wurde vollständig in R Markdown geschrieben.</p></li>
+<li><p>R erlaubt sowohl objektorientierte als auch funktionale Programmierung.</p></li>
+<li><p>Für besondere Aufgaben ist es recht einfach R mit high-performance Sprachen wie C, Fortran oder C++ zu integrieren.</p></li>
+</ul>
+</div>
+<div id="besonderheiten-von-r" class="section level2">
+<h2><span class="header-section-number">1.2</span> Besonderheiten von R</h2>
+<p>R ist keine typische Programmiersprache, denn sie vor allem von Statistiker*innen benutzt und weiterentwickelt, und nicht von Programmierer*innen. Das hat den Vorteil, dass die Funktionen oft sehr genau auf praktische Herausforderungen ausgerichtet sind und es für alle typischen statistischen Probleme Lösungen in R gibt. Gleichzeitig hat dies auch dazu geführt, dass R einige unerwünschte Eigenschaften aufweist, da die Menschen, die Module für R programmieren keine ‘genuinen’ Programmierer*innen sind.</p>
+<p>Im folgenden möchte ich einige Besonderheiten von R aufführen, damit Sie im Laufe Ihrer R-Karriere nicht negativ von diesen Besonderheiten überrascht werden. Während es sich für Programmier-Neulinge empfiehlt die Liste zu einem späteren Zeitpunkt zu inspizieren sollten Menschen mit Erfahrungen in anderen Sprachen gleich einen Blick darauf werfen.</p>
+<ul>
+<li><p>R wird dezentral über viele benutzergeschriebene Pakete (‘libraries’ oder ‘packages’) konstant weiterentwickelt. Das führt wie oben erwähnt dazu, dass R quasi immer auf dem neuesten Stand der statistischen Forschung ist. Gleichzeitig kann die schiere Masse von Paketen auch verwirrend sein, insbesondere weil es für die gleiche Aufgabe häufig deutlich mehr als ein Paket gibt. Das führt zwar auch zu einer positiven Konkurrenz und jede*r kann sich ihren Geschmäckern gemäß für das eine oder andere Paket entscheiden, es bringt aber auch mögliche Inkonsistenzen und schwerer verständlichen Code mit sich.</p></li>
+<li><p>Im Gegensatz zu Sprachen wie Python, die trotz einer enormen Anzahl von Paketen eine interne Konsistenz nicht verloren haben gibt es in R verschiedene ‘Dialekte’, die teilweise inkonsistent sind und gerade für Anfägner durchaus verwirrend sein können. Besonders die Unterscheidungen des <code>tidyverse</code>, einer Gruppe von Paketen, die von der R Studio Company sehr stark gepusht werden und vor allem zur Verarbeitung von Datensätzen gedacht sind, implementieren viele Routinen des ‘klassischen R’ (‘base R’) in einer neuen Art und Weise. Das Ziel ist, die Arbeit mit Datensätzen einfacher und leichter verständlich zu machen, allerdings wird die recht aggressive ‘Vermarktung’ und die teilweise inferiore Performance des Ansatzes auch <a href="https://github.com/matloff/TidyverseSkeptic">kritisiert</a>.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p></li>
+<li><p>Da viele der Menschen, die R Pakete herstellen keine Programmierer sind, sind viele Pakete von einem Programmierstandpunkt aus nicht sonderlich effizient oder elegant geschrieben. Gleichzeitig gibt es aber auch viele Ausnahmen zu dieser Regel und viele Pakete werden über die Zeit hinweg signifikant verbessert.</p></li>
+<li><p>R an sich ist nicht die schnellste Programmiersprache, insbesondere wenn man seinen Code nicht entsprechend geschrieben hat. Auch bedarf eine R Session in der Regel recht viel Speicher. Hier sind selbst andere High-Level Sprachen wie Julia oder Python deutlich performanter, auch wenn Pakete wie <a href="https://rdatatable.gitlab.io/data.table/">data.table</a> diesen Nachteil häufig abschwächen. Zudem ist er für die meisten Probleme, die Sozioökonom*innen in ihrer Forschungspraxis bearbeiten, irrelevant.</p></li>
+</ul>
+<p>Alles in allem ist R jedoch eine hervorragende Wahl wenn es um quantitative sozialwissenschaftliche Forschung geht. Auch in der Industrie ist R extrem beliebt und wird im Bereich der <em>Data Science</em> nur noch von Python ernsthaft in den Schatten gestellt. Allerdings verwenden die meisten Menschen, die in diesem Bereich arbeiten, ohnehin beide Sprachen, da sie unterschiedliche Vor- und Nachteile haben. Entsprechend ist jede Minute, die Sie in das Lernen von R investieren eine exzellente Investition, egal wo Sie in Ihrem späteren Berufsleben einmal landen werden.</p>
+<p>Das wichtigste am Programmieren ist in jedem Fall Spaß und die Bereitschaft zu und die Freude an der Zusammenarbeit mit anderen. Denn das hat R mit anderen offenen Sprachen wie Python gemeinsam: Programmieren und das Lösen von statistischen Fragestellungen sollte immer ein kollaboratives Gemeinschaftsprojekt sein!</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-adv-r">
+<p>Wickham, Hadley. 2019. <em>Advanced R</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/" class="uri">https://adv-r.hadley.nz/</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Zum einen bin ich ein großer Fan von vielen tidyverse Paketen, gleichzeitig ist der Fokus von R Studio auf diese Pakete sehr gefährlich. Ich bin aber einer anderen Meinung was die Einsteigerfreundlichkeit vom <code>tidyverse</code> andgeht: meiner Meinung nach machen diese Pakete die Arbeit mit Datensätzen sehr einfach, und für kleine Datensätze (&lt;500MB) benutze ich das <code>tidyverse</code> auch in meiner eigenen Forschung. Aufgrund der Einsteigerfreundlichkeit werden wir hier für die Arbeit mit Datensätzen trotz allem mit dem <code>tidyverse</code> arbeiten. Ich weise jedoch auf die kritische Diskussion im entsprechenden Kapitel des Skripts hin.<a href="precons.html#fnref1">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="einrichtung.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["R-SocioEcon-dt.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
