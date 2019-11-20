@@ -1,0 +1,51 @@
+# Formale Methoden der Sozioökonomie {#formalia}
+
+```{r include=FALSE}
+knitr::opts_chunk$set(comment = "#>")
+knitr::opts_chunk$set(out.height = '75%', out.width = '75%', fig.align = 'center') 
+```
+
+## Einleitung und Überblick 
+
+> Refusing to deal with numbers rarely serves the interest of the least well-off.
+>
+> `r tufte::quote_footer('--- Thomas Piketty')`
+
+In diesem Kapitel werden ausgewählte formale Methoden, die in der 
+sozioökonomischen Forschung besonders häufig verwendet werden, und ihre 
+Implementierung in R eingeführt.
+Dabei gibt dieses Kapitel selbstverständlich nur einen ersten Einblick und die 
+Auswahl ist notwendigerweise subjektiv.
+
+Allerdings werden die in diesem Kapitel diskutierten Methoden Ihnen einen guten
+Einblick in die formale Forschung im Bereich der Sozioökonomik geben und Ihnen
+verdeutlichen wie vielseitig Sie R in Ihrer Forschungstätigkeit - auch abseits
+klassischer statistischer Anwendungen - verwenden können.
+
+Zunächst werden wir uns mit der Berechnung von 
+[Wachstumsraten](#formalia-wachstum) beschäftigen und dabei besonders die 
+Verwendung von Logarithmen besprechen. 
+Als nächstes werden Grundlagen der [Differentialrechnung](#formalia-diff) 
+wiederholt und ihre Implementierung in R eingeführt. Besondere Beachtung findet
+dabei das Thema der Optimierung, das im Forschungsalltag eine besonders wichtige
+Rolle spielt.
+
+Als nächstes illustrieren wir die Verwendung von Konzepten aus der 
+[linearen Algebra](#formalia-linalg), wobei Sie hier einiges schon aus dem Kapitel
+zu den [linearen Modellen]() und der [Einführung in R]() kennen.
+Allerdings werden wir anhang konkreter Beispiele noch einmal die Allgegenwärtigkeit
+der linearen Algebra verdeutlichen.
+
+Den Schwerpunkt des Kapitels bildet dann der Abschnitt zu [Verteilungen](#formalia-dist).
+Die Analyse von Verteilungen spielt eine sehr wichtige Rolle in der Sozioökonomik,
+da Themen wie Einkommens- und Vermögensverteilung bzw. Ungleichheitsforschung 
+traditionell ein wichtiges Kernthema der Sozioökonomik ausmachen.
+
+In diesem Kapitel werden die folgenden R Pakete verwendet:
+
+```{r, message=FALSE}
+library(here)
+library(tidyverse)
+library(data.table)
+```
+
