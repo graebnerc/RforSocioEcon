@@ -1,8 +1,8 @@
 --- 
 title: "R für die sozio-ökonomische Forschung"
-subtitle: "Version 0.5.0"
+subtitle: "Version 0.5.1"
 author: "[Dr. Claudius Gräbner](http://claudius-graebner.com/)"
-date: "2019-11-18" 
+date: "2019-11-20" 
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -10,7 +10,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: graebnerc/RforSocioEcon
-description: "R Skript in der Version 0.5.0"
+description: "R Skript in der Version 0.5.1"
 ---
 
 # Willkommen {-}
@@ -78,6 +78,7 @@ Datum    | Version | Wichtigste Änderungen         |
 04.11.19 | 0.3.0    | Anhänge zur Wiederholung grundlegender Statistik hinzugefügt  |
 06.11.19 | 0.4.0    | Kapitel zu linearen Modellen hinzugefügt  |
 18.11.19 | 0.5.0    | Kapitel zur Datenaufbereitung und Visualisierung hinzugefügt; kleinere Korrekturen im Kapitel zu lin. Modellen  |
+20.11.19 | 0.5.1    | Korrektur von kleineren Rechtschreib/Grammatikfehlern; Fix für Problem mit html Version auf HP |
 
 ## Lizenz {-}
 

@@ -418,7 +418,16 @@ $Cov(\epsilon_i, \epsilon_j)=0 \forall i,j$. Das kann vor allem ein
 Problem sein, wenn die gleichen erklärenden Variablen zu unterschiedlichen 
 Zeitpunkten gemessen werden.
 
-5. **A5: Normalverteilung der Fehlerterme:** $\epsilon\propto\mathcal{N}(0,\sigma^2)$ 
+5. **A5: Keine perfekte Multikollinearität** Diese Annahme verbietet den Fall,
+dass eine der erklärenden Variablen eine lineare Transformation einer anderen
+erklärenden Variable ist, also $\nexists a,b:   x_i= q+b\cdot x_j \forall i,j$.
+Praktisch tritt dieser Fall nur selten auf. In diesem Fall ist $\hat{\beta}$ 
+schlicht nicht definiert. Problematisch wird es aber schon wenn eine erklärende
+Variable *fast* eine lineare Transformation einer anderen ist. Als generellen 
+*take-away* können wir mitnehmen, dass wir in den erklärenden Variablen möglichst
+wenig Redundanz haben sollten.
+
+6. **A6: Normalverteilung der Fehlerterme:** $\epsilon\propto\mathcal{N}(0,\sigma^2)$ 
 Niese Annahme ist notwendig für die Hypothesentests und Berechnung von 
 Konfidenzintervallen für die Schätzer. 
 
@@ -445,7 +454,8 @@ jeder Regressionsanalyse die Überprüfung der Annahmen dazugehören.
 Die notwendigen Methoden dazu lernen wir weiter unten kennen.
 
 Es ist wichtig zu beachten, dass wir eine Regression mit OLS schätzen können und 
-keine Fehlermeldungen bekommen, obwohl die Annahmen für OLS nicht erfüllt sind. 
+keine Fehlermeldungen bekommen, obwohl die Annahmen für OLS nicht erfüllt sind.^[
+Die einzige Ausnahme ist A5, denn in diesem Fall ist der Schätzer gar nicht definiert.]
 In diesem Fall sind die Ergebnisse jedoch möglicherweise irreführend. 
 Daher ist es immer wichtig, die Korrektheit der Annahmen zu überprüfen und
 weitere Kennzahlen der Regression zu betrachten 
@@ -934,7 +944,7 @@ Regressionsmodells zu überprüfen:
 
 2. **A4: ** $Cov(\epsilon_i, \epsilon_j)=0 \forall i,j$
 
-3. **A5:** $\epsilon \propto \mathcal{N}(0, \sigma^2)$
+3. **A6:** $\epsilon \propto \mathcal{N}(0, \sigma^2)$
 
 Um die ersten beiden Annahmen zu überpüfen bilden wir die $\epsilon_i$ gegen 
 $\hat{Y}$ ab und erhalten so den so genannten **Tukey-Anscombe-Plot**:
@@ -1126,7 +1136,7 @@ wahrscheinlich unter dem oben angesprochenen *omitted variable bias* gelitten ha
 
 Der zweite zu beachtende Aspekt bezieht sich auf die Korrelation der verschiedenen 
 erklärenden Variablen. Die Annahmen für OLS schließen an sich nur so genannte 
-*perfekte Kollinearität* aus, das heißt die Situation in der eine erklärende 
+*perfekte Kollinearität* (A5) aus, das heißt die Situation in der eine erklärende 
 Variable eine perfekte lineare Transformation einer anderen erklärenden Variable 
 ist. Problematisch sind aber auch schon geringere, aber immer noch hohe 
 Korrelationen: denn je stärker die erklärenden Variablen untereinander korrelieren, 

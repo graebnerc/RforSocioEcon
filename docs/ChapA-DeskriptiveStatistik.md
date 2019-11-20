@@ -59,20 +59,20 @@ head(journal_daten)
 ## 4:  MEPiTE MOCT-MOST Economic Policy in Transitional Economics
 ## 5:    JoSE                          Journal of Socio-Economics
 ## 6:   LabEc                                    Labour Economics
-##                    Verlag Society Preis Seitenanzahl Buchstaben_pS
-## 1:              Blackwell      no   123          440          3822
-## 2: So Afr ec history assn      no    20          309          1782
-## 3:                 Kluwer      no   443          567          2924
-## 4:                 Kluwer      no   276          520          3234
-## 5:               Elsevier      no   295          791          3024
-## 6:               Elsevier      no   344          609          2967
-##    Zitationen Gruendung Abonnenten           Bereich
-## 1:         21      1986         14           General
-## 2:         22      1986         59  Economic History
-## 3:         22      1987         17       Specialized
-## 4:         22      1991          2      Area Studies
-## 5:         24      1972         96 Interdisciplinary
-## 6:         24      1994         15             Labor
+##                    Verlag Society Preis Seitenanzahl Buchstaben_pS Zitationen
+## 1:              Blackwell      no   123          440          3822         21
+## 2: So Afr ec history assn      no    20          309          1782         22
+## 3:                 Kluwer      no   443          567          2924         22
+## 4:                 Kluwer      no   276          520          3234         22
+## 5:               Elsevier      no   295          791          3024         24
+## 6:               Elsevier      no   344          609          2967         24
+##    Gruendung Abonnenten           Bereich
+## 1:      1986         14           General
+## 2:      1986         59  Economic History
+## 3:      1987         17       Specialized
+## 4:      1991          2      Area Studies
+## 5:      1972         96 Interdisciplinary
+## 6:      1994         15             Labor
 ```
 
 Dieser Datensatz enthält Informationen über Preise, Seiten, Zitationen und

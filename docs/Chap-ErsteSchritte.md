@@ -1262,8 +1262,8 @@ print(y)
 ```
 
 ```
-#>  [1]  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5
-#> [15]  8.0  8.5  9.0  9.5 10.0
+#>  [1]  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5  8.0
+#> [16]  8.5  9.0  9.5 10.0
 ```
 
 Wenn wir die Länge des resultierenden Vektors festlegen wollen und die 
@@ -2145,7 +2145,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7f9f75f110d8>
+#> <bytecode: 0x7ff97b6e0c50>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2176,7 +2176,7 @@ dplyr::lead
 #>     attributes(out) <- attributes(x)
 #>     out
 #> }
-#> <bytecode: 0x7f9f72663f00>
+#> <bytecode: 0x7ff97e9595b0>
 #> <environment: namespace:dplyr>
 ```
 

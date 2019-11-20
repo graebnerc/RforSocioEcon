@@ -1138,6 +1138,11 @@ Zuerst aggregieren wir die Daten mit den im letzten Kapitel kennen gelernten
 Funktionen:
 
 
+```
+#> Warning: Column 'Gruppe' was requested to be 'character, 2' but fread encountered the following error:
+#> 	no method or default for coercing "character" to "character, 2"
+#> so the column has been left as type 'character'
+```
 
 
 ```r
@@ -2045,7 +2050,8 @@ Eine schöne Übersicht finden Sie ansonsten in @luegen
 ### Klassiker 1: Kontraintuitiver 'Nullpunkt'
 
 Sie möchten einen Unterschied konstruieren, der eigentlich gar nicht da ist?
-In diesem Fall könnten Sie sich ein Beispiel an Fox News nehemn:
+In diesem Fall könnten Sie sich ein Beispiel an Fox News nehmen 
+(siehe Abbildung \@ref(fig:foxnews)).
 
 \begin{figure}
 
@@ -2053,7 +2059,7 @@ In diesem Fall könnten Sie sich ein Beispiel an Fox News nehemn:
 
 }
 
-\caption{Quelle: https://thenextweb.com/wp-content/blogs.dir/1/files/2015/05/viz3.jpg}(\#fig:unnamed-chunk-74)
+\caption{Quelle: https://thenextweb.com/wp-content/blogs.dir/1/files/2015/05/viz3.jpg}(\#fig:foxnews)
 \end{figure}
 
 Die Autoren haben Ihre Manupulation hier entsprechend clever versteckt indem sie
@@ -2108,7 +2114,7 @@ ggarrange(manipulativ, normal, ncol = 2)
 
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-visualization_files/figure-latex/unnamed-chunk-75-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-visualization_files/figure-latex/unnamed-chunk-74-1} \end{center}
 
 Eine beliebte Variante ist es, die y-Achse zwar im Nullpunkt starten zu lassen,
 aber einfach die Achse zwischenrein 
@@ -2171,7 +2177,7 @@ ggarrange(normal, manipulativ, nrow=2)
 
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-visualization_files/figure-latex/unnamed-chunk-78-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-visualization_files/figure-latex/unnamed-chunk-77-1} \end{center}
 
 Selbstverständlich ist der obere Graph auch nicht ganz manipulationsfrei.
 Aber es wird deutlich, wie viel Spielraum Sie nur über die Darstellung von 
@@ -2241,7 +2247,7 @@ ggarrange(manipulativ, normal, ncol = 2)
 
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-visualization_files/figure-latex/unnamed-chunk-82-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-visualization_files/figure-latex/unnamed-chunk-81-1} \end{center}
 
 
 
