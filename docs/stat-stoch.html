@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>B Wiederholung: Wahrscheinlichkeitstheorie | R für die sozio-ökonomische Forschung</title>
+  <meta name="description" content="R Skript in der Version 0.5.1" />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="B Wiederholung: Wahrscheinlichkeitstheorie | R für die sozio-ökonomische Forschung" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="R Skript in der Version 0.5.1" />
+  <meta name="github-repo" content="graebnerc/RforSocioEcon" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="B Wiederholung: Wahrscheinlichkeitstheorie | R für die sozio-ökonomische Forschung" />
+  
+  <meta name="twitter:description" content="R Skript in der Version 0.5.1" />
+  
+
+<meta name="author" content="Dr. Claudius Gräbner" />
+
+
+<meta name="date" content="2019-11-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="markdown.html"/>
+<link rel="next" href="desk-stat.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R für die sozioökonomische Forschung</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Willkommen</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#verhältnis-zur-vorlesung"><i class="fa fa-check"></i>Verhältnis zur Vorlesung</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie-während-des-semesters"><i class="fa fa-check"></i>Änderungshistorie während des Semesters</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a><ul>
+<li class="chapter" data-level="1.1" data-path="precons.html"><a href="precons.html#warum-r"><i class="fa fa-check"></i><b>1.1</b> Warum R?</a></li>
+<li class="chapter" data-level="1.2" data-path="precons.html"><a href="precons.html#besonderheiten-von-r"><i class="fa fa-check"></i><b>1.2</b> Besonderheiten von R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="einrichtung.html"><a href="einrichtung.html"><i class="fa fa-check"></i><b>2</b> Einrichtung</a><ul>
+<li class="chapter" data-level="2.1" data-path="einrichtung.html"><a href="einrichtung.html#installation-von-r-und-r-studio"><i class="fa fa-check"></i><b>2.1</b> Installation von R und R-Studio</a></li>
+<li class="chapter" data-level="2.2" data-path="einrichtung.html"><a href="einrichtung.html#die-r-studio-oberfläche"><i class="fa fa-check"></i><b>2.2</b> Die R Studio Oberfläche</a></li>
+<li class="chapter" data-level="2.3" data-path="einrichtung.html"><a href="einrichtung.html#einrichtung-eines-r-projekts"><i class="fa fa-check"></i><b>2.3</b> Einrichtung eines R Projekts</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="einrichtung.html"><a href="einrichtung.html#arbeitsverzeichnisse-und-pfade"><i class="fa fa-check"></i><b>2.3.1</b> Arbeitsverzeichnisse und Pfade</a></li>
+<li class="chapter" data-level="2.3.2" data-path="einrichtung.html"><a href="einrichtung.html#schritt-1-projektordner-anlegen"><i class="fa fa-check"></i><b>2.3.2</b> Schritt 1: Projektordner anlegen</a></li>
+<li class="chapter" data-level="2.3.3" data-path="einrichtung.html"><a href="einrichtung.html#schritt-2-ein-r-studio-projekt-im-projektordner-erstellen"><i class="fa fa-check"></i><b>2.3.3</b> Schritt 2: Ein R-Studio Projekt im Projektordner erstellen</a></li>
+<li class="chapter" data-level="2.3.4" data-path="einrichtung.html"><a href="einrichtung.html#unterordner"><i class="fa fa-check"></i><b>2.3.4</b> Schritt 3: Relevante Unterordner erstellen</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="einrichtung.html"><a href="einrichtung.html#abschließende-bemerkungen"><i class="fa fa-check"></i><b>2.4</b> Abschließende Bemerkungen</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#befehle-in-r-an-den-computer-übermitteln"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#objekte-funktionen-und-zuweisungen"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#zusammenfassung"><i class="fa fa-check"></i><b>3.3</b> Zusammenfassung</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#grundlegende-objeke-in-r"><i class="fa fa-check"></i><b>3.4</b> Grundlegende Objeke in R</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.4.1</b> Funktionen</a></li>
+<li class="chapter" data-level="3.4.2" data-path="basics.html"><a href="basics.html#basics-types-vectors"><i class="fa fa-check"></i><b>3.4.2</b> Vektoren</a></li>
+<li class="chapter" data-level="3.4.3" data-path="basics.html"><a href="basics.html#basics-logic"><i class="fa fa-check"></i><b>3.4.3</b> Logische Werte (logical)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="basics.html"><a href="basics.html#wörter-character"><i class="fa fa-check"></i><b>3.4.4</b> Wörter (character)</a></li>
+<li class="chapter" data-level="3.4.5" data-path="basics.html"><a href="basics.html#fehlende-werte-und-null"><i class="fa fa-check"></i><b>3.4.5</b> Fehlende Werte und NULL</a></li>
+<li class="chapter" data-level="3.4.6" data-path="basics.html"><a href="basics.html#indizierung-und-ersetzung"><i class="fa fa-check"></i><b>3.4.6</b> Indizierung und Ersetzung</a></li>
+<li class="chapter" data-level="3.4.7" data-path="basics.html"><a href="basics.html#nützliche-funktionen-für-atomare-vektoren"><i class="fa fa-check"></i><b>3.4.7</b> Nützliche Funktionen für atomare Vektoren</a></li>
+<li class="chapter" data-level="3.4.8" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.4.8</b> Listen</a></li>
+<li class="chapter" data-level="3.4.9" data-path="basics.html"><a href="basics.html#matrizen"><i class="fa fa-check"></i><b>3.4.9</b> Matrizen</a></li>
+<li class="chapter" data-level="3.4.10" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.4.10</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#pakete"><i class="fa fa-check"></i><b>3.5</b> Pakete</a></li>
+<li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.6</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>4</b> Lineare statistische Modelle in R</a><ul>
+<li class="chapter" data-level="4.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>4.1</b> Einleitung und Überblick</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>4.1.1</b> Einführung in die lineare Regression</a></li>
+<li class="chapter" data-level="4.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>4.1.2</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="4.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>4.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>4.2</b> Grundlagen der einfachen linearen Regression</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="linmodel.html"><a href="linmodel.html#grundlegende-begriffe"><i class="fa fa-check"></i><b>4.2.1</b> Grundlegende Begriffe</a></li>
+<li class="chapter" data-level="4.2.2" data-path="linmodel.html"><a href="linmodel.html#schätzung-mit-der-kleinste-quadrate-methode"><i class="fa fa-check"></i><b>4.2.2</b> Schätzung mit der Kleinste-Quadrate-Methode</a></li>
+<li class="chapter" data-level="4.2.3" data-path="linmodel.html"><a href="linmodel.html#annahmen-für-den-ols-schätzer"><i class="fa fa-check"></i><b>4.2.3</b> Annahmen für den OLS Schätzer</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="linmodel.html"><a href="linmodel.html#lin-kennzahlen"><i class="fa fa-check"></i><b>4.3</b> Kennzahlen in der linearen Regression</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="linmodel.html"><a href="linmodel.html#erklärte-varianz-und-das-r2"><i class="fa fa-check"></i><b>4.3.1</b> Erklärte Varianz und das <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="4.3.2" data-path="linmodel.html"><a href="linmodel.html#hypothesentests-und-statistische-signifikanz"><i class="fa fa-check"></i><b>4.3.2</b> Hypothesentests und statistische Signifikanz</a></li>
+<li class="chapter" data-level="4.3.3" data-path="linmodel.html"><a href="linmodel.html#konfidenzintervalle-für-die-schätzer"><i class="fa fa-check"></i><b>4.3.3</b> Konfidenzintervalle für die Schätzer</a></li>
+<li class="chapter" data-level="4.3.4" data-path="linmodel.html"><a href="linmodel.html#zur-rolle-der-stichprobengröße"><i class="fa fa-check"></i><b>4.3.4</b> Zur Rolle der Stichprobengröße</a></li>
+<li class="chapter" data-level="4.3.5" data-path="linmodel.html"><a href="linmodel.html#residuenanalyse"><i class="fa fa-check"></i><b>4.3.5</b> Residuenanalyse</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="linmodel.html"><a href="linmodel.html#stat-ablauf"><i class="fa fa-check"></i><b>4.4</b> Zum Ablauf einer Regression</a></li>
+<li class="chapter" data-level="4.5" data-path="linmodel.html"><a href="linmodel.html#lin-multi"><i class="fa fa-check"></i><b>4.5</b> Multiple lineare Regression</a></li>
+<li class="chapter" data-level="4.6" data-path="linmodel.html"><a href="linmodel.html#anwendungsbeispiel"><i class="fa fa-check"></i><b>4.6</b> Anwendungsbeispiel</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>5</b> Datenkunde und Datenaufbereitung</a><ul>
+<li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="5.1" data-path="data.html"><a href="data.html#data-arten"><i class="fa fa-check"></i><b>5.1</b> Arten von Daten</a></li>
+<li class="chapter" data-level="5.2" data-path="data.html"><a href="data.html#data-get"><i class="fa fa-check"></i><b>5.2</b> Datenakquise</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="data.html"><a href="data.html#exkurs-1-ländercodes-übersetzen"><i class="fa fa-check"></i><b>5.2.1</b> Exkurs 1: Ländercodes übersetzen</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data.html"><a href="data.html#data-download-R"><i class="fa fa-check"></i><b>5.2.2</b> Exkurs 2: Daten direkt mit R herunterladen</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="data.html"><a href="data.html#data-read-write"><i class="fa fa-check"></i><b>5.3</b> Daten einlesen und schreiben</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="data.html"><a href="data.html#einlesen-von-datensätzen"><i class="fa fa-check"></i><b>5.3.1</b> Einlesen von Datensätzen</a></li>
+<li class="chapter" data-level="5.3.2" data-path="data.html"><a href="data.html#speichern-von-daten"><i class="fa fa-check"></i><b>5.3.2</b> Speichern von Daten</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="data.html"><a href="data.html#data-wrangling"><i class="fa fa-check"></i><b>5.4</b> Verarbeitung von Daten (‘data wrangling’)</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="data.html"><a href="data.html#das-konzept-von-tidy-data"><i class="fa fa-check"></i><b>5.4.1</b> Das Konzept von ‘tidy data’</a></li>
+<li class="chapter" data-level="5.4.2" data-path="data.html"><a href="data.html#data-long-wide"><i class="fa fa-check"></i><b>5.4.2</b> Von langen und breiten Datensätzen</a></li>
+<li class="chapter" data-level="5.4.3" data-path="data.html"><a href="data.html#data-merge"><i class="fa fa-check"></i><b>5.4.3</b> Zusammenführen von Daten</a></li>
+<li class="chapter" data-level="5.4.4" data-path="data.html"><a href="data.html#date-select"><i class="fa fa-check"></i><b>5.4.4</b> Datensätze filtern und selektieren</a></li>
+<li class="chapter" data-level="5.4.5" data-path="data.html"><a href="data.html#data-summary"><i class="fa fa-check"></i><b>5.4.5</b> Datensätze zusammenfassen</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="data.html"><a href="data.html#data-role"><i class="fa fa-check"></i><b>5.5</b> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</a></li>
+<li class="chapter" data-level="5.6" data-path="data.html"><a href="data.html#data-packages"><i class="fa fa-check"></i><b>5.6</b> Anmerkungen zu Paketen</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>6</b> Visualisierung von Daten</a><ul>
+<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#verwendete-pakete-1"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
+<li class="chapter" data-level="6.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>6.1</b> Optional: Theoretische Grundlagen</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="vis.html"><a href="vis.html#vis-base-ggplot2"><i class="fa fa-check"></i><b>6.1.1</b> <code>ggplot2</code> vs. <code>base plot</code></a></li>
+<li class="chapter" data-level="6.1.2" data-path="vis.html"><a href="vis.html#grammar"><i class="fa fa-check"></i><b>6.1.2</b> Einleitung zu Wickham’s <em>grammar of graphics</em></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="vis.html"><a href="vis.html#vis-elemente"><i class="fa fa-check"></i><b>6.2</b> Grundlegende Elemente von <code>ggplot2</code>-Grafiken</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="vis.html"><a href="vis.html#elemente-eines-ggplot"><i class="fa fa-check"></i><b>6.2.1</b> Elemente eines <code>ggplot</code></a></li>
+<li class="chapter" data-level="6.2.2" data-path="vis.html"><a href="vis.html#beispiel-workflow"><i class="fa fa-check"></i><b>6.2.2</b> Beispiel Workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="vis.html"><a href="vis.html#arten-von-datenvisualisierung"><i class="fa fa-check"></i><b>6.3</b> Arten von Datenvisualisierung</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="vis.html"><a href="vis.html#allgemeine-tipps-zum-grafikdesign"><i class="fa fa-check"></i><b>6.3.1</b> Allgemeine Tipps zum Grafikdesign</a></li>
+<li class="chapter" data-level="6.3.2" data-path="vis.html"><a href="vis.html#streu--oder-blasendiagramm"><i class="fa fa-check"></i><b>6.3.2</b> Streu- oder Blasendiagramm</a></li>
+<li class="chapter" data-level="6.3.3" data-path="vis.html"><a href="vis.html#linienchart"><i class="fa fa-check"></i><b>6.3.3</b> Linienchart</a></li>
+<li class="chapter" data-level="6.3.4" data-path="vis.html"><a href="vis.html#histogramme-und-dichteplots"><i class="fa fa-check"></i><b>6.3.4</b> Histogramme und Dichteplots</a></li>
+<li class="chapter" data-level="6.3.5" data-path="vis.html"><a href="vis.html#balkendiagramme"><i class="fa fa-check"></i><b>6.3.5</b> Balkendiagramme</a></li>
+<li class="chapter" data-level="6.3.6" data-path="vis.html"><a href="vis.html#vis-pie"><i class="fa fa-check"></i><b>6.3.6</b> Kuchendiagramme</a></li>
+<li class="chapter" data-level="6.3.7" data-path="vis.html"><a href="vis.html#vis-kinds-summary"><i class="fa fa-check"></i><b>6.3.7</b> Zusammenfassung</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="vis.html"><a href="vis.html#vis-adv"><i class="fa fa-check"></i><b>6.4</b> Beispiele aus der Praxis und fortgeschrittene Themen</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="vis.html"><a href="vis.html#regressionsgerade"><i class="fa fa-check"></i><b>6.4.1</b> Regressionsgerade</a></li>
+<li class="chapter" data-level="6.4.2" data-path="vis.html"><a href="vis.html#vis-viele-plots"><i class="fa fa-check"></i><b>6.4.2</b> Mehrere Plots in einer Abbildung</a></li>
+<li class="chapter" data-level="6.4.3" data-path="vis.html"><a href="vis.html#mehr-zu-den-skalen-expand_scale-und-skalentransformation"><i class="fa fa-check"></i><b>6.4.3</b> Mehr zu den Skalen: <code>expand_scale()</code> und Skalentransformation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="vis.html"><a href="vis.html#vis-fehler"><i class="fa fa-check"></i><b>6.5</b> Typische Fehler in der Datenvisualisierung vermeiden</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="vis.html"><a href="vis.html#clutterplots-und-ihre-tranformation-zum-beschrifteten-streudiagramm"><i class="fa fa-check"></i><b>6.5.1</b> Clutterplots und ihre Tranformation zum beschrifteten Streudiagramm</a></li>
+<li class="chapter" data-level="6.5.2" data-path="vis.html"><a href="vis.html#ein-unbalancierter-plot"><i class="fa fa-check"></i><b>6.5.2</b> Ein ‘unbalancierter’ Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="vis.html"><a href="vis.html#vis-lies"><i class="fa fa-check"></i><b>6.6</b> Lügen mit grafischer Statistik</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="vis.html"><a href="vis.html#klassiker-1-kontraintuitiver-nullpunkt"><i class="fa fa-check"></i><b>6.6.1</b> Klassiker 1: Kontraintuitiver ‘Nullpunkt’</a></li>
+<li class="chapter" data-level="6.6.2" data-path="vis.html"><a href="vis.html#klassiker-2-geschickt-gewählter-zeitraum-und-clever-gewählte-achsenabschnitte"><i class="fa fa-check"></i><b>6.6.2</b> Klassiker 2: Geschickt gewählter Zeitraum und clever gewählte Achsenabschnitte</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="vis.html"><a href="vis.html#vis-links"><i class="fa fa-check"></i><b>6.7</b> Links und weiterführende Literatur</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>A</b> Eine kurze Einführung in R Markdown</a><ul>
+<li class="chapter" data-level="A.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>A.1</b> Markdown vs. R-Markdown</a></li>
+<li class="chapter" data-level="A.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>A.2</b> Installation von R-Markdown</a></li>
+<li class="chapter" data-level="A.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>A.3</b> Der R-Markdown Workflow</a><ul>
+<li class="chapter" data-level="A.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>A.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
+<li class="chapter" data-level="A.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>A.3.2</b> Der Titelblock</a></li>
+<li class="chapter" data-level="A.3.3" data-path="markdown.html"><a href="markdown.html#der-textkörper"><i class="fa fa-check"></i><b>A.3.3</b> Der Textkörper</a></li>
+<li class="chapter" data-level="A.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>A.3.4</b> Kompillieren von Dokumenten</a></li>
+</ul></li>
+<li class="chapter" data-level="A.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>A.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
+<li class="chapter" data-level="A.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>A.5</b> Weitere Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="stat-stoch.html"><a href="stat-stoch.html"><i class="fa fa-check"></i><b>B</b> Wiederholung: Wahrscheinlichkeitstheorie</a><ul>
+<li class="chapter" data-level="" data-path="stat-stoch.html"><a href="stat-stoch.html#verwendete-pakete-2"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="B.1" data-path="stat-stoch.html"><a href="stat-stoch.html#einleitung-wahrscheinlichkeitstheorie-und-statistik"><i class="fa fa-check"></i><b>B.1</b> Einleitung: Wahrscheinlichkeitstheorie und Statistik</a></li>
+<li class="chapter" data-level="B.2" data-path="stat-stoch.html"><a href="stat-stoch.html#grundbegriffe-der-wahrscheinlichkeitstheorie"><i class="fa fa-check"></i><b>B.2</b> Grundbegriffe der Wahrscheinlichkeitstheorie</a></li>
+<li class="chapter" data-level="B.3" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.3</b> Diskrete Wahrscheinlichkeitsmodelle</a><ul>
+<li class="chapter" data-level="B.3.1" data-path="stat-stoch.html"><a href="stat-stoch.html#bayes-theorem-und-gesetz-der-total-wahrscheinlichkeiten"><i class="fa fa-check"></i><b>B.3.1</b> Bayes Theorem und Gesetz der total Wahrscheinlichkeiten</a></li>
+<li class="chapter" data-level="B.3.2" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-zufallsvariablen"><i class="fa fa-check"></i><b>B.3.2</b> Diskrete Zufallsvariablen</a></li>
+<li class="chapter" data-level="B.3.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-binomial-verteilung"><i class="fa fa-check"></i><b>B.3.3</b> Beispiel: die Binomial-Verteilung</a></li>
+<li class="chapter" data-level="B.3.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-poisson-verteilung"><i class="fa fa-check"></i><b>B.3.4</b> Beispiel: die Poisson-Verteilung</a></li>
+<li class="chapter" data-level="B.3.5" data-path="stat-stoch.html"><a href="stat-stoch.html#hinweise-zu-diskreten-wahrscheinlichkeitsverteilungen"><i class="fa fa-check"></i><b>B.3.5</b> Hinweise zu diskreten Wahrscheinlichkeitsverteilungen</a></li>
+</ul></li>
+<li class="chapter" data-level="B.4" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.4</b> Stetige Wahrscheinlichkeitsmodelle</a><ul>
+<li class="chapter" data-level="B.4.1" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-zv"><i class="fa fa-check"></i><b>B.4.1</b> Stetige ZV</a></li>
+<li class="chapter" data-level="B.4.2" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-uniformverteilung"><i class="fa fa-check"></i><b>B.4.2</b> Beispiel: die Uniformverteilung</a></li>
+<li class="chapter" data-level="B.4.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-normalverteilung"><i class="fa fa-check"></i><b>B.4.3</b> Beispiel: die Normalverteilung</a></li>
+<li class="chapter" data-level="B.4.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-exponentialverteilung"><i class="fa fa-check"></i><b>B.4.4</b> Beispiel: die Exponentialverteilung</a></li>
+</ul></li>
+<li class="chapter" data-level="B.5" data-path="stat-stoch.html"><a href="stat-stoch.html#zusammenfassung-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.5</b> Zusammenfassung Wahrscheinlichkeitsmodelle</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>C</b> Wiederholung: Deskriptive Statistik</a><ul>
+<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-und-datensätze"><i class="fa fa-check"></i>Verwendete Pakete und Datensätze</a></li>
+<li class="chapter" data-level="C.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>C.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
+<li class="chapter" data-level="C.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmaße"><i class="fa fa-check"></i><b>C.2</b> Korrelationsmaße</a></li>
+<li class="chapter" data-level="C.3" data-path="desk-stat.html"><a href="desk-stat.html#hinweise-zur-quantitativen-und-visuellen-datenbeschreibung"><i class="fa fa-check"></i><b>C.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
+<li class="chapter" data-level="C.4" data-path="desk-stat.html"><a href="desk-stat.html#zusamenfassung"><i class="fa fa-check"></i><b>C.4</b> Zusamenfassung</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>D</b> Wiederholung: Drei Verfahren der schließenden Statistik</a><ul>
+<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-3"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="D.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>D.1</b> Punktschätzung</a></li>
+<li class="chapter" data-level="D.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>D.2</b> Hypothesentests</a></li>
+<li class="chapter" data-level="D.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>D.3</b> Berechnung von Konfidenzintervallen</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R für die sozio-ökonomische Forschung</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="stat-stoch" class="section level1">
+<h1><span class="header-section-number">B</span> Wiederholung: Wahrscheinlichkeitstheorie</h1>
+<p>In diesem Kapitel werden Grundlagen der Wahrscheinlichkeitstheorie wiederholt. Die zentralen Themen sind dabei:</p>
+<ul>
+<li>Der Zusammenhang zwischen Wahrscheinlichkeitstheorie und Statistik</li>
+<li>Grundbegriffe der Wahrscheinlichkeitstheorie und Statistik</li>
+<li>Zufallsvariablen</li>
+<li>Diskrete und stetige Verteilungen</li>
+</ul>
+<p>Grundkonzepte der deskriptiven und schließenden Statistik (insb. Parameterschätzung, Hypothesentests und die Berechnung von Konfidenzintervallen) werden in den beiden Anhängen <a href="desk-stat.html#desk-stat">zur deskriptiven</a> und <a href="stat-rep.html#stat-rep">schließenden Statistik</a> wiederholt.</p>
+<div id="verwendete-pakete-2" class="section level2 unnumbered">
+<h2>Verwendete Pakete</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(here)
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(ggpubr)
+<span class="kw">library</span>(latex2exp)
+<span class="kw">library</span>(icaeDesign)
+<span class="kw">library</span>(data.table)</code></pre></div>
+</div>
+<div id="einleitung-wahrscheinlichkeitstheorie-und-statistik" class="section level2">
+<h2><span class="header-section-number">B.1</span> Einleitung: Wahrscheinlichkeitstheorie und Statistik</h2>
+<p>Statistik und Wahrscheinlichkeitstheorie sind untrennbar miteinander verbunden. In der Wahrscheinlichkeitstheorie beschäftigt man sich mit Modellen von Zufallsprozessen, also Prozessen, deren Ausgang nicht exakt vorhersehbar ist. Häufig spricht man von <em>Zufallsexperimenten</em>.</p>
+<p>Die Wahrscheinlichkeitstheorie entwickelt dabei Modelle, welche diese Zufallsexperimenten und deren mögliche Ausgänge beschreiben und dabei den möglichen Ausgängen Wahrscheinlichkeiten zuordnern. Diese Modelle werden <em>Wahrscheinlichkeitsmodelle</em> genannt.</p>
+<p>In der Statistik versuchen wir anhand von beobachteten Daten herauszufinden, welches Wahrscheinlichkeitsmodell gut geeignet ist, den die Daten generierenden Prozess (<em>data generating process</em> - DGP) zu beschreiben. Das ist der Grund warum man für Statistik auch immer Kenntnisse der Wahrscheinlichkeitstheorie braucht.</p>
+<blockquote>
+<p>Kurz gesagt: in der Wahrscheinlichkeitstheorie wollen wir mit Hilfe von Wahrscheinlichkeitsmodellen Daten vorhersagen, in der Statistik mit Hilfe bekannter Daten Rückschlüsse auf die zugrundeliegenden Wahrscheinlichkeitsmodelle ziehen.</p>
+</blockquote>
+</div>
+<div id="grundbegriffe-der-wahrscheinlichkeitstheorie" class="section level2">
+<h2><span class="header-section-number">B.2</span> Grundbegriffe der Wahrscheinlichkeitstheorie</h2>
+<p>Ein wahrscheinlichkeitstheoretisches Modell besteht <em>immer</em> aus den folgenden drei Komponenten:</p>
+<p><strong>Ergebnisraum</strong>: diese Menge <span class="math inline">\(\Omega\)</span> enthält alle möglichen Ergebnisse des modellierten Zufallsexperiments. Das einzelne Ergebnis bezeichnen wir mit <span class="math inline">\(\omega\)</span>.</p>
+<blockquote>
+<p><strong>Beispiel:</strong> Handelt es sich bei dem Zufallsexperiment um das Werfen eines normalen sechseitigen Würfels gilt <span class="math inline">\(\Omega=\{1,2,3,4,5,6\}\)</span>. Wenn der Würfen gefallen ist, bezeichnen wir die oben liegende Zahl als das Ergebnis <span class="math inline">\(\omega\)</span> des Würfelwurfs, wobei hier gilt <span class="math inline">\(\omega_1=\)</span> “Der Würfel zeigt 1”, u.s.w.</p>
+</blockquote>
+<p><strong>Ereignisse:</strong> unter Ereignissen <span class="math inline">\(A, B, C,...\)</span> verstehen wir die Teilmengen des Ergebnisraums. Ein Ereignis enthält ein oder mehrere Elemente des Ergebnisraums. Enthält ein Ereignis genau ein Element, sprechen wir von einem <em>Elementarereignis</em>.</p>
+<blockquote>
+<p><strong>Beispiel:</strong> “Es wird eine gerade Zahl gewürfelt” ist ein mögliches Ereignis im oben beschriebenen Zufallsexperiment. Das Ereignis - nennen wir es hier <span class="math inline">\(A\)</span> - tritt ein, wenn ein Würfelwurf mit dem Ergebnis “2”, “4” oder “6” endet. Also: <span class="math inline">\(A=\{\omega_2, \omega_4, \omega_6\}\)</span> Das Ereignis <span class="math inline">\(B\)</span> “Es wird eine 2 gewürfelt” tritt nur ein, wenn das Ergebnis des Würfelwurfs eine 2 ist: <span class="math inline">\(B=\{\omega_2\}\)</span>. Entsprechend nennen wir es ein <em>Elementarereignis</em>.</p>
+</blockquote>
+<p>Da es sich bei Ereignissen um Mengen handelt können wir die typischen mengentheoretischen Konzepte wie ‘Vereinigung’, ‘Differenz’ oder ‘Komplement’ zu ihrer Beschreibung verwenden:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Konzept</th>
+<th>Symbol</th>
+<th>Übersetzung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Schnittmenge</td>
+<td><span class="math inline">\(A\cap B\)</span></td>
+<td><span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span></td>
+</tr>
+<tr class="even">
+<td>Vereinigung</td>
+<td><span class="math inline">\(A\cup B\)</span></td>
+<td><span class="math inline">\(A\)</span> und/oder <span class="math inline">\(B\)</span></td>
+</tr>
+<tr class="odd">
+<td>Komplement</td>
+<td><span class="math inline">\(A^c\)</span></td>
+<td>Nicht <span class="math inline">\(A\)</span></td>
+</tr>
+<tr class="even">
+<td>Differenz</td>
+<td><span class="math inline">\(A \setminus B = A\cap B^c\)</span></td>
+<td><span class="math inline">\(A\)</span> ohne <span class="math inline">\(B\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wahrscheinlichkeiten</strong>: jedem <em>Ereignis</em> <span class="math inline">\(A\)</span> wird eine Wahrscheinlichkeit <span class="math inline">\(\mathbb{P}(A)\)</span> zugeordnet. Wahrscheinlichkeiten können aber nicht beliebige Zahlen sein. Vielmehr müssen sie im Einklang mit den drei <em>Axiomen von Kolmogorow</em> stehen:</p>
+<ol style="list-style-type: decimal">
+<li><p>Für jedes Ereignis <span class="math inline">\(A\)</span> gilt: <span class="math inline">\(0\leq\mathbb{P}(A)\leq1\)</span></p></li>
+<li><p>Das sichere Ereignis <span class="math inline">\(\Omega\)</span> umfasst den ganzen Ergebnisraum und es gilt entsprechend <span class="math inline">\(\mathbb{P}(\Omega)=1\)</span>.</p></li>
+<li><p>Es gilt: <span class="math inline">\(\mathbb{P}(A\cup B) = \mathbb{P}(A)+\mathbb{P}(B)\)</span> falls <span class="math inline">\(A\cap B=\emptyset\)</span>, also wenn sich A und B gegenseitig ausschließen.</p></li>
+</ol>
+<p>Aus diesen Axiomen lassen sich eine ganze Menge Sätze heraus ableiten, auf die wir im folgenden aber nicht besonders eingehen wollen. Die Grundidee ist aber, bestimmten Ereignissen von Anfang an bestimmte Wahrscheinlichkeiten zuzuordnen, und die Wahrscheinlichkeiten für andere Ereignisse dann aus den eben beschriebenen Regeln abzuleiten.</p>
+<p>Je nach Art des Ergebnisraums <span class="math inline">\(\Omega\)</span> unterscheiden wir zwei grundsätzlich verschiedene Arten von Wahrscheinlichkeitsmodellen: ist <span class="math inline">\(\Omega\)</span> <strong>abzählbar</strong> handelt es sich um ein <strong>diskretes Wahrscheinlichkeitsmodell</strong>. Der Würfelwurf oder ein Münzwurf sind hierfür Beispiele: die Menge der möglichen Ergebnisse ist hier klar abzählbar.<a href="#fn50" class="footnoteRef" id="fnref50"><sup>50</sup></a></p>
+<p>Ist <span class="math inline">\(\Omega\)</span> <strong>nicht abzählbar</strong> handelt es sich dagegen um ein <strong>stetiges Wahrscheinlichkeitsmodell</strong>. Ein Beispiel hierfür wäre das Fallenlassen von Steinen und die Messung der Falldauer. Die einzelnen Ereignisse wären dann die Falldauer und es würde gelten, dass <span class="math inline">\(\Omega=\mathbb{R^+}\)</span> und <span class="math inline">\(\mathbb{R^+}\)</span> ist nicht abzählbar.</p>
+<p>Welches Modell für den konkreten Anwendungsfall vorzuziehen ist, muss auf Basis von theoretischen Überlegungen entschieden werden.</p>
+</div>
+<div id="diskrete-wahrscheinlichkeitsmodelle" class="section level2">
+<h2><span class="header-section-number">B.3</span> Diskrete Wahrscheinlichkeitsmodelle</h2>
+<p>Wenn wir die Wahrscheinlichkeit für das Eintreten eines Ereignisses <span class="math inline">\(A\)</span> erfahren möchten können wir im Falle eines diskreten Ergebnisraums einfach die Eintrittswahrscheinlichkeiten für alle Ergebnisse, die zu <span class="math inline">\(A\)</span> gehören, aufsummieren:</p>
+<p><span class="math display">\[ \mathbb{P}(A)=\sum_{\omega\in A} \mathbb{P}(\{\omega\})\]</span></p>
+<blockquote>
+<p><strong>Beispiel:</strong> Beim Werfen eines sechseitigen Würfels ist die Wahrscheinlichkeit für das Ereignst “Es wird eine gerade Zahl gewürfelt”: <span class="math inline">\(\mathbb{P}(2)+\mathbb{P}(4)+\mathbb{P}(6)=\frac{1}{6}+\frac{1}{6}+\frac{1}{6}=\frac{1}{2}\)</span>.</p>
+</blockquote>
+<p>Von Interesse ist häufig aus den Wahrscheinlichkeiten für zwei Ereignisse, <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span>, die Wahrscheinlichkeit für <span class="math inline">\(A\cap B\)</span>, also die Wahrscheinlichkeit, dass beide Ereignisse auftreten, zu berechnen. Leider ist das nur im Spezialfall der <strong>stochastischen Unabhängigkeit</strong> möglich. Stochastische Unabhängigkeit kann immer dann sinnvollerweise angenommen werden, wenn zwischen den beteiligten Ereignissen kein kausaler Zusammenhang besteht. In diesem Fall gilt dann:</p>
+<p><span class="math display">\[\mathbb{P}(A\cap B) = \mathbb{P}(A)\cdot\mathbb{P}(B)\]</span></p>
+<blockquote>
+<p><strong>Beispiel für stochastische Unabhängigkeit</strong>: Es ist plausibel anzunehmen, dass es keinen kausalen Zusammenhang zwischen zwei aufeinanderfolgenden Münzwürfen gibt. Entsprechend sind die Ereignisse <span class="math inline">\(A\)</span>: “Zahl im ersten Wurf” und <span class="math inline">\(B\)</span>: “Kopf im zweiten Wurf” stochastisch unabhängig und <span class="math inline">\(\mathbb{P}(A\cap B)=\mathbb{P}(A)\cdot \mathbb{P}(B)=\frac{1}{4}\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Beispiel für stochastische Abhängigkeit</strong>: Ein anderer Fall liegt vor, wenn wir die Ereignisse <span class="math inline">\(C\)</span>: “Die Summe beider Würfe ist 6” und <span class="math inline">\(D\)</span>: “Der erste Wurf zeigt eine 2.” betrachten. Hier ist offensichtlich, dass ein kausaler Zusammenhang zwischen den beiden Würfen und den Ereignissen besteht. Es gilt: <span class="math inline">\(\mathbb{P}(C\cap D)=\mathbb{P}(\{2, 4\})=\frac{1}{36}\)</span>. Würden wir die Wahrscheinlichkeiten einfach multiplizieren erhielten wir allerdings <span class="math inline">\(\mathbb{P}(C)\cdot \mathbb{P}(D)=\frac{5}{36}\cdot\frac{1}{6}=\frac{5}{216}\)</span>, wobei <span class="math inline">\(\mathbb{P}(C)=\frac{5}{36}\)</span>.</p>
+</blockquote>
+<p>Ein weiteres wichtiges Konzept ist das der <strong>bedingten Wahrscheinlichkeit</strong>: die bedingten Wahrscheinlichkeit von <span class="math inline">\(A\)</span> gegeben <span class="math inline">\(B\)</span>, <span class="math inline">\(\mathbb{P}(A|B)\)</span>, bezeichnet die Wahrscheindlichkeit für <span class="math inline">\(A\)</span>, wenn wir wissen, dass <span class="math inline">\(B\)</span> bereits eingetreten ist.</p>
+<p>Es gilt dabei:<a href="#fn51" class="footnoteRef" id="fnref51"><sup>51</sup></a></p>
+<p><span class="math display">\[\mathbb{P}(A|B)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}\]</span></p>
+<blockquote>
+<p><strong>Beispiel:</strong> Sei <span class="math inline">\(A\)</span>: “Der Würfel zeigt eine 6” und <span class="math inline">\(B\)</span>: “Der Würfelwurf zeigt eine gerade Zahl”. Wenn wir bereits wissen, dass <span class="math inline">\(B\)</span> eingetreten ist, ist <span class="math inline">\(\mathbb{P}(A)\)</span> nicht mehr <span class="math inline">\(\frac{1}{6}\)</span>, weil wir ja wissen, dass 1, 3 und 5 nicht auftreten können. Vielmehr gilt <span class="math inline">\(\mathbb{P}(A|B)=\frac{1/6}{1/2}=\frac{1}{3}\)</span>.</p>
+</blockquote>
+<div id="bayes-theorem-und-gesetz-der-total-wahrscheinlichkeiten" class="section level3">
+<h3><span class="header-section-number">B.3.1</span> Bayes Theorem und Gesetz der total Wahrscheinlichkeiten</h3>
+<p>Ganz wichtig: es gilt <em>nicht notwendigerweise</em> <span class="math inline">\(\mathbb{P}(A|B)=\mathbb{P}(B|A)\)</span>. Vielmehr gilt nach dem <strong>Satz von Bayes</strong>:</p>
+<p><span class="math display">\[\mathbb{P}(A|B)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}=\frac{\mathbb{P}(B|A)\mathbb{P}(A)}{\mathbb{P}(B)}\]</span></p>
+<p>Ein in Beweisen sehr häufig verwendeter Zusammenhang ist das <strong>Gesetz der totalen Wahrscheinlichkeit</strong>: seien <span class="math inline">\(A_1,...,A_k\)</span> Ergeignisse, die sich nicht überschneiden und gemeinsam den kompletten Ereignisraum <span class="math inline">\(\Omega\)</span> abdecken, dann gilt:</p>
+<p><span class="math display">\[\mathbb{P}(B)=\sum_{i=1}^k\mathbb{P}(B|A_k)\mathbb{P}(A_k)\]</span></p>
+<p>Auch wenn das erst einmal sperrig aussieht, ist der Zusammenhang sehr praktisch und wird häufig in Beweisen in der Stochastik verwendet.</p>
+</div>
+<div id="diskrete-zufallsvariablen" class="section level3">
+<h3><span class="header-section-number">B.3.2</span> Diskrete Zufallsvariablen</h3>
+<p>Bei Zufallsvariablen (ZV) handelt es sich um besondere <em>Funktionen</em>. Die Definitionsmenge einer Zufallsvariable ist immer der zurgundeliegende Ergebnisraum <span class="math inline">\(\Omega\)</span>, die Zielmenge ist i.d.R. <span class="math inline">\(\mathbb{R}\)</span>, sodass gilt:</p>
+<p><span class="math display">\[X:\Omega\rightarrow\mathbb{R}, \omega \mapsto X(\omega)\]</span></p>
+<p>Im Kontext von ZV sprechen wir häufig nicht von dem zugrundeliegenden Ergebnisraum <span class="math inline">\(\Omega\)</span>, sondern - inhaltlich äquivalent - vom <em>Wertebereich von X</em>, bezeichnet als <span class="math inline">\(W_X\)</span>.</p>
+<p>In der Regel bezeichnen wir Zufallsvariablen (ZV) mit Großbuchstaben und die konkrete Realisation einer ZV mit einem Kleinbuchstaben, sodass <span class="math inline">\(\mathbb{P}(X=x)\)</span> die Wahrscheinlichkeit angibt, dass die ZV <span class="math inline">\(X\)</span> den konkreten Wert <span class="math inline">\(x\)</span> annimmt. Bei <span class="math inline">\(x\)</span> sprechen wir von einer <em>Realisierung</em> der ZV <span class="math inline">\(X\)</span>. Wir nehmen für die weitere Notation an, dass <span class="math inline">\(W_X=\{x_1, x_2,...,x_K\}\)</span> und bezeichnen das einzelne Element mit <span class="math inline">\(x_k\)</span> mit <span class="math inline">\(1\leq k\leq K\)</span>.</p>
+<p>Dies bedeutet streng genommen, dass die ZV selbst nicht als zufällig definiert wird. Zufällig ist nur der Input <span class="math inline">\(\omega\)</span> der entsprechenden Funktion <span class="math inline">\(X: \Omega\rightarrow X(\omega)\)</span>, also z.B. ein Würfelwurf. Der funktionale Zusammenhang zwischen Funktionswert <span class="math inline">\(X(\omega)\)</span> und dem Input <span class="math inline">\(\omega\)</span> ist hingegen eindeutig.</p>
+<p>Das bedeutet streng genommen, dass die ZV nicht <em>selbst</em> zufällig ist, sondern ihr Input <span class="math inline">\(\omega\)</span>. Das impliziert, dass wenn ein Zufallsexperiment zweimal das gleiche Ergebnis <span class="math inline">\(\omega\)</span> hat, ist auch der Wert <span class="math inline">\(X(\omega)\)</span> der gleiche.</p>
+<p>Das mag im Moment ein wenig nach ‘Pfennigfuchserei’ aussehen, die Unterscheidung zwischen dem nicht-zufälligem funtionalen Zusammenhangs, aber einem zufälligen Input bei ZV ist wichtig, um den Sinn in vielen fortgeschrittenen Beiträgen im Bereich der Ökonometrie zu sehen.</p>
+<p>Den unterschiedlichen Realisierungen von einer ZV haben jeweils Wahrscheinlichkeiten, die von den Wahrscheinlichkeiten der zugrundeliegenden Ergebnisse des modellierten Zufallsexperiments abhängen.</p>
+<p>Produkte und Summen von ZV sind selbst wieder Zufallsvariables. Man addiert bzw. multipliziert ZV indem man ihre Werte addiert bzw. mutlipliziert.</p>
+<p>Im Falle von diskreten ZV können wir eine Liste erstellen, die für alle möglichen Werte <span class="math inline">\(x_k\in W_X\)</span> die jeweilige Wahrscheinlichkeit <span class="math inline">\(\mathbb{P}(X=x_k)\)</span> angibt.<a href="#fn52" class="footnoteRef" id="fnref52"><sup>52</sup></a> Diese Liste nennen wir <strong>Wahrscheinlichkeitsverteilung</strong> (<em>Probability Mass Function</em>, PMF) von <span class="math inline">\(X\)</span> und sie werden häufig visuell dargestellen. Um diese Liste zu erstellen verwenden wir die zu <span class="math inline">\(X\)</span> gehörende <strong>Wahrscheinlichkeitsfunktion</strong>, (<span class="math inline">\(p(x_k)\)</span>),die uns für jedes Ergebnis die zugehörige Wahrscheinlichkeit gibt:<a href="#fn53" class="footnoteRef" id="fnref53"><sup>53</sup></a></p>
+<p><span class="math display">\[p(x_k)=\mathbb{P}(X=x_k)\]</span></p>
+<p>Wenn wir eine ZV analysieren tun wir dies in der Regel durch eine Analyse ihrer Wahrscheinlichkeitsverteilung. Zur genaueren Beschreibung einer ZV wird entsprechend häufig einfach die Wahrscheinlichkeitsfunktion angegeben.</p>
+<p>Im folgenden wollen wir einige häufig auftretende Wahrscheinlichkeitsverteilungen kurz besprechen. Am Ende des Abschnitts findet sich dann ein tabellarischer Überblick. Doch vorher wollen wir uns noch mit den wichtigsten <strong>Kennzahlen einer Verteilung</strong> vertraut machen. Denn wie Sie sich vorstellen können sind Wahrscheinlichkeitsverteilungen als Listen, die alle möglichen Realisierungen einer ZV enthalten ziemlich umständlich zu handhaben. Daher beschreiben wir Wahrscheinlichkeitsverteilungen nicht indem wir eine Liste beschreiben, sondern indem wir bestimmte Kennzahlen zu ihrer Beschreibung verwenden. Die wichtigsten Kennzahlen einer ZV <span class="math inline">\(X\)</span> sind der <strong>Erwartungswert</strong> <span class="math inline">\(\mathbb{E}(x)\)</span> als <em>Lageparameter</em> und die <strong>Standardabweichung</strong> <span class="math inline">\(\sigma(X)\)</span> als <em>Streuungsmaß</em>.</p>
+<p>Der Erwartungswert ist definitert als die nach ihrer Wahrscheinlichkeit gewichtete Summe aller Elemente im Wertebereich von <span class="math inline">\(X\)</span> und gibt damit die mittlere Lage der Wahrscheinlichkeitsverteilung an. Wenn <span class="math inline">\(W_X\)</span> der Wertebereich von <span class="math inline">\(X\)</span> ist, dann gilt:</p>
+<p><span class="math display">\[\mathbb{E}(x)=\mu_X=\sum_{x_k\in W_X}p(x_k)x_k\]</span></p>
+<blockquote>
+<p>Beispiel: Der Erwartungswert einer ZV <span class="math inline">\(X\)</span>, die das Werfen eines fairen Würfels beschreibt ist: <span class="math inline">\(\mathbb{E}(X)=\sum_{k=1}^6k\cdot\frac{1}{6}=3.5\)</span>.</p>
+</blockquote>
+<p>Wie wir <a href="#stat-re">später</a> sehen werden, wird der Erwartungswert in der empirischen Praxis häufig über den Mittelwert einer Stichprobe identifiziert.</p>
+<p>Ein gängiges Maß für die Streuung einer Verteilung <span class="math inline">\(X\)</span> ist die Varianz <span class="math inline">\(Var(X)\)</span> oder ihre Quadratwurzel, die Standardabweichung, <span class="math inline">\(\sigma(X)=\sqrt{Var(X)}\)</span>. Letztere wird häufiger verwendet, weil sie die gleiche Einheit hat wie <span class="math inline">\(X\)</span>:</p>
+<p><span class="math display">\[Var(X)=\sum_{x_k\in W_X}\left[x_k-\mathbb{E}(X)\right]^2 p(x_k)\]</span></p>
+<blockquote>
+<p>Beispiel: Die Standardabweichung einer ZV <span class="math inline">\(X\)</span>, die das Werfen eines fairen Würfels beschreibt ist: <span class="math inline">\(\sigma_X=\sqrt{\sum_{k}^6\left[x_k-\mathbb{E}(X)\right]^2 p(x_k)}=\sqrt{5.83}\approx 2.414\)</span>.</p>
+</blockquote>
+<p>Im folgenden wollen wir uns einige der am häufigsten verwendeten ZV und ihre Verteilungen genauer ansehen. Am Ende der Beschreibung jeder Funktion folgt ein Beispiel für eine Anwendung. Wenn Ihnen die theoretischen Ausführungen am Anfang etwas kryptisch erscheinen, empfiehlt es sich vielleicht erst einmal das Anwendungsbeispiel anzusehen.</p>
+</div>
+<div id="beispiel-die-binomial-verteilung" class="section level3">
+<h3><span class="header-section-number">B.3.3</span> Beispiel: die Binomial-Verteilung</h3>
+<p>Die vielleicht bekannteste diskrete Wahrscheinlichkeitsverteilung ist die Binomialverteilung <span class="math inline">\(\mathcal{B}(n,p)\)</span>. Mit ihr modelliert man Zufallsexperimente, die aus einer Reihe von Aktionen bestehen, die entweder zum ‘Erfolg’ oder ‘Misserfolg’ führen.</p>
+<p>Die Binomialverteilung ist eine Verteilung mit zwei <strong>Parametern</strong>. Parameter sind Werte, welche die Struktur der Verteilung bestimmen. In der Statistik sind wir häufig daran interessiert, die Paramter einer Verteilung zu bestimmen. Im Falle der Binomialverteilung gibt es die folgenden zwei Parameter: <span class="math inline">\(p\)</span> gibt die Erfolgswahrscheinlichkeit einer einzelnen Aktion an (und es muss daher gelten <span class="math inline">\(p\in[0,1]\)</span>) und <span class="math inline">\(n\)</span> gibt die Anzahl der Aktionen an. Daher auch die Kurzschreibweise <span class="math inline">\(\mathcal{B}(n,p)\)</span>.</p>
+<blockquote>
+<p><strong>Beispiel:</strong> Wenn wir eine faire Münze zehn Mal werfen, können wir das mit einer Binomialverteilung mit <span class="math inline">\(p=0.5\)</span> und <span class="math inline">\(n=10\)</span> modellieren.</p>
+</blockquote>
+<p>Die <em>Wahrscheinlichkeitsfunktion</em> <span class="math inline">\(p(x)\)</span> der Binomialverteilung ist die folgende, wobei <span class="math inline">\(x\)</span> die Anzahl der Erfolge darstellt:</p>
+<p><span class="math display">\[\mathbb{P}(X=x)=p(x)=\binom{n}{x}p^x(1-p)^{n-x}\]</span> Dies ergibt sich aus den grundlegenden Wahrscheinlichkeitsgesetzen: <span class="math inline">\(\binom{n}{x}\)</span> ist der <a href="https://de.wikipedia.org/wiki/Binomialkoeffizient">Binomialkoeffizient</a> und gibt uns die Anzahl der Möglichkeiten wie man bei <span class="math inline">\(n\)</span> Versuchen <span class="math inline">\(x\)</span> Erfolge erziehlen kann. Dies multiplizieren wir mit der Wahrscheinlichkeit <span class="math inline">\(x\)</span>-mal einen Erfolg zu erziehlen und <span class="math inline">\(n-x\)</span>-mal einen Misserfolg zu erziehlen.</p>
+<p>Wenn die ZV <span class="math inline">\(X\)</span> einer Binomialverteilung mit bestimmten Parametern <span class="math inline">\(p\)</span> und <span class="math inline">\(n\)</span> folgt, dann schreiben wir <span class="math inline">\(P \propto \mathcal{B}(n,p)\)</span> und es gilt, dass <span class="math inline">\(\mathbb{E}(X)=np\)</span> und <span class="math inline">\(\sigma(X)=\sqrt{np(1-p)}\)</span>.<a href="#fn54" class="footnoteRef" id="fnref54"><sup>54</sup></a></p>
+<p>Im folgenden sehen wir eine Darstellung der Wahrscheinlichkeitsverteilung der Binomialverteilung für verschiedene Parameterwerte:</p>
+<p><img src="ChapA-Wahrscheinlichkeitstheorie_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>R stellt uns einige nützliche Funktionen bereit, mit denen wir typische Rechenaufgaben einfach lösen können:</p>
+<p>Möchten wir die Wahrscheinlichkeit berechnen, genau <span class="math inline">\(x\)</span> Erfolge zu beobachten, also <span class="math inline">\(\mathbb{P}(X=x)\)</span> geht das mit der Funktion <code>dbinom()</code>. Die notwendigen Argumente sind <code>x</code> für den interessierenden x-Wert, <code>size</code> für den Parameter <span class="math inline">\(n\)</span> und <code>prob</code> für den Parameter <span class="math inline">\(p\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dbinom</span>(<span class="dt">x =</span> <span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">prob =</span> <span class="fl">0.25</span>)</code></pre></div>
+<pre><code>## [1] 0.09851841</code></pre>
+<p>Das bedeutet, wenn <span class="math inline">\(X \propto B(50, 0.25)\)</span>, dann: <span class="math inline">\(\mathbb{P}(X=10)=0.09852\)</span>. Die folgende Abbildung illustriert dies:</p>
+<p><img src="ChapA-Wahrscheinlichkeitstheorie_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Natürlich können wir an die Funktion auch einen atomaren Vektor als erstes Argument übergeben:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dbinom</span>(<span class="dt">x =</span> <span class="dv">5</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">prob =</span> <span class="fl">0.25</span>)</code></pre></div>
+<pre><code>## [1] 0.004937859 0.012344647 0.025864974 0.046341412 0.072086641 0.098518410</code></pre>
+<p>Häufig sind wir auch an der <strong>kumulierten Wahrscheinlichkeitsfunktion</strong> interessiert. Während uns die Wahrscheinlichkeitsfunktion die Wahrscheinlichkeit für genau <span class="math inline">\(x\)</span> Erfolge angibt, also <span class="math inline">\(\mathbb{P}(X=x)\)</span>, gibt uns die <em>kumulierte</em> Wahrscheinlichkeitsfunktion die Wahrscheinlichkeit für <span class="math inline">\(x\)</span> oder weniger Erfolge, also <span class="math inline">\(\mathbb{P}(X\leq x)\)</span>.</p>
+<p>Die entsprechenden Werte für die kumulierten Wahrscheinlichkeitsfunktion erhalten wir mit der Funktion <code>pbinom()</code>, welche quasi die gleichen Argumente benötigt wie <code>dbinom()</code>. Nur gibt es anstatt des Parameters <code>x</code> jetzt einen Parameter <code>q</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pbinom</span>(<span class="dt">q =</span> <span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">prob =</span> <span class="fl">0.25</span>)</code></pre></div>
+<pre><code>## [1] 0.2622023</code></pre>
+<p>Die Wahrscheinlichkeit 5 oder weniger Erfolge bei 5 Versuchen und einer Erfolgswahrscheinlichkeit von 25% zu erzielen beträgt also 25.2%:</p>
+<p><img src="ChapA-Wahrscheinlichkeitstheorie_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Schlussendlich haben wir die Funktion <code>qbinom()</code>, welche als ersten Input eine Wahrscheinlichkeit <code>p</code> akzeptiert und dann den kleinsten Wert <span class="math inline">\(x\)</span> findet, für den gilt, dass <span class="math inline">\(\mathbb{P}(X=x)\geq p\)</span>.</p>
+<p>Wenn wir also wissen möchten wie viele Erfolge mit einer Wahrscheinlichkeit von 50% mindestens zu erwarten sind, dann schreiben wir:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qbinom</span>(<span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">prob =</span> <span class="fl">0.25</span>)</code></pre></div>
+<pre><code>## [1] 12</code></pre>
+<p>Es gilt also: <span class="math inline">\(\mathbb{P}(X=12)\geq p\)</span>.</p>
+<p>Wir können dies grafisch verdeutlichen:</p>
+<p><img src="ChapA-Wahrscheinlichkeitstheorie_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Möchten wir schließlich eine bestimmte Menge an <strong>Realisierungen</strong> aus einer Binomialverteilung ziehen geht das mit <code>rbinom()</code>, welches drei Argumente verlangt: <code>n</code> für die Anzahl der zu ziehenden Realisierungen, sowie <code>size</code> und <code>prob</code> als da Paramter <span class="math inline">\(n\)</span> und <span class="math inline">\(p\)</span> der Binomialverteilung:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sample_binom &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="fl">0.4</span>)
+sample_binom</code></pre></div>
+<pre><code>## [1] 3 4 6 2 5</code></pre>
+<blockquote>
+<p><strong>Anwendungsbeispiel Binomialverteilung:</strong> Unser Zufallsexperiment besteht aus dem zehnmaligen Werfen einer fairen Münze. Unter ‘Erfolg’ verstehen wir das Werfen von ‘Zahl’. Nehmen wir an, wir führen das Zufallsexperiment 100 Mal durch, werfen also insgesamt 10 Mal die Münze und schreiben jeweils auf, wie häufig wir dabei einen Erfolg verbuchen konnten. Wenn wir unsere Ergebnisse aufmalen, indem wir auf der x-Achse die Anzahl der Erfolge, und auf der y-Achse die Anzahl der Experimente mit genau dieser Anzahl an Erfolgen aufmalen erhalten wir ein Histogram, das ungefähr so aussieht:</p>
+</blockquote>
+<p><img src="ChapA-Wahrscheinlichkeitstheorie_files/figure-html/unnamed-chunk-11-1.png" width="672" /> &gt; Aus der Logik der Konstruktion des Zufallsexperiments und der Inspektion unserer Daten können wir schließen, dass die Binomialverteilung eine sinnvolle Beschreibung des Zufallsexperiments und der daraus entstandenen Stichprobe von 100 Münzwurfergebnissen ist. Da wir eine faire M+nze geworfen haben macht es Sinn für die Binomialverteilung <span class="math inline">\(p=0.5\)</span> anzunehmen, und da wir in jedem einzelnen Experiment die Münze 10 Mal geworfen haben für <span class="math inline">\(n=10\)</span>. Wenn wir die mit <span class="math inline">\(=10\)</span> und <span class="math inline">\(p=0.5\)</span> parametrisierte theoretische Binomialverteilung nehmen und ihre theoretische Verteilungsfunktion über die Aufzeichnungen unserer Ergebnisse legen, können wir uns in dieser Vermutung bestärkt führen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(<span class="dt">x=</span>munzwurfe), <span class="kw">aes</span>(<span class="dt">x=</span>x)) <span class="op">+</span>
+<span class="st">  </span><span class="co">#geom_histogram(bins = wurzanzahl) +</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data=</span><span class="kw">data.frame</span>(<span class="kw">table</span>(munzwurfe)), 
+             <span class="kw">aes</span>(<span class="dt">x=</span>munzwurfe, <span class="dt">y=</span>Freq)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">max</span>(munzwurfe), <span class="dv">1</span>), 
+                               <span class="dt">y=</span><span class="kw">dbinom</span>(<span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">max</span>(munzwurfe), <span class="dv">1</span>), <span class="dt">prob =</span> p_zahl, 
+                                        <span class="dt">size =</span> wurfe_pro_experiment)<span class="op">*</span>wurzanzahl), 
+             <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y)
+             ) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">max</span>(munzwurfe), <span class="dv">1</span>), 
+                               <span class="dt">y=</span><span class="kw">dbinom</span>(<span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">max</span>(munzwurfe), <span class="dv">1</span>), <span class="dt">prob =</span> p_zahl, 
+                                        <span class="dt">size =</span> wurfe_pro_experiment)<span class="op">*</span>wurzanzahl), 
+             <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y, <span class="dt">color=</span><span class="st">&quot;Theoretische Verteilung&quot;</span>), <span class="dt">alpha=</span><span class="fl">0.5</span>, <span class="dt">lwd=</span><span class="dv">1</span>
+             ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">expand_scale</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))) <span class="op">+</span>
+<span class="st">  </span><span class="co">#scale_color_manual(values=c(&quot;blue&quot;, &quot;red&quot;), name=c(&quot;Theoretische Verteilung&quot;, &quot;Empirische Verteilung&quot;)) +</span>
+<span class="st">  </span><span class="kw">theme_icae</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</code></pre></div>
+<p><img src="ChapA-Wahrscheinlichkeitstheorie_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="beispiel-die-poisson-verteilung" class="section level3">
+<h3><span class="header-section-number">B.3.4</span> Beispiel: die Poisson-Verteilung</h3>
+<p>Bei der Poisson-Verteilung handelt es sich um die Standardverteilung für unbeschränkte Zähldaten, also diskrete Daten, die kein natürliches Maximum haben.</p>
+<p>Bei der Poisson-Verteilung handelt es sich um eine <strong>ein-parametrische</strong> Funktion, deren einziger Parameter <span class="math inline">\(\lambda&gt;0\)</span> ist. <span class="math inline">\(\lambda\)</span> wird häufig als die mittlere Ereignishäufigkeit interpretiert und ist <strong>zugleich Erwartungswert als auch Varianz</strong> der Verteilung: <span class="math inline">\(\mathbb{E}(P_\lambda)=Var(P_\lambda)=\lambda\)</span>.</p>
+<p>Ihre Definitionsmenge ist <span class="math inline">\(\mathbb{N}\)</span>, also alle natürlichen Zahlen - daher ist sie im Gegensatz zur Binomialverteilung geeignet, wenn die Definitionsmenge der Verteilung keine natürliche Grenze hat.</p>
+<p>Die <strong>Wahrscheinlichkeitsfunktion</strong> der Poisson-Verteilung hat die folgende Form:</p>
+<p><span class="math display">\[P_\lambda(x)=\frac{\lambda^x}{x!}e^{-\lambda}\]</span> Die folgende Abbildung zeigt wie sich die Wahrscheinlichkeitsfunktion für unterschiedliche Werte von <span class="math inline">\(\lambda\)</span> manifestiert:</p>
+<p><img src="ChapA-Wahrscheinlichkeitstheorie_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Wir können die Verteilung mit sehr ähnlichen Funktionen wie bei der Binomialverteilung analysieren. Nur die Parameter müssen entsprechend angepasst werden, da es bei der Poisson-Verteilung jetzt nur noch einen Paramter (<code>lambda</code>) gibt.</p>
+<p>Möchten wir die Wahrscheinlichkeit bereichnen, genau <span class="math inline">\(x\)</span> Erfolge zu beobachten, also <span class="math inline">\(\mathbb{P}(X=x)\)</span> geht das mit der Funktion <code>dpois()</code>. Das einzige notwendige Argument ist <code>lambda</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dpois</span>(<span class="dv">5</span>, <span class="dt">lambda =</span> <span class="dv">4</span>)</code></pre></div>
+<pre><code>## [1] 0.1562935</code></pre>
+<p><img src="ChapA-Wahrscheinlichkeitstheorie_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Informationen über die CDF erhalten wir über die Funktion <code>ppois()</code>, die zwei Argumente, <code>q</code> und <code>lambda</code>, annimmt.</p>
+<p><img src="ChapA-Wahrscheinlichkeitstheorie_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Mit der Funktion <code>qpois()</code> finden wir für eine Wahrscheinlichkeit <code>p</code> den kleinsten Wert <span class="math inline">\(x\)</span>, für den gilt, dass <span class="math inline">\(\mathbb{P}(X=x)\geq p\)</span>.</p>
+<p>Wenn wir also wissen möchten wie viele Erfolge mit einer Wahrscheinlichkeit von 50% mindestens zu erwarten sind, dann schreiben wir:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qpois</span>(<span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">lambda =</span> <span class="dv">4</span>)</code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>Es gilt also: <span class="math inline">\(\mathbb{P}(X=4)\geq 0.5\)</span>.</p>
+<p>Wir können dies grafisch verdeutlichen:</p>
+<p><img src="ChapA-Wahrscheinlichkeitstheorie_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Möchten wir schließlich eine bestimmte Menge an <strong>Realisierungen</strong> der ZV aus einer Poisson-Verteilung ziehen geht das mit <code>rpois()</code>, welches zwei notwendige Argumente annimmt: <code>n</code> für die Anzahl der Realisierungen und <code>lambda</code> für den Parameter <span class="math inline">\(\lambda\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pois_sample &lt;-<span class="st"> </span><span class="kw">rpois</span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">lambda =</span> <span class="dv">4</span>)
+pois_sample</code></pre></div>
+<pre><code>## [1] 3 8 4 4 3</code></pre>
+</div>
+<div id="hinweise-zu-diskreten-wahrscheinlichkeitsverteilungen" class="section level3">
+<h3><span class="header-section-number">B.3.5</span> Hinweise zu diskreten Wahrscheinlichkeitsverteilungen</h3>
+<p>Wie Sie vielleicht bereits bemerkt haben sind die R Befehle für verschiedene Verteilungen alle gleich aufgebaut. Wenn <code>*</code> für die Abkürzung einer bestimmten Verteilung steht, können wir mit der Funktion <code>d*()</code> die Werte der Wahrscheinlichkeitsverteilung, mit <code>p*()</code> die Werte der kumulierten Wahrscheinlichkeitsverteilung und mit <code>q*()</code> die der Quantilsfunktion berechnen Mit <code>r*()</code> werden Realisierungen von Zufallszahlen realisiert. Für das Beispiel der Binomialverteilung, welcher die Abkürzung <code>binom</code> zugewiesen wurde, heißen die Funktionen entsprechend <code>dbinom()</code>, <code>pbinom()</code>, <code>qbinom()</code> und <code>rbinom()</code>.</p>
+<p>Die folgende Tabelle gibt einen Überblick über gängige Abkürzungen und die Parameter der oben besprochenen diskreten Verteilungen.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Verteilung</th>
+<th>Abkürzung</th>
+<th>Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Binomialverteilung</td>
+<td><code>binom</code></td>
+<td><code>size</code>, <code>prob</code></td>
+</tr>
+<tr class="even">
+<td>Poisson-Verteilung</td>
+<td><code>pois</code></td>
+<td><code>lambda</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="stetige-wahrscheinlichkeitsmodelle" class="section level2">
+<h2><span class="header-section-number">B.4</span> Stetige Wahrscheinlichkeitsmodelle</h2>
+<div id="stetige-zv" class="section level3">
+<h3><span class="header-section-number">B.4.1</span> Stetige ZV</h3>
+<p>In vorangegangen Abschnitt haben wir uns mit diskreten Wahrscheinlichkeitsmodellen beschäftigt. Die diesen Modellen zugrundeliegenden ZV hatten einen abzählbaren Wertebereich. Häufig interessieren wir uns aber für ZV mit einem nicht abzählbaren Wertebereich, z.B. <span class="math inline">\(\mathbb{R}\)</span> oder <span class="math inline">\([0,1]\)</span>.<a href="#fn55" class="footnoteRef" id="fnref55"><sup>55</sup></a></p>
+<p>Bei stetigen Wahrscheinlichkeitsmodellen liegen zwischen zwei Punkten unendlich viele Punkte. Das hat bedeutende Implikationen für die Angabe von Wahrscheinlichkeiten. Im Gegensatz zu diskreten Wahrscheinlichkeitsmodellen hat demnach jeder einzelne Punkt im Wertebereich der ZV die Wahrscheinlichkeit 0:</p>
+<p><span class="math display">\[\mathbb{P}(X=x_k)=0 \quad \forall x_k \in W_X\]</span> wobei <span class="math inline">\(W_X\)</span> für den Wertebereich von ZV <span class="math inline">\(X\)</span> steht</p>
+<p>Als Lösung werden Wahrscheinlichkeiten bei stetigen ZV nicht als Punktwahrscheinlichkeiten, sondern als Intervallwahrscheinlichkeiten angeben. Aus <span class="math inline">\(\mathbb{P}(X=x)\)</span> im diskreten Fall wird im stetigen Fall also:</p>
+<p><span class="math display">\[\mathbb{P}(a&lt;X\leq b), \quad a&lt;b\]</span></p>
+<p>Bei dieser Funktion sprechen wir von einer <em>kumulative Verteilungsfunktion</em> <span class="math inline">\(F(x)=\mathbb{P}(X\leq x)\)</span>, wobei immer gilt:</p>
+<p><span class="math display">\[\mathbb{P}(a&lt;X\leq b) = F(b)-F(a)\]</span></p>
+<p>Wann immer wir im diskreten Fall eine Wahrscheinlichkeitsfunktion verwendet haben um eine ZV zu beschreiben, verwenden wir im stetigen Fall die <strong>Dichtefunktion</strong> (<em>probability densitity function</em> - PDF) einer ZV. Hierbei handelt es sich um eine integrierbare und nicht-negative Funktion <span class="math inline">\(f(x)\geq 0 \forall x\in \mathbb{R}\)</span> mit <span class="math inline">\(\int_{-\infty}^{\infty}f(x)dx=1\)</span> für die gilt:</p>
+<p><span class="math display">\[\mathbb{P}([a,b])=\int_a^bf(x)dx\]</span></p>
+<p>Dementsprechend können wir den Ausdruck für die kumulative Verteilungsfunktion von oben ergänzen:</p>
+<p><span class="math display">\[\mathbb{P}(a&lt;X\leq b) = F(b)-F(a)=\int_a^bf(x)dx\]</span></p>
+<p>Man sieht hier, dass die Dichtefunktion einer ZV die Ableitung ihrer kumulative Verteilungsfunktion ist. Wie oben beschrieben können wir die Werte an einzlnen Punkten nicht als <em>absolute</em> Wahrscheinlichkeiten interpretieren, da die Wahrscheinlichkeit für einzelne Punkte immer gleich 0 ist. Wir können aber die Werte der PDF an zwei oder mehr Punkten vergleichen um die <em>relative</em> Wahrscheinlichkeit der einzelnen Punkte zu bekommen.</p>
+<p>Wie bei den diskreten ZV beschreiben wir eine ZV mit Hilfe von bestimmten Kennzahlen, wie dem <strong>Erwartungswert</strong>, der <strong>Varianz</strong> und den <strong>Quantilen</strong>. Diese sind quasi äquivalent zum diskreten Fall definiert, nur eben über Integrale (wir vergleichen alle folgenden Definitionen mit ihrem diskreten Pendant am Ende des Abschnitts). Für den Erwartungswert der ZV <span class="math inline">\(X\)</span> gilt somit:</p>
+<p><span class="math display">\[\mathbb{E}(X)=\int_{-\infty}^{\infty}xf(x)dx\]</span></p>
+<p>Für die Varianz und die Standardabweichung entsprechend:</p>
+<p><span class="math display">\[Var(X)= \mathbb{E}(X-\mathbb{E}\left(X)\right)^2=\int_{-\infty}^{\infty}(x-\mathbb{E}(X))^2f(x)dx\]</span></p>
+<p><span class="math display">\[\sigma_X=\sqrt{Var(X)}\]</span></p>
+<p>Und, schlussendlich, gilt für das <span class="math inline">\(\alpha\)</span>-Quantil <span class="math inline">\(q(\alpha)\)</span>:</p>
+<p><span class="math display">\[\mathbb{P}(X\leq q(\alpha))=\alpha\]</span></p>
+<p>Im folgenden werden das <span class="math inline">\(0.25\)</span> und <span class="math inline">\(0.5\)</span>-Quantil visuell dargestellt:</p>
+<p><img src="ChapA-Wahrscheinlichkeitstheorie_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Abschließend wollen wir nun noch einmal die Definitionen der Kennzahlen und charakteristischer Verteilungen für den stetigen und diskreten Fall vergleichen:</p>
+<table>
+<colgroup>
+<col width="18%" />
+<col width="41%" />
+<col width="40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Bezeichnung</th>
+<th>Diskreter Fall</th>
+<th>Stetiger Fall</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Erwartungswert</td>
+<td><span class="math inline">\(\mathbb{E}(x)=\sum_{x\in W_X}\mathbb{P}(X=x)x\)</span></td>
+<td><span class="math inline">\(\mathbb{E}(X)=\int_{-\infty}^{\infty}xf(x)dx\)</span></td>
+</tr>
+<tr class="even">
+<td>Varianz</td>
+<td><span class="math inline">\(Var(X)=\sum_{x\in W_X}\left[x-\mathbb{E}(X)\right]^2 \mathbb{P}(X=x)x\)</span></td>
+<td><span class="math inline">\(Var(X)= \mathbb{E}(X-\mathbb{E}\left(X)\right)^2\)</span></td>
+</tr>
+<tr class="odd">
+<td>Standard-abweichung</td>
+<td><span class="math inline">\(\sqrt{Var(X)}\)</span></td>
+<td><span class="math inline">\(\sqrt{Var(X)}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\alpha\)</span>-Quantil</td>
+<td><span class="math inline">\(\mathbb{P}(X\leq q(\alpha))=\alpha\)</span></td>
+<td><span class="math inline">\(\mathbb{P}(X\leq q(\alpha))=\alpha\)</span></td>
+</tr>
+<tr class="odd">
+<td>Dichtefunktion (PDF)</td>
+<td>NA</td>
+<td><span class="math inline">\(\mathbb{P}([a,b])=\int_a^bf(x)dx\)</span></td>
+</tr>
+<tr class="even">
+<td>Wahrsch’s-funktion (PMF)</td>
+<td><span class="math inline">\(p(x_k)=\mathbb{P}(X=x_k)\)</span></td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td>Kumulierte Verteilungsfunktion (CDF)</td>
+<td><span class="math inline">\(\mathbb{P}(X\leq x)\)</span></td>
+<td><span class="math inline">\(F(x)=\mathbb{P}(X\leq x)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Analog zum diskreten Fall wollen wir uns nun die am häufigsten vorkommenden stetigen Verteilungen noch einmal genauer anschauen.</p>
+</div>
+<div id="beispiel-die-uniformverteilung" class="section level3">
+<h3><span class="header-section-number">B.4.2</span> Beispiel: die Uniformverteilung</h3>
+<p>Die Uniformverteilung kann auch einem beliebigen Intervall <span class="math inline">\([a,b]\)</span> mit <span class="math inline">\(a&lt;b\)</span> definiert werden und ist dadurch gekennzeichnet, dass die Dichte über <span class="math inline">\([a,b]\)</span> vollkommen konstant ist. Ihre einzigen Parameter sind die Grenzen des Intervalls, <span class="math inline">\(a\)</span> und <span class="math inline">\(b\)</span>.</p>
+<p>Da bei stetigen Verteilungen die Dichte für aller Werte außerhalb des Wertebereichs per definitionem gleich Null ist, haben wir folgenden Ausdruck für die Dichte der Uniformverteilung:</p>
+<p><span class="math display">\[f(x)=
+\begin{cases} 
+      \frac{1}{b-a} &amp; a\leq x \leq b \\
+      0 &amp; \text{sonst} \left(x\notin W_X\right)
+   \end{cases}
+   \]</span> Auch der Erwartungswert ist dann intuitiv definiert, er liegt nämlich genau in der Mitte des Intervalls <span class="math inline">\([a,b]\)</span>. Er ist definiert als <span class="math inline">\(\mathbb{E}(X)=\frac{a+b}{2}\)</span> und ihre Varianz mit <span class="math inline">\(Var(X)=\frac{(b-a)^2}{12}\)</span> gegeben.</p>
+<p>Ihre Dichtefunktion für <span class="math inline">\([a,b]=[2,4]\)</span> ist im folgenden dargestellt:</p>
+<p><img src="ChapA-Wahrscheinlichkeitstheorie_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Die Abkürung in R für die Uniformverteilung ist <code>unif</code>. Endsprechend berechnen wir Werte für die Dichte mit <code>dunif()</code>, welches lediglich die Argumente <code>a</code> und <code>b</code> für die Grenzen des Intervalls benötigt:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dunif</span>(<span class="kw">seq</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="fl">0.1</span>), <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">4</span>)</code></pre></div>
+<pre><code>##  [1] 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25</code></pre>
+<p>Wie wir sehen erhalten wir hier immer den gleichen Wert <span class="math inline">\(\frac{1}{b-a}\)</span>, was die zentrale Eigenschaft der Uniformverteilung ist. Hier wird auch deutlich, dass dieser Wert die <em>relative</em> Wahrscheinlichkeit angibt, da die absolute Wahrscheinlichkeit für jeden einzelnen Wert wie oben beschrieben bei stetigen ZV 0 ist.</p>
+<p>Die CDF berechnen wir entsprechend mit <code>punif()</code>. Wenn <span class="math inline">\(X\propto U(0,4)\)</span> erhalten wir <span class="math inline">\(\mathbb{P}(X\leq3)\)</span> entprechend mit:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">punif</span>(<span class="fl">0.8</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">4</span>)</code></pre></div>
+<pre><code>## [1] 0.2</code></pre>
+<p><img src="ChapA-Wahrscheinlichkeitstheorie_files/figure-html/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Auch ansonsten können wir die Syntax der diskreten Verteilungen mehr oder weniger übernehmen: <code>qunif()</code> akzeptiert die gleichen Parameter wie <code>punif()</code> und gibt uns Werte der inversen CDF. <code>runif()</code> kann verwendet werden um Realisierungen einer uniform verteilten ZV zu generieren:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uniform_sample &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">5</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">4</span>)
+uniform_sample</code></pre></div>
+<pre><code>## [1] 3.5209862 1.4563675 1.1529571 0.6825809 0.6886870</code></pre>
+</div>
+<div id="beispiel-die-normalverteilung" class="section level3">
+<h3><span class="header-section-number">B.4.3</span> Beispiel: die Normalverteilung</h3>
+<p>Die wahrscheinlich bekannteste stetige Verteilung ist die Normalverteilung. Das liegt nicht nur daran, dass viele natürliche Phänomene als die Realisierung einer normalverteilten ZV modelliert werden können, sondern auch weil es sich mit der Normalverteilung in der Regel sehr einfach rechnen ist. Sie ist also häufig auch einfach eine bequeme Annahme.</p>
+<p>Bei der Normalverteilung handelt es sich um eine <strong>zwei-parametrige</strong> Verteilung über den Wertebereich <span class="math inline">\(W_X=\mathbb{R}\)</span>. Die beiden Parameter sind <span class="math inline">\(\mu\)</span> und <span class="math inline">\(\sigma^2\)</span>, welche unmittelbar als Erwartungswert (<span class="math inline">\(\mathbb{E}(X)=\mu\)</span>) und Varianz (<span class="math inline">\(Var(X)=\sigma^2\)</span>) gelten. Wir schreiben <span class="math inline">\(X\propto \mathscr{N}(\mu, \sigma^2)\)</span> wenn für die PDF von <span class="math inline">\(X\)</span> gilt:</p>
+<p><span class="math display">\[f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}} \]</span></p>
+<p>Unter der <strong>Standard-Normalverteilung</strong> verstehen wir eine Normalverteilung mit den Paramtern <span class="math inline">\(\mu=0\)</span> und <span class="math inline">\(\sigma=1\)</span>.<a href="#fn56" class="footnoteRef" id="fnref56"><sup>56</sup></a> Sie verfügt über die deutlich vereinfachte PDF:</p>
+<p><span class="math display">\[f(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}x^2}\]</span></p>
+<p>Die CDF der Normalverteilung ist analytisch nicht einfach darzustellen, die Werte können in R aber leicht über die Funktion <code>pnorm</code> (s.u.) abgerufen werden.</p>
+<p>Im folgenden sind die PDF und CDF für exemplarische Parameterkombinationen dargestellt:</p>
+<p><img src="ChapA-Wahrscheinlichkeitstheorie_files/figure-html/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Die Abkürzung in R ist <code>norm</code>. Alle Funktionen nehmen die Paramter <span class="math inline">\(\mu\)</span> und <span class="math inline">\(\sigma\)</span> (nicht <span class="math inline">\(\sigma^2\)</span>) über <code>mean</code> und <code>sd</code> als notwendige Argumente. Ansonsten ist die Verwendung äquivalent zu den vorherigen Beispielen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dnorm</span>(<span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="dt">mean =</span> <span class="dv">1</span>, <span class="dt">sd =</span> <span class="dv">2</span>) <span class="co"># relative Wahrscheinlichkeiten über PDF</span></code></pre></div>
+<pre><code>## [1] 0.1933341 0.1979188</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pnorm</span>(<span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="dt">mean =</span> <span class="dv">1</span>, <span class="dt">sd =</span> <span class="dv">2</span>) <span class="co"># Werte der CDF</span></code></pre></div>
+<pre><code>## [1] 0.4012937 0.4502618</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qnorm</span>(<span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="dt">mean =</span> <span class="dv">1</span>, <span class="dt">sd =</span> <span class="dv">2</span>) <span class="co"># Werte der I-CDF</span></code></pre></div>
+<pre><code>## [1] 1.00000 2.34898</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">norm_sample &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">5</span>, <span class="dt">mean =</span> <span class="dv">1</span>, <span class="dt">sd =</span> <span class="dv">2</span>) <span class="co"># 5 Realisierungen der ZV</span>
+norm_sample</code></pre></div>
+<pre><code>## [1]  0.9099446 -0.5698089 -2.3358839  0.2395470  2.8379932</code></pre>
+<blockquote>
+<p><strong>Beispiel zum Zusammenhang</strong> <code>dnorm()</code> und <code>qnorm()</code></p>
+</blockquote>
+</div>
+<div id="beispiel-die-exponentialverteilung" class="section level3">
+<h3><span class="header-section-number">B.4.4</span> Beispiel: die Exponentialverteilung</h3>
+<p>Sehr häufig wird uns auch die Exponentialverteilung begegnen. Außerhalb der Ökonomik wird sie v.a. zur Modellierung von Zerfallsprozessen oder Wartezeiten verwendet, in der Ökonomik spielt sie in der Wachstumstheorie eine zentrale Rolle. Es handelt sich bei der Exponentialverteilung um eine <strong>ein-parametrige</strong> Verteilung mit Parameter <span class="math inline">\(\lambda \in \mathbb{R}^+\)</span> und mit dem Wertebereich <span class="math inline">\(W_X=[0, \infty ]\)</span>.</p>
+<p>Die PDF der Exponentialverteilung ist:</p>
+<p><span class="math display">\[f(x)=\begin{cases}
+0 &amp; x &lt; 0\\
+\lambda e^{-\lambda x} &amp; x \geq 0
+\end{cases}\]</span></p>
+<p>wobei <span class="math inline">\(e\)</span> die <a href="https://de.wikipedia.org/wiki/Eulersche_Zahl">Eulersche Zahl</a> ist. Die CDF ist entsprechend:</p>
+<p><span class="math display">\[F(x)=\begin{cases}
+0 &amp; x &lt; 0\\
+1-e^{-\lambda x} &amp; x \geq 0
+\end{cases}\]</span></p>
+<p>Beide Verteilungen sind im folgenden dargestellt:</p>
+<p><img src="ChapA-Wahrscheinlichkeitstheorie_files/figure-html/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Der Erwartungswert und die Varianz sind für die Exponentialverteilung äquivalent und hängen ausschließlich von <span class="math inline">\(\lambda\)</span> ab: <span class="math inline">\(\mathbb{E}(X)=\sigma_X=\frac{1}{\lambda}\)</span>.</p>
+<p>Die Abkürzung in R ist <code>exp</code>. Alle Funktionen nehmen den Paramter <span class="math inline">\(\lambda\)</span> über das Argument <code>rate</code> an:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dexp</span>(<span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="dt">rate =</span> <span class="dv">1</span>) <span class="co"># relative Wahrscheinlichkeiten über PDF</span></code></pre></div>
+<pre><code>## [1] 0.6065307 0.4723666</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pexp</span>(<span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="dt">rate =</span> <span class="dv">1</span>) <span class="co"># Werte der CDF</span></code></pre></div>
+<pre><code>## [1] 0.3934693 0.5276334</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qexp</span>(<span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="dt">rate =</span> <span class="dv">1</span>) <span class="co"># Werte der I-CDF</span></code></pre></div>
+<pre><code>## [1] 0.6931472 1.3862944</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">exp_sample &lt;-<span class="st"> </span><span class="kw">rexp</span>(<span class="dv">5</span>, <span class="dt">rate =</span> <span class="dv">1</span>) <span class="co"># 5 Realisierungen der ZV</span>
+exp_sample</code></pre></div>
+<pre><code>## [1] 0.8232605 0.4757590 3.4635949 1.2740277 1.0814852</code></pre>
+<p>Es gibt übrigens einen <a href="https://www.exponentialverteilung.de/vers/beweise/uebergang_poissonverteilung.html">wichtigen Zusammenhang</a> zwischen der stetigen Exponential- und der diskreten Poisson-Verteilung.</p>
+</div>
+</div>
+<div id="zusammenfassung-wahrscheinlichkeitsmodelle" class="section level2">
+<h2><span class="header-section-number">B.5</span> Zusammenfassung Wahrscheinlichkeitsmodelle</h2>
+<p>Die folgende Tabelle fasst noch einmal alle Wahscheinlichkeitsmodelle zusammen, die wir bislang betrachtet haben:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Verteilung</th>
+<th>Art</th>
+<th>Abkürzung</th>
+<th>Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Binomialverteilung</td>
+<td>Diskret</td>
+<td><code>binom</code></td>
+<td><code>size</code>, <code>prob</code></td>
+</tr>
+<tr class="even">
+<td>Poisson-Verteilung</td>
+<td>Diskret</td>
+<td><code>pois</code></td>
+<td><code>lambda</code></td>
+</tr>
+<tr class="odd">
+<td>Uniform-Verteilung</td>
+<td>Kontinuierlich</td>
+<td><code>punif</code></td>
+<td><code>min</code>, <code>max</code></td>
+</tr>
+<tr class="even">
+<td>Normalverteilung</td>
+<td>Kontinuierlich</td>
+<td><code>norm</code></td>
+<td><code>mean</code>, <code>sd</code></td>
+</tr>
+<tr class="odd">
+<td>Exponential-Verteilung</td>
+<td>Kontinuierlich</td>
+<td><code>exp</code></td>
+<td><code>rate</code></td>
+</tr>
+</tbody>
+</table>
+<p>In der statistischen Praxis sind das die Modelle, die wir verwenden, die DGP (<em>data generating processes</em>) zu beschreiben - also die Prozesse, welche die Daten, die wir in unserer Forschung verwenden, generiert haben.</p>
+<p>Deswegen sprechen Statistiker*innen auch häufig von <em>Populationsmodellen</em>. Am besten stellt man es sich mit Hilfe der <code>r*()</code> Funktionen vor: man nimmt an, dass es einen DGP gibt, und unsere Daten der Output der <code>r*()</code>-Funktion zum Ziehen von Realisierungen sind. Mit dem Begriff des Populationsmodells macht man dabei deutlich, dass unsere Stichprobe nur eine Stichprobe darstellt - und nicht die gesamte Population aller möglichen Realisierungen des DGP.</p>
+<p>Nun wird auch deutlich, warum Kenntnisse in der Wahrscheinlichkeitsrechnung so wichtig sind: wenn wir statistisch mit Daten arbeiten, dann versuchen wir in der Regel über die Daten Rückschlüsse auf den DGP zu schließen. Dafür müssen wir zunächst einmal eine grobe Struktur für den DGP annehmen, und dafür brauchen wir Kenntnisse in der Wahrscheinlichkeitsrechnung und für den entsprechenden Anwendungsfall konkrete Vorannahmen. Dann können wir, gegeben unsere Daten, unsere Beschreibung des DGP verfeinern.</p>
+<p>Im Großteil dieses Kurses bedeutet das, dass wir für den DGP ein bestimmtes Wahrscheinlichkeitsmodell annehmen und dann auf Basis unserer Daten die Parameter für dieses Modell schätzen wollen. Dieses Vorgehen nennen wir <em>parametrisch</em>, weil wir hier vor allem Parameter schätzen wollen.<a href="#fn57" class="footnoteRef" id="fnref57"><sup>57</sup></a></p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="50">
+<li id="fn50"><p>Wir nennen eine Menge abzählbar wenn sie mit Hilfe der ganzen Zahlen <span class="math inline">\(\mathbb{N}\)</span> indiziert werden kann. Das bedeutet, dass auch unendlich große Mengen als abzählbar gelten können.<a href="stat-stoch.html#fnref50">↩</a></p></li>
+<li id="fn51"><p>An der Formel wird noch einmal deutlich, dass wenn <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> stochastisch unabhängig sind wir nichts von <span class="math inline">\(B\)</span> über <span class="math inline">\(A\)</span> und umgekehrt lernen können, also gilt: <span class="math inline">\(\mathbb{P}(A|B)=\mathbb{P}(A)\)</span> und <span class="math inline">\(\mathbb{P}(B|A)=\mathbb{P}(B)\)</span>.<a href="stat-stoch.html#fnref51">↩</a></p></li>
+<li id="fn52"><p>Aus den <em>Kolmogorow Axiomen</em> oben ergibt sich, dass die Summe all dieser Wahrscheinlichkeiten 1 ergeben muss: <span class="math inline">\(\sum_{k\geq 1}\mathbb{P}(X=x_k)=1\)</span>.<a href="stat-stoch.html#fnref52">↩</a></p></li>
+<li id="fn53"><p>Zu jeder Wahrscheinlichkeitsverteilung gibt es eine eindeutige Wahrscheinlichkeitsfunktion und jede Wahrscheinlichkeitsfunktion definiert umgekehrt eine eindeutig bestimmte diskrete Wahrscheinlichkeitsverteilung.<a href="stat-stoch.html#fnref53">↩</a></p></li>
+<li id="fn54"><p>Die Herleitung finden Sie im Statistikbuch Ihres Vertrauens oder auf <a href="https://de.wikipedia.org/wiki/Binomialverteilung#Erwartungswert">Wikipedia</a>.<a href="stat-stoch.html#fnref54">↩</a></p></li>
+<li id="fn55"><p>Die Intervallschreibweise <span class="math inline">\([0,1]\)</span> ist potenziell verwirrent. Es gilt: <span class="math inline">\([a,b]=\{x\in\mathbb{R} | a\leq x \leq b\}\)</span> (geschlossenes Intervall), <span class="math inline">\((a,b)=\{x\in\mathbb{R} | a &lt; x &lt; b\}\)</span> (offenes Intervall), <span class="math inline">\((a,b)=\{x\in\mathbb{R} | a &lt; x \leq b\}\)</span>(linksoffenes Intervall) und <span class="math inline">\((a,b)=\{x\in\mathbb{R} | a \leq x &lt; b\}\)</span>(rechtsoffenes Intervall).<a href="stat-stoch.html#fnref55">↩</a></p></li>
+<li id="fn56"><p>Viele Tabellen mit bestimmten Kennzahlen der Normalverteilung beziehen sich auf die Standard-Normalverteilung. Wenn man diese Werte verwenden will, muss man die tatsächlich verwendete Stichprobe ggf. erst <a href="https://de.wikipedia.org/wiki/Standardisierung_(Statistik)">z-transformieren</a>. Unter letzterem versteht man die <em>Normalisierung</em> einer ZV sodass sie den Erwartungswert 0 und die Varianz 1 besitzt. Dies geht i.d.R. für jede ZV <span class="math inline">\(X\)</span> recht einfach über die Formel <span class="math inline">\(Z=\frac{X-\mu}{\sigma}\)</span>, wobei <span class="math inline">\(Z\)</span> die standartisierte ZV, <span class="math inline">\(\mu\)</span> den Erwartungswert und <span class="math inline">\(\sigma\)</span> die Standardabweichung von <span class="math inline">\(X\)</span> bezeichnet<a href="stat-stoch.html#fnref56">↩</a></p></li>
+<li id="fn57"><p>Die Alternative, <em>nicht-parametrische</em> Verfahren, nehmen kein konkretes Wahrscheinlichkeitsmodell an, sondern wählen das Modell auch auf Basis der Daten.<a href="stat-stoch.html#fnref57">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="markdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="desk-stat.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["R-SocioEcon-dt.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
