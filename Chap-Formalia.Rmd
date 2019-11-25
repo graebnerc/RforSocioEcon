@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Formale Methoden der Sozioökonomie {#formalia}
 
 ```{r include=FALSE}
@@ -47,38 +52,862 @@ In diesem Kapitel werden die folgenden R Pakete verwendet:
 library(here)
 library(tidyverse)
 library(data.table)
+library(icaeDesign)
+library(ggrepel)
+library(ggpubr)
+library(latex2exp)
 ```
 
-## Wachstumsraten und die Rolle des Logarithmus {#formalia-wachstum}
+## Änderungsraten und die Rolle des Logarithmus {#formalia-wachstum}
 
-* Wie berechnet man Wachstumsraten
-* Wie das ganze in Daten mit Gruppen
-* Welche Rolle spielt der Logarithmus? Wann macht es Sinn ihn im Kontext von
-Wachstumsraten zu verwenden?
-* 15 Minuten Wachstum
-  * Log ins Zentrum, mit der relativen Änderungen
-  * Great depression vs. dotcom
-  * Nochmal genauer 
+Die sozioökonomische Forschung beschäftigt sich häufig mit Veränderungen über
+die Zeit. 
+Je nach Fragestellung sind dabei *absolute* oder *relative* Änderungen von 
+Interesse. 
+
+Um die Änderungsrate einer Variable $X$ zu berechnen wird folgende
+Formen verwendet:
+
+$$\frac{X_t-X_{t-1}}{|X_{t-1}|}\cdot100\% = \left(\frac{X_t}{|X_{t-1}|}-1\right)\cdot100\%$$
+
+Selbstverständlich können wir auch die Änderung über mehr als einen Zeitschritt
+berechnen. 
+Für die **durchschnittliche Änderungsrate** verwenden wir:
+
+$$\left(\left[ \frac{X_t}{X_{t-s}} \right]^{\frac{1}{s}} -1 \right)\cdot 100\% $$
+
+Umgekehrt können wir den tatsächlichen Wert der Variable $X$ berechnen wenn
+wir Informationen über die jährliche Anderungsrate $x$ haben.
+Hierbei gilt:
+
+$$X_{t+s}=X_t\left(1+x\right)^s$$
+
+Diese Formel kann auch durch Verwendung der *Eulerschen Zahl* $e$
+approximiert werden:
+
+$$X_{t+s}=X_t\left(1+x\right)^s \approx X_t\cdot e^{xs} $$
+
+Diese Approximation wir später hilfreich werden, wenn wir Wachstumsraten in
+logarithmierter Form darstellen wollen.
+
+Wenn $X_t=4$, $s=5$ und $x=0.05$ ergibt sich für den Wert nach $s$ Zeitschritten
+also $X_{t+s}=4\cdot 1.05^5=5.11$. 
+Oder, unter Verwendung der vereinfachten Formel: $4\cdot e^{0.05\cdot 5}=5.13$.
+
+
+Natürlich können wir auch Änderungen von prozentualen Größen berechnen.
+Wenn die Inflation im Jahr 2010 bei 4% und 2011 bei 5% liegt können wir die
+Änderung folgendermaßen berechnen:
+
+$$\frac{5\%-4\%}{|4\%|}=0.25=25\%$$
+
+Hier von einer 25-prozentigen Änderung zu sprechen ist jedoch nicht eindeutig:
+damit könnte eine relative Änderung von 25% gemeint sein, oder aber eine 
+absolute Änderung von 25%. Daher sprechen wir bei letzterem von einer Änderung
+in *Prozentpunkten*. Im Beispiel haben wir also eine Änderung von einem 
+Prozentpunkt, bzw. einer relativen Änderung von 25%.
+
+In R können wir die Funktionen `lag()` und `lead()` aus dem Paket 
+[dplyr](https://dplyr.tidyverse.org/) [@R-dplyr] 
+verwenden um Änderungsraten zu berechnen.^[Der Funktionsname 'lag' und 'lead' 
+wird leider in sehr vielen Paketen verwendet, u.a. auch in `data.table`.
+Deswegen ist es gerade bei diesen Funktionen besser den expliziten Aufruf
+`dplyr::lag()` und `dplyr::lead()` zu verwenden.]
+`lag()` akzeptieren dabei zwei Argumente: den Vektor der Werte und die Anzahl
+der Schritte, die zurück bzw. vor gesprungen werden sollen.
+
+Entsprechend können wir Änderungsraten folgendermaßen berechnen:
+
+```{r}
+werte <- c(1, 2.2, 3.25, 0.5, 0.1, -0.1, 0.2)
+rel_change <- (werte - dplyr::lag(werte)) / abs(dplyr::lag(werte)) * 100
+rel_change
+```
+
+Die gleiche Syntax können wir auch für die Arbeit mit einem `data.frame` 
+verwenden. 
+Hier müssen wir aber darauf achten, die Daten auch tatsächlich nach dem 
+Beobachtungszeitpunkt zu so sortieren, damit `lag(x, 1)` auch vorherigen Wert
+ausgibt. Dazu verwenden wir die Funktion `arrange()`, welche die Zeilen eines
+`data.frame` gemäß einer oder mehrerer Variablen ordnet:
+
+```{r, eval=FALSE, echo=FALSE}
+beispiel_daten <- WDI::WDI(country = c("AT", "DE"), 
+                           indicator = "NY.GDP.PCAP.KN", 
+                           start = 2014, end = 2018) %>%
+  rename(BIP=NY.GDP.PCAP.KN) %>%
+  select(-iso2c)
+fwrite(beispiel_daten, here("data/tidy/bip_growth.csv"))
+```
+
+```{r, echo=FALSE}
+beispiel_daten_at <- fread(here("data/tidy/bip_growth.csv")) %>%
+  arrange(-year) %>%
+  filter(country == "Austria")
+```
+
+```{r}
+head(beispiel_daten_at, 4)
+```
+```{r}
+beispiel_daten_at <- beispiel_daten_at %>%
+  arrange(year)
+head(beispiel_daten_at, 4)
+```
+
+```{r}
+beispiel_daten_at <- beispiel_daten_at %>%
+  mutate(BIP_Wachstum = (BIP-dplyr::lag(BIP))/abs(dplyr::lag(BIP))*100)
+beispiel_daten_at
+```
+
+Falls wir innerhalb des Datensatzes unterschiedliche Beobachtungsobjekte haben,
+z.B. verschiedene Länder, müssen wir den Datensatz vor Berechnung der 
+Wachstumsrate gruppieren:
+
+```{r, echo=FALSE}
+beispiel_daten <- fread(here("data/tidy/bip_growth.csv")) %>%
+  arrange(-year) 
+```
+
+```{r}
+head(beispiel_daten, 4)
+```
+
+```{r}
+beispiel_daten <- beispiel_daten %>%
+  arrange(country, year) %>%
+  group_by(country) %>%
+  mutate(BIP_Wachstum = (BIP-dplyr::lag(BIP))/abs(dplyr::lag(BIP))*100) %>%
+  ungroup()
+beispiel_daten
+```
+
+Häufig werden Wachstumsraten in ihrer lograrithmierten Form präsentiert.
+Wir können nämlich die Formel zur Berechnung von Änderungsprozessen 
+folgendermaßen approximieren:
+
+$$\left(\left[ \frac{X_t}{X_{t-s}} \right]^{\frac{1}{s}} -1 \right)\approx \ln \left(\frac{X_t}{X_{t-s}}\right)/t=\frac{\ln(X_t)-ln(X_{t-s})}{t}$$
+
+Sie fragen sich vielleicht warum wir uns mit der Verwendung des Logarithmus
+überhaupt beschäftigen, wo durch die 'Vereinfachung' doch eine kleine 
+Ungenauigkeit eingeführt wird? Tatsächlich ist die Verwendung des Logarithmus 
+häufig hilfreich für die grafische Darstellung von Wachstumsraten:^[Zur 
+Transformation der y-Achse verwenden wir in `ggplot2` die Funktion
+`scale_y_continuous()` und setzen das Argument `trans = "log"`.]
+
+```{r, echo=FALSE}
+x0 <- 100
+x <- c(x0, rep(NA, 99))
+for (i in 2:100){
+  x[i] <- x[i-1]*1.02
+}
+expl_data <- data.frame(
+  y=x, x=1:100
+)
+
+plot_normal <- ggplot(data = expl_data, 
+                      mapping = aes(x=x, y=y)
+                      ) + 
+  geom_line() +
+  theme_icae() +
+  labs(title = "Normale Darstellung")
+
+plot_log <- ggplot(data = expl_data, 
+                      mapping = aes(x=x, y=y)
+                      ) + 
+  geom_line() +
+  theme_icae() +
+  ylab("log(y)") +
+  scale_y_continuous(trans = "log") +
+  labs(title = "Logarithmierte Darstellung")
+
+ggpubr::ggarrange(plot_normal, plot_log, ncol = 2)
+```
+
+In dieser Darstellung gilt: die Steigung im logarithmierten Plot gibt die
+*relative* Änderung der Variable an.
+Das bedeutet, dass wenn wir im logarithmierten Plot eine lineare Steigung
+haben wächst die Variable konstant mit der gleichen Wachstumsrate über die Zeit -
+so wie im obigen Beispiel.
+
+Diese Art der Darstellung ist zum Beispiel bei der langfristigen Betrachtung von
+Wachstumsraten und dem Vergleich zwischen Ländern sehr hilfreich, da Unterschiede 
+in der logarithmierten Darstellung besser erkennbar sind:
+
+```{r, echo=FALSE, message=FALSE}
+hist_data <- fread(here("data/tidy/historical-gdp.csv"), 
+                   colClasses = c(rep("character", 2), rep("double", 2))
+                   ) %>%
+  filter(Entity %in% c("India", "China", "Japan"), # "Germany", "Italy", 
+         Year>1599) %>%
+  rename(Land=Entity, Jahr=Year, BIP_pk=`GDP per capita (int.-$) ($)`)
+
+plot_norm <- ggplot(
+    data = hist_data, 
+    mapping = aes(x=Jahr, y=BIP_pk, color=Land)
+  ) +
+  geom_line() +
+  theme_icae() +
+  scale_x_continuous(
+    limits = c(1600, 2100), 
+    expand = c(0, 0), 
+    breaks = seq(1600, 2000, 100)
+    ) +
+  ylab("BIP pro Kopf") +
+  geom_label_repel(
+    data = filter(hist_data, Jahr==2016), 
+    mapping = aes(x=Jahr, y=BIP_pk, 
+                  color=Land, label=Land), 
+    nudge_x = 50,
+    show.legend = FALSE) +
+  labs(title = "BIP pro Kopf",
+     caption = "Datenquelle: https://ourworldindata.org/economic-growth") +
+  scale_color_icae(palette = "mixed") +
+  theme(axis.title.x = element_blank())
+
+
+plot_log <- ggplot(
+    data = hist_data, 
+    mapping = aes(x=Jahr, y=BIP_pk, color=Land)
+  ) +
+  geom_line() +
+  theme_icae() +
+  scale_x_continuous(
+    limits = c(1600, 2100), 
+    expand = c(0, 0), 
+    breaks = seq(1600, 2000, 100)
+    ) +
+  scale_y_continuous(name="BIP pro Kopf (logarithmiert)", 
+                     trans = "log") +
+  geom_label_repel(
+    data = filter(hist_data, Jahr==2016), 
+    mapping = aes(x=Jahr, y=BIP_pk, 
+                  color=Land, label=Land), 
+    nudge_x = 50,
+    show.legend = FALSE) +
+  labs(title = "BIP pro Kopf (logarithmiert)",
+       caption = "Datenquelle: https://ourworldindata.org/economic-growth") +
+  scale_color_icae(palette = "mixed") +
+  theme(axis.title.x = element_blank())
+
+ggarrange(plot_norm, plot_log, nrow = 2, 
+          common.legend = T, legend = "none")
+```
+
+
+Das folgende Beispiel zeigt wie wichtig eine solche Darstellung sein kann um
+Events, die zu sehr unterschiedlichen Zeitpunkten stattgefunden haben, 
+vergleichbar zu machen:
+
+
+```{r, echo=FALSE}
+shiller_data <- fread(here("data/tidy/shiller_sp500.csv"), 
+                      colClasses = c("double", "double"), 
+                      sep = ";", dec = ",") %>%
+  mutate(SP500_log=log(SP500),
+         SP500_log=(SP500_log-first(SP500_log))*100 )
+
+shiller_norm <- ggplot(shiller_data, aes(x=Date, y=SP500)) +
+  annotate(xmin=1929, xmax=1941, ymin=-100, ymax=500, geom = "rect", 
+            fill="#002b80", color="transparent", alpha=0.5) +
+  annotate(x=1930, y=690, geom = "text", color="#002b80",
+           label="Große Depression", hjust=0.25) +
+  annotate(xmin=1995, xmax=2010, ymin=500, ymax=1600, geom = "rect", 
+           fill="#800000", color="transparent", alpha=0.5) +
+  annotate(x=1985, y=1800, geom = "text", color="#800000",
+           label="dot.com- & Finanzkrise", hjust=0.25) +
+  geom_line() +
+  labs(title = "S&P 500 (abs.)", caption = "Datenquelle: Shiller (2015).") +
+  ylab("S&P 500 (abs.)") +
+  theme_icae()
+
+shiller_log <- ggplot(shiller_data, aes(x=Date, y=SP500_log)) +
+  annotate(xmin=1929, xmax=1941, ymin=-20, ymax=200, geom = "rect", 
+            fill="#002b80", color="transparent", alpha=0.5) +
+  annotate(x=1930, y=250, geom = "text", color="#002b80",
+           label="Große Depression", hjust=0.25) +
+  annotate(xmin=1995, xmax=2010, ymin=450, ymax=600, geom = "rect", 
+           fill="#800000", color="transparent", alpha=0.5) +
+  annotate(x=1982, y=620, geom = "text", color="#800000",
+           label="dot.com- & Finanzkrise", hjust=0.25, vjust=0) +
+  geom_line() +
+  labs(title = "S&P 500 (log)", caption = "Datenquelle: Shiller (2015).") +
+  ylab("S&P 500 (log, 1871=0)") +
+  scale_y_continuous() +
+  theme_icae()
+
+ggarrange(shiller_norm, shiller_log, nrow = 2)
+```
+
+Während die absoluten Zahlen die Volatilität während der Großen Depression
+verschwindend gering erscheinen lassen wird im unteren Graph deutlich, dass
+die Volatilität damals tatsächlich noch größer war.
+
+Um die Achsen intuitiver verständlich zu machen habe ich von allen Werten den
+Wert für 1871 (die erste Beobachtung) abgezogen und den Wert für 1871 somit auf
+Null normiert. Zudem habe ich die Werte mit 100 multipliziert, sodass eine 
+Änderung von 1 auf der y-Ache zu einer einprozentigen Änderung des S&P Kurses
+korrespondiert.
+
+[Später]() werden wir zudem lernen, dass die logarithmierte Form die Analyse
+von Wachstumsraten in linearen Regressionsmodellen deutlich vereinfacht.
+
   * AB mit Wachstumsaufgabe
 
 ## Grundlagen der Differentialrechnung {#formalia-diff}
 
 ### Einleitung: Differential- und Integralrechnung
 
+Die Differentialrechnung ist eng verwandt mit der Integralrechnung:
+in beiden Bereichen studiert man die Veränderungen von Funktionen.
+Während die Differentialrechnung sich mit der lokalen Änderung einer Funktion
+beschäftig, also vor allem versucht die Steigung der durch die Funktion 
+definierten Kurven zu berechnen, studiert die Integralrechnung die 
+Grafisch bedeutet dies, dass man mit den Flächen unter bzw. zwischen Kurven
+interessiert ist.
+
+Die beiden Bereiche sind eng miteinander verbunden.
+Besonders deutlich wird das in dem so genannten *Fundamentalsatz der Analysis* 
+(auch: *Hauptsatz der Differential- und Integralrechnung*) deutlich.
+
+In der Differentialrechnung leiten wir Funktionen *ab* und in der 
+Integralrechnung leiten wir Funktionen *auf*. Der Fundamentalsatz der Analysis
+zeigt, dass die beiden Vorgehensweise jeweils die Umkehrung des anderen Darstellen:
+Die Ableitung einer Aufleitung führt zur gleichen Ausgangsfunktion, genauso wie
+die Aufleitung der Ableitung ebenfalls wieder zur Ausgangsfunktion führt.
+
+In der Ökonomik spielen beide Bereiche eine wichtige Rolle, der Fokus wird in
+diesem Kapitel jedoch auf der Differentialrechnung liegen, deren 
+Anwendungsgebiet noch einmal breiter ist: 
+wann immer Sie eine Funktion maximieren oder minimieren bedienen Sie sich 
+Methoden der Differentialrechnung.
+Und Maximierung spielt nicht nur in den herkümmlichen Modellen, die auf dem
+*homo oeconomicus* aufbauen, eine wichtige Rolle, auch in zahlreichen anderen
+Modellierungsparadigmen und genauso in der Ökonometrie spielt die 
+Maximierung eine wichtige Rolle.
+
 ### Wiederholung: Ableitungsregeln
 
-* Produkt-, Kettenregeln in Skript
+Für einfache Funktionen gibt es unmittelbare Ableitungsregeln, die uns für jeden 
+Ausdruck die entsprechende Ableitung geben. Komplexere Ausdrücke versucht man
+über entsprechende Regeln auf diese einfacheren Ausdrücke zurückzuführen und 
+Ableitungen von komplexeren Funktionen somit 'Stück für Stück' durchzuführen.
+Bei den komplexeren Ableitungsregeln handelt es sich insbesondere die Summen-, 
+Produkt- und Quotientenregel.
+Vorher wollen wir uns aber mit den einfachen Grundregeln vertraut machen.
 
+Die Ableitung der Funktion $f(x)$ wird als $f'(x)$ oder mit 
+$\frac{\partial f(x)}{\partial x}$ bezeichnet. Letztere Formulierung ist 
+besonders hilfreich wenn eine Funktion im Bezug auf verschiedene Variablen
+abgeleitet ist, das unter dem Bruchstrich noch einmal explizit angegeben wird
+nach welcher Variable die Funktion abgeleitet wird.
+
+Grundsätzlich gilt, dass die Ableitung einer Konstanten gleich Null ist:
+
+$$\frac{\partial a}{\partial x} = 0$$
+
+Die Ableitung einer Potenz funktioniert folgendermaßen:
+
+$$\frac{\partial x^n}{\partial x}=nx^{n-1}$$
+
+Besteht unsere komplexere Funktion $f(x)$ aus der Summe von Teilfunktionen
+verwenden wir die **Summenregel**. 
+Diese besagt, dass die Ableitung von $f(x) = u(x) + v(x)$ einfach die Summe der 
+Ableitungen der Teilfunktionen $u$ und $v$ sind:
+
+$$f'(x_0)=u'(x_0) + v'(x_0)$$
+Wenn wir also die Funktion $f(x)=3x^2+4x$ ableiten wollen geht dies nach der
+Summenregel folgendermaßen:
+
+\begin{align}
+f'(x)&=u'(x)+v'(x)\\
+u(x)&=3x^2, u'(x)=6x\\
+v(x)&=4x, v'(x)=4\\
+f'(x)&= 6x + 4
+\end{align}
+
+Die Summenregel funktioniert natürlich äquivalent auch für den Fall in dem
+die Teilfunktionen substrahiert werden.
+
+Werden die Teilfunktionen nicht summiert sondern multipliziert verwenden wir die
+**Produktregel**.
+Gehen wir wieder davon aus, dass wir eine komplexe Funktion $f(x)=u(x)v(x)$ ableiten
+wollen. 
+Ein Beispiel wäre $f(x)=(4+x^2)(1-x^3)$, wobei $u(x)=(4+x^2)$ und $v(x)=(1-x^3)$.
+
+Insbesondere gilt hier:
+
+$$f'(x_0)=u'(x_0)\cdot v(x_0) + u(x_0)\cdot v'(x_0)$$
+
+Wir können die komplexere Gesamtfunktion also ableiten indem wir die einzelnen
+Teile separat ableiten und jeweils mit den Ausgangsfunktionen multiplizieren.
+Für unser Beispiel mit $f(x)=(4+x^2)(1-x^3)$ hätten wir also:
+
+\begin{align}
+f'(x)&=u'(x)\cdot v(x) + u(x)\cdot v'(x)\\
+u(x)&=(4+x^2), u'(x)=2x\\
+v(x)&=(1-x^3), v'(x)=3x\\
+f'(x)&=2x(1-x^3) + 3x(4+x^2)) =2x-2x^4 + 12x + 3x^3=-2x^4+3x^3+14x 
+\end{align}
+
+Wenn die beiden Teilfunktionen dagegen dividiert werden müssen wir die 
+**Quotientenregel** anwenden. 
+Hier gehen wir also von dem Fall $f(x)=\frac{u(x)}{v(x)}$ aus, z.B. von
+$f(x)=\frac{x^2}{2x}$.
+
+In diesem Fall gilt:
+
+$$ f'(x_0) = \frac{u'(x_0)\cdot v(x_0) - u(x_0)\cdot v'(x_0)}{\left(v(x_0)\right)^2}$$
+
+Für unser Beispiel hätten wir dann:
+
+\begin{align}
+f'(x)&=\frac{u'(x)\cdot v(x) - u(x)\cdot v'(x)}{\left(v(x)\right)^2}\\
+u(x)&=x^2, u'(x)=2x\\
+v(x)&=2x, v'(x)=2\\
+f'(x)&=\frac{2x\cdot 2 - x^2\cdot 2}{v(x)^2}=\frac{2x-2x^2}{(2x)^2}
+\end{align}
+
+Zuletzt betrachten wir noch die **Kettenregel**, die es uns erlaubt 
+geschachtelte Funktionen abzuleiten. 
+Darunter verstehen wir Funktionen $f(x)=u(x) \circ v(x)=u(v(x))$.
+Hier gilt:
+
+$$(u\circ v)'(x_0) = u'\left(v(x_0)\right) \cdot v'(x_0)$$
+Man leitet also die 'innere' Funktion $v(x)$ normal ab und multipliziert diese
+Ableitung mit der Ableitung der 'äußeren' Funktion $u(v)$ an der Stelle $v(x_0)$.
+Am einfachsten ist das mit einem Beispiel nachzuvollziehen in dem 
+$f(x)=\left( x^2+4\right)^2$, also $u(v)=v^2$ und $v(x)= x^2+4$.
+
+Insgesamt bekommen wir also:
+
+\begin{align}
+f'(x)&=u'\left(v(x_0)\right) \cdot v'(x_0)\\
+u(v)&=v^2, u'(v)=2v\\
+v(x)&=x^2+4, v'(x)=2x\\
+f'(x)&=2(x^2+4)\cdot 2x 
+\end{align}
 
 ### Ableitungen in R
 
+Sie müssen Ableitungen nicht händisch ausrechnen, sondern können die Funktionen
+auch in R direkt ableiten lassen.
+Dazu verwenden wir die Funktion `expression()` um unsere abzuleitende Funktion 
+zu definieren und dann die Funktion `D()` um die Ableitung zu bilden.
+
+Betrachten wir folgendes Beispiel:
+
+$$f(x) = x^2 + 3x$$
+
+Zunächst wird die Funktion in eine `expression` übersetzt:
+
+```{r}
+f <- expression(x^2+3*x)
+f
+```
+
+Eine solche `expression` können Sie über die Funktion `eval()` für konkrete
+Werte ausrechnen lassen:
+
+```{r}
+x <- 1:5
+eval(f)
+```
+
+Zudem können wir mit der Funktion `D()` direkt die Ableitung einer `expression`
+berechnen:
+
+```{r}
+D(f, "x")
+```
+
+Wir haben also:
+
+$$\frac{\partial f(x) }{\partial x}=2x+3$$
+
+Wir können Aufrufe von `D()` auch verschachteln um höhere Ableitungen zu
+berechnen:
+
+```{r}
+D(D(f, "x"), "x")
+```
+
+$$\frac{\partial f(x) }{\partial x^2}=2$$
+
+
 ### Maximierung: die analytische Perspektive
+
+Eine der wichtigsten Anwendungen der Differentialrechnung ist die Berechnung von
+Minima und Maxima, so genannten Extrema, einer Funktion.
+Die interessierende Funktion wird in diesem Kontext in der Regel *Zielfunktion*
+genannt.
+
+Die Differentialrechnung spielt hier eine wichtige Rolle, denn Exterma sind 
+dadurch gekennzeichnet, dass die Ableitung einer Funktion an Ihren Extrempunkten
+gleich Null ist. 
+Weil die Nullstellen einer Funktion wiederum recht leicht zu finden sind,
+bietet es sich an, Extrema über die Ableitung einer Funktion zu suchen.
+
+Die genauen Details des Verfahrens werden hier nicht besprochen, es gibt jedoch
+zahlreiche gute Lehrbücher.
+Hier soll es eher um die grundsätzliche Intuition gehen.
+
+Wichtig ist die Unterscheidung zwischen *lokalen* und *globalen* Extremwerten.
+Das *globale* Maximum (Minimum) liegt an dem Punkt im Definitionsbereich einer 
+Funktion, der zu dem größten (kleinsten) Wert im Wertebereich der Funktion führt.
+Das *lokale* Maximum (Minimum) ist für eine bestimmte Teilmenge des Definitionsbereichs
+der Funktion definiert und bezeichnet den Punkt mit dem größten (kleinsten) Wert
+*innerhalb dieser Teilmenge*.
+
+Formal exakt können wir die Punkte folgendermaßen definieren, wenn wir von einer 
+Funktion $f$ mit Definitionsbereich $D\subseteq\mathbb{R}$ und Wertebereich 
+$\mathbb{R}$, also $f: D\rightarrow \mathbb{R}$ ausgehen.
+
+Dann hat $f$ ein *lokales Minimum*  im Intervall $I=(a,b)$ am Punkt 
+$(x^*, f(x^*))$ wenn $f(x^*)\leq f(x) \forall x \in I \cap D$. 
+Analog sprechen wir bei dem Punk $(x^*, f(x^*))$ von einem *lokalen Maximum* im 
+Intervall $I=(a,b)$ wenn $f(x^*)\geq f(x) \forall x \in I \cap D$. 
+
+Wir sprechen beim Punkt $(x^*, f(x^*))$ von einem *globalen Minimum* wenn
+$f(x^*)\leq f(x) \forall x \in x \in D$ und von einem *globalen Maximum* wenn
+$f(x^*)\geq f(x) \forall x \in x \in D$.
+
+Im folgenden Beispiel sehen wir die Extremwerte der Funktion 
+$f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2$:
+
+```{r, echo=FALSE}
+f_2 <- function(x) 8*x^2 + 2.5*x**3 - 4.25*x**4 + 2
+
+data <- data.frame(x=seq(-2, 2, 0.05)) %>%
+  rowwise() %>%
+  mutate(y_2 = f_2(x))
+
+mult_max <- ggplot(data, aes(x=x, y=y_2)) +
+  geom_line() +
+  ggtitle(TeX("$f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2$")) +
+  coord_cartesian(ylim = c(0, 10), 
+                  xlim = c(-1.2, 1.7), expand = c(0)) +
+  annotate(geom = "text", label="Lokales Maximum", 
+           x = -0.7743199, y = 4.4) +
+  annotate(geom = "segment", 
+           x = -0.7743199, xend = -0.7743199,
+           y=0, yend = 4.108106) +
+  annotate(geom = "text", label="Globales Maximum", 
+           x = 1.215492, y = 9.4) +
+  annotate(geom = "segment", 
+           x = 1.215492, xend = 1.215492,
+           y=0, yend = 9.032067) +
+  annotate(geom = "text", label="Lokales Minimum", 
+           x = -7.54766e-06, y = 2.7) +
+  annotate(geom = "segment", 
+           x = -7.54766e-06, xend = -7.54766e-06,
+           y=0, yend = 2) +
+  theme_icae() 
+mult_max
+```
+
+
+Es kann gezeigt werden, dass eine **notwendige Bedingung** für die Existenz eines
+Extremwertes am Punkt $x^*$ ist, dass $f'(x^*)=0$.
+Daher ist der erste Schritt bei der analytischen Suche nach Extremwerten immer
+die Ableitung der Funktion und die Identifikation der Nullstellen. 
+Als nächstes untersucht man die **hinreichenden Bedingungen**, die einem 
+genauere Informationen über den Punkt geben.
+
+Hierbei hat sich folgende Heuristik in der Praxis bewährt:^[Diese Klassifizierung
+ist nicht erschöpfend und in einigen Fällen uneindeutig. Tatsächlich gilt 
+folgendes: sei $f^n(x)$ die $n$-te Ableitung von $f(x)$. Wenn $f'(x)=0$ und 
+die erste von Null verschiedene höhere Ableitung eine Ableitung gerader Ordnung 
+haben wir einen Extrempunkt, ansonsten einen Sattelpunkt. Ansonsten gilt auch,
+dass bei $f^n(x)>0$ ein Minimum und bei $f^n(x)<0$ ein Maximum vorliegt.]
+
+| 1. Ableitung | 2. Ableitung | Ergebnis |
+|:------------:+:------------:+----------|
+| $f'(x)=0$    | $f''(x)>0$   | Minimum  |
+| $f'(x)=0$    | $f''(x)<0$   | Maximum  |
+| $f'(x)=0$    | $f''(x)=0$   | Wendepunkt |
+
+Das ganze funktioniert natürlich nur wenn eine Funktion auch tatsächlich eine
+Ableitung besitzt, es sich also um eine differenzierbare Funktion handelt. 
+Daher wird das auch in vielen ökonomischen Modellen angenommen.
+
+Um herauszufinden ob es sich um ein *globales* Extremum handelt müssen wir die
+Werte der Extrema vergleichen. Es gibt auch noch einige Heuristiken für besondere
+Sub-Klassen von Funktionen, die wir hier aber nicht genauer diskutieren wollen.
+
+Wenn die Funktion unter bestimmten *Bedingungen* maximiert (minimiert) werden
+soll, sprechen wir von einem *Maximierung unter Nebenbedingung*. 
+Die Standard-Methode hier ist die so genannte *Lagrange-Optimierung*.
+Details finden sich in zahlreichen Lehrbüchern, z.B. in @chiang
+
 
 ### Maximierung: die algorithmische Perspektive
 
+Bei vielen Funktionen wäre die analytische Berechnung von Extrema zu aufwendig
+oder gar nicht möglich. 
+Daher verwendet man den Computer um die Extrema zu finden. 
+Das ist bei einfachen Funktionen kein großes Problem, da Sie sich für folgenden 
+Fall leicht vorstellen können, dass der Computer einfach mit einem beliebigen
+Startwert $x_0$ anfängt und sich so lange auf dem Definitionsbereich fortbewegt
+solange der Funktionsweg steigt und damit dann in jedem Fall den Punkt $x^*_{globmax}$
+identifiziert. Für Funktionen mit lokalen Extremwerten funktioniert das natürlich
+nicht mehr:
+
+```{r, echo=FALSE}
+f_1 <- function(x) -8*x**2 + 2
+
+f_2 <- function(x) 8*x^2 + 2.5*x**3 - 4.25*x**4 + 2
+
+data <- data.frame(x=seq(-2, 2, 0.05)) %>%
+  rowwise() %>%
+  mutate(y_1 = f_1(x),
+         y_2 = f_2(x))
+
+one_max <- ggplot(data, aes(x=x, y=y_1)) +
+  geom_line() +
+  ggtitle(TeX("$f(x)=-8x^2 + 2$")) +
+  coord_cartesian(ylim = c(-2, 2.5), 
+                  xlim = c(-0.75, 0.75), 
+                  expand = c(0)) +
+  theme_icae() 
+
+mult_max <- ggplot(data, aes(x=x, y=y_2)) +
+  geom_line() +
+  ggtitle(TeX("$f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2$")) +
+  coord_cartesian(ylim = c(0, 10), 
+                  xlim = c(-1.2, 1.7), expand = c(0)) +
+  theme_icae() 
+
+ggarrange(one_max, mult_max, ncol = 2)
+```
+
+Bei der linken Funktion ist es mit einem solchen Vorgang recht einfach das 
+Maximum bei $x=0$ zu finden, aber bei der rechten Funktion würde das gleiche 
+möglicherweise dazu führen, dass der Computer auf dem lokalen Extremum bei 
+$x=0.77$ 'stecken bleibt'.
+
+Um das zu vermeiden verwenden die Optimierungsalgorithmen einige Tricks.
+Für die R-Funktion `optim()` können Sie z.B. zwischen sieben solcher ausgefeilter
+Algorithmen wählen. Schauen Sie einmal in die Hilfefunktion wenn Sie mehr Informationen
+über diese Algorithmen bekommen möchten.^[Gerade bei komplexeren Methoden müssen 
+Sie als Nutzer\*in jedoch in der Regel
+nachhelfen und der Opimierungsfunktion weitere Hinweise zur Funktion angeben. 
+Für unsere Anwendungsbeispiele ist das nicht weiter relevant, Sie sollten die
+Problematik jedoch im Hinterkopf behalten.]
+
+Wichtig zu unterscheiden ist die Art der zu opmtimierenden Funktion und der 
+Nebenbedingungen.
+Grob können wir zwischen den folgenden drei Fällen unterscheiden:
+
+1. **Lineares Programmieren (LP)**: Sowohl Zielfunktion als auch Nebenbedingungen sind
+linear. Beispiel: $\max s.t. Ax<b, x\geq 0$
+2. **Quadratisches Programmieren (QP)** Zielfunktion ist quadratisch, Nebenbedingungen 
+sind linear. Beispiel: $\max s.t. Ax<b, x\geq 0$
+3. **Nicht-lineares Programmieren (NLP)**: Die Zielfunktion oder zumindest eine 
+Nebenbedingung ist nicht-linear.
+
+Die Unterscheidung spielt eine ähnliche Rolle wie die Unterscheidung 
+verschiedener Skalenstufen bei der Datenanalyse: 
+je nach Art des Problems müssen wir andere Methoden anwenden. 
+In diesem Fall bedeutet das, dass wir für unterschiedliche Arten von Funktionen
+andere Pakete verwenden müssen um Extremwerte zu finden.
+Zusätzlich gibt es aber auch noch ein paar *general-purpose*-Funktionen, die wir
+auf alle Klassen anwenden können - auf Kosten der Performance:
+
+| **Art** | **Optimierungsfunktion** | **Paket**  |
+|-----------+------------------------+------------|
+| Allgemein | `optimize()`, `optim()`| `base`     |
+| LP        | `lp()`                 | `lpSolve`  |
+| QP        | `solve.QP()`           | `quadprog` |
+| NLP       | `optimize()`           | `optimize` |
+| NLP       | `optimx()`             | `optimx`   |
+
+Das Schöne ist dass trotzd der Vielzahl an Paketen alle Optimierungsfunktionen
+nach einem sehr ähnlighcn Schema aufgebaut sind. Die ersten beiden Argumente
+sind immer die Zielfunktion und die Nebenbedingungen. Danach folgen Argumente
+mit denen Sie die Suchintervalle, den konkreten Algorithmus oder weitere 
+Spezifika festlegen können.
+
+Im Folgenden wollen wir anhand einiger einfacher Beispiele sehen wie Sie 
+Optimierungsprobleme in R lösen können.
+Für eine tiefergehende Auseinandersetzung verweisen wir auf die entsprechenden
+spezialisierten Einführungen.
+
+Betrachten wir die folgende Zielfunktion:
+
+$$f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2$$
+In R:
+```{r}
+f_1 <- function(x) 8*x^2 + 2.5*x**3 - 4.25*x**4 + 2
+```
+
+Grafisch sieht die Funktion folgendermaßen aus, sie verfügt also über ein 
+lokales Maximum bei $x_a=-0.77$, ein lokales Minimum bei $x_b=0$ und ein globales 
+Maximum bei $x_c=1.22$:
+
+```{r,echo=FALSE}
+data <- data.frame(x=seq(-2, 2, 0.05)) %>%
+  rowwise() %>%
+  mutate(y = f_1(x))
+
+ggplot(data, aes(x=x, y=y)) +
+  geom_line() +
+  ggtitle(TeX("$f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2$")) +
+  coord_cartesian(ylim = c(0, 10), 
+                  xlim = c(-1.2, 1.7), expand = c(0)) +
+  theme_icae() 
+```
+
+
+Wir können für solcherlei eindimensionale Probleme die Funktion `optimize()` 
+verwenden:
+
+```{r}
+opt_obj <- optimize(f = f_1, 
+                    lower = -1.25, upper = 1.75, 
+                    maximum = FALSE)
+```
+
+Das Ergebnis ist eine Liste mit zwei Elementen. 
+Dem x-Wert des gesuchten Minimums:
+
+```{r}
+opt_obj[["minimum"]]
+```
+
+Und dem dazugehörigen Funktionswert:
+
+```{r}
+opt_obj[["objective"]]
+```
+
+Falls wir ein Maximum suchen setzen wir `maximum=TRUE`:
+
+```{r}
+opt_obj_max <- optimize(f = f_1, 
+                        lower = -1.25, upper = 1.75, 
+                        maximum = TRUE)
+opt_obj_max
+```
+
+Falls wir den Suchbereich entsprechend einschränken finden wir das lokale 
+Maximum auf der linken Seite:
+
+```{r}
+opt_obj_max <- optimize(f = f_1, 
+                        lower = -1.25, upper = 0, 
+                        maximum = TRUE)
+opt_obj_max
+```
+
+Wir sind übrigens nicht auf eindimensionale Funktionen beschränkt.
+Wir können z.B. auch die folgende Zielfunktion optimieren:
+
+$$f(x,y)=(a-x)^2 + b(y-x^2)^2$$
+
+```{r}
+f_2 <- function(x, a=1, b=100){
+  (a - x[1])**2 + b*(x[2]-x[1]**2)**2
+}
+```
+
+Bei dieser Funktion handelt es sich um die in der Optimierung sehr häufig
+als Benchmark verwendete 
+[Rosenbrock Funktion](https://en.wikipedia.org/wiki/Rosenbrock_function).
+Grafisch können wir solche Funktionen mit Hilfe einer *Heatmap* darstellen,
+wobei wir hier annehmen, dass $a=1$ und $b=100$:
+
+```{r}
+x <- seq(-2, 2, length.out = 150)
+y <- seq(-1, 3, length.out = 150)
+data <- expand.grid(X=x, Y=y) %>%
+  rowwise() %>%
+  mutate(Z=f_2(x = c(X, Y)))
+
+ggplot(data, aes(X, Y, fill= Z)) + 
+  geom_tile() +
+  scale_x_continuous(expand = c(0,0)) +
+  scale_y_continuous(expand = c(0,0)) +
+  scale_fill_icae(palette = "hot", discrete=FALSE) +
+  theme_icae() +
+  theme(legend.position = "right")
+```
+
+Da es sich jetzt ein mehrdimensionales Problem handelt verwenden wir die Funktion
+`optim()` anstatt von `optimize()`. Die Handhabung ist aber sehr ähnlich.
+Als erstes Argument übergeben wir `par` unsere ersten Vermutungen für das 
+Extremum, also die Werte, mit der die Funktion ihre Suche beginnen soll.
+Danach als zweites Argument `fn` die zu optmierende Funktion.
+Falls diese Funktion noch weitere Argumente akzeptiert können wir die hier auch
+einfach hinzufügen. Für unseren Fall haben wir also:
+
+```{r}
+opt_objekt <- optim(
+  par = c(1, 1),
+  fn = f_2
+  )
+```
+
+Zunächst schauen wir ob der Algorithmus erfolgreich einen Extremwert 
+gefunden hat. Bei erfolgreicher Suche hat der Listeneintrat `convergence` den 
+Wert `0`:
+
+```{r}
+opt_objekt[["convergence"]] == 0 
+```
+
+Die optimalen Argumente erhalten wir über den Listeneintrag `par`:
+
+```{r}
+opt_objekt[["par"]]
+```
+
+Und den Wert der Zielfunktion im Extremum über den Listeneintrag `value`:
+
+```{r}
+opt_objekt[["value"]]
+```
+
+Wenn wir `optim` übrigens zur Maximierung einsetzen wollen müssen wir nichts
+weiter tun als dem Argument `control` eine Liste mit dem Eintrag `fnscale=-1`
+zu übergeben:
+
+```{r}
+f_x <- function (x) 4*x - x**2
+opt_objekt <- optim(
+  c(1),
+  fn = f_x, 
+  method = "Brent", 
+  lower = -4, upper = 4,
+  control = list(fnscale=-1)
+  )
+
+opt_objekt$convergence == 0
+opt_objekt$par
+opt_objekt$value
+```
+```{r, echo=FALSE}
+plot_data <- data.frame(x=seq(-4, 4, 0.1)) %>% 
+  rowwise() %>% mutate(y=f_x(x))
+ggplot(
+  data = plot_data,
+  mapping = aes(x=x, y=y)) +
+  ggtitle(TeX("$f(x) = 4x - x^2$")) +
+  geom_line() +
+  coord_cartesian(ylim = c(-10, 5), xlim = c(-2, 4)) +
+  annotate(geom="segment",
+           x=opt_objekt$par,
+           xend=opt_objekt$par,
+           y = -50,
+           yend = opt_objekt$value) +
+  theme_icae()
+```
+
 ### Anwendungsbeispiel
 
-TBD, eventuell Beispiel des keynesianischen Modells und der Rolle von Investitionen?
+TBD, aber eventuell gar nicht nötig? Vielleicht ein Beispiel mit dem 
+Keynes Modell und Investitionen?
 
 
 ## Lineare Algebra {#formalia-linalg}
@@ -86,6 +915,169 @@ TBD, eventuell Beispiel des keynesianischen Modells und der Rolle von Investitio
 * Matrixschreibweise: Beispiel Keynes für Theorie, und OLS 
   * A la die tauchen häufig auf
   * Nur Grundregeln, im Aufgabenblatt dann händisch
+  
+Bei Matrizen handelt es sich um zweidimensionale Objekte mit Zeilen und Spalten,
+bei denen es sich jeweils um atomare Vektoren handelt.
+
+* Was macht lineare Algebra
+* Was macht eine Matrix: Vektorraum etc.
+* Warum ist das in der Ökonomik so wichtig
+
+### Einführung zu Matrizen
+
+Matrizen werden mit der Funktion `matrix()`erstellt.
+Diese Funktion nimmt als erstes Argument die Elemente der Matrix und dann
+die Spezifikation der Anzahl von Zeilen (`nrow`) und/oder der Anzahl von
+Spalten (`ncol`):
+
+```{r}
+m_1 <- matrix(11:20, nrow = 5)
+m_1
+```
+Wie können die Zeilen, Spalten und einzelne Werte folgendermaßen extrahieren
+und ggf. Ersetzungen vornehmen:
+
+```{r}
+m_1[,1] # Erste Spalte
+```
+
+```{r}
+m_1[1,] # Erste Zeile
+```
+
+```{r}
+m_1[2,2] # Element [2,2]
+```
+
+### Grundregeln der Matrizenalgebra
+
+Matrizenalgebra spielt in vielen statistischen Anwendungen eine wichtige Rolle.
+Sie funktioniert aber ein wenig anders als die 'herkömmliche' Algebra, mit denen
+die meisten von Ihnen schon vertraut sein werden.
+Zum Glück ist es in R sehr einfach die typischen Rechenoperationen für Matrizen 
+zu implementieren. Im folgenden werden wir die wichtigsten Rechenregeln für 
+Matrizen kurz einführen und dabei die folgenden Beispielmatrizen verwenden:
+
+$$A = \left( 
+\begin{array}{rrr}                                
+1 & 6 \\                                               
+5 & 3 \\                                               
+\end{array}
+\right) \quad B = \left( 
+\begin{array}{rrr}                                
+0 & 2 \\                                               
+4 & 8 \\                                               
+\end{array}\right)$$
+
+
+```{r}
+matrix_a <- matrix(c(1,5,6,3), ncol = 2)
+matrix_b <- matrix(c(0,4,2,8), ncol = 2)
+```
+
+**Skalar-Addition**
+
+$$4+\boldsymbol{A}=
+\left( 
+\begin{array}{rrr}                                
+4+a_{11} & 4+a_{21} \\                                               
+4+a_{12} & 4+a_{22} \\                                               
+\end{array}
+\right)$$
+
+In R: 
+
+```{r}
+4 + matrix_a
+```
+
+**Matrizen-Addition**
+
+$$\boldsymbol{A}+\boldsymbol{B}=
+\left(
+\begin{array}{rrr}                                
+a_{11} + b_{11} & a_{21} + b_{21}\\                                               
+a_{12} + b_{12} & a_{22} + b_{22}\\                                               
+\end{array}
+\right)$$
+
+```{r}
+matrix_a + matrix_b
+```
+
+
+**Skalar-Multiplikation**
+
+$$2\cdot\boldsymbol{A}=
+\left( 
+\begin{array}{rrr}                                
+2\cdot a_{11} & 2\cdot a_{21} \\                                               
+2\cdot a_{12} & 2\cdot a_{22} \\                                               
+\end{array}
+\right)$$
+
+```{r}
+2*matrix_a
+```
+
+
+**Elementenweise Matrix Multiplikation (auch 'Hadamard-Produkt')**
+
+$$\boldsymbol{A}\odot\boldsymbol{B}=
+\left(
+\begin{array}{rrr}                                
+a_{11}\cdot b_{11} & a_{21}\cdot b_{21}\\                                               
+a_{12}\cdot b_{12} & a_{22}\cdot b_{22}\\                                               
+\end{array}
+\right)$$
+
+```{r}
+matrix_a * matrix_b
+```
+
+**Matrizen-Multiplikation**
+$$\boldsymbol{A}\cdot\boldsymbol{B}=
+\left(
+\begin{array}{rrr}                                
+a_{11}\cdot b_{11} + a_{12}\cdot b_{21} & a_{11}\cdot b_{21}+a_{12}\cdot b_{22}\\                     
+a_{21}\cdot b_{11} + a_{22}\cdot b_{21} & a_{21}\cdot b_{12}+a_{22}\cdot b_{22}\\                     
+\end{array}
+\right)$$
+
+```{r}
+matrix_a %*% matrix_b
+```
+
+**Matrizen invertieren**
+
+Die Inverse einer Matrix $\boldsymbol{A}$, $\boldsymbol{A}^{-1}$, ist 
+definiert sodass gilt
+$$\boldsymbol{A}\boldsymbol{A}^{-1}=\boldsymbol{I}$$
+Sie kann in R mit der Funktion `solve()` identifiziert werden:
+
+```{r}
+solve(matrix_a)
+```
+```{r}
+matrix_a %*% solve(matrix_a)
+```
+
+Die minimalen Abweichungen sind auf machinelle Rundungsfehler zurückzuführen und
+treten häufig auf.
+
+
+### Anwendungsbeispiel 1: OLS-Regression
+
+### Anwendungsbeispiel 2: Das einfache Keynesianische Modell
+
+### Weiterführende Literatur
+
+Es gibt im Internet zahlreiche gute Überblicksartikel zum Thema Matrizenalgebra
+in R, z.B. [hier](https://www.statmethods.net/advstats/matrix.html)
+oder in größerem Umfang 
+[hier](https://www.math.uh.edu/~jmorgan/Math6397/day13/LinearAlgebraR-Handout.pdf).
+Auch das Angebot an Lehrbüchern ist sehr groß, für die ökonomischen Grundlagen
+bietet sich @chiang sehr gut an.
 
 ## Analyse von Verteilungen {#formalia-dist}
 
