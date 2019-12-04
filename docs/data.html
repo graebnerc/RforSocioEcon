@@ -988,9 +988,9 @@ data_gini_bip_left_join</code></pre></div>
 #&gt; 3 2012     AUT    3   6
 #&gt; 4 2013     AUT    4  NA</code></pre>
 <p>Die Funktion <code>inner_join()</code> unterscheidet sich von <code>left_join()</code> darin, dass nur die Zeilen in den gemeinsamen Datensatz übernimmt, die sowohl in <code>x</code> als auch <code>y</code> enthalten sind:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_bip_gini_left_join &lt;-<span class="st"> </span><span class="kw">inner_join</span>(data_BIP, data_gini, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_bip_gini_inner_join &lt;-<span class="st"> </span><span class="kw">inner_join</span>(data_BIP, data_gini, 
                                       <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))
-data_bip_gini_left_join</code></pre></div>
+data_bip_gini_inner_join</code></pre></div>
 <pre><code>#&gt;   Jahr Land BIP Gini
 #&gt; 1 2010  DEU   1    1
 #&gt; 2 2011  DEU   2    2
