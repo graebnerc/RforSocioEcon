@@ -1,8 +1,8 @@
 --- 
 title: "R für die sozio-ökonomische Forschung"
-subtitle: "Version 0.5.1"
+subtitle: "Version 0.6.0"
 author: "[Dr. Claudius Gräbner](http://claudius-graebner.com/)"
-date: "2019-11-20" 
+date: "2019-12-04" 
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -10,13 +10,13 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: graebnerc/RforSocioEcon
-description: "R Skript in der Version 0.5.1"
+description: "R Skript in der Version 0.6.0"
 ---
 
 # Willkommen {-}
 
 
-\begin{center}\includegraphics{figures/title_page} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth]{figures/title_page} \end{center}
 
 Dieses Skript ist als Begleitung für die Lehrveranstaltung 
 "Wissenschaftstheorie und Einführung in die Methoden der Sozioökonomie"
@@ -44,13 +44,14 @@ Kapitel              | Zentrale Inhalte            | Verwandter Vorlesungstermin
 | 4: Lineare statistische Modelle in R | Implementierung von uni- und multivariaten linearen Regressionsmodellen | T4 am 06.11.19 |
 | 5: Datenkunde und -aufbereitung | Einlesen und Schreiben sowie Aufbereitung von Datensätzen | T7 am 27.11.19 |
 | 6: Visualisierung | Erstellen von Grafiken | T7 am 27.11.19 |
-| 7: Fortgeschrittene Ökonometrie | Weitere Konzepte der Ökonometrie | T9-10 am 8.&15.1.20|
-| 8: Ausblick | Ausblick zu weiteren Anwendungsmöglichkeiten | Optional |
-| A1: Einführung in Markdown | Wissenschaftliche Texte in R Markdown schreiben |Optional; relevant für Aufgabenblätter|
-| A2: Wiederholung: Wahrscheinlichkeitstheorie  | Wiederholung grundlegender Konzepte der Wahrscheinlichkeitstheorie und ihrer Implementierung in R | Optional; wird für die quantitativen VL vorausgesetzt |
-| A3: Wiederholung: Deskriptive Statistik  | Wiederholung grundlegender Konzepte der deskriptiven Statistik und ihrer Implementierung in R | Optional; wird für die quantitativen VL vorausgesetzt |
-| A4: Wiederholung: Drei grundlegende Verfahren der schließenden Statistik  | Wiederholung von Parameterschätzung, Hypothesentests und Konfidenzintervalle und deren Implementierung in R| Optional; wird für die quantitativen VL vorausgesetzt |
-| A5: Einführung in Git und Github | Verwendung von Git und Github | Optional |
+| 7: Formalia | Grundlegende formale Konzepte der Sozioökonomie. | T8 am 11.12.19 |
+| 8: Fortgeschrittene Ökonometrie | Weitere Konzepte der Ökonometrie | T9-10 am 8.&15.1.20|
+| 9: Ausblick | Ausblick zu weiteren Anwendungsmöglichkeiten | Optional |
+| A: Einführung in Markdown | Wissenschaftliche Texte in R Markdown schreiben |Optional; relevant für Aufgabenblätter|
+| B: Wiederholung: Wahrscheinlichkeitstheorie  | Wiederholung grundlegender Konzepte der Wahrscheinlichkeitstheorie und ihrer Implementierung in R | Optional; wird für die quantitativen VL vorausgesetzt |
+| C: Wiederholung: Deskriptive Statistik  | Wiederholung grundlegender Konzepte der deskriptiven Statistik und ihrer Implementierung in R | Optional; wird für die quantitativen VL vorausgesetzt |
+| D: Wiederholung: Drei grundlegende Verfahren der schließenden Statistik  | Wiederholung von Parameterschätzung, Hypothesentests und Konfidenzintervalle und deren Implementierung in R| Optional; wird für die quantitativen VL vorausgesetzt |
+| E: Einführung in Git und Github | Verwendung von Git und Github | Optional |
 
 Das Skript ist *work in progress* und jegliches Feedback ist sehr willkommen.
 Dafür wird im Moodle ein extra Bereich eingerichtet.
@@ -79,6 +80,7 @@ Datum    | Version | Wichtigste Änderungen         |
 06.11.19 | 0.4.0    | Kapitel zu linearen Modellen hinzugefügt  |
 18.11.19 | 0.5.0    | Kapitel zur Datenaufbereitung und Visualisierung hinzugefügt; kleinere Korrekturen im Kapitel zu lin. Modellen  |
 20.11.19 | 0.5.1    | Korrektur von kleineren Rechtschreib/Grammatikfehlern; Fix für Problem mit html Version auf HP |
+03.12.19 | 0.6.0    | Kapitel zu formalen Konzepten hinzugefügt; kleinere Korrekturen |
 
 ## Lizenz {-}
 

@@ -2,6 +2,8 @@
 
 
 
+
+
 Nach diesen (wichtigen) Vorbereitungsschritten wollen wir nun mit dem 
 eigentlichen Programmieren anfangen.
 Zu diesem Zweck müssen wir uns mit der Syntax von R vertraut machen,
@@ -93,7 +95,7 @@ wir uns zunächst mit den Konzepten von **Objekten**, **Funktionen** und
 > To understand computations in R, two slogans are helpful:
 >   Everything that exists is an object.
 >   Everything that happens is a function call.
-> ---John Chambers
+> \hfill --- John Chambers
 
 Mit der Aussage 'Alles in R ist ein Objekt' ist gemeint, dass jede Zahl, jede
 Funktion, oder jeder Buchstabe in R ein Objekt ist, das irgendwo auf dem 
@@ -1522,7 +1524,7 @@ Im folgenden wollen wir uns noch mit zwei speziellen Typen beschäftigen, die we
 fundamental als die bislang diskutierten sind, jedoch häufig in der alltäglichen
 Arbeit vorkommen: Matrizen und Data Frames.
 
-### Matrizen
+### Matrizen {#intro-matrix}
 
 Bei Matrizen handelt es sich um zweidimensionale Objekte mit Zeilen und Spalten,
 bei denen es sich jeweils um atomare Vektoren handelt.
@@ -2145,7 +2147,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7f993e47fa50>
+#> <bytecode: 0x7fcdabfad2c0>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2176,7 +2178,7 @@ dplyr::lead
 #>     attributes(out) <- attributes(x)
 #>     out
 #> }
-#> <bytecode: 0x7f993ed53db0>
+#> <bytecode: 0x7fcdb0b406e8>
 #> <environment: namespace:dplyr>
 ```
 
@@ -2204,9 +2206,10 @@ search()
 
 ```
 #>  [1] ".GlobalEnv"         "package:plm"        "package:dplyr"     
-#>  [4] "package:data.table" "package:stats"      "package:graphics"  
-#>  [7] "package:grDevices"  "package:utils"      "package:datasets"  
-#> [10] "package:methods"    "Autoloads"          "package:base"
+#>  [4] "package:data.table" "package:tufte"      "package:stats"     
+#>  [7] "package:graphics"   "package:grDevices"  "package:utils"     
+#> [10] "package:datasets"   "package:methods"    "Autoloads"         
+#> [13] "package:base"
 ```
 
 

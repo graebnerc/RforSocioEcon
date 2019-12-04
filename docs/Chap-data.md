@@ -1652,9 +1652,9 @@ auch `y` enthalten sind:
 
 
 ```r
-data_bip_gini_left_join <- inner_join(data_BIP, data_gini, 
+data_bip_gini_inner_join <- inner_join(data_BIP, data_gini, 
                                       by=c("Jahr"="year", "Land"="country"))
-data_bip_gini_left_join
+data_bip_gini_inner_join
 ```
 
 ```

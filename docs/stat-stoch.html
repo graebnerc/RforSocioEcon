@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>B Wiederholung: Wahrscheinlichkeitstheorie | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="R Skript in der Version 0.5.1" />
+  <meta name="description" content="R Skript in der Version 0.6.0" />
   <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
 
   <meta property="og:title" content="B Wiederholung: Wahrscheinlichkeitstheorie | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="R Skript in der Version 0.5.1" />
+  <meta property="og:description" content="R Skript in der Version 0.6.0" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="B Wiederholung: Wahrscheinlichkeitstheorie | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="R Skript in der Version 0.5.1" />
+  <meta name="twitter:description" content="R Skript in der Version 0.6.0" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2019-11-20" />
+<meta name="date" content="2019-12-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -140,7 +140,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.4.6" data-path="basics.html"><a href="basics.html#indizierung-und-ersetzung"><i class="fa fa-check"></i><b>3.4.6</b> Indizierung und Ersetzung</a></li>
 <li class="chapter" data-level="3.4.7" data-path="basics.html"><a href="basics.html#nützliche-funktionen-für-atomare-vektoren"><i class="fa fa-check"></i><b>3.4.7</b> Nützliche Funktionen für atomare Vektoren</a></li>
 <li class="chapter" data-level="3.4.8" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.4.8</b> Listen</a></li>
-<li class="chapter" data-level="3.4.9" data-path="basics.html"><a href="basics.html#matrizen"><i class="fa fa-check"></i><b>3.4.9</b> Matrizen</a></li>
+<li class="chapter" data-level="3.4.9" data-path="basics.html"><a href="basics.html#intro-matrix"><i class="fa fa-check"></i><b>3.4.9</b> Matrizen</a></li>
 <li class="chapter" data-level="3.4.10" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.4.10</b> Data Frames</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#pakete"><i class="fa fa-check"></i><b>3.5</b> Pakete</a></li>
@@ -223,6 +223,31 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.6.2" data-path="vis.html"><a href="vis.html#klassiker-2-geschickt-gewählter-zeitraum-und-clever-gewählte-achsenabschnitte"><i class="fa fa-check"></i><b>6.6.2</b> Klassiker 2: Geschickt gewählter Zeitraum und clever gewählte Achsenabschnitte</a></li>
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="vis.html"><a href="vis.html#vis-links"><i class="fa fa-check"></i><b>6.7</b> Links und weiterführende Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="formalia.html"><a href="formalia.html"><i class="fa fa-check"></i><b>7</b> Formale Methoden der Sozioökonomie</a><ul>
+<li class="chapter" data-level="7.1" data-path="formalia.html"><a href="formalia.html#einleitung-und-überblick-1"><i class="fa fa-check"></i><b>7.1</b> Einleitung und Überblick</a></li>
+<li class="chapter" data-level="7.2" data-path="formalia.html"><a href="formalia.html#formalia-wachstum"><i class="fa fa-check"></i><b>7.2</b> Änderungsraten und die Rolle des Logarithmus</a></li>
+<li class="chapter" data-level="7.3" data-path="formalia.html"><a href="formalia.html#formalia-diff"><i class="fa fa-check"></i><b>7.3</b> Grundlagen der Differentialrechnung</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="formalia.html"><a href="formalia.html#einleitung-differential--und-integralrechnung"><i class="fa fa-check"></i><b>7.3.1</b> Einleitung: Differential- und Integralrechnung</a></li>
+<li class="chapter" data-level="7.3.2" data-path="formalia.html"><a href="formalia.html#wiederholung-ableitungsregeln"><i class="fa fa-check"></i><b>7.3.2</b> Wiederholung: Ableitungsregeln</a></li>
+<li class="chapter" data-level="7.3.3" data-path="formalia.html"><a href="formalia.html#ableitungen-in-r"><i class="fa fa-check"></i><b>7.3.3</b> Ableitungen in R</a></li>
+<li class="chapter" data-level="7.3.4" data-path="formalia.html"><a href="formalia.html#maximierung-die-analytische-perspektive"><i class="fa fa-check"></i><b>7.3.4</b> Maximierung: die analytische Perspektive</a></li>
+<li class="chapter" data-level="7.3.5" data-path="formalia.html"><a href="formalia.html#maximierung-die-algorithmische-perspektive"><i class="fa fa-check"></i><b>7.3.5</b> Maximierung: die algorithmische Perspektive</a></li>
+<li class="chapter" data-level="7.3.6" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-1"><i class="fa fa-check"></i><b>7.3.6</b> Anwendungsbeispiel</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="formalia.html"><a href="formalia.html#formalia-linalg"><i class="fa fa-check"></i><b>7.4</b> Lineare Algebra</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="formalia.html"><a href="formalia.html#einführung-von-matrizen"><i class="fa fa-check"></i><b>7.4.1</b> Einführung von Matrizen</a></li>
+<li class="chapter" data-level="7.4.2" data-path="formalia.html"><a href="formalia.html#grundregeln-der-matrizenalgebra"><i class="fa fa-check"></i><b>7.4.2</b> Grundregeln der Matrizenalgebra</a></li>
+<li class="chapter" data-level="7.4.3" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-1-das-einfache-keynesianische-modell"><i class="fa fa-check"></i><b>7.4.3</b> Anwendungsbeispiel 1: Das einfache Keynesianische Modell</a></li>
+<li class="chapter" data-level="7.4.4" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-2-ols-regression"><i class="fa fa-check"></i><b>7.4.4</b> Anwendungsbeispiel 2: OLS-Regression</a></li>
+<li class="chapter" data-level="7.4.5" data-path="formalia.html"><a href="formalia.html#weiterführende-literatur"><i class="fa fa-check"></i><b>7.4.5</b> Weiterführende Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="formalia.html"><a href="formalia.html#formalia-dist"><i class="fa fa-check"></i><b>7.5</b> Analyse von Verteilungen</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="formalia.html"><a href="formalia.html#vert-begriff"><i class="fa fa-check"></i><b>7.5.1</b> Theoretische und empirische Verteilungen</a></li>
+<li class="chapter" data-level="7.5.2" data-path="formalia.html"><a href="formalia.html#vert-kennzahlen"><i class="fa fa-check"></i><b>7.5.2</b> Kennzahlen zur Beschreibung empirischer Verteilungen</a></li>
+<li class="chapter" data-level="7.5.3" data-path="formalia.html"><a href="formalia.html#vert-grafik"><i class="fa fa-check"></i><b>7.5.3</b> Grafische Komplemente zu klassischen Kennzahlen</a></li>
+<li class="chapter" data-level="7.5.4" data-path="formalia.html"><a href="formalia.html#vert-bemerkungen"><i class="fa fa-check"></i><b>7.5.4</b> Abschließende Bemerkungen</a></li>
+</ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>A</b> Eine kurze Einführung in R Markdown</a><ul>
@@ -367,7 +392,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p>Es gilt: <span class="math inline">\(\mathbb{P}(A\cup B) = \mathbb{P}(A)+\mathbb{P}(B)\)</span> falls <span class="math inline">\(A\cap B=\emptyset\)</span>, also wenn sich A und B gegenseitig ausschließen.</p></li>
 </ol>
 <p>Aus diesen Axiomen lassen sich eine ganze Menge Sätze heraus ableiten, auf die wir im folgenden aber nicht besonders eingehen wollen. Die Grundidee ist aber, bestimmten Ereignissen von Anfang an bestimmte Wahrscheinlichkeiten zuzuordnen, und die Wahrscheinlichkeiten für andere Ereignisse dann aus den eben beschriebenen Regeln abzuleiten.</p>
-<p>Je nach Art des Ergebnisraums <span class="math inline">\(\Omega\)</span> unterscheiden wir zwei grundsätzlich verschiedene Arten von Wahrscheinlichkeitsmodellen: ist <span class="math inline">\(\Omega\)</span> <strong>abzählbar</strong> handelt es sich um ein <strong>diskretes Wahrscheinlichkeitsmodell</strong>. Der Würfelwurf oder ein Münzwurf sind hierfür Beispiele: die Menge der möglichen Ergebnisse ist hier klar abzählbar.<a href="#fn50" class="footnoteRef" id="fnref50"><sup>50</sup></a></p>
+<p>Je nach Art des Ergebnisraums <span class="math inline">\(\Omega\)</span> unterscheiden wir zwei grundsätzlich verschiedene Arten von Wahrscheinlichkeitsmodellen: ist <span class="math inline">\(\Omega\)</span> <strong>abzählbar</strong> handelt es sich um ein <strong>diskretes Wahrscheinlichkeitsmodell</strong>. Der Würfelwurf oder ein Münzwurf sind hierfür Beispiele: die Menge der möglichen Ergebnisse ist hier klar abzählbar.<a href="#fn70" class="footnoteRef" id="fnref70"><sup>70</sup></a></p>
 <p>Ist <span class="math inline">\(\Omega\)</span> <strong>nicht abzählbar</strong> handelt es sich dagegen um ein <strong>stetiges Wahrscheinlichkeitsmodell</strong>. Ein Beispiel hierfür wäre das Fallenlassen von Steinen und die Messung der Falldauer. Die einzelnen Ereignisse wären dann die Falldauer und es würde gelten, dass <span class="math inline">\(\Omega=\mathbb{R^+}\)</span> und <span class="math inline">\(\mathbb{R^+}\)</span> ist nicht abzählbar.</p>
 <p>Welches Modell für den konkreten Anwendungsfall vorzuziehen ist, muss auf Basis von theoretischen Überlegungen entschieden werden.</p>
 </div>
@@ -387,7 +412,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><strong>Beispiel für stochastische Abhängigkeit</strong>: Ein anderer Fall liegt vor, wenn wir die Ereignisse <span class="math inline">\(C\)</span>: “Die Summe beider Würfe ist 6” und <span class="math inline">\(D\)</span>: “Der erste Wurf zeigt eine 2.” betrachten. Hier ist offensichtlich, dass ein kausaler Zusammenhang zwischen den beiden Würfen und den Ereignissen besteht. Es gilt: <span class="math inline">\(\mathbb{P}(C\cap D)=\mathbb{P}(\{2, 4\})=\frac{1}{36}\)</span>. Würden wir die Wahrscheinlichkeiten einfach multiplizieren erhielten wir allerdings <span class="math inline">\(\mathbb{P}(C)\cdot \mathbb{P}(D)=\frac{5}{36}\cdot\frac{1}{6}=\frac{5}{216}\)</span>, wobei <span class="math inline">\(\mathbb{P}(C)=\frac{5}{36}\)</span>.</p>
 </blockquote>
 <p>Ein weiteres wichtiges Konzept ist das der <strong>bedingten Wahrscheinlichkeit</strong>: die bedingten Wahrscheinlichkeit von <span class="math inline">\(A\)</span> gegeben <span class="math inline">\(B\)</span>, <span class="math inline">\(\mathbb{P}(A|B)\)</span>, bezeichnet die Wahrscheindlichkeit für <span class="math inline">\(A\)</span>, wenn wir wissen, dass <span class="math inline">\(B\)</span> bereits eingetreten ist.</p>
-<p>Es gilt dabei:<a href="#fn51" class="footnoteRef" id="fnref51"><sup>51</sup></a></p>
+<p>Es gilt dabei:<a href="#fn71" class="footnoteRef" id="fnref71"><sup>71</sup></a></p>
 <p><span class="math display">\[\mathbb{P}(A|B)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}\]</span></p>
 <blockquote>
 <p><strong>Beispiel:</strong> Sei <span class="math inline">\(A\)</span>: “Der Würfel zeigt eine 6” und <span class="math inline">\(B\)</span>: “Der Würfelwurf zeigt eine gerade Zahl”. Wenn wir bereits wissen, dass <span class="math inline">\(B\)</span> eingetreten ist, ist <span class="math inline">\(\mathbb{P}(A)\)</span> nicht mehr <span class="math inline">\(\frac{1}{6}\)</span>, weil wir ja wissen, dass 1, 3 und 5 nicht auftreten können. Vielmehr gilt <span class="math inline">\(\mathbb{P}(A|B)=\frac{1/6}{1/2}=\frac{1}{3}\)</span>.</p>
@@ -411,7 +436,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Das mag im Moment ein wenig nach ‘Pfennigfuchserei’ aussehen, die Unterscheidung zwischen dem nicht-zufälligem funtionalen Zusammenhangs, aber einem zufälligen Input bei ZV ist wichtig, um den Sinn in vielen fortgeschrittenen Beiträgen im Bereich der Ökonometrie zu sehen.</p>
 <p>Den unterschiedlichen Realisierungen von einer ZV haben jeweils Wahrscheinlichkeiten, die von den Wahrscheinlichkeiten der zugrundeliegenden Ergebnisse des modellierten Zufallsexperiments abhängen.</p>
 <p>Produkte und Summen von ZV sind selbst wieder Zufallsvariables. Man addiert bzw. multipliziert ZV indem man ihre Werte addiert bzw. mutlipliziert.</p>
-<p>Im Falle von diskreten ZV können wir eine Liste erstellen, die für alle möglichen Werte <span class="math inline">\(x_k\in W_X\)</span> die jeweilige Wahrscheinlichkeit <span class="math inline">\(\mathbb{P}(X=x_k)\)</span> angibt.<a href="#fn52" class="footnoteRef" id="fnref52"><sup>52</sup></a> Diese Liste nennen wir <strong>Wahrscheinlichkeitsverteilung</strong> (<em>Probability Mass Function</em>, PMF) von <span class="math inline">\(X\)</span> und sie werden häufig visuell dargestellen. Um diese Liste zu erstellen verwenden wir die zu <span class="math inline">\(X\)</span> gehörende <strong>Wahrscheinlichkeitsfunktion</strong>, (<span class="math inline">\(p(x_k)\)</span>),die uns für jedes Ergebnis die zugehörige Wahrscheinlichkeit gibt:<a href="#fn53" class="footnoteRef" id="fnref53"><sup>53</sup></a></p>
+<p>Im Falle von diskreten ZV können wir eine Liste erstellen, die für alle möglichen Werte <span class="math inline">\(x_k\in W_X\)</span> die jeweilige Wahrscheinlichkeit <span class="math inline">\(\mathbb{P}(X=x_k)\)</span> angibt.<a href="#fn72" class="footnoteRef" id="fnref72"><sup>72</sup></a> Diese Liste nennen wir <strong>Wahrscheinlichkeitsverteilung</strong> (<em>Probability Mass Function</em>, PMF) von <span class="math inline">\(X\)</span> und sie werden häufig visuell dargestellen. Um diese Liste zu erstellen verwenden wir die zu <span class="math inline">\(X\)</span> gehörende <strong>Wahrscheinlichkeitsfunktion</strong>, (<span class="math inline">\(p(x_k)\)</span>),die uns für jedes Ergebnis die zugehörige Wahrscheinlichkeit gibt:<a href="#fn73" class="footnoteRef" id="fnref73"><sup>73</sup></a></p>
 <p><span class="math display">\[p(x_k)=\mathbb{P}(X=x_k)\]</span></p>
 <p>Wenn wir eine ZV analysieren tun wir dies in der Regel durch eine Analyse ihrer Wahrscheinlichkeitsverteilung. Zur genaueren Beschreibung einer ZV wird entsprechend häufig einfach die Wahrscheinlichkeitsfunktion angegeben.</p>
 <p>Im folgenden wollen wir einige häufig auftretende Wahrscheinlichkeitsverteilungen kurz besprechen. Am Ende des Abschnitts findet sich dann ein tabellarischer Überblick. Doch vorher wollen wir uns noch mit den wichtigsten <strong>Kennzahlen einer Verteilung</strong> vertraut machen. Denn wie Sie sich vorstellen können sind Wahrscheinlichkeitsverteilungen als Listen, die alle möglichen Realisierungen einer ZV enthalten ziemlich umständlich zu handhaben. Daher beschreiben wir Wahrscheinlichkeitsverteilungen nicht indem wir eine Liste beschreiben, sondern indem wir bestimmte Kennzahlen zu ihrer Beschreibung verwenden. Die wichtigsten Kennzahlen einer ZV <span class="math inline">\(X\)</span> sind der <strong>Erwartungswert</strong> <span class="math inline">\(\mathbb{E}(x)\)</span> als <em>Lageparameter</em> und die <strong>Standardabweichung</strong> <span class="math inline">\(\sigma(X)\)</span> als <em>Streuungsmaß</em>.</p>
@@ -437,7 +462,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </blockquote>
 <p>Die <em>Wahrscheinlichkeitsfunktion</em> <span class="math inline">\(p(x)\)</span> der Binomialverteilung ist die folgende, wobei <span class="math inline">\(x\)</span> die Anzahl der Erfolge darstellt:</p>
 <p><span class="math display">\[\mathbb{P}(X=x)=p(x)=\binom{n}{x}p^x(1-p)^{n-x}\]</span> Dies ergibt sich aus den grundlegenden Wahrscheinlichkeitsgesetzen: <span class="math inline">\(\binom{n}{x}\)</span> ist der <a href="https://de.wikipedia.org/wiki/Binomialkoeffizient">Binomialkoeffizient</a> und gibt uns die Anzahl der Möglichkeiten wie man bei <span class="math inline">\(n\)</span> Versuchen <span class="math inline">\(x\)</span> Erfolge erziehlen kann. Dies multiplizieren wir mit der Wahrscheinlichkeit <span class="math inline">\(x\)</span>-mal einen Erfolg zu erziehlen und <span class="math inline">\(n-x\)</span>-mal einen Misserfolg zu erziehlen.</p>
-<p>Wenn die ZV <span class="math inline">\(X\)</span> einer Binomialverteilung mit bestimmten Parametern <span class="math inline">\(p\)</span> und <span class="math inline">\(n\)</span> folgt, dann schreiben wir <span class="math inline">\(P \propto \mathcal{B}(n,p)\)</span> und es gilt, dass <span class="math inline">\(\mathbb{E}(X)=np\)</span> und <span class="math inline">\(\sigma(X)=\sqrt{np(1-p)}\)</span>.<a href="#fn54" class="footnoteRef" id="fnref54"><sup>54</sup></a></p>
+<p>Wenn die ZV <span class="math inline">\(X\)</span> einer Binomialverteilung mit bestimmten Parametern <span class="math inline">\(p\)</span> und <span class="math inline">\(n\)</span> folgt, dann schreiben wir <span class="math inline">\(P \propto \mathcal{B}(n,p)\)</span> und es gilt, dass <span class="math inline">\(\mathbb{E}(X)=np\)</span> und <span class="math inline">\(\sigma(X)=\sqrt{np(1-p)}\)</span>.<a href="#fn74" class="footnoteRef" id="fnref74"><sup>74</sup></a></p>
 <p>Im folgenden sehen wir eine Darstellung der Wahrscheinlichkeitsverteilung der Binomialverteilung für verschiedene Parameterwerte:</p>
 <p><img src="ChapA-Wahrscheinlichkeitstheorie_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>R stellt uns einige nützliche Funktionen bereit, mit denen wir typische Rechenaufgaben einfach lösen können:</p>
@@ -465,7 +490,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Möchten wir schließlich eine bestimmte Menge an <strong>Realisierungen</strong> aus einer Binomialverteilung ziehen geht das mit <code>rbinom()</code>, welches drei Argumente verlangt: <code>n</code> für die Anzahl der zu ziehenden Realisierungen, sowie <code>size</code> und <code>prob</code> als da Paramter <span class="math inline">\(n\)</span> und <span class="math inline">\(p\)</span> der Binomialverteilung:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sample_binom &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="fl">0.4</span>)
 sample_binom</code></pre></div>
-<pre><code>## [1] 3 4 6 2 5</code></pre>
+<pre><code>## [1] 5 4 5 5 5</code></pre>
 <blockquote>
 <p><strong>Anwendungsbeispiel Binomialverteilung:</strong> Unser Zufallsexperiment besteht aus dem zehnmaligen Werfen einer fairen Münze. Unter ‘Erfolg’ verstehen wir das Werfen von ‘Zahl’. Nehmen wir an, wir führen das Zufallsexperiment 100 Mal durch, werfen also insgesamt 10 Mal die Münze und schreiben jeweils auf, wie häufig wir dabei einen Erfolg verbuchen konnten. Wenn wir unsere Ergebnisse aufmalen, indem wir auf der x-Achse die Anzahl der Erfolge, und auf der y-Achse die Anzahl der Experimente mit genau dieser Anzahl an Erfolgen aufmalen erhalten wir ein Histogram, das ungefähr so aussieht:</p>
 </blockquote>
@@ -547,7 +572,7 @@ pois_sample</code></pre></div>
 <h2><span class="header-section-number">B.4</span> Stetige Wahrscheinlichkeitsmodelle</h2>
 <div id="stetige-zv" class="section level3">
 <h3><span class="header-section-number">B.4.1</span> Stetige ZV</h3>
-<p>In vorangegangen Abschnitt haben wir uns mit diskreten Wahrscheinlichkeitsmodellen beschäftigt. Die diesen Modellen zugrundeliegenden ZV hatten einen abzählbaren Wertebereich. Häufig interessieren wir uns aber für ZV mit einem nicht abzählbaren Wertebereich, z.B. <span class="math inline">\(\mathbb{R}\)</span> oder <span class="math inline">\([0,1]\)</span>.<a href="#fn55" class="footnoteRef" id="fnref55"><sup>55</sup></a></p>
+<p>In vorangegangen Abschnitt haben wir uns mit diskreten Wahrscheinlichkeitsmodellen beschäftigt. Die diesen Modellen zugrundeliegenden ZV hatten einen abzählbaren Wertebereich. Häufig interessieren wir uns aber für ZV mit einem nicht abzählbaren Wertebereich, z.B. <span class="math inline">\(\mathbb{R}\)</span> oder <span class="math inline">\([0,1]\)</span>.<a href="#fn75" class="footnoteRef" id="fnref75"><sup>75</sup></a></p>
 <p>Bei stetigen Wahrscheinlichkeitsmodellen liegen zwischen zwei Punkten unendlich viele Punkte. Das hat bedeutende Implikationen für die Angabe von Wahrscheinlichkeiten. Im Gegensatz zu diskreten Wahrscheinlichkeitsmodellen hat demnach jeder einzelne Punkt im Wertebereich der ZV die Wahrscheinlichkeit 0:</p>
 <p><span class="math display">\[\mathbb{P}(X=x_k)=0 \quad \forall x_k \in W_X\]</span> wobei <span class="math inline">\(W_X\)</span> für den Wertebereich von ZV <span class="math inline">\(X\)</span> steht</p>
 <p>Als Lösung werden Wahrscheinlichkeiten bei stetigen ZV nicht als Punktwahrscheinlichkeiten, sondern als Intervallwahrscheinlichkeiten angeben. Aus <span class="math inline">\(\mathbb{P}(X=x)\)</span> im diskreten Fall wird im stetigen Fall also:</p>
@@ -651,8 +676,8 @@ uniform_sample</code></pre></div>
 <h3><span class="header-section-number">B.4.3</span> Beispiel: die Normalverteilung</h3>
 <p>Die wahrscheinlich bekannteste stetige Verteilung ist die Normalverteilung. Das liegt nicht nur daran, dass viele natürliche Phänomene als die Realisierung einer normalverteilten ZV modelliert werden können, sondern auch weil es sich mit der Normalverteilung in der Regel sehr einfach rechnen ist. Sie ist also häufig auch einfach eine bequeme Annahme.</p>
 <p>Bei der Normalverteilung handelt es sich um eine <strong>zwei-parametrige</strong> Verteilung über den Wertebereich <span class="math inline">\(W_X=\mathbb{R}\)</span>. Die beiden Parameter sind <span class="math inline">\(\mu\)</span> und <span class="math inline">\(\sigma^2\)</span>, welche unmittelbar als Erwartungswert (<span class="math inline">\(\mathbb{E}(X)=\mu\)</span>) und Varianz (<span class="math inline">\(Var(X)=\sigma^2\)</span>) gelten. Wir schreiben <span class="math inline">\(X\propto \mathscr{N}(\mu, \sigma^2)\)</span> wenn für die PDF von <span class="math inline">\(X\)</span> gilt:</p>
-<p><span class="math display">\[f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}} \]</span></p>
-<p>Unter der <strong>Standard-Normalverteilung</strong> verstehen wir eine Normalverteilung mit den Paramtern <span class="math inline">\(\mu=0\)</span> und <span class="math inline">\(\sigma=1\)</span>.<a href="#fn56" class="footnoteRef" id="fnref56"><sup>56</sup></a> Sie verfügt über die deutlich vereinfachte PDF:</p>
+<p><span class="math display">\[f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\]</span></p>
+<p>Unter der <strong>Standard-Normalverteilung</strong> verstehen wir eine Normalverteilung mit den Paramtern <span class="math inline">\(\mu=0\)</span> und <span class="math inline">\(\sigma=1\)</span>.<a href="#fn76" class="footnoteRef" id="fnref76"><sup>76</sup></a> Sie verfügt über die deutlich vereinfachte PDF:</p>
 <p><span class="math display">\[f(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}x^2}\]</span></p>
 <p>Die CDF der Normalverteilung ist analytisch nicht einfach darzustellen, die Werte können in R aber leicht über die Funktion <code>pnorm</code> (s.u.) abgerufen werden.</p>
 <p>Im folgenden sind die PDF und CDF für exemplarische Parameterkombinationen dargestellt:</p>
@@ -748,21 +773,21 @@ exp_sample</code></pre></div>
 <p>In der statistischen Praxis sind das die Modelle, die wir verwenden, die DGP (<em>data generating processes</em>) zu beschreiben - also die Prozesse, welche die Daten, die wir in unserer Forschung verwenden, generiert haben.</p>
 <p>Deswegen sprechen Statistiker*innen auch häufig von <em>Populationsmodellen</em>. Am besten stellt man es sich mit Hilfe der <code>r*()</code> Funktionen vor: man nimmt an, dass es einen DGP gibt, und unsere Daten der Output der <code>r*()</code>-Funktion zum Ziehen von Realisierungen sind. Mit dem Begriff des Populationsmodells macht man dabei deutlich, dass unsere Stichprobe nur eine Stichprobe darstellt - und nicht die gesamte Population aller möglichen Realisierungen des DGP.</p>
 <p>Nun wird auch deutlich, warum Kenntnisse in der Wahrscheinlichkeitsrechnung so wichtig sind: wenn wir statistisch mit Daten arbeiten, dann versuchen wir in der Regel über die Daten Rückschlüsse auf den DGP zu schließen. Dafür müssen wir zunächst einmal eine grobe Struktur für den DGP annehmen, und dafür brauchen wir Kenntnisse in der Wahrscheinlichkeitsrechnung und für den entsprechenden Anwendungsfall konkrete Vorannahmen. Dann können wir, gegeben unsere Daten, unsere Beschreibung des DGP verfeinern.</p>
-<p>Im Großteil dieses Kurses bedeutet das, dass wir für den DGP ein bestimmtes Wahrscheinlichkeitsmodell annehmen und dann auf Basis unserer Daten die Parameter für dieses Modell schätzen wollen. Dieses Vorgehen nennen wir <em>parametrisch</em>, weil wir hier vor allem Parameter schätzen wollen.<a href="#fn57" class="footnoteRef" id="fnref57"><sup>57</sup></a></p>
+<p>Im Großteil dieses Kurses bedeutet das, dass wir für den DGP ein bestimmtes Wahrscheinlichkeitsmodell annehmen und dann auf Basis unserer Daten die Parameter für dieses Modell schätzen wollen. Dieses Vorgehen nennen wir <em>parametrisch</em>, weil wir hier vor allem Parameter schätzen wollen.<a href="#fn77" class="footnoteRef" id="fnref77"><sup>77</sup></a></p>
 
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="50">
-<li id="fn50"><p>Wir nennen eine Menge abzählbar wenn sie mit Hilfe der ganzen Zahlen <span class="math inline">\(\mathbb{N}\)</span> indiziert werden kann. Das bedeutet, dass auch unendlich große Mengen als abzählbar gelten können.<a href="stat-stoch.html#fnref50">↩</a></p></li>
-<li id="fn51"><p>An der Formel wird noch einmal deutlich, dass wenn <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> stochastisch unabhängig sind wir nichts von <span class="math inline">\(B\)</span> über <span class="math inline">\(A\)</span> und umgekehrt lernen können, also gilt: <span class="math inline">\(\mathbb{P}(A|B)=\mathbb{P}(A)\)</span> und <span class="math inline">\(\mathbb{P}(B|A)=\mathbb{P}(B)\)</span>.<a href="stat-stoch.html#fnref51">↩</a></p></li>
-<li id="fn52"><p>Aus den <em>Kolmogorow Axiomen</em> oben ergibt sich, dass die Summe all dieser Wahrscheinlichkeiten 1 ergeben muss: <span class="math inline">\(\sum_{k\geq 1}\mathbb{P}(X=x_k)=1\)</span>.<a href="stat-stoch.html#fnref52">↩</a></p></li>
-<li id="fn53"><p>Zu jeder Wahrscheinlichkeitsverteilung gibt es eine eindeutige Wahrscheinlichkeitsfunktion und jede Wahrscheinlichkeitsfunktion definiert umgekehrt eine eindeutig bestimmte diskrete Wahrscheinlichkeitsverteilung.<a href="stat-stoch.html#fnref53">↩</a></p></li>
-<li id="fn54"><p>Die Herleitung finden Sie im Statistikbuch Ihres Vertrauens oder auf <a href="https://de.wikipedia.org/wiki/Binomialverteilung#Erwartungswert">Wikipedia</a>.<a href="stat-stoch.html#fnref54">↩</a></p></li>
-<li id="fn55"><p>Die Intervallschreibweise <span class="math inline">\([0,1]\)</span> ist potenziell verwirrent. Es gilt: <span class="math inline">\([a,b]=\{x\in\mathbb{R} | a\leq x \leq b\}\)</span> (geschlossenes Intervall), <span class="math inline">\((a,b)=\{x\in\mathbb{R} | a &lt; x &lt; b\}\)</span> (offenes Intervall), <span class="math inline">\((a,b)=\{x\in\mathbb{R} | a &lt; x \leq b\}\)</span>(linksoffenes Intervall) und <span class="math inline">\((a,b)=\{x\in\mathbb{R} | a \leq x &lt; b\}\)</span>(rechtsoffenes Intervall).<a href="stat-stoch.html#fnref55">↩</a></p></li>
-<li id="fn56"><p>Viele Tabellen mit bestimmten Kennzahlen der Normalverteilung beziehen sich auf die Standard-Normalverteilung. Wenn man diese Werte verwenden will, muss man die tatsächlich verwendete Stichprobe ggf. erst <a href="https://de.wikipedia.org/wiki/Standardisierung_(Statistik)">z-transformieren</a>. Unter letzterem versteht man die <em>Normalisierung</em> einer ZV sodass sie den Erwartungswert 0 und die Varianz 1 besitzt. Dies geht i.d.R. für jede ZV <span class="math inline">\(X\)</span> recht einfach über die Formel <span class="math inline">\(Z=\frac{X-\mu}{\sigma}\)</span>, wobei <span class="math inline">\(Z\)</span> die standartisierte ZV, <span class="math inline">\(\mu\)</span> den Erwartungswert und <span class="math inline">\(\sigma\)</span> die Standardabweichung von <span class="math inline">\(X\)</span> bezeichnet<a href="stat-stoch.html#fnref56">↩</a></p></li>
-<li id="fn57"><p>Die Alternative, <em>nicht-parametrische</em> Verfahren, nehmen kein konkretes Wahrscheinlichkeitsmodell an, sondern wählen das Modell auch auf Basis der Daten.<a href="stat-stoch.html#fnref57">↩</a></p></li>
+<ol start="70">
+<li id="fn70"><p>Wir nennen eine Menge abzählbar wenn sie mit Hilfe der ganzen Zahlen <span class="math inline">\(\mathbb{N}\)</span> indiziert werden kann. Das bedeutet, dass auch unendlich große Mengen als abzählbar gelten können.<a href="stat-stoch.html#fnref70">↩</a></p></li>
+<li id="fn71"><p>An der Formel wird noch einmal deutlich, dass wenn <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> stochastisch unabhängig sind wir nichts von <span class="math inline">\(B\)</span> über <span class="math inline">\(A\)</span> und umgekehrt lernen können, also gilt: <span class="math inline">\(\mathbb{P}(A|B)=\mathbb{P}(A)\)</span> und <span class="math inline">\(\mathbb{P}(B|A)=\mathbb{P}(B)\)</span>.<a href="stat-stoch.html#fnref71">↩</a></p></li>
+<li id="fn72"><p>Aus den <em>Kolmogorow Axiomen</em> oben ergibt sich, dass die Summe all dieser Wahrscheinlichkeiten 1 ergeben muss: <span class="math inline">\(\sum_{k\geq 1}\mathbb{P}(X=x_k)=1\)</span>.<a href="stat-stoch.html#fnref72">↩</a></p></li>
+<li id="fn73"><p>Zu jeder Wahrscheinlichkeitsverteilung gibt es eine eindeutige Wahrscheinlichkeitsfunktion und jede Wahrscheinlichkeitsfunktion definiert umgekehrt eine eindeutig bestimmte diskrete Wahrscheinlichkeitsverteilung.<a href="stat-stoch.html#fnref73">↩</a></p></li>
+<li id="fn74"><p>Die Herleitung finden Sie im Statistikbuch Ihres Vertrauens oder auf <a href="https://de.wikipedia.org/wiki/Binomialverteilung#Erwartungswert">Wikipedia</a>.<a href="stat-stoch.html#fnref74">↩</a></p></li>
+<li id="fn75"><p>Die Intervallschreibweise <span class="math inline">\([0,1]\)</span> ist potenziell verwirrent. Es gilt: <span class="math inline">\([a,b]=\{x\in\mathbb{R} | a\leq x \leq b\}\)</span> (geschlossenes Intervall), <span class="math inline">\((a,b)=\{x\in\mathbb{R} | a &lt; x &lt; b\}\)</span> (offenes Intervall), <span class="math inline">\((a,b)=\{x\in\mathbb{R} | a &lt; x \leq b\}\)</span>(linksoffenes Intervall) und <span class="math inline">\((a,b)=\{x\in\mathbb{R} | a \leq x &lt; b\}\)</span>(rechtsoffenes Intervall).<a href="stat-stoch.html#fnref75">↩</a></p></li>
+<li id="fn76"><p>Viele Tabellen mit bestimmten Kennzahlen der Normalverteilung beziehen sich auf die Standard-Normalverteilung. Wenn man diese Werte verwenden will, muss man die tatsächlich verwendete Stichprobe ggf. erst <a href="https://de.wikipedia.org/wiki/Standardisierung_(Statistik)">z-transformieren</a>. Unter letzterem versteht man die <em>Normalisierung</em> einer ZV sodass sie den Erwartungswert 0 und die Varianz 1 besitzt. Dies geht i.d.R. für jede ZV <span class="math inline">\(X\)</span> recht einfach über die Formel <span class="math inline">\(Z=\frac{X-\mu}{\sigma}\)</span>, wobei <span class="math inline">\(Z\)</span> die standartisierte ZV, <span class="math inline">\(\mu\)</span> den Erwartungswert und <span class="math inline">\(\sigma\)</span> die Standardabweichung von <span class="math inline">\(X\)</span> bezeichnet<a href="stat-stoch.html#fnref76">↩</a></p></li>
+<li id="fn77"><p>Die Alternative, <em>nicht-parametrische</em> Verfahren, nehmen kein konkretes Wahrscheinlichkeitsmodell an, sondern wählen das Modell auch auf Basis der Daten.<a href="stat-stoch.html#fnref77">↩</a></p></li>
 </ol>
 </div>
             </section>
