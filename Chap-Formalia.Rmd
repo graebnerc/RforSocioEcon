@@ -56,7 +56,19 @@ library(icaeDesign)
 library(ggrepel)
 library(ggpubr)
 library(latex2exp)
+library(matlib)
+library(fitdistrplus)
+library(moments)
+library(ineq)
+library(rmutil)
 ```
+
+> **Hinweis**: Das Paket [matlib](http://friendly.github.io/matlib/) [@R-matlib]
+verwenden wir für einige Matrizenoperationen und zum Lösen linearer
+Gleichungssysteme.
+Streng genommen ist das Paket nicht dringend nötig, da anstatt der Funktion
+`matlib::Solve()` auch die Funktion `base::solve()` verwendet werden kann.
+Der Output von `matlib::Solve()` ist aber schöner und etwas informativer.
 
 ## Änderungsraten und die Rolle des Logarithmus {#formalia-wachstum}
 
@@ -196,7 +208,7 @@ häufig hilfreich für die grafische Darstellung von Wachstumsraten:^[Zur
 Transformation der y-Achse verwenden wir in `ggplot2` die Funktion
 `scale_y_continuous()` und setzen das Argument `trans = "log"`.]
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, out.height='50%'}
 x0 <- 100
 x <- c(x0, rep(NA, 99))
 for (i in 2:100){
@@ -353,9 +365,9 @@ korrespondiert.
 [Später]() werden wir zudem lernen, dass die logarithmierte Form die Analyse
 von Wachstumsraten in linearen Regressionsmodellen deutlich vereinfacht.
 
-  * AB mit Wachstumsaufgabe
 
 ## Grundlagen der Differentialrechnung {#formalia-diff}
+
 
 ### Einleitung: Differential- und Integralrechnung
 
@@ -818,7 +830,7 @@ als Benchmark verwendete
 Grafisch können wir solche Funktionen mit Hilfe einer *Heatmap* darstellen,
 wobei wir hier annehmen, dass $a=1$ und $b=100$:
 
-```{r}
+```{r, echo=FALSE}
 x <- seq(-2, 2, length.out = 150)
 y <- seq(-1, 3, length.out = 150)
 data <- expand.grid(X=x, Y=y) %>%
@@ -906,26 +918,167 @@ ggplot(
 
 ### Anwendungsbeispiel
 
-TBD, aber eventuell gar nicht nötig? Vielleicht ein Beispiel mit dem 
-Keynes Modell und Investitionen?
+Wir betrachten erneut das klassische keynesianische Modell, wobei wir die 
+Notation leicht um $T$ als die Steuerlast erweitern:
 
+$$
+Y=\frac{c_0 + I + G}{1-c_1(1-T)}
+$$
+
+Wenn wir nun wissen wollen wie $Y$ auf eine Änderung der Staatsausgaben reagiert
+können wir diese Formel nach $G$ ableiten. 
+Dazu müssten wir gleich mehrere Regeln, die wir oben kennen gelernt haben,
+anwenden.
+
+
+Aber natürlich können wir das Ganze ganz einfach in R lösen.
+Um die Ableitung herzuleiten verwenden wir dabei einfach wieder die 
+Funktion `D()`:
+
+```{r}
+keynes_model <- expression(Y=(c_0 + I + G) / (1 - c_0*(1-T)))
+D(expr = keynes_model, name = "G")
+```
+
+Es gilt also:
+
+\begin{align}
+\frac{\partial Y}{\partial G} &= \frac{1}{1-c_0(1-T)}
+\end{align}
+
+Nehmen wir einmal an die marginale Konsumquote $c_0$ läge bei $20\%$ und der 
+Steuersatz $T$ bei $20\%$.
+Eine Erhöhung der Staatsausgaben würde dann $Y$ über den Multiplikator
+$\frac{1}{1-0.2(1-0.25)}=1.176471$ erhöhen.
+
+Alternativ können wir das Ergebnis natürlich analytisch unter Zuhilfename der
+oben eingeführten Ableitungsregeln herleiten.
 
 ## Lineare Algebra {#formalia-linalg}
 
-* Matrixschreibweise: Beispiel Keynes für Theorie, und OLS 
-  * A la die tauchen häufig auf
-  * Nur Grundregeln, im Aufgabenblatt dann händisch
-  
-Bei Matrizen handelt es sich um zweidimensionale Objekte mit Zeilen und Spalten,
-bei denen es sich jeweils um atomare Vektoren handelt.
+Ebenfalls sehr häufig werden Sie Matrizen und den dazugehörigen 
+Rechenoperationen ('Matrizenalgebra' genannt) in Kontakt kommen.
+Das Ziel dieses Abschnitts ist keine abschließende Einführung in Matrizen
+und Matrizenalgebra, sondern Ihnen einen groben Überblick über typische
+Rechenoperationen und deren Implementierung in R zu bekommen.
+Für eine ausführlichere Einführung verweisen wir auf @chiang oder @linalg.
 
-* Was macht lineare Algebra
-* Was macht eine Matrix: Vektorraum etc.
-* Warum ist das in der Ökonomik so wichtig
+Matrizen werden häufig im Kontext der *linearen Algebra* verwendet. 
+^[Das liegt daran, dass jede $n\times k$-Matrix $A$, also eine eine Matrix mit
+$n$ Zeilen und $k$  Spalten, als eine Funktion $f(x)=Ax$ dargestellt werden 
+kann, für die gilt: $f: \mathbb{R}^{n}\rightarrow \mathbb{R}^k$. Diese Funktion
+ist immer *linear*.
+Tatsächlich gilt, dass jede Funktion $f$ nur dann linear ist, wenn es eine 
+Matrix $A$ gibt, für die gilt $f(x)=Ax$.]
+Zahlreiche sozioökonomische Konzepte bedienen sich der linearen Algebra, in der
+Matrizen häufig verwendet werden, um lineare Gleichungssysteme 
+dazustellen. 
+Die Matrixdarstellung ist dabei nicht nur kompakter, sie erlaubt es uns auch
+relativ leicht zu überprüfen ob das System konsistent und lösbar ist.
+Die foldenden zwei Beispiele machen dies hoffentlich deutlich.
 
-### Einführung zu Matrizen
+Das erste Beispiel bezieht sich auf das klassischen Keynesianische Modell, 
+das Sie wahrscheinlich in folgender Form kennen:
 
-Matrizen werden mit der Funktion `matrix()`erstellt.
+\begin{align}
+Y&=C+I+G\\
+C&=a+bY
+\end{align}
+
+Nehmen wir an die Staatsausgaben und Investitionen wären exogen bekannt.
+Dann kann dieses Modell äquivalent in Matrixform geschrieben werden:
+
+\begin{align}
+Ax = d
+\end{align}
+wobei $A=\left(\begin{array}{cc} 1 & -1 \\ -b & 1 \end{array}\right)$,
+$x=\left(\begin{array}{cc} Y \\ C \end{array}\right)$ und
+$d=\left(\begin{array}{cc} I + G  \\ a \end{array}\right)$,
+wobei die beiden Unbekannten in diesem Fall das Einkommen $Y$ und der 
+Konsum $C$ sind.
+
+Matrizen helfen uns solche Gleichungssysteme komprimiert darzustellen und
+zu analysieren, insbesondere zu testen ob es Werte für die freien Parameter - 
+hier $Y$ und $C$ - gibt sodass das gesamte System konsistent ist.
+Wir sehen unten wie genau wir solche Systeme in R recht einfach lösen können.
+
+Ein weiteres Beispiel wo wir - vielleicht auch häufig unbewusst - Methoden der
+linearen Algebra verwenden ist in der Ökonometrie. Wir haben im letzten Kapitel
+das einfache lineare Regressionsmodell kennen gelernt, das wir allgemein
+für $n$ Beochatungen und $p$ erklärenden Variablen folgendermaßen geschrieben
+haben:
+
+$$y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_p x_{ip} + \epsilon_i, i=1,...,n$$
+
+Da wir in der Praxis regelmäßig mehr als eine erklärende Variable verwenden (also $p>1$)
+werden Schätzgleichungen fast ausschließlich in Matrixform dargestellt, denn
+wir können explizit alle $n$ Gleichungen untereinander schreiben:
+
+\begin{align}
+y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + ... + \beta_p x_{1p} + \epsilon_1\\
+y_2 = \beta_0 + \beta_1 x_{21} + \beta_2 x_{22} + ... + \beta_p x_{2p} + \epsilon_2\nonumber\\
+\vdots \nonumber\\
+y_n = \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + ... + \beta_p x_{np} + \epsilon_n\nonumber
+\end{align}
+
+Und dann in Matrixform ausdrücken:
+
+\begin{align}
+\left( 
+\begin{array}{c}                                
+y_1 \\                                               
+y_2  \\
+\vdots\\
+y_n\\
+\end{array}
+\right) =
+\left( 
+\begin{array}{ccccc}                                
+1 & x_{11} & x_{12} & \dots & x_{1p} \\                                               
+1 & x_{21} & x_{22} & \dots & x_{2p} \\
+\vdots & \vdots & \vdots & \vdots & \vdots\\
+1 & x_{n1} & x_{n2} & \dots & x_{np} \\
+\end{array}
+\right)
+\times 
+\left( 
+\begin{array}{c}                                
+\beta_1 \\                                               
+\beta_2  \\
+\vdots\\
+\beta_n\\
+\end{array}
+\right)
++
+\left( 
+\begin{array}{c}                                
+\epsilon_1 \\                                               
+\epsilon_2  \\
+\vdots\\
+\epsilon_n\\
+\end{array}
+\right)
+\end{align}
+
+Und letzteres wie folgt schreiben:
+
+$$\boldsymbol{y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}$$
+
+Dementsprechend können wir auch den OLS-Schätzer in Matrixform darstellen.
+Das erlaubt einfachere und allgemeinere Beweise, und ist vor allem für die 
+algorithmische Implementierung sehr wichtig. Auch wenn wir uns mit diesen 
+Details nicht notwendigerweise genau auseinandersetzen müssen, sollte die 
+grundlegende Rolle der linearen Algebra doch nicht unterschätzt werden.
+Wir werden das Beispiel des OLS-Schätzers unten noch genauer besprechen.
+Zunächst beginnen wir mit einer allgemeinen Einführung in den Umgang mit 
+Matrizen in R.
+
+### Einführung von Matrizen
+
+Technisch handelt es sich bei Matrizen um zweidimensionale Objekte mit Zeilen 
+und Spalten, bei denen es sich jeweils um atomare Vektoren handelt.
+
+In R werden Matrizen mit der Funktion `matrix()`erstellt.
 Diese Funktion nimmt als erstes Argument die Elemente der Matrix und dann
 die Spezifikation der Anzahl von Zeilen (`nrow`) und/oder der Anzahl von
 Spalten (`ncol`):
@@ -934,6 +1087,7 @@ Spalten (`ncol`):
 m_1 <- matrix(11:20, nrow = 5)
 m_1
 ```
+
 Wie können die Zeilen, Spalten und einzelne Werte folgendermaßen extrahieren
 und ggf. Ersetzungen vornehmen:
 
@@ -948,6 +1102,77 @@ m_1[1,] # Erste Zeile
 ```{r}
 m_1[2,2] # Element [2,2]
 ```
+
+Es gibt einige **besondere Matrizen**, die aufgrund ihrer speziellen 
+Eigenschaften Eigennamen erhalten haben. 
+
+Eine Matrix mit der gleichen Anzahl von Zeilen und Spalten wird 
+**quadratische Matrix** genannt.
+
+$$
+\left( 
+\begin{array}{cccc}                                
+a_{11} & a_{12} & a_{13} & a_{14} \\                                               
+a_{21} & a_{22} & a_{23} & a_{24} \\
+a_{31} & a_{32} & a_{33} & a_{34} \\
+a_{41} & a_{42} & a_{43} & a_{44} \\
+\end{array}
+\right)
+$$
+
+Die Elemente auf der 'Diagonalen' einer quadratischen $n\times n$-Matrix, also
+$\{a_ii\}^n_{i=1}$, werden die *Hauptdiagonale* dieser Matrix genannt.
+
+Eine Matrix, die von Null verschiedene Einträge nur auf der Hauptdiagonale
+aufweist heißt **Diagonalmatrix**:
+
+$$
+\left( 
+\begin{array}{cccc}                                
+1 & 0 & 0 & 0 \\                                               
+0 & 2 & 0 & 0 \\
+0 & 0 & 3 & 0 \\
+0 & 0 & 0 & 4 \\
+\end{array}
+\right)
+$$
+
+Bei der **oberen Dreiecksmatrix** befinden sich von Null verschiedene 
+Einträge ausschließlich auf oder über der Hauptdiagonale, bei der 
+**unteren Dreiecksmatrix** ist dies genau umgekehrt.
+Hier ein Beispiel für eine untere Dreiecksmatrix:
+
+$$
+\left( 
+\begin{array}{cccc}                                
+1 & 0 & 0 & 0 \\                                               
+1 & 2 & 0 & 0 \\
+1 & 2 & 3 & 0 \\
+1 & 2 & 3 & 4 \\
+\end{array}
+\right)
+$$
+
+Bei der **Identitätsmatrix** (oder: 'Einheitsmatrix') handelt es sich um eine
+quadratische Matrix, die auf der Hauptdiagonalen nur 1er und neben der 
+Haupdiagonalen nur 0er enthält. Sie wird mit $\mathbb{I_n}$ bezeichnet, wobei
+$n$ die Anzahl der Zeilen und Spalten angeht:
+
+$$
+\mathbb{I_4}=
+\left( 
+\begin{array}{cccc}                                
+1 & 0 & 0 & 0 \\                                               
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+\end{array}
+\right)
+$$
+
+Wird eine beliebige Matrix mit einer passenden Identitätsmatrix multipliziert,
+ist das Ergebnis die ursprüngliche Matrix selbst, daher der Name.
+Wir können $\mathbb{I}_n$ in R mit `diag(n)` direkt erstellen.
 
 ### Grundregeln der Matrizenalgebra
 
@@ -973,6 +1198,37 @@ $$A = \left(
 ```{r}
 matrix_a <- matrix(c(1,5,6,3), ncol = 2)
 matrix_b <- matrix(c(0,4,2,8), ncol = 2)
+```
+
+**Matrix-Transponierung**
+
+Die transponierte Matrix $A'$ ergibt sich aus $A$ indem die Spalten und 
+Zeilen vertauscht werden.
+Im folgenden ist unsere Beispielmatrix und ihre Transponierung dargestellt:
+
+$$
+A = \left( 
+\begin{array}{rrr}                                
+1 & 6 \\                                               
+5 & 3 \\                                               
+\end{array}
+\right) \quad
+A' = \left( 
+\begin{array}{rrr}                                
+1 & 5 \\                                               
+6 & 3 \\                                               
+\end{array}
+\right)
+$$
+
+In R können wir eine Matrix mit der Funktion `t()` transponieren:
+
+```{r}
+matrix_a
+```
+
+```{r}
+t(matrix_a)
 ```
 
 **Skalar-Addition**
@@ -1048,27 +1304,258 @@ a_{21}\cdot b_{11} + a_{22}\cdot b_{21} & a_{21}\cdot b_{12}+a_{22}\cdot b_{22}\
 matrix_a %*% matrix_b
 ```
 
+Wir wissen von oben auch, dass $A\mathbb{I}_2=A$:
+
+```{r}
+matrix_a
+matrix_a %*% diag(2)
+```
+
 **Matrizen invertieren**
 
 Die Inverse einer Matrix $\boldsymbol{A}$, $\boldsymbol{A}^{-1}$, ist 
 definiert sodass gilt
 $$\boldsymbol{A}\boldsymbol{A}^{-1}=\boldsymbol{I}$$
-Sie kann in R mit der Funktion `solve()` identifiziert werden:
+Sie kann in R mit der Funktion `inv()` aus dem Paket 
+[matlib](http://friendly.github.io/matlib/)^[Alternativ können Sie auch die 
+Funktion `solve()` aus `base` verwenden; hier ist das erste Argument `a` und 
+der Output ist weniger informativ.] identifiziert werden, wobei wir
+die Matrix als erstes oder Argument `X` an `inv()` übergeben:
 
 ```{r}
-solve(matrix_a)
+inv(X = matrix_a)
 ```
 ```{r}
-matrix_a %*% solve(matrix_a)
+matrix_a %*% inv(matrix_a)
 ```
 
 Die minimalen Abweichungen sind auf machinelle Rundungsfehler zurückzuführen und
 treten häufig auf.
 
+Gerade die letzte Operation ist zentral um zu verstehen wie wir mit Hilfe der
+Matrizenalgebra lineare Gleichungssysteme wie oben beschrieben lösen können.
+Denn diese Gleichungssysteme können - wie in der Einleitung beschrieben - in die
+Form 
 
-### Anwendungsbeispiel 1: OLS-Regression
+$$Ax=b$$
 
-### Anwendungsbeispiel 2: Das einfache Keynesianische Modell
+gebracht werden. In Anwendungsfällen ist $A$ eine Matrix mit Koeffizienten, 
+$x$ ein Vektor von unbekannten Variablen und $b$ ein Vektor mit Konstanten.
+Entsprechend ist unser Interesse in der Identifikation eines Vektors 
+$x$ sodass die Gleichung konsistent ist und mindestens eine Lösung hat. 
+Wenn wir die Gleichung gemäß der gerade beschriebenen Regeln umformen bekommen
+wir:
+
+\begin{align}
+A^{-1}Ax &= A^{-1}b\\
+x &= A^{-1}b
+\end{align}
+
+In der Matrizenschreibweise korrespondiert die Lösung eines solchen Systems 
+also zur Invertierung der Matrix $A$ - daher auch der Name der R-Funktion 
+`solve()` aus dem Paket `base`.
+
+Nehmen wir also einmal folgenden Fall an: 
+$A=\left(\begin{array}{cc} 1 & 3 \\ -2 & 1 \end{array}\right)$
+und
+$b=\left(\begin{array}{c} 9 \\ 4 \end{array}\right)$.
+
+In diesem Fall können wir das Gleichungssystem in R lösen indem wir `Solve()`
+direkt die Matrix $A$ (über das Argument `A`) und den Vektor $b$ 
+(über das Argument `b`) übergeben:
+
+```{r, error=TRUE}
+A <- matrix(c(1, -2, 3, 1), ncol = 2)
+b <- matrix(c(9, -4), ncol = 1)
+Solve(A = A, b = b)
+```
+
+Wir sehen also unmittelbar, dass das Gleichungssystem - und damit unser Modell -
+konsistent ist und eine eindeutige Lösung 
+$x=\left(\begin{array}{c} 3 \\ 2 \end{array}\right)$ aufweist.^[Wenn Sie die
+einzelnen Schritte zur Lösung nachverfolgen wollen, rufen Sie die Funktion mit 
+dem Argument `verbose=TRUE` auf!]
+Dieses können wir folgendermaßen verifizieren:
+
+```{r}
+x <- matrix(c(3, 2), ncol = 1)
+A %*% x
+```
+
+Wie erwartet erhalten wir hier also wieder unseren ursprünglichen Wert für $b$.
+
+Wenn allerdings $A=\left(\begin{array}{cc} -2 & 1 \\ -4 & 2 \end{array}\right)$
+und $b=\left(\begin{array}{c} 3 \\ 2 \end{array}\right)$, dann würde folgendes passieren:
+
+```{r, error=TRUE}
+A <- matrix(c(-2, -4, 1, 2), ncol = 2)
+b <- matrix(c(3, 2), ncol = 1)
+Solve(A = A, b = b)
+```
+
+Wir sehen also direkt, dass das System nicht lösbar wäre, denn das resultierende
+Gleichungssystem weist einen eindeutigen Widerspruch (`0=2`) auf.
+Der Grund ist, dass die Matrix $A$ *singulär* ist, das heißt sie besitzt keine
+Inverse.
+Das können Sie unmittelbar überprüfen:
+
+```{r, error=TRUE}
+inv(A)
+```
+
+Wir können also nur über die Analyse der Matrix Schlussfolgerungen bezüglich des 
+gesamten Gleichungssystems ziehen. 
+Das ist in der Praxis, in dem die Gleichungssysteme ungleich größer und
+komplexer sind, von enormer Bedeutung.
+
+Ein dritter möglicher Fall tritt ein wenn
+$A=\left(\begin{array}{cc} 1 & 3 \\ -2 & 1 \end{array}\right)$
+und
+$b=\left(\begin{array}{c} 9 \\ 4 \end{array}\right)$:
+
+```{r, error=TRUE}
+A <- matrix(c(4, -2, -2, 1), ncol = 2)
+b <- matrix(c(6, -3), ncol = 1)
+Solve(A = A, b = b)
+```
+
+In diesem Falle sehen wir keinen Widerspruch im Gleichungssystem, aber auch
+kein eindeutiges Ergebnis. Das Gleichungssystem hat also *unendlich viele*
+Lösungen.
+
+Zur Vollständigkeit seien hier noch einmal die drei möglichen Ergebnisse einer
+solchen Matrizenanalyse kurz beschrieben:
+
+1. Das Gleichungssystem hat *unendlich viele* Lösungen, wir können also auf Basis
+der Struktur keine genaue Vorhersage bezüglich der Parameter in $x$ machen.
+
+2. Das Gleichungssystem hat eine *eindeutige* Lösung, wir haben also ein konsistentes
+Modell, das eine eindeutige Vorhersage produziert.
+
+3. Das Gleichungssystem hat *keine* Lösung, unser Modell ist also inkonsistent.
+
+Im Folgenden werden wir uns das anhand der beiden Beispiele aus der Einleitung 
+genauer anschauen.
+
+
+### Anwendungsbeispiel 1: Das einfache Keynesianische Modell
+
+In der Einleitung haben wir schon gesehen, dass wir das einfache 
+Keynesianische Modell
+
+\begin{align}
+Y&=C+I+G\\
+C&=a+bY
+\end{align}
+
+auch in Matrizenschreibweise darstellen können:
+
+\begin{align}
+Ax = d
+\end{align}
+wobei $A=\left(\begin{array}{cc} 1 & -1 \\ -b & 1 \end{array}\right)$,
+$x=\left(\begin{array}{cc} Y \\ C \end{array}\right)$ und
+$d=\left(\begin{array}{cc} I + G  \\ a \end{array}\right)$.
+
+Der Vorteil ist, dass wir unmittelbar überprüfen können ob das System für 
+bestimmte Werte konsistent ist und eine eindeutige Lösung für $Y$ und $C$ besitzt.
+
+Sind z.B. die Staatsausgaben mit $G=2$ und die Investitionen mit $I=2$ bekannt,
+und die marginale Konsumneigung mit $b=0.4$ und der einkommensunabhängige Konsum 
+mit $a=1$ gegeben, können wir direkt überprüfen ob das System konsistent ist und, 
+da $x=\left(\begin{array}{cc} Y \\ C \end{array}\right)$
+welche Werte für den Konsum und das Gesamteinkommen impliziert werden.
+
+```{r}
+I_keynes <- 2
+G_keynes <- 2
+b_keynes <- 0.4
+a_keynes <- 1
+
+A_keynes <- matrix(c(1, -b_keynes, -1, 1), nrow = 2)
+d_keynes <- matrix(c(I_keynes + G_keynes, a_keynes), ncol = 1)
+Solve(A = A_keynes, b = d_keynes)
+```
+
+In diesem Fall sehen wir, dass das System konsistent ist und eine eindeutige 
+Lösung für das Einkommen $Y=8\frac{1}{3}$ und den Konsum $C=4\frac{1}{3}$ 
+impliziert.
+
+### Anwendungsbeispiel 2: OLS-Regression
+
+Aus der Einleitung wissen wir, dass wir das lineare Regressionsmodell mit $n$
+Beobachtungen von $p$ Variablen
+
+\begin{align}
+y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + ... + \beta_p x_{1p} + \epsilon_1\nonumber\\
+y_2 = \beta_0 + \beta_1 x_{21} + \beta_2 x_{22} + ... + \beta_p x_{2p} + \epsilon_2\nonumber\\
+\vdots \nonumber\\
+y_n = \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + ... + \beta_p x_{np} + \epsilon_n\nonumber
+\end{align}
+
+auch folgendermaßen schreiben können:
+
+$$\boldsymbol{y} = \boldsymbol{X\hat{\beta}} + \boldsymbol{\hat{\epsilon}}$$
+Wobei $\boldsymbol{y}$ eine $n\times 1$-Matrix mit den Beobachtungen für die
+abhängige Variable, $\boldsymbol{X}$ eine $n\times p$-Matrix in der jede Spalte
+zu einem Vektor mit allen $n$ Beobachtungen einer der $p$ erklärenden Variablen 
+korrespondiert. $\boldsymbol{\hat{\epsilon}}$ schließlich ist die $n\times 1$-Matrix
+der Residuen.
+
+Nehmen wir einmal folgende (absurd kleine) Stichprobe an:
+
+```{r}
+daten <- data.frame(
+  y = c(1, 2),
+  x_1 = c(5, 6),
+  x_2 = c(2, 7)
+)
+```
+
+In diesem Fall wäre 
+$\boldsymbol{y}=\left(\begin{array}{c} 1 \\ 2 \end{array}\right)$
+$\boldsymbol{X}=\left(\begin{array}{cc} 5 & 2 \\ 6 & 7 \end{array}\right)$
+Dann lässt sich das Schätzproblem in Matrizenform folgendermaßen schreiben:
+
+$$
+\left(\begin{array}{c} 1 \\ 2 \end{array}\right) = \left(\begin{array}{cc} 5 & 2 \\ 6 & 7 \end{array}\right) \left(\begin{array}{c} \hat{\beta}_1 \\ \hat{\beta}_2 \end{array}\right) + \left(\begin{array}{c} \hat{\epsilon}_1 \\ \hat{\epsilon}_2 \end{array}\right)
+$$
+
+Es lässt sich allgemein zeigen, dass der gesuchte Vektor $\boldsymbol{\beta}$ die Lösung 
+des folgenden Gleichungssystems darstellt:^[Die genaue Herleitung finden Sie hier.]
+
+$$\boldsymbol{\hat{\beta}}=\left(\boldsymbol{X}'\boldsymbol{X} \right)^{-1}\boldsymbol{X}'\boldsymbol{y}$$
+
+Dies ergibt folgende Lösung:
+
+```{r}
+y_matrix <- matrix(c(1, 2), ncol = 1)
+X_matrix <- matrix(c(5, 6, 2, 7), ncol = 2)
+Solve(A = X_matrix, b = y_matrix)
+```
+
+Wir vergleichen mit der Anwendung von `lm()`:
+
+```{r}
+lm(y~x_1+x_2, data = daten)
+```
+
+Wie kann das sein? Sollte nicht das gleiche Ergebnis herauskommen?
+Beachten Sie, dass wir in unserer manuellen Spezifikation keinen Intercept 
+$\hat{\beta}_0$ berücksichtigt haben, `lm()` einen solchen aber standardmäßig
+miteinbezieht. Um die OLS Schätzung ohne Intercept zu schätzen ergänzen wir 
+`-1` zur Schätzgleichung:
+
+```{r}
+lm(y~x_1+x_2-1, data = daten)
+```
+
+Wie Sie sehen bekommen wir das gleiche Ergebnis. 
+Dies ist übrigens auch der Grund für die OLS-Annahme, dass keine perfekte
+Multikollinearität besteht: denn in diesem Fall wäre eine Zeile der Matrix 
+$\boldsymbol{X}$ eine lineare Kombination einer anderen Zeile und $\boldsymbol{X}$
+wäre damit nicht mehr invertiertbar, also $\boldsymbol{X}^{-1}$ würde nicht 
+existieren und $\boldsymbol{\hat{\beta}}$ wäre nicht mehr definiert.
 
 ### Weiterführende Literatur
 
@@ -1081,21 +1568,1073 @@ bietet sich @chiang sehr gut an.
 
 ## Analyse von Verteilungen {#formalia-dist}
 
-* Keine Grundlagen in Wahrscheinlichkeit, aber viel Verteilung
-* Was verstehen wir unter einer Verteilung?
-* Motivationsbeispiel: die Einkommensverteilung in Deutschland 
-* Verteilung in der deskriptiven Statistik und in der Wahrscheinlichkeitstheorie
-* Empirisch häufig zu beobachtende Verteilungen: Normalverteilung, Exponentialverteilung und heavy-tailed Verteilungen
-* Anwendungsbeispiel: die Parteto-Verteilung
-  * Hier würde ich auch auf die Besonderheiten bei der Beschreibung solcher 
-  Verteilung eingehen, z.B. wie kann die Streuung bei Pareto-verteilten Größen
-  beschrieben werden?
-* Anwendung in R: Beschreibung von empirischen Verteilungen, die man aus einem
-Datensatz bekommt
-* Anwendung in R: Schätzen von Verteilungen (hier vielleicht als optionales Add-On was zu den Vermögensstudien)
-* Optional (nur im Skript): Verteilungen mehrerer Variablen
+Fragen nach Verteilungen stehen im Zentrum vieler sozioökonomischer Arbeiten.
+Verteilung von Einkommen und Vermögen, sozialem, kulturellem oder physischen
+Kapital, Firmenproduktivitäten oder natürlichen Ressourcen - in vielen Bereichen 
+geht es Verteilungen.
+
+Gleichzeitig spielen Verteilungen in der technischen Literatur eine wichtige 
+Rolle: in der Ökonometrie ist die Verteilung von Schätzern von zentraler 
+Bedeutung, viele formale Konzepte setzen eine bestimmte Verteilung der Daten 
+voraus und häufig bedarf es zur richtigen Wahl der quantitativen Methoden 
+zumindest rudimentärer Kenntnis über die Verteilung die Daten. 
+
+Kurzum: Wissen über Verteilungen und deren Analyse ist für die sozioökonomische
+Forschungspraxis extrem hilfreich.
+Daher wollen wir uns im folgenden mit verschiedenen Aspekten der Analyse von
+Verteilungen beschäftigen.
+
+Wir steigen mit einem grundlegenden Abschnitt zum (mathematischen) 
+[Begriff der Verteilung](#vert-begriff) ein und diskutieren den Zusammen zwischen 
+Verteilungen und stochastischen Prozessen. 
+Verteilungen sind nämlich immer dann zentral, wenn wir es mit probabilistischen 
+Prozessen zu tun haben.
+
+Als nächstes lernen wir [typische Kennzahlen](#vert-kennzahlen) zur Beschreibung
+von Verteilungen kennen. 
+Besonderes Augenmerk legen wir Kennzahlen zur Streuung und Ungleichheit, wie die
+Standardabweichung oder den Gini Index.
+
+Als nächstes lernen wir einige [grafische Methoden](#vert-grafik) kennen, um die
+wir die quantitativen Kennzahlen immer ergänzen sollten und schließen das 
+Kapitel schließlich mit einigen [abschließenden Bemerkungen](#vert-bemerkungen)
+ab.
+
+### Theoretische und empirische Verteilungen {#vert-begriff}
+
+Wenn wir über Verteilungen sprechen wird der Begriff (mindestens) in zwei 
+verwandten aber unterschiedlichen Arten verwendet: 
+im Sinne der **Verteilung einer Zufallsvariablen** und im Sinne einer 
+**empirischen Beschreibung**. 
+
+Eine empirische Verteilung beschreiben wir in der Regel durch bestimmte 
+Kennzahlen, wie den Mittelwert, die Standardabweichung oder den Gini-Index. 
+Das erlaubt uns Informationen über die Daten in wenigen Zahlen zu 
+kondensieren.^[Wir sehen unten aber auch, dass solche Kennzahlen immer mit 
+einer grafischen Darstellung kombiniert werden sollten.]
+
+Dennoch werden beide Perspektiven auch häufig kombiniert, vor allem wenn wir 
+einen empirischen Datensatz mit einem parametrischen Wahrscheinlichkeitsmodell
+beschreiben wollen. Das bedeutet, dass wir die empirischen Daten als Realisierung
+einer theoretischen ZV interpretieren und die für die theoretische ZV relevanten
+Parameter dann aus den Daten heraus schätzen.^[
+Ein "parametrischen Warhscheinlichkeitsmodell" meint dabei eine ZV mit bestimmten 
+Parametern.]
+Wenn Sie sich nicht mehr ganz sicher sind was wir unter eine ZV oder einem
+theoretischen Wahrscheinlichkeitsmodell verstehen, schauen Sie doch noch einmal
+in den [Anhang zur Wahrscheinlichkeitstheorie](#stat-stoch).
+
+**Anwendungsbeispiel**
+
+
+Stellen Sie sich vor Sie haben folgende Stichprobe vor sich:
+
+```{r, echo=FALSE}
+set.seed(123)
+sample_data <- data.frame(r=rnorm(n = 750, mean = 4, sd = 2))
+```
+
+```{r, echo=TRUE}
+ggplot(data = sample_data) +
+  geom_histogram(mapping = aes(x=r, stat(density)), binwidth = 0.4) +
+  scale_x_continuous(expand = c(0, 1)) + 
+  scale_y_continuous(expand = expand_scale(c(0, 0.05), c(0, 0))) +
+  theme_icae()
+```
+
+Beachten Sie, dass die y-Achse die empirische Dichte der Beobachtungen auf der
+x-Achse angibt, also ein Maß für die relative Häufigkeit der Beobachtungen.^[
+Wenn Sie Schwierigkeiten mit derlei Begriffen haben schauen Sie doch einmal in 
+den [Anhang zur Wahrscheinlichkeitstheorie](#stat-stoch).
+]
+Dies haben wir mit der Funktion `stat(density)` innerhalb von `geom_histogram()`
+erreicht.
+
+Wenn wir die Daten so betrachten erscheint es naheliegend, Sie als Realisierung 
+einer Normalverteilung zu interpretieren: die Form ist grob glockenförmig und 
+symmetrisch. 
+Wir können diese plausibilisieren indem wir mit `geom_density()` die 
+*empirische Dichtefunktion* der Verteilung schätzen und über die Daten legen:
+
+```{r}
+ggplot(data = sample_data) +
+  geom_histogram(
+    mapping = aes(x=r, stat(density)), 
+    binwidth = 0.4, alpha=0.4) +
+    coord_cartesian(xlim = c(-6, 12)) +
+  stat_density(mapping = aes(x=r), 
+               color="blue", 
+               geom="line") +
+  scale_y_continuous(expand = expand_scale(c(0, 0.05), 
+                                           c(0, 0))) +
+  theme_icae()
+```
+
+Das bedeutet, dass wir unsere Daten mit Hilfe der Dichtefunktion 
+(*probability density function* - PDF) der Normalverteilung beschreiben können. 
+Die Formel an sich ist dabei weniger illustrativ, aber sie zeigt was wir mit 
+einem *parametrischen* Wahrscheinlichkeitsmodell meinen:
+
+$$f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
+
+Wenn Sie die Formel genau anschauen finden sich darin zwei Parameter:
+ein Lageparameter $\mu$ und ein Streuparameter $\sigma^2$. 
+Das bedeutet, dass wir mit diesen beiden Werten die theoretische Normalverteilung
+vollständig charakterisieren können.
+Es wäre ja schön, wenn wir unsere Stichprobe oben ebenfalls mit solchen zwei 
+Zahlen vollständig beschreiben könnten.
+
+Das geht allerdings nicht. 
+Unsere empirisch erhobenen Daten sind nie *komplett* identisch zu einer 
+theoretischen Verteilung.
+Was wir daher machen können ist folgender: 
+wir argumentieren, dass unsere Daten sinnvoll durch eine normalverteilte ZV
+*modelliert* werden können.
+Wir sagen dann, dass unsere Stichprobe *approximativ normalverteilt* ist.
+Dann müssen wir im nächsten Schritt nur noch die Werte für die beiden Parameter
+der Normalverteilung finden, sodass die Verteilung optimal zu unseren Daten passt.
+Das bedeutet wir 'fitten' die Verteilung zu unseren Daten.
+
+Was damit gemeint ist verdeutlicht die folgende Darstellung: 
+
+```{r, echo=FALSE}
+x_vals <- seq(-12, 14, 0.1)
+y_vals_pdf <- data.frame(
+  "x" = x_vals,
+  "mu=2, sigma=2" = dnorm(x_vals, mean = 2, sd = 2),
+  "mu=4, sigma=1" = dnorm(x_vals, mean = 4, sd = 1),
+  "mu=4, sigma=2" = dnorm(x_vals, mean = 4, sd = 2),
+  "mu=4, sigma=4" = dnorm(x_vals, mean = 4, sd = 4)
+) %>%
+  gather("Parameter", "y", -x)
+
+ggplot(data = sample_data) +
+  geom_histogram(
+    mapping = aes(x=r, stat(density)), 
+    binwidth = 0.4, alpha=0.4) +
+    coord_cartesian(xlim = c(-6, 14)) +
+  geom_line(data = y_vals_pdf, mapping = aes(x=x, y=y, color=Parameter)) +
+  scale_y_continuous(expand = expand_scale(c(0, 0.05), 
+                                           c(0, 0))) +
+  guides(color = guide_legend(title = TeX("Parameter der Normalverteilung"), 
+                              title.position = "top")) + 
+  scale_color_icae(palette = "mixed", discrete = T,
+                   labels = unname(TeX(c("$\\mu = 2, \\sigma^2 = 4", 
+                                         "$\\mu = 4, \\sigma^2 = 1", 
+                                         "$\\mu = 4, \\sigma^2 = 4", 
+                                         "$\\mu = 4, \\sigma^2 = 16")))
+                   ) +
+  theme_icae() + 
+  ylab("Dichte") +
+  ggtitle("Fits verschiedener Normalverteilungen") +
+  theme(legend.title = element_text(), axis.title.x = element_blank())
+```
+
+Die Normalverteilung mit $\mu=4$ und $\sigma^2=4$ passt zu den Daten recht gut.
+Aber wie identifizieren wir diese Werte?
+In der Praxis müssen diese Werte geschätzt werden.
+Dazu gibt es verschiedene Verfahren.
+
+Die bekannteste Variante ist die *Maximum Likelihood* Schätzung.
+Das Verfahren wird [später](#vert-fit) genauer beschrieben, hier illustrieren wir es mit unserem 
+aktuellen Beispiel.
+
+Die Grundidee der *Maximum Likelihood*-Schätzung ist simpel: wählen Sie die Parameter der Verteilung so, dass die beobachtete Stichprobe die am wahrscheinlichsten zu beobachtende Stichprobe ist.
+In unserem Falle: 
+wählen Sie $\mu=\mu^*$ und $\sigma^2=\sigma^{2*}$ so, dass $\mathcal{N}(\mu^*, \sigma^{2*})$, die
+die Normalverteilung ist, bei der die Wahrscheinlichkeit unsere Stichprobe zu bekommen am größten ist.
+
+Bedenken Sie, dass das nichts darüber aussagt *wie* wahrscheinlich das ist:
+wenn Sie eine unpassende Verteilung mit Maximum Likelihood fitten, bekommen Sie
+selbst für die besten Parameter einen schlechten Fit.
+
+In unserem Fall wollen wir nun eine Normalverteilung zu unseren Daten fitten.
+Dazu verwenden wir die Funktion `fitdist()` aus dem Paket 
+[fitdistrplus](https://github.com/cran/fitdistrplus) [@R-fit].
+Dieser Funktion geben wir über das Argument `data` unsere Stichprobe und über das
+Argument `distr` das Kürzel für die Verteilungsklasse, die wir annehmen.^[Die
+bekanntesten Verteilungen werden im 
+[Anhang zur Wahrscheinlichkeitstheorie](#stat-stoch) beschrieben. Die
+vollständige Liste der Verteilungskürzel in R finden Sie 
+[hier](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Distributions.html).]
+
+```{r, message=FALSE, warning=FALSE}
+fit_dist <- fitdist(data = sample_data$r, 
+                    distr = "norm")
+fit_dist[["estimate"]]
+```
+
+Wir sehen also, dass die optimale Parametrisierung zu $\mu=4.02$ und 
+$\sigma^2=1.967$ korrespondiert.
+Das passt gut zu unserem grafischen Resultat von oben, bei dem uns 
+$\mathcal{N}(4,2)$ bereits als guter Fit ins Auge gesprungen ist.
+
+Allerdings müssten Sie zusätzlich noch testen ob die Verteilungsannahme auch
+tatsächlich plausibel ist, also ob Sie die Hypothese, dass die Daten aus einer
+$\mathcal{N}(4,2)$-Verteilung gezogen wurden. 
+Für den Fall der Normalverteilung können wir dies z.B. mit einem
+[Shapiro-Wilk-Test](https://de.wikipedia.org/wiki/Shapiro-Wilk-Test) machen. 
+
+Hier testen wir die $H_0$, dass die Daten tatsächlich durch eine 
+Normalverteilung generiert wurden.^[Beachten Sie, dass ein solcher Test
+weniger gut geeignet ist, wenn Sie entscheiden wollen ob Ihre Daten
+normalverteilt 'genug' sind um bestimmte Methoden anzuwenden, die eine 
+Normalverteilung voraussetzen. Dazu sollten Sie unbedingt auch grafische
+Methoden wie [QQ-Plots](https://ggplot2.tidyverse.org/reference/geom_qq.html) 
+verwenenden. Für mehr Details schauen Sie mal in 
+[diesen Blogartikel](http://blog.fellstat.com/?p=61).]
+
+```{r}
+shapiro_test <- shapiro.test(sample_data$r)
+shapiro_test
+```
+
+Da der $p>0.1$ können wir die Nullhypothese einer Normalverteilung nicht 
+ablehnen und wir können nun ein gutes Bild unserer Daten vermitteln: wann immer Sie
+hören, dass ein bestimmter Datensatz approximativ gemäß $\mathcal{N}(4,2)$
+verteilt ist, dann haben Sie ein sehr gutes Bild des Datensatzes 
+erhalten.
+
+Es gibt viele verschiedene Verteilungstests, je nach dem welche Verteilung Sie 
+testen wollen.
+Dies ist ein komplexes Thema, das wir in diesem Kapitel nicht weitergehend
+behandeln. @clauset ist ein sehr bekanntest Paper, das eine praktische Anleitung 
+für den Fall der Pareto-Verteilung enthält, aber auch für andere Verteilungen 
+verwendet werden kann.^[Eine frei zugängliche Version des Papers findet sich
+[hier](https://arxiv.org/abs/0706.1062).] 
+Ansonsten finden Sie 
+[hier](https://cran.r-project.org/web/packages/fitdistrplus/vignettes/paper2JSS.pdf) oder 
+[hier](https://stats.stackexchange.com/questions/132652/how-to-determine-which-distribution-fits-my-data-best) praktische Anleitungen und Diskussionen.
+
+### Kennzahlen zur Beschreibung empirischer Verteilungen {#vert-kennzahlen}
+
+Jede Beschreibung einer Verteilung mittels Kennzahlen sollte verschiedene
+Aspekte der Verteilung abdecken. 
+Insbesondere sollten Aussagen zu **Lage**, zur **Streuung**, zur **Form** und zu
+möglichen Ausreißern und zu sonstigen **Besonderheiten** gemacht werden.
+Die folgende Tabelle listet die bekanntesten Kennzahlen in den jeweiligen 
+Bereichen auf. 
+
+| **Kennzahl** | **Art** | **R-Funktion** | 
+|--------------+---------+----------------|
+| Arithm. Mittel | Lage | `mean()` |
+| Modus | Lage | `NA` |
+| Median | Lage | `median()` |
+| Quantile | Lage | `quantile()` |
+| Varianz | Streuung | `var()` |
+| Standardabweichung | Streuung | `sd()` |
+| Variationskoeffizient | Streuung | `sd()/mean()` |
+| IQR | Streuung | `IQR()` |
+| Gini | Streuung | `ineq::Gini()` |
+| Theil | Streuung | `ineq::Theil()` |
+| Schiefe | Form | `moments::skewness()` |
+| Steile | Form | `moments::kurtosis()` |
+| Cook'sche Distanz | Sonst. | `cooks.distance()` |
+
+Für die folgenden Illustrationen nehmen wir an, dass wir es mit einem Datensatz
+mit $N$ kontinuiertlichen Beobachtungen $x_1, x_2, ..., x_n$ zu tun haben.
+Als Beispiel dient uns der Datensatz zu ökonomischen Journalen aus @AER:^[
+Dieser Datensatz enthält Informationen über Preise, Seiten, Zitationen und
+Abonennten von 180 Journalen aus der Ökonomik im Jahr 2004.Bei den hier 
+verwendeten Daten handelt es sich um eine Übersetzung des Datensatzes `Journals`
+aus dem Paket `AER` [@AER].] 
+
+```{r, echo=FALSE}
+journal_daten <- fread(here("data/tidy/journaldaten.csv"))
+head(journal_daten)
+```
+
+**Kennzahlen zur Lage der Verteilung**
+
+Die bekannteste Maßzahl zur Lage einer Verteilung ist das **arithmetische Mittel**.
+Es ist anwendbar wenn wir es mit kontinuierlichen und mindestens
+intervall-skalierten Daten zu tun haben und ist definiert als:
+
+$$\bar{x}=\frac{1}{N}\sum_{i=1}^Nx_i$$
+
+In R wird das arithmetische Mittel mit der Funktion `mean()` berechnet:
+
+```{r}
+avg_preis <- mean(journal_daten[["Preis"]])
+avg_preis
+```
+
+Der durchschnittliche Preis der Journale ist also `r round(avg_preis, 2)`.
+
+Das arithmetische Mittel ist sehr anfällig gegenüber Ausreißern.
+Ein robusteres Maß ist der Median: er ist definiert als der Wert $x_{0.5}$ bei dem
+50% der Daten größer und 50% der Daten kleiner sind als $x_{0.5}$, genauer:
+
+\begin{align}
+x_{0.5} = \begin{cases} 
+\frac{1}{2} \left(x_{0.5\cdot n} + x_{0.5\cdot n + 1}\right) & \text{wenn } 0.5 \cdot x\text{ ganzzahlig}\\
+\frac{1}{2} x_{\lfloor 0.5\cdot n + 1\rfloor} & \text{wenn } 0.5 \cdot x\text{ nicht ganzzahlig}\\
+\end{cases}
+\end{align}
+
+wobei wir annehmen, dass die Werte der Verteilung ihrer Größe nach geordnet
+sind, also $(x_1\leq x_2\leq x_3 \leq...\leq x_n)$ und $\lfloor x \rfloor$ 
+die [Abrundungsfunktion]() bezeichnet.^[So ist z.B. $\lfloor 1.9 \rfloor=1$ und
+$\lfloor 1.2 \rfloor=1$]
+
+In R wird das arithmetische Mittel mit der Funktion `median()` berechnet:
+
+```{r}
+med_preis <- mean(journal_daten[["Preis"]])
+med_preis
+```
+
+Da es insgesamt 180 Journale gibt gilt, dass 90 Journale teurer und 90 Journale
+billiger als $`r round(med_preis, 2)`$ Dollar sind.
+
+Die Idee des Medians kann über den Begriff der **Quantile** verallgemeinert 
+werden.
+Wir sprechen bei dem $\alpha$-**Quantil** einer Verteilung von dem Wert, 
+bei dem $\alpha\cdot 100\%$
+der Datenwerte kleiner und $(1-\alpha)\cdot 100\%$ der Datenwerte größer sind.
+Genauer:
+
+\begin{align}
+x_{\alpha} = \begin{cases} 
+\frac{1}{2} \left(x_{\alpha\cdot n} + x_{\alpha5\cdot n + 1}\right) & \text{wenn } \alpha \cdot x ganzzahlig\\
+\frac{1}{2} x_{\lfloor \alpha\cdot n + 1\rfloor} & \text{wenn } \alpha \cdot x nicht ganzzahlig\\
+\end{cases}
+\end{align}
+
+In R können wir Quantile einfach mit der Funktion `quantile()` berechnen.
+Diese Funktion akzeptiert als erstes Argument einen Vektor von Daten und als
+zweites Argument ein oder mehrere Werte für $\alpha$:
+
+```{r}
+quantile(journal_daten[["Preis"]], c(0.25, 0.5, 0.75))
+```
+
+
+Wie wir hier sehen ist der Median gleich dem $50\%$-Quantil.
+
+Eine sehr flexible Kennzahl für die Lage einer Verteilung ist der **Modus**.
+Er bezeichnet den Wert, der am häufigsten in den Daten vorkommt. 
+Daher ist der Modus auch schon für nominal-skalierte Daten verfügbar.
+
+In R gibt es aber leider keine Funktion, die den Modus direkt berechnet.
+Vielleicht erinnern Sie sich aber, dass wir mit der Funktion `table()` eine
+Häufigkeitstabelle ausgeben können. 
+Daher bekommen wir den Modus über folgenden Umweg:^[Es gibt natürlich noch
+viele andere Möglichkeiten, siehe z.B. 
+[hier](https://stackoverflow.com/questions/2547402/is-there-a-built-in-function-for-finding-the-mode).]
+
+```{r}
+names(table(journal_daten[["Preis"]])
+      )[table(journal_daten[["Preis"]])==max(table(journal_daten[["Preis"]]))]
+```
+
+**Kennzahlen zur Streuung einer Verteilung**
+
+Von besonderem Interesse in der sozioökonomischen Forschung ist die Analyse
+von Ungleichheiten. 
+Dies bedeutet, dass Kennzahlen zur Beschreibung der *Streuung* von 
+Verteilungen von besonderer praktischer Bedeutung sind. 
+
+Die am weitesten verbreiteten Streuungsmaße sind die **Varianz** $Var$ und ihre 
+Quadratwurzel, die **Standardabweichung**, $s$:
+
+$$s_x=\sqrt{Var(x)}=\sqrt{\frac{1}{N-1}\sum_{i=1}^N\left(x_i-\bar{x}\right)^2}$$
+
+Dabei ist zu beachten, dass die empirische Standardabweichung oft einfacher zu
+interpretieren ist, das sie in in den gleichen Einheiten gemessen wird wie die 
+Daten der Stichprobe. 
+Der **Variationskoeffizient** ist eine einheitslose Variante und ist als 
+Quotient der empirische Standardabweichung und dem arithmetischen Mittel
+definitiert: 
+
+$$v_x=\frac{s_x}{\bar{x}}$$
+
+In R können die drei Maße folgendermaßen berechnet werden:
+
+```{r}
+var_preis <- var(journal_daten[["Preis"]])
+var_preis
+
+sd_preis <- sd(journal_daten[["Preis"]])
+sd_preis
+
+varcoef_preis <- sd(journal_daten[["Preis"]]) / mean(journal_daten[["Preis"]])
+varcoef_preis
+```
+
+
+Ein ebenfalls häufig verwendetes Streuungsmaß ist der **Interquantilsabstand**
+(*inter-quantile-range, IQR), welcher als die Differenz zwischen dem $25$ und
+$75\%-$Quantil definiert ist:
+
+$$IQR=x_{0.75} - x_{0.25}$$
+
+Hierbei handelt es sich also um das Intervall, das die 'mittlere Hälfte' der 
+Verteilung umfasst.
+In R können wir den IQR mit der Funktion `IQR` berechnen:
+
+```{r}
+IQR(journal_daten[["Preis"]])
+```
+
+Ein weit verbreitetes Maß zur Messung der Streuung ist der 
+[Gini-Index](https://de.wikipedia.org/wiki/Gini-Koeffizient).
+Dabei handelt es sich um ein relatives Verteilungsmaß, welches auf das 
+Intervall $(0,1)$ normiert wird und den Wert 0 im Falle einer kompletten
+Gleichverteilung und den Wert 1 im Falle eine kompletten Konzentration, d.h. 
+dem Fall, dass ein Beobachtungssubjekt alles und alle anderen nichts besitzen.
+
+In R können wir den Gini Index z.B. mit der Funktion `Gini()` aus dem Paket 
+[ineq](https://cran.r-project.org/package=ineq) [@R-ineq] berechnen, wobei wir 
+hier die Korrektur für Stichproben verwenden müssen indem wir das Argument
+`corr = TRUE` setzen:
+
+```{r}
+test_data_equality <- rep(0.5, 5)
+test_data_inequality <- c(rep(0, 4), 1)
+Gini(test_data_equality, corr = T)
+Gini(test_data_inequality, corr = T)
+```
 
 
 
+Um die Besonderheiten des Gini's zu verstehen wollen wir 
+uns genauer mit der Berechnung des Indices vertraut machen.
+Der Gini-Index ist eng mit dem Konzept der 
+[Lorenz-Kurve](https://en.wikipedia.org/wiki/Lorenz_curve) verknüpft.
 
+Grafisch gesprochen resultiert die Lorentz-Kurve wenn wir auf der x-Achse
+den Anteil der Beobachtungssubjekte und auf der y-Achse ihren Anteil an
+der relevanten Ressource abbilden. 
+Definieren wir $p$ als den Anteil an der Population und $q=\mathcal{L}(p)$ als
+den Anteil an der Ressource, der von $p\%$ der Population gehalten wird.
+Daraus resultiert, dass wir bei völliger Gleichverteilung eine Gerade sehen
+würden, da $p\%$ der Population auch $q=p=\mathcal{L}(p)\%$ der Ressource halten 
+würden.
+Die Lorentz-Kurve visualisiert nun die *Abweichung* von diesem idealtypischen
+Fall in dem $p=q$.
+Dies wird in der folgenden Abbildung deutlich, in der zwei mögliche 
+Lorentzkurve dem hypothetischen Fall der perfekten Gleichverteilung
+gegenübergestellt werden:
+
+```{r, echo=FALSE}
+normalize <- function(x){(x-min(x))/(max(x)-min(x))}
+set.seed(123)
+Distr1 <- normalize(rpareto(100, m = 2.4, s = 1.4))
+Distr2 <- normalize(rnorm(100, 2, 1))
+Distr1 <- Lc(Distr1, n = rep(1, length(Distr1)), plot = F)
+Distr2 <- Lc(Distr2, n = rep(1, length(Distr2)), plot = F)
+
+Distr_df <- data.frame("p1"=Distr1[1]$p, 
+                       "L1"=Distr1[2]$L,
+                       "p2"=Distr2[1]$p, 
+                       "L2"=Distr2[2]$L)
+
+ggplot(data=Distr_df) +
+  geom_point(aes(x=p1, y=L1), color="#002b80", alpha=0.25) +
+  geom_line(aes(x=p1, y=L1), color="#002b80") +
+  geom_point(aes(x=p2, y=L2), color="#8600b3", alpha=0.25) +
+  geom_line(aes(x=p2, y=L2), color="#8600b3") +
+  scale_x_continuous(name=TeX("$p$"), limits=c(0,1), expand = c(0, 0)) +
+  scale_y_continuous(name=TeX("$L(p)=q$"), limits=c(0,1), expand = c(0, 0)) +
+  geom_abline() +
+  labs(title = "Die Lorentzkurve") +
+  theme_icae()
+```
+
+Der Gini-Index $\mathcal{G}$ misst diese Abweichung über die normierte Distanz 
+zwischen $p$ und $q$ indem er einfach das Integral von $p-\mathcal{L}(p)$ berechnet.
+Da die Lorentzkurve innerhalb eines $1\times 1$-Quadrats definiert ist 
+mutliplizieren wir das Integral mit 2 um die Normierung zwischen 0 und 1 zu
+erreichen, sonst wäre das Maximum des Gini-Indices 0.5 (da über der 45-Grad
+Linie per definitionem keine Kurve verlaufen kann):
+
+\begin{align}
+\mathcal{G}= 2\cdot \int_0^1\left(p-\mathcal{L}\left(p\right)\right)\text{d}p = 1-2\cdot \int_0^1\left(\mathcal{L}\left(p\right)\right)\text{d}p
+\end{align}
+
+Der Gini-Indix ist ein recht hilfreiches Maß für Ungleichverteilung wenn wir
+es mit *symmetrischen* Verteilungen zu tun haben, wie die lila Kurve in der
+Abbildung oben.
+Es ist jedoch ein schwierigeres Maß sobald eine *assymmetrische*
+Verteilung vorliegt, wie bei der blauen Kurveoben.
+In letzterem Fall werden wir möglicherweise die gleichen Ginis für recht
+unterschiedliche Verteilungen erhalten.
+Da Vermögens- und Einkommensverteilungen in der Regel immer asymmetrisch sind
+stellt das durchaus eine Herausforderung für den Gini dar und man sollte andere
+Ungleichheitsmaße wie den Atkinson-Index oder den Zanardi-Index in Betracht ziehen.
+
+Der Gini-Index reagiert relativ schwach auf Änderungen an den Extremen der 
+Ressourcenverteilung.
+Wenn diese Änderungen von besonderem Interesse sind bietet sich die Verwendung
+des [Theil-Index](https://en.wikipedia.org/wiki/Theil_index) an.
+Er ist leider nicht so einfach zu interpretieren wie der Gini und eignet sich
+daher vor allem für Vergleiche über die Zeit.^[Der Theil-Index besitzt noch 
+weitere attraktivere Eigenschaften. 
+Insbesondere können die Beiträge von Ungleichheiten
+innerhalb verschiedener Subgruppen und die Ungleichheiten zwischen Gruppen als
+solchen aus dem Index abgeleitet werden. Weitere Informationen finden sich z.B.
+[hier](http://siteresources.worldbank.org/PGLP/Resources/PMch6.pdf)]
+Die Definition ist folgendermaßen:
+
+\begin{align}
+\mathcal{T}= \frac{1}{N}\sum_{i=1}^N\frac{x_i}{\bar{x}}\ln\frac{x_i}{\bar{x}}
+\end{align}
+
+wobei $N$ die Anzahl der Personen, $x_i$ die Ressourcenausstattung von
+Person $i$ und $\bar{x}$ das arithmetische Mittel der Ressourcenausstattung ist.
+
+In R können wir den Theil Index mit der Funktion `Theil()` aus dem Paket
+`ineq` berechnen:
+
+```{r}
+dist_expl <- rpareto(100, 3, 2.1)
+Theil(dist_expl)
+```
+
+Welches Verteilungsmaß für den jeweiligen Anwendungsfall am besten geeignet
+ist hängt auch von der Art der zugrundeliegenden Verteilung ab. 
+So wird zwar häufig die Varianz als Streuungsmaß verwendet, wenn es sich bei der 
+zu analysierenden Verteilung allerdings um eine bei Einkommen sehr häufig 
+vorkommende Pareto-Verteilung handelt ist die Verwendung dieses Maßes ziemlich 
+irreführend, da die Varianz für diese Verteilungen in vielen Fällen nicht 
+sinnvoll definiert werden kann und wir mit der Formel für die Varianz indirekt 
+unsere Stichprobengröße messen [@torsten-dist].
+Das richtige Maß hängt also immer von unseren theoretischen Vorüberlegungen zur
+zugrundeliegenden Verteilung und unserem konkreten Erkenntnisinteresse ab.
+
+In diesem Sinne ist vor allem die weite Verbreitung des Gini-Indices als 
+*dem* Verteilungsmaß schlechthin durchaus kritisch zu sehen. 
+So reagiert der Gini Index vor allem auf Änderungen in den mittleren Bereichen
+der Verteilung und weniger auf Änderungen an den Rändern. Wer Effekte
+von wachsender Vermögenskonzentration bei den reichsten Individuen messen möchte
+sollte also lieber ein anderes Maß verwenden.
+Sein Nutzen ist insofern auch von der zugrundeliegenden Forschungsfrage
+abhängig. Das gilt natürlich auch für alle anderen Indices. So eignet sich
+der Theil-Index vor allem bei der Analyse von Änderungen über die Zeit in der
+gleichen Gruppe, da er nicht normiert ist. Er reagiert deutlich besser auf
+Änderungen an den Extremen als der Gini Index.
+
+Für eine gute kritische Auseinandersetzung mit dem Gini Index und einen
+konstruktiven Gegenvorschlag siehe z.B. @gini-critique.
+
+Zahlreiche gängige Verteilungsmaße sind in dem Paket
+[ineq](https://cran.r-project.org/package=ineq) von @R-ineq implementiert.
+
+
+**Uni- und Multimodale Verteilungen**
+
+Die Unterscheidung zwischen uni- und multimodalen Verteilungen ist wichtig, weil
+viele Kennzahlen, wie die *Schiefe* oder *Steile* einer Verteilung (siehe unten)
+nur für unimodale Verteilungen intuitiv interpretiert werden können.
+
+
+Ganz strikt genommen sprechen wir von einer **unimodalen** oder **eingipfligen**
+Verteilung wenn Sie nur einen Gipfel hat, also nur einen Modus
+Ansonsten sprechen wir von einer **multimodalen** oder **mehrgipfligen** 
+(oder genauer *ein*gipfligen, *zwei*gipfligen, ...) Verteilung.
+
+In der Praxis haben viele Funktionen aber einen eindeutigen Modus,
+besitzen aber mehrere andere lokale Optima, also kleinere "Gipfel", sodass wir 
+in der Regel von einer multimodelen Verteilung sprechen sobald es mehrere lokale 
+Maxima gibt:
+
+```{r, echo=FALSE}
+x_vals <- seq(-10, 10, 0.01)
+eingipflig <- dnorm(x_vals)
+zweigipflig <- 0.75*dnorm(x_vals) + 0.25*dnorm(x_vals, mean = -4)
+dreigipflig <- 0.6*dnorm(x_vals) + 0.15*dnorm(x_vals, mean = -5) + 0.25*dnorm(x_vals, mean = 5)
+mod_data <- data.frame(x_vals, eingipflig, zweigipflig, dreigipflig) %>%
+  pivot_longer(cols = -one_of("x_vals"), 
+               names_to = "Art", 
+               values_to = "Dichte")
+
+ggplot(data = mod_data, mapping = aes(x=x_vals, y=Dichte, color=Art)) +
+  geom_line() +
+  theme_icae() +
+  scale_color_icae()
+```
+
+
+**Kennzahlen zur Form der Verteilung**
+
+Um die Form einer Verteilung besser zu beschreiben verwendet man häufig die
+**Schiefe** und **Steile** (auch: Kurtosis) einer Verteilung.
+Beide Kennzahlen sind zunächst einmal nur für *eingipflige*/*unimodale* 
+Verteilungen sinnvoll.
+
+Die Schiefe einer empirischen Verteilung ist definiert als:
+
+$$\gamma_x = \frac{1}{n}\sum_{i=1}^n\left(\frac{x_i-\bar{x}}{s}\right)^3$$
+
+wobei wir für die Schätzung wieder für die Reduktion der Freiheitsgrade 
+korrigieren müssen, sodass die praktische Schätzfunktion gegeben ist durch:
+
+$$\hat{\gamma_x} = \frac{1}{(n-1)(n-2)}\sum_{i=1}^n\left(\frac{x_i-\bar{x}}{s}\right)^3$$
+
+Hieraus ableiten können wir den Begriff der **Symmetrie** einer Verteilung.
+Wir nennen eine Verteilung *symmetrisch* wenn $\gamma_x=0$, 
+**links-schief** (oder *rechts-steil*) wenn $\gamma_x<0$
+und **rechts-schief** (oder *links-steil*) wenn $\gamma_x>0$. 
+
+Woher diese Begriffe kommen können wir uns am besten mit Hilfe folgender 
+Abbildung verdeutlichen:
+
+```{r, echo=FALSE}
+dist_vals <- data.frame(
+  x_vals = seq(0, 1, 0.01)
+) %>%
+  mutate(
+    linkssteil = dbeta(x_vals, shape1 = 5, shape2 = 2),
+    rechtssteil = dbeta(x_vals, shape1 = 2, shape2 = 5),
+    symmetrisch = dbeta(x_vals, shape1 = 5, shape2 = 5)
+  ) %>% 
+  pivot_longer(names_to = "Schiefe", 
+               values_to = "Dichte", 
+               cols = -one_of("x_vals"))
+
+ggplot(data = dist_vals, 
+       mapping = aes(x=x_vals, 
+                     y=Dichte, 
+                     color=Schiefe)
+       ) +
+  geom_line() + 
+  labs(title = "PDF für schiefe und symmetrische Verteilungen") +
+  scale_y_continuous(limits = c(0, 2.5), expand = c(0, 0)) +
+  theme_icae() +
+  scale_color_icae(palette = "mixed") + 
+  theme(axis.title.x = element_blank())
+```
+
+In R können wir die Schiefe einer Verteilung mit der Funktion `skewness()`
+aus dem Paket [moments](https://cran.r-project.org/package=moments) [@R-moments] 
+berechnen:
+
+```{r}
+skewness(journal_daten[["Preis"]])
+```
+
+Wir würden hier also von einer *recht-schiefen* Verteilung der Preise 
+sprechen. Das sehen wir hier auch grafisch:
+
+```{r, echo=FALSE}
+ggplot(data = journal_daten) +
+  geom_histogram(
+    mapping = aes(x=Preis, stat(density)), bins=30,
+    alpha=0.4) +
+  ylab("Dichte") + 
+  labs(title = "Verteilung der Journalpreise") +
+  stat_density(mapping = aes(x=Preis), 
+               color="blue", 
+               geom="line") +
+  scale_y_continuous(
+    expand = expand_scale(c(0, 0.0005), 
+                          c(0, 0))
+    ) +
+  theme_icae()
+  
+```
+
+Die **Steile** (auch: Kurtosis) $\omega_x$ einer Verteilung gibt ihre 
+'Spitzgipfligkeit' an. Je größer $\omega_x$ desto 'schmaler' wird die 
+Verteilung und desto weniger extreme Werte hat sie.
+Die Steile ist folgendermaßen definiert:
+
+$$\omega_x = \frac{1}{n}\sum_{i=1}^n\left( \frac{x_i-\bar{x}}{s_x}\right)^4$$
+Wie bei der Schiefe müssen wir für die Schätzung wieder für die Reduktion der
+Freiheitsgrade korrigieren, sodass die praktische Schätzfunktion gegeben ist durch:
+
+$$\hat{\omega}_x = \frac{1}{(n-1)(n-2)}\sum_{i=1}^n\left( \frac{x_i-\bar{x}}{s_x}\right)^4$$
+
+Wir können die Kurtosis einer Verteilung mit der Funktion `kurtosis()` aus dem
+Paket [moments](https://cran.r-project.org/package=moments) berechnen:
+
+```{r}
+kurtosis(journal_daten[["Preis"]])
+```
+
+
+Da die Kurtosis an sich nicht leicht zu interpretieren ist wird der
+Wert häufig mit dem einer Standardnormalverteilung verglichen. Da deren Wert
+per definitionem 3 beträgt wird die *Exzess-Kurtosis* mit 
+$\tilde{\omega}_x=\omega_x-3$ berechnet und
+wir sprechen von einer *steilgipfligen* ('leptokurtischen') Verteilung wenn 
+$\tilde{\omega}_x>0$ 
+und von einer *flachgipfligen* ('platykurtischen') Verteilung wenn 
+$\tilde{\omega}_x<0$.
+Für den Fall der Preisverteilung von Journalen haben wir es also mit einer
+steilgipfligen Verteilung zu tun.
+
+Zur Verdeutlichung des Konzepts im folgenden noch ein grafisches Beispiel:
+
+```{r, echo=FALSE}
+kurt_data <- data.frame(
+  xvals = seq(-5, 5, 0.01)
+) %>%
+  mutate(
+    "1.8" = dlogis(xvals),
+    "2.7" = dnorm(xvals),
+    "6.4" = dnorm(xvals, sd = 0.5)
+  ) %>%
+  pivot_longer(names_to = "Kurtosis", 
+               values_to = "Dichte", 
+               cols = -one_of("xvals"))
+
+
+ggplot(data = kurt_data, mapping = aes(x=xvals, y=Dichte, color=Kurtosis)) +
+  geom_line(aes()) +
+  theme_icae() + 
+  scale_color_icae(palette = "mixed") +
+  theme(legend.title = element_text(), 
+        axis.title.x = element_blank())
+```
+
+```{r}
+kurtosis(filter(kurt_data, Kurtosis=="Normalverteilung")$Dichte)
+```
+
+
+**Ausreißer und Schwanz-Eigenschaften**
+
+Ausreißer können einen großen Effekt auf Ihre Ergebnisse haben. 
+Erinnern Sie sich daran, dass der Mittelwert eines Datensatzes sehr anfällig
+für Ausreißer, also besonders große oder kleine Werte, ist. Gleiches gilt
+für viele andere Maße. 
+
+Insofern stellen sich zwei wichtige Fragen: 
+Erstens, was genau verstehen wir unter einem Ausreißer? 
+Zweitens, wie sollten wir mit Ausreißern umgehen?
+
+Im Kontext eines Boxplot wurde ein Ausreißer als ein Wert der außerhalb des
+Intervalls $\left( x_{0.25} - IQR\cdot 1.5, x_{0.75} + IQR\cdot 1.5  \right)$
+liegt definiert.
+Dies führt häufig zu einer zu recht restriktiven Definition von Ausreißern, ist
+aber ein guter erster Schritt.
+Wir können die Ausreißer hier einfach identifizieren indem wir den Datensatz
+entsprechend filtern, z.B.:
+
+```{r}
+IQR_Grenzen <- quantile(journal_daten[["Preis"]], c(0.25, 0.75))
+untere_grenze <- IQR_Grenzen["25%"] - 1.5*IQR(journal_daten[["Preis"]])
+obere_grenze <- IQR_Grenzen["75%"] + 1.5*IQR(journal_daten[["Preis"]])
+
+outlier_teuer <- journal_daten %>%
+  filter(Preis > obere_grenze)
+
+outlier_billig <- journal_daten %>%
+  filter(Preis < untere_grenze)
+ 
+
+dplyr::select(outlier_teuer, Titel, Preis)
+dplyr::select(outlier_billig, Titel, Preis)
+```
+
+Wir sehen hier, dass es nur Ausreißer nach oben, also nur besonders teure
+Journale gibt.
+Nun können/müssen wir uns für diese Fälle überlegen wie wir mit den
+Ausreißern umgehen wollen.
+
+Das bringt uns zu der zweiten Frage, also die Frage wie wir mit Ausreißern 
+umzugehen haben. 
+Manche Ausreißer sind die Folge von Messfehlern oder Fehlern in der 
+Datenaufbereitung.
+Idealerweise würden wir solche Ausreißer aus dem Datensatz entfernen wollen.
+
+Andere Ausreißer sind dagegen einfach besonders interessante Datenpunkte, die
+*auf gar keinen Fall* aus dem Datensatz entfernt werden sollten.
+So hat Luxenburg im Vergleich zu anderen Europäischen Ländern ein wahnsinnig 
+hohes Einkommensniveau, aber das bedeutet nicht, dass wir Luxenburg aus allen
+Analysen herausnehmen sollten.
+Im Bereich der Finanzmarktanalyse sind extreme Preisausschläge häufig gerade 
+besonders relevant. Sie dürfen auf gar keinen Fall ausgeschlossen werden, denn
+häufig sind sie Ausgangspunkt von Krisen.
+
+Daher ist die beste Vorgehensweise, sich Ausreißer explizit anzuschauen, indem
+wir den Datensatz nach extremen Werten 
+(oder Werten mit einer hohen Cook'schen Distanz) filtern und dann selbst 
+entscheiden ob diese Werte eher Resultat eines Messfehlers oder ein besonders
+interessanter Wert sind. Es gilt jedoch: im Zweifel sollten die Datenpunkte
+immer im Datensatz gelassen werden. Ein Ausreißer darf nur eliminiert werden
+wenn es *wirklich sehr gute Gründe* dafür gibt.
+
+Im Falle der Journale ist es fraglich ob es wirklich gute Gründe gibt, 
+diese 12 Journale aus Ausreißer zu eliminieren.
+Im vorliegenden Falle spricht wenig dafür und wir sollten uns eher überlegen 
+wie diese besondere Stellung der Journale erklärt werden kann, z.B. über ihre
+Popularität. 
+
+In diesem Kontext macht es auch Sinn die Kategorie der *endlastigen* oder der  
+*heavy-tailed* Verteilungen einzuführen. 
+Darunter verstehen wir Verteilungen, die besonders
+viele Extremwerte aufweisen - oder technisch: deren Dichte sub-exponentiell
+abfällt, deren Extremevents also wahrscheinlicher sind als bei der 
+Exponentialverteilung.
+
+Einkommens- und Vermögensverteilungen sind in der Regel *heavy-tailed*:
+es gibt zwar sehr viele Menschen mit geringen, und nur wenige mit sehr 
+hohen Einkommen, aber mehr Menschen mit hohen Einkommen als wir es bei einer
+Exponentialverteilung erwarten würden.
+
+Diese Kategorie ist in diesem Kontext, da bei endlastigen Verteilungen 
+"Ausreißer" sehr viel häufiger vorkommen. 
+Sie sind aber eine wichtige Folge der zugrundeliegenden Prozesse, und die 
+Ignoranz dieser Beobachtungen würde zu sehr irreführenden Schlussfolgerungen 
+führen. 
+Häufig werden solche Ausreißer eliminiert da die Daten ohne sie leicht durch
+eine Normalverteilung approximiert werden können. Rechnet man mit diesen 
+Modellen unterschätzt man aber per definitionem die Wahrscheinlichkeit für
+Extremwerte in der Zukunft. 
+Dieses Problem ist häufig auf den Finanzmärkten vor der Finanzkrise 2007ff 
+aufgetreten.
+
+Eine Alternative Definition von Ausreißern im Kontext der Regressionsanalyse ist 
+die Berechnung der 'Cook'schen Distanz' für jeden Beobachtungswert. 
+Die 'Cook'sche Distanz' wird immer im Hinblick auf ein bestimmtes 
+Regressionsmodell berechnet und gibt den Einfluss einer jeden Variable
+auf das Endergebnis an.
+Dann kann man sich die einflussreichsten Variablen genauer anschauen und sich
+fragen wie mit diesen Datenpunkten umzugehen ist.
+
+Die Grundidee der 'Cook'schen Distanz' ist für jede Beobachtung das 
+Regressionsergebnis zu vergleichen mit dem hypothetischen Fall, dass diese
+Beobachtung ausgelassen worden wäre. 
+
+Wir können für ein bestimmtes Regressionmodell die Cook'schen Distanz mit der
+Funktion `cooks.distance()` berechnen.
+Zum Zwecke der Illustration regressieren wir in dem Journaldatensatz die Variable
+'Preis' auf die Variablen 'Seitenanzahl' und 'Zitationen':
+
+```{r}
+reg_objekt <- lm(Preis ~ Seitenanzahl + Zitationen, 
+                 data = journal_daten)
+distanzen <- cooks.distance(reg_objekt)
+```
+
+Ab wann eine Beobachtung als Ausreißer im Sinne von der 
+Cook'schen Distanz gilt ist nicht klar zu definieren, als Daumenregel hat sich 
+die Grenze $\frac{4}{n-k-1}$ etabliert, aber in der Praxis macht es immer Sinn 
+einfach die Werte mit der größten Distanz genauer anzuschauen. 
+Im vorliegenden Falle wären das:
+
+```{r}
+dist_data <- data.frame(
+  Index=names(distanzen),
+  Distanz=unname(distanzen), 
+  Titel=journal_daten[as.double(names(distanzen))]$Titel, 
+  stringsAsFactors = FALSE
+)
+
+cook_threshold <- 4 / (reg_objekt$df.residual - 1)
+
+ggplot(data = data.frame(dist_data), 
+       mapping = aes(x=Index, y=Distanz)) +
+  geom_bar(stat = "identity") +
+  geom_hline(yintercept = cook_threshold, color="red") +
+  theme_icae() +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())
+
+filter(dist_data, Distanz>cook_threshold)$Titel
+```
+
+
+### Grafische Komplemente zu klassischen Kennzahlen {#vert-grafik}
+
+Ein hilfreiches Mittel zur Beschreibung von Verteilungen ist der 
+**Boxplot**.
+Bei dem Boxplot handelt es sich um eine grafischen Zusammenfassung einiger
+zentraler deskriptiver Kennzahlen: 
+
+```{r, echo=FALSE, eval=FALSE}
+wb_data <- WDI::WDI(extra = TRUE, 
+                    indicator = c("NY.GDP.PCAP.PP.KD", # GDP per capita
+                                  "SP.DYN.LE00.IN", # Life expectancy
+                                  "SP.DYN.TFRT.IN") # Fertility rate
+                    )
+wb_data <- wb_data %>%
+  rename(BIPpk=NY.GDP.PCAP.PP.KD,
+         Lebenserwartung=SP.DYN.LE00.IN,
+         Fertilitätsrate=SP.DYN.TFRT.IN)
+wb_data <- wb_data %>% 
+  dplyr::select(-one_of("iso2c", "capital", "longitude", 
+                        "latitude", "lending"))
+fwrite(wb_data, here("data/tidy/wb_regions.csv"))
+```
+```{r, echo=FALSE}
+wb_data <- fread(here("data/tidy/wb_regions.csv")) %>% 
+  filter(!region %in% c("Aggregates", ""), 
+         !income %in% c("Aggregates", "")) %>%
+  group_by(country, region, income) %>% 
+  summarise_if(is.double, mean, na.rm=TRUE) %>% 
+  ungroup() %>% 
+  filter(!is.nan(BIPpk), 
+         !is.nan(Lebenserwartung), 
+         !is.nan(Fertilitätsrate))
+```
+```{r}
+ggplot(data = wb_data, 
+       mapping = aes(x=region, y=Lebenserwartung)
+       ) +
+  geom_boxplot() +
+  theme_icae() +
+  labs(title = "Lebenserwartungen in den Weltregionen", 
+       caption = "Quelle: Weltbank") +
+  theme(axis.title.x = element_blank())
+```
+
+Im Boxplot werden mehrere relevante Kennzahlen zusammengefasst. 
+Eine schöne Übersicht bietet diese Abbilung:^[Die Abbildung ist von folgendem
+Blog übernommen: 
+[https://www.leansigmacorporation.com/box-plot-with-minitab/](https://www.leansigmacorporation.com/box-plot-with-minitab/).]
+
+```{r, echo=FALSE}
+knitr::include_graphics(here("figures/boxplot-anatomy.png"))
+```
+
+Die Box in der Mitte des Boxplots repräsentiert die IQR der Daten, der Median
+ist mit einem Strich innerhalb der Box dargestellt. 
+Die Striche an der Box repräsentieren dann das Intervall bis zum größten bzw. 
+kleinsten Wert, der nicht weiter als $1.5\cdot IQR$ vom Median entfernt ist.
+Ausreißer, hier definiert als Werte außerhalb dieses Intervalls, werden dann durch 
+einzelne Punkte visualisiert.
+Selbstverständlich können Sie das Aussehen noch weiter an Ihre Präferenzen 
+anpassen. Die Parameter dazu sind in der Hilfefunktion beschrieben.
+Sehr gute Anleitungen finden sich zudem
+[hier](http://t-redactyl.io/blog/2016/04/creating-plots-in-r-using-ggplot2-part-10-boxplots.html)
+und [hier](https://www.r-graph-gallery.com/boxplot.html).
+
+In [diesem Post](https://www.data-to-viz.com/caveat/boxplot.html) werden auch 
+die Nachteile dieser Visualisierungsform sehr gut beschrieben.
+Der größte Nachteil liegt zweifelslos im Verstecken der eigentlichen Verteilung
+'hinter der Box'. Es ist nicht klar, ob sich ein Großteil der Daten am oberen
+oder unteren Teil befindet oder ob die Daten eher gleichverteilt sind. Eine
+einfache Lösung für kleinere Datensätze liegt in der Ergänzung der einzelnen
+Beobachtungen durch `boxplot_jitter`, wobei sie hier die Transparenz durch
+`alpha=0.25` anpassen sollten, und den Boxplot zur besseren Lesbarkeit über die
+Beobachtungen ploten sollten.
+Für größere Datensätzen können Sie einfach einen
+[Violinenplot](https://www.r-graph-gallery.com/violin.html) 
+verwenen, wie im folgenden Beispiel gezeigt:
+
+```{r, out.height = '75%', out.width = '100%'}
+boxplot_classic <- ggplot(data = wb_data, 
+       mapping = aes(x=region, y=Lebenserwartung)
+       ) +
+  geom_boxplot() +
+  theme_icae() +
+  labs(title = "Klassische Darstellung") +
+  theme(axis.title.x = element_blank(), 
+        axis.text.x = element_text(angle = 90, hjust = 1))
+
+boxplot_jitter <- ggplot(data = wb_data, 
+       mapping = aes(x=region, y=Lebenserwartung)
+       ) +
+  geom_boxplot() +
+  geom_jitter(alpha=0.25) +
+  theme_icae() +
+  labs(title = "Klassische Darstellung mit jitter") +
+  theme(axis.title.x = element_blank(), 
+        axis.text.x = element_text(angle = 90, hjust = 1))
+
+violin_plot <- ggplot(data = wb_data, 
+       mapping = aes(x=region, y=Lebenserwartung)
+       ) +
+  geom_violin() +
+  theme_icae() +
+  labs(title = "Violinen-Plot") +
+  theme(axis.title.x = element_blank(), 
+        axis.text.x = element_text(angle = 90, hjust = 1))
+
+ggarrange(boxplot_classic, boxplot_jitter, violin_plot, ncol = 3)
+```
+
+Es ist jedoch immer wichtig eine Verteilung nicht nur mit Kennzahlen, sondern
+auch grafisch zu beschreiben. 
+Dies wurde erstmals durch @Anscombe durch sein "Anscombe's Quartett"
+illustriert.
+Dabei handelt es sich um vier Datensätze, die alle (fast exakt) gleiche
+deskriptive Statistiken aufweisen, jedoch offensichtlich sehr unterschiedlich
+sind. 
+Diese offensichtlichen Unterschiede werden aber nur durch grafische Inspektion 
+deutlich.
+
+Der Datensatz ist in jeder R Installation vorhanden:
+
+```{r}
+data("anscombe")
+head(anscombe)
+```
+
+Die folgende Tabelle gibt die Werte der quantitativen Kennzahlen an:
+
+| Kennzahl | Wert  |
+|----------|------|
+| Mittelwert von $x$ | ```r round(mean(anscombe$x1), 2)``` |
+| Mittelwert von $y$ | ```r round(mean(anscombe$y1), 2)``` |
+| Varianz von $x$ | ```r round(var(anscombe$x1), 2)``` |
+| Varianz von $y$ | ```r round(var(anscombe$y1), 2)``` |
+| Korrelation zw. $x$ und $y$ | ```r round(cor(anscombe$x1, anscombe$y1), 2)``` |
+
+Nur die grafische Inspektion zeigt, wie unterschiedlich die Verteilungen 
+tatsächlich sind:
+
+```{r, echo=FALSE}
+ans_1 <- ggplot(anscombe, 
+                aes(x=x1, y=y1)) +
+  geom_point() +
+  xlab("x") + 
+  ylab("y") +
+  ggtitle("Der erste Datensatz aus Ascombe's Quartett") +
+  theme_icae()
+
+ans_2 <- ggplot(anscombe, 
+                aes(x=x2, y=y2)) +
+  geom_point() +
+  xlab("x") + 
+  ylab("y") +
+  ggtitle("Der zweite Datensatz aus Ascombe's Quartett") +
+  theme_icae()
+
+ans_3 <- ggplot(anscombe, 
+                aes(x=x3, y=y3)) +
+  geom_point() +
+  xlab("x") + 
+  ylab("y") +
+  ggtitle("Der dritte Datensatz aus Ascombe's Quartett") +
+  theme_icae()
+
+ans_4 <- ggplot(anscombe, 
+                aes(x=x4, y=y4)) +
+  geom_point() +
+  xlab("x") + 
+  ylab("y") +
+  ggtitle("Der vierte Datensatz aus Ascombe's Quartett") +
+  theme_icae()
+
+ans_full <- ggarrange(ans_1, ans_2, ans_3, ans_4,
+                      ncol = 2, nrow = 2)
+ans_full
+```
+
+Damit zeigt sich, dass jede gute Beschreibung einer Verteilung sowohl aus 
+quantitativen als auch grafischen Teilen bestehen sollte.^[Interessanterweise 
+ist bis heute nicht bekannt wie @Anscombe seinen Datensatz erstellt hat.
+Für neuere Sammlungen von Datensätzen, die das gleiche Phänomen illustrieren
+siehe z.B. @AnscombeNew1 oder @AnscombeNew2 .
+Eine sehr schöne Illustration der Idee findet sich auch auf 
+[dieser Homepage](https://www.autodeskresearch.com/publications/samestats),
+die vom Autor von @AnscombeNew2 gestaltet wurde.]
+
+### Abschließende Bemerkungen {#vert-bemerkungen}
+
+Es ist wichtig, dass wir uns mit der Verteilung unserer Daten nicht nur 
+theoretisch, sondern auch empirisch und praktisch auseinandersetzen.
+Für viele Verteilungen sind z.B. bestimmte Kennzahlen nicht definiert.
+So hat zum Beispiel die bei Vermögens- und Einkommensverteilungen häufig zu
+beobachtende Pareto-Verteilungen häufig keinen wohldefinierten Mittelwert und 
+keine wohldefinierte Varianz. 
+Daher haben aus Stichproben geschätzte Kennzahlen, die sich dieser Konzepte 
+bedienen, keine wirkliche Aussagekraft. 
+Eine exzellente Beschreibung der Probleme, möglicher Alternativen und ein
+gutes Anwendungsbeispiel findet sich z.B. in @torsten-dist.
 
