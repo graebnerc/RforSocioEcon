@@ -4,6 +4,10 @@
 knitr::opts_chunk$set(comment = "#>")
 ```
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tufte)
+```
+
 Nach diesen (wichtigen) Vorbereitungsschritten wollen wir nun mit dem 
 eigentlichen Programmieren anfangen.
 Zu diesem Zweck müssen wir uns mit der Syntax von R vertraut machen,
@@ -70,7 +74,7 @@ wir uns zunächst mit den Konzepten von **Objekten**, **Funktionen** und
 > To understand computations in R, two slogans are helpful:
 >   Everything that exists is an object.
 >   Everything that happens is a function call.
-> ---John Chambers
+> `r tufte::quote_footer('--- John Chambers')`
 
 Mit der Aussage 'Alles in R ist ein Objekt' ist gemeint, dass jede Zahl, jede
 Funktion, oder jeder Buchstabe in R ein Objekt ist, das irgendwo auf dem 
@@ -1066,7 +1070,7 @@ Im folgenden wollen wir uns noch mit zwei speziellen Typen beschäftigen, die we
 fundamental als die bislang diskutierten sind, jedoch häufig in der alltäglichen
 Arbeit vorkommen: Matrizen und Data Frames.
 
-### Matrizen
+### Matrizen {#intro-matrix}
 
 Bei Matrizen handelt es sich um zweidimensionale Objekte mit Zeilen und Spalten,
 bei denen es sich jeweils um atomare Vektoren handelt.

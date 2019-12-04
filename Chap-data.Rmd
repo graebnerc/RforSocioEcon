@@ -1182,13 +1182,14 @@ data_al_exp
 Eine `tidy` Version dieses Datensatzes sähe so aus:
 
 ```{r, echo=FALSE}
-data_al_exp %>%
+data_al_exp_tidy <- data_al_exp %>%
   pivot_longer(cols = -one_of("Land", "Variable"), 
                names_to = "Jahr", 
                values_to = "Wert") %>%
   pivot_wider(id_cols = one_of("Land", "Jahr"), 
               values_from = "Wert", 
               names_from = "Variable")
+data_al_exp_tidy
 ```
 
 Leider ist diese Transformation nicht in einem Schritt zu machen. 
