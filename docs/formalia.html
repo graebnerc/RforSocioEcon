@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Formale Methoden der Sozioökonomie | R für die sozio-ökonomische Forschung</title>
+  <meta name="description" content="R Skript in der Version 0.6.0" />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Formale Methoden der Sozioökonomie | R für die sozio-ökonomische Forschung" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="R Skript in der Version 0.6.0" />
+  <meta name="github-repo" content="graebnerc/RforSocioEcon" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Formale Methoden der Sozioökonomie | R für die sozio-ökonomische Forschung" />
+  
+  <meta name="twitter:description" content="R Skript in der Version 0.6.0" />
+  
+
+<meta name="author" content="Dr. Claudius Gräbner" />
+
+
+<meta name="date" content="2019-12-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="vis.html"/>
+<link rel="next" href="markdown.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R für die sozioökonomische Forschung</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Willkommen</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#verhältnis-zur-vorlesung"><i class="fa fa-check"></i>Verhältnis zur Vorlesung</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie-während-des-semesters"><i class="fa fa-check"></i>Änderungshistorie während des Semesters</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a><ul>
+<li class="chapter" data-level="1.1" data-path="precons.html"><a href="precons.html#warum-r"><i class="fa fa-check"></i><b>1.1</b> Warum R?</a></li>
+<li class="chapter" data-level="1.2" data-path="precons.html"><a href="precons.html#besonderheiten-von-r"><i class="fa fa-check"></i><b>1.2</b> Besonderheiten von R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="einrichtung.html"><a href="einrichtung.html"><i class="fa fa-check"></i><b>2</b> Einrichtung</a><ul>
+<li class="chapter" data-level="2.1" data-path="einrichtung.html"><a href="einrichtung.html#installation-von-r-und-r-studio"><i class="fa fa-check"></i><b>2.1</b> Installation von R und R-Studio</a></li>
+<li class="chapter" data-level="2.2" data-path="einrichtung.html"><a href="einrichtung.html#die-r-studio-oberfläche"><i class="fa fa-check"></i><b>2.2</b> Die R Studio Oberfläche</a></li>
+<li class="chapter" data-level="2.3" data-path="einrichtung.html"><a href="einrichtung.html#einrichtung-eines-r-projekts"><i class="fa fa-check"></i><b>2.3</b> Einrichtung eines R Projekts</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="einrichtung.html"><a href="einrichtung.html#arbeitsverzeichnisse-und-pfade"><i class="fa fa-check"></i><b>2.3.1</b> Arbeitsverzeichnisse und Pfade</a></li>
+<li class="chapter" data-level="2.3.2" data-path="einrichtung.html"><a href="einrichtung.html#schritt-1-projektordner-anlegen"><i class="fa fa-check"></i><b>2.3.2</b> Schritt 1: Projektordner anlegen</a></li>
+<li class="chapter" data-level="2.3.3" data-path="einrichtung.html"><a href="einrichtung.html#schritt-2-ein-r-studio-projekt-im-projektordner-erstellen"><i class="fa fa-check"></i><b>2.3.3</b> Schritt 2: Ein R-Studio Projekt im Projektordner erstellen</a></li>
+<li class="chapter" data-level="2.3.4" data-path="einrichtung.html"><a href="einrichtung.html#unterordner"><i class="fa fa-check"></i><b>2.3.4</b> Schritt 3: Relevante Unterordner erstellen</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="einrichtung.html"><a href="einrichtung.html#abschließende-bemerkungen"><i class="fa fa-check"></i><b>2.4</b> Abschließende Bemerkungen</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#befehle-in-r-an-den-computer-übermitteln"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#objekte-funktionen-und-zuweisungen"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#zusammenfassung"><i class="fa fa-check"></i><b>3.3</b> Zusammenfassung</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#grundlegende-objeke-in-r"><i class="fa fa-check"></i><b>3.4</b> Grundlegende Objeke in R</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.4.1</b> Funktionen</a></li>
+<li class="chapter" data-level="3.4.2" data-path="basics.html"><a href="basics.html#basics-types-vectors"><i class="fa fa-check"></i><b>3.4.2</b> Vektoren</a></li>
+<li class="chapter" data-level="3.4.3" data-path="basics.html"><a href="basics.html#basics-logic"><i class="fa fa-check"></i><b>3.4.3</b> Logische Werte (logical)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="basics.html"><a href="basics.html#wörter-character"><i class="fa fa-check"></i><b>3.4.4</b> Wörter (character)</a></li>
+<li class="chapter" data-level="3.4.5" data-path="basics.html"><a href="basics.html#fehlende-werte-und-null"><i class="fa fa-check"></i><b>3.4.5</b> Fehlende Werte und NULL</a></li>
+<li class="chapter" data-level="3.4.6" data-path="basics.html"><a href="basics.html#indizierung-und-ersetzung"><i class="fa fa-check"></i><b>3.4.6</b> Indizierung und Ersetzung</a></li>
+<li class="chapter" data-level="3.4.7" data-path="basics.html"><a href="basics.html#nützliche-funktionen-für-atomare-vektoren"><i class="fa fa-check"></i><b>3.4.7</b> Nützliche Funktionen für atomare Vektoren</a></li>
+<li class="chapter" data-level="3.4.8" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.4.8</b> Listen</a></li>
+<li class="chapter" data-level="3.4.9" data-path="basics.html"><a href="basics.html#intro-matrix"><i class="fa fa-check"></i><b>3.4.9</b> Matrizen</a></li>
+<li class="chapter" data-level="3.4.10" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.4.10</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#pakete"><i class="fa fa-check"></i><b>3.5</b> Pakete</a></li>
+<li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.6</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>4</b> Lineare statistische Modelle in R</a><ul>
+<li class="chapter" data-level="4.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>4.1</b> Einleitung und Überblick</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>4.1.1</b> Einführung in die lineare Regression</a></li>
+<li class="chapter" data-level="4.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>4.1.2</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="4.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>4.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>4.2</b> Grundlagen der einfachen linearen Regression</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="linmodel.html"><a href="linmodel.html#grundlegende-begriffe"><i class="fa fa-check"></i><b>4.2.1</b> Grundlegende Begriffe</a></li>
+<li class="chapter" data-level="4.2.2" data-path="linmodel.html"><a href="linmodel.html#schätzung-mit-der-kleinste-quadrate-methode"><i class="fa fa-check"></i><b>4.2.2</b> Schätzung mit der Kleinste-Quadrate-Methode</a></li>
+<li class="chapter" data-level="4.2.3" data-path="linmodel.html"><a href="linmodel.html#annahmen-für-den-ols-schätzer"><i class="fa fa-check"></i><b>4.2.3</b> Annahmen für den OLS Schätzer</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="linmodel.html"><a href="linmodel.html#lin-kennzahlen"><i class="fa fa-check"></i><b>4.3</b> Kennzahlen in der linearen Regression</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="linmodel.html"><a href="linmodel.html#erklärte-varianz-und-das-r2"><i class="fa fa-check"></i><b>4.3.1</b> Erklärte Varianz und das <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="4.3.2" data-path="linmodel.html"><a href="linmodel.html#hypothesentests-und-statistische-signifikanz"><i class="fa fa-check"></i><b>4.3.2</b> Hypothesentests und statistische Signifikanz</a></li>
+<li class="chapter" data-level="4.3.3" data-path="linmodel.html"><a href="linmodel.html#konfidenzintervalle-für-die-schätzer"><i class="fa fa-check"></i><b>4.3.3</b> Konfidenzintervalle für die Schätzer</a></li>
+<li class="chapter" data-level="4.3.4" data-path="linmodel.html"><a href="linmodel.html#zur-rolle-der-stichprobengröße"><i class="fa fa-check"></i><b>4.3.4</b> Zur Rolle der Stichprobengröße</a></li>
+<li class="chapter" data-level="4.3.5" data-path="linmodel.html"><a href="linmodel.html#residuenanalyse"><i class="fa fa-check"></i><b>4.3.5</b> Residuenanalyse</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="linmodel.html"><a href="linmodel.html#stat-ablauf"><i class="fa fa-check"></i><b>4.4</b> Zum Ablauf einer Regression</a></li>
+<li class="chapter" data-level="4.5" data-path="linmodel.html"><a href="linmodel.html#lin-multi"><i class="fa fa-check"></i><b>4.5</b> Multiple lineare Regression</a></li>
+<li class="chapter" data-level="4.6" data-path="linmodel.html"><a href="linmodel.html#anwendungsbeispiel"><i class="fa fa-check"></i><b>4.6</b> Anwendungsbeispiel</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>5</b> Datenkunde und Datenaufbereitung</a><ul>
+<li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="5.1" data-path="data.html"><a href="data.html#data-arten"><i class="fa fa-check"></i><b>5.1</b> Arten von Daten</a></li>
+<li class="chapter" data-level="5.2" data-path="data.html"><a href="data.html#data-get"><i class="fa fa-check"></i><b>5.2</b> Datenakquise</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="data.html"><a href="data.html#exkurs-1-ländercodes-übersetzen"><i class="fa fa-check"></i><b>5.2.1</b> Exkurs 1: Ländercodes übersetzen</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data.html"><a href="data.html#data-download-R"><i class="fa fa-check"></i><b>5.2.2</b> Exkurs 2: Daten direkt mit R herunterladen</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="data.html"><a href="data.html#data-read-write"><i class="fa fa-check"></i><b>5.3</b> Daten einlesen und schreiben</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="data.html"><a href="data.html#einlesen-von-datensätzen"><i class="fa fa-check"></i><b>5.3.1</b> Einlesen von Datensätzen</a></li>
+<li class="chapter" data-level="5.3.2" data-path="data.html"><a href="data.html#speichern-von-daten"><i class="fa fa-check"></i><b>5.3.2</b> Speichern von Daten</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="data.html"><a href="data.html#data-wrangling"><i class="fa fa-check"></i><b>5.4</b> Verarbeitung von Daten (‘data wrangling’)</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="data.html"><a href="data.html#das-konzept-von-tidy-data"><i class="fa fa-check"></i><b>5.4.1</b> Das Konzept von ‘tidy data’</a></li>
+<li class="chapter" data-level="5.4.2" data-path="data.html"><a href="data.html#data-long-wide"><i class="fa fa-check"></i><b>5.4.2</b> Von langen und breiten Datensätzen</a></li>
+<li class="chapter" data-level="5.4.3" data-path="data.html"><a href="data.html#data-merge"><i class="fa fa-check"></i><b>5.4.3</b> Zusammenführen von Daten</a></li>
+<li class="chapter" data-level="5.4.4" data-path="data.html"><a href="data.html#date-select"><i class="fa fa-check"></i><b>5.4.4</b> Datensätze filtern und selektieren</a></li>
+<li class="chapter" data-level="5.4.5" data-path="data.html"><a href="data.html#data-summary"><i class="fa fa-check"></i><b>5.4.5</b> Datensätze zusammenfassen</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="data.html"><a href="data.html#data-role"><i class="fa fa-check"></i><b>5.5</b> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</a></li>
+<li class="chapter" data-level="5.6" data-path="data.html"><a href="data.html#data-packages"><i class="fa fa-check"></i><b>5.6</b> Anmerkungen zu Paketen</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>6</b> Visualisierung von Daten</a><ul>
+<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#verwendete-pakete-1"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
+<li class="chapter" data-level="6.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>6.1</b> Optional: Theoretische Grundlagen</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="vis.html"><a href="vis.html#vis-base-ggplot2"><i class="fa fa-check"></i><b>6.1.1</b> <code>ggplot2</code> vs. <code>base plot</code></a></li>
+<li class="chapter" data-level="6.1.2" data-path="vis.html"><a href="vis.html#grammar"><i class="fa fa-check"></i><b>6.1.2</b> Einleitung zu Wickham’s <em>grammar of graphics</em></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="vis.html"><a href="vis.html#vis-elemente"><i class="fa fa-check"></i><b>6.2</b> Grundlegende Elemente von <code>ggplot2</code>-Grafiken</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="vis.html"><a href="vis.html#elemente-eines-ggplot"><i class="fa fa-check"></i><b>6.2.1</b> Elemente eines <code>ggplot</code></a></li>
+<li class="chapter" data-level="6.2.2" data-path="vis.html"><a href="vis.html#beispiel-workflow"><i class="fa fa-check"></i><b>6.2.2</b> Beispiel Workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="vis.html"><a href="vis.html#arten-von-datenvisualisierung"><i class="fa fa-check"></i><b>6.3</b> Arten von Datenvisualisierung</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="vis.html"><a href="vis.html#allgemeine-tipps-zum-grafikdesign"><i class="fa fa-check"></i><b>6.3.1</b> Allgemeine Tipps zum Grafikdesign</a></li>
+<li class="chapter" data-level="6.3.2" data-path="vis.html"><a href="vis.html#streu--oder-blasendiagramm"><i class="fa fa-check"></i><b>6.3.2</b> Streu- oder Blasendiagramm</a></li>
+<li class="chapter" data-level="6.3.3" data-path="vis.html"><a href="vis.html#linienchart"><i class="fa fa-check"></i><b>6.3.3</b> Linienchart</a></li>
+<li class="chapter" data-level="6.3.4" data-path="vis.html"><a href="vis.html#histogramme-und-dichteplots"><i class="fa fa-check"></i><b>6.3.4</b> Histogramme und Dichteplots</a></li>
+<li class="chapter" data-level="6.3.5" data-path="vis.html"><a href="vis.html#balkendiagramme"><i class="fa fa-check"></i><b>6.3.5</b> Balkendiagramme</a></li>
+<li class="chapter" data-level="6.3.6" data-path="vis.html"><a href="vis.html#vis-pie"><i class="fa fa-check"></i><b>6.3.6</b> Kuchendiagramme</a></li>
+<li class="chapter" data-level="6.3.7" data-path="vis.html"><a href="vis.html#vis-kinds-summary"><i class="fa fa-check"></i><b>6.3.7</b> Zusammenfassung</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="vis.html"><a href="vis.html#vis-adv"><i class="fa fa-check"></i><b>6.4</b> Beispiele aus der Praxis und fortgeschrittene Themen</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="vis.html"><a href="vis.html#regressionsgerade"><i class="fa fa-check"></i><b>6.4.1</b> Regressionsgerade</a></li>
+<li class="chapter" data-level="6.4.2" data-path="vis.html"><a href="vis.html#vis-viele-plots"><i class="fa fa-check"></i><b>6.4.2</b> Mehrere Plots in einer Abbildung</a></li>
+<li class="chapter" data-level="6.4.3" data-path="vis.html"><a href="vis.html#mehr-zu-den-skalen-expand_scale-und-skalentransformation"><i class="fa fa-check"></i><b>6.4.3</b> Mehr zu den Skalen: <code>expand_scale()</code> und Skalentransformation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="vis.html"><a href="vis.html#vis-fehler"><i class="fa fa-check"></i><b>6.5</b> Typische Fehler in der Datenvisualisierung vermeiden</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="vis.html"><a href="vis.html#clutterplots-und-ihre-tranformation-zum-beschrifteten-streudiagramm"><i class="fa fa-check"></i><b>6.5.1</b> Clutterplots und ihre Tranformation zum beschrifteten Streudiagramm</a></li>
+<li class="chapter" data-level="6.5.2" data-path="vis.html"><a href="vis.html#ein-unbalancierter-plot"><i class="fa fa-check"></i><b>6.5.2</b> Ein ‘unbalancierter’ Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="vis.html"><a href="vis.html#vis-lies"><i class="fa fa-check"></i><b>6.6</b> Lügen mit grafischer Statistik</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="vis.html"><a href="vis.html#klassiker-1-kontraintuitiver-nullpunkt"><i class="fa fa-check"></i><b>6.6.1</b> Klassiker 1: Kontraintuitiver ‘Nullpunkt’</a></li>
+<li class="chapter" data-level="6.6.2" data-path="vis.html"><a href="vis.html#klassiker-2-geschickt-gewählter-zeitraum-und-clever-gewählte-achsenabschnitte"><i class="fa fa-check"></i><b>6.6.2</b> Klassiker 2: Geschickt gewählter Zeitraum und clever gewählte Achsenabschnitte</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="vis.html"><a href="vis.html#vis-links"><i class="fa fa-check"></i><b>6.7</b> Links und weiterführende Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="formalia.html"><a href="formalia.html"><i class="fa fa-check"></i><b>7</b> Formale Methoden der Sozioökonomie</a><ul>
+<li class="chapter" data-level="7.1" data-path="formalia.html"><a href="formalia.html#einleitung-und-überblick-1"><i class="fa fa-check"></i><b>7.1</b> Einleitung und Überblick</a></li>
+<li class="chapter" data-level="7.2" data-path="formalia.html"><a href="formalia.html#formalia-wachstum"><i class="fa fa-check"></i><b>7.2</b> Änderungsraten und die Rolle des Logarithmus</a></li>
+<li class="chapter" data-level="7.3" data-path="formalia.html"><a href="formalia.html#formalia-diff"><i class="fa fa-check"></i><b>7.3</b> Grundlagen der Differentialrechnung</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="formalia.html"><a href="formalia.html#einleitung-differential--und-integralrechnung"><i class="fa fa-check"></i><b>7.3.1</b> Einleitung: Differential- und Integralrechnung</a></li>
+<li class="chapter" data-level="7.3.2" data-path="formalia.html"><a href="formalia.html#wiederholung-ableitungsregeln"><i class="fa fa-check"></i><b>7.3.2</b> Wiederholung: Ableitungsregeln</a></li>
+<li class="chapter" data-level="7.3.3" data-path="formalia.html"><a href="formalia.html#ableitungen-in-r"><i class="fa fa-check"></i><b>7.3.3</b> Ableitungen in R</a></li>
+<li class="chapter" data-level="7.3.4" data-path="formalia.html"><a href="formalia.html#maximierung-die-analytische-perspektive"><i class="fa fa-check"></i><b>7.3.4</b> Maximierung: die analytische Perspektive</a></li>
+<li class="chapter" data-level="7.3.5" data-path="formalia.html"><a href="formalia.html#maximierung-die-algorithmische-perspektive"><i class="fa fa-check"></i><b>7.3.5</b> Maximierung: die algorithmische Perspektive</a></li>
+<li class="chapter" data-level="7.3.6" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-1"><i class="fa fa-check"></i><b>7.3.6</b> Anwendungsbeispiel</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="formalia.html"><a href="formalia.html#formalia-linalg"><i class="fa fa-check"></i><b>7.4</b> Lineare Algebra</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="formalia.html"><a href="formalia.html#einführung-von-matrizen"><i class="fa fa-check"></i><b>7.4.1</b> Einführung von Matrizen</a></li>
+<li class="chapter" data-level="7.4.2" data-path="formalia.html"><a href="formalia.html#grundregeln-der-matrizenalgebra"><i class="fa fa-check"></i><b>7.4.2</b> Grundregeln der Matrizenalgebra</a></li>
+<li class="chapter" data-level="7.4.3" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-1-das-einfache-keynesianische-modell"><i class="fa fa-check"></i><b>7.4.3</b> Anwendungsbeispiel 1: Das einfache Keynesianische Modell</a></li>
+<li class="chapter" data-level="7.4.4" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-2-ols-regression"><i class="fa fa-check"></i><b>7.4.4</b> Anwendungsbeispiel 2: OLS-Regression</a></li>
+<li class="chapter" data-level="7.4.5" data-path="formalia.html"><a href="formalia.html#weiterführende-literatur"><i class="fa fa-check"></i><b>7.4.5</b> Weiterführende Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="formalia.html"><a href="formalia.html#formalia-dist"><i class="fa fa-check"></i><b>7.5</b> Analyse von Verteilungen</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="formalia.html"><a href="formalia.html#vert-begriff"><i class="fa fa-check"></i><b>7.5.1</b> Theoretische und empirische Verteilungen</a></li>
+<li class="chapter" data-level="7.5.2" data-path="formalia.html"><a href="formalia.html#vert-kennzahlen"><i class="fa fa-check"></i><b>7.5.2</b> Kennzahlen zur Beschreibung empirischer Verteilungen</a></li>
+<li class="chapter" data-level="7.5.3" data-path="formalia.html"><a href="formalia.html#vert-grafik"><i class="fa fa-check"></i><b>7.5.3</b> Grafische Komplemente zu klassischen Kennzahlen</a></li>
+<li class="chapter" data-level="7.5.4" data-path="formalia.html"><a href="formalia.html#vert-bemerkungen"><i class="fa fa-check"></i><b>7.5.4</b> Abschließende Bemerkungen</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>A</b> Eine kurze Einführung in R Markdown</a><ul>
+<li class="chapter" data-level="A.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>A.1</b> Markdown vs. R-Markdown</a></li>
+<li class="chapter" data-level="A.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>A.2</b> Installation von R-Markdown</a></li>
+<li class="chapter" data-level="A.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>A.3</b> Der R-Markdown Workflow</a><ul>
+<li class="chapter" data-level="A.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>A.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
+<li class="chapter" data-level="A.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>A.3.2</b> Der Titelblock</a></li>
+<li class="chapter" data-level="A.3.3" data-path="markdown.html"><a href="markdown.html#der-textkörper"><i class="fa fa-check"></i><b>A.3.3</b> Der Textkörper</a></li>
+<li class="chapter" data-level="A.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>A.3.4</b> Kompillieren von Dokumenten</a></li>
+</ul></li>
+<li class="chapter" data-level="A.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>A.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
+<li class="chapter" data-level="A.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>A.5</b> Weitere Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="stat-stoch.html"><a href="stat-stoch.html"><i class="fa fa-check"></i><b>B</b> Wiederholung: Wahrscheinlichkeitstheorie</a><ul>
+<li class="chapter" data-level="" data-path="stat-stoch.html"><a href="stat-stoch.html#verwendete-pakete-2"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="B.1" data-path="stat-stoch.html"><a href="stat-stoch.html#einleitung-wahrscheinlichkeitstheorie-und-statistik"><i class="fa fa-check"></i><b>B.1</b> Einleitung: Wahrscheinlichkeitstheorie und Statistik</a></li>
+<li class="chapter" data-level="B.2" data-path="stat-stoch.html"><a href="stat-stoch.html#grundbegriffe-der-wahrscheinlichkeitstheorie"><i class="fa fa-check"></i><b>B.2</b> Grundbegriffe der Wahrscheinlichkeitstheorie</a></li>
+<li class="chapter" data-level="B.3" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.3</b> Diskrete Wahrscheinlichkeitsmodelle</a><ul>
+<li class="chapter" data-level="B.3.1" data-path="stat-stoch.html"><a href="stat-stoch.html#bayes-theorem-und-gesetz-der-total-wahrscheinlichkeiten"><i class="fa fa-check"></i><b>B.3.1</b> Bayes Theorem und Gesetz der total Wahrscheinlichkeiten</a></li>
+<li class="chapter" data-level="B.3.2" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-zufallsvariablen"><i class="fa fa-check"></i><b>B.3.2</b> Diskrete Zufallsvariablen</a></li>
+<li class="chapter" data-level="B.3.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-binomial-verteilung"><i class="fa fa-check"></i><b>B.3.3</b> Beispiel: die Binomial-Verteilung</a></li>
+<li class="chapter" data-level="B.3.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-poisson-verteilung"><i class="fa fa-check"></i><b>B.3.4</b> Beispiel: die Poisson-Verteilung</a></li>
+<li class="chapter" data-level="B.3.5" data-path="stat-stoch.html"><a href="stat-stoch.html#hinweise-zu-diskreten-wahrscheinlichkeitsverteilungen"><i class="fa fa-check"></i><b>B.3.5</b> Hinweise zu diskreten Wahrscheinlichkeitsverteilungen</a></li>
+</ul></li>
+<li class="chapter" data-level="B.4" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.4</b> Stetige Wahrscheinlichkeitsmodelle</a><ul>
+<li class="chapter" data-level="B.4.1" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-zv"><i class="fa fa-check"></i><b>B.4.1</b> Stetige ZV</a></li>
+<li class="chapter" data-level="B.4.2" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-uniformverteilung"><i class="fa fa-check"></i><b>B.4.2</b> Beispiel: die Uniformverteilung</a></li>
+<li class="chapter" data-level="B.4.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-normalverteilung"><i class="fa fa-check"></i><b>B.4.3</b> Beispiel: die Normalverteilung</a></li>
+<li class="chapter" data-level="B.4.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-exponentialverteilung"><i class="fa fa-check"></i><b>B.4.4</b> Beispiel: die Exponentialverteilung</a></li>
+</ul></li>
+<li class="chapter" data-level="B.5" data-path="stat-stoch.html"><a href="stat-stoch.html#zusammenfassung-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.5</b> Zusammenfassung Wahrscheinlichkeitsmodelle</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>C</b> Wiederholung: Deskriptive Statistik</a><ul>
+<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-und-datensätze"><i class="fa fa-check"></i>Verwendete Pakete und Datensätze</a></li>
+<li class="chapter" data-level="C.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>C.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
+<li class="chapter" data-level="C.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmaße"><i class="fa fa-check"></i><b>C.2</b> Korrelationsmaße</a></li>
+<li class="chapter" data-level="C.3" data-path="desk-stat.html"><a href="desk-stat.html#hinweise-zur-quantitativen-und-visuellen-datenbeschreibung"><i class="fa fa-check"></i><b>C.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
+<li class="chapter" data-level="C.4" data-path="desk-stat.html"><a href="desk-stat.html#zusamenfassung"><i class="fa fa-check"></i><b>C.4</b> Zusamenfassung</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>D</b> Wiederholung: Drei Verfahren der schließenden Statistik</a><ul>
+<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-3"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="D.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>D.1</b> Punktschätzung</a></li>
+<li class="chapter" data-level="D.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>D.2</b> Hypothesentests</a></li>
+<li class="chapter" data-level="D.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>D.3</b> Berechnung von Konfidenzintervallen</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R für die sozio-ökonomische Forschung</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="formalia" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Formale Methoden der Sozioökonomie</h1>
+<div id="einleitung-und-überblick-1" class="section level2">
+<h2><span class="header-section-number">7.1</span> Einleitung und Überblick</h2>
+<blockquote>
+<p>Refusing to deal with numbers rarely serves the interest of the least well-off.</p>
+<footer>
+— Thomas Piketty
+</footer>
+</blockquote>
+<p>In diesem Kapitel werden ausgewählte formale Methoden, die in der sozioökonomischen Forschung besonders häufig verwendet werden, und ihre Implementierung in R eingeführt. Dabei gibt dieses Kapitel selbstverständlich nur einen ersten Einblick und die Auswahl ist notwendigerweise subjektiv.</p>
+<p>Allerdings werden die in diesem Kapitel diskutierten Methoden Ihnen einen guten Einblick in die formale Forschung im Bereich der Sozioökonomik geben und Ihnen verdeutlichen wie vielseitig Sie R in Ihrer Forschungstätigkeit - auch abseits klassischer statistischer Anwendungen - verwenden können.</p>
+<p>Zunächst werden wir uns mit der Berechnung von <a href="formalia.html#formalia-wachstum">Wachstumsraten</a> beschäftigen und dabei besonders die Verwendung von Logarithmen besprechen. Als nächstes werden Grundlagen der <a href="formalia.html#formalia-diff">Differentialrechnung</a> wiederholt und ihre Implementierung in R eingeführt. Besondere Beachtung findet dabei das Thema der Optimierung, das im Forschungsalltag eine besonders wichtige Rolle spielt.</p>
+<p>Als nächstes illustrieren wir die Verwendung von Konzepten aus der <a href="formalia.html#formalia-linalg">linearen Algebra</a>, wobei Sie hier einiges schon aus dem Kapitel zu den <a href="">linearen Modellen</a> und der <a href="">Einführung in R</a> kennen. Allerdings werden wir anhang konkreter Beispiele noch einmal die Allgegenwärtigkeit der linearen Algebra verdeutlichen.</p>
+<p>Den Schwerpunkt des Kapitels bildet dann der Abschnitt zu <a href="formalia.html#formalia-dist">Verteilungen</a>. Die Analyse von Verteilungen spielt eine sehr wichtige Rolle in der Sozioökonomik, da Themen wie Einkommens- und Vermögensverteilung bzw. Ungleichheitsforschung traditionell ein wichtiges Kernthema der Sozioökonomik ausmachen.</p>
+<p>In diesem Kapitel werden die folgenden R Pakete verwendet:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(here)
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(data.table)
+<span class="kw">library</span>(icaeDesign)
+<span class="kw">library</span>(ggrepel)
+<span class="kw">library</span>(ggpubr)
+<span class="kw">library</span>(latex2exp)
+<span class="kw">library</span>(matlib)
+<span class="kw">library</span>(fitdistrplus)
+<span class="kw">library</span>(moments)
+<span class="kw">library</span>(ineq)
+<span class="kw">library</span>(rmutil)</code></pre></div>
+<blockquote>
+<p><strong>Hinweis</strong>: Das Paket <a href="http://friendly.github.io/matlib/">matlib</a> <span class="citation">(Friendly, Fox, and Chalmers <a href="#ref-R-matlib">2019</a>)</span> verwenden wir für einige Matrizenoperationen und zum Lösen linearer Gleichungssysteme. Streng genommen ist das Paket nicht dringend nötig, da anstatt der Funktion <code>matlib::Solve()</code> auch die Funktion <code>base::solve()</code> verwendet werden kann. Der Output von <code>matlib::Solve()</code> ist aber schöner und etwas informativer.</p>
+</blockquote>
+</div>
+<div id="formalia-wachstum" class="section level2">
+<h2><span class="header-section-number">7.2</span> Änderungsraten und die Rolle des Logarithmus</h2>
+<p>Die sozioökonomische Forschung beschäftigt sich häufig mit Veränderungen über die Zeit. Je nach Fragestellung sind dabei <em>absolute</em> oder <em>relative</em> Änderungen von Interesse.</p>
+<p>Um die Änderungsrate einer Variable <span class="math inline">\(X\)</span> zu berechnen wird folgende Formen verwendet:</p>
+<p><span class="math display">\[\frac{X_t-X_{t-1}}{|X_{t-1}|}\cdot100\% = \left(\frac{X_t}{|X_{t-1}|}-1\right)\cdot100\%\]</span></p>
+<p>Selbstverständlich können wir auch die Änderung über mehr als einen Zeitschritt berechnen. Für die <strong>durchschnittliche Änderungsrate</strong> verwenden wir:</p>
+<p><span class="math display">\[\left(\left[ \frac{X_t}{X_{t-s}} \right]^{\frac{1}{s}} -1 \right)\cdot 100\% \]</span></p>
+<p>Umgekehrt können wir den tatsächlichen Wert der Variable <span class="math inline">\(X\)</span> berechnen wenn wir Informationen über die jährliche Anderungsrate <span class="math inline">\(x\)</span> haben. Hierbei gilt:</p>
+<p><span class="math display">\[X_{t+s}=X_t\left(1+x\right)^s\]</span></p>
+<p>Diese Formel kann auch durch Verwendung der <em>Eulerschen Zahl</em> <span class="math inline">\(e\)</span> approximiert werden:</p>
+<p><span class="math display">\[X_{t+s}=X_t\left(1+x\right)^s \approx X_t\cdot e^{xs} \]</span></p>
+<p>Diese Approximation wir später hilfreich werden, wenn wir Wachstumsraten in logarithmierter Form darstellen wollen.</p>
+<p>Wenn <span class="math inline">\(X_t=4\)</span>, <span class="math inline">\(s=5\)</span> und <span class="math inline">\(x=0.05\)</span> ergibt sich für den Wert nach <span class="math inline">\(s\)</span> Zeitschritten also <span class="math inline">\(X_{t+s}=4\cdot 1.05^5=5.11\)</span>. Oder, unter Verwendung der vereinfachten Formel: <span class="math inline">\(4\cdot e^{0.05\cdot 5}=5.13\)</span>.</p>
+<p>Natürlich können wir auch Änderungen von prozentualen Größen berechnen. Wenn die Inflation im Jahr 2010 bei 4% und 2011 bei 5% liegt können wir die Änderung folgendermaßen berechnen:</p>
+<p><span class="math display">\[\frac{5\%-4\%}{|4\%|}=0.25=25\%\]</span></p>
+<p>Hier von einer 25-prozentigen Änderung zu sprechen ist jedoch nicht eindeutig: damit könnte eine relative Änderung von 25% gemeint sein, oder aber eine absolute Änderung von 25%. Daher sprechen wir bei letzterem von einer Änderung in <em>Prozentpunkten</em>. Im Beispiel haben wir also eine Änderung von einem Prozentpunkt, bzw. einer relativen Änderung von 25%.</p>
+<p>In R können wir die Funktionen <code>lag()</code> und <code>lead()</code> aus dem Paket <a href="https://dplyr.tidyverse.org/">dplyr</a> <span class="citation">(Wickham et al. <a href="#ref-R-dplyr">2019</a>)</span> verwenden um Änderungsraten zu berechnen.<a href="#fn47" class="footnoteRef" id="fnref47"><sup>47</sup></a> <code>lag()</code> akzeptieren dabei zwei Argumente: den Vektor der Werte und die Anzahl der Schritte, die zurück bzw. vor gesprungen werden sollen.</p>
+<p>Entsprechend können wir Änderungsraten folgendermaßen berechnen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">werte &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">2.2</span>, <span class="fl">3.25</span>, <span class="fl">0.5</span>, <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0.2</span>)
+rel_change &lt;-<span class="st"> </span>(werte <span class="op">-</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">lag</span>(werte)) <span class="op">/</span><span class="st"> </span><span class="kw">abs</span>(dplyr<span class="op">::</span><span class="kw">lag</span>(werte)) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>
+rel_change</code></pre></div>
+<pre><code>#&gt; [1]         NA  120.00000   47.72727  -84.61538  -80.00000 -200.00000  300.00000</code></pre>
+<p>Die gleiche Syntax können wir auch für die Arbeit mit einem <code>data.frame</code> verwenden. Hier müssen wir aber darauf achten, die Daten auch tatsächlich nach dem Beobachtungszeitpunkt zu so sortieren, damit <code>lag(x, 1)</code> auch vorherigen Wert ausgibt. Dazu verwenden wir die Funktion <code>arrange()</code>, welche die Zeilen eines <code>data.frame</code> gemäß einer oder mehrerer Variablen ordnet:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(beispiel_daten_at, <span class="dv">4</span>)</code></pre></div>
+<pre><code>#&gt;   country      BIP year
+#&gt; 1 Austria 37941.04 2018
+#&gt; 2 Austria 37140.79 2017
+#&gt; 3 Austria 36469.39 2016
+#&gt; 4 Austria 36129.03 2015</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beispiel_daten_at &lt;-<span class="st"> </span>beispiel_daten_at <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(year)
+<span class="kw">head</span>(beispiel_daten_at, <span class="dv">4</span>)</code></pre></div>
+<pre><code>#&gt;   country      BIP year
+#&gt; 1 Austria 36123.43 2014
+#&gt; 2 Austria 36129.03 2015
+#&gt; 3 Austria 36469.39 2016
+#&gt; 4 Austria 37140.79 2017</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beispiel_daten_at &lt;-<span class="st"> </span>beispiel_daten_at <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">BIP_Wachstum =</span> (BIP<span class="op">-</span>dplyr<span class="op">::</span><span class="kw">lag</span>(BIP))<span class="op">/</span><span class="kw">abs</span>(dplyr<span class="op">::</span><span class="kw">lag</span>(BIP))<span class="op">*</span><span class="dv">100</span>)
+beispiel_daten_at</code></pre></div>
+<pre><code>#&gt;   country      BIP year BIP_Wachstum
+#&gt; 1 Austria 36123.43 2014           NA
+#&gt; 2 Austria 36129.03 2015   0.01550613
+#&gt; 3 Austria 36469.39 2016   0.94206769
+#&gt; 4 Austria 37140.79 2017   1.84100901
+#&gt; 5 Austria 37941.04 2018   2.15464100</code></pre>
+<p>Falls wir innerhalb des Datensatzes unterschiedliche Beobachtungsobjekte haben, z.B. verschiedene Länder, müssen wir den Datensatz vor Berechnung der Wachstumsrate gruppieren:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(beispiel_daten, <span class="dv">4</span>)</code></pre></div>
+<pre><code>#&gt;   country      BIP year
+#&gt; 1 Austria 37941.04 2018
+#&gt; 2 Germany 35866.00 2018
+#&gt; 3 Austria 37140.79 2017
+#&gt; 4 Germany 35477.89 2017</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beispiel_daten &lt;-<span class="st"> </span>beispiel_daten <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(country, year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">BIP_Wachstum =</span> (BIP<span class="op">-</span>dplyr<span class="op">::</span><span class="kw">lag</span>(BIP))<span class="op">/</span><span class="kw">abs</span>(dplyr<span class="op">::</span><span class="kw">lag</span>(BIP))<span class="op">*</span><span class="dv">100</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ungroup</span>()
+beispiel_daten</code></pre></div>
+<pre><code>#&gt; # A tibble: 10 x 4
+#&gt;    country    BIP  year BIP_Wachstum
+#&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt;
+#&gt;  1 Austria 36123.  2014      NA     
+#&gt;  2 Austria 36129.  2015       0.0155
+#&gt;  3 Austria 36469.  2016       0.942 
+#&gt;  4 Austria 37141.  2017       1.84  
+#&gt;  5 Austria 37941.  2018       2.15  
+#&gt;  6 Germany 34077.  2014      NA     
+#&gt;  7 Germany 34371.  2015       0.862 
+#&gt;  8 Germany 34859.  2016       1.42  
+#&gt;  9 Germany 35478.  2017       1.78  
+#&gt; 10 Germany 35866.  2018       1.09</code></pre>
+<p>Häufig werden Wachstumsraten in ihrer lograrithmierten Form präsentiert. Wir können nämlich die Formel zur Berechnung von Änderungsprozessen folgendermaßen approximieren:</p>
+<p><span class="math display">\[\left(\left[ \frac{X_t}{X_{t-s}} \right]^{\frac{1}{s}} -1 \right)\approx \ln \left(\frac{X_t}{X_{t-s}}\right)/t=\frac{\ln(X_t)-ln(X_{t-s})}{t}\]</span></p>
+<p>Sie fragen sich vielleicht warum wir uns mit der Verwendung des Logarithmus überhaupt beschäftigen, wo durch die ‘Vereinfachung’ doch eine kleine Ungenauigkeit eingeführt wird? Tatsächlich ist die Verwendung des Logarithmus häufig hilfreich für die grafische Darstellung von Wachstumsraten:<a href="#fn48" class="footnoteRef" id="fnref48"><sup>48</sup></a></p>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-12-1.png" width="75%" height="50%" style="display: block; margin: auto;" /></p>
+<p>In dieser Darstellung gilt: die Steigung im logarithmierten Plot gibt die <em>relative</em> Änderung der Variable an. Das bedeutet, dass wenn wir im logarithmierten Plot eine lineare Steigung haben wächst die Variable konstant mit der gleichen Wachstumsrate über die Zeit - so wie im obigen Beispiel.</p>
+<p>Diese Art der Darstellung ist zum Beispiel bei der langfristigen Betrachtung von Wachstumsraten und dem Vergleich zwischen Ländern sehr hilfreich, da Unterschiede in der logarithmierten Darstellung besser erkennbar sind:</p>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-13-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Das folgende Beispiel zeigt wie wichtig eine solche Darstellung sein kann um Events, die zu sehr unterschiedlichen Zeitpunkten stattgefunden haben, vergleichbar zu machen:</p>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-14-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Während die absoluten Zahlen die Volatilität während der Großen Depression verschwindend gering erscheinen lassen wird im unteren Graph deutlich, dass die Volatilität damals tatsächlich noch größer war.</p>
+<p>Um die Achsen intuitiver verständlich zu machen habe ich von allen Werten den Wert für 1871 (die erste Beobachtung) abgezogen und den Wert für 1871 somit auf Null normiert. Zudem habe ich die Werte mit 100 multipliziert, sodass eine Änderung von 1 auf der y-Ache zu einer einprozentigen Änderung des S&amp;P Kurses korrespondiert.</p>
+<p><a href="">Später</a> werden wir zudem lernen, dass die logarithmierte Form die Analyse von Wachstumsraten in linearen Regressionsmodellen deutlich vereinfacht.</p>
+</div>
+<div id="formalia-diff" class="section level2">
+<h2><span class="header-section-number">7.3</span> Grundlagen der Differentialrechnung</h2>
+<div id="einleitung-differential--und-integralrechnung" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> Einleitung: Differential- und Integralrechnung</h3>
+<p>Die Differentialrechnung ist eng verwandt mit der Integralrechnung: in beiden Bereichen studiert man die Veränderungen von Funktionen. Während die Differentialrechnung sich mit der lokalen Änderung einer Funktion beschäftig, also vor allem versucht die Steigung der durch die Funktion definierten Kurven zu berechnen, studiert die Integralrechnung die Grafisch bedeutet dies, dass man mit den Flächen unter bzw. zwischen Kurven interessiert ist.</p>
+<p>Die beiden Bereiche sind eng miteinander verbunden. Besonders deutlich wird das in dem so genannten <em>Fundamentalsatz der Analysis</em> (auch: <em>Hauptsatz der Differential- und Integralrechnung</em>) deutlich.</p>
+<p>In der Differentialrechnung leiten wir Funktionen <em>ab</em> und in der Integralrechnung leiten wir Funktionen <em>auf</em>. Der Fundamentalsatz der Analysis zeigt, dass die beiden Vorgehensweise jeweils die Umkehrung des anderen Darstellen: Die Ableitung einer Aufleitung führt zur gleichen Ausgangsfunktion, genauso wie die Aufleitung der Ableitung ebenfalls wieder zur Ausgangsfunktion führt.</p>
+<p>In der Ökonomik spielen beide Bereiche eine wichtige Rolle, der Fokus wird in diesem Kapitel jedoch auf der Differentialrechnung liegen, deren Anwendungsgebiet noch einmal breiter ist: wann immer Sie eine Funktion maximieren oder minimieren bedienen Sie sich Methoden der Differentialrechnung. Und Maximierung spielt nicht nur in den herkümmlichen Modellen, die auf dem <em>homo oeconomicus</em> aufbauen, eine wichtige Rolle, auch in zahlreichen anderen Modellierungsparadigmen und genauso in der Ökonometrie spielt die Maximierung eine wichtige Rolle.</p>
+</div>
+<div id="wiederholung-ableitungsregeln" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> Wiederholung: Ableitungsregeln</h3>
+<p>Für einfache Funktionen gibt es unmittelbare Ableitungsregeln, die uns für jeden Ausdruck die entsprechende Ableitung geben. Komplexere Ausdrücke versucht man über entsprechende Regeln auf diese einfacheren Ausdrücke zurückzuführen und Ableitungen von komplexeren Funktionen somit ‘Stück für Stück’ durchzuführen. Bei den komplexeren Ableitungsregeln handelt es sich insbesondere die Summen-, Produkt- und Quotientenregel. Vorher wollen wir uns aber mit den einfachen Grundregeln vertraut machen.</p>
+<p>Die Ableitung der Funktion <span class="math inline">\(f(x)\)</span> wird als <span class="math inline">\(f&#39;(x)\)</span> oder mit <span class="math inline">\(\frac{\partial f(x)}{\partial x}\)</span> bezeichnet. Letztere Formulierung ist besonders hilfreich wenn eine Funktion im Bezug auf verschiedene Variablen abgeleitet ist, das unter dem Bruchstrich noch einmal explizit angegeben wird nach welcher Variable die Funktion abgeleitet wird.</p>
+<p>Grundsätzlich gilt, dass die Ableitung einer Konstanten gleich Null ist:</p>
+<p><span class="math display">\[\frac{\partial a}{\partial x} = 0\]</span></p>
+<p>Die Ableitung einer Potenz funktioniert folgendermaßen:</p>
+<p><span class="math display">\[\frac{\partial x^n}{\partial x}=nx^{n-1}\]</span></p>
+<p>Besteht unsere komplexere Funktion <span class="math inline">\(f(x)\)</span> aus der Summe von Teilfunktionen verwenden wir die <strong>Summenregel</strong>. Diese besagt, dass die Ableitung von <span class="math inline">\(f(x) = u(x) + v(x)\)</span> einfach die Summe der Ableitungen der Teilfunktionen <span class="math inline">\(u\)</span> und <span class="math inline">\(v\)</span> sind:</p>
+<p><span class="math display">\[f&#39;(x_0)=u&#39;(x_0) + v&#39;(x_0)\]</span> Wenn wir also die Funktion <span class="math inline">\(f(x)=3x^2+4x\)</span> ableiten wollen geht dies nach der Summenregel folgendermaßen:</p>
+<span class="math display">\[\begin{align}
+f&#39;(x)&amp;=u&#39;(x)+v&#39;(x)\\
+u(x)&amp;=3x^2, u&#39;(x)=6x\\
+v(x)&amp;=4x, v&#39;(x)=4\\
+f&#39;(x)&amp;= 6x + 4
+\end{align}\]</span>
+<p>Die Summenregel funktioniert natürlich äquivalent auch für den Fall in dem die Teilfunktionen substrahiert werden.</p>
+<p>Werden die Teilfunktionen nicht summiert sondern multipliziert verwenden wir die <strong>Produktregel</strong>. Gehen wir wieder davon aus, dass wir eine komplexe Funktion <span class="math inline">\(f(x)=u(x)v(x)\)</span> ableiten wollen. Ein Beispiel wäre <span class="math inline">\(f(x)=(4+x^2)(1-x^3)\)</span>, wobei <span class="math inline">\(u(x)=(4+x^2)\)</span> und <span class="math inline">\(v(x)=(1-x^3)\)</span>.</p>
+<p>Insbesondere gilt hier:</p>
+<p><span class="math display">\[f&#39;(x_0)=u&#39;(x_0)\cdot v(x_0) + u(x_0)\cdot v&#39;(x_0)\]</span></p>
+<p>Wir können die komplexere Gesamtfunktion also ableiten indem wir die einzelnen Teile separat ableiten und jeweils mit den Ausgangsfunktionen multiplizieren. Für unser Beispiel mit <span class="math inline">\(f(x)=(4+x^2)(1-x^3)\)</span> hätten wir also:</p>
+<span class="math display">\[\begin{align}
+f&#39;(x)&amp;=u&#39;(x)\cdot v(x) + u(x)\cdot v&#39;(x)\\
+u(x)&amp;=(4+x^2), u&#39;(x)=2x\\
+v(x)&amp;=(1-x^3), v&#39;(x)=3x\\
+f&#39;(x)&amp;=2x(1-x^3) + 3x(4+x^2)) =2x-2x^4 + 12x + 3x^3=-2x^4+3x^3+14x 
+\end{align}\]</span>
+<p>Wenn die beiden Teilfunktionen dagegen dividiert werden müssen wir die <strong>Quotientenregel</strong> anwenden. Hier gehen wir also von dem Fall <span class="math inline">\(f(x)=\frac{u(x)}{v(x)}\)</span> aus, z.B. von <span class="math inline">\(f(x)=\frac{x^2}{2x}\)</span>.</p>
+<p>In diesem Fall gilt:</p>
+<p><span class="math display">\[ f&#39;(x_0) = \frac{u&#39;(x_0)\cdot v(x_0) - u(x_0)\cdot v&#39;(x_0)}{\left(v(x_0)\right)^2}\]</span></p>
+<p>Für unser Beispiel hätten wir dann:</p>
+<span class="math display">\[\begin{align}
+f&#39;(x)&amp;=\frac{u&#39;(x)\cdot v(x) - u(x)\cdot v&#39;(x)}{\left(v(x)\right)^2}\\
+u(x)&amp;=x^2, u&#39;(x)=2x\\
+v(x)&amp;=2x, v&#39;(x)=2\\
+f&#39;(x)&amp;=\frac{2x\cdot 2 - x^2\cdot 2}{v(x)^2}=\frac{2x-2x^2}{(2x)^2}
+\end{align}\]</span>
+<p>Zuletzt betrachten wir noch die <strong>Kettenregel</strong>, die es uns erlaubt geschachtelte Funktionen abzuleiten. Darunter verstehen wir Funktionen <span class="math inline">\(f(x)=u(x) \circ v(x)=u(v(x))\)</span>. Hier gilt:</p>
+<p><span class="math display">\[(u\circ v)&#39;(x_0) = u&#39;\left(v(x_0)\right) \cdot v&#39;(x_0)\]</span> Man leitet also die ‘innere’ Funktion <span class="math inline">\(v(x)\)</span> normal ab und multipliziert diese Ableitung mit der Ableitung der ‘äußeren’ Funktion <span class="math inline">\(u(v)\)</span> an der Stelle <span class="math inline">\(v(x_0)\)</span>. Am einfachsten ist das mit einem Beispiel nachzuvollziehen in dem <span class="math inline">\(f(x)=\left( x^2+4\right)^2\)</span>, also <span class="math inline">\(u(v)=v^2\)</span> und <span class="math inline">\(v(x)= x^2+4\)</span>.</p>
+<p>Insgesamt bekommen wir also:</p>
+<span class="math display">\[\begin{align}
+f&#39;(x)&amp;=u&#39;\left(v(x_0)\right) \cdot v&#39;(x_0)\\
+u(v)&amp;=v^2, u&#39;(v)=2v\\
+v(x)&amp;=x^2+4, v&#39;(x)=2x\\
+f&#39;(x)&amp;=2(x^2+4)\cdot 2x 
+\end{align}\]</span>
+</div>
+<div id="ableitungen-in-r" class="section level3">
+<h3><span class="header-section-number">7.3.3</span> Ableitungen in R</h3>
+<p>Sie müssen Ableitungen nicht händisch ausrechnen, sondern können die Funktionen auch in R direkt ableiten lassen. Dazu verwenden wir die Funktion <code>expression()</code> um unsere abzuleitende Funktion zu definieren und dann die Funktion <code>D()</code> um die Ableitung zu bilden.</p>
+<p>Betrachten wir folgendes Beispiel:</p>
+<p><span class="math display">\[f(x) = x^2 + 3x\]</span></p>
+<p>Zunächst wird die Funktion in eine <code>expression</code> übersetzt:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="kw">expression</span>(x<span class="op">^</span><span class="dv">2</span><span class="op">+</span><span class="dv">3</span><span class="op">*</span>x)
+f</code></pre></div>
+<pre><code>#&gt; expression(x^2 + 3 * x)</code></pre>
+<p>Eine solche <code>expression</code> können Sie über die Funktion <code>eval()</code> für konkrete Werte ausrechnen lassen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>
+<span class="kw">eval</span>(f)</code></pre></div>
+<pre><code>#&gt; [1]  4 10 18 28 40</code></pre>
+<p>Zudem können wir mit der Funktion <code>D()</code> direkt die Ableitung einer <code>expression</code> berechnen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">D</span>(f, <span class="st">&quot;x&quot;</span>)</code></pre></div>
+<pre><code>#&gt; 2 * x + 3</code></pre>
+<p>Wir haben also:</p>
+<p><span class="math display">\[\frac{\partial f(x) }{\partial x}=2x+3\]</span></p>
+<p>Wir können Aufrufe von <code>D()</code> auch verschachteln um höhere Ableitungen zu berechnen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">D</span>(<span class="kw">D</span>(f, <span class="st">&quot;x&quot;</span>), <span class="st">&quot;x&quot;</span>)</code></pre></div>
+<pre><code>#&gt; [1] 2</code></pre>
+<p><span class="math display">\[\frac{\partial f(x) }{\partial x^2}=2\]</span></p>
+</div>
+<div id="maximierung-die-analytische-perspektive" class="section level3">
+<h3><span class="header-section-number">7.3.4</span> Maximierung: die analytische Perspektive</h3>
+<p>Eine der wichtigsten Anwendungen der Differentialrechnung ist die Berechnung von Minima und Maxima, so genannten Extrema, einer Funktion. Die interessierende Funktion wird in diesem Kontext in der Regel <em>Zielfunktion</em> genannt.</p>
+<p>Die Differentialrechnung spielt hier eine wichtige Rolle, denn Exterma sind dadurch gekennzeichnet, dass die Ableitung einer Funktion an Ihren Extrempunkten gleich Null ist. Weil die Nullstellen einer Funktion wiederum recht leicht zu finden sind, bietet es sich an, Extrema über die Ableitung einer Funktion zu suchen.</p>
+<p>Die genauen Details des Verfahrens werden hier nicht besprochen, es gibt jedoch zahlreiche gute Lehrbücher. Hier soll es eher um die grundsätzliche Intuition gehen.</p>
+<p>Wichtig ist die Unterscheidung zwischen <em>lokalen</em> und <em>globalen</em> Extremwerten. Das <em>globale</em> Maximum (Minimum) liegt an dem Punkt im Definitionsbereich einer Funktion, der zu dem größten (kleinsten) Wert im Wertebereich der Funktion führt. Das <em>lokale</em> Maximum (Minimum) ist für eine bestimmte Teilmenge des Definitionsbereichs der Funktion definiert und bezeichnet den Punkt mit dem größten (kleinsten) Wert <em>innerhalb dieser Teilmenge</em>.</p>
+<p>Formal exakt können wir die Punkte folgendermaßen definieren, wenn wir von einer Funktion <span class="math inline">\(f\)</span> mit Definitionsbereich <span class="math inline">\(D\subseteq\mathbb{R}\)</span> und Wertebereich <span class="math inline">\(\mathbb{R}\)</span>, also <span class="math inline">\(f: D\rightarrow \mathbb{R}\)</span> ausgehen.</p>
+<p>Dann hat <span class="math inline">\(f\)</span> ein <em>lokales Minimum</em> im Intervall <span class="math inline">\(I=(a,b)\)</span> am Punkt <span class="math inline">\((x^*, f(x^*))\)</span> wenn <span class="math inline">\(f(x^*)\leq f(x) \forall x \in I \cap D\)</span>. Analog sprechen wir bei dem Punk <span class="math inline">\((x^*, f(x^*))\)</span> von einem <em>lokalen Maximum</em> im Intervall <span class="math inline">\(I=(a,b)\)</span> wenn <span class="math inline">\(f(x^*)\geq f(x) \forall x \in I \cap D\)</span>.</p>
+<p>Wir sprechen beim Punkt <span class="math inline">\((x^*, f(x^*))\)</span> von einem <em>globalen Minimum</em> wenn <span class="math inline">\(f(x^*)\leq f(x) \forall x \in x \in D\)</span> und von einem <em>globalen Maximum</em> wenn <span class="math inline">\(f(x^*)\geq f(x) \forall x \in x \in D\)</span>.</p>
+<p>Im folgenden Beispiel sehen wir die Extremwerte der Funktion <span class="math inline">\(f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2\)</span>:</p>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-19-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Es kann gezeigt werden, dass eine <strong>notwendige Bedingung</strong> für die Existenz eines Extremwertes am Punkt <span class="math inline">\(x^*\)</span> ist, dass <span class="math inline">\(f&#39;(x^*)=0\)</span>. Daher ist der erste Schritt bei der analytischen Suche nach Extremwerten immer die Ableitung der Funktion und die Identifikation der Nullstellen. Als nächstes untersucht man die <strong>hinreichenden Bedingungen</strong>, die einem genauere Informationen über den Punkt geben.</p>
+<p>Hierbei hat sich folgende Heuristik in der Praxis bewährt:<a href="#fn49" class="footnoteRef" id="fnref49"><sup>49</sup></a></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">1. Ableitung</th>
+<th align="center">2. Ableitung</th>
+<th>Ergebnis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(f&#39;(x)=0\)</span></td>
+<td align="center"><span class="math inline">\(f&#39;&#39;(x)&gt;0\)</span></td>
+<td>Minimum</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(f&#39;(x)=0\)</span></td>
+<td align="center"><span class="math inline">\(f&#39;&#39;(x)&lt;0\)</span></td>
+<td>Maximum</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(f&#39;(x)=0\)</span></td>
+<td align="center"><span class="math inline">\(f&#39;&#39;(x)=0\)</span></td>
+<td>Wendepunkt</td>
+</tr>
+</tbody>
+</table>
+<p>Das ganze funktioniert natürlich nur wenn eine Funktion auch tatsächlich eine Ableitung besitzt, es sich also um eine differenzierbare Funktion handelt. Daher wird das auch in vielen ökonomischen Modellen angenommen.</p>
+<p>Um herauszufinden ob es sich um ein <em>globales</em> Extremum handelt müssen wir die Werte der Extrema vergleichen. Es gibt auch noch einige Heuristiken für besondere Sub-Klassen von Funktionen, die wir hier aber nicht genauer diskutieren wollen.</p>
+<p>Wenn die Funktion unter bestimmten <em>Bedingungen</em> maximiert (minimiert) werden soll, sprechen wir von einem <em>Maximierung unter Nebenbedingung</em>. Die Standard-Methode hier ist die so genannte <em>Lagrange-Optimierung</em>. Details finden sich in zahlreichen Lehrbüchern, z.B. in <span class="citation">Wainwright and Chiang (<a href="#ref-chiang">2005</a>)</span></p>
+</div>
+<div id="maximierung-die-algorithmische-perspektive" class="section level3">
+<h3><span class="header-section-number">7.3.5</span> Maximierung: die algorithmische Perspektive</h3>
+<p>Bei vielen Funktionen wäre die analytische Berechnung von Extrema zu aufwendig oder gar nicht möglich. Daher verwendet man den Computer um die Extrema zu finden. Das ist bei einfachen Funktionen kein großes Problem, da Sie sich für folgenden Fall leicht vorstellen können, dass der Computer einfach mit einem beliebigen Startwert <span class="math inline">\(x_0\)</span> anfängt und sich so lange auf dem Definitionsbereich fortbewegt solange der Funktionsweg steigt und damit dann in jedem Fall den Punkt <span class="math inline">\(x^*_{globmax}\)</span> identifiziert. Für Funktionen mit lokalen Extremwerten funktioniert das natürlich nicht mehr:</p>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-20-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Bei der linken Funktion ist es mit einem solchen Vorgang recht einfach das Maximum bei <span class="math inline">\(x=0\)</span> zu finden, aber bei der rechten Funktion würde das gleiche möglicherweise dazu führen, dass der Computer auf dem lokalen Extremum bei <span class="math inline">\(x=0.77\)</span> ‘stecken bleibt’.</p>
+<p>Um das zu vermeiden verwenden die Optimierungsalgorithmen einige Tricks. Für die R-Funktion <code>optim()</code> können Sie z.B. zwischen sieben solcher ausgefeilter Algorithmen wählen. Schauen Sie einmal in die Hilfefunktion wenn Sie mehr Informationen über diese Algorithmen bekommen möchten.<a href="#fn50" class="footnoteRef" id="fnref50"><sup>50</sup></a></p>
+<p>Wichtig zu unterscheiden ist die Art der zu opmtimierenden Funktion und der Nebenbedingungen. Grob können wir zwischen den folgenden drei Fällen unterscheiden:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Lineares Programmieren (LP)</strong>: Sowohl Zielfunktion als auch Nebenbedingungen sind linear. Beispiel: <span class="math inline">\(\max s.t. Ax&lt;b, x\geq 0\)</span></li>
+<li><strong>Quadratisches Programmieren (QP)</strong> Zielfunktion ist quadratisch, Nebenbedingungen sind linear. Beispiel: <span class="math inline">\(\max s.t. Ax&lt;b, x\geq 0\)</span></li>
+<li><strong>Nicht-lineares Programmieren (NLP)</strong>: Die Zielfunktion oder zumindest eine Nebenbedingung ist nicht-linear.</li>
+</ol>
+<p>Die Unterscheidung spielt eine ähnliche Rolle wie die Unterscheidung verschiedener Skalenstufen bei der Datenanalyse: je nach Art des Problems müssen wir andere Methoden anwenden. In diesem Fall bedeutet das, dass wir für unterschiedliche Arten von Funktionen andere Pakete verwenden müssen um Extremwerte zu finden. Zusätzlich gibt es aber auch noch ein paar <em>general-purpose</em>-Funktionen, die wir auf alle Klassen anwenden können - auf Kosten der Performance:</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Art</strong></th>
+<th><strong>Optimierungsfunktion</strong></th>
+<th><strong>Paket</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Allgemein</td>
+<td><code>optimize()</code>, <code>optim()</code></td>
+<td><code>base</code></td>
+</tr>
+<tr class="even">
+<td>LP</td>
+<td><code>lp()</code></td>
+<td><code>lpSolve</code></td>
+</tr>
+<tr class="odd">
+<td>QP</td>
+<td><code>solve.QP()</code></td>
+<td><code>quadprog</code></td>
+</tr>
+<tr class="even">
+<td>NLP</td>
+<td><code>optimize()</code></td>
+<td><code>optimize</code></td>
+</tr>
+<tr class="odd">
+<td>NLP</td>
+<td><code>optimx()</code></td>
+<td><code>optimx</code></td>
+</tr>
+</tbody>
+</table>
+<p>Das Schöne ist dass trotzd der Vielzahl an Paketen alle Optimierungsfunktionen nach einem sehr ähnlighcn Schema aufgebaut sind. Die ersten beiden Argumente sind immer die Zielfunktion und die Nebenbedingungen. Danach folgen Argumente mit denen Sie die Suchintervalle, den konkreten Algorithmus oder weitere Spezifika festlegen können.</p>
+<p>Im Folgenden wollen wir anhand einiger einfacher Beispiele sehen wie Sie Optimierungsprobleme in R lösen können. Für eine tiefergehende Auseinandersetzung verweisen wir auf die entsprechenden spezialisierten Einführungen.</p>
+<p>Betrachten wir die folgende Zielfunktion:</p>
+<p><span class="math display">\[f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2\]</span> In R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="dv">8</span><span class="op">*</span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.5</span><span class="op">*</span>x<span class="op">**</span><span class="dv">3</span> <span class="op">-</span><span class="st"> </span><span class="fl">4.25</span><span class="op">*</span>x<span class="op">**</span><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
+<p>Grafisch sieht die Funktion folgendermaßen aus, sie verfügt also über ein lokales Maximum bei <span class="math inline">\(x_a=-0.77\)</span>, ein lokales Minimum bei <span class="math inline">\(x_b=0\)</span> und ein globales Maximum bei <span class="math inline">\(x_c=1.22\)</span>:</p>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-22-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Wir können für solcherlei eindimensionale Probleme die Funktion <code>optimize()</code> verwenden:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opt_obj &lt;-<span class="st"> </span><span class="kw">optimize</span>(<span class="dt">f =</span> f_<span class="dv">1</span>, 
+                    <span class="dt">lower =</span> <span class="op">-</span><span class="fl">1.25</span>, <span class="dt">upper =</span> <span class="fl">1.75</span>, 
+                    <span class="dt">maximum =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>Das Ergebnis ist eine Liste mit zwei Elementen. Dem x-Wert des gesuchten Minimums:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opt_obj[[<span class="st">&quot;minimum&quot;</span>]]</code></pre></div>
+<pre><code>#&gt; [1] -7.54766e-06</code></pre>
+<p>Und dem dazugehörigen Funktionswert:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opt_obj[[<span class="st">&quot;objective&quot;</span>]]</code></pre></div>
+<pre><code>#&gt; [1] 2</code></pre>
+<p>Falls wir ein Maximum suchen setzen wir <code>maximum=TRUE</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opt_obj_max &lt;-<span class="st"> </span><span class="kw">optimize</span>(<span class="dt">f =</span> f_<span class="dv">1</span>, 
+                        <span class="dt">lower =</span> <span class="op">-</span><span class="fl">1.25</span>, <span class="dt">upper =</span> <span class="fl">1.75</span>, 
+                        <span class="dt">maximum =</span> <span class="ot">TRUE</span>)
+opt_obj_max</code></pre></div>
+<pre><code>#&gt; $maximum
+#&gt; [1] 1.215492
+#&gt; 
+#&gt; $objective
+#&gt; [1] 9.032067</code></pre>
+<p>Falls wir den Suchbereich entsprechend einschränken finden wir das lokale Maximum auf der linken Seite:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opt_obj_max &lt;-<span class="st"> </span><span class="kw">optimize</span>(<span class="dt">f =</span> f_<span class="dv">1</span>, 
+                        <span class="dt">lower =</span> <span class="op">-</span><span class="fl">1.25</span>, <span class="dt">upper =</span> <span class="dv">0</span>, 
+                        <span class="dt">maximum =</span> <span class="ot">TRUE</span>)
+opt_obj_max</code></pre></div>
+<pre><code>#&gt; $maximum
+#&gt; [1] -0.7743199
+#&gt; 
+#&gt; $objective
+#&gt; [1] 4.108106</code></pre>
+<p>Wir sind übrigens nicht auf eindimensionale Funktionen beschränkt. Wir können z.B. auch die folgende Zielfunktion optimieren:</p>
+<p><span class="math display">\[f(x,y)=(a-x)^2 + b(y-x^2)^2\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">a=</span><span class="dv">1</span>, <span class="dt">b=</span><span class="dv">100</span>){
+  (a <span class="op">-</span><span class="st"> </span>x[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>b<span class="op">*</span>(x[<span class="dv">2</span>]<span class="op">-</span>x[<span class="dv">1</span>]<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span>
+}</code></pre></div>
+<p>Bei dieser Funktion handelt es sich um die in der Optimierung sehr häufig als Benchmark verwendete <a href="https://en.wikipedia.org/wiki/Rosenbrock_function">Rosenbrock Funktion</a>. Grafisch können wir solche Funktionen mit Hilfe einer <em>Heatmap</em> darstellen, wobei wir hier annehmen, dass <span class="math inline">\(a=1\)</span> und <span class="math inline">\(b=100\)</span>:</p>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-29-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Da es sich jetzt ein mehrdimensionales Problem handelt verwenden wir die Funktion <code>optim()</code> anstatt von <code>optimize()</code>. Die Handhabung ist aber sehr ähnlich. Als erstes Argument übergeben wir <code>par</code> unsere ersten Vermutungen für das Extremum, also die Werte, mit der die Funktion ihre Suche beginnen soll. Danach als zweites Argument <code>fn</code> die zu optmierende Funktion. Falls diese Funktion noch weitere Argumente akzeptiert können wir die hier auch einfach hinzufügen. Für unseren Fall haben wir also:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opt_objekt &lt;-<span class="st"> </span><span class="kw">optim</span>(
+  <span class="dt">par =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>),
+  <span class="dt">fn =</span> f_<span class="dv">2</span>
+  )</code></pre></div>
+<p>Zunächst schauen wir ob der Algorithmus erfolgreich einen Extremwert gefunden hat. Bei erfolgreicher Suche hat der Listeneintrat <code>convergence</code> den Wert <code>0</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opt_objekt[[<span class="st">&quot;convergence&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">0</span> </code></pre></div>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<p>Die optimalen Argumente erhalten wir über den Listeneintrag <code>par</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opt_objekt[[<span class="st">&quot;par&quot;</span>]]</code></pre></div>
+<pre><code>#&gt; [1] 1 1</code></pre>
+<p>Und den Wert der Zielfunktion im Extremum über den Listeneintrag <code>value</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opt_objekt[[<span class="st">&quot;value&quot;</span>]]</code></pre></div>
+<pre><code>#&gt; [1] 0</code></pre>
+<p>Wenn wir <code>optim</code> übrigens zur Maximierung einsetzen wollen müssen wir nichts weiter tun als dem Argument <code>control</code> eine Liste mit dem Eintrag <code>fnscale=-1</code> zu übergeben:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f_x &lt;-<span class="st"> </span><span class="cf">function</span> (x) <span class="dv">4</span><span class="op">*</span>x <span class="op">-</span><span class="st"> </span>x<span class="op">**</span><span class="dv">2</span>
+opt_objekt &lt;-<span class="st"> </span><span class="kw">optim</span>(
+  <span class="kw">c</span>(<span class="dv">1</span>),
+  <span class="dt">fn =</span> f_x, 
+  <span class="dt">method =</span> <span class="st">&quot;Brent&quot;</span>, 
+  <span class="dt">lower =</span> <span class="op">-</span><span class="dv">4</span>, <span class="dt">upper =</span> <span class="dv">4</span>,
+  <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">fnscale=</span><span class="op">-</span><span class="dv">1</span>)
+  )
+
+opt_objekt<span class="op">$</span>convergence <span class="op">==</span><span class="st"> </span><span class="dv">0</span></code></pre></div>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opt_objekt<span class="op">$</span>par</code></pre></div>
+<pre><code>#&gt; [1] 2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opt_objekt<span class="op">$</span>value</code></pre></div>
+<pre><code>#&gt; [1] 4</code></pre>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-35-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="anwendungsbeispiel-1" class="section level3">
+<h3><span class="header-section-number">7.3.6</span> Anwendungsbeispiel</h3>
+<p>Wir betrachten erneut das klassische keynesianische Modell, wobei wir die Notation leicht um <span class="math inline">\(T\)</span> als die Steuerlast erweitern:</p>
+<p><span class="math display">\[
+Y=\frac{c_0 + I + G}{1-c_1(1-T)}
+\]</span></p>
+<p>Wenn wir nun wissen wollen wie <span class="math inline">\(Y\)</span> auf eine Änderung der Staatsausgaben reagiert können wir diese Formel nach <span class="math inline">\(G\)</span> ableiten. Dazu müssten wir gleich mehrere Regeln, die wir oben kennen gelernt haben, anwenden.</p>
+<p>Aber natürlich können wir das Ganze ganz einfach in R lösen. Um die Ableitung herzuleiten verwenden wir dabei einfach wieder die Funktion <code>D()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">keynes_model &lt;-<span class="st"> </span><span class="kw">expression</span>(<span class="dt">Y=</span>(c_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>I <span class="op">+</span><span class="st"> </span>G) <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>c_<span class="dv">0</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>T)))
+<span class="kw">D</span>(<span class="dt">expr =</span> keynes_model, <span class="dt">name =</span> <span class="st">&quot;G&quot;</span>)</code></pre></div>
+<pre><code>#&gt; 1/(1 - c_0 * (1 - T))</code></pre>
+<p>Es gilt also:</p>
+<span class="math display">\[\begin{align}
+\frac{\partial Y}{\partial G} &amp;= \frac{1}{1-c_0(1-T)}
+\end{align}\]</span>
+<p>Nehmen wir einmal an die marginale Konsumquote <span class="math inline">\(c_0\)</span> läge bei <span class="math inline">\(20\%\)</span> und der Steuersatz <span class="math inline">\(T\)</span> bei <span class="math inline">\(20\%\)</span>. Eine Erhöhung der Staatsausgaben würde dann <span class="math inline">\(Y\)</span> über den Multiplikator <span class="math inline">\(\frac{1}{1-0.2(1-0.25)}=1.176471\)</span> erhöhen.</p>
+<p>Alternativ können wir das Ergebnis natürlich analytisch unter Zuhilfename der oben eingeführten Ableitungsregeln herleiten.</p>
+</div>
+</div>
+<div id="formalia-linalg" class="section level2">
+<h2><span class="header-section-number">7.4</span> Lineare Algebra</h2>
+<p>Ebenfalls sehr häufig werden Sie Matrizen und den dazugehörigen Rechenoperationen (‘Matrizenalgebra’ genannt) in Kontakt kommen. Das Ziel dieses Abschnitts ist keine abschließende Einführung in Matrizen und Matrizenalgebra, sondern Ihnen einen groben Überblick über typische Rechenoperationen und deren Implementierung in R zu bekommen. Für eine ausführlichere Einführung verweisen wir auf <span class="citation">Wainwright and Chiang (<a href="#ref-chiang">2005</a>)</span> oder <span class="citation">Aleskerov, Ersel, and Piontkovski (<a href="#ref-linalg">2011</a>)</span>.</p>
+<p>Matrizen werden häufig im Kontext der <em>linearen Algebra</em> verwendet.<a href="#fn51" class="footnoteRef" id="fnref51"><sup>51</sup></a> Zahlreiche sozioökonomische Konzepte bedienen sich der linearen Algebra, in der Matrizen häufig verwendet werden, um lineare Gleichungssysteme dazustellen. Die Matrixdarstellung ist dabei nicht nur kompakter, sie erlaubt es uns auch relativ leicht zu überprüfen ob das System konsistent und lösbar ist. Die foldenden zwei Beispiele machen dies hoffentlich deutlich.</p>
+<p>Das erste Beispiel bezieht sich auf das klassischen Keynesianische Modell, das Sie wahrscheinlich in folgender Form kennen:</p>
+<span class="math display">\[\begin{align}
+Y&amp;=C+I+G\\
+C&amp;=a+bY
+\end{align}\]</span>
+<p>Nehmen wir an die Staatsausgaben und Investitionen wären exogen bekannt. Dann kann dieses Modell äquivalent in Matrixform geschrieben werden:</p>
+<span class="math display">\[\begin{align}
+Ax = d
+\end{align}\]</span>
+<p>wobei <span class="math inline">\(A=\left(\begin{array}{cc} 1 &amp; -1 \\ -b &amp; 1 \end{array}\right)\)</span>, <span class="math inline">\(x=\left(\begin{array}{cc} Y \\ C \end{array}\right)\)</span> und <span class="math inline">\(d=\left(\begin{array}{cc} I + G \\ a \end{array}\right)\)</span>, wobei die beiden Unbekannten in diesem Fall das Einkommen <span class="math inline">\(Y\)</span> und der Konsum <span class="math inline">\(C\)</span> sind.</p>
+<p>Matrizen helfen uns solche Gleichungssysteme komprimiert darzustellen und zu analysieren, insbesondere zu testen ob es Werte für die freien Parameter - hier <span class="math inline">\(Y\)</span> und <span class="math inline">\(C\)</span> - gibt sodass das gesamte System konsistent ist. Wir sehen unten wie genau wir solche Systeme in R recht einfach lösen können.</p>
+<p>Ein weiteres Beispiel wo wir - vielleicht auch häufig unbewusst - Methoden der linearen Algebra verwenden ist in der Ökonometrie. Wir haben im letzten Kapitel das einfache lineare Regressionsmodell kennen gelernt, das wir allgemein für <span class="math inline">\(n\)</span> Beochatungen und <span class="math inline">\(p\)</span> erklärenden Variablen folgendermaßen geschrieben haben:</p>
+<p><span class="math display">\[y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_p x_{ip} + \epsilon_i, i=1,...,n\]</span></p>
+<p>Da wir in der Praxis regelmäßig mehr als eine erklärende Variable verwenden (also <span class="math inline">\(p&gt;1\)</span>) werden Schätzgleichungen fast ausschließlich in Matrixform dargestellt, denn wir können explizit alle <span class="math inline">\(n\)</span> Gleichungen untereinander schreiben:</p>
+<span class="math display">\[\begin{align}
+y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + ... + \beta_p x_{1p} + \epsilon_1\\
+y_2 = \beta_0 + \beta_1 x_{21} + \beta_2 x_{22} + ... + \beta_p x_{2p} + \epsilon_2\nonumber\\
+\vdots \nonumber\\
+y_n = \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + ... + \beta_p x_{np} + \epsilon_n\nonumber
+\end{align}\]</span>
+<p>Und dann in Matrixform ausdrücken:</p>
+<span class="math display">\[\begin{align}
+\left( 
+\begin{array}{c}                                
+y_1 \\                                               
+y_2  \\
+\vdots\\
+y_n\\
+\end{array}
+\right) =
+\left( 
+\begin{array}{ccccc}                                
+1 &amp; x_{11} &amp; x_{12} &amp; \dots &amp; x_{1p} \\                                               
+1 &amp; x_{21} &amp; x_{22} &amp; \dots &amp; x_{2p} \\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots\\
+1 &amp; x_{n1} &amp; x_{n2} &amp; \dots &amp; x_{np} \\
+\end{array}
+\right)
+\times 
+\left( 
+\begin{array}{c}                                
+\beta_1 \\                                               
+\beta_2  \\
+\vdots\\
+\beta_n\\
+\end{array}
+\right)
++
+\left( 
+\begin{array}{c}                                
+\epsilon_1 \\                                               
+\epsilon_2  \\
+\vdots\\
+\epsilon_n\\
+\end{array}
+\right)
+\end{align}\]</span>
+<p>Und letzteres wie folgt schreiben:</p>
+<p><span class="math display">\[\boldsymbol{y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}\]</span></p>
+<p>Dementsprechend können wir auch den OLS-Schätzer in Matrixform darstellen. Das erlaubt einfachere und allgemeinere Beweise, und ist vor allem für die algorithmische Implementierung sehr wichtig. Auch wenn wir uns mit diesen Details nicht notwendigerweise genau auseinandersetzen müssen, sollte die grundlegende Rolle der linearen Algebra doch nicht unterschätzt werden. Wir werden das Beispiel des OLS-Schätzers unten noch genauer besprechen. Zunächst beginnen wir mit einer allgemeinen Einführung in den Umgang mit Matrizen in R.</p>
+<div id="einführung-von-matrizen" class="section level3">
+<h3><span class="header-section-number">7.4.1</span> Einführung von Matrizen</h3>
+<p>Technisch handelt es sich bei Matrizen um zweidimensionale Objekte mit Zeilen und Spalten, bei denen es sich jeweils um atomare Vektoren handelt.</p>
+<p>In R werden Matrizen mit der Funktion <code>matrix()</code>erstellt. Diese Funktion nimmt als erstes Argument die Elemente der Matrix und dann die Spezifikation der Anzahl von Zeilen (<code>nrow</code>) und/oder der Anzahl von Spalten (<code>ncol</code>):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">11</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">nrow =</span> <span class="dv">5</span>)
+m_<span class="dv">1</span></code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]   11   16
+#&gt; [2,]   12   17
+#&gt; [3,]   13   18
+#&gt; [4,]   14   19
+#&gt; [5,]   15   20</code></pre>
+<p>Wie können die Zeilen, Spalten und einzelne Werte folgendermaßen extrahieren und ggf. Ersetzungen vornehmen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m_<span class="dv">1</span>[,<span class="dv">1</span>] <span class="co"># Erste Spalte</span></code></pre></div>
+<pre><code>#&gt; [1] 11 12 13 14 15</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m_<span class="dv">1</span>[<span class="dv">1</span>,] <span class="co"># Erste Zeile</span></code></pre></div>
+<pre><code>#&gt; [1] 11 16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m_<span class="dv">1</span>[<span class="dv">2</span>,<span class="dv">2</span>] <span class="co"># Element [2,2]</span></code></pre></div>
+<pre><code>#&gt; [1] 17</code></pre>
+<p>Es gibt einige <strong>besondere Matrizen</strong>, die aufgrund ihrer speziellen Eigenschaften Eigennamen erhalten haben.</p>
+<p>Eine Matrix mit der gleichen Anzahl von Zeilen und Spalten wird <strong>quadratische Matrix</strong> genannt.</p>
+<p><span class="math display">\[
+\left( 
+\begin{array}{cccc}                                
+a_{11} &amp; a_{12} &amp; a_{13} &amp; a_{14} \\                                               
+a_{21} &amp; a_{22} &amp; a_{23} &amp; a_{24} \\
+a_{31} &amp; a_{32} &amp; a_{33} &amp; a_{34} \\
+a_{41} &amp; a_{42} &amp; a_{43} &amp; a_{44} \\
+\end{array}
+\right)
+\]</span></p>
+<p>Die Elemente auf der ‘Diagonalen’ einer quadratischen <span class="math inline">\(n\times n\)</span>-Matrix, also <span class="math inline">\(\{a_ii\}^n_{i=1}\)</span>, werden die <em>Hauptdiagonale</em> dieser Matrix genannt.</p>
+<p>Eine Matrix, die von Null verschiedene Einträge nur auf der Hauptdiagonale aufweist heißt <strong>Diagonalmatrix</strong>:</p>
+<p><span class="math display">\[
+\left( 
+\begin{array}{cccc}                                
+1 &amp; 0 &amp; 0 &amp; 0 \\                                               
+0 &amp; 2 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 3 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 4 \\
+\end{array}
+\right)
+\]</span></p>
+<p>Bei der <strong>oberen Dreiecksmatrix</strong> befinden sich von Null verschiedene Einträge ausschließlich auf oder über der Hauptdiagonale, bei der <strong>unteren Dreiecksmatrix</strong> ist dies genau umgekehrt. Hier ein Beispiel für eine untere Dreiecksmatrix:</p>
+<p><span class="math display">\[
+\left( 
+\begin{array}{cccc}                                
+1 &amp; 0 &amp; 0 &amp; 0 \\                                               
+1 &amp; 2 &amp; 0 &amp; 0 \\
+1 &amp; 2 &amp; 3 &amp; 0 \\
+1 &amp; 2 &amp; 3 &amp; 4 \\
+\end{array}
+\right)
+\]</span></p>
+<p>Bei der <strong>Identitätsmatrix</strong> (oder: ‘Einheitsmatrix’) handelt es sich um eine quadratische Matrix, die auf der Hauptdiagonalen nur 1er und neben der Haupdiagonalen nur 0er enthält. Sie wird mit <span class="math inline">\(\mathbb{I_n}\)</span> bezeichnet, wobei <span class="math inline">\(n\)</span> die Anzahl der Zeilen und Spalten angeht:</p>
+<p><span class="math display">\[
+\mathbb{I_4}=
+\left( 
+\begin{array}{cccc}                                
+1 &amp; 0 &amp; 0 &amp; 0 \\                                               
+0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right)
+\]</span></p>
+<p>Wird eine beliebige Matrix mit einer passenden Identitätsmatrix multipliziert, ist das Ergebnis die ursprüngliche Matrix selbst, daher der Name. Wir können <span class="math inline">\(\mathbb{I}_n\)</span> in R mit <code>diag(n)</code> direkt erstellen.</p>
+</div>
+<div id="grundregeln-der-matrizenalgebra" class="section level3">
+<h3><span class="header-section-number">7.4.2</span> Grundregeln der Matrizenalgebra</h3>
+<p>Matrizenalgebra spielt in vielen statistischen Anwendungen eine wichtige Rolle. Sie funktioniert aber ein wenig anders als die ‘herkömmliche’ Algebra, mit denen die meisten von Ihnen schon vertraut sein werden. Zum Glück ist es in R sehr einfach die typischen Rechenoperationen für Matrizen zu implementieren. Im folgenden werden wir die wichtigsten Rechenregeln für Matrizen kurz einführen und dabei die folgenden Beispielmatrizen verwenden:</p>
+<p><span class="math display">\[A = \left( 
+\begin{array}{rrr}                                
+1 &amp; 6 \\                                               
+5 &amp; 3 \\                                               
+\end{array}
+\right) \quad B = \left( 
+\begin{array}{rrr}                                
+0 &amp; 2 \\                                               
+4 &amp; 8 \\                                               
+\end{array}\right)\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matrix_a &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">3</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)
+matrix_b &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">8</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</code></pre></div>
+<p><strong>Matrix-Transponierung</strong></p>
+<p>Die transponierte Matrix <span class="math inline">\(A&#39;\)</span> ergibt sich aus <span class="math inline">\(A\)</span> indem die Spalten und Zeilen vertauscht werden. Im folgenden ist unsere Beispielmatrix und ihre Transponierung dargestellt:</p>
+<p><span class="math display">\[
+A = \left( 
+\begin{array}{rrr}                                
+1 &amp; 6 \\                                               
+5 &amp; 3 \\                                               
+\end{array}
+\right) \quad
+A&#39; = \left( 
+\begin{array}{rrr}                                
+1 &amp; 5 \\                                               
+6 &amp; 3 \\                                               
+\end{array}
+\right)
+\]</span></p>
+<p>In R können wir eine Matrix mit der Funktion <code>t()</code> transponieren:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matrix_a</code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]    1    6
+#&gt; [2,]    5    3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t</span>(matrix_a)</code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]    1    5
+#&gt; [2,]    6    3</code></pre>
+<p><strong>Skalar-Addition</strong></p>
+<p><span class="math display">\[4+\boldsymbol{A}=
+\left( 
+\begin{array}{rrr}                                
+4+a_{11} &amp; 4+a_{21} \\                                               
+4+a_{12} &amp; 4+a_{22} \\                                               
+\end{array}
+\right)\]</span></p>
+<p>In R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">4</span> <span class="op">+</span><span class="st"> </span>matrix_a</code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]    5   10
+#&gt; [2,]    9    7</code></pre>
+<p><strong>Matrizen-Addition</strong></p>
+<p><span class="math display">\[\boldsymbol{A}+\boldsymbol{B}=
+\left(
+\begin{array}{rrr}                                
+a_{11} + b_{11} &amp; a_{21} + b_{21}\\                                               
+a_{12} + b_{12} &amp; a_{22} + b_{22}\\                                               
+\end{array}
+\right)\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matrix_a <span class="op">+</span><span class="st"> </span>matrix_b</code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]    1    8
+#&gt; [2,]    9   11</code></pre>
+<p><strong>Skalar-Multiplikation</strong></p>
+<p><span class="math display">\[2\cdot\boldsymbol{A}=
+\left( 
+\begin{array}{rrr}                                
+2\cdot a_{11} &amp; 2\cdot a_{21} \\                                               
+2\cdot a_{12} &amp; 2\cdot a_{22} \\                                               
+\end{array}
+\right)\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span><span class="op">*</span>matrix_a</code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]    2   12
+#&gt; [2,]   10    6</code></pre>
+<p><strong>Elementenweise Matrix Multiplikation (auch ‘Hadamard-Produkt’)</strong></p>
+<p><span class="math display">\[\boldsymbol{A}\odot\boldsymbol{B}=
+\left(
+\begin{array}{rrr}                                
+a_{11}\cdot b_{11} &amp; a_{21}\cdot b_{21}\\                                               
+a_{12}\cdot b_{12} &amp; a_{22}\cdot b_{22}\\                                               
+\end{array}
+\right)\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matrix_a <span class="op">*</span><span class="st"> </span>matrix_b</code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]    0   12
+#&gt; [2,]   20   24</code></pre>
+<p><strong>Matrizen-Multiplikation</strong> <span class="math display">\[\boldsymbol{A}\cdot\boldsymbol{B}=
+\left(
+\begin{array}{rrr}                                
+a_{11}\cdot b_{11} + a_{12}\cdot b_{21} &amp; a_{11}\cdot b_{21}+a_{12}\cdot b_{22}\\                     
+a_{21}\cdot b_{11} + a_{22}\cdot b_{21} &amp; a_{21}\cdot b_{12}+a_{22}\cdot b_{22}\\                     
+\end{array}
+\right)\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matrix_a <span class="op">%*%</span><span class="st"> </span>matrix_b</code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]   24   50
+#&gt; [2,]   12   34</code></pre>
+<p>Wir wissen von oben auch, dass <span class="math inline">\(A\mathbb{I}_2=A\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matrix_a</code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]    1    6
+#&gt; [2,]    5    3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matrix_a <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(<span class="dv">2</span>)</code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]    1    6
+#&gt; [2,]    5    3</code></pre>
+<p><strong>Matrizen invertieren</strong></p>
+<p>Die Inverse einer Matrix <span class="math inline">\(\boldsymbol{A}\)</span>, <span class="math inline">\(\boldsymbol{A}^{-1}\)</span>, ist definiert sodass gilt <span class="math display">\[\boldsymbol{A}\boldsymbol{A}^{-1}=\boldsymbol{I}\]</span> Sie kann in R mit der Funktion <code>inv()</code> aus dem Paket <a href="http://friendly.github.io/matlib/">matlib</a><a href="#fn52" class="footnoteRef" id="fnref52"><sup>52</sup></a> identifiziert werden, wobei wir die Matrix als erstes oder Argument <code>X</code> an <code>inv()</code> übergeben:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">inv</span>(<span class="dt">X =</span> matrix_a)</code></pre></div>
+<pre><code>#&gt;            [,1]        [,2]
+#&gt; [1,] -0.1111111  0.22222222
+#&gt; [2,]  0.1851852 -0.03703704</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matrix_a <span class="op">%*%</span><span class="st"> </span><span class="kw">inv</span>(matrix_a)</code></pre></div>
+<pre><code>#&gt;       [,1]   [,2]
+#&gt; [1,] 1e+00 -2e-08
+#&gt; [2,] 2e-08  1e+00</code></pre>
+<p>Die minimalen Abweichungen sind auf machinelle Rundungsfehler zurückzuführen und treten häufig auf.</p>
+<p>Gerade die letzte Operation ist zentral um zu verstehen wie wir mit Hilfe der Matrizenalgebra lineare Gleichungssysteme wie oben beschrieben lösen können. Denn diese Gleichungssysteme können - wie in der Einleitung beschrieben - in die Form</p>
+<p><span class="math display">\[Ax=b\]</span></p>
+<p>gebracht werden. In Anwendungsfällen ist <span class="math inline">\(A\)</span> eine Matrix mit Koeffizienten, <span class="math inline">\(x\)</span> ein Vektor von unbekannten Variablen und <span class="math inline">\(b\)</span> ein Vektor mit Konstanten. Entsprechend ist unser Interesse in der Identifikation eines Vektors <span class="math inline">\(x\)</span> sodass die Gleichung konsistent ist und mindestens eine Lösung hat. Wenn wir die Gleichung gemäß der gerade beschriebenen Regeln umformen bekommen wir:</p>
+<span class="math display">\[\begin{align}
+A^{-1}Ax &amp;= A^{-1}b\\
+x &amp;= A^{-1}b
+\end{align}\]</span>
+<p>In der Matrizenschreibweise korrespondiert die Lösung eines solchen Systems also zur Invertierung der Matrix <span class="math inline">\(A\)</span> - daher auch der Name der R-Funktion <code>solve()</code> aus dem Paket <code>base</code>.</p>
+<p>Nehmen wir also einmal folgenden Fall an: <span class="math inline">\(A=\left(\begin{array}{cc} 1 &amp; 3 \\ -2 &amp; 1 \end{array}\right)\)</span> und <span class="math inline">\(b=\left(\begin{array}{c} 9 \\ 4 \end{array}\right)\)</span>.</p>
+<p>In diesem Fall können wir das Gleichungssystem in R lösen indem wir <code>Solve()</code> direkt die Matrix <span class="math inline">\(A\)</span> (über das Argument <code>A</code>) und den Vektor <span class="math inline">\(b\)</span> (über das Argument <code>b</code>) übergeben:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)
+b &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">9</span>, <span class="op">-</span><span class="dv">4</span>), <span class="dt">ncol =</span> <span class="dv">1</span>)
+<span class="kw">Solve</span>(<span class="dt">A =</span> A, <span class="dt">b =</span> b)</code></pre></div>
+<pre><code>#&gt; x1    =  3 
+#&gt;   x2  =  2</code></pre>
+<p>Wir sehen also unmittelbar, dass das Gleichungssystem - und damit unser Modell - konsistent ist und eine eindeutige Lösung <span class="math inline">\(x=\left(\begin{array}{c} 3 \\ 2 \end{array}\right)\)</span> aufweist.<a href="#fn53" class="footnoteRef" id="fnref53"><sup>53</sup></a> Dieses können wir folgendermaßen verifizieren:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>), <span class="dt">ncol =</span> <span class="dv">1</span>)
+A <span class="op">%*%</span><span class="st"> </span>x</code></pre></div>
+<pre><code>#&gt;      [,1]
+#&gt; [1,]    9
+#&gt; [2,]   -4</code></pre>
+<p>Wie erwartet erhalten wir hier also wieder unseren ursprünglichen Wert für <span class="math inline">\(b\)</span>.</p>
+<p>Wenn allerdings <span class="math inline">\(A=\left(\begin{array}{cc} -2 &amp; 1 \\ -4 &amp; 2 \end{array}\right)\)</span> und <span class="math inline">\(b=\left(\begin{array}{c} 3 \\ 2 \end{array}\right)\)</span>, dann würde folgendes passieren:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)
+b &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>), <span class="dt">ncol =</span> <span class="dv">1</span>)
+<span class="kw">Solve</span>(<span class="dt">A =</span> A, <span class="dt">b =</span> b)</code></pre></div>
+<pre><code>#&gt; x1 - 0.5*x2  =  -0.5 
+#&gt;           0  =     2</code></pre>
+<p>Wir sehen also direkt, dass das System nicht lösbar wäre, denn das resultierende Gleichungssystem weist einen eindeutigen Widerspruch (<code>0=2</code>) auf. Der Grund ist, dass die Matrix <span class="math inline">\(A\)</span> <em>singulär</em> ist, das heißt sie besitzt keine Inverse. Das können Sie unmittelbar überprüfen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">inv</span>(A)</code></pre></div>
+<pre><code>#&gt; Error in Inverse(X, tol = sqrt(.Machine$double.eps), ...): X is numerically singular</code></pre>
+<p>Wir können also nur über die Analyse der Matrix Schlussfolgerungen bezüglich des gesamten Gleichungssystems ziehen. Das ist in der Praxis, in dem die Gleichungssysteme ungleich größer und komplexer sind, von enormer Bedeutung.</p>
+<p>Ein dritter möglicher Fall tritt ein wenn <span class="math inline">\(A=\left(\begin{array}{cc} 1 &amp; 3 \\ -2 &amp; 1 \end{array}\right)\)</span> und <span class="math inline">\(b=\left(\begin{array}{c} 9 \\ 4 \end{array}\right)\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">4</span>, <span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)
+b &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">6</span>, <span class="op">-</span><span class="dv">3</span>), <span class="dt">ncol =</span> <span class="dv">1</span>)
+<span class="kw">Solve</span>(<span class="dt">A =</span> A, <span class="dt">b =</span> b)</code></pre></div>
+<pre><code>#&gt; x1 - 0.5*x2  =  1.5 
+#&gt;           0  =    0</code></pre>
+<p>In diesem Falle sehen wir keinen Widerspruch im Gleichungssystem, aber auch kein eindeutiges Ergebnis. Das Gleichungssystem hat also <em>unendlich viele</em> Lösungen.</p>
+<p>Zur Vollständigkeit seien hier noch einmal die drei möglichen Ergebnisse einer solchen Matrizenanalyse kurz beschrieben:</p>
+<ol style="list-style-type: decimal">
+<li><p>Das Gleichungssystem hat <em>unendlich viele</em> Lösungen, wir können also auf Basis der Struktur keine genaue Vorhersage bezüglich der Parameter in <span class="math inline">\(x\)</span> machen.</p></li>
+<li><p>Das Gleichungssystem hat eine <em>eindeutige</em> Lösung, wir haben also ein konsistentes Modell, das eine eindeutige Vorhersage produziert.</p></li>
+<li><p>Das Gleichungssystem hat <em>keine</em> Lösung, unser Modell ist also inkonsistent.</p></li>
+</ol>
+<p>Im Folgenden werden wir uns das anhand der beiden Beispiele aus der Einleitung genauer anschauen.</p>
+</div>
+<div id="anwendungsbeispiel-1-das-einfache-keynesianische-modell" class="section level3">
+<h3><span class="header-section-number">7.4.3</span> Anwendungsbeispiel 1: Das einfache Keynesianische Modell</h3>
+<p>In der Einleitung haben wir schon gesehen, dass wir das einfache Keynesianische Modell</p>
+<span class="math display">\[\begin{align}
+Y&amp;=C+I+G\\
+C&amp;=a+bY
+\end{align}\]</span>
+<p>auch in Matrizenschreibweise darstellen können:</p>
+<span class="math display">\[\begin{align}
+Ax = d
+\end{align}\]</span>
+<p>wobei <span class="math inline">\(A=\left(\begin{array}{cc} 1 &amp; -1 \\ -b &amp; 1 \end{array}\right)\)</span>, <span class="math inline">\(x=\left(\begin{array}{cc} Y \\ C \end{array}\right)\)</span> und <span class="math inline">\(d=\left(\begin{array}{cc} I + G \\ a \end{array}\right)\)</span>.</p>
+<p>Der Vorteil ist, dass wir unmittelbar überprüfen können ob das System für bestimmte Werte konsistent ist und eine eindeutige Lösung für <span class="math inline">\(Y\)</span> und <span class="math inline">\(C\)</span> besitzt.</p>
+<p>Sind z.B. die Staatsausgaben mit <span class="math inline">\(G=2\)</span> und die Investitionen mit <span class="math inline">\(I=2\)</span> bekannt, und die marginale Konsumneigung mit <span class="math inline">\(b=0.4\)</span> und der einkommensunabhängige Konsum mit <span class="math inline">\(a=1\)</span> gegeben, können wir direkt überprüfen ob das System konsistent ist und, da <span class="math inline">\(x=\left(\begin{array}{cc} Y \\ C \end{array}\right)\)</span> welche Werte für den Konsum und das Gesamteinkommen impliziert werden.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">I_keynes &lt;-<span class="st"> </span><span class="dv">2</span>
+G_keynes &lt;-<span class="st"> </span><span class="dv">2</span>
+b_keynes &lt;-<span class="st"> </span><span class="fl">0.4</span>
+a_keynes &lt;-<span class="st"> </span><span class="dv">1</span>
+
+A_keynes &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="op">-</span>b_keynes, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)
+d_keynes &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(I_keynes <span class="op">+</span><span class="st"> </span>G_keynes, a_keynes), <span class="dt">ncol =</span> <span class="dv">1</span>)
+<span class="kw">Solve</span>(<span class="dt">A =</span> A_keynes, <span class="dt">b =</span> d_keynes)</code></pre></div>
+<pre><code>#&gt; x1    =  8.33333333 
+#&gt;   x2  =  4.33333333</code></pre>
+<p>In diesem Fall sehen wir, dass das System konsistent ist und eine eindeutige Lösung für das Einkommen <span class="math inline">\(Y=8\frac{1}{3}\)</span> und den Konsum <span class="math inline">\(C=4\frac{1}{3}\)</span> impliziert.</p>
+</div>
+<div id="anwendungsbeispiel-2-ols-regression" class="section level3">
+<h3><span class="header-section-number">7.4.4</span> Anwendungsbeispiel 2: OLS-Regression</h3>
+<p>Aus der Einleitung wissen wir, dass wir das lineare Regressionsmodell mit <span class="math inline">\(n\)</span> Beobachtungen von <span class="math inline">\(p\)</span> Variablen</p>
+<span class="math display">\[\begin{align}
+y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + ... + \beta_p x_{1p} + \epsilon_1\nonumber\\
+y_2 = \beta_0 + \beta_1 x_{21} + \beta_2 x_{22} + ... + \beta_p x_{2p} + \epsilon_2\nonumber\\
+\vdots \nonumber\\
+y_n = \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + ... + \beta_p x_{np} + \epsilon_n\nonumber
+\end{align}\]</span>
+<p>auch folgendermaßen schreiben können:</p>
+<p><span class="math display">\[\boldsymbol{y} = \boldsymbol{X\hat{\beta}} + \boldsymbol{\hat{\epsilon}}\]</span> Wobei <span class="math inline">\(\boldsymbol{y}\)</span> eine <span class="math inline">\(n\times 1\)</span>-Matrix mit den Beobachtungen für die abhängige Variable, <span class="math inline">\(\boldsymbol{X}\)</span> eine <span class="math inline">\(n\times p\)</span>-Matrix in der jede Spalte zu einem Vektor mit allen <span class="math inline">\(n\)</span> Beobachtungen einer der <span class="math inline">\(p\)</span> erklärenden Variablen korrespondiert. <span class="math inline">\(\boldsymbol{\hat{\epsilon}}\)</span> schließlich ist die <span class="math inline">\(n\times 1\)</span>-Matrix der Residuen.</p>
+<p>Nehmen wir einmal folgende (absurd kleine) Stichprobe an:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daten &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),
+  <span class="dt">x_1 =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">6</span>),
+  <span class="dt">x_2 =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">7</span>)
+)</code></pre></div>
+<p>In diesem Fall wäre <span class="math inline">\(\boldsymbol{y}=\left(\begin{array}{c} 1 \\ 2 \end{array}\right)\)</span> <span class="math inline">\(\boldsymbol{X}=\left(\begin{array}{cc} 5 &amp; 2 \\ 6 &amp; 7 \end{array}\right)\)</span> Dann lässt sich das Schätzproblem in Matrizenform folgendermaßen schreiben:</p>
+<p><span class="math display">\[
+\left(\begin{array}{c} 1 \\ 2 \end{array}\right) = \left(\begin{array}{cc} 5 &amp; 2 \\ 6 &amp; 7 \end{array}\right) \left(\begin{array}{c} \hat{\beta}_1 \\ \hat{\beta}_2 \end{array}\right) + \left(\begin{array}{c} \hat{\epsilon}_1 \\ \hat{\epsilon}_2 \end{array}\right)
+\]</span></p>
+<p>Es lässt sich allgemein zeigen, dass der gesuchte Vektor <span class="math inline">\(\boldsymbol{\beta}\)</span> die Lösung des folgenden Gleichungssystems darstellt:<a href="#fn54" class="footnoteRef" id="fnref54"><sup>54</sup></a></p>
+<p><span class="math display">\[\boldsymbol{\hat{\beta}}=\left(\boldsymbol{X}&#39;\boldsymbol{X} \right)^{-1}\boldsymbol{X}&#39;\boldsymbol{y}\]</span></p>
+<p>Dies ergibt folgende Lösung:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">ncol =</span> <span class="dv">1</span>)
+X_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">7</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)
+<span class="kw">Solve</span>(<span class="dt">A =</span> X_matrix, <span class="dt">b =</span> y_matrix)</code></pre></div>
+<pre><code>#&gt; x1    =  0.13043478 
+#&gt;   x2  =  0.17391304</code></pre>
+<p>Wir vergleichen mit der Anwendung von <code>lm()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(y<span class="op">~</span>x_<span class="dv">1</span><span class="op">+</span>x_<span class="dv">2</span>, <span class="dt">data =</span> daten)</code></pre></div>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = y ~ x_1 + x_2, data = daten)
+#&gt; 
+#&gt; Coefficients:
+#&gt; (Intercept)          x_1          x_2  
+#&gt;          -4            1           NA</code></pre>
+<p>Wie kann das sein? Sollte nicht das gleiche Ergebnis herauskommen? Beachten Sie, dass wir in unserer manuellen Spezifikation keinen Intercept <span class="math inline">\(\hat{\beta}_0\)</span> berücksichtigt haben, <code>lm()</code> einen solchen aber standardmäßig miteinbezieht. Um die OLS Schätzung ohne Intercept zu schätzen ergänzen wir <code>-1</code> zur Schätzgleichung:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(y<span class="op">~</span>x_<span class="dv">1</span><span class="op">+</span>x_<span class="dv">2</span><span class="op">-</span><span class="dv">1</span>, <span class="dt">data =</span> daten)</code></pre></div>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = y ~ x_1 + x_2 - 1, data = daten)
+#&gt; 
+#&gt; Coefficients:
+#&gt;    x_1     x_2  
+#&gt; 0.1304  0.1739</code></pre>
+<p>Wie Sie sehen bekommen wir das gleiche Ergebnis. Dies ist übrigens auch der Grund für die OLS-Annahme, dass keine perfekte Multikollinearität besteht: denn in diesem Fall wäre eine Zeile der Matrix <span class="math inline">\(\boldsymbol{X}\)</span> eine lineare Kombination einer anderen Zeile und <span class="math inline">\(\boldsymbol{X}\)</span> wäre damit nicht mehr invertiertbar, also <span class="math inline">\(\boldsymbol{X}^{-1}\)</span> würde nicht existieren und <span class="math inline">\(\boldsymbol{\hat{\beta}}\)</span> wäre nicht mehr definiert.</p>
+</div>
+<div id="weiterführende-literatur" class="section level3">
+<h3><span class="header-section-number">7.4.5</span> Weiterführende Literatur</h3>
+<p>Es gibt im Internet zahlreiche gute Überblicksartikel zum Thema Matrizenalgebra in R, z.B. <a href="https://www.statmethods.net/advstats/matrix.html">hier</a> oder in größerem Umfang <a href="https://www.math.uh.edu/~jmorgan/Math6397/day13/LinearAlgebraR-Handout.pdf">hier</a>. Auch das Angebot an Lehrbüchern ist sehr groß, für die ökonomischen Grundlagen bietet sich <span class="citation">Wainwright and Chiang (<a href="#ref-chiang">2005</a>)</span> sehr gut an.</p>
+</div>
+</div>
+<div id="formalia-dist" class="section level2">
+<h2><span class="header-section-number">7.5</span> Analyse von Verteilungen</h2>
+<p>Fragen nach Verteilungen stehen im Zentrum vieler sozioökonomischer Arbeiten. Verteilung von Einkommen und Vermögen, sozialem, kulturellem oder physischen Kapital, Firmenproduktivitäten oder natürlichen Ressourcen - in vielen Bereichen geht es Verteilungen.</p>
+<p>Gleichzeitig spielen Verteilungen in der technischen Literatur eine wichtige Rolle: in der Ökonometrie ist die Verteilung von Schätzern von zentraler Bedeutung, viele formale Konzepte setzen eine bestimmte Verteilung der Daten voraus und häufig bedarf es zur richtigen Wahl der quantitativen Methoden zumindest rudimentärer Kenntnis über die Verteilung die Daten.</p>
+<p>Kurzum: Wissen über Verteilungen und deren Analyse ist für die sozioökonomische Forschungspraxis extrem hilfreich. Daher wollen wir uns im folgenden mit verschiedenen Aspekten der Analyse von Verteilungen beschäftigen.</p>
+<p>Wir steigen mit einem grundlegenden Abschnitt zum (mathematischen) <a href="formalia.html#vert-begriff">Begriff der Verteilung</a> ein und diskutieren den Zusammen zwischen Verteilungen und stochastischen Prozessen. Verteilungen sind nämlich immer dann zentral, wenn wir es mit probabilistischen Prozessen zu tun haben.</p>
+<p>Als nächstes lernen wir <a href="formalia.html#vert-kennzahlen">typische Kennzahlen</a> zur Beschreibung von Verteilungen kennen. Besonderes Augenmerk legen wir Kennzahlen zur Streuung und Ungleichheit, wie die Standardabweichung oder den Gini Index.</p>
+<p>Als nächstes lernen wir einige <a href="formalia.html#vert-grafik">grafische Methoden</a> kennen, um die wir die quantitativen Kennzahlen immer ergänzen sollten und schließen das Kapitel schließlich mit einigen <a href="formalia.html#vert-bemerkungen">abschließenden Bemerkungen</a> ab.</p>
+<div id="vert-begriff" class="section level3">
+<h3><span class="header-section-number">7.5.1</span> Theoretische und empirische Verteilungen</h3>
+<p>Wenn wir über Verteilungen sprechen wird der Begriff (mindestens) in zwei verwandten aber unterschiedlichen Arten verwendet: im Sinne der <strong>Verteilung einer Zufallsvariablen</strong> und im Sinne einer <strong>empirischen Beschreibung</strong>.</p>
+<p>Eine empirische Verteilung beschreiben wir in der Regel durch bestimmte Kennzahlen, wie den Mittelwert, die Standardabweichung oder den Gini-Index. Das erlaubt uns Informationen über die Daten in wenigen Zahlen zu kondensieren.<a href="#fn55" class="footnoteRef" id="fnref55"><sup>55</sup></a></p>
+<p>Dennoch werden beide Perspektiven auch häufig kombiniert, vor allem wenn wir einen empirischen Datensatz mit einem parametrischen Wahrscheinlichkeitsmodell beschreiben wollen. Das bedeutet, dass wir die empirischen Daten als Realisierung einer theoretischen ZV interpretieren und die für die theoretische ZV relevanten Parameter dann aus den Daten heraus schätzen.<a href="#fn56" class="footnoteRef" id="fnref56"><sup>56</sup></a> Wenn Sie sich nicht mehr ganz sicher sind was wir unter eine ZV oder einem theoretischen Wahrscheinlichkeitsmodell verstehen, schauen Sie doch noch einmal in den <a href="stat-stoch.html#stat-stoch">Anhang zur Wahrscheinlichkeitstheorie</a>.</p>
+<p><strong>Anwendungsbeispiel</strong></p>
+<p>Stellen Sie sich vor Sie haben folgende Stichprobe vor sich:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> sample_data) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>r, <span class="kw">stat</span>(density)), <span class="dt">binwidth =</span> <span class="fl">0.4</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">expand_scale</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_icae</span>()</code></pre></div>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-63-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Beachten Sie, dass die y-Achse die empirische Dichte der Beobachtungen auf der x-Achse angibt, also ein Maß für die relative Häufigkeit der Beobachtungen.<a href="#fn57" class="footnoteRef" id="fnref57"><sup>57</sup></a> Dies haben wir mit der Funktion <code>stat(density)</code> innerhalb von <code>geom_histogram()</code> erreicht.</p>
+<p>Wenn wir die Daten so betrachten erscheint es naheliegend, Sie als Realisierung einer Normalverteilung zu interpretieren: die Form ist grob glockenförmig und symmetrisch. Wir können diese plausibilisieren indem wir mit <code>geom_density()</code> die <em>empirische Dichtefunktion</em> der Verteilung schätzen und über die Daten legen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> sample_data) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(
+    <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>r, <span class="kw">stat</span>(density)), 
+    <span class="dt">binwidth =</span> <span class="fl">0.4</span>, <span class="dt">alpha=</span><span class="fl">0.4</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">6</span>, <span class="dv">12</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>r), 
+               <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>, 
+               <span class="dt">geom=</span><span class="st">&quot;line&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">expand_scale</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>), 
+                                           <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_icae</span>()</code></pre></div>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-64-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Das bedeutet, dass wir unsere Daten mit Hilfe der Dichtefunktion (<em>probability density function</em> - PDF) der Normalverteilung beschreiben können. Die Formel an sich ist dabei weniger illustrativ, aber sie zeigt was wir mit einem <em>parametrischen</em> Wahrscheinlichkeitsmodell meinen:</p>
+<p><span class="math display">\[f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\]</span></p>
+<p>Wenn Sie die Formel genau anschauen finden sich darin zwei Parameter: ein Lageparameter <span class="math inline">\(\mu\)</span> und ein Streuparameter <span class="math inline">\(\sigma^2\)</span>. Das bedeutet, dass wir mit diesen beiden Werten die theoretische Normalverteilung vollständig charakterisieren können. Es wäre ja schön, wenn wir unsere Stichprobe oben ebenfalls mit solchen zwei Zahlen vollständig beschreiben könnten.</p>
+<p>Das geht allerdings nicht. Unsere empirisch erhobenen Daten sind nie <em>komplett</em> identisch zu einer theoretischen Verteilung. Was wir daher machen können ist folgender: wir argumentieren, dass unsere Daten sinnvoll durch eine normalverteilte ZV <em>modelliert</em> werden können. Wir sagen dann, dass unsere Stichprobe <em>approximativ normalverteilt</em> ist. Dann müssen wir im nächsten Schritt nur noch die Werte für die beiden Parameter der Normalverteilung finden, sodass die Verteilung optimal zu unseren Daten passt. Das bedeutet wir ‘fitten’ die Verteilung zu unseren Daten.</p>
+<p>Was damit gemeint ist verdeutlicht die folgende Darstellung:</p>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-65-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Die Normalverteilung mit <span class="math inline">\(\mu=4\)</span> und <span class="math inline">\(\sigma^2=4\)</span> passt zu den Daten recht gut. Aber wie identifizieren wir diese Werte? In der Praxis müssen diese Werte geschätzt werden. Dazu gibt es verschiedene Verfahren.</p>
+<p>Die bekannteste Variante ist die <em>Maximum Likelihood</em> Schätzung. Das Verfahren wird <a href="#vert-fit">später</a> genauer beschrieben, hier illustrieren wir es mit unserem aktuellen Beispiel.</p>
+<p>Die Grundidee der <em>Maximum Likelihood</em>-Schätzung ist simpel: wählen Sie die Parameter der Verteilung so, dass die beobachtete Stichprobe die am wahrscheinlichsten zu beobachtende Stichprobe ist. In unserem Falle: wählen Sie <span class="math inline">\(\mu=\mu^*\)</span> und <span class="math inline">\(\sigma^2=\sigma^{2*}\)</span> so, dass <span class="math inline">\(\mathcal{N}(\mu^*, \sigma^{2*})\)</span>, die die Normalverteilung ist, bei der die Wahrscheinlichkeit unsere Stichprobe zu bekommen am größten ist.</p>
+<p>Bedenken Sie, dass das nichts darüber aussagt <em>wie</em> wahrscheinlich das ist: wenn Sie eine unpassende Verteilung mit Maximum Likelihood fitten, bekommen Sie selbst für die besten Parameter einen schlechten Fit.</p>
+<p>In unserem Fall wollen wir nun eine Normalverteilung zu unseren Daten fitten. Dazu verwenden wir die Funktion <code>fitdist()</code> aus dem Paket <a href="https://github.com/cran/fitdistrplus">fitdistrplus</a> <span class="citation">(Delignette-Muller and Dutang <a href="#ref-R-fit">2015</a>)</span>. Dieser Funktion geben wir über das Argument <code>data</code> unsere Stichprobe und über das Argument <code>distr</code> das Kürzel für die Verteilungsklasse, die wir annehmen.<a href="#fn58" class="footnoteRef" id="fnref58"><sup>58</sup></a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_dist &lt;-<span class="st"> </span><span class="kw">fitdist</span>(<span class="dt">data =</span> sample_data<span class="op">$</span>r, 
+                    <span class="dt">distr =</span> <span class="st">&quot;norm&quot;</span>)
+fit_dist[[<span class="st">&quot;estimate&quot;</span>]]</code></pre></div>
+<pre><code>#&gt;     mean       sd 
+#&gt; 4.023254 1.967130</code></pre>
+<p>Wir sehen also, dass die optimale Parametrisierung zu <span class="math inline">\(\mu=4.02\)</span> und <span class="math inline">\(\sigma^2=1.967\)</span> korrespondiert. Das passt gut zu unserem grafischen Resultat von oben, bei dem uns <span class="math inline">\(\mathcal{N}(4,2)\)</span> bereits als guter Fit ins Auge gesprungen ist.</p>
+<p>Allerdings müssten Sie zusätzlich noch testen ob die Verteilungsannahme auch tatsächlich plausibel ist, also ob Sie die Hypothese, dass die Daten aus einer <span class="math inline">\(\mathcal{N}(4,2)\)</span>-Verteilung gezogen wurden. Für den Fall der Normalverteilung können wir dies z.B. mit einem <a href="https://de.wikipedia.org/wiki/Shapiro-Wilk-Test">Shapiro-Wilk-Test</a> machen.</p>
+<p>Hier testen wir die <span class="math inline">\(H_0\)</span>, dass die Daten tatsächlich durch eine Normalverteilung generiert wurden.<a href="#fn59" class="footnoteRef" id="fnref59"><sup>59</sup></a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shapiro_test &lt;-<span class="st"> </span><span class="kw">shapiro.test</span>(sample_data<span class="op">$</span>r)
+shapiro_test</code></pre></div>
+<pre><code>#&gt; 
+#&gt;  Shapiro-Wilk normality test
+#&gt; 
+#&gt; data:  sample_data$r
+#&gt; W = 0.99894, p-value = 0.9479</code></pre>
+<p>Da der <span class="math inline">\(p&gt;0.1\)</span> können wir die Nullhypothese einer Normalverteilung nicht ablehnen und wir können nun ein gutes Bild unserer Daten vermitteln: wann immer Sie hören, dass ein bestimmter Datensatz approximativ gemäß <span class="math inline">\(\mathcal{N}(4,2)\)</span> verteilt ist, dann haben Sie ein sehr gutes Bild des Datensatzes erhalten.</p>
+<p>Es gibt viele verschiedene Verteilungstests, je nach dem welche Verteilung Sie testen wollen. Dies ist ein komplexes Thema, das wir in diesem Kapitel nicht weitergehend behandeln. <span class="citation">Clauset, Shalizi, and Newman (<a href="#ref-clauset">2009</a>)</span> ist ein sehr bekanntest Paper, das eine praktische Anleitung für den Fall der Pareto-Verteilung enthält, aber auch für andere Verteilungen verwendet werden kann.<a href="#fn60" class="footnoteRef" id="fnref60"><sup>60</sup></a> Ansonsten finden Sie <a href="https://cran.r-project.org/web/packages/fitdistrplus/vignettes/paper2JSS.pdf">hier</a> oder <a href="https://stats.stackexchange.com/questions/132652/how-to-determine-which-distribution-fits-my-data-best">hier</a> praktische Anleitungen und Diskussionen.</p>
+</div>
+<div id="vert-kennzahlen" class="section level3">
+<h3><span class="header-section-number">7.5.2</span> Kennzahlen zur Beschreibung empirischer Verteilungen</h3>
+<p>Jede Beschreibung einer Verteilung mittels Kennzahlen sollte verschiedene Aspekte der Verteilung abdecken. Insbesondere sollten Aussagen zu <strong>Lage</strong>, zur <strong>Streuung</strong>, zur <strong>Form</strong> und zu möglichen Ausreißern und zu sonstigen <strong>Besonderheiten</strong> gemacht werden. Die folgende Tabelle listet die bekanntesten Kennzahlen in den jeweiligen Bereichen auf.</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Kennzahl</strong></th>
+<th><strong>Art</strong></th>
+<th><strong>R-Funktion</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Arithm. Mittel</td>
+<td>Lage</td>
+<td><code>mean()</code></td>
+</tr>
+<tr class="even">
+<td>Modus</td>
+<td>Lage</td>
+<td><code>NA</code></td>
+</tr>
+<tr class="odd">
+<td>Median</td>
+<td>Lage</td>
+<td><code>median()</code></td>
+</tr>
+<tr class="even">
+<td>Quantile</td>
+<td>Lage</td>
+<td><code>quantile()</code></td>
+</tr>
+<tr class="odd">
+<td>Varianz</td>
+<td>Streuung</td>
+<td><code>var()</code></td>
+</tr>
+<tr class="even">
+<td>Standardabweichung</td>
+<td>Streuung</td>
+<td><code>sd()</code></td>
+</tr>
+<tr class="odd">
+<td>Variationskoeffizient</td>
+<td>Streuung</td>
+<td><code>sd()/mean()</code></td>
+</tr>
+<tr class="even">
+<td>IQR</td>
+<td>Streuung</td>
+<td><code>IQR()</code></td>
+</tr>
+<tr class="odd">
+<td>Gini</td>
+<td>Streuung</td>
+<td><code>ineq::Gini()</code></td>
+</tr>
+<tr class="even">
+<td>Theil</td>
+<td>Streuung</td>
+<td><code>ineq::Theil()</code></td>
+</tr>
+<tr class="odd">
+<td>Schiefe</td>
+<td>Form</td>
+<td><code>moments::skewness()</code></td>
+</tr>
+<tr class="even">
+<td>Steile</td>
+<td>Form</td>
+<td><code>moments::kurtosis()</code></td>
+</tr>
+<tr class="odd">
+<td>Cook’sche Distanz</td>
+<td>Sonst.</td>
+<td><code>cooks.distance()</code></td>
+</tr>
+</tbody>
+</table>
+<p>Für die folgenden Illustrationen nehmen wir an, dass wir es mit einem Datensatz mit <span class="math inline">\(N\)</span> kontinuiertlichen Beobachtungen <span class="math inline">\(x_1, x_2, ..., x_n\)</span> zu tun haben. Als Beispiel dient uns der Datensatz zu ökonomischen Journalen aus <span class="citation">Kleiber and Zeileis (<a href="#ref-AER">2008</a>)</span>:<a href="#fn61" class="footnoteRef" id="fnref61"><sup>61</sup></a></p>
+<pre><code>#&gt;    Kuerzel                                               Titel
+#&gt; 1:    APEL                   Asian-Pacific Economic Literature
+#&gt; 2:  SAJoEH           South African Journal of Economic History
+#&gt; 3:      CE                             Computational Economics
+#&gt; 4:  MEPiTE MOCT-MOST Economic Policy in Transitional Economics
+#&gt; 5:    JoSE                          Journal of Socio-Economics
+#&gt; 6:   LabEc                                    Labour Economics
+#&gt;                    Verlag Society Preis Seitenanzahl Buchstaben_pS Zitationen
+#&gt; 1:              Blackwell      no   123          440          3822         21
+#&gt; 2: So Afr ec history assn      no    20          309          1782         22
+#&gt; 3:                 Kluwer      no   443          567          2924         22
+#&gt; 4:                 Kluwer      no   276          520          3234         22
+#&gt; 5:               Elsevier      no   295          791          3024         24
+#&gt; 6:               Elsevier      no   344          609          2967         24
+#&gt;    Gruendung Abonnenten           Bereich
+#&gt; 1:      1986         14           General
+#&gt; 2:      1986         59  Economic History
+#&gt; 3:      1987         17       Specialized
+#&gt; 4:      1991          2      Area Studies
+#&gt; 5:      1972         96 Interdisciplinary
+#&gt; 6:      1994         15             Labor</code></pre>
+<p><strong>Kennzahlen zur Lage der Verteilung</strong></p>
+<p>Die bekannteste Maßzahl zur Lage einer Verteilung ist das <strong>arithmetische Mittel</strong>. Es ist anwendbar wenn wir es mit kontinuierlichen und mindestens intervall-skalierten Daten zu tun haben und ist definiert als:</p>
+<p><span class="math display">\[\bar{x}=\frac{1}{N}\sum_{i=1}^Nx_i\]</span></p>
+<p>In R wird das arithmetische Mittel mit der Funktion <code>mean()</code> berechnet:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">avg_preis &lt;-<span class="st"> </span><span class="kw">mean</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])
+avg_preis</code></pre></div>
+<pre><code>#&gt; [1] 417.7222</code></pre>
+<p>Der durchschnittliche Preis der Journale ist also 417.72.</p>
+<p>Das arithmetische Mittel ist sehr anfällig gegenüber Ausreißern. Ein robusteres Maß ist der Median: er ist definiert als der Wert <span class="math inline">\(x_{0.5}\)</span> bei dem 50% der Daten größer und 50% der Daten kleiner sind als <span class="math inline">\(x_{0.5}\)</span>, genauer:</p>
+<span class="math display">\[\begin{align}
+x_{0.5} = \begin{cases} 
+\frac{1}{2} \left(x_{0.5\cdot n} + x_{0.5\cdot n + 1}\right) &amp; \text{wenn } 0.5 \cdot x\text{ ganzzahlig}\\
+\frac{1}{2} x_{\lfloor 0.5\cdot n + 1\rfloor} &amp; \text{wenn } 0.5 \cdot x\text{ nicht ganzzahlig}\\
+\end{cases}
+\end{align}\]</span>
+<p>wobei wir annehmen, dass die Werte der Verteilung ihrer Größe nach geordnet sind, also <span class="math inline">\((x_1\leq x_2\leq x_3 \leq...\leq x_n)\)</span> und <span class="math inline">\(\lfloor x \rfloor\)</span> die <a href="">Abrundungsfunktion</a> bezeichnet.<a href="#fn62" class="footnoteRef" id="fnref62"><sup>62</sup></a></p>
+<p>In R wird das arithmetische Mittel mit der Funktion <code>median()</code> berechnet:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">med_preis &lt;-<span class="st"> </span><span class="kw">mean</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])
+med_preis</code></pre></div>
+<pre><code>#&gt; [1] 417.7222</code></pre>
+<p>Da es insgesamt 180 Journale gibt gilt, dass 90 Journale teurer und 90 Journale billiger als <span class="math inline">\(417.72\)</span> Dollar sind.</p>
+<p>Die Idee des Medians kann über den Begriff der <strong>Quantile</strong> verallgemeinert werden. Wir sprechen bei dem <span class="math inline">\(\alpha\)</span>-<strong>Quantil</strong> einer Verteilung von dem Wert, bei dem <span class="math inline">\(\alpha\cdot 100\%\)</span> der Datenwerte kleiner und <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> der Datenwerte größer sind. Genauer:</p>
+<span class="math display">\[\begin{align}
+x_{\alpha} = \begin{cases} 
+\frac{1}{2} \left(x_{\alpha\cdot n} + x_{\alpha5\cdot n + 1}\right) &amp; \text{wenn } \alpha \cdot x ganzzahlig\\
+\frac{1}{2} x_{\lfloor \alpha\cdot n + 1\rfloor} &amp; \text{wenn } \alpha \cdot x nicht ganzzahlig\\
+\end{cases}
+\end{align}\]</span>
+<p>In R können wir Quantile einfach mit der Funktion <code>quantile()</code> berechnen. Diese Funktion akzeptiert als erstes Argument einen Vektor von Daten und als zweites Argument ein oder mehrere Werte für <span class="math inline">\(\alpha\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>))</code></pre></div>
+<pre><code>#&gt;    25%    50%    75% 
+#&gt; 134.50 282.00 540.75</code></pre>
+<p>Wie wir hier sehen ist der Median gleich dem <span class="math inline">\(50\%\)</span>-Quantil.</p>
+<p>Eine sehr flexible Kennzahl für die Lage einer Verteilung ist der <strong>Modus</strong>. Er bezeichnet den Wert, der am häufigsten in den Daten vorkommt. Daher ist der Modus auch schon für nominal-skalierte Daten verfügbar.</p>
+<p>In R gibt es aber leider keine Funktion, die den Modus direkt berechnet. Vielleicht erinnern Sie sich aber, dass wir mit der Funktion <code>table()</code> eine Häufigkeitstabelle ausgeben können. Daher bekommen wir den Modus über folgenden Umweg:<a href="#fn63" class="footnoteRef" id="fnref63"><sup>63</sup></a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(<span class="kw">table</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])
+      )[<span class="kw">table</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])<span class="op">==</span><span class="kw">max</span>(<span class="kw">table</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]]))]</code></pre></div>
+<pre><code>#&gt; [1] &quot;90&quot;</code></pre>
+<p><strong>Kennzahlen zur Streuung einer Verteilung</strong></p>
+<p>Von besonderem Interesse in der sozioökonomischen Forschung ist die Analyse von Ungleichheiten. Dies bedeutet, dass Kennzahlen zur Beschreibung der <em>Streuung</em> von Verteilungen von besonderer praktischer Bedeutung sind.</p>
+<p>Die am weitesten verbreiteten Streuungsmaße sind die <strong>Varianz</strong> <span class="math inline">\(Var\)</span> und ihre Quadratwurzel, die <strong>Standardabweichung</strong>, <span class="math inline">\(s\)</span>:</p>
+<p><span class="math display">\[s_x=\sqrt{Var(x)}=\sqrt{\frac{1}{N-1}\sum_{i=1}^N\left(x_i-\bar{x}\right)^2}\]</span></p>
+<p>Dabei ist zu beachten, dass die empirische Standardabweichung oft einfacher zu interpretieren ist, das sie in in den gleichen Einheiten gemessen wird wie die Daten der Stichprobe. Der <strong>Variationskoeffizient</strong> ist eine einheitslose Variante und ist als Quotient der empirische Standardabweichung und dem arithmetischen Mittel definitiert:</p>
+<p><span class="math display">\[v_x=\frac{s_x}{\bar{x}}\]</span></p>
+<p>In R können die drei Maße folgendermaßen berechnet werden:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">var_preis &lt;-<span class="st"> </span><span class="kw">var</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])
+var_preis</code></pre></div>
+<pre><code>#&gt; [1] 148868.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sd_preis &lt;-<span class="st"> </span><span class="kw">sd</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])
+sd_preis</code></pre></div>
+<pre><code>#&gt; [1] 385.8346</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">varcoef_preis &lt;-<span class="st"> </span><span class="kw">sd</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]]) <span class="op">/</span><span class="st"> </span><span class="kw">mean</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])
+varcoef_preis</code></pre></div>
+<pre><code>#&gt; [1] 0.9236631</code></pre>
+<p>Ein ebenfalls häufig verwendetes Streuungsmaß ist der <strong>Interquantilsabstand</strong> (*inter-quantile-range, IQR), welcher als die Differenz zwischen dem <span class="math inline">\(25\)</span> und <span class="math inline">\(75\%-\)</span>Quantil definiert ist:</p>
+<p><span class="math display">\[IQR=x_{0.75} - x_{0.25}\]</span></p>
+<p>Hierbei handelt es sich also um das Intervall, das die ‘mittlere Hälfte’ der Verteilung umfasst. In R können wir den IQR mit der Funktion <code>IQR</code> berechnen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">IQR</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</code></pre></div>
+<pre><code>#&gt; [1] 406.25</code></pre>
+<p>Ein weit verbreitetes Maß zur Messung der Streuung ist der <a href="https://de.wikipedia.org/wiki/Gini-Koeffizient">Gini-Index</a>. Dabei handelt es sich um ein relatives Verteilungsmaß, welches auf das Intervall <span class="math inline">\((0,1)\)</span> normiert wird und den Wert 0 im Falle einer kompletten Gleichverteilung und den Wert 1 im Falle eine kompletten Konzentration, d.h. dem Fall, dass ein Beobachtungssubjekt alles und alle anderen nichts besitzen.</p>
+<p>In R können wir den Gini Index z.B. mit der Funktion <code>Gini()</code> aus dem Paket <a href="https://cran.r-project.org/package=ineq">ineq</a> <span class="citation">(Zeileis <a href="#ref-R-ineq">2014</a>)</span> berechnen, wobei wir hier die Korrektur für Stichproben verwenden müssen indem wir das Argument <code>corr = TRUE</code> setzen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test_data_equality &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="fl">0.5</span>, <span class="dv">5</span>)
+test_data_inequality &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">4</span>), <span class="dv">1</span>)
+<span class="kw">Gini</span>(test_data_equality, <span class="dt">corr =</span> T)</code></pre></div>
+<pre><code>#&gt; [1] 0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Gini</span>(test_data_inequality, <span class="dt">corr =</span> T)</code></pre></div>
+<pre><code>#&gt; [1] 1</code></pre>
+<p>Um die Besonderheiten des Gini’s zu verstehen wollen wir uns genauer mit der Berechnung des Indices vertraut machen. Der Gini-Index ist eng mit dem Konzept der <a href="https://en.wikipedia.org/wiki/Lorenz_curve">Lorenz-Kurve</a> verknüpft.</p>
+<p>Grafisch gesprochen resultiert die Lorentz-Kurve wenn wir auf der x-Achse den Anteil der Beobachtungssubjekte und auf der y-Achse ihren Anteil an der relevanten Ressource abbilden. Definieren wir <span class="math inline">\(p\)</span> als den Anteil an der Population und <span class="math inline">\(q=\mathcal{L}(p)\)</span> als den Anteil an der Ressource, der von <span class="math inline">\(p\%\)</span> der Population gehalten wird. Daraus resultiert, dass wir bei völliger Gleichverteilung eine Gerade sehen würden, da <span class="math inline">\(p\%\)</span> der Population auch <span class="math inline">\(q=p=\mathcal{L}(p)\%\)</span> der Ressource halten würden. Die Lorentz-Kurve visualisiert nun die <em>Abweichung</em> von diesem idealtypischen Fall in dem <span class="math inline">\(p=q\)</span>. Dies wird in der folgenden Abbildung deutlich, in der zwei mögliche Lorentzkurve dem hypothetischen Fall der perfekten Gleichverteilung gegenübergestellt werden:</p>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-76-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Der Gini-Index <span class="math inline">\(\mathcal{G}\)</span> misst diese Abweichung über die normierte Distanz zwischen <span class="math inline">\(p\)</span> und <span class="math inline">\(q\)</span> indem er einfach das Integral von <span class="math inline">\(p-\mathcal{L}(p)\)</span> berechnet. Da die Lorentzkurve innerhalb eines <span class="math inline">\(1\times 1\)</span>-Quadrats definiert ist mutliplizieren wir das Integral mit 2 um die Normierung zwischen 0 und 1 zu erreichen, sonst wäre das Maximum des Gini-Indices 0.5 (da über der 45-Grad Linie per definitionem keine Kurve verlaufen kann):</p>
+<span class="math display">\[\begin{align}
+\mathcal{G}= 2\cdot \int_0^1\left(p-\mathcal{L}\left(p\right)\right)\text{d}p = 1-2\cdot \int_0^1\left(\mathcal{L}\left(p\right)\right)\text{d}p
+\end{align}\]</span>
+<p>Der Gini-Indix ist ein recht hilfreiches Maß für Ungleichverteilung wenn wir es mit <em>symmetrischen</em> Verteilungen zu tun haben, wie die lila Kurve in der Abbildung oben. Es ist jedoch ein schwierigeres Maß sobald eine <em>assymmetrische</em> Verteilung vorliegt, wie bei der blauen Kurveoben. In letzterem Fall werden wir möglicherweise die gleichen Ginis für recht unterschiedliche Verteilungen erhalten. Da Vermögens- und Einkommensverteilungen in der Regel immer asymmetrisch sind stellt das durchaus eine Herausforderung für den Gini dar und man sollte andere Ungleichheitsmaße wie den Atkinson-Index oder den Zanardi-Index in Betracht ziehen.</p>
+<p>Der Gini-Index reagiert relativ schwach auf Änderungen an den Extremen der Ressourcenverteilung. Wenn diese Änderungen von besonderem Interesse sind bietet sich die Verwendung des <a href="https://en.wikipedia.org/wiki/Theil_index">Theil-Index</a> an. Er ist leider nicht so einfach zu interpretieren wie der Gini und eignet sich daher vor allem für Vergleiche über die Zeit.<a href="#fn64" class="footnoteRef" id="fnref64"><sup>64</sup></a> Die Definition ist folgendermaßen:</p>
+<span class="math display">\[\begin{align}
+\mathcal{T}= \frac{1}{N}\sum_{i=1}^N\frac{x_i}{\bar{x}}\ln\frac{x_i}{\bar{x}}
+\end{align}\]</span>
+<p>wobei <span class="math inline">\(N\)</span> die Anzahl der Personen, <span class="math inline">\(x_i\)</span> die Ressourcenausstattung von Person <span class="math inline">\(i\)</span> und <span class="math inline">\(\bar{x}\)</span> das arithmetische Mittel der Ressourcenausstattung ist.</p>
+<p>In R können wir den Theil Index mit der Funktion <code>Theil()</code> aus dem Paket <code>ineq</code> berechnen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dist_expl &lt;-<span class="st"> </span><span class="kw">rpareto</span>(<span class="dv">100</span>, <span class="dv">3</span>, <span class="fl">2.1</span>)
+<span class="kw">Theil</span>(dist_expl)</code></pre></div>
+<pre><code>#&gt; [1] 1.290735</code></pre>
+<p>Welches Verteilungsmaß für den jeweiligen Anwendungsfall am besten geeignet ist hängt auch von der Art der zugrundeliegenden Verteilung ab. So wird zwar häufig die Varianz als Streuungsmaß verwendet, wenn es sich bei der zu analysierenden Verteilung allerdings um eine bei Einkommen sehr häufig vorkommende Pareto-Verteilung handelt ist die Verwendung dieses Maßes ziemlich irreführend, da die Varianz für diese Verteilungen in vielen Fällen nicht sinnvoll definiert werden kann und wir mit der Formel für die Varianz indirekt unsere Stichprobengröße messen <span class="citation">(Yang et al. <a href="#ref-torsten-dist">2019</a>)</span>. Das richtige Maß hängt also immer von unseren theoretischen Vorüberlegungen zur zugrundeliegenden Verteilung und unserem konkreten Erkenntnisinteresse ab.</p>
+<p>In diesem Sinne ist vor allem die weite Verbreitung des Gini-Indices als <em>dem</em> Verteilungsmaß schlechthin durchaus kritisch zu sehen. So reagiert der Gini Index vor allem auf Änderungen in den mittleren Bereichen der Verteilung und weniger auf Änderungen an den Rändern. Wer Effekte von wachsender Vermögenskonzentration bei den reichsten Individuen messen möchte sollte also lieber ein anderes Maß verwenden. Sein Nutzen ist insofern auch von der zugrundeliegenden Forschungsfrage abhängig. Das gilt natürlich auch für alle anderen Indices. So eignet sich der Theil-Index vor allem bei der Analyse von Änderungen über die Zeit in der gleichen Gruppe, da er nicht normiert ist. Er reagiert deutlich besser auf Änderungen an den Extremen als der Gini Index.</p>
+<p>Für eine gute kritische Auseinandersetzung mit dem Gini Index und einen konstruktiven Gegenvorschlag siehe z.B. <span class="citation">Clementi et al. (<a href="#ref-gini-critique">2019</a>)</span>.</p>
+<p>Zahlreiche gängige Verteilungsmaße sind in dem Paket <a href="https://cran.r-project.org/package=ineq">ineq</a> von <span class="citation">Zeileis (<a href="#ref-R-ineq">2014</a>)</span> implementiert.</p>
+<p><strong>Uni- und Multimodale Verteilungen</strong></p>
+<p>Die Unterscheidung zwischen uni- und multimodalen Verteilungen ist wichtig, weil viele Kennzahlen, wie die <em>Schiefe</em> oder <em>Steile</em> einer Verteilung (siehe unten) nur für unimodale Verteilungen intuitiv interpretiert werden können.</p>
+<p>Ganz strikt genommen sprechen wir von einer <strong>unimodalen</strong> oder <strong>eingipfligen</strong> Verteilung wenn Sie nur einen Gipfel hat, also nur einen Modus Ansonsten sprechen wir von einer <strong>multimodalen</strong> oder <strong>mehrgipfligen</strong> (oder genauer <em>ein</em>gipfligen, <em>zwei</em>gipfligen, …) Verteilung.</p>
+<p>In der Praxis haben viele Funktionen aber einen eindeutigen Modus, besitzen aber mehrere andere lokale Optima, also kleinere “Gipfel”, sodass wir in der Regel von einer multimodelen Verteilung sprechen sobald es mehrere lokale Maxima gibt:</p>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-78-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p><strong>Kennzahlen zur Form der Verteilung</strong></p>
+<p>Um die Form einer Verteilung besser zu beschreiben verwendet man häufig die <strong>Schiefe</strong> und <strong>Steile</strong> (auch: Kurtosis) einer Verteilung. Beide Kennzahlen sind zunächst einmal nur für <em>eingipflige</em>/<em>unimodale</em> Verteilungen sinnvoll.</p>
+<p>Die Schiefe einer empirischen Verteilung ist definiert als:</p>
+<p><span class="math display">\[\gamma_x = \frac{1}{n}\sum_{i=1}^n\left(\frac{x_i-\bar{x}}{s}\right)^3\]</span></p>
+<p>wobei wir für die Schätzung wieder für die Reduktion der Freiheitsgrade korrigieren müssen, sodass die praktische Schätzfunktion gegeben ist durch:</p>
+<p><span class="math display">\[\hat{\gamma_x} = \frac{1}{(n-1)(n-2)}\sum_{i=1}^n\left(\frac{x_i-\bar{x}}{s}\right)^3\]</span></p>
+<p>Hieraus ableiten können wir den Begriff der <strong>Symmetrie</strong> einer Verteilung. Wir nennen eine Verteilung <em>symmetrisch</em> wenn <span class="math inline">\(\gamma_x=0\)</span>, <strong>links-schief</strong> (oder <em>rechts-steil</em>) wenn <span class="math inline">\(\gamma_x&lt;0\)</span> und <strong>rechts-schief</strong> (oder <em>links-steil</em>) wenn <span class="math inline">\(\gamma_x&gt;0\)</span>.</p>
+<p>Woher diese Begriffe kommen können wir uns am besten mit Hilfe folgender Abbildung verdeutlichen:</p>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-79-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>In R können wir die Schiefe einer Verteilung mit der Funktion <code>skewness()</code> aus dem Paket <a href="https://cran.r-project.org/package=moments">moments</a> <span class="citation">(Komsta and Novomestky <a href="#ref-R-moments">2015</a>)</span> berechnen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">skewness</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</code></pre></div>
+<pre><code>#&gt; [1] 1.691223</code></pre>
+<p>Wir würden hier also von einer <em>recht-schiefen</em> Verteilung der Preise sprechen. Das sehen wir hier auch grafisch:</p>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-81-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Die <strong>Steile</strong> (auch: Kurtosis) <span class="math inline">\(\omega_x\)</span> einer Verteilung gibt ihre ‘Spitzgipfligkeit’ an. Je größer <span class="math inline">\(\omega_x\)</span> desto ‘schmaler’ wird die Verteilung und desto weniger extreme Werte hat sie. Die Steile ist folgendermaßen definiert:</p>
+<p><span class="math display">\[\omega_x = \frac{1}{n}\sum_{i=1}^n\left( \frac{x_i-\bar{x}}{s_x}\right)^4\]</span> Wie bei der Schiefe müssen wir für die Schätzung wieder für die Reduktion der Freiheitsgrade korrigieren, sodass die praktische Schätzfunktion gegeben ist durch:</p>
+<p><span class="math display">\[\hat{\omega}_x = \frac{1}{(n-1)(n-2)}\sum_{i=1}^n\left( \frac{x_i-\bar{x}}{s_x}\right)^4\]</span></p>
+<p>Wir können die Kurtosis einer Verteilung mit der Funktion <code>kurtosis()</code> aus dem Paket <a href="https://cran.r-project.org/package=moments">moments</a> berechnen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kurtosis</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</code></pre></div>
+<pre><code>#&gt; [1] 5.992058</code></pre>
+<p>Da die Kurtosis an sich nicht leicht zu interpretieren ist wird der Wert häufig mit dem einer Standardnormalverteilung verglichen. Da deren Wert per definitionem 3 beträgt wird die <em>Exzess-Kurtosis</em> mit <span class="math inline">\(\tilde{\omega}_x=\omega_x-3\)</span> berechnet und wir sprechen von einer <em>steilgipfligen</em> (‘leptokurtischen’) Verteilung wenn <span class="math inline">\(\tilde{\omega}_x&gt;0\)</span> und von einer <em>flachgipfligen</em> (‘platykurtischen’) Verteilung wenn <span class="math inline">\(\tilde{\omega}_x&lt;0\)</span>. Für den Fall der Preisverteilung von Journalen haben wir es also mit einer steilgipfligen Verteilung zu tun.</p>
+<p>Zur Verdeutlichung des Konzepts im folgenden noch ein grafisches Beispiel:</p>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-83-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kurtosis</span>(<span class="kw">filter</span>(kurt_data, Kurtosis<span class="op">==</span><span class="st">&quot;Normalverteilung&quot;</span>)<span class="op">$</span>Dichte)</code></pre></div>
+<pre><code>#&gt; [1] NaN</code></pre>
+<p><strong>Ausreißer und Schwanz-Eigenschaften</strong></p>
+<p>Ausreißer können einen großen Effekt auf Ihre Ergebnisse haben. Erinnern Sie sich daran, dass der Mittelwert eines Datensatzes sehr anfällig für Ausreißer, also besonders große oder kleine Werte, ist. Gleiches gilt für viele andere Maße.</p>
+<p>Insofern stellen sich zwei wichtige Fragen: Erstens, was genau verstehen wir unter einem Ausreißer? Zweitens, wie sollten wir mit Ausreißern umgehen?</p>
+<p>Im Kontext eines Boxplot wurde ein Ausreißer als ein Wert der außerhalb des Intervalls <span class="math inline">\(\left( x_{0.25} - IQR\cdot 1.5, x_{0.75} + IQR\cdot 1.5 \right)\)</span> liegt definiert. Dies führt häufig zu einer zu recht restriktiven Definition von Ausreißern, ist aber ein guter erster Schritt. Wir können die Ausreißer hier einfach identifizieren indem wir den Datensatz entsprechend filtern, z.B.:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">IQR_Grenzen &lt;-<span class="st"> </span><span class="kw">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))
+untere_grenze &lt;-<span class="st"> </span>IQR_Grenzen[<span class="st">&quot;25%&quot;</span>] <span class="op">-</span><span class="st"> </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])
+obere_grenze &lt;-<span class="st"> </span>IQR_Grenzen[<span class="st">&quot;75%&quot;</span>] <span class="op">+</span><span class="st"> </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])
+
+outlier_teuer &lt;-<span class="st"> </span>journal_daten <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(Preis <span class="op">&gt;</span><span class="st"> </span>obere_grenze)
+
+outlier_billig &lt;-<span class="st"> </span>journal_daten <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(Preis <span class="op">&lt;</span><span class="st"> </span>untere_grenze)
+ 
+
+dplyr<span class="op">::</span><span class="kw">select</span>(outlier_teuer, Titel, Preis)</code></pre></div>
+<pre><code>#&gt;                                          Titel Preis
+#&gt; 1                         Ecological Economics  1170
+#&gt; 2                            Applied Economics  2120
+#&gt; 3               Journal of Banking and Finance  1539
+#&gt; 4  Journal of Economic Behavior &amp; Organization  1154
+#&gt; 5                              Research Policy  1234
+#&gt; 6                            Economics Letters  1492
+#&gt; 7                     European Economic Review  1154
+#&gt; 8                            World Development  1450
+#&gt; 9                  Journal of Public Economics  1431
+#&gt; 10                     Journal of Econometrics  1893
+#&gt; 11                  Journal of Economic Theory  1400
+#&gt; 12              Journal of Financial Economics  1339</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dplyr<span class="op">::</span><span class="kw">select</span>(outlier_billig, Titel, Preis)</code></pre></div>
+<pre><code>#&gt; [1] Titel Preis
+#&gt; &lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<p>Wir sehen hier, dass es nur Ausreißer nach oben, also nur besonders teure Journale gibt. Nun können/müssen wir uns für diese Fälle überlegen wie wir mit den Ausreißern umgehen wollen.</p>
+<p>Das bringt uns zu der zweiten Frage, also die Frage wie wir mit Ausreißern umzugehen haben. Manche Ausreißer sind die Folge von Messfehlern oder Fehlern in der Datenaufbereitung. Idealerweise würden wir solche Ausreißer aus dem Datensatz entfernen wollen.</p>
+<p>Andere Ausreißer sind dagegen einfach besonders interessante Datenpunkte, die <em>auf gar keinen Fall</em> aus dem Datensatz entfernt werden sollten. So hat Luxenburg im Vergleich zu anderen Europäischen Ländern ein wahnsinnig hohes Einkommensniveau, aber das bedeutet nicht, dass wir Luxenburg aus allen Analysen herausnehmen sollten. Im Bereich der Finanzmarktanalyse sind extreme Preisausschläge häufig gerade besonders relevant. Sie dürfen auf gar keinen Fall ausgeschlossen werden, denn häufig sind sie Ausgangspunkt von Krisen.</p>
+<p>Daher ist die beste Vorgehensweise, sich Ausreißer explizit anzuschauen, indem wir den Datensatz nach extremen Werten (oder Werten mit einer hohen Cook’schen Distanz) filtern und dann selbst entscheiden ob diese Werte eher Resultat eines Messfehlers oder ein besonders interessanter Wert sind. Es gilt jedoch: im Zweifel sollten die Datenpunkte immer im Datensatz gelassen werden. Ein Ausreißer darf nur eliminiert werden wenn es <em>wirklich sehr gute Gründe</em> dafür gibt.</p>
+<p>Im Falle der Journale ist es fraglich ob es wirklich gute Gründe gibt, diese 12 Journale aus Ausreißer zu eliminieren. Im vorliegenden Falle spricht wenig dafür und wir sollten uns eher überlegen wie diese besondere Stellung der Journale erklärt werden kann, z.B. über ihre Popularität.</p>
+<p>In diesem Kontext macht es auch Sinn die Kategorie der <em>endlastigen</em> oder der<br />
+<em>heavy-tailed</em> Verteilungen einzuführen. Darunter verstehen wir Verteilungen, die besonders viele Extremwerte aufweisen - oder technisch: deren Dichte sub-exponentiell abfällt, deren Extremevents also wahrscheinlicher sind als bei der Exponentialverteilung.</p>
+<p>Einkommens- und Vermögensverteilungen sind in der Regel <em>heavy-tailed</em>: es gibt zwar sehr viele Menschen mit geringen, und nur wenige mit sehr hohen Einkommen, aber mehr Menschen mit hohen Einkommen als wir es bei einer Exponentialverteilung erwarten würden.</p>
+<p>Diese Kategorie ist in diesem Kontext, da bei endlastigen Verteilungen “Ausreißer” sehr viel häufiger vorkommen. Sie sind aber eine wichtige Folge der zugrundeliegenden Prozesse, und die Ignoranz dieser Beobachtungen würde zu sehr irreführenden Schlussfolgerungen führen. Häufig werden solche Ausreißer eliminiert da die Daten ohne sie leicht durch eine Normalverteilung approximiert werden können. Rechnet man mit diesen Modellen unterschätzt man aber per definitionem die Wahrscheinlichkeit für Extremwerte in der Zukunft. Dieses Problem ist häufig auf den Finanzmärkten vor der Finanzkrise 2007ff aufgetreten.</p>
+<p>Eine Alternative Definition von Ausreißern im Kontext der Regressionsanalyse ist die Berechnung der ‘Cook’schen Distanz’ für jeden Beobachtungswert. Die ‘Cook’sche Distanz’ wird immer im Hinblick auf ein bestimmtes Regressionsmodell berechnet und gibt den Einfluss einer jeden Variable auf das Endergebnis an. Dann kann man sich die einflussreichsten Variablen genauer anschauen und sich fragen wie mit diesen Datenpunkten umzugehen ist.</p>
+<p>Die Grundidee der ‘Cook’schen Distanz’ ist für jede Beobachtung das Regressionsergebnis zu vergleichen mit dem hypothetischen Fall, dass diese Beobachtung ausgelassen worden wäre.</p>
+<p>Wir können für ein bestimmtes Regressionmodell die Cook’schen Distanz mit der Funktion <code>cooks.distance()</code> berechnen. Zum Zwecke der Illustration regressieren wir in dem Journaldatensatz die Variable ‘Preis’ auf die Variablen ‘Seitenanzahl’ und ‘Zitationen’:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg_objekt &lt;-<span class="st"> </span><span class="kw">lm</span>(Preis <span class="op">~</span><span class="st"> </span>Seitenanzahl <span class="op">+</span><span class="st"> </span>Zitationen, 
+                 <span class="dt">data =</span> journal_daten)
+distanzen &lt;-<span class="st"> </span><span class="kw">cooks.distance</span>(reg_objekt)</code></pre></div>
+<p>Ab wann eine Beobachtung als Ausreißer im Sinne von der Cook’schen Distanz gilt ist nicht klar zu definieren, als Daumenregel hat sich die Grenze <span class="math inline">\(\frac{4}{n-k-1}\)</span> etabliert, aber in der Praxis macht es immer Sinn einfach die Werte mit der größten Distanz genauer anzuschauen. Im vorliegenden Falle wären das:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dist_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">Index=</span><span class="kw">names</span>(distanzen),
+  <span class="dt">Distanz=</span><span class="kw">unname</span>(distanzen), 
+  <span class="dt">Titel=</span>journal_daten[<span class="kw">as.double</span>(<span class="kw">names</span>(distanzen))]<span class="op">$</span>Titel, 
+  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>
+)
+
+cook_threshold &lt;-<span class="st"> </span><span class="dv">4</span> <span class="op">/</span><span class="st"> </span>(reg_objekt<span class="op">$</span>df.residual <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)
+
+<span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(dist_data), 
+       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>Index, <span class="dt">y=</span>Distanz)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> cook_threshold, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_icae</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid.major.x =</span> <span class="kw">element_blank</span>(),
+        <span class="dt">panel.grid.minor.x =</span> <span class="kw">element_blank</span>())</code></pre></div>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-87-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(dist_data, Distanz<span class="op">&gt;</span>cook_threshold)<span class="op">$</span>Titel</code></pre></div>
+<pre><code>#&gt;  [1] &quot;Managerial and Decision Econ&quot;   &quot;Applied Economics&quot;             
+#&gt;  [3] &quot;Journal of Banking and Finance&quot; &quot;Economics Letters&quot;             
+#&gt;  [5] &quot;World Development&quot;              &quot;Journal of Public Economics&quot;   
+#&gt;  [7] &quot;Journal of Economic Literature&quot; &quot;Journal of Econometrics&quot;       
+#&gt;  [9] &quot;Journal of Economic Theory&quot;     &quot;Economic Journal&quot;              
+#&gt; [11] &quot;Journal of Financial Economics&quot; &quot;Journal of Finance&quot;            
+#&gt; [13] &quot;Econometrica&quot;</code></pre>
+</div>
+<div id="vert-grafik" class="section level3">
+<h3><span class="header-section-number">7.5.3</span> Grafische Komplemente zu klassischen Kennzahlen</h3>
+<p>Ein hilfreiches Mittel zur Beschreibung von Verteilungen ist der <strong>Boxplot</strong>. Bei dem Boxplot handelt es sich um eine grafischen Zusammenfassung einiger zentraler deskriptiver Kennzahlen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> wb_data, 
+       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>region, <span class="dt">y=</span>Lebenserwartung)
+       ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_icae</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Lebenserwartungen in den Weltregionen&quot;</span>, 
+       <span class="dt">caption =</span> <span class="st">&quot;Quelle: Weltbank&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>())</code></pre></div>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-90-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Im Boxplot werden mehrere relevante Kennzahlen zusammengefasst. Eine schöne Übersicht bietet diese Abbilung:<a href="#fn65" class="footnoteRef" id="fnref65"><sup>65</sup></a></p>
+<p><img src="figures/boxplot-anatomy.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Die Box in der Mitte des Boxplots repräsentiert die IQR der Daten, der Median ist mit einem Strich innerhalb der Box dargestellt. Die Striche an der Box repräsentieren dann das Intervall bis zum größten bzw. kleinsten Wert, der nicht weiter als <span class="math inline">\(1.5\cdot IQR\)</span> vom Median entfernt ist. Ausreißer, hier definiert als Werte außerhalb dieses Intervalls, werden dann durch einzelne Punkte visualisiert. Selbstverständlich können Sie das Aussehen noch weiter an Ihre Präferenzen anpassen. Die Parameter dazu sind in der Hilfefunktion beschrieben. Sehr gute Anleitungen finden sich zudem <a href="http://t-redactyl.io/blog/2016/04/creating-plots-in-r-using-ggplot2-part-10-boxplots.html">hier</a> und <a href="https://www.r-graph-gallery.com/boxplot.html">hier</a>.</p>
+<p>In <a href="https://www.data-to-viz.com/caveat/boxplot.html">diesem Post</a> werden auch die Nachteile dieser Visualisierungsform sehr gut beschrieben. Der größte Nachteil liegt zweifelslos im Verstecken der eigentlichen Verteilung ‘hinter der Box’. Es ist nicht klar, ob sich ein Großteil der Daten am oberen oder unteren Teil befindet oder ob die Daten eher gleichverteilt sind. Eine einfache Lösung für kleinere Datensätze liegt in der Ergänzung der einzelnen Beobachtungen durch <code>boxplot_jitter</code>, wobei sie hier die Transparenz durch <code>alpha=0.25</code> anpassen sollten, und den Boxplot zur besseren Lesbarkeit über die Beobachtungen ploten sollten. Für größere Datensätzen können Sie einfach einen <a href="https://www.r-graph-gallery.com/violin.html">Violinenplot</a> verwenen, wie im folgenden Beispiel gezeigt:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boxplot_classic &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> wb_data, 
+       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>region, <span class="dt">y=</span>Lebenserwartung)
+       ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_icae</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Klassische Darstellung&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>(), 
+        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))
+
+boxplot_jitter &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> wb_data, 
+       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>region, <span class="dt">y=</span>Lebenserwartung)
+       ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.25</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_icae</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Klassische Darstellung mit jitter&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>(), 
+        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))
+
+violin_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> wb_data, 
+       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>region, <span class="dt">y=</span>Lebenserwartung)
+       ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_icae</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Violinen-Plot&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>(), 
+        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))
+
+<span class="kw">ggarrange</span>(boxplot_classic, boxplot_jitter, violin_plot, <span class="dt">ncol =</span> <span class="dv">3</span>)</code></pre></div>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-92-1.png" width="100%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Es ist jedoch immer wichtig eine Verteilung nicht nur mit Kennzahlen, sondern auch grafisch zu beschreiben. Dies wurde erstmals durch <span class="citation">Anscombe (<a href="#ref-Anscombe">1973</a>)</span> durch sein “Anscombe’s Quartett” illustriert. Dabei handelt es sich um vier Datensätze, die alle (fast exakt) gleiche deskriptive Statistiken aufweisen, jedoch offensichtlich sehr unterschiedlich sind. Diese offensichtlichen Unterschiede werden aber nur durch grafische Inspektion deutlich.</p>
+<p>Der Datensatz ist in jeder R Installation vorhanden:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;anscombe&quot;</span>)
+<span class="kw">head</span>(anscombe)</code></pre></div>
+<pre><code>#&gt;   x1 x2 x3 x4   y1   y2    y3   y4
+#&gt; 1 10 10 10  8 8.04 9.14  7.46 6.58
+#&gt; 2  8  8  8  8 6.95 8.14  6.77 5.76
+#&gt; 3 13 13 13  8 7.58 8.74 12.74 7.71
+#&gt; 4  9  9  9  8 8.81 8.77  7.11 8.84
+#&gt; 5 11 11 11  8 8.33 9.26  7.81 8.47
+#&gt; 6 14 14 14  8 9.96 8.10  8.84 7.04</code></pre>
+<p>Die folgende Tabelle gibt die Werte der quantitativen Kennzahlen an:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Kennzahl</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mittelwert von <span class="math inline">\(x\)</span></td>
+<td><code>9</code></td>
+</tr>
+<tr class="even">
+<td>Mittelwert von <span class="math inline">\(y\)</span></td>
+<td><code>7.5</code></td>
+</tr>
+<tr class="odd">
+<td>Varianz von <span class="math inline">\(x\)</span></td>
+<td><code>11</code></td>
+</tr>
+<tr class="even">
+<td>Varianz von <span class="math inline">\(y\)</span></td>
+<td><code>4.13</code></td>
+</tr>
+<tr class="odd">
+<td>Korrelation zw. <span class="math inline">\(x\)</span> und <span class="math inline">\(y\)</span></td>
+<td><code>0.82</code></td>
+</tr>
+</tbody>
+</table>
+<p>Nur die grafische Inspektion zeigt, wie unterschiedlich die Verteilungen tatsächlich sind:</p>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-94-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Damit zeigt sich, dass jede gute Beschreibung einer Verteilung sowohl aus quantitativen als auch grafischen Teilen bestehen sollte.<a href="#fn66" class="footnoteRef" id="fnref66"><sup>66</sup></a></p>
+</div>
+<div id="vert-bemerkungen" class="section level3">
+<h3><span class="header-section-number">7.5.4</span> Abschließende Bemerkungen</h3>
+<p>Es ist wichtig, dass wir uns mit der Verteilung unserer Daten nicht nur theoretisch, sondern auch empirisch und praktisch auseinandersetzen. Für viele Verteilungen sind z.B. bestimmte Kennzahlen nicht definiert. So hat zum Beispiel die bei Vermögens- und Einkommensverteilungen häufig zu beobachtende Pareto-Verteilungen häufig keinen wohldefinierten Mittelwert und keine wohldefinierte Varianz. Daher haben aus Stichproben geschätzte Kennzahlen, die sich dieser Konzepte bedienen, keine wirkliche Aussagekraft. Eine exzellente Beschreibung der Probleme, möglicher Alternativen und ein gutes Anwendungsbeispiel findet sich z.B. in <span class="citation">Yang et al. (<a href="#ref-torsten-dist">2019</a>)</span>.</p>
+
+</div>
+</div>
+</div>
+
+
+
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-linalg">
+<p>Aleskerov, Fuad, Hasan Ersel, and Dmitri Piontkovski. 2011. <em>Linear Algebra for Economists</em>. Springer. <a href="\url{https://www.springer.com/de/book/9783642205699}" class="uri">\url{https://www.springer.com/de/book/9783642205699}</a>.</p>
+</div>
+<div id="ref-Anscombe">
+<p>Anscombe, Francis J. 1973. “Graphs in Statistical Analysis.” <em>The American Statistician</em> 27: 17–21. <a href="https://doi.org/10.2307/2682899" class="uri">https://doi.org/10.2307/2682899</a>.</p>
+</div>
+<div id="ref-clauset">
+<p>Clauset, Aaron, Cosma Rohilla Shalizi, and M E J Newman. 2009. “Power-Law Distributions in Empirical Data.” <em>SIAM Review</em> 51 (4): 661–703. doi:<a href="https://doi.org/10.1137/070710111">10.1137/070710111</a>.</p>
+</div>
+<div id="ref-gini-critique">
+<p>Clementi, Fabio, Mauro Gallegati, Lisa Gianmoena, Simone Landini, and Joseph E Stiglitz. 2019. “Mis-measurement of inequality: a critical reflection and new insights.” <em>Journal of Economic Interaction and Coordination</em> 14 (4): 891–921. doi:<a href="https://doi.org/10.1007/s11403-019-00257-2">10.1007/s11403-019-00257-2</a>.</p>
+</div>
+<div id="ref-R-fit">
+<p>Delignette-Muller, Marie Laure, and Christophe Dutang. 2015. “fitdistrplus: An R Package for Fitting Distributions.” <em>Journal of Statistical Software</em> 64 (4): 1–34. <a href="http://www.jstatsoft.org/v64/i04/" class="uri">http://www.jstatsoft.org/v64/i04/</a>.</p>
+</div>
+<div id="ref-R-matlib">
+<p>Friendly, Michael, John Fox, and Phil Chalmers. 2019. <em>Matlib: Matrix Functions for Teaching and Learning Linear Algebra and Multivariate Statistics</em>. <a href="https://CRAN.R-project.org/package=matlib" class="uri">https://CRAN.R-project.org/package=matlib</a>.</p>
+</div>
+<div id="ref-AER">
+<p>Kleiber, Christian, and Achim Zeileis. 2008. <em>Applied Econometrics with R</em>. New York: Springer-Verlag. <a href="https://CRAN.R-project.org/package=AER" class="uri">https://CRAN.R-project.org/package=AER</a>.</p>
+</div>
+<div id="ref-R-moments">
+<p>Komsta, Lukasz, and Frederick Novomestky. 2015. <em>Moments: Moments, Cumulants, Skewness, Kurtosis and Related Tests</em>. <a href="https://CRAN.R-project.org/package=moments" class="uri">https://CRAN.R-project.org/package=moments</a>.</p>
+</div>
+<div id="ref-chiang">
+<p>Wainwright, Kevin, and Alpha Chiang. 2005. <em>Fundamental Methods of Mathematical Economics</em>. McGraw-Hill.</p>
+</div>
+<div id="ref-R-dplyr">
+<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2019. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+<div id="ref-torsten-dist">
+<p>Yang, Jangho, Torsten Heinrich, Julian Winkler, Francois Lafond, Pantelis Koutroumpis, and J.Doyne Farmer. 2019. “Measuring Productivity Dispersion: A Parametric Approach Using the Levy Alpha-Stable Distribution.” <em>INET Oxford Working Paper</em> 2019-14. <a href="https://www.inet.ox.ac.uk/publications/no-2019-14-measuring-productivity-dispersion-a-parametric-approach-using-the-l%C3%A9vy-alpha-stable-distribution/">https://www.inet.ox.ac.uk/publications/no-2019-14-measuring-productivity-dispersion-a-parametric-approach-using-the-l%C3%A9vy-alpha-stable-distribution/</a>.</p>
+</div>
+<div id="ref-R-ineq">
+<p>Zeileis, Achim. 2014. <em>Ineq: Measuring Inequality, Concentration, and Poverty</em>. <a href="https://CRAN.R-project.org/package=ineq" class="uri">https://CRAN.R-project.org/package=ineq</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="47">
+<li id="fn47"><p>Der Funktionsname ‘lag’ und ‘lead’ wird leider in sehr vielen Paketen verwendet, u.a. auch in <code>data.table</code>. Deswegen ist es gerade bei diesen Funktionen besser den expliziten Aufruf <code>dplyr::lag()</code> und <code>dplyr::lead()</code> zu verwenden.<a href="formalia.html#fnref47">↩</a></p></li>
+<li id="fn48"><p>Zur Transformation der y-Achse verwenden wir in <code>ggplot2</code> die Funktion <code>scale_y_continuous()</code> und setzen das Argument <code>trans = &quot;log&quot;</code>.<a href="formalia.html#fnref48">↩</a></p></li>
+<li id="fn49"><p>Diese Klassifizierung ist nicht erschöpfend und in einigen Fällen uneindeutig. Tatsächlich gilt folgendes: sei <span class="math inline">\(f^n(x)\)</span> die <span class="math inline">\(n\)</span>-te Ableitung von <span class="math inline">\(f(x)\)</span>. Wenn <span class="math inline">\(f&#39;(x)=0\)</span> und die erste von Null verschiedene höhere Ableitung eine Ableitung gerader Ordnung haben wir einen Extrempunkt, ansonsten einen Sattelpunkt. Ansonsten gilt auch, dass bei <span class="math inline">\(f^n(x)&gt;0\)</span> ein Minimum und bei <span class="math inline">\(f^n(x)&lt;0\)</span> ein Maximum vorliegt.<a href="formalia.html#fnref49">↩</a></p></li>
+<li id="fn50"><p>Gerade bei komplexeren Methoden müssen Sie als Nutzer*in jedoch in der Regel nachhelfen und der Opimierungsfunktion weitere Hinweise zur Funktion angeben. Für unsere Anwendungsbeispiele ist das nicht weiter relevant, Sie sollten die Problematik jedoch im Hinterkopf behalten.<a href="formalia.html#fnref50">↩</a></p></li>
+<li id="fn51"><p>Das liegt daran, dass jede <span class="math inline">\(n\times k\)</span>-Matrix <span class="math inline">\(A\)</span>, also eine eine Matrix mit <span class="math inline">\(n\)</span> Zeilen und <span class="math inline">\(k\)</span> Spalten, als eine Funktion <span class="math inline">\(f(x)=Ax\)</span> dargestellt werden kann, für die gilt: <span class="math inline">\(f: \mathbb{R}^{n}\rightarrow \mathbb{R}^k\)</span>. Diese Funktion ist immer <em>linear</em>. Tatsächlich gilt, dass jede Funktion <span class="math inline">\(f\)</span> nur dann linear ist, wenn es eine Matrix <span class="math inline">\(A\)</span> gibt, für die gilt <span class="math inline">\(f(x)=Ax\)</span>.<a href="formalia.html#fnref51">↩</a></p></li>
+<li id="fn52"><p>Alternativ können Sie auch die Funktion <code>solve()</code> aus <code>base</code> verwenden; hier ist das erste Argument <code>a</code> und der Output ist weniger informativ.<a href="formalia.html#fnref52">↩</a></p></li>
+<li id="fn53"><p>Wenn Sie die einzelnen Schritte zur Lösung nachverfolgen wollen, rufen Sie die Funktion mit dem Argument <code>verbose=TRUE</code> auf!<a href="formalia.html#fnref53">↩</a></p></li>
+<li id="fn54"><p>Die genaue Herleitung finden Sie hier.<a href="formalia.html#fnref54">↩</a></p></li>
+<li id="fn55"><p>Wir sehen unten aber auch, dass solche Kennzahlen immer mit einer grafischen Darstellung kombiniert werden sollten.<a href="formalia.html#fnref55">↩</a></p></li>
+<li id="fn56"><p>Ein “parametrischen Warhscheinlichkeitsmodell” meint dabei eine ZV mit bestimmten Parametern.<a href="formalia.html#fnref56">↩</a></p></li>
+<li id="fn57"><p>Wenn Sie Schwierigkeiten mit derlei Begriffen haben schauen Sie doch einmal in den <a href="stat-stoch.html#stat-stoch">Anhang zur Wahrscheinlichkeitstheorie</a>.<a href="formalia.html#fnref57">↩</a></p></li>
+<li id="fn58"><p>Die bekanntesten Verteilungen werden im <a href="stat-stoch.html#stat-stoch">Anhang zur Wahrscheinlichkeitstheorie</a> beschrieben. Die vollständige Liste der Verteilungskürzel in R finden Sie <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Distributions.html">hier</a>.<a href="formalia.html#fnref58">↩</a></p></li>
+<li id="fn59"><p>Beachten Sie, dass ein solcher Test weniger gut geeignet ist, wenn Sie entscheiden wollen ob Ihre Daten normalverteilt ‘genug’ sind um bestimmte Methoden anzuwenden, die eine Normalverteilung voraussetzen. Dazu sollten Sie unbedingt auch grafische Methoden wie <a href="https://ggplot2.tidyverse.org/reference/geom_qq.html">QQ-Plots</a> verwenenden. Für mehr Details schauen Sie mal in <a href="http://blog.fellstat.com/?p=61">diesen Blogartikel</a>.<a href="formalia.html#fnref59">↩</a></p></li>
+<li id="fn60"><p>Eine frei zugängliche Version des Papers findet sich <a href="https://arxiv.org/abs/0706.1062">hier</a>.<a href="formalia.html#fnref60">↩</a></p></li>
+<li id="fn61"><p>Dieser Datensatz enthält Informationen über Preise, Seiten, Zitationen und Abonennten von 180 Journalen aus der Ökonomik im Jahr 2004.Bei den hier verwendeten Daten handelt es sich um eine Übersetzung des Datensatzes <code>Journals</code> aus dem Paket <code>AER</code> <span class="citation">(Kleiber and Zeileis <a href="#ref-AER">2008</a>)</span>.<a href="formalia.html#fnref61">↩</a></p></li>
+<li id="fn62"><p>So ist z.B. <span class="math inline">\(\lfloor 1.9 \rfloor=1\)</span> und <span class="math inline">\(\lfloor 1.2 \rfloor=1\)</span><a href="formalia.html#fnref62">↩</a></p></li>
+<li id="fn63"><p>Es gibt natürlich noch viele andere Möglichkeiten, siehe z.B. <a href="https://stackoverflow.com/questions/2547402/is-there-a-built-in-function-for-finding-the-mode">hier</a>.<a href="formalia.html#fnref63">↩</a></p></li>
+<li id="fn64"><p>Der Theil-Index besitzt noch weitere attraktivere Eigenschaften. Insbesondere können die Beiträge von Ungleichheiten innerhalb verschiedener Subgruppen und die Ungleichheiten zwischen Gruppen als solchen aus dem Index abgeleitet werden. Weitere Informationen finden sich z.B. <a href="http://siteresources.worldbank.org/PGLP/Resources/PMch6.pdf">hier</a><a href="formalia.html#fnref64">↩</a></p></li>
+<li id="fn65"><p>Die Abbildung ist von folgendem Blog übernommen: <a href="https://www.leansigmacorporation.com/box-plot-with-minitab/" class="uri">https://www.leansigmacorporation.com/box-plot-with-minitab/</a>.<a href="formalia.html#fnref65">↩</a></p></li>
+<li id="fn66"><p>Interessanterweise ist bis heute nicht bekannt wie <span class="citation">Anscombe (<a href="#ref-Anscombe">1973</a>)</span> seinen Datensatz erstellt hat. Für neuere Sammlungen von Datensätzen, die das gleiche Phänomen illustrieren siehe z.B. <span class="citation">Chatterjee and Firat (<a href="#ref-AnscombeNew1">2007</a>)</span> oder <span class="citation">Matejka and Fitzmaurice (<a href="#ref-AnscombeNew2">2017</a>)</span> . Eine sehr schöne Illustration der Idee findet sich auch auf <a href="https://www.autodeskresearch.com/publications/samestats">dieser Homepage</a>, die vom Autor von <span class="citation">Matejka and Fitzmaurice (<a href="#ref-AnscombeNew2">2017</a>)</span> gestaltet wurde.<a href="formalia.html#fnref66">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="vis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["R-SocioEcon-dt.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
