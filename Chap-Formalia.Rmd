@@ -1008,17 +1008,17 @@ das einfache lineare Regressionsmodell kennen gelernt, das wir allgemein
 für $n$ Beochatungen und $p$ erklärenden Variablen folgendermaßen geschrieben
 haben:
 
-$$y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_p x_{ip} + \epsilon_i, i=1,...,n$$
+$$Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_p x_{ip} + \epsilon, i=1,...,n$$
 
 Da wir in der Praxis regelmäßig mehr als eine erklärende Variable verwenden (also $p>1$)
 werden Schätzgleichungen fast ausschließlich in Matrixform dargestellt, denn
 wir können explizit alle $n$ Gleichungen untereinander schreiben:
 
 \begin{align}
-y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + ... + \beta_p x_{1p} + \epsilon_1\\
-y_2 = \beta_0 + \beta_1 x_{21} + \beta_2 x_{22} + ... + \beta_p x_{2p} + \epsilon_2\nonumber\\
+Y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + ... + \beta_p x_{1p} + e_1\nonumber\\
+Y_2 = \beta_0 + \beta_1 x_{21} + \beta_2 x_{22} + ... + \beta_p x_{2p} + e_2\nonumber\\
 \vdots \nonumber\\
-y_n = \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + ... + \beta_p x_{np} + \epsilon_n\nonumber
+Y_n = \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + ... + \beta_p x_{np} + e_n\nonumber
 \end{align}
 
 Und dann in Matrixform ausdrücken:
@@ -1026,10 +1026,10 @@ Und dann in Matrixform ausdrücken:
 \begin{align}
 \left( 
 \begin{array}{c}                                
-y_1 \\                                               
-y_2  \\
+Y_1 \\                                               
+Y_2  \\
 \vdots\\
-y_n\\
+Y_n\\
 \end{array}
 \right) =
 \left( 
@@ -1062,7 +1062,7 @@ y_n\\
 
 Und letzteres wie folgt schreiben:
 
-$$\boldsymbol{y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}$$
+$$\boldsymbol{Y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}$$
 
 Dementsprechend können wir auch den OLS-Schätzer in Matrixform darstellen.
 Das erlaubt einfachere und allgemeinere Beweise, und ist vor allem für die 
@@ -1487,44 +1487,87 @@ Aus der Einleitung wissen wir, dass wir das lineare Regressionsmodell mit $n$
 Beobachtungen von $p$ Variablen
 
 \begin{align}
-y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + ... + \beta_p x_{1p} + \epsilon_1\nonumber\\
-y_2 = \beta_0 + \beta_1 x_{21} + \beta_2 x_{22} + ... + \beta_p x_{2p} + \epsilon_2\nonumber\\
+Y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + ... + \beta_p x_{1p} + \epsilon_1\nonumber\\
+Y_2 = \beta_0 + \beta_1 x_{21} + \beta_2 x_{22} + ... + \beta_p x_{2p} + \epsilon_2\nonumber\\
 \vdots \nonumber\\
-y_n = \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + ... + \beta_p x_{np} + \epsilon_n\nonumber
+Y_n = \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + ... + \beta_p x_{np} + \epsilon_n\nonumber
 \end{align}
 
 auch folgendermaßen schreiben können:
 
-$$\boldsymbol{y} = \boldsymbol{X\hat{\beta}} + \boldsymbol{\hat{\epsilon}}$$
-Wobei $\boldsymbol{y}$ eine $n\times 1$-Matrix mit den Beobachtungen für die
+$$\boldsymbol{Y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}$$
+Wobei $\boldsymbol{Y}$ eine $n\times 1$-Matrix mit den Beobachtungen für die
 abhängige Variable, $\boldsymbol{X}$ eine $n\times p$-Matrix in der jede Spalte
 zu einem Vektor mit allen $n$ Beobachtungen einer der $p$ erklärenden Variablen 
-korrespondiert. $\boldsymbol{\hat{\epsilon}}$ schließlich ist die $n\times 1$-Matrix
-der Residuen.
+korrespondiert. $\boldsymbol{\epsilon}$ schließlich ist die $n\times 1$-Matrix
+der Fehlerterme.
 
-Nehmen wir einmal folgende (absurd kleine) Stichprobe an:
+Nehmen wir folgenden Datensatz an:
 
-```{r}
-daten <- data.frame(
-  y = c(1, 2),
-  x_1 = c(5, 6),
-  x_2 = c(2, 7)
-)
+```{r, echo=FALSE}
+ols_beispiel <- fread(here("data/tidy/AutoDaten.csv"), 
+                      select = c("Auto"="character", 
+                                 "Verbrauch"="double", 
+                                 "PS"="double", "Zylinder"="double")) 
+ols_beispiel
 ```
 
-In diesem Fall wäre 
-$\boldsymbol{y}=\left(\begin{array}{c} 1 \\ 2 \end{array}\right)$
-$\boldsymbol{X}=\left(\begin{array}{cc} 5 & 2 \\ 6 & 7 \end{array}\right)$
-Dann lässt sich das Schätzproblem in Matrizenform folgendermaßen schreiben:
+Dies können wir schreiben als:
 
-$$
-\left(\begin{array}{c} 1 \\ 2 \end{array}\right) = \left(\begin{array}{cc} 5 & 2 \\ 6 & 7 \end{array}\right) \left(\begin{array}{c} \hat{\beta}_1 \\ \hat{\beta}_2 \end{array}\right) + \left(\begin{array}{c} \hat{\epsilon}_1 \\ \hat{\epsilon}_2 \end{array}\right)
-$$
+\begin{align}
+y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{12} + \epsilon_{1} \nonumber\\
+y_1 = \beta_0 + \beta_1 x_{21} + \beta_2 x_{32} + \epsilon_{2} \nonumber\\
+y_1 = \beta_0 + \beta_1 x_{31} + \beta_2 x_{32} + \epsilon_{3} \nonumber\\
+y_1 = \beta_0 + \beta_1 x_{41} + \beta_2 x_{42} + \epsilon_{4} \nonumber\\
+\end{align}
 
-Es lässt sich allgemein zeigen, dass der gesuchte Vektor $\boldsymbol{\beta}$ die Lösung 
-des folgenden Gleichungssystems darstellt:^[Die genaue Herleitung finden Sie hier.]
+und mit Zahlen:
 
-$$\boldsymbol{\hat{\beta}}=\left(\boldsymbol{X}'\boldsymbol{X} \right)^{-1}\boldsymbol{X}'\boldsymbol{y}$$
+\begin{align}
+15.8 = \beta_0 + \beta_1 264 + \beta_2 8 + \epsilon_{1} \nonumber\\
+19.7 = \beta_0 + \beta_1 175 + \beta_2 6 + \epsilon_{2} \nonumber\\
+15.0 = \beta_0 + \beta_1 335 + \beta_2 8 + \epsilon_{3} \nonumber\\
+21.4 = \beta_0 + \beta_1 109 + \beta_2 4 + \epsilon_{4} \nonumber\\
+\end{align}
+
+Und als Matrix:
+
+\begin{align}
+\left(\begin{array}{ccc} 1 & 264 & 8 \\ 1 & 175 & 6 \\ 1 & 335 & 8 \\ 1 & 109 & 4 \end{array}\right) \times 
+\left(\begin{array}{cc} \beta_0 \\ \beta_1 \\ \beta_2 \end{array}\right) + 
+\left(\begin{array}{c}\epsilon_{1} \\ \epsilon_{2} \\ \epsilon_{3} \\ \epsilon_{4} \end{array}\right) &= 
+\left(\begin{array}{c} 15.8  \\ 19.7 \\ 15.0 \\ 21.4 \end{array}\right)\nonumber
+\end{align}
+
+Es gilt also, dass 
+$\boldsymbol{\hat{\beta}}=\left(\begin{array}{cc} \hat{\beta}_0 \\ \hat{\beta}_1 \\ \hat{\beta}_2 \end{array}\right)$,
+$\boldsymbol{X}=\left(\begin{array}{ccc} 1 & 264 & 8 \\ 1 & 175 & 6 \\ 1 & 335 & 8 \\ 1 & 109 & 4 \end{array}\right)$
+und $\boldsymbol{y}=\left(\begin{array}{c} 15.8  \\ 19.7 \\ 15.0 \\ 21.4 \end{array}\right)$.
+
+Es lässt sich allgemein zeigen, dass der gesuchte Schätzer 
+$\boldsymbol{\hat{\beta}}=\left(\begin{array}{cc} \hat{\beta}_0 \\ \hat{\beta}_1 \\ \hat{\beta}_2 \end{array}\right)$ 
+für das unbekannte $\boldsymbol{\beta}=\left(\begin{array}{cc} \beta_0 \\ \beta_1 \\ \beta_2 \end{array}\right)$ die Lösung 
+des folgenden Gleichungssystems darstellt:^[Die genaue Herleitung finden Sie im 
+[nächsten (optionalen) Abschnitt](#ols-deriv).]
+
+$$\boldsymbol{\hat{\beta}}=\left(\boldsymbol{X}'\boldsymbol{X} \right)^{-1}\boldsymbol{X}'\boldsymbol{Y}$$
+
+Das können wir wiederum in R lösen:
+
+```{r}
+ols_X <- matrix(c(1, 264, 8, 1, 175, 6, 1, 335, 8, 1, 109, 4), 
+                ncol = 3, byrow = T)
+ols_y <- matrix(c(15.8, 19.7, 15.0, 21.4), ncol = 1)
+
+solve(t(ols_X) %*% ols_X) %*% t(ols_X) %*% ols_y
+```
+
+Oder direkt mit `lm()`:
+
+```{r}
+lm(Verbrauch~PS+Zylinder, data = ols_beispiel)
+```
+
 
 Dies ergibt folgende Lösung:
 
@@ -1557,7 +1600,7 @@ $\boldsymbol{X}$ eine lineare Kombination einer anderen Zeile und $\boldsymbol{X
 wäre damit nicht mehr invertiertbar, also $\boldsymbol{X}^{-1}$ würde nicht 
 existieren und $\boldsymbol{\hat{\beta}}$ wäre nicht mehr definiert.
 
-### Optional: Herleitung des OLS-Schätzers
+### Optional: Herleitung des OLS-Schätzers {#ols-deriv}
 
 Mit dem bislang gewonnenen Verständnis vonn Matrizenalgebra ist es bereits
 möglich die Herleitung des OLS-Schätzers nachzuvollziehen. 
@@ -1565,7 +1608,7 @@ Diese Herleitung wird im Folgenden beschrieben.
 
 Wir wissen bereits, dass die Residuen einer Schätzung gegeben sind durch:
 
-$$\boldsymbol{e}=\boldsymbol{y}-\boldsymbol{X\hat{\beta}}$$
+$$\boldsymbol{e}=\boldsymbol{Y}-\boldsymbol{X\hat{\beta}}$$
 
 Wir können die Summe der quadrierten Residuen (RSS) in Matrixschreibweise 
 schreiben als:
@@ -1577,11 +1620,11 @@ $$\boldsymbol{e'e}=
 e_n \times e_n \end{array}\right)$$
 
 Wir können dann schreiben:^[Beachte dabei, dass 
-$\boldsymbol{y'X\hat{\beta}}=(\boldsymbol{y'X\hat{\beta}})'=\boldsymbol{\hat{\beta}'X'y}$.]
+$\boldsymbol{Y'X\hat{\beta}}=(\boldsymbol{Y'X\hat{\beta}})'=\boldsymbol{\hat{\beta}'X'Y}$.]
 
 \begin{align}
-\boldsymbol{e'e} &= \left(\boldsymbol{y}-\boldsymbol{X\hat{\beta}}\right)'
-\left(\boldsymbol{y}-\boldsymbol{X\hat{\beta}}\right)\nonumber\\
+\boldsymbol{e'e} &= \left(\boldsymbol{Y}-\boldsymbol{X\hat{\beta}}\right)'
+\left(\boldsymbol{Y}-\boldsymbol{X\hat{\beta}}\right)\nonumber\\
 &=\boldsymbol{y'y}-\boldsymbol{\hat{\beta}'X'y}-\boldsymbol{y'X\hat{\beta}} + 
 \boldsymbol{\hat{\beta}'X'X\hat{\beta}}\nonumber\\
 &=\boldsymbol{y'y}-2\boldsymbol{\hat{\beta}X'y}+
@@ -1598,8 +1641,8 @@ $$\frac{\partial \boldsymbol{e'e}}{\partial\boldsymbol{\hat{\beta}}}=
 Diese Gleichung können wir nun umformen zu:
 
 \begin{align}
-2\boldsymbol{X'X\hat{\beta}} &= 2\boldsymbol{X'y}\nonumber\\
-\boldsymbol{X'X\hat{\beta}}&=\boldsymbol{X'y}\nonumber
+2\boldsymbol{X'X\hat{\beta}} &= 2\boldsymbol{X'Y}\nonumber\\
+\boldsymbol{X'X\hat{\beta}}&=\boldsymbol{X'Y}\nonumber
 \end{align}
 
 Da gilt, dass $\left(\boldsymbol{X'X}\right)^{-1}\left(\boldsymbol{X'X}\right)=I$ 
@@ -1607,9 +1650,9 @@ multiplizieren wir beide Seiten mit $\left(\boldsymbol{X'X}\right)^{-1}$:
 
 \begin{align}
 \left(\boldsymbol{X'X}\right)^{-1}\boldsymbol{X'X\hat{\beta}} &= 
-\left(\boldsymbol{X'X}\right)^{-1}\boldsymbol{X'y}\nonumber\\
+\left(\boldsymbol{X'X}\right)^{-1}\boldsymbol{X'Y}\nonumber\\
 \boldsymbol{\hat{\beta}} &= 
-\left(\boldsymbol{X'X}\right)^{-1}\left(\boldsymbol{X'y}\right)
+\left(\boldsymbol{X'X}\right)^{-1}\left(\boldsymbol{X'Y}\right)
 \end{align}
 
 Damit haben wir den Schätzer für $\boldsymbol{\hat{\beta}}$ hergeleitet.
