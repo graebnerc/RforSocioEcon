@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Lineare statistische Modelle in R | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="R Skript in der Version 0.6.0" />
+  <meta name="description" content="R Skript in der Version 0.6.1" />
   <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Lineare statistische Modelle in R | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="R Skript in der Version 0.6.0" />
+  <meta property="og:description" content="R Skript in der Version 0.6.1" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 4 Lineare statistische Modelle in R | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="R Skript in der Version 0.6.0" />
+  <meta name="twitter:description" content="R Skript in der Version 0.6.1" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2019-12-04" />
+<meta name="date" content="2019-12-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -166,7 +166,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="linmodel.html"><a href="linmodel.html#stat-ablauf"><i class="fa fa-check"></i><b>4.4</b> Zum Ablauf einer Regression</a></li>
 <li class="chapter" data-level="4.5" data-path="linmodel.html"><a href="linmodel.html#lin-multi"><i class="fa fa-check"></i><b>4.5</b> Multiple lineare Regression</a></li>
-<li class="chapter" data-level="4.6" data-path="linmodel.html"><a href="linmodel.html#anwendungsbeispiel"><i class="fa fa-check"></i><b>4.6</b> Anwendungsbeispiel</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>5</b> Datenkunde und Datenaufbereitung</a><ul>
 <li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
@@ -233,14 +232,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.3.3" data-path="formalia.html"><a href="formalia.html#ableitungen-in-r"><i class="fa fa-check"></i><b>7.3.3</b> Ableitungen in R</a></li>
 <li class="chapter" data-level="7.3.4" data-path="formalia.html"><a href="formalia.html#maximierung-die-analytische-perspektive"><i class="fa fa-check"></i><b>7.3.4</b> Maximierung: die analytische Perspektive</a></li>
 <li class="chapter" data-level="7.3.5" data-path="formalia.html"><a href="formalia.html#maximierung-die-algorithmische-perspektive"><i class="fa fa-check"></i><b>7.3.5</b> Maximierung: die algorithmische Perspektive</a></li>
-<li class="chapter" data-level="7.3.6" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-1"><i class="fa fa-check"></i><b>7.3.6</b> Anwendungsbeispiel</a></li>
+<li class="chapter" data-level="7.3.6" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel"><i class="fa fa-check"></i><b>7.3.6</b> Anwendungsbeispiel</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="formalia.html"><a href="formalia.html#formalia-linalg"><i class="fa fa-check"></i><b>7.4</b> Lineare Algebra</a><ul>
 <li class="chapter" data-level="7.4.1" data-path="formalia.html"><a href="formalia.html#einführung-von-matrizen"><i class="fa fa-check"></i><b>7.4.1</b> Einführung von Matrizen</a></li>
 <li class="chapter" data-level="7.4.2" data-path="formalia.html"><a href="formalia.html#grundregeln-der-matrizenalgebra"><i class="fa fa-check"></i><b>7.4.2</b> Grundregeln der Matrizenalgebra</a></li>
 <li class="chapter" data-level="7.4.3" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-1-das-einfache-keynesianische-modell"><i class="fa fa-check"></i><b>7.4.3</b> Anwendungsbeispiel 1: Das einfache Keynesianische Modell</a></li>
 <li class="chapter" data-level="7.4.4" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-2-ols-regression"><i class="fa fa-check"></i><b>7.4.4</b> Anwendungsbeispiel 2: OLS-Regression</a></li>
-<li class="chapter" data-level="7.4.5" data-path="formalia.html"><a href="formalia.html#weiterführende-literatur"><i class="fa fa-check"></i><b>7.4.5</b> Weiterführende Literatur</a></li>
+<li class="chapter" data-level="7.4.5" data-path="formalia.html"><a href="formalia.html#ols-deriv"><i class="fa fa-check"></i><b>7.4.5</b> Optional: Herleitung des OLS-Schätzers</a></li>
+<li class="chapter" data-level="7.4.6" data-path="formalia.html"><a href="formalia.html#weiterführende-literatur"><i class="fa fa-check"></i><b>7.4.6</b> Weiterführende Literatur</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="formalia.html"><a href="formalia.html#formalia-dist"><i class="fa fa-check"></i><b>7.5</b> Analyse von Verteilungen</a><ul>
 <li class="chapter" data-level="7.5.1" data-path="formalia.html"><a href="formalia.html#vert-begriff"><i class="fa fa-check"></i><b>7.5.1</b> Theoretische und empirische Verteilungen</a></li>
@@ -329,7 +329,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="kw">library</span>(icaeDesign)
 <span class="kw">library</span>(ggpubr)</code></pre></div>
 <p>Ziel solcher Modelle ist es, ausgehend von einem Datensatz ein lineares Modell zu schätzen. Ein solches lineares Modell hat in der Regel die Form</p>
-<p><span class="math display">\[Y_i = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_n x_n + u_i\]</span> und soll uns helfen den linearen Zusammenhang zwischen den Variablen in <span class="math inline">\(x_i\)</span> und <span class="math inline">\(Y_i\)</span> zu verstehen. Dazu müssen wir die Parameter <span class="math inline">\(\beta_i\)</span> <em>schätzen</em>, denn <span class="math inline">\(\beta_i\)</span> gibt uns Informationen über den Zusammenhang zwischen <span class="math inline">\(x_i\)</span> und <span class="math inline">\(Y_i\)</span>.</p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_n x_n + \epsilon_i\]</span> und soll uns helfen den linearen Zusammenhang zwischen den Variablen in <span class="math inline">\(x_i\)</span> und <span class="math inline">\(Y_i\)</span> zu verstehen. Dazu müssen wir die Parameter <span class="math inline">\(\beta_i\)</span> <em>schätzen</em>, denn <span class="math inline">\(\beta_i\)</span> gibt uns Informationen über den Zusammenhang zwischen <span class="math inline">\(x_i\)</span> und <span class="math inline">\(Y_i\)</span>.</p>
 <p>Sobald wir konkrete Werte für <span class="math inline">\(\beta_i\)</span> geschätzt haben, können wir im Optimalfall von unseren Daten auf eine größere Population schließen und Vorhersagen für zukünftiges Verhalten des untersuchten Systems treffen. Damit das funktioniert, müssen jedoch einige Annahmen erfüllt sein, und in diesem Kapitel geht es nicht nur darum, die geschätzten Werte <span class="math inline">\(\hat{\beta}_i\)</span> zu identifizieren, sondern auch die der Regression zugrundeliegenden Annahmen zu überprüfen.</p>
 <p>Bevor wir uns Schritt für Schritt mit der Regression auseinandersetzen wollen wir uns noch ein konkretes Beispiel anschauen.</p>
 </div>
@@ -391,10 +391,10 @@ beta_<span class="dv">1</span> &lt;-<span class="st"> </span>schaetzung_bip[[<sp
 </div>
 <div id="schätzung-mit-der-kleinste-quadrate-methode" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Schätzung mit der Kleinste-Quadrate-Methode</h3>
-<p>Nachdem wir unser Modell aufgestellt haben, möchten wir nun die Parameter <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> <em>schätzen</em>. Dazu brauchen wir einen <em>Schätzer</em>, also eine Funktion, die uns für die Daten, die wir haben, den optimalen Wert für den gesuchten Parameter gibt.<a href="#fn16" class="footnoteRef" id="fnref16"><sup>16</sup></a> Wir suchen also nach den Werten für <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> sodass die resultierende Gerade möglichst nahe an allen <span class="math inline">\(Y_i\)</span> Werten in folgendem Graph ist:</p>
+<p>Nachdem wir unser Modell aufgestellt haben, möchten wir nun die Parameter <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> <em>schätzen</em>. Denn diese Werte sind für uns nicht unmittelbar beobachtbar. Wir brauchen also einen <em>Schätzer</em>. Ein Schätzer ist eine Funktion, die uns für die Daten, die wir haben, den optimalen Wert für den gesuchten Parameter gibt.<a href="#fn16" class="footnoteRef" id="fnref16"><sup>16</sup></a> Wir suchen also nach den Werten für <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> sodass die resultierende Gerade möglichst nahe an allen <span class="math inline">\(Y_i\)</span> Werten in folgendem Graph ist:</p>
 <p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Wenn wir das händisch machen würden, könnten wir versuchen die Abstände zwischen den einzelnen <span class="math inline">\(Y_i\)</span> und der Regressionsgerade messen und letztere so lange herumschieben, bis die Summe der Abstände möglichst klein ist. In gewisser Weise ist das genau das, was wir in der Praxis auch machen. Nur arbeiten wir nicht mit den Abständen als solchen, denn dann würden sich positive und negative Abstände ja ausgleichen. Daher quadrieren wir die Abstände, bevor wir sie summieren. Daher ist die gängigste Methode, Werte für <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> zu finden auch als <strong>Kleinste-Quadrate Methode</strong> (engl. <em>ordinary least squares</em> - OLS) bekannt.<a href="#fn17" class="footnoteRef" id="fnref17"><sup>17</sup></a> Die dadurch definierten Schätzer <span class="math inline">\(\hat{\beta}_0\)</span> und <span class="math inline">\(\hat{\beta}_1\)</span> sind entsprechend als <em>OLS-Schätzer</em> bekannt.</p>
-<p>Wir bezeichnen die Abweichung von <span class="math inline">\(Y_i\)</span> zu Regressionsgeraden als <em>Residuum</em> <span class="math inline">\(r_i\)</span>. Wie in der Abbildung zu sehen ist, gilt für die Abweichung von der Regressionsgeraden für die einzelnen <span class="math inline">\(Y_i\)</span>: <span class="math inline">\(r_i=(Y_i-\hat{\beta}_0-\hat{\beta}_1x_i)\)</span>. Wir suchen also nach den Werten für <span class="math inline">\(\hat{\beta}_0\)</span> und <span class="math inline">\(\hat{\beta}_1\)</span> für die die Summe aller Residuen minimal ist:</p>
+<p>Wir bezeichnen die Abweichung von <span class="math inline">\(Y_i\)</span> zu Regressionsgeraden als <em>Residuum</em> <span class="math inline">\(e_i\)</span>. Wie in der Abbildung zu sehen ist, gilt für die Abweichung von der Regressionsgeraden für die einzelnen <span class="math inline">\(Y_i\)</span>: <span class="math inline">\(e_i=(Y_i-\hat{\beta}_0-\hat{\beta}_1x_i)\)</span>. Wir suchen also nach den Werten für <span class="math inline">\(\hat{\beta}_0\)</span> und <span class="math inline">\(\hat{\beta}_1\)</span> für die die Summe aller Residuen minimal ist:</p>
 <p><span class="math display">\[\hat{\beta}_0, \hat{\beta}_1 =\text{argmin}_{\beta_0, \beta_1} \sum_{i=1}^n(Y_i-\beta_0-\beta_1x_i)^2\]</span></p>
 <p>Dabei bedeutet <span class="math inline">\(\text{argmin}_{\beta_0, \beta_1}\)</span>: wähle die Werte für <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span>, welche den nachfolgenden Ausdruck minimieren.</p>
 <p>Diesen Ausdruck kann man analytisch so lange umformen bis gilt:<a href="#fn18" class="footnoteRef" id="fnref18"><sup>18</sup></a></p>
@@ -452,7 +452,7 @@ reg_formel &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<spa
 <p>Das lineare Regressionsmodell wird sehr häufig in der sozioökonomischen Forschung verwendet. Wie jedes statistisches Modell basiert es jedoch auf bestimmten Annahmen, aus denen sich der sinnvolle Anwendungsbereich des Modells ergibt. Wann immer wir die lineare Regression verwenden sollten wir daher kritisch prüfen ob die entsprechenden Annahmen für den Anwendungsfall plausibel sind. Daher wollen wir uns im Folgenden etwas genauer mit diesen Annahmen vertraut machen.</p>
 <p>Zwar schwankt die genaue Anzahl der Annahmen je nach Formulierung, in der Essenz handelt es sich aber um folgende:</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>A1: Erwartungswert der Fehler gleich Null</strong>: <span class="math inline">\(\mathbb{E}(\epsilon=0)\)</span> Diese Annahmen setzt voraus, dass <span class="math inline">\(\epsilon\)</span> keine Struktur hat und im Mittel gleich Null ist. Das ist plausibel, denn würden wir Informationen über eine Struktur in <span class="math inline">\(\epsilon\)</span> haben, bedeutet das, dass wir eine weitere erklärende Variable in das Modell aufnehmen könnten, welche diese Struktur explizit macht, oder die lineare Strukur des Modells ändern könnten. Die Annahme impliziert auch, dass der Zusammenhang zwischen der erklärten und erklärenden Variablen auch tatsächlich linear ist. Grob ausgedrückt: wir nehmen hier an, dass wir unser Modell clever spezifiziert haben.</p></li>
+<li><p><strong>A1: Erwartungswert der Fehler gleich Null</strong>: <span class="math inline">\(\mathbb{E}(\epsilon=0)\)</span> Diese Annahmen setzt voraus, dass <span class="math inline">\(\epsilon\)</span> keine Struktur hat und im Mittel gleich Null ist. Das ist plausibel, denn würden wir Informationen über eine Struktur in <span class="math inline">\(\epsilon\)</span> haben, bedeutet das, dass wir eine weitere erklärende Variable in das Modell aufnehmen könnten, welche diese Struktur explizit macht, oder die lineare Strukur des Modells ändern könnten. Die Annahme impliziert auch, dass der Zusammenhang zwischen der erklärten und erklärenden Variablen auch tatsächlich linear ist. Grob ausgedrückt: wir nehmen hier an, dass wir unser Modell clever spezifiziert haben.<a href="#fn19" class="footnoteRef" id="fnref19"><sup>19</sup></a></p></li>
 <li><p><strong>A2: Unabhängigkeit der Fehler mit den erklärenden Variablen</strong>: Das bedeutet, dass es keinen systematischen Zusammenhang zwischen den Fehlern und den erklärenden Variablen gibt. Die Annahme wäre verletzt, wenn für größere Werte von <span class="math inline">\(x\)</span> die Messgenauigkeit drastisch in eine Richtung hin abnehmen würde.</p></li>
 <li><p><strong>A3: Konstante Varianz der Fehlerterme</strong> Diese Annahme wird auch <strong>Homoskedastizität</strong> genannt und sagt einfach: <span class="math inline">\(Var(\epsilon_i)=\sigma^2\forall i\)</span></p></li>
 <li><p><strong>A4: Keine Autokorrelation der Fehlerterme</strong> Die Annahme verlangt, dass die Fehler nicht untereinander korreliert sind: <span class="math inline">\(Cov(\epsilon_i, \epsilon_j)=0 \forall i,j\)</span>. Das kann vor allem ein Problem sein, wenn die gleichen erklärenden Variablen zu unterschiedlichen Zeitpunkten gemessen werden.</p></li>
@@ -462,7 +462,7 @@ reg_formel &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<spa
 <p>Diese Annahmen bilden die Grundlage für das so genannte <strong>Gauss-Markov-Theorem</strong>, gemäß dem der OLS-Schätzer für lineare der beste konsistente Schätzer ist, den wir finden können. In anderen Worten: OLS ist der BLUE - <em>Best Linear Unbiased Estimator</em>. Mit konsistent ist gemeint, dass die Schätzer im Mittel den wahren Wert <span class="math inline">\(\beta_i\)</span> treffen, also der Erwartungswert jedes Schätzers <span class="math inline">\(\hat{\beta}_i\)</span> der wahre Werte <span class="math inline">\(\beta\)</span> ist. Mit “der beste” meinen wir “den effizientesten” im Sinne einer minimalen Varianz. Was mit der Varianz eines Schätzers gemeint wird, wird weiter unten erklärt.</p>
 <p>Dabei gilt, dass der OLS-Schätzer bereits unter den Annahmen <strong>A1</strong> und <strong>A2</strong> erwartungstreu ist. Die weiteren Annahmen sind notwendig um die Effizienz sicherzustellen, und die Standardfehler für die Schätzer berechnen zu können. Es gibt Varianten von OLS in der man die Abhängigkeit von diesen Annahmen reduzieren kann. Wir lernen solcherlei Methoden später in der Veranstaltung kennen.</p>
 <p>Das bedeutet aber auch, dass wann immer eine oder mehrere Annahmen verletzt ist, wir unseren Ergebnissen nur bedingt vertrauen können und einige Ergebnisse und Kennzahlen unserer Regression möglicherweise irreführend sind. Daher sollte zu jeder Regressionsanalyse die Überprüfung der Annahmen dazugehören. Die notwendigen Methoden dazu lernen wir weiter unten kennen.</p>
-<p>Es ist wichtig zu beachten, dass wir eine Regression mit OLS schätzen können und keine Fehlermeldungen bekommen, obwohl die Annahmen für OLS nicht erfüllt sind.<a href="#fn19" class="footnoteRef" id="fnref19"><sup>19</sup></a> In diesem Fall sind die Ergebnisse jedoch möglicherweise irreführend. Daher ist es immer wichtig, die Korrektheit der Annahmen zu überprüfen und weitere Kennzahlen der Regression zu betrachten Methoden dafür lernen wir nun genauer kennen.</p>
+<p>Es ist wichtig zu beachten, dass wir eine Regression mit OLS schätzen können und keine Fehlermeldungen bekommen, obwohl die Annahmen für OLS nicht erfüllt sind.<a href="#fn20" class="footnoteRef" id="fnref20"><sup>20</sup></a> In diesem Fall sind die Ergebnisse jedoch möglicherweise irreführend. Daher ist es immer wichtig, die Korrektheit der Annahmen zu überprüfen und weitere Kennzahlen der Regression zu betrachten Methoden dafür lernen wir nun genauer kennen.</p>
 </div>
 </div>
 <div id="lin-kennzahlen" class="section level2">
@@ -476,8 +476,8 @@ tss</code></pre></div>
 <pre><code>#&gt; [1] 3.30012</code></pre>
 <p>Diese Werte sind in folgender Abbildung für unseren Beispieldatensatz von oben grafisch dargestellt:</p>
 <p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<p>Die TSS wollen wir nun aufteilen in eine Komponente, die in unserer Regression erklärt wird, und eine Komponente, die nicht erklärt werden kann. Bei letzterer handelt es sich um die Abweichungen der geschätzten Werte <span class="math inline">\(\hat{Y_i}\)</span> und den tatsächlichen Werten <span class="math inline">\(Y_i\)</span>, den oben definierten Residuen <span class="math inline">\(r_i\)</span>. Entsprechend definieren wir die <em>Residual Sum of Squares (RSS)</em> (dt.: <em>Residuenquadratsumme</em>) als:</p>
-<p><span class="math display">\[RSS=\sum_i^n\epsilon_i^2\]</span> In R:</p>
+<p>Die TSS wollen wir nun aufteilen in eine Komponente, die in unserer Regression erklärt wird, und eine Komponente, die nicht erklärt werden kann. Bei letzterer handelt es sich um die Abweichungen der geschätzten Werte <span class="math inline">\(\hat{Y_i}\)</span> und den tatsächlichen Werten <span class="math inline">\(Y_i\)</span>, den oben definierten Residuen <span class="math inline">\(e_i\)</span>. Entsprechend definieren wir die <em>Residual Sum of Squares (RSS)</em> (dt.: <em>Residuenquadratsumme</em>) als:</p>
+<p><span class="math display">\[RSS=\sum_i^ne_i^2\]</span> In R:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rss &lt;-<span class="st"> </span><span class="kw">sum</span>(schaetzung[[<span class="st">&quot;residuals&quot;</span>]]<span class="op">**</span><span class="dv">2</span>)
 rss</code></pre></div>
 <pre><code>#&gt; [1] 2.35148</code></pre>
@@ -560,7 +560,7 @@ beta_1_estimates &lt;-<span class="st"> </span><span class="kw">rep</span>(<span
 <blockquote>
 <p>Wie wir sehen, treffen die Schätzer im Mittel den richtigen Wert, streuen aber auch. Die Varianz gibt dabei die Breite des jeweiligen Histograms an und je strärker die relativen Häufigkeiten des geschätzten Wertes um den wahren Wert konzentriert sind, also desto geringer die Varianz, desto genauer ist der Schätzer.</p>
 </blockquote>
-<p>Ein Maß für die Genauigkeit eines Schätzers ist sein <strong>Standardfehler</strong>. Für <span class="math inline">\(\hat{\beta}_1\)</span> ist dieser wie oben beschrieben definiert als <span class="math inline">\(\frac{\sigma}{\sqrt{SS_X}}\)</span>. Da <span class="math inline">\(\sigma\)</span> (die Varianz der Fehler) nicht bekannt ist, müssen wir sie aus den Daten schätzen. Das geht mit <span class="math inline">\(\frac{1}{n-2}\sum_{i=1}^n\epsilon_i^2\)</span>, wobei die detaillierte Herleitung hier nicht diskutiert wird. Grundsätzlich handelt es sich hier um die empirische Varianz. Das <span class="math inline">\(n-2\)</span> kommt von den um zwei reduzierten Freiheitsgraden dieser Schätzung.</p>
+<p>Ein Maß für die Genauigkeit eines Schätzers ist sein <strong>Standardfehler</strong>. Für <span class="math inline">\(\hat{\beta}_1\)</span> ist dieser wie oben beschrieben definiert als <span class="math inline">\(\frac{\sigma}{\sqrt{SS_X}}\)</span>. Da <span class="math inline">\(\sigma\)</span> (die Varianz der Fehler) nicht bekannt ist, müssen wir sie aus den Daten schätzen. Das geht mit <span class="math inline">\(\frac{1}{n-2}\sum_{i=1}^ne_i^2\)</span>, wobei die detaillierte Herleitung hier nicht diskutiert wird. Grundsätzlich handelt es sich hier um die empirische Varianz. Das <span class="math inline">\(n-2\)</span> kommt von den um zwei reduzierten Freiheitsgraden dieser Schätzung.</p>
 <p>Dieser Standardfehler ist ein erstes Maß für die Genauigkeit des Schätzers. Er wird aufgrund seiner Wichtigkeit auch in der Summary jeder Schätzung angegeben. Hier betrachten wir die Schätzung aus dem einführenden Beispiel:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(schaetzung_bip)</code></pre></div>
 <pre><code>#&gt; 
@@ -582,8 +582,8 @@ beta_1_estimates &lt;-<span class="st"> </span><span class="kw">rep</span>(<span
 #&gt; Multiple R-squared:  0.9984, Adjusted R-squared:  0.9983 
 #&gt; F-statistic:  8145 on 1 and 13 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Sie sind hier unter <code>Std. Error</code> zu finden. Wir können diese Information jedoch noch weiter verwenden und Hypothesen im Zusammenhang mit den Schätzern testen. Eine besonders relevante Frage ist immer ob ein bestimmter <em>Schätzer</em> signifikant von 0 verschieden ist. Dazu können wir fragen: “Wie wahrscheinlich ist es, gegeben der Daten, dass <span class="math inline">\(\beta_i\)</span> gleich Null ist?”.</p>
-<p>Das ist die klassische Frage für einen Hypothesentest<a href="#fn20" class="footnoteRef" id="fnref20"><sup>20</sup></a> mit <span class="math inline">\(H_0: \beta_0=0\)</span> und <span class="math inline">\(H_1: \beta_0 \neq 0\)</span>.</p>
-<p>Für einen Hypothesentest brauchen wir zunächst eine Teststatistik, also die Verteilung für den Schätzer wenn <span class="math inline">\(H_0\)</span> wahr wäre. Da wir annehmen, dass die Fehlerterme in unserem Fall normalverteilt sind, ist das in unserem Falle eine <span class="math inline">\(t\)</span>-Verteilung mit <span class="math inline">\(n-2\)</span> Freiheitsgraden.<a href="#fn21" class="footnoteRef" id="fnref21"><sup>21</sup></a> Damit können wir überprüfen wie wahrscheinlich unser Schätzwert unter der <span class="math inline">\(H_0\)</span> wäre. Wenn er sehr unwahrscheinlich wäre, würden wir <span class="math inline">\(H_0\)</span> verwerfen.</p>
+<p>Das ist die klassische Frage für einen Hypothesentest<a href="#fn21" class="footnoteRef" id="fnref21"><sup>21</sup></a> mit <span class="math inline">\(H_0: \beta_0=0\)</span> und <span class="math inline">\(H_1: \beta_0 \neq 0\)</span>.</p>
+<p>Für einen Hypothesentest brauchen wir zunächst eine Teststatistik, also die Verteilung für den Schätzer wenn <span class="math inline">\(H_0\)</span> wahr wäre. Da wir annehmen, dass die Fehlerterme in unserem Fall normalverteilt sind, ist das in unserem Falle eine <span class="math inline">\(t\)</span>-Verteilung mit <span class="math inline">\(n-2\)</span> Freiheitsgraden.<a href="#fn22" class="footnoteRef" id="fnref22"><sup>22</sup></a> Damit können wir überprüfen wie wahrscheinlich unser Schätzwert unter der <span class="math inline">\(H_0\)</span> wäre. Wenn er sehr unwahrscheinlich wäre, würden wir <span class="math inline">\(H_0\)</span> verwerfen.</p>
 <p>Die Wahrscheinlichkeit, dass wir unseren Schätzer unseren Schätzer gefunden hätten, wenn <span class="math inline">\(H_0\)</span> wahr wäre wird durch den <span class="math inline">\(p\)</span>-Wert des Schätzers angegeben. Dieser findet sich in der Spalte <code>Pr(&gt;|t|)</code>. In unserem Fall mit <span class="math inline">\(\hat{\beta}_1\)</span> ist dieser Wert mit <span class="math inline">\(2\cdot 10^{-16}\)</span> extrem klein. Das bedeutet, wenn <span class="math inline">\(H_0: \beta_1=0\)</span> wahr wäre, würden wir unseren Wert für <span class="math inline">\(\hat{\beta}_1\)</span> mit einer Wahrscheinlichkeit nahe Null beobachten. Es erscheint daher sehr unplausibel, dass <span class="math inline">\(\beta_1=0\)</span>. Tatsächlich würden wir diese Hypothese auf quasi jedem beliebigen Signifikanzniveau verwerfen. Daher ist der Schätzer in der Zusammenfassung mit drei Sternen gekennzeichnet:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(schaetzung_bip)</code></pre></div>
 <pre><code>#&gt; 
@@ -619,7 +619,7 @@ beta_1_estimates &lt;-<span class="st"> </span><span class="kw">rep</span>(<span
 </div>
 <div id="zur-rolle-der-stichprobengröße" class="section level3">
 <h3><span class="header-section-number">4.3.4</span> Zur Rolle der Stichprobengröße</h3>
-<p>Um die Rolle der Stichprobengröße besser beurteilen zu können, verwenden wir hier einen künstlich hergestellten Datensatz für den wir die ‘wahren’ Werte <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> kennen:<a href="#fn22" class="footnoteRef" id="fnref22"><sup>22</sup></a></p>
+<p>Um die Rolle der Stichprobengröße besser beurteilen zu können, verwenden wir hier einen künstlich hergestellten Datensatz für den wir die ‘wahren’ Werte <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> kennen:<a href="#fn23" class="footnoteRef" id="fnref23"><sup>23</sup></a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
 wahres_b0 &lt;-<span class="st"> </span><span class="dv">3</span>
 wahres_b1 &lt;-<span class="st"> </span><span class="fl">1.4</span>
@@ -651,7 +651,7 @@ datensatz &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
 <li><p><strong>A4: </strong> <span class="math inline">\(Cov(\epsilon_i, \epsilon_j)=0 \forall i,j\)</span></p></li>
 <li><p><strong>A6:</strong> <span class="math inline">\(\epsilon \propto \mathcal{N}(0, \sigma^2)\)</span></p></li>
 </ol>
-<p>Um die ersten beiden Annahmen zu überpüfen bilden wir die <span class="math inline">\(\epsilon_i\)</span> gegen <span class="math inline">\(\hat{Y}\)</span> ab und erhalten so den so genannten <strong>Tukey-Anscombe-Plot</strong>:</p>
+<p>Um die ersten beiden Annahmen zu überpüfen bilden wir die <span class="math inline">\(e_i\)</span> gegen <span class="math inline">\(\hat{Y}\)</span> ab und erhalten so den so genannten <strong>Tukey-Anscombe-Plot</strong>:</p>
 <p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 <p>Hier geht es nun darum eine Struktur zu erkennen. Wenn alle Annahmen korrekt sind, sehen wir nur eine unstrukturierte Punktewolke. In dem vorliegenden Fall können wir aufgrund der wenigen Datenpunkte den Plot aber nur mit großer Schwerierigkeit interpretieren - auch deswegen sind große Stichproben immer Besser. Es scheint aber so zu sein, dass die Varianz der Fehler mit <span class="math inline">\(x_i\)</span> steigt, also A3 möglicherweise verletzt ist - zum Glück kann man den OLS-Schätzer leicht modifizieren um damit umzugehen. Ansonsten ist keine Struktur zumindest unmittelbar ersichtlich.</p>
 <p>Als nächstes wollen die Annahme normalverteilter Residuen überprüfen. Das geht mit dem so genannten <strong>Q-Q-Plot</strong>:</p>
@@ -659,6 +659,7 @@ datensatz &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
 <p>Bei normalverteilten Residuen würden die Punkte möglichst exakt auf der Linie liegen. Das ist hier nur bedingt der Fall, deswegen sollten wir skeptisch bezüglich aller Ergebnisse sein, die auf der Normalverteilungsannahme aufbauen, also auf den Standardfehlern, <span class="math inline">\(p\)</span>-Werten und den Konfidenzintervallen.</p>
 <p>Natürlich gibt es auch noch weitere Probleme, die bei einer linearen Regression auftreten können. So ist es immer ein Problem, wenn wir eine wichtige erklärende Variable in unserem Modell vergessen haben (<strong>omitted variable bias</strong>), da deren Effekt dann durch die Fehlerterme abgefangen wird und zu einer Verletzung von <strong>A1</strong> und <strong>A2</strong> führt.</p>
 <p>Ein großes Problem stellt auch die so genannte <strong>Simultanität</strong> dar: diese tritt auf, wenn zwischen erklärter und erklärender Variable ein wechelseitiges kausales Verhältnis besteht. Wir sprechen dann auch von einem <strong>Endogenitätsproblem</strong>, welches leider sehr häufig auftritt und letztendlich vor allem theoretisch identifiziert werden muss.</p>
+<p>Ausführlichere Tests und Möglichkeiten mit verletzten Annahmen umzugehen werden in einem späteren Kapitel genauer diskutiert.</p>
 </div>
 </div>
 <div id="stat-ablauf" class="section level2">
@@ -746,10 +747,6 @@ datensatz &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
 <p>Zwei Punkte sind bei der multiplen Regression zu beachten: Erstens sind die geschätzten Effekte als <strong>isolierte Effekte</strong> zu interpretieren, also in einer Situation in der alle anderen erklärenden Variablen fix gehalten werden. Das ist die berühmte <em>ceteris paribus</em> Formen.</p>
 <p>Der geschätzte Wert für <code>Seitenanzahl</code> sagt uns dementsprechend: “<em>Ceteris paribus</em>, also alle anderen Einflussfaktoren fix gehalten, geht ein um eine Seite dickeres Journal mit einem um <span class="math inline">\(0.6\)</span> Dollar höherem Abo-Preis einher.” Beachten Sie den relevanten Unterschied zur einfachen Regression, die sehr wahrscheinlich unter dem oben angesprochenen <em>omitted variable bias</em> gelitten hat.</p>
 <p>Der zweite zu beachtende Aspekt bezieht sich auf die Korrelation der verschiedenen erklärenden Variablen. Die Annahmen für OLS schließen an sich nur so genannte <em>perfekte Kollinearität</em> (A5) aus, das heißt die Situation in der eine erklärende Variable eine perfekte lineare Transformation einer anderen erklärenden Variable ist. Problematisch sind aber auch schon geringere, aber immer noch hohe Korrelationen: denn je stärker die erklärenden Variablen untereinander korrelieren, desto größer werden die Standardfehler unserer Schätzer. Mit diesem Problem werden wir uns später in der Veranstaltung noch genauer auseinandersetzen.</p>
-</div>
-<div id="anwendungsbeispiel" class="section level2">
-<h2><span class="header-section-number">4.6</span> Anwendungsbeispiel</h2>
-<p>Dieser Abschnitt wir zeitnah ergänzt.</p>
 
 </div>
 </div>
@@ -760,11 +757,12 @@ datensatz &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
 <li id="fn15"><p>Wenn Sie Schwierigkeiten mit dem Konzept einer ZV haben, schauen Sie doch mal in den <a href="stat-stoch.html#stat-stoch">Anhang zur Wahrscheinlichkeitstheorie</a>.<a href="linmodel.html#fnref15">↩</a></p></li>
 <li id="fn16"><p>Wenn Ihnen das Konzept eines Schätzers sehr fremd ist, schauen Sie doch mal in den <a href="stat-rep.html#stat-rep">Anhang zur schließenden Statistik</a>.<a href="linmodel.html#fnref16">↩</a></p></li>
 <li id="fn17"><p>Warum summiert man nicht die Absolutwerte der Abweichungen, sondern ihre quadrierten Werte? Das hat technische Gründe: mit quadrierten Werten lässt sich einfach leichter rechnen als mit Absolutwerten.<a href="linmodel.html#fnref17">↩</a></p></li>
-<li id="fn18"><p>Jede*r Interessierte findet die genaue Herleitung sehr einfach im Internet oder in der Kursliteratur.<a href="linmodel.html#fnref18">↩</a></p></li>
-<li id="fn19"><p>Die einzige Ausnahme ist A5, denn in diesem Fall ist der Schätzer gar nicht definiert.<a href="linmodel.html#fnref19">↩</a></p></li>
-<li id="fn20"><p>Lesen Sie noch einmal im <a href="stat-rep.html#stat-rep">Anhang zur schließenden Statistik</a> nach, wenn Sie nicht mehr wissen was ein Hypothesentest ist.<a href="linmodel.html#fnref20">↩</a></p></li>
-<li id="fn21"><p>Warum jetzt genau eine <span class="math inline">\(t\)</span>-Verteilung und keine Normalverteilung? Das liegt daran, dass wir die Varianz unserer Fehler <span class="math inline">\(\sigma\)</span> nicht beobachten können und durch <span class="math inline">\(\hat{\sigma}\)</span> geschätzt haben. Das führt dazu, dass die resultierende Teststatistik nicht mehr normalverteilt ist. Mir zunehmendem Stichprobenumfang wird die Abweichung immer irrelevanter, jedoch ist die t-Verteilung so einfach zu handhaben, dass man sie eigentlich immer benutzen kann.<a href="linmodel.html#fnref21">↩</a></p></li>
-<li id="fn22"><p>Die Befehle sollten Ihnen weitgehen bekannt sein. Die Funktion <code>set.seed()</code> verwenden wir um den <a href="https://de.wikipedia.org/wiki/Mersenne-Twister">Zufallszahlengenerator von R</a> so zu kalibrieren, dass bei jedem Durchlaufen des Skripts die gleichen Realisierungen der ZV gezogen werden und die Ergebnisse somit reproduzierbar sind.<a href="linmodel.html#fnref22">↩</a></p></li>
+<li id="fn18"><p>Jede*r Interessierte finden die genaue Herleitung im Kapitel zu <a href="formalia.html#ols-deriv">linearen Algebra</a>.<a href="linmodel.html#fnref18">↩</a></p></li>
+<li id="fn19"><p>Es ist wichtig, dass wir hier eine Annahme über eine unbeobachtbare Größe der Population treffen, nicht über die Residuen <span class="math inline">\(e_i\)</span> unserer Regression. Die Residuen <span class="math inline">\(e_i\)</span> können wir beobachten, die echten Fehler <span class="math inline">\(\epsilon_i\)</span> nicht.<a href="linmodel.html#fnref19">↩</a></p></li>
+<li id="fn20"><p>Die einzige Ausnahme ist A5, denn in diesem Fall ist der Schätzer gar nicht definiert.<a href="linmodel.html#fnref20">↩</a></p></li>
+<li id="fn21"><p>Lesen Sie noch einmal im <a href="stat-rep.html#stat-rep">Anhang zur schließenden Statistik</a> nach, wenn Sie nicht mehr wissen was ein Hypothesentest ist.<a href="linmodel.html#fnref21">↩</a></p></li>
+<li id="fn22"><p>Warum jetzt genau eine <span class="math inline">\(t\)</span>-Verteilung und keine Normalverteilung? Das liegt daran, dass wir die Varianz unserer Fehler <span class="math inline">\(\sigma\)</span> nicht beobachten können und durch <span class="math inline">\(\hat{\sigma}\)</span> geschätzt haben. Das führt dazu, dass die resultierende Teststatistik nicht mehr normalverteilt ist. Mir zunehmendem Stichprobenumfang wird die Abweichung immer irrelevanter, jedoch ist die t-Verteilung so einfach zu handhaben, dass man sie eigentlich immer benutzen kann.<a href="linmodel.html#fnref22">↩</a></p></li>
+<li id="fn23"><p>Die Befehle sollten Ihnen weitgehen bekannt sein. Die Funktion <code>set.seed()</code> verwenden wir um den <a href="https://de.wikipedia.org/wiki/Mersenne-Twister">Zufallszahlengenerator von R</a> so zu kalibrieren, dass bei jedem Durchlaufen des Skripts die gleichen Realisierungen der ZV gezogen werden und die Ergebnisse somit reproduzierbar sind.<a href="linmodel.html#fnref23">↩</a></p></li>
 </ol>
 </div>
             </section>

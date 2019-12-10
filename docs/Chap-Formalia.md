@@ -933,17 +933,17 @@ das einfache lineare Regressionsmodell kennen gelernt, das wir allgemein
 für $n$ Beochatungen und $p$ erklärenden Variablen folgendermaßen geschrieben
 haben:
 
-$$y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_p x_{ip} + \epsilon_i, i=1,...,n$$
+$$Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_p x_{ip} + \epsilon, i=1,...,n$$
 
 Da wir in der Praxis regelmäßig mehr als eine erklärende Variable verwenden (also $p>1$)
 werden Schätzgleichungen fast ausschließlich in Matrixform dargestellt, denn
 wir können explizit alle $n$ Gleichungen untereinander schreiben:
 
 \begin{align}
-y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + ... + \beta_p x_{1p} + \epsilon_1\\
-y_2 = \beta_0 + \beta_1 x_{21} + \beta_2 x_{22} + ... + \beta_p x_{2p} + \epsilon_2\nonumber\\
+Y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + ... + \beta_p x_{1p} + e_1\nonumber\\
+Y_2 = \beta_0 + \beta_1 x_{21} + \beta_2 x_{22} + ... + \beta_p x_{2p} + e_2\nonumber\\
 \vdots \nonumber\\
-y_n = \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + ... + \beta_p x_{np} + \epsilon_n\nonumber
+Y_n = \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + ... + \beta_p x_{np} + e_n\nonumber
 \end{align}
 
 Und dann in Matrixform ausdrücken:
@@ -951,10 +951,10 @@ Und dann in Matrixform ausdrücken:
 \begin{align}
 \left( 
 \begin{array}{c}                                
-y_1 \\                                               
-y_2  \\
+Y_1 \\                                               
+Y_2  \\
 \vdots\\
-y_n\\
+Y_n\\
 \end{array}
 \right) =
 \left( 
@@ -987,7 +987,7 @@ y_n\\
 
 Und letzteres wie folgt schreiben:
 
-$$\boldsymbol{y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}$$
+$$\boldsymbol{Y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}$$
 
 Dementsprechend können wir auch den OLS-Schätzer in Matrixform darstellen.
 Das erlaubt einfachere und allgemeinere Beweise, und ist vor allem für die 
@@ -1553,104 +1553,168 @@ Aus der Einleitung wissen wir, dass wir das lineare Regressionsmodell mit $n$
 Beobachtungen von $p$ Variablen
 
 \begin{align}
-y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + ... + \beta_p x_{1p} + \epsilon_1\nonumber\\
-y_2 = \beta_0 + \beta_1 x_{21} + \beta_2 x_{22} + ... + \beta_p x_{2p} + \epsilon_2\nonumber\\
+Y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + ... + \beta_p x_{1p} + \epsilon_1\nonumber\\
+Y_2 = \beta_0 + \beta_1 x_{21} + \beta_2 x_{22} + ... + \beta_p x_{2p} + \epsilon_2\nonumber\\
 \vdots \nonumber\\
-y_n = \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + ... + \beta_p x_{np} + \epsilon_n\nonumber
+Y_n = \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + ... + \beta_p x_{np} + \epsilon_n\nonumber
 \end{align}
 
 auch folgendermaßen schreiben können:
 
-$$\boldsymbol{y} = \boldsymbol{X\hat{\beta}} + \boldsymbol{\hat{\epsilon}}$$
-Wobei $\boldsymbol{y}$ eine $n\times 1$-Matrix mit den Beobachtungen für die
+$$\boldsymbol{Y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}$$
+Wobei $\boldsymbol{Y}$ eine $n\times 1$-Matrix mit den Beobachtungen für die
 abhängige Variable, $\boldsymbol{X}$ eine $n\times p$-Matrix in der jede Spalte
 zu einem Vektor mit allen $n$ Beobachtungen einer der $p$ erklärenden Variablen 
-korrespondiert. $\boldsymbol{\hat{\epsilon}}$ schließlich ist die $n\times 1$-Matrix
-der Residuen.
+korrespondiert. $\boldsymbol{\epsilon}$ schließlich ist die $n\times 1$-Matrix
+der Fehlerterme.
 
-Nehmen wir einmal folgende (absurd kleine) Stichprobe an:
+Nehmen wir folgenden Datensatz an:
+
+
+```
+#>              Auto Verbrauch  PS Zylinder
+#> 1: Ford Pantera L      15.8 264        8
+#> 2:   Ferrari Dino      19.7 175        6
+#> 3:  Maserati Bora      15.0 335        8
+#> 4:     Volvo 142E      21.4 109        4
+```
+
+Dies können wir schreiben als:
+
+\begin{align}
+y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{12} + \epsilon_{1} \nonumber\\
+y_1 = \beta_0 + \beta_1 x_{21} + \beta_2 x_{32} + \epsilon_{2} \nonumber\\
+y_1 = \beta_0 + \beta_1 x_{31} + \beta_2 x_{32} + \epsilon_{3} \nonumber\\
+y_1 = \beta_0 + \beta_1 x_{41} + \beta_2 x_{42} + \epsilon_{4} \nonumber\\
+\end{align}
+
+und mit Zahlen:
+
+\begin{align}
+15.8 = \beta_0 + \beta_1 264 + \beta_2 8 + \epsilon_{1} \nonumber\\
+19.7 = \beta_0 + \beta_1 175 + \beta_2 6 + \epsilon_{2} \nonumber\\
+15.0 = \beta_0 + \beta_1 335 + \beta_2 8 + \epsilon_{3} \nonumber\\
+21.4 = \beta_0 + \beta_1 109 + \beta_2 4 + \epsilon_{4} \nonumber\\
+\end{align}
+
+Und als Matrix:
+
+\begin{align}
+\left(\begin{array}{ccc} 1 & 264 & 8 \\ 1 & 175 & 6 \\ 1 & 335 & 8 \\ 1 & 109 & 4 \end{array}\right) \times 
+\left(\begin{array}{cc} \beta_0 \\ \beta_1 \\ \beta_2 \end{array}\right) + 
+\left(\begin{array}{c}\epsilon_{1} \\ \epsilon_{2} \\ \epsilon_{3} \\ \epsilon_{4} \end{array}\right) &= 
+\left(\begin{array}{c} 15.8  \\ 19.7 \\ 15.0 \\ 21.4 \end{array}\right)\nonumber
+\end{align}
+
+Es gilt also, dass 
+$\boldsymbol{\hat{\beta}}=\left(\begin{array}{cc} \hat{\beta}_0 \\ \hat{\beta}_1 \\ \hat{\beta}_2 \end{array}\right)$,
+$\boldsymbol{X}=\left(\begin{array}{ccc} 1 & 264 & 8 \\ 1 & 175 & 6 \\ 1 & 335 & 8 \\ 1 & 109 & 4 \end{array}\right)$
+und $\boldsymbol{y}=\left(\begin{array}{c} 15.8  \\ 19.7 \\ 15.0 \\ 21.4 \end{array}\right)$.
+
+Es lässt sich allgemein zeigen, dass der gesuchte Schätzer 
+$\boldsymbol{\hat{\beta}}=\left(\begin{array}{cc} \hat{\beta}_0 \\ \hat{\beta}_1 \\ \hat{\beta}_2 \end{array}\right)$ 
+für das unbekannte $\boldsymbol{\beta}=\left(\begin{array}{cc} \beta_0 \\ \beta_1 \\ \beta_2 \end{array}\right)$ die Lösung 
+des folgenden Gleichungssystems darstellt:^[Die genaue Herleitung finden Sie im 
+[nächsten (optionalen) Abschnitt](#ols-deriv).]
+
+$$\boldsymbol{\hat{\beta}}=\left(\boldsymbol{X}'\boldsymbol{X} \right)^{-1}\boldsymbol{X}'\boldsymbol{Y}$$
+
+Das können wir wiederum in R lösen:
 
 
 ```r
-daten <- data.frame(
-  y = c(1, 2),
-  x_1 = c(5, 6),
-  x_2 = c(2, 7)
-)
+ols_X <- matrix(c(1, 264, 8, 1, 175, 6, 1, 335, 8, 1, 109, 4), 
+                ncol = 3, byrow = T)
+ols_y <- matrix(c(15.8, 19.7, 15.0, 21.4), ncol = 1)
+
+solve(t(ols_X) %*% ols_X) %*% t(ols_X) %*% ols_y
 ```
 
-In diesem Fall wäre 
-$\boldsymbol{y}=\left(\begin{array}{c} 1 \\ 2 \end{array}\right)$
-$\boldsymbol{X}=\left(\begin{array}{cc} 5 & 2 \\ 6 & 7 \end{array}\right)$
-Dann lässt sich das Schätzproblem in Matrizenform folgendermaßen schreiben:
+```
+#>             [,1]
+#> [1,] 26.37086491
+#> [2,] -0.01783627
+#> [3,] -0.68592421
+```
 
-$$
-\left(\begin{array}{c} 1 \\ 2 \end{array}\right) = \left(\begin{array}{cc} 5 & 2 \\ 6 & 7 \end{array}\right) \left(\begin{array}{c} \hat{\beta}_1 \\ \hat{\beta}_2 \end{array}\right) + \left(\begin{array}{c} \hat{\epsilon}_1 \\ \hat{\epsilon}_2 \end{array}\right)
-$$
-
-Es lässt sich allgemein zeigen, dass der gesuchte Vektor $\boldsymbol{\beta}$ die Lösung 
-des folgenden Gleichungssystems darstellt:^[Die genaue Herleitung finden Sie hier.]
-
-$$\boldsymbol{\hat{\beta}}=\left(\boldsymbol{X}'\boldsymbol{X} \right)^{-1}\boldsymbol{X}'\boldsymbol{y}$$
-
-Dies ergibt folgende Lösung:
+Oder direkt mit `lm()`:
 
 
 ```r
-y_matrix <- matrix(c(1, 2), ncol = 1)
-X_matrix <- matrix(c(5, 6, 2, 7), ncol = 2)
-Solve(A = X_matrix, b = y_matrix)
-```
-
-```
-#> x1    =  0.13043478 
-#>   x2  =  0.17391304
-```
-
-Wir vergleichen mit der Anwendung von `lm()`:
-
-
-```r
-lm(y~x_1+x_2, data = daten)
+lm(Verbrauch~PS+Zylinder, data = ols_beispiel)
 ```
 
 ```
 #> 
 #> Call:
-#> lm(formula = y ~ x_1 + x_2, data = daten)
+#> lm(formula = Verbrauch ~ PS + Zylinder, data = ols_beispiel)
 #> 
 #> Coefficients:
-#> (Intercept)          x_1          x_2  
-#>          -4            1           NA
+#> (Intercept)           PS     Zylinder  
+#>    26.37086     -0.01784     -0.68592
 ```
 
-Wie kann das sein? Sollte nicht das gleiche Ergebnis herauskommen?
-Beachten Sie, dass wir in unserer manuellen Spezifikation keinen Intercept 
-$\hat{\beta}_0$ berücksichtigt haben, `lm()` einen solchen aber standardmäßig
-miteinbezieht. Um die OLS Schätzung ohne Intercept zu schätzen ergänzen wir 
-`-1` zur Schätzgleichung:
+### Optional: Herleitung des OLS-Schätzers {#ols-deriv}
 
+Mit dem bislang gewonnenen Verständnis vonn Matrizenalgebra ist es bereits
+möglich die Herleitung des OLS-Schätzers nachzuvollziehen. 
+Diese Herleitung wird im Folgenden beschrieben.
 
-```r
-lm(y~x_1+x_2-1, data = daten)
-```
+Wir wissen bereits, dass die Residuen einer Schätzung gegeben sind durch:
 
-```
-#> 
-#> Call:
-#> lm(formula = y ~ x_1 + x_2 - 1, data = daten)
-#> 
-#> Coefficients:
-#>    x_1     x_2  
-#> 0.1304  0.1739
-```
+$$\boldsymbol{e}=\boldsymbol{Y}-\boldsymbol{X\hat{\beta}}$$
 
-Wie Sie sehen bekommen wir das gleiche Ergebnis. 
-Dies ist übrigens auch der Grund für die OLS-Annahme, dass keine perfekte
+Wir können die Summe der quadrierten Residuen (RSS) in Matrixschreibweise 
+schreiben als:
+
+$$\boldsymbol{e'e}= 
+\left(\begin{array}{cccc} e_1 & e_2 & ... & e_n \end{array}\right)
+\left(\begin{array}{cc} e_1 \\ e_2 \\ \vdots \\ e_n \end{array}\right)
+=\left(\begin{array}{cccc} e_1\times e_1 & e_2 \times e_2 & ... & 
+e_n \times e_n \end{array}\right)$$
+
+Wir können dann schreiben:^[Beachte dabei, dass 
+$\boldsymbol{Y'X\hat{\beta}}=(\boldsymbol{Y'X\hat{\beta}})'=\boldsymbol{\hat{\beta}'X'Y}$.]
+
+\begin{align}
+\boldsymbol{e'e} &= \left(\boldsymbol{Y}-\boldsymbol{X\hat{\beta}}\right)'
+\left(\boldsymbol{Y}-\boldsymbol{X\hat{\beta}}\right)\nonumber\\
+&=\boldsymbol{y'y}-\boldsymbol{\hat{\beta}'X'y}-\boldsymbol{y'X\hat{\beta}} + 
+\boldsymbol{\hat{\beta}'X'X\hat{\beta}}\nonumber\\
+&=\boldsymbol{y'y}-2\boldsymbol{\hat{\beta}X'y}+
+\boldsymbol{\hat{\beta}'X'X\hat{\beta}}\nonumber
+\end{align}
+
+Wir wollen diesen Ausdruck nun minimieren.
+Dazu leiten wir nach dem Vektor der zu schätzenden
+Koeffizienten $\boldsymbol{\hat{\beta}}$ ab:
+
+$$\frac{\partial \boldsymbol{e'e}}{\partial\boldsymbol{\hat{\beta}}}=
+-2\boldsymbol{X'y} + 2\boldsymbol{X'X\hat{\beta}} = 0$$
+
+Diese Gleichung können wir nun umformen zu:
+
+\begin{align}
+2\boldsymbol{X'X\hat{\beta}} &= 2\boldsymbol{X'Y}\nonumber\\
+\boldsymbol{X'X\hat{\beta}}&=\boldsymbol{X'Y}\nonumber
+\end{align}
+
+Da gilt, dass $\left(\boldsymbol{X'X}\right)^{-1}\left(\boldsymbol{X'X}\right)=I$ 
+multiplizieren wir beide Seiten mit $\left(\boldsymbol{X'X}\right)^{-1}$:^[
+Hier liegt übrigens auch der Grund für die OLS-Annahme, dass keine perfekte
 Multikollinearität besteht: denn in diesem Fall wäre eine Zeile der Matrix 
 $\boldsymbol{X}$ eine lineare Kombination einer anderen Zeile und $\boldsymbol{X}$
 wäre damit nicht mehr invertiertbar, also $\boldsymbol{X}^{-1}$ würde nicht 
-existieren und $\boldsymbol{\hat{\beta}}$ wäre nicht mehr definiert.
+existieren und $\boldsymbol{\hat{\beta}}$ wäre nicht mehr definiert.]
+
+\begin{align}
+\left(\boldsymbol{X'X}\right)^{-1}\boldsymbol{X'X\hat{\beta}} &= 
+\left(\boldsymbol{X'X}\right)^{-1}\boldsymbol{X'Y}\nonumber\\
+\boldsymbol{\hat{\beta}} &= 
+\left(\boldsymbol{X'X}\right)^{-1}\left(\boldsymbol{X'Y}\right)
+\end{align}
+
+Damit haben wir den Schätzer für $\boldsymbol{\hat{\beta}}$ hergeleitet.
 
 ### Weiterführende Literatur
 
@@ -1737,7 +1801,7 @@ ggplot(data = sample_data) +
 
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-63-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-62-1} \end{center}
 
 Beachten Sie, dass die y-Achse die empirische Dichte der Beobachtungen auf der
 x-Achse angibt, also ein Maß für die relative Häufigkeit der Beobachtungen.^[
@@ -1770,7 +1834,7 @@ ggplot(data = sample_data) +
 
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-64-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-63-1} \end{center}
 
 Das bedeutet, dass wir unsere Daten mit Hilfe der Dichtefunktion 
 (*probability density function* - PDF) der Normalverteilung beschreiben können. 
@@ -1800,7 +1864,7 @@ Das bedeutet wir 'fitten' die Verteilung zu unseren Daten.
 Was damit gemeint ist verdeutlicht die folgende Darstellung: 
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-65-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-64-1} \end{center}
 
 Die Normalverteilung mit $\mu=4$ und $\sigma^2=4$ passt zu den Daten recht gut.
 Aber wie identifizieren wir diese Werte?
@@ -2180,7 +2244,7 @@ Lorentzkurve dem hypothetischen Fall der perfekten Gleichverteilung
 gegenübergestellt werden:
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-76-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-75-1} \end{center}
 
 Der Gini-Index $\mathcal{G}$ misst diese Abweichung über die normierte Distanz 
 zwischen $p$ und $q$ indem er einfach das Integral von $p-\mathcal{L}(p)$ berechnet.
@@ -2285,7 +2349,7 @@ in der Regel von einer multimodelen Verteilung sprechen sobald es mehrere lokale
 Maxima gibt:
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-78-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-77-1} \end{center}
 
 
 **Kennzahlen zur Form der Verteilung**
@@ -2313,7 +2377,7 @@ Woher diese Begriffe kommen können wir uns am besten mit Hilfe folgender
 Abbildung verdeutlichen:
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-79-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-78-1} \end{center}
 
 In R können wir die Schiefe einer Verteilung mit der Funktion `skewness()`
 aus dem Paket [moments](https://cran.r-project.org/package=moments) [@R-moments] 
@@ -2332,7 +2396,7 @@ Wir würden hier also von einer *recht-schiefen* Verteilung der Preise
 sprechen. Das sehen wir hier auch grafisch:
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-81-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-80-1} \end{center}
 
 Die **Steile** (auch: Kurtosis) $\omega_x$ einer Verteilung gibt ihre 
 'Spitzgipfligkeit' an. Je größer $\omega_x$ desto 'schmaler' wird die 
@@ -2372,7 +2436,7 @@ steilgipfligen Verteilung zu tun.
 Zur Verdeutlichung des Konzepts im folgenden noch ein grafisches Beispiel:
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-83-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-82-1} \end{center}
 
 
 ```r
@@ -2554,7 +2618,7 @@ ggplot(data = data.frame(dist_data),
 
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-87-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-86-1} \end{center}
 
 ```r
 filter(dist_data, Distanz>cook_threshold)$Titel
@@ -2594,7 +2658,7 @@ ggplot(data = wb_data,
 
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-90-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-89-1} \end{center}
 
 Im Boxplot werden mehrere relevante Kennzahlen zusammengefasst. 
 Eine schöne Übersicht bietet diese Abbilung:^[Die Abbildung ist von folgendem
@@ -2664,7 +2728,7 @@ ggarrange(boxplot_classic, boxplot_jitter, violin_plot, ncol = 3)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-92-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-91-1} \end{center}
 
 Es ist jedoch immer wichtig eine Verteilung nicht nur mit Kennzahlen, sondern
 auch grafisch zu beschreiben. 
@@ -2708,7 +2772,7 @@ Nur die grafische Inspektion zeigt, wie unterschiedlich die Verteilungen
 tatsächlich sind:
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-94-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-93-1} \end{center}
 
 Damit zeigt sich, dass jede gute Beschreibung einer Verteilung sowohl aus 
 quantitativen als auch grafischen Teilen bestehen sollte.^[Interessanterweise 

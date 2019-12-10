@@ -31,7 +31,7 @@ Ziel solcher Modelle ist es, ausgehend von einem Datensatz ein lineares Modell
 zu schätzen. 
 Ein solches lineares Modell hat in der Regel die Form
 
-$$Y_i = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_n x_n + u_i$$
+$$Y_i = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_n x_n + \epsilon_i$$
 und soll uns helfen den linearen Zusammenhang zwischen den Variablen in $x_i$ und
 $Y_i$ zu verstehen. 
 Dazu müssen wir die Parameter $\beta_i$ *schätzen*, denn $\beta_i$ gibt uns 
@@ -203,7 +203,9 @@ Das ist allerding nur der Fall, wenn bestimmte Annahmen erfüllt sind (dazu spä
 
 Nachdem wir unser Modell aufgestellt haben, möchten wir nun die Parameter $\beta_0$
 und $\beta_1$ *schätzen*. 
-Dazu brauchen wir einen *Schätzer*, also eine Funktion, die uns für die Daten, die
+Denn diese Werte sind für uns nicht unmittelbar beobachtbar.
+Wir brauchen also einen *Schätzer*.
+Ein Schätzer ist eine Funktion, die uns für die Daten, die
 wir haben, den optimalen Wert für den gesuchten Parameter gibt.^[Wenn Ihnen das 
 Konzept eines Schätzers sehr fremd ist, schauen Sie doch mal in den
 [Anhang zur schließenden Statistik](#stat-rep).]
@@ -227,9 +229,9 @@ sich einfach leichter rechnen als mit Absolutwerten.]
 Die dadurch definierten Schätzer $\hat{\beta}_0$ und $\hat{\beta}_1$ sind 
 entsprechend als *OLS-Schätzer* bekannt.
 
-Wir bezeichnen die Abweichung von $Y_i$ zu Regressionsgeraden als *Residuum* $r_i$.
+Wir bezeichnen die Abweichung von $Y_i$ zu Regressionsgeraden als *Residuum* $e_i$.
 Wie in der Abbildung zu sehen ist, gilt für die Abweichung von der 
-Regressionsgeraden für die einzelnen $Y_i$: $r_i=(Y_i-\hat{\beta}_0-\hat{\beta}_1x_i)$.
+Regressionsgeraden für die einzelnen $Y_i$: $e_i=(Y_i-\hat{\beta}_0-\hat{\beta}_1x_i)$.
 Wir suchen also nach den Werten für $\hat{\beta}_0$ und $\hat{\beta}_1$ für die die Summe
 aller Residuen minimal ist:
 
@@ -239,7 +241,7 @@ Dabei bedeutet $\text{argmin}_{\beta_0, \beta_1}$: wähle die Werte für
 $\beta_0$ und $\beta_1$, welche den nachfolgenden Ausdruck minimieren.
 
 Diesen Ausdruck kann man analytisch so lange umformen bis gilt:^[Jede\*r Interessierte
-findet die genaue Herleitung sehr einfach im Internet oder in der Kursliteratur.]
+finden die genaue Herleitung im Kapitel zu [linearen Algebra](#ols-deriv).]
 
 $$\hat{\beta}_1 = \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}$$
 und
@@ -402,7 +404,10 @@ Variable in das Modell aufnehmen könnten, welche diese Struktur explizit macht,
 oder die lineare Strukur des Modells ändern könnten. 
 Die Annahme impliziert auch, dass der Zusammenhang zwischen der erklärten und 
 erklärenden Variablen auch tatsächlich linear ist. Grob ausgedrückt: wir nehmen 
-hier an, dass wir unser Modell clever spezifiziert haben.
+hier an, dass wir unser Modell clever spezifiziert haben.^[Es ist wichtig, dass
+wir hier eine Annahme über eine unbeobachtbare Größe der Population treffen, nicht
+über die Residuen $e_i$ unserer Regression. Die Residuen $e_i$ können wir beobachten, 
+die echten Fehler $\epsilon_i$ nicht.]
 
 2. **A2: Unabhängigkeit der Fehler mit den erklärenden Variablen**: Das bedeutet, 
 dass es keinen systematischen Zusammenhang zwischen den Fehlern und den erklärenden 
@@ -496,11 +501,11 @@ oben grafisch dargestellt:
 Die TSS wollen wir nun aufteilen in eine Komponente, die in unserer Regression
 erklärt wird, und eine Komponente, die nicht erklärt werden kann. 
 Bei letzterer handelt es sich um die Abweichungen der geschätzten Werte $\hat{Y_i}$
-und den tatsächlichen Werten $Y_i$, den oben definierten Residuen $r_i$.
+und den tatsächlichen Werten $Y_i$, den oben definierten Residuen $e_i$.
 Entsprechend definieren wir die *Residual Sum of Squares (RSS)* 
 (dt.: *Residuenquadratsumme*) als:
 
-$$RSS=\sum_i^n\epsilon_i^2$$
+$$RSS=\sum_i^ne_i^2$$
 In R:
 
 
@@ -722,7 +727,7 @@ konzentriert sind, also desto geringer die Varianz, desto genauer ist der Schät
 Ein Maß für die Genauigkeit eines Schätzers ist sein **Standardfehler**.
 Für $\hat{\beta}_1$ ist dieser wie oben beschrieben definiert als $\frac{\sigma}{\sqrt{SS_X}}$.
 Da $\sigma$ (die Varianz der Fehler) nicht bekannt ist, müssen wir sie aus den 
-Daten schätzen. Das geht mit $\frac{1}{n-2}\sum_{i=1}^n\epsilon_i^2$, wobei die
+Daten schätzen. Das geht mit $\frac{1}{n-2}\sum_{i=1}^ne_i^2$, wobei die
 detaillierte Herleitung hier nicht diskutiert wird. Grundsätzlich handelt es sich
 hier um die empirische Varianz. Das $n-2$ kommt von den um zwei reduzierten
 Freiheitsgraden dieser Schätzung.
@@ -916,9 +921,9 @@ In der Praxis bleibt uns nichts anderes üblich als (1) so gut es geht zu überp
 und die restliche Unsicherheit so gut es geht zu quantifizieren.
 Im folgenden wollen wir uns genauer anschauen welche Methoden uns dafür zur 
 Verfügung stehen. 
-Vorher wollen wir uns aber noch ansehen, wie eine größere Stichprobe die Schätzgenauigkeit
-beeinflusst, wobei wir die formale Begründung warum das so ist bis ans Ende des
-Kapitels aufschieben:
+Vorher wollen wir uns aber noch ansehen, wie eine größere Stichprobe die 
+Schätzgenauigkeit beeinflusst, wobei wir die formale Begründung warum das so ist 
+bis ans Ende des Kapitels aufschieben:
 
 
 
@@ -946,7 +951,7 @@ Regressionsmodells zu überprüfen:
 
 3. **A6:** $\epsilon \propto \mathcal{N}(0, \sigma^2)$
 
-Um die ersten beiden Annahmen zu überpüfen bilden wir die $\epsilon_i$ gegen 
+Um die ersten beiden Annahmen zu überpüfen bilden wir die $e_i$ gegen 
 $\hat{Y}$ ab und erhalten so den so genannten **Tukey-Anscombe-Plot**:
 
 ![](Chap-linmodels_files/figure-latex/unnamed-chunk-36-1.pdf)<!-- --> 
@@ -984,6 +989,9 @@ auf, wenn zwischen erklärter und erklärender Variable ein wechelseitiges
 kausales Verhältnis besteht. Wir sprechen dann auch von einem 
 **Endogenitätsproblem**, welches leider sehr häufig auftritt und letztendlich 
 vor allem theoretisch identifiziert werden muss.
+
+Ausführlichere Tests und Möglichkeiten mit verletzten Annahmen umzugehen
+werden in einem späteren Kapitel genauer diskutiert.
 
 
 ## Zum Ablauf einer Regression {#stat-ablauf}
@@ -1144,6 +1152,3 @@ desto größer werden die Standardfehler unserer Schätzer.
 Mit diesem Problem werden wir uns später in der Veranstaltung noch genauer 
 auseinandersetzen.
 
-## Anwendungsbeispiel
-
-Dieser Abschnitt wir zeitnah ergänzt.

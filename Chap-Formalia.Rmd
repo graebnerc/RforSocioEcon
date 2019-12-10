@@ -1568,38 +1568,6 @@ Oder direkt mit `lm()`:
 lm(Verbrauch~PS+Zylinder, data = ols_beispiel)
 ```
 
-
-Dies ergibt folgende Lösung:
-
-```{r}
-y_matrix <- matrix(c(1, 2), ncol = 1)
-X_matrix <- matrix(c(5, 6, 2, 7), ncol = 2)
-Solve(A = X_matrix, b = y_matrix)
-```
-
-Wir vergleichen mit der Anwendung von `lm()`:
-
-```{r}
-lm(y~x_1+x_2, data = daten)
-```
-
-Wie kann das sein? Sollte nicht das gleiche Ergebnis herauskommen?
-Beachten Sie, dass wir in unserer manuellen Spezifikation keinen Intercept 
-$\hat{\beta}_0$ berücksichtigt haben, `lm()` einen solchen aber standardmäßig
-miteinbezieht. Um die OLS Schätzung ohne Intercept zu schätzen ergänzen wir 
-`-1` zur Schätzgleichung:
-
-```{r}
-lm(y~x_1+x_2-1, data = daten)
-```
-
-Wie Sie sehen bekommen wir das gleiche Ergebnis. 
-Dies ist übrigens auch der Grund für die OLS-Annahme, dass keine perfekte
-Multikollinearität besteht: denn in diesem Fall wäre eine Zeile der Matrix 
-$\boldsymbol{X}$ eine lineare Kombination einer anderen Zeile und $\boldsymbol{X}$
-wäre damit nicht mehr invertiertbar, also $\boldsymbol{X}^{-1}$ würde nicht 
-existieren und $\boldsymbol{\hat{\beta}}$ wäre nicht mehr definiert.
-
 ### Optional: Herleitung des OLS-Schätzers {#ols-deriv}
 
 Mit dem bislang gewonnenen Verständnis vonn Matrizenalgebra ist es bereits
@@ -1646,7 +1614,12 @@ Diese Gleichung können wir nun umformen zu:
 \end{align}
 
 Da gilt, dass $\left(\boldsymbol{X'X}\right)^{-1}\left(\boldsymbol{X'X}\right)=I$ 
-multiplizieren wir beide Seiten mit $\left(\boldsymbol{X'X}\right)^{-1}$:
+multiplizieren wir beide Seiten mit $\left(\boldsymbol{X'X}\right)^{-1}$:^[
+Hier liegt übrigens auch der Grund für die OLS-Annahme, dass keine perfekte
+Multikollinearität besteht: denn in diesem Fall wäre eine Zeile der Matrix 
+$\boldsymbol{X}$ eine lineare Kombination einer anderen Zeile und $\boldsymbol{X}$
+wäre damit nicht mehr invertiertbar, also $\boldsymbol{X}^{-1}$ würde nicht 
+existieren und $\boldsymbol{\hat{\beta}}$ wäre nicht mehr definiert.]
 
 \begin{align}
 \left(\boldsymbol{X'X}\right)^{-1}\boldsymbol{X'X\hat{\beta}} &= 
