@@ -1557,6 +1557,63 @@ $\boldsymbol{X}$ eine lineare Kombination einer anderen Zeile und $\boldsymbol{X
 wäre damit nicht mehr invertiertbar, also $\boldsymbol{X}^{-1}$ würde nicht 
 existieren und $\boldsymbol{\hat{\beta}}$ wäre nicht mehr definiert.
 
+### Optional: Herleitung des OLS-Schätzers
+
+Mit dem bislang gewonnenen Verständnis vonn Matrizenalgebra ist es bereits
+möglich die Herleitung des OLS-Schätzers nachzuvollziehen. 
+Diese Herleitung wird im Folgenden beschrieben.
+
+Wir wissen bereits, dass die Residuen einer Schätzung gegeben sind durch:
+
+$$\boldsymbol{e}=\boldsymbol{y}-\boldsymbol{X\hat{\beta}}$$
+
+Wir können die Summe der quadrierten Residuen (RSS) in Matrixschreibweise 
+schreiben als:
+
+$$\boldsymbol{e'e}= 
+\left(\begin{array}{cccc} e_1 & e_2 & ... & e_n \end{array}\right)
+\left(\begin{array}{cc} e_1 \\ e_2 \\ \vdots \\ e_n \end{array}\right)
+=\left(\begin{array}{cccc} e_1\times e_1 & e_2 \times e_2 & ... & 
+e_n \times e_n \end{array}\right)$$
+
+Wir können dann schreiben:^[Beachte dabei, dass 
+$\boldsymbol{y'X\hat{\beta}}=(\boldsymbol{y'X\hat{\beta}})'=\boldsymbol{\hat{\beta}'X'y}$.]
+
+\begin{align}
+\boldsymbol{e'e} &= \left(\boldsymbol{y}-\boldsymbol{X\hat{\beta}}\right)'
+\left(\boldsymbol{y}-\boldsymbol{X\hat{\beta}}\right)\nonumber\\
+&=\boldsymbol{y'y}-\boldsymbol{\hat{\beta}'X'y}-\boldsymbol{y'X\hat{\beta}} + 
+\boldsymbol{\hat{\beta}'X'X\hat{\beta}}\nonumber\\
+&=\boldsymbol{y'y}-2\boldsymbol{\hat{\beta}X'y}+
+\boldsymbol{\hat{\beta}'X'X\hat{\beta}}\nonumber
+\end{align}
+
+Wir wollen diesen Ausdruck nun minimieren.
+Dazu leiten wir nach dem Vektor der zu schätzenden
+Koeffizienten $\boldsymbol{\hat{\beta}}$ ab:
+
+$$\frac{\partial \boldsymbol{e'e}}{\partial\boldsymbol{\hat{\beta}}}=
+-2\boldsymbol{X'y} + 2\boldsymbol{X'X\hat{\beta}} = 0$$
+
+Diese Gleichung können wir nun umformen zu:
+
+\begin{align}
+2\boldsymbol{X'X\hat{\beta}} &= 2\boldsymbol{X'y}\nonumber\\
+\boldsymbol{X'X\hat{\beta}}&=\boldsymbol{X'y}\nonumber
+\end{align}
+
+Da gilt, dass $\left(\boldsymbol{X'X}\right)^{-1}\left(\boldsymbol{X'X}\right)=I$ 
+multiplizieren wir beide Seiten mit $\left(\boldsymbol{X'X}\right)^{-1}$:
+
+\begin{align}
+\left(\boldsymbol{X'X}\right)^{-1}\boldsymbol{X'X\hat{\beta}} &= 
+\left(\boldsymbol{X'X}\right)^{-1}\boldsymbol{X'y}\nonumber\\
+\boldsymbol{\hat{\beta}} &= 
+\left(\boldsymbol{X'X}\right)^{-1}\left(\boldsymbol{X'y}\right)
+\end{align}
+
+Damit haben wir den Schätzer für $\boldsymbol{\hat{\beta}}$ hergeleitet.
+
 ### Weiterführende Literatur
 
 Es gibt im Internet zahlreiche gute Überblicksartikel zum Thema Matrizenalgebra
