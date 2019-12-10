@@ -490,7 +490,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Möchten wir schließlich eine bestimmte Menge an <strong>Realisierungen</strong> aus einer Binomialverteilung ziehen geht das mit <code>rbinom()</code>, welches drei Argumente verlangt: <code>n</code> für die Anzahl der zu ziehenden Realisierungen, sowie <code>size</code> und <code>prob</code> als da Paramter <span class="math inline">\(n\)</span> und <span class="math inline">\(p\)</span> der Binomialverteilung:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sample_binom &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="fl">0.4</span>)
 sample_binom</code></pre></div>
-<pre><code>## [1] 2 5 3 3 6</code></pre>
+<pre><code>## [1] 5 4 4 4 7</code></pre>
 <blockquote>
 <p><strong>Anwendungsbeispiel Binomialverteilung:</strong> Unser Zufallsexperiment besteht aus dem zehnmaligen Werfen einer fairen Münze. Unter ‘Erfolg’ verstehen wir das Werfen von ‘Zahl’. Nehmen wir an, wir führen das Zufallsexperiment 100 Mal durch, werfen also insgesamt 10 Mal die Münze und schreiben jeweils auf, wie häufig wir dabei einen Erfolg verbuchen konnten. Wenn wir unsere Ergebnisse aufmalen, indem wir auf der x-Achse die Anzahl der Erfolge, und auf der y-Achse die Anzahl der Experimente mit genau dieser Anzahl an Erfolgen aufmalen erhalten wir ein Histogram, das ungefähr so aussieht:</p>
 </blockquote>
