@@ -1848,14 +1848,3 @@ Konsum um ca. $1.12\%$ zurückgehen.
 | Multikollinearität           | Hilfsregressionen | Größere Standardfehler | Ggf. alternative unabh. Variablen verwenden |
 | Falsche funktionale Form     | Theorie, RESET-Test, Tukey-Anscombe Plot | Verzerrter und ineffizienter Schätzer | Funktionale Form anpassen |
 | Vergessene Variablen         | Theorie, Tukey-Anscombe Plot | Verzerrter und ineffizienter Schätzer | Variablen ergänzen |
-
-# Ausgewählte nichtlineare Schätzverfahren {#nonlin}
-
-## Binäre abhängige Variablen: Logit- und Probit-Modelle {#logit}
-
-## Beschränkte Variablen: Tobit-Modelle {#tobit}
-
-## Weiterführende Literatur {#adv-lin-readings}
-
-* Bias-Variance Trade-Off
-* Root Squared Mean error 
