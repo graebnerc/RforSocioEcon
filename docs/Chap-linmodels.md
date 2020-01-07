@@ -382,7 +382,7 @@ abdecken und lernen wie wir die Güte unserer Schätzung besser einschätzen kö
 Zuvor wollen wir aber noch einmal genauer überprüfen, welche Annahmen genau
 erfüllt sein müssen, damit die OLS-Prozedur auch funktioniert.
 
-### Annahmen für den OLS Schätzer
+### Annahmen für den OLS Schätzer {#ols-ass}
 
 Das lineare Regressionsmodell wird sehr häufig in der sozioökonomischen 
 Forschung verwendet. 
@@ -931,7 +931,7 @@ bis ans Ende des Kapitels aufschieben:
 ![](Chap-linmodels_files/figure-latex/unnamed-chunk-34-1.pdf)<!-- --> 
 
 
-### Residuenanalyse
+### Residuenanalyse {#linmod-residuals}
 
 Eine sehr hilfreiche Art, die Modellannahmen von oben zu überprüfen ist die 
 Analyse der Residuen. 

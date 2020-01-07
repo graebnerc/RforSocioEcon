@@ -1,8 +1,8 @@
 --- 
 title: "R für die sozio-ökonomische Forschung"
-subtitle: "Version 0.6.1"
+subtitle: "Version 0.7.0"
 author: "[Dr. Claudius Gräbner](http://claudius-graebner.com/)"
-date: "2019-12-10" 
+date: "2020-01-07" 
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -10,7 +10,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: graebnerc/RforSocioEcon
-description: "R Skript in der Version 0.6.1"
+description: "R Skript in der Version 0.7.0"
 ---
 
 # Willkommen {-}

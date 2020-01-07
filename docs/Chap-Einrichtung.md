@@ -258,7 +258,7 @@ Wenn wir annehmen unser Projektordner heißt `2019-Methoden` ergibt sich damit
 insgesamt folgende Ordner und Datenstruktur:
 
 
-\begin{center}\includegraphics{figures/wd-structure} \end{center}
+\begin{center}\includegraphics[width=2.25in]{figures/wd-structure} \end{center}
 
 ## Abschließende Bemerkungen
 
