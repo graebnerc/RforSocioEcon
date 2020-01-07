@@ -178,7 +178,7 @@ Um das Problem zu illustrieren nehmen wir einmal folgende Ordnerstruktur an,
 wobei der Ordner `MarkdownProject` unser Arbeitsverzeichnis ist:
 
 
-\begin{center}\includegraphics[height=0.25\textheight]{/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/figures/A-Markdown-Ordnerstruktur} \end{center}
+\begin{center}\includegraphics[width=7.11in,height=0.25\textheight]{/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/figures/A-Markdown-Ordnerstruktur} \end{center}
 
 Das Problem ist nun, dass wenn Sie eine R-Markdown Datei kompillieren, diese
 Datei alle Pfade **nicht** ausgehend von Ihrem Arbeitsverzeichnis 

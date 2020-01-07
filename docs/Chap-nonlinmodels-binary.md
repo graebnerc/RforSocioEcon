@@ -175,7 +175,8 @@ Hier wird im Endeffekt folgende Regressionsgleichung geschätzt:
 
 $$\mathbb{P}(y=1|\boldsymbol{x})=\phi(\boldsymbol{X\beta})$$
 
-wobei $\Phi(\cdot)$ die CDF der Normalverteilung ist. 
+wobei $\Phi(\cdot)$ die kumulierte Wahrscheinlichkeitsverteilung der 
+Normalverteilung ist. 
 Wie sie in folgender Abbildung sehen, die sich wieder auf das 
 Einführungsbeispiel bezieht, sind die funktionalen Formen bei der 
 beiden Modelle sehr ähnlich:
@@ -365,7 +366,7 @@ arbeitsunabhänigen Einkommen von $\exp(10)=22025$, fünfjähiger Ausbildung, ke
 alten Kindern, einem jungen Kind und mit schweizerischer Staatsangehörigkeit.
 Die zweite Wahrscheinlichkeit gilt für eine Frau mit den gleichen Eigenschaften
 aber zwei jungen Kindern.
-Mit `diff()` bekommen wir gleich den entsprechenden Effekt eines weiteren jungen 
+Mit `diff()` bekommen wir gleich den entsprechenden Effekt des zweiten jungen 
 Kindes auf die Wahrscheinlichkeit arbeitslos zu sein:
 
 

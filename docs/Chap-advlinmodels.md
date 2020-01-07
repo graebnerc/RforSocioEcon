@@ -390,9 +390,26 @@ immer genauer wird.
 
 Formal drücken wir dies unter Verwendung von Grenzwerten aus:
 
-$$\lim_{N\rightarrow\infty}\mathbb{P}(|\hat{\beta}-\beta|>\epsilon)=0 \leftrightarrow \plim (\hat{\beta})=\beta $$
+$$\lim_{N\rightarrow\infty}\mathbb{P}(|\hat{\beta}-\beta|>\epsilon)=0$$
 
 wobei $\epsilon$ hier eine beliebig kleine Zahl ist.
+
+Wenn wir asymptotische Eigenschaften ausdrücken wollen verwenden wir häufig den
+Operator $\plim$.
+Das steht für *probability limit* und drückt die Idee der letzten Formel aus:
+das *probability limit* einer ZV ist der Wert auf den diese ZV bei unendlich 
+vielen Ziehungen konvergieren wird.
+Wir sagen dann auch: die ZV kovergiert stochastisch gegen einen Wert.^[Eigentlich
+ist $\plim$ noch allgemeiner definiert, für die Anwendungen in der Ökonometrie
+ist diese Definition aber ausreichend. Wundern Sie sich aber nicht, dass Sie in
+manchen mathematischen Texten leicht andere Definitionen finden.]
+Oder formal:
+
+$$\lim_{N\rightarrow\infty}\mathbb{P}(|X_N-X|>\epsilon)=0$$
+
+Wir können die Idee der letzten Gleichung also auch folgendermaßen ausdrücken:
+
+$$\plim (\hat{\beta})=\beta$$
 
 In der klassischen statistischen Analyse betrachten wir Erwartungstreue als
 eine notwendige Eigenschaft: wir möchten in der Regel keine Schätzer verwenden, 
@@ -861,10 +878,11 @@ Schätzer ist nicht mehr effizient
 4. Die Standardfehler unter Heteroskedastie sind nicht mehr korrekt.
 
 Daraus ergibt sich, dass wir in jedem Fall die Standardfehler korrigieren müssen.
-Darüber hinaus können wir uns überlegen ob wie die geschätzten Werte des
+Darüber hinaus können wir uns überlegen ob wir es bei der Korrektur belassen und
+die geschätzten Werte des
 Standard OLS-Schätzers weiterhin verwenden, da der Schätzer ja weiterhin 
-erwartungstreu und konsistent ist, oder ob wir ein alternatives Schätzverfahren 
-implementieren um die Effizienz des Schätzers zu steigern. 
+erwartungstreu und konsistent ist, oder ob wir sogar gleich ein alternatives 
+Schätzverfahren implementieren um die Effizienz des Schätzers zu steigern. 
 
 Für den ersten Fall korrigieren wir 'einfach' die Standardfehler des 
 OLS-Schätzers, verwenden aber die alten geschätzten Koeffizienten weiter.
@@ -983,8 +1001,8 @@ mit denen aus der Vorperiode $t-1$ zusammenhängen.
 Entsprechend groß ist die Literatur zur Autokorrelation in der Zeitreihenanalyse
 und Panel-Schätzung.
 Diese Themenbereich sind jedoch erst viel später unser Thema. 
-Nichtdestotrotz macht es Sinn sich die Folgen von Autokorrelation auch im 
-Querschnittsfall anzusehen.
+Nichtdestotrotz macht es Sinn sich die Folgen von Autokorrelation auch jetzt 
+schon anzusehen.
 
 ### Folgen von Autokorrelation
 
@@ -1050,7 +1068,7 @@ Abbildungen erkennen können:
 Gerade bei Anwendungen außerhalb der Zeitreihenökonometrie ist Autokorrelation 
 aber grafisch nicht so einfach zu identifizieren.
 Dennoch ist gerade bei der starken Autokorrelation offensichtlich, dass die
-Fehler in $t$ von denen in $t-1$ abhängen.
+Kovarianz der Fehler nicht gleich Null ist.
 
 > **Die vielen Arten von Autokorrelation** 
 Das Problem beim Testen auf Autokorrelation ist, dass die Fehler natürlich auf sehr

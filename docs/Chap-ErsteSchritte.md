@@ -2147,7 +2147,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7fdea6205400>
+#> <bytecode: 0x7f80c80970a8>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2178,7 +2178,7 @@ dplyr::lead
 #>     attributes(out) <- attributes(x)
 #>     out
 #> }
-#> <bytecode: 0x7fdea4529e00>
+#> <bytecode: 0x7f80c901ad98>
 #> <environment: namespace:dplyr>
 ```
 
