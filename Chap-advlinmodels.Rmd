@@ -7,6 +7,7 @@ output:
 
 ```{r include=FALSE}
 knitr::opts_chunk$set(comment = "#>")
+knitr::opts_chunk$set(out.height = '75%', out.width = '75%', fig.align = 'center') 
 ```
 
 In diesem Kapitel werden die folgenden R Pakete verwendet:
@@ -84,6 +85,9 @@ Die relevanten Annahmen sind dabei die folgenden:
 
 Diese Annahme ergibt sich unmittelbar aus der Formulierung: 
 $\boldsymbol{y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}$.
+Ein Beispiel für einen solchen Zusammenhang findet sich an Abbildung 
+\ref{fig:nonlins}a.
+
 Wenn der Zusammenhang zwischen abhängiger und unabhängigen Variablen nicht linear
 ist können wir das klassische OLS Modell in der Regel nicht verwenden.
 Häufig können wir aber die Daten so transformieren, dass wir deren Verhältnis
@@ -99,17 +103,80 @@ folgende lineare Gleichung, die wir dann mit OLS schätzen können:
 
 $$\ln(\boldsymbol{y}) = \ln(\boldsymbol{x_1}){\beta_1} + \boldsymbol{\epsilon}$$
 
-Es ist dabei zu beachten, dass das Regressionsmodell kein Problem mit nichtlinearen
-Transformationen für die abhängigen Variablen wie $\ln(\boldsymbol{x_i})$ hat, 
-sondern dass nur der funktionale Zusammenhang linear sein muss. 
+Ein Beispiel für einen solchen Zusammenhang findet sich an Abbildung 
+\ref{fig:nonlins}b und c.
+
+Insgesamt hat das lineare Regressionsmodell kein Problem mit nichtlinearen
+Transformationen für die abhängigen Variablen wie $\ln(\boldsymbol{x_i})$. 
+Nur der funktionale Zusammenhang muss linear sein. 
+Auch die folgende Spezifikation ist demenstprechend kompatibel mit A1, da nur
+die abhängigen Variablen in einer nichtlinearen Transformation vorkommen:^[
+Das ist insofern auch logisch, da wir ja einfach eine neue Variable $z=x_2^2$ 
+erstellen und diese dann als unabhängige Variable in der Regression 
+verwenden könnten. Dann würde noch nicht einmal der Anschein der Nichtlinearität
+erweckt obswohl die Werte der unabhängigen Variablen die gleichen wären.
+]
+
+$$\boldsymbol{y} = \boldsymbol{x_1}{\beta_1} + \boldsymbol{x_2^2}{\beta_2} + \boldsymbol{\epsilon}$$
+
 Daher sprechen wir häufig davon, dass mit OLS zu schätzende Zusammenhänge
 *linear in den Parametern* sein müssen - nicht notwendigerweise linear per se.
-Wir werden uns mit den relevanten Transformationen später in diesem Kapitel 
-beschäftigen.
+Ein Beispiel für einen nichtlinearen Zusammenhang, den wir auch nicht durch
+eine entsprechende Transformation linearisieren könnten wäre dagegen z.B. 
+durch folgende Gleichung gegeben:
 
-Dennoch gibt es natürlich auch viele Zusammenhänge, die nicht linear sind und
-auch nicht in eine lineare Funktion transformiert werden können. 
-Für diese Zusammenhänge müssen wir andere Schätzverfahren benutzen.
+$$\boldsymbol{y} = \boldsymbol{x_1}{\beta_1} + \boldsymbol{x_2^{\beta_2}} + \boldsymbol{\epsilon}$$
+Ein Beispiel für einen solchen Zusammenhang findet sich an Abbildung 
+\ref{fig:nonlins}d.
+Wir werden uns später im Kapitel mit der Frage beschäftigen welche funktionalen
+Transformationen besonders hilfreich sind, nichtlineare Zusammenhänge in die
+lineare Form zu bringen.
+
+```{r nonlins, fig.cap="\\label{fig:nonlins}Lineare und nichtlineare Zusammenhänge.", echo=FALSE}
+set.seed("123")
+sample_size <- 50
+x_1 <- runif(sample_size, min = 0.05, max = 4)
+x_2 <- runif(sample_size, min = 0.05, max = 4)
+beta_0 <- 0.2
+beta_1 <- 0.5
+beta_2 <- 2.8
+
+y_linear <- rep(NA, sample_size)
+y_loglinear <- rep(NA, sample_size)
+y_nonlinear <- rep(NA, sample_size)
+
+for (i in 1:sample_size){
+  y_linear[i] <- beta_0 + beta_1*x_1[i] + beta_2*x_2[i] + rnorm(1, mean = 0.1, sd = 0.5)
+  y_loglinear[i] <- beta_0 + beta_1*exp(x_1[i]) + beta_2*exp(x_2[i]) + rnorm(1, mean = 0.1, sd = 0.5)
+  y_nonlinear[i] <- beta_0 + beta_1*x_1[i] + x_2[i]**(beta_2) + rnorm(1, mean = 0.1, sd = 0.5)
+}
+
+full_sample <- tibble(x1=x_1, x2=x_2, 
+                      y_lin=y_linear, 
+                      y_loglin=y_loglinear, 
+                      y_nonlin=y_nonlinear)
+
+lin_plot <- ggplot(data = full_sample, mapping = aes(x=x_2, y=y_lin)) +
+  ggtitle("Linearer Zusammenhang") +
+  geom_point() + theme_icae()
+
+exp_plot <- ggplot(data = full_sample, mapping = aes(x=x_2, y=y_loglinear)) +
+  ggtitle("Exp. Zusammenhang") +
+  geom_point() + theme_icae()
+
+log_plot <- ggplot(data = full_sample, mapping = aes(x=x_2, y=log(y_loglinear))) +
+  ggtitle("Exp. Zusammenhang (log)") +
+  geom_point() + theme_icae()
+
+nonlin_plot <- ggplot(data = full_sample, mapping = aes(x=x_2, y=y_nonlin)) +
+  ggtitle("Nichtlinearer Zusammenhang") +
+  geom_point() + theme_icae()
+
+ggarrange(lin_plot, exp_plot, log_plot, nonlin_plot, 
+          ncol = 2, nrow = 2, 
+          labels = paste0(letters[1:4], ")"))
+```
+
 
 **A2: Exogenität der unabhängigen Variablen**
 
@@ -935,10 +1002,8 @@ werden.
 gqtest(schaetzung_hetero)
 ```
 
-Dagegen muss $H_0$ für den heteroskedastischen Fall verworfen werden.
-Aus der grafischen Analyse oben haben wir bereits gesehen, dass die 
-Alternativhypothese von einer steigenden Varianz auszugehen hier viel Sinn macht.
-Hätten wir aber für sinkende Varianz getestet hätte $H_0$ *nicht* abgelehnt
+Komischerweise muss $H_0$ auch für den heteroskedastischen Fall nicht verworfen werden.
+Hätten wir aber für sinkende Varianz getestet hätte $H_0$ abgelehnt
 werden können:
 
 ```{r}
@@ -1444,7 +1509,7 @@ Beachten Sie, dass die resultierenden Standardfehler robust sowohl gegen
 Heteroskedastie als auch Autokorrelation sind.
 
 ```{r}
-var_covar_matrix <- vcovHC(large_acl, type = "HC0")
+var_covar_matrix <- vcovHAC(large_acl) 
 coeftest(large_acl, vcov. = var_covar_matrix)
 ```
 
@@ -1833,8 +1898,9 @@ $$\boldsymbol{\hat{\beta}} = \left( \boldsymbol{X'X} \right)^{-1} \boldsymbol{X'
 Daraus resultiert, dass:
 
 $$\mathbb{E}(\boldsymbol{\hat{\beta}} | \boldsymbol{X, z}) = \boldsymbol{\beta} + \left( \boldsymbol{X'X} \right)^{-1} \boldsymbol{X'z\gamma}$$
+
 Das bedeutet, dass $\boldsymbol{\hat{\beta}}$ nicht erwartungstreu ist, es sei
-denn (1) $\gamma=0$ oder (2) $\boldsymbol{X'z}=0$.
+denn (1) $\boldsymbol{\gamma}=0$ oder (2) $\boldsymbol{X'z}=0$.
 Fall (1) würde bedeuten, dass $\boldsymbol{z}$ für die Analyse unserer abhängigen
 Variable gar nicht relevant wäre. Das würde bedeuten, wir hätten die Variable 
 nicht 'vergessen', sondern zu Recht nicht inkludiert. 
@@ -2112,6 +2178,115 @@ summary(log_model)
 Wir würden den geschätzten Koeffizienten von $\beta_1$ folgendermaßen 
 interpretieren: wenn der Preis von Hühnerfleisch um $1\%$ steigt wird der
 Konsum um ca. $1.12\%$ zurückgehen.
+
+## Weitere Fehlerquellen: Systematische Messfehler, Selbstselektion und Simulatanität
+
+Annahme A2 kann nur aufgrund von drei weiteren Gründen verletzt werden:
+aufgrund von Messfehlern, von Selbstselektion der Stichprobe und
+aufgrund von Simulatanität.
+Diese Fehlerquellen sind etwas anders geartet als die anderen hier besprochenen
+Probleme: 
+hier liegt keine direkte Fehlspezifikation des Modells vor, sondern der Fehler
+geschieht entweder auf Ebene der Datenerhebung (Messfehler, Selbstselektion)
+oder ist dem zu untersuchenden Zusammenhang inhärent (Simulatanität).
+Insofern können wir nicht wirklich auf diese Fehler testen sondern müssen 
+bei der Auswahl unserer Daten und der Formulierung unseres Modells diese 
+Fehlerquellen in betracht ziehen.
+
+Im Folgenden wollen wir kurz darstellen wie diese drei Fehlerquellen zu einer
+Verletzung von A2 führen.
+
+### Messfehler
+
+Falls wir unsere **abhängige** Variable nicht korrekt messen können
+hängen die Implikationen von der Art des Messfehlers ab.
+Nehmen wir dazu an, die *korrekte* abhängige Variable wäre
+$y^*$. 
+Wir verfügen aber nur über eine näherungsweise Messung, $y'$.
+Wenn es sich um einen zufälligen und additiven Messfehler handelt,
+also $y^*=y'+w$ und $w\propto\mathcal{N}(0, \sigma^2)$, dann kann
+man zeigen, dass der OLS Schätzer weiterhin erwartungstreu ist 
+und lediglich ein gewisses Maß an Effizienz einbüst, da:
+
+$$y^* = \boldsymbol{x'\beta} + \boldsymbol{\epsilon}$$
+
+$$y'= \boldsymbol{x'\beta} + \boldsymbol{\epsilon} + \boldsymbol{w}= \boldsymbol{x'\beta} + \boldsymbol{v}$$
+und $\boldsymbol{v}\propto\mathcal{N}(0, \sigma^2_v)$, wobei $\sigma^2_v>\sigma^2_{\epsilon}$.
+
+Bei anderen Formen des Messfehlers, z.B. multiplikativen
+Messfehler, oder besonderen Verteilungen des Messfehlers können
+wir nichts sicher über die Implikationen des Messfehlers sagen.
+
+Wird dagegen eine **unabhängige** Variable nicht richtig gemessen
+sind die Implikationen in der Regel mit Sicherheit
+problematischer.
+Nehmen wir an, dass $\boldsymbol{x}^*$ die korrekte Variable
+und $\boldsymbol{x}'$ die gemessene Variable ist. 
+Betrachten wir dann die folgende Spezifikation:
+
+$$\boldsymbol{y}=\beta_0 + \beta_1\boldsymbol{x}^* + \boldsymbol{\epsilon}$$
+
+Wenn wieder wie oben gilt $\boldsymbol{x}' = \boldsymbol{x}^* + \boldsymbol{w}$ und damit $\boldsymbol{x}^* = \boldsymbol{x}' - \boldsymbol{w}$, dann haben wir:
+
+$$\boldsymbol{y}=\beta_0 + \beta_1(\boldsymbol{x}' - \boldsymbol{w}) + \boldsymbol{\epsilon}$$
+$$\boldsymbol{y}=\beta_0 + \beta_1\boldsymbol{x}'  + \boldsymbol{\epsilon} - \beta_1\boldsymbol{w}$$
+$$\boldsymbol{y}=\beta_0 + \beta_1\boldsymbol{x}'  + \boldsymbol{v}$$
+
+In diesem Fall ist aber 
+$Cov(\boldsymbol{x'}, \boldsymbol{v})\neq0$ 
+und Annahme A2 somit verletzt!
+Im Falle der multiplen Regression wären dabei die Schätzer für
+*alle* unabhängigen Variablen verzerrt - nicht nur die der 
+falsch geschätzten Variable!
+
+### Selbstselektion
+
+Eine Verzerrung tritt immer dann auf wenn bei der Erhebung der
+Stichprobe Beobachtungen mit bestimmten Werten einer 
+unabhängigen Variablen mit größerer Wahrscheinlichkeit Eingang
+in die Stichprobe finden als andere.
+Dies ist besonders bei Umfragestudien eine große Gefahr.
+So sind in der Regel reiche Menschen weniger willig bei einer 
+Vermögensumfrage zu antworten.
+Das klassische Beispiel kommt aus der Soziologie:
+Sie möchten über eine Umfrage die Determinanten für Lesekompetenz
+erfragen und schicken dazu das Material per Post an die 
+möglichen Studienteilnehmer\*innen.
+Wahrscheinlich werden Personen mit schlechten oder gar keinen
+Lesekompetenzen eher nicht antworten - Ihre Stichprobe wäre also
+verzerrt!
+
+@heckman hat gezeigt, dass die Selbstselektion die gleichen
+technischen Konsequenzen hat wie eine vergessene Variable.
+Entsprechend werden wir die Herleitung hier nicht wiederholen.
+
+### Simulatanität
+
+Wir sprechen von Simulatanität wenn ein beidseitiges kausales
+Verhältnis zwischen der abhängigen Variable und einer 
+unabhängigen Variable herrscht.
+
+Betrachten wir dazu folgenden einfaches Beispiel.
+Die Variablen $Y$ und $X$ werden in der Population folgendermaßen
+bestimmt:
+
+\begin{align}
+Y&=\beta_0 + \beta_1 X + u\nonumber\\
+X&=\alpha_0 + \alpha_1 Y + v\nonumber
+\end{align}
+
+Wenn wir die Werte jeweils in die andere Gleichung einsetzen
+erhalten wir:
+
+\begin{align}
+Y=\frac{\beta_0+\beta_1\alpha_0}{1-\alpha_1\beta_1} + \frac{\beta_1v+u}{1-\alpha_1\beta_1}\nonumber\\
+X=\frac{\alpha_0+\alpha_1\beta_0}{1-\alpha_1\beta_1} + \frac{v+\alpha_1u}{1-\alpha_1\beta_1}\nonumber
+\end{align}
+
+Wenn wir in einem solchen Fall die Gleichung für $Y$ schätzen 
+ergibt sich für 
+$Cov(X, u)=Cov(\frac{v+\alpha_1u}{1-\alpha_1\beta_1}, u)\neq 0$
+und damit wiederum ein Verstoß gegen A2!
 
 ## Anhang: Übersicht über die Testverfahren
 
