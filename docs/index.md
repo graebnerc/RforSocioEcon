@@ -1,8 +1,8 @@
 --- 
 title: "R für die sozio-ökonomische Forschung"
-subtitle: "Version 0.7.0"
+subtitle: "Version 0.7.1"
 author: "[Dr. Claudius Gräbner](http://claudius-graebner.com/)"
-date: "2020-01-07" 
+date: "2020-01-12" 
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -10,7 +10,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: graebnerc/RforSocioEcon
-description: "R Skript in der Version 0.7.0"
+description: "R Skript in der Version 0.7.1"
 ---
 
 # Willkommen {-}
@@ -45,8 +45,9 @@ Kapitel              | Zentrale Inhalte            | Verwandter Vorlesungstermin
 | 5: Datenkunde und -aufbereitung | Einlesen und Schreiben sowie Aufbereitung von Datensätzen | T7 am 27.11.19 |
 | 6: Visualisierung | Erstellen von Grafiken | T7 am 27.11.19 |
 | 7: Formalia | Grundlegende formale Konzepte der Sozioökonomie. | T8 am 11.12.19 |
-| 8: Fortgeschrittene Ökonometrie | Weitere Konzepte der Ökonometrie | T9-10 am 8.&15.1.20|
-| 9: Ausblick | Ausblick zu weiteren Anwendungsmöglichkeiten | Optional |
+| 8: Fortgeschrittene Themen der linearen Regression | OLS-Annahmen: Inhalte, Tests und robuste Schätzverfahren | T9-10 am 8.&15.1.20 |
+| 9: Ausgewählte nichtlineare Schätzverfahren | Logit- und Probit-Modelle | T10 am 15.1.20 |
+| 10: Ausblick | Ausblick zu weiteren Anwendungsmöglichkeiten | Optional |
 | A: Einführung in Markdown | Wissenschaftliche Texte in R Markdown schreiben |Optional; relevant für Aufgabenblätter|
 | B: Wiederholung: Wahrscheinlichkeitstheorie  | Wiederholung grundlegender Konzepte der Wahrscheinlichkeitstheorie und ihrer Implementierung in R | Optional; wird für die quantitativen VL vorausgesetzt |
 | C: Wiederholung: Deskriptive Statistik  | Wiederholung grundlegender Konzepte der deskriptiven Statistik und ihrer Implementierung in R | Optional; wird für die quantitativen VL vorausgesetzt |
@@ -82,6 +83,8 @@ Datum    | Version | Wichtigste Änderungen         |
 20.11.19 | 0.5.1    | Korrektur von kleineren Rechtschreib/Grammatikfehlern; Fix für Problem mit html Version auf HP |
 03.12.19 | 0.6.0    | Kapitel zu formalen Konzepten hinzugefügt; kleinere Korrekturen |
 10.12.19 | 0.6.1    | Herleitung OLS hinzugefügt; bessere Beispiele bei Formalie; Konsolidierung Notation Kap. 4 und 7 |
+06.01.20 | 0.7.0    | Kapitel zur fortgeschrittenen Themen der Regression und nichtlinearen Schätzern hinzugefügt |
+12.01.20 | 0.7.1    | Ergänzung Beweise im Kapitel zu fortgeschrittenen Themen der Regression |
 
 ## Lizenz {-}
 

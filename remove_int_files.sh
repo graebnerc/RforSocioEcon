@@ -2,3 +2,21 @@ mv render* deleted
 mv tmp-* deleted
 mv *.utf8.md deleted
 mv *.log deleted
+mv *.aux deleted
+mv *.bbl deleted
+mv *.blg deleted
+mv *.out deleted
+mv *.rds deleted
+mv *.toc deleted
+mv R-SocioEcon-dt.tex deleted
+
+mv notes/render* deleted
+mv notes/tmp-* deleted
+mv notes/*.utf8.md deleted
+mv notes/*.log deleted
+mv notes/*.aux deleted
+mv notes/*.bbl deleted
+mv notes/*.blg deleted
+mv notes/*.out deleted
+mv notes/*.rds deleted
+mv notes/*.toc deleted
