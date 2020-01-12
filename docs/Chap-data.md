@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 #  Datenkunde und Datenaufbereitung {#data}
 
 
@@ -8,7 +13,7 @@ Gleichzeitig ist es einer der wichtigsten Schritte:
 ohne Daten können viele Forschungsfragen nicht angemessen beantwortet werden.
 
 
-\begin{center}\includegraphics[width=14.22in]{figures/chap-data-Ablaufschema} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{figures/chap-data-Ablaufschema} \end{center}
 
 In diesem Kaptitel liegt der Fokus auf den ersten beiden Abschnitten, der Akquise
 und der Aufbereitung ihrer Daten.
@@ -146,7 +151,7 @@ skalierten Daten unterschieden, wobei intervall- und verhältnisskalierte
 Daten häufig unter dem Label **kardinal**-skalierte Daten zusammen gefasst werden:
 
 
-\begin{center}\includegraphics{figures/data-data-classification} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{figures/data-data-classification} \end{center}
 
 Wir sprechen von **nominalskalierten** Daten wenn wir den einzelnen Ausprägungen
 der Daten zwar bestimmte Werte oder eindeutige Beschreibungen zuordnen können, 
@@ -522,7 +527,7 @@ mit der Sie Datensätze direkt suchen können, allerdings funktioniert das nach
 meiner Erfahrung nach nicht optimal.]
 
 
-\begin{center}\includegraphics[width=19.42in]{figures/chap-data-world-bank} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{figures/chap-data-world-bank} \end{center}
 
 
 Über die Weltbankseite finden Sie heraus, dass die beiden von Ihnen gesuchten 
@@ -2543,7 +2548,7 @@ Daher hat sich in der Praxis häufig die folgende oder eine ähnliche Ordnerstru
 bewährt:
 
 
-\begin{center}\includegraphics[width=2.79in]{figures/chap-data-Ordnerstruktur} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{figures/chap-data-Ordnerstruktur} \end{center}
 
 Der Vorteil an dieser Ordnerstruktur ist, dass Sie die Rohdaten in einem separaten 
 Ordner gespeichert haben und so explizit vom Rest ihres Workflows abgrenzen.

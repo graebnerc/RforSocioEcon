@@ -1,7 +1,13 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 #  Datenkunde und Datenaufbereitung {#data}
 
 ```{r include=FALSE}
 knitr::opts_chunk$set(comment = "#>")
+knitr::opts_chunk$set(out.height = '75%', out.width = '75%', fig.align = 'center') 
 ```
 
 In diesem Kapitel geht es um den auf den ersten Blick unspannendsten Teil der
@@ -10,7 +16,7 @@ Gleichzeitig ist es einer der wichtigsten Schritte:
 ohne Daten können viele Forschungsfragen nicht angemessen beantwortet werden.
 
 ```{r, echo=FALSE, fig.align='center'}
-knitr::include_graphics("figures/chap-data-Ablaufschema.png")
+knitr::include_graphics("figures/chap-data-Ablaufschema.png", auto_pdf = T)
 ```
 
 In diesem Kaptitel liegt der Fokus auf den ersten beiden Abschnitten, der Akquise

@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Lineare statistische Modelle in R | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="R Skript in der Version 0.7.0" />
+  <meta name="description" content="R Skript in der Version 0.7.1" />
   <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Lineare statistische Modelle in R | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="R Skript in der Version 0.7.0" />
+  <meta property="og:description" content="R Skript in der Version 0.7.1" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 4 Lineare statistische Modelle in R | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="R Skript in der Version 0.7.0" />
+  <meta name="twitter:description" content="R Skript in der Version 0.7.1" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-01-07" />
+<meta name="date" content="2020-01-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -280,7 +280,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.6.2" data-path="advlin.html"><a href="advlin.html#testen-auf-die-richtige-funktionale-form"><i class="fa fa-check"></i><b>8.6.2</b> Testen auf die richtige funktionale Form</a></li>
 <li class="chapter" data-level="8.6.3" data-path="advlin.html"><a href="advlin.html#wahl-der-funktionalen-form"><i class="fa fa-check"></i><b>8.6.3</b> Wahl der funktionalen Form</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="advlin.html"><a href="advlin.html#anhang-übersicht-über-die-testverfahren"><i class="fa fa-check"></i><b>8.7</b> Anhang: Übersicht über die Testverfahren</a></li>
+<li class="chapter" data-level="8.7" data-path="advlin.html"><a href="advlin.html#weitere-fehlerquellen-systematische-messfehler-selbstselektion-und-simulatanität"><i class="fa fa-check"></i><b>8.7</b> Weitere Fehlerquellen: Systematische Messfehler, Selbstselektion und Simulatanität</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="advlin.html"><a href="advlin.html#messfehler"><i class="fa fa-check"></i><b>8.7.1</b> Messfehler</a></li>
+<li class="chapter" data-level="8.7.2" data-path="advlin.html"><a href="advlin.html#selbstselektion"><i class="fa fa-check"></i><b>8.7.2</b> Selbstselektion</a></li>
+<li class="chapter" data-level="8.7.3" data-path="advlin.html"><a href="advlin.html#simulatanität"><i class="fa fa-check"></i><b>8.7.3</b> Simulatanität</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="advlin.html"><a href="advlin.html#anhang-übersicht-über-die-testverfahren"><i class="fa fa-check"></i><b>8.8</b> Anhang: Übersicht über die Testverfahren</a></li>
+<li class="chapter" data-level="8.9" data-path="advlin.html"><a href="advlin.html#advlin-proofs"><i class="fa fa-check"></i><b>8.9</b> Anhang: Relevante Theoreme und ihre mathematischen Beweise</a><ul>
+<li class="chapter" data-level="8.9.1" data-path="advlin.html"><a href="advlin.html#theoreme"><i class="fa fa-check"></i><b>8.9.1</b> Theoreme</a></li>
+<li class="chapter" data-level="8.9.2" data-path="advlin.html"><a href="advlin.html#beweise"><i class="fa fa-check"></i><b>8.9.2</b> Beweise</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>9</b> Ausgewählte nichtlineare Schätzverfahren</a><ul>
 <li class="chapter" data-level="9.1" data-path="nonlin.html"><a href="nonlin.html#logit"><i class="fa fa-check"></i><b>9.1</b> Binäre abhängige Variablen: Logit- und Probit-Modelle</a><ul>
@@ -383,7 +392,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <blockquote>
 <p>wobei <span class="math inline">\(C_i\)</span> für die Konsumausgaben und <span class="math inline">\(Y_i\)</span> für das BIP steht. Diese Gleichung stellt unser statistisches Modell dar. Es hat zwei Parameter, <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span>, die wir mit Hilfe unserer Daten schätzen möchten. Wir laden uns also Daten zum Haushaltseinkommen und zum BIP aus dem Internet herunter und inspizieren die Daten zunächst visuell:</p>
 </blockquote>
-<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-4-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>Der Zusammenhang scheint gut zu unserem linearen Modell oben zu passen, sodass wir das Modell mit Hilfe der Daten schätzen um konkrete Werte für <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> zu identifizieren:</p>
 </blockquote>
@@ -396,7 +405,7 @@ schaetzung_bip</code></pre></div>
 #&gt; Coefficients:
 #&gt; (Intercept)          BIP  
 #&gt;   -184.0780       0.7064</code></pre>
-<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-6-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>In dieser Abbildung korrespondiert <span class="math inline">\(\beta_0\)</span> zum Achensabschnitt und <span class="math inline">\(\beta_1\)</span> zur Steigung der Konsumgerade. Wir können <span class="math inline">\(\beta_0\)</span> als die Konsumausgaben interpretieren, wenn das BIP Null betragen würde, und <span class="math inline">\(\beta_1\)</span> als die marginale Konsumquote, also den Betrag, um den die Konsumausgaben steigen, wenn das BIP um ein Euro steigt. Die geschätzten Werte für <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> sind hier <span class="math inline">\(-184\)</span> und <span class="math inline">\(0.7\)</span>. Auf dieser Basis können wir auch ausrechnen, wie hoch die Konsumausgaben in einer Volkswirtschaftslehre mit einem BIP von 8000 wäre, indem wir uns einfach an der geschätzten Gerade bis zu diesem Betrag fortbewegen.</p>
 </blockquote>
@@ -433,7 +442,7 @@ beta_<span class="dv">1</span> &lt;-<span class="st"> </span>schaetzung_bip[[<sp
 <div id="schätzung-mit-der-kleinste-quadrate-methode" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Schätzung mit der Kleinste-Quadrate-Methode</h3>
 <p>Nachdem wir unser Modell aufgestellt haben, möchten wir nun die Parameter <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> <em>schätzen</em>. Denn diese Werte sind für uns nicht unmittelbar beobachtbar. Wir brauchen also einen <em>Schätzer</em>. Ein Schätzer ist eine Funktion, die uns für die Daten, die wir haben, den optimalen Wert für den gesuchten Parameter gibt.<a href="#fn16" class="footnoteRef" id="fnref16"><sup>16</sup></a> Wir suchen also nach den Werten für <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> sodass die resultierende Gerade möglichst nahe an allen <span class="math inline">\(Y_i\)</span> Werten in folgendem Graph ist:</p>
-<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-8-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Wenn wir das händisch machen würden, könnten wir versuchen die Abstände zwischen den einzelnen <span class="math inline">\(Y_i\)</span> und der Regressionsgerade messen und letztere so lange herumschieben, bis die Summe der Abstände möglichst klein ist. In gewisser Weise ist das genau das, was wir in der Praxis auch machen. Nur arbeiten wir nicht mit den Abständen als solchen, denn dann würden sich positive und negative Abstände ja ausgleichen. Daher quadrieren wir die Abstände, bevor wir sie summieren. Daher ist die gängigste Methode, Werte für <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> zu finden auch als <strong>Kleinste-Quadrate Methode</strong> (engl. <em>ordinary least squares</em> - OLS) bekannt.<a href="#fn17" class="footnoteRef" id="fnref17"><sup>17</sup></a> Die dadurch definierten Schätzer <span class="math inline">\(\hat{\beta}_0\)</span> und <span class="math inline">\(\hat{\beta}_1\)</span> sind entsprechend als <em>OLS-Schätzer</em> bekannt.</p>
 <p>Wir bezeichnen die Abweichung von <span class="math inline">\(Y_i\)</span> zu Regressionsgeraden als <em>Residuum</em> <span class="math inline">\(e_i\)</span>. Wie in der Abbildung zu sehen ist, gilt für die Abweichung von der Regressionsgeraden für die einzelnen <span class="math inline">\(Y_i\)</span>: <span class="math inline">\(e_i=(Y_i-\hat{\beta}_0-\hat{\beta}_1x_i)\)</span>. Wir suchen also nach den Werten für <span class="math inline">\(\hat{\beta}_0\)</span> und <span class="math inline">\(\hat{\beta}_1\)</span> für die die Summe aller Residuen minimal ist:</p>
 <p><span class="math display">\[\hat{\beta}_0, \hat{\beta}_1 =\text{argmin}_{\beta_0, \beta_1} \sum_{i=1}^n(Y_i-\beta_0-\beta_1x_i)^2\]</span></p>
@@ -484,7 +493,7 @@ reg_formel &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<spa
 <pre><code>#&gt; (Intercept)           x 
 #&gt;        2.69        3.08</code></pre>
 <p>Dies ist in der Praxis häufig nützlich, z.B. wenn wir wie in der Einleitung Werte mit Hilfe unseres Modell vorhersagen wollen. Zum Abschluss hier noch einmal die Daten mit der von uns gerade berechneten Regressionsgeraden:</p>
-<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-15-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Zwar wissen wir jetzt, wie wir eine einfache lineare Regression schätzen, allerdings hört die Arbeit hier nicht auf! Unsere bisherige Tätigkeiten korrespondieren zu der im <a href="stat-rep.html#stat-rep">Anhang zur schließenden Statistik</a> beschriebenen <em>Parameterschätzung</em>. Wir wollen aber auch noch die anderen beiden Verfahren, Hypothesentests und Konfidenzintervalle, abdecken und lernen wie wir die Güte unserer Schätzung besser einschätzen können.</p>
 <p>Zuvor wollen wir aber noch einmal genauer überprüfen, welche Annahmen genau erfüllt sein müssen, damit die OLS-Prozedur auch funktioniert.</p>
 </div>
@@ -516,21 +525,21 @@ reg_formel &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<spa
 tss</code></pre></div>
 <pre><code>#&gt; [1] 3.30012</code></pre>
 <p>Diese Werte sind in folgender Abbildung für unseren Beispieldatensatz von oben grafisch dargestellt:</p>
-<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-17-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Die TSS wollen wir nun aufteilen in eine Komponente, die in unserer Regression erklärt wird, und eine Komponente, die nicht erklärt werden kann. Bei letzterer handelt es sich um die Abweichungen der geschätzten Werte <span class="math inline">\(\hat{Y_i}\)</span> und den tatsächlichen Werten <span class="math inline">\(Y_i\)</span>, den oben definierten Residuen <span class="math inline">\(e_i\)</span>. Entsprechend definieren wir die <em>Residual Sum of Squares (RSS)</em> (dt.: <em>Residuenquadratsumme</em>) als:</p>
 <p><span class="math display">\[RSS=\sum_i^ne_i^2\]</span> In R:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rss &lt;-<span class="st"> </span><span class="kw">sum</span>(schaetzung[[<span class="st">&quot;residuals&quot;</span>]]<span class="op">**</span><span class="dv">2</span>)
 rss</code></pre></div>
 <pre><code>#&gt; [1] 2.35148</code></pre>
 <p>Diese sehen wir hier:</p>
-<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-19-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Was noch fehlt sind die <em>Explained Sum of Squares (ESS)</em> (dt. <em>Summe der Quadrate der Erklärten Abweichungen</em>), also die Variation in der abhängigen Variable, die durch die Regression erklärt wird. Dabei handelt es sich um die quadrierte Differenz zwischen <span class="math inline">\(\bar{Y}\)</span> und den geschätzten Werten <span class="math inline">\(\hat{Y}\)</span>:</p>
 <p><span class="math display">\[ESS=\sum_{i=1}^n(\hat{Y}_i-\bar{Y})^2\]</span> Diese ergibt sich in R als:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ess &lt;-<span class="st"> </span><span class="kw">sum</span>((schaetzung[[<span class="st">&quot;fitted.values&quot;</span>]] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(datensatz<span class="op">$</span>y))<span class="op">**</span><span class="dv">2</span>)
 ess</code></pre></div>
 <pre><code>#&gt; [1] 0.94864</code></pre>
 <p>Und grafisch:</p>
-<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-21-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Für die drei gerade eingeführten Teile der Gesamtvarianz gilt im Übrigen:</p>
 <p><span class="math display">\[TSS=ESS+RSS\]</span></p>
 <p>Aus diesen Werten können wir nun das <strong>Bestimmtheitsmaß</strong> <span class="math inline">\(R^2\)</span> berechnen, welches Informationen darüber gibt, welchen Anteil der Variation in <span class="math inline">\(Y_i\)</span> durch unser Modell erklärt wird:</p>
@@ -597,7 +606,7 @@ beta_1_estimates &lt;-<span class="st"> </span><span class="kw">rep</span>(<span
 <blockquote>
 <p>Nun können wir die Streuung der Schätzer direkt visualisieren:</p>
 </blockquote>
-<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-27-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>Wie wir sehen, treffen die Schätzer im Mittel den richtigen Wert, streuen aber auch. Die Varianz gibt dabei die Breite des jeweiligen Histograms an und je strärker die relativen Häufigkeiten des geschätzten Wertes um den wahren Wert konzentriert sind, also desto geringer die Varianz, desto genauer ist der Schätzer.</p>
 </blockquote>
@@ -678,9 +687,9 @@ datensatz &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
   <span class="dt">y =</span> y
 )</code></pre></div>
 <p>Wie wir im folgenden sehen ist die geschätzte Gerade nicht exakt deckungsgleich zur ‘wahren’ Gerade, aber doch durchaus nahe dran:</p>
-<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-32-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Grundsätzlich gilt, dass die erwartete Deckung der beiden dann höher ist wenn (1) die Annahmen für die einfache lineare Regression gut erfüllt sind und (2) die Stichprobe groß ist. Im Moment sind wir in einer Luxussituation, da wir die ‘wahre’ Gerade kennen: wir haben ja den Datensatz für den wir die Gerade schätzen selbst erstellt. In der Praxis bleibt uns nichts anderes üblich als (1) so gut es geht zu überprüfen und die restliche Unsicherheit so gut es geht zu quantifizieren. Im folgenden wollen wir uns genauer anschauen welche Methoden uns dafür zur Verfügung stehen. Vorher wollen wir uns aber noch ansehen, wie eine größere Stichprobe die Schätzgenauigkeit beeinflusst, wobei wir die formale Begründung warum das so ist bis ans Ende des Kapitels aufschieben:</p>
-<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-34-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="linmod-residuals" class="section level3">
 <h3><span class="header-section-number">4.3.5</span> Residuenanalyse</h3>
@@ -693,10 +702,10 @@ datensatz &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
 <li><p><strong>A6:</strong> <span class="math inline">\(\epsilon \propto \mathcal{N}(0, \sigma^2)\)</span></p></li>
 </ol>
 <p>Um die ersten beiden Annahmen zu überpüfen bilden wir die <span class="math inline">\(e_i\)</span> gegen <span class="math inline">\(\hat{Y}\)</span> ab und erhalten so den so genannten <strong>Tukey-Anscombe-Plot</strong>:</p>
-<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-36-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Hier geht es nun darum eine Struktur zu erkennen. Wenn alle Annahmen korrekt sind, sehen wir nur eine unstrukturierte Punktewolke. In dem vorliegenden Fall können wir aufgrund der wenigen Datenpunkte den Plot aber nur mit großer Schwerierigkeit interpretieren - auch deswegen sind große Stichproben immer Besser. Es scheint aber so zu sein, dass die Varianz der Fehler mit <span class="math inline">\(x_i\)</span> steigt, also A3 möglicherweise verletzt ist - zum Glück kann man den OLS-Schätzer leicht modifizieren um damit umzugehen. Ansonsten ist keine Struktur zumindest unmittelbar ersichtlich.</p>
 <p>Als nächstes wollen die Annahme normalverteilter Residuen überprüfen. Das geht mit dem so genannten <strong>Q-Q-Plot</strong>:</p>
-<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-37-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Bei normalverteilten Residuen würden die Punkte möglichst exakt auf der Linie liegen. Das ist hier nur bedingt der Fall, deswegen sollten wir skeptisch bezüglich aller Ergebnisse sein, die auf der Normalverteilungsannahme aufbauen, also auf den Standardfehlern, <span class="math inline">\(p\)</span>-Werten und den Konfidenzintervallen.</p>
 <p>Natürlich gibt es auch noch weitere Probleme, die bei einer linearen Regression auftreten können. So ist es immer ein Problem, wenn wir eine wichtige erklärende Variable in unserem Modell vergessen haben (<strong>omitted variable bias</strong>), da deren Effekt dann durch die Fehlerterme abgefangen wird und zu einer Verletzung von <strong>A1</strong> und <strong>A2</strong> führt.</p>
 <p>Ein großes Problem stellt auch die so genannte <strong>Simultanität</strong> dar: diese tritt auf, wenn zwischen erklärter und erklärender Variable ein wechelseitiges kausales Verhältnis besteht. Wir sprechen dann auch von einem <strong>Endogenitätsproblem</strong>, welches leider sehr häufig auftritt und letztendlich vor allem theoretisch identifiziert werden muss.</p>

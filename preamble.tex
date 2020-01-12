@@ -1,6 +1,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage{booktabs}
-\usepackage{amsthm, amssymb, mathrsfs}
+\usepackage{amsmath, amsthm, amssymb, mathrsfs}
 \usepackage{xcolor, changepage}
 \definecolor{DueMain}{RGB}{0,76,147}
 \usepackage{setspace}
@@ -18,7 +18,16 @@
 }
 \makeatother
 
+% Mathematische Befehle
 \DeclareMathOperator*{\plim}{plim}
+\newtheoremstyle{break}
+  {\topsep}{\topsep}%
+  {\itshape}{}%
+  {\bfseries}{}%
+  {\newline}{}%
+\theoremstyle{break}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
 
 % Neu fuer Titel
 \usepackage[some]{background}

@@ -1,0 +1,248 @@
+
+```{r include=FALSE}
+knitr::opts_chunk$set(comment = "#>")
+knitr::opts_chunk$set(out.height = '75%', out.width = '75%', fig.align = 'center') 
+```
+
+# Eine kurze Einführung in die Versionskontrolle mit Git
+
+## Was ist Git und warum ist es hilfreich?
+
+## Git und R-Studio
+
+## Benutzeroberflächen vs. Konsole
+
+## Eine anwendungsorientierte Einführung 
+
+Vieles in diesem Abschnitt ist inspiriert von dem hervorragenden (aber englischen)
+Tutorial [Git Immersion](http://gitimmersion.com/), welches noch über die hier 
+vermittelten Kenntnisse hinaus geht. 
+Es ist sehr schön in kleine Abschnitte gegliedert und ich kann nur empfehlen,
+dieses Tutorial ebenfalls durchzuführen.
+Ein gewisses Hintergrundwissen zu Git schadet auch nie wenn es darum geht 
+die Funktionsweise der Funktionen besser zu verstehen. 
+Es gibt dabei viele gute Ressourcen, an deutschen Büchern bietet sich z.B.
+das offizielle [Git Buch](https://git-scm.com/book/de/v2) [@GitBuch] an.
+
+## Häufig verwendete Befehle {#git-befehle}
+
+An dieser Stelle werden noch einmal häufig vorkommente Arbeitsabläufe gesammelt.
+
+### Dateien auf Zustand des letzten Commits zurücksetzen
+
+Wenn Sie mit Ihren Änderungen nicht zufrieden sind können Sie Dateien einfach
+auf den Zustand des letzten Commits zurücksetzen.
+
+Zunächst müssen Sie die Dateien 'unstagen':
+
+```{bash, eval=FALSE}
+
+```
+
+
+Für alle Dateien:
+
+```{bash, eval=FALSE}
+git checkout -- .
+```
+
+
+Für eine spezifische Datei:
+
+```{bash, eval=FALSE}
+git checkout --path/to/file/to/revert
+```
+
+Um den Zustand eines älteren Commits wiederherzustellen gehen Sie folgendermaßen
+vor:
+
+
+### Push Tags
+
+Um alle neuen Tags auf den Remote zu pushen verwenden Sie einfach `--tags`:
+
+```{bash, eval=FALSE}
+git push --tags
+```
+
+Dies updated alle Tags auf dem Server, die zu dem aktuellen Branch gehören.
+
+### Branch Liste vom Remote updaten
+
+Um die aktuelle Liste von Branches auf dem Remote zu bekommen:
+
+```{bash, eval=FALSE}
+git remote update origin --prune
+```
+
+
+### Branch auf dem Remote löschen
+
+```{bash, eval=FALSE}
+git push <remote_name> --delete <branch_name>
+```
+
+
+### Lokale Liste der Branches auf dem Remote updaten
+
+Das ist nötig wenn Sie auf dem Remote einen Branch gelöscht haben.
+Dieser würde bei `git branch -a` lokal immer noch angezeigt werden.
+Oder es wurde ein neuer Branch erstellt.
+In jedem Fall können Sie die lokale Liste updaten:
+
+```{bash, eval=FALSE}
+git remote update origin --prune
+```
+
+### Neuen Branch von remote holen
+
+```{bash, eval=FALSE}
+git checkout -t <name of remote>/test
+```
+
+
+
+### Commit-History löschen
+
+Wenn Sie alle vergangenen Commits löschen wollen und nur den Code in dem 
+aktuellen Zustand behalten wollen können Sie folgendermaßen vorgehen.
+
+Als erstes erstellen Sie aus dem aktuellen Branch einen verweisten Branch (*orphan*),
+also einen Branch ohne Geschichte:
+
+```{bash, eval=FALSE}
+git checkout --orphan latest_branch
+```
+
+Dann werden alle Dateien gestaged und commited:
+
+```{bash, eval=FALSE}
+git add -A
+git commit -am "commit message"
+```
+
+Danach wird der Master-Branch gelöscht:
+
+```{bash, eval=FALSE}
+git branch -D master
+```
+
+Und der neue (geschichtslose) Branch in `master` umbenannt:
+
+```{bash, eval=FALSE}
+git branch -m master
+```
+
+Jetzt noch mit dem Zusatz `-f` pushen und alle vergangenen Commits sind eliminiert:
+
+```{bash, eval=FALSE}
+git push -f origin master
+```
+
+### Commits für einzelne Dateien entfernen
+
+Manchmal haben Sie aus Versehen eine sehr große Datei committed. 
+Das ist problematisch, wenn Sie Ihr Verzeichnis mit Github synchronisieren, weil
+es hier ein Größenlimit von 100 MB gibt. 
+Und auch sonst möchten Sie riesige Datensätze vielleicht lieber nicht mit Git
+tracken. 
+Deswegen sollten diese im `.gitignore` vermerkt sein.
+Sollten Sie das aber vergessen haben und möchten nun ihr Verzeichnis 
+auf Github updaten, müssen Sie erst die großen Files aus der Commit-Geschichte
+entfernen.
+
+Das ist nicht ganz trivial, geht aber so:
+
+```{bash, eval=FALSE}
+git filter-branch --force --index-filter  "git rm --cached --ignore-unmatch PATH-TO-FILE"  --prune-empty --tag-name-filter cat -- --all
+```
+
+
+Nun können Sie die Datei zu `.gitignore` hinzufügen.
+Zum Beispiel mit
+
+```{bash, eval=FALSE}
+echo "ZU-ENTFERNENDES-FILE" >> .gitignore
+```
+
+Jetzt kann alles commited werden und die neu geschriebene Geschichte gepusht 
+werden:
+
+```{bash, eval=FALSE}
+git push origin --force --all
+```
+
+Das gilt natürlich auch für Tags:
+
+```{bash, eval=FALSE}
+git push origin --force --tags
+```
+
+### Einen Branch ohne Geschichte erstellen
+
+Manchmal möchten Sie einen Branch ohne die ganze Commit-Vorgeschichte erstellen.
+Ein solcher Branch wird *orphan branch* genannt - ein verwaister Branch also.
+
+Das kann z.B. praktisch sein, wenn Sie den Code eines Modells für eine 
+Publikation veröffentlichen wollen, aber nicht die ganzen Arbeitsschritte vorher
+transparent machen wollen.
+Nehmen wir an der neue Branch soll `publication` heißen:
+
+```{bash, eval=FALSE}
+git checkout --orphan publication
+git add -A
+git commit -m "Commit status upon acceptance"
+```
+
+Und das ganze dann pushen:
+
+```{bash, eval=FALSE}
+git push -u origin publication
+```
+
+
+### Einen Branch mergen, der mit der lokalen Version inkonsistent ist
+
+Wenn es bei dem Remote Branch Commits gibt, die es bei dem lokalen Branch noch
+nicht gibt bekommt man beim Aufrufen von `pull` oft einen Fehler.
+Man geht dann am besten folgendermaßen vor:
+
+Zunächst holen wir uns die Infos über die Änderungen:
+
+```{bash, eval=FALSE}
+git fetch origin  --prune
+```
+
+Dann schauen wir uns die Änderungen einmal an:
+
+```{bash, eval=FALSE}
+git checkout origin/BRANCH-NAME
+```
+
+Nun können wir auch Änderungen vornehmen. 
+Wenn wir zufrieden sind und den aktuellen Zustand in unseren Branch mergen wollen:
+
+```{bash, eval=FALSE}
+git checkout BRANCH-NAME
+git merge --ff-only origin/masterBRANCH-NAME
+```
+
+Wenn es keine Konflikte geht war es das. Falls doch kommt der Fehler:
+
+```
+fatal: Not possible to fast-forward, aborting.
+``` 
+
+Dann müssen wir die Konflikte zunächst lösen:
+
+```{bash, eval=FALSE}
+git rebase --preserve-merges origin/branch-name
+```
+
+Jetzt können wir wieder normal auf die Remote pushen.
+
+*Hinweis:* Wir haben jetzt die Geschichte des Branches verändert. Das bedeutet,
+dass falls wir diesen Branch aber mit einem anderen Branch mergen wollen,
+müssen wir den Zusatz `--allow-unrelated-histories` beim Merge verwenden!
+
+
