@@ -64,7 +64,8 @@ zwei Parameter, $\beta_0$ und $\beta_1$, die wir mit Hilfe unserer Daten
 schätzen möchten. Wir laden uns also Daten zum Haushaltseinkommen und zum BIP
 aus dem Internet herunter und inspizieren die Daten zunächst visuell:
 
-![](Chap-linmodels_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-linmodels_files/figure-latex/unnamed-chunk-4-1} \end{center}
 
 > Der Zusammenhang scheint gut zu unserem linearen Modell oben zu passen, sodass
 wir das Modell mit Hilfe der Daten schätzen um konkrete Werte für $\beta_0$ und
@@ -86,7 +87,8 @@ schaetzung_bip
 #>   -184.0780       0.7064
 ```
 
-![](Chap-linmodels_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-linmodels_files/figure-latex/unnamed-chunk-6-1} \end{center}
 
 > In dieser Abbildung korrespondiert $\beta_0$ zum Achensabschnitt und $\beta_1$
 zur Steigung der Konsumgerade. Wir können $\beta_0$ als die Konsumausgaben
@@ -212,7 +214,8 @@ Konzept eines Schätzers sehr fremd ist, schauen Sie doch mal in den
 Wir suchen also nach den Werten für $\beta_0$ und $\beta_1$ sodass die 
 resultierende Gerade möglichst nahe an allen $Y_i$ Werten in folgendem Graph ist:
 
-![](Chap-linmodels_files/figure-latex/unnamed-chunk-8-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-linmodels_files/figure-latex/unnamed-chunk-8-1} \end{center}
 
 Wenn wir das händisch machen würden, könnten wir versuchen die Abstände zwischen
 den einzelnen $Y_i$ und der Regressionsgerade messen und letztere so lange 
@@ -369,7 +372,8 @@ Werte mit Hilfe unseres Modell vorhersagen wollen.
 Zum Abschluss hier noch einmal die Daten mit der von uns gerade berechneten 
 Regressionsgeraden:
 
-![](Chap-linmodels_files/figure-latex/unnamed-chunk-15-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-linmodels_files/figure-latex/unnamed-chunk-15-1} \end{center}
 
 
 Zwar wissen wir jetzt, wie wir eine einfache lineare Regression schätzen, 
@@ -496,7 +500,8 @@ tss
 Diese Werte sind in folgender Abbildung für unseren Beispieldatensatz von 
 oben grafisch dargestellt:
 
-![](Chap-linmodels_files/figure-latex/unnamed-chunk-17-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-linmodels_files/figure-latex/unnamed-chunk-17-1} \end{center}
 
 Die TSS wollen wir nun aufteilen in eine Komponente, die in unserer Regression
 erklärt wird, und eine Komponente, die nicht erklärt werden kann. 
@@ -521,7 +526,8 @@ rss
 
 Diese sehen wir hier:
 
-![](Chap-linmodels_files/figure-latex/unnamed-chunk-19-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-linmodels_files/figure-latex/unnamed-chunk-19-1} \end{center}
 
 Was noch fehlt sind die *Explained Sum of Squares (ESS)* 
 (dt. *Summe der Quadrate der Erklärten Abweichungen*), also die Variation
@@ -544,7 +550,8 @@ ess
 
 Und grafisch:
 
-![](Chap-linmodels_files/figure-latex/unnamed-chunk-21-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-linmodels_files/figure-latex/unnamed-chunk-21-1} \end{center}
 
 Für die drei gerade eingeführten Teile der Gesamtvarianz gilt im Übrigen:
 
@@ -717,7 +724,8 @@ for (i in 1:n_datensaetze){
 
 > Nun können wir die Streuung der Schätzer direkt visualisieren:
 
-![](Chap-linmodels_files/figure-latex/unnamed-chunk-27-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-linmodels_files/figure-latex/unnamed-chunk-27-1} \end{center}
 
 > Wie wir sehen, treffen die Schätzer im Mittel den richtigen Wert, streuen aber 
 auch. Die Varianz gibt dabei die Breite des jeweiligen Histograms an und je 
@@ -910,7 +918,8 @@ datensatz <- data.frame(
 Wie wir im folgenden sehen ist die geschätzte Gerade nicht exakt deckungsgleich
 zur 'wahren' Gerade, aber doch durchaus nahe dran:
 
-![](Chap-linmodels_files/figure-latex/unnamed-chunk-32-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-linmodels_files/figure-latex/unnamed-chunk-32-1} \end{center}
 
 Grundsätzlich gilt, dass die erwartete Deckung der beiden dann höher ist wenn
 (1) die Annahmen für die einfache lineare Regression gut erfüllt sind und 
@@ -928,7 +937,8 @@ bis ans Ende des Kapitels aufschieben:
 
 
 
-![](Chap-linmodels_files/figure-latex/unnamed-chunk-34-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-linmodels_files/figure-latex/unnamed-chunk-34-1} \end{center}
 
 
 ### Residuenanalyse {#linmod-residuals}
@@ -954,7 +964,8 @@ Regressionsmodells zu überprüfen:
 Um die ersten beiden Annahmen zu überpüfen bilden wir die $e_i$ gegen 
 $\hat{Y}$ ab und erhalten so den so genannten **Tukey-Anscombe-Plot**:
 
-![](Chap-linmodels_files/figure-latex/unnamed-chunk-36-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-linmodels_files/figure-latex/unnamed-chunk-36-1} \end{center}
 
 
 Hier geht es nun darum eine Struktur zu erkennen. 
@@ -970,7 +981,8 @@ Ansonsten ist keine Struktur zumindest unmittelbar ersichtlich.
 Als nächstes wollen die Annahme normalverteilter Residuen überprüfen.
 Das geht mit dem so genannten **Q-Q-Plot**:
 
-![](Chap-linmodels_files/figure-latex/unnamed-chunk-37-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-linmodels_files/figure-latex/unnamed-chunk-37-1} \end{center}
 
 Bei normalverteilten Residuen würden die Punkte möglichst exakt auf der Linie
 liegen. Das ist hier nur bedingt der Fall, deswegen sollten wir skeptisch 

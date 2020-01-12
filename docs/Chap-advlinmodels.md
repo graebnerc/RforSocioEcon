@@ -1,11 +1,33 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 # Fortgeschrittene Themen der linearen Regression {#advlin}
 
 
+
+In diesem Kapitel werden wir auf den formalen Konzepten des letzten Kapitels,
+insbesondere auf den Regeln zur Matrizenalgebra aufbauen und die Annahmen
+und Funktionsweise des OLS-Schätzers genauer untersuchen.
+Der OLS-Schätzer ist das am weitesten verbreitete Schätzverfahren für die
+lineare Regression.
+In diesem Kapitel werden wir sehen, dass dies an seinen attraktiven 
+Eigenschaften wie *Erwartungsreue*, *Effizienz* und *Konsistenz* liegt.
+
+Wie alle Schätzverfahren baut der OLS-Schätzer jedoch auf bestimmten 
+Annahmen auf und es muss uns immer klar sein, dass der OLS-Schätzer
+seine attraktiven Eigenschaften nur hat, wenn diese Annahmen erfüllt sind.
+Für die Praxis sind also die folgenden vier Fragen relevant:
+
+1. Was sind die relevanten Annahmen des OLS-Schätzers?
+2. Was passiert wenn die Annahmen nicht erfüllt sind?
+3. Wie können wir überprüfen ob diese Annahmen erfüllt sind?
+4. Was können wir tun wenn die Annahmen *nicht* erfüllt sind?
+
+Diese Fragen zu beantworten ist die zentrale Herausforderung in diesem Kapitel.
+
+Der Fokus des Hauptkapitels liegt dabei auf der zugrundeliegenden Intuition.
+Daher werden wir uns dort nicht mit den mathematischen Beweisen beschäftigen,
+sondern das Verhalten des OLS-Schätzers anhand von Simulationen illustrieren.
+Für alle interessierten gibt es jedoch am Ende des Kapitels einen Überblick zu 
+allen relevanten Theoremen und ihren mathematischen Beweisen 
+(siehe [Anhang zu Theoremen und Beweisen](#advlin-proofs)).
 
 In diesem Kapitel werden die folgenden R Pakete verwendet:
 
@@ -41,6 +63,8 @@ verletzt sind.
 Um die Konsequenzen verletzter Annahmen zu illustrieren verwenden wir häufig die
 Methode der *Monte Carlo Simulation*, die wir am Ende dieses Abschnitts einführen
 werden.
+Einen Überlick zu allen relevanten Theoremen und ihren mathematischen Beweisen
+finden Sie am Ende des Kapitels, im [Anhang zu Theoremen und Beweisen](#advlin-proofs).
 
 ### Annahmen im Matrixschreibweise
 
@@ -72,7 +96,7 @@ Der OLS Schätzer $\boldsymbol{\hat{\beta}}$ für $\boldsymbol{\beta}$ ist durch
 folgende Gleichung definiert (für die Herleitung siehe [hier](#ols-deriv)):
 
 $$\boldsymbol{\hat{\beta}} = 
-\left(\boldsymbol{X'X}\right)^{-1}\left(\boldsymbol{X'Y}\right)$$
+\left(\boldsymbol{X'X}\right)^{-1}\left(\boldsymbol{X'y}\right)$$
 
 Unter bestimmten Annahmen hat dieser Schätzer die attraktiven Eigenschaften
 *Erwartungstreue* und *Effizienz* unabhängig der Stichprobengröße und in 
@@ -83,6 +107,9 @@ Die relevanten Annahmen sind dabei die folgenden:
 
 Diese Annahme ergibt sich unmittelbar aus der Formulierung: 
 $\boldsymbol{y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}$.
+Ein Beispiel für einen solchen Zusammenhang findet sich an Abbildung 
+\ref{fig:nonlins}a.
+
 Wenn der Zusammenhang zwischen abhängiger und unabhängigen Variablen nicht linear
 ist können wir das klassische OLS Modell in der Regel nicht verwenden.
 Häufig können wir aber die Daten so transformieren, dass wir deren Verhältnis
@@ -98,17 +125,44 @@ folgende lineare Gleichung, die wir dann mit OLS schätzen können:
 
 $$\ln(\boldsymbol{y}) = \ln(\boldsymbol{x_1}){\beta_1} + \boldsymbol{\epsilon}$$
 
-Es ist dabei zu beachten, dass das Regressionsmodell kein Problem mit nichtlinearen
-Transformationen für die abhängigen Variablen wie $\ln(\boldsymbol{x_i})$ hat, 
-sondern dass nur der funktionale Zusammenhang linear sein muss. 
+Ein Beispiel für einen solchen Zusammenhang findet sich an Abbildung 
+\ref{fig:nonlins}b und c.
+
+Insgesamt hat das lineare Regressionsmodell kein Problem mit nichtlinearen
+Transformationen für die abhängigen Variablen wie $\ln(\boldsymbol{x_i})$. 
+Nur der funktionale Zusammenhang muss linear sein. 
+Auch die folgende Spezifikation ist demenstprechend kompatibel mit A1, da nur
+die abhängigen Variablen in einer nichtlinearen Transformation vorkommen:^[
+Das ist insofern auch logisch, da wir ja einfach eine neue Variable $z=x_2^2$ 
+erstellen und diese dann als unabhängige Variable in der Regression 
+verwenden könnten. Dann würde noch nicht einmal der Anschein der Nichtlinearität
+erweckt obswohl die Werte der unabhängigen Variablen die gleichen wären.
+]
+
+$$\boldsymbol{y} = \boldsymbol{x_1}{\beta_1} + \boldsymbol{x_2^2}{\beta_2} + \boldsymbol{\epsilon}$$
+
 Daher sprechen wir häufig davon, dass mit OLS zu schätzende Zusammenhänge
 *linear in den Parametern* sein müssen - nicht notwendigerweise linear per se.
-Wir werden uns mit den relevanten Transformationen später in diesem Kapitel 
-beschäftigen.
+Ein Beispiel für einen nichtlinearen Zusammenhang, den wir auch nicht durch
+eine entsprechende Transformation linearisieren könnten wäre dagegen z.B. 
+durch folgende Gleichung gegeben:
 
-Dennoch gibt es natürlich auch viele Zusammenhänge, die nicht linear sind und
-auch nicht in eine lineare Funktion transformiert werden können. 
-Für diese Zusammenhänge müssen wir andere Schätzverfahren benutzen.
+$$\boldsymbol{y} = \boldsymbol{x_1}{\beta_1} + \boldsymbol{x_2^{\beta_2}} + \boldsymbol{\epsilon}$$
+Ein Beispiel für einen solchen Zusammenhang findet sich an Abbildung 
+\ref{fig:nonlins}d.
+Wir werden uns später im Kapitel mit der Frage beschäftigen welche funktionalen
+Transformationen besonders hilfreich sind, nichtlineare Zusammenhänge in die
+lineare Form zu bringen.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/nonlins-1} 
+
+}
+
+\caption{\label{fig:nonlins}Lineare und nichtlineare Zusammenhänge.}(\#fig:nonlins)
+\end{figure}
+
 
 **A2: Exogenität der unabhängigen Variablen**
 
@@ -155,7 +209,8 @@ Folgendes Beispiel illustriert dieses Problem:
 
 
 
-![](Chap-advlinmodels_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-4-1} \end{center}
 
 > In der linken Abbildung haben wir einen bedingten Erwartungswert von Null:
 für jede beliebige Beobachtung in $\boldsymbol{x}$ ist der Erwartungswert der
@@ -334,23 +389,42 @@ $\hat{\boldsymbol{\beta}}$ ist gleich $\beta$.
 
 Diese Eigenschaft des OLS-Schätzers wird in folgender Abbildung illustriert:
 
-![](Chap-advlinmodels_files/figure-latex/unnamed-chunk-5-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-5-1} \end{center}
 
 Wir können beweisen, dass $\hat{\boldsymbol{\beta}}$ unter Annahmen A1, A2 und A3
 erwartungstreu ist. 
 Dies gilt unabhängig der Stichprobengröße und unabhängig davon ob Annahmen A4
-und A5 erfüllt sind.^[Die Beweise werden später ergänzt und sind zu diesem 
-Zeitpunkt nicht zentral.]
+und A5 erfüllt sind.
+Der mathematische Beweis findet sich [im Anhang](#advlin-proofs) 
+(siehe Theorem \ref{theo:ewt-ols-beta}).
 
-Unter **Effizienz** verstehen wir die Eigenschaft, dass es keinen alternativen
+Daraus resultiert natürlich nicht, dass für jede einzelne Schätzung der Wert
+des Schätzers $\hat{\boldsymbol{\beta}}$ gleich dem wahren Wert 
+$\boldsymbol{\beta}$ ist. 
+Jede Schätzung ist aufgrund der Fehler immer mit Unsicherheit behaftet.
+Diese Unsicherheit können wir über die Varianz des Schätzers 
+$\hat{\boldsymbol{\beta}}$ messen: je größer die Varianz desto größer
+die Unsicherheit für die einzelne Schätzung.
+Wir können die Varianz einer Schätzung auch ausrechnen und als 
+Standardfehler der Schätzer angeben. 
+R gibt uns diese Werte immer automatisch mit aus, wie die Schätzer hergeleitet
+und geschätzt werden können Sie über Theorem \ref{theo:ewt-ols-sigma} und 
+\ref{theo:ols-sdf} [im Anhang](#advlin-proofs) nachvollziehen.
+
+Besonders relevant ist in diesem Kontext die Eigenschaft der **Effizienz**.
+Unter *Effizienz* verstehen wir die Eigenschaft, dass es keinen alternativen
 Schätzer für $\beta$ gibt, der eine geringere Varianz aufweist.
 Effizienz ist dabei ein *relatives Maß*: 
 ein Schätzer ist effizienter als ein anderer, wenn seine 
-Varianz geringer ist.
+Varianz geringer ist und für den Schätzer $\hat{\boldsymbol{\beta}}$ gilt,
+dass es unter A1-A4 *keinen* anderen linearen erwartungstreuen Schätzer
+gibt, der noch effizienter ist als $\hat{\boldsymbol{\beta}}$.
 
 Die Eigenschaft der Effizienz wird in folgender Abbildung illustriert:
 
-![](Chap-advlinmodels_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-6-1} \end{center}
 
 Da wir hier die zugrundeliegenden Daten selbst herstellen wissen wir, dass für
 den wahren Wert gilt $\beta_1=2.0$.
@@ -358,6 +432,8 @@ Um die Effizienz des OLS-Schätzers beweisen zu können reichen Annahmen A1-A3
 nicht aus: hierfür benötigen wir auch die Annahme A4!
 Unter Annahmen A1-A4 gilt die Effizienz des OLS-Schätzers aber auch 
 unabhängig von der Stichprobengröße.
+Für den Beweis siehe Theorem \ref{theo:ewt-ols-effizienz} 
+[im Anhang](#advlin-proofs).
 
 Dass die Eigenschaften der Erwartungstreue und Effizienz beim OLS-Schätzer
 unabhängig von der Stichprobengröße gelten ist eine tolle Sache.
@@ -657,7 +733,9 @@ beta_1_plot <- ggplot(data = full_results,
 beta_1_plot
 ```
 
-![](Chap-advlinmodels_files/figure-latex/unnamed-chunk-13-1.pdf)<!-- --> 
+
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-13-1} \end{center}
 
 Wie wir sehen ändert die Verletzung der Homoskedastie-Annahme nichts an der
 Erwartungstreue des Schätzers: 
@@ -675,7 +753,9 @@ ist äquivalent zu oben):
 beta_1_stdf_plot
 ```
 
-![](Chap-advlinmodels_files/figure-latex/unnamed-chunk-15-1.pdf)<!-- --> 
+
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-15-1} \end{center}
 
 Wir wir sehen weichen die Standardfehler im heteroskedastischen Fall deutlich
 von denen im homoskedastischen Fall ab!
@@ -712,7 +792,8 @@ $e$ abbilden:
 
 
 
-![](Chap-advlinmodels_files/figure-latex/unnamed-chunk-19-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-19-1} \end{center}
 
 Im Optimalfall ist die Varianz der Fehler konstant. 
 Das ist in Abbildung (a) der Fall: 
@@ -820,10 +901,8 @@ gqtest(schaetzung_hetero)
 #> alternative hypothesis: variance increases from segment 1 to 2
 ```
 
-Dagegen muss $H_0$ für den heteroskedastischen Fall verworfen werden.
-Aus der grafischen Analyse oben haben wir bereits gesehen, dass die 
-Alternativhypothese von einer steigenden Varianz auszugehen hier viel Sinn macht.
-Hätten wir aber für sinkende Varianz getestet hätte $H_0$ *nicht* abgelehnt
+Komischerweise muss $H_0$ auch für den heteroskedastischen Fall nicht verworfen werden.
+Hätten wir aber für sinkende Varianz getestet hätte $H_0$ abgelehnt
 werden können:
 
 
@@ -1035,7 +1114,8 @@ Eine genauere Erläuterung findet sich
 
 
 
-![](Chap-advlinmodels_files/figure-latex/unnamed-chunk-36-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-36-1} \end{center}
 
 Wie erwartet bleiben die Schätzer erwartungstreu, büßen aber deutlich an 
 Effizienz ein wenn die Autokorrelation größer wird.
@@ -1043,7 +1123,8 @@ Betrachten wir nun noch die geschätzten Standardfehler:
 
 
 
-![](Chap-advlinmodels_files/figure-latex/unnamed-chunk-38-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-38-1} \end{center}
 
 Wie bei der Heteroskedastie hat Autokorrelation einen großen Einfluss auf die
 geschätzten Standardfehler.
@@ -1063,7 +1144,8 @@ Abbildungen erkennen können:
 
 
 
-![](Chap-advlinmodels_files/figure-latex/unnamed-chunk-40-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-40-1} \end{center}
 
 Gerade bei Anwendungen außerhalb der Zeitreihenökonometrie ist Autokorrelation 
 aber grafisch nicht so einfach zu identifizieren.
@@ -1283,7 +1365,7 @@ Heteroskedastie als auch Autokorrelation sind.
 
 
 ```r
-var_covar_matrix <- vcovHC(large_acl, type = "HC0")
+var_covar_matrix <- vcovHAC(large_acl) 
 coeftest(large_acl, vcov. = var_covar_matrix)
 ```
 
@@ -1291,9 +1373,9 @@ coeftest(large_acl, vcov. = var_covar_matrix)
 #> 
 #> t test of coefficients:
 #> 
-#>             Estimate Std. Error  t value Pr(>|t|)    
-#> (Intercept) 0.186245   0.343932   0.5415   0.5894    
-#> x           0.768353   0.005885 130.5620   <2e-16 ***
+#>             Estimate Std. Error t value Pr(>|t|)    
+#> (Intercept) 0.186245   0.919704  0.2025   0.8399    
+#> x           0.768353   0.015084 50.9371   <2e-16 ***
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -1427,7 +1509,8 @@ Dies führt zu folgender Verteilung der Schätzer:
 
 
 
-![](Chap-advlinmodels_files/figure-latex/unnamed-chunk-56-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-56-1} \end{center}
 
 Wie wir sehen wird die Schätzgenauigkeit für die Schätzer von $\beta_1$ und 
 $\beta_2$ deutlich reduziert! 
@@ -1547,7 +1630,8 @@ $$\boldsymbol{\hat{y}} = \hat{\beta_0} + \hat{\beta_1} \boldsymbol{x}_1 + \bolds
 
 
 
-![](Chap-advlinmodels_files/figure-latex/unnamed-chunk-62-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-62-1} \end{center}
 
 Wir sehen also, dass unser OLS-Schätzer nun nicht mehr erwartungstreu sind!
 Dies können wir auch recht einfach analytisch zeigen.
@@ -1569,8 +1653,9 @@ $$\boldsymbol{\hat{\beta}} = \left( \boldsymbol{X'X} \right)^{-1} \boldsymbol{X'
 Daraus resultiert, dass:
 
 $$\mathbb{E}(\boldsymbol{\hat{\beta}} | \boldsymbol{X, z}) = \boldsymbol{\beta} + \left( \boldsymbol{X'X} \right)^{-1} \boldsymbol{X'z\gamma}$$
+
 Das bedeutet, dass $\boldsymbol{\hat{\beta}}$ nicht erwartungstreu ist, es sei
-denn (1) $\gamma=0$ oder (2) $\boldsymbol{X'z}=0$.
+denn (1) $\boldsymbol{\gamma}=0$ oder (2) $\boldsymbol{X'z}=0$.
 Fall (1) würde bedeuten, dass $\boldsymbol{z}$ für die Analyse unserer abhängigen
 Variable gar nicht relevant wäre. Das würde bedeuten, wir hätten die Variable 
 nicht 'vergessen', sondern zu Recht nicht inkludiert. 
@@ -1634,7 +1719,9 @@ ggplot(data = bipkonsum, aes(x=BIP, y=Konsumausgaben)) +
   geom_point() + theme_icae()
 ```
 
-![](Chap-advlinmodels_files/figure-latex/unnamed-chunk-63-1.pdf)<!-- --> 
+
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-63-1} \end{center}
 
 Wir könnten den Zusammenhang also unmittelbar mit OLS schätzen ohne gegen 
 Annahme A1 zu verstoßen.
@@ -1642,7 +1729,8 @@ Annahme A1 zu verstoßen.
 Der Zusammenhang zwischen BIP pro Kopf und Kindersterblichkeit im Jahr 2000 
 erscheint dagegen nicht linear zu sein:
 
-![](Chap-advlinmodels_files/figure-latex/unnamed-chunk-64-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-64-1} \end{center}
 
 
 Wenn wir diesen Zusammenhang mit OLS schätzen würden würden wir klar gegen 
@@ -1653,7 +1741,8 @@ Gleichzeitig können wir durch Wahl einer alternativen funktionalen Form den
 Zusammenhang linearisieren. 
 Dazu nehmen wir einfach den Logarithmus:
 
-![](Chap-advlinmodels_files/figure-latex/unnamed-chunk-65-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-65-1} \end{center}
 
 Diesen Zusammenhang können wir nun mit OLS schätzen ohne gegen A1 zu verstoßen!
 Das zeigt, dass die falsche Wahl der funktionalen Form, also die nicht korrekte
@@ -1706,7 +1795,8 @@ bekannten Datensatz zu Journaldaten analysieren.
 Wir betrachten den Zusammenhang zwischen Abonnenten und dem Preis pro Zitation.
 Wie wir hier sehen ist dieser Zusammenhang alles andere linear:
 
-![](Chap-advlinmodels_files/figure-latex/unnamed-chunk-67-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-67-1} \end{center}
 
 
 Für die folgende Spezifikation wäre der OLS-Schätzer also weder konsistent noch
@@ -1730,7 +1820,9 @@ ggplot(data = journal_daten,
   geom_point() + theme_icae()
 ```
 
-![](Chap-advlinmodels_files/figure-latex/unnamed-chunk-69-1.pdf)<!-- --> 
+
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-69-1} \end{center}
 
 Die folgende Gleichung wäre also nicht unbedingt mit einem Verstoß gegen A1 verbunden:
 
@@ -1812,7 +1904,8 @@ Konsum von Hähnchenfleisch.
 Wie wir sehen werden ist dieser Zusammenhang an sich nicht
 linear, kann aber durch Logarithmieren in eine lineare Form gebracht werden:
 
-![](Chap-advlinmodels_files/figure-latex/unnamed-chunk-74-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-74-1} \end{center}
 
 Die folgende Gleichung ist also konsistent mit A1 und kann entsprechend mit
 OLS geschätzt werden:
@@ -1857,6 +1950,115 @@ Wir würden den geschätzten Koeffizienten von $\beta_1$ folgendermaßen
 interpretieren: wenn der Preis von Hühnerfleisch um $1\%$ steigt wird der
 Konsum um ca. $1.12\%$ zurückgehen.
 
+## Weitere Fehlerquellen: Systematische Messfehler, Selbstselektion und Simulatanität
+
+Annahme A2 kann nur aufgrund von drei weiteren Gründen verletzt werden:
+aufgrund von Messfehlern, von Selbstselektion der Stichprobe und
+aufgrund von Simulatanität.
+Diese Fehlerquellen sind etwas anders geartet als die anderen hier besprochenen
+Probleme: 
+hier liegt keine direkte Fehlspezifikation des Modells vor, sondern der Fehler
+geschieht entweder auf Ebene der Datenerhebung (Messfehler, Selbstselektion)
+oder ist dem zu untersuchenden Zusammenhang inhärent (Simulatanität).
+Insofern können wir nicht wirklich auf diese Fehler testen sondern müssen 
+bei der Auswahl unserer Daten und der Formulierung unseres Modells diese 
+Fehlerquellen in betracht ziehen.
+
+Im Folgenden wollen wir kurz darstellen wie diese drei Fehlerquellen zu einer
+Verletzung von A2 führen.
+
+### Messfehler
+
+Falls wir unsere **abhängige** Variable nicht korrekt messen können
+hängen die Implikationen von der Art des Messfehlers ab.
+Nehmen wir dazu an, die *korrekte* abhängige Variable wäre
+$y^*$. 
+Wir verfügen aber nur über eine näherungsweise Messung, $y'$.
+Wenn es sich um einen zufälligen und additiven Messfehler handelt,
+also $y^*=y'+w$ und $w\propto\mathcal{N}(0, \sigma^2)$, dann kann
+man zeigen, dass der OLS Schätzer weiterhin erwartungstreu ist 
+und lediglich ein gewisses Maß an Effizienz einbüst, da:
+
+$$y^* = \boldsymbol{x'\beta} + \boldsymbol{\epsilon}$$
+
+$$y'= \boldsymbol{x'\beta} + \boldsymbol{\epsilon} + \boldsymbol{w}= \boldsymbol{x'\beta} + \boldsymbol{v}$$
+und $\boldsymbol{v}\propto\mathcal{N}(0, \sigma^2_v)$, wobei $\sigma^2_v>\sigma^2_{\epsilon}$.
+
+Bei anderen Formen des Messfehlers, z.B. multiplikativen
+Messfehler, oder besonderen Verteilungen des Messfehlers können
+wir nichts sicher über die Implikationen des Messfehlers sagen.
+
+Wird dagegen eine **unabhängige** Variable nicht richtig gemessen
+sind die Implikationen in der Regel mit Sicherheit
+problematischer.
+Nehmen wir an, dass $\boldsymbol{x}^*$ die korrekte Variable
+und $\boldsymbol{x}'$ die gemessene Variable ist. 
+Betrachten wir dann die folgende Spezifikation:
+
+$$\boldsymbol{y}=\beta_0 + \beta_1\boldsymbol{x}^* + \boldsymbol{\epsilon}$$
+
+Wenn wieder wie oben gilt $\boldsymbol{x}' = \boldsymbol{x}^* + \boldsymbol{w}$ und damit $\boldsymbol{x}^* = \boldsymbol{x}' - \boldsymbol{w}$, dann haben wir:
+
+$$\boldsymbol{y}=\beta_0 + \beta_1(\boldsymbol{x}' - \boldsymbol{w}) + \boldsymbol{\epsilon}$$
+$$\boldsymbol{y}=\beta_0 + \beta_1\boldsymbol{x}'  + \boldsymbol{\epsilon} - \beta_1\boldsymbol{w}$$
+$$\boldsymbol{y}=\beta_0 + \beta_1\boldsymbol{x}'  + \boldsymbol{v}$$
+
+In diesem Fall ist aber 
+$Cov(\boldsymbol{x'}, \boldsymbol{v})\neq0$ 
+und Annahme A2 somit verletzt!
+Im Falle der multiplen Regression wären dabei die Schätzer für
+*alle* unabhängigen Variablen verzerrt - nicht nur die der 
+falsch geschätzten Variable!
+
+### Selbstselektion
+
+Eine Verzerrung tritt immer dann auf wenn bei der Erhebung der
+Stichprobe Beobachtungen mit bestimmten Werten einer 
+unabhängigen Variablen mit größerer Wahrscheinlichkeit Eingang
+in die Stichprobe finden als andere.
+Dies ist besonders bei Umfragestudien eine große Gefahr.
+So sind in der Regel reiche Menschen weniger willig bei einer 
+Vermögensumfrage zu antworten.
+Das klassische Beispiel kommt aus der Soziologie:
+Sie möchten über eine Umfrage die Determinanten für Lesekompetenz
+erfragen und schicken dazu das Material per Post an die 
+möglichen Studienteilnehmer\*innen.
+Wahrscheinlich werden Personen mit schlechten oder gar keinen
+Lesekompetenzen eher nicht antworten - Ihre Stichprobe wäre also
+verzerrt!
+
+@heckman hat gezeigt, dass die Selbstselektion die gleichen
+technischen Konsequenzen hat wie eine vergessene Variable.
+Entsprechend werden wir die Herleitung hier nicht wiederholen.
+
+### Simulatanität
+
+Wir sprechen von Simulatanität wenn ein beidseitiges kausales
+Verhältnis zwischen der abhängigen Variable und einer 
+unabhängigen Variable herrscht.
+
+Betrachten wir dazu folgenden einfaches Beispiel.
+Die Variablen $Y$ und $X$ werden in der Population folgendermaßen
+bestimmt:
+
+\begin{align}
+Y&=\beta_0 + \beta_1 X + u\nonumber\\
+X&=\alpha_0 + \alpha_1 Y + v\nonumber
+\end{align}
+
+Wenn wir die Werte jeweils in die andere Gleichung einsetzen
+erhalten wir:
+
+\begin{align}
+Y&=\frac{\beta_0+\beta_1\alpha_0}{1-\alpha_1\beta_1} + \frac{\beta_1v+u}{1-\alpha_1\beta_1}\nonumber\\
+X&=\frac{\alpha_0+\alpha_1\beta_0}{1-\alpha_1\beta_1} + \frac{v+\alpha_1u}{1-\alpha_1\beta_1}\nonumber
+\end{align}
+
+Wenn wir in einem solchen Fall die Gleichung für $Y$ schätzen 
+ergibt sich für 
+$Cov(X, u)=Cov(\frac{v+\alpha_1u}{1-\alpha_1\beta_1}, u)\neq 0$
+und damit wiederum ein Verstoß gegen A2!
+
 ## Anhang: Übersicht über die Testverfahren
 
 | **Problem**   | **Mögliche Tests**      | **Implikationen**    | **Reaktion**   |
@@ -1866,3 +2068,210 @@ Konsum um ca. $1.12\%$ zurückgehen.
 | Multikollinearität           | Hilfsregressionen | Größere Standardfehler | Ggf. alternative unabh. Variablen verwenden |
 | Falsche funktionale Form     | Theorie, RESET-Test, Tukey-Anscombe Plot | Verzerrter und ineffizienter Schätzer | Funktionale Form anpassen |
 | Vergessene Variablen         | Theorie, Tukey-Anscombe Plot | Verzerrter und ineffizienter Schätzer | Variablen ergänzen |
+
+## Anhang: Relevante Theoreme und ihre mathematischen Beweise {#advlin-proofs}
+
+An dieser Stelle werden alle relevanten Theoreme gesammelt.
+Während wir im Hauptteil des Kapitels die Implikationen der Theoreme anhand
+von Monte-Carlo Simulationen illustriert haben finden Sie hier die 
+dazugehörigen mathematischen Beweise.
+
+### Theoreme
+
+\begin{theorem}[Erwartungstreue des OLS-Sch\"atzers f\"ur $\boldsymbol{\beta}$]\label{theo:ewt-ols-beta}
+
+Unter Annahmen A1-A3 gilt:
+
+\begin{align}
+	\mathbb{E}\left[\boldsymbol{\hat{\beta}}\right] = 
+	\mathbb{E}\left[\boldsymbol{\hat{\beta}} | \boldsymbol{X}\right] =
+	\boldsymbol{\beta}
+\end{align}
+\end{theorem}
+
+\begin{theorem}[Varianz des OLS-Sch\"atzers f\"ur $\boldsymbol{\beta}$]\label{theo:ewt-ols-sigma}
+
+Unter Annahmen A1-A4 gilt:
+
+\begin{align}
+	Var\left[\boldsymbol{\hat{\beta}}| \boldsymbol{X}\right] = 
+	\sigma^2\left( \boldsymbol{X'X}\right)^{-1}\label{eq:ols-sigma-pop}
+\end{align}
+\end{theorem}
+
+
+Bei $\sigma^2$ aus Gleichung \eqref{eq:ols-sigma-pop} in Theorem \ref{theo:ewt-ols-sigma} handelt es sich um einen unbekannten Parameter der Population, also Teil des DGP, den wir so nicht direkt beobachten k\"onnen.
+Wir m\"ussen diesen Parameter also \"uber die Stichprobe sch\"atzen.
+Daf\"ur ben\"otigen wir einen entsprechenden Sch\"atzer (siehe Theorem \ref{theo:ols-sdf}).
+
+\begin{theorem}[Sch\"atzer f\"ur die Varianz von $\boldsymbol{\beta}$ und Standardfehler der Regression]\label{theo:ols-sdf}
+	Sei 
+	\begin{align}\label{eq:ssquared}
+		s^2 = \frac{\boldsymbol{e'e}}{n-K}
+	\end{align}
+	wobei $\boldsymbol{e}$ die Residuen der Regression, $n$ die Stichprobengr\"oße und $K$ die Zahl der schätzenden Parameter ist. $n-K$ gibt also die Anzahl der Freiheitsgrade an.
+	Unter Annahmen A1-A4 gilt dann für den Sch\"atzer der Varianz von $\boldsymbol{\beta}$:
+	\begin{align}
+		\hat{Var}\left[\boldsymbol{\hat{\beta}}| \boldsymbol{X} \right] = s^2 \left(\boldsymbol{X'X} \right)^{-1}
+	\end{align}
+	Hierbei handelt es sich um eine $K\times K$-Matrix. 
+	Die Quadratwurzel des $k$-ten Werts der Hauptdiagonale ist dann der Standardfehler von $\boldsymbol{\hat{\beta}}_k$, den wir auch in den Hypothesentests verwenden.
+\end{theorem}
+
+\begin{theorem}[Effizienz des OLS-Sch\"atzers f\"ur $\sigma^2$ (Gauss-Markov Theorem)]\label{theo:ewt-ols-effizienz}
+
+Sei $\boldsymbol{b}$ ein beliebiger erwartungstreuer und linearer Sch\"atzer von $\boldsymbol{\beta}$ und $\boldsymbol{\hat{\beta}} = \left(\boldsymbol{X'X}\right)^{-1}\left(\boldsymbol{X'y}\right)$ der OLS-Sch\"ätzer. 
+
+Unter Annahmen A1-A4 gilt:
+
+	\begin{align}
+		Var\left[\boldsymbol{\hat{\beta}}  | \boldsymbol{X} \right] \leq Var\left[\boldsymbol{b} | \boldsymbol{X}\right]
+	\end{align}
+\end{theorem}
+
+\begin{theorem}[Konsistenz des OLS-Sch\"atzers f\"ur $\boldsymbol{\beta}$]\label{theo:ols-konsistenz}
+	Unter den OLS-Annahmen gilt 
+	\begin{align}
+		\plim (\hat{\boldsymbol{\beta}})=\boldsymbol{\beta}.
+	\end{align}
+\end{theorem}
+
+### Beweise
+
+\begin{proof}[Beweis von Theorem \ref{theo:ewt-ols-beta}]\label{proof:ewt-ols-beta}
+Der OLS-Sch\"atzer ist definiert als 
+\begin{align}
+	\boldsymbol{\hat{\beta}} = 
+	\left(\boldsymbol{X'X}\right)^{-1}\left(\boldsymbol{X'y}\right)\end{align}
+
+Zudem nehmen wir als A1 an, dass 
+\begin{align}
+	\boldsymbol{y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}
+\end{align}
+Das bedeutet:
+
+\begin{align}
+	\boldsymbol{\hat{\beta}} &= 
+	\left(\boldsymbol{X'X}\right)^{-1}\left(\boldsymbol{X'y}\right)\\
+	&= \left(\boldsymbol{X'X}\right)^{-1}\boldsymbol{X'}\left(\boldsymbol{X\beta} + \boldsymbol{\epsilon}\right)\\
+	&= \boldsymbol{\beta} + \left(\boldsymbol{X'X}\right)^{-1} \boldsymbol{X'\epsilon}
+\end{align}
+
+
+Daraus ergibt sich:
+
+\begin{align}
+	\mathbb{E}\left[\boldsymbol{\hat{\beta}}|\boldsymbol{X}\right]=\boldsymbol{\beta} + \mathbb{E}\left[\left( \boldsymbol{X'X} \right)^{-1}\boldsymbol{X'\epsilon} | \boldsymbol{X}\right]
+\end{align}
+
+Nach A2 gilt $\mathbb{E}\left[\boldsymbol{\epsilon} | \boldsymbol{X}\right]=0$. 
+Es folgt, dass 
+$\left( \boldsymbol{X'X} \right)^{-1}\mathbb{E}\left[\boldsymbol{\epsilon} | \boldsymbol{X}\right]=0$ 
+und entsprechend $\mathbb{E}\left[\boldsymbol{\hat{\beta}}\right]=\boldsymbol{\beta}$.
+\end{proof}
+
+\begin{proof}[Beweis von Theorem \ref{theo:ewt-ols-sigma}]
+
+Aus dem Beweis \ref{proof:ewt-ols-beta} wissen wir bereits, dass:
+\begin{align}
+	\boldsymbol{\hat{\beta}} &= \left(\boldsymbol{X'X}\right)^{-1}\boldsymbol{X'}\left(\boldsymbol{X\beta} + \boldsymbol{\epsilon}\right)\nonumber
+\end{align}
+Wir definieren zur Vereinfachung $\boldsymbol{A}=\left(\boldsymbol{X'X}\right)^{-1}\boldsymbol{X'}$.
+Aus der Definition der Varianz ergibt sich:
+
+\begin{align}
+	Var\left[\boldsymbol{\hat{\beta}}| \boldsymbol{X}\right] = \mathbb{E}\left[\left(\boldsymbol{\hat{\beta}} - \boldsymbol{\beta} \right)\left( \boldsymbol{\hat{\beta}}-\boldsymbol{\beta}\right)' | \boldsymbol{X}\right]
+\end{align}
+
+Nach A4 gilt: $\mathbb{E}(\boldsymbol{\epsilon\epsilon'| X}) = \sigma^2\boldsymbol{I}$. Also:
+
+\begin{align}
+	Var\left[\boldsymbol{\hat{\beta}} | \boldsymbol{X} \right] &= 
+	\mathbb{E}\left[\boldsymbol{A\epsilon\epsilon'A'} | \boldsymbol{X}\right]\\
+	&=\boldsymbol{A}\mathbb{E}\left[\boldsymbol{\epsilon\epsilon'} | \boldsymbol{X}\right]\boldsymbol{A'} \\
+	&= \sigma^2\left(\boldsymbol{X'X} \right)^{-1}
+\end{align}
+Beachten Sie allerdings, dass $\sigma^2$ ein unbekannter Parameter der Population ist, also Teil des DGP.
+Er ist durch eine Stichprobe nicht direkt messbar, sondern muss selbst geschätzt werden.
+Daher kommt die Relevanz von Theorem \ref{theo:ols-sdf}, welches gleichzeitig die Herleitung der Standardfehler beinhaltet.
+\end{proof}
+
+\begin{proof}[Beweis von Theorem \ref{theo:ols-sdf}]
+	Auf der Populationsebene gilt $\mathbb{E}(\boldsymbol{\epsilon\epsilon'| X}) = \sigma^2\boldsymbol{I}$ (siehe auch A4).
+	Das Stichproben\"aquivalent zu den nicht zu beobachtbaren Fehlern $\boldsymbol{\epsilon}$ sind die Residuen $\boldsymbol{e}$.
+	Hier gilt, dass 
+	\begin{align}
+		e_i = y_i - \boldsymbol{x}'_i\boldsymbol{\hat{\beta}} = \epsilon_i - \boldsymbol{x}'_i\left( \boldsymbol{\hat{\beta}}- \boldsymbol{\beta} \right).
+	\end{align}
+	Das bedeutet, dass wir die Residuen nicht als direktes Substitut f\"ur die Fehler nehmen k\"onnen, denn in ihrer Gleichung taucht ja ein weiterer zu sch\"atzender Parameter auf, $\boldsymbol{\beta}$.
+	
+	Um einen Sch\"atzer herzuleiten, der diesen Fakt ber\"urcksichtigt definieren wir
+	\begin{align}
+		\boldsymbol{M} = \boldsymbol{I} - \boldsymbol{X\left(X'X\right)}^{-2}\boldsymbol{X'}
+	\end{align}
+	Die Matrix $\boldsymbol{M}$ hat dabei Dimension $n\times K$ (wobei $K$ die Anzahl der Parameter unserer Sch\"atzung ist) und gibt uns f\"ur einen Vektor mit Beobachtungen der abh\"angigen Variable, $\boldsymbol{y}$, die Werte der Residuen der OLS-Sch\"atzung gibt, also:
+	\begin{align}
+		\boldsymbol{My} = \left(\boldsymbol{I} - \boldsymbol{X\left(X'X\right)}^{-1}\boldsymbol{X'}\right)\boldsymbol{y}=\boldsymbol{y}-\boldsymbol{X\left(X'X\right)}^{-1}\boldsymbol{X'y}=\boldsymbol{e}
+	\end{align}
+	Das ergibt sich aus der Definition des OLS-Sch\"atzers als $\boldsymbol{\hat{\beta}} = 
+\left(\boldsymbol{X'X}\right)^{-1}\left(\boldsymbol{X'y}\right)$ und der Definition der Residuen, $\boldsymbol{e}$, als $\boldsymbol{e}=\boldsymbol{y}-\boldsymbol{X\hat{\beta}}$.
+
+	Es gilt dann 
+	\begin{align}
+		\boldsymbol{e'e} = \boldsymbol{\epsilon'M\epsilon}
+	\end{align}
+	und 
+	\begin{align}\label{eq:sqsum-e}
+		\mathbb{E}\left[ \boldsymbol{e'e} | \boldsymbol{X} \right] = \mathbb{E}\left[ \boldsymbol{\epsilon'M\epsilon} | \boldsymbol{X} \right]
+	\end{align}
+	
+	Da es sich bei $\boldsymbol{\epsilon'M\epsilon}$ um einen Skalar handelt ist $tr\left(\boldsymbol{M}\right)=\boldsymbol{M}$, 
+	wobei $tr\left(\boldsymbol{M}\right)$ die Spur (\textit{trace}) der Matrix $\boldsymbol{M}$ ist.
+	Die Spur einer Matrix ist die Summe der Elemente auf der Hauptdiagonale dieser Matrix.
+	Da $\boldsymbol{\epsilon'M\epsilon}$ als Skalar eine $1\times 1$-Matrix ist ergibt sich, dass $tr\left(\boldsymbol{M}\right)=\boldsymbol{M}$.
+	Aus den Rechenregeln f\"ur Matrizen gilt 
+	\begin{align}
+		\mathbb{E}\left[tr \left(\boldsymbol{\epsilon'M\epsilon}\right) | \boldsymbol{X} \right] &= 
+		\mathbb{E}\left[tr \left(\boldsymbol{M\epsilon\epsilon'}\right) | \boldsymbol{X} \right]\\
+		&= tr \left(\boldsymbol{M}\mathbb{E}\left[\left(\boldsymbol{\epsilon\epsilon'}\right) | \boldsymbol{X} \right]\right)
+	\end{align}
+	Aus A4 ($\mathbb{E}\left[\left(\boldsymbol{\epsilon\epsilon'}\right) | \boldsymbol{X} \right]=\sigma^2\boldsymbol{I}$)ergibt sich dann:
+	\begin{align}
+		\mathbb{E}\left[tr \left(\boldsymbol{\epsilon'M\epsilon}\right) | \boldsymbol{X} \right] &= 
+		tr \left(\boldsymbol{M}\sigma^2\boldsymbol{I}\right)\\
+		&= \sigma^2tr\left(\boldsymbol{M}\right)
+	\end{align}
+	Nun bedarf es ein wenig Matrizenalgebra um weiterzukommen:
+	\begin{align}
+		tr\left(\boldsymbol{M}\right) &= tr\left[\boldsymbol{I}_n-\boldsymbol{X}\left(\boldsymbol{X'X}\right)^{-1}\boldsymbol{X}'\right]\\
+		&= tr\left(\boldsymbol{I}_n \right) - tr\left[\boldsymbol{X}\left(\boldsymbol{X'X}\right)^{-1}\boldsymbol{X}' \right]\\
+		&= tr\left(\boldsymbol{I}_n \right) - tr\left(\boldsymbol{I}_K \right)\\
+		&= n - K
+	\end{align}
+	Die vorletzte Zeile ergibt sich aus der Regel, dass die Inverse eines Ausdrucks mal dem Ausdruck selbst gleich eins ist, also: $\boldsymbol{X}\left(\boldsymbol{X'X}\right)^{-1}\boldsymbol{X}'=\boldsymbol{I}_K$, denn wir haben hier ja $K$ Parameter, $\boldsymbol{X}$ hat also $K$ Spalten.
+	Wir sind im Vergleich zu Gleichung \eqref{eq:sqsum-e} also schon etwas weiter gekommen:
+	\begin{align}
+		\mathbb{E}\left[ \boldsymbol{e'e} | \boldsymbol{X} \right] &= \mathbb{E}\left[ \boldsymbol{\epsilon'M\epsilon} | \boldsymbol{X} \right]\nonumber\\
+		&= \left(n-K\right)\sigma^2
+	\end{align}
+	Das ist nicht schlecht! 
+	Wir formen um:
+	\begin{align}
+		\frac{\mathbb{E}\left[ \boldsymbol{e'e} | \boldsymbol{X} \right]}{\left(n-K\right)} = \sigma^2 = \frac{\boldsymbol{e'e} }{\left(n-K\right)} = s^2
+	\end{align}
+	Diese Definition f\"ur $s^2$ ist die gleiche wie in Gleichung \eqref{eq:ssquared} und bezieht sich nur aus Werte aus der Stichprobe.
+	Wir nennen $s^2$ den Sch\"atzer für die Varianz von $\boldsymbol{\hat{\beta}}$ und $\sqrt{s^2}=2$ des Standardfehler der Regression.
+	Die Standardfehler der einzelnen Sch\"atzer, also der Elemente von $\boldsymbol{\hat{\beta}}$ ist gegeben durch die Elemente der Hauptdiagonale der Matrix $s^2\left(\boldsymbol{X'X} \right)^{-1}$.
+	Insgesamt k\"onnen wir also schreiben:
+	\begin{align}
+		\hat{Var}\left[\boldsymbol{\hat{\beta}}| \boldsymbol{X} \right] = s^2 \left(\boldsymbol{X'X} \right)^{-1}
+	\end{align}
+\end{proof}
+
+\begin{proof}[Beweis von Theorem \ref{theo:ewt-ols-effizienz}]
+	Wird ergänzt.
+\end{proof}
+
+\begin{proof}[Beweis von Theorem \ref{theo:ols-konsistenz}]
+	Wir ergänzt.
+\end{proof}
