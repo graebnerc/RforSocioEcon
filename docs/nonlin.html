@@ -24,7 +24,7 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-01-12" />
+<meta name="date" content="2020-01-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -380,20 +380,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">schweiz_al &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/tidy/nonlinmodels_schweizer-arbeit.csv&quot;</span>), 
                     <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;double&quot;</span>, <span class="kw">rep</span>(<span class="st">&quot;double&quot;</span>, <span class="dv">5</span>), <span class="st">&quot;factor&quot;</span>))
 <span class="kw">head</span>(schweiz_al)</code></pre></div>
-<pre><code>##    Arbeitslos Einkommen_log Alter Ausbildung_Jahre Kinder_jung Kinder_alt
-## 1:          1      10.78750    30                8           1          1
-## 2:          0      10.52425    45                8           0          1
-## 3:          1      10.96858    46                9           0          0
-## 4:          1      11.10500    31               11           2          0
-## 5:          1      11.10847    44               12           0          2
-## 6:          0      11.02825    42               12           0          1
-##    Auslaender
-## 1:          0
-## 2:          0
-## 3:          0
-## 4:          0
-## 5:          0
-## 6:          0</code></pre>
+<pre><code>#&gt;    Arbeitslos Einkommen_log Alter Ausbildung_Jahre Kinder_jung Kinder_alt
+#&gt; 1:          1      10.78750    30                8           1          1
+#&gt; 2:          0      10.52425    45                8           0          1
+#&gt; 3:          1      10.96858    46                9           0          0
+#&gt; 4:          1      11.10500    31               11           2          0
+#&gt; 5:          1      11.10847    44               12           0          2
+#&gt; 6:          0      11.02825    42               12           0          1
+#&gt;    Auslaender
+#&gt; 1:          0
+#&gt; 2:          0
+#&gt; 3:          0
+#&gt; 4:          0
+#&gt; 5:          0
+#&gt; 6:          0</code></pre>
 <p>Wir sind interessiert welchen Einfluss die erklärenden Variablen auf die Wahrscheinlichkeit haben, dass eine Frau Arbeitslos ist, also die Variable <code>Arbeitslos</code> den Wert <code>1</code> annimmt.</p>
 <div id="warum-nicht-ols" class="section level3">
 <h3><span class="header-section-number">9.1.1</span> Warum nicht OLS?</h3>
@@ -404,7 +404,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">14</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Arbeitslosigkeit&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Arbeitsunabh. Einkommen (log)&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">fullrange=</span><span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_icae</span>()</code></pre></div>
-<p><img src="Chap-nonlinmodels-binary_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="Chap-nonlinmodels-binary_files/figure-html/unnamed-chunk-5-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Unser Modell würde für bestimmte Levels an arbeitsunabhängigem Einkommen Werte außerhalb des Intervalls <span class="math inline">\(0, 1\)</span> vorhersagen - also Werte, die <span class="math inline">\(y\)</span> gar nicht annehmen kann und die, da wir die Werte für <span class="math inline">\(y\)</span> später als Wahrscheinlichkeiten interpretieren wollen, auch gar keinen Sinn ergeben wollen.</p>
 <p>Unser Ziel ist da eher ein funktionaler Zusammenhang wie in folgender Abbildung zu sehen:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(
@@ -415,7 +415,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">y=</span>Arbeitslos), <span class="dt">method =</span> <span class="st">&quot;glm&quot;</span>,
                              <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>), 
                              <span class="dt">fullrange=</span><span class="ot">TRUE</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_icae</span>()</code></pre></div>
-<p><img src="Chap-nonlinmodels-binary_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="Chap-nonlinmodels-binary_files/figure-html/unnamed-chunk-6-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Dieser Zusammenhang ist jedoch nicht linear und damit inkonsisten mit A1 des OLS Modells.</p>
 </div>
 <div id="logit-und-probit-theoretische-grundidee" class="section level3">
@@ -445,7 +445,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><em>probit</em> Modelle funktionieren auf eine sehr ähnliche Art und Weise, verwenden aber eine andere Transformation über die kumulierte Wahrscheinlichkeitsverteilung der Normalverteilung. Hier wird im Endeffekt folgende Regressionsgleichung geschätzt:</p>
 <p><span class="math display">\[\mathbb{P}(y=1|\boldsymbol{x})=\phi(\boldsymbol{X\beta})\]</span></p>
 <p>wobei <span class="math inline">\(\Phi(\cdot)\)</span> die kumulierte Wahrscheinlichkeitsverteilung der Normalverteilung ist. Wie sie in folgender Abbildung sehen, die sich wieder auf das Einführungsbeispiel bezieht, sind die funktionalen Formen bei der beiden Modelle sehr ähnlich:</p>
-<p><img src="Chap-nonlinmodels-binary_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="Chap-nonlinmodels-binary_files/figure-html/unnamed-chunk-7-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Wir werden der Einfachheit halber im folgenden in der Regel das <em>logit</em> Modell verwenden, aber die Implementierung in R ist wirklich sehr ähnlich.</p>
 </div>
 <div id="logit-und-probit-implementierung-in-r" class="section level3">
@@ -466,30 +466,30 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <span class="dt">data =</span> schweiz_al)</code></pre></div>
 <p>Für die Schätzergebnisse können wir wie bilang die Funktion <code>summary()</code> verwenden:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(arbeitslogit_test)</code></pre></div>
-<pre><code>## 
-## Call:
-## glm(formula = Arbeitslos ~ Einkommen_log + Alter, family = binomial(link = &quot;logit&quot;), 
-##     data = schweiz_al)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.7448  -1.1855   0.8128   1.1017   1.8279  
-## 
-## Coefficients:
-##                 Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)   -10.381739   2.003223  -5.183 2.19e-07 ***
-## Einkommen_log   0.920045   0.185414   4.962 6.97e-07 ***
-## Alter           0.018013   0.006612   2.724  0.00645 ** 
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## (Dispersion parameter for binomial family taken to be 1)
-## 
-##     Null deviance: 1203.2  on 871  degrees of freedom
-## Residual deviance: 1168.5  on 869  degrees of freedom
-## AIC: 1174.5
-## 
-## Number of Fisher Scoring iterations: 4</code></pre>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; glm(formula = Arbeitslos ~ Einkommen_log + Alter, family = binomial(link = &quot;logit&quot;), 
+#&gt;     data = schweiz_al)
+#&gt; 
+#&gt; Deviance Residuals: 
+#&gt;     Min       1Q   Median       3Q      Max  
+#&gt; -1.7448  -1.1855   0.8128   1.1017   1.8279  
+#&gt; 
+#&gt; Coefficients:
+#&gt;                 Estimate Std. Error z value Pr(&gt;|z|)    
+#&gt; (Intercept)   -10.381739   2.003223  -5.183 2.19e-07 ***
+#&gt; Einkommen_log   0.920045   0.185414   4.962 6.97e-07 ***
+#&gt; Alter           0.018013   0.006612   2.724  0.00645 ** 
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; (Dispersion parameter for binomial family taken to be 1)
+#&gt; 
+#&gt;     Null deviance: 1203.2  on 871  degrees of freedom
+#&gt; Residual deviance: 1168.5  on 869  degrees of freedom
+#&gt; AIC: 1174.5
+#&gt; 
+#&gt; Number of Fisher Scoring iterations: 4</code></pre>
 <p>Aber wie sollen wir das interpretieren? Da das ein wenig schwieriger ist beschäftigen wir uns damit im nächsten Abschnitt.</p>
 </div>
 <div id="logit-und-probit-interpretation-der-ergebnisse" class="section level3">
@@ -501,35 +501,35 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), 
   <span class="dt">data =</span> schweiz_al)
 <span class="kw">summary</span>(arbeitslogit)</code></pre></div>
-<pre><code>## 
-## Call:
-## glm(formula = Arbeitslos ~ Einkommen_log + Alter + Ausbildung_Jahre + 
-##     Kinder_jung + Kinder_alt + Auslaender, family = binomial(link = &quot;logit&quot;), 
-##     data = schweiz_al)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -2.2681  -1.0675   0.5383   0.9727   1.9384  
-## 
-## Coefficients:
-##                    Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)      -10.374346   2.166852  -4.788 1.69e-06 ***
-## Einkommen_log      0.815041   0.205501   3.966 7.31e-05 ***
-## Alter              0.051033   0.009052   5.638 1.72e-08 ***
-## Ausbildung_Jahre  -0.031728   0.029036  -1.093    0.275    
-## Kinder_jung        1.330724   0.180170   7.386 1.51e-13 ***
-## Kinder_alt         0.021986   0.073766   0.298    0.766    
-## Auslaender1       -1.310405   0.199758  -6.560 5.38e-11 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## (Dispersion parameter for binomial family taken to be 1)
-## 
-##     Null deviance: 1203.2  on 871  degrees of freedom
-## Residual deviance: 1052.8  on 865  degrees of freedom
-## AIC: 1066.8
-## 
-## Number of Fisher Scoring iterations: 4</code></pre>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; glm(formula = Arbeitslos ~ Einkommen_log + Alter + Ausbildung_Jahre + 
+#&gt;     Kinder_jung + Kinder_alt + Auslaender, family = binomial(link = &quot;logit&quot;), 
+#&gt;     data = schweiz_al)
+#&gt; 
+#&gt; Deviance Residuals: 
+#&gt;     Min       1Q   Median       3Q      Max  
+#&gt; -2.2681  -1.0675   0.5383   0.9727   1.9384  
+#&gt; 
+#&gt; Coefficients:
+#&gt;                    Estimate Std. Error z value Pr(&gt;|z|)    
+#&gt; (Intercept)      -10.374346   2.166852  -4.788 1.69e-06 ***
+#&gt; Einkommen_log      0.815041   0.205501   3.966 7.31e-05 ***
+#&gt; Alter              0.051033   0.009052   5.638 1.72e-08 ***
+#&gt; Ausbildung_Jahre  -0.031728   0.029036  -1.093    0.275    
+#&gt; Kinder_jung        1.330724   0.180170   7.386 1.51e-13 ***
+#&gt; Kinder_alt         0.021986   0.073766   0.298    0.766    
+#&gt; Auslaender1       -1.310405   0.199758  -6.560 5.38e-11 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; (Dispersion parameter for binomial family taken to be 1)
+#&gt; 
+#&gt;     Null deviance: 1203.2  on 871  degrees of freedom
+#&gt; Residual deviance: 1052.8  on 865  degrees of freedom
+#&gt; AIC: 1066.8
+#&gt; 
+#&gt; Number of Fisher Scoring iterations: 4</code></pre>
 <p>Es wäre ja deutlich schöner wenn wir Änderungen in den unabhängigen Variablen als Änderungen in <span class="math inline">\(\mathbb{P}(y=1|\boldsymbol{x})\)</span> interpretieren könnten. In unserem Beispiel also: um wie viel Prozent würde die Wahrscheinlichkeit für Arbeitslosigkeit steigen wenn es sich bei der betroffenen Person um eine Ausländerin handelt? Um dieses Ergebnis zu bekommen bedarf es aber einiger weniger Umformungen.</p>
 <p>Da der Zusammenhang zwischen <span class="math inline">\(\mathbb{P}(y=1|\boldsymbol{x})\)</span> und den unabhängigen Variablen nicht-linear ist müssen wir für die Vergleiche der Wahrscheinlichkeiten konkrete Werte angeben.</p>
 <p>In einem ersten Schritt verwenden wir die Funktion <code>predict</code>, der wir als erstes Argument <code>object</code> unser geschätztes Modell übergeben. Als zweites Argument übergeben wir einen <code>data.frame</code>, in dem wir die relevanten Änderungen und den zu betrachtenden Bereich angeben. Je nach Anzahl der abhängigen Variablen kann diese Tabelle recht groß werden, sie ist aber notwendig, da der Zusammenhang zwischen abhängigen und unabhängiger Variable ja nicht-linear ist.</p>
@@ -545,12 +545,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           ),
         <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)
 predicted_probs</code></pre></div>
-<pre><code>##         1         2 
-## 0.6175431 0.8593445</code></pre>
+<pre><code>#&gt;         1         2 
+#&gt; 0.6175431 0.8593445</code></pre>
 <p>Das erste Element ist die Wahrscheinlichkeit arbeitslos zu sein für eine dreißigjährige Frau mit einem arbeitsunabhänigen Einkommen von <span class="math inline">\(\exp(10)=22025\)</span>, fünfjähiger Ausbildung, keinen alten Kindern, einem jungen Kind und mit schweizerischer Staatsangehörigkeit. Die zweite Wahrscheinlichkeit gilt für eine Frau mit den gleichen Eigenschaften aber zwei jungen Kindern. Mit <code>diff()</code> bekommen wir gleich den entsprechenden Effekt des zweiten jungen Kindes auf die Wahrscheinlichkeit arbeitslos zu sein:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">diff</span>(predicted_probs)</code></pre></div>
-<pre><code>##         2 
-## 0.2418014</code></pre>
+<pre><code>#&gt;         2 
+#&gt; 0.2418014</code></pre>
 <p>Die Wahrscheinlichkeit ist also nach dem Modell ca. <span class="math inline">\(25\%\)</span> größer! Wenn wir wissen wollen ob der Effekt für Ausländerinnen ähnlich ist rechnen wir:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">diff</span>(
   <span class="kw">predict</span>(<span class="dt">object =</span> arbeitslogit, 
@@ -564,8 +564,8 @@ predicted_probs</code></pre></div>
           ),
         <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)
 )</code></pre></div>
-<pre><code>##         2 
-## 0.3189543</code></pre>
+<pre><code>#&gt;         2 
+#&gt; 0.3189543</code></pre>
 <p>Hier ist der Effekt mit ca. <span class="math inline">\(32\%\)</span> also noch größer!</p>
 
 </div>
