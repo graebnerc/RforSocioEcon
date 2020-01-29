@@ -1,5 +1,7 @@
 # Ausgewählte nichtlineare Schätzverfahren {#nonlin}
 
+
+
 Eine der zentralsten und gleichzeitig restriktivsten Annahmen des
 OLS Modells ist die Annahme eines linearen Zusammenhangs zwischen der 
 abhängigen und den unabhängigen Variablen.
@@ -56,20 +58,20 @@ head(schweiz_al)
 ```
 
 ```
-##    Arbeitslos Einkommen_log Alter Ausbildung_Jahre Kinder_jung Kinder_alt
-## 1:          1      10.78750    30                8           1          1
-## 2:          0      10.52425    45                8           0          1
-## 3:          1      10.96858    46                9           0          0
-## 4:          1      11.10500    31               11           2          0
-## 5:          1      11.10847    44               12           0          2
-## 6:          0      11.02825    42               12           0          1
-##    Auslaender
-## 1:          0
-## 2:          0
-## 3:          0
-## 4:          0
-## 5:          0
-## 6:          0
+#>    Arbeitslos Einkommen_log Alter Ausbildung_Jahre Kinder_jung Kinder_alt
+#> 1:          1      10.78750    30                8           1          1
+#> 2:          0      10.52425    45                8           0          1
+#> 3:          1      10.96858    46                9           0          0
+#> 4:          1      11.10500    31               11           2          0
+#> 5:          1      11.10847    44               12           0          2
+#> 6:          0      11.02825    42               12           0          1
+#>    Auslaender
+#> 1:          0
+#> 2:          0
+#> 3:          0
+#> 4:          0
+#> 5:          0
+#> 6:          0
 ```
 
 Wir sind interessiert welchen Einfluss die erklärenden Variablen auf die
@@ -93,7 +95,9 @@ ggplot(
   geom_point() + geom_smooth(method = "lm", fullrange=TRUE) + theme_icae()
 ```
 
-![](Chap-nonlinmodels-binary_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
+
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-nonlinmodels-binary_files/figure-latex/unnamed-chunk-5-1} \end{center}
 
 Unser Modell würde für bestimmte Levels an arbeitsunabhängigem Einkommen
 Werte außerhalb des Intervalls $0, 1$ vorhersagen - also Werte, die $y$ gar nicht
@@ -115,7 +119,9 @@ ggplot(
                              fullrange=TRUE, se = TRUE) + theme_icae()
 ```
 
-![](Chap-nonlinmodels-binary_files/figure-latex/unnamed-chunk-5-1.pdf)<!-- --> 
+
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-nonlinmodels-binary_files/figure-latex/unnamed-chunk-6-1} \end{center}
 
 Dieser Zusammenhang ist jedoch nicht linear und damit inkonsisten mit A1 des
 OLS Modells. 
@@ -181,7 +187,8 @@ Wie sie in folgender Abbildung sehen, die sich wieder auf das
 Einführungsbeispiel bezieht, sind die funktionalen Formen bei der 
 beiden Modelle sehr ähnlich:
 
-![](Chap-nonlinmodels-binary_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
+
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-nonlinmodels-binary_files/figure-latex/unnamed-chunk-7-1} \end{center}
 
 
 Wir werden der Einfachheit halber im folgenden in der Regel das 
@@ -235,30 +242,30 @@ summary(arbeitslogit_test)
 ```
 
 ```
-## 
-## Call:
-## glm(formula = Arbeitslos ~ Einkommen_log + Alter, family = binomial(link = "logit"), 
-##     data = schweiz_al)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.7448  -1.1855   0.8128   1.1017   1.8279  
-## 
-## Coefficients:
-##                 Estimate Std. Error z value Pr(>|z|)    
-## (Intercept)   -10.381739   2.003223  -5.183 2.19e-07 ***
-## Einkommen_log   0.920045   0.185414   4.962 6.97e-07 ***
-## Alter           0.018013   0.006612   2.724  0.00645 ** 
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## (Dispersion parameter for binomial family taken to be 1)
-## 
-##     Null deviance: 1203.2  on 871  degrees of freedom
-## Residual deviance: 1168.5  on 869  degrees of freedom
-## AIC: 1174.5
-## 
-## Number of Fisher Scoring iterations: 4
+#> 
+#> Call:
+#> glm(formula = Arbeitslos ~ Einkommen_log + Alter, family = binomial(link = "logit"), 
+#>     data = schweiz_al)
+#> 
+#> Deviance Residuals: 
+#>     Min       1Q   Median       3Q      Max  
+#> -1.7448  -1.1855   0.8128   1.1017   1.8279  
+#> 
+#> Coefficients:
+#>                 Estimate Std. Error z value Pr(>|z|)    
+#> (Intercept)   -10.381739   2.003223  -5.183 2.19e-07 ***
+#> Einkommen_log   0.920045   0.185414   4.962 6.97e-07 ***
+#> Alter           0.018013   0.006612   2.724  0.00645 ** 
+#> ---
+#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#> 
+#> (Dispersion parameter for binomial family taken to be 1)
+#> 
+#>     Null deviance: 1203.2  on 871  degrees of freedom
+#> Residual deviance: 1168.5  on 869  degrees of freedom
+#> AIC: 1174.5
+#> 
+#> Number of Fisher Scoring iterations: 4
 ```
 
 Aber wie sollen wir das interpretieren?
@@ -285,35 +292,35 @@ summary(arbeitslogit)
 ```
 
 ```
-## 
-## Call:
-## glm(formula = Arbeitslos ~ Einkommen_log + Alter + Ausbildung_Jahre + 
-##     Kinder_jung + Kinder_alt + Auslaender, family = binomial(link = "logit"), 
-##     data = schweiz_al)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -2.2681  -1.0675   0.5383   0.9727   1.9384  
-## 
-## Coefficients:
-##                    Estimate Std. Error z value Pr(>|z|)    
-## (Intercept)      -10.374346   2.166852  -4.788 1.69e-06 ***
-## Einkommen_log      0.815041   0.205501   3.966 7.31e-05 ***
-## Alter              0.051033   0.009052   5.638 1.72e-08 ***
-## Ausbildung_Jahre  -0.031728   0.029036  -1.093    0.275    
-## Kinder_jung        1.330724   0.180170   7.386 1.51e-13 ***
-## Kinder_alt         0.021986   0.073766   0.298    0.766    
-## Auslaender1       -1.310405   0.199758  -6.560 5.38e-11 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## (Dispersion parameter for binomial family taken to be 1)
-## 
-##     Null deviance: 1203.2  on 871  degrees of freedom
-## Residual deviance: 1052.8  on 865  degrees of freedom
-## AIC: 1066.8
-## 
-## Number of Fisher Scoring iterations: 4
+#> 
+#> Call:
+#> glm(formula = Arbeitslos ~ Einkommen_log + Alter + Ausbildung_Jahre + 
+#>     Kinder_jung + Kinder_alt + Auslaender, family = binomial(link = "logit"), 
+#>     data = schweiz_al)
+#> 
+#> Deviance Residuals: 
+#>     Min       1Q   Median       3Q      Max  
+#> -2.2681  -1.0675   0.5383   0.9727   1.9384  
+#> 
+#> Coefficients:
+#>                    Estimate Std. Error z value Pr(>|z|)    
+#> (Intercept)      -10.374346   2.166852  -4.788 1.69e-06 ***
+#> Einkommen_log      0.815041   0.205501   3.966 7.31e-05 ***
+#> Alter              0.051033   0.009052   5.638 1.72e-08 ***
+#> Ausbildung_Jahre  -0.031728   0.029036  -1.093    0.275    
+#> Kinder_jung        1.330724   0.180170   7.386 1.51e-13 ***
+#> Kinder_alt         0.021986   0.073766   0.298    0.766    
+#> Auslaender1       -1.310405   0.199758  -6.560 5.38e-11 ***
+#> ---
+#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#> 
+#> (Dispersion parameter for binomial family taken to be 1)
+#> 
+#>     Null deviance: 1203.2  on 871  degrees of freedom
+#> Residual deviance: 1052.8  on 865  degrees of freedom
+#> AIC: 1066.8
+#> 
+#> Number of Fisher Scoring iterations: 4
 ```
 
 Es wäre ja deutlich schöner wenn wir Änderungen in den unabhängigen Variablen
@@ -356,8 +363,8 @@ predicted_probs
 ```
 
 ```
-##         1         2 
-## 0.6175431 0.8593445
+#>         1         2 
+#> 0.6175431 0.8593445
 ```
 
 Das erste Element ist die Wahrscheinlichkeit arbeitslos zu sein für eine 
@@ -375,8 +382,8 @@ diff(predicted_probs)
 ```
 
 ```
-##         2 
-## 0.2418014
+#>         2 
+#> 0.2418014
 ```
 
 Die Wahrscheinlichkeit ist also nach dem Modell ca. $25\%$ größer!
@@ -399,8 +406,8 @@ diff(
 ```
 
 ```
-##         2 
-## 0.3189543
+#>         2 
+#> 0.3189543
 ```
 
 Hier ist der Effekt mit ca. $32\%$ also noch größer!
