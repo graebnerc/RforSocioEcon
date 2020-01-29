@@ -149,7 +149,7 @@ durch folgende Gleichung gegeben:
 
 $$\boldsymbol{y} = \boldsymbol{x_1}{\beta_1} + \boldsymbol{x_2^{\beta_2}} + \boldsymbol{\epsilon}$$
 Ein Beispiel für einen solchen Zusammenhang findet sich an Abbildung 
-\ref{fig:nonlins}d.
+\ref{fig:nonlins}.
 Wir werden uns später im Kapitel mit der Frage beschäftigen welche funktionalen
 Transformationen besonders hilfreich sind, nichtlineare Zusammenhänge in die
 lineare Form zu bringen.
@@ -1891,9 +1891,9 @@ Für das Modell mit mehreren unabhängigen Variablen ist die Interpretation
 | **Modellart** | **Schätzgleichung** | **Interpretation der Koeffizienten** |
 |---------------+---------------------+--------------------------------------|
 | Level-Level   | $y=\beta_0+\beta_1x_1+\epsilon$ | Ändert sich $x_1$ um $1$ ändert sich $y$ um $\beta_1$ | 
-| Log-Level | $\ln(y)=\beta_0+\beta_1x_1+\epsilon$ | Ändert sich $x_1$ um $1$ ändert sich $y$ c.p. um ca. $\beta_1\cdot100\%$ |
+| Log-Level | $\ln(y)=\beta_0+\beta_1x_1+\epsilon$ | Ändert sich $x_1$ um $1$ ändert sich $y$ c.p. um ca. $100\cdot\beta_1\%$ |
 | Level-Log | $y=\beta_0+\beta_1\ln(x_1)+\epsilon$ | Ändert sich $x_1$ um ca. $1\%$ ändert sich $y$ c.p. um ca. $\beta_1 / 100$ |
-| Log-Log | $\ln(y)=\beta_0+\beta_1\ln(x_1)+\epsilon$ | Ändert sich $x_1$ um ca. $1\%$ ändert sich $y$ c.p. um ca. $\beta_1\cdot100\%$ |
+| Log-Log | $\ln(y)=\beta_0+\beta_1\ln(x_1)+\epsilon$ | Ändert sich $x_1$ um ca. $1\%$ ändert sich $y$ c.p. um ca. $\beta_1\%$ |
 
 Illustrieren wir die Wahl der funktionalen Form an folgendem Beispiel.
 Die Daten kommen von @chicken und enthalten Information zum Preis und zum 
