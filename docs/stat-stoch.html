@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>B Wiederholung: Wahrscheinlichkeitstheorie | R für die sozio-ökonomische Forschung</title>
   <meta name="description" content="R Skript in der Version 0.7.2" />
-  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="B Wiederholung: Wahrscheinlichkeitstheorie | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-01-29" />
+<meta name="date" content="2020-04-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -377,8 +377,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="verwendete-pakete-2" class="section level2 unnumbered">
 <h2>Verwendete Pakete</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(here)
-<span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(ggpubr)
+<span class="kw">library</span>(tidyverse)</code></pre></div>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.6.2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggpubr)
 <span class="kw">library</span>(latex2exp)
 <span class="kw">library</span>(icaeDesign)
 <span class="kw">library</span>(data.table)</code></pre></div>
@@ -540,10 +541,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Möchten wir schließlich eine bestimmte Menge an <strong>Realisierungen</strong> aus einer Binomialverteilung ziehen geht das mit <code>rbinom()</code>, welches drei Argumente verlangt: <code>n</code> für die Anzahl der zu ziehenden Realisierungen, sowie <code>size</code> und <code>prob</code> als da Paramter <span class="math inline">\(n\)</span> und <span class="math inline">\(p\)</span> der Binomialverteilung:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sample_binom &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="fl">0.4</span>)
 sample_binom</code></pre></div>
-<pre><code>## [1] 4 2 5 5 4</code></pre>
+<pre><code>## [1] 6 7 3 4 5</code></pre>
 <blockquote>
 <p><strong>Anwendungsbeispiel Binomialverteilung:</strong> Unser Zufallsexperiment besteht aus dem zehnmaligen Werfen einer fairen Münze. Unter ‘Erfolg’ verstehen wir das Werfen von ‘Zahl’. Nehmen wir an, wir führen das Zufallsexperiment 100 Mal durch, werfen also insgesamt 10 Mal die Münze und schreiben jeweils auf, wie häufig wir dabei einen Erfolg verbuchen konnten. Wenn wir unsere Ergebnisse aufmalen, indem wir auf der x-Achse die Anzahl der Erfolge, und auf der y-Achse die Anzahl der Experimente mit genau dieser Anzahl an Erfolgen aufmalen erhalten wir ein Histogram, das ungefähr so aussieht:</p>
 </blockquote>
+<pre><code>## Warning: `expand_scale()` is deprecated; use `expansion()` instead.</code></pre>
 <p><img src="ChapA-Wahrscheinlichkeitstheorie_files/figure-html/unnamed-chunk-11-1.png" width="672" /> &gt; Aus der Logik der Konstruktion des Zufallsexperiments und der Inspektion unserer Daten können wir schließen, dass die Binomialverteilung eine sinnvolle Beschreibung des Zufallsexperiments und der daraus entstandenen Stichprobe von 100 Münzwurfergebnissen ist. Da wir eine faire M+nze geworfen haben macht es Sinn für die Binomialverteilung <span class="math inline">\(p=0.5\)</span> anzunehmen, und da wir in jedem einzelnen Experiment die Münze 10 Mal geworfen haben für <span class="math inline">\(n=10\)</span>. Wenn wir die mit <span class="math inline">\(=10\)</span> und <span class="math inline">\(p=0.5\)</span> parametrisierte theoretische Binomialverteilung nehmen und ihre theoretische Verteilungsfunktion über die Aufzeichnungen unserer Ergebnisse legen, können wir uns in dieser Vermutung bestärkt führen:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(<span class="dt">x=</span>munzwurfe), <span class="kw">aes</span>(<span class="dt">x=</span>x)) <span class="op">+</span>
 <span class="st">  </span><span class="co">#geom_histogram(bins = wurzanzahl) +</span>
@@ -562,6 +564,7 @@ sample_binom</code></pre></div>
 <span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">expand_scale</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))) <span class="op">+</span>
 <span class="st">  </span><span class="co">#scale_color_manual(values=c(&quot;blue&quot;, &quot;red&quot;), name=c(&quot;Theoretische Verteilung&quot;, &quot;Empirische Verteilung&quot;)) +</span>
 <span class="st">  </span><span class="kw">theme_icae</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</code></pre></div>
+<pre><code>## Warning: `expand_scale()` is deprecated; use `expansion()` instead.</code></pre>
 <p><img src="ChapA-Wahrscheinlichkeitstheorie_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 </div>
 <div id="beispiel-die-poisson-verteilung" class="section level3">
@@ -862,6 +865,7 @@ exp_sample</code></pre></div>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -880,6 +884,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

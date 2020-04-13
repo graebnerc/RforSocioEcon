@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Erste Schritte in R | R für die sozio-ökonomische Forschung</title>
   <meta name="description" content="R Skript in der Version 0.7.2" />
-  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Erste Schritte in R | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-01-29" />
+<meta name="date" content="2020-04-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1206,7 +1206,7 @@ y &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(x)</code><
 #&gt; {
 #&gt;     UseMethod(&quot;lead&quot;)
 #&gt; }
-#&gt; &lt;bytecode: 0x7fb03dc135f0&gt;
+#&gt; &lt;bytecode: 0x7fb7ec9bd7e0&gt;
 #&gt; &lt;environment: namespace:plm&gt;</code></pre>
 <p>Aus der letzten Zeile wird ersichtlich, dass <code>lead</code> hier aus dem Paket <code>plm</code> kommt.</p>
 <p>Wenn wir die Funktion aus <code>dplyr</code> verwenden wollen, müssen wir <code>::</code> verwenden:</p>
@@ -1228,7 +1228,7 @@ y &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(x)</code><
 #&gt;     attributes(out) &lt;- attributes(x)
 #&gt;     out
 #&gt; }
-#&gt; &lt;bytecode: 0x7fb03bb6b270&gt;
+#&gt; &lt;bytecode: 0x7fb7ed1e6aa0&gt;
 #&gt; &lt;environment: namespace:dplyr&gt;</code></pre>
 <p>Wenn es zu Maskierungen kommt ist es aber der Transparenz wegen besser in beiden Fällen <code>::</code> zu verwenden, also <code>plm::lead</code> und <code>dplyr::lead</code>.</p>
 <blockquote>
@@ -1258,8 +1258,9 @@ y &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(x)</code><
 <p>Für die Beispiele hier nehmen wir folgende Ordnerstruktur an:</p>
 <p><img src="figures/chap3-data-folder.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Um die Daten einzulesen verwenden wir das Paket <code>tidyverse</code>, die wir später genauer kennen lernen werden. Sie enthält viele nützliche Funktionen zur Arbeit mit Datensätzen. Zudem verwende ich das Paket <code>here</code> um relative Pfade immer von meinem Arbeitsverzeichnis aus angeben zu können.<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(here)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+<pre><code>FALSE Warning: package &#39;tibble&#39; was built under R version 3.6.2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(here)</code></pre></div>
 <p>Nehmen wir an, die Datei <code>Rohdaten.csv</code> sähe folgendermaßen aus:</p>
 <pre><code>Auto,Verbrauch,Zylinder,PS
 Ford Pantera L,15.8,8,264
@@ -1328,6 +1329,7 @@ auto_daten</code></pre></div>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -1346,6 +1348,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

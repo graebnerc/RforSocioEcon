@@ -90,6 +90,13 @@ Im folgenden werden die drei Verfahren in größerem Detail besprochen.
 ```r
 library(here)
 library(tidyverse)
+```
+
+```
+## Warning: package 'tibble' was built under R version 3.6.2
+```
+
+```r
 library(ggpubr)
 library(latex2exp)
 library(icaeDesign)

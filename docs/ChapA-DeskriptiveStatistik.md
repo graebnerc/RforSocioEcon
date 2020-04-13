@@ -34,6 +34,13 @@ Hilfe deskriptiver Statistik besser verstehen.
 ```r
 library(here)
 library(tidyverse)
+```
+
+```
+## Warning: package 'tibble' was built under R version 3.6.2
+```
+
+```r
 library(data.table)
 library(ggpubr)
 library(latex2exp)
@@ -293,6 +300,15 @@ In jedem Fall ist bei der Interpretation von Korrelationen Vorsicht angebracht:
 da der Korrelationskoeffizient nur die Stärke des *linearen* Zusammenhangs misst,
 können dem gleichen Korrelationskoeffizienten sehr unterschiedliche nicht-lineare
 Zusammenhänge zugrunde liegen:
+
+
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
+```
 
 
 

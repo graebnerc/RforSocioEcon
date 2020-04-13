@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Ausgewählte nichtlineare Schätzverfahren | R für die sozio-ökonomische Forschung</title>
   <meta name="description" content="R Skript in der Version 0.7.2" />
-  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Ausgewählte nichtlineare Schätzverfahren | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-01-29" />
+<meta name="date" content="2020-04-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -404,6 +404,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">14</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Arbeitslosigkeit&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Arbeitsunabh. Einkommen (log)&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">fullrange=</span><span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_icae</span>()</code></pre></div>
+<pre><code>#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Chap-nonlinmodels-binary_files/figure-html/unnamed-chunk-5-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Unser Modell würde für bestimmte Levels an arbeitsunabhängigem Einkommen Werte außerhalb des Intervalls <span class="math inline">\(0, 1\)</span> vorhersagen - also Werte, die <span class="math inline">\(y\)</span> gar nicht annehmen kann und die, da wir die Werte für <span class="math inline">\(y\)</span> später als Wahrscheinlichkeiten interpretieren wollen, auch gar keinen Sinn ergeben wollen.</p>
 <p>Unser Ziel ist da eher ein funktionaler Zusammenhang wie in folgender Abbildung zu sehen:</p>
@@ -415,6 +416,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">y=</span>Arbeitslos), <span class="dt">method =</span> <span class="st">&quot;glm&quot;</span>,
                              <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>), 
                              <span class="dt">fullrange=</span><span class="ot">TRUE</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_icae</span>()</code></pre></div>
+<pre><code>#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Chap-nonlinmodels-binary_files/figure-html/unnamed-chunk-6-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Dieser Zusammenhang ist jedoch nicht linear und damit inkonsisten mit A1 des OLS Modells.</p>
 </div>
@@ -445,6 +447,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><em>probit</em> Modelle funktionieren auf eine sehr ähnliche Art und Weise, verwenden aber eine andere Transformation über die kumulierte Wahrscheinlichkeitsverteilung der Normalverteilung. Hier wird im Endeffekt folgende Regressionsgleichung geschätzt:</p>
 <p><span class="math display">\[\mathbb{P}(y=1|\boldsymbol{x})=\phi(\boldsymbol{X\beta})\]</span></p>
 <p>wobei <span class="math inline">\(\Phi(\cdot)\)</span> die kumulierte Wahrscheinlichkeitsverteilung der Normalverteilung ist. Wie sie in folgender Abbildung sehen, die sich wieder auf das Einführungsbeispiel bezieht, sind die funktionalen Formen bei der beiden Modelle sehr ähnlich:</p>
+<pre><code>#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;
+#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Chap-nonlinmodels-binary_files/figure-html/unnamed-chunk-7-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Wir werden der Einfachheit halber im folgenden in der Regel das <em>logit</em> Modell verwenden, aber die Implementierung in R ist wirklich sehr ähnlich.</p>
 </div>
@@ -603,6 +607,7 @@ predicted_probs</code></pre></div>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -621,6 +626,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

@@ -2147,7 +2147,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7f90403276a8>
+#> <bytecode: 0x7f8da43e9618>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2178,7 +2178,7 @@ dplyr::lead
 #>     attributes(out) <- attributes(x)
 #>     out
 #> }
-#> <bytecode: 0x7f9041004d98>
+#> <bytecode: 0x7f8da2327de8>
 #> <environment: namespace:dplyr>
 ```
 
@@ -2256,6 +2256,13 @@ R Markdown finden Sie im Anhang. Dieser wird auch in der Vorlesung besprochen.]
 
 ```r
 library(tidyverse)
+```
+
+```
+FALSE Warning: package 'tibble' was built under R version 3.6.2
+```
+
+```r
 library(here)
 ```
 

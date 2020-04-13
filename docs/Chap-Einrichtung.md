@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Einrichtung {#einrichtung}
 
 
@@ -20,14 +25,20 @@ Bitte darauf achten 'RStuio Desktop' zu installieren.
 ## Die R Studio Oberfläche
 
 Nach dem Installationsprozess öffnen wir R Studio zum ersten Mal.
-Der folgende Screenshot zeigt die verschiedenen Elemente der Oberfläche, deren 
+Abbildung \@ref(fig:gui) zeigt die verschiedenen Elemente der Oberfläche, deren 
 Funktion im folgenden kurz erläutert wird.
 Vieles ergibt sich hier aber auch durch *learning by doing*.
 Im folgenden werden nur die Bereiche der Oberfläche beschrieben, die am Anfang 
 unmittelbar relevant für uns sind.
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=1\linewidth]{figures/r-studio-light-marked} \end{center}
+{\centering \includegraphics[width=1\linewidth]{figures/r-studio-light-marked} 
+
+}
+
+\caption{Die Benutzeroberfläche von R-Studio.}(\#fig:gui)
+\end{figure}
 
 * Der **Skriptbereich** (1) ist ein Texteditor wie Notepad - nur mit 
 zusätzlichen Features wie Syntax Highlighting für R, sodass es uns leichter 
@@ -86,7 +97,7 @@ anzuschauen und ggf. eine andere Darstellungsversion zu wählen.
 
 ## Einrichtung eines R Projekts
 
-Im folgenden werden wir lernen wie man ein neues R Projekt anlegt, R Code 
+Im Folgenden werden wir lernen wie man ein neues R Projekt anlegt, R Code 
 schreiben und ausführen kann.
 
 Wann immer wir ein neues Programmierprojekt starten, sollten wir dafür einen 
@@ -177,27 +188,37 @@ auch die Arbeitshistorie eines Projekts leich wiederherstellen und es ist
 einfacher, das Projekt auf verschiedenen Computern zu bearbeiten.
 
 Um ein neues Projekt zu erstellen klicken Sie in R Studio auf den Button 
-`Neues Projekt` (Nr. 10 in der obigen Abbildung) und Sie sollten folgendes
-Fenster sehen:
+`Neues Projekt` (Nr. 10 in Abbildung \@ref(fig:gui)) und Sie sollten das in 
+Abbildung \@ref(fig:newproj1) dargestellte Fenster sehen.
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.6\linewidth]{figures/r-studio-new-project} \end{center}
+{\centering \includegraphics[width=0.6\linewidth]{figures/r-studio-new-project} 
+
+}
+
+\caption{Ein neues Projekt erstellen.}(\#fig:newproj1)
+\end{figure}
 
 Falls Sie in Schritt 1 den Projektordner bereits erstellt haben wählen Sie hier
 `Existing Directory`, ansonsten erstellen Sie einen neuen Projektordner gleich
 mit dem Projektfile mit indem Sie `New Directory` auswählen.
 
-Falls Sie `Existing Directory` gewählt haben, wählen Sie in folgendem Fenster 
-einfach den vorher erstellten Ordner aus und klickt auf `Create Project`.
+Falls Sie `Existing Directory` gewählt haben, wählen Sie in dem in linken in
+Abbildung \@ref(fig:newproj2) dargestellten Fenster. 
+Wählen Sie hier einfach den vorher erstellten Ordner aus und klickt auf `Create Project`.
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.6\linewidth]{figures/r-studio-new-project-exis-dir} \end{center}
+{\centering \includegraphics[width=0.4\linewidth]{figures/r-studio-new-project-exis-dir} \includegraphics[width=0.4\linewidth]{figures/r-studio-new-project-new-dir} 
 
-Falls Sie `New Directory` gewählt habt landen Sie auf folgendem Fenster:
+}
 
+\caption{Ein neues R-PRojekt aus einem existierenden (links) oder in einem neuen Projektordner (rechts) erstellen.}(\#fig:newproj2)
+\end{figure}
 
-\begin{center}\includegraphics[width=0.6\linewidth]{figures/r-studio-new-project-new-dir} \end{center}
-
+Falls Sie `New Directory` gewählt habt landen Sie dann auf dem rechten in 
+Abbildung \@ref(fig:newproj2) dargestellten Fenster.
 Hier wählen Sie `New Project` aus, geben dem Projekt in folgenden Fenster einen
 Namen (das wird der Name des Projektordners sein), wählen den Speicherort für den
 Ordner aus und klicken auf `Create Project`.
@@ -255,10 +276,16 @@ Ordner passt. Ein solcher Ordner ist wichtig und Sie sollten nicht zuordbare
 Dateien nie in den Projektordner als solchen speichern.
 
 Wenn wir annehmen unser Projektordner heißt `2019-Methoden` ergibt sich damit 
-insgesamt folgende Ordner und Datenstruktur:
+insgesamt die in Abbildung \@ref(fig:folder) dargestellte Ordner und Datenstruktur.
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=2.25in]{figures/wd-structure} \end{center}
+{\centering \includegraphics[width=2.25in,height=0.5\textheight]{figures/wd-structure} 
+
+}
+
+\caption{Die vorgeschlagene Ordnerstruktur für R-Projekte.}(\#fig:folder)
+\end{figure}
 
 ## Abschließende Bemerkungen
 
@@ -270,3 +297,5 @@ und GitHub verwenden.
 Wir werden uns damit im nächsten Semester genauer beschäftigen, aber Sie werden
 merken, dass die Kollaboration durch eine gut durchdachte Ordnerstruktur massiv
 erleichtert wird.
+
+<!-- Noch etwas zum HERE Paket hinzufügen --> 

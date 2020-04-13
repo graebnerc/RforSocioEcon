@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Formale Methoden der Sozioökonomie | R für die sozio-ökonomische Forschung</title>
   <meta name="description" content="R Skript in der Version 0.7.2" />
-  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Formale Methoden der Sozioökonomie | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-01-29" />
+<meta name="date" content="2020-04-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -381,8 +381,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Den Schwerpunkt des Kapitels bildet dann der Abschnitt zu <a href="formalia.html#formalia-dist">Verteilungen</a>. Die Analyse von Verteilungen spielt eine sehr wichtige Rolle in der Sozioökonomik, da Themen wie Einkommens- und Vermögensverteilung bzw. Ungleichheitsforschung traditionell ein wichtiges Kernthema der Sozioökonomik ausmachen.</p>
 <p>In diesem Kapitel werden die folgenden R Pakete verwendet:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(here)
-<span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(data.table)
+<span class="kw">library</span>(tidyverse)</code></pre></div>
+<pre><code>#&gt; Warning: package &#39;tibble&#39; was built under R version 3.6.2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
 <span class="kw">library</span>(icaeDesign)
 <span class="kw">library</span>(ggrepel)
 <span class="kw">library</span>(ggpubr)
@@ -1195,6 +1196,7 @@ e_n \times e_n \end{array}\right)\]</span></p>
 <span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">expand_scale</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_icae</span>()</code></pre></div>
+<pre><code>#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.</code></pre>
 <p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-62-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Beachten Sie, dass die y-Achse die empirische Dichte der Beobachtungen auf der x-Achse angibt, also ein Maß für die relative Häufigkeit der Beobachtungen.<a href="#fn60" class="footnoteRef" id="fnref60"><sup>60</sup></a> Dies haben wir mit der Funktion <code>stat(density)</code> innerhalb von <code>geom_histogram()</code> erreicht.</p>
 <p>Wenn wir die Daten so betrachten erscheint es naheliegend, Sie als Realisierung einer Normalverteilung zu interpretieren: die Form ist grob glockenförmig und symmetrisch. Wir können diese plausibilisieren indem wir mit <code>geom_density()</code> die <em>empirische Dichtefunktion</em> der Verteilung schätzen und über die Daten legen:</p>
@@ -1209,12 +1211,14 @@ e_n \times e_n \end{array}\right)\]</span></p>
 <span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">expand_scale</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>), 
                                            <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_icae</span>()</code></pre></div>
+<pre><code>#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.</code></pre>
 <p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-63-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Das bedeutet, dass wir unsere Daten mit Hilfe der Dichtefunktion (<em>probability density function</em> - PDF) der Normalverteilung beschreiben können. Die Formel an sich ist dabei weniger illustrativ, aber sie zeigt was wir mit einem <em>parametrischen</em> Wahrscheinlichkeitsmodell meinen:</p>
 <p><span class="math display">\[f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\]</span></p>
 <p>Wenn Sie die Formel genau anschauen finden sich darin zwei Parameter: ein Lageparameter <span class="math inline">\(\mu\)</span> und ein Streuparameter <span class="math inline">\(\sigma^2\)</span>. Das bedeutet, dass wir mit diesen beiden Werten die theoretische Normalverteilung vollständig charakterisieren können. Es wäre ja schön, wenn wir unsere Stichprobe oben ebenfalls mit solchen zwei Zahlen vollständig beschreiben könnten.</p>
 <p>Das geht allerdings nicht. Unsere empirisch erhobenen Daten sind nie <em>komplett</em> identisch zu einer theoretischen Verteilung. Was wir daher machen können ist folgender: wir argumentieren, dass unsere Daten sinnvoll durch eine normalverteilte ZV <em>modelliert</em> werden können. Wir sagen dann, dass unsere Stichprobe <em>approximativ normalverteilt</em> ist. Dann müssen wir im nächsten Schritt nur noch die Werte für die beiden Parameter der Normalverteilung finden, sodass die Verteilung optimal zu unseren Daten passt. Das bedeutet wir ‘fitten’ die Verteilung zu unseren Daten.</p>
 <p>Was damit gemeint ist verdeutlicht die folgende Darstellung:</p>
+<pre><code>#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.</code></pre>
 <p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-64-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Die Normalverteilung mit <span class="math inline">\(\mu=4\)</span> und <span class="math inline">\(\sigma^2=4\)</span> passt zu den Daten recht gut. Aber wie identifizieren wir diese Werte? In der Praxis müssen diese Werte geschätzt werden. Dazu gibt es verschiedene Verfahren.</p>
 <p>Die bekannteste Variante ist die <em>Maximum Likelihood</em> Schätzung. Das Verfahren wird <a href="#vert-fit">später</a> genauer beschrieben, hier illustrieren wir es mit unserem aktuellen Beispiel.</p>
@@ -1446,6 +1450,7 @@ test_data_inequality &lt;-<span class="st"> </span><span class="kw">c</span>(<sp
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">skewness</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</code></pre></div>
 <pre><code>#&gt; [1] 1.691223</code></pre>
 <p>Wir würden hier also von einer <em>recht-schiefen</em> Verteilung der Preise sprechen. Das sehen wir hier auch grafisch:</p>
+<pre><code>#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.</code></pre>
 <p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-80-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Die <strong>Steile</strong> (auch: Kurtosis) <span class="math inline">\(\omega_x\)</span> einer Verteilung gibt ihre ‘Spitzgipfligkeit’ an. Je größer <span class="math inline">\(\omega_x\)</span> desto ‘schmaler’ wird die Verteilung und desto weniger extreme Werte hat sie. Die Steile ist folgendermaßen definiert:</p>
 <p><span class="math display">\[\omega_x = \frac{1}{n}\sum_{i=1}^n\left( \frac{x_i-\bar{x}}{s_x}\right)^4\]</span> Wie bei der Schiefe müssen wir für die Schätzung wieder für die Reduktion der Freiheitsgrade korrigieren, sodass die praktische Schätzfunktion gegeben ist durch:</p>
@@ -1719,6 +1724,7 @@ violin_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span c
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -1737,6 +1743,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

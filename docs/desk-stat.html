@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>C Wiederholung: Deskriptive Statistik | R für die sozio-ökonomische Forschung</title>
   <meta name="description" content="R Skript in der Version 0.7.2" />
-  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="C Wiederholung: Deskriptive Statistik | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-01-29" />
+<meta name="date" content="2020-04-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -372,8 +372,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="verwendete-pakete-und-datensätze" class="section level2 unnumbered">
 <h2>Verwendete Pakete und Datensätze</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(here)
-<span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(data.table)
+<span class="kw">library</span>(tidyverse)</code></pre></div>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.6.2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
 <span class="kw">library</span>(ggpubr)
 <span class="kw">library</span>(latex2exp)
 <span class="kw">library</span>(icaeDesign)
@@ -466,6 +467,10 @@ quant_differenz</code></pre></div>
 <p>Über das Argument <code>method</code> der Funktion <code>cor()</code> können auch andere Korrelationsmaße berechnet werden: der <a href="https://de.wikipedia.org/wiki/Rangkorrelationskoeffizient#Spearman&#39;scher_Rangkorrelationskoeffizient">Spearman-Korrelationskoeffizient</a> (<code>method='spearman'</code>) oder der <a href="https://de.wikipedia.org/wiki/Rangkorrelationskoeffizient#Kendall&#39;sches_Tau">Kendall-Korrelationskoeffizient</a> (<code>method='kendall'</code>) sind beides Maße, die nur die Ränge der Ausprägungen und nicht deren numerische Werte berücksichtigen. Dies macht sie immun gegen Ausreißer und wir müssen keine Annahme über die Art der Korrelation machen wie beim Pearson-Korrelationskoeffizient, der nur lineare Zusammenhänge quantifiziert. Gleichzeitig gehen uns natürlich auch viele Informationen verloren. Das richtige Maß ist wie immer kontextabhängig und muss entsprechend theoretisch begründet werden.</p>
 <p>Darüber hinaus erlaubt die Funktion <code>cor()</code> über das Argument <code>use</code> noch den Umgang mit fehlenden Werten genauer zu spezifizieren. Wenn Sie an der (nicht-standartisierten) Ko-Varianz interessiert sind, können Sie diese über die Funktion <code>cov()</code> berechnen, die analog zu <code>cor()</code> funktioniert.</p>
 <p>In jedem Fall ist bei der Interpretation von Korrelationen Vorsicht angebracht: da der Korrelationskoeffizient nur die Stärke des <em>linearen</em> Zusammenhangs misst, können dem gleichen Korrelationskoeffizienten sehr unterschiedliche nicht-lineare Zusammenhänge zugrunde liegen:</p>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
+## `geom_smooth()` using formula &#39;y ~ x&#39;
+## `geom_smooth()` using formula &#39;y ~ x&#39;
+## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="ChapA-DeskriptiveStatistik_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Daher ist es immer wichtig die Daten auch visuell zu inspizieren. Datenvisualisierung ist aber so wichtig, dass sie in einem eigenen Kapitel behandelt wird.</p>
 </div>
@@ -637,6 +642,7 @@ quant_differenz</code></pre></div>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -655,6 +661,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

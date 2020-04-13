@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Einrichtung | R für die sozio-ökonomische Forschung</title>
   <meta name="description" content="R Skript in der Version 0.7.2" />
-  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Einrichtung | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-01-29" />
+<meta name="date" content="2020-04-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -373,8 +373,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="die-r-studio-oberfläche" class="section level2">
 <h2><span class="header-section-number">2.2</span> Die R Studio Oberfläche</h2>
-<p>Nach dem Installationsprozess öffnen wir R Studio zum ersten Mal. Der folgende Screenshot zeigt die verschiedenen Elemente der Oberfläche, deren Funktion im folgenden kurz erläutert wird. Vieles ergibt sich hier aber auch durch <em>learning by doing</em>. Im folgenden werden nur die Bereiche der Oberfläche beschrieben, die am Anfang unmittelbar relevant für uns sind.</p>
-<p><img src="figures/r-studio-light-marked.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Nach dem Installationsprozess öffnen wir R Studio zum ersten Mal. Abbildung <a href="einrichtung.html#fig:gui">2.1</a> zeigt die verschiedenen Elemente der Oberfläche, deren Funktion im folgenden kurz erläutert wird. Vieles ergibt sich hier aber auch durch <em>learning by doing</em>. Im folgenden werden nur die Bereiche der Oberfläche beschrieben, die am Anfang unmittelbar relevant für uns sind.</p>
+<div class="figure" style="text-align: center"><span id="fig:gui"></span>
+<img src="figures/r-studio-light-marked.png" alt="Die Benutzeroberfläche von R-Studio." width="100%" />
+<p class="caption">
+Figure 2.1: Die Benutzeroberfläche von R-Studio.
+</p>
+</div>
 <ul>
 <li><p>Der <strong>Skriptbereich</strong> (1) ist ein Texteditor wie Notepad - nur mit zusätzlichen Features wie Syntax Highlighting für R, sodass es uns leichter fällt R Code zu schreiben. Hier werden wir unsere Skripte verfassen.</p></li>
 <li><p>Die <strong>Konsole</strong> (2) erlaubt es uns über R direkt mit unserem Computer zu interagieren. R ist eine Programmiersprache. Das bedeutet, wenn wir den Regeln der Sprache folgen und uns in einer für den Computer verständlicher Art und Weise ausdrücken, versteht der Computer was wir von ihm wollen und führt unsere Befehle aus. Wenn wir in die Konsole z.B. <code>2+2</code> eingeben, dann ist das valider R code. Wenn wir dann Enter drücken versteht der Computer unseren Befehl und führt die Berechnung aus. Die Konsole ist sehr praktisch um den Effekt von R Code direkt zu beobachten. Wenn wir etwas in der Console ausführen wollen, das wir vorher im <strong>Skriptbereich</strong> geschrieben haben, können wir den Text markieren und dann auf den Button <code>Run</code> (3) drücken: dann kopiert R Studio den Code in die Konsole und führt ihn aus.</p></li>
@@ -390,7 +395,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="einrichtung-eines-r-projekts" class="section level2">
 <h2><span class="header-section-number">2.3</span> Einrichtung eines R Projekts</h2>
-<p>Im folgenden werden wir lernen wie man ein neues R Projekt anlegt, R Code schreiben und ausführen kann.</p>
+<p>Im Folgenden werden wir lernen wie man ein neues R Projekt anlegt, R Code schreiben und ausführen kann.</p>
 <p>Wann immer wir ein neues Programmierprojekt starten, sollten wir dafür einen eigenen Ordner anlegen und ein so genannten ‘R Studio Projekt’ erstellen. Das hilft uns den Überblick über unsere Arbeit zu behalten, und macht es einfach Code untereinander auszutauschen.</p>
 <p>Ein Programmierprojekt kann ein Projekt für eine Hausarbeit sein, die Mitschriften für eine Vorlesungseinheit, oder einfach der Versuch ein bestimmtes Problem zu lösen, z.B. einen Datensatz zu visualisieren.</p>
 <p>Die Schritte zur Erstellung eines solchen Projekts sind immer die gleichen:</p>
@@ -420,14 +425,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="schritt-2-ein-r-studio-projekt-im-projektordner-erstellen" class="section level3">
 <h3><span class="header-section-number">2.3.3</span> Schritt 2: Ein R-Studio Projekt im Projektordner erstellen</h3>
 <p>Wir möchten nun R Studio mitteilen den in Schritt 1 erstellten Ordner als R Projekt zu behandeln. Damit wird nicht nur dieses Ordner als Root-Verzeichnis festgelegt, man kann auch die Arbeitshistorie eines Projekts leich wiederherstellen und es ist einfacher, das Projekt auf verschiedenen Computern zu bearbeiten.</p>
-<p>Um ein neues Projekt zu erstellen klicken Sie in R Studio auf den Button <code>Neues Projekt</code> (Nr. 10 in der obigen Abbildung) und Sie sollten folgendes Fenster sehen:</p>
-<p><img src="figures/r-studio-new-project.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Um ein neues Projekt zu erstellen klicken Sie in R Studio auf den Button <code>Neues Projekt</code> (Nr. 10 in Abbildung <a href="einrichtung.html#fig:gui">2.1</a>) und Sie sollten das in Abbildung <a href="einrichtung.html#fig:newproj1">2.2</a> dargestellte Fenster sehen.</p>
+<div class="figure" style="text-align: center"><span id="fig:newproj1"></span>
+<img src="figures/r-studio-new-project.png" alt="Ein neues Projekt erstellen." width="60%" />
+<p class="caption">
+Figure 2.2: Ein neues Projekt erstellen.
+</p>
+</div>
 <p>Falls Sie in Schritt 1 den Projektordner bereits erstellt haben wählen Sie hier <code>Existing Directory</code>, ansonsten erstellen Sie einen neuen Projektordner gleich mit dem Projektfile mit indem Sie <code>New Directory</code> auswählen.</p>
-<p>Falls Sie <code>Existing Directory</code> gewählt haben, wählen Sie in folgendem Fenster einfach den vorher erstellten Ordner aus und klickt auf <code>Create Project</code>.</p>
-<p><img src="figures/r-studio-new-project-exis-dir.png" width="60%" style="display: block; margin: auto;" /></p>
-<p>Falls Sie <code>New Directory</code> gewählt habt landen Sie auf folgendem Fenster:</p>
-<p><img src="figures/r-studio-new-project-new-dir.png" width="60%" style="display: block; margin: auto;" /></p>
-<p>Hier wählen Sie <code>New Project</code> aus, geben dem Projekt in folgenden Fenster einen Namen (das wird der Name des Projektordners sein), wählen den Speicherort für den Ordner aus und klicken auf <code>Create Project</code>.</p>
+<p>Falls Sie <code>Existing Directory</code> gewählt haben, wählen Sie in dem in linken in Abbildung <a href="einrichtung.html#fig:newproj2">2.3</a> dargestellten Fenster. Wählen Sie hier einfach den vorher erstellten Ordner aus und klickt auf <code>Create Project</code>.</p>
+<div class="figure" style="text-align: center"><span id="fig:newproj2"></span>
+<img src="figures/r-studio-new-project-exis-dir.png" alt="Ein neues R-PRojekt aus einem existierenden (links) oder in einem neuen Projektordner (rechts) erstellen." width="40%" /><img src="figures/r-studio-new-project-new-dir.png" alt="Ein neues R-PRojekt aus einem existierenden (links) oder in einem neuen Projektordner (rechts) erstellen." width="40%" />
+<p class="caption">
+Figure 2.3: Ein neues R-PRojekt aus einem existierenden (links) oder in einem neuen Projektordner (rechts) erstellen.
+</p>
+</div>
+<p>Falls Sie <code>New Directory</code> gewählt habt landen Sie dann auf dem rechten in Abbildung <a href="einrichtung.html#fig:newproj2">2.3</a> dargestellten Fenster. Hier wählen Sie <code>New Project</code> aus, geben dem Projekt in folgenden Fenster einen Namen (das wird der Name des Projektordners sein), wählen den Speicherort für den Ordner aus und klicken auf <code>Create Project</code>.</p>
 <p>In beiden Fällen wurde nun ein Ordner erstellt, in dem sich ein File <code>*.Rproj</code> befindet. Damit ist die formale Erstellung eines Projekts abgeschlossen. Es empfiehlt sich jedoch dringend gleich eine sinnvolle Unterordnerstruktur mit anzulegen.</p>
 </div>
 <div id="unterordner" class="section level3">
@@ -447,13 +460,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p>Ein Ordner <code>text</code>, in dem Sie Ihre Verschriftlichungen speichern, z.B. das eigentliche Forschungspapier, ihre Hausarbeit oder Ihre Vorlesungsmitschriften.</p></li>
 <li><p>Einen Ordner <code>misc</code> in den Sie alles packen, was in keinen der anderen Ordner passt. Ein solcher Ordner ist wichtig und Sie sollten nicht zuordbare Dateien nie in den Projektordner als solchen speichern.</p></li>
 </ul>
-<p>Wenn wir annehmen unser Projektordner heißt <code>2019-Methoden</code> ergibt sich damit insgesamt folgende Ordner und Datenstruktur:</p>
-<p><img src="figures/wd-structure.png" width="81" style="display: block; margin: auto;" /></p>
+<p>Wenn wir annehmen unser Projektordner heißt <code>2019-Methoden</code> ergibt sich damit insgesamt die in Abbildung <a href="einrichtung.html#fig:folder">2.4</a> dargestellte Ordner und Datenstruktur.</p>
+<div class="figure" style="text-align: center"><span id="fig:folder"></span>
+<img src="figures/wd-structure.png" alt="Die vorgeschlagene Ordnerstruktur für R-Projekte." width="81" height="50%" />
+<p class="caption">
+Figure 2.4: Die vorgeschlagene Ordnerstruktur für R-Projekte.
+</p>
+</div>
 </div>
 </div>
 <div id="abschließende-bemerkungen" class="section level2">
 <h2><span class="header-section-number">2.4</span> Abschließende Bemerkungen</h2>
 <p>Eine gute Ordnerstruktur ist nicht nur absolut essenziell um selbst einen Überblick über seine Forschungsprojekte zu behalten, sondern auch wenn man mit anderen Menschen kollaborieren möchte. In einem solchen Fall sollte man auf jeden Fall eine Versionskontrolle wie Git und GitHub verwenden. Wir werden uns damit im nächsten Semester genauer beschäftigen, aber Sie werden merken, dass die Kollaboration durch eine gut durchdachte Ordnerstruktur massiv erleichtert wird.</p>
+<!-- Noch etwas zum HERE Paket hinzufügen -->
 
 </div>
 </div>
@@ -479,6 +498,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -497,6 +517,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

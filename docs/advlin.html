@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Fortgeschrittene Themen der linearen Regression | R für die sozio-ökonomische Forschung</title>
   <meta name="description" content="R Skript in der Version 0.7.2" />
-  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Fortgeschrittene Themen der linearen Regression | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-01-29" />
+<meta name="date" content="2020-04-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -378,8 +378,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Der Fokus des Hauptkapitels liegt dabei auf der zugrundeliegenden Intuition. Daher werden wir uns dort nicht mit den mathematischen Beweisen beschäftigen, sondern das Verhalten des OLS-Schätzers anhand von Simulationen illustrieren. Für alle interessierten gibt es jedoch am Ende des Kapitels einen Überblick zu allen relevanten Theoremen und ihren mathematischen Beweisen (siehe <a href="advlin.html#advlin-proofs">Anhang zu Theoremen und Beweisen</a>).</p>
 <p>In diesem Kapitel werden die folgenden R Pakete verwendet:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(here)
-<span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(data.table)
+<span class="kw">library</span>(tidyverse)</code></pre></div>
+<pre><code>#&gt; Warning: package &#39;tibble&#39; was built under R version 3.6.2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
 <span class="kw">library</span>(latex2exp)
 <span class="kw">library</span>(icaeDesign)
 <span class="kw">library</span>(ggpubr)
@@ -430,6 +431,8 @@ Figure 8.1: Lineare und nichtlineare Zusammenhänge.
 <blockquote>
 <p><strong>Bedingter vs. unbedingter Erwartungswert der Fehler</strong> Auf den ersten Blick klingt es komisch, dass der bedingte Erwartungswert der Fehler von Null, <span class="math inline">\(\mathbb{E}\left[\boldsymbol{\epsilon} | \boldsymbol{x} \right]=0\)</span>, den unbedingten Erwartungswert von Null, <span class="math inline">\(\mathbb{E}\left[\boldsymbol{\epsilon}\right]=0\)</span>, impliziert, aber nicht andersherum. Folgendes Beispiel illustriert dieses Problem:</p>
 </blockquote>
+<pre><code>#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;
+#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Chap-advlinmodels_files/figure-html/unnamed-chunk-4-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>In der linken Abbildung haben wir einen bedingten Erwartungswert von Null: für jede beliebige Beobachtung in <span class="math inline">\(\boldsymbol{x}\)</span> ist der Erwartungswert der Fehler Null. Daraus ergibt sich, dass der Erwartungswert für alle Fehler zusammen auch Null ist. In der rechten Abbildung ist der bedingte Erwartungswert nicht Null: für die untere Hälte der Beobachtungen in <span class="math inline">\(\boldsymbol{x}\)</span> ist der Erwartungswert <span class="math inline">\(1\)</span>, für die obere Hälfte der Beobachtungen ist der Erwartungswert <span class="math inline">\(-1\)</span>. Für die gesamten Daten ergibt sich dabei auch ein Erwartungswert von <span class="math inline">\(0\)</span>, aber eben <em>nicht</em> für jede einzelne Beobachtung. Häufig tritt diese Problem bei quadratischen Zusammenhängen auf.</p>
@@ -516,6 +519,7 @@ Cov(\epsilon_i, \epsilon_j|\boldsymbol{X}) &amp;=
 <p>Daraus resultiert natürlich nicht, dass für jede einzelne Schätzung der Wert des Schätzers <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> gleich dem wahren Wert <span class="math inline">\(\boldsymbol{\beta}\)</span> ist. Jede Schätzung ist aufgrund der Fehler immer mit Unsicherheit behaftet. Diese Unsicherheit können wir über die Varianz des Schätzers <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> messen: je größer die Varianz desto größer die Unsicherheit für die einzelne Schätzung. Wir können die Varianz einer Schätzung auch ausrechnen und als Standardfehler der Schätzer angeben. R gibt uns diese Werte immer automatisch mit aus, wie die Schätzer hergeleitet und geschätzt werden können Sie über Theorem  und  <a href="advlin.html#advlin-proofs">im Anhang</a> nachvollziehen.</p>
 <p>Besonders relevant ist in diesem Kontext die Eigenschaft der <strong>Effizienz</strong>. Unter <em>Effizienz</em> verstehen wir die Eigenschaft, dass es keinen alternativen Schätzer für <span class="math inline">\(\beta\)</span> gibt, der eine geringere Varianz aufweist. Effizienz ist dabei ein <em>relatives Maß</em>: ein Schätzer ist effizienter als ein anderer, wenn seine Varianz geringer ist und für den Schätzer <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> gilt, dass es unter A1-A4 <em>keinen</em> anderen linearen erwartungstreuen Schätzer gibt, der noch effizienter ist als <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span>.</p>
 <p>Die Eigenschaft der Effizienz wird in folgender Abbildung illustriert:</p>
+<pre><code>#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.</code></pre>
 <p><img src="Chap-advlinmodels_files/figure-html/unnamed-chunk-6-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Da wir hier die zugrundeliegenden Daten selbst herstellen wissen wir, dass für den wahren Wert gilt <span class="math inline">\(\beta_1=2.0\)</span>. Um die Effizienz des OLS-Schätzers beweisen zu können reichen Annahmen A1-A3 nicht aus: hierfür benötigen wir auch die Annahme A4! Unter Annahmen A1-A4 gilt die Effizienz des OLS-Schätzers aber auch unabhängig von der Stichprobengröße. Für den Beweis siehe Theorem  <a href="advlin.html#advlin-proofs">im Anhang</a>.</p>
 <p>Dass die Eigenschaften der Erwartungstreue und Effizienz beim OLS-Schätzer unabhängig von der Stichprobengröße gelten ist eine tolle Sache. Solche stichprobenunabhängigen Beweise funktionieren in realen Settings, in denen bestimmte Annahmen leicht verletzt sind und die zu schätzenden Funktionen komplexer werden häufig nicht. Daher versucht man Eigenschaften von Schätzern wenigstens für große Stichproben zu beweisen. Diese Beweise sind wegen bestimmten Gesetzen wie dem <a href="https://de.wikipedia.org/wiki/Gesetz_der_gro%C3%9Fen_Zahlen">Gesetz der großen Zahl</a> oder dem <a href="https://de.wikipedia.org/wiki/Zentraler_Grenzwertsatz">Zentralen Grenzwertsatz</a> oft deutlich einfacher. Wie sprechen dann von <em>asymptotischen Eigenschaften</em>, da sie für den Schätzer zutreffen wenn die Stichprobengröße gegen Unendlichkeit wächst.</p>
@@ -639,12 +643,13 @@ full_results &lt;-<span class="st"> </span><span class="kw">rbind</span>(homosc_
 <span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;Homoskedastie&quot;</span>=<span class="st">&quot;#006600&quot;</span>,
                                 <span class="st">&quot;Heteroskedastie&quot;</span>=<span class="st">&quot;#800000&quot;</span>),
   <span class="dt">aesthetics =</span> <span class="kw">c</span>(<span class="st">&quot;color&quot;</span>, <span class="st">&quot;fill&quot;</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_icae</span>()
-
-beta_1_plot</code></pre></div>
+<span class="st">  </span><span class="kw">theme_icae</span>()</code></pre></div>
+<pre><code>#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beta_1_plot</code></pre></div>
 <p><img src="Chap-advlinmodels_files/figure-html/unnamed-chunk-13-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Wie wir sehen ändert die Verletzung der Homoskedastie-Annahme nichts an der Erwartungstreue des Schätzers: im Mittel trifft der Schätzer den wahren Wert <span class="math inline">\(\beta_1\)</span>! Allerdings nimmt die Genauigkeit ab, da die Streuung um den wahren Wert herum im heteroskedastischen Fall zunimmt!</p>
 <p>Wir wollen im Folgenden noch untersuchen wie sich Heteroskedastie auf die Standardfehler der Regression auswirkt (der Code zum Erstellen der Plots ist äquivalent zu oben):</p>
+<pre><code>#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beta_1_stdf_plot</code></pre></div>
 <p><img src="Chap-advlinmodels_files/figure-html/unnamed-chunk-15-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Wir wir sehen weichen die Standardfehler im heteroskedastischen Fall deutlich von denen im homoskedastischen Fall ab! Welche Standardfehler sind nun die richtigen?</p>
@@ -774,6 +779,9 @@ var_covar_matrix</code></pre></div>
 <p>Um die Variablen mit vorher spezifizierter Korrelation zu erstellen verwenden wir wieder die Funktion <code>mvrnorm</code> aus dem Paket <a href="https://github.com/cran/MASS">MASS</a> <span class="citation">(Venables and Ripley <a href="#ref-R-mass">2002</a>)</span>. Eine genauere Erläuterung findet sich <a href="https://stats.stackexchange.com/questions/83172/generate-two-variables-with-precise-pre-specified-correlation">hier</a>.</p>
 <p><img src="Chap-advlinmodels_files/figure-html/unnamed-chunk-36-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Wie erwartet bleiben die Schätzer erwartungstreu, büßen aber deutlich an Effizienz ein wenn die Autokorrelation größer wird. Betrachten wir nun noch die geschätzten Standardfehler:</p>
+<pre><code>#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+
+#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.</code></pre>
 <p><img src="Chap-advlinmodels_files/figure-html/unnamed-chunk-38-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Wie bei der Heteroskedastie hat Autokorrelation einen großen Einfluss auf die geschätzten Standardfehler. Da auch hier geschätzten Standardfehler falsch sind müssen wir entsprechend kontrollieren.</p>
 </div>
@@ -931,6 +939,11 @@ x_2_large =<span class="st"> </span>data_large[, <span class="dv">2</span>]
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(x_1_large, x_2_large)  <span class="co"># Test</span></code></pre></div>
 <pre><code>#&gt; [1] 0.9</code></pre>
 <p>Analog zum Vorgehen oben führen wir nun eine Monte Carlo Simulation durch, in der wir wiederholt Stichproben aus einem künstlich generierten Datensatz ziehen und das oben beschriebene Modell mit Hilfe von OLS schätzen. Dies führt zu folgender Verteilung der Schätzer:</p>
+<pre><code>#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+
+#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+
+#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.</code></pre>
 <p><img src="Chap-advlinmodels_files/figure-html/unnamed-chunk-56-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Wie wir sehen wird die Schätzgenauigkeit für die Schätzer von <span class="math inline">\(\beta_1\)</span> und <span class="math inline">\(\beta_2\)</span> deutlich reduziert! Auf den Schätzer des Achsenabschnitts hat Multikollinearität dagegen keinen Einfluss.</p>
 <p>Auch analytisch kann der Effekt von Multikollinearität gezeigt werden. Betrachten wir dazu die folgenden <em>Hilfsregressionen</em>:</p>
@@ -1089,6 +1102,8 @@ x_{i2} &amp;= \hat{\beta}_0^a + \hat{\beta}_2^a x_{i1} + e^a\\
 </table>
 <p>Illustrieren wir die Wahl der funktionalen Form an folgendem Beispiel. Die Daten kommen von <span class="citation">Epple and McCallum (<a href="#ref-chicken">2006</a>)</span> und enthalten Information zum Preis und zum Konsum von Hähnchenfleisch.</p>
 <p>Wie wir sehen werden ist dieser Zusammenhang an sich nicht linear, kann aber durch Logarithmieren in eine lineare Form gebracht werden:</p>
+<pre><code>#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;
+#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Chap-advlinmodels_files/figure-html/unnamed-chunk-74-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Die folgende Gleichung ist also konsistent mit A1 und kann entsprechend mit OLS geschätzt werden:</p>
 <p><span class="math display">\[\ln(q) = \beta_0 + \beta_1 \ln(p) + \epsilon\]</span></p>
@@ -1280,6 +1295,7 @@ X&amp;=\frac{\alpha_0+\alpha_1\beta_0}{1-\alpha_1\beta_1} + \frac{v+\alpha_1u}{1
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -1298,6 +1314,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

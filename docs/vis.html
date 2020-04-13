@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Visualisierung von Daten | R für die sozio-ökonomische Forschung</title>
   <meta name="description" content="R Skript in der Version 0.7.2" />
-  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Visualisierung von Daten | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-01-29" />
+<meta name="date" content="2020-04-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -502,10 +502,17 @@ gespeichert wird - vielmehr speichern Sie am Ende ihr ‘vollgemaltes Blatt’ e
 <span class="st">  </span><span class="kw">coord_cartesian</span>() <span class="op">+</span><span class="st"> </span><span class="co"># Verwende eine kartesisches Koordinatensystem</span>
 <span class="st">  </span><span class="kw">facet_null</span>()  <span class="co"># Verwende nur eine Facette</span></code></pre></div>
 <p>Dieser Code erstellt die einzelnen Elemente des Plots, die in <code>ggplot2</code> separat erstellt und am Ende übereinander gelegt werden:</p>
+<pre><code>#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Chap-visualization_files/figure-html/unnamed-chunk-8-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Daraus ergibt sich dann der Gesamtplot:</p>
+<pre><code>#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Chap-visualization_files/figure-html/unnamed-chunk-9-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<pre><code>#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;
+#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p>Die Rolle der Facetten wird hier deutlich:</p>
+<pre><code>#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;
+#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;
+#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Chap-visualization_files/figure-html/unnamed-chunk-11-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Der modulare Aufbau eines <code>ggplot</code> macht es einfach eine Grafik sukzessive zu ändern: wenn Sie z.B. von einem Streudiagramm zu einem Liniendiagramm wechseln wollen müssen Sie nur die <code>geoms</code> ändern - die restlichen Komponenten des Plots können identisch bleiben:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Code für ein Streudiagramm</span>
@@ -905,8 +912,9 @@ arbeitslosen_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(
     <span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">percent_format</span>(<span class="dt">accuracy =</span> <span class="dv">1</span>, <span class="dt">scale =</span> <span class="dv">1</span>)
     ) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_icae</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>())
-arbeitslosen_plot </code></pre></div>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>())</code></pre></div>
+<pre><code>#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arbeitslosen_plot </code></pre></div>
 <p><img src="Chap-visualization_files/figure-html/unnamed-chunk-40-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Auch diese Abbildung stammt ursprünglich aus <span class="citation">Gräbner et al. (<a href="#ref-CJE">2019</a>)</span>.</p>
 </div>
@@ -945,8 +953,15 @@ hist_list &lt;-<span class="st"> </span><span class="kw">list</span>()
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="kw">paste0</span>(<span class="st">&quot;Histogram mit &quot;</span>, bin_size[i], <span class="st">&quot; Balken&quot;</span>)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme_icae</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>())
-}
-ggpubr<span class="op">::</span><span class="kw">ggarrange</span>(<span class="dt">plotlist =</span> hist_list, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">nrow =</span> <span class="dv">2</span>)</code></pre></div>
+}</code></pre></div>
+<pre><code>#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+
+#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+
+#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+
+#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ggpubr<span class="op">::</span><span class="kw">ggarrange</span>(<span class="dt">plotlist =</span> hist_list, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">nrow =</span> <span class="dv">2</span>)</code></pre></div>
 <p><img src="Chap-visualization_files/figure-html/unnamed-chunk-43-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p><strong>Beispiel 2: Dichteverteilung von Exportkörben</strong></p>
 <p>Diese Daten beschreiben die Zusammensetzung der Exportkörbe von Deutschland, Finnland und China bezüglich ihrer <a href="http://atlas.cid.harvard.edu/glossary">ökonomischen Komplexität</a>:</p>
@@ -1093,6 +1108,7 @@ A table is nearly always better than a dumb pie chart; the only worse design tha
 mort_rate_plot <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, 
                              <span class="dt">color=</span><span class="st">&quot;#002966&quot;</span>, 
                              <span class="dt">se =</span> <span class="ot">TRUE</span>) </code></pre></div>
+<pre><code>#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Chap-visualization_files/figure-html/unnamed-chunk-50-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Alternativ kann die Gerade auch mit Hilfe der Funktion <code>geom_abline()</code> eingezeichnet werden. Dazu müssen wir Regression vorher aber explizit mit <code>lm()</code> durchführen:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm_obj &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(MORTRATE) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(GDP_PPPpc), 
@@ -1144,6 +1160,7 @@ mort_rate_plot_marked</code></pre></div>
           <span class="dt">ncol =</span> <span class="dv">2</span>, 
           <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;A)&quot;</span>, <span class="st">&quot;B)&quot;</span>), 
           <span class="dt">font.label =</span> <span class="kw">list</span>(<span class="dt">face=</span><span class="st">&quot;bold&quot;</span>))</code></pre></div>
+<pre><code>#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Chap-visualization_files/figure-html/unnamed-chunk-53-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="mehr-zu-den-skalen-expand_scale-und-skalentransformation" class="section level3">
@@ -1223,6 +1240,7 @@ dichte_<span class="dv">2</span> &lt;-<span class="st"> </span>dichte_<span clas
 <span class="st">  scale_x_continuous(name = &quot;</span>Durchschnittliche Schulbildung <span class="cf">in</span> <span class="kw">Jahren</span> (<span class="dv">2005</span>)<span class="st">&quot;) +</span>
 <span class="st">  scale_y_continuous(name = &quot;</span>RCA <span class="cf">in</span> Büromaschinen (Durchschnitt <span class="dv">2006</span><span class="op">-</span><span class="dv">08</span>)<span class="st">&quot;) +</span>
 <span class="st">  theme_icae()</span></code></pre></div>
+<pre><code>#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Chap-visualization_files/figure-html/unnamed-chunk-65-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Abgesehen davon, dass es einfach häßlich ist so viele Überlappungen zu haben setzt dieser Graph voraus, dass Sie fließend die <code>iso3c</code>-Codes beherrschen und schnell die fünf Länder finden, um die es im Text geht. Das ist nicht sonderlich leser*innenfreundlich…</p>
 <p>Wie <span class="citation">Schwabish (<a href="#ref-schwabischVis">2014</a>)</span> bilden wir zunächst einmal die Labels nur für die fünf interessierenden Länder ab. Das machen wir, indem wir die Funktion <code>geom_text()</code>, welche die Ländernamen abbildet, nicht den Standarddatensatz verwenden lassen, sondern einen reduzierten Datensatz übergeben. In diesem reduzierten Datensatz übersetzen wir die Ländernamen bereits ins Deutsche. Überhaupt ersetzen wir <code>geom_text()</code> besser mit <code>geom_label_repel()</code> aus dem Paket <a href="https://github.com/slowkow/ggrepel">ggrepel</a> <span class="citation">(Slowikowski <a href="#ref-r-ggrepel">2019</a>)</span>, welches quasi genauso funktioniert, aber den Text so verschiebt, dass es zu keinen Überschneidungen kommt.</p>
@@ -1252,6 +1270,7 @@ dichte_<span class="dv">2</span> &lt;-<span class="st"> </span>dichte_<span clas
 <span class="st">  scale_x_continuous(name = &quot;</span>Durchschnittliche Schulbildung <span class="cf">in</span> <span class="kw">Jahren</span> (<span class="dv">2005</span>)<span class="st">&quot;) +</span>
 <span class="st">  scale_y_continuous(name = &quot;</span>RCA <span class="cf">in</span> Büromaschinen (Durchschnitt <span class="dv">2006</span><span class="op">-</span><span class="dv">08</span>)<span class="st">&quot;) +</span>
 <span class="st">  theme_icae()</span></code></pre></div>
+<pre><code>#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Chap-visualization_files/figure-html/unnamed-chunk-66-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Wie Sie merken werden diese Farben außerhalb von <code>mapping</code> definiert. Denn die Farben sollen ja für alle Variablen gleich sein, es handelt sich hier also nicht um ein <em>aesthetic mapping</em>, welches ja die Farbe abhängig vom Variablenwert vergeben würde.</p>
 <p>Dies ist wieder ein schönes Beispiel für eine Grafik, die sehr davon profitiert, wenn man die abgebildeten Punkte auf das wirklich Wesentliche reduziert.</p>
@@ -1343,6 +1362,7 @@ farbe_w &lt;-<span class="st"> &quot;#d95d2c&quot;</span>
     <span class="dt">axis.text.y =</span> <span class="kw">element_blank</span>(), 
     <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">face =</span> <span class="st">&quot;bold&quot;</span>)
   )</code></pre></div>
+<pre><code>#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.</code></pre>
 <p><img src="Chap-visualization_files/figure-html/unnamed-chunk-73-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Wie Sie sehen wird der Graph nicht durch eine eigene Funktion, sondern durch das sukzessive Hinzufügen von Strichen und Punkten erstellt. Besonders hervorzuheben am Code sind folgende Features:</p>
 <ul>
@@ -1390,9 +1410,9 @@ normal &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class=
     <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>),
     <span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>(),
     <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">14</span>, <span class="dt">face =</span> <span class="st">&quot;bold&quot;</span>)
-  )
-
-manipulativ &lt;-<span class="st"> </span>normal <span class="op">+</span>
+  )</code></pre></div>
+<pre><code>#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">manipulativ &lt;-<span class="st"> </span>normal <span class="op">+</span>
 <span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">5750000</span>, <span class="dv">7200000</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(
     <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>(),
@@ -1448,6 +1468,7 @@ normal &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class=
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>())
 
 <span class="kw">ggarrange</span>(normal, manipulativ, <span class="dt">nrow=</span><span class="dv">2</span>)</code></pre></div>
+<pre><code>#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Chap-visualization_files/figure-html/unnamed-chunk-77-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Selbstverständlich ist der obere Graph auch nicht ganz manipulationsfrei. Aber es wird deutlich, wie viel Spielraum Sie nur über die Darstellung von bestimmten Grafiken haben.</p>
 <p>Die weiteren beiden Punkte lassen sich anhand der Staastausgaben in Deutschland auch sehr schön illustrieren. Die Rohdaten stammen von der <a href="https://ec.europa.eu/info/business-economy-euro/indicators-statistics/economic-databases/macro-economic-database-ameco/download-annual-data-set-macro-economic-database-ameco_e">AMECO Homepage</a> und sind dem Kapitel “General Government/excessive deficit procedure” entnommen. Sie sind ein schönes Beispiel für die weit verbreiteten ‘breiten’ Daten, die wir erst einmal in eine brauchbares Format bringen müssen:</p>
@@ -1592,6 +1613,7 @@ normal &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class=
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -1610,6 +1632,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

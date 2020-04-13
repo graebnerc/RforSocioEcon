@@ -2,7 +2,7 @@
 title: "R für die sozio-ökonomische Forschung"
 subtitle: "Version 0.7.2"
 author: "[Dr. Claudius Gräbner](http://claudius-graebner.com/)"
-date: "2020-01-29" 
+date: "2020-04-13" 
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book

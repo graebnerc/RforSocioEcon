@@ -346,18 +346,42 @@ Dieser Code erstellt die einzelnen Elemente des Plots, die in `ggplot2`
 separat erstellt und am Ende übereinander gelegt werden:
 
 
+```
+#> `geom_smooth()` using formula 'y ~ x'
+```
+
+
+
 \begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-visualization_files/figure-latex/unnamed-chunk-8-1} \end{center}
 
 Daraus ergibt sich dann der Gesamtplot:
+
+
+```
+#> `geom_smooth()` using formula 'y ~ x'
+```
+
 
 
 \begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-visualization_files/figure-latex/unnamed-chunk-9-1} \end{center}
 
 
 
+```
+#> `geom_smooth()` using formula 'y ~ x'
+#> `geom_smooth()` using formula 'y ~ x'
+```
 
 
 Die Rolle der Facetten wird hier deutlich:
+
+
+```
+#> `geom_smooth()` using formula 'y ~ x'
+#> `geom_smooth()` using formula 'y ~ x'
+#> `geom_smooth()` using formula 'y ~ x'
+```
+
 
 
 \begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-visualization_files/figure-latex/unnamed-chunk-11-1} \end{center}
@@ -1233,6 +1257,13 @@ arbeitslosen_plot <- ggplot(
     ) +
   theme_icae() +
   theme(axis.title.x = element_blank())
+```
+
+```
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+```
+
+```r
 arbeitslosen_plot 
 ```
 
@@ -1308,6 +1339,19 @@ for (i in 1:length(bin_size)){
   theme_icae() +
   theme(axis.title.x = element_blank())
 }
+```
+
+```
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+```
+
+```r
 ggpubr::ggarrange(plotlist = hist_list, ncol = 2, nrow = 2)
 ```
 
@@ -1494,6 +1538,10 @@ mort_rate_plot + geom_smooth(method = "lm",
                              se = TRUE) 
 ```
 
+```
+#> `geom_smooth()` using formula 'y ~ x'
+```
+
 
 
 \begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-visualization_files/figure-latex/unnamed-chunk-50-1} \end{center}
@@ -1597,6 +1645,10 @@ ggarrange(arbeitslosen_plot,
           ncol = 2, 
           labels = c("A)", "B)"), 
           font.label = list(face="bold"))
+```
+
+```
+#> `geom_smooth()` using formula 'y ~ x'
 ```
 
 
@@ -1786,6 +1838,10 @@ ggplot(data = hanson_data,
   theme_icae()
 ```
 
+```
+#> `geom_smooth()` using formula 'y ~ x'
+```
+
 
 
 \begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-visualization_files/figure-latex/unnamed-chunk-65-1} \end{center}
@@ -1839,6 +1895,10 @@ ggplot(data = hanson_data,
   scale_x_continuous(name = "Durchschnittliche Schulbildung in Jahren (2005)") +
   scale_y_continuous(name = "RCA in Büromaschinen (Durchschnitt 2006-08)") +
   theme_icae()
+```
+
+```
+#> `geom_smooth()` using formula 'y ~ x'
 ```
 
 
@@ -2016,6 +2076,10 @@ ggplot(oecd_data_plot) +
   )
 ```
 
+```
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+```
+
 
 
 \begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-visualization_files/figure-latex/unnamed-chunk-73-1} \end{center}
@@ -2099,7 +2163,13 @@ normal <- ggplot(data = data_used,
     axis.title.x = element_blank(),
     plot.title = element_text(size=14, face = "bold")
   )
+```
 
+```
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+```
+
+```r
 manipulativ <- normal +
   coord_cartesian(ylim=c(5750000, 7200000)) +
   theme(
@@ -2173,6 +2243,10 @@ normal <- ggplot(data = al_daten,
   theme(axis.title.x = element_blank())
 
 ggarrange(normal, manipulativ, nrow=2)
+```
+
+```
+#> `geom_smooth()` using formula 'y ~ x'
 ```
 
 

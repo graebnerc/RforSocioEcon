@@ -44,6 +44,13 @@ In diesem Kapitel werden die folgenden R Pakete verwendet:
 ```r
 library(here)
 library(tidyverse)
+```
+
+```
+#> Warning: package 'tibble' was built under R version 3.6.2
+```
+
+```r
 library(data.table)
 library(icaeDesign)
 library(ggrepel)
@@ -1794,6 +1801,10 @@ ggplot(data = sample_data) +
   theme_icae()
 ```
 
+```
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+```
+
 
 
 \begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-62-1} \end{center}
@@ -1827,6 +1838,10 @@ ggplot(data = sample_data) +
   theme_icae()
 ```
 
+```
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+```
+
 
 
 \begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-63-1} \end{center}
@@ -1857,6 +1872,12 @@ der Normalverteilung finden, sodass die Verteilung optimal zu unseren Daten pass
 Das bedeutet wir 'fitten' die Verteilung zu unseren Daten.
 
 Was damit gemeint ist verdeutlicht die folgende Darstellung: 
+
+
+```
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+```
+
 
 
 \begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-64-1} \end{center}
@@ -2389,6 +2410,12 @@ skewness(journal_daten[["Preis"]])
 
 Wir würden hier also von einer *recht-schiefen* Verteilung der Preise 
 sprechen. Das sehen wir hier auch grafisch:
+
+
+```
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+```
+
 
 
 \begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-80-1} \end{center}
