@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Einrichtung {#einrichtung}
 
 ```{r include=FALSE}
@@ -22,13 +27,13 @@ Bitte darauf achten 'RStuio Desktop' zu installieren.
 ## Die R Studio Oberfläche
 
 Nach dem Installationsprozess öffnen wir R Studio zum ersten Mal.
-Der folgende Screenshot zeigt die verschiedenen Elemente der Oberfläche, deren 
+Abbildung \@ref(fig:gui) zeigt die verschiedenen Elemente der Oberfläche, deren 
 Funktion im folgenden kurz erläutert wird.
 Vieles ergibt sich hier aber auch durch *learning by doing*.
 Im folgenden werden nur die Bereiche der Oberfläche beschrieben, die am Anfang 
 unmittelbar relevant für uns sind.
 
-```{r, echo=FALSE, fig.align='center', out.width='100%'}
+```{r gui, echo=FALSE, fig.align='center', out.width='100%', fig.cap="Die Benutzeroberfläche von R-Studio."}
 knitr::include_graphics("figures/r-studio-light-marked.png")
 ```
 
@@ -89,7 +94,7 @@ anzuschauen und ggf. eine andere Darstellungsversion zu wählen.
 
 ## Einrichtung eines R Projekts
 
-Im folgenden werden wir lernen wie man ein neues R Projekt anlegt, R Code 
+Im Folgenden werden wir lernen wie man ein neues R Projekt anlegt, R Code 
 schreiben und ausführen kann.
 
 Wann immer wir ein neues Programmierprojekt starten, sollten wir dafür einen 
@@ -177,10 +182,10 @@ auch die Arbeitshistorie eines Projekts leich wiederherstellen und es ist
 einfacher, das Projekt auf verschiedenen Computern zu bearbeiten.
 
 Um ein neues Projekt zu erstellen klicken Sie in R Studio auf den Button 
-`Neues Projekt` (Nr. 10 in der obigen Abbildung) und Sie sollten folgendes
-Fenster sehen:
+`Neues Projekt` (Nr. 10 in Abbildung \@ref(fig:gui)) und Sie sollten das in 
+Abbildung \@ref(fig:newproj1) dargestellte Fenster sehen.
 
-```{r, echo=FALSE, fig.align='center', out.width='60%'}
+```{r newproj1, echo=FALSE, fig.align='center', out.width='60%', fig.cap="Ein neues Projekt erstellen."}
 knitr::include_graphics("figures/r-studio-new-project.png")
 ```
 
@@ -188,19 +193,17 @@ Falls Sie in Schritt 1 den Projektordner bereits erstellt haben wählen Sie hier
 `Existing Directory`, ansonsten erstellen Sie einen neuen Projektordner gleich
 mit dem Projektfile mit indem Sie `New Directory` auswählen.
 
-Falls Sie `Existing Directory` gewählt haben, wählen Sie in folgendem Fenster 
-einfach den vorher erstellten Ordner aus und klickt auf `Create Project`.
+Falls Sie `Existing Directory` gewählt haben, wählen Sie in dem in linken in
+Abbildung \@ref(fig:newproj2) dargestellten Fenster. 
+Wählen Sie hier einfach den vorher erstellten Ordner aus und klickt auf `Create Project`.
 
-```{r, echo=FALSE, fig.align='center', out.width='60%'}
+```{r newproj2, echo=FALSE, fig.align='center', out.width='40%', fig.show = 'hold', fig.cap="Ein neues R-PRojekt aus einem existierenden (links) oder in einem neuen Projektordner (rechts) erstellen."}
 knitr::include_graphics("figures/r-studio-new-project-exis-dir.png")
-```
-
-Falls Sie `New Directory` gewählt habt landen Sie auf folgendem Fenster:
-
-```{r, echo=FALSE, fig.align='center', out.width='60%'}
 knitr::include_graphics("figures/r-studio-new-project-new-dir.png")
 ```
 
+Falls Sie `New Directory` gewählt habt landen Sie dann auf dem rechten in 
+Abbildung \@ref(fig:newproj2) dargestellten Fenster.
 Hier wählen Sie `New Project` aus, geben dem Projekt in folgenden Fenster einen
 Namen (das wird der Name des Projektordners sein), wählen den Speicherort für den
 Ordner aus und klicken auf `Create Project`.
@@ -258,9 +261,9 @@ Ordner passt. Ein solcher Ordner ist wichtig und Sie sollten nicht zuordbare
 Dateien nie in den Projektordner als solchen speichern.
 
 Wenn wir annehmen unser Projektordner heißt `2019-Methoden` ergibt sich damit 
-insgesamt folgende Ordner und Datenstruktur:
+insgesamt die in Abbildung \@ref(fig:folder) dargestellte Ordner und Datenstruktur.
 
-```{r, echo=FALSE, fig.align='center', out.height=='100%'}
+```{r folder, echo=FALSE, fig.align='center', out.height='50%', fig.cap="Die vorgeschlagene Ordnerstruktur für R-Projekte."}
 knitr::include_graphics("figures/wd-structure.png")
 ```
 
@@ -274,3 +277,5 @@ und GitHub verwenden.
 Wir werden uns damit im nächsten Semester genauer beschäftigen, aber Sie werden
 merken, dass die Kollaboration durch eine gut durchdachte Ordnerstruktur massiv
 erleichtert wird.
+
+<!-- Noch etwas zum HERE Paket hinzufügen --> 
