@@ -21,13 +21,6 @@ In diesem Kapitel werden die folgenden R Pakete verwendet:
 ```r
 library(here)
 library(tidyverse)
-```
-
-```
-#> Warning: package 'tibble' was built under R version 3.6.2
-```
-
-```r
 library(data.table)
 library(latex2exp)
 library(icaeDesign)

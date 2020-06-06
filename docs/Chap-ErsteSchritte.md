@@ -600,10 +600,16 @@ atomaren Vektoren darstellen, allerdings in diesem Kontext schon häufig
 auftauchen: `NULL`, was strikt genommen ein eigener Datentyp ist und immer
 die Länge 0 hat, sowie `NA`, das einen fehlenden Wert darstellt
 
-Hieraus ergibt sich folgende Aufteilung für Vektoren:
+Hieraus ergibt sich folgende in Abbildung \@ref(fig:vektoren) aufgezeigte Aufteilung für Vektoren:
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{figures/vector-classification} \end{center}
+{\centering \includegraphics[width=0.8\linewidth]{figures/vector-classification} 
+
+}
+
+\caption{Arten von Vektoren in R}(\#fig:vektoren)
+\end{figure}
 
 Wir werden nun die einzelnen Typen genauer betrachten.
 Vorher wollen wir jedoch noch die Funktion `typeof` einführen.
@@ -1984,7 +1990,7 @@ typeof(df_4[["gender"]])
 ```
 
 
-## Pakete
+## Pakete {#packages}
 
 Bei Paketen handelt es sich um eine Kombination aus R Code, Daten, Dokumentationen
 und Tests.
@@ -2147,7 +2153,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7f8da43e9618>
+#> <bytecode: 0x7fedcd4dd4c0>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2178,7 +2184,7 @@ dplyr::lead
 #>     attributes(out) <- attributes(x)
 #>     out
 #> }
-#> <bytecode: 0x7f8da2327de8>
+#> <bytecode: 0x7fedcf102860>
 #> <environment: namespace:dplyr>
 ```
 
@@ -2256,13 +2262,6 @@ R Markdown finden Sie im Anhang. Dieser wird auch in der Vorlesung besprochen.]
 
 ```r
 library(tidyverse)
-```
-
-```
-FALSE Warning: package 'tibble' was built under R version 3.6.2
-```
-
-```r
 library(here)
 ```
 
