@@ -53,41 +53,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -125,7 +150,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.3.3" data-path="einrichtung.html"><a href="einrichtung.html#schritt-2-ein-r-studio-projekt-im-projektordner-erstellen"><i class="fa fa-check"></i><b>2.3.3</b> Schritt 2: Ein R-Studio Projekt im Projektordner erstellen</a></li>
 <li class="chapter" data-level="2.3.4" data-path="einrichtung.html"><a href="einrichtung.html#unterordner"><i class="fa fa-check"></i><b>2.3.4</b> Schritt 3: Relevante Unterordner erstellen</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="einrichtung.html"><a href="einrichtung.html#abschließende-bemerkungen"><i class="fa fa-check"></i><b>2.4</b> Abschließende Bemerkungen</a></li>
+<li class="chapter" data-level="2.4" data-path="einrichtung.html"><a href="einrichtung.html#optional-schritt-4-und-das-here-paket"><i class="fa fa-check"></i><b>2.4</b> Optional: Schritt 4 und das here-Paket</a></li>
+<li class="chapter" data-level="2.5" data-path="einrichtung.html"><a href="einrichtung.html#abschließende-bemerkungen"><i class="fa fa-check"></i><b>2.5</b> Abschließende Bemerkungen</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a><ul>
 <li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#befehle-in-r-an-den-computer-übermitteln"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
@@ -368,12 +394,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 2</span> Einrichtung</h1>
 <div id="installation-von-r-und-r-studio" class="section level2">
 <h2><span class="header-section-number">2.1</span> Installation von R und R-Studio</h2>
-<p>Die Installation von R ist in der Regel unproblematisch. Auf der <a href="https://www.r-project.org/">R homepage</a> wählt man unter dem Reiter ‘Download’ den Link ‘CRAN’ aus, wählt einen Server in der Nähe und lädt sich dann die R Software herunter. Danach folgt man den Installationshinweisen.</p>
-<p>Im zweiten Schritt muss noch das Programm ‘R-Studio’ installiert werden. Hierbei handelt es sich um eine grafische Oberfläche für R, welche uns die Arbeit enorm erleichtern wird. Das Programm kann <a href="https://www.rstudio.com/products/rstudio/download/">hier</a> heruntergeladen werden. Bitte darauf achten ‘RStuio Desktop’ zu installieren.</p>
+<p>Die Installation von R ist in der Regel unproblematisch.
+Auf der <a href="https://www.r-project.org/">R homepage</a> wählt man unter dem Reiter
+‘Download’ den Link ‘CRAN’ aus, wählt einen Server in der Nähe und lädt sich
+dann die R Software herunter.
+Danach folgt man den Installationshinweisen.</p>
+<p>Im zweiten Schritt muss noch das Programm ‘R-Studio’ installiert werden.
+Hierbei handelt es sich um eine grafische Oberfläche für R, welche uns die
+Arbeit enorm erleichtern wird.
+Das Programm kann <a href="https://www.rstudio.com/products/rstudio/download/">hier</a>
+heruntergeladen werden.
+Bitte darauf achten ‘RStuio Desktop’ zu installieren.</p>
 </div>
 <div id="die-r-studio-oberfläche" class="section level2">
 <h2><span class="header-section-number">2.2</span> Die R Studio Oberfläche</h2>
-<p>Nach dem Installationsprozess öffnen wir R Studio zum ersten Mal. Abbildung <a href="einrichtung.html#fig:gui">2.1</a> zeigt die verschiedenen Elemente der Oberfläche, deren Funktion im folgenden kurz erläutert wird. Vieles ergibt sich hier aber auch durch <em>learning by doing</em>. Im folgenden werden nur die Bereiche der Oberfläche beschrieben, die am Anfang unmittelbar relevant für uns sind.</p>
+<p>Nach dem Installationsprozess öffnen wir R Studio zum ersten Mal.
+Abbildung <a href="einrichtung.html#fig:gui">2.1</a> zeigt die verschiedenen Elemente der Oberfläche, deren
+Funktion im Folgenden kurz erläutert wird.
+Vieles ergibt sich hier aber auch durch <em>learning by doing</em>.
+Im Folgenden werden nur die Bereiche der Oberfläche beschrieben, die am Anfang
+unmittelbar relevant für uns sind.</p>
 <div class="figure" style="text-align: center"><span id="fig:gui"></span>
 <img src="figures/r-studio-light-marked.png" alt="Die Benutzeroberfläche von R-Studio." width="100%" />
 <p class="caption">
@@ -381,99 +421,311 @@ Figure 2.1: Die Benutzeroberfläche von R-Studio.
 </p>
 </div>
 <ul>
-<li><p>Der <strong>Skriptbereich</strong> (1) ist ein Texteditor wie Notepad - nur mit zusätzlichen Features wie Syntax Highlighting für R, sodass es uns leichter fällt R Code zu schreiben. Hier werden wir unsere Skripte verfassen.</p></li>
-<li><p>Die <strong>Konsole</strong> (2) erlaubt es uns über R direkt mit unserem Computer zu interagieren. R ist eine Programmiersprache. Das bedeutet, wenn wir den Regeln der Sprache folgen und uns in einer für den Computer verständlicher Art und Weise ausdrücken, versteht der Computer was wir von ihm wollen und führt unsere Befehle aus. Wenn wir in die Konsole z.B. <code>2+2</code> eingeben, dann ist das valider R code. Wenn wir dann Enter drücken versteht der Computer unseren Befehl und führt die Berechnung aus. Die Konsole ist sehr praktisch um den Effekt von R Code direkt zu beobachten. Wenn wir etwas in der Console ausführen wollen, das wir vorher im <strong>Skriptbereich</strong> geschrieben haben, können wir den Text markieren und dann auf den Button <code>Run</code> (3) drücken: dann kopiert R Studio den Code in die Konsole und führt ihn aus.</p></li>
-<li><p>Für den Bereich oben rechts haben wir in der Standardkonfiguration von R Studio drei Optionen, die wir durch Klicken auf die Reiter auswählen können. Der Reiter <strong>Environment</strong> (4) zeigt uns alle bisher definierten Objekte an (mehr dazu später). Der Reiter <strong>History</strong> (5) zeigt an, welchen Code wir in der Vergangenheit ausgeführt haben. Der Reiter <strong>Connections</strong> (6) braucht uns aktuell nicht zu interessieren.</p></li>
-<li><p>Auch für den Bereich unten rechts haben wir mehrere Optionen: Der Bereich <strong>Files</strong> (7) zeigt uns unser Arbeitsverzeichnis mit allen Ordnern und Dateien an. Das ist das gleiche, was wir auch über den File Explorer unserer Betriebssystems sehen würden. Der Bereich <strong>Plots</strong> (8) zeigt uns eine Vorschau der Abbildungen, die wir durch unseren Code produzieren. Die anderen Bereiche brauchen uns aktuell noch nicht zu interessieren.</p></li>
-<li><p>Wenn wir ein neues R Skript erstellen wollen, können wir das über den Button <strong>Neu</strong> (9) erledigen. Wir klicken darauf und wählen die Option ‘R Skript’. Mit den alternativen Dateiformaten brauchen wir uns aktuell nicht beschäftigen.</p></li>
-<li><p>Der Botton <strong>Neues Projekt anlegen</strong> (10) erstellt eine neues R Studio Projekt - mehr dazu in Kürze.</p></li>
+<li><p>Der <strong>Skriptbereich</strong> (1) ist ein Texteditor wie Notepad - nur mit
+zusätzlichen Features wie Syntax Highlighting für R, sodass es uns leichter
+fällt R Code zu schreiben.
+Hier werden wir unsere Skripte verfassen.</p></li>
+<li><p>Die <strong>Konsole</strong> (2) erlaubt es uns über R direkt mit unserem Computer zu
+interagieren.
+R ist eine Programmiersprache. Das bedeutet, wenn wir den Regeln der Sprache
+folgen und uns in einer für den Computer verständlichen Art und Weise ausdrücken,
+versteht der Computer was wir von ihm wollen und führt unsere Befehle aus.
+Wenn wir in die Konsole z.B. <code>2+2</code> eingeben, dann ist das valider R Code.
+Wenn wir dann Enter drücken versteht der Computer unseren Befehl und führt die
+Berechnung aus.
+Die Konsole ist sehr praktisch um den Effekt von R Code direkt zu beobachten.
+Wenn wir etwas in der Console ausführen wollen, das wir vorher im
+<strong>Skriptbereich</strong> geschrieben haben, können wir den Text markieren und dann auf
+den Button <code>Run</code> (3) drücken: dann kopiert R Studio den Code in die Konsole und
+führt ihn aus.</p></li>
+<li><p>Für den Bereich oben rechts haben wir in der Standardkonfiguration von R
+Studio drei Optionen, die wir durch Klicken auf die Reiter auswählen können.
+Der Reiter <strong>Environment</strong> (4) zeigt uns alle bisher definierten Objekte an
+(mehr dazu später).
+Der Reiter <strong>History</strong> (5) zeigt an, welchen Code wir in der Vergangenheit
+ausgeführt haben.
+Der Reiter <strong>Connections</strong> (6) braucht uns aktuell nicht zu interessieren.</p></li>
+<li><p>Auch für den Bereich unten rechts haben wir mehrere Optionen:
+Der Bereich <strong>Files</strong> (7) zeigt uns unser Arbeitsverzeichnis mit allen Ordnern
+und Dateien an.
+Das ist das Gleiche, was wir auch über den File Explorer unseres Betriebssystems
+sehen würden.
+Der Bereich <strong>Plots</strong> (8) zeigt uns eine Vorschau der Abbildungen, die wir durch
+unseren Code produzieren.
+Die anderen Bereiche brauchen uns aktuell noch nicht zu interessieren.</p></li>
+<li><p>Wenn wir ein neues R Skript erstellen wollen, können wir das über den Button
+<strong>Neu</strong> (9) erledigen.
+Wir klicken darauf und wählen die Option ‘R Skript’.
+Mit den alternativen Dateiformaten brauchen wir uns aktuell nicht beschäftigen.</p></li>
+<li><p>Der Botton <strong>Neues Projekt anlegen</strong> (10) erstellt eine neues R Studio
+Projekt - mehr dazu in Kürze.</p></li>
 <li><p>Der Button <strong>Öffnen</strong> (11) öffnet Dateien im Skriptbereich.</p></li>
-<li><p>Die beiden Buttons <strong>Speichern</strong> (12) und <strong>Alles speichern</strong> (13) speichern das aktuelle, bzw. alle im Skriptbereich geöffnenten Dateien.</p></li>
+<li><p>Die beiden Buttons <strong>Speichern</strong> (12) und <strong>Alles speichern</strong> (13) speichern
+das aktuelle, bzw. alle im Skriptbereich geöffnenten Dateien.</p></li>
 </ul>
-<p>Die restlichen Buttons und Fenster in R Studio werden wir im Laufe der Zeit kennenlernen.</p>
-<p>Es macht Sinn, sich einmal die möglichen Einstellungsmöglichkeiten für R Studio anzuschauen und ggf. eine andere Darstellungsversion zu wählen.</p>
+<p>Die restlichen Buttons und Fenster in R Studio werden wir im Laufe der Zeit
+kennenlernen.</p>
+<p>Es macht Sinn, sich einmal die möglichen Einstellungsmöglichkeiten für R Studio
+anzuschauen und gegebenenfalls eine andere Darstellungsversion zu wählen.</p>
 </div>
 <div id="einrichtung-eines-r-projekts" class="section level2">
 <h2><span class="header-section-number">2.3</span> Einrichtung eines R Projekts</h2>
-<p>Im Folgenden werden wir lernen wie man ein neues R Projekt anlegt, R Code schreiben und ausführen kann.</p>
-<p>Wann immer wir ein neues Programmierprojekt starten, sollten wir dafür einen eigenen Ordner anlegen und ein so genannten ‘R Studio Projekt’ erstellen. Das hilft uns den Überblick über unsere Arbeit zu behalten, und macht es einfach Code untereinander auszutauschen.</p>
-<p>Ein Programmierprojekt kann ein Projekt für eine Hausarbeit sein, die Mitschriften für eine Vorlesungseinheit, oder einfach der Versuch ein bestimmtes Problem zu lösen, z.B. einen Datensatz zu visualisieren.</p>
+<p>Im Folgenden werden wir lernen wie man ein neues R Projekt anlegt, R Code
+schreiben und ausführen kann.</p>
+<p>Wann immer wir ein neues Programmierprojekt starten, sollten wir dafür einen
+eigenen Ordner anlegen und ein sogenanntes ‘R Studio Projekt’ erstellen.
+Das hilft uns den Überblick über unsere Arbeit zu behalten, und macht es einfach
+Code untereinander auszutauschen.</p>
+<p>Ein Programmierprojekt kann ein Projekt für eine Hausarbeit sein, die
+Mitschriften für eine Vorlesungseinheit, oder einfach der Versuch ein bestimmtes
+Problem zu lösen, z.B. einen Datensatz zu visualisieren.</p>
 <p>Die Schritte zur Erstellung eines solchen Projekts sind immer die gleichen:</p>
 <ol style="list-style-type: decimal">
 <li>Einen Ordner für das Projekt anlegen.</li>
 <li>Ein R-Studio Projekt in diesem Ordner erstellen.</li>
 <li>Relevante Unterordner anlegen.</li>
 </ol>
-<p>Wir beschäftigen uns mit den Schritten gleich im Detail, müssen vorher aber noch die folgenden Konzepte diskutieren: (1) das Konzept eines <em>Arbeitsverzeichnisses</em> (<em>working directory</em>) und (2) die Unterscheidnug zwischen <em>absoluten</em> und <em>relativen</em> Pfaden.</p>
+<p>Wir beschäftigen uns mit den Schritten gleich im Detail, müssen vorher aber noch
+die folgenden Konzepte diskutieren:
+(1) das Konzept eines <em>Arbeitsverzeichnisses</em> (<em>working directory</em>) und
+(2) die Unterscheidung zwischen <em>absoluten</em> und <em>relativen</em> Pfaden.</p>
 <div id="arbeitsverzeichnisse-und-pfade" class="section level3">
 <h3><span class="header-section-number">2.3.1</span> Arbeitsverzeichnisse und Pfade</h3>
-<p>Das <strong>Arbeitsverzeichnis</strong> ist ein Ordner auf dem Computer, in dem R standardmäßig sämtlichen Output speichert und von dem aus es auf Datensätze und anderen Input zugreift. Wenn wir mit Projekten arbeiten ist das Arbeitsverzeichnis der Ordner, in dem das R-Projektfile abgelegt ist, ansonsten ist es euer Benutzerverzeichnis. Wir können uns das Arbeitsverzeichnis mit der Funktion <code>getwd()</code> anzeigen lassen. In meinem Fall ist das Arbeitsverzeichnis das folgende:</p>
+<p>Das <strong>Arbeitsverzeichnis</strong> ist ein Ordner auf dem Computer, in dem R
+standardmäßig sämtlichen Output speichert und von dem aus es auf Datensätze und
+anderen Input zugreift.
+Wenn wir mit Projekten arbeiten ist das Arbeitsverzeichnis der Ordner, in dem das
+R-Projektfile abgelegt ist, ansonsten ist es das Benutzerverzeichnis.
+Wir können uns das Arbeitsverzeichnis mit der Funktion <code>getwd()</code> anzeigen lassen.
+In meinem Fall ist das Arbeitsverzeichnis das Folgende:</p>
 <pre><code>#&gt; [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR&quot;</code></pre>
-<p>Wenn ich R nun sagen würde ein File unter dem Namen <code>test.pdf</code> speichern, würde es am folgenden Ort gespeichert werden:</p>
+<p>Wenn ich R nun sagen würde, es solle ein File unter dem Namen <code>test.pdf</code> speichern,
+dann würde es am folgenden Ort gespeichert werden:</p>
 <pre><code>#&gt; [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf&quot;</code></pre>
-<p>R geht in einem solchen Fall immer vom Arbeitsverzeichnis aus. Da wir im vorliegenden Fall den Speicherort relativ zum Arbeitsverzeichnis angegeben haben, sprechen wir hier von einem <strong>relativen Pfad</strong>.</p>
-<p>Alternativ können wir den Speicherort auch als <strong>absoluten Pfad</strong> angeben. In diesem Fall geben wir den kompletten Pfad, ausgehend vom <a href="https://de.wikipedia.org/wiki/Stammverzeichnis">Root Verzeichnis</a> des Computers, an. Wir würden R also <em>explizit</em> auffordern, das File an foldengem Ort zu speichern:</p>
+<p>R geht in einem solchen Fall immer vom Arbeitsverzeichnis aus.
+Da wir im vorliegenden Fall den Speicherort relativ zum Arbeitsverzeichnis
+angegeben haben, sprechen wir hier von einem <strong>relativen Pfad</strong>.</p>
+<p>Alternativ können wir den Speicherort auch als <strong>absoluten Pfad</strong> angeben. In
+diesem Fall geben wir den kompletten Pfad, ausgehend vom
+<a href="https://de.wikipedia.org/wiki/Stammverzeichnis">Root Verzeichnis</a> des
+Computers, an.
+Wir würden R also <em>explizit</em> auffordern, das File an folgendem Ort zu
+speichern:</p>
 <pre><code>#&gt; [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf&quot;</code></pre>
-<p>Wir werden hier <strong>immer</strong> relative Pfade verwenden. Relative Pfade sind fast immer die bessere Variante, da es uns erlaubt den gleichen Code auf verschiedenen Computern zu verwenden. Denn wiw man an den absoluten Pfaden erkennen kann, sehen diese auf jedem Computer anders aus und es ist dementsprechend schwierig, Code miteinander zu teilen.</p>
-<p>Wir lernen mehr über dieses Thema wenn wir uns später mit Dateninput und -output beschäftigen.</p>
+<p>Wir werden hier <strong>immer</strong> relative Pfade verwenden.
+Relative Pfade sind fast immer die bessere Variante, da es uns erlaubt den
+gleichen Code auf verschiedenen Computern zu verwenden.
+Denn wie man an den absoluten Pfaden erkennen kann, sehen diese auf jedem
+Computer anders aus und es ist dementsprechend schwierig, Code miteinander zu
+teilen.</p>
+<p>Wir lernen mehr über dieses Thema wenn wir uns später mit Dateninput und -output
+beschäftigen.</p>
 </div>
 <div id="schritt-1-projektordner-anlegen" class="section level3">
 <h3><span class="header-section-number">2.3.2</span> Schritt 1: Projektordner anlegen</h3>
-<p>Zuerst müssen Sie sich für einen Ordner auf Ihrem Computer entscheiden, in dem alle Daten, die mit ihrem Projekt zu tun haben, also Daten, Skripte, Abbildungen, etc. gespeichert werden sollen und diesen Ordner gegebenenfalls neu erstellen. Es macht Sinn, einen solchen Ordner mit einem informativen Namen ohne Leer- und Sonderzeichen zu versehen, z.B. <code>SoSe19-Methodenkurs</code>.</p>
+<p>Zuerst müssen Sie sich für einen Ordner auf Ihrem Computer entscheiden, in dem
+alle Daten, die mit ihrem Projekt zu tun haben, also Daten, Skripte, Abbildungen,
+etc. gespeichert werden sollen und diesen Ordner gegebenenfalls neu erstellen.
+Es macht Sinn, einen solchen Ordner mit einem informativen Namen ohne Leer- und
+Sonderzeichen zu versehen, z.B. <code>Learning-R</code>.</p>
 <p>Dieser Schritt kann theoretisch auch gemeinsam mit Schritt 2 erfolgen.</p>
 </div>
 <div id="schritt-2-ein-r-studio-projekt-im-projektordner-erstellen" class="section level3">
 <h3><span class="header-section-number">2.3.3</span> Schritt 2: Ein R-Studio Projekt im Projektordner erstellen</h3>
-<p>Wir möchten nun R Studio mitteilen den in Schritt 1 erstellten Ordner als R Projekt zu behandeln. Damit wird nicht nur dieses Ordner als Root-Verzeichnis festgelegt, man kann auch die Arbeitshistorie eines Projekts leich wiederherstellen und es ist einfacher, das Projekt auf verschiedenen Computern zu bearbeiten.</p>
-<p>Um ein neues Projekt zu erstellen klicken Sie in R Studio auf den Button <code>Neues Projekt</code> (Nr. 10 in Abbildung <a href="einrichtung.html#fig:gui">2.1</a>) und Sie sollten das in Abbildung <a href="einrichtung.html#fig:newproj1">2.2</a> dargestellte Fenster sehen.</p>
+<p>Wir möchten nun R Studio mitteilen den in Schritt 1 erstellten Ordner als R
+Projekt zu behandeln.
+Damit wird nicht nur dieser Ordner als Root-Verzeichnis festgelegt, man kann
+auch die Arbeitshistorie eines Projekts leicht wiederherstellen und es ist
+einfacher, das Projekt auf verschiedenen Computern zu bearbeiten.</p>
+<p>Um ein neues Projekt zu erstellen klicken Sie in R Studio auf den Button
+<code>Neues Projekt</code> (Nr. 10 in Abbildung <a href="einrichtung.html#fig:gui">2.1</a>) und Sie sollten das in
+Abbildung <a href="einrichtung.html#fig:newproj1">2.2</a> dargestellte Fenster sehen.</p>
 <div class="figure" style="text-align: center"><span id="fig:newproj1"></span>
 <img src="figures/r-studio-new-project.png" alt="Ein neues Projekt erstellen." width="60%" />
 <p class="caption">
 Figure 2.2: Ein neues Projekt erstellen.
 </p>
 </div>
-<p>Falls Sie in Schritt 1 den Projektordner bereits erstellt haben wählen Sie hier <code>Existing Directory</code>, ansonsten erstellen Sie einen neuen Projektordner gleich mit dem Projektfile mit indem Sie <code>New Directory</code> auswählen.</p>
-<p>Falls Sie <code>Existing Directory</code> gewählt haben, wählen Sie in dem in linken in Abbildung <a href="einrichtung.html#fig:newproj2">2.3</a> dargestellten Fenster. Wählen Sie hier einfach den vorher erstellten Ordner aus und klickt auf <code>Create Project</code>.</p>
+<p>Falls Sie in Schritt 1 den Projektordner bereits erstellt haben wählen Sie hier
+<code>Existing Directory</code>, ansonsten erstellen Sie einen neuen Projektordner gleich
+gemeinsam mit dem Projektfile indem Sie <code>New Directory</code> auswählen.</p>
+<p>Falls Sie <code>Existing Directory</code> gewählt haben, landen Sie in einem Fenster, welches
+dem linken Feld der Abbildung <a href="einrichtung.html#fig:newproj2">2.3</a> entspricht. Hier wählen Sie
+einfach den vorher erstellten Ordner aus und klicken auf <code>Create Project</code>.</p>
 <div class="figure" style="text-align: center"><span id="fig:newproj2"></span>
-<img src="figures/r-studio-new-project-exis-dir.png" alt="Ein neues R-PRojekt aus einem existierenden (links) oder in einem neuen Projektordner (rechts) erstellen." width="40%" /><img src="figures/r-studio-new-project-new-dir.png" alt="Ein neues R-PRojekt aus einem existierenden (links) oder in einem neuen Projektordner (rechts) erstellen." width="40%" />
+<img src="figures/r-studio-new-project-exis-dir.png" alt="Ein neues R-Projekt aus einem existierenden (links) oder in einem neuen Projektordner (rechts) erstellen." width="40%" /><img src="figures/r-studio-new-project-new-dir.png" alt="Ein neues R-Projekt aus einem existierenden (links) oder in einem neuen Projektordner (rechts) erstellen." width="40%" />
 <p class="caption">
-Figure 2.3: Ein neues R-PRojekt aus einem existierenden (links) oder in einem neuen Projektordner (rechts) erstellen.
+Figure 2.3: Ein neues R-Projekt aus einem existierenden (links) oder in einem neuen Projektordner (rechts) erstellen.
 </p>
 </div>
-<p>Falls Sie <code>New Directory</code> gewählt habt landen Sie dann auf dem rechten in Abbildung <a href="einrichtung.html#fig:newproj2">2.3</a> dargestellten Fenster. Hier wählen Sie <code>New Project</code> aus, geben dem Projekt in folgenden Fenster einen Namen (das wird der Name des Projektordners sein), wählen den Speicherort für den Ordner aus und klicken auf <code>Create Project</code>.</p>
-<p>In beiden Fällen wurde nun ein Ordner erstellt, in dem sich ein File <code>*.Rproj</code> befindet. Damit ist die formale Erstellung eines Projekts abgeschlossen. Es empfiehlt sich jedoch dringend gleich eine sinnvolle Unterordnerstruktur mit anzulegen.</p>
+<p>Falls Sie <code>New Directory</code> gewählt haben, landen Sie dann auf dem rechten in
+Abbildung <a href="einrichtung.html#fig:newproj2">2.3</a> dargestellten Fenster.
+Hier wählen Sie <code>New Project</code> aus, geben dem Projekt im folgenden Fenster einen
+Namen (das wird der Name des Projektordners sein), wählen den Speicherort für den
+Ordner aus und klicken auf <code>Create Project</code>.</p>
+<p>In beiden Fällen wurde nun ein Ordner erstellt, in dem sich ein File <code>*.Rproj</code>
+befindet. Damit ist die formale Erstellung eines Projekts abgeschlossen.
+Es empfiehlt sich jedoch dringend gleich eine sinnvolle Unterordnerstruktur mit
+anzulegen.</p>
 </div>
 <div id="unterordner" class="section level3">
 <h3><span class="header-section-number">2.3.4</span> Schritt 3: Relevante Unterordner erstellen</h3>
-<p>Eine sinnvolle Unterordnerstruktur hilf (1) den Überblick über das eigene Projekt nicht zu verlieren, (2) mit anderen über verschiedene Computer hinweg zu kollaborieren und (3) Kollaborationsplattformen wie Github zu verwenden und replizierbare und für andere nachvollziehbare Forschungsarbeit zu betreiben.</p>
-<p>Die folgende Ordnerstruktur ist eine Empfehlung. In manchen Projekten werden Sie nicht alle hier vorgeschlagenen Unterordner brauchen, in anderen bietet sich die Verwendung von mehr Unterordnern an. Nichtsdestotrotz ist es ein guter Ausgangspunkt, den ich in den meisten meiner Forschungsprojekte auch so verwende.</p>
+<p>Eine sinnvolle Unterordnerstruktur hilft (1) den Überblick über das eigene
+Projekt nicht zu verlieren, (2) mit anderen über verschiedene Computer hinweg
+zu kollaborieren und (3) Kollaborationsplattformen wie Github zu verwenden und
+replizierbare und für andere nachvollziehbare Forschungsarbeit zu betreiben.</p>
+<p>Die folgende Ordnerstruktur ist eine Empfehlung.
+In manchen Projekten werden Sie nicht alle hier vorgeschlagenen Unterordner
+brauchen, in anderen bietet sich die Verwendung von mehr Unterordnern an.
+Nichtsdestotrotz ist es ein guter Ausgangspunkt, den ich in den meisten meiner
+Forschungsprojekte auch so verwende.</p>
 <p>Insgesamt sollten die folgenden Ordner im Projektordner erstellt werden:</p>
 <ul>
-<li>Ein Ordner <code>data</code>, der alle Daten enthält, die im Rahmen des Projekts verwendet werden. Hier empfiehlt es sich zwei Unterordner anzulegen: Einen Ordner <code>raw</code>, der die Rohdaten enthält, so wie sie aus dem Internet runtergeladen wurden. Diese Rohdaten sollten <strong>niemals</strong> verändert werden, ansonsten wird Ihre Arbeit nicht vollständig replizierbar werden und es kommt ggf. zu irreparablen Schäden. Alle Veränderungen der Daten sollten durch Skripte dokumentiert werdenn, die die Rohdaten als Input, und einen modifizierten Datensatz als Output generieren. Dieser modifizierte Datensatz sollte dann im Unterordner <code>tidy</code> gespeichert werden.</li>
+<li>Ein Ordner <code>data</code>, der alle Daten enthält, die im Rahmen des Projekts
+verwendet werden. Hier empfiehlt es sich zwei Unterordner anzulegen:
+Einen Ordner <code>raw</code>, der die Rohdaten enthält, so wie sie aus dem Internet
+runtergeladen wurden. Diese Rohdaten sollten <strong>niemals</strong> verändert werden,
+ansonsten wird Ihre Arbeit nicht vollständig replizierbar werden und es kommt
+gegebenenfalls zu irreparablen Schäden. Alle Veränderungen der Daten sollten durch Skripte
+dokumentiert werden, die die Rohdaten als Input, und einen modifizierten
+Datensatz als Output generieren. Dieser modifizierte Datensatz sollte dann im
+Unterordner <code>tidy</code> gespeichert werden.</li>
 </ul>
 <blockquote>
-<p>Beispiel: Sie laden sich Daten zum BIP in Deutschland von Eurostat und Daten zu Arbeitslosigkeit von AMECO herunter. Beiden Datensätze sollten im Unterordner <code>data/raw</code> gespeichert werden. Mit einem Skript lesen Sie beide Datensätze ein und erstellen den kombinierten Datensatz <code>macro_data.csv</code>, den Sie im Ordner <code>data/tidy</code> speichern und für die weitere Analyse verwenden. Dadurch kann jede*r nachvollziehen wie die von Ihnen verwendeten Daten sich aus den Rohdaten ergeben haben und Ihre Arbeit bleibt komplett transparent.</p>
+<p>Beispiel: Sie laden sich Daten zum BIP in Deutschland von Eurostat und
+Daten zu Arbeitslosigkeit von AMECO herunter. Beide Datensätze sollten im
+Unterordner <code>data/raw</code> gespeichert werden. Mit einem Skript lesen Sie beide
+Datensätze ein und erstellen den kombinierten Datensatz <code>macro_data.csv</code>, den
+Sie im Ordner <code>data/tidy</code> speichern und für die weitere Analyse verwenden.
+Dadurch kann jede*r nachvollziehen wie die von Ihnen verwendeten Daten sich aus
+den Rohdaten ergeben haben und Ihre Arbeit bleibt komplett transparent.</p>
 </blockquote>
 <ul>
-<li><p>Ein Ordner <code>R</code>, der alle R Skripte enthält, also alle Textdokumente, die R Code enthalten.</p></li>
-<li><p>Ein Ordner <code>output</code>, in dem der Output ihrer Berechnungen, z.B. Tabellen oder Plots gespeichert werden können. Der Inhalt dieses Ordners sollte sich komplett mit den Inhalten der Ordner <code>data</code> und <code>R</code> replizieren lassen.</p></li>
-<li><p>Ein Ordner <code>text</code>, in dem Sie Ihre Verschriftlichungen speichern, z.B. das eigentliche Forschungspapier, ihre Hausarbeit oder Ihre Vorlesungsmitschriften.</p></li>
-<li><p>Einen Ordner <code>misc</code> in den Sie alles packen, was in keinen der anderen Ordner passt. Ein solcher Ordner ist wichtig und Sie sollten nicht zuordbare Dateien nie in den Projektordner als solchen speichern.</p></li>
+<li><p>Ein Ordner <code>R</code>, der alle R Skripte enthält, also alle Textdokumente, die R
+Code enthalten.</p></li>
+<li><p>Ein Ordner <code>output</code>, in dem der Output ihrer Berechnungen, z.B. Tabellen oder
+Plots, gespeichert werden können. Der Inhalt dieses Ordners sollte sich komplett
+mit den Inhalten der Ordner <code>data</code> und <code>R</code> replizieren lassen.</p></li>
+<li><p>Ein Ordner <code>text</code>, in dem Sie Ihre Verschriftlichungen speichern, z.B. das
+eigentliche Forschungspapier, ihre Hausarbeit oder Ihre Vorlesungsmitschriften.</p></li>
+<li><p>Einen Ordner <code>misc</code> in den Sie alles packen, was in keinen der anderen
+Ordner passt. Ein solcher Ordner ist wichtig und Sie sollten nicht zuordbare
+Dateien nie in den übergeordneten Projektordner als solchen speichern.</p></li>
 </ul>
-<p>Wenn wir annehmen unser Projektordner heißt <code>2019-Methoden</code> ergibt sich damit insgesamt die in Abbildung <a href="einrichtung.html#fig:folder">2.4</a> dargestellte Ordner und Datenstruktur.</p>
+<p>Wenn wir annehmen unser Projektordner heißt <code>2019-Methoden</code> ergibt sich damit
+insgesamt die in Abbildung <a href="einrichtung.html#fig:folder">2.4</a> dargestellte Ordner und Datenstruktur.</p>
 <div class="figure" style="text-align: center"><span id="fig:folder"></span>
 <img src="figures/wd-structure.png" alt="Die vorgeschlagene Ordnerstruktur für R-Projekte." width="81" height="50%" />
 <p class="caption">
 Figure 2.4: Die vorgeschlagene Ordnerstruktur für R-Projekte.
 </p>
 </div>
+<p>In einem vierten Schritt sollten Sie nun noch eine <code>.here</code>-Datei erstellen.
+Da dies jedoch die Verwendung von Paketen voraussetzt sollten Sie den nächsten
+Abschnitt zunächst überspringen, wenn Sie noch nicht wissen wie man R-Pakete
+verwendet und den Abschnitt zu einem späteren Zeitpunkt lesen (R-Pakete werden
+in Abschnit <a href="#packages"><strong>??</strong></a> eingeführt).</p>
 </div>
+</div>
+<div id="optional-schritt-4-und-das-here-paket" class="section level2">
+<h2><span class="header-section-number">2.4</span> Optional: Schritt 4 und das here-Paket</h2>
+<p>Es gibt einen weiteren Schritt, den Sie bei der Einrichtung eines neuen Projekts
+immer durchführen sollten.
+Dieser Schritt beinhaltet die Verwendung des R-Pakets
+<a href="https://github.com/r-lib/here">here</a> <span class="citation">(Müller <a href="#ref-here">2017</a>)</span>.
+Falls Sie noch nicht mit der Verwendung von R-Paketen vertraut sind, sollten Sie
+diesen Abschnitt zunächst überspringen.
+Pakete werden in Abschnitt <a href="#packages"><strong>??</strong></a> eingeführt und es macht Sinn, wenn
+Sie später nach Lektüre dieses Abschnitts noch einmal hierher zurückkehren.</p>
+<p>Wie weiter oben beschrieben sollten Sie in der alltäglichen Arbeit immer
+<em>relative</em> Pfade verwenden.
+In zwei Situationen kann die Verwendung von relativen Pfaden aber problematisch
+sein: (1) in der Zusamenarbeit mit anderen und (2) bei der Verwendung von
+R-Markdown.<a href="stat-rep.html#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
+Gerade wenn Sie ein Skript einmal an eine*n Kollege*in schicken wollen und
+dieser nicht das ganze R Projekt öffnet kommt es schnell zu Fehlermeldungen.
+Glücklicherweise gibt es eine recht einfache Lösung für alle derartigen
+Probleme: das Paket <a href="https://github.com/r-lib/here">here</a> <span class="citation">(Müller <a href="#ref-here">2017</a>)</span>.</p>
+<p>Durch Einlesen des Pakets erhalten Sie Zugriff auf die Funktion (Überraschung!)
+<code>here()</code>.
+Diese Funktion nimmt nur ein einziges Argument und zwar einen relativen Pfad.
+Die Funktion wandelt diesen relativen Pfad automatisch in einen absoluten Pfad um.
+Dabei berücksichtigt sie die individualle Ordnerstruktur von dem Computer, auf
+dem sie aktuell ausgeführt wird.
+Da bedeutet, dass Sie für unterschiedliche Computer unterschiedliche Ergebnisse
+liefert.
+Anhand eines Beispiels lässt sich das am einfachsten nachvollziehen.
+Gehen wir davon aus, dass Birte und Claudius gemeinsam an einem R-Skript
+arbeiten.
+Im Code kommt dabei folgende Zeile vor:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">write</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">file =</span> <span class="st">&quot;output/vektor.txt&quot;</span>)</a></code></pre></div>
+<p>Hier wird ein Vektor in einer Textdatei im Unterordner <code>output/</code> gespeichert.
+Damit R die Datei am richtigen Ort speicher müssen Birte und Claudius das gleiche
+Arbeitsverzeichnis verwenden, sonst wirk der relative Pfad auf Ihren jeweiligen
+Computern anders.
+Alternativ könnte Claudius den Pfad auch absolut angeben:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">write</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">file =</span> <span class="st">&quot;/Users/claudius/projekte/R-Projekt-Birte/output/vektor.txt&quot;</span>)</a></code></pre></div>
+<p>Dann würde die Datei auf seinem Computer immer am richtigen Ort gespeichert,
+egal in welchem Arbeitsverzeichnis er sich gerade befindet.
+Wenn Birte nun allerdings diesen Code bei sich ausführt wird sie mit ziemlicher
+Sicherheit eine Fehlermeldung erhalten.
+Denn auf ihrem Computer liegt das Skript bestimmt an einem anderen Ort.
+Sie müsste also z.B. schreiben:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">write</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">file =</span> <span class="st">&quot;/Users/birte/projekte/R-Projekt-Claudius/output/vektor.txt&quot;</span>)</a></code></pre></div>
+<p>Dieser Code wiederum würde bei Claudius nicht funktionieren.
+Natürlich könnten die beiden den Code immer individuell vor dem Ausführen auf
+ihrem Computer anpassen.
+Das wäre allerdings nervig und Sie sollten Ihren Code immer so schreiben,
+dass er ohne Modifikation auf unterschieldlichen Computern funktioniert.
+Sonst macht Zusammenarbeit wenig Spaß.</p>
+<p>Die Funktion <code>here()</code> löst dieses Problem.
+Hier könnten die beiden einfach schreiben:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">write</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">file =</span> <span class="kw">here</span>(<span class="st">&quot;output/vektor.txt&quot;</span>))</a></code></pre></div>
+<p>Die Funktion <code>here()</code> baut dann automatisch einen absoluten Pfad.
+Der Output von <code>here(&quot;output/vektor.txt&quot;)</code> sähe auf Claudius’ Computer so aus:</p>
+<pre><code>~/claudius-projekte/R-Projekt-Birte/output/vektor.txt</code></pre>
+<p>Und auf Birte’s Computer aber so:</p>
+<pre><code>~/birte-projekte/R-Projekt-Claudius/output/vektor.txt</code></pre>
+<p>So können die beiden den Code einfach untereinander tauschen ohne ihr
+verändern zu müssen.
+Daher, und aufgrund einiger anderer potenziellen Schwierigkeiten, denen wir
+erst später begegnen werden, lohnt es sich immer das Paket <code>here</code> zu verwenden
+und relative Pfade immer gemeinsam mit der Funktion <code>here()</code> anzugeben.
+Das ist ein kleiner Mehraufwand, der auf Dauer aber viel Ärger spart.</p>
+<p>Damit das problemlos funktioniert lohnt es sich, dem <code>here</code> Paket den
+Ausgangspunkt für die relativen Pfade explizit mitzuteilen.
+Dafür muss beim Erstellen eines Arbeitsverzeichnis <em>einmalig</em> eine Datei
+<code>.here</code> erstellt werden, und zwar in dem Ordner, der als Ausgangspunkt für
+die relativen Pfade fungieren soll.
+Das ist in aller Regel der Ordner, in dem auch die <code>.Rproj</code> Datei liegt.<a href="stat-rep.html#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>Dazu führen wir nach Schritt 3 noch folgendende Befehle aus:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">here<span class="op">::</span><span class="kw">here</span>()</a></code></pre></div>
+<p>Wenn der angezeigte Pfad mit dem Pfad zu Ihrem gewünschten Arbeitsverzeichnis
+übereinstimmt, führen Sie nun folgenden Befehl aus:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">here<span class="op">::</span><span class="kw">set_here</span>()</a></code></pre></div>
+<p>Falls nicht geben Sie der Funktion <code>here::set_here()</code> den absoluten Pfad
+zu Ihrem Arbeitsverzeichnis als Argument, z.B.:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">here<span class="op">::</span><span class="kw">set_here</span>(<span class="st">&quot;/Users/claudius/projekte/R-Projekt-Birte&quot;</span>)</a></code></pre></div>
+<p>Sie sollten nun eine Nachricht bekommen haben, dass in Ihrem Arbeitsverzeichnis
+eine neue Datei <code>.here</code> erstellt wurde.
+Damit ist die Einrichtung Ihres Projekts vollständig abgeschlossen.</p>
 </div>
 <div id="abschließende-bemerkungen" class="section level2">
-<h2><span class="header-section-number">2.4</span> Abschließende Bemerkungen</h2>
-<p>Eine gute Ordnerstruktur ist nicht nur absolut essenziell um selbst einen Überblick über seine Forschungsprojekte zu behalten, sondern auch wenn man mit anderen Menschen kollaborieren möchte. In einem solchen Fall sollte man auf jeden Fall eine Versionskontrolle wie Git und GitHub verwenden. Wir werden uns damit im nächsten Semester genauer beschäftigen, aber Sie werden merken, dass die Kollaboration durch eine gut durchdachte Ordnerstruktur massiv erleichtert wird.</p>
-<!-- Noch etwas zum HERE Paket hinzufügen -->
+<h2><span class="header-section-number">2.5</span> Abschließende Bemerkungen</h2>
+<p>Eine gute Ordnerstruktur ist nicht nur absolut essenziell um selbst einen
+Überblick über seine Forschungsprojekte zu behalten, sondern auch wenn man
+mit anderen Menschen kollaborieren möchte, da jegliche Kollaboration durch eine gut durchdachte Ordnerstruktur massiv erleichtert wird.
+In einem solchen Fall sollte man auf jeden Fall eine Versionskontrolle wie Git
+und GitHub verwenden.
+Eine (optionale) kurze Einführung in Git und Github finden Sie in Kapitel
+<a href="#git"><strong>??</strong></a>.</p>
 
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-here">
+<p>Müller, Kirill. 2017. <em>Here: A Simpler Way to Find Your Files</em>. <a href="https://CRAN.R-project.org/package=here">https://CRAN.R-project.org/package=here</a>.</p>
 </div>
 </div>
             </section>
@@ -537,7 +789,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

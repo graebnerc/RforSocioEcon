@@ -19,13 +19,6 @@ Anhängen [zur deskriptiven](#desk-stat) und
 ```r
 library(here)
 library(tidyverse)
-```
-
-```
-## Warning: package 'tibble' was built under R version 3.6.2
-```
-
-```r
 library(ggpubr)
 library(latex2exp)
 library(icaeDesign)
@@ -453,7 +446,7 @@ sample_binom
 ```
 
 ```
-## [1] 2 6 3 5 3
+## [1] 3 4 3 5 2
 ```
 
 > **Anwendungsbeispiel Binomialverteilung:** Unser Zufallsexperiment besteht

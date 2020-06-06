@@ -26,9 +26,9 @@ Bitte darauf achten 'RStuio Desktop' zu installieren.
 
 Nach dem Installationsprozess öffnen wir R Studio zum ersten Mal.
 Abbildung \@ref(fig:gui) zeigt die verschiedenen Elemente der Oberfläche, deren 
-Funktion im folgenden kurz erläutert wird.
+Funktion im Folgenden kurz erläutert wird.
 Vieles ergibt sich hier aber auch durch *learning by doing*.
-Im folgenden werden nur die Bereiche der Oberfläche beschrieben, die am Anfang 
+Im Folgenden werden nur die Bereiche der Oberfläche beschrieben, die am Anfang 
 unmittelbar relevant für uns sind.
 
 \begin{figure}
@@ -48,9 +48,9 @@ Hier werden wir unsere Skripte verfassen.
 * Die **Konsole** (2) erlaubt es uns über R direkt mit unserem Computer zu
 interagieren.
 R ist eine Programmiersprache. Das bedeutet, wenn wir den Regeln der Sprache 
-folgen und uns in einer für den Computer verständlicher Art und Weise ausdrücken, 
+folgen und uns in einer für den Computer verständlichen Art und Weise ausdrücken, 
 versteht der Computer was wir von ihm wollen und führt unsere Befehle aus. 
-Wenn wir in die Konsole z.B. `2+2` eingeben, dann ist das valider R code. 
+Wenn wir in die Konsole z.B. `2+2` eingeben, dann ist das valider R Code. 
 Wenn wir dann Enter drücken versteht der Computer unseren Befehl und führt die 
 Berechnung aus.
 Die Konsole ist sehr praktisch um den Effekt von R Code direkt zu beobachten.
@@ -70,7 +70,7 @@ Der Reiter **Connections** (6) braucht uns aktuell nicht zu interessieren.
 * Auch für den Bereich unten rechts haben wir mehrere Optionen: 
 Der Bereich **Files** (7) zeigt uns unser Arbeitsverzeichnis mit allen Ordnern 
 und Dateien an. 
-Das ist das gleiche, was wir auch über den File Explorer unserer Betriebssystems 
+Das ist das Gleiche, was wir auch über den File Explorer unseres Betriebssystems 
 sehen würden.
 Der Bereich **Plots** (8) zeigt uns eine Vorschau der Abbildungen, die wir durch 
 unseren Code produzieren.
@@ -93,7 +93,7 @@ Die restlichen Buttons und Fenster in R Studio werden wir im Laufe der Zeit
 kennenlernen.
 
 Es macht Sinn, sich einmal die möglichen Einstellungsmöglichkeiten für R Studio 
-anzuschauen und ggf. eine andere Darstellungsversion zu wählen.
+anzuschauen und gegebenenfalls eine andere Darstellungsversion zu wählen.
 
 ## Einrichtung eines R Projekts
 
@@ -101,7 +101,7 @@ Im Folgenden werden wir lernen wie man ein neues R Projekt anlegt, R Code
 schreiben und ausführen kann.
 
 Wann immer wir ein neues Programmierprojekt starten, sollten wir dafür einen 
-eigenen Ordner anlegen und ein so genannten 'R Studio Projekt' erstellen.
+eigenen Ordner anlegen und ein sogenanntes 'R Studio Projekt' erstellen.
 Das hilft uns den Überblick über unsere Arbeit zu behalten, und macht es einfach 
 Code untereinander auszutauschen.
 
@@ -118,7 +118,7 @@ Die Schritte zur Erstellung eines solchen Projekts sind immer die gleichen:
 Wir beschäftigen uns mit den Schritten gleich im Detail, müssen vorher aber noch
 die folgenden Konzepte diskutieren:
 (1) das Konzept eines *Arbeitsverzeichnisses* (*working directory*) und 
-(2) die Unterscheidnug zwischen *absoluten* und *relativen* Pfaden.
+(2) die Unterscheidung zwischen *absoluten* und *relativen* Pfaden.
 
 ### Arbeitsverzeichnisse und Pfade
 
@@ -126,17 +126,17 @@ Das **Arbeitsverzeichnis** ist ein Ordner auf dem Computer, in dem R
 standardmäßig sämtlichen Output speichert und von dem aus es auf Datensätze und
 anderen Input zugreift. 
 Wenn wir mit Projekten arbeiten ist das Arbeitsverzeichnis der Ordner, in dem das 
-R-Projektfile abgelegt ist, ansonsten ist es euer Benutzerverzeichnis.
+R-Projektfile abgelegt ist, ansonsten ist es das Benutzerverzeichnis.
 Wir können uns das Arbeitsverzeichnis mit der Funktion `getwd()` anzeigen lassen.
-In meinem Fall ist das Arbeitsverzeichnis das folgende:
+In meinem Fall ist das Arbeitsverzeichnis das Folgende:
 
 
 ```
 #> [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR"
 ```
 
-Wenn ich R nun sagen würde ein File unter dem Namen `test.pdf` speichern, würde 
-es am folgenden Ort gespeichert werden:
+Wenn ich R nun sagen würde, es solle ein File unter dem Namen `test.pdf` speichern, 
+dann würde es am folgenden Ort gespeichert werden:
 
 
 ```
@@ -151,7 +151,7 @@ Alternativ können wir den Speicherort auch als **absoluten Pfad** angeben. In
 diesem Fall geben wir den kompletten Pfad, ausgehend vom 
 [Root Verzeichnis](https://de.wikipedia.org/wiki/Stammverzeichnis) des
 Computers, an. 
-Wir würden R also *explizit* auffordern, das File an foldengem Ort zu 
+Wir würden R also *explizit* auffordern, das File an folgendem Ort zu 
 speichern:
 
 
@@ -162,7 +162,7 @@ speichern:
 Wir werden hier **immer** relative Pfade verwenden. 
 Relative Pfade sind fast immer die bessere Variante, da es uns erlaubt den 
 gleichen Code auf verschiedenen Computern zu verwenden. 
-Denn wiw man an den absoluten Pfaden erkennen kann, sehen diese auf jedem 
+Denn wie man an den absoluten Pfaden erkennen kann, sehen diese auf jedem 
 Computer anders aus und es ist dementsprechend schwierig, Code miteinander zu
 teilen.
 
@@ -175,7 +175,7 @@ Zuerst müssen Sie sich für einen Ordner auf Ihrem Computer entscheiden, in dem
 alle Daten, die mit ihrem Projekt zu tun haben, also Daten, Skripte, Abbildungen, 
 etc. gespeichert werden sollen und diesen Ordner gegebenenfalls neu erstellen.
 Es macht Sinn, einen solchen Ordner mit einem informativen Namen ohne Leer- und
-Sonderzeichen zu versehen, z.B. `SoSe19-Methodenkurs`.
+Sonderzeichen zu versehen, z.B. `Learning-R`.
 
 Dieser Schritt kann theoretisch auch gemeinsam mit Schritt 2 erfolgen.
 
@@ -183,8 +183,8 @@ Dieser Schritt kann theoretisch auch gemeinsam mit Schritt 2 erfolgen.
 
 Wir möchten nun R Studio mitteilen den in Schritt 1 erstellten Ordner als R
 Projekt zu behandeln. 
-Damit wird nicht nur dieses Ordner als Root-Verzeichnis festgelegt, man kann
-auch die Arbeitshistorie eines Projekts leich wiederherstellen und es ist 
+Damit wird nicht nur dieser Ordner als Root-Verzeichnis festgelegt, man kann
+auch die Arbeitshistorie eines Projekts leicht wiederherstellen und es ist 
 einfacher, das Projekt auf verschiedenen Computern zu bearbeiten.
 
 Um ein neues Projekt zu erstellen klicken Sie in R Studio auf den Button 
@@ -201,12 +201,12 @@ Abbildung \@ref(fig:newproj1) dargestellte Fenster sehen.
 \end{figure}
 
 Falls Sie in Schritt 1 den Projektordner bereits erstellt haben wählen Sie hier
-`Existing Directory`, ansonsten erstellen Sie einen neuen Projektordner gleich
-mit dem Projektfile mit indem Sie `New Directory` auswählen.
+`Existing Directory`, ansonsten erstellen Sie einen neuen Projektordner gleich 
+gemeinsam mit dem Projektfile indem Sie `New Directory` auswählen.
 
-Falls Sie `Existing Directory` gewählt haben, wählen Sie in dem in linken in
-Abbildung \@ref(fig:newproj2) dargestellten Fenster. 
-Wählen Sie hier einfach den vorher erstellten Ordner aus und klickt auf `Create Project`.
+Falls Sie `Existing Directory` gewählt haben, landen Sie in einem Fenster, welches 
+dem linken Feld der Abbildung \@ref(fig:newproj2) entspricht. Hier wählen Sie
+einfach den vorher erstellten Ordner aus und klicken auf `Create Project`.
 
 \begin{figure}
 
@@ -214,12 +214,12 @@ Wählen Sie hier einfach den vorher erstellten Ordner aus und klickt auf `Create
 
 }
 
-\caption{Ein neues R-PRojekt aus einem existierenden (links) oder in einem neuen Projektordner (rechts) erstellen.}(\#fig:newproj2)
+\caption{Ein neues R-Projekt aus einem existierenden (links) oder in einem neuen Projektordner (rechts) erstellen.}(\#fig:newproj2)
 \end{figure}
 
-Falls Sie `New Directory` gewählt habt landen Sie dann auf dem rechten in 
+Falls Sie `New Directory` gewählt haben, landen Sie dann auf dem rechten in 
 Abbildung \@ref(fig:newproj2) dargestellten Fenster.
-Hier wählen Sie `New Project` aus, geben dem Projekt in folgenden Fenster einen
+Hier wählen Sie `New Project` aus, geben dem Projekt im folgenden Fenster einen
 Namen (das wird der Name des Projektordners sein), wählen den Speicherort für den
 Ordner aus und klicken auf `Create Project`.
 
@@ -230,7 +230,7 @@ anzulegen.
 
 ### Schritt 3: Relevante Unterordner erstellen {#unterordner}
 
-Eine sinnvolle Unterordnerstruktur hilf (1) den Überblick über das eigene 
+Eine sinnvolle Unterordnerstruktur hilft (1) den Überblick über das eigene 
 Projekt nicht zu verlieren, (2) mit anderen über verschiedene Computer hinweg
 zu kollaborieren und (3) Kollaborationsplattformen wie Github zu verwenden und
 replizierbare und für andere nachvollziehbare Forschungsarbeit zu betreiben.
@@ -248,13 +248,13 @@ verwendet werden. Hier empfiehlt es sich zwei Unterordner anzulegen:
 Einen Ordner `raw`, der die Rohdaten enthält, so wie sie aus dem Internet 
 runtergeladen wurden. Diese Rohdaten sollten **niemals** verändert werden, 
 ansonsten wird Ihre Arbeit nicht vollständig replizierbar werden und es kommt 
-ggf. zu irreparablen Schäden. Alle Veränderungen der Daten sollten durch Skripte
-dokumentiert werdenn, die die Rohdaten als Input, und einen modifizierten 
+gegebenenfalls zu irreparablen Schäden. Alle Veränderungen der Daten sollten durch Skripte
+dokumentiert werden, die die Rohdaten als Input, und einen modifizierten 
 Datensatz als Output generieren. Dieser modifizierte Datensatz sollte dann im 
 Unterordner `tidy` gespeichert werden.
 
 > Beispiel: Sie laden sich Daten zum BIP in Deutschland von Eurostat und 
-Daten zu Arbeitslosigkeit von AMECO herunter. Beiden Datensätze sollten im 
+Daten zu Arbeitslosigkeit von AMECO herunter. Beide Datensätze sollten im 
 Unterordner `data/raw` gespeichert werden. Mit einem Skript lesen Sie beide
 Datensätze ein und erstellen den kombinierten Datensatz `macro_data.csv`, den
 Sie im Ordner `data/tidy` speichern und für die weitere Analyse verwenden.
@@ -265,7 +265,7 @@ den Rohdaten ergeben haben und Ihre Arbeit bleibt komplett transparent.
 Code enthalten.
 
 * Ein Ordner `output`, in dem der Output ihrer Berechnungen, z.B. Tabellen oder
-Plots gespeichert werden können. Der Inhalt dieses Ordners sollte sich komplett
+Plots, gespeichert werden können. Der Inhalt dieses Ordners sollte sich komplett
 mit den Inhalten der Ordner `data` und `R` replizieren lassen.
 
 * Ein Ordner `text`, in dem Sie Ihre Verschriftlichungen speichern, z.B. das
@@ -273,7 +273,7 @@ eigentliche Forschungspapier, ihre Hausarbeit oder Ihre Vorlesungsmitschriften.
 
 * Einen Ordner `misc` in den Sie alles packen, was in keinen der anderen 
 Ordner passt. Ein solcher Ordner ist wichtig und Sie sollten nicht zuordbare
-Dateien nie in den Projektordner als solchen speichern.
+Dateien nie in den übergeordneten Projektordner als solchen speichern.
 
 Wenn wir annehmen unser Projektordner heißt `2019-Methoden` ergibt sich damit 
 insgesamt die in Abbildung \@ref(fig:folder) dargestellte Ordner und Datenstruktur.
@@ -287,15 +287,159 @@ insgesamt die in Abbildung \@ref(fig:folder) dargestellte Ordner und Datenstrukt
 \caption{Die vorgeschlagene Ordnerstruktur für R-Projekte.}(\#fig:folder)
 \end{figure}
 
+In einem vierten Schritt sollten Sie nun noch eine `.here`-Datei erstellen.
+Da dies jedoch die Verwendung von Paketen voraussetzt sollten Sie den nächsten
+Abschnitt zunächst überspringen, wenn Sie noch nicht wissen wie man R-Pakete
+verwendet und den Abschnitt zu einem späteren Zeitpunkt lesen (R-Pakete werden
+in Abschnit \@ref(packages) eingeführt).
+
+## Optional: Schritt 4 und das here-Paket
+
+Es gibt einen weiteren Schritt, den Sie bei der Einrichtung eines neuen Projekts
+immer durchführen sollten. 
+Dieser Schritt beinhaltet die Verwendung des R-Pakets 
+[here](https://github.com/r-lib/here) [@here].
+Falls Sie noch nicht mit der Verwendung von R-Paketen vertraut sind, sollten Sie
+diesen Abschnitt zunächst überspringen. 
+Pakete werden in Abschnitt \@ref(packages) eingeführt und es macht Sinn, wenn
+Sie später nach Lektüre dieses Abschnitts noch einmal hierher zurückkehren.
+
+Wie weiter oben beschrieben sollten Sie in der alltäglichen Arbeit immer
+*relative* Pfade verwenden. 
+In zwei Situationen kann die Verwendung von relativen Pfaden aber problematisch
+sein: (1) in der Zusamenarbeit mit anderen und (2) bei der Verwendung von 
+R-Markdown.^[Mit R Markdown können Sie in R direkt Texte schreiben und somit
+die statistische Analyse und die Beschreibung der Ergebnisse in einem Dokument
+integrieren. Dieses Buch ist z.B. auch vollständig in R-Markdown geschrieben.
+Eine kurze Einführung finden Sie in Kapitel \@ref(markdown).]
+Gerade wenn Sie ein Skript einmal an eine\*n Kollege\*in schicken wollen und 
+dieser nicht das ganze R Projekt öffnet kommt es schnell zu Fehlermeldungen.
+Glücklicherweise gibt es eine recht einfache Lösung für alle derartigen 
+Probleme: das Paket [here](https://github.com/r-lib/here) [@here].
+
+Durch Einlesen des Pakets erhalten Sie Zugriff auf die Funktion (Überraschung!)
+`here()`. 
+Diese Funktion nimmt nur ein einziges Argument und zwar einen relativen Pfad.
+Die Funktion wandelt diesen relativen Pfad automatisch in einen absoluten Pfad um.
+Dabei berücksichtigt sie die individualle Ordnerstruktur von dem Computer, auf
+dem sie aktuell ausgeführt wird. 
+Da bedeutet, dass Sie für unterschiedliche Computer unterschiedliche Ergebnisse
+liefert.
+Anhand eines Beispiels lässt sich das am einfachsten nachvollziehen.
+Gehen wir davon aus, dass Birte und Claudius gemeinsam an einem R-Skript 
+arbeiten.
+Im Code kommt dabei folgende Zeile vor:
+
+
+```r
+write(c(1,2,3), file = "output/vektor.txt")
+```
+
+Hier wird ein Vektor in einer Textdatei im Unterordner `output/` gespeichert.
+Damit R die Datei am richtigen Ort speicher müssen Birte und Claudius das gleiche
+Arbeitsverzeichnis verwenden, sonst wirk der relative Pfad auf Ihren jeweiligen
+Computern anders. 
+Alternativ könnte Claudius den Pfad auch absolut angeben:
+
+
+```r
+write(c(1,2,3), file = "/Users/claudius/projekte/R-Projekt-Birte/output/vektor.txt")
+```
+
+Dann würde die Datei auf seinem Computer immer am richtigen Ort gespeichert,
+egal in welchem Arbeitsverzeichnis er sich gerade befindet.
+Wenn Birte nun allerdings diesen Code bei sich ausführt wird sie mit ziemlicher
+Sicherheit eine Fehlermeldung erhalten. 
+Denn auf ihrem Computer liegt das Skript bestimmt an einem anderen Ort. 
+Sie müsste also z.B. schreiben:
+
+
+```r
+write(c(1,2,3), file = "/Users/birte/projekte/R-Projekt-Claudius/output/vektor.txt")
+```
+
+Dieser Code wiederum würde bei Claudius nicht funktionieren.
+Natürlich könnten die beiden den Code immer individuell vor dem Ausführen auf 
+ihrem Computer anpassen.
+Das wäre allerdings nervig und Sie sollten Ihren Code immer so schreiben, 
+dass er ohne Modifikation auf unterschieldlichen Computern funktioniert.
+Sonst macht Zusammenarbeit wenig Spaß.
+
+Die Funktion `here()` löst dieses Problem.
+Hier könnten die beiden einfach schreiben:
+
+
+```r
+write(c(1,2,3), file = here("output/vektor.txt"))
+```
+
+Die Funktion `here()` baut dann automatisch einen absoluten Pfad.
+Der Output von `here("output/vektor.txt")` sähe auf Claudius' Computer so aus:
+
+```
+~/claudius-projekte/R-Projekt-Birte/output/vektor.txt
+```
+
+Und auf Birte's Computer aber so:
+
+```
+~/birte-projekte/R-Projekt-Claudius/output/vektor.txt
+```
+
+So können die beiden den Code einfach untereinander tauschen ohne ihr 
+verändern zu müssen.
+Daher, und aufgrund einiger anderer potenziellen Schwierigkeiten, denen wir
+erst später begegnen werden, lohnt es sich immer das Paket `here` zu verwenden
+und relative Pfade immer gemeinsam mit der Funktion `here()` anzugeben.
+Das ist ein kleiner Mehraufwand, der auf Dauer aber viel Ärger spart.
+
+Damit das problemlos funktioniert lohnt es sich, dem `here` Paket den 
+Ausgangspunkt für die relativen Pfade explizit mitzuteilen. 
+Dafür muss beim Erstellen eines Arbeitsverzeichnis *einmalig* eine Datei 
+`.here` erstellt werden, und zwar in dem Ordner, der als Ausgangspunkt für
+die relativen Pfade fungieren soll. 
+Das ist in aller Regel der Ordner, in dem auch die `.Rproj` Datei liegt.^[
+Strikt genommen ist das Erstellen der `.here` Datei nicht nötig, da 
+`here()` im Zweifel von dem Ordner als Ausgangspunkt ausgeht, in dem es die
+nächste `.Rproj`-Datei findet. Es ist aber besser hier explizit zu seine
+`.here`-Datei beim Einrichten eines neuen Projekts immer mit zu erstellen.
+Dann funktioniert der Code in jedem Fall immer.
+]
+
+Dazu führen wir nach Schritt 3 noch folgendende Befehle aus:
+
+
+```r
+here::here()
+```
+
+Wenn der angezeigte Pfad mit dem Pfad zu Ihrem gewünschten Arbeitsverzeichnis
+übereinstimmt, führen Sie nun folgenden Befehl aus:
+
+
+```r
+here::set_here()
+```
+
+Falls nicht geben Sie der Funktion `here::set_here()` den absoluten Pfad
+zu Ihrem Arbeitsverzeichnis als Argument, z.B.:
+
+
+```r
+here::set_here("/Users/claudius/projekte/R-Projekt-Birte")
+```
+
+Sie sollten nun eine Nachricht bekommen haben, dass in Ihrem Arbeitsverzeichnis
+eine neue Datei `.here` erstellt wurde.
+Damit ist die Einrichtung Ihres Projekts vollständig abgeschlossen.
+
+
 ## Abschließende Bemerkungen
 
 Eine gute Ordnerstruktur ist nicht nur absolut essenziell um selbst einen 
 Überblick über seine Forschungsprojekte zu behalten, sondern auch wenn man
-mit anderen Menschen kollaborieren möchte. 
+mit anderen Menschen kollaborieren möchte, da jegliche Kollaboration durch eine gut durchdachte Ordnerstruktur massiv erleichtert wird.
 In einem solchen Fall sollte man auf jeden Fall eine Versionskontrolle wie Git 
-und GitHub verwenden. 
-Wir werden uns damit im nächsten Semester genauer beschäftigen, aber Sie werden
-merken, dass die Kollaboration durch eine gut durchdachte Ordnerstruktur massiv
-erleichtert wird.
-
-<!-- Noch etwas zum HERE Paket hinzufügen --> 
+und GitHub verwenden.
+Eine (optionale) kurze Einführung in Git und Github finden Sie in Kapitel
+\@ref(git).

@@ -34,13 +34,6 @@ Hilfe deskriptiver Statistik besser verstehen.
 ```r
 library(here)
 library(tidyverse)
-```
-
-```
-## Warning: package 'tibble' was built under R version 3.6.2
-```
-
-```r
 library(data.table)
 library(ggpubr)
 library(latex2exp)
