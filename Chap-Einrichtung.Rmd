@@ -47,11 +47,7 @@ interagieren.
 R ist eine Programmiersprache. Das bedeutet, wenn wir den Regeln der Sprache 
 folgen und uns in einer für den Computer verständlichen Art und Weise ausdrücken, 
 versteht der Computer was wir von ihm wollen und führt unsere Befehle aus. 
-Wenn wir in die Konsole z.B. `2+2` eingeben, dann ist das ein valider R Code. 
-<!-- Hier bin ich mir nicht sicher, ob man im deutschen sagt "ein valider Code" oder einfach  -->
-<!-- nur "das ist valider Code",aber ich habe jetzt einfach mal ein "ein" hinzugefügt. -->
-<!-- Außerdem war ich mir nicht sicher bei groß- und kleinschreibung von Code, aber da -->
-<!-- du es unten oft groß geschrieben hast, habe ich das hier übernommen. -->
+Wenn wir in die Konsole z.B. `2+2` eingeben, dann ist das valider R Code. 
 Wenn wir dann Enter drücken versteht der Computer unseren Befehl und führt die 
 Berechnung aus.
 Die Konsole ist sehr praktisch um den Effekt von R Code direkt zu beobachten.
@@ -271,6 +267,146 @@ insgesamt die in Abbildung \@ref(fig:folder) dargestellte Ordner und Datenstrukt
 knitr::include_graphics("figures/wd-structure.png")
 ```
 
+In einem vierten Schritt sollten Sie nun noch eine `.here`-Datei erstellen.
+Da dies jedoch die Verwendung von Paketen voraussetzt sollten Sie den nächsten
+Abschnitt zunächst überspringen, wenn Sie noch nicht wissen wie man R-Pakete
+verwendet und den Abschnitt zu einem späteren Zeitpunkt lesen (R-Pakete werden
+in Abschnit \@ref(packages) eingeführt).
+
+## Optional: Schritt 4 und das here-Paket
+
+Es gibt einen weiteren Schritt, den Sie bei der Einrichtung eines neuen Projekts
+immer durchführen sollten. 
+Dieser Schritt beinhaltet die Verwendung des R-Pakets 
+[here](https://github.com/r-lib/here) [@here].
+Falls Sie noch nicht mit der Verwendung von R-Paketen vertraut sind, sollten Sie
+diesen Abschnitt zunächst überspringen. 
+Pakete werden in Abschnitt \@ref(packages) eingeführt und es macht Sinn, wenn
+Sie später nach Lektüre dieses Abschnitts noch einmal hierher zurückkehren.
+
+Wie weiter oben beschrieben sollten Sie in der alltäglichen Arbeit immer
+*relative* Pfade verwenden. 
+In zwei Situationen kann die Verwendung von relativen Pfaden aber problematisch
+sein: (1) in der Zusamenarbeit mit anderen und (2) bei der Verwendung von 
+R-Markdown.^[Mit R Markdown können Sie in R direkt Texte schreiben und somit
+die statistische Analyse und die Beschreibung der Ergebnisse in einem Dokument
+integrieren. Dieses Buch ist z.B. auch vollständig in R-Markdown geschrieben.
+Eine kurze Einführung finden Sie in Kapitel \@ref(markdown).]
+Gerade wenn Sie ein Skript einmal an eine\*n Kollege\*in schicken wollen und 
+dieser nicht das ganze R Projekt öffnet kommt es schnell zu Fehlermeldungen.
+Glücklicherweise gibt es eine recht einfache Lösung für alle derartigen 
+Probleme: das Paket [here](https://github.com/r-lib/here) [@here].
+
+Durch Einlesen des Pakets erhalten Sie Zugriff auf die Funktion (Überraschung!)
+`here()`. 
+Diese Funktion nimmt nur ein einziges Argument und zwar einen relativen Pfad.
+Die Funktion wandelt diesen relativen Pfad automatisch in einen absoluten Pfad um.
+Dabei berücksichtigt sie die individualle Ordnerstruktur von dem Computer, auf
+dem sie aktuell ausgeführt wird. 
+Da bedeutet, dass Sie für unterschiedliche Computer unterschiedliche Ergebnisse
+liefert.
+Anhand eines Beispiels lässt sich das am einfachsten nachvollziehen.
+Gehen wir davon aus, dass Birte und Claudius gemeinsam an einem R-Skript 
+arbeiten.
+Im Code kommt dabei folgende Zeile vor:
+
+```{r, eval=FALSE}
+write(c(1,2,3), file = "output/vektor.txt")
+```
+
+Hier wird ein Vektor in einer Textdatei im Unterordner `output/` gespeichert.
+Damit R die Datei am richtigen Ort speicher müssen Birte und Claudius das gleiche
+Arbeitsverzeichnis verwenden, sonst wirk der relative Pfad auf Ihren jeweiligen
+Computern anders. 
+Alternativ könnte Claudius den Pfad auch absolut angeben:
+
+```{r, eval=FALSE}
+write(c(1,2,3), file = "/Users/claudius/projekte/R-Projekt-Birte/output/vektor.txt")
+```
+
+Dann würde die Datei auf seinem Computer immer am richtigen Ort gespeichert,
+egal in welchem Arbeitsverzeichnis er sich gerade befindet.
+Wenn Birte nun allerdings diesen Code bei sich ausführt wird sie mit ziemlicher
+Sicherheit eine Fehlermeldung erhalten. 
+Denn auf ihrem Computer liegt das Skript bestimmt an einem anderen Ort. 
+Sie müsste also z.B. schreiben:
+
+```{r, eval=FALSE}
+write(c(1,2,3), file = "/Users/birte/projekte/R-Projekt-Claudius/output/vektor.txt")
+```
+
+Dieser Code wiederum würde bei Claudius nicht funktionieren.
+Natürlich könnten die beiden den Code immer individuell vor dem Ausführen auf 
+ihrem Computer anpassen.
+Das wäre allerdings nervig und Sie sollten Ihren Code immer so schreiben, 
+dass er ohne Modifikation auf unterschieldlichen Computern funktioniert.
+Sonst macht Zusammenarbeit wenig Spaß.
+
+Die Funktion `here()` löst dieses Problem.
+Hier könnten die beiden einfach schreiben:
+
+```{r, eval=FALSE}
+write(c(1,2,3), file = here("output/vektor.txt"))
+```
+
+Die Funktion `here()` baut dann automatisch einen absoluten Pfad.
+Der Output von `here("output/vektor.txt")` sähe auf Claudius' Computer so aus:
+
+```
+~/claudius-projekte/R-Projekt-Birte/output/vektor.txt
+```
+
+Und auf Birte's Computer aber so:
+
+```
+~/birte-projekte/R-Projekt-Claudius/output/vektor.txt
+```
+
+So können die beiden den Code einfach untereinander tauschen ohne ihr 
+verändern zu müssen.
+Daher, und aufgrund einiger anderer potenziellen Schwierigkeiten, denen wir
+erst später begegnen werden, lohnt es sich immer das Paket `here` zu verwenden
+und relative Pfade immer gemeinsam mit der Funktion `here()` anzugeben.
+Das ist ein kleiner Mehraufwand, der auf Dauer aber viel Ärger spart.
+
+Damit das problemlos funktioniert lohnt es sich, dem `here` Paket den 
+Ausgangspunkt für die relativen Pfade explizit mitzuteilen. 
+Dafür muss beim Erstellen eines Arbeitsverzeichnis *einmalig* eine Datei 
+`.here` erstellt werden, und zwar in dem Ordner, der als Ausgangspunkt für
+die relativen Pfade fungieren soll. 
+Das ist in aller Regel der Ordner, in dem auch die `.Rproj` Datei liegt.^[
+Strikt genommen ist das Erstellen der `.here` Datei nicht nötig, da 
+`here()` im Zweifel von dem Ordner als Ausgangspunkt ausgeht, in dem es die
+nächste `.Rproj`-Datei findet. Es ist aber besser hier explizit zu seine
+`.here`-Datei beim Einrichten eines neuen Projekts immer mit zu erstellen.
+Dann funktioniert der Code in jedem Fall immer.
+]
+
+Dazu führen wir nach Schritt 3 noch folgendende Befehle aus:
+
+```{r, eval=FALSE}
+here::here()
+```
+
+Wenn der angezeigte Pfad mit dem Pfad zu Ihrem gewünschten Arbeitsverzeichnis
+übereinstimmt, führen Sie nun folgenden Befehl aus:
+
+```{r, eval=FALSE}
+here::set_here()
+```
+
+Falls nicht geben Sie der Funktion `here::set_here()` den absoluten Pfad
+zu Ihrem Arbeitsverzeichnis als Argument, z.B.:
+
+```{r, eval=FALSE}
+here::set_here("/Users/claudius/projekte/R-Projekt-Birte")
+```
+
+Sie sollten nun eine Nachricht bekommen haben, dass in Ihrem Arbeitsverzeichnis
+eine neue Datei `.here` erstellt wurde.
+Damit ist die Einrichtung Ihres Projekts vollständig abgeschlossen.
+
+
 ## Abschließende Bemerkungen
 
 Eine gute Ordnerstruktur ist nicht nur absolut essenziell um selbst einen 
@@ -278,8 +414,5 @@ Eine gute Ordnerstruktur ist nicht nur absolut essenziell um selbst einen
 mit anderen Menschen kollaborieren möchte, da jegliche Kollaboration durch eine gut durchdachte Ordnerstruktur massiv erleichtert wird.
 In einem solchen Fall sollte man auf jeden Fall eine Versionskontrolle wie Git 
 und GitHub verwenden.
-
-<!-- Hier würde ich eventuell auch nochmal einen Hinweis machen, dass es im Anhang ein  -->
-<!-- Kapitel zu Git und Github gibt, oder? -->
-
-<!-- Noch etwas zum HERE Paket hinzufügen --> 
+Eine (optionale) kurze Einführung in Git und Github finden Sie in Kapitel
+\@ref(git).
