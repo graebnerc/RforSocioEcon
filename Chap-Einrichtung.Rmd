@@ -292,18 +292,19 @@ R-Markdown.^[Mit R Markdown können Sie in R direkt Texte schreiben und somit
 die statistische Analyse und die Beschreibung der Ergebnisse in einem Dokument
 integrieren. Dieses Buch ist z.B. auch vollständig in R-Markdown geschrieben.
 Eine kurze Einführung finden Sie in Kapitel \@ref(markdown).]
+<!-- Nur kurz zur Erinnerung: Im ersten Kapitel steht auch schon etwas ähnliches: "Beispielsweise ist es mit R Markdown möglich, das Coding und Schreiben der Antworten im gleichen Dokument vorzunehmen. Auch dieses Skript wurde vollständig in R Markdown geschrieben." Glaube stilistisch sind Wiederholungen meistens nicht so schön, aber vielleicht haben neue Leser*innen das auch schon wieder vergessen und es ist nützlich das nochmal zu erwähnen. Wollte nur darauf hinweisen für den Fall dass die Wiederholung keine bewusste Entscheidung war. -->
 Gerade wenn Sie ein Skript einmal an eine\*n Kollege\*in schicken wollen und 
-dieser nicht das ganze R Projekt öffnet kommt es schnell zu Fehlermeldungen.
+diese\*r nicht das ganze R Projekt öffnet kommt es schnell zu Fehlermeldungen.
 Glücklicherweise gibt es eine recht einfache Lösung für alle derartigen 
 Probleme: das Paket [here](https://github.com/r-lib/here) [@here].
 
-Durch Einlesen des Pakets erhalten Sie Zugriff auf die Funktion (Überraschung!)
-`here()`. 
+Durch Einlesen des Pakets erhalten Sie Zugriff auf die Funktion (Überraschung!) -->
+<!-- `here()`. Haha love it -->
 Diese Funktion nimmt nur ein einziges Argument und zwar einen relativen Pfad.
 Die Funktion wandelt diesen relativen Pfad automatisch in einen absoluten Pfad um.
-Dabei berücksichtigt sie die individualle Ordnerstruktur von dem Computer, auf
+Dabei berücksichtigt sie die individuelle Ordnerstruktur von dem Computer, auf
 dem sie aktuell ausgeführt wird. 
-Da bedeutet, dass Sie für unterschiedliche Computer unterschiedliche Ergebnisse
+Das bedeutet, dass Sie für unterschiedliche Computer unterschiedliche Ergebnisse
 liefert.
 Anhand eines Beispiels lässt sich das am einfachsten nachvollziehen.
 Gehen wir davon aus, dass Birte und Claudius gemeinsam an einem R-Skript 
@@ -315,8 +316,8 @@ write(c(1,2,3), file = "output/vektor.txt")
 ```
 
 Hier wird ein Vektor in einer Textdatei im Unterordner `output/` gespeichert.
-Damit R die Datei am richtigen Ort speicher müssen Birte und Claudius das gleiche
-Arbeitsverzeichnis verwenden, sonst wirk der relative Pfad auf Ihren jeweiligen
+Damit R die Datei am richtigen Ort speichert müssen Birte und Claudius das gleiche
+Arbeitsverzeichnis verwenden, sonst wirkt der relative Pfad auf ihren jeweiligen
 Computern anders. 
 Alternativ könnte Claudius den Pfad auch absolut angeben:
 
@@ -362,9 +363,9 @@ Und auf Birte's Computer aber so:
 ~/birte-projekte/R-Projekt-Claudius/output/vektor.txt
 ```
 
-So können die beiden den Code einfach untereinander tauschen ohne ihr 
-verändern zu müssen.
-Daher, und aufgrund einiger anderer potenziellen Schwierigkeiten, denen wir
+So können die beiden den Code einfach untereinander tauschen ohne den Code jeweils
+auf ihren Computern verändern zu müssen.
+Daher, und aufgrund einiger anderer potenzieller Schwierigkeiten, denen wir
 erst später begegnen werden, lohnt es sich immer das Paket `here` zu verwenden
 und relative Pfade immer gemeinsam mit der Funktion `here()` anzugeben.
 Das ist ein kleiner Mehraufwand, der auf Dauer aber viel Ärger spart.
@@ -382,7 +383,7 @@ nächste `.Rproj`-Datei findet. Es ist aber besser hier explizit zu seine
 Dann funktioniert der Code in jedem Fall immer.
 ]
 
-Dazu führen wir nach Schritt 3 noch folgendende Befehle aus:
+Dazu führen wir nach Schritt 3 noch folgende Befehle aus:
 
 ```{r, eval=FALSE}
 here::here()
