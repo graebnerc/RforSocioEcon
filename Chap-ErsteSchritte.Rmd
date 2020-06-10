@@ -31,12 +31,13 @@ Computer was wir von ihm wollen und gibt uns das entsprechende Ergebnis aus:
 2 + 3
 ```
 
-Auf diese Art und Weise könne wir R als einfachen Taschenrechner verwenden,
+<!-- Der Output wird ja hier als #> [1] 5 gegeben. Macht es vielleicht Sinn hier noch einen Satz zu schreiben wie das zu lesen ist? steht #> immer vor jedem Output? (weiß ich gar nicht mehr). Und was genau sagt uns das [1] - einfach dass das unsere  erste Operation war? -->
+Auf diese Art und Weise können wir R als einfachen Taschenrechner verwenden,
 denn für alle einfachen mathematischen Operationen können wir bestimmte Symbole
 als Operatoren verwenden.
 An dieser Stelle sei noch darauf hingewiesen, dass das Symbol `#` in R einen
 Kommentar einleitet, das heißt alles was in einer Zeile nach `#` steht wird
-vom Computer ignoriert und man kann sich einfach Notizen in seinem Code machen.
+vom Computer ignoriert und man kann sich an dieser Stelle Notizen im Code machen.
 
 ```{r}
 2 + 2 # Addition
@@ -58,12 +59,12 @@ Alternativ können wir die Befehle in einem Skript aufschreiben, und dieses Skri
 dann ausführen. Während die Interaktion über die Konsole sinnvoll ist um die 
 Effekte bestimmter Befehle auszuprobieren, bietet sich die Verwendung von 
 Skripten an, wenn wir mit den Befehlen später weiter arbeiten wollen, oder sie
-anderen Menschen zugänglich zu machen. Den das Skript können wir als Datei auf 
+anderen Menschen zugänglich zu machen. Denn das Skript können wir als Datei auf 
 unserem Computer speichern, vorzugsweise im Unterordner `R` unseres R-Projekts
 (siehe Abschnitt [Relevante Unterordner erstellen](#unterordner)), und dann 
 später weiterverwenden. 
 
-Die Berechnungen, die wir bisland durchgeführt haben sind zugegebenermaßen nicht 
+Die Berechnungen, die wir bislang durchgeführt haben sind zugegebenermaßen nicht 
 sonderlich spannend.
 Um fortgeschrittene Operationen in R durchführen und verstehen zu können müssen
 wir uns zunächst mit den Konzepten von **Objekten**, **Funktionen** und
@@ -84,8 +85,7 @@ In der Berechnung `2 + 3` ist die Zahl `2` genauso ein Objekt wie die Zahl `3`
 und die Additionsfunktion, die durch den Operator `+` aufgerufen wird.
 
 Mit der Aussage 'Alles was in R passiert ist ein Funktionsaufruf' ist gemeint,
-dass wenn wir R eine Berechnung durchführen lassen, tun wir dies indem wir eine
-Funktion aufrufen.
+dass wir R eine Berechnung durchführen lassen indem wir eine Funktion aufrufen.
 
 **Funktionen** sind Algorithmen, die bestimmte Routinen auf einen *Input* 
 anwenden und dabei einen *Output* produzieren. 
@@ -95,7 +95,7 @@ der Addition angewandt und als Output die Zahl `5` ausgegeben.
 Der Output `5` ist dabei in R genauso ein Objekt wie die Inputs `2` und `3`, 
 sowie die Funktion `+`.
 
-Ein 'Problem' ist, dass R im vorliegenden Falle den Output der Berechnung 
+Ein 'Problem' ist, dass R im vorliegenden Fall den Output der Berechnung 
 zwar ausgibt, wir danach aber keinen Zugriff darauf mehr haben:
 
 ```{r}
@@ -104,7 +104,7 @@ zwar ausgibt, wir danach aber keinen Zugriff darauf mehr haben:
 
 Falls wir den Output weiterverwenden wollen, macht es Sinn, dem Output Objekt
 einen Namen zu geben, damit wir später wieder darauf zugreifen können.
-Der Prozess einem Objekt einen Namen zu Geben wird **Zuweisung** oder 
+Der Prozess einem Objekt einen Namen zu geben wird **Zuweisung** oder 
 **Assignment** genannt und durch die Funktion `assign` vorgenommen:
 
 ```{r}
@@ -127,24 +127,25 @@ assign("zwischenergebnis", 2 + 3)
 zwischenergebnis <- 2 + 3
 ```
 
-Entsprechend werden wir Zuweisungen immer mit dem `<-` Operator durchführen.
+Daher werden wir Zuweisungen immer mit dem `<-` Operator durchführen.
+<!-- "Daher" um die Wortwiederholung mit "Entsprechend" im Satz davor zu vermeiden -->
 ^[Theoretisch kann `<-` auch andersherum verwendet werden: 
 `2 + 3 -> zwischenergebnis`.
 Das mag zwar auf den ersten Blick intuitiver erscheinen, da das aus `2 + 3` 
 resultierende Objekt den Namen `zwischenergebnis` bekommt, also immer erst das
-Objekt erstellt wird und dann der Name zugewiesen wird, es führt jedoch zu 
+Objekt erstellt wird und dann der Name zugewiesen wird. Es führt jedoch zu 
 deutlich weniger lesbarem Code und sollte daher nie verwendet werden.
-Ebensoweinig sollten Zuweisungen durch den `=` Operatur vorgenommen werden, auch
+Ebensowenig sollten Zuweisungen durch den `=` Operator vorgenommen werden, auch
 wenn es im Fall `zwischenergebnis = 2 + 3` funktionieren würde.] 
 
 Wir können in R nicht beliebig Namen vergeben. 
-Gültige (also: syntaktisch korrekte) Namen ...
+Gültige (also: syntaktisch korrekte) Namen
 
 * enthalten nur Buchstaben, Zahlen und die Symbole `.` und `_`
 * fangen nicht mit `.` oder einer Zahl an!
 
 Zudem gibt es einige Wörter, die schlicht nicht als Name verwendet werden 
-dürgen, z.B. `function`, `TRUE`, oder `if`. Die gesamte Liste verbotener Worte
+dürfen, z.B. `function`, `TRUE`, oder `if`. Die gesamte Liste verbotener Worte
 kann mit dem Befehl `?Reserved` ausgegeben werden.
 
 Wenn man einen Namen vergeben möchte, der nicht mit den gerade formulierten 
@@ -154,10 +155,11 @@ Regeln kompatibel ist, gibt R eine Fehlermeldung aus:
 TRUE <- 5
 ```
 
-Zudem sollte man folgendes beachten:
+Zudem sollte man Folgendes beachten:
 
-* Namen sollten kurz und informativ sein; entsprechen ist `sample_mean` ein 
+* Namen sollten kurz und informativ sein; entsprechend ist `sample_mean` ein 
 guter Name, `shit15_2` dagegen eher weniger
+<!-- Hahaha möchtest du bei shit15_2 bleiben? :D Kann mir vorstellen dass wenn du es tatsächlich über einen publisher veröffentlichen willst, das evtl angekreidet wird. Vielleicht einen Namen setzen den du bei Studis schonmal gesehen hast, der vllt auf den ersten Blick gut scheint wenn man nicht so viel Erfahrung hat, aber der eigentlich zu lang oder zu wenig klar definiert ist? -->
 * Man sollte **nie Umlaute in Namen verwenden**
 * R ist *case sensitive*, d.h. `mean_value` ist ein anderer Name als `Mean_Value`
 * Auch wenn möglich, sollte man nie von R bereit gestellte Funktionen 
@@ -166,8 +168,8 @@ in der Regel aber zu großem Unglück, weil man nicht mehr ganz einfach auf die
 zugrundeliegende Funktion zurückgreifen kann.
 
 > **Hinweis**: Alle aktuellen Namenszuweisungen sind im Bereich `Environment`
-in R Studio (Nr. 4 in der Abbildung oben) aufgelistet und können durch die 
-Funktion `ls()` angezeigt werden.
+in R Studio (Nr. 4 in Abbildung \@ref(fig:folder) oben) aufgelistet und können 
+durch die Funktion `ls()` angezeigt werden.
 
 > **Hinweis**: Ein Objekt kann mehrere Namen haben, aber kein Name kann zu 
 mehreren Objekten zeigen, da im Zweifel eine neue Zuweisung die alte 
@@ -195,6 +197,7 @@ x <- 2 + 2 # Zuweisung, R gibt das Ergebnis in der Konsole nicht aus
 
 
 ## Zusammenfassung
+<!-- Statt einer neuen Unterüberschrift würde ich hier einfach direkt unter den Code schreiben: "Zusammenfassend können wir sagen:" und dann die Bulletpoints. Das ist ja eigl nur eine Zusammenfassung von Unterkapitel 3.2, und eigentlich nicht unbedingt ein eigenes Unterkapitel 3.3 wert, oder?  -->
 
 * Wir können Befehle in R Studio an den Computer übermitteln indem wir (a) den
 R Code in die Konsole schreiben und Enter drücken oder (b) den Code in ein 
@@ -204,15 +207,14 @@ Funktionsaufruf
 * Wir können einem Objekt mit Hilfe von `<-` einen Namen geben und dann später
 wieder aufrufen. Den Prozess der Namensgebung nennen wir **Assignment** und wir
 können uns alle aktuell von uns vergebenen Namen mit der Funktion `ls()` 
-anzeigen lassen.
+anzeigen lassen
 * Eine Funktion ist ein Objekt, das auf einen Input eine bestimmte Routine 
 anwendet und einen Output produziert
 
 An dieser Stelle sei noch auf die Hilfefunktion `help()` hingewiesen.
-Falls Sie Informationen über ein Objekt bekommen wollen können Sie so
-weitere Informationen bekommen. Wenn Sie z.B. genauere Informationen über 
-die Verwendung der Funktion `assign` erhalten wollen, können Sie Folgendes 
-eingeben:
+Über diese können Sie weitere Informationen über ein Objekt bekommen. Wenn Sie 
+z.B. genauere Informationen über die Verwendung der Funktion `assign` erhalten 
+wollen, können Sie Folgendes eingeben:
 
 ```{r, eval=FALSE}
 help(assign)
