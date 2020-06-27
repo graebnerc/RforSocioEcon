@@ -14,15 +14,17 @@ In diesem Kapitel geht es um den auf den ersten Blick unspannendsten Teil der
 Forschung: Datenaufbereitung und -management.
 Gleichzeitig ist es einer der wichtigsten Schritte: 
 ohne Daten können viele Forschungsfragen nicht angemessen beantwortet werden.
+Abbildung \@ref(fig:Arbeitsablauf) zeigt den typischen Arbeitsablauf eines 
+Forschungsprojekts.
 
-```{r, echo=FALSE, fig.align='center'}
+```{r Arbeitsablauf, echo=FALSE, fig.align='center', fig.cap="Typischer Arbeitsablauf eines Forschungsprojekts"}
 knitr::include_graphics("figures/chap-data-Ablaufschema.png", auto_pdf = T)
 ```
 
-In diesem Kaptitel liegt der Fokus auf den ersten beiden Abschnitten, der Akquise
-und der Aufbereitung ihrer Daten.
+In diesem Kapitel liegt der Fokus auf den ersten beiden Abschnitten, der Akquise
+und der Aufbereitung Ihrer Daten.
 Laut [dieser Umfrage](https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/)
-verwenden Datenspezialisten regelmäßig 80\% ihrer Arbeitszeit auf diese beiden
+verwenden Datenspezialist\*innen regelmäßig 80\% ihrer Arbeitszeit auf diese beiden
 Schritte.
 Um hier also Zeit und Nerven zu sparen ist es wichtig, 
 sich mit den grundlegenden Arbeitsschritten und Algorithmen vertraut zu machen.
@@ -46,15 +48,15 @@ Das Wichtigste bei diesem Prozess: Sie dürfen **nie die Rohdaten selbst veränd
 Alle Änderungen an den Rohdaten müssen durch ein R Skript vorgenommen werden, und
 die veränderten Daten müssen unter neuem Namen gespeichert werden. 
 Wenn Sie sich das einmal angewöhnt haben, können Sie nicht nur vollkommen 
-transparent in Ihrer Forschung sein, sie können auch nicht aus Versehen und 
-unwiderruflich ihre wertvollen Rohdaten zerstören.
+transparent in Ihrer Forschung sein, Sie können auch nicht aus Versehen und 
+unwiderruflich Ihre wertvollen Rohdaten zerstören.
 
 Und wenn Sie sich mit den grundlegenden Algorithmen einmal vertraut gemacht haben
 kann Datenaufbereitung wider Erwarten auch wirklich Spaß machen!
 
 Dieses Kapitel folgt dem typischen Arbeitsablauf eines Forschungsprojektes und 
 beschäftigt sich mit den ersten beiden Abschnitten aus der obigen Grafik, der
-Daten-Akquise und der Daten-Aufbereitung, wobei letztere im Mittelpunkt stehen
+Daten-Akquise und der Daten-Aufbereitung, wobei Letztere im Mittelpunkt stehen
 soll.
 Entsprechend ist das Kapitel folgendermaßen strukturiert:
 
@@ -84,9 +86,9 @@ library(R.utils)
 library(haven)
 ```
 
-> **Disclaimer**: In diesem Kapitel verwenden wir für die Arbeit mit Daten vor
+> **Hinweis**: In diesem Kapitel verwenden wir für die Arbeit mit Daten vor
 allem Pakete aus dem so genannten [tidyverse](https://www.tidyverse.org/).
-Ich habe mich für diese Pakete entschieden, weil es meiner Meinung nach die
+Ich habe mich für diese Pakete entschieden, weil sie meiner Meinung nach die
 für R-Beginner am einfachsten zu lernenden Pakete sind und sie zu sehr einfach
 zu lesendem Code führen. 
 Zudem sind sie sehr weit verbreitet. 
@@ -115,7 +117,8 @@ In der Praxis werden Sie aber merken, dass die Grenze zwischen quantitativen und
 qualitativen Daten häufig deutlich schwammiger ist, als man das auf den ersten 
 Blick glauben möchte, denn häufig werden qualitative Beschreibungen 
 quantifiziert und dann mit typischen quantitativen Methoden analysiert.
-Auch werden s.g. *mixed methods*-Ansätze immer beliebter.
+Auch werden sogenannte *mixed methods*-Ansätze immer beliebter, welche qualitative 
+und quantitative Methoden kombinieren.
 
 Vor allem in der Psychologie unterscheidet man zwischen **manifesten** und 
 **latenten Variablen**.
@@ -139,6 +142,8 @@ für eine latente Variable verwendet werden.
 häufig durch das BIP operationalisiert.^[Interessanterweise hat der 'Erfinder' des 
 modernen BIP Simon Kurznets in @BIP davon abgeraten, diese Operationalisierung
 als Indikator für wirtschaftliche Entwicklung zu verwenden.]
+<!-- Ich glaub die Verlinkung der Quelle hier hat nicht funktioniert. Ich finde die Quelle nicht unter den Referenzen wenn ich auf der HTML Seite versuche den Link anzuklicken führt mich das nur zurück zum Anfang des Kapitels 5. Finde den Hinweis hier aber sehr gut also würde das nicht rausnehmen nur schauen dass die Quellen-Verlinking funktioniert -->
+
 Der *Human Development Index* ist der Versuch, wirtschaftliche Entwicklung durch
 mehr als eine manifeste Variable zu operationalisieren, also durch beobachtbare
 Variablen messbar zu machen.
@@ -151,9 +156,10 @@ In der Praxis sehr relevant ist zudem die Unterscheidung der
 welche Methode angemessen ist um die Daten zu analysieren. 
 Hier wird zwischen **nominal**, **ordinal**, **intervall** und **verhältnis** 
 skalierten Daten unterschieden, wobei intervall- und verhältnisskalierte 
-Daten häufig unter dem Label **kardinal**-skalierte Daten zusammen gefasst werden:
+Daten häufig unter dem Label **kardinalskalierte** Daten zusammen gefasst werden, 
+wie aus der Abbildung \@ref(fig:skalenniveaus) hervorgeht:
 
-```{r, echo=FALSE, fig.align='center', out.height=='100%'}
+```{r skalenniveaus, echo=FALSE, fig.align='center', out.height=='100%', fig.cap="Skalenniveaus von Daten"}
 knitr::include_graphics("figures/data-data-classification.png", auto_pdf = T)
 ```
 
@@ -173,6 +179,8 @@ In R werden solche Daten in der Regel als `character` oder als `factor` beschrie
 Die einzelnen Ausprägungen eines Faktors können mit der Funktion `table` gezählt
 werden. Der häufigste wird dabei 'Modus' genannt:
 
+<!-- Hier find ich den 3. Schritt im Code etwas schwieriger nachzuvollziehen, vielleicht könntest du da nochmal einen Satz zu schreiben? Laut dem obigen Satz klingt es so als seien nominale Daten immer beschreibbar als 'character' oder 'factor', aber laut dem Code sieht es so aus als sei ein Vektor nominaler Daten erstmal vom Typ 'character' und man müsste das dann erst mit dieser Funktion 'factor' umwandeln (allerdings wird es dann ja auch nicht in Faktoren umgewandelt sondern in Integer. Oder ist das das gleiche? Vielleicht ist mein Problem hier gerade auch noch dass du zu factors ja noch was schreiben wolltest bei Kapitel 3, ich weiß nicht ob das zusammengehört aber vielleicht ist das so ein bisschen der missing link? Ansonsten einfach hier nochmal einen Satz warum die diese Funktion factors(..) benutzt löst glaube ich die Sache auch schon.) -->
+
 ```{r}
 beobachtete_haarfarben <- c("Blond", "Braun", "Schwarz", 
                             "Blond", "Braun", "Braun")
@@ -186,6 +194,8 @@ Bei der Funktion `as.factor()` können Sie die Ausprägungen auch selbst
 spezifizieren. Das ist vor allem dann wichtig, wenn eine Ausprägung nicht
 vorkommt:
 
+<!-- Mmmh aber hier hast du ja wieder die Funktion "factor(.., ..)" verwenden, nicht "as.factor(..)". Oder macht das das selbe? Wofür ist das "as." dann da wenn es eh keinen Unterschied macht? -->
+
 ```{r}
 beobachtete_haarfarben <- c("Blond", "Braun", "Schwarz", 
                             "Blond", "Braun", "Braun")
@@ -198,13 +208,15 @@ table(beobachtete_haarfarben)
 
 Bei **ordinalskalierten** Daten können die einzelnen Ausprägungen in eine 
 klare Rangfolge gebracht werden, aber die Abstände sind nicht sinnvoll 
-interpretiertbar.
+interpretierbar.
 Das klassische Beispiel sind Schulnoten: eine '1' ist besser als eine '2', aber 
 weder ist eine 1 'doppelt so gut' wie eine 2, noch sind zwei einser genauso gut
 wie eine 2.
 
 Ordinalskalierte Daten werden in R am besten auch als `factor` behandelt, allerdings
 müssen Sie die Reihenfolge explizit spezifizieren:
+
+<!-- Nur um zu prüfen ob ich das richtig verstehe: die Reihenfolge wird spezifiziert indem man im Vektor nicht mehr alle Daten einzeln eingibt, sondern wie oft in der Rangfolge angibt wie viele von den geordneten Kategorien je auftreten - also wenn ich c(rep(1,3), rep(3,6), rep (2,4)) schreiben würde, würde das ein Notensystem beschreiben indem die 3 vor der 2 geordnet ist. Ist das korrekt? -->
 
 ```{r}
 noten <- c(rep(1, 3), rep(2, 4), rep(3, 6), rep(4, 2), rep(5, 3))
@@ -213,8 +225,8 @@ noten <- factor(noten, levels = 1:6, ordered = T)
 noten
 ```
 
-Wir erkennen, dass der Faktor geordnet ist daran, adss bei der Auflistung der
-Levels das Symbol `<` verwendet wird um die Reihenfolge zu illutrieren.
+Dass der Faktor geordnet ist erkennen wir daran, dass bei der Auflistung der
+Levels das Symbol `<` verwendet wird um die Reihenfolge zu illustrieren.
 Um bei bestehenden Faktoren die Reihenfolge zu spezifizieren, verwenden Sie die
 Funktion `ordered()`:
 
@@ -240,16 +252,16 @@ quantile(noten, type = 1)
 Bei **intervallskalierten** Daten können wir die Ausprägungen nicht nur in eine
 Rangfolge bringen, sondern auch die Abstände zwischen den Ausprägungen sinnvoll
 interpretieren. 
-Während es bei Noten also keinen Sinn macht mathematische Operationen wir 'Addition'
+Während es bei Noten also keinen Sinn ergibt, mathematische Operationen wie 'Addition'
 oder 'Substraktion' zu verwenden (und die Abstände entsprechend nicht konsistent zu
 interpretieren sind), ist dies bei intervallskalierten Daten wie z.B. Jahreszahlen
 möglich: 
 zwischen 1999 und 2005 liegt der gleiche Abstand wie zwischen 2009 und 2015.
-Entsprechend werden intervall-skalierte Daten in in der Regel als `integer` oder
+Entsprechend werden intervallskalierte Daten in in der Regel als `integer` oder
 `double` gespeichert und wir können Kennzahlen wie den Mittelwert oder die Varianz
-bereichnen.
+berrechnen.
 
-Allerdings verfügen intervall-skalierte Daten über keinen absoluten Nullpunkt, 
+Allerdings verfügen intervallskalierte Daten über keinen absoluten Nullpunkt, 
 sodass Divisionen und Multiplikationen keinen Sinn machen. 
 Das ist bei **verhältnisskalierten** Daten wie Gewicht, Preis oder Alter anders.
 Das kann man am besten an folgendem Beispiel illustrieren:
@@ -264,10 +276,10 @@ Eine Lösung ist die Temperatur in Kelvin anzugeben, denn für Kelvin ist ein
 absoluter Nullpunkt definiert. Entsprechend können wir auch sagen, dass 20 
 Kelvin halb so warm ist wie 40 Kelvin - wobei beides ziemlich kalt wäre.
 
-Da sowohl intervall- als auch verhältnis-skalierte Daten als `double` oder `integer`
+Da sowohl intervall- als auch verhältnisskalierte Daten als `double` oder `integer`
 repräsentiert werden, ist Vorsicht geboten: wir müssen immer selbst entscheiden
 welche Maße wir für die Daten berechnen und R gibt uns keinen Fehler aus, wenn
-wir für zwei intervall-skalierte Variablen ein Verhältnis berechnen wollen.
+wir für zwei intervallskalierte Variablen ein Verhältnis berechnen wollen.
 
 Die folgende Tabelle fasst das noch einmal zusammen:
 
@@ -292,6 +304,8 @@ bekannten statistischen Maße für welche Skalenniveaus definiert sind:
 | **Varianz** | $\times$ | $\times$ | $\checkmark$ | $\checkmark$ |
 | **Pearson-Korrelation** | $\times$ | $\times$ | $\checkmark$ | $\checkmark$ |
 
+<!-- Hier würde ich nochmal einen kurzen Verweis auf den Anhang hinsetzen, in dem du ja ein Kapitel zu deskriptiver Statistik hast, da die statistischen Operationen hier ja nicht nochmal erklärt wurden -->
+
 Wahrscheinlich kennen Sie auch noch die Unterscheidung zwischen **diskreten** und
 **stetigen** Werten.
 Diese Kategorisierungen ist nicht vollkommen konsistent mit den 
@@ -300,10 +314,10 @@ ordinale Daten eher diskret, allerdings gibt es auch diskrete kardinale Daten
 (aber keine stetigen nominalen Daten).
 
 > **Hinweis zum Angeben:** Aus der Skalierung oben wird ersichtlich, dass man 
-mit ordinal-skalierten Daten keine Durchschnitte bilden darf - man kann sie ja
+mit ordinalskalierten Daten keine Durchschnitte bilden darf - man kann sie ja
 noch nicht einmal addieren. Ein Bereich wo dieser fundamentalen Regel ständig 
 Gewalt angetan wird ist die Schule: wer hat noch nie von einer 
-Durchschnittsnote gehört? Zum Glück gehört das bei uns an der Universität der 
+Durchschnittsnote gehört? Zum Glück gehört das an der Universität der 
 Vergangenheit an...
 
 ## Datenakquise {#data-get}
@@ -312,10 +326,10 @@ Der erste Schritt in der Arbeit mit Daten ist immer die Akquise der Daten.
 Je nach verwendeter Methode und Fragestellung ist das mehr oder weniger Arbeit.
 Im einfachsten Fall sind die von Ihnen benötigten Daten bereits erhoben und 
 über das Internet frei zugänglich.
-Das trifft z.B. auf viele makroökonomische Indikatoren, wie das BIP, den Gini
+Das trifft z.B. auf viele makroökonomische Indikatoren, wie das BIP, den Gini-Index
 oder die Arbeitslosigkeit zu.
 In diesem Falle müssen Sie einfach nur noch die passende Quelle finden,^[Das 
-bedeutet natürlich nicht, dass Sie (a) diesen Daten blind vertrauen sollten und
+bedeutet natürlich weder, dass Sie (a) diesen Daten blind vertrauen sollten, noch dass
 (b) Ihre Daten tatsächlich die 
 [latente Variable](https://de.wikipedia.org/wiki/Latentes_Variablenmodell)
 messen, an der Sie interessiert sind.
@@ -333,7 +347,7 @@ ob sie die Daten sogar [direkt mit R herunterladen](#data-download-R) wollen.
 
 Gerade wenn Sie mit makroökonomischen Daten arbeiten werden Sie häufig in Kontakt
 mit Ländercodes kommen. 
-In vielen Danksätzen werden Länder unterschiedlich abgekürzt.
+In vielen Datensätzen werden Länder unterschiedlich abgekürzt.
 So mögen manche Datensätze zwar ausgeschriebene Ländernamen wie "Deutschland" 
 verwenden, andere verwenden aber eher den 
 [iso3c-Code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) 
@@ -365,7 +379,7 @@ countrycode(
 ```
 
 In diesem Fall verdeutlicht `origin="country.name.de"`, dass wir die Originalnamen
-auf Deutsch angegeben haben und `destination="iso2c"` dass wir in `iso2c`
+auf Deutsch angegeben haben und `destination="iso3c"` dass wir in `iso3c`
 übersetzen wollen.
 
 Wenn wir wissen wollen welches Land sich hinter der IWF Nummer `112` verbirgt
@@ -384,11 +398,12 @@ Aber manchmal möchten Sie vielleicht eine besonders ausgefallene
 Übersetzung durchführen. In einem solchen Falle können Sie 
 `countrycode()` über das Argument `custom_dict` auch einen `data.frame` mit 
 dem neuen Code übergeben und die Funktion ansonsten äquivalent nutzen.
+<!-- Den letzten Satz versteh ich noch irgendwie nicht so gut. Warum sollte man eine besonders ausgefallene Übersetzung durchführen wollen, und was heißt das? Dass man sich eine eigene Abkürzung ausdenkt? Was heißt es einen data.frame zu übergeben aber die Funktion ansonsten äquivalent zu nutzen? Dass jetzt einfach eine neue Übersetzungsart in der Funktion gespeichert ist? Wird dann die alte überschrieben? -->
 
 Grundsätzlich empfehle ich Ihnen in Ihrer Arbeit möglichst auf das Ausschreiben
-von Ländernamen zu verzichten und stattdessen mit eindeutigeren Kürzeln zu
+von Ländernamen zu verzichten und stattdessen mit eindeutigen Kürzeln zu
 arbeiten. 
-Ich arbeite z.B. immer mit den `iso3c`-Codes, da sie trotzdem sehr intuitiv
+Ich arbeite z.B. immer mit den `iso3c`-Codes, da sie trotz Abkürzung sehr intuitiv
 lesbar sind.
 
 Das Problem mit ausgeschriebenen Ländernamen lässt sich anhand der 
@@ -404,9 +419,9 @@ countrycode("Czechia", "country.name", "iso3c")
 
 Das kann manchmal zu Problemen beim Zusammenführen von Datensätzen führen, 
 da R nicht von sich aus weiß, dass 'Czechia' und 'Czech Republik' das gleiche 
-Land meinen. 
+Land bezeichnen. 
 Da die Ländercodes immer eindeutig sind empfehle ich daher immer mit den Kürzeln
-zu arbeiten und beim ersten Übersetzen immer besondern vorsichtig zu sein.
+zu arbeiten und beim ersten Übersetzen immer besonders vorsichtig zu sein.
 
 ### Exkurs 2: Daten direkt mit R herunterladen {#data-download-R}
 
@@ -425,10 +440,9 @@ konservieren.]
 
 Es lohnt sich daher, gerade wenn Sie aus einer Quelle mehrere Daten beziehen wollen,
 nachzuschauen ob ein R Paket oder eine besondere API verfügbar ist. 
-Im Folgenden möchte das Vorgehen mit dem Paket
-[WDI](https://github.com/vincentarelbundock/WDI) [@R-WDI], welches Ihnen Zugriff
-auf die [Weltbankdaten](https://data.worldbank.org/) ermöglicht, 
-illustrieren.
+Im Folgenden möchte ich das Vorgehen mit dem Paket
+[WDI](https://github.com/vincentarelbundock/WDI) [@R-WDI] illustrieren, welches Ihnen Zugriff
+auf die [Weltbankdaten](https://data.worldbank.org/) ermöglicht.
 
 Das Paket `WDI` stellt Funktionen sowohl zum Suchen als auch zum direkten 
 Download von Daten aus der Datenbank der Weltbank zur Verfügung. 
@@ -442,17 +456,17 @@ Nehmen wir einmal an, Sie wollen Daten zum Export und zur Arbeitslosigkeit
 für Deutschland und Österreich für die Jahre 2012-2014 haben. 
 
 Sie suchen also nach den Indikatoren und lesen den Code aus der URL des 
-Indikators ab:^[Zwar gibt es im `WDI`-Paket auch die Funktion `WDI::WDIsearch()`, 
-mit der Sie Datensätze direkt suchen können, allerdings funktioniert das nach 
+Indikators ab, wie in Abbildung \@ref(fig:WDI) dargestellt:^[Zwar gibt es im `WDI`-Paket auch die Funktion `WDI::WDIsearch()`, 
+mit der Sie Datensätze direkt suchen können, allerdings funktioniert das 
 meiner Erfahrung nach nicht optimal.]
 
-```{r, echo=FALSE, fig.align='center'}
+```{r WDI, echo=FALSE, fig.align='center', fig.cap="Ablesen des Codes aus der URL"}
 knitr::include_graphics("figures/chap-data-world-bank.png")
 ```
 
 
 Über die Weltbankseite finden Sie heraus, dass die beiden von Ihnen gesuchten 
-Indikatoren mit `NE.EXP.GNFS.ZS` und `SL.UEM.TOTL.ZS` kodiert sind
+Indikatoren mit `NE.EXP.GNFS.ZS` und `SL.UEM.TOTL.ZS` kodiert sind.
 Nun verwenden Sie die Funktion `WDI::WDI()` um direkt auf die Daten zuzugreifen.
 Die Funktion benötigt dabei die folgenden Argumente:
 `country` verlangt nach einem Vektor mit Länderkürzeln. 
@@ -473,11 +487,11 @@ t_beginn <- 2012
 t_ende <- 2014
 laender <- countrycode(c("Germany", "Austria"), 
                        "country.name", "wb")
-indikatores <- c("NE.EXP.GNFS.ZS", "SL.UEM.TOTL.ZS")
+indikatoren <- c("NE.EXP.GNFS.ZS", "SL.UEM.TOTL.ZS")
 
 daten <- WDI::WDI(
   country = laender, 
-  indicator = indikatores,
+  indicator = indikatoren
   start = t_beginn,
   end = t_ende
 )
