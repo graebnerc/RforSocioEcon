@@ -31,7 +31,15 @@ Computer was wir von ihm wollen und gibt uns das entsprechende Ergebnis aus:
 2 + 3
 ```
 
-<!-- Der Output wird ja hier als #> [1] 5 gegeben. Macht es vielleicht Sinn hier noch einen Satz zu schreiben wie das zu lesen ist? steht #> immer vor jedem Output? (weiß ich gar nicht mehr). Und was genau sagt uns das [1] - einfach dass das unsere  erste Operation war? -->
+Die Zeichenkombination `#>` am Beginn der Zeile zeigt an, dass es sich bei 
+dieser Zeile um den Output eines R-Befehlt handelt. Das kann bei Ihrem
+Computer durchaus anders aussehen. 
+Das Ergebnis von `2+3` ist eine Zahl (genauer: ein 'Skalar'). 
+In R werden Skalare immer als Vektor der Länge 1 dargestellt.
+Die `[1]` gibt also an, dass hier ein Vektor der Länge 1 angezeigt wird.
+Wäre das Ergebnis unserer Berechnung ein Vektor der Länge 2 würde die 
+Outputzeile dementsprechend mit `#> [1]` eingeleitet werden.
+
 Auf diese Art und Weise können wir R als einfachen Taschenrechner verwenden,
 denn für alle einfachen mathematischen Operationen können wir bestimmte Symbole
 als Operatoren verwenden.
@@ -128,7 +136,6 @@ zwischenergebnis <- 2 + 3
 ```
 
 Daher werden wir Zuweisungen immer mit dem `<-` Operator durchführen.
-<!-- "Daher" um die Wortwiederholung mit "Entsprechend" im Satz davor zu vermeiden -->
 ^[Theoretisch kann `<-` auch andersherum verwendet werden: 
 `2 + 3 -> zwischenergebnis`.
 Das mag zwar auf den ersten Blick intuitiver erscheinen, da das aus `2 + 3` 
@@ -158,8 +165,7 @@ TRUE <- 5
 Zudem sollte man Folgendes beachten:
 
 * Namen sollten kurz und informativ sein; entsprechend ist `sample_mean` ein 
-guter Name, `shit15_2` dagegen eher weniger
-<!-- Hahaha möchtest du bei shit15_2 bleiben? :D Kann mir vorstellen dass wenn du es tatsächlich über einen publisher veröffentlichen willst, das evtl angekreidet wird. Vielleicht einen Namen setzen den du bei Studis schonmal gesehen hast, der vllt auf den ersten Blick gut scheint wenn man nicht so viel Erfahrung hat, aber der eigentlich zu lang oder zu wenig klar definiert ist? -->
+guter Name, `vector_2` dagegen eher weniger
 * Man sollte **nie Umlaute in Namen verwenden**
 * R ist *case sensitive*, d.h. `mean_value` ist ein anderer Name als `Mean_Value`
 * Auch wenn möglich, sollte man nie von R bereit gestellte Funktionen 
@@ -196,8 +202,7 @@ x <- 2 + 2 # Zuweisung, R gibt das Ergebnis in der Konsole nicht aus
 ```
 
 
-## Zusammenfassung
-<!-- Statt einer neuen Unterüberschrift würde ich hier einfach direkt unter den Code schreiben: "Zusammenfassend können wir sagen:" und dann die Bulletpoints. Das ist ja eigl nur eine Zusammenfassung von Unterkapitel 3.2, und eigentlich nicht unbedingt ein eigenes Unterkapitel 3.3 wert, oder?  -->
+An dieser Stelle wollen wir das bisher Gelernte kurz zusammenfassen:
 
 * Wir können Befehle in R Studio an den Computer übermitteln indem wir (a) den
 R Code in die Konsole schreiben und Enter drücken oder (b) den Code in ein 
@@ -301,9 +306,6 @@ genaue Verhalten der Funktion. Wenn `na.rm` den Wert `TRUE` hat, dann werden im
 Falle von `sum()` die fehlende Werte, also die `NA`, ignoriert bevor die Summe 
 der Inputs gebildet wird:
 
-<!-- Etwas umformuliert weil ich über diesen Satz etwas gestolpert bin und ihn nicht  -->
-<!-- so einfach zu lesen fand. -->
-
 ```{r}
 sum(1,2,3,4,NA) 
 ```
@@ -323,7 +325,6 @@ Standardwert `FALSE` annimmt.
 
 **Eigene Funktionen definieren**
 
-
 Sehr häufig möchten wir selbst Funktionen definieren.
 Das können wir mit dem reservierten Keyword `function` machen.
 Als Beispiel wollen wir eine Funktion `pythagoras` definieren, die als Argumente 
@@ -334,12 +335,10 @@ die Länge der Hypothenuse bestimmt:
 ```{r}
 pythagoras <- function(kathete_1, kathete_2){
   hypo_quadrat <- kathete_1**2 + kathete_2**2
-  l_hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
-  return(l_hypothenuse)
+  hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
+  return(hypothenuse)
 }
 ```
-
-<!-- Frage die ich mir hier stelle: gibt es einen Grund dafür die Hypothenuse "1_hypothenuse" zu nennen statt einfach nur "hypothenuse"? Weshalb schreibt man den Code so? -->
 
 Wir definieren eine Funktion durch die Funktion `function()`.
 In der Regel beginnen wir die Definition indem wir die zu erstellende Funktion 
@@ -358,7 +357,7 @@ genannt wird.
 Dies ist der häufig unter $c^2=a^2 + b^2$ bekannte Teil des Satz von Pythagoras.
 Da wir an der 'normalen' Länge der Hypothenuse interesssiert sind, ziehen wir 
 mit der Funktion `sqrt()` noch die Wurzel von `hypo_quadrat`, und geben dem 
-resultierenden Objekt den Namen `l_hypothenuse`, welches in der letzten Zeile
+resultierenden Objekt den Namen `hypothenuse`, welches in der letzten Zeile
 mit Hilfe des Keywords `return` als der Wert definiert wird, den die Funktion
 als Output ausgibt.^[Das ist strikt genommen nicht 
 notwendig, aber der Übersichtlichkeit werden wir immer `return` 
@@ -375,9 +374,8 @@ pythagoras(2, 4)
 ```
 
 Beachten Sie, dass alle Objektnamen, die innerhalb des *function bodies* verwendet
-werden, nach dem Funktionsaufruf verloren gehen:^[Das liegt daran, dass Funktionen 
-ihr eigenes [environment](https://adv-r.hadley.nz/environments.html) haben.]
-<!-- Das hier würde ich eigl sogar aus der Fußnote rausnehmen und hier als Halbsatz dranhängen: "...verloren gehen, weil Funktionen ihr eigenes environment haben. Deswegen..." -->
+werden, nach dem Funktionsaufruf verloren gehen, weil Funktionen 
+ihr eigenes [environment](https://adv-r.hadley.nz/environments.html) haben.
 Deswegen kommt es im vorliegenden Falle zu einem Fehler, da `hypo_quadrat` nur
 innerhalb des *function bodies* existiert:
 
@@ -566,9 +564,22 @@ Transformationen: `logical` &rarr; `integer` &rarr; `double` &rarr; `character`,
 d.h. man kann eine Dezimalzahl ohne Probleme in ein Wort transformieren, 
 aber nicht umgekehrt:
 
-<!-- Ich verstehe hier noch nicht wie man TRUE oder FALSE in einen integer transformieren kann, und (wahrscheinlich noch wichtiger:) verstehe auch nicht komplett weshalb wir überhaupt transformieren wollen würden, also in welchem Kontext sowas hilfreich wäre. Vielleicht würde ich das noch irgendwo relativ am Anfang einführen, damit die Leser*Innen verstehen weshalb das hier eigentlich gerade alles erklärt wird? -->
+***
 
-<!-- PS: Nach dem Durcharbeiten dieses Kapitels habe ich nun verstanden wie TRUE und FALSE in integers transformiert werden (zu 0 und 1, wenn ich das richtig verstanden habe). Ich lasse den Kommentar oben dennoch stehen, als Info dass das zu diesem Zeitpunkt/an dieser Textstelle noch schwer verständlich war, falls du das als wichtig erachtest das hier dann schon zu erklären. Ist aber denke ich nicht super notwendig. Der Punkt mit dem praktischen Anwendungszweck von Transformationen ist allerdings immer noch eher offen für mich und wahrscheinlich auch wichtiger.  -->
+> **Warum überhaupt transformieren?**
+> 
+> Für eine Programmiersprache sind Datentypen extrem wichtig, weil sonst unklar
+bliebe wie mathematische Operationen auf unterschiedliche Objekte wie Zahlen
+oder Wörter anzuwenden wären.
+Selbst transformieren werden Sie Objekte vor allem wenn Sie eine bestimmte, nur
+für eine bestimmte Objektart definierte Operation verwenden wollen und das 
+Objekt bislang als ein anderer Typ gespeichert ist.
+Das kann zum Beispiel passieren wenn Sie Daten einlesen oder Wörter selbst in
+Zahlenwerte übersetzen. Wenn in Ihrem Code unerwartete Fehler mit kryptischen
+Fehlermeldungen auftauchen ist es immer eine gute Idee, erst einmal die Typen
+der verwendeten Objekte zu checken und die Objekte ggf. zu transformieren.
+
+***
 
 ```{r}
 x <- 2
@@ -579,6 +590,20 @@ print(z)
 k <- as.double("Hallo") # Das nicht
 print(k)
 ```
+
+Bei der Transformation logischer Werte wird `TRUE` übrigens zu `1` und `FALSE` 
+zu `0`, eine Tatsache, die wir uns später noch zunutze machen werden:
+
+```{r}
+x <- TRUE
+as.integer(x)
+```
+
+```{r}
+y <- FALSE
+as.integer(y)
+```
+
 Da nicht immer ganz klar ist wann R bei Transformationen entgegen der gerade
 eingeführten Hierachie eine Warnung ausgibt und wann nicht sollte man hier immer
 besondere Vorsicht walten lassen!
@@ -613,7 +638,7 @@ z <- x + y
 typeof(z)
 ```
 
-Interessanterweise werden logische Werte ebenfalls transformiert:
+Bei einer Addition werden ogische Werte ebenfalls automatisch transformiert:
 
 ```{r}
 x <- TRUE
@@ -1086,9 +1111,95 @@ l_2[["erstes_element"]]
 ```
 
 
-Im Folgenden wollen wir uns noch mit zwei speziellen Typen beschäftigen, die weniger
-fundamental als die bislang diskutierten Typen sind, jedoch häufig in der alltäglichen
-Arbeit vorkommen: Matrizen und Data Frames.
+Im Folgenden wollen wir uns noch mit drei speziellen Typen beschäftigen, die 
+weniger fundamental als die bislang diskutierten Typen sind, jedoch häufig in 
+der alltäglichen Arbeit vorkommen: Faktoren, Matrizen und Data Frames.
+
+### Faktoren {#into-factors}
+
+Faktoren werden verwendet um ordinale oder kategoriale Daten darzustellen.
+Ein Faktor kann nur einen von mehreren vorher definierten Werten annehmen, so
+genannten *Levels*. 
+Faktoren werden über die Funktion `factor()` erstellt. 
+Sie nimmt als erstes Argument die Werte für den Faktor:
+
+```{r}
+x <- c("Frau", "Mann", "Frau")
+x <- factor(c("Frau", "Mann", "Frau"))
+x
+```
+
+Wenn wir Levels definieren wollen, die aber aktuell noch keine Ausprägung
+haben können wir dies mit dem Argument `levels` bewerkstelligen:
+
+```{r}
+x <- c("Frau", "Mann", "Frau")
+x <- factor(c("Frau", "Mann", "Frau"), 
+            levels=c("Divers","Frau", "Mann"))
+x
+```
+Wenn wir das Argument `levels` verwenden werden dort nicht genannte 
+Ausprägungen den Wert `NA` erhalten:
+
+```{r}
+x <- c("Frau", "Mann", "Frau")
+x <- factor(c("Frau", "Mann", "Frau", "Divers"), 
+            levels=c("Frau", "Mann"))
+x
+```
+
+Die Reihenfolge der einzelnen Levels spielt meist keine Rolle.
+Bei ordinalen Daten möchten wir aber eine sinnvolle Wertigkeit der 
+Ausprägungen sicherstellen. 
+Das geht mit der Funktion `factor()` und dem Argument `ordered`:
+
+```{r}
+x <- c("Hoch", "Hoch", "Gering", "Hoch")
+x <- factor(x, 
+            levels = c("Gering", "Mittel", "Hoch"), 
+            ordered = TRUE)
+x
+```
+
+Häufig handelt es sich bei den Ausprägungen von Faktoren um Wörter, also 
+Objekte vom Type `character`.
+Technisch gesehen werden Faktoren aber als `integer` gespeichert: um 
+Speicherplatz zu sparen wird jedem Level auf dem Computer eine ganze Zahl 
+zugewiesen, die dann auf den eigentlichen Wert gemapt wird. Gerade wenn die 
+Ausprägungen als solche große Zahlen oder lange Wörter sind spart das Speicher,
+weil diese Ausprägungen nur einmal gespeichert werden müssen, und jedes Element
+des Fakors nur noch eine einfache Zahl ist.
+Daher gibt `typeof()` für Faktoren auch `integer` aus:
+
+```{r}
+x <- factor(c("Frau", "Mann", "Frau"), 
+            levels=c("Mann", "Frau", "Divers"))
+typeof(x)
+```
+
+Um zu überprüfen ob es sich bei einem Objekt um einen Faktor handelt verwenden
+wir die Funktion `is.factor()`:
+
+```{r}
+is.factor(x)
+```
+
+Manche Operationen, die für `integer` definiert sind, funktionieren bei Faktoren
+aber nicht, z.B. Addition:
+
+```{r}
+x[1] + x[2]
+```
+
+Dafür können wir andere nützliche Dinge mit Faktoren anstellen, z.B. die 
+absoluten Häufigkeiten über die Funktion `table` anzeigen:
+
+```{r}
+table(x)
+```
+
+Faktoren werden vor allem in der Arbeit mit ordinalen und kategorialen Daten
+verwendet (siehe Kapitel \@ref(data)).
 
 ### Matrizen {#intro-matrix}
 
@@ -1308,18 +1419,14 @@ genannte Faktoren umgewandelt werden:^[Zur Geschichte dieses wirklich
 ärgerlichen Verhaltens siehe 
 [diesen Blog](https://simplystatistics.org/2015/07/24/stringsasfactors-an-unauthorized-biography/).]
 
-<!-- Ist es hier wichtig genau zu verstehen was nochmal strings versus factors sind? Ich müsste das jetzt erstmal nochmal googlen (hab nur noch eine vage Erinnerung an den string Begriff und nicht sicher bei Factors, aber vielleicht ist das auch hier gar nicht so wichtig?) -->
-
 ```{r}
 df_4 <- data.frame(
   "gender" = c(rep("male", 3), rep("female", 2)),
-  "height" = c(89, 75, 80, 66, 50),
+  "height" = c(189, 175, 180, 166, 150),
   stringsAsFactors = FALSE
 )
 df_4
 ```
-
-<!-- Inhaltlich überhaupt nicht wichtig aber wäre es hier nicht intuitiver tatsächlich mögliche Körpergrößen bei "height" auszuwählen, also 189, 175, etc? -->
 
 Data Frames sind das klassische Objekt um eingelesene Daten zu repräsentieren.
 Wenn Sie sich z.B. Daten zum BIP in Deutschland aus dem Internet runterladen und
@@ -1330,8 +1437,9 @@ gibt, welche den `data.frame` mit effizienteren Objekten ersetzen, z.B. dem
 sehr ähnlich zum `data.frame`.]
 Diese Repräsentation erlaubt dann eine einfache Analyse und Manipulation der Daten.
 
-<!-- Zwar gibt es ein eigenes Kapitel zur Bearbeitung von Daten (Kap.5 hier verlinken?), wir wollen aber  -->
-schon hier einige zentrale Befehle im Zusammenhang von Data Frames einführen.
+Zwar gibt es ein eigenes Kapitel zur Bearbeitung von Daten 
+(siehe Kapitel \@ref(data)), wir wollen aber schon hier einige zentrale Befehle 
+im Zusammenhang von Data Frames einführen.
 
 An dieser Stelle sei schon angemerkt, dass um Zeilen, Spalten oder 
 einzelne Elemente auszuwählen die gleichen Befehle wie bei Matrizen 
@@ -1531,8 +1639,6 @@ search()
 sich mit dem Konzept von *namespaces* und *environments* auseinandersetzen. 
 Eine gute Erklärung bietet @Packages.
 
-<!-- Ist @Packages etwas was man in RStudio aufrufen kann? Was ich googlen kann? Was genau mache ich hiermit? -->
-
 > **Weiterführender Hinweis**: Das Paket `conflicted` führt dazu, dass R immer
 einen Fehler ausgibt wenn nicht eindeutige Objektnamen verwendet werden.
 
@@ -1547,7 +1653,8 @@ Lediglich bei den Basispaketen werden wir auf `::` verzichten.
 
 Zum Abschluss wollen wir noch kurz einige Befehle zum Einlesen von Daten 
 einführen. Später werden wir uns ein ganzes Kapitel mit dem Einlesen und 
-Schreiben von Daten beschäftigen, da dies in der Regel einen nicht 
+Schreiben von Daten beschäftigen (siehe Kapitel \@ref(data)), da dies in der 
+Regel einen nicht 
 unbeträchtlichen Teil der quantitativen Forschungsarbeit in Anspruch nimmt.
 An dieser Stelle wollen wir aber nur lernen, wie man einen 
 Datensatz in R einliest.
@@ -1620,6 +1727,5 @@ auto_daten_neu <- mutate(auto_daten, Verbrauch_pro_PS=Verbrauch/PS)
 write_csv(auto_daten_neu, here("data/tidy/NeueDaten.csv"))
 ```
 
-In Kapitel 5 beschäftigen wir uns im Detail mit dem Lesen, Schreiben und Manipulieren von 
+In Kapitel \@ref(data) beschäftigen wir uns im Detail mit dem Lesen, Schreiben und Manipulieren von 
 Datensätzen.
-<!-- Sollte Kapitel 5 hier verlinkt werden? -->
