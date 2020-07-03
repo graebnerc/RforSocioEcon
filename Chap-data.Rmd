@@ -510,7 +510,7 @@ Sie mehrere Datensätze von der gleichen Quelle benötigen.
 
 ### Einlesen von Datensätzen
 
-Wenige Arbeitsschritte können so frustrierende sein wie das Einlesen von Daten.
+Wenige Arbeitsschritte können so frustrierend sein wie das Einlesen von Daten.
 Sie können sich gar nicht vorstellen was hier alles schiefgehen kann! 
 Aber kein Grund zur übertriebenen Sorge: 
 wir können viel Frustration vermeiden wenn wir am Anfang unserer Karriere 
@@ -533,6 +533,8 @@ auch deutlich schneller als andere Funktionen arbeitet.
 Wir gehen im Folgenden davon aus, dass wir die Datei `data/tidy/export_daten.csv`
 einlesen wollen.
 Die Datei sieht im Rohformat folgendermaßen aus:
+
+<!-- Nur um zu kontrollieren ob ich das richtig verstehe warum die Datei jetzt schon in tidy liegt: Du öffnest eine Datei nicht aus dem Ordner raw und speicherst sie NACH Bearbeitung in tidy ab weil dann die Gefahr besteht das man ausverstehen falsch speichert und die raw Datei verändert hat. Richtig? Stattdessen legst du immer je eine Kopie der Daten in tidy ab, eine in raw, und öffnest dann die in tidy damit du sicher weißt dass an die raw Datei nichts drankommt. Frage nur extra nach weil ich irgendwie vorher den Eindruck hatte man öffnet schon einfach direkt Rohdateien als solche und speichert die danach einfach nur anders ab, aber wahrscheinlich macht es total viel Sinn von vorneherein eine Kopie im tidy Ordner zu erstellen -->
 
 ```
 iso2c,year,Exporte
@@ -568,8 +570,9 @@ z.B. wenn in einer Spalte, die ausschließlich aus Zahlen besteht ein Wort
 vorkommt. Wenn Sie diese Spalte nicht manuell als `double` spezifizieren würden, 
 würde `fread()` sie einfach still und heimlich als `character` verstehen und Sie
 wundern sich später, warum Sie für die Spalte keinen Durchschnitt berechnen können;
-(2) Ihr Code wird leichter lesbar und (3) der Lesevorgang wird deutlich 
+(2) Ihr Code wird leichter lesbar; und (3) der Lesevorgang wird deutlich 
 beschleunigt.
+<!-- Welcher Lesevorgang wird beschleunigt wenn man Typen manuell spezifiziert und warum? -->
 
 Sie können die Spaltentypen manuell über das Argument `colClasses` einstellen, 
 indem Sie einfach einen Vektor mit den Datentypen angeben:
@@ -599,7 +602,7 @@ daten
 
 Manchmal möchten Sie auch nur eine bestimmte Auswahl an Spalten einlesen.
 Auch das kann bei großen Datensätzen viel Zeit sparen.
-Wenn wir oben nur das Jahr und die Anzahl der Exporte haben spezifizieren wir
+Wenn wir nur das Land und die Anzahl der Exporte haben wollen, spezifizieren wir
 das über das Argument `select`:
 
 ```{r}
@@ -639,8 +642,8 @@ daten <- fread(daten_pfad,
 daten
 ```
 
-`fread()` verfügt noch über viele weitere Spezifizierungsmöglichkeiten, die Sie
-sich am besten am konkreten Anwendungsfall vertraut machen.
+`fread()` verfügt noch über viele weitere Spezifizierungsmöglichkeiten, mit denen Sie
+sich am besten im konkreten Anwendungsfall vertraut machen.
 Auch ein Blick in die Hilfeseite ist recht illustrativ. 
 Für die meisten Anwendungsfälle sind Sie jetzt aber gut aufgestellt.
 
@@ -673,6 +676,8 @@ daten_pfad <- here("data/tidy/export_daten.rds")
 daten <- readRDS(daten_pfad)
 daten
 ```
+
+<!-- Beim Output steht bei BIP irgendwie die Nummern 1 und 2. Soll das so sein oder ist das ein Fehler? Ich versteh nicht was das heißen soll :D -->
 
 `.RData`-Dateien können auch mehrere Objekte enthalten. 
 Zudem gibt die entsprechende Funktion `load()` kein Objekt aus, dem Sie einen
@@ -711,6 +716,8 @@ dta_daten <- read_dta(dta_datei)
 head(dta_daten, 2)
 ```
 
+<!-- An die head-Funktion erinner ich mich zwar noch aus meinem Kurs, ich glaub du hattest sie aber noch nicht im Skript erwähnt bisher (oder vielleicht im Kapitel 4, was ich aber ja jetzt erstmal übersprungen habe?). Vielleicht oben wenn du das "nrows" Argument für die fread Funktion erklärst, da irgendwo in der Ecke aus die head-Funktion erklären? -->
+
 Das Paket [haven](https://github.com/tidyverse/haven) stellt auch Funktionen zum 
 Lesen von SAS oder SPSS-Dateien bereit.
 
@@ -725,10 +732,12 @@ test_data <- data.frame(
 ```
 
 
-Im Vergleich zum Einlesen von Daten ist das Schreiben deutlich einfacher, weil
+<!-- Im Vergleich zum Einlesen von Daten ist das Speichern (oder? Oder sollen Daten irgendwie geschrieben werden? Ich weiß nicht was das heißen würde, man schreibt doch die Daten nicht selber?) deutlich einfacher, weil -->
 sich die Daten ja bereits in einem vernünftigen Format befinden. 
 Die größte Frage hier ist also: in welchem Dateiformat sollten Sie Ihre Daten 
 speichern?
+
+<!-- Okay nachdem ich jetzt unten weitergelesen habe wird der Begriff "schreiben" wohl verwendet um eine csv-Datei aus der Arbeit in R-Studio zu speichern/schreiben. Das wusste ich vorher nicht und bin im ersten Satz irgendwie darüber gestolpert und fand's verwirrend. Vielleicht oben noch erstmal von speichern reden und dann wird unten eh klar was damit gemeint ist? -->
 
 In der großen Mehrheit der Fälle ist diese Frage klar mit `.csv` zu beantworten.
 Dieses Format ist einfach zu lesen und absolut plattformkompatibel.
@@ -758,8 +767,7 @@ Schauen Sie bei Interesse einfach einmal in die Hilfefunktion!
 Falls Ihr Datensatz im csv-Format doch zu groß ist, Sie aber aufgrund von
 Kompatibilitätsanforderungen kein spezialisiertes Format benutzen wollen, bietet
 es sich an die csv-Datei zu komprimieren. 
-Natürlich könnten Sie das händisch in Ihrem Datei-Explorer machen, aber das ist 
-natürlich vollkommen überholt. 
+Natürlich könnten Sie das händisch in Ihrem Datei-Explorer machen, aber das ist vollkommen überholt. 
 Sie können das gleich in R miterledigen indem Sie z.B. die Funktion `gzip`
 aus dem Paket `R.utils` [@R-R.utils] verwenden:
 
@@ -805,9 +813,9 @@ ist immer auch kontextabhängig, im Internet finden sich viele Diskussionen zu d
 Thema. Am Anfang sind Sie mit `gzip()` und `bzip2()` aber eigentlich für alle
 relevanten Fälle gut aufgestellt.
 
-Ich möchte Ihnen noch zwei R-spezifische Formate vorstellen: `.Rdata` und `.rds`, die 
-deutliche Geschwindigkeits- und Komprimierungsvorteile gegenüber dem csv-Format 
-haben und dabei trotzdem vollkommen plattformkompatibel sind.
+Die oben bereits vorgestellten R-spezifischen Formate `.Rdata` und `.rds` verfügen 
+über deutliche Geschwindigkeits- und Komprimierungsvorteile gegenüber dem csv-Format 
+und sind dabei trotzdem vollkommen plattformkompatibel.
 Einziger Nachteil: 
 alle Irren, die nicht R benutzen, können Ihre Daten nicht öffnen.
 Manchmal mag das eine verdiente Strafe, manchmal aber auch ein Ausschlusskriterium
@@ -843,11 +851,13 @@ allerdings können Sie mit `compression_level` zusätzlich noch die Stärke von 
 (schnell, aber wenig Kompression) bis `9` (langsamer, aber starke Kompression) 
 auswählen.
 
-Da gerade in der Ökonomik auch häufig mit der kostenpflichtigen Software 
+Da, wie oben erwähnt, gerade in der Ökonomik auch häufig mit der kostenpflichtigen Software 
 [STATA](https://de.wikipedia.org/wiki/Stata) gearbeitet wird, möchte ich noch 
 kurz erkläutern, wie man einen Datensatz im STATA-Format `.dta` speichern kann. 
 Dazu verwenden wir die Funktion `write_dta()`
 aus dem Paket [haven](https://github.com/tidyverse/haven).
+
+<!-- Du hast Stata und das haven Paket oben schon verlinkt, also vielleicht nicht mehr extra nötig? Andererseits schadet es sicher auch nicht, falls jemand nur spezifisch zur Datenspeicherung etwas nachschlagen will und nur Kap.5.3.2 anschaut. Also: bemerke es hier nur damit du das auf dem Schirm hast, denke aber eigl du kannst die Verlinkungen drin lassen. -->
 
 ```{r, eval=FALSE}
 library(haven)
@@ -869,17 +879,17 @@ ihrer Geschwindigkeit vergleichen finden Sie z.B.
 
 ## Verarbeitung von Daten ('data wrangling') {#data-wrangling}
 
-Nachdem Sie ihre Daten erhoben haben, müssen Sie die Rohdaten in eine Form 
+Nachdem Sie Ihre Daten erhoben haben, müssen Sie die Rohdaten in eine Form 
 bringen, mit der Sie sinnvoll weiterarbeiten können.
 Dieser Prozess wird oft als 'Datenaufbereitung' bezeichnet und stellt häufig 
-einen der zeitaufwändigsten Arbeitsschritte in der Forschungsarbeit dar:
+einen der zeitaufwendigsten Arbeitsschritte in der Forschungsarbeit dar:
 Laut [dieser Umfrage](https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/)
-macht es sogar 60 \% der Arbeitszeit von Datenspezialisten aus.
+macht es sogar 60 \% der Arbeitszeit von Datenspezialist\*innen aus.
 Entsprechend wichtig ist es, sich mit den typischen Arbeitsschritten und 
 Algorithmen vertraut zu machen um in diesem aufwendigen Arbeitsschritt Zeit zu
 sparen.
 
-Ein großes Problem in der Forschungspraxis ist häufig, dass Forscher*innen den
+Ein großes Problem in der Forschungspraxis ist häufig, dass Forscher\*innen den
 Datenaufbereitungsprozess nicht richtig dokumentieren. 
 In diesem Fall ist unklar was für Änderungen an den Rohdaten vorgenommen wurden
 bevor die eigentliche Analyse begonnen wurde.
@@ -890,14 +900,18 @@ vornehmen zu dokumentieren.
 Am einfachsten ist es, für die Datenaufbereitung einfach ein R-Skript zu schreiben,
 in dem Sie die Rohdaten einlesen und am Ende die aufbereiteten Daten unter neuem
 Namen speichern.
-**Nie** sollten Sie ihre Rohdaten überschreiben!
+
+<!-- Mmmh okay das klingt jetzt doch wieder anders als oben, wo es so klang als sollte man zuerst eine Kopie der Rohdaten in den tidy Ordner legen und dann nur die Kopie öffnen, nicht die Rohdaten selber. Ist es egal wie herum man es macht oder gibt es da eine gängige best practice? -->
+
+**Nie** sollten Sie Ihre Rohdaten überschreiben!
 Damit sind Sie in Ihrer Forschung vollkommen transparent und es entsteht Ihnen 
 im Prinzip keine Mehrarbeit.
 
 In diesem Abschnitt lernen Sie Lösungen für die typischen Herausforderungen, 
 die während der Datenaufbereitung auftreten, kennen 
+<!-- Hier fehlt irgendwie das Ende des Satzes -->
 Dafür beschäftigen wir uns zunächst mit dem gewünschten Ergebnis: sogenannter
-[tidy data](#data-tidy-daty). 
+[tidy data](#data-tidy-data). 
 Diese Art von Datensätzen sollte das Ergebnis jeder Datenaufbereitung sein.
 
 Auf dem Weg zu *tidy data* bedarf es häufig einer 
@@ -905,7 +919,7 @@ Auf dem Weg zu *tidy data* bedarf es häufig einer
 Außerdem werden Sie häufig mehrere 
 [Datensätze zusammenführen](#data-merge-data) und Ihre 
 [Daten filtern, selektieren und aggregieren](#data-select).
-Zudem möchten Sie manchmal Daten auch [reduzieren und zusammenfassen](#data-sumamry).
+Zudem möchten Sie manchmal Daten auch [reduzieren und zusammenfassen](#data-summary).
 
 > **Beispiel für berühmte Menschen mit miserabler Datenaufbereitung: Der Reinhart-Rogoff Skandal**  
 Eines der dramatischsten Beispiele für Fehler in der Datenaufbereitung mit 
@@ -927,6 +941,8 @@ Austeritätspolitik fungierte.
 Klar ist: wäre der Datenaufbereitungsprozess transparent und offen durchgeführt 
 und dokumentiert worden, wäre der Fehler wahrscheinlich deutlich einfacher und 
 früher gefunden worden.
+
+<!-- Das ist so spannend!! I had no idea! -->
 
 ### Das Konzept von 'tidy data'
 
@@ -950,7 +966,7 @@ Vorschlag für eine hilfreiche Ordnerstruktur beschrieben).
 
 Aber was zeichnet `tidy data` aus? Wie von @tidy beschrieben kann ein Datensatz
 auf vielerlei Art und Weise 'unordentlich' sein, aber nur auf eine Art und Weise
-'tidy'. Eine 'tidy' Datensatz ist durch folgende drei Eigenschaften gekennzeichnet:
+'tidy'. Ein 'tidy' Datensatz ist durch folgende drei Eigenschaften gekennzeichnet:
 
 1. Jede **Spalte** korrespondiert zu genau einer **Variable**
 2. Jede **Zeile** korrespondiert zu genau einer **Beobachtung**
@@ -992,7 +1008,7 @@ exports_unemp_data_tidy <- fread(here("data/tidy/wb_example.csv")) %>%
 exports_unemp_data_tidy
 ```
 
-> Wir haben vier Spalten, die jeweils zu einer der drei Variablen `Land`, `Jahr`, 
+> Wir haben vier Spalten, die jeweils zu einer der vier Variablen `Land`, `Jahr`, 
 `Exporte` und `Arbeitslosigkeit` korrespondieren. 
 Jede Zeile korrespondiert zur Beobachtung von `BIP` und `Exporte` in
 genau einem Jahr in genau einem Land. Und die einzelnen Zellen enthalten genau
@@ -1011,13 +1027,15 @@ exports_unemp_data_untidy_1 <- exports_unemp_data_tidy %>%
 exports_unemp_data_untidy_1
 ```
 
+<!-- Frage: Warum nimmst du im Code Jahr==2014 aber schreibst im Text von Jahr 2013? Unten schreibst du von "Spalte '2013'" aber momentan heißt die Spalte im Output 2014. -->
+
 > Hier haben wir drei Variablen, `Land`, `Jahr` und `Exporte`, aber die Spalte 
 `2013` korrespondiert zu einer Ausprägung der Variable
 `Jahr`, aber nicht zur Variablen als solchen. 
 Die Bedeutung dieser Unterscheidung wird im nächsten Beispiel deutlich.
 
 > **Beispiel: Verstoß gegen (1) und (2):**
-Wenn wir in dem Datensatz aus dem ersten Datensatz alle Informationen belassen 
+Wenn wir in dem ersten Datensatz alle Informationen belassen, 
 würde er in der gerade dargestellten Form sowohl gegen (1) als auch (2) verstoßen:
 
 ```{r, echo=FALSE}
@@ -1059,7 +1077,7 @@ menschliche Auge besser geeignet.
 'Lange' Daten haben in der Regel viele Zeilen und wenige Spalten. 
 Alle `tidy` Datensätze sind im langen Datenformat. 'Breite' Daten haben
 mehr Spalten und weniger Zeilen und sind häufig das, was wir aus dem
-Internet herunterladen. Im folgenden ist der gleiche Datensatz einmal im 
+Internet herunterladen. Im Folgenden ist der gleiche Datensatz einmal im 
 langen und einmal im breiten Format dargestellt.
 
 Zuerst das 'lange' Format, in dem wir verhältnismäßig viele Zeilen haben:
@@ -1082,6 +1100,9 @@ exports_unemp_data_tidy %>%
 Häufig werden Sie während Ihrer Datenaufbereitung mehrmals zwischen den beiden
 Formaten hin und her wechseln, da für manche Aufgaben das eine, für andere das
 andere Format besser ist (siehe [unten](#data-summary)).
+
+<!-- Wollen wir nicht eigentlich so gut wie immer mit tidy Daten arbeiten, wenn die meisten Statistik-Pakete und Funktionen das voraussetzen? Ich bin kurz zu dem verlinkten Kapitel summary gesprungen und habe es überflogen aber beim Überfliegen jetzt noch keine Antwort gefunden (vllt hab ich zu schnell gelesen). Vielleicht wird das eh noch klar beim weiterlesen, aber ansonsten vllt hier ne Fußnote oder so dazusetzen (evtl statt der Verlinkung), in der beschrieben ist für welche Aufgaben welches Format besser ist?) -->
+
 Um zwischen den Formaten hin und herzuwechseln verwenden wir vor allem die 
 Funktionen `pivot_longer()` und `pivot_wider()` aus dem Paket 
 [tidyr](https://github.com/tidyverse/tidyr) [@R-tidyr], welches auch Teil des 
@@ -1091,10 +1112,10 @@ die neueste Version installiert haben. Sie ersetzen die Funktionen `spread()` un
 `gather()`, die natürlich noch weiterhin funktionieren und die Sie in älterem Code 
 sicher noch häufig finden werden. 
 In diesem [Blog-Post](https://www.tidyverse.org/blog/2019/09/tidyr-1-0-0/)
-beschreibt Chefentwickler Hadley Wickham die neuen Funktionen und grenzt Sie
+beschreibt Chefentwickler Hadley Wickham die neuen Funktionen und grenzt sie
 von den älteren Implementierungen ab.]
 
-Wir verwenden `pivot_longer()` um einen Datensätz 'länger' zu machen.
+Wir verwenden `pivot_longer()` um einen Datensatz 'länger' zu machen.
 Wir verwenden dazu folgenden Datensatz als Ausgangsbeispiel, der Werte
 für die Arbeitslosigkeit in Deutschland und Österreich in zwei Jahren 
 enthält:
