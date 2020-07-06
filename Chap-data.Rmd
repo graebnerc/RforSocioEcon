@@ -1101,7 +1101,7 @@ Häufig werden Sie während Ihrer Datenaufbereitung mehrmals zwischen den beiden
 Formaten hin und her wechseln, da für manche Aufgaben das eine, für andere das
 andere Format besser ist (siehe [unten](#data-summary)).
 
-<!-- Wollen wir nicht eigentlich so gut wie immer mit tidy Daten arbeiten, wenn die meisten Statistik-Pakete und Funktionen das voraussetzen? Ich bin kurz zu dem verlinkten Kapitel summary gesprungen und habe es überflogen aber beim Überfliegen jetzt noch keine Antwort gefunden (vllt hab ich zu schnell gelesen). Vielleicht wird das eh noch klar beim weiterlesen, aber ansonsten vllt hier ne Fußnote oder so dazusetzen (evtl statt der Verlinkung), in der beschrieben ist für welche Aufgaben welches Format besser ist?) -->
+<!-- Wollen wir nicht eigentlich so gut wie immer mit tidy Daten arbeiten, wenn die meisten Statistik-Pakete und Funktionen das voraussetzen (so hatte ich das in Kapitel 5.4.1 verstanden)? Ich bin kurz zu dem verlinkten Kapitel 5.4.5 gesprungen und habe es überflogen aber beim Überfliegen jetzt noch keine Antwort gefunden (vllt hab ich zu schnell gelesen). Vielleicht wird das eh noch klar beim weiterlesen, aber ansonsten vllt hier ne Fußnote oder so dazusetzen (evtl statt der Verlinkung), in der beschrieben ist für welche Aufgaben welches Format besser ist?) -->
 
 Um zwischen den Formaten hin und herzuwechseln verwenden wir vor allem die 
 Funktionen `pivot_longer()` und `pivot_wider()` aus dem Paket 
@@ -1137,9 +1137,9 @@ den wir länger machen wollen. In unserem Beispiel also `data_wide`.
 Das zweite Argument heißt `cols` und beschreibt die Spalten an denen Änderungen 
 vorgenommen werden sollen. 
 In unserem Falle sind das die Spalten `2013` und `2014`.
-Um hier eine Liste von Spaltennamen zu übergeben verwenden wir die Hilfsfuntion
+Um hier eine Liste von Spaltennamen zu übergeben verwenden wir die Hilfsfunktion
 `one_of()`, die es uns erlaubt die Spaltennamen als `character` zu schreiben.
-Das Argumtent wird also als `cols=one_of("2013", "2014")` spezifiziert.
+Das Argument wird also als `cols=one_of("2013", "2014")` spezifiziert.
 
 Das dritte Argument, `names_to` akzeptiert einen `character`, der den Namen der
 neu zu schaffenden Spalte beschreibt. 
@@ -1147,8 +1147,8 @@ In unserem Fall macht es Sinn, diese Spalte `Jahr` zu nennen.
 
 Das vierte Argument, `values_to` spezifiziert den Namen der Spalte, welche die
 Werte des verlängerten Datensatzes beschreibt. 
-In unserem Falle bietet sich der Name `Arbeitslosenquote`, da es bei dem Datensat um
-Arbeitslosenquotenstatistiken handelt.
+In unserem Falle bietet sich der Name `Arbeitslosenquote` an, da es sich bei dem 
+Datensatz um Arbeitslosenquotenstatistiken handelt.
 
 Insgesamt erhalten wir damit den folgenden Funktionsaufruf:
 
@@ -1183,7 +1183,7 @@ breiten Datensatz als einzelne Spalten aufgeteilt werden sollen.
 In unserem Falle wäre das die Spalte `Jahr`, weil wir in unserem breiten 
 Datensatz separate Spalten für die einzelnen Jahre haben wollen.
 
-Das vierte Argumten ist `values_from` spezifiziert die Spalte aus der die 
+Das vierte Argument ist `values_from` und spezifiziert die Spalte aus der die 
 Werte für die neuen Spalten genommen werden sollen. 
 In unserem Falle wäre das die Spalte `Arbeitslosenquote`, da wir ja in die
 Spalten für die einzelnen Jahre die Arbeitslosenquoten schreiben wollen.
@@ -1199,7 +1199,7 @@ data_wide_neu <- pivot_wider(data = data_long,
 data_wide_neu
 ```
 
-Zum Schluss möchten wir uns noch ein Beispiel ansehen indem wir beide Befehle 
+Zum Schluss möchten wir uns noch ein Beispiel ansehen in dem wir beide Befehle 
 nacheinander verwenden.
 Betrachten wir folgenden Datensatz, der Beobachtungen sowohl zur 
 Arbeitslosenquote also auch zu den Exporten enthält:
@@ -1308,16 +1308,19 @@ data_al_exp_tidy <- data_al_exp %>%
 Das ist gleich viel besser lesbar! 
 In der ersten Zeile schreiben wir nur das Ausgangsobjekt `data_al_exp`, 
 welches über `%>%` dann unmittelbar als erstes Argument an `pivot_longer()` 
-übergeben wird. Da es sich beim ersten Argumetn um `data` handelt ist das genau 
+übergeben wird. Da es sich beim ersten Argument um `data` handelt ist das genau 
 das was wir wollen.
 
 Das Schreiben mit `%>%` führt in der Regel zu sehr transparentem und 
-nochvollziehbarem Code, da Sie die einzelnen Manipulationsschritte schön von 
+nachvollziehbarem Code, da Sie die einzelnen Manipulationsschritte schön von 
 oben nach unten nachlesen können.
 
 > **Tipp:** Streng genommen gibt `%>%` den Output der aktuellen Zeile nicht 
 automatisch als erstes Argument für den Funktionsaufruf der nächsten Zeile weiter.
 Das ist nur das Standardverfahren. Eigentlich gibt es den Output als `.` weiter.
+
+<!-- Was bedeutet der Punkt denn nochmal? Ist das wie bei Git? -->
+
 Wir könnten also auch expliziter schreiben:
 
 ```{r, eval=FALSE}
@@ -1354,7 +1357,7 @@ data_al_exp_tidy <- data_al_exp %>%
     data = .)
 ```
 
-Beide Funktionen, `pivot_wider()` and `pivot_longer()` können noch viel 
+Beide Funktionen, `pivot_wider()` and `pivot_longer()`, können noch viel 
 komplexere Probleme lösen. 
 Für weitere Anwendungen verweisen wir auf die offizielle
 [Dokumentation](https://tidyr.tidyverse.org/articles/pivot.html).
@@ -1406,7 +1409,7 @@ notwendige Argumente, `x` und `y`, welche die beiden zu verbindenden Datensätze
 spezifizieren. 
 Wir nennen dabei `x` den 'linken' und `y` den 'rechten' Datensatz.
 
-Die Funktion `left_join()` sollten Sie verewnden, wenn Sie zu allen Zeilen in `x` 
+Die Funktion `left_join()` sollten Sie verwenden, wenn Sie zu allen Zeilen in `x` 
 (dem 'linken' Datensatz) die passenden Werte aus `y` hinzufügen wollen. 
 Wenn eine Beobachtung nur in `y` vorkommt, wird diese im finalen Datensatz nicht
 berücksichtigt. 
