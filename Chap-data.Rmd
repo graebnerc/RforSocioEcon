@@ -1435,7 +1435,7 @@ data_bip_gini_left_join <- left_join(data_BIP, data_gini,
 data_bip_gini_left_join
 ```
 
-Verwenden wir dagegen `data_gini` als linken und `data_BIP` als 'rechten' Datensatz 
+Verwenden wir dagegen `data_gini` als 'linken' und `data_BIP` als 'rechten' Datensatz 
 gibt `left_join()` einen kürzeren gemeinsamen Datensatz aus, da es nur die 
 Beobachtungen aus dem rechten Datensatz übernimmt, für die es ein Pendant im 
 linken Datensatz gibt.
@@ -1447,8 +1447,8 @@ data_gini_bip_left_join
 ```
 
 Die Funktion `inner_join()` unterscheidet sich von `left_join()` darin, dass
-nur die Zeilen in den gemeinsamen Datensatz übernimmt, die sowohl in `x` als 
-auch `y` enthalten sind:
+nur die Zeilen in den gemeinsamen Datensatz übernommen werden, die sowohl in `x` als 
+auch in `y` enthalten sind:
 
 ```{r}
 data_bip_gini_inner_join <- inner_join(data_BIP, data_gini, 
@@ -1479,12 +1479,14 @@ data_bip_gini_full_join
 `semi_join()` und `anti_join()` funktionieren ein wenig anders als die bisher
 vorgestellten Funktionen, da sie Datensätze strikt genommen nicht 
 zusammenführen. 
-Vielmehr filtern Sie die Zeilen von `x` gemäß der in `y` vorkommenden Werte.
+Vielmehr filtern sie die Zeilen von `x` gemäß der in `y` vorkommenden Werte.
 
 `semi_join()` produziert einen Datensatz, der alle Spalten und Zeilen von `x`
 enthält, für die es auch in `y` einen entsprechenden Wert gibt.
 Der resultierende Datensatz enthält aber *nur die Spalten vom linken Datensatz*
 (`x`):
+
+<!-- Warum würde man das wollen? Dann sind doch genau die Daten aus dem anderen Datensatz verloren gegangen (Gini Daten)? In welchem Szenario würde sowas Sinn ergeben? -->
 
 ```{r}
 data_bip_gini_semi_join <- semi_join(data_BIP, data_gini, 
@@ -1507,7 +1509,7 @@ Zum Schluss kommen wir mit `nest_join()` zu der komplexesten Funktion in der
 `*_join()`-Familie.
 Hier wird für jede Zeile im linken Datensatz in einer neuen Spalte ein ganzer
 `data.frame`^[Eigentlich ein [tibble](https://r4ds.had.co.nz/tibbles.html).] hinzugefügt,
-der alle Zeilen vom rechten Datensatz enthält, die zu der entsprechenden Zeile passen:
+der alle Zeilen vom rechten Datensatz enthält, die zu der entsprechenden linken Zeile passen:
 
 ```{r}
 data_bip_gini_nest_join <- nest_join(data_BIP, data_gini, 
@@ -1516,6 +1518,8 @@ data_bip_gini_nest_join
 ```
 
 Wenn wir die angehängten `data.frame`s inspizieren:
+
+<!-- Ich glaube hier fehlt noch ein halbsatz oder? Was sehen wir dann? Der Code Output sagt mir irgendwie nicht so viel -->
 
 ```{r}
 data_bip_gini_nest_join[["y"]][[1]] # erste Zeile der neuen Spalte
@@ -1532,9 +1536,9 @@ vorliegen sollten, so wie `data_BIP` und `data_Gini` in unserem Beispiel.
 
 Das dritte (optionale) Argument `by`, welches die ID-Spalten spezifiziert, 
 ist ebenfalls bei allen Funktionen gleich.
-Achtung: wenn sie `by` nicht explizit spezifizieren verwenden die Funktionen 
+Achtung: wenn Sie `by` nicht explizit spezifizieren verwenden die Funktionen 
 alle Spalten mit gleichen Namen als ID-Spalten. 
-Zwar geben Sie zu Ihrer Info eine Warnung aus, aber Sie sollten das trotzdem
+Zwar geben sie zur Info eine Warnung aus, aber Sie sollten das trotzdem
 immer vermeiden und möglichst explizit sein. 
 Daher sollte `by` immer explizit gesetzt werden!
 
@@ -1564,9 +1568,11 @@ debt_data <- full_join(debt_data_IWF, debt_data_WELTBANK,
 debt_data
 ```
 
+<!-- Was würde passieren wenn wir Schulden als ID-Spalte verwenden würden? Hätten wir dann in einem Feld 2 unterschiedliche Zahlen und somit un-tidy data? Sollte man immer, wenn es Daten gibt die sich unterscheiden könnten (also nicht sowas wie Jahr oder Land), die nicht als ID-Spalte verwenden sondern als suffix? Wie geht man dann in der Analyse damit um? Kickt man dann irgendwann eine der beiden Spalten wieder heraus, weil man sich zB dafür entscheidet die Weltbank Daten zu benutzen? -->
+
 Abschließend fassen wir noch die Funktionen in einer Tabelle zusammen, wobei 
 'DS' für 'Datensatz steht, mit `x` der linke und `y` der rechte Datensatz 
-gemeint ist, wie in den Argumennten von `*_join()`.
+gemeint ist, wie in den Argumenten von `*_join()`.
 
 | Funktion | Effekt                   | Veränderung Anzahl Zeilen? | 
 |----------+--------------------------+----------------------------|
@@ -1586,10 +1592,10 @@ man überprüfen ob die Anzahl an Zeilen so wie erwartet ist und ob durch das
 Zusammenführen Duplikate entstanden sind. Letzteres kann gerade in der Arbeit
 mit makroökonomischen Daten häufig vorkommen, wenn in einem Datensatz z.B. 
 zwischen Ost-Deutschland und West-Deutschland unterschieden wird und man vorher
-die Namen aber in Länderkürzen überführt hat. In diesem Fall trefen um 1990 
+die Namen aber in Länderkürzel überführt hat. In diesem Fall treten um 1990 
 herum häufig Duplikate auf. Damit kann man umgehen, man muss es aber erst einmal
 merken. Ich benutze z.B. immer die folgende selbst geschriebene Funktion um zu
-überprüfen ob es in einem neu generierten Datensatz auch keine Duplikate gibt:
+überprüfen ob es in einem neu generierten Datensatz Duplikate gibt:
 
 ```{r}
 #' Test uniqueness of data table
@@ -1665,11 +1671,9 @@ Datensätzem im `data.table`-Format findet sich
 
 Sehr häufig haben Sie einen Rohdatensatz erhoben und benötigen für die 
 weitere Analyse nur einen Teil dieses Datensatzes.
-Zwei Szenarien sind denkbar: 
-zum einen möchten Sie bestimmte Spalten nicht verwenden. 
+Zwei Szenarien sind denkbar. Zum einen möchten Sie bestimmte Spalten nicht verwenden. 
 Wir sprechen dann davon den Datensatz zu *selektieren*.
-Zum anderen möchten sie vielleicht nur Beobachtungen verwenden, die eine
-bestimmte Bedingung erfüllen, z.B. im Zeitraum 2012-2014 erhoben zu sein.
+Zum anderen möchten Sie bestimmte Zeilen nicht verwenden. Sie wollen nur Beobachtungen verwenden, die eine bestimmte Bedingung erfüllen, z.B. im Zeitraum 2012-2014 erhoben zu sein.
 In diesem Fall sprechen wir von *filtern*.
 
 Wir lernen hier wie wir diese beiden Aufgaben mit den Funktionen `filter()` und
@@ -1701,7 +1705,7 @@ head(
 ```
 
 Häufig ist es besser die Namen der Spalten als `character` zu übergeben.
-Das ist nicht nur besser lesbar, Sie haben es später auch einfacher komplexere
+Das ist nicht nur besser lesbar, es wird später auch einfacher komplexere
 Vorgänge zu programmieren indem Sie Funktionen schreiben, die den Namen von 
 Spalten als Argumente akzeptieren.
 In diesem Fall können Sie wieder die Hilfsfunktion `one_of()` verwenden:
@@ -1742,7 +1746,7 @@ Dabei ist es wichtig, die [logischen Operatoren](#basics-logic) zu kennen,
 denn diese werden verwendet um Datensätze zu filtern.
 
 Die Funktion `filter()` akzeptiert als erstes Argument den Datensatz.
-Wie oben folgen wir der Konvention das in der Regel implizit über `%>%` zu
+Wie oben folgen wir der Konvention das Argument(?) in der Regel implizit über `%>%` zu
 übergeben.
 Danach können wir beliebig viele logische Abfragen, jeweils durch Komma getrennt,
 an die Funktion übergeben. 
@@ -1772,7 +1776,7 @@ data_al_exp_filtered
 
 Zuletzt wollen wir noch sehen wie wir einzelne **Spalten umbenennen** können.
 Das geht ganz einfach mit der Funktion `rename()`, welche als erstes Argument
-den Datensatz, und dann die Umbennenungsvorgänge in der Form `Name_neu = Name_alt`
+den Datensatz, und dann die Umbenennungsvorgänge in der Form `Name_neu = Name_alt`
 verlangt.
 
 Als Beispiel:
@@ -1872,6 +1876,8 @@ head(unemp_data_wb, 2)
 
 Wir schreiben also einfach den Namen der zu verändernden Spalte und den 
 neuen Ausdruck hinter das `=`.
+<!-- Aber hier steht ja jetzt mehr als nur der Name und der neue Ausdruck hinter dem =. Und der Name der zur verändernden Spalte steht ja eigl vor dem Gleichheitszeichen (und dann danach nochmal in den Klammern). Der Aufbau hinter dem Gleichheitszeichen ist mir hier also noch nicht 100% klar -->
+
 Wir können mit `mutate()` aber auch einfach neue Spalten erstellen, wenn der
 Name links vom `=` noch nicht als Spalte im Datensatz existiert.
 
@@ -1891,9 +1897,11 @@ unemp_data_wb <- unemp_data_wb %>%
 head(unemp_data_wb, 2)
 ```
 
+<!-- Irgendwie ist der Output von diesem Code in der HTML Version etwas merkwürdig - die neue Spalte ist dadrunter gesetzt statt daneben. Liegt das einfach nur am Platz, oder warum sieht das so aus? -->
+
 Vielleicht sind wir für unseren Anwendungsfall gar nicht so sehr an der 
 Veränderung über die Zeit interessiert, sondern wollen die 
-durchschnittliche Anzahl an Frauen in der Erwerbsbevölkerung berechnen?
+durchschnittliche Anzahl an Frauen in der Erwerbsbevölkerung berechnen.
 Das würde bedeuten, dass wir die Anzahl der Spalten in unserem Datensatz 
 reduzieren - etwas das bei der Anwendung von `mutate()` nie passieren würde.
 Dafür gibt es die Funktion `summarise()`:^[Die Funktionen `summarize()` und 
@@ -1913,7 +1921,7 @@ kondensiert `summarise()` den gesammten Datensatz auf die definierte Zahl.
 Im gerade berechneten Durchschnitt sind sowohl die Werte für Deutschland als auch
 Österreich eingegangen. Das erscheint erst einmal irreführend, es wäre wohl 
 besser einen Durchschnittswert jeweils für Deutschland und Österreich getrennt
-zu berechnen
+zu berechnen.
 Das können wir erreichen, indem wir den Datensatz vor der Anwendung von 
 `summarise()` **gruppieren**.
 Das funktioniert mit der Funktion `group_by()`, die als Argumente die 
@@ -1950,7 +1958,7 @@ Je nach Anwendungsfall ist also die Verwendung von `mutate()` oder
 
 Im Folgenden werden wir uns noch ein etwas komplexeres Beispiel anschauen:
 wir werden zunächst die jährliche Veränderung in der absoluten Anzahl der 
-weiblichen Erwertbstätigen in Österreich und Deutschland beschäftigen und
+weiblichen Erwertbstätigen in Österreich und Deutschland ermitteln und
 dann vergleichen ob dieser Wert größer ist als das Bevölkerungswachstum in dieser
 Zeit.
 Dazu verwenden wir die Funktion `dplyr::lag()` um den Wert vor dem aktuellen 
@@ -1980,11 +1988,11 @@ unemp_data_wb_growth
 
 Besonders hilfreich sind die Versionen von `mutate()` und `summarize()`, 
 welche mehrere Spalten auf einmal bearbeiten. Ich werde hier nicht im 
-Detail darauf eingehen, sondern einen kurzen Einblick in diese Funktionalität 
+Detail darauf eingehen, sondern nur einen kurzen Einblick in diese Funktionalität 
 geben. Angenommen Sie wollen das durchschnittliche Wachstum in Deutschland und
 Österreich sowohl für das Bevölkerungswachstum als auch das Wachstum der 
 weiblichen Erwerbsbevölkerung berechnen.
-Ausgehen vom letzten Datensatz
+Ausgehend vom letzten Datensatz
 
 ```{r}
 unemp_data_wb_growth_avg <- unemp_data_wb_growth %>%
@@ -2021,30 +2029,32 @@ Wenn Sie gefragt werden, wie Ihre Ergebnisse zustande gekommen sind, sollten Sie
 in der Lage sein, jeden einzelnen Arbeitsschritt seit der ersten Akquise der
 Daten offenzulegen, bzw. nachvollziebar zu machen.
 
-Es ist ein zentraler Nachteil von *point-and-click*-Software, bei der eine 
-Reproduktion bedeuten würde, dass Sie jeden einzelnen Mausklick vor dem Rechner
+Es ist ein zentraler Nachteil von *point-and-click*-Software 
+<!-- (gibt es hier ein Beispiel was so eine Softwäre wäre?) -->
+, dass Sie für eine Reproduktion jeden einzelnen Mausklick vor dem Rechner
 wiederholen, bzw. erklären müssten. 
 Zum Glück ist das mit Skript-basierten Sprachen wie R anders:
-Sie können einfach ein Skript `Datenaufbereitung.R` anlegen, in dem Sie die aus
+Sie können einfach ein Skript `Datenaufbereitung.R` anlegen, in welchem Sie die aus
 dem Internet heruntergeladenen Daten in den für die Analyse aufbereiteten Datensatz
 umwandeln.
-Wenn jemand wissen möchte, wo die Daten, die Sie in Ihrer Analyse verwenden, 
-herkommen, brauchen Sie der Person nur die Quelle der Daten zu nennen und ihr 
+Wenn jemand wissen möchte, wo die Daten herkommen, die Sie in Ihrer Analyse verwenden, 
+brauchen Sie der Person nur die Quelle der Daten zu nennen und ihr 
 Skript zu zeigen.
-So ist es für Sie auch leicht Ihre Analyse mit geupdateten Daten zu aktualisieren.
+So ist es für Sie auch leicht Ihre Analyse mit neuen Daten zu aktualisieren.
+<!-- vllt "neuen" statt "geupdateten" und den Anglizismus zu vermeiden? Oder meinste das geht klar? -->
 
-Daher hat sich in der Praxis häufig die folgende oder eine ähnliche Ordnerstruktur
-bewährt:
+Daher hat sich in der Praxis häufig die in Abbildung \@ref(fig:Ordnerstruktur-data) 
+aufgezeigte oder eine ähnliche Ordnerstruktur bewährt:
 
-```{r, echo=FALSE, fig.align='center'}
+```{r Ordnerstruktur-data, echo=FALSE, fig.align='center', fig.cap="Bewährte Ordnerstruktur für Forschungsprojekte mit R"}
 knitr::include_graphics("figures/chap-data-Ordnerstruktur.png")
 ```
 
 Der Vorteil an dieser Ordnerstruktur ist, dass Sie die Rohdaten in einem separaten 
-Ordner gespeichert haben und so explizit vom Rest ihres Workflows abgrenzen.
+Ordner gespeichert haben und so explizit vom Rest Ihres Workflows abgrenzen.
 Denn: **Rohdaten sollten nie bearbeitet werden**. 
-Zu leicht geht in Vergessenheit welche Änderungen tatsächlich vorgenommen wurden
-und ihre Forschung wird dadurch nicht mehr replizierbar - weder für Sie noch
+Zu leicht gerät in Vergessenheit welche Änderungen tatsächlich vorgenommen wurden
+und Ihre Forschung wird dadurch nicht mehr replizierbar - weder für Sie noch
 für andere.
 Alle weiteren Änderungen an den Rohdaten sollten über ein Skript vorgenommen
 werden, sodass immer klar ist wie Sie von den Rohdaten zu den Analysedaten kommen.
@@ -2060,7 +2070,7 @@ In der Praxis würden Sie also aus den Daten in `raw`, die entweder direkt aus d
 Internet geladen wurden oder direkt aus einem Experiment hervorgegangen sind, per
 Skript `Datenaufbereitung.R` den Datensatz `AufbereiteteDaten.csv` erstellen.
 Dabei können auch mehrere Rohdatensätze zusammengeführt werden.
-Dieser kann dann in der weiteren Analyse verwendet werden, z.B. im Skript
+Dieser Datensatz kann dann in der weiteren Analyse verwendet werden, z.B. im Skript
 `StatistischeAnalyse.R`, das dann einen Output in Form einer Datei
 `WunderbarerErgebnisplot.pdf` produziert.
 
@@ -2068,7 +2078,7 @@ Der Vorteil: wenn jemand genau wissen möchte, wie `WunderbarerErgebnisplot.pdf`
 produziert wurde können Sie sämtliche Schritte ausgehend von den vollkommen 
 unangetasteten Rohdaten transparent machen.
 Durch die Trennung unterschiedlicher Arbeitsschritte - wie Datenaufbereitung und
-statistische Analyse - bleibt ihr Projekt zudem übersichtlich.
+statistische Analyse - bleibt Ihr Projekt zudem übersichtlich.
 
 
 ## Anmerkungen zu Paketen {#data-packages}
@@ -2081,7 +2091,7 @@ Dies wird in diesem [kritischen Blogpost](https://github.com/matloff/TidyverseSk
 sehr schön beschrieben.
 
 Was die Einsteigerfreundlichkeit vom `tidyverse` angeht, bin ich jedoch anderer 
-Meinung als der Verfasser: meiner Meinung nach machen diese Pakete die Arbeit mit 
+Meinung als der Verfasser des Blogposts: meiner Meinung nach machen diese Pakete die Arbeit mit 
 Datensätzen sehr einfach, und für kleine Datensätze (<500MB) benutze ich das 
 `tidyverse` auch in meiner eigenen Forschung. 
 Es sollte jedoch klar sein, dass es nur eine Option 
@@ -2089,17 +2099,12 @@ unter mehreren ist, weswegen ich versuche in meinen Paketen vollständig auf
 das `tidyverse` zu verzichten - auch weil es in puncto Performance deutlich 
 schlechter ist als z.B. [data.table](https://rdatatable.gitlab.io/data.table/) 
 [@R-data.table], das auch für mehrere hundert GB große Datensätze gut geeignet ist. 
-
-Aufgrund der Einsteigerfreundlichkeit habe ich aber entschlossen, in diesem Skript
-häufig mit dem `tidyverse` zu arbeiten. Ich empfehle jedoch jedem, den 
-[folgenden kritischen Blogpost](https://github.com/matloff/TidyverseSkeptic)
-zu lesen und, falls Sie weiter mit R arbeiten, sich das Paket 
-[data.table](https://rdatatable.gitlab.io/data.table/) [@R-data.table] anzueignen.
-Das [offizielle Tutorial](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) 
-ist dafür gut geeignet, macht m.E. aber auch deutlich, 
+Zur Aneignung der Pakets 
+[data.table](https://rdatatable.gitlab.io/data.table/) [@R-data.table] ist das [offizielle Tutorial](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) 
+gut geeignet, macht m.E. aber auch deutlich, 
 dass es für die ersten Schritte mit R etwas unintuitiver ist als das `tidyverse`.
 
 Wenn Sie später einmal beide Ansätze beherrschen, können Sie das tun, was in einer 
-diversen Sprache wie R das einzig richtige ist:
+diversen Sprache wie R das einzig Richtige ist:
 je nach Anwendungsfall das passende Paket wählen - ganz wie im Falle von Paradigmen
 in einer Pluralen Ökonomik.
