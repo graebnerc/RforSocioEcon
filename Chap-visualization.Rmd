@@ -28,7 +28,7 @@ library(WDI)
 library(countrycode)
 ```
 
-Um das Paket `icaeDesign` zu installieren müssen Sie foldendermaßen vorgehen:
+Um das Paket `icaeDesign` zu installieren müssen Sie folgendermaßen vorgehen:
 
 ```{r, eval=FALSE}
 library(devtools)
@@ -42,11 +42,11 @@ ansprechend zu visualisieren.
 
 Der erste Abschnitt ist dabei optional und beschäftigt sich mit den theoretischen
 Grundlagen von `ggplot2`. 
-Hier disktutieren wir die Abgrenzung zwischen dem `ggplot2`- und `base`-Ansatz 
+Hier diskutieren wir die Abgrenzung zwischen dem `ggplot2`- und `base`-Ansatz 
 zur Datenvisualisierung in R und führen mit der in @wickhamggplot entwickelten
 [Grammatik für Grafiken](#vis-grammar) das theoretische Fundament für `ggplot2` ein.
 Diese beiden Abschnitte sind recht abstrakt, aber helfen Ihnen die interne Logik
-von `ggplot2` besser zu verstehen. 
+von `ggplot2` besser zu verstehen.
 
 Im zweiten Abschnitt werden die grundlegenden [Elemente einer Grafik](#vis-elements)
 in `ggplot2` beschrieben und eine erste Beispielgrafik Stück für Stück erstellt.
@@ -63,6 +63,8 @@ Der sechste Abschnitt illustriert ausgewählte
 [Manipulationsstrategien](#vis-manip) bei der Datenvisualisierung.
 Im letzten Abschnitt finden Sie Empfehlungen für [weiterführende Literatur](#vis-lit)
 
+<!-- Irgendwie funktionieren in der HTML Version nur die Verlinkungen zu Kapitel 6.4 und 6.5 bei mir. -->
+
 ## Optional: Theoretische Grundlagen {#vis-theorie}
 
 ### `ggplot2` vs. `base plot` {#vis-base-ggplot2}
@@ -77,7 +79,7 @@ Die Frage 'Welcher Ansatz ist nun besser?' ist nicht leicht zu beantworten,
 insbesondere da beiden Ansätzen eine sehr unterschiedliche Design-Philosophie 
 zugrunde liegt: 
 `base` funktioniert dabei wie ein Stift und ein Blatt Papier: 
-sie haben ein leeres Blatt, welches sie mit dem Aufruf bestimmter `plot`-Funktionen
+Sie haben ein leeres Blatt, welches Sie mit dem Aufruf bestimmter `plot`-Funktionen
 beschreiben. 
 Hierbei wird kein besonderes R-Objekt erstellt, in dem die Grafik  
 gespeichert wird - vielmehr speichern Sie am Ende ihr 'vollgemaltes Blatt'
@@ -87,20 +89,22 @@ In `ggplot2` werden die Grafiken dagegen 'scheibchenweise' in einer Art
 Liste zusammengesetzt.
 Diese Liste enhält dann eine vollständige Beschreibung der Grafik im Sinne einer
 geschichteten [Grammatik für Grafiken](#grammar).
-Dabei findet kein 'Malprozess' statt: die finale Grafik erst dann erstellt 
+Dabei findet kein 'Malprozess' statt: die finale Grafik wird erst dann erstellt 
 wenn auf die resultierende Liste eine `print`-Funktion angewandt wird.
 
-Am Ende des Tages werden Sie wenige Dinge finden, die sie nur mit `base` oder
+Am Ende des Tages werden Sie wenige Dinge finden, die Sie nur mit `base` oder
 nur mit `ggplot2` erreichen können. 
 Und wahrscheinlich gilt für die meisten, dass sie einfach bei dem Ansatz hängen
 bleiben, der Ihnen am Anfang intuitiv am besten gefallen hat.
 Ich habe in der [weiterführenden Literatur](#vis-links) einige Diskussionsbeiträge zum
-Theme `base` vs. `ggplot2` gesammelt und fasse mich hier daher kurz:
+Thema `base` vs. `ggplot2` gesammelt und fasse mich hier daher kurz:
 in dieser Einführung verwenden wir `ggplot2`. 
 Ich finde, dass die resultierenden Grafiken einen Tick schöner, die Syntax
 ein wenig einfacher und die Dokumentation im Internet ein wenig besser ist.
-Vor allem finde ich den Code leichter lesbar und die den von @wickhamggplot
-vorgeschlagenen *grammar of graphics* Ansatz sehr intuitiv.
+Vor allem finde ich den Code leichter lesbar und den von @wickhamggplot
+vorgeschlagenen *Grammar of Graphics* Ansatz sehr intuitiv.
+
+<!-- Irgendwie ist es manchmal capitalized, manchmal nicht. Ich würde es einfach jetzt mal überall capitalizen um hervorzuheben dass es ein Eigenname ist? -->
 
 Wenn Sie dagegen lieber mit `base` arbeiten wollen - kein Problem. Es finden
 sich im Internet gerade auf Englisch viele exzellente Einführungen. 
@@ -109,17 +113,17 @@ haben Sie auf eine für Sie möglichst unterhaltsame Art und Weise einen guten
 Graphen produziert?
 Welches Paket Sie dafür verwendet haben, interessiert am Ende des Tages niemanden...
 
-### Einleitung zu Wickham's *grammar of graphics* {#grammar}
+### Einleitung zu Wickham's *Grammar of Graphics* {#grammar}
 
 Die Funktion von `ggplot2` ist leichter nachzuvollziehen wenn man weiß wodurch
 das Paket inspiriert wurde.
 In diesem Fall war es das Konzept der *Grammar of Graphics* [@GrammarGraphics], 
 beziehungsweise die Interpretation des Konzepts von @wickhamggplot.
 
-Dieses Konzept startet von dem Wunsch eine 'Grammatik' für Grafiken zu entwickeln.
+Dieses Konzept startet mit dem Wunsch eine 'Grammatik' für Grafiken zu entwickeln.
 Eine Grammatik wird hier als eine Sammlung von Konzepten verstanden aus denen
-sämtliche Grafiken hergestellt werden können  eine vollständige Beschreibung der Grafik sozusagen .
-Sie wie die Grammatik der deutschen Sprache eine Sammlung von Wörtern und Regeln
+sämtliche Grafiken hergestellt werden können- eine vollständige Beschreibung der Grafik sozusagen.
+Wie die Grammatik der deutschen Sprache eine Sammlung von Wörtern und Regeln
 darstellt, aus denen jede Menge (mehr oder weniger sinnvolle) Aussagen hergestellt
 werden können, verstehen wir unter einer Grammatik für Grafiken eine Sammlung von 
 Konzepten und Regeln aus denen wir jede Menge (mehr oder weniger sinnvolle)
@@ -136,25 +140,25 @@ Komponenten:
 
 1. Einem **Standard-Datensatz** gemeinsam mit den Funktionen (*engl.: mappings*), 
 die bestimmten Variablen aus dem Datensatz eine so genannten **Ästhetik** (*engl.: aesthetic*) zuweisen.
-Die so genannten *mappings* (es handelt sich dabei eigentlich um einfache Funktionen)
+Die sogenannten *mappings* (es handelt sich dabei eigentlich um einfache Funktionen)
 verlinken eine Variable in den Daten mit einer Ästhetik in der Grafik.
 Beispielsweise könnten wir die Variable 'Jahr' in den Daten mit der Ästhetik
 'x-Achse', die Variable 'BIP' mit der Ästhetik 'y-Achse' und die Variable 'Land'
 mit der Ästhetik 'Farbe' verlinken.
 
-2. Ein oder mehrere **Ebenen**; jede Ebene besteht dabei aus einem geometrischem
+2. Eine oder mehrere **Ebenen**; jede Ebene besteht dabei aus einem geometrischem
 Objekt, einer statistischen Transformation, einer Positionszuweisung und, 
 optionalerweise, einem von (1) abweichenden besonderen Datensatz und den 
 entsprechenden *aesthetic mappings*.
   * Von besonderer Relevanz sind dabei die geometrischen Objekte, `geoms`, denn
 sie bestimmen um was für einen Plot es sich handelt: verwenden wir als `geoms` 
 Punkte bekommen wir ein Streudiagramm, bei Linien als `geoms` wird es ein Linienplot, usw.
-Die `geoms` visualisieren also die Ästetiken, aber bestimmte `geoms` können natürlich
-nur bestimmte Ästetiken repräsentieren: der `geom` 'Punkt' z.B. hat eine `x` und
+Die `geoms` visualisieren also die Ästhetiken, aber bestimmte `geoms` können natürlich
+nur bestimmte Ästhetiken repräsentieren: der `geom` 'Punkt' z.B. hat eine `x` und
 eine `y`-Komponente (also eine `Position`), eine `Größe`, eine `Form` und eine `Farbe`.
-Andere Ästhetiken machen für Punkte keinen Sinn.
+Andere Ästhetiken ergeben für Punkte keinen Sinn.
   * Da wir nicht notwendigerweise die exakten Werte der Variable an die Ästhetik
-weitergeben wird die Möglichkeit einer *statistischen Transformation* offen
+weitergeben, wird die Möglichkeit einer *statistischen Transformation* offen
 gelassen: eventuell wird nicht der Variablenwert, sondern z.B. der Logarithmus
 dieses Wertes an die entsprechende Ästhetik weitergegeben. 
 Natürlich kann die statistische Transformation auch weggelassen werden - in diesem
@@ -165,23 +169,23 @@ einem Boxplot zusammenfassen wollen), `bin` (wenn wir die Daten in einem diskret
 Histogramm darstellen wollen) oder `density` (wenn wir an der Wahrscheinlichkeitsdichte
 der Beobachtungen interessiert sind).
   * Die Positionszuweisungen spielen nur eine Rolle wenn die Positionen der
-`geoms` angepasst werden muss, z.B. um Überlappungen zu vermeiden. Ein typisches
+`geoms` angepasst werden müssen, z.B. um Überlappungen zu vermeiden. Ein typisches
 Beispiel ist auch das Schachteln von Balkendiagrammen. 
 
 3. Einer **Skala** für jedes *aesthetic mapping*. Sie beschreibt die genaue Art
-des Mappings zwischen Daten und Ästetiken. Entsprechend handelt es sich bei einer
+des Mappings zwischen Daten und Ästhetiken. Entsprechend handelt es sich bei einer
 Skala in diesem Sinne hier um eine **Funktion gemeinsam mit Parametern**.
 Am besten kann man sich das bei einer farblichen Skala vorstellen, die bestimmte
 Werte in einen Farbenraum abbildet.
 
-4. Einem **Koordinatensystem**, welches zu den Daten und Ästetiken und 
+4. Einem **Koordinatensystem**, welches zu den Daten und Ästhetiken und 
 geometrischen Objekten passt. Am häufigsten wird hier sicher das
-kartesischen Koordinatensystem verwendet, aber für Kuchendiagramme bietet sich
+kartesische Koordinatensystem verwendet, aber für Kuchendiagramme bietet sich
 z.B. das polare Koordinatensystem an.
 
 5. Eine optionale **Facettenspezifikation** (*engl.: facet specification*), die 
 verwendet werden kann um die Daten in verschiedene Teil-Datensätze aufzusplitten.
-So möchten wir wir vielleicht die Dynamik des BIP über die Zeit abbilden, aber
+So möchten wir vielleicht die Dynamik des BIP über die Zeit abbilden, aber
 einen separaten Unter-Plot für jedes einzelne Land erstellen. In diesem Fall
 verwenden wir eine Facettenspezifikation, die für jedes Land einen Teildatensatz
 erstellt.
@@ -189,15 +193,14 @@ erstellt.
 Alle Komponenten bleiben dabei unabhängig von einander sind:
 die Daten z.B. sind unabhängig vom Rest, weil die gleiche Grafik für
 unterschiedliche Daten produziert werden kann:
-"Daten machen aus einer abstrakten Grafik eine konkrete Grafik" [@wickhamggplot, p. 10]
+"Daten machen aus einer abstrakten Grafik eine konkrete Grafik" [@wickhamggplot, p. 10].
 
 Das Besondere an der so formulierten Grammatik ist, dass man mit den Komponenten
 1 - 5 so ziemlich jede statistische Grafik beschreiben kann. 
-Das Paket `ggplot2` macht sich das zu Nutze: 
+Das Paket `ggplot2` macht sich das zunutze: 
 es formalisiert diese Regeln in R, sodass Sie mit dem entsprechenden R Code
 quasi jede Grafik beschreiben können - und dann durch R erstellen lassen können.
-Dadurch ist auch auch die Vorgehensweise zunächst ein Objekt mit der *Beschreibung* der Grafik zu erstellen und die Grafik dann am Ende durch Anwendung einer `print`-Funktion auf diese Beschreibung herzustellen motiviert: 
-denn Sie können das Objekt mit der Beschreibung vorher bereits speichern und weitergeben und dann zu einem späteren Zeitpunkt erst die eigentlich Grafik erstellen. 
+Dadurch ist auch auch die Vorgehensweise motiviert, zunächst ein Objekt mit der *Beschreibung* der Grafik zu erstellen und die Grafik dann am Ende durch Anwendung einer `print`-Funktion auf diese Beschreibung herzustellen. So können Sie das Objekt mit der Beschreibung vorher bereits speichern und weitergeben und dann zu einem späteren Zeitpunkt erst die eigentliche Grafik erstellen. 
 Dieses Vorgehen machen wir uns später zunutze wenn wir mehrere Sub-Abbildungen in einer großen Grafik [gemeinsam abbilden wollen](#vis-viele-plots).
 
 Wie Sie später sehen werden repräsentiert die Syntax von `ggplot2` genau diese
@@ -231,7 +234,7 @@ ggplot(
     ) 
 ```
 
-`ggplot()` erstellt eine Liste, in der die Grafik-Spezifikationen gespeichert
+Die Funktion `ggplot()` erstellt eine Liste, in der die Grafik-Spezifikationen gespeichert
 werden und akzeptiert über die Argumente `data` und `mapping` die Standard-Daten
 und Standard-Mappings. Es korrespondiert damit zu Punkt (1) oben.
 
@@ -259,12 +262,12 @@ die in diesem Beispiel verwendeten 'Originalfunktionen'.
 So gibt es für eine Ebene mit dem `geom` 'Punkte' die Abkürzung `geom_point()`.
 Auch muss nicht jedes Element explizit spezifiziert werden: 
 da z.B. die meisten Grafiken ein kartesisches Koordinatensystem verwenden
-ist das als Standard-Koordinatensystem in
+ist dies als Standard-Koordinatensystem in
 `ggplot2` implementiert und Sie müssen 
-nur explizit ein Koordinatensystem spezifizieren
+nur dann explizit ein Koordinatensystem spezifizieren
 wenn Sie vom Standardwert abweichen wollen.
 
-Wenn Sie sich genauer mit der hierachichen Grammatik, die `ggplot2` zugrundeliegt, 
+Wenn Sie sich genauer mit der hierachischen Grammatik, die `ggplot2` zugrundeliegt, 
 kann ich Ihnen nur den Originalartikel von @wickhamggplot empfehlen.
 
 ## Grundlegende Elemente von `ggplot2`-Grafiken {#vis-elemente}
