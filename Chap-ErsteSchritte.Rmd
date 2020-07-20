@@ -38,7 +38,7 @@ Das Ergebnis von `2+3` ist eine Zahl (genauer: ein 'Skalar').
 In R werden Skalare immer als Vektor der Länge 1 dargestellt.
 Die `[1]` gibt also an, dass hier ein Vektor der Länge 1 angezeigt wird.
 Wäre das Ergebnis unserer Berechnung ein Vektor der Länge 2 würde die 
-Outputzeile dementsprechend mit `#> [1]` eingeleitet werden.
+Outputzeile dementsprechend mit `#> [2]` eingeleitet werden.
 
 Auf diese Art und Weise können wir R als einfachen Taschenrechner verwenden,
 denn für alle einfachen mathematischen Operationen können wir bestimmte Symbole
@@ -382,8 +382,8 @@ innerhalb des *function bodies* existiert:
 ```{r, error=TRUE}
 pythagoras <- function(kathete_1, kathete_2){
   hypo_quadrat <- kathete_1**2 + kathete_2**2
-  l_hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
-  return(l_hypothenuse)
+  hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
+  return(hypothenuse)
 }
 x <- pythagoras(2, 4)
 hypo_quadrat
@@ -413,8 +413,8 @@ folgendermaßen aussehen:
 #'  rechtwinkligen Dreieckst
 pythagoras <- function(kathete_1, kathete_2){
   hypo_quadrat <- kathete_1**2 + kathete_2**2
-  l_hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
-  return(l_hypothenuse)
+  hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
+  return(hypothenuse)
 }
 ```
 
@@ -500,7 +500,8 @@ atomaren Vektoren darstellen, allerdings in diesem Kontext schon häufig
 auftauchen: `NULL`, was strikt genommen ein eigener Datentyp ist und immer
 die Länge 0 hat, sowie `NA`, das einen fehlenden Wert darstellt.
 
-Hieraus ergibt sich folgende in Abbildung \@ref(fig:vektoren) aufgezeigte Aufteilung für Vektoren:
+Hieraus ergibt sich die in Abbildung \@ref(fig:vektoren) aufgezeigte Aufteilung 
+von Vektoren.
 
 ```{r vektoren, echo=FALSE, fig.align='center', out.width='80%', fig.cap="Arten von Vektoren in R"}
 knitr::include_graphics("figures/vector-classification.png")
@@ -638,7 +639,7 @@ z <- x + y
 typeof(z)
 ```
 
-Bei einer Addition werden ogische Werte ebenfalls automatisch transformiert:
+Bei einer Addition werden logische Werte ebenfalls automatisch transformiert:
 
 ```{r}
 x <- TRUE
@@ -771,7 +772,7 @@ print(
 ### Wörter (character)
 
 Wörter werden in R dadurch gebildet, dass an ihrem Anfang und Ende das Symbol
-`'` oder `""` steht:
+`'` oder `"` steht:
 
 ```{r}
 x <- "Hallo"
@@ -785,10 +786,9 @@ typeof(y)
 Wie andere Vektoren können sie mit der Funktion `c()` verbunden werden:
 
 ```{r}
-z <- c(x, " und ", y)
+z <- c(x, "und", y)
 z
 ```
-<!-- Gibt es einen Grund dass du vor und nach dem "und" jeweils ein Leerzeichen gesetzt hast? -->
 
 Nützlich ist in diesem Zusammenhang die Funktion `paste()`, die Elemente von 
 mehreren Vektoren in Wörter transformiert und verbindet:
@@ -800,8 +800,9 @@ y
 ```
 
 
-Die Funktion `paste()` akzeptiert ein optionales Argument `sep`, mit dem wir den Wert angeben
-können, der zwischen die zu verbindenden Elemente gesetzt wird:
+Die Funktion `paste()` akzeptiert ein optionales Argument `sep`, mit dem wir 
+den Wert angeben können, der zwischen die zu verbindenden Elemente gesetzt wird 
+(der Default ist `sep=" "`):
 
 ```{r}
 tag_nr <- 1:10
@@ -820,15 +821,11 @@ keine Fehlermeldung ausgegeben wird. Ein Beispiel dafür gibt folgender Code, in
 dem die Intention klar die Verbindung aller Wochentage zu Zahlen ist und einfach
 ein Wochentag vergessen wurde:
 
-<!-- Irgendwie verstehe ich diesen Hinweis noch nicht so gut. c("Tag") haben wir doch irgendwie gar nicht definiert, oder? -->
-
 ```{r}
-tage <- paste("Tag ", 1:7, ":", sep = "")
+tage <- paste("Tag ", 1:7, ":", sep="")
 tag_namen <- c("Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag")
-paste(tage, tag_namen)
+paste(tage, tag_namen) # default ist sep=" "
 ```
-
-<!-- Hier verstehe ich noch nicht so gut warum in diesem Code steht ":", sep = "", statt wie oben sep=":" -->
 
 ### Fehlende Werte und NULL
 
@@ -882,12 +879,12 @@ nicht `NA` sondern `NaN` (*not a number*):
 Eine weitere Besonderheit ist `NULL`, welches in der Regel als Vektor der 
 Länge 0 gilt, aber häufig zu besonderen Zwecken verwendet wird:
 
-<!-- was sind denn hier die besonderen Zwecke zu denen es verwendet wird? -->
-
 ```{r}
 x <- NULL
 length(x)
 ```
+
+
 
 ### Indizierung und Ersetzung
 
@@ -1115,7 +1112,7 @@ Im Folgenden wollen wir uns noch mit drei speziellen Typen beschäftigen, die
 weniger fundamental als die bislang diskutierten Typen sind, jedoch häufig in 
 der alltäglichen Arbeit vorkommen: Faktoren, Matrizen und Data Frames.
 
-### Faktoren {#into-factors}
+### Faktoren {#introfactors}
 
 Faktoren werden verwendet um ordinale oder kategoriale Daten darzustellen.
 Ein Faktor kann nur einen von mehreren vorher definierten Werten annehmen, so
@@ -1666,7 +1663,8 @@ Das gerade für kleinere Datensätze mit Abstand beste Format ist in der Regel
 `csv`, da es von zahlreichen Programmen und auf allen Betriebssystemen 
 gelesen und geschrieben werden kann.
 
-Für die Beispiele hier nehmen wir folgende in Abbildung \@ref(fig:ordnerstruktur) aufgezeigte Ordnerstruktur an:
+Für die Beispiele hier nehmen wir folgende in Abbildung \@ref(fig:ordnerstruktur) 
+aufgezeigte Ordnerstruktur an:
 
 ```{r ordnerstruktur, echo=FALSE, fig.align='center', out.width='50%', fig.cap="Beispielhafte Ordnerstruktur"}
 knitr::include_graphics("figures/chap3-data-folder.png")
@@ -1727,5 +1725,5 @@ auto_daten_neu <- mutate(auto_daten, Verbrauch_pro_PS=Verbrauch/PS)
 write_csv(auto_daten_neu, here("data/tidy/NeueDaten.csv"))
 ```
 
-In Kapitel \@ref(data) beschäftigen wir uns im Detail mit dem Lesen, Schreiben und Manipulieren von 
-Datensätzen.
+In Kapitel \@ref(data) beschäftigen wir uns im Detail mit dem Lesen, Schreiben 
+und Manipulieren von Datensätzen.
