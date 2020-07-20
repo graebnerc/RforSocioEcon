@@ -1,0 +1,81 @@
+## Kurzer Exkurs zum Einlesen und Schreiben von Daten
+
+Zum Abschluss wollen wir noch kurz einige Befehle zum Einlesen von Daten
+einführen. Später werden wir uns ein ganzes Kapitel mit dem Einlesen und
+Schreiben von Daten beschäftigen (siehe Kapitel \@ref(data)), da dies in der
+Regel einen nicht
+unbeträchtlichen Teil der quantitativen Forschungsarbeit in Anspruch nimmt.
+An dieser Stelle wollen wir aber nur lernen, wie man einen
+Datensatz in R einliest.
+
+R kann zahlreiche verschiedene Dateiformate einlesen, z.B. `csv`, `dta` oder `txt`,
+auch wenn für manche Formate bestimmte Pakete geladen sein müssen.
+
+Das gerade für kleinere Datensätze mit Abstand beste Format ist in der Regel
+`csv`, da es von zahlreichen Programmen und auf allen Betriebssystemen
+gelesen und geschrieben werden kann.
+
+Für die Beispiele hier nehmen wir folgende in Abbildung \@ref(fig:ordnerstruktur)
+aufgezeigte Ordnerstruktur an:
+
+```{r ordnerstruktur, echo=FALSE, fig.align='center', out.width='50%', fig.cap="Beispielhafte Ordnerstruktur"}
+knitr::include_graphics("figures/chap3-data-folder.png")
+```
+
+Um die Daten einzulesen verwenden wir das Paket `tidyverse`, welches wir später
+genauer kennen lernen werden. Es enthält viele nützliche Funktionen zur
+Arbeit mit Datensätzen.
+Zudem verwende ich das Paket `here` um relative Pfade immer von meinem
+Arbeitsverzeichnis aus angeben zu können.^[Das ist notwendig, da dieses Skript
+in R Markdown geschrieben ist und das Arbeitsverzeichnis automatisch auf den
+Ordner ändert, in dem das .Rmd file liegt. Mehr Information zum Schreiben von
+R Markdown finden Sie im Anhang.]
+
+```{r, comment=FALSE, message=FALSE}
+library(tidyverse)
+library(here)
+```
+
+
+```{r, echo=FALSE}
+rohdaten <- as_tibble(mtcars[29:32, 1:4], rownames = "Auto") %>%
+  select(-disp) %>%
+  rename(Verbrauch=mpg, Zylinder=cyl, PS=hp)
+write_csv(rohdaten, here("data/raw/Rohdaten.csv"))
+```
+
+Nehmen wir an, die Datei `Rohdaten.csv` sähe folgendermaßen aus:
+
+```
+Auto,Verbrauch,Zylinder,PS
+Ford Pantera L,15.8,8,264
+Ferrari Dino,19.7,6,175
+Maserati Bora,15,8,335
+Volvo 142E,21.4,4,109
+```
+
+Wie in einer typischen csv Datei sind die Spalten hier mit einem Komma getrennt.
+Um diese Datei einzulesen verwenden wir die Funktion `read_csv` mit dem
+Dateipfad als erstes Argument:
+
+```{r, message=FALSE}
+auto_daten <- read_csv(here("data/raw/Rohdaten.csv"))
+auto_daten
+```
+
+Wir haben nun einen Datensatz in R, mit dem wir dann weitere Analysen erstellen
+können.
+Nehmen wir einmal an, wir wollen eine weitere Spalte hinzufügen (Verbrauch/PS)
+und dann den Datensatz im Ordner `data/tidy` speichern.
+Ohne auf die Modifikation des Data Frames einzugehen können wir die Funktion
+`write_csv` verwenden um den Datensatz zu speichern.
+Hierzu geben wir den neuen Data Frame als erstes, und den Pfad als zweites
+Argument an:
+
+```{r}
+auto_daten_neu <- mutate(auto_daten, Verbrauch_pro_PS=Verbrauch/PS)
+write_csv(auto_daten_neu, here("data/tidy/NeueDaten.csv"))
+```
+
+In Kapitel \@ref(data) beschäftigen wir uns im Detail mit dem Lesen, Schreiben
+und Manipulieren von Datensätzen.
