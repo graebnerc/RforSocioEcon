@@ -2151,6 +2151,19 @@ normal <- ggplot(data = ameco_data,
 ggarrange(manipulativ, normal, ncol = 2)
 ```
 
+Falls Sie jetzt meinen: das ist ja eigentlich zu einfach um wirklich vorzukommen,
+dann schauen Sie mal in Abbildung \@ref(fig:fazbetrug) (bei der noch die Dummheit
+hinzukommt eine nominale Größe über die Zeit abzubilden),^[Grunden habe ich die Bilder
+über [diesen Tweet](https://twitter.com/PeterBofinger/status/1281894448717344768?s=20).] in Ihre Tageszeitung
+oder in den sozialen Medien. Sie werden (leider) feststellen, dass solche 
+visuellen Tricksereien sowohl in Schund- als auch Qualitätsmedien, aber auch
+in der Wissenschaft sehr weit verbreitet sind. Aber Sie wissen das ja jetzt und
+brauchen sich nicht mehr aufs Glatteis führen zu lassen.
+
+```{r fazbetrug, echo=FALSE, fig.cap="Quelle: FAZ vom 11. Juli 2020 (linkes Bild) und Bundesministerium für Arbeit und Soziales (mittleres Bild) und Handelsblatt vom 13. Juli 2020 (rechtes Bild)."}
+knitr::include_graphics(here("figures/vis-faz-betrug.png"), auto_pdf = T)
+knitr::include_graphics(here("figures/vis-hb-betrug.png"), auto_pdf = T)
+```
 
 
 ## Links und weiterführende Literatur {#vis-links}
