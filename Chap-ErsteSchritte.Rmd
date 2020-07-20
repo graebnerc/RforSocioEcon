@@ -8,13 +8,31 @@ knitr::opts_chunk$set(comment = "#>")
 library(tufte)
 ```
 
-Nach diesen (wichtigen) Vorbereitungsschritten wollen wir nun mit dem 
-eigentlichen Programmieren anfangen.
+Nach den (wichtigen) Vorbereitungsschritten im vorangehenden Kapitel 
+wollen wir an dieser Stelle mit dem eigentlichen Programmieren anfangen.
 Zu diesem Zweck müssen wir uns mit der Syntax von R vertraut machen,
 also mit den Regeln, denen wir folgen müssen, wenn wir Code schreiben, damit der 
 Computer versteht, was wir ihm eigentlich in R sagen wollen.
 
-## Befehle in R an den Computer übermitteln
+Das Kapitel ist dabei folgendermaßen aufgebaut:
+zunächst lernen wir in Abschnitt \@ref(es:befehle) wie wir mit Hilfe von R und 
+R-Studio mit unserem Computer 'kommunizieren' können. 
+Danach lernen wir in Abschnitt \@ref(es:objekte) nicht nur die zentralen Elemente 
+der Programmiersprache R kennen, nämlich Objekte und Funktionen, sondern
+lernen auch wie wir solche Objekte erstellen und ihnen Namen zuweisen können.
+Ein großer Teil des Kapitels (Abschnitt \@ref(es:objektarten)) ist dann den 
+unterschiedlichen Arten von Objekten in R gewidmet. Wir lernen zum Beispiel
+wie sich Vektoren von Listen unterscheiden, und welche Pendants in R es zu
+'Zahlen' und 'Wörtern' in unserer Alltagssprache gibt.
+Abgeschlossen wir das Kapitel mit einer kurzen Einführung von 'Paketen' in
+Abschnitt \@ref(es:pakete).
+Pakete sind ein wichtiger Bestandteil der Open-Source Sprache R:
+hier handelt es sich um Code, den andere Menschen geschrieben und der 
+Allgemeinheit frei zugänglich gemacht haben. 
+Dadurch ist sichergestellt, dass R immer auf dem neuesten Stand der 
+Forschung und Praxis ist.
+
+## Befehle in R an den Computer übermitteln {#es:befehle}
 
 Grundsätzlich können wir über R Studio auf zwei Arten mit dem Computer
 "kommunizieren": über die Konsole direkt, oder indem wir im Skriptbereich ein
@@ -78,7 +96,7 @@ Um fortgeschrittene Operationen in R durchführen und verstehen zu können müss
 wir uns zunächst mit den Konzepten von **Objekten**, **Funktionen** und
 **Zuweisungen** beschäftigen.
 
-## Objekte, Funktionen und Zuweisungen
+## Objekte, Funktionen und Zuweisungen {#es:objekte}
 
 > To understand computations in R, two slogans are helpful:
 >   Everything that exists is an object.
@@ -226,7 +244,7 @@ help(assign)
 ```
 
 
-## Grundlegende Objeke in R
+## Grundlegende Objeke in R {#es:objektarten}
 
 Wir haben bereits gelernt, dass alles was in R existiert ein Objekt ist.
 Wir haben aber auch schon gelernt, dass es unterschiedliche Typen von Objekten
@@ -651,7 +669,10 @@ print(z)
 Daher sollte man immer den Überblick behalten, mit welchen Objekttypen man 
 gerade arbeitet.
 
-Hier noch ein kurzer Überblick zu den Test- und Transformationsbefehlen:
+Einen Überblick zu den Test- und Transformationsbefehlen finden Sie in 
+Tabelle \@ref(tab:artentests).
+
+Table: (\#tab:artentests) Ein Überblick zu Test- und Transformationsbefehlen in R.
 
 Typ       | Test           | Transformation |
 ----------+----------------+----------------|
@@ -714,7 +735,10 @@ len_x
 Die logischen Werte `TRUE` und `FALSE` sind häufig das Ergebnis von logischen
 Abfragen, z.B. 'Ist 2 größer als 1?'. 
 Solche Abfragen kommen in der Forschungspraxis häufig vor und es macht Sinn,
-sich mit den häufigsten logischen Operatoren vertraut zu machen:
+sich mit den häufigsten logischen Operatoren vertraut zu machen.
+Einen Überblick finden Sie in Tabelle \@ref(tab:logicaloperators).
+
+Table: (\#tab:logicaloperators) Zentrale logische Abfragen in R.
 
 | Operator | Funktion in R | Beispiel |
 |:--------:|:-------------:|:---------|
@@ -884,7 +908,27 @@ x <- NULL
 length(x)
 ```
 
+`NULL` wird häufig verwendet um zu signalisieren, dass etwas nicht existiert.
+So ist ein leerer Vektor `NULL`:
 
+```{r}
+x <- c()
+x
+length(x)
+```
+
+Damit unterscheidet er sich von einem Vektor mit einem (oder mehreren) 
+fehlenden Werten:
+
+```{r}
+y <- NA
+length(y)
+```
+
+Auch im Programmieren von Funktionen wird `NULL` häufig für optionale Argumente
+verwendet. 
+Solche fortgeschrittene Konzepte werden aber erst an späterer Stelle behandelt.
+Für jetzt reicht die Idee, `NULL` als einen Vektor der Länge 0 zu verstehen.
 
 ### Indizierung und Ersetzung
 
@@ -973,7 +1017,9 @@ print(z)
 
 Und wenn wir einen Vektor in der Länge eines anderen Vektors erstellen wollen,
 bietet sich das Argument `along.with` an. Dies wird häufig für das Erstellen
-<!-- von Indexvektoren verwendet. (Was sind Indexvektoren denn nochmal? Vektoren die angeben wieviele Elemente in anderen Vektoren vorhanden sind?)  -->
+von Indexvektoren verwendet.^[Ein Indexvektor `x` zu einem beliebigen Vektor
+`y` mit `N` Elementen enthält die ganzen Zahlen von 1 bis `N`. Der n-te Wert
+von x korrespontiert also zum Index des n-ten Wert von `y`.]
 In einem solchen Fall müssen wir die Indexzahlen
 nicht direkt angeben:
 
@@ -981,8 +1027,6 @@ nicht direkt angeben:
 z_index <- seq(along.with = z)
 print(z_index)
 ```
-
-
 
 Auch häufig möchten wir einen bestimmten Wert wiederholen. 
 Das geht mit der Funktion `rep`:
@@ -1397,8 +1441,7 @@ is.data.frame(l_3)
 ```
 
 Wenn wir `df_3` ausgeben sehen wir unmittelbar den Unterschied zur klassischen 
-Liste:^[Gerade bei sehr großen Data Frames möchte man oft nur die ersten paar Elemente inspizieren.
-Das ist mit der Funktion `head()` möglich.]
+Liste:
 
 ```{r}
 l_3
@@ -1407,7 +1450,6 @@ l_3
 ```{r}
 df_3
 ```
-
 
 Die andere Möglichkeit einen `data.frame` zu erstellen ist direkt über die 
 Funktion `data.frame()`, wobei es hier in der Regel ratsam ist das optionale
@@ -1480,8 +1522,19 @@ herauszufinden:
 typeof(df_4[["gender"]])
 ```
 
+Gerade bei sehr großen Data Frames möchte man oft nur die ersten paar Zeilen
+inspizieren.
+Das ist mit der Funktion `head()` möglich.
+Das erste Argument ist immer der Name des Data Frames. 
+Das zweite (optionale) Argument ist ein `integer`, der die Anzahl der 
+anzuzeigenden Zeilen angibt (Standardwert: `5`):
 
-## Pakete {#packages}
+```{r}
+head(df_4, 2) # gibt die ersten zwei Zeilen aus
+```
+
+
+## Pakete {#es:pakete}
 
 Bei Paketen handelt es sich um eine Kombination aus R Code, Daten, Dokumentationen
 und Tests.
@@ -1644,86 +1697,3 @@ mit `::` verwendet, auch wenn dies nicht unbedingt nötig wäre.
 So sehen Sie bei jedem Code-Beispiel unmittelbar aus welchem Paket die 
 verwendeten Funktionen stammen. 
 Lediglich bei den Basispaketen werden wir auf `::` verzichten.
-
-
-## Kurzer Exkurs zum Einlesen und Schreiben von Daten
-
-Zum Abschluss wollen wir noch kurz einige Befehle zum Einlesen von Daten 
-einführen. Später werden wir uns ein ganzes Kapitel mit dem Einlesen und 
-Schreiben von Daten beschäftigen (siehe Kapitel \@ref(data)), da dies in der 
-Regel einen nicht 
-unbeträchtlichen Teil der quantitativen Forschungsarbeit in Anspruch nimmt.
-An dieser Stelle wollen wir aber nur lernen, wie man einen 
-Datensatz in R einliest.
-
-R kann zahlreiche verschiedene Dateiformate einlesen, z.B. `csv`, `dta` oder `txt`,
-auch wenn für manche Formate bestimmte Pakete geladen sein müssen.
-
-Das gerade für kleinere Datensätze mit Abstand beste Format ist in der Regel
-`csv`, da es von zahlreichen Programmen und auf allen Betriebssystemen 
-gelesen und geschrieben werden kann.
-
-Für die Beispiele hier nehmen wir folgende in Abbildung \@ref(fig:ordnerstruktur) 
-aufgezeigte Ordnerstruktur an:
-
-```{r ordnerstruktur, echo=FALSE, fig.align='center', out.width='50%', fig.cap="Beispielhafte Ordnerstruktur"}
-knitr::include_graphics("figures/chap3-data-folder.png")
-```
-
-Um die Daten einzulesen verwenden wir das Paket `tidyverse`, welches wir später
-genauer kennen lernen werden. Es enthält viele nützliche Funktionen zur 
-Arbeit mit Datensätzen.
-Zudem verwende ich das Paket `here` um relative Pfade immer von meinem
-Arbeitsverzeichnis aus angeben zu können.^[Das ist notwendig, da dieses Skript 
-in R Markdown geschrieben ist und das Arbeitsverzeichnis automatisch auf den
-Ordner ändert, in dem das .Rmd file liegt. Mehr Information zum Schreiben von
-R Markdown finden Sie im Anhang.]
-
-```{r, comment=FALSE, message=FALSE}
-library(tidyverse)
-library(here)
-```
-
-
-```{r, echo=FALSE}
-rohdaten <- as_tibble(mtcars[29:32, 1:4], rownames = "Auto") %>%
-  select(-disp) %>%
-  rename(Verbrauch=mpg, Zylinder=cyl, PS=hp)
-write_csv(rohdaten, here("data/raw/Rohdaten.csv"))
-```
-
-Nehmen wir an, die Datei `Rohdaten.csv` sähe folgendermaßen aus:
-
-```
-Auto,Verbrauch,Zylinder,PS
-Ford Pantera L,15.8,8,264
-Ferrari Dino,19.7,6,175
-Maserati Bora,15,8,335
-Volvo 142E,21.4,4,109
-```
-
-Wie in einer typischen csv Datei sind die Spalten hier mit einem Komma getrennt. 
-Um diese Datei einzulesen verwenden wir die Funktion `read_csv` mit dem 
-Dateipfad als erstes Argument:
-
-```{r, message=FALSE}
-auto_daten <- read_csv(here("data/raw/Rohdaten.csv"))
-auto_daten
-```
-
-Wir haben nun einen Datensatz in R, mit dem wir dann weitere Analysen erstellen
-können. 
-Nehmen wir einmal an, wir wollen eine weitere Spalte hinzufügen (Verbrauch/PS)
-und dann den Datensatz im Ordner `data/tidy` speichern.
-Ohne auf die Modifikation des Data Frames einzugehen können wir die Funktion 
-`write_csv` verwenden um den Datensatz zu speichern. 
-Hierzu geben wir den neuen Data Frame als erstes, und den Pfad als zweites 
-Argument an:
-
-```{r}
-auto_daten_neu <- mutate(auto_daten, Verbrauch_pro_PS=Verbrauch/PS)
-write_csv(auto_daten_neu, here("data/tidy/NeueDaten.csv"))
-```
-
-In Kapitel \@ref(data) beschäftigen wir uns im Detail mit dem Lesen, Schreiben 
-und Manipulieren von Datensätzen.
