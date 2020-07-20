@@ -4,27 +4,27 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Eine kurze Einführung in R Markdown | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="R Skript in der Version 0.7.2" />
+  <title>Chapter 10 Eine kurze Einführung in R Markdown | R für die sozio-ökonomische Forschung</title>
+  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Eine kurze Einführung in R Markdown | R für die sozio-ökonomische Forschung" />
+  <meta property="og:title" content="Chapter 10 Eine kurze Einführung in R Markdown | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="R Skript in der Version 0.7.2" />
+  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Eine kurze Einführung in R Markdown | R für die sozio-ökonomische Forschung" />
+  <meta name="twitter:title" content="Chapter 10 Eine kurze Einführung in R Markdown | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="R Skript in der Version 0.7.2" />
+  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-07-01" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="nonlin.html"/>
-<link rel="next" href="stat-stoch.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -132,10 +132,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Willkommen</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#verhältnis-zur-vorlesung"><i class="fa fa-check"></i>Verhältnis zur Vorlesung</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie-während-des-semesters"><i class="fa fa-check"></i>Änderungshistorie während des Semesters</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie"><i class="fa fa-check"></i>Änderungshistorie</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a><ul>
 <li class="chapter" data-level="1.1" data-path="precons.html"><a href="precons.html#warum-r"><i class="fa fa-check"></i><b>1.1</b> Warum R?</a></li>
@@ -154,9 +153,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="einrichtung.html"><a href="einrichtung.html#abschließende-bemerkungen"><i class="fa fa-check"></i><b>2.5</b> Abschließende Bemerkungen</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a><ul>
-<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#befehle-in-r-an-den-computer-übermitteln"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
-<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#objekte-funktionen-und-zuweisungen"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
-<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#grundlegende-objeke-in-r"><i class="fa fa-check"></i><b>3.3</b> Grundlegende Objeke in R</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#es:befehle"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#es:objekte"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#es:objektarten"><i class="fa fa-check"></i><b>3.3</b> Grundlegende Objeke in R</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.3.1</b> Funktionen</a></li>
 <li class="chapter" data-level="3.3.2" data-path="basics.html"><a href="basics.html#basics-types-vectors"><i class="fa fa-check"></i><b>3.3.2</b> Vektoren</a></li>
 <li class="chapter" data-level="3.3.3" data-path="basics.html"><a href="basics.html#basics-logic"><i class="fa fa-check"></i><b>3.3.3</b> Logische Werte (logical)</a></li>
@@ -165,12 +164,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3.6" data-path="basics.html"><a href="basics.html#indizierung-und-ersetzung"><i class="fa fa-check"></i><b>3.3.6</b> Indizierung und Ersetzung</a></li>
 <li class="chapter" data-level="3.3.7" data-path="basics.html"><a href="basics.html#nützliche-funktionen-für-atomare-vektoren"><i class="fa fa-check"></i><b>3.3.7</b> Nützliche Funktionen für atomare Vektoren</a></li>
 <li class="chapter" data-level="3.3.8" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.3.8</b> Listen</a></li>
-<li class="chapter" data-level="3.3.9" data-path="basics.html"><a href="basics.html#into-factors"><i class="fa fa-check"></i><b>3.3.9</b> Faktoren</a></li>
+<li class="chapter" data-level="3.3.9" data-path="basics.html"><a href="basics.html#introfactors"><i class="fa fa-check"></i><b>3.3.9</b> Faktoren</a></li>
 <li class="chapter" data-level="3.3.10" data-path="basics.html"><a href="basics.html#intro-matrix"><i class="fa fa-check"></i><b>3.3.10</b> Matrizen</a></li>
 <li class="chapter" data-level="3.3.11" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.3.11</b> Data Frames</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#packages"><i class="fa fa-check"></i><b>3.4</b> Pakete</a></li>
-<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.5</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#es:pakete"><i class="fa fa-check"></i><b>3.4</b> Pakete</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>4</b> Datenkunde und Datenaufbereitung</a><ul>
 <li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
@@ -325,50 +323,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1.4" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-interpretation-der-ergebnisse"><i class="fa fa-check"></i><b>9.1.4</b> Logit und Probit: Interpretation der Ergebnisse</a></li>
 </ul></li>
 </ul></li>
-<li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>A</b> Eine kurze Einführung in R Markdown</a><ul>
-<li class="chapter" data-level="A.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>A.1</b> Markdown vs. R-Markdown</a></li>
-<li class="chapter" data-level="A.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>A.2</b> Installation von R-Markdown</a></li>
-<li class="chapter" data-level="A.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>A.3</b> Der R-Markdown Workflow</a><ul>
-<li class="chapter" data-level="A.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>A.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
-<li class="chapter" data-level="A.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>A.3.2</b> Der Titelblock</a></li>
-<li class="chapter" data-level="A.3.3" data-path="markdown.html"><a href="markdown.html#der-textkörper"><i class="fa fa-check"></i><b>A.3.3</b> Der Textkörper</a></li>
-<li class="chapter" data-level="A.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>A.3.4</b> Kompillieren von Dokumenten</a></li>
+<li class="chapter" data-level="10" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>10</b> Eine kurze Einführung in R Markdown</a><ul>
+<li class="chapter" data-level="10.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>10.1</b> Markdown vs. R-Markdown</a></li>
+<li class="chapter" data-level="10.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>10.2</b> Installation von R-Markdown</a></li>
+<li class="chapter" data-level="10.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>10.3</b> Der R-Markdown Workflow</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>10.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
+<li class="chapter" data-level="10.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>10.3.2</b> Der Titelblock</a></li>
+<li class="chapter" data-level="10.3.3" data-path="markdown.html"><a href="markdown.html#der-textkörper"><i class="fa fa-check"></i><b>10.3.3</b> Der Textkörper</a></li>
+<li class="chapter" data-level="10.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>10.3.4</b> Kompillieren von Dokumenten</a></li>
 </ul></li>
-<li class="chapter" data-level="A.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>A.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
-<li class="chapter" data-level="A.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>A.5</b> Weitere Quellen</a></li>
-</ul></li>
-<li class="chapter" data-level="B" data-path="stat-stoch.html"><a href="stat-stoch.html"><i class="fa fa-check"></i><b>B</b> Wiederholung: Wahrscheinlichkeitstheorie</a><ul>
-<li class="chapter" data-level="" data-path="stat-stoch.html"><a href="stat-stoch.html#verwendete-pakete-2"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="B.1" data-path="stat-stoch.html"><a href="stat-stoch.html#einleitung-wahrscheinlichkeitstheorie-und-statistik"><i class="fa fa-check"></i><b>B.1</b> Einleitung: Wahrscheinlichkeitstheorie und Statistik</a></li>
-<li class="chapter" data-level="B.2" data-path="stat-stoch.html"><a href="stat-stoch.html#grundbegriffe-der-wahrscheinlichkeitstheorie"><i class="fa fa-check"></i><b>B.2</b> Grundbegriffe der Wahrscheinlichkeitstheorie</a></li>
-<li class="chapter" data-level="B.3" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.3</b> Diskrete Wahrscheinlichkeitsmodelle</a><ul>
-<li class="chapter" data-level="B.3.1" data-path="stat-stoch.html"><a href="stat-stoch.html#bayes-theorem-und-gesetz-der-total-wahrscheinlichkeiten"><i class="fa fa-check"></i><b>B.3.1</b> Bayes Theorem und Gesetz der total Wahrscheinlichkeiten</a></li>
-<li class="chapter" data-level="B.3.2" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-zufallsvariablen"><i class="fa fa-check"></i><b>B.3.2</b> Diskrete Zufallsvariablen</a></li>
-<li class="chapter" data-level="B.3.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-binomial-verteilung"><i class="fa fa-check"></i><b>B.3.3</b> Beispiel: die Binomial-Verteilung</a></li>
-<li class="chapter" data-level="B.3.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-poisson-verteilung"><i class="fa fa-check"></i><b>B.3.4</b> Beispiel: die Poisson-Verteilung</a></li>
-<li class="chapter" data-level="B.3.5" data-path="stat-stoch.html"><a href="stat-stoch.html#hinweise-zu-diskreten-wahrscheinlichkeitsverteilungen"><i class="fa fa-check"></i><b>B.3.5</b> Hinweise zu diskreten Wahrscheinlichkeitsverteilungen</a></li>
-</ul></li>
-<li class="chapter" data-level="B.4" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.4</b> Stetige Wahrscheinlichkeitsmodelle</a><ul>
-<li class="chapter" data-level="B.4.1" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-zv"><i class="fa fa-check"></i><b>B.4.1</b> Stetige ZV</a></li>
-<li class="chapter" data-level="B.4.2" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-uniformverteilung"><i class="fa fa-check"></i><b>B.4.2</b> Beispiel: die Uniformverteilung</a></li>
-<li class="chapter" data-level="B.4.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-normalverteilung"><i class="fa fa-check"></i><b>B.4.3</b> Beispiel: die Normalverteilung</a></li>
-<li class="chapter" data-level="B.4.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-exponentialverteilung"><i class="fa fa-check"></i><b>B.4.4</b> Beispiel: die Exponentialverteilung</a></li>
-</ul></li>
-<li class="chapter" data-level="B.5" data-path="stat-stoch.html"><a href="stat-stoch.html#zusammenfassung-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.5</b> Zusammenfassung Wahrscheinlichkeitsmodelle</a></li>
-</ul></li>
-<li class="chapter" data-level="C" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>C</b> Wiederholung: Deskriptive Statistik</a><ul>
-<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-und-datensätze"><i class="fa fa-check"></i>Verwendete Pakete und Datensätze</a></li>
-<li class="chapter" data-level="C.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>C.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
-<li class="chapter" data-level="C.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmaße"><i class="fa fa-check"></i><b>C.2</b> Korrelationsmaße</a></li>
-<li class="chapter" data-level="C.3" data-path="desk-stat.html"><a href="desk-stat.html#hinweise-zur-quantitativen-und-visuellen-datenbeschreibung"><i class="fa fa-check"></i><b>C.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
-<li class="chapter" data-level="C.4" data-path="desk-stat.html"><a href="desk-stat.html#zusamenfassung"><i class="fa fa-check"></i><b>C.4</b> Zusamenfassung</a></li>
-</ul></li>
-<li class="chapter" data-level="D" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>D</b> Wiederholung: Drei Verfahren der schließenden Statistik</a><ul>
-<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-3"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="D.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>D.1</b> Punktschätzung</a></li>
-<li class="chapter" data-level="D.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>D.2</b> Hypothesentests</a></li>
-<li class="chapter" data-level="D.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>D.3</b> Berechnung von Konfidenzintervallen</a></li>
+<li class="chapter" data-level="10.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>10.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
+<li class="chapter" data-level="10.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>10.5</b> Weitere Quellen</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -391,13 +356,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="markdown" class="section level1">
-<h1><span class="header-section-number">A</span> Eine kurze Einführung in R Markdown</h1>
+<h1><span class="header-section-number">Chapter 10</span> Eine kurze Einführung in R Markdown</h1>
 <p>Hier gibt es eine kurze Einführung in <code>R Markdown</code>.
 Wir beschränken uns dabei auf die grundlegende Idee von Markdown, da die
 konkrete Syntax im Internet an zahlreichen Stellen wunderbar erläutert ist
 und man das konkrete Schreiben am besten in der Anwendung lernt.</p>
 <div id="markdown-vs.r-markdown" class="section level2">
-<h2><span class="header-section-number">A.1</span> Markdown vs. R-Markdown</h2>
+<h2><span class="header-section-number">10.1</span> Markdown vs. R-Markdown</h2>
 <p>Bei <code>Markdown</code> handelt es sich um eine sehr einfache Auszeichnungssprache,
 d.h. eine Programmiersprache, mit der schön formatierte Texte erstellt werden
 können und die gleichzeitig auch für Menschen sehr einfach lesbar ist.
@@ -413,10 +378,10 @@ Im Prinzip können ganze Forschungspapiere in R-Markdown verfasst werden und
 damit vollständig reproduzierbar gestaltet werden.</p>
 </div>
 <div id="installation-von-r-markdown" class="section level2">
-<h2><span class="header-section-number">A.2</span> Installation von R-Markdown</h2>
+<h2><span class="header-section-number">10.2</span> Installation von R-Markdown</h2>
 <p>Für den Fall, dass Sie mit R-Studio arbeiten brauchen Sie lediglich
 das Paket <code>rmarkdown</code> zu installieren:</p>
-<div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb814-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&#39;rmarkdown&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb817-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&#39;rmarkdown&#39;</span>)</a></code></pre></div>
 <p>Das Standardformat für R-Markdown Dokumente ist html.
 Wenn Sie aber auch PDF Dokumente erstellen wollen, müssen Sie auf Ihrem
 Computer <a href="https://www.latex-project.org/">LaTex</a> installieren.
@@ -425,9 +390,9 @@ Hierfür finden sich zahlreiche Anleitungen im Internet (z.B.
 <a href="https://www.latex-project.org/get/">hier</a>).</p>
 </div>
 <div id="der-r-markdown-workflow" class="section level2">
-<h2><span class="header-section-number">A.3</span> Der R-Markdown Workflow</h2>
+<h2><span class="header-section-number">10.3</span> Der R-Markdown Workflow</h2>
 <div id="ein-neues-r-markdown-dokument-erstellen" class="section level3">
-<h3><span class="header-section-number">A.3.1</span> Ein neues R-Markdown Dokument erstellen</h3>
+<h3><span class="header-section-number">10.3.1</span> Ein neues R-Markdown Dokument erstellen</h3>
 <p>R-Studio macht es Ihnen sehr leicht R-Markdown Dokumente zu erstellen.
 Klicken Sie einfach auf den Button <code>Neu</code> und wählen dort dann
 <code>R Markdown</code> aus, wie auf folgendem Screenshot zu sehen ist:</p>
@@ -442,7 +407,7 @@ dem Titelblock und dem darunter folgenden Dokumentenkörper:</p>
 <p><img src="figures/A-Markdown-Title.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="der-titelblock" class="section level3">
-<h3><span class="header-section-number">A.3.2</span> Der Titelblock</h3>
+<h3><span class="header-section-number">10.3.2</span> Der Titelblock</h3>
 <p>Der Titelblock ist immer durch zwei Zeilen mit dem Inhalt “<code>---</code>” oben und
 unten abgegrenzt.
 Die Syntax des Titelblocks folgt der Sprache
@@ -456,7 +421,7 @@ In der Regel finden Sie alle Antworten durch Googlen, daher werde ich hier nicht
 weiter auf den Header eingehen.</p>
 </div>
 <div id="der-textkörper" class="section level3">
-<h3><span class="header-section-number">A.3.3</span> Der Textkörper</h3>
+<h3><span class="header-section-number">10.3.3</span> Der Textkörper</h3>
 <p>Der Textkörper besteht aus normalem Text, welcher in der Markdown Syntax
 geschrieben ist, und so genannten <em>Chunks</em>.
 Für die wirklich einfache Syntax für normalen Text gibt es zahlreiche gute
@@ -492,7 +457,7 @@ ausführen indem Sie auf das Play-Zeichen oben links beim Chunk drücken.
 Damit erhalten Sie eine Vorschau auf das Ergebnis.</p>
 </div>
 <div id="kompillieren-von-dokumenten" class="section level3">
-<h3><span class="header-section-number">A.3.4</span> Kompillieren von Dokumenten</h3>
+<h3><span class="header-section-number">10.3.4</span> Kompillieren von Dokumenten</h3>
 <p>Der Prozess, der aus dem Quellcode ihres Dokuments (also allem was in der <code>.Rmd</code>
 Datei geschrieben ist) das fertige Dokument erstellt, wird <em>Kompillieren</em> genannt.
 Dabei wird aus dem <code>.Rmd</code> Dokument ein gut lesbares <code>.html</code> oder <code>.pdf</code> Dokument
@@ -503,15 +468,15 @@ durch die Option <code>eval=FALSE</code> verhindert).</p>
 <p>Die klassische Variante verwendet die Funktion <code>render()</code> aus dem Paket
 <code>rmarkdown</code>. Die wichtigsten Argumente sind dabei die folgenden: <code>input</code>
 spezifiziert die zu kompillierende <code>.Rmd</code>-Datei, <code>output_format</code> das
-für den Output gewünschte Format<a href="#fn76" class="footnote-ref" id="fnref76"><sup>76</sup></a> und
+für den Output gewünschte Format<a href="#fn75" class="footnote-ref" id="fnref75"><sup>75</sup></a> und
 <code>output_file</code> den Pfad und den Namen der zu erstellenden Outputdatei.</p>
 <p>Wenn Sie also das Dokument <code>FirstMarkdown.Rmd</code> kompillieren wollen und den
 Output unter <code>Output/OurMarkdown.html</code> als html-Datei speichern wollen,
 dann können Sie das mit folgendem Code, vorausgesetzt die Datei
 <code>FirstMarkdown.Rmd</code> liegt im Unterordner <code>R</code>:</p>
-<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb815-1" data-line-number="1"><span class="kw">render</span>(<span class="dt">input =</span> <span class="st">&quot;R/FirstMarkdown.Rmd&quot;</span>, </a>
-<a class="sourceLine" id="cb815-2" data-line-number="2">       <span class="dt">output_format =</span> <span class="st">&quot;html&quot;</span>, </a>
-<a class="sourceLine" id="cb815-3" data-line-number="3">       <span class="dt">output_file =</span> <span class="st">&quot;output/FirstMarkdown.html&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb818"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb818-1" data-line-number="1"><span class="kw">render</span>(<span class="dt">input =</span> <span class="st">&quot;R/FirstMarkdown.Rmd&quot;</span>, </a>
+<a class="sourceLine" id="cb818-2" data-line-number="2">       <span class="dt">output_format =</span> <span class="st">&quot;html&quot;</span>, </a>
+<a class="sourceLine" id="cb818-3" data-line-number="3">       <span class="dt">output_file =</span> <span class="st">&quot;output/FirstMarkdown.html&quot;</span>)</a></code></pre></div>
 <p>Weitere Informationen zu den Parametern finden Sie wie immer über die <code>help()</code>
 Funktion.
 Alternativ können Sie auch den Button <code>Knit</code> in der R-Studio Oberfläche
@@ -520,7 +485,7 @@ Das ist in der Regel bequemer, lässt aber weniger Individualisierung zu.</p>
 </div>
 </div>
 <div id="relative-pfade-in-markdown-dokumenten" class="section level2">
-<h2><span class="header-section-number">A.4</span> Relative Pfade in Markdown-Dokumenten</h2>
+<h2><span class="header-section-number">10.4</span> Relative Pfade in Markdown-Dokumenten</h2>
 <p>Der problematischste Teil beim Arbeiten mit R-Markdown ist der Umgang mit
 relativen Pfaden.
 Um das Problem zu illustrieren nehmen wir einmal folgende Ordnerstruktur an,
@@ -532,14 +497,14 @@ interpretiert, sondern vom <em>Speicherort</em> der <code>.Rmd</code>-Datei.
 Das ist natürlich hochproblematisch, denn stellen Sie sich vor, Sie möchten
 in Ihrem R-Markdown-Skript die Datei <code>data/BIP-Data.csv</code> einlesen.
 Normalerweise würden Sie dafür den folgenden Code verwenden:</p>
-<div class="sourceCode" id="cb816"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb816-1" data-line-number="1">bip_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&quot;data/BIP-Data.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb819-1" data-line-number="1">bip_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&quot;data/BIP-Data.csv&quot;</span>)</a></code></pre></div>
 <p>Zwar würde der Code in einem R-Skript, z.B. in <code>R/R-Skript.R</code> perfekt
 funktionieren.
 In einem R-Markdown Dokument, das nicht im Arbeitsverzeichnis direkt
 gespeichert ist, jedoch nicht.
 Da in R-Markdown-Dokumenten alle Pfade relativ des Speicherorts des Dokuments
-interpretiert werden, müssten wir hier schreiben:<a href="#fn77" class="footnote-ref" id="fnref77"><sup>77</sup></a></p>
-<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb817-1" data-line-number="1">bip_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&quot;../data/BIP-Data.csv&quot;</span>)</a></code></pre></div>
+interpretiert werden, müssten wir hier schreiben:<a href="#fn76" class="footnote-ref" id="fnref76"><sup>76</sup></a></p>
+<div class="sourceCode" id="cb820"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb820-1" data-line-number="1">bip_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&quot;../data/BIP-Data.csv&quot;</span>)</a></code></pre></div>
 <p>Das wäre allerdings unschön, weil wir dann unterschiedlichen Codes in Skripten
 und in R-Markdown-Dokumenten verwenden müssten und das Ganze dadurch deutlich
 verwirrender werden würde.</p>
@@ -549,12 +514,12 @@ ob wir mit einem <code>.R</code> oder <code>.Rmd</code> Dokument arbeiten und wo
 innerhalb unserer Projekt-Struktur gespeichert ist.</p>
 <p>Zum Glück können wir genau das mit Hilfe des Pakets
 <a href="https://github.com/jennybc/here_here">here</a>
-erreichen.<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a>
+erreichen.<a href="#fn77" class="footnote-ref" id="fnref77"><sup>77</sup></a>
 Das Paket enthält eine Funktion <code>here()</code> die als Argument einen Dateinamen
 oder einen relativen Pfad akzeptiert, und daraus einen absoluten Pfad auf dem
 Computer, auf dem der Code gerade ausgeführt wird, konstruiert.</p>
 <p>Wir können also unseren Code von oben einfach folgendermaßen umschreiben:</p>
-<div class="sourceCode" id="cb818"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb818-1" data-line-number="1">bip_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/BIP-Data.csv&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb821"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb821-1" data-line-number="1">bip_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/BIP-Data.csv&quot;</span>))</a></code></pre></div>
 <p>In dieser Form funktioniert er sowohl in <code>.R</code> als auch <code>.Rmd</code> Dateien ohne
 Probleme.</p>
 <blockquote>
@@ -574,7 +539,7 @@ Arbeitsblättern <strong>verpflichtend</strong>.</p>
 </blockquote>
 </div>
 <div id="weitere-quellen" class="section level2">
-<h2><span class="header-section-number">A.5</span> Weitere Quellen</h2>
+<h2><span class="header-section-number">10.5</span> Weitere Quellen</h2>
 <p>Eine gute Übersicht über die häufigsten Befehle enthält dieses
 <a href="https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">Cheat Sheet</a>.
 Eine sehr umfangreiche Einführung bietet das Online-Buch
@@ -585,15 +550,485 @@ Dieses Skript wurde übrigens in
 <a href="https://bookdown.org/yihui/bookdown/">R Bookdown</a>,
 einer Erweiterung von R-Markdown für Bücher, geschrieben.</p>
 
+<div id="refs" class="references">
+<div>
+<p>Aleskerov, Fuad, Hasan Ersel, and Dmitri Piontkovski. 2011. <em>Linear Algebra for Economists</em>. Springer. <a href="\url{https://www.springer.com/de/book/9783642205699}">\url{https://www.springer.com/de/book/9783642205699}</a>.</p>
+</div>
+<div>
+<p>Anscombe, Francis J. 1973. “Graphs in Statistical Analysis.” <em>The American Statistician</em> 27: 17–21. <a href="https://doi.org/10.2307/2682899">https://doi.org/10.2307/2682899</a>.</p>
+</div>
+<div>
+<p>Arel-Bundock, Vincent. 2019. <em>WDI: World Development Indicators (World Bank)</em>. <a href="https://CRAN.R-project.org/package=WDI">https://CRAN.R-project.org/package=WDI</a>.</p>
+</div>
+<div>
+<p>Arel-Bundock, Vincent, Nils Enevoldsen, and CJ Yetman. 2018. “Countrycode: An R Package to Convert Country Names and Country Codes.” <em>Journal of Open Source Software</em> 3 (28): 848. <a href="https://doi.org/10.21105/joss.00848">https://doi.org/10.21105/joss.00848</a>.</p>
+</div>
+<div>
+<p>Bengtsson, Henrik. 2019. <em>R.utils: Various Programming Utilities</em>. <a href="https://CRAN.R-project.org/package=R.utils">https://CRAN.R-project.org/package=R.utils</a>.</p>
+</div>
+<div>
+<p>Chatterjee, Sangit, and Aykut Firat. 2007. “Generating Data with Identical Statistics but Dissimilar Graphics.” <em>The American Statistician</em> 61 (3): 248–54. <a href="https://doi.org/10.1198/000313007X220057">https://doi.org/10.1198/000313007X220057</a>.</p>
+</div>
+<div>
+<p>Clauset, Aaron, Cosma Rohilla Shalizi, and M E J Newman. 2009. “Power-Law Distributions in Empirical Data.” <em>SIAM Review</em> 51 (4): 661–703. <a href="https://doi.org/10.1137/070710111">https://doi.org/10.1137/070710111</a>.</p>
+</div>
+<div>
+<p>Clementi, Fabio, Mauro Gallegati, Lisa Gianmoena, Simone Landini, and Joseph E Stiglitz. 2019. “Mis-measurement of inequality: a critical reflection and new insights.” <em>Journal of Economic Interaction and Coordination</em> 14 (4): 891–921. <a href="https://doi.org/10.1007/s11403-019-00257-2">https://doi.org/10.1007/s11403-019-00257-2</a>.</p>
+</div>
+<div>
+<p>Delignette-Muller, Marie Laure, and Christophe Dutang. 2015. “fitdistrplus: An R Package for Fitting Distributions.” <em>Journal of Statistical Software</em> 64 (4): 1–34. <a href="http://www.jstatsoft.org/v64/i04/">http://www.jstatsoft.org/v64/i04/</a>.</p>
+</div>
+<div>
+<p>Dowle, Matt, and Arun Srinivasan. 2019. <em>Data.table: Extension of ‘Data.frame‘</em>. <a href="https://CRAN.R-project.org/package=data.table">https://CRAN.R-project.org/package=data.table</a>.</p>
+</div>
+<div>
+<p>Epple, Dennis, and Bennett T. McCallum. 2006. “Simultaneous Equation Econometrics: The Missing Example.” <em>Economic Inquiry</em> 44 (2).</p>
+</div>
+<div>
+<p>Friendly, Michael, John Fox, and Phil Chalmers. 2019. <em>Matlib: Matrix Functions for Teaching and Learning Linear Algebra and Multivariate Statistics</em>. <a href="https://CRAN.R-project.org/package=matlib">https://CRAN.R-project.org/package=matlib</a>.</p>
+</div>
+<div>
+<p>Gräbner, Claudius. 2019. <em>IcaeDesign: Corporate Design-Like Functions for the Icae</em>. <a href="https://github.com/graebnerc/icaeDesign">https://github.com/graebnerc/icaeDesign</a>.</p>
+</div>
+<div>
+<p>Gräbner, Claudius, Philipp Heimberger, Jakob Kapeller, and Bernhard Schütz. 2019. “Is Europe disintegrating? Macroeconomic divergence, structural polarization, trade and fragility.” <em>Cambridge Journal of Economics</em>. <a href="https://doi.org/10.1093/cje/bez059">https://doi.org/10.1093/cje/bez059</a>.</p>
+</div>
+<div>
+<p>Greene, William H. 2018. <em>Econometric Analysis</em>. New York, NY: Pearson.</p>
+</div>
+<div>
+<p>Hanson, Gordon H. 2012. “The Rise of Middle Kingdoms: Emerging Economies in Global Trade.” <em>Journal of Economic Perspectives</em> 26 (2): 41–64. <a href="https://doi.org/10.1257/jep.26.2.41">https://doi.org/10.1257/jep.26.2.41</a>.</p>
+</div>
+<div>
+<p>Heckman, James. 1979. “Sample Selection Bias as a Specification Error.” <em>Econometrica</em>. <a href="https://doi.org/doi:10.2307/1912352">https://doi.org/doi:10.2307/1912352</a>.</p>
+</div>
+<div>
+<p>Herndon, Thomas, Michael Ash, and Robert Pollin. 2013. “Does high public debt consistently stifle economic growth? A critique of Reinhart and Rogoff.” <em>Cambridge Journal of Economics</em> 38 (2): 257–79. <a href="https://doi.org/10.1093/cje/bet075">https://doi.org/10.1093/cje/bet075</a>.</p>
+</div>
+<div>
+<p>Kapeller, Jakob, Claudius Gräbner, and Philipp Heimberger. 2019. <em>Wirtschaftliche Polarisierung in Europa: Ursachen und Handlungsoptionen</em>. Bonn: Friedrich-Ebert Stiftung. <a href="https://www.fes.de/wirtschaftliche-polarisierung-in-europa">https://www.fes.de/wirtschaftliche-polarisierung-in-europa</a>.</p>
+</div>
+<div>
+<p>Kassambara, Alboukadel. 2019. <em>Ggpubr: ’Ggplot2’ Based Publication Ready Plots</em>. <a href="https://CRAN.R-project.org/package=ggpubr">https://CRAN.R-project.org/package=ggpubr</a>.</p>
+</div>
+<div>
+<p>Kleiber, Christian, and Achim Zeileis. 2008. <em>Applied Econometrics with R</em>. New York: Springer-Verlag. <a href="https://CRAN.R-project.org/package=AER">https://CRAN.R-project.org/package=AER</a>.</p>
+</div>
+<div>
+<p>Komsta, Lukasz, and Frederick Novomestky. 2015. <em>Moments: Moments, Cumulants, Skewness, Kurtosis and Related Tests</em>. <a href="https://CRAN.R-project.org/package=moments">https://CRAN.R-project.org/package=moments</a>.</p>
+</div>
+<div>
+<p>Krämer, Walter. 2015. <em>So Lügt Man Mit Statistik</em>. Frankfurt und New York: Campus Verlag.</p>
+</div>
+<div>
+<p>Kuznets, Simon. 1934. <em>National Income, 1929-1932</em>. Washington D.C.: U.S. Government Printing Office. <a href="https://fraser.stlouisfed.org/title/971">https://fraser.stlouisfed.org/title/971</a>.</p>
+</div>
+<div>
+<p>Matejka, Justin, and George Fitzmaurice. 2017. “Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics Through Simulated Annealing.” In <em>Proceedings of the 2017 Chi Conference on Human Factors in Computing Systems</em>, 1290–4. New York, NY: ACM. <a href="https://doi.org/10.1145/3025453.3025912">https://doi.org/10.1145/3025453.3025912</a>.</p>
+</div>
+<div>
+<p>Meschiari, Stefano. 2015. <em>Latex2exp: Use Latex Expressions in Plots</em>. <a href="https://CRAN.R-project.org/package=latex2exp">https://CRAN.R-project.org/package=latex2exp</a>.</p>
+</div>
+<div>
+<p>Müller, Kirill. 2017. <em>Here: A Simpler Way to Find Your Files</em>. <a href="https://CRAN.R-project.org/package=here">https://CRAN.R-project.org/package=here</a>.</p>
+</div>
+<div>
+<p>OECD. 2019. “Share of employed who are managers, by sex.” OECD.stat. <a href="https://doi.org/10.7910/DVN/H8SFD2">https://doi.org/10.7910/DVN/H8SFD2</a>.</p>
+</div>
+<div>
+<p>Pebesma, Edzer, Thomas Mailund, and James Hiebert. 2016. “Measurement Units in R.” <em>R Journal</em> 8 (2): 486–94. <a href="https://doi.org/10.32614/RJ-2016-061">https://doi.org/10.32614/RJ-2016-061</a>.</p>
+</div>
+<div>
+<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
+</div>
+<div>
+<p>Schwabish, Jonathan A. 2014. “An Economist’s Guide to Visualizing Data.” <em>Journal of Economic Perspectives</em> 28 (1): 209–34. <a href="https://doi.org/10.1257/jep.28.1.209">https://doi.org/10.1257/jep.28.1.209</a>.</p>
+</div>
+<div>
+<p>Slowikowski, Kamil. 2019. <em>Ggrepel: Automatically Position Non-Overlapping Text Labels with ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=ggrepel">https://CRAN.R-project.org/package=ggrepel</a>.</p>
+</div>
+<div>
+<p>The Growth Lab at Harvard University. 2019. “International Trade Data (SITC, Rev. 2).” Harvard Dataverse. <a href="https://doi.org/10.7910/DVN/H8SFD2">https://doi.org/10.7910/DVN/H8SFD2</a>.</p>
+</div>
+<div>
+<p>Venables, W. N., and B. D. Ripley. 2002. <em>Modern Applied Statistics with S</em>. Fourth. New York: Springer. <a href="http://www.stats.ox.ac.uk/pub/MASS4">http://www.stats.ox.ac.uk/pub/MASS4</a>.</p>
+</div>
+<div>
+<p>Wainwright, Kevin, and Alpha Chiang. 2005. <em>Fundamental Methods of Mathematical Economics</em>. McGraw-Hill.</p>
+</div>
+<div>
+<p>Wickham, Hadley. 2010. “A Layered Grammar of Graphics.” <em>Journal of Computational and Graphical Statistics</em> 19 (1): 3–28. <a href="https://doi.org/10.1198/jcgs.2009.07098">https://doi.org/10.1198/jcgs.2009.07098</a>.</p>
+</div>
+<div>
+<p>———. 2014. “Tidy Data.” <em>The Journal of Statistical Software</em> 59 (10). <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>.</p>
+</div>
+<div>
+<p>———. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.</p>
+</div>
+<div>
+<p>———. 2018. <em>Scales: Scale Functions for Visualization</em>. <a href="https://CRAN.R-project.org/package=scales">https://CRAN.R-project.org/package=scales</a>.</p>
+</div>
+<div>
+<p>———. 2019. <em>Advanced R</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/">https://adv-r.hadley.nz/</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Jennifer Bryan. 2019. <em>Advanced R</em>. 2nd ed. Sebastopol, CA: O’Reilly Media. <a href="https://r-pkgs.org/">https://r-pkgs.org/</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2019. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Lionel Henry. 2019. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Evan Miller. 2019. <em>Haven: Import and Export ’Spss’, ’Stata’ and ’Sas’ Files</em>. <a href="https://CRAN.R-project.org/package=haven">https://CRAN.R-project.org/package=haven</a>.</p>
+</div>
+<div>
+<p>Wilkinson, Leland. 1999. <em>The Grammar of Graphics</em>. New York: Springer. <a href="https://www.springer.com/de/book/9781475731002">https://www.springer.com/de/book/9781475731002</a>.</p>
+</div>
+<div>
+<p>Yang, Jangho, Torsten Heinrich, Julian Winkler, Francois Lafond, Pantelis Koutroumpis, and J.Doyne Farmer. 2019. “Measuring Productivity Dispersion: A Parametric Approach Using the Levy Alpha-Stable Distribution.” <em>INET Oxford Working Paper</em> 2019-14. <a href="https://www.inet.ox.ac.uk/publications/no-2019-14-measuring-productivity-dispersion-a-parametric-approach-using-the-l%C3%A9vy-alpha-stable-distribution/">https://www.inet.ox.ac.uk/publications/no-2019-14-measuring-productivity-dispersion-a-parametric-approach-using-the-l%C3%A9vy-alpha-stable-distribution/</a>.</p>
+</div>
+<div>
+<p>Zeileis, Achim. 2004. “Econometric Computing with HC and HAC Covariance Matrix Estimators.” <em>Journal of Statistical Software</em> 11 (10): 1–17. <a href="https://doi.org/10.18637/jss.v011.i10">https://doi.org/10.18637/jss.v011.i10</a>.</p>
+</div>
+<div>
+<p>———. 2014. <em>Ineq: Measuring Inequality, Concentration, and Poverty</em>. <a href="https://CRAN.R-project.org/package=ineq">https://CRAN.R-project.org/package=ineq</a>.</p>
+</div>
+<div>
+<p>Zeileis, Achim, and Torsten Hothorn. 2002. “Diagnostic Checking in Regression Relationships.” <em>R News</em> 2 (3): 7–10. <a href="https://CRAN.R-project.org/doc/Rnews/">https://CRAN.R-project.org/doc/Rnews/</a>.</p>
 </div>
 </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="nonlin.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="stat-stoch.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="nonlin.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

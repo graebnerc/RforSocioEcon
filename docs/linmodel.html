@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Lineare statistische Modelle in R | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="R Skript in der Version 0.7.2" />
+  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Lineare statistische Modelle in R | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="R Skript in der Version 0.7.2" />
+  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 7 Lineare statistische Modelle in R | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="R Skript in der Version 0.7.2" />
+  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-07-01" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -132,10 +132,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Willkommen</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#verhältnis-zur-vorlesung"><i class="fa fa-check"></i>Verhältnis zur Vorlesung</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie-während-des-semesters"><i class="fa fa-check"></i>Änderungshistorie während des Semesters</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie"><i class="fa fa-check"></i>Änderungshistorie</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a><ul>
 <li class="chapter" data-level="1.1" data-path="precons.html"><a href="precons.html#warum-r"><i class="fa fa-check"></i><b>1.1</b> Warum R?</a></li>
@@ -154,9 +153,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="einrichtung.html"><a href="einrichtung.html#abschließende-bemerkungen"><i class="fa fa-check"></i><b>2.5</b> Abschließende Bemerkungen</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a><ul>
-<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#befehle-in-r-an-den-computer-übermitteln"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
-<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#objekte-funktionen-und-zuweisungen"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
-<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#grundlegende-objeke-in-r"><i class="fa fa-check"></i><b>3.3</b> Grundlegende Objeke in R</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#es:befehle"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#es:objekte"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#es:objektarten"><i class="fa fa-check"></i><b>3.3</b> Grundlegende Objeke in R</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.3.1</b> Funktionen</a></li>
 <li class="chapter" data-level="3.3.2" data-path="basics.html"><a href="basics.html#basics-types-vectors"><i class="fa fa-check"></i><b>3.3.2</b> Vektoren</a></li>
 <li class="chapter" data-level="3.3.3" data-path="basics.html"><a href="basics.html#basics-logic"><i class="fa fa-check"></i><b>3.3.3</b> Logische Werte (logical)</a></li>
@@ -165,12 +164,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3.6" data-path="basics.html"><a href="basics.html#indizierung-und-ersetzung"><i class="fa fa-check"></i><b>3.3.6</b> Indizierung und Ersetzung</a></li>
 <li class="chapter" data-level="3.3.7" data-path="basics.html"><a href="basics.html#nützliche-funktionen-für-atomare-vektoren"><i class="fa fa-check"></i><b>3.3.7</b> Nützliche Funktionen für atomare Vektoren</a></li>
 <li class="chapter" data-level="3.3.8" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.3.8</b> Listen</a></li>
-<li class="chapter" data-level="3.3.9" data-path="basics.html"><a href="basics.html#into-factors"><i class="fa fa-check"></i><b>3.3.9</b> Faktoren</a></li>
+<li class="chapter" data-level="3.3.9" data-path="basics.html"><a href="basics.html#introfactors"><i class="fa fa-check"></i><b>3.3.9</b> Faktoren</a></li>
 <li class="chapter" data-level="3.3.10" data-path="basics.html"><a href="basics.html#intro-matrix"><i class="fa fa-check"></i><b>3.3.10</b> Matrizen</a></li>
 <li class="chapter" data-level="3.3.11" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.3.11</b> Data Frames</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#packages"><i class="fa fa-check"></i><b>3.4</b> Pakete</a></li>
-<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.5</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#es:pakete"><i class="fa fa-check"></i><b>3.4</b> Pakete</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>4</b> Datenkunde und Datenaufbereitung</a><ul>
 <li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
@@ -325,50 +323,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1.4" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-interpretation-der-ergebnisse"><i class="fa fa-check"></i><b>9.1.4</b> Logit und Probit: Interpretation der Ergebnisse</a></li>
 </ul></li>
 </ul></li>
-<li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>A</b> Eine kurze Einführung in R Markdown</a><ul>
-<li class="chapter" data-level="A.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>A.1</b> Markdown vs. R-Markdown</a></li>
-<li class="chapter" data-level="A.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>A.2</b> Installation von R-Markdown</a></li>
-<li class="chapter" data-level="A.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>A.3</b> Der R-Markdown Workflow</a><ul>
-<li class="chapter" data-level="A.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>A.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
-<li class="chapter" data-level="A.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>A.3.2</b> Der Titelblock</a></li>
-<li class="chapter" data-level="A.3.3" data-path="markdown.html"><a href="markdown.html#der-textkörper"><i class="fa fa-check"></i><b>A.3.3</b> Der Textkörper</a></li>
-<li class="chapter" data-level="A.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>A.3.4</b> Kompillieren von Dokumenten</a></li>
+<li class="chapter" data-level="10" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>10</b> Eine kurze Einführung in R Markdown</a><ul>
+<li class="chapter" data-level="10.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>10.1</b> Markdown vs. R-Markdown</a></li>
+<li class="chapter" data-level="10.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>10.2</b> Installation von R-Markdown</a></li>
+<li class="chapter" data-level="10.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>10.3</b> Der R-Markdown Workflow</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>10.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
+<li class="chapter" data-level="10.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>10.3.2</b> Der Titelblock</a></li>
+<li class="chapter" data-level="10.3.3" data-path="markdown.html"><a href="markdown.html#der-textkörper"><i class="fa fa-check"></i><b>10.3.3</b> Der Textkörper</a></li>
+<li class="chapter" data-level="10.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>10.3.4</b> Kompillieren von Dokumenten</a></li>
 </ul></li>
-<li class="chapter" data-level="A.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>A.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
-<li class="chapter" data-level="A.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>A.5</b> Weitere Quellen</a></li>
-</ul></li>
-<li class="chapter" data-level="B" data-path="stat-stoch.html"><a href="stat-stoch.html"><i class="fa fa-check"></i><b>B</b> Wiederholung: Wahrscheinlichkeitstheorie</a><ul>
-<li class="chapter" data-level="" data-path="stat-stoch.html"><a href="stat-stoch.html#verwendete-pakete-2"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="B.1" data-path="stat-stoch.html"><a href="stat-stoch.html#einleitung-wahrscheinlichkeitstheorie-und-statistik"><i class="fa fa-check"></i><b>B.1</b> Einleitung: Wahrscheinlichkeitstheorie und Statistik</a></li>
-<li class="chapter" data-level="B.2" data-path="stat-stoch.html"><a href="stat-stoch.html#grundbegriffe-der-wahrscheinlichkeitstheorie"><i class="fa fa-check"></i><b>B.2</b> Grundbegriffe der Wahrscheinlichkeitstheorie</a></li>
-<li class="chapter" data-level="B.3" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.3</b> Diskrete Wahrscheinlichkeitsmodelle</a><ul>
-<li class="chapter" data-level="B.3.1" data-path="stat-stoch.html"><a href="stat-stoch.html#bayes-theorem-und-gesetz-der-total-wahrscheinlichkeiten"><i class="fa fa-check"></i><b>B.3.1</b> Bayes Theorem und Gesetz der total Wahrscheinlichkeiten</a></li>
-<li class="chapter" data-level="B.3.2" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-zufallsvariablen"><i class="fa fa-check"></i><b>B.3.2</b> Diskrete Zufallsvariablen</a></li>
-<li class="chapter" data-level="B.3.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-binomial-verteilung"><i class="fa fa-check"></i><b>B.3.3</b> Beispiel: die Binomial-Verteilung</a></li>
-<li class="chapter" data-level="B.3.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-poisson-verteilung"><i class="fa fa-check"></i><b>B.3.4</b> Beispiel: die Poisson-Verteilung</a></li>
-<li class="chapter" data-level="B.3.5" data-path="stat-stoch.html"><a href="stat-stoch.html#hinweise-zu-diskreten-wahrscheinlichkeitsverteilungen"><i class="fa fa-check"></i><b>B.3.5</b> Hinweise zu diskreten Wahrscheinlichkeitsverteilungen</a></li>
-</ul></li>
-<li class="chapter" data-level="B.4" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.4</b> Stetige Wahrscheinlichkeitsmodelle</a><ul>
-<li class="chapter" data-level="B.4.1" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-zv"><i class="fa fa-check"></i><b>B.4.1</b> Stetige ZV</a></li>
-<li class="chapter" data-level="B.4.2" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-uniformverteilung"><i class="fa fa-check"></i><b>B.4.2</b> Beispiel: die Uniformverteilung</a></li>
-<li class="chapter" data-level="B.4.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-normalverteilung"><i class="fa fa-check"></i><b>B.4.3</b> Beispiel: die Normalverteilung</a></li>
-<li class="chapter" data-level="B.4.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-exponentialverteilung"><i class="fa fa-check"></i><b>B.4.4</b> Beispiel: die Exponentialverteilung</a></li>
-</ul></li>
-<li class="chapter" data-level="B.5" data-path="stat-stoch.html"><a href="stat-stoch.html#zusammenfassung-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.5</b> Zusammenfassung Wahrscheinlichkeitsmodelle</a></li>
-</ul></li>
-<li class="chapter" data-level="C" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>C</b> Wiederholung: Deskriptive Statistik</a><ul>
-<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-und-datensätze"><i class="fa fa-check"></i>Verwendete Pakete und Datensätze</a></li>
-<li class="chapter" data-level="C.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>C.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
-<li class="chapter" data-level="C.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmaße"><i class="fa fa-check"></i><b>C.2</b> Korrelationsmaße</a></li>
-<li class="chapter" data-level="C.3" data-path="desk-stat.html"><a href="desk-stat.html#hinweise-zur-quantitativen-und-visuellen-datenbeschreibung"><i class="fa fa-check"></i><b>C.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
-<li class="chapter" data-level="C.4" data-path="desk-stat.html"><a href="desk-stat.html#zusamenfassung"><i class="fa fa-check"></i><b>C.4</b> Zusamenfassung</a></li>
-</ul></li>
-<li class="chapter" data-level="D" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>D</b> Wiederholung: Drei Verfahren der schließenden Statistik</a><ul>
-<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-3"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="D.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>D.1</b> Punktschätzung</a></li>
-<li class="chapter" data-level="D.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>D.2</b> Hypothesentests</a></li>
-<li class="chapter" data-level="D.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>D.3</b> Berechnung von Konfidenzintervallen</a></li>
+<li class="chapter" data-level="10.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>10.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
+<li class="chapter" data-level="10.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>10.5</b> Weitere Quellen</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -399,18 +364,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Zentrales Lernziel dieses Kapitels ist der Umgang mit einfachen linearen
 Regressionsmodellen in R.
 Dabei werden die Inhalte des Anhangs
-<a href="stat-rep.html#stat-rep">Wiederholung grundlegender statistischer Konzepte</a>
+<a href="#stat-rep">Wiederholung grundlegender statistischer Konzepte</a>
 als bekannt vorausgesetzt.
 Schauen Sie als erstes in diesem Abschnitt nach wenn Sie ein hier verwendetes
 Konzept nicht verstehen und konsultieren Sie ansonsten ein Statistiklehrbuch
 (und freundliche Kommiliton*inen) ihrer Wahl.</p>
 <p>In diesem Kapitel werden die folgenden R Pakete verwendet:</p>
-<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb680-1" data-line-number="1"><span class="kw">library</span>(here)</a>
-<a class="sourceLine" id="cb680-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb680-3" data-line-number="3"><span class="kw">library</span>(data.table)</a>
-<a class="sourceLine" id="cb680-4" data-line-number="4"><span class="kw">library</span>(latex2exp)</a>
-<a class="sourceLine" id="cb680-5" data-line-number="5"><span class="kw">library</span>(icaeDesign)</a>
-<a class="sourceLine" id="cb680-6" data-line-number="6"><span class="kw">library</span>(ggpubr)</a></code></pre></div>
+<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb683-1" data-line-number="1"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb683-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb683-3" data-line-number="3"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb683-4" data-line-number="4"><span class="kw">library</span>(latex2exp)</a>
+<a class="sourceLine" id="cb683-5" data-line-number="5"><span class="kw">library</span>(icaeDesign)</a>
+<a class="sourceLine" id="cb683-6" data-line-number="6"><span class="kw">library</span>(ggpubr)</a></code></pre></div>
 <p>Ziel solcher Modelle ist es, ausgehend von einem Datensatz ein lineares Modell
 zu schätzen.
 Ein solches lineares Modell hat in der Regel die Form</p>
@@ -450,8 +415,8 @@ aus dem Internet herunter und inspizieren die Daten zunächst visuell:</p>
 wir das Modell mit Hilfe der Daten schätzen um konkrete Werte für <span class="math inline">\(\beta_0\)</span> und
 <span class="math inline">\(\beta_1\)</span> zu identifizieren:</p>
 </blockquote>
-<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb681-1" data-line-number="1">schaetzung_bip &lt;-<span class="st"> </span><span class="kw">lm</span>(Konsum<span class="op">~</span>BIP, <span class="dt">data =</span> daten)</a>
-<a class="sourceLine" id="cb681-2" data-line-number="2">schaetzung_bip</a></code></pre></div>
+<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb684-1" data-line-number="1">schaetzung_bip &lt;-<span class="st"> </span><span class="kw">lm</span>(Konsum<span class="op">~</span>BIP, <span class="dt">data =</span> daten)</a>
+<a class="sourceLine" id="cb684-2" data-line-number="2">schaetzung_bip</a></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = Konsum ~ BIP, data = daten)
@@ -471,9 +436,9 @@ Auf dieser Basis können wir auch ausrechnen, wie hoch die Konsumausgaben in
 einer Volkswirtschaftslehre mit einem BIP von 8000 wäre, indem wir uns einfach an
 der geschätzten Gerade bis zu diesem Betrag fortbewegen.</p>
 </blockquote>
-<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb683-1" data-line-number="1">beta_<span class="dv">0</span> &lt;-<span class="st"> </span>schaetzung_bip[[<span class="st">&quot;coefficients&quot;</span>]][<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb683-2" data-line-number="2">beta_<span class="dv">1</span> &lt;-<span class="st"> </span>schaetzung_bip[[<span class="st">&quot;coefficients&quot;</span>]][<span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb683-3" data-line-number="3"><span class="kw">unname</span>(beta_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>beta_<span class="dv">1</span><span class="op">*</span><span class="dv">8000</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb686-1" data-line-number="1">beta_<span class="dv">0</span> &lt;-<span class="st"> </span>schaetzung_bip[[<span class="st">&quot;coefficients&quot;</span>]][<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb686-2" data-line-number="2">beta_<span class="dv">1</span> &lt;-<span class="st"> </span>schaetzung_bip[[<span class="st">&quot;coefficients&quot;</span>]][<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb686-3" data-line-number="3"><span class="kw">unname</span>(beta_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>beta_<span class="dv">1</span><span class="op">*</span><span class="dv">8000</span>)</a></code></pre></div>
 <pre><code>#&gt; [1] 5467.186</code></pre>
 <blockquote>
 <p>Im aktuellen Beispiel wären das also <code>5467.19</code> Euro.</p>
@@ -491,7 +456,7 @@ Annahmen eingeführt.</p>
 diskutieren und lernen, wie wir die Güte einer Regression beurteilen können.
 Dieser Abschnitt enthält Auführeungen zum <span class="math inline">\(R^2\)</span>, Standardfehlern von Schätzern,
 Konfidenzintervallen und Residuenanalysen.
-Vieles ist eine Anwendung der im <a href="stat-rep.html#stat-rep">Anhang zur schließenden Statistik</a>
+Vieles ist eine Anwendung der im <a href="#stat-rep">Anhang zur schließenden Statistik</a>
 beschriebenen Konzepte.</p>
 <p>Nachdem wir den <a href="linmodel.html#stat-ablauf">Ablauf einer Regressionsanalyse</a> kurz
 zusammengefasst haben, generalisieren wir das Gelernte noch für den
@@ -534,12 +499,12 @@ in unser Modell als erklärende Variable aufnehmen (dazu später mehr).
 Sie absorbieren quasi alle Einflüsse auf <span class="math inline">\(Y_i\)</span>, die nicht über <span class="math inline">\(x_i\)</span> wirken.
 Damit wir die Funktion richtig schätzen können nehmen wir für die Fehler ein
 bestimmtes Wahrscheinlichkeitsmodell an. In der Regel nimmt man an, die Fehler
-seien i.i.d.<a href="#fn61" class="footnote-ref" id="fnref61"><sup>61</sup></a>
+seien i.i.d.<a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a>
 normalverteilt mit Erwartungswert 0:
 <span class="math inline">\(\epsilon_i \ i.i.d. \propto \mathcal{N}(0, \sigma^2)\)</span>.</p>
 <p>Nun macht auch die Groß- und Kleinschreibung in der Gleichung mehr Sinn:
 die <span class="math inline">\(x_i\)</span> nehmen wir als beobachtete Größen hin und behandeln sie nicht als
-Zufallsvariablen (ZV).<a href="#fn62" class="footnote-ref" id="fnref62"><sup>62</sup></a>
+Zufallsvariablen (ZV).<a href="#fn61" class="footnote-ref" id="fnref61"><sup>61</sup></a>
 Die <span class="math inline">\(\epsilon_i\)</span> sind als ZV definiert und da wir <span class="math inline">\(Y_i\)</span> als eine Funktion von
 <span class="math inline">\(x_i\)</span> und <span class="math inline">\(\epsilon_i\)</span> interpretieren sind die <span class="math inline">\(Y_i\)</span> auch ZV - und dementsprechend
 groß geschrieben. Die Fehlerterme werden per Konvention nie groß geschrieben -
@@ -561,7 +526,7 @@ und <span class="math inline">\(\beta_1\)</span> <em>schätzen</em>.
 Denn diese Werte sind für uns nicht unmittelbar beobachtbar.
 Wir brauchen also einen <em>Schätzer</em>.
 Ein Schätzer ist eine Funktion, die uns für die Daten, die
-wir haben, den optimalen Wert für den gesuchten Parameter gibt.<a href="#fn63" class="footnote-ref" id="fnref63"><sup>63</sup></a>
+wir haben, den optimalen Wert für den gesuchten Parameter gibt.<a href="#fn62" class="footnote-ref" id="fnref62"><sup>62</sup></a>
 Wir suchen also nach den Werten für <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> sodass die
 resultierende Gerade möglichst nahe an allen <span class="math inline">\(Y_i\)</span> Werten in folgendem Graph ist:</p>
 <p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-8-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
@@ -574,7 +539,7 @@ positive und negative Abstände ja ausgleichen.
 Daher quadrieren wir die Abstände, bevor wir sie summieren.
 Daher ist die gängigste Methode, Werte für <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> zu finden
 auch als <strong>Kleinste-Quadrate Methode</strong> (engl. <em>ordinary least squares</em> - OLS)
-bekannt.<a href="#fn64" class="footnote-ref" id="fnref64"><sup>64</sup></a>
+bekannt.<a href="#fn63" class="footnote-ref" id="fnref63"><sup>63</sup></a>
 Die dadurch definierten Schätzer <span class="math inline">\(\hat{\beta}_0\)</span> und <span class="math inline">\(\hat{\beta}_1\)</span> sind
 entsprechend als <em>OLS-Schätzer</em> bekannt.</p>
 <p>Wir bezeichnen die Abweichung von <span class="math inline">\(Y_i\)</span> zu Regressionsgeraden als <em>Residuum</em> <span class="math inline">\(e_i\)</span>.
@@ -585,7 +550,7 @@ aller Residuen minimal ist:</p>
 <p><span class="math display">\[\hat{\beta}_0, \hat{\beta}_1 =\text{argmin}_{\beta_0, \beta_1} \sum_{i=1}^n(Y_i-\beta_0-\beta_1x_i)^2\]</span></p>
 <p>Dabei bedeutet <span class="math inline">\(\text{argmin}_{\beta_0, \beta_1}\)</span>: wähle die Werte für
 <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span>, welche den nachfolgenden Ausdruck minimieren.</p>
-<p>Diesen Ausdruck kann man analytisch so lange umformen bis gilt:<a href="#fn65" class="footnote-ref" id="fnref65"><sup>65</sup></a></p>
+<p>Diesen Ausdruck kann man analytisch so lange umformen bis gilt:<a href="#fn64" class="footnote-ref" id="fnref64"><sup>64</sup></a></p>
 <p><span class="math display">\[\hat{\beta}_1 = \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}\]</span>
 und</p>
 <p><span class="math display">\[\hat{\beta_0}=\bar{y}-\hat{\beta}_1\bar{x}\]</span></p>
@@ -594,7 +559,7 @@ und</p>
 schätzen, um unser Ergebnis dann später mit dem Ergebnis von <code>lm()</code> zu
 vergleichen.</p>
 <p>Dazu betrachten wir folgenden (artifiziellen) Datensatz:</p>
-<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb685-1" data-line-number="1">datensatz</a></code></pre></div>
+<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb688-1" data-line-number="1">datensatz</a></code></pre></div>
 <pre><code>#&gt;     x    y
 #&gt; 1 0.1 2.58
 #&gt; 2 0.2 3.05
@@ -625,14 +590,14 @@ Die LHS und RHS werden dabei mit dem Symbol <code>~</code> abgegrenzt.
 Wir können die Formel entweder direkt als <code>y~x</code> an <code>lm()</code> übergeben, oder
 wir speichern sie vorher als <code>character</code> und verwenden die Funktion <code>as.formula()</code>.
 Entsprechend sind die folgenden beiden Befehle äquivalent:</p>
-<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb687-1" data-line-number="1"><span class="kw">lm</span>(y<span class="op">~</span>x, <span class="dt">data =</span> datensatz)</a>
-<a class="sourceLine" id="cb687-2" data-line-number="2">reg_formel &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&quot;y~x&quot;</span>)</a>
-<a class="sourceLine" id="cb687-3" data-line-number="3"><span class="kw">lm</span>(reg_formel, <span class="dt">data =</span> datensatz)</a></code></pre></div>
+<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb690-1" data-line-number="1"><span class="kw">lm</span>(y<span class="op">~</span>x, <span class="dt">data =</span> datensatz)</a>
+<a class="sourceLine" id="cb690-2" data-line-number="2">reg_formel &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&quot;y~x&quot;</span>)</a>
+<a class="sourceLine" id="cb690-3" data-line-number="3"><span class="kw">lm</span>(reg_formel, <span class="dt">data =</span> datensatz)</a></code></pre></div>
 <p>Der Output von <code>lm()</code> ist eine Liste mit mehreren interessanten Informationen:</p>
-<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb688-1" data-line-number="1">schaetzung &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x, <span class="dt">data =</span> datensatz)</a>
-<a class="sourceLine" id="cb688-2" data-line-number="2"><span class="kw">typeof</span>(schaetzung)</a></code></pre></div>
+<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb691-1" data-line-number="1">schaetzung &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x, <span class="dt">data =</span> datensatz)</a>
+<a class="sourceLine" id="cb691-2" data-line-number="2"><span class="kw">typeof</span>(schaetzung)</a></code></pre></div>
 <pre><code>#&gt; [1] &quot;list&quot;</code></pre>
-<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb690-1" data-line-number="1">schaetzung</a></code></pre></div>
+<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb693-1" data-line-number="1">schaetzung</a></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = y ~ x, data = datensatz)
@@ -645,11 +610,11 @@ Entsprechend sind die folgenden beiden Befehle äquivalent:</p>
 haben, da wir die gleichen Werte herausbekommen haben.</p>
 <p>Wenn wir noch genauer wissen wollen, wie die Ergebnisliste aufgebaut ist, können
 wir die Funktion <code>str()</code> verwenden:</p>
-<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb692-1" data-line-number="1"><span class="kw">str</span>(schaetzung)</a></code></pre></div>
+<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb695-1" data-line-number="1"><span class="kw">str</span>(schaetzung)</a></code></pre></div>
 <p>Da die Liste aber tatsächlich sehr lang ist, wird dieser Code hier nicht
 ausgeführt. Es sei aber darauf hingewiesen, dass wir die geschätzen Werte
 auf folgende Art und Weise direkt ausgeben lassen können:</p>
-<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb693-1" data-line-number="1">schaetzung[[<span class="st">&quot;coefficients&quot;</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb696-1" data-line-number="1">schaetzung[[<span class="st">&quot;coefficients&quot;</span>]]</a></code></pre></div>
 <pre><code>#&gt; (Intercept)           x 
 #&gt;        2.69        3.08</code></pre>
 <p>Dies ist in der Praxis häufig nützlich, z.B. wenn wir wie in der Einleitung
@@ -660,7 +625,7 @@ Regressionsgeraden:</p>
 <p>Zwar wissen wir jetzt, wie wir eine einfache lineare Regression schätzen,
 allerdings hört die Arbeit hier nicht auf!
 Unsere bisherige Tätigkeiten korrespondieren zu der im
-<a href="stat-rep.html#stat-rep">Anhang zur schließenden Statistik</a> beschriebenen <em>Parameterschätzung</em>.
+<a href="#stat-rep">Anhang zur schließenden Statistik</a> beschriebenen <em>Parameterschätzung</em>.
 Wir wollen aber auch noch die anderen beiden Verfahren, Hypothesentests und Konfidenzintervalle,
 abdecken und lernen wie wir die Güte unserer Schätzung besser einschätzen können.</p>
 <p>Zuvor wollen wir aber noch einmal genauer überprüfen, welche Annahmen genau
@@ -687,7 +652,7 @@ Variable in das Modell aufnehmen könnten, welche diese Struktur explizit macht,
 oder die lineare Strukur des Modells ändern könnten.
 Die Annahme impliziert auch, dass der Zusammenhang zwischen der erklärten und
 erklärenden Variablen auch tatsächlich linear ist. Grob ausgedrückt: wir nehmen
-hier an, dass wir unser Modell clever spezifiziert haben.<a href="#fn66" class="footnote-ref" id="fnref66"><sup>66</sup></a></p></li>
+hier an, dass wir unser Modell clever spezifiziert haben.<a href="#fn65" class="footnote-ref" id="fnref65"><sup>65</sup></a></p></li>
 <li><p><strong>A2: Unabhängigkeit der Fehler mit den erklärenden Variablen</strong>: Das bedeutet,
 dass es keinen systematischen Zusammenhang zwischen den Fehlern und den erklärenden
 Variablen gibt. Die Annahme wäre verletzt, wenn für größere Werte von <span class="math inline">\(x\)</span> die
@@ -731,7 +696,7 @@ Kennzahlen unserer Regression möglicherweise irreführend sind. Daher sollte zu
 jeder Regressionsanalyse die Überprüfung der Annahmen dazugehören.
 Die notwendigen Methoden dazu lernen wir weiter unten kennen.</p>
 <p>Es ist wichtig zu beachten, dass wir eine Regression mit OLS schätzen können und
-keine Fehlermeldungen bekommen, obwohl die Annahmen für OLS nicht erfüllt sind.<a href="#fn67" class="footnote-ref" id="fnref67"><sup>67</sup></a>
+keine Fehlermeldungen bekommen, obwohl die Annahmen für OLS nicht erfüllt sind.<a href="#fn66" class="footnote-ref" id="fnref66"><sup>66</sup></a>
 In diesem Fall sind die Ergebnisse jedoch möglicherweise irreführend.
 Daher ist es immer wichtig, die Korrektheit der Annahmen zu überprüfen und
 weitere Kennzahlen der Regression zu betrachten
@@ -752,8 +717,8 @@ Als Maß für die Variation wird dabei die Summe der quadrierten Abweichungen vo
 <em>Total Sum of Squares</em> - ‘Summe der Quadrate der Totalen Abweichungen’) genannt:</p>
 <p><span class="math display">\[TSS=\sum_{i=1}^n(Y_i-\bar{Y})^2\]</span>
 In R:</p>
-<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb695-1" data-line-number="1">tss &lt;-<span class="st"> </span><span class="kw">sum</span>((datensatz<span class="op">$</span>y <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(datensatz<span class="op">$</span>y))<span class="op">**</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb695-2" data-line-number="2">tss</a></code></pre></div>
+<div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb698-1" data-line-number="1">tss &lt;-<span class="st"> </span><span class="kw">sum</span>((datensatz<span class="op">$</span>y <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(datensatz<span class="op">$</span>y))<span class="op">**</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb698-2" data-line-number="2">tss</a></code></pre></div>
 <pre><code>#&gt; [1] 3.30012</code></pre>
 <p>Diese Werte sind in folgender Abbildung für unseren Beispieldatensatz von
 oben grafisch dargestellt:</p>
@@ -766,8 +731,8 @@ Entsprechend definieren wir die <em>Residual Sum of Squares (RSS)</em>
 (dt.: <em>Residuenquadratsumme</em>) als:</p>
 <p><span class="math display">\[RSS=\sum_i^ne_i^2\]</span>
 In R:</p>
-<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb697-1" data-line-number="1">rss &lt;-<span class="st"> </span><span class="kw">sum</span>(schaetzung[[<span class="st">&quot;residuals&quot;</span>]]<span class="op">**</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb697-2" data-line-number="2">rss</a></code></pre></div>
+<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb700-1" data-line-number="1">rss &lt;-<span class="st"> </span><span class="kw">sum</span>(schaetzung[[<span class="st">&quot;residuals&quot;</span>]]<span class="op">**</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb700-2" data-line-number="2">rss</a></code></pre></div>
 <pre><code>#&gt; [1] 2.35148</code></pre>
 <p>Diese sehen wir hier:</p>
 <p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-19-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
@@ -778,8 +743,8 @@ Dabei handelt es sich um die quadrierte Differenz zwischen <span class="math inl
 geschätzten Werten <span class="math inline">\(\hat{Y}\)</span>:</p>
 <p><span class="math display">\[ESS=\sum_{i=1}^n(\hat{Y}_i-\bar{Y})^2\]</span>
 Diese ergibt sich in R als:</p>
-<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb699-1" data-line-number="1">ess &lt;-<span class="st"> </span><span class="kw">sum</span>((schaetzung[[<span class="st">&quot;fitted.values&quot;</span>]] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(datensatz<span class="op">$</span>y))<span class="op">**</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb699-2" data-line-number="2">ess</a></code></pre></div>
+<div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb702-1" data-line-number="1">ess &lt;-<span class="st"> </span><span class="kw">sum</span>((schaetzung[[<span class="st">&quot;fitted.values&quot;</span>]] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(datensatz<span class="op">$</span>y))<span class="op">**</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb702-2" data-line-number="2">ess</a></code></pre></div>
 <pre><code>#&gt; [1] 0.94864</code></pre>
 <p>Und grafisch:</p>
 <p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-21-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
@@ -790,14 +755,14 @@ welches Informationen darüber gibt, welchen Anteil der Variation in <span class
 unser Modell erklärt wird:</p>
 <p><span class="math display">\[R^2=\frac{ESS}{TSS}=1-\frac{RSS}{TSS}\]</span></p>
 <p>Wir können das für unseren Anwendungsfall natürlich händisch berechnen:</p>
-<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb701-1" data-line-number="1">r_sq_manual &lt;-<span class="st"> </span>ess <span class="op">/</span><span class="st"> </span>tss</a>
-<a class="sourceLine" id="cb701-2" data-line-number="2">r_sq_manual</a></code></pre></div>
+<div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb704-1" data-line-number="1">r_sq_manual &lt;-<span class="st"> </span>ess <span class="op">/</span><span class="st"> </span>tss</a>
+<a class="sourceLine" id="cb704-2" data-line-number="2">r_sq_manual</a></code></pre></div>
 <pre><code>#&gt; [1] 0.2874562</code></pre>
 <p>Leider wird diese Größe im Output von <code>lm()</code> direkt nicht ausgegeben.
 Wir können aber einen ausführlicheren Output unserer Regression mit der Funktion
 <code>summary()</code> erstellen, dort ist das <span class="math inline">\(R^2\)</span> dann auch enthalten:</p>
-<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb703-1" data-line-number="1">info_schaetzung &lt;-<span class="st"> </span><span class="kw">summary</span>(schaetzung)</a>
-<a class="sourceLine" id="cb703-2" data-line-number="2">info_schaetzung[[<span class="st">&quot;r.squared&quot;</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb706-1" data-line-number="1">info_schaetzung &lt;-<span class="st"> </span><span class="kw">summary</span>(schaetzung)</a>
+<a class="sourceLine" id="cb706-2" data-line-number="2">info_schaetzung[[<span class="st">&quot;r.squared&quot;</span>]]</a></code></pre></div>
 <pre><code>#&gt; [1] 0.2874562</code></pre>
 <p>In unserem Fall erklärt unser Modell als ca. 28% der Gesamtvarianz der
 erklärten Variable.
@@ -824,7 +789,7 @@ Parameter geschätzt werden.</p>
 <p>Das adjustierte <span class="math inline">\(R^2\)</span>, häufig als <span class="math inline">\(\bar{R}^2\)</span> bezeichnet, ist definiert als:</p>
 <p><span class="math display">\[\bar{R}^2=1-\frac{\sum_{i=1}^n\epsilon^2/(N-K-1)}{\sum_{i=1}^n(Y_i-\bar{Y})^2/(N-1)}\]</span>
 Um dieses Maß aus unserem Ergebnisobjekts auszugeben schreiben wir:</p>
-<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb705-1" data-line-number="1">info_schaetzung[[<span class="st">&quot;adj.r.squared&quot;</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb708-1" data-line-number="1">info_schaetzung[[<span class="st">&quot;adj.r.squared&quot;</span>]]</a></code></pre></div>
 <pre><code>#&gt; [1] 0.04994162</code></pre>
 <p>Leider hat es keine so eindeutige Interpretation wie das <span class="math inline">\(R^2\)</span>, aber es sollte
 immer gemeinsam mit letzterem beachtet werden.
@@ -848,7 +813,7 @@ machen und testen wir plausibel die tatsächliche Existenz eines Effekts ist.</p
 <p>Wir verlassen nun also das Gebiet der reinen Parameterschätzung und beschäftigen
 uns mit Hypothesentests und Konfidenzintervallen für unsere Schätzer <span class="math inline">\(\hat{\beta}_0\)</span>
 und <span class="math inline">\(\hat{\beta}_1\)</span>.
-Das ist analog zu den im <a href="stat-rep.html#stat-rep">Anhang zur schließenden Statistik</a>
+Das ist analog zu den im <a href="#stat-rep">Anhang zur schließenden Statistik</a>
 besprochenen Herangehensweisen.</p>
 <p>Wir wissen bereits, dass es sich bei unseren Schätzern <span class="math inline">\(\hat{\beta}_0\)</span>
 und <span class="math inline">\(\hat{\beta}_1\)</span> um ZV handelt.
@@ -880,34 +845,34 @@ Aber wie sehr streuen die geschätzten Werte um diesen wahren Wert?
 Zunächst erstellen wir den künstlichen Datensatz. Dazu spezifizieren wir zunächst
 die Grundstruktur des DGT:</p>
 </blockquote>
-<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb707-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb707-2" data-line-number="2">true_DGP &lt;-<span class="st"> </span><span class="cf">function</span>(x, b0, b1){</a>
-<a class="sourceLine" id="cb707-3" data-line-number="3">  y &lt;-<span class="st"> </span>b0 <span class="op">+</span><span class="st"> </span>b1<span class="op">*</span>x <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">length</span>(x), <span class="dv">0</span>, <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb707-4" data-line-number="4">  <span class="kw">return</span>(y)</a>
-<a class="sourceLine" id="cb707-5" data-line-number="5">}</a>
-<a class="sourceLine" id="cb707-6" data-line-number="6">beta_<span class="dv">0</span>_wahr &lt;-<span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb707-7" data-line-number="7">beta_<span class="dv">1</span>_wahr &lt;-<span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb707-8" data-line-number="8">sample_size &lt;-<span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb707-9" data-line-number="9">x &lt;-<span class="st"> </span><span class="kw">runif</span>(sample_size, <span class="dv">0</span>, <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb710-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb710-2" data-line-number="2">true_DGP &lt;-<span class="st"> </span><span class="cf">function</span>(x, b0, b1){</a>
+<a class="sourceLine" id="cb710-3" data-line-number="3">  y &lt;-<span class="st"> </span>b0 <span class="op">+</span><span class="st"> </span>b1<span class="op">*</span>x <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">length</span>(x), <span class="dv">0</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb710-4" data-line-number="4">  <span class="kw">return</span>(y)</a>
+<a class="sourceLine" id="cb710-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb710-6" data-line-number="6">beta_<span class="dv">0</span>_wahr &lt;-<span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb710-7" data-line-number="7">beta_<span class="dv">1</span>_wahr &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb710-8" data-line-number="8">sample_size &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb710-9" data-line-number="9">x &lt;-<span class="st"> </span><span class="kw">runif</span>(sample_size, <span class="dv">0</span>, <span class="dv">10</span>)</a></code></pre></div>
 <blockquote>
 <p>Nun erstellen wir mit Hilfe einer Schleife 1000 Realisierungen der Daten.
 Wir können uns das wie 1000 Erhebungen vorstellen. Für jede dieser Realisierungen
 schätzen wir dann die lineare Regressionsgleichung von oben:</p>
 </blockquote>
-<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb708-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb708-2" data-line-number="2">n_datensaetze &lt;-<span class="st"> </span><span class="dv">1000</span></a>
-<a class="sourceLine" id="cb708-3" data-line-number="3">beta_<span class="dv">0</span>_estimates &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, n_datensaetze)</a>
-<a class="sourceLine" id="cb708-4" data-line-number="4">beta_<span class="dv">1</span>_estimates &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, n_datensaetze)</a>
-<a class="sourceLine" id="cb708-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb708-6" data-line-number="6"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n_datensaetze){</a>
-<a class="sourceLine" id="cb708-7" data-line-number="7">  daten_satz &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb708-8" data-line-number="8">    <span class="dt">x =</span> x,</a>
-<a class="sourceLine" id="cb708-9" data-line-number="9">    <span class="dt">y =</span> <span class="kw">true_DGP</span>(x, beta_<span class="dv">0</span>_wahr, beta_<span class="dv">1</span>_wahr)</a>
-<a class="sourceLine" id="cb708-10" data-line-number="10">  )</a>
-<a class="sourceLine" id="cb708-11" data-line-number="11">  schaetzung_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x, <span class="dt">data =</span> daten_satz)</a>
-<a class="sourceLine" id="cb708-12" data-line-number="12">  beta_<span class="dv">0</span>_estimates[i] &lt;-<span class="st"> </span>schaetzung_<span class="dv">2</span>[[<span class="st">&quot;coefficients&quot;</span>]][<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb708-13" data-line-number="13">  beta_<span class="dv">1</span>_estimates[i] &lt;-<span class="st"> </span>schaetzung_<span class="dv">2</span>[[<span class="st">&quot;coefficients&quot;</span>]][<span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb708-14" data-line-number="14">}</a></code></pre></div>
+<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb711-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb711-2" data-line-number="2">n_datensaetze &lt;-<span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb711-3" data-line-number="3">beta_<span class="dv">0</span>_estimates &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, n_datensaetze)</a>
+<a class="sourceLine" id="cb711-4" data-line-number="4">beta_<span class="dv">1</span>_estimates &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, n_datensaetze)</a>
+<a class="sourceLine" id="cb711-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb711-6" data-line-number="6"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n_datensaetze){</a>
+<a class="sourceLine" id="cb711-7" data-line-number="7">  daten_satz &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb711-8" data-line-number="8">    <span class="dt">x =</span> x,</a>
+<a class="sourceLine" id="cb711-9" data-line-number="9">    <span class="dt">y =</span> <span class="kw">true_DGP</span>(x, beta_<span class="dv">0</span>_wahr, beta_<span class="dv">1</span>_wahr)</a>
+<a class="sourceLine" id="cb711-10" data-line-number="10">  )</a>
+<a class="sourceLine" id="cb711-11" data-line-number="11">  schaetzung_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x, <span class="dt">data =</span> daten_satz)</a>
+<a class="sourceLine" id="cb711-12" data-line-number="12">  beta_<span class="dv">0</span>_estimates[i] &lt;-<span class="st"> </span>schaetzung_<span class="dv">2</span>[[<span class="st">&quot;coefficients&quot;</span>]][<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb711-13" data-line-number="13">  beta_<span class="dv">1</span>_estimates[i] &lt;-<span class="st"> </span>schaetzung_<span class="dv">2</span>[[<span class="st">&quot;coefficients&quot;</span>]][<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb711-14" data-line-number="14">}</a></code></pre></div>
 <blockquote>
 <p>Nun können wir die Streuung der Schätzer direkt visualisieren:</p>
 </blockquote>
@@ -929,7 +894,7 @@ Freiheitsgraden dieser Schätzung.</p>
 Er wird aufgrund seiner Wichtigkeit auch in der Summary jeder Schätzung
 angegeben.
 Hier betrachten wir die Schätzung aus dem einführenden Beispiel:</p>
-<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb709-1" data-line-number="1"><span class="kw">summary</span>(schaetzung_bip)</a></code></pre></div>
+<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb712-1" data-line-number="1"><span class="kw">summary</span>(schaetzung_bip)</a></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = Konsum ~ BIP, data = daten)
@@ -955,11 +920,11 @@ Eine besonders relevante Frage ist immer ob ein bestimmter <em>Schätzer</em> si
 von 0 verschieden ist.
 Dazu können wir fragen: “Wie wahrscheinlich ist es, gegeben der Daten, dass <span class="math inline">\(\beta_i\)</span>
 gleich Null ist?”.</p>
-<p>Das ist die klassische Frage für einen Hypothesentest<a href="#fn68" class="footnote-ref" id="fnref68"><sup>68</sup></a> mit <span class="math inline">\(H_0: \beta_0=0\)</span> und <span class="math inline">\(H_1: \beta_0 \neq 0\)</span>.</p>
+<p>Das ist die klassische Frage für einen Hypothesentest<a href="#fn67" class="footnote-ref" id="fnref67"><sup>67</sup></a> mit <span class="math inline">\(H_0: \beta_0=0\)</span> und <span class="math inline">\(H_1: \beta_0 \neq 0\)</span>.</p>
 <p>Für einen Hypothesentest brauchen wir zunächst eine Teststatistik, also die
 Verteilung für den Schätzer wenn <span class="math inline">\(H_0\)</span> wahr wäre.
 Da wir annehmen, dass die Fehlerterme in unserem Fall normalverteilt sind, ist
-das in unserem Falle eine <span class="math inline">\(t\)</span>-Verteilung mit <span class="math inline">\(n-2\)</span> Freiheitsgraden.<a href="#fn69" class="footnote-ref" id="fnref69"><sup>69</sup></a>
+das in unserem Falle eine <span class="math inline">\(t\)</span>-Verteilung mit <span class="math inline">\(n-2\)</span> Freiheitsgraden.<a href="#fn68" class="footnote-ref" id="fnref68"><sup>68</sup></a>
 Damit können wir überprüfen wie wahrscheinlich unser Schätzwert unter
 der <span class="math inline">\(H_0\)</span> wäre. Wenn er sehr unwahrscheinlich wäre, würden wir <span class="math inline">\(H_0\)</span> verwerfen.</p>
 <p>Die Wahrscheinlichkeit, dass wir unseren Schätzer unseren Schätzer gefunden
@@ -972,7 +937,7 @@ Es erscheint daher sehr unplausibel, dass <span class="math inline">\(\beta_1=0\
 Tatsächlich würden wir diese Hypothese auf quasi jedem beliebigen
 Signifikanzniveau verwerfen. Daher ist der Schätzer in der Zusammenfassung mit
 drei Sternen gekennzeichnet:</p>
-<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb711-1" data-line-number="1"><span class="kw">summary</span>(schaetzung_bip)</a></code></pre></div>
+<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb714-1" data-line-number="1"><span class="kw">summary</span>(schaetzung_bip)</a></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = Konsum ~ BIP, data = daten)
@@ -1013,7 +978,7 @@ Wir diskutieren dieses Problem später im Rahmen der Veranstaltung</p>
 <h3><span class="header-section-number">7.3.3</span> Konfidenzintervalle für die Schätzer</h3>
 <p>Ausgehend von den Überlegungen zur Signifikanz können wir nun <strong>Konfidenzintervalle</strong>
 für unsere Schätzer konstruieren.
-Wie im <a href="stat-rep.html#stat-rep">Anhang zur schließenden Statistik</a> genauer erläutert
+Wie im <a href="#stat-rep">Anhang zur schließenden Statistik</a> genauer erläutert
 besteht ein ein Konfidenzintervall <span class="math inline">\(I_{\alpha}\)</span> aus
 allen geschätzten Parameterwerten, für die wir bei einem zweiseitigen Hypothesentest
 zum Signifikanzniveau <span class="math inline">\(\alpha\)</span> die Nullhypothese <span class="math inline">\(\beta_i=0\)</span> nicht verwerfen
@@ -1021,7 +986,7 @@ werden können.</p>
 <p>Um diese Intervalle für eine Schätzun in R zu konstruieren verwenden wir die
 Funktion <code>confint</code>, die als erstes Argument das geschätzte Modell und
 als Argument <code>level</code> das Signifikanzniveau <span class="math inline">\(1-\alpha\)</span> akzeptiert:</p>
-<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb713-1" data-line-number="1"><span class="kw">confint</span>(schaetzung_bip, <span class="dt">level=</span><span class="fl">0.95</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb716-1" data-line-number="1"><span class="kw">confint</span>(schaetzung_bip, <span class="dt">level=</span><span class="fl">0.95</span>)</a></code></pre></div>
 <pre><code>#&gt;                    2.5 %      97.5 %
 #&gt; (Intercept) -284.0209372 -84.1350533
 #&gt; BIP            0.6894978   0.7233183</code></pre>
@@ -1035,23 +1000,23 @@ würde, dann würde 95% der so für <span class="math inline">\(\hat{\beta}_1\)<
 <h3><span class="header-section-number">7.3.4</span> Zur Rolle der Stichprobengröße</h3>
 <p>Um die Rolle der Stichprobengröße besser beurteilen zu können, verwenden wir hier
 einen künstlich hergestellten Datensatz für den wir die ‘wahren’ Werte
-<span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> kennen:<a href="#fn70" class="footnote-ref" id="fnref70"><sup>70</sup></a></p>
-<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb715-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb715-2" data-line-number="2">wahres_b0 &lt;-<span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb715-3" data-line-number="3">wahres_b1 &lt;-<span class="st"> </span><span class="fl">1.4</span></a>
-<a class="sourceLine" id="cb715-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb715-5" data-line-number="5">stichproben_n &lt;-<span class="st"> </span><span class="dv">50</span></a>
-<a class="sourceLine" id="cb715-6" data-line-number="6">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>stichproben_n <span class="op">*</span><span class="st"> </span><span class="fl">0.1</span></a>
-<a class="sourceLine" id="cb715-7" data-line-number="7">fehler &lt;-<span class="st"> </span><span class="kw">rnorm</span>(stichproben_n, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb715-8" data-line-number="8">y &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, stichproben_n)</a>
-<a class="sourceLine" id="cb715-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb715-10" data-line-number="10"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>stichproben_n){</a>
-<a class="sourceLine" id="cb715-11" data-line-number="11">  y[i] &lt;-<span class="st"> </span>wahres_b0 <span class="op">+</span><span class="st"> </span>wahres_b1<span class="op">*</span>x[i] <span class="op">+</span><span class="st"> </span>fehler[i]</a>
-<a class="sourceLine" id="cb715-12" data-line-number="12">}</a>
-<a class="sourceLine" id="cb715-13" data-line-number="13">datensatz &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb715-14" data-line-number="14">  <span class="dt">x =</span> x,</a>
-<a class="sourceLine" id="cb715-15" data-line-number="15">  <span class="dt">y =</span> y</a>
-<a class="sourceLine" id="cb715-16" data-line-number="16">)</a></code></pre></div>
+<span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> kennen:<a href="#fn69" class="footnote-ref" id="fnref69"><sup>69</sup></a></p>
+<div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb718-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb718-2" data-line-number="2">wahres_b0 &lt;-<span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb718-3" data-line-number="3">wahres_b1 &lt;-<span class="st"> </span><span class="fl">1.4</span></a>
+<a class="sourceLine" id="cb718-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb718-5" data-line-number="5">stichproben_n &lt;-<span class="st"> </span><span class="dv">50</span></a>
+<a class="sourceLine" id="cb718-6" data-line-number="6">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>stichproben_n <span class="op">*</span><span class="st"> </span><span class="fl">0.1</span></a>
+<a class="sourceLine" id="cb718-7" data-line-number="7">fehler &lt;-<span class="st"> </span><span class="kw">rnorm</span>(stichproben_n, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb718-8" data-line-number="8">y &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, stichproben_n)</a>
+<a class="sourceLine" id="cb718-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb718-10" data-line-number="10"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>stichproben_n){</a>
+<a class="sourceLine" id="cb718-11" data-line-number="11">  y[i] &lt;-<span class="st"> </span>wahres_b0 <span class="op">+</span><span class="st"> </span>wahres_b1<span class="op">*</span>x[i] <span class="op">+</span><span class="st"> </span>fehler[i]</a>
+<a class="sourceLine" id="cb718-12" data-line-number="12">}</a>
+<a class="sourceLine" id="cb718-13" data-line-number="13">datensatz &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb718-14" data-line-number="14">  <span class="dt">x =</span> x,</a>
+<a class="sourceLine" id="cb718-15" data-line-number="15">  <span class="dt">y =</span> y</a>
+<a class="sourceLine" id="cb718-16" data-line-number="16">)</a></code></pre></div>
 <p>Wie wir im folgenden sehen ist die geschätzte Gerade nicht exakt deckungsgleich
 zur ‘wahren’ Gerade, aber doch durchaus nahe dran:</p>
 <p><img src="Chap-linmodels_files/figure-html/unnamed-chunk-32-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
@@ -1074,7 +1039,7 @@ bis ans Ende des Kapitels aufschieben:</p>
 <p>Eine sehr hilfreiche Art, die Modellannahmen von oben zu überprüfen ist die
 Analyse der Residuen.
 Diese sind im Ergebnisobjekt der Regression gespeichert:</p>
-<div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb716-1" data-line-number="1">schaetzung_bip[[<span class="st">&quot;residuals&quot;</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb719-1" data-line-number="1">schaetzung_bip[[<span class="st">&quot;residuals&quot;</span>]]</a></code></pre></div>
 <p>Wir wollen nun die Residuen verwenden um die folgenden Annahmen unseres
 Regressionsmodells zu überprüfen:</p>
 <ol style="list-style-type: decimal">
@@ -1140,9 +1105,9 @@ im Fall der einfachen Regression, das Prinzip ist jedoch quasi das gleiche.
 Zudem ist die Implementierung in R nicht wirklich schwieriger.</p>
 <p>Im folgenden wollen wir einen Beispieldatensatz verwenden, in dem Informationen
 über Informationen über die Preise von ökonomischen Journalen gesammelt sind:</p>
-<div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb717-1" data-line-number="1">journal_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/tidy/journaldaten.csv&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb717-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Titel, Preis, Seitenanzahl, Zitationen)</a>
-<a class="sourceLine" id="cb717-3" data-line-number="3"><span class="kw">head</span>(journal_data)</a></code></pre></div>
+<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb720-1" data-line-number="1">journal_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/tidy/journaldaten.csv&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb720-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Titel, Preis, Seitenanzahl, Zitationen)</a>
+<a class="sourceLine" id="cb720-3" data-line-number="3"><span class="kw">head</span>(journal_data)</a></code></pre></div>
 <pre><code>#&gt;                                                  Titel Preis Seitenanzahl
 #&gt; 1:                   Asian-Pacific Economic Literature   123          440
 #&gt; 2:           South African Journal of Economic History    20          309
@@ -1160,8 +1125,8 @@ Zudem ist die Implementierung in R nicht wirklich schwieriger.</p>
 <p>In einer einfachen linearen Regression könnten wir z.B. folgendes Modell schätzen:</p>
 <p><span class="math display">\[PREIS_i = \beta_0 + \beta_1 SEITEN + \epsilon\]</span></p>
 <p>Das würden wir mit folgendem Befehl in R implementieren:</p>
-<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb719-1" data-line-number="1">reg &lt;-<span class="st"> </span><span class="kw">lm</span>(Preis<span class="op">~</span>Seitenanzahl, <span class="dt">data=</span>journal_data)</a>
-<a class="sourceLine" id="cb719-2" data-line-number="2"><span class="kw">summary</span>(reg)</a></code></pre></div>
+<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb722-1" data-line-number="1">reg &lt;-<span class="st"> </span><span class="kw">lm</span>(Preis<span class="op">~</span>Seitenanzahl, <span class="dt">data=</span>journal_data)</a>
+<a class="sourceLine" id="cb722-2" data-line-number="2"><span class="kw">summary</span>(reg)</a></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = Preis ~ Seitenanzahl, data = journal_data)
@@ -1187,13 +1152,13 @@ linearen Modell arbeiten:</p>
 <p><span class="math display">\[PREIS_i = \beta_0 + \beta_1 SEITEN + \beta_2 ZITATE + \epsilon\]</span></p>
 <p>Tatsächlich ist die einzige Änderungen, die wir auf der technischen Seite machen
 müssen, die Inklusion der neuen erklärenden Variable in die Schätzgleichung:</p>
-<div class="sourceCode" id="cb721"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb721-1" data-line-number="1">reg &lt;-<span class="st"> </span><span class="kw">lm</span>(Preis<span class="op">~</span>Seitenanzahl <span class="op">+</span><span class="st"> </span>Seitenanzahl <span class="op">+</span><span class="st"> </span>Zitationen, <span class="dt">data=</span>journal_data)</a></code></pre></div>
+<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb724-1" data-line-number="1">reg &lt;-<span class="st"> </span><span class="kw">lm</span>(Preis<span class="op">~</span>Seitenanzahl <span class="op">+</span><span class="st"> </span>Seitenanzahl <span class="op">+</span><span class="st"> </span>Zitationen, <span class="dt">data=</span>journal_data)</a></code></pre></div>
 <p>Hierbei ist zu beachten, dass das <code>+</code> nicht im additiven Sinne gemeint ist,
 sondern in der Logik einer Regressionsgleichung.</p>
 <p>Wenn wir uns die Zusammenfassung dieses Objekts anschauen, sehen wir einen sehr
 ähnlichen Output als für den einfachen linearen Fall, nur dass wir eine weitere
 Zeile für die neue erklärende Variable haben:</p>
-<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb722-1" data-line-number="1"><span class="kw">summary</span>(reg)</a></code></pre></div>
+<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb725-1" data-line-number="1"><span class="kw">summary</span>(reg)</a></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = Preis ~ Seitenanzahl + Seitenanzahl + Zitationen, 

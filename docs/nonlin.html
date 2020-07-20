@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Ausgewählte nichtlineare Schätzverfahren | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="R Skript in der Version 0.7.2" />
+  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Ausgewählte nichtlineare Schätzverfahren | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="R Skript in der Version 0.7.2" />
+  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 9 Ausgewählte nichtlineare Schätzverfahren | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="R Skript in der Version 0.7.2" />
+  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-07-01" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -132,10 +132,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Willkommen</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#verhältnis-zur-vorlesung"><i class="fa fa-check"></i>Verhältnis zur Vorlesung</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie-während-des-semesters"><i class="fa fa-check"></i>Änderungshistorie während des Semesters</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie"><i class="fa fa-check"></i>Änderungshistorie</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a><ul>
 <li class="chapter" data-level="1.1" data-path="precons.html"><a href="precons.html#warum-r"><i class="fa fa-check"></i><b>1.1</b> Warum R?</a></li>
@@ -154,9 +153,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="einrichtung.html"><a href="einrichtung.html#abschließende-bemerkungen"><i class="fa fa-check"></i><b>2.5</b> Abschließende Bemerkungen</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a><ul>
-<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#befehle-in-r-an-den-computer-übermitteln"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
-<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#objekte-funktionen-und-zuweisungen"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
-<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#grundlegende-objeke-in-r"><i class="fa fa-check"></i><b>3.3</b> Grundlegende Objeke in R</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#es:befehle"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#es:objekte"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#es:objektarten"><i class="fa fa-check"></i><b>3.3</b> Grundlegende Objeke in R</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.3.1</b> Funktionen</a></li>
 <li class="chapter" data-level="3.3.2" data-path="basics.html"><a href="basics.html#basics-types-vectors"><i class="fa fa-check"></i><b>3.3.2</b> Vektoren</a></li>
 <li class="chapter" data-level="3.3.3" data-path="basics.html"><a href="basics.html#basics-logic"><i class="fa fa-check"></i><b>3.3.3</b> Logische Werte (logical)</a></li>
@@ -165,12 +164,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3.6" data-path="basics.html"><a href="basics.html#indizierung-und-ersetzung"><i class="fa fa-check"></i><b>3.3.6</b> Indizierung und Ersetzung</a></li>
 <li class="chapter" data-level="3.3.7" data-path="basics.html"><a href="basics.html#nützliche-funktionen-für-atomare-vektoren"><i class="fa fa-check"></i><b>3.3.7</b> Nützliche Funktionen für atomare Vektoren</a></li>
 <li class="chapter" data-level="3.3.8" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.3.8</b> Listen</a></li>
-<li class="chapter" data-level="3.3.9" data-path="basics.html"><a href="basics.html#into-factors"><i class="fa fa-check"></i><b>3.3.9</b> Faktoren</a></li>
+<li class="chapter" data-level="3.3.9" data-path="basics.html"><a href="basics.html#introfactors"><i class="fa fa-check"></i><b>3.3.9</b> Faktoren</a></li>
 <li class="chapter" data-level="3.3.10" data-path="basics.html"><a href="basics.html#intro-matrix"><i class="fa fa-check"></i><b>3.3.10</b> Matrizen</a></li>
 <li class="chapter" data-level="3.3.11" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.3.11</b> Data Frames</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#packages"><i class="fa fa-check"></i><b>3.4</b> Pakete</a></li>
-<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.5</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#es:pakete"><i class="fa fa-check"></i><b>3.4</b> Pakete</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>4</b> Datenkunde und Datenaufbereitung</a><ul>
 <li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
@@ -325,50 +323,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1.4" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-interpretation-der-ergebnisse"><i class="fa fa-check"></i><b>9.1.4</b> Logit und Probit: Interpretation der Ergebnisse</a></li>
 </ul></li>
 </ul></li>
-<li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>A</b> Eine kurze Einführung in R Markdown</a><ul>
-<li class="chapter" data-level="A.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>A.1</b> Markdown vs. R-Markdown</a></li>
-<li class="chapter" data-level="A.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>A.2</b> Installation von R-Markdown</a></li>
-<li class="chapter" data-level="A.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>A.3</b> Der R-Markdown Workflow</a><ul>
-<li class="chapter" data-level="A.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>A.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
-<li class="chapter" data-level="A.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>A.3.2</b> Der Titelblock</a></li>
-<li class="chapter" data-level="A.3.3" data-path="markdown.html"><a href="markdown.html#der-textkörper"><i class="fa fa-check"></i><b>A.3.3</b> Der Textkörper</a></li>
-<li class="chapter" data-level="A.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>A.3.4</b> Kompillieren von Dokumenten</a></li>
+<li class="chapter" data-level="10" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>10</b> Eine kurze Einführung in R Markdown</a><ul>
+<li class="chapter" data-level="10.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>10.1</b> Markdown vs. R-Markdown</a></li>
+<li class="chapter" data-level="10.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>10.2</b> Installation von R-Markdown</a></li>
+<li class="chapter" data-level="10.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>10.3</b> Der R-Markdown Workflow</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>10.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
+<li class="chapter" data-level="10.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>10.3.2</b> Der Titelblock</a></li>
+<li class="chapter" data-level="10.3.3" data-path="markdown.html"><a href="markdown.html#der-textkörper"><i class="fa fa-check"></i><b>10.3.3</b> Der Textkörper</a></li>
+<li class="chapter" data-level="10.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>10.3.4</b> Kompillieren von Dokumenten</a></li>
 </ul></li>
-<li class="chapter" data-level="A.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>A.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
-<li class="chapter" data-level="A.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>A.5</b> Weitere Quellen</a></li>
-</ul></li>
-<li class="chapter" data-level="B" data-path="stat-stoch.html"><a href="stat-stoch.html"><i class="fa fa-check"></i><b>B</b> Wiederholung: Wahrscheinlichkeitstheorie</a><ul>
-<li class="chapter" data-level="" data-path="stat-stoch.html"><a href="stat-stoch.html#verwendete-pakete-2"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="B.1" data-path="stat-stoch.html"><a href="stat-stoch.html#einleitung-wahrscheinlichkeitstheorie-und-statistik"><i class="fa fa-check"></i><b>B.1</b> Einleitung: Wahrscheinlichkeitstheorie und Statistik</a></li>
-<li class="chapter" data-level="B.2" data-path="stat-stoch.html"><a href="stat-stoch.html#grundbegriffe-der-wahrscheinlichkeitstheorie"><i class="fa fa-check"></i><b>B.2</b> Grundbegriffe der Wahrscheinlichkeitstheorie</a></li>
-<li class="chapter" data-level="B.3" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.3</b> Diskrete Wahrscheinlichkeitsmodelle</a><ul>
-<li class="chapter" data-level="B.3.1" data-path="stat-stoch.html"><a href="stat-stoch.html#bayes-theorem-und-gesetz-der-total-wahrscheinlichkeiten"><i class="fa fa-check"></i><b>B.3.1</b> Bayes Theorem und Gesetz der total Wahrscheinlichkeiten</a></li>
-<li class="chapter" data-level="B.3.2" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-zufallsvariablen"><i class="fa fa-check"></i><b>B.3.2</b> Diskrete Zufallsvariablen</a></li>
-<li class="chapter" data-level="B.3.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-binomial-verteilung"><i class="fa fa-check"></i><b>B.3.3</b> Beispiel: die Binomial-Verteilung</a></li>
-<li class="chapter" data-level="B.3.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-poisson-verteilung"><i class="fa fa-check"></i><b>B.3.4</b> Beispiel: die Poisson-Verteilung</a></li>
-<li class="chapter" data-level="B.3.5" data-path="stat-stoch.html"><a href="stat-stoch.html#hinweise-zu-diskreten-wahrscheinlichkeitsverteilungen"><i class="fa fa-check"></i><b>B.3.5</b> Hinweise zu diskreten Wahrscheinlichkeitsverteilungen</a></li>
-</ul></li>
-<li class="chapter" data-level="B.4" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.4</b> Stetige Wahrscheinlichkeitsmodelle</a><ul>
-<li class="chapter" data-level="B.4.1" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-zv"><i class="fa fa-check"></i><b>B.4.1</b> Stetige ZV</a></li>
-<li class="chapter" data-level="B.4.2" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-uniformverteilung"><i class="fa fa-check"></i><b>B.4.2</b> Beispiel: die Uniformverteilung</a></li>
-<li class="chapter" data-level="B.4.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-normalverteilung"><i class="fa fa-check"></i><b>B.4.3</b> Beispiel: die Normalverteilung</a></li>
-<li class="chapter" data-level="B.4.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-exponentialverteilung"><i class="fa fa-check"></i><b>B.4.4</b> Beispiel: die Exponentialverteilung</a></li>
-</ul></li>
-<li class="chapter" data-level="B.5" data-path="stat-stoch.html"><a href="stat-stoch.html#zusammenfassung-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.5</b> Zusammenfassung Wahrscheinlichkeitsmodelle</a></li>
-</ul></li>
-<li class="chapter" data-level="C" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>C</b> Wiederholung: Deskriptive Statistik</a><ul>
-<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-und-datensätze"><i class="fa fa-check"></i>Verwendete Pakete und Datensätze</a></li>
-<li class="chapter" data-level="C.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>C.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
-<li class="chapter" data-level="C.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmaße"><i class="fa fa-check"></i><b>C.2</b> Korrelationsmaße</a></li>
-<li class="chapter" data-level="C.3" data-path="desk-stat.html"><a href="desk-stat.html#hinweise-zur-quantitativen-und-visuellen-datenbeschreibung"><i class="fa fa-check"></i><b>C.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
-<li class="chapter" data-level="C.4" data-path="desk-stat.html"><a href="desk-stat.html#zusamenfassung"><i class="fa fa-check"></i><b>C.4</b> Zusamenfassung</a></li>
-</ul></li>
-<li class="chapter" data-level="D" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>D</b> Wiederholung: Drei Verfahren der schließenden Statistik</a><ul>
-<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-3"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="D.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>D.1</b> Punktschätzung</a></li>
-<li class="chapter" data-level="D.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>D.2</b> Hypothesentests</a></li>
-<li class="chapter" data-level="D.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>D.3</b> Berechnung von Konfidenzintervallen</a></li>
+<li class="chapter" data-level="10.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>10.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
+<li class="chapter" data-level="10.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>10.5</b> Weitere Quellen</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -420,17 +385,17 @@ klar verletzt.
 In diesem Kapitel lernen wir dabei logit- und probit-Modelle als alternative
 Schätzverfahren kennen.</p>
 <p>Dabei werden die folgenden Pakete verwendet:</p>
-<div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb794-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb794-2" data-line-number="2"><span class="kw">library</span>(data.table)</a>
-<a class="sourceLine" id="cb794-3" data-line-number="3"><span class="kw">library</span>(here)</a>
-<a class="sourceLine" id="cb794-4" data-line-number="4"><span class="kw">library</span>(icaeDesign)</a></code></pre></div>
+<div class="sourceCode" id="cb797"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb797-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb797-2" data-line-number="2"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb797-3" data-line-number="3"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb797-4" data-line-number="4"><span class="kw">library</span>(icaeDesign)</a></code></pre></div>
 <div id="logit" class="section level2">
 <h2><span class="header-section-number">9.1</span> Binäre abhängige Variablen: Logit- und Probit-Modelle</h2>
 <p>Das folgende Beispiel verwendet angepasste Daten aus <span class="citation">Kleiber and Zeileis (<a href="#ref-AER">2008</a>)</span> zur
 Beschäftigunssituation von Frauen aus der Schweiz:</p>
-<div class="sourceCode" id="cb795"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb795-1" data-line-number="1">schweiz_al &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/tidy/nonlinmodels_schweizer-arbeit.csv&quot;</span>), </a>
-<a class="sourceLine" id="cb795-2" data-line-number="2">                    <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;double&quot;</span>, <span class="kw">rep</span>(<span class="st">&quot;double&quot;</span>, <span class="dv">5</span>), <span class="st">&quot;factor&quot;</span>))</a>
-<a class="sourceLine" id="cb795-3" data-line-number="3"><span class="kw">head</span>(schweiz_al)</a></code></pre></div>
+<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb798-1" data-line-number="1">schweiz_al &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/tidy/nonlinmodels_schweizer-arbeit.csv&quot;</span>), </a>
+<a class="sourceLine" id="cb798-2" data-line-number="2">                    <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;double&quot;</span>, <span class="kw">rep</span>(<span class="st">&quot;double&quot;</span>, <span class="dv">5</span>), <span class="st">&quot;factor&quot;</span>))</a>
+<a class="sourceLine" id="cb798-3" data-line-number="3"><span class="kw">head</span>(schweiz_al)</a></code></pre></div>
 <pre><code>#&gt;    Arbeitslos Einkommen_log Alter Ausbildung_Jahre Kinder_jung Kinder_alt
 #&gt; 1:          1      10.78750    30                8           1          1
 #&gt; 2:          0      10.52425    45                8           0          1
@@ -454,12 +419,12 @@ Wahrscheinlichkeit haben, dass eine Frau Arbeitslos ist, also die Variable
 verwenden um den Zusammenhang zu schätzen.
 Um die Probleme zu illustrieren schätzen wir einmal nur den bivariaten
 Zusammenhang zwischen <code>Arbeitslos</code> und <code>Einkommen_log</code>:</p>
-<div class="sourceCode" id="cb797"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb797-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
-<a class="sourceLine" id="cb797-2" data-line-number="2">  <span class="dt">data =</span> schweiz_al,</a>
-<a class="sourceLine" id="cb797-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>Einkommen_log, <span class="dt">y=</span>Arbeitslos, <span class="dt">group=</span><span class="dv">1</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb797-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">14</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb797-5" data-line-number="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Arbeitslosigkeit&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Arbeitsunabh. Einkommen (log)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb797-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">fullrange=</span><span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_icae</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb800"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb800-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
+<a class="sourceLine" id="cb800-2" data-line-number="2">  <span class="dt">data =</span> schweiz_al,</a>
+<a class="sourceLine" id="cb800-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>Einkommen_log, <span class="dt">y=</span>Arbeitslos, <span class="dt">group=</span><span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb800-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">14</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb800-5" data-line-number="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Arbeitslosigkeit&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Arbeitsunabh. Einkommen (log)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb800-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">fullrange=</span><span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_icae</span>()</a></code></pre></div>
 <pre><code>#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Chap-nonlinmodels-binary_files/figure-html/unnamed-chunk-5-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Unser Modell würde für bestimmte Levels an arbeitsunabhängigem Einkommen
@@ -468,14 +433,14 @@ annehmen kann und die, da wir die Werte für <span class="math inline">\(y\)</sp
 interpretieren wollen, auch gar keinen Sinn ergeben wollen.</p>
 <p>Unser Ziel ist da eher ein funktionaler Zusammenhang wie in folgender
 Abbildung zu sehen:</p>
-<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb799-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
-<a class="sourceLine" id="cb799-2" data-line-number="2">  <span class="dt">data =</span> schweiz_al,</a>
-<a class="sourceLine" id="cb799-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>Einkommen_log, <span class="dt">y=</span>Arbeitslos, <span class="dt">group=</span><span class="dv">1</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb799-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">14</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb799-5" data-line-number="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Arbeitslosigkeit&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Arbeitsunabh. Einkommen (log)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb799-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">y=</span>Arbeitslos), <span class="dt">method =</span> <span class="st">&quot;glm&quot;</span>,</a>
-<a class="sourceLine" id="cb799-7" data-line-number="7">                             <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>), </a>
-<a class="sourceLine" id="cb799-8" data-line-number="8">                             <span class="dt">fullrange=</span><span class="ot">TRUE</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_icae</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb802-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
+<a class="sourceLine" id="cb802-2" data-line-number="2">  <span class="dt">data =</span> schweiz_al,</a>
+<a class="sourceLine" id="cb802-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>Einkommen_log, <span class="dt">y=</span>Arbeitslos, <span class="dt">group=</span><span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb802-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">14</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb802-5" data-line-number="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Arbeitslosigkeit&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Arbeitsunabh. Einkommen (log)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb802-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">y=</span>Arbeitslos), <span class="dt">method =</span> <span class="st">&quot;glm&quot;</span>,</a>
+<a class="sourceLine" id="cb802-7" data-line-number="7">                             <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>), </a>
+<a class="sourceLine" id="cb802-8" data-line-number="8">                             <span class="dt">fullrange=</span><span class="ot">TRUE</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_icae</span>()</a></code></pre></div>
 <pre><code>#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Chap-nonlinmodels-binary_files/figure-html/unnamed-chunk-6-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Dieser Zusammenhang ist jedoch nicht linear und damit inkonsisten mit A1 des
@@ -553,18 +518,18 @@ Für <em>logit</em> Modelle schreiben wir <code>family = binomial(link = &quot;l
 <em>probit</em> Modelle entsprechend <code>family = binomial(link = &quot;probit&quot;)</code>.</p>
 <p>Das letzte Argument ist dann <code>data</code>.
 Insgesamt erhalten wir also für das <em>logit</em>-Modell:</p>
-<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb802-1" data-line-number="1">arbeitslogit_test &lt;-<span class="st"> </span><span class="kw">glm</span>(</a>
-<a class="sourceLine" id="cb802-2" data-line-number="2">  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter, </a>
-<a class="sourceLine" id="cb802-3" data-line-number="3">  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), </a>
-<a class="sourceLine" id="cb802-4" data-line-number="4">  <span class="dt">data =</span> schweiz_al)</a></code></pre></div>
+<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb805-1" data-line-number="1">arbeitslogit_test &lt;-<span class="st"> </span><span class="kw">glm</span>(</a>
+<a class="sourceLine" id="cb805-2" data-line-number="2">  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter, </a>
+<a class="sourceLine" id="cb805-3" data-line-number="3">  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), </a>
+<a class="sourceLine" id="cb805-4" data-line-number="4">  <span class="dt">data =</span> schweiz_al)</a></code></pre></div>
 <p>Und das <em>probit</em>-Modell:</p>
-<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb803-1" data-line-number="1">arbeitsprobit_test &lt;-<span class="st"> </span><span class="kw">glm</span>(</a>
-<a class="sourceLine" id="cb803-2" data-line-number="2">  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter, </a>
-<a class="sourceLine" id="cb803-3" data-line-number="3">  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </a>
-<a class="sourceLine" id="cb803-4" data-line-number="4">  <span class="dt">data =</span> schweiz_al)</a></code></pre></div>
+<div class="sourceCode" id="cb806"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb806-1" data-line-number="1">arbeitsprobit_test &lt;-<span class="st"> </span><span class="kw">glm</span>(</a>
+<a class="sourceLine" id="cb806-2" data-line-number="2">  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter, </a>
+<a class="sourceLine" id="cb806-3" data-line-number="3">  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </a>
+<a class="sourceLine" id="cb806-4" data-line-number="4">  <span class="dt">data =</span> schweiz_al)</a></code></pre></div>
 <p>Für die Schätzergebnisse können wir wie bilang die Funktion <code>summary()</code>
 verwenden:</p>
-<div class="sourceCode" id="cb804"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb804-1" data-line-number="1"><span class="kw">summary</span>(arbeitslogit_test)</a></code></pre></div>
+<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb807-1" data-line-number="1"><span class="kw">summary</span>(arbeitslogit_test)</a></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; glm(formula = Arbeitslos ~ Einkommen_log + Alter, family = binomial(link = &quot;logit&quot;), 
@@ -601,12 +566,12 @@ Das ist nicht ganz einfach zu interpretieren.
 So bedeutet der Koeffizient für <code>Auslaender1</code> in folgender Ergebnistabelle,
 dass sich die logarithmierte <em>Odds Ratio</em> <em>ceteris paribus</em> um 1.3 Prozent
 reduziert, wenn die betroffene Person Ausländerin ist:</p>
-<div class="sourceCode" id="cb806"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb806-1" data-line-number="1">arbeitslogit &lt;-<span class="st"> </span><span class="kw">glm</span>(</a>
-<a class="sourceLine" id="cb806-2" data-line-number="2">  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter <span class="op">+</span><span class="st"> </span>Ausbildung_Jahre <span class="op">+</span><span class="st"> </span>Kinder_jung <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb806-3" data-line-number="3"><span class="st">    </span>Kinder_alt <span class="op">+</span><span class="st"> </span>Auslaender, </a>
-<a class="sourceLine" id="cb806-4" data-line-number="4">  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), </a>
-<a class="sourceLine" id="cb806-5" data-line-number="5">  <span class="dt">data =</span> schweiz_al)</a>
-<a class="sourceLine" id="cb806-6" data-line-number="6"><span class="kw">summary</span>(arbeitslogit)</a></code></pre></div>
+<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb809-1" data-line-number="1">arbeitslogit &lt;-<span class="st"> </span><span class="kw">glm</span>(</a>
+<a class="sourceLine" id="cb809-2" data-line-number="2">  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter <span class="op">+</span><span class="st"> </span>Ausbildung_Jahre <span class="op">+</span><span class="st"> </span>Kinder_jung <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb809-3" data-line-number="3"><span class="st">    </span>Kinder_alt <span class="op">+</span><span class="st"> </span>Auslaender, </a>
+<a class="sourceLine" id="cb809-4" data-line-number="4">  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), </a>
+<a class="sourceLine" id="cb809-5" data-line-number="5">  <span class="dt">data =</span> schweiz_al)</a>
+<a class="sourceLine" id="cb809-6" data-line-number="6"><span class="kw">summary</span>(arbeitslogit)</a></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; glm(formula = Arbeitslos ~ Einkommen_log + Alter + Ausbildung_Jahre + 
@@ -655,17 +620,17 @@ Variable ja nicht-linear ist.</p>
 <p>Als drittes Argument müssen wir noch <code>type = &quot;response&quot;</code> übergeben damit
 wir die Vorhersagen auf der Skala der zugrundeliegenden abhänigigen Variable
 bekommen, also direkt als Wahrscheinlichkeiten:</p>
-<div class="sourceCode" id="cb808"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb808-1" data-line-number="1">predicted_probs &lt;-<span class="st"> </span><span class="kw">predict</span>(<span class="dt">object =</span> arbeitslogit, </a>
-<a class="sourceLine" id="cb808-2" data-line-number="2">        <span class="dt">newdata =</span> <span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb808-3" data-line-number="3">          <span class="st">&quot;Einkommen_log&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), </a>
-<a class="sourceLine" id="cb808-4" data-line-number="4">          <span class="st">&quot;Alter&quot;</span>=<span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">30</span>), </a>
-<a class="sourceLine" id="cb808-5" data-line-number="5">          <span class="st">&quot;Ausbildung_Jahre&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb808-6" data-line-number="6">          <span class="st">&quot;Kinder_alt&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </a>
-<a class="sourceLine" id="cb808-7" data-line-number="7">          <span class="st">&quot;Kinder_jung&quot;</span>=<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb808-8" data-line-number="8">          <span class="st">&quot;Auslaender&quot;</span> =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb808-9" data-line-number="9">          ),</a>
-<a class="sourceLine" id="cb808-10" data-line-number="10">        <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</a>
-<a class="sourceLine" id="cb808-11" data-line-number="11">predicted_probs</a></code></pre></div>
+<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb811-1" data-line-number="1">predicted_probs &lt;-<span class="st"> </span><span class="kw">predict</span>(<span class="dt">object =</span> arbeitslogit, </a>
+<a class="sourceLine" id="cb811-2" data-line-number="2">        <span class="dt">newdata =</span> <span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb811-3" data-line-number="3">          <span class="st">&quot;Einkommen_log&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), </a>
+<a class="sourceLine" id="cb811-4" data-line-number="4">          <span class="st">&quot;Alter&quot;</span>=<span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">30</span>), </a>
+<a class="sourceLine" id="cb811-5" data-line-number="5">          <span class="st">&quot;Ausbildung_Jahre&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb811-6" data-line-number="6">          <span class="st">&quot;Kinder_alt&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </a>
+<a class="sourceLine" id="cb811-7" data-line-number="7">          <span class="st">&quot;Kinder_jung&quot;</span>=<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb811-8" data-line-number="8">          <span class="st">&quot;Auslaender&quot;</span> =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb811-9" data-line-number="9">          ),</a>
+<a class="sourceLine" id="cb811-10" data-line-number="10">        <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</a>
+<a class="sourceLine" id="cb811-11" data-line-number="11">predicted_probs</a></code></pre></div>
 <pre><code>#&gt;         1         2 
 #&gt; 0.6175431 0.8593445</code></pre>
 <p>Das erste Element ist die Wahrscheinlichkeit arbeitslos zu sein für eine
@@ -676,33 +641,31 @@ Die zweite Wahrscheinlichkeit gilt für eine Frau mit den gleichen Eigenschaften
 aber zwei jungen Kindern.
 Mit <code>diff()</code> bekommen wir gleich den entsprechenden Effekt des zweiten jungen
 Kindes auf die Wahrscheinlichkeit arbeitslos zu sein:</p>
-<div class="sourceCode" id="cb810"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb810-1" data-line-number="1"><span class="kw">diff</span>(predicted_probs)</a></code></pre></div>
+<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb813-1" data-line-number="1"><span class="kw">diff</span>(predicted_probs)</a></code></pre></div>
 <pre><code>#&gt;         2 
 #&gt; 0.2418014</code></pre>
 <p>Die Wahrscheinlichkeit ist also nach dem Modell ca. <span class="math inline">\(25\%\)</span> größer!
 Wenn wir wissen wollen ob der Effekt für Ausländerinnen ähnlich ist rechnen wir:</p>
-<div class="sourceCode" id="cb812"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb812-1" data-line-number="1"><span class="kw">diff</span>(</a>
-<a class="sourceLine" id="cb812-2" data-line-number="2">  <span class="kw">predict</span>(<span class="dt">object =</span> arbeitslogit, </a>
-<a class="sourceLine" id="cb812-3" data-line-number="3">        <span class="dt">newdata =</span> <span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb812-4" data-line-number="4">          <span class="st">&quot;Einkommen_log&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), </a>
-<a class="sourceLine" id="cb812-5" data-line-number="5">          <span class="st">&quot;Alter&quot;</span>=<span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">30</span>), </a>
-<a class="sourceLine" id="cb812-6" data-line-number="6">          <span class="st">&quot;Ausbildung_Jahre&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb812-7" data-line-number="7">          <span class="st">&quot;Kinder_alt&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </a>
-<a class="sourceLine" id="cb812-8" data-line-number="8">          <span class="st">&quot;Kinder_jung&quot;</span>=<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb812-9" data-line-number="9">          <span class="st">&quot;Auslaender&quot;</span> =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb812-10" data-line-number="10">          ),</a>
-<a class="sourceLine" id="cb812-11" data-line-number="11">        <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</a>
-<a class="sourceLine" id="cb812-12" data-line-number="12">)</a></code></pre></div>
+<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb815-1" data-line-number="1"><span class="kw">diff</span>(</a>
+<a class="sourceLine" id="cb815-2" data-line-number="2">  <span class="kw">predict</span>(<span class="dt">object =</span> arbeitslogit, </a>
+<a class="sourceLine" id="cb815-3" data-line-number="3">        <span class="dt">newdata =</span> <span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb815-4" data-line-number="4">          <span class="st">&quot;Einkommen_log&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), </a>
+<a class="sourceLine" id="cb815-5" data-line-number="5">          <span class="st">&quot;Alter&quot;</span>=<span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">30</span>), </a>
+<a class="sourceLine" id="cb815-6" data-line-number="6">          <span class="st">&quot;Ausbildung_Jahre&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb815-7" data-line-number="7">          <span class="st">&quot;Kinder_alt&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </a>
+<a class="sourceLine" id="cb815-8" data-line-number="8">          <span class="st">&quot;Kinder_jung&quot;</span>=<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb815-9" data-line-number="9">          <span class="st">&quot;Auslaender&quot;</span> =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb815-10" data-line-number="10">          ),</a>
+<a class="sourceLine" id="cb815-11" data-line-number="11">        <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</a>
+<a class="sourceLine" id="cb815-12" data-line-number="12">)</a></code></pre></div>
 <pre><code>#&gt;         2 
 #&gt; 0.3189543</code></pre>
 <p>Hier ist der Effekt mit ca. <span class="math inline">\(32\%\)</span> also noch größer!</p>
 
-</div>
-</div>
-</div>
 
 
-
+</div>
+</div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">

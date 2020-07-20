@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="R Skript in der Version 0.7.2" />
+  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="R Skript in der Version 0.7.2" />
+  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="R Skript in der Version 0.7.2" />
+  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-07-01" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -132,10 +132,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Willkommen</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#verhältnis-zur-vorlesung"><i class="fa fa-check"></i>Verhältnis zur Vorlesung</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie-während-des-semesters"><i class="fa fa-check"></i>Änderungshistorie während des Semesters</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie"><i class="fa fa-check"></i>Änderungshistorie</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a><ul>
 <li class="chapter" data-level="1.1" data-path="precons.html"><a href="precons.html#warum-r"><i class="fa fa-check"></i><b>1.1</b> Warum R?</a></li>
@@ -154,9 +153,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="einrichtung.html"><a href="einrichtung.html#abschließende-bemerkungen"><i class="fa fa-check"></i><b>2.5</b> Abschließende Bemerkungen</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a><ul>
-<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#befehle-in-r-an-den-computer-übermitteln"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
-<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#objekte-funktionen-und-zuweisungen"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
-<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#grundlegende-objeke-in-r"><i class="fa fa-check"></i><b>3.3</b> Grundlegende Objeke in R</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#es:befehle"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#es:objekte"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#es:objektarten"><i class="fa fa-check"></i><b>3.3</b> Grundlegende Objeke in R</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.3.1</b> Funktionen</a></li>
 <li class="chapter" data-level="3.3.2" data-path="basics.html"><a href="basics.html#basics-types-vectors"><i class="fa fa-check"></i><b>3.3.2</b> Vektoren</a></li>
 <li class="chapter" data-level="3.3.3" data-path="basics.html"><a href="basics.html#basics-logic"><i class="fa fa-check"></i><b>3.3.3</b> Logische Werte (logical)</a></li>
@@ -165,12 +164,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3.6" data-path="basics.html"><a href="basics.html#indizierung-und-ersetzung"><i class="fa fa-check"></i><b>3.3.6</b> Indizierung und Ersetzung</a></li>
 <li class="chapter" data-level="3.3.7" data-path="basics.html"><a href="basics.html#nützliche-funktionen-für-atomare-vektoren"><i class="fa fa-check"></i><b>3.3.7</b> Nützliche Funktionen für atomare Vektoren</a></li>
 <li class="chapter" data-level="3.3.8" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.3.8</b> Listen</a></li>
-<li class="chapter" data-level="3.3.9" data-path="basics.html"><a href="basics.html#into-factors"><i class="fa fa-check"></i><b>3.3.9</b> Faktoren</a></li>
+<li class="chapter" data-level="3.3.9" data-path="basics.html"><a href="basics.html#introfactors"><i class="fa fa-check"></i><b>3.3.9</b> Faktoren</a></li>
 <li class="chapter" data-level="3.3.10" data-path="basics.html"><a href="basics.html#intro-matrix"><i class="fa fa-check"></i><b>3.3.10</b> Matrizen</a></li>
 <li class="chapter" data-level="3.3.11" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.3.11</b> Data Frames</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#packages"><i class="fa fa-check"></i><b>3.4</b> Pakete</a></li>
-<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.5</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#es:pakete"><i class="fa fa-check"></i><b>3.4</b> Pakete</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>4</b> Datenkunde und Datenaufbereitung</a><ul>
 <li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
@@ -325,50 +323,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1.4" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-interpretation-der-ergebnisse"><i class="fa fa-check"></i><b>9.1.4</b> Logit und Probit: Interpretation der Ergebnisse</a></li>
 </ul></li>
 </ul></li>
-<li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>A</b> Eine kurze Einführung in R Markdown</a><ul>
-<li class="chapter" data-level="A.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>A.1</b> Markdown vs. R-Markdown</a></li>
-<li class="chapter" data-level="A.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>A.2</b> Installation von R-Markdown</a></li>
-<li class="chapter" data-level="A.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>A.3</b> Der R-Markdown Workflow</a><ul>
-<li class="chapter" data-level="A.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>A.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
-<li class="chapter" data-level="A.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>A.3.2</b> Der Titelblock</a></li>
-<li class="chapter" data-level="A.3.3" data-path="markdown.html"><a href="markdown.html#der-textkörper"><i class="fa fa-check"></i><b>A.3.3</b> Der Textkörper</a></li>
-<li class="chapter" data-level="A.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>A.3.4</b> Kompillieren von Dokumenten</a></li>
+<li class="chapter" data-level="10" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>10</b> Eine kurze Einführung in R Markdown</a><ul>
+<li class="chapter" data-level="10.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>10.1</b> Markdown vs. R-Markdown</a></li>
+<li class="chapter" data-level="10.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>10.2</b> Installation von R-Markdown</a></li>
+<li class="chapter" data-level="10.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>10.3</b> Der R-Markdown Workflow</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>10.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
+<li class="chapter" data-level="10.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>10.3.2</b> Der Titelblock</a></li>
+<li class="chapter" data-level="10.3.3" data-path="markdown.html"><a href="markdown.html#der-textkörper"><i class="fa fa-check"></i><b>10.3.3</b> Der Textkörper</a></li>
+<li class="chapter" data-level="10.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>10.3.4</b> Kompillieren von Dokumenten</a></li>
 </ul></li>
-<li class="chapter" data-level="A.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>A.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
-<li class="chapter" data-level="A.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>A.5</b> Weitere Quellen</a></li>
-</ul></li>
-<li class="chapter" data-level="B" data-path="stat-stoch.html"><a href="stat-stoch.html"><i class="fa fa-check"></i><b>B</b> Wiederholung: Wahrscheinlichkeitstheorie</a><ul>
-<li class="chapter" data-level="" data-path="stat-stoch.html"><a href="stat-stoch.html#verwendete-pakete-2"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="B.1" data-path="stat-stoch.html"><a href="stat-stoch.html#einleitung-wahrscheinlichkeitstheorie-und-statistik"><i class="fa fa-check"></i><b>B.1</b> Einleitung: Wahrscheinlichkeitstheorie und Statistik</a></li>
-<li class="chapter" data-level="B.2" data-path="stat-stoch.html"><a href="stat-stoch.html#grundbegriffe-der-wahrscheinlichkeitstheorie"><i class="fa fa-check"></i><b>B.2</b> Grundbegriffe der Wahrscheinlichkeitstheorie</a></li>
-<li class="chapter" data-level="B.3" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.3</b> Diskrete Wahrscheinlichkeitsmodelle</a><ul>
-<li class="chapter" data-level="B.3.1" data-path="stat-stoch.html"><a href="stat-stoch.html#bayes-theorem-und-gesetz-der-total-wahrscheinlichkeiten"><i class="fa fa-check"></i><b>B.3.1</b> Bayes Theorem und Gesetz der total Wahrscheinlichkeiten</a></li>
-<li class="chapter" data-level="B.3.2" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-zufallsvariablen"><i class="fa fa-check"></i><b>B.3.2</b> Diskrete Zufallsvariablen</a></li>
-<li class="chapter" data-level="B.3.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-binomial-verteilung"><i class="fa fa-check"></i><b>B.3.3</b> Beispiel: die Binomial-Verteilung</a></li>
-<li class="chapter" data-level="B.3.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-poisson-verteilung"><i class="fa fa-check"></i><b>B.3.4</b> Beispiel: die Poisson-Verteilung</a></li>
-<li class="chapter" data-level="B.3.5" data-path="stat-stoch.html"><a href="stat-stoch.html#hinweise-zu-diskreten-wahrscheinlichkeitsverteilungen"><i class="fa fa-check"></i><b>B.3.5</b> Hinweise zu diskreten Wahrscheinlichkeitsverteilungen</a></li>
-</ul></li>
-<li class="chapter" data-level="B.4" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.4</b> Stetige Wahrscheinlichkeitsmodelle</a><ul>
-<li class="chapter" data-level="B.4.1" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-zv"><i class="fa fa-check"></i><b>B.4.1</b> Stetige ZV</a></li>
-<li class="chapter" data-level="B.4.2" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-uniformverteilung"><i class="fa fa-check"></i><b>B.4.2</b> Beispiel: die Uniformverteilung</a></li>
-<li class="chapter" data-level="B.4.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-normalverteilung"><i class="fa fa-check"></i><b>B.4.3</b> Beispiel: die Normalverteilung</a></li>
-<li class="chapter" data-level="B.4.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-exponentialverteilung"><i class="fa fa-check"></i><b>B.4.4</b> Beispiel: die Exponentialverteilung</a></li>
-</ul></li>
-<li class="chapter" data-level="B.5" data-path="stat-stoch.html"><a href="stat-stoch.html#zusammenfassung-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.5</b> Zusammenfassung Wahrscheinlichkeitsmodelle</a></li>
-</ul></li>
-<li class="chapter" data-level="C" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>C</b> Wiederholung: Deskriptive Statistik</a><ul>
-<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-und-datensätze"><i class="fa fa-check"></i>Verwendete Pakete und Datensätze</a></li>
-<li class="chapter" data-level="C.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>C.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
-<li class="chapter" data-level="C.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmaße"><i class="fa fa-check"></i><b>C.2</b> Korrelationsmaße</a></li>
-<li class="chapter" data-level="C.3" data-path="desk-stat.html"><a href="desk-stat.html#hinweise-zur-quantitativen-und-visuellen-datenbeschreibung"><i class="fa fa-check"></i><b>C.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
-<li class="chapter" data-level="C.4" data-path="desk-stat.html"><a href="desk-stat.html#zusamenfassung"><i class="fa fa-check"></i><b>C.4</b> Zusamenfassung</a></li>
-</ul></li>
-<li class="chapter" data-level="D" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>D</b> Wiederholung: Drei Verfahren der schließenden Statistik</a><ul>
-<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-3"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="D.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>D.1</b> Punktschätzung</a></li>
-<li class="chapter" data-level="D.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>D.2</b> Hypothesentests</a></li>
-<li class="chapter" data-level="D.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>D.3</b> Berechnung von Konfidenzintervallen</a></li>
+<li class="chapter" data-level="10.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>10.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
+<li class="chapter" data-level="10.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>10.5</b> Weitere Quellen</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -392,132 +357,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">R für die sozio-ökonomische Forschung</h1>
-<h2 class="subtitle"><em>Version 0.7.2</em></h2>
+<h2 class="subtitle"><em>Version 1.0.0</em></h2>
 <p class="author"><em><a href="http://claudius-graebner.com/">Dr. Claudius Gräbner</a></em></p>
-<p class="date"><em>2020-07-01</em></p>
+<p class="date"><em>2020-07-20</em></p>
 </div>
 <div id="willkommen" class="section level1 unnumbered">
 <h1>Willkommen</h1>
-<p><img src="figures/title_page.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>Dieses Skript ist als Begleitung für die Lehrveranstaltung
+<p>Das folgdene Skript ist als eine erste Einführung in die Programmiersprache
+R <span class="citation">(R Core Team <a href="#ref-R-Team">2018</a>)</span> und ihrer Anwendung im Bereich der quantitativen sozioökonomischen
+Forschung gedacht.
+Ursprünglich war es als Begleitung für die Lehrveranstaltung
 “Wissenschaftstheorie und Einführung in die Methoden der Sozioökonomie”
-im Master “Sozioökonomie” an der Universität Duisburg-Essen gedacht.</p>
-<p>Es enthält grundlegende Informationen über die Funktion der
-Programmiersprache R <span class="citation">(R Core Team <a href="#ref-R-Team">2018</a>)</span>.</p>
-<div id="verhältnis-zur-vorlesung" class="section level2 unnumbered">
-<h2>Verhältnis zur Vorlesung</h2>
-<p>Einige Kapitel beziehen sich unmittelbar auf bestimmte Vorlesungstermine,
-andere sind als optionale Zusatzinformation gedacht.
-Gerade Menschen ohne Vorkenntnisse in R sollten unbedingt die ersten Kapitel
-vor dem vierten Vorlesungsterm lesen und verstehen. Bei Fragen können Sie sich
-gerne an Claudius Gräbner wenden.</p>
-<p>Die folgende Tabelle gibt einen Überblick über die Kapitel und die dazugehörigen
-Vorlesungstermine:</p>
-<table>
-<colgroup>
-<col width="25%" />
-<col width="37%" />
-<col width="37%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Kapitel</th>
-<th align="left">Zentrale Inhalte</th>
-<th align="center">Verwandter Vorlesungstermin</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">1: Vorbemerkungen</td>
-<td align="left">Gründe für R; Besonderheiten von R</td>
-<td align="center">Vorbereitung</td>
-</tr>
-<tr class="even">
-<td align="center">2: Einrichtung</td>
-<td align="left">Installation und Einrichtung von R und R Studio, Projektstrukturierung</td>
-<td align="center">Vorbereitung</td>
-</tr>
-<tr class="odd">
-<td align="center">3: Erste Schritte in R</td>
-<td align="left">Grundlegende Funktionen von R; Objekte in R; Pakete</td>
-<td align="center">Vorbereitung</td>
-</tr>
-<tr class="even">
-<td align="center">4: Lineare statistische Modelle in R</td>
-<td align="left">Implementierung von uni- und multivariaten linearen Regressionsmodellen</td>
-<td align="center">T4 am 06.11.19</td>
-</tr>
-<tr class="odd">
-<td align="center">5: Datenkunde und -aufbereitung</td>
-<td align="left">Einlesen und Schreiben sowie Aufbereitung von Datensätzen</td>
-<td align="center">T7 am 27.11.19</td>
-</tr>
-<tr class="even">
-<td align="center">6: Visualisierung</td>
-<td align="left">Erstellen von Grafiken</td>
-<td align="center">T7 am 27.11.19</td>
-</tr>
-<tr class="odd">
-<td align="center">7: Formalia</td>
-<td align="left">Grundlegende formale Konzepte der Sozioökonomie.</td>
-<td align="center">T8 am 11.12.19</td>
-</tr>
-<tr class="even">
-<td align="center">8: Fortgeschrittene Themen der linearen Regression</td>
-<td align="left">OLS-Annahmen: Inhalte, Tests und robuste Schätzverfahren</td>
-<td align="center">T9-10 am 8.&amp;15.1.20</td>
-</tr>
-<tr class="odd">
-<td align="center">9: Ausgewählte nichtlineare Schätzverfahren</td>
-<td align="left">Logit- und Probit-Modelle</td>
-<td align="center">T10 am 15.1.20</td>
-</tr>
-<tr class="even">
-<td align="center">10: Ausblick</td>
-<td align="left">Ausblick zu weiteren Anwendungsmöglichkeiten</td>
-<td align="center">Optional</td>
-</tr>
-<tr class="odd">
-<td align="center">A: Einführung in Markdown</td>
-<td align="left">Wissenschaftliche Texte in R Markdown schreiben</td>
-<td align="center">Optional; relevant für Aufgabenblätter</td>
-</tr>
-<tr class="even">
-<td align="center">B: Wiederholung: Wahrscheinlichkeitstheorie</td>
-<td align="left">Wiederholung grundlegender Konzepte der Wahrscheinlichkeitstheorie und ihrer Implementierung in R</td>
-<td align="center">Optional; wird für die quantitativen VL vorausgesetzt</td>
-</tr>
-<tr class="odd">
-<td align="center">C: Wiederholung: Deskriptive Statistik</td>
-<td align="left">Wiederholung grundlegender Konzepte der deskriptiven Statistik und ihrer Implementierung in R</td>
-<td align="center">Optional; wird für die quantitativen VL vorausgesetzt</td>
-</tr>
-<tr class="even">
-<td align="center">D: Wiederholung: Drei grundlegende Verfahren der schließenden Statistik</td>
-<td align="left">Wiederholung von Parameterschätzung, Hypothesentests und Konfidenzintervalle und deren Implementierung in R</td>
-<td align="center">Optional; wird für die quantitativen VL vorausgesetzt</td>
-</tr>
-<tr class="odd">
-<td align="center">E: Einführung in Git und Github</td>
-<td align="left">Verwendung von Git und Github</td>
-<td align="center">Optional</td>
-</tr>
-</tbody>
-</table>
-<p>Das Skript ist <em>work in progress</em> und jegliches Feedback ist sehr willkommen.
-Dafür wird im Moodle ein extra Bereich eingerichtet.
-Selbstverständlich können Sie Feedback auch den
-<a href="https://github.com/graebnerc/RforSocioEcon/issues">Issue-Tracker auf Github</a>
-verwenden. Dort ist auch der Quellcode des Skripts verfügbar.</p>
-</div>
+im Master “Sozioökonomie” an der Universität Duisburg-Essen konzipiert, es
+soll jedoch zu einer eigenständigen Einführung in R weiterentwickelt werden.
+Dabei richtet es sich zunächst an Menschen mit keinen oder geringen
+Vorkenntnissen in R.
+Einzelne Kapitel, insbesondere die zur Datenaufbereitung und -visualisierung
+könnten aber auch für fortgeschrittene Studierende interessant sein.</p>
+<p>Insgesamt ist das Projekt noch in der Anfangsphase und somit unbedingt auf
+das Feedback von Nutzer*innen angewiesen. Ich bin Ihnen daher für jegliches
+Feedback sehr dankbar.
+Am besten Sie verwenden für Ihr Feedback den
+<a href="https://github.com/graebnerc/RforSocioEcon/issues">Issue-Tracker auf Github</a>.
+Dort ist auch der Quellcode des Skripts verfügbar.
+Sie können mir das Feedback aber auch gerne per Email zukommen lassen.
+Verwenden Sie dafür im Zweifel das
+<a href="https://claudius-graebner.com/contact-1.html">Kontaktformular</a>
+auf meiner Homepage.
+Vielen Dank!</p>
+<p>Ein Hinweis zu den unterschiedlichen Versionen:
+das Skript ist aktuell in einer HTML und einer PDF-Variante verfügbar.
+Ich empfehle Ihnen die PDF-Variante zu verwenden, das diese Version die final
+lektorierte Version ist und bestimmte Formatierungen für die HMTL-Version (noch)
+nicht funktionieren. Entsprechend ist diese Variante leicht unvollständig.
+Sie können die PDF auf der
+Homepage des Skripts <a href="https://graebnerc.github.io/RforSocioEcon/">https://graebnerc.github.io/RforSocioEcon/</a>
+herunterladen indem Sie auf das
+PDF-Icon oben links (neben dem <code>i</code>) klicken. Alternativ können Sie auch
+<a href="https://graebnerc.github.io/RforSocioEcon/R-SocioEcon-dt.pdf">diesem Link</a>
+folgen.
+Aktualisieren Sie vor dem Download aber Ihr Browserfenster um sicherzugehen,
+dass Sie die aktuellste Version herunterladen.</p>
 <div id="danksagung" class="section level2 unnumbered">
 <h2>Danksagung</h2>
 <p>Ich möchte mich bei Jakob Kapeller und Anika Radkowitsch für das regelmäßige
-Feedback und die guten Hinweise bedanken. Am <em>work-in-progress</em>-Charakter
-des Skripts haben sie natürlich keine Mitschuld.</p>
+Feedback und die guten Hinweise bedanken.
+Bei Birte Strunk möchte ich mich für das hervorragende Lektorat und das
+Beisteuern vieler guter Ideen bedanken.
+Am <em>work-in-progress</em>-Charakter des Skripts haben alle natürlich keine Mitschuld.</p>
 </div>
-<div id="änderungshistorie-während-des-semesters" class="section level2 unnumbered">
-<h2>Änderungshistorie während des Semesters</h2>
+<div id="lizenz" class="section level2 unnumbered">
+<h2>Lizenz</h2>
+<p><img src="figures/license.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>Das gesamte Skript ist unter der
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>
+lizensiert.</p>
+</div>
+<div id="änderungshistorie" class="section level2 unnumbered">
+<h2>Änderungshistorie</h2>
 <p><em>An dieser Stelle werden alle wichtigen Updates des Skripts gesammelt.</em>
 <em>Die Versionsnummer hat folgende Struktur: <code>major</code>.<code>minor</code>.<code>patch</code></em>
 <em>Neue Kapitel erhöhen die <code>minor</code> Stelle, kleinere, aber signifikante</em>
@@ -593,13 +490,6 @@ des Skripts haben sie natürlich keine Mitschuld.</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div id="lizenz" class="section level2 unnumbered">
-<h2>Lizenz</h2>
-<p><img src="figures/license.png" width="20%" style="display: block; margin: auto;" /></p>
-<p>Das gesamte Skript ist unter der
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>
-lizensiert.</p>
 
 </div>
 </div>

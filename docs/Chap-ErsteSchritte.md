@@ -4,13 +4,31 @@
 
 
 
-Nach diesen (wichtigen) Vorbereitungsschritten wollen wir nun mit dem 
-eigentlichen Programmieren anfangen.
+Nach den (wichtigen) Vorbereitungsschritten im vorangehenden Kapitel 
+wollen wir an dieser Stelle mit dem eigentlichen Programmieren anfangen.
 Zu diesem Zweck müssen wir uns mit der Syntax von R vertraut machen,
 also mit den Regeln, denen wir folgen müssen, wenn wir Code schreiben, damit der 
 Computer versteht, was wir ihm eigentlich in R sagen wollen.
 
-## Befehle in R an den Computer übermitteln
+Das Kapitel ist dabei folgendermaßen aufgebaut:
+zunächst lernen wir in Abschnitt \@ref(es:befehle) wie wir mit Hilfe von R und 
+R-Studio mit unserem Computer 'kommunizieren' können. 
+Danach lernen wir in Abschnitt \@ref(es:objekte) nicht nur die zentralen Elemente 
+der Programmiersprache R kennen, nämlich Objekte und Funktionen, sondern
+lernen auch wie wir solche Objekte erstellen und ihnen Namen zuweisen können.
+Ein großer Teil des Kapitels (Abschnitt \@ref(es:objektarten)) ist dann den 
+unterschiedlichen Arten von Objekten in R gewidmet. Wir lernen zum Beispiel
+wie sich Vektoren von Listen unterscheiden, und welche Pendants in R es zu
+'Zahlen' und 'Wörtern' in unserer Alltagssprache gibt.
+Abgeschlossen wir das Kapitel mit einer kurzen Einführung von 'Paketen' in
+Abschnitt \@ref(es:pakete).
+Pakete sind ein wichtiger Bestandteil der Open-Source Sprache R:
+hier handelt es sich um Code, den andere Menschen geschrieben und der 
+Allgemeinheit frei zugänglich gemacht haben. 
+Dadurch ist sichergestellt, dass R immer auf dem neuesten Stand der 
+Forschung und Praxis ist.
+
+## Befehle in R an den Computer übermitteln {#es:befehle}
 
 Grundsätzlich können wir über R Studio auf zwei Arten mit dem Computer
 "kommunizieren": über die Konsole direkt, oder indem wir im Skriptbereich ein
@@ -39,7 +57,7 @@ Das Ergebnis von `2+3` ist eine Zahl (genauer: ein 'Skalar').
 In R werden Skalare immer als Vektor der Länge 1 dargestellt.
 Die `[1]` gibt also an, dass hier ein Vektor der Länge 1 angezeigt wird.
 Wäre das Ergebnis unserer Berechnung ein Vektor der Länge 2 würde die 
-Outputzeile dementsprechend mit `#> [1]` eingeleitet werden.
+Outputzeile dementsprechend mit `#> [2]` eingeleitet werden.
 
 Auf diese Art und Weise können wir R als einfachen Taschenrechner verwenden,
 denn für alle einfachen mathematischen Operationen können wir bestimmte Symbole
@@ -99,7 +117,7 @@ Um fortgeschrittene Operationen in R durchführen und verstehen zu können müss
 wir uns zunächst mit den Konzepten von **Objekten**, **Funktionen** und
 **Zuweisungen** beschäftigen.
 
-## Objekte, Funktionen und Zuweisungen
+## Objekte, Funktionen und Zuweisungen {#es:objekte}
 
 > To understand computations in R, two slogans are helpful:
 >   Everything that exists is an object.
@@ -290,7 +308,7 @@ help(assign)
 ```
 
 
-## Grundlegende Objeke in R
+## Grundlegende Objeke in R {#es:objektarten}
 
 Wir haben bereits gelernt, dass alles was in R existiert ein Objekt ist.
 Wir haben aber auch schon gelernt, dass es unterschiedliche Typen von Objekten
@@ -484,8 +502,8 @@ innerhalb des *function bodies* existiert:
 ```r
 pythagoras <- function(kathete_1, kathete_2){
   hypo_quadrat <- kathete_1**2 + kathete_2**2
-  l_hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
-  return(l_hypothenuse)
+  hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
+  return(hypothenuse)
 }
 x <- pythagoras(2, 4)
 hypo_quadrat
@@ -520,8 +538,8 @@ folgendermaßen aussehen:
 #'  rechtwinkligen Dreieckst
 pythagoras <- function(kathete_1, kathete_2){
   hypo_quadrat <- kathete_1**2 + kathete_2**2
-  l_hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
-  return(l_hypothenuse)
+  hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
+  return(hypothenuse)
 }
 ```
 
@@ -607,7 +625,8 @@ atomaren Vektoren darstellen, allerdings in diesem Kontext schon häufig
 auftauchen: `NULL`, was strikt genommen ein eigener Datentyp ist und immer
 die Länge 0 hat, sowie `NA`, das einen fehlenden Wert darstellt.
 
-Hieraus ergibt sich folgende in Abbildung \@ref(fig:vektoren) aufgezeigte Aufteilung für Vektoren:
+Hieraus ergibt sich die in Abbildung \@ref(fig:vektoren) aufgezeigte Aufteilung 
+von Vektoren.
 
 \begin{figure}
 
@@ -842,7 +861,7 @@ typeof(z)
 #> [1] "double"
 ```
 
-Bei einer Addition werden ogische Werte ebenfalls automatisch transformiert:
+Bei einer Addition werden logische Werte ebenfalls automatisch transformiert:
 
 
 ```r
@@ -859,7 +878,10 @@ print(z)
 Daher sollte man immer den Überblick behalten, mit welchen Objekttypen man 
 gerade arbeitet.
 
-Hier noch ein kurzer Überblick zu den Test- und Transformationsbefehlen:
+Einen Überblick zu den Test- und Transformationsbefehlen finden Sie in 
+Tabelle \@ref(tab:artentests).
+
+Table: (\#tab:artentests) Ein Überblick zu Test- und Transformationsbefehlen in R.
 
 Typ       | Test           | Transformation |
 ----------+----------------+----------------|
@@ -938,7 +960,10 @@ len_x
 Die logischen Werte `TRUE` und `FALSE` sind häufig das Ergebnis von logischen
 Abfragen, z.B. 'Ist 2 größer als 1?'. 
 Solche Abfragen kommen in der Forschungspraxis häufig vor und es macht Sinn,
-sich mit den häufigsten logischen Operatoren vertraut zu machen:
+sich mit den häufigsten logischen Operatoren vertraut zu machen.
+Einen Überblick finden Sie in Tabelle \@ref(tab:logicaloperators).
+
+Table: (\#tab:logicaloperators) Zentrale logische Abfragen in R.
 
 | Operator | Funktion in R | Beispiel |
 |:--------:|:-------------:|:---------|
@@ -1023,7 +1048,7 @@ print(
 ### Wörter (character)
 
 Wörter werden in R dadurch gebildet, dass an ihrem Anfang und Ende das Symbol
-`'` oder `""` steht:
+`'` oder `"` steht:
 
 
 ```r
@@ -1048,14 +1073,13 @@ Wie andere Vektoren können sie mit der Funktion `c()` verbunden werden:
 
 
 ```r
-z <- c(x, " und ", y)
+z <- c(x, "und", y)
 z
 ```
 
 ```
-#> [1] "Hallo"           " und "           "Auf Wiedersehen"
+#> [1] "Hallo"           "und"             "Auf Wiedersehen"
 ```
-<!-- Gibt es einen Grund dass du vor und nach dem "und" jeweils ein Leerzeichen gesetzt hast? -->
 
 Nützlich ist in diesem Zusammenhang die Funktion `paste()`, die Elemente von 
 mehreren Vektoren in Wörter transformiert und verbindet:
@@ -1074,8 +1098,9 @@ y
 ```
 
 
-Die Funktion `paste()` akzeptiert ein optionales Argument `sep`, mit dem wir den Wert angeben
-können, der zwischen die zu verbindenden Elemente gesetzt wird:
+Die Funktion `paste()` akzeptiert ein optionales Argument `sep`, mit dem wir 
+den Wert angeben können, der zwischen die zu verbindenden Elemente gesetzt wird 
+(der Default ist `sep=" "`):
 
 
 ```r
@@ -1100,13 +1125,11 @@ keine Fehlermeldung ausgegeben wird. Ein Beispiel dafür gibt folgender Code, in
 dem die Intention klar die Verbindung aller Wochentage zu Zahlen ist und einfach
 ein Wochentag vergessen wurde:
 
-<!-- Irgendwie verstehe ich diesen Hinweis noch nicht so gut. c("Tag") haben wir doch irgendwie gar nicht definiert, oder? -->
-
 
 ```r
-tage <- paste("Tag ", 1:7, ":", sep = "")
+tage <- paste("Tag ", 1:7, ":", sep="")
 tag_namen <- c("Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag")
-paste(tage, tag_namen)
+paste(tage, tag_namen) # default ist sep=" "
 ```
 
 ```
@@ -1114,8 +1137,6 @@ paste(tage, tag_namen)
 #> [4] "Tag 4: Donnerstag" "Tag 5: Freitag"    "Tag 6: Samstag"   
 #> [7] "Tag 7: Montag"
 ```
-
-<!-- Hier verstehe ich noch nicht so gut warum in diesem Code steht ":", sep = "", statt wie oben sep=":" -->
 
 ### Fehlende Werte und NULL
 
@@ -1195,8 +1216,6 @@ nicht `NA` sondern `NaN` (*not a number*):
 Eine weitere Besonderheit ist `NULL`, welches in der Regel als Vektor der 
 Länge 0 gilt, aber häufig zu besonderen Zwecken verwendet wird:
 
-<!-- was sind denn hier die besonderen Zwecke zu denen es verwendet wird? -->
-
 
 ```r
 x <- NULL
@@ -1206,6 +1225,45 @@ length(x)
 ```
 #> [1] 0
 ```
+
+`NULL` wird häufig verwendet um zu signalisieren, dass etwas nicht existiert.
+So ist ein leerer Vektor `NULL`:
+
+
+```r
+x <- c()
+x
+```
+
+```
+#> NULL
+```
+
+```r
+length(x)
+```
+
+```
+#> [1] 0
+```
+
+Damit unterscheidet er sich von einem Vektor mit einem (oder mehreren) 
+fehlenden Werten:
+
+
+```r
+y <- NA
+length(y)
+```
+
+```
+#> [1] 1
+```
+
+Auch im Programmieren von Funktionen wird `NULL` häufig für optionale Argumente
+verwendet. 
+Solche fortgeschrittene Konzepte werden aber erst an späterer Stelle behandelt.
+Für jetzt reicht die Idee, `NULL` als einen Vektor der Länge 0 zu verstehen.
 
 ### Indizierung und Ersetzung
 
@@ -1345,7 +1403,9 @@ print(z)
 
 Und wenn wir einen Vektor in der Länge eines anderen Vektors erstellen wollen,
 bietet sich das Argument `along.with` an. Dies wird häufig für das Erstellen
-<!-- von Indexvektoren verwendet. (Was sind Indexvektoren denn nochmal? Vektoren die angeben wieviele Elemente in anderen Vektoren vorhanden sind?)  -->
+von Indexvektoren verwendet.^[Ein Indexvektor `x` zu einem beliebigen Vektor
+`y` mit `N` Elementen enthält die ganzen Zahlen von 1 bis `N`. Der n-te Wert
+von x korrespontiert also zum Index des n-ten Wert von `y`.]
 In einem solchen Fall müssen wir die Indexzahlen
 nicht direkt angeben:
 
@@ -1358,8 +1418,6 @@ print(z_index)
 ```
 #> [1] 1 2 3 4
 ```
-
-
 
 Auch häufig möchten wir einen bestimmten Wert wiederholen. 
 Das geht mit der Funktion `rep`:
@@ -1585,7 +1643,7 @@ Im Folgenden wollen wir uns noch mit drei speziellen Typen beschäftigen, die
 weniger fundamental als die bislang diskutierten Typen sind, jedoch häufig in 
 der alltäglichen Arbeit vorkommen: Faktoren, Matrizen und Data Frames.
 
-### Faktoren {#into-factors}
+### Faktoren {#introfactors}
 
 Faktoren werden verwendet um ordinale oder kategoriale Daten darzustellen.
 Ein Faktor kann nur einen von mehreren vorher definierten Werten annehmen, so
@@ -2026,8 +2084,7 @@ is.data.frame(l_3)
 ```
 
 Wenn wir `df_3` ausgeben sehen wir unmittelbar den Unterschied zur klassischen 
-Liste:^[Gerade bei sehr großen Data Frames möchte man oft nur die ersten paar Elemente inspizieren.
-Das ist mit der Funktion `head()` möglich.]
+Liste:
 
 
 ```r
@@ -2056,7 +2113,6 @@ df_3
 #> 2 2 5 8
 #> 3 3 6 9
 ```
-
 
 Die andere Möglichkeit einen `data.frame` zu erstellen ist direkt über die 
 Funktion `data.frame()`, wobei es hier in der Regel ratsam ist das optionale
@@ -2181,8 +2237,26 @@ typeof(df_4[["gender"]])
 #> [1] "character"
 ```
 
+Gerade bei sehr großen Data Frames möchte man oft nur die ersten paar Zeilen
+inspizieren.
+Das ist mit der Funktion `head()` möglich.
+Das erste Argument ist immer der Name des Data Frames. 
+Das zweite (optionale) Argument ist ein `integer`, der die Anzahl der 
+anzuzeigenden Zeilen angibt (Standardwert: `5`):
 
-## Pakete {#packages}
+
+```r
+head(df_4, 2) # gibt die ersten zwei Zeilen aus
+```
+
+```
+#>   gender height
+#> 1   male    189
+#> 2   male    175
+```
+
+
+## Pakete {#es:pakete}
 
 Bei Paketen handelt es sich um eine Kombination aus R Code, Daten, Dokumentationen
 und Tests.
@@ -2345,7 +2419,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7fa87e9550e8>
+#> <bytecode: 0x7fe376905d60>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2376,7 +2450,7 @@ dplyr::lead
 #>     attributes(out) <- attributes(x)
 #>     out
 #> }
-#> <bytecode: 0x7fa8799b1580>
+#> <bytecode: 0x7fe37435d738>
 #> <environment: namespace:dplyr>
 ```
 
@@ -2423,98 +2497,3 @@ mit `::` verwendet, auch wenn dies nicht unbedingt nötig wäre.
 So sehen Sie bei jedem Code-Beispiel unmittelbar aus welchem Paket die 
 verwendeten Funktionen stammen. 
 Lediglich bei den Basispaketen werden wir auf `::` verzichten.
-
-
-## Kurzer Exkurs zum Einlesen und Schreiben von Daten
-
-Zum Abschluss wollen wir noch kurz einige Befehle zum Einlesen von Daten 
-einführen. Später werden wir uns ein ganzes Kapitel mit dem Einlesen und 
-Schreiben von Daten beschäftigen (siehe Kapitel \@ref(data)), da dies in der 
-Regel einen nicht 
-unbeträchtlichen Teil der quantitativen Forschungsarbeit in Anspruch nimmt.
-An dieser Stelle wollen wir aber nur lernen, wie man einen 
-Datensatz in R einliest.
-
-R kann zahlreiche verschiedene Dateiformate einlesen, z.B. `csv`, `dta` oder `txt`,
-auch wenn für manche Formate bestimmte Pakete geladen sein müssen.
-
-Das gerade für kleinere Datensätze mit Abstand beste Format ist in der Regel
-`csv`, da es von zahlreichen Programmen und auf allen Betriebssystemen 
-gelesen und geschrieben werden kann.
-
-Für die Beispiele hier nehmen wir folgende in Abbildung \@ref(fig:ordnerstruktur) aufgezeigte Ordnerstruktur an:
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{figures/chap3-data-folder} 
-
-}
-
-\caption{Beispielhafte Ordnerstruktur}(\#fig:ordnerstruktur)
-\end{figure}
-
-Um die Daten einzulesen verwenden wir das Paket `tidyverse`, welches wir später
-genauer kennen lernen werden. Es enthält viele nützliche Funktionen zur 
-Arbeit mit Datensätzen.
-Zudem verwende ich das Paket `here` um relative Pfade immer von meinem
-Arbeitsverzeichnis aus angeben zu können.^[Das ist notwendig, da dieses Skript 
-in R Markdown geschrieben ist und das Arbeitsverzeichnis automatisch auf den
-Ordner ändert, in dem das .Rmd file liegt. Mehr Information zum Schreiben von
-R Markdown finden Sie im Anhang.]
-
-
-```r
-library(tidyverse)
-library(here)
-```
-
-
-
-
-Nehmen wir an, die Datei `Rohdaten.csv` sähe folgendermaßen aus:
-
-```
-Auto,Verbrauch,Zylinder,PS
-Ford Pantera L,15.8,8,264
-Ferrari Dino,19.7,6,175
-Maserati Bora,15,8,335
-Volvo 142E,21.4,4,109
-```
-
-Wie in einer typischen csv Datei sind die Spalten hier mit einem Komma getrennt. 
-Um diese Datei einzulesen verwenden wir die Funktion `read_csv` mit dem 
-Dateipfad als erstes Argument:
-
-
-```r
-auto_daten <- read_csv(here("data/raw/Rohdaten.csv"))
-auto_daten
-```
-
-```
-#> # A tibble: 4 x 4
-#>   Auto           Verbrauch Zylinder    PS
-#>   <chr>              <dbl>    <dbl> <dbl>
-#> 1 Ford Pantera L      15.8        8   264
-#> 2 Ferrari Dino        19.7        6   175
-#> 3 Maserati Bora       15          8   335
-#> 4 Volvo 142E          21.4        4   109
-```
-
-Wir haben nun einen Datensatz in R, mit dem wir dann weitere Analysen erstellen
-können. 
-Nehmen wir einmal an, wir wollen eine weitere Spalte hinzufügen (Verbrauch/PS)
-und dann den Datensatz im Ordner `data/tidy` speichern.
-Ohne auf die Modifikation des Data Frames einzugehen können wir die Funktion 
-`write_csv` verwenden um den Datensatz zu speichern. 
-Hierzu geben wir den neuen Data Frame als erstes, und den Pfad als zweites 
-Argument an:
-
-
-```r
-auto_daten_neu <- mutate(auto_daten, Verbrauch_pro_PS=Verbrauch/PS)
-write_csv(auto_daten_neu, here("data/tidy/NeueDaten.csv"))
-```
-
-In Kapitel \@ref(data) beschäftigen wir uns im Detail mit dem Lesen, Schreiben und Manipulieren von 
-Datensätzen.

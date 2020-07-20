@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Datenkunde und Datenaufbereitung | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="R Skript in der Version 0.7.2" />
+  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Datenkunde und Datenaufbereitung | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="R Skript in der Version 0.7.2" />
+  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 4 Datenkunde und Datenaufbereitung | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="R Skript in der Version 0.7.2" />
+  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-07-01" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -132,10 +132,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Willkommen</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#verhältnis-zur-vorlesung"><i class="fa fa-check"></i>Verhältnis zur Vorlesung</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie-während-des-semesters"><i class="fa fa-check"></i>Änderungshistorie während des Semesters</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie"><i class="fa fa-check"></i>Änderungshistorie</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a><ul>
 <li class="chapter" data-level="1.1" data-path="precons.html"><a href="precons.html#warum-r"><i class="fa fa-check"></i><b>1.1</b> Warum R?</a></li>
@@ -154,9 +153,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="einrichtung.html"><a href="einrichtung.html#abschließende-bemerkungen"><i class="fa fa-check"></i><b>2.5</b> Abschließende Bemerkungen</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a><ul>
-<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#befehle-in-r-an-den-computer-übermitteln"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
-<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#objekte-funktionen-und-zuweisungen"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
-<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#grundlegende-objeke-in-r"><i class="fa fa-check"></i><b>3.3</b> Grundlegende Objeke in R</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#es:befehle"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#es:objekte"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#es:objektarten"><i class="fa fa-check"></i><b>3.3</b> Grundlegende Objeke in R</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.3.1</b> Funktionen</a></li>
 <li class="chapter" data-level="3.3.2" data-path="basics.html"><a href="basics.html#basics-types-vectors"><i class="fa fa-check"></i><b>3.3.2</b> Vektoren</a></li>
 <li class="chapter" data-level="3.3.3" data-path="basics.html"><a href="basics.html#basics-logic"><i class="fa fa-check"></i><b>3.3.3</b> Logische Werte (logical)</a></li>
@@ -165,12 +164,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3.6" data-path="basics.html"><a href="basics.html#indizierung-und-ersetzung"><i class="fa fa-check"></i><b>3.3.6</b> Indizierung und Ersetzung</a></li>
 <li class="chapter" data-level="3.3.7" data-path="basics.html"><a href="basics.html#nützliche-funktionen-für-atomare-vektoren"><i class="fa fa-check"></i><b>3.3.7</b> Nützliche Funktionen für atomare Vektoren</a></li>
 <li class="chapter" data-level="3.3.8" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.3.8</b> Listen</a></li>
-<li class="chapter" data-level="3.3.9" data-path="basics.html"><a href="basics.html#into-factors"><i class="fa fa-check"></i><b>3.3.9</b> Faktoren</a></li>
+<li class="chapter" data-level="3.3.9" data-path="basics.html"><a href="basics.html#introfactors"><i class="fa fa-check"></i><b>3.3.9</b> Faktoren</a></li>
 <li class="chapter" data-level="3.3.10" data-path="basics.html"><a href="basics.html#intro-matrix"><i class="fa fa-check"></i><b>3.3.10</b> Matrizen</a></li>
 <li class="chapter" data-level="3.3.11" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.3.11</b> Data Frames</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#packages"><i class="fa fa-check"></i><b>3.4</b> Pakete</a></li>
-<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.5</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#es:pakete"><i class="fa fa-check"></i><b>3.4</b> Pakete</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>4</b> Datenkunde und Datenaufbereitung</a><ul>
 <li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
@@ -325,50 +323,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1.4" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-interpretation-der-ergebnisse"><i class="fa fa-check"></i><b>9.1.4</b> Logit und Probit: Interpretation der Ergebnisse</a></li>
 </ul></li>
 </ul></li>
-<li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>A</b> Eine kurze Einführung in R Markdown</a><ul>
-<li class="chapter" data-level="A.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>A.1</b> Markdown vs. R-Markdown</a></li>
-<li class="chapter" data-level="A.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>A.2</b> Installation von R-Markdown</a></li>
-<li class="chapter" data-level="A.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>A.3</b> Der R-Markdown Workflow</a><ul>
-<li class="chapter" data-level="A.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>A.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
-<li class="chapter" data-level="A.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>A.3.2</b> Der Titelblock</a></li>
-<li class="chapter" data-level="A.3.3" data-path="markdown.html"><a href="markdown.html#der-textkörper"><i class="fa fa-check"></i><b>A.3.3</b> Der Textkörper</a></li>
-<li class="chapter" data-level="A.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>A.3.4</b> Kompillieren von Dokumenten</a></li>
+<li class="chapter" data-level="10" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>10</b> Eine kurze Einführung in R Markdown</a><ul>
+<li class="chapter" data-level="10.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>10.1</b> Markdown vs. R-Markdown</a></li>
+<li class="chapter" data-level="10.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>10.2</b> Installation von R-Markdown</a></li>
+<li class="chapter" data-level="10.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>10.3</b> Der R-Markdown Workflow</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>10.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
+<li class="chapter" data-level="10.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>10.3.2</b> Der Titelblock</a></li>
+<li class="chapter" data-level="10.3.3" data-path="markdown.html"><a href="markdown.html#der-textkörper"><i class="fa fa-check"></i><b>10.3.3</b> Der Textkörper</a></li>
+<li class="chapter" data-level="10.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>10.3.4</b> Kompillieren von Dokumenten</a></li>
 </ul></li>
-<li class="chapter" data-level="A.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>A.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
-<li class="chapter" data-level="A.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>A.5</b> Weitere Quellen</a></li>
-</ul></li>
-<li class="chapter" data-level="B" data-path="stat-stoch.html"><a href="stat-stoch.html"><i class="fa fa-check"></i><b>B</b> Wiederholung: Wahrscheinlichkeitstheorie</a><ul>
-<li class="chapter" data-level="" data-path="stat-stoch.html"><a href="stat-stoch.html#verwendete-pakete-2"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="B.1" data-path="stat-stoch.html"><a href="stat-stoch.html#einleitung-wahrscheinlichkeitstheorie-und-statistik"><i class="fa fa-check"></i><b>B.1</b> Einleitung: Wahrscheinlichkeitstheorie und Statistik</a></li>
-<li class="chapter" data-level="B.2" data-path="stat-stoch.html"><a href="stat-stoch.html#grundbegriffe-der-wahrscheinlichkeitstheorie"><i class="fa fa-check"></i><b>B.2</b> Grundbegriffe der Wahrscheinlichkeitstheorie</a></li>
-<li class="chapter" data-level="B.3" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.3</b> Diskrete Wahrscheinlichkeitsmodelle</a><ul>
-<li class="chapter" data-level="B.3.1" data-path="stat-stoch.html"><a href="stat-stoch.html#bayes-theorem-und-gesetz-der-total-wahrscheinlichkeiten"><i class="fa fa-check"></i><b>B.3.1</b> Bayes Theorem und Gesetz der total Wahrscheinlichkeiten</a></li>
-<li class="chapter" data-level="B.3.2" data-path="stat-stoch.html"><a href="stat-stoch.html#diskrete-zufallsvariablen"><i class="fa fa-check"></i><b>B.3.2</b> Diskrete Zufallsvariablen</a></li>
-<li class="chapter" data-level="B.3.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-binomial-verteilung"><i class="fa fa-check"></i><b>B.3.3</b> Beispiel: die Binomial-Verteilung</a></li>
-<li class="chapter" data-level="B.3.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-poisson-verteilung"><i class="fa fa-check"></i><b>B.3.4</b> Beispiel: die Poisson-Verteilung</a></li>
-<li class="chapter" data-level="B.3.5" data-path="stat-stoch.html"><a href="stat-stoch.html#hinweise-zu-diskreten-wahrscheinlichkeitsverteilungen"><i class="fa fa-check"></i><b>B.3.5</b> Hinweise zu diskreten Wahrscheinlichkeitsverteilungen</a></li>
-</ul></li>
-<li class="chapter" data-level="B.4" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.4</b> Stetige Wahrscheinlichkeitsmodelle</a><ul>
-<li class="chapter" data-level="B.4.1" data-path="stat-stoch.html"><a href="stat-stoch.html#stetige-zv"><i class="fa fa-check"></i><b>B.4.1</b> Stetige ZV</a></li>
-<li class="chapter" data-level="B.4.2" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-uniformverteilung"><i class="fa fa-check"></i><b>B.4.2</b> Beispiel: die Uniformverteilung</a></li>
-<li class="chapter" data-level="B.4.3" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-normalverteilung"><i class="fa fa-check"></i><b>B.4.3</b> Beispiel: die Normalverteilung</a></li>
-<li class="chapter" data-level="B.4.4" data-path="stat-stoch.html"><a href="stat-stoch.html#beispiel-die-exponentialverteilung"><i class="fa fa-check"></i><b>B.4.4</b> Beispiel: die Exponentialverteilung</a></li>
-</ul></li>
-<li class="chapter" data-level="B.5" data-path="stat-stoch.html"><a href="stat-stoch.html#zusammenfassung-wahrscheinlichkeitsmodelle"><i class="fa fa-check"></i><b>B.5</b> Zusammenfassung Wahrscheinlichkeitsmodelle</a></li>
-</ul></li>
-<li class="chapter" data-level="C" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>C</b> Wiederholung: Deskriptive Statistik</a><ul>
-<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-und-datensätze"><i class="fa fa-check"></i>Verwendete Pakete und Datensätze</a></li>
-<li class="chapter" data-level="C.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>C.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
-<li class="chapter" data-level="C.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmaße"><i class="fa fa-check"></i><b>C.2</b> Korrelationsmaße</a></li>
-<li class="chapter" data-level="C.3" data-path="desk-stat.html"><a href="desk-stat.html#hinweise-zur-quantitativen-und-visuellen-datenbeschreibung"><i class="fa fa-check"></i><b>C.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
-<li class="chapter" data-level="C.4" data-path="desk-stat.html"><a href="desk-stat.html#zusamenfassung"><i class="fa fa-check"></i><b>C.4</b> Zusamenfassung</a></li>
-</ul></li>
-<li class="chapter" data-level="D" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>D</b> Wiederholung: Drei Verfahren der schließenden Statistik</a><ul>
-<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-3"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="D.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>D.1</b> Punktschätzung</a></li>
-<li class="chapter" data-level="D.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>D.2</b> Hypothesentests</a></li>
-<li class="chapter" data-level="D.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>D.3</b> Berechnung von Konfidenzintervallen</a></li>
+<li class="chapter" data-level="10.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>10.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
+<li class="chapter" data-level="10.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>10.5</b> Weitere Quellen</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -445,13 +410,13 @@ und auf die Debatten über die Ko-Existenz <a href="data.html#data-packages">ver
 Datenaufbereitung in R</a> hingewisen.</p>
 <div id="verwendete-pakete" class="section level2 unnumbered">
 <h2>Verwendete Pakete</h2>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" data-line-number="1"><span class="kw">library</span>(countrycode)</a>
-<a class="sourceLine" id="cb288-2" data-line-number="2"><span class="kw">library</span>(here)</a>
-<a class="sourceLine" id="cb288-3" data-line-number="3"><span class="kw">library</span>(WDI)</a>
-<a class="sourceLine" id="cb288-4" data-line-number="4"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb288-5" data-line-number="5"><span class="kw">library</span>(data.table)</a>
-<a class="sourceLine" id="cb288-6" data-line-number="6"><span class="kw">library</span>(R.utils)</a>
-<a class="sourceLine" id="cb288-7" data-line-number="7"><span class="kw">library</span>(haven)</a></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1"><span class="kw">library</span>(countrycode)</a>
+<a class="sourceLine" id="cb291-2" data-line-number="2"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb291-3" data-line-number="3"><span class="kw">library</span>(WDI)</a>
+<a class="sourceLine" id="cb291-4" data-line-number="4"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb291-5" data-line-number="5"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb291-6" data-line-number="6"><span class="kw">library</span>(R.utils)</a>
+<a class="sourceLine" id="cb291-7" data-line-number="7"><span class="kw">library</span>(haven)</a></code></pre></div>
 <blockquote>
 <p><strong>Disclaimer</strong>: In diesem Kapitel verwenden wir für die Arbeit mit Daten vor
 allem Pakete aus dem so genannten <a href="https://www.tidyverse.org/">tidyverse</a>.
@@ -493,7 +458,7 @@ Die <em>Körpergröße</em> ist z.B. eindeutig messbar und jede*r weiß was dami
 ist.</p>
 <p><em>Latente</em> Variablen sind <strong>nicht</strong> direkt beobachtbar und sind häufig
 erklärungsbedürftig.
-<em>Nutzen</em> ist zum Beispiel nicht beobachtbar.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>
+<em>Nutzen</em> ist zum Beispiel nicht beobachtbar.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a>
 Zudem muss in der Regel erst einmal deutlich gemacht werden, was mit dem Begriff
 genau gemeint ist.</p>
 <p>Ein großer Teil von Forschungsarbeit ist die <strong>Operationalisierung</strong> einer latenten
@@ -501,7 +466,7 @@ Variable durch eine oder mehrere manifeste Variablen.
 Wir sprechen dann davon, dass eine oder mehrere manifeste Variablen als Indikator
 für eine latente Variable verwendet werden.
 <em>Wirtschaftliche Entwicklung</em> z.B. ist als solche nicht direkt beobachtbar und wird
-häufig durch das BIP operationalisiert.<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>
+häufig durch das BIP operationalisiert.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>
 Der <em>Human Development Index</em> ist der Versuch, wirtschaftliche Entwicklung durch
 mehr als eine manifeste Variable zu operationalisieren, also durch beobachtbare
 Variablen messbar zu machen.
@@ -529,26 +494,26 @@ ausführen.</p>
 <p>In R werden solche Daten in der Regel als <code>character</code> oder als <code>factor</code> beschrieben.
 Die einzelnen Ausprägungen eines Faktors können mit der Funktion <code>table</code> gezählt
 werden. Der häufigste wird dabei ‘Modus’ genannt:</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1">beobachtete_haarfarben &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Braun&quot;</span>, <span class="st">&quot;Schwarz&quot;</span>, </a>
-<a class="sourceLine" id="cb289-2" data-line-number="2">                            <span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Braun&quot;</span>, <span class="st">&quot;Braun&quot;</span>)</a>
-<a class="sourceLine" id="cb289-3" data-line-number="3"><span class="kw">typeof</span>(beobachtete_haarfarben)</a></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" data-line-number="1">beobachtete_haarfarben &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Braun&quot;</span>, <span class="st">&quot;Schwarz&quot;</span>, </a>
+<a class="sourceLine" id="cb292-2" data-line-number="2">                            <span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Braun&quot;</span>, <span class="st">&quot;Braun&quot;</span>)</a>
+<a class="sourceLine" id="cb292-3" data-line-number="3"><span class="kw">typeof</span>(beobachtete_haarfarben)</a></code></pre></div>
 <pre><code>#&gt; [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1">beobachtete_haarfarben &lt;-<span class="st"> </span><span class="kw">factor</span>(beobachtete_haarfarben)</a>
-<a class="sourceLine" id="cb291-2" data-line-number="2"><span class="kw">typeof</span>(beobachtete_haarfarben)</a></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1">beobachtete_haarfarben &lt;-<span class="st"> </span><span class="kw">factor</span>(beobachtete_haarfarben)</a>
+<a class="sourceLine" id="cb294-2" data-line-number="2"><span class="kw">typeof</span>(beobachtete_haarfarben)</a></code></pre></div>
 <pre><code>#&gt; [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1"><span class="kw">table</span>(beobachtete_haarfarben)</a></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" data-line-number="1"><span class="kw">table</span>(beobachtete_haarfarben)</a></code></pre></div>
 <pre><code>#&gt; beobachtete_haarfarben
 #&gt;   Blond   Braun Schwarz 
 #&gt;       2       3       1</code></pre>
 <p>Bei der Funktion <code>as.factor()</code> können Sie die Ausprägungen auch selbst
 spezifizieren. Das ist vor allem dann wichtig, wenn eine Ausprägung nicht
 vorkommt:</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1">beobachtete_haarfarben &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Braun&quot;</span>, <span class="st">&quot;Schwarz&quot;</span>, </a>
-<a class="sourceLine" id="cb295-2" data-line-number="2">                            <span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Braun&quot;</span>, <span class="st">&quot;Braun&quot;</span>)</a>
-<a class="sourceLine" id="cb295-3" data-line-number="3">beobachtete_haarfarben &lt;-<span class="st"> </span><span class="kw">factor</span>(beobachtete_haarfarben, </a>
-<a class="sourceLine" id="cb295-4" data-line-number="4">                                 <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Braun&quot;</span>, </a>
-<a class="sourceLine" id="cb295-5" data-line-number="5">                                          <span class="st">&quot;Schwarz&quot;</span>, <span class="st">&quot;Glatze&quot;</span>))</a>
-<a class="sourceLine" id="cb295-6" data-line-number="6"><span class="kw">table</span>(beobachtete_haarfarben)</a></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" data-line-number="1">beobachtete_haarfarben &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Braun&quot;</span>, <span class="st">&quot;Schwarz&quot;</span>, </a>
+<a class="sourceLine" id="cb298-2" data-line-number="2">                            <span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Braun&quot;</span>, <span class="st">&quot;Braun&quot;</span>)</a>
+<a class="sourceLine" id="cb298-3" data-line-number="3">beobachtete_haarfarben &lt;-<span class="st"> </span><span class="kw">factor</span>(beobachtete_haarfarben, </a>
+<a class="sourceLine" id="cb298-4" data-line-number="4">                                 <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Braun&quot;</span>, </a>
+<a class="sourceLine" id="cb298-5" data-line-number="5">                                          <span class="st">&quot;Schwarz&quot;</span>, <span class="st">&quot;Glatze&quot;</span>))</a>
+<a class="sourceLine" id="cb298-6" data-line-number="6"><span class="kw">table</span>(beobachtete_haarfarben)</a></code></pre></div>
 <pre><code>#&gt; beobachtete_haarfarben
 #&gt;   Blond   Braun Schwarz  Glatze 
 #&gt;       2       3       1       0</code></pre>
@@ -560,31 +525,31 @@ weder ist eine 1 ‘doppelt so gut’ wie eine 2, noch sind zwei einser genauso 
 wie eine 2.</p>
 <p>Ordinalskalierte Daten werden in R am besten auch als <code>factor</code> behandelt, allerdings
 müssen Sie die Reihenfolge explizit spezifizieren:</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" data-line-number="1">noten &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="kw">rep</span>(<span class="dv">3</span>, <span class="dv">6</span>), <span class="kw">rep</span>(<span class="dv">4</span>, <span class="dv">2</span>), <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb297-2" data-line-number="2">noten</a></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1">noten &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="kw">rep</span>(<span class="dv">3</span>, <span class="dv">6</span>), <span class="kw">rep</span>(<span class="dv">4</span>, <span class="dv">2</span>), <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb300-2" data-line-number="2">noten</a></code></pre></div>
 <pre><code>#&gt;  [1] 1 1 1 2 2 2 2 3 3 3 3 3 3 4 4 5 5 5</code></pre>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1">noten &lt;-<span class="st"> </span><span class="kw">factor</span>(noten, <span class="dt">levels =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">ordered =</span> T)</a>
-<a class="sourceLine" id="cb299-2" data-line-number="2">noten</a></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1">noten &lt;-<span class="st"> </span><span class="kw">factor</span>(noten, <span class="dt">levels =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">ordered =</span> T)</a>
+<a class="sourceLine" id="cb302-2" data-line-number="2">noten</a></code></pre></div>
 <pre><code>#&gt;  [1] 1 1 1 2 2 2 2 3 3 3 3 3 3 4 4 5 5 5
 #&gt; Levels: 1 &lt; 2 &lt; 3 &lt; 4 &lt; 5 &lt; 6</code></pre>
 <p>Wir erkennen, dass der Faktor geordnet ist daran, adss bei der Auflistung der
 Levels das Symbol <code>&lt;</code> verwendet wird um die Reihenfolge zu illutrieren.
 Um bei bestehenden Faktoren die Reihenfolge zu spezifizieren, verwenden Sie die
 Funktion <code>ordered()</code>:</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" data-line-number="1">noten &lt;-<span class="st"> </span><span class="kw">factor</span>(noten, <span class="dt">levels =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">ordered =</span> F)</a>
-<a class="sourceLine" id="cb301-2" data-line-number="2">noten</a></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1">noten &lt;-<span class="st"> </span><span class="kw">factor</span>(noten, <span class="dt">levels =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">ordered =</span> F)</a>
+<a class="sourceLine" id="cb304-2" data-line-number="2">noten</a></code></pre></div>
 <pre><code>#&gt;  [1] 1 1 1 2 2 2 2 3 3 3 3 3 3 4 4 5 5 5
 #&gt; Levels: 1 2 3 4 5 6</code></pre>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" data-line-number="1">noten &lt;-<span class="st"> </span><span class="kw">ordered</span>(noten, <span class="dt">levels =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb303-2" data-line-number="2">noten</a></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1">noten &lt;-<span class="st"> </span><span class="kw">ordered</span>(noten, <span class="dt">levels =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb306-2" data-line-number="2">noten</a></code></pre></div>
 <pre><code>#&gt;  [1] 1 1 1 2 2 2 2 3 3 3 3 3 3 4 4 5 5 5
 #&gt; Levels: 1 &lt; 2 &lt; 3 &lt; 4 &lt; 5 &lt; 6</code></pre>
 <p>Da wir ordinal-skalierte Daten ordnen können, ist es hier z.B. auch möglich
 empirische Quantile zu berechnen.
-Allerdings müssen wir bei der Funktion noch das Argument <code>type=1</code> oder <code>type=3</code><a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a>
+Allerdings müssen wir bei der Funktion noch das Argument <code>type=1</code> oder <code>type=3</code><a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>
 ergänzen, um einen Quantilsalgorithmus zu wählen, der auch mit Faktoren
 funktioniert:</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1"><span class="kw">quantile</span>(noten, <span class="dt">type =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1"><span class="kw">quantile</span>(noten, <span class="dt">type =</span> <span class="dv">1</span>)</a></code></pre></div>
 <pre><code>#&gt;   0%  25%  50%  75% 100% 
 #&gt;    1    2    3    4    5 
 #&gt; Levels: 1 &lt; 2 &lt; 3 &lt; 4 &lt; 5 &lt; 6</code></pre>
@@ -749,7 +714,7 @@ Im einfachsten Fall sind die von Ihnen benötigten Daten bereits erhoben und
 über das Internet frei zugänglich.
 Das trifft z.B. auf viele makroökonomische Indikatoren, wie das BIP, den Gini
 oder die Arbeitslosigkeit zu.
-In diesem Falle müssen Sie einfach nur noch die passende Quelle finden,<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a> laden die Daten herunter und machen beim nächsten
+In diesem Falle müssen Sie einfach nur noch die passende Quelle finden,<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> laden die Daten herunter und machen beim nächsten
 Schritt zum <a href="data.html#data-read-write">Einlesen von Datensätzen</a> weiter, oder überlegen
 ob sie die Daten sogar <a href="data.html#data-download-R">direkt mit R herunterladen</a> wollen.</p>
 <div id="exkurs-1-ländercodes-übersetzen" class="section level3">
@@ -777,20 +742,20 @@ in den Sie die <code>sourcevar</code> übersetzen wollen.
 Die Abkürzungen finden Sie in der Hilfefunkion von <code>countrycode()</code>.</p>
 <p>Nehmen wir einmal an, wir möchten die <code>iso2c</code>-Codes für Frankreich und die
 Schweiz herausfinden. Das geht folgendermaßen:</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1"><span class="kw">countrycode</span>(</a>
-<a class="sourceLine" id="cb307-2" data-line-number="2">  <span class="dt">sourcevar =</span> <span class="kw">c</span>(<span class="st">&quot;Frankreich&quot;</span>, <span class="st">&quot;Schweiz&quot;</span>), </a>
-<a class="sourceLine" id="cb307-3" data-line-number="3">  <span class="dt">origin =</span> <span class="st">&quot;country.name.de&quot;</span>, </a>
-<a class="sourceLine" id="cb307-4" data-line-number="4">  <span class="dt">destination =</span> <span class="st">&quot;iso3c&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1"><span class="kw">countrycode</span>(</a>
+<a class="sourceLine" id="cb310-2" data-line-number="2">  <span class="dt">sourcevar =</span> <span class="kw">c</span>(<span class="st">&quot;Frankreich&quot;</span>, <span class="st">&quot;Schweiz&quot;</span>), </a>
+<a class="sourceLine" id="cb310-3" data-line-number="3">  <span class="dt">origin =</span> <span class="st">&quot;country.name.de&quot;</span>, </a>
+<a class="sourceLine" id="cb310-4" data-line-number="4">  <span class="dt">destination =</span> <span class="st">&quot;iso3c&quot;</span>)</a></code></pre></div>
 <pre><code>#&gt; [1] &quot;FRA&quot; &quot;CHE&quot;</code></pre>
 <p>In diesem Fall verdeutlicht <code>origin=&quot;country.name.de&quot;</code>, dass wir die Originalnamen
 auf Deutsch angegeben haben und <code>destination=&quot;iso2c&quot;</code> dass wir in <code>iso2c</code>
 übersetzen wollen.</p>
 <p>Wenn wir wissen wollen welches Land sich hinter der IWF Nummer <code>112</code> verbirgt
 schreiben wir:</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" data-line-number="1"><span class="kw">countrycode</span>(</a>
-<a class="sourceLine" id="cb309-2" data-line-number="2">  <span class="dt">sourcevar =</span> <span class="kw">c</span>(<span class="st">&quot;112&quot;</span>), </a>
-<a class="sourceLine" id="cb309-3" data-line-number="3">  <span class="dt">origin =</span> <span class="st">&quot;imf&quot;</span>,</a>
-<a class="sourceLine" id="cb309-4" data-line-number="4">  <span class="dt">destination =</span> <span class="st">&quot;country.name.de&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1"><span class="kw">countrycode</span>(</a>
+<a class="sourceLine" id="cb312-2" data-line-number="2">  <span class="dt">sourcevar =</span> <span class="kw">c</span>(<span class="st">&quot;112&quot;</span>), </a>
+<a class="sourceLine" id="cb312-3" data-line-number="3">  <span class="dt">origin =</span> <span class="st">&quot;imf&quot;</span>,</a>
+<a class="sourceLine" id="cb312-4" data-line-number="4">  <span class="dt">destination =</span> <span class="st">&quot;country.name.de&quot;</span>)</a></code></pre></div>
 <pre><code>#&gt; [1] &quot;Großbritannien&quot;</code></pre>
 <p>Die Funktion <code>countrycode()</code> kennt bereits alle wichtigen Ländercodes.
 Schauen Sie in der Hilfefunktion nach wie die Codes abgekürzt werden.
@@ -808,9 +773,9 @@ Tschechischen Republik gut verdeutlichen.
 Der <code>iso3c</code>-Code ist hier eindeutig <code>CZE</code>, allerding verwenden manche Datenbanken
 den Namen ‘Czechia’ und andere ‘Czech Republik’.
 Das <code>countrycode</code>-Paket übersezt beide Namen in <code>CZE</code>:</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" data-line-number="1"><span class="kw">countrycode</span>(<span class="st">&quot;Czech Republic&quot;</span>, <span class="st">&quot;country.name&quot;</span>, <span class="st">&quot;iso3c&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" data-line-number="1"><span class="kw">countrycode</span>(<span class="st">&quot;Czech Republic&quot;</span>, <span class="st">&quot;country.name&quot;</span>, <span class="st">&quot;iso3c&quot;</span>)</a></code></pre></div>
 <pre><code>#&gt; [1] &quot;CZE&quot;</code></pre>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" data-line-number="1"><span class="kw">countrycode</span>(<span class="st">&quot;Czechia&quot;</span>, <span class="st">&quot;country.name&quot;</span>, <span class="st">&quot;iso3c&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" data-line-number="1"><span class="kw">countrycode</span>(<span class="st">&quot;Czechia&quot;</span>, <span class="st">&quot;country.name&quot;</span>, <span class="st">&quot;iso3c&quot;</span>)</a></code></pre></div>
 <pre><code>#&gt; [1] &quot;CZE&quot;</code></pre>
 <p>Das kann manchmal zu Problemen beim Zusammenführen von Datensätzen führen,
 da R nicht von sich aus weiß, dass ‘Czechia’ und ‘Czech Republik’ das gleiche
@@ -827,7 +792,7 @@ Das bedeutet, dass Sie über R einen direkten Zugang zum Server mit den Daten
 herstellen und die Daten direkt in R einladen.
 Das hat den Vorteil, dass die Daten in der Regel bereits in einem gut
 weiterzuverarbeitenden Zustand sind und dass aus Ihrem Code unmittelbar ersichtlich
-wird wo Ihre Rohdaten herkommen.<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a></p>
+wird wo Ihre Rohdaten herkommen.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a></p>
 <p>Es lohnt sich daher, gerade wenn Sie aus einer Quelle mehrere Daten beziehen wollen,
 nachzuschauen ob ein R Paket oder eine besondere API verfügbar ist.
 Im Folgenden möchte das Vorgehen mit dem Paket
@@ -844,7 +809,7 @@ der Weltbankdatenbank und suchen dort nach den Indikatoren ihrer Wahl.
 Nehmen wir einmal an, Sie wollen Daten zum Export und zur Arbeitslosigkeit
 für Deutschland und Österreich für die Jahre 2012-2014 haben.</p>
 <p>Sie suchen also nach den Indikatoren und lesen den Code aus der URL des
-Indikators ab:<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a></p>
+Indikators ab:<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a></p>
 <p><img src="figures/chap-data-world-bank.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Über die Weltbankseite finden Sie heraus, dass die beiden von Ihnen gesuchten
 Indikatoren mit <code>NE.EXP.GNFS.ZS</code> und <code>SL.UEM.TOTL.ZS</code> kodiert sind
@@ -861,19 +826,19 @@ Die weiteren Argumente sind nicht von unmittelbarem Interesse.</p>
 <p>Nun können Sie die Funktion <code>WDI::WDI()</code> folgendermaßen verwenden um Export-
 und Arbeitslosendaten für Deutschland und Österreich zwischen 2012 und 2014 zu
 bekommen:</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" data-line-number="1">t_beginn &lt;-<span class="st"> </span><span class="dv">2012</span></a>
-<a class="sourceLine" id="cb315-2" data-line-number="2">t_ende &lt;-<span class="st"> </span><span class="dv">2014</span></a>
-<a class="sourceLine" id="cb315-3" data-line-number="3">laender &lt;-<span class="st"> </span><span class="kw">countrycode</span>(<span class="kw">c</span>(<span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Austria&quot;</span>), </a>
-<a class="sourceLine" id="cb315-4" data-line-number="4">                       <span class="st">&quot;country.name&quot;</span>, <span class="st">&quot;wb&quot;</span>)</a>
-<a class="sourceLine" id="cb315-5" data-line-number="5">indikatores &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;NE.EXP.GNFS.ZS&quot;</span>, <span class="st">&quot;SL.UEM.TOTL.ZS&quot;</span>)</a>
-<a class="sourceLine" id="cb315-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb315-7" data-line-number="7">daten &lt;-<span class="st"> </span>WDI<span class="op">::</span><span class="kw">WDI</span>(</a>
-<a class="sourceLine" id="cb315-8" data-line-number="8">  <span class="dt">country =</span> laender, </a>
-<a class="sourceLine" id="cb315-9" data-line-number="9">  <span class="dt">indicator =</span> indikatores,</a>
-<a class="sourceLine" id="cb315-10" data-line-number="10">  <span class="dt">start =</span> t_beginn,</a>
-<a class="sourceLine" id="cb315-11" data-line-number="11">  <span class="dt">end =</span> t_ende</a>
-<a class="sourceLine" id="cb315-12" data-line-number="12">)</a></code></pre></div>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" data-line-number="1">daten</a></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" data-line-number="1">t_beginn &lt;-<span class="st"> </span><span class="dv">2012</span></a>
+<a class="sourceLine" id="cb318-2" data-line-number="2">t_ende &lt;-<span class="st"> </span><span class="dv">2014</span></a>
+<a class="sourceLine" id="cb318-3" data-line-number="3">laender &lt;-<span class="st"> </span><span class="kw">countrycode</span>(<span class="kw">c</span>(<span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Austria&quot;</span>), </a>
+<a class="sourceLine" id="cb318-4" data-line-number="4">                       <span class="st">&quot;country.name&quot;</span>, <span class="st">&quot;wb&quot;</span>)</a>
+<a class="sourceLine" id="cb318-5" data-line-number="5">indikatores &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;NE.EXP.GNFS.ZS&quot;</span>, <span class="st">&quot;SL.UEM.TOTL.ZS&quot;</span>)</a>
+<a class="sourceLine" id="cb318-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb318-7" data-line-number="7">daten &lt;-<span class="st"> </span>WDI<span class="op">::</span><span class="kw">WDI</span>(</a>
+<a class="sourceLine" id="cb318-8" data-line-number="8">  <span class="dt">country =</span> laender, </a>
+<a class="sourceLine" id="cb318-9" data-line-number="9">  <span class="dt">indicator =</span> indikatores,</a>
+<a class="sourceLine" id="cb318-10" data-line-number="10">  <span class="dt">start =</span> t_beginn,</a>
+<a class="sourceLine" id="cb318-11" data-line-number="11">  <span class="dt">end =</span> t_ende</a>
+<a class="sourceLine" id="cb318-12" data-line-number="12">)</a></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1">daten</a></code></pre></div>
 <pre><code>#&gt;    iso2c country year NE.EXP.GNFS.ZS SL.UEM.TOTL.ZS
 #&gt; 1:    AT Austria 2012       53.97368          4.865
 #&gt; 2:    AT Austria 2013       53.44129          5.335
@@ -918,9 +883,9 @@ mit der Funktion <code>fread()</code> einlesen können.
 Dazu übergeben wir <code>fread()</code> nur das einzige wirklich notwendige Argument:
 den Dateipfad.
 Der besseren Übersicht halber sollte dieser immer separat definiert werden:</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb319-2" data-line-number="2">daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad)</a>
-<a class="sourceLine" id="cb319-3" data-line-number="3">daten</a></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" data-line-number="1">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb322-2" data-line-number="2">daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad)</a>
+<a class="sourceLine" id="cb322-3" data-line-number="3">daten</a></code></pre></div>
 <pre><code>#&gt;    iso2c year Exporte
 #&gt; 1:    AT 2012   53.97
 #&gt; 2:    AT 2013   53.44
@@ -928,7 +893,7 @@ Der besseren Übersicht halber sollte dieser immer separat definiert werden:</p>
 <p>Vielleicht fragen Sie sich wie <code>fread()</code> die Spalten bezüglich ihres
 <a href="basics.html#basics-types-vectors">Datentyps</a> interpretiert hat?
 Das können wir folgendermaßen überprüfen:</p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" data-line-number="1"><span class="kw">typeof</span>(daten<span class="op">$</span>year)</a></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb324-1" data-line-number="1"><span class="kw">typeof</span>(daten<span class="op">$</span>year)</a></code></pre></div>
 <pre><code>#&gt; [1] &quot;integer&quot;</code></pre>
 <p>In der Regel funktioniert die automatische Typerkennung von <code>fread()</code> sehr gut.
 Ich empfehle dennoch die Typen immer manuell zu spezifizieren, aus folgenden
@@ -941,10 +906,10 @@ wundern sich später, warum Sie für die Spalte keinen Durchschnitt berechnen k�
 beschleunigt.</p>
 <p>Sie können die Spaltentypen manuell über das Argument <code>colClasses</code> einstellen,
 indem Sie einfach einen Vektor mit den Datentypen angeben:</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb323-1" data-line-number="1">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb323-2" data-line-number="2">daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad, </a>
-<a class="sourceLine" id="cb323-3" data-line-number="3">               <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;character&quot;</span>, <span class="st">&quot;double&quot;</span>, <span class="st">&quot;double&quot;</span>))</a>
-<a class="sourceLine" id="cb323-4" data-line-number="4"><span class="kw">typeof</span>(daten<span class="op">$</span>year)</a></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb326-1" data-line-number="1">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb326-2" data-line-number="2">daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad, </a>
+<a class="sourceLine" id="cb326-3" data-line-number="3">               <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;character&quot;</span>, <span class="st">&quot;double&quot;</span>, <span class="st">&quot;double&quot;</span>))</a>
+<a class="sourceLine" id="cb326-4" data-line-number="4"><span class="kw">typeof</span>(daten<span class="op">$</span>year)</a></code></pre></div>
 <pre><code>#&gt; [1] &quot;double&quot;</code></pre>
 <p>Da es bei sehr großen Dateien einen extremen Unterschied macht ob Sie die
 Spaltentypen angeben oder nicht macht es in einem solchen Fall häufig Sinn,
@@ -953,23 +918,23 @@ anzuschauen welche Typen die Spalten haben sollten und dann den gesamten
 Datensatz mit den richtig spezifizierten Spaltentypen einzuladen.
 Sie können nur die erste Zeile einladen indem Sie das Argument <code>nrows</code>
 verwenden:</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" data-line-number="1">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb325-2" data-line-number="2">daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad, </a>
-<a class="sourceLine" id="cb325-3" data-line-number="3">               <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;character&quot;</span>, <span class="st">&quot;double&quot;</span>, <span class="st">&quot;double&quot;</span>),</a>
-<a class="sourceLine" id="cb325-4" data-line-number="4">               <span class="dt">nrows =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb325-5" data-line-number="5">daten</a></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb328-1" data-line-number="1">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb328-2" data-line-number="2">daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad, </a>
+<a class="sourceLine" id="cb328-3" data-line-number="3">               <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;character&quot;</span>, <span class="st">&quot;double&quot;</span>, <span class="st">&quot;double&quot;</span>),</a>
+<a class="sourceLine" id="cb328-4" data-line-number="4">               <span class="dt">nrows =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb328-5" data-line-number="5">daten</a></code></pre></div>
 <pre><code>#&gt;    iso2c year Exporte
 #&gt; 1:    AT 2012   53.97</code></pre>
 <p>Manchmal möchten Sie auch nur eine bestimmte Auswahl an Spalten einlesen.
 Auch das kann bei großen Datensätzen viel Zeit sparen.
 Wenn wir oben nur das Jahr und die Anzahl der Exporte haben spezifizieren wir
 das über das Argument <code>select</code>:</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb327-1" data-line-number="1">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb327-2" data-line-number="2">daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad, </a>
-<a class="sourceLine" id="cb327-3" data-line-number="3">               <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;character&quot;</span>, <span class="st">&quot;double&quot;</span>, <span class="st">&quot;double&quot;</span>),</a>
-<a class="sourceLine" id="cb327-4" data-line-number="4">               <span class="dt">nrows =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb327-5" data-line-number="5">               <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;iso2c&quot;</span>, <span class="st">&quot;Exporte&quot;</span>))</a>
-<a class="sourceLine" id="cb327-6" data-line-number="6">daten</a></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" data-line-number="1">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb330-2" data-line-number="2">daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad, </a>
+<a class="sourceLine" id="cb330-3" data-line-number="3">               <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;character&quot;</span>, <span class="st">&quot;double&quot;</span>, <span class="st">&quot;double&quot;</span>),</a>
+<a class="sourceLine" id="cb330-4" data-line-number="4">               <span class="dt">nrows =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb330-5" data-line-number="5">               <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;iso2c&quot;</span>, <span class="st">&quot;Exporte&quot;</span>))</a>
+<a class="sourceLine" id="cb330-6" data-line-number="6">daten</a></code></pre></div>
 <pre><code>#&gt;    iso2c Exporte
 #&gt; 1:    AT   53.97</code></pre>
 <p>Die Beispiel-Datei oben war sehr angenehm formatiert. Häufig werden aber andere
@@ -982,14 +947,14 @@ AT;2012;53,97
 AT;2013;53,44
 AT;2014;53,38</code></pre>
 <p>Zum Glück können wir das Spaltentrennzeichen über das Argument <code>sep</code> und das
-Kommatrennzeichen über das Argument <code>dec</code> manuell spezifizieren:<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a></p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" data-line-number="1">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten_dt.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb330-2" data-line-number="2">daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad, </a>
-<a class="sourceLine" id="cb330-3" data-line-number="3">               <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;character&quot;</span>, <span class="st">&quot;double&quot;</span>, <span class="st">&quot;double&quot;</span>), </a>
-<a class="sourceLine" id="cb330-4" data-line-number="4">               <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, </a>
-<a class="sourceLine" id="cb330-5" data-line-number="5">               <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span></a>
-<a class="sourceLine" id="cb330-6" data-line-number="6">               )</a>
-<a class="sourceLine" id="cb330-7" data-line-number="7">daten</a></code></pre></div>
+Kommatrennzeichen über das Argument <code>dec</code> manuell spezifizieren:<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a></p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" data-line-number="1">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten_dt.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb333-2" data-line-number="2">daten &lt;-<span class="st"> </span><span class="kw">fread</span>(daten_pfad, </a>
+<a class="sourceLine" id="cb333-3" data-line-number="3">               <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;character&quot;</span>, <span class="st">&quot;double&quot;</span>, <span class="st">&quot;double&quot;</span>), </a>
+<a class="sourceLine" id="cb333-4" data-line-number="4">               <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, </a>
+<a class="sourceLine" id="cb333-5" data-line-number="5">               <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span></a>
+<a class="sourceLine" id="cb333-6" data-line-number="6">               )</a>
+<a class="sourceLine" id="cb333-7" data-line-number="7">daten</a></code></pre></div>
 <pre><code>#&gt;    iso2c year Exporte
 #&gt; 1:    AT 2012   53.97
 #&gt; 2:    AT 2013   53.44
@@ -1020,9 +985,9 @@ einzelnen Datensatz, aber auch jedes andere Objekt (Vektor, Liste, etc.)
 kann als <code>.rds</code>-Dateie gespeichert werden.
 Solche Dateien können mit der Funktion <code>readRDS()</code> gelesen werden, die als
 einziges Argument den Dateinamen annimmt:</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb332-1" data-line-number="1">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.rds&quot;</span>)</a>
-<a class="sourceLine" id="cb332-2" data-line-number="2">daten &lt;-<span class="st"> </span><span class="kw">readRDS</span>(daten_pfad)</a>
-<a class="sourceLine" id="cb332-3" data-line-number="3">daten</a></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" data-line-number="1">daten_pfad &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.rds&quot;</span>)</a>
+<a class="sourceLine" id="cb335-2" data-line-number="2">daten &lt;-<span class="st"> </span><span class="kw">readRDS</span>(daten_pfad)</a>
+<a class="sourceLine" id="cb335-3" data-line-number="3">daten</a></code></pre></div>
 <pre><code>#&gt;   Land Jahr BIP
 #&gt; 1  DEU 2011   1
 #&gt; 2  DEU 2012   2</code></pre>
@@ -1034,12 +999,12 @@ wurden.
 In diesem Fall wurden in der Datei <code>data/tidy/test_daten.RData</code> der Datensatz
 <code>test_dat</code> und der Vektor <code>test_vec</code> gespeichert.
 Entsprechend sind sie nach dem Einlesen verfügbar:</p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb334-1" data-line-number="1"><span class="kw">load</span>(<span class="kw">here</span>(<span class="st">&quot;data/tidy/test_daten.RData&quot;</span>))</a>
-<a class="sourceLine" id="cb334-2" data-line-number="2">test_dat</a></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" data-line-number="1"><span class="kw">load</span>(<span class="kw">here</span>(<span class="st">&quot;data/tidy/test_daten.RData&quot;</span>))</a>
+<a class="sourceLine" id="cb337-2" data-line-number="2">test_dat</a></code></pre></div>
 <pre><code>#&gt;   a b
 #&gt; 1 1 3
 #&gt; 2 2 4</code></pre>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" data-line-number="1">test_vec</a></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" data-line-number="1">test_vec</a></code></pre></div>
 <pre><code>#&gt; [1] &quot;Test Vektor&quot;</code></pre>
 <p>Die Verwendung von <code>.RData</code> ist besonders dann hilfreich, wenn Sie mehrere
 Objekte speichern wollen und wenn einige dieser Objekte keine Datensätze sind,
@@ -1049,9 +1014,9 @@ für die auch andere Formate zur Verfügung stehen.</p>
 Um Dateien in diesem Format lesen zu können verwenden Sie die Funktion
 <code>read_dta()</code> aus dem Paket <a href="https://github.com/tidyverse/haven">haven</a> <span class="citation">(Wickham and Miller <a href="#ref-R-haven">2019</a>)</span>,
 die als einziges Argumente den Dateinamen akzeptiert:</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" data-line-number="1">dta_datei &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.dta&quot;</span>)</a>
-<a class="sourceLine" id="cb338-2" data-line-number="2">dta_daten &lt;-<span class="st"> </span><span class="kw">read_dta</span>(dta_datei)</a>
-<a class="sourceLine" id="cb338-3" data-line-number="3"><span class="kw">head</span>(dta_daten, <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" data-line-number="1">dta_datei &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.dta&quot;</span>)</a>
+<a class="sourceLine" id="cb341-2" data-line-number="2">dta_daten &lt;-<span class="st"> </span><span class="kw">read_dta</span>(dta_datei)</a>
+<a class="sourceLine" id="cb341-3" data-line-number="3"><span class="kw">head</span>(dta_daten, <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 3
 #&gt;   iso2c  year Exporte
 #&gt;   &lt;chr&gt; &lt;dbl&gt;   &lt;dbl&gt;
@@ -1075,8 +1040,8 @@ csv-Dateien ist die Funktion <code>fwrite()</code> aus dem Paket <code>data.tabl
 Angenommen wir haben einen Datensatz <code>test_data</code>, den wir im Unterordner
 <code>data/tidy</code> als <code>test_data.csv</code> speichern wollen.
 Das geht mit <code>fwrite()</code> ganz einfach:</p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" data-line-number="1">datei_name &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/test_data.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb340-2" data-line-number="2"><span class="kw">fwrite</span>(test_data, <span class="dt">file =</span> datei_name)</a></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" data-line-number="1">datei_name &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/test_data.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb343-2" data-line-number="2"><span class="kw">fwrite</span>(test_data, <span class="dt">file =</span> datei_name)</a></code></pre></div>
 <p>Neben dem zu schreibenden Objekt als erstem Argument benötigen Sie noch das
 Argument <code>file</code>, welches den Namen und Pfad der zu schreibenden Datei spezifiziert.
 Der Übersicht halber ist es oft empfehlenswert diesen Pfad zuerst als
@@ -1091,11 +1056,11 @@ Natürlich könnten Sie das händisch in Ihrem Datei-Explorer machen, aber das i
 natürlich vollkommen überholt.
 Sie können das gleich in R miterledigen indem Sie z.B. die Funktion <code>gzip</code>
 aus dem Paket <code>R.utils</code> <span class="citation">(Bengtsson <a href="#ref-R-R.utils">2019</a>)</span> verwenden:</p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" data-line-number="1">csv_datei_name &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/test_data.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb341-2" data-line-number="2"><span class="kw">fwrite</span>(test_data, <span class="dt">file =</span> csv_datei_name)</a>
-<a class="sourceLine" id="cb341-3" data-line-number="3"><span class="kw">gzip</span>(csv_datei_name,</a>
-<a class="sourceLine" id="cb341-4" data-line-number="4">      <span class="dt">destname=</span><span class="kw">paste0</span>(csv_datei_name, <span class="st">&quot;.gz&quot;</span>), </a>
-<a class="sourceLine" id="cb341-5" data-line-number="5">      <span class="dt">overwrite =</span> <span class="ot">TRUE</span>, <span class="dt">remove=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" data-line-number="1">csv_datei_name &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/test_data.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb344-2" data-line-number="2"><span class="kw">fwrite</span>(test_data, <span class="dt">file =</span> csv_datei_name)</a>
+<a class="sourceLine" id="cb344-3" data-line-number="3"><span class="kw">gzip</span>(csv_datei_name,</a>
+<a class="sourceLine" id="cb344-4" data-line-number="4">      <span class="dt">destname=</span><span class="kw">paste0</span>(csv_datei_name, <span class="st">&quot;.gz&quot;</span>), </a>
+<a class="sourceLine" id="cb344-5" data-line-number="5">      <span class="dt">overwrite =</span> <span class="ot">TRUE</span>, <span class="dt">remove=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Diese Funktion akzeptiert als erstes Argument den Pfad zu der zu komprimierenden
 Datei, also zweites Argument (<code>destname</code>) den Namen, den die komprimierte Datei
 tragen soll und einige weitere optionale Argumente. Häufig bietet sich
@@ -1117,11 +1082,11 @@ Dateien, die mit <code>bzip2()</code> komprimiert wurden, sollten mit der Endung
 gekennzeichnet werden. Entsprechend sieht der Code von oben mit <code>bzip2()</code>
 anstatt <code>gzip()</code> folgendermaßen aus:</p>
 </blockquote>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb342-1" data-line-number="1">csv_datei_name &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/test_data.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb342-2" data-line-number="2"><span class="kw">fwrite</span>(test_data, csv_datei_name)</a>
-<a class="sourceLine" id="cb342-3" data-line-number="3"><span class="kw">bzip2</span>(csv_datei_name,</a>
-<a class="sourceLine" id="cb342-4" data-line-number="4">      <span class="dt">destname=</span><span class="kw">paste0</span>(csv_datei_name, <span class="st">&quot;.bz2&quot;</span>), </a>
-<a class="sourceLine" id="cb342-5" data-line-number="5">      <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb345-1" data-line-number="1">csv_datei_name &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/tidy/test_data.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb345-2" data-line-number="2"><span class="kw">fwrite</span>(test_data, csv_datei_name)</a>
+<a class="sourceLine" id="cb345-3" data-line-number="3"><span class="kw">bzip2</span>(csv_datei_name,</a>
+<a class="sourceLine" id="cb345-4" data-line-number="4">      <span class="dt">destname=</span><span class="kw">paste0</span>(csv_datei_name, <span class="st">&quot;.bz2&quot;</span>), </a>
+<a class="sourceLine" id="cb345-5" data-line-number="5">      <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <blockquote>
 <p>Einen Vergleich der Kompressionseigenschaften und Lese- und Schreibgeschwindigkeiten
 ist immer auch kontextabhängig, im Internet finden sich viele Diskussionen zu dem
@@ -1135,7 +1100,7 @@ Einziger Nachteil:
 alle Irren, die nicht R benutzen, können Ihre Daten nicht öffnen.
 Manchmal mag das eine verdiente Strafe, manchmal aber auch ein Ausschlusskriterium
 sein.</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" data-line-number="1"><span class="kw">saveRDS</span>(<span class="dt">object =</span> test_data,  <span class="dt">file =</span> <span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.rds&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" data-line-number="1"><span class="kw">saveRDS</span>(<span class="dt">object =</span> test_data,  <span class="dt">file =</span> <span class="kw">here</span>(<span class="st">&quot;data/tidy/export_daten.rds&quot;</span>))</a></code></pre></div>
 <p>Wie Sie sehen sind zwei Argumente zentral: das erste Argument, <code>object</code>
 spezifiziert das zu speichernde Objekt und <code>file</code> den Dateipfad.
 Darüber hinaus können Sie mit dem optionalen Argument <code>compress</code> hier die
@@ -1149,8 +1114,8 @@ Argumente an die Funktion übergeben, es ist aber übersichtlicher das
 über das Argument <code>list</code> zu erledigen.
 Der folgende Code speichert die beiden Objekte <code>test_data</code> und <code>daten</code> in der
 Datei <code>&quot;data/tidy/datensammlung.Rdata&quot;</code>:</p>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" data-line-number="1"><span class="kw">save</span>(<span class="dt">list=</span><span class="kw">c</span>(<span class="st">&quot;test_data&quot;</span>, <span class="st">&quot;daten&quot;</span>), </a>
-<a class="sourceLine" id="cb344-2" data-line-number="2">     <span class="dt">file=</span><span class="kw">here</span>(<span class="st">&quot;data/tidy/datensammlung.RData&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" data-line-number="1"><span class="kw">save</span>(<span class="dt">list=</span><span class="kw">c</span>(<span class="st">&quot;test_data&quot;</span>, <span class="st">&quot;daten&quot;</span>), </a>
+<a class="sourceLine" id="cb347-2" data-line-number="2">     <span class="dt">file=</span><span class="kw">here</span>(<span class="st">&quot;data/tidy/datensammlung.RData&quot;</span>))</a></code></pre></div>
 <p>Wie <code>saveRDS()</code> können Sie bei <code>save()</code> über das Argument <code>compress</code> den
 Kompressionsalgorithmus auswählen,
 allerdings können Sie mit <code>compression_level</code> zusätzlich noch die Stärke von <code>1</code>
@@ -1161,9 +1126,9 @@ auswählen.</p>
 kurz erkläutern, wie man einen Datensatz im STATA-Format <code>.dta</code> speichern kann.
 Dazu verwenden wir die Funktion <code>write_dta()</code>
 aus dem Paket <a href="https://github.com/tidyverse/haven">haven</a>.</p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb345-1" data-line-number="1"><span class="kw">library</span>(haven)</a>
-<a class="sourceLine" id="cb345-2" data-line-number="2"><span class="kw">write_dta</span>(test_data, </a>
-<a class="sourceLine" id="cb345-3" data-line-number="3">          <span class="kw">here</span>(<span class="st">&quot;data/tidy/test_daten.dta&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb348-1" data-line-number="1"><span class="kw">library</span>(haven)</a>
+<a class="sourceLine" id="cb348-2" data-line-number="2"><span class="kw">write_dta</span>(test_data, </a>
+<a class="sourceLine" id="cb348-3" data-line-number="3">          <span class="kw">here</span>(<span class="st">&quot;data/tidy/test_daten.dta&quot;</span>))</a></code></pre></div>
 <p>Für <code>SAS</code>- und <code>SPSS</code>-Daten gibt es ähnliche Funktionen, die ebenfalls durch das
 <a href="https://github.com/tidyverse/haven">haven</a>-Paket bereitgestellt werden.</p>
 <blockquote>
@@ -1241,7 +1206,7 @@ früher gefunden worden.</p>
 oft eine abenteuerliche Form und wir können in der Regel nicht direkt mit der
 statistischen Analyse anfangen.
 Die meisten Statistik-Pakete und Funktionen setzen eine bestimmte ‘aufgeräumte’
-Form der Daten voraus. <span class="citation">Wickham (<a href="#ref-tidy">2014</a>)</span> beschreibt diese Form als <code>tidy data</code><a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a> und es ist unser Ziel durch die Datenaufbereitung die
+Form der Daten voraus. <span class="citation">Wickham (<a href="#ref-tidy">2014</a>)</span> beschreibt diese Form als <code>tidy data</code><a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> und es ist unser Ziel durch die Datenaufbereitung die
 verschiedenen Rohdatensätze in <code>tidy data</code> zu verwandeln. Die daraus resultierenden
 Datensätze können dann separat gespeichert werden, damit wir die Datenaufbereitung
 nicht jedes Mal erneut durchführen müssen (im Abschnitt
@@ -1330,9 +1295,9 @@ widerspricht:</p>
 <p><strong>Beispiel: Verstoß gegen (3)</strong> Verstöße gegen die dritte Anforderung
 kommen in der Praxis in der Regel seltener vor, sind aber auch unschön:</p>
 </blockquote>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb350-1" data-line-number="1">d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Land=</span><span class="kw">c</span>(<span class="st">&quot;DE&quot;</span>, <span class="st">&quot;AT&quot;</span>))</a>
-<a class="sourceLine" id="cb350-2" data-line-number="2">d<span class="op">$</span><span class="st">`</span><span class="dt">Wichtige Industrien</span><span class="st">`</span> &lt;-<span class="st">  </span><span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;Autos&quot;</span>, <span class="st">&quot;Medikamente&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;Stahlproduktion&quot;</span>, <span class="st">&quot;Holz&quot;</span>))</a>
-<a class="sourceLine" id="cb350-3" data-line-number="3">d</a></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" data-line-number="1">d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Land=</span><span class="kw">c</span>(<span class="st">&quot;DE&quot;</span>, <span class="st">&quot;AT&quot;</span>))</a>
+<a class="sourceLine" id="cb353-2" data-line-number="2">d<span class="op">$</span><span class="st">`</span><span class="dt">Wichtige Industrien</span><span class="st">`</span> &lt;-<span class="st">  </span><span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;Autos&quot;</span>, <span class="st">&quot;Medikamente&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;Stahlproduktion&quot;</span>, <span class="st">&quot;Holz&quot;</span>))</a>
+<a class="sourceLine" id="cb353-3" data-line-number="3">d</a></code></pre></div>
 <pre><code>#&gt;   Land   Wichtige Industrien
 #&gt; 1   DE    Autos, Medikamente
 #&gt; 2   AT Stahlproduktion, Holz</code></pre>
@@ -1364,12 +1329,12 @@ andere Format besser ist (siehe <a href="data.html#data-summary">unten</a>).
 Um zwischen den Formaten hin und herzuwechseln verwenden wir vor allem die
 Funktionen <code>pivot_longer()</code> und <code>pivot_wider()</code> aus dem Paket
 <a href="https://github.com/tidyverse/tidyr">tidyr</a> <span class="citation">(Wickham and Henry <a href="#ref-R-tidyr">2019</a>)</span>, welches auch Teil des
-<code>tidyverse</code> ist.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a></p>
+<code>tidyverse</code> ist.<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a></p>
 <p>Wir verwenden <code>pivot_longer()</code> um einen Datensätz ‘länger’ zu machen.
 Wir verwenden dazu folgenden Datensatz als Ausgangsbeispiel, der Werte
 für die Arbeitslosigkeit in Deutschland und Österreich in zwei Jahren
 enthält:</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" data-line-number="1">data_wide</a></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" data-line-number="1">data_wide</a></code></pre></div>
 <pre><code>#&gt;   Land  2013  2014
 #&gt; 1   AT 5.335 5.620
 #&gt; 2   DE 5.231 4.981</code></pre>
@@ -1389,11 +1354,11 @@ Werte des verlängerten Datensatzes beschreibt.
 In unserem Falle bietet sich der Name <code>Arbeitslosenquote</code>, da es bei dem Datensat um
 Arbeitslosenquotenstatistiken handelt.</p>
 <p>Insgesamt erhalten wir damit den folgenden Funktionsaufruf:</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" data-line-number="1">data_long &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> data_wide,</a>
-<a class="sourceLine" id="cb356-2" data-line-number="2">                          <span class="dt">cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;2013&quot;</span>, <span class="st">&quot;2014&quot;</span>), </a>
-<a class="sourceLine" id="cb356-3" data-line-number="3">                          <span class="dt">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </a>
-<a class="sourceLine" id="cb356-4" data-line-number="4">                          <span class="dt">values_to =</span> <span class="st">&quot;Arbeitslosenquote&quot;</span>)</a>
-<a class="sourceLine" id="cb356-5" data-line-number="5">data_long</a></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" data-line-number="1">data_long &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> data_wide,</a>
+<a class="sourceLine" id="cb359-2" data-line-number="2">                          <span class="dt">cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;2013&quot;</span>, <span class="st">&quot;2014&quot;</span>), </a>
+<a class="sourceLine" id="cb359-3" data-line-number="3">                          <span class="dt">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </a>
+<a class="sourceLine" id="cb359-4" data-line-number="4">                          <span class="dt">values_to =</span> <span class="st">&quot;Arbeitslosenquote&quot;</span>)</a>
+<a class="sourceLine" id="cb359-5" data-line-number="5">data_long</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 4 x 3
 #&gt;   Land  Jahr  Arbeitslosenquote
 #&gt;   &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;
@@ -1405,7 +1370,7 @@ Arbeitslosenquotenstatistiken handelt.</p>
 machen wollen, verwenden wir die Funktion <code>pivot_wider()</code>.
 Hier wird die Anzahl der Zeilen reduziert und die Anzahl der Spalten erhöht
 Gehen wir einmal vom gerade produzierten Datensatz aus:</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" data-line-number="1">data_long</a></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" data-line-number="1">data_long</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 4 x 3
 #&gt;   Land  Jahr  Arbeitslosenquote
 #&gt;   &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;
@@ -1429,11 +1394,11 @@ Werte für die neuen Spalten genommen werden sollen.
 In unserem Falle wäre das die Spalte <code>Arbeitslosenquote</code>, da wir ja in die
 Spalten für die einzelnen Jahre die Arbeitslosenquoten schreiben wollen.</p>
 <p>Insgesamt sieht der Funktionsaufruf also so aus:</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" data-line-number="1">data_wide_neu &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">data =</span> data_long,</a>
-<a class="sourceLine" id="cb360-2" data-line-number="2">                             <span class="dt">id_cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>), </a>
-<a class="sourceLine" id="cb360-3" data-line-number="3">                             <span class="dt">names_from =</span> <span class="st">&quot;Jahr&quot;</span>, </a>
-<a class="sourceLine" id="cb360-4" data-line-number="4">                             <span class="dt">values_from =</span> <span class="st">&quot;Arbeitslosenquote&quot;</span>)</a>
-<a class="sourceLine" id="cb360-5" data-line-number="5">data_wide_neu</a></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" data-line-number="1">data_wide_neu &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">data =</span> data_long,</a>
+<a class="sourceLine" id="cb363-2" data-line-number="2">                             <span class="dt">id_cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>), </a>
+<a class="sourceLine" id="cb363-3" data-line-number="3">                             <span class="dt">names_from =</span> <span class="st">&quot;Jahr&quot;</span>, </a>
+<a class="sourceLine" id="cb363-4" data-line-number="4">                             <span class="dt">values_from =</span> <span class="st">&quot;Arbeitslosenquote&quot;</span>)</a>
+<a class="sourceLine" id="cb363-5" data-line-number="5">data_wide_neu</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 3
 #&gt;   Land  `2013` `2014`
 #&gt;   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;
@@ -1469,11 +1434,11 @@ Wir machen uns dabei zu Nutze, dass wir dem Argument <code>cols</code> auch die 
 Spalten geben können, die wir <em>nicht</em> transformieren wollen. Dazu stellen wir
 der Liste der Namen ein <code>-</code> voran und R wird entsprechend alle hier nicht
 genannten Spalten für die Transformation verwenden:</p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" data-line-number="1">data_al_exp_longer &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> data_al_exp, </a>
-<a class="sourceLine" id="cb364-2" data-line-number="2">                                   <span class="dt">cols =</span> <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>), </a>
-<a class="sourceLine" id="cb364-3" data-line-number="3">                                   <span class="dt">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </a>
-<a class="sourceLine" id="cb364-4" data-line-number="4">                                   <span class="dt">values_to =</span> <span class="st">&quot;Wert&quot;</span>)</a>
-<a class="sourceLine" id="cb364-5" data-line-number="5"><span class="kw">head</span>(data_al_exp_longer, <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" data-line-number="1">data_al_exp_longer &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> data_al_exp, </a>
+<a class="sourceLine" id="cb367-2" data-line-number="2">                                   <span class="dt">cols =</span> <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>), </a>
+<a class="sourceLine" id="cb367-3" data-line-number="3">                                   <span class="dt">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </a>
+<a class="sourceLine" id="cb367-4" data-line-number="4">                                   <span class="dt">values_to =</span> <span class="st">&quot;Wert&quot;</span>)</a>
+<a class="sourceLine" id="cb367-5" data-line-number="5"><span class="kw">head</span>(data_al_exp_longer, <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 4
 #&gt;   Land  Variable Jahr   Wert
 #&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;
@@ -1487,11 +1452,11 @@ Das ist vor allem dann hilfreich wenn wir sehr viele Spalten zusammenfassen
 wollen, was häufig vorkommt, wenn es sich bei den Spalten um Jahre handelt.</p>
 <p>Um unser gewünschtes Endergebnis zu erhalten müssen wir diesen Datensatz nun nur
 noch breiter machen:</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" data-line-number="1">data_al_exp_tidy &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">data =</span> data_al_exp_longer, </a>
-<a class="sourceLine" id="cb366-2" data-line-number="2">                                <span class="dt">id_cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>), </a>
-<a class="sourceLine" id="cb366-3" data-line-number="3">                                <span class="dt">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </a>
-<a class="sourceLine" id="cb366-4" data-line-number="4">                                <span class="dt">names_from =</span> <span class="st">&quot;Variable&quot;</span>)</a>
-<a class="sourceLine" id="cb366-5" data-line-number="5">data_al_exp_tidy</a></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" data-line-number="1">data_al_exp_tidy &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">data =</span> data_al_exp_longer, </a>
+<a class="sourceLine" id="cb369-2" data-line-number="2">                                <span class="dt">id_cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>), </a>
+<a class="sourceLine" id="cb369-3" data-line-number="3">                                <span class="dt">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </a>
+<a class="sourceLine" id="cb369-4" data-line-number="4">                                <span class="dt">names_from =</span> <span class="st">&quot;Variable&quot;</span>)</a>
+<a class="sourceLine" id="cb369-5" data-line-number="5">data_al_exp_tidy</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 6 x 4
 #&gt;   Land  Jahr  Exporte Arbeitslosigkeit
 #&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;            &lt;dbl&gt;
@@ -1502,15 +1467,15 @@ noch breiter machen:</p>
 #&gt; 5 DE    2013     45.4             5.23
 #&gt; 6 DE    2014     45.6             4.98</code></pre>
 <p>Insgesamt sähe der Code damit folgendermaßen aus:</p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" data-line-number="1">data_al_exp_longer &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> data_al_exp, </a>
-<a class="sourceLine" id="cb368-2" data-line-number="2">                                   <span class="dt">cols =</span> <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>), </a>
-<a class="sourceLine" id="cb368-3" data-line-number="3">                                   <span class="dt">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </a>
-<a class="sourceLine" id="cb368-4" data-line-number="4">                                   <span class="dt">values_to =</span> <span class="st">&quot;Wert&quot;</span>)</a>
-<a class="sourceLine" id="cb368-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb368-6" data-line-number="6">data_al_exp_tidy &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">data =</span> data_al_exp_longer, </a>
-<a class="sourceLine" id="cb368-7" data-line-number="7">                                <span class="dt">id_cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>), </a>
-<a class="sourceLine" id="cb368-8" data-line-number="8">                                <span class="dt">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </a>
-<a class="sourceLine" id="cb368-9" data-line-number="9">                                <span class="dt">names_from =</span> <span class="st">&quot;Variable&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" data-line-number="1">data_al_exp_longer &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> data_al_exp, </a>
+<a class="sourceLine" id="cb371-2" data-line-number="2">                                   <span class="dt">cols =</span> <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>), </a>
+<a class="sourceLine" id="cb371-3" data-line-number="3">                                   <span class="dt">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </a>
+<a class="sourceLine" id="cb371-4" data-line-number="4">                                   <span class="dt">values_to =</span> <span class="st">&quot;Wert&quot;</span>)</a>
+<a class="sourceLine" id="cb371-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb371-6" data-line-number="6">data_al_exp_tidy &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">data =</span> data_al_exp_longer, </a>
+<a class="sourceLine" id="cb371-7" data-line-number="7">                                <span class="dt">id_cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>), </a>
+<a class="sourceLine" id="cb371-8" data-line-number="8">                                <span class="dt">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </a>
+<a class="sourceLine" id="cb371-9" data-line-number="9">                                <span class="dt">names_from =</span> <span class="st">&quot;Variable&quot;</span>)</a></code></pre></div>
 <p>Da die Kombination solcher Schritte in der Praxis sehr häufig vorkommt und
 man die vielen Zuweisungen der Übersicht halber vermeiden möchte, bieten die
 Pakete des <code>tidyverse</code> eine schöne Möglichkeit, den Code zu verkürzen:
@@ -1519,15 +1484,15 @@ die so genannte <strong>Pipe</strong> <code>%&gt;%</code>.</p>
 Dort wird das Ergebnis des vorherigen Aufrufs automatisch als erstes Argument
 verwendet.
 Wir könnten also auch schreiben:</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" data-line-number="1">data_al_exp_tidy &lt;-<span class="st"> </span>data_al_exp <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb369-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(</a>
-<a class="sourceLine" id="cb369-3" data-line-number="3">    <span class="dt">cols =</span> <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>), </a>
-<a class="sourceLine" id="cb369-4" data-line-number="4">    <span class="dt">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </a>
-<a class="sourceLine" id="cb369-5" data-line-number="5">    <span class="dt">values_to =</span> <span class="st">&quot;Wert&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb369-6" data-line-number="6"><span class="st">  </span><span class="kw">pivot_wider</span>(</a>
-<a class="sourceLine" id="cb369-7" data-line-number="7">    <span class="dt">id_cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>), </a>
-<a class="sourceLine" id="cb369-8" data-line-number="8">    <span class="dt">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </a>
-<a class="sourceLine" id="cb369-9" data-line-number="9">    <span class="dt">names_from =</span> <span class="st">&quot;Variable&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" data-line-number="1">data_al_exp_tidy &lt;-<span class="st"> </span>data_al_exp <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb372-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(</a>
+<a class="sourceLine" id="cb372-3" data-line-number="3">    <span class="dt">cols =</span> <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>), </a>
+<a class="sourceLine" id="cb372-4" data-line-number="4">    <span class="dt">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </a>
+<a class="sourceLine" id="cb372-5" data-line-number="5">    <span class="dt">values_to =</span> <span class="st">&quot;Wert&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb372-6" data-line-number="6"><span class="st">  </span><span class="kw">pivot_wider</span>(</a>
+<a class="sourceLine" id="cb372-7" data-line-number="7">    <span class="dt">id_cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>), </a>
+<a class="sourceLine" id="cb372-8" data-line-number="8">    <span class="dt">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </a>
+<a class="sourceLine" id="cb372-9" data-line-number="9">    <span class="dt">names_from =</span> <span class="st">&quot;Variable&quot;</span>)</a></code></pre></div>
 <p>Das ist gleich viel besser lesbar!
 In der ersten Zeile schreiben wir nur das Ausgangsobjekt <code>data_al_exp</code>,
 welches über <code>%&gt;%</code> dann unmittelbar als erstes Argument an <code>pivot_longer()</code>
@@ -1542,17 +1507,17 @@ automatisch als erstes Argument für den Funktionsaufruf der nächsten Zeile wei
 Das ist nur das Standardverfahren. Eigentlich gibt es den Output als <code>.</code> weiter.
 Wir könnten also auch expliziter schreiben:</p>
 </blockquote>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" data-line-number="1">data_al_exp_tidy &lt;-<span class="st"> </span>data_al_exp <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb370-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(</a>
-<a class="sourceLine" id="cb370-3" data-line-number="3">    <span class="dt">data =</span> .,</a>
-<a class="sourceLine" id="cb370-4" data-line-number="4">    <span class="dt">cols =</span> <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>), </a>
-<a class="sourceLine" id="cb370-5" data-line-number="5">    <span class="dt">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </a>
-<a class="sourceLine" id="cb370-6" data-line-number="6">    <span class="dt">values_to =</span> <span class="st">&quot;Wert&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb370-7" data-line-number="7"><span class="st">  </span><span class="kw">pivot_wider</span>(</a>
-<a class="sourceLine" id="cb370-8" data-line-number="8">    <span class="dt">data =</span> .,</a>
-<a class="sourceLine" id="cb370-9" data-line-number="9">    <span class="dt">id_cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>), </a>
-<a class="sourceLine" id="cb370-10" data-line-number="10">    <span class="dt">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </a>
-<a class="sourceLine" id="cb370-11" data-line-number="11">    <span class="dt">names_from =</span> <span class="st">&quot;Variable&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb373-1" data-line-number="1">data_al_exp_tidy &lt;-<span class="st"> </span>data_al_exp <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb373-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(</a>
+<a class="sourceLine" id="cb373-3" data-line-number="3">    <span class="dt">data =</span> .,</a>
+<a class="sourceLine" id="cb373-4" data-line-number="4">    <span class="dt">cols =</span> <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>), </a>
+<a class="sourceLine" id="cb373-5" data-line-number="5">    <span class="dt">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </a>
+<a class="sourceLine" id="cb373-6" data-line-number="6">    <span class="dt">values_to =</span> <span class="st">&quot;Wert&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb373-7" data-line-number="7"><span class="st">  </span><span class="kw">pivot_wider</span>(</a>
+<a class="sourceLine" id="cb373-8" data-line-number="8">    <span class="dt">data =</span> .,</a>
+<a class="sourceLine" id="cb373-9" data-line-number="9">    <span class="dt">id_cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>), </a>
+<a class="sourceLine" id="cb373-10" data-line-number="10">    <span class="dt">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </a>
+<a class="sourceLine" id="cb373-11" data-line-number="11">    <span class="dt">names_from =</span> <span class="st">&quot;Variable&quot;</span>)</a></code></pre></div>
 <blockquote>
 <p>Das ist hilfreich, wenn Sie den Output einer Zeile nicht als erstes, sondern
 z.B. als zweites Argument in der nächsen Funktion verwenden wollen.
@@ -1560,17 +1525,17 @@ Dann verwenden Sie den <code>.</code> einfach explizit da wo Sie ihn brauchen. D
 die Argumente ja nicht in der richtigen Reihenfolge angeben müssen solange die
 Namen stimmen funktioniert also auch folgender Code:</p>
 </blockquote>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" data-line-number="1">data_al_exp_tidy &lt;-<span class="st"> </span>data_al_exp <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb371-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(</a>
-<a class="sourceLine" id="cb371-3" data-line-number="3">    <span class="dt">cols =</span> <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>), </a>
-<a class="sourceLine" id="cb371-4" data-line-number="4">    <span class="dt">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </a>
-<a class="sourceLine" id="cb371-5" data-line-number="5">    <span class="dt">values_to =</span> <span class="st">&quot;Wert&quot;</span>,</a>
-<a class="sourceLine" id="cb371-6" data-line-number="6">    <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb371-7" data-line-number="7"><span class="st">  </span><span class="kw">pivot_wider</span>(</a>
-<a class="sourceLine" id="cb371-8" data-line-number="8">    <span class="dt">id_cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>), </a>
-<a class="sourceLine" id="cb371-9" data-line-number="9">    <span class="dt">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </a>
-<a class="sourceLine" id="cb371-10" data-line-number="10">    <span class="dt">names_from =</span> <span class="st">&quot;Variable&quot;</span>,</a>
-<a class="sourceLine" id="cb371-11" data-line-number="11">    <span class="dt">data =</span> .)</a></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" data-line-number="1">data_al_exp_tidy &lt;-<span class="st"> </span>data_al_exp <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb374-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(</a>
+<a class="sourceLine" id="cb374-3" data-line-number="3">    <span class="dt">cols =</span> <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>), </a>
+<a class="sourceLine" id="cb374-4" data-line-number="4">    <span class="dt">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </a>
+<a class="sourceLine" id="cb374-5" data-line-number="5">    <span class="dt">values_to =</span> <span class="st">&quot;Wert&quot;</span>,</a>
+<a class="sourceLine" id="cb374-6" data-line-number="6">    <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb374-7" data-line-number="7"><span class="st">  </span><span class="kw">pivot_wider</span>(</a>
+<a class="sourceLine" id="cb374-8" data-line-number="8">    <span class="dt">id_cols =</span> <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>), </a>
+<a class="sourceLine" id="cb374-9" data-line-number="9">    <span class="dt">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </a>
+<a class="sourceLine" id="cb374-10" data-line-number="10">    <span class="dt">names_from =</span> <span class="st">&quot;Variable&quot;</span>,</a>
+<a class="sourceLine" id="cb374-11" data-line-number="11">    <span class="dt">data =</span> .)</a></code></pre></div>
 <p>Beide Funktionen, <code>pivot_wider()</code> and <code>pivot_longer()</code> können noch viel
 komplexere Probleme lösen.
 Für weitere Anwendungen verweisen wir auf die offizielle
@@ -1627,9 +1592,9 @@ Jahren entsprechend zusammenführen schreiben wir:
 <code>by=c(&quot;Jahr&quot;=&quot;year&quot;, &quot;Land&quot;=&quot;country&quot;)</code>, also den Spaltennamen in <code>x</code> auf die
 linke Seite von <code>=</code> und das Pendant in <code>y</code> auf der rechten Seite vom <code>=</code>.</p>
 <p>Im Falle von <code>left_join()</code> ergibt sich also:</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" data-line-number="1">data_bip_gini_left_join &lt;-<span class="st"> </span><span class="kw">left_join</span>(data_BIP, data_gini, </a>
-<a class="sourceLine" id="cb374-2" data-line-number="2">                                     <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))</a>
-<a class="sourceLine" id="cb374-3" data-line-number="3">data_bip_gini_left_join</a></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb377-1" data-line-number="1">data_bip_gini_left_join &lt;-<span class="st"> </span><span class="kw">left_join</span>(data_BIP, data_gini, </a>
+<a class="sourceLine" id="cb377-2" data-line-number="2">                                     <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))</a>
+<a class="sourceLine" id="cb377-3" data-line-number="3">data_bip_gini_left_join</a></code></pre></div>
 <pre><code>#&gt;   Jahr Land BIP Gini
 #&gt; 1 2010  DEU   1    1
 #&gt; 2 2011  DEU   2    2
@@ -1641,9 +1606,9 @@ linke Seite von <code>=</code> und das Pendant in <code>y</code> auf der rechten
 gibt <code>left_join()</code> einen kürzeren gemeinsamen Datensatz aus, da es nur die
 Beobachtungen aus dem rechten Datensatz übernimmt, für die es ein Pendant im
 linken Datensatz gibt.</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb376-1" data-line-number="1">data_gini_bip_left_join &lt;-<span class="st"> </span><span class="kw">left_join</span>(data_gini, data_BIP, </a>
-<a class="sourceLine" id="cb376-2" data-line-number="2">                                     <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;year&quot;</span>=<span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;country&quot;</span>=<span class="st">&quot;Land&quot;</span>))</a>
-<a class="sourceLine" id="cb376-3" data-line-number="3">data_gini_bip_left_join</a></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb379-1" data-line-number="1">data_gini_bip_left_join &lt;-<span class="st"> </span><span class="kw">left_join</span>(data_gini, data_BIP, </a>
+<a class="sourceLine" id="cb379-2" data-line-number="2">                                     <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;year&quot;</span>=<span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;country&quot;</span>=<span class="st">&quot;Land&quot;</span>))</a>
+<a class="sourceLine" id="cb379-3" data-line-number="3">data_gini_bip_left_join</a></code></pre></div>
 <pre><code>#&gt;   year country Gini BIP
 #&gt; 1 2010     DEU    1   1
 #&gt; 2 2011     DEU    2   2
@@ -1652,18 +1617,18 @@ linken Datensatz gibt.</p>
 <p>Die Funktion <code>inner_join()</code> unterscheidet sich von <code>left_join()</code> darin, dass
 nur die Zeilen in den gemeinsamen Datensatz übernimmt, die sowohl in <code>x</code> als
 auch <code>y</code> enthalten sind:</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" data-line-number="1">data_bip_gini_inner_join &lt;-<span class="st"> </span><span class="kw">inner_join</span>(data_BIP, data_gini, </a>
-<a class="sourceLine" id="cb378-2" data-line-number="2">                                      <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))</a>
-<a class="sourceLine" id="cb378-3" data-line-number="3">data_bip_gini_inner_join</a></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb381-1" data-line-number="1">data_bip_gini_inner_join &lt;-<span class="st"> </span><span class="kw">inner_join</span>(data_BIP, data_gini, </a>
+<a class="sourceLine" id="cb381-2" data-line-number="2">                                      <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))</a>
+<a class="sourceLine" id="cb381-3" data-line-number="3">data_bip_gini_inner_join</a></code></pre></div>
 <pre><code>#&gt;   Jahr Land BIP Gini
 #&gt; 1 2010  DEU   1    1
 #&gt; 2 2011  DEU   2    2
 #&gt; 3 2012  AUT   6    3</code></pre>
 <p>Das Verhalten von <code>right_join()</code> ist analog zu <code>left_join()</code>, nur hat hier der
 ‘rechte’ Datensatz, also der dem Argument <code>y</code> übergebene Datensatz Priorität:</p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb380-1" data-line-number="1">data_gini_bip_right_join &lt;-<span class="st"> </span><span class="kw">right_join</span>(data_gini, data_BIP, </a>
-<a class="sourceLine" id="cb380-2" data-line-number="2">                                       <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;year&quot;</span>=<span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;country&quot;</span>=<span class="st">&quot;Land&quot;</span>))</a>
-<a class="sourceLine" id="cb380-3" data-line-number="3">data_gini_bip_right_join</a></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb383-1" data-line-number="1">data_gini_bip_right_join &lt;-<span class="st"> </span><span class="kw">right_join</span>(data_gini, data_BIP, </a>
+<a class="sourceLine" id="cb383-2" data-line-number="2">                                       <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;year&quot;</span>=<span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;country&quot;</span>=<span class="st">&quot;Land&quot;</span>))</a>
+<a class="sourceLine" id="cb383-3" data-line-number="3">data_gini_bip_right_join</a></code></pre></div>
 <pre><code>#&gt;   year country Gini BIP
 #&gt; 1 2010     DEU    1   1
 #&gt; 2 2011     DEU    2   2
@@ -1674,9 +1639,9 @@ auch <code>y</code> enthalten sind:</p>
 <p>Wenn Sie keinem der beiden Datensätze eine Priorität einräumen möchten und
 alle Zeilen in jedem Fall behalten wollen, dann wählen Sie am besten die Funktion
 <code>full_join()</code>:</p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" data-line-number="1">data_bip_gini_full_join &lt;-<span class="st"> </span><span class="kw">full_join</span>(data_BIP, data_gini, </a>
-<a class="sourceLine" id="cb382-2" data-line-number="2">                                      <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))</a>
-<a class="sourceLine" id="cb382-3" data-line-number="3">data_bip_gini_full_join</a></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" data-line-number="1">data_bip_gini_full_join &lt;-<span class="st"> </span><span class="kw">full_join</span>(data_BIP, data_gini, </a>
+<a class="sourceLine" id="cb385-2" data-line-number="2">                                      <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))</a>
+<a class="sourceLine" id="cb385-3" data-line-number="3">data_bip_gini_full_join</a></code></pre></div>
 <pre><code>#&gt;   Jahr Land BIP Gini
 #&gt; 1 2010  DEU   1    1
 #&gt; 2 2011  DEU   2    2
@@ -1693,9 +1658,9 @@ Vielmehr filtern Sie die Zeilen von <code>x</code> gemäß der in <code>y</code>
 enthält, für die es auch in <code>y</code> einen entsprechenden Wert gibt.
 Der resultierende Datensatz enthält aber <em>nur die Spalten vom linken Datensatz</em>
 (<code>x</code>):</p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" data-line-number="1">data_bip_gini_semi_join &lt;-<span class="st"> </span><span class="kw">semi_join</span>(data_BIP, data_gini, </a>
-<a class="sourceLine" id="cb384-2" data-line-number="2">                                     <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))</a>
-<a class="sourceLine" id="cb384-3" data-line-number="3">data_bip_gini_semi_join</a></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" data-line-number="1">data_bip_gini_semi_join &lt;-<span class="st"> </span><span class="kw">semi_join</span>(data_BIP, data_gini, </a>
+<a class="sourceLine" id="cb387-2" data-line-number="2">                                     <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))</a>
+<a class="sourceLine" id="cb387-3" data-line-number="3">data_bip_gini_semi_join</a></code></pre></div>
 <pre><code>#&gt;   Jahr Land BIP
 #&gt; 1 2010  DEU   1
 #&gt; 2 2011  DEU   2
@@ -1704,9 +1669,9 @@ Der resultierende Datensatz enthält aber <em>nur die Spalten vom linken Datensa
 genau wie <code>semi_join()</code> produziert es einen Datensatz, der nur die Spalten von
 <code>x</code> enthält, und zwar diese, für die es in <code>y</code> <strong>keinen</strong> entsprechenden Wert
 gibt:</p>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" data-line-number="1">data_bip_gini_anti_join &lt;-<span class="st"> </span><span class="kw">anti_join</span>(data_BIP, data_gini, </a>
-<a class="sourceLine" id="cb386-2" data-line-number="2">                                     <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))</a>
-<a class="sourceLine" id="cb386-3" data-line-number="3">data_bip_gini_anti_join</a></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" data-line-number="1">data_bip_gini_anti_join &lt;-<span class="st"> </span><span class="kw">anti_join</span>(data_BIP, data_gini, </a>
+<a class="sourceLine" id="cb389-2" data-line-number="2">                                     <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))</a>
+<a class="sourceLine" id="cb389-3" data-line-number="3">data_bip_gini_anti_join</a></code></pre></div>
 <pre><code>#&gt;   Jahr Land BIP
 #&gt; 1 2012  DEU   3
 #&gt; 2 2010  AUT   4
@@ -1714,11 +1679,11 @@ gibt:</p>
 <p>Zum Schluss kommen wir mit <code>nest_join()</code> zu der komplexesten Funktion in der
 <code>*_join()</code>-Familie.
 Hier wird für jede Zeile im linken Datensatz in einer neuen Spalte ein ganzer
-<code>data.frame</code><a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a> hinzugefügt,
+<code>data.frame</code><a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a> hinzugefügt,
 der alle Zeilen vom rechten Datensatz enthält, die zu der entsprechenden Zeile passen:</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" data-line-number="1">data_bip_gini_nest_join &lt;-<span class="st"> </span><span class="kw">nest_join</span>(data_BIP, data_gini, </a>
-<a class="sourceLine" id="cb388-2" data-line-number="2">                                     <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))</a>
-<a class="sourceLine" id="cb388-3" data-line-number="3">data_bip_gini_nest_join</a></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" data-line-number="1">data_bip_gini_nest_join &lt;-<span class="st"> </span><span class="kw">nest_join</span>(data_BIP, data_gini, </a>
+<a class="sourceLine" id="cb391-2" data-line-number="2">                                     <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))</a>
+<a class="sourceLine" id="cb391-3" data-line-number="3">data_bip_gini_nest_join</a></code></pre></div>
 <pre><code>#&gt;   Jahr Land BIP y
 #&gt; 1 2010  DEU   1 1
 #&gt; 2 2011  DEU   2 2
@@ -1727,7 +1692,7 @@ der alle Zeilen vom rechten Datensatz enthält, die zu der entsprechenden Zeile 
 #&gt; 5 2011  AUT   5  
 #&gt; 6 2012  AUT   6 3</code></pre>
 <p>Wenn wir die angehängten <code>data.frame</code>s inspizieren:</p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" data-line-number="1">data_bip_gini_nest_join[[<span class="st">&quot;y&quot;</span>]][[<span class="dv">1</span>]] <span class="co"># erste Zeile der neuen Spalte</span></a></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" data-line-number="1">data_bip_gini_nest_join[[<span class="st">&quot;y&quot;</span>]][[<span class="dv">1</span>]] <span class="co"># erste Zeile der neuen Spalte</span></a></code></pre></div>
 <pre><code>#&gt;   Gini
 #&gt; 1    1</code></pre>
 <p>In der Praxis werden Sie <code>nest_join()</code> wenig verwenden, es ist wegen seiner
@@ -1752,19 +1717,19 @@ Datensatz voneinander abzugrenzen. Standardmäßig ist dieses Argument auf
 <code>.x, .y</code> eingestellt. Das bedeutet, dass wenn beide Datensätze eine Spalte <code>Schulden</code>
 haben, diese aber nicht als ID-Spalte verwendet wird, beide Spalten als
 <code>Schulden.x</code> und <code>Schulden.y</code> in den gemeinsamen Datensatz aufgenommen werden:</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" data-line-number="1">debt_data_IWF &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Land=</span><span class="kw">c</span>(<span class="st">&quot;DEU&quot;</span>, <span class="st">&quot;GRC&quot;</span>), <span class="dt">Schulden=</span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">50</span>))</a>
-<a class="sourceLine" id="cb392-2" data-line-number="2">debt_data_WELTBANK &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Land=</span><span class="kw">c</span>(<span class="st">&quot;GRC&quot;</span>, <span class="st">&quot;DEU&quot;</span>), <span class="dt">Schulden=</span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">25</span>))</a>
-<a class="sourceLine" id="cb392-3" data-line-number="3">debt_data &lt;-<span class="st"> </span><span class="kw">full_join</span>(debt_data_IWF, debt_data_WELTBANK, </a>
-<a class="sourceLine" id="cb392-4" data-line-number="4">                       <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Land&quot;</span>))</a>
-<a class="sourceLine" id="cb392-5" data-line-number="5">debt_data</a></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" data-line-number="1">debt_data_IWF &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Land=</span><span class="kw">c</span>(<span class="st">&quot;DEU&quot;</span>, <span class="st">&quot;GRC&quot;</span>), <span class="dt">Schulden=</span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">50</span>))</a>
+<a class="sourceLine" id="cb395-2" data-line-number="2">debt_data_WELTBANK &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Land=</span><span class="kw">c</span>(<span class="st">&quot;GRC&quot;</span>, <span class="st">&quot;DEU&quot;</span>), <span class="dt">Schulden=</span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">25</span>))</a>
+<a class="sourceLine" id="cb395-3" data-line-number="3">debt_data &lt;-<span class="st"> </span><span class="kw">full_join</span>(debt_data_IWF, debt_data_WELTBANK, </a>
+<a class="sourceLine" id="cb395-4" data-line-number="4">                       <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Land&quot;</span>))</a>
+<a class="sourceLine" id="cb395-5" data-line-number="5">debt_data</a></code></pre></div>
 <pre><code>#&gt;   Land Schulden.x Schulden.y
 #&gt; 1  DEU         10         25
 #&gt; 2  GRC         50        100</code></pre>
 <p>Oder mit explizitem <code>suffix</code>:</p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" data-line-number="1">debt_data &lt;-<span class="st"> </span><span class="kw">full_join</span>(debt_data_IWF, debt_data_WELTBANK, </a>
-<a class="sourceLine" id="cb394-2" data-line-number="2">                       <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Land&quot;</span>), </a>
-<a class="sourceLine" id="cb394-3" data-line-number="3">                       <span class="dt">suffix=</span><span class="kw">c</span>(<span class="st">&quot;.IWF&quot;</span>, <span class="st">&quot;.WELTBANK&quot;</span>))</a>
-<a class="sourceLine" id="cb394-4" data-line-number="4">debt_data</a></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" data-line-number="1">debt_data &lt;-<span class="st"> </span><span class="kw">full_join</span>(debt_data_IWF, debt_data_WELTBANK, </a>
+<a class="sourceLine" id="cb397-2" data-line-number="2">                       <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Land&quot;</span>), </a>
+<a class="sourceLine" id="cb397-3" data-line-number="3">                       <span class="dt">suffix=</span><span class="kw">c</span>(<span class="st">&quot;.IWF&quot;</span>, <span class="st">&quot;.WELTBANK&quot;</span>))</a>
+<a class="sourceLine" id="cb397-4" data-line-number="4">debt_data</a></code></pre></div>
 <pre><code>#&gt;   Land Schulden.IWF Schulden.WELTBANK
 #&gt; 1  DEU           10                25
 #&gt; 2  GRC           50               100</code></pre>
@@ -1835,38 +1800,38 @@ herum häufig Duplikate auf. Damit kann man umgehen, man muss es aber erst einma
 merken. Ich benutze z.B. immer die folgende selbst geschriebene Funktion um zu
 überprüfen ob es in einem neu generierten Datensatz auch keine Duplikate gibt:</p>
 </blockquote>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" data-line-number="1"><span class="co">#&#39; Test uniqueness of data table</span></a>
-<a class="sourceLine" id="cb396-2" data-line-number="2"><span class="co">#&#39;</span></a>
-<a class="sourceLine" id="cb396-3" data-line-number="3"><span class="co">#&#39; Tests whether a data.table has unique rows.</span></a>
-<a class="sourceLine" id="cb396-4" data-line-number="4"><span class="co">#&#39;</span></a>
-<a class="sourceLine" id="cb396-5" data-line-number="5"><span class="co">#&#39; @param data_table A data frame or data table of which uniqueness should</span></a>
-<a class="sourceLine" id="cb396-6" data-line-number="6"><span class="co">#&#39;  be tested.</span></a>
-<a class="sourceLine" id="cb396-7" data-line-number="7"><span class="co">#&#39; @param index_vars Vector of strings, which specify the columns of</span></a>
-<a class="sourceLine" id="cb396-8" data-line-number="8"><span class="co">#&#39;  data_table according to which uniqueness should be tested</span></a>
-<a class="sourceLine" id="cb396-9" data-line-number="9"><span class="co">#&#39;  (e.g. country and year).</span></a>
-<a class="sourceLine" id="cb396-10" data-line-number="10"><span class="co">#&#39; @return TRUE if data_table is unique, FALSE and a warning if it is not.</span></a>
-<a class="sourceLine" id="cb396-11" data-line-number="11"><span class="co">#&#39; @import data.table</span></a>
-<a class="sourceLine" id="cb396-12" data-line-number="12">test_uniqueness &lt;-<span class="st"> </span><span class="cf">function</span>(data_table, index_vars, <span class="dt">print_pos=</span><span class="ot">TRUE</span>){</a>
-<a class="sourceLine" id="cb396-13" data-line-number="13">  data_table &lt;-<span class="st"> </span>data.table<span class="op">::</span><span class="kw">as.data.table</span>(data_table)</a>
-<a class="sourceLine" id="cb396-14" data-line-number="14">  <span class="cf">if</span> (<span class="kw">nrow</span>(data_table)<span class="op">!=</span>data.table<span class="op">::</span><span class="kw">uniqueN</span>(data_table, <span class="dt">by =</span> index_vars)){</a>
-<a class="sourceLine" id="cb396-15" data-line-number="15">    <span class="kw">warning</span>(<span class="kw">paste0</span>(<span class="st">&quot;Rows in the data.table: &quot;</span>, <span class="kw">nrow</span>(data_table),</a>
-<a class="sourceLine" id="cb396-16" data-line-number="16">                   <span class="st">&quot;, rows in the unique data.table:&quot;</span>,</a>
-<a class="sourceLine" id="cb396-17" data-line-number="17">                   data.table<span class="op">::</span><span class="kw">uniqueN</span>(data_table, <span class="dt">by =</span> index_vars)))</a>
-<a class="sourceLine" id="cb396-18" data-line-number="18">    <span class="kw">return</span>(<span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb396-19" data-line-number="19">  } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb396-20" data-line-number="20">    <span class="cf">if</span> (print_pos){</a>
-<a class="sourceLine" id="cb396-21" data-line-number="21">      <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&quot;No duplicates in &quot;</span>, <span class="kw">as.list</span>(<span class="kw">sys.call</span>()[[<span class="dv">2</span>]])))</a>
-<a class="sourceLine" id="cb396-22" data-line-number="22">    }</a>
-<a class="sourceLine" id="cb396-23" data-line-number="23">    <span class="kw">return</span>(<span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb396-24" data-line-number="24">  }</a>
-<a class="sourceLine" id="cb396-25" data-line-number="25">}</a></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" data-line-number="1"><span class="co">#&#39; Test uniqueness of data table</span></a>
+<a class="sourceLine" id="cb399-2" data-line-number="2"><span class="co">#&#39;</span></a>
+<a class="sourceLine" id="cb399-3" data-line-number="3"><span class="co">#&#39; Tests whether a data.table has unique rows.</span></a>
+<a class="sourceLine" id="cb399-4" data-line-number="4"><span class="co">#&#39;</span></a>
+<a class="sourceLine" id="cb399-5" data-line-number="5"><span class="co">#&#39; @param data_table A data frame or data table of which uniqueness should</span></a>
+<a class="sourceLine" id="cb399-6" data-line-number="6"><span class="co">#&#39;  be tested.</span></a>
+<a class="sourceLine" id="cb399-7" data-line-number="7"><span class="co">#&#39; @param index_vars Vector of strings, which specify the columns of</span></a>
+<a class="sourceLine" id="cb399-8" data-line-number="8"><span class="co">#&#39;  data_table according to which uniqueness should be tested</span></a>
+<a class="sourceLine" id="cb399-9" data-line-number="9"><span class="co">#&#39;  (e.g. country and year).</span></a>
+<a class="sourceLine" id="cb399-10" data-line-number="10"><span class="co">#&#39; @return TRUE if data_table is unique, FALSE and a warning if it is not.</span></a>
+<a class="sourceLine" id="cb399-11" data-line-number="11"><span class="co">#&#39; @import data.table</span></a>
+<a class="sourceLine" id="cb399-12" data-line-number="12">test_uniqueness &lt;-<span class="st"> </span><span class="cf">function</span>(data_table, index_vars, <span class="dt">print_pos=</span><span class="ot">TRUE</span>){</a>
+<a class="sourceLine" id="cb399-13" data-line-number="13">  data_table &lt;-<span class="st"> </span>data.table<span class="op">::</span><span class="kw">as.data.table</span>(data_table)</a>
+<a class="sourceLine" id="cb399-14" data-line-number="14">  <span class="cf">if</span> (<span class="kw">nrow</span>(data_table)<span class="op">!=</span>data.table<span class="op">::</span><span class="kw">uniqueN</span>(data_table, <span class="dt">by =</span> index_vars)){</a>
+<a class="sourceLine" id="cb399-15" data-line-number="15">    <span class="kw">warning</span>(<span class="kw">paste0</span>(<span class="st">&quot;Rows in the data.table: &quot;</span>, <span class="kw">nrow</span>(data_table),</a>
+<a class="sourceLine" id="cb399-16" data-line-number="16">                   <span class="st">&quot;, rows in the unique data.table:&quot;</span>,</a>
+<a class="sourceLine" id="cb399-17" data-line-number="17">                   data.table<span class="op">::</span><span class="kw">uniqueN</span>(data_table, <span class="dt">by =</span> index_vars)))</a>
+<a class="sourceLine" id="cb399-18" data-line-number="18">    <span class="kw">return</span>(<span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb399-19" data-line-number="19">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb399-20" data-line-number="20">    <span class="cf">if</span> (print_pos){</a>
+<a class="sourceLine" id="cb399-21" data-line-number="21">      <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&quot;No duplicates in &quot;</span>, <span class="kw">as.list</span>(<span class="kw">sys.call</span>()[[<span class="dv">2</span>]])))</a>
+<a class="sourceLine" id="cb399-22" data-line-number="22">    }</a>
+<a class="sourceLine" id="cb399-23" data-line-number="23">    <span class="kw">return</span>(<span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb399-24" data-line-number="24">  }</a>
+<a class="sourceLine" id="cb399-25" data-line-number="25">}</a></code></pre></div>
 <blockquote>
 <p>Hier ein kleines Anwendungsbeispiel:</p>
 </blockquote>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" data-line-number="1">data_bip_gini_full_join &lt;-<span class="st"> </span><span class="kw">full_join</span>(data_BIP, data_gini, </a>
-<a class="sourceLine" id="cb397-2" data-line-number="2">                                      <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))</a>
-<a class="sourceLine" id="cb397-3" data-line-number="3"><span class="kw">test_uniqueness</span>(data_bip_gini_full_join, </a>
-<a class="sourceLine" id="cb397-4" data-line-number="4">                <span class="dt">index_vars =</span> <span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;Land&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" data-line-number="1">data_bip_gini_full_join &lt;-<span class="st"> </span><span class="kw">full_join</span>(data_BIP, data_gini, </a>
+<a class="sourceLine" id="cb400-2" data-line-number="2">                                      <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>=<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span>=<span class="st">&quot;country&quot;</span>))</a>
+<a class="sourceLine" id="cb400-3" data-line-number="3"><span class="kw">test_uniqueness</span>(data_bip_gini_full_join, </a>
+<a class="sourceLine" id="cb400-4" data-line-number="4">                <span class="dt">index_vars =</span> <span class="kw">c</span>(<span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;Land&quot;</span>))</a></code></pre></div>
 <pre><code>#&gt; [1] &quot;No duplicates in data_bip_gini_full_join&quot;</code></pre>
 <pre><code>#&gt; [1] TRUE</code></pre>
 <blockquote>
@@ -1876,30 +1841,30 @@ aber die <code>countrycode</code> Funktion differenziert nicht zwischen den Name
 sie in Ländercodes übersetzen. In der Folge entstehen Duplikate, die beim
 Zusammenführen der Daten dann offensichtlich werden (können):</p>
 </blockquote>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" data-line-number="1">bip_data</a></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" data-line-number="1">bip_data</a></code></pre></div>
 <pre><code>#&gt;   Land Jahr BIP
 #&gt; 1  DEU 1989   1
 #&gt; 2  DEU 1990   2
 #&gt; 3  DEU 1991   3</code></pre>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" data-line-number="1">gini_data</a></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" data-line-number="1">gini_data</a></code></pre></div>
 <pre><code>#&gt;           Land Jahr Gini
 #&gt; 1 West Germany 1989    1
 #&gt; 2      Germany 1989    2
 #&gt; 3 West Germany 1990    3
 #&gt; 4      Germany 1990    4
 #&gt; 5      Germany 1991    5</code></pre>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" data-line-number="1">gini_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(gini_data, <span class="dt">Land=</span><span class="kw">countrycode</span>(Land, <span class="st">&quot;country.name&quot;</span>, <span class="st">&quot;iso3c&quot;</span>))</a>
-<a class="sourceLine" id="cb404-2" data-line-number="2">full_data &lt;-<span class="st"> </span><span class="kw">full_join</span>(bip_data, gini_data, </a>
-<a class="sourceLine" id="cb404-3" data-line-number="3">                       <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>))</a>
-<a class="sourceLine" id="cb404-4" data-line-number="4">full_data</a></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb407-1" data-line-number="1">gini_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(gini_data, <span class="dt">Land=</span><span class="kw">countrycode</span>(Land, <span class="st">&quot;country.name&quot;</span>, <span class="st">&quot;iso3c&quot;</span>))</a>
+<a class="sourceLine" id="cb407-2" data-line-number="2">full_data &lt;-<span class="st"> </span><span class="kw">full_join</span>(bip_data, gini_data, </a>
+<a class="sourceLine" id="cb407-3" data-line-number="3">                       <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>))</a>
+<a class="sourceLine" id="cb407-4" data-line-number="4">full_data</a></code></pre></div>
 <pre><code>#&gt;   Land Jahr BIP Gini
 #&gt; 1  DEU 1989   1    1
 #&gt; 2  DEU 1989   1    2
 #&gt; 3  DEU 1990   2    3
 #&gt; 4  DEU 1990   2    4
 #&gt; 5  DEU 1991   3    5</code></pre>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" data-line-number="1"><span class="kw">test_uniqueness</span>(full_data, </a>
-<a class="sourceLine" id="cb406-2" data-line-number="2">                <span class="dt">index_vars =</span> <span class="kw">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" data-line-number="1"><span class="kw">test_uniqueness</span>(full_data, </a>
+<a class="sourceLine" id="cb409-2" data-line-number="2">                <span class="dt">index_vars =</span> <span class="kw">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>))</a></code></pre></div>
 <pre><code>#&gt; Warning in test_uniqueness(full_data, index_vars = c(&quot;Land&quot;, &quot;Jahr&quot;)): Rows in
 #&gt; the data.table: 5, rows in the unique data.table:3</code></pre>
 <pre><code>#&gt; [1] FALSE</code></pre>
@@ -1923,7 +1888,7 @@ In diesem Fall sprechen wir von <em>filtern</em>.</p>
 <code>select()</code> aus dem Paket <code>dplyr</code>, welches auch Teil des <code>tidyverse</code> ist, lösen
 können.</p>
 <p>Betrachten wir folgenden Beispieldatensatz:</p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" data-line-number="1">data_al_exp_tidy</a></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb412-1" data-line-number="1">data_al_exp_tidy</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 6 x 4
 #&gt;   Land  Jahr  Exporte Arbeitslosigkeit
 #&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;            &lt;dbl&gt;
@@ -1938,17 +1903,17 @@ Diese verlangt als erstes Argument den zu manipulierenden Datensatz und
 danach die Namen oder Indices der Spalten, die behalten oder eliminiert
 werden sollen. Spalten die behalten werden sollen werden einfach benannt,
 bei Spalten, die eliminiert werden sollen schreiben Sie ein <code>-</code> vor den Namen:</p>
-<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb411-1" data-line-number="1"><span class="kw">head</span>(</a>
-<a class="sourceLine" id="cb411-2" data-line-number="2">  <span class="kw">select</span>(data_al_exp_tidy, Land, Exporte), </a>
-<a class="sourceLine" id="cb411-3" data-line-number="3">  <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" data-line-number="1"><span class="kw">head</span>(</a>
+<a class="sourceLine" id="cb414-2" data-line-number="2">  <span class="kw">select</span>(data_al_exp_tidy, Land, Exporte), </a>
+<a class="sourceLine" id="cb414-3" data-line-number="3">  <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 2
 #&gt;   Land  Exporte
 #&gt;   &lt;chr&gt;   &lt;dbl&gt;
 #&gt; 1 AT       54.0
 #&gt; 2 AT       53.4</code></pre>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" data-line-number="1"><span class="kw">head</span>(</a>
-<a class="sourceLine" id="cb413-2" data-line-number="2">  <span class="kw">select</span>(data_al_exp_tidy, <span class="op">-</span>Exporte), </a>
-<a class="sourceLine" id="cb413-3" data-line-number="3">  <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb416-1" data-line-number="1"><span class="kw">head</span>(</a>
+<a class="sourceLine" id="cb416-2" data-line-number="2">  <span class="kw">select</span>(data_al_exp_tidy, <span class="op">-</span>Exporte), </a>
+<a class="sourceLine" id="cb416-3" data-line-number="3">  <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 3
 #&gt;   Land  Jahr  Arbeitslosigkeit
 #&gt;   &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
@@ -1959,17 +1924,17 @@ Das ist nicht nur besser lesbar, Sie haben es später auch einfacher komplexere
 Vorgänge zu programmieren indem Sie Funktionen schreiben, die den Namen von
 Spalten als Argumente akzeptieren.
 In diesem Fall können Sie wieder die Hilfsfunktion <code>one_of()</code> verwenden:</p>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" data-line-number="1"><span class="kw">head</span>(</a>
-<a class="sourceLine" id="cb415-2" data-line-number="2">  <span class="kw">select</span>(data_al_exp_tidy, <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>)), </a>
-<a class="sourceLine" id="cb415-3" data-line-number="3">  <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb418-1" data-line-number="1"><span class="kw">head</span>(</a>
+<a class="sourceLine" id="cb418-2" data-line-number="2">  <span class="kw">select</span>(data_al_exp_tidy, <span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>)), </a>
+<a class="sourceLine" id="cb418-3" data-line-number="3">  <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 2
 #&gt;   Land  Jahr 
 #&gt;   &lt;chr&gt; &lt;chr&gt;
 #&gt; 1 AT    2012 
 #&gt; 2 AT    2013</code></pre>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" data-line-number="1"><span class="kw">head</span>(</a>
-<a class="sourceLine" id="cb417-2" data-line-number="2">  <span class="kw">select</span>(data_al_exp_tidy, <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>)), </a>
-<a class="sourceLine" id="cb417-3" data-line-number="3">  <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" data-line-number="1"><span class="kw">head</span>(</a>
+<a class="sourceLine" id="cb420-2" data-line-number="2">  <span class="kw">select</span>(data_al_exp_tidy, <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>)), </a>
+<a class="sourceLine" id="cb420-3" data-line-number="3">  <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 2
 #&gt;   Exporte Arbeitslosigkeit
 #&gt;     &lt;dbl&gt;            &lt;dbl&gt;
@@ -1988,9 +1953,9 @@ bietet sich in solchen Fällen die Pipe <code>%&gt;%</code> an um Ihren Code zu 
 besser lesbar zu machen. Es hat sich eingebürgert in die erste Zeile immer den
 Ausgangsdatensatz zu schreiben und select dann in der nächsten Zeile mit implizitem
 ersten Argument zu verwenden:</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" data-line-number="1">data_al_exp_selected &lt;-<span class="st"> </span>data_al_exp_tidy <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb419-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;Exporte&quot;</span>))</a>
-<a class="sourceLine" id="cb419-3" data-line-number="3"><span class="kw">head</span>(data_al_exp_selected, <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" data-line-number="1">data_al_exp_selected &lt;-<span class="st"> </span>data_al_exp_tidy <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb422-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;Exporte&quot;</span>))</a>
+<a class="sourceLine" id="cb422-3" data-line-number="3"><span class="kw">head</span>(data_al_exp_selected, <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 3
 #&gt;   Land  Jahr  Exporte
 #&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;
@@ -2006,10 +1971,10 @@ Danach können wir beliebig viele logische Abfragen, jeweils durch Komma getrenn
 an die Funktion übergeben.
 Wenn wir z.B. nur Beobachtungen für Österreich nach 2012 im Datensatz belassen
 wollen geht das mit:</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" data-line-number="1">data_al_exp_filtered &lt;-<span class="st"> </span>data_al_exp_tidy <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb421-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Land <span class="op">==</span><span class="st"> &quot;AT&quot;</span>,</a>
-<a class="sourceLine" id="cb421-3" data-line-number="3">         Jahr <span class="op">&gt;</span><span class="st"> </span><span class="dv">2012</span>)</a>
-<a class="sourceLine" id="cb421-4" data-line-number="4">data_al_exp_filtered</a></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" data-line-number="1">data_al_exp_filtered &lt;-<span class="st"> </span>data_al_exp_tidy <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb424-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Land <span class="op">==</span><span class="st"> &quot;AT&quot;</span>,</a>
+<a class="sourceLine" id="cb424-3" data-line-number="3">         Jahr <span class="op">&gt;</span><span class="st"> </span><span class="dv">2012</span>)</a>
+<a class="sourceLine" id="cb424-4" data-line-number="4">data_al_exp_filtered</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 4
 #&gt;   Land  Jahr  Exporte Arbeitslosigkeit
 #&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;            &lt;dbl&gt;
@@ -2020,11 +1985,11 @@ komplizierte logische Abfragen einbauen. Wenn wir z.B. nur Beobachtungen wollen,
 die für Österreich im Jahr 2012 oder 2014 und für Deutschland 2013 erhoben wurden
 und in Deutschland zudem mit einer Arbeitslosigkeit über 5.3 % einhergehen,
 geht das mit:</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb423-1" data-line-number="1">data_al_exp_filtered &lt;-<span class="st"> </span>data_al_exp_tidy <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb423-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(</a>
-<a class="sourceLine" id="cb423-3" data-line-number="3">    (Land <span class="op">==</span><span class="st"> &quot;AT&quot;</span> <span class="op">&amp;</span><span class="st"> </span>Jahr <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">2014</span>)) <span class="op">|</span><span class="st"> </span>(Land<span class="op">==</span><span class="st">&quot;DE&quot;</span> <span class="op">&amp;</span><span class="st"> </span>Arbeitslosigkeit<span class="op">&gt;</span><span class="fl">5.3</span>)</a>
-<a class="sourceLine" id="cb423-4" data-line-number="4">    )</a>
-<a class="sourceLine" id="cb423-5" data-line-number="5">data_al_exp_filtered</a></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb426-1" data-line-number="1">data_al_exp_filtered &lt;-<span class="st"> </span>data_al_exp_tidy <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb426-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(</a>
+<a class="sourceLine" id="cb426-3" data-line-number="3">    (Land <span class="op">==</span><span class="st"> &quot;AT&quot;</span> <span class="op">&amp;</span><span class="st"> </span>Jahr <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">2014</span>)) <span class="op">|</span><span class="st"> </span>(Land<span class="op">==</span><span class="st">&quot;DE&quot;</span> <span class="op">&amp;</span><span class="st"> </span>Arbeitslosigkeit<span class="op">&gt;</span><span class="fl">5.3</span>)</a>
+<a class="sourceLine" id="cb426-4" data-line-number="4">    )</a>
+<a class="sourceLine" id="cb426-5" data-line-number="5">data_al_exp_filtered</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 3 x 4
 #&gt;   Land  Jahr  Exporte Arbeitslosigkeit
 #&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;            &lt;dbl&gt;
@@ -2036,11 +2001,11 @@ Das geht ganz einfach mit der Funktion <code>rename()</code>, welche als erstes 
 den Datensatz, und dann die Umbennenungsvorgänge in der Form <code>Name_neu = Name_alt</code>
 verlangt.</p>
 <p>Als Beispiel:</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb425-1" data-line-number="1">data_al_exp_tidy <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb425-2" data-line-number="2"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">country=</span>Land, </a>
-<a class="sourceLine" id="cb425-3" data-line-number="3">         <span class="dt">year_observation=</span>Jahr, </a>
-<a class="sourceLine" id="cb425-4" data-line-number="4">         <span class="dt">exports=</span>Exporte, </a>
-<a class="sourceLine" id="cb425-5" data-line-number="5">         <span class="dt">unemployment=</span>Arbeitslosigkeit)</a></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" data-line-number="1">data_al_exp_tidy <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb428-2" data-line-number="2"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">country=</span>Land, </a>
+<a class="sourceLine" id="cb428-3" data-line-number="3">         <span class="dt">year_observation=</span>Jahr, </a>
+<a class="sourceLine" id="cb428-4" data-line-number="4">         <span class="dt">exports=</span>Exporte, </a>
+<a class="sourceLine" id="cb428-5" data-line-number="5">         <span class="dt">unemployment=</span>Arbeitslosigkeit)</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 6 x 4
 #&gt;   country year_observation exports unemployment
 #&gt;   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;        &lt;dbl&gt;
@@ -2057,18 +2022,18 @@ den Code, mit dem wir</p>
 <li><p>nur die Beobachtungen für Deutschland nach 2012 betrachten und</p></li>
 <li><p>die Spaltennamen dabei noch ins Englische übersetzen:</p></li>
 </ol>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb427-1" data-line-number="1">data_al_exp_tidy <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb427-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(</a>
-<a class="sourceLine" id="cb427-3" data-line-number="3">    <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Arbeitslosigkeit&quot;</span>)</a>
-<a class="sourceLine" id="cb427-4" data-line-number="4">    ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb427-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(</a>
-<a class="sourceLine" id="cb427-6" data-line-number="6">    Jahr<span class="op">&gt;</span><span class="dv">2012</span>,</a>
-<a class="sourceLine" id="cb427-7" data-line-number="7">    Land<span class="op">==</span><span class="st">&quot;DE&quot;</span></a>
-<a class="sourceLine" id="cb427-8" data-line-number="8">    ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb427-9" data-line-number="9"><span class="st">  </span><span class="kw">rename</span>(</a>
-<a class="sourceLine" id="cb427-10" data-line-number="10">    <span class="dt">country=</span>Land, </a>
-<a class="sourceLine" id="cb427-11" data-line-number="11">    <span class="dt">year_observation=</span>Jahr, </a>
-<a class="sourceLine" id="cb427-12" data-line-number="12">    <span class="dt">exports=</span>Exporte)</a></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" data-line-number="1">data_al_exp_tidy <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb430-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(</a>
+<a class="sourceLine" id="cb430-3" data-line-number="3">    <span class="op">-</span><span class="kw">one_of</span>(<span class="st">&quot;Arbeitslosigkeit&quot;</span>)</a>
+<a class="sourceLine" id="cb430-4" data-line-number="4">    ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb430-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(</a>
+<a class="sourceLine" id="cb430-6" data-line-number="6">    Jahr<span class="op">&gt;</span><span class="dv">2012</span>,</a>
+<a class="sourceLine" id="cb430-7" data-line-number="7">    Land<span class="op">==</span><span class="st">&quot;DE&quot;</span></a>
+<a class="sourceLine" id="cb430-8" data-line-number="8">    ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb430-9" data-line-number="9"><span class="st">  </span><span class="kw">rename</span>(</a>
+<a class="sourceLine" id="cb430-10" data-line-number="10">    <span class="dt">country=</span>Land, </a>
+<a class="sourceLine" id="cb430-11" data-line-number="11">    <span class="dt">year_observation=</span>Jahr, </a>
+<a class="sourceLine" id="cb430-12" data-line-number="12">    <span class="dt">exports=</span>Exporte)</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 3
 #&gt;   country year_observation exports
 #&gt;   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;
@@ -2095,7 +2060,7 @@ aus dem Paket <a href="https://github.com/tidyverse/dplyr">dplyr</a>
 <p>Wir verwenden <code>mutate()</code> um bestehende Spalten zu verändern oder neue Spalten zu
 erstellen.
 Betrachten wir dafür folgenden Beispieldatensatz:</p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" data-line-number="1"><span class="kw">head</span>(unemp_data_wb)</a></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb432-1" data-line-number="1"><span class="kw">head</span>(unemp_data_wb)</a></code></pre></div>
 <pre><code>#&gt;    country year laborforce_female workforce_total population_total
 #&gt; 1:      AT 2010          46.13933         4276558          8363404
 #&gt; 2:      AT 2011          46.33455         4305310          8391643
@@ -2106,11 +2071,11 @@ Betrachten wir dafür folgenden Beispieldatensatz:</p>
 <p>Angenommen wir möchten das Land mit den <code>iso3c</code>-Codes anstatt der <code>iso2c</code>-Codes
 angeben, dann könnten wir mit der Funktion <code>mutate()</code> die Spalte <code>country</code> ganz
 einfach verändern:</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb431-1" data-line-number="1">unemp_data_wb &lt;-<span class="st"> </span>unemp_data_wb <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb431-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb431-3" data-line-number="3">    <span class="dt">country =</span> <span class="kw">countrycode</span>(country, <span class="st">&quot;iso2c&quot;</span>, <span class="st">&quot;iso3c&quot;</span>)</a>
-<a class="sourceLine" id="cb431-4" data-line-number="4">    )</a>
-<a class="sourceLine" id="cb431-5" data-line-number="5"><span class="kw">head</span>(unemp_data_wb, <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb434-1" data-line-number="1">unemp_data_wb &lt;-<span class="st"> </span>unemp_data_wb <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb434-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb434-3" data-line-number="3">    <span class="dt">country =</span> <span class="kw">countrycode</span>(country, <span class="st">&quot;iso2c&quot;</span>, <span class="st">&quot;iso3c&quot;</span>)</a>
+<a class="sourceLine" id="cb434-4" data-line-number="4">    )</a>
+<a class="sourceLine" id="cb434-5" data-line-number="5"><span class="kw">head</span>(unemp_data_wb, <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>#&gt;   country year laborforce_female workforce_total population_total
 #&gt; 1     AUT 2010          46.13933         4276558          8363404
 #&gt; 2     AUT 2011          46.33455         4305310          8391643</code></pre>
@@ -2125,11 +2090,11 @@ Das bedeutet, wir müssen die Spalten <code>laborforce_female</code> und <code>w
 multiplizieren und durch 100 Teilen, da laborforce_female in Prozent angegeben ist.
 Das machen wir mit der Funktion <code>mutate()</code>, wobei wir eine neue
 Spalte mit dem Namen <code>workers_female_total</code> erstellen wollen:</p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb433-1" data-line-number="1">unemp_data_wb &lt;-<span class="st"> </span>unemp_data_wb <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb433-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb433-3" data-line-number="3">    <span class="dt">workers_female_total =</span> laborforce_female<span class="op">*</span>workforce_total<span class="op">/</span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb433-4" data-line-number="4">    )</a>
-<a class="sourceLine" id="cb433-5" data-line-number="5"><span class="kw">head</span>(unemp_data_wb, <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb436-1" data-line-number="1">unemp_data_wb &lt;-<span class="st"> </span>unemp_data_wb <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb436-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb436-3" data-line-number="3">    <span class="dt">workers_female_total =</span> laborforce_female<span class="op">*</span>workforce_total<span class="op">/</span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb436-4" data-line-number="4">    )</a>
+<a class="sourceLine" id="cb436-5" data-line-number="5"><span class="kw">head</span>(unemp_data_wb, <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>#&gt;   country year laborforce_female workforce_total population_total
 #&gt; 1     AUT 2010          46.13933         4276558          8363404
 #&gt; 2     AUT 2011          46.33455         4305310          8391643
@@ -2141,12 +2106,12 @@ Veränderung über die Zeit interessiert, sondern wollen die
 durchschnittliche Anzahl an Frauen in der Erwerbsbevölkerung berechnen?
 Das würde bedeuten, dass wir die Anzahl der Spalten in unserem Datensatz
 reduzieren - etwas das bei der Anwendung von <code>mutate()</code> nie passieren würde.
-Dafür gibt es die Funktion <code>summarise()</code>:<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a></p>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb435-1" data-line-number="1">unemp_data_wb_summarized &lt;-<span class="st"> </span>unemp_data_wb <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb435-2" data-line-number="2"><span class="st">  </span><span class="kw">summarise</span>(</a>
-<a class="sourceLine" id="cb435-3" data-line-number="3">    <span class="dt">fem_workers_avg =</span> <span class="kw">mean</span>(workers_female_total)</a>
-<a class="sourceLine" id="cb435-4" data-line-number="4">    )</a>
-<a class="sourceLine" id="cb435-5" data-line-number="5">unemp_data_wb_summarized</a></code></pre></div>
+Dafür gibt es die Funktion <code>summarise()</code>:<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a></p>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb438-1" data-line-number="1">unemp_data_wb_summarized &lt;-<span class="st"> </span>unemp_data_wb <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb438-2" data-line-number="2"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb438-3" data-line-number="3">    <span class="dt">fem_workers_avg =</span> <span class="kw">mean</span>(workers_female_total)</a>
+<a class="sourceLine" id="cb438-4" data-line-number="4">    )</a>
+<a class="sourceLine" id="cb438-5" data-line-number="5">unemp_data_wb_summarized</a></code></pre></div>
 <pre><code>#&gt;   fem_workers_avg
 #&gt; 1        10761223</code></pre>
 <p>Wie Sie sehen, funktioniert die Syntax quasi äquivalent zu <code>mutate()</code>, allerdings
@@ -2161,12 +2126,12 @@ Das funktioniert mit der Funktion <code>group_by()</code>, die als Argumente die
 Spalten, nach denen wir gruppieren wollen, akzeptiert.
 Sie sollten sich in jedem Fall angewöhnen, nach dem Gruppieren den Datensatz mit
 <code>ungroup()</code> wieder in den ursprünglichen Zustand zurückzuführen:</p>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb437-1" data-line-number="1">unemp_data_wb <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb437-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb437-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(</a>
-<a class="sourceLine" id="cb437-4" data-line-number="4">    <span class="dt">fem_workers_avg =</span> <span class="kw">mean</span>(workers_female_total)</a>
-<a class="sourceLine" id="cb437-5" data-line-number="5">    ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb437-6" data-line-number="6"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb440-1" data-line-number="1">unemp_data_wb <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb440-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb440-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb440-4" data-line-number="4">    <span class="dt">fem_workers_avg =</span> <span class="kw">mean</span>(workers_female_total)</a>
+<a class="sourceLine" id="cb440-5" data-line-number="5">    ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb440-6" data-line-number="6"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 2
 #&gt;   country fem_workers_avg
 #&gt;   &lt;chr&gt;             &lt;dbl&gt;
@@ -2175,12 +2140,12 @@ Sie sollten sich in jedem Fall angewöhnen, nach dem Gruppieren den Datensatz mi
 <p>Natürlich können Sie <code>group_by()</code> auch im Zusammenhang mit <code>mutate()</code> oder anderen
 Funktionen verwenden.
 Wie Sie sehen ist der Effekt aber durchaus unterschiedlich:</p>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" data-line-number="1">unemp_data_wb <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb439-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb439-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb439-4" data-line-number="4">    <span class="dt">fem_workers_avg =</span> <span class="kw">mean</span>(workers_female_total)</a>
-<a class="sourceLine" id="cb439-5" data-line-number="5">    ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb439-6" data-line-number="6"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb442-1" data-line-number="1">unemp_data_wb <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb442-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb442-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb442-4" data-line-number="4">    <span class="dt">fem_workers_avg =</span> <span class="kw">mean</span>(workers_female_total)</a>
+<a class="sourceLine" id="cb442-5" data-line-number="5">    ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb442-6" data-line-number="6"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 14 x 7
 #&gt;    country  year laborforce_fema… workforce_total population_total
 #&gt;    &lt;chr&gt;   &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;            &lt;dbl&gt;
@@ -2209,21 +2174,21 @@ weiblichen Erwertbstätigen in Österreich und Deutschland beschäftigen und
 dann vergleichen ob dieser Wert größer ist als das Bevölkerungswachstum in dieser
 Zeit.
 Dazu verwenden wir die Funktion <code>dplyr::lag()</code> um den Wert vor dem aktuellen
-Wert zu bekommen.<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a>
+Wert zu bekommen.<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a>
 Zuletzt wollen wir nur noch die berechneten Spalten im Datensatz behalten.</p>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb441-1" data-line-number="1">unemp_data_wb_growth &lt;-<span class="st"> </span>unemp_data_wb <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb441-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb441-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb441-4" data-line-number="4">    <span class="dt">pop_growth=</span>(</a>
-<a class="sourceLine" id="cb441-5" data-line-number="5">      population_total<span class="op">-</span><span class="kw">lag</span>(population_total))<span class="op">/</span><span class="kw">lag</span>(population_total),</a>
-<a class="sourceLine" id="cb441-6" data-line-number="6">    <span class="dt">fem_force_growth=</span>(</a>
-<a class="sourceLine" id="cb441-7" data-line-number="7">      workers_female_total<span class="op">-</span><span class="kw">lag</span>(workers_female_total))<span class="op">/</span><span class="kw">lag</span>(workers_female_total)</a>
-<a class="sourceLine" id="cb441-8" data-line-number="8">    ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb441-9" data-line-number="9"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb441-10" data-line-number="10"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">fem_force_growth_bigger=</span>fem_force_growth<span class="op">&gt;</span>pop_growth) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb441-11" data-line-number="11"><span class="st">  </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;pop_growth&quot;</span>, </a>
-<a class="sourceLine" id="cb441-12" data-line-number="12">                <span class="st">&quot;fem_force_growth&quot;</span>, <span class="st">&quot;fem_force_growth_bigger&quot;</span>))</a>
-<a class="sourceLine" id="cb441-13" data-line-number="13">unemp_data_wb_growth</a></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" data-line-number="1">unemp_data_wb_growth &lt;-<span class="st"> </span>unemp_data_wb <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb444-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb444-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb444-4" data-line-number="4">    <span class="dt">pop_growth=</span>(</a>
+<a class="sourceLine" id="cb444-5" data-line-number="5">      population_total<span class="op">-</span><span class="kw">lag</span>(population_total))<span class="op">/</span><span class="kw">lag</span>(population_total),</a>
+<a class="sourceLine" id="cb444-6" data-line-number="6">    <span class="dt">fem_force_growth=</span>(</a>
+<a class="sourceLine" id="cb444-7" data-line-number="7">      workers_female_total<span class="op">-</span><span class="kw">lag</span>(workers_female_total))<span class="op">/</span><span class="kw">lag</span>(workers_female_total)</a>
+<a class="sourceLine" id="cb444-8" data-line-number="8">    ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb444-9" data-line-number="9"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb444-10" data-line-number="10"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">fem_force_growth_bigger=</span>fem_force_growth<span class="op">&gt;</span>pop_growth) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb444-11" data-line-number="11"><span class="st">  </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;pop_growth&quot;</span>, </a>
+<a class="sourceLine" id="cb444-12" data-line-number="12">                <span class="st">&quot;fem_force_growth&quot;</span>, <span class="st">&quot;fem_force_growth_bigger&quot;</span>))</a>
+<a class="sourceLine" id="cb444-13" data-line-number="13">unemp_data_wb_growth</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 14 x 5
 #&gt;    country  year pop_growth fem_force_growth fem_force_growth_bigger
 #&gt;    &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;            &lt;dbl&gt; &lt;lgl&gt;                  
@@ -2248,20 +2213,20 @@ geben. Angenommen Sie wollen das durchschnittliche Wachstum in Deutschland und
 Österreich sowohl für das Bevölkerungswachstum als auch das Wachstum der
 weiblichen Erwerbsbevölkerung berechnen.
 Ausgehen vom letzten Datensatz</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" data-line-number="1">unemp_data_wb_growth_avg &lt;-<span class="st"> </span>unemp_data_wb_growth <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb443-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>fem_force_growth_bigger)</a>
-<a class="sourceLine" id="cb443-3" data-line-number="3"><span class="kw">head</span>(unemp_data_wb_growth_avg, <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb446-1" data-line-number="1">unemp_data_wb_growth_avg &lt;-<span class="st"> </span>unemp_data_wb_growth <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb446-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>fem_force_growth_bigger)</a>
+<a class="sourceLine" id="cb446-3" data-line-number="3"><span class="kw">head</span>(unemp_data_wb_growth_avg, <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 4
 #&gt;   country  year pop_growth fem_force_growth
 #&gt;   &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;            &lt;dbl&gt;
 #&gt; 1 AUT      2010   NA                NA     
 #&gt; 2 AUT      2011    0.00338           0.0110</code></pre>
 <p>geht das folgendermaßen mit der Funktion <code>summarise_all()</code>:</p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" data-line-number="1">unemp_data_wb_growth_avg <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb445-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>year) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb445-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb445-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise_all</span>(mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb445-5" data-line-number="5"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb448-1" data-line-number="1">unemp_data_wb_growth_avg <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb448-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb448-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb448-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise_all</span>(mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb448-5" data-line-number="5"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 3
 #&gt;   country pop_growth fem_force_growth
 #&gt;   &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;
@@ -2390,8 +2355,8 @@ in einer Pluralen Ökonomik.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="24">
-<li id="fn24"><p>Eigentlich ein <a href="https://r4ds.had.co.nz/tibbles.html">tibble</a>.<a href="data.html#fnref24" class="footnote-back">↩</a></p></li>
+<ol start="23">
+<li id="fn23"><p>Eigentlich ein <a href="https://r4ds.had.co.nz/tibbles.html">tibble</a>.<a href="data.html#fnref23" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
