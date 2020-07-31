@@ -72,7 +72,7 @@ statistische Analyse geeignet ist.
 Zum Abschluss des Kapitels wird noch die 
 [Rolle des Datenmanagements für transparente Forschung](#data-role) verdeutlicht 
 und auf die Debatten über die Ko-Existenz [verschiedener Pakete für die 
-Datenaufbereitung in R](#data-packages) hingewisen.
+Datenaufbereitung in R](#data-packages) hingewiesen.
 
 ## Verwendete Pakete {-}
 
@@ -87,7 +87,7 @@ library(haven)
 ```
 
 > **Hinweis**: In diesem Kapitel verwenden wir für die Arbeit mit Daten vor
-allem Pakete aus dem so genannten [tidyverse](https://www.tidyverse.org/).
+allem Pakete aus dem sogenannten [tidyverse](https://www.tidyverse.org/).
 Ich habe mich für diese Pakete entschieden, weil sie meiner Meinung nach die
 für R-Beginner am einfachsten zu lernenden Pakete sind und sie zu sehr einfach
 zu lesendem Code führen. 
@@ -130,7 +130,7 @@ ist.
 *Latente* Variablen sind **nicht** direkt beobachtbar und sind häufig 
 erklärungsbedürftig.
 *Nutzen* ist zum Beispiel nicht beobachtbar.^[Das klassische Beispiel in der
-Psychologie ist 'Intelligenz',]
+Psychologie ist 'Intelligenz'.]
 Zudem muss in der Regel erst einmal deutlich gemacht werden, was mit dem Begriff
 genau gemeint ist.
 
@@ -140,7 +140,7 @@ Wir sprechen dann davon, dass eine oder mehrere manifeste Variablen als Indikato
 für eine latente Variable verwendet werden.
 *Wirtschaftliche Entwicklung* z.B. ist als solche nicht direkt beobachtbar und wird
 häufig durch das BIP operationalisiert.^[Interessanterweise hat der 'Erfinder' des 
-modernen BIP Simon Kurznets in @BIP davon abgeraten, diese Operationalisierung
+modernen BIP Simon Kuznets in @BIP davon abgeraten, diese Operationalisierung
 als Indikator für wirtschaftliche Entwicklung zu verwenden.]
 <!-- Ich glaub die Verlinkung der Quelle hier hat nicht funktioniert. Ich finde die Quelle nicht unter den Referenzen wenn ich auf der HTML Seite versuche den Link anzuklicken führt mich das nur zurück zum Anfang des Kapitels 5. Finde den Hinweis hier aber sehr gut also würde das nicht rausnehmen nur schauen dass die Quellen-Verlinking funktioniert -->
 
@@ -168,7 +168,7 @@ der Daten zwar bestimmte Werte oder eindeutige Beschreibungen zuordnen können,
 diese aber keine natürliche Rangfolge aufweisen.
 So können wir einer Person eine Haarfarbe zuordnen, allerdings die verschiedenen
 Haarfarben in keine natürliche Rangfolge einordnen. 
-Genausowenig können wir z.B. Tiere in die Kategorien "Hund", "Katze" und 
+Ebenso können wir z.B. Tiere in die Kategorien "Hund", "Katze" und 
 "Sonstiges" einordnen, aber eine natürliche Rangfolge dieser Kategorien gibt es
 nicht.
 Als Konsequenz können wir die einzelnen Ausprägungen zwar zählen, aber sonst keine 
@@ -269,8 +269,8 @@ Das kann man am besten an folgendem Beispiel illustrieren:
 
 > **Beispiel: Inverall- vs. verhältnisskalierte Temperaturen**
 Wenn wir die Temperatur in Grad Celsius messen haben wir eine Skala ohne absoluten
-Nullpunkt. Entsprechend können wir nicht sagen, dass 20 Grad Celsius doppelt 
-so warm sind wie 40 Grad Celsius, nur das der Abstand der Gleiche ist wie 
+Nullpunkt. Entsprechend können wir nicht sagen, dass 40 Grad Celsius doppelt 
+so warm sind wie 20 Grad Celsius, nur das der Abstand der Gleiche ist wie 
 zwischen 10 und 30 Grad Celsius. Das wird deutlich, wenn wir uns fragen ob 10
 Grad Celsius doppelt so warm wären wie -10 Grad Celsius.
 Eine Lösung ist die Temperatur in Kelvin anzugeben, denn für Kelvin ist ein 
@@ -408,7 +408,7 @@ Das Problem mit ausgeschriebenen Ländernamen lässt sich anhand der
 Tschechischen Republik gut verdeutlichen. 
 Der `iso3c`-Code ist hier eindeutig `CZE`, allerding verwenden manche Datenbanken
 den Namen 'Czechia' und andere 'Czech Republik'. 
-Das `countrycode`-Paket übersezt beide Namen in `CZE`:
+Das `countrycode`-Paket übersetzt beide Namen in `CZE`:
 
 ```{r}
 countrycode("Czech Republic", "country.name", "iso3c")
@@ -429,7 +429,7 @@ dem neuen Code übergeben und die Funktion ansonsten äquivalent nutzen.
 Das kann z.B. passieren wenn Sie Daten von einer Quelle verwenden, die Länder
 oder andere Beobachtungen nach einer eigenen Klassifizierung kodiert und diese
 Kodierung durch eine eigene Tabelle beschreibt.
-Im Folgenden Beispiel ist genau das der Fall: wie haben Daten über die Exporte
+Im folgenden Beispiel ist genau das der Fall: wie haben Daten über die Exporte
 verschiedener Güterarten. Die Güter sind jedoch nach dem *Harmonized System* 
 der UN kodiert (siehe 
 [hier](https://unstats.un.org/unsd/tradekb/Knowledgebase/50018/Harmonized-Commodity-Description-and-Coding-Systems-HS)):
@@ -639,7 +639,7 @@ verwenden:
 
 ```{r}
 daten_pfad <- here("data/tidy/export_daten.csv")
-daten <- fread(daten_pfad, 
+daten <- data.table::fread(daten_pfad, 
                colClasses = c("character", "double", "double"),
                nrows = 1)
 daten
@@ -1140,7 +1140,7 @@ Formaten hin und her wechseln, da für manche statistischen Zwischenschritte das
 eine, für andere das andere Format besser ist.^[Das steht nicht im Widerspruch
 zu dem oben formulierten Ziel am Ende `tidy` Daten zu haben. Es ist nur so, 
 dass Sie für manche statistischen Transformationen als Zwischenschritt in
-ein anderes Format wechseln müssen, oder der Weg hinzu `tidy` Daten das 
+ein anderes Format wechseln müssen, oder der Weg hin zu `tidy` Daten das 
 Wechseln zwischen langen und breiten Datensätzen erforderlich macht. Das wird
 durch die Beispiele später in diesem Kapitel praktisch deutlich werden.]
 
@@ -1359,7 +1359,7 @@ oben nach unten nachlesen können.
 > **Tipp:** Streng genommen gibt `%>%` den Output der aktuellen Zeile nicht 
 automatisch als erstes Argument für den Funktionsaufruf der nächsten Zeile weiter.
 Das ist nur das Standardverfahren. Eigentlich gibt es den Output als `.` weiter.
-Das erlubt Ihnen den Output auch in einem anderen als dem ersten Argument zu
+Das erlaubt Ihnen den Output auch in einem anderen als dem ersten Argument zu
 verwenden.
 
 <!-- Was bedeutet der Punkt denn nochmal? Ist das wie bei Git?-->
@@ -1560,7 +1560,7 @@ data_bip_gini_nest_join <- nest_join(data_BIP, data_gini,
 data_bip_gini_nest_join
 ```
 
-In der Spalte `y` finden sich nun also sech Data Frames (einer pro Zeile):
+In der Spalte `y` finden sich nun also sechs Data Frames (einer pro Zeile):
 
 ```{r}
 data_bip_gini_nest_join[["y"]] # die neue Spalte
@@ -1958,10 +1958,6 @@ unemp_data_wb <- unemp_data_wb %>%
 head(unemp_data_wb, 2)
 ```
 
-<!-- Irgendwie ist der Output von diesem Code in der HTML Version etwas merkwürdig - die neue Spalte ist dadrunter gesetzt statt daneben. Liegt das einfach nur am Platz, oder warum sieht das so aus? -->
-
-<!-- Ja, das liegt am Platz. Kann man auch leider nichts ändern. Sollte man das irgendiwe erläutern?-->
-
 Vielleicht sind wir für unseren Anwendungsfall gar nicht so sehr an der 
 Veränderung über die Zeit interessiert, sondern wollen die 
 durchschnittliche Anzahl an Frauen in der Erwerbsbevölkerung berechnen.
@@ -2090,7 +2086,7 @@ Das zentrale Leitmotiv dieses Kapitels war die Idee, dass
 sein sollte.
 Wenn Sie gefragt werden, wie Ihre Ergebnisse zustande gekommen sind, sollten Sie
 in der Lage sein, jeden einzelnen Arbeitsschritt seit der ersten Akquise der
-Daten offenzulegen, bzw. nachvollziebar zu machen.
+Daten offenzulegen, bzw. nachvollziehbar zu machen.
 
 Es ist ein zentraler Nachteil von *point-and-click*-Software (wie z.B. SPSS), 
 dass Sie für eine Reproduktion jeden einzelnen Mausklick vor dem Rechner
