@@ -24,7 +24,7 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-04-13" />
+<meta name="date" content="2020-07-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -169,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.9" data-path="basics.html"><a href="basics.html#intro-matrix"><i class="fa fa-check"></i><b>3.4.9</b> Matrizen</a></li>
 <li class="chapter" data-level="3.4.10" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.4.10</b> Data Frames</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#pakete"><i class="fa fa-check"></i><b>3.5</b> Pakete</a></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#packages"><i class="fa fa-check"></i><b>3.5</b> Pakete</a></li>
 <li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.6</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>4</b> Lineare statistische Modelle in R</a><ul>
@@ -624,7 +624,7 @@ Figure 2.4: Die vorgeschlagene Ordnerstruktur für R-Projekte.
 Da dies jedoch die Verwendung von Paketen voraussetzt sollten Sie den nächsten
 Abschnitt zunächst überspringen, wenn Sie noch nicht wissen wie man R-Pakete
 verwendet und den Abschnitt zu einem späteren Zeitpunkt lesen (R-Pakete werden
-in Abschnit <a href="#packages"><strong>??</strong></a> eingeführt).</p>
+in Abschnit <a href="basics.html#packages">3.5</a> eingeführt).</p>
 </div>
 </div>
 <div id="optional-schritt-4-und-das-here-paket" class="section level2">
@@ -635,24 +635,24 @@ Dieser Schritt beinhaltet die Verwendung des R-Pakets
 <a href="https://github.com/r-lib/here">here</a> <span class="citation">(Müller <a href="#ref-here">2017</a>)</span>.
 Falls Sie noch nicht mit der Verwendung von R-Paketen vertraut sind, sollten Sie
 diesen Abschnitt zunächst überspringen.
-Pakete werden in Abschnitt <a href="#packages"><strong>??</strong></a> eingeführt und es macht Sinn, wenn
+Pakete werden in Abschnitt <a href="basics.html#packages">3.5</a> eingeführt und es macht Sinn, wenn
 Sie später nach Lektüre dieses Abschnitts noch einmal hierher zurückkehren.</p>
 <p>Wie weiter oben beschrieben sollten Sie in der alltäglichen Arbeit immer
 <em>relative</em> Pfade verwenden.
 In zwei Situationen kann die Verwendung von relativen Pfaden aber problematisch
 sein: (1) in der Zusamenarbeit mit anderen und (2) bei der Verwendung von
-R-Markdown.<a href="stat-rep.html#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
-Gerade wenn Sie ein Skript einmal an eine*n Kollege*in schicken wollen und
-dieser nicht das ganze R Projekt öffnet kommt es schnell zu Fehlermeldungen.
+R-Markdown.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>Gerade wenn Sie ein Skript einmal an eine*n Kollege*in schicken wollen und
+diese*r nicht das ganze R Projekt öffnet kommt es schnell zu Fehlermeldungen.
 Glücklicherweise gibt es eine recht einfache Lösung für alle derartigen
-Probleme: das Paket <a href="https://github.com/r-lib/here">here</a> <span class="citation">(Müller <a href="#ref-here">2017</a>)</span>.</p>
-<p>Durch Einlesen des Pakets erhalten Sie Zugriff auf die Funktion (Überraschung!)
+Probleme: das Paket <a href="https://github.com/r-lib/here">here</a> <span class="citation">(Müller <a href="#ref-here">2017</a>)</span>.
+Durch Einlesen des Pakets erhalten Sie Zugriff auf die Funktion (Überraschung!)
 <code>here()</code>.
 Diese Funktion nimmt nur ein einziges Argument und zwar einen relativen Pfad.
 Die Funktion wandelt diesen relativen Pfad automatisch in einen absoluten Pfad um.
-Dabei berücksichtigt sie die individualle Ordnerstruktur von dem Computer, auf
+Dabei berücksichtigt sie die individuelle Ordnerstruktur von dem Computer, auf
 dem sie aktuell ausgeführt wird.
-Da bedeutet, dass Sie für unterschiedliche Computer unterschiedliche Ergebnisse
+Das bedeutet, dass Sie für unterschiedliche Computer unterschiedliche Ergebnisse
 liefert.
 Anhand eines Beispiels lässt sich das am einfachsten nachvollziehen.
 Gehen wir davon aus, dass Birte und Claudius gemeinsam an einem R-Skript
@@ -660,8 +660,8 @@ arbeiten.
 Im Code kommt dabei folgende Zeile vor:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">write</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">file =</span> <span class="st">&quot;output/vektor.txt&quot;</span>)</a></code></pre></div>
 <p>Hier wird ein Vektor in einer Textdatei im Unterordner <code>output/</code> gespeichert.
-Damit R die Datei am richtigen Ort speicher müssen Birte und Claudius das gleiche
-Arbeitsverzeichnis verwenden, sonst wirk der relative Pfad auf Ihren jeweiligen
+Damit R die Datei am richtigen Ort speichert müssen Birte und Claudius das gleiche
+Arbeitsverzeichnis verwenden, sonst wirkt der relative Pfad auf ihren jeweiligen
 Computern anders.
 Alternativ könnte Claudius den Pfad auch absolut angeben:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">write</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">file =</span> <span class="st">&quot;/Users/claudius/projekte/R-Projekt-Birte/output/vektor.txt&quot;</span>)</a></code></pre></div>
@@ -686,9 +686,9 @@ Der Output von <code>here(&quot;output/vektor.txt&quot;)</code> sähe auf Claudi
 <pre><code>~/claudius-projekte/R-Projekt-Birte/output/vektor.txt</code></pre>
 <p>Und auf Birte’s Computer aber so:</p>
 <pre><code>~/birte-projekte/R-Projekt-Claudius/output/vektor.txt</code></pre>
-<p>So können die beiden den Code einfach untereinander tauschen ohne ihr
-verändern zu müssen.
-Daher, und aufgrund einiger anderer potenziellen Schwierigkeiten, denen wir
+<p>So können die beiden den Code einfach untereinander tauschen ohne den Code jeweils
+auf ihren Computern verändern zu müssen.
+Daher, und aufgrund einiger anderer potenzieller Schwierigkeiten, denen wir
 erst später begegnen werden, lohnt es sich immer das Paket <code>here</code> zu verwenden
 und relative Pfade immer gemeinsam mit der Funktion <code>here()</code> anzugeben.
 Das ist ein kleiner Mehraufwand, der auf Dauer aber viel Ärger spart.</p>
@@ -697,8 +697,8 @@ Ausgangspunkt für die relativen Pfade explizit mitzuteilen.
 Dafür muss beim Erstellen eines Arbeitsverzeichnis <em>einmalig</em> eine Datei
 <code>.here</code> erstellt werden, und zwar in dem Ordner, der als Ausgangspunkt für
 die relativen Pfade fungieren soll.
-Das ist in aller Regel der Ordner, in dem auch die <code>.Rproj</code> Datei liegt.<a href="stat-rep.html#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<p>Dazu führen wir nach Schritt 3 noch folgendende Befehle aus:</p>
+Das ist in aller Regel der Ordner, in dem auch die <code>.Rproj</code> Datei liegt.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<p>Dazu führen wir nach Schritt 3 noch folgende Befehle aus:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">here<span class="op">::</span><span class="kw">here</span>()</a></code></pre></div>
 <p>Wenn der angezeigte Pfad mit dem Pfad zu Ihrem gewünschten Arbeitsverzeichnis
 übereinstimmt, führen Sie nun folgenden Befehl aus:</p>

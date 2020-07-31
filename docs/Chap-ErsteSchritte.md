@@ -2153,7 +2153,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7fedcd4dd4c0>
+#> <bytecode: 0x7ff2f4a80d70>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2184,7 +2184,7 @@ dplyr::lead
 #>     attributes(out) <- attributes(x)
 #>     out
 #> }
-#> <bytecode: 0x7fedcf102860>
+#> <bytecode: 0x7ff2f32a3fa0>
 #> <environment: namespace:dplyr>
 ```
 
@@ -2226,7 +2226,11 @@ Eine gute Erklärung bietet @Packages.
 > **Weiterführender Hinweis** Das Paket `conflicted` führt dazu, dass R immer
 einen fehler ausgibt wenn nicht eindeutige Objektnamen verwendet werden.
 
-
+Der besseren Transparenz wegen wird in diesem Buch ab jetzt immer die Notation
+mit `::` verwendet, auch wenn dies nicht unbedingt nötig wäre. 
+So sehen Sie bei jedem Code-Beispiel unmittelbar aus welchem Paket die 
+verwendeten Funktionen stammen. 
+Lediglich bei den Basispaketen werden wir auf `::` verzichten.
 
 
 ## Kurzer Exkurs zum Einlesen und Schreiben von Daten
