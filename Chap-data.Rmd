@@ -139,10 +139,9 @@ Variable durch eine oder mehrere manifeste Variablen.
 Wir sprechen dann davon, dass eine oder mehrere manifeste Variablen als Indikator 
 für eine latente Variable verwendet werden.
 *Wirtschaftliche Entwicklung* z.B. ist als solche nicht direkt beobachtbar und wird
-häufig durch das BIP operationalisiert.^[Interessanterweise hat der 'Erfinder' des 
-modernen BIP Simon Kuznets in @BIP davon abgeraten, diese Operationalisierung
-als Indikator für wirtschaftliche Entwicklung zu verwenden.]
-<!-- Ich glaub die Verlinkung der Quelle hier hat nicht funktioniert. Ich finde die Quelle nicht unter den Referenzen wenn ich auf der HTML Seite versuche den Link anzuklicken führt mich das nur zurück zum Anfang des Kapitels 5. Finde den Hinweis hier aber sehr gut also würde das nicht rausnehmen nur schauen dass die Quellen-Verlinking funktioniert -->
+häufig durch das BIP operationalisiert.^[Interessanterweise hat der maßgeblich an der Entwicklung des Indikators BIP beteiligte Simon Kuznets in @BIP davon abgeraten, diese Operationalisierung
+als Indikator für wirtschaftliche Entwicklung zu verwenden.
+Für mehr Infos dazu siehe z.B. @BIPHIST.]
 
 Der *Human Development Index* ist der Versuch, wirtschaftliche Entwicklung durch
 mehr als eine manifeste Variable zu operationalisieren, also durch beobachtbare
@@ -1362,9 +1361,6 @@ Das ist nur das Standardverfahren. Eigentlich gibt es den Output als `.` weiter.
 Das erlaubt Ihnen den Output auch in einem anderen als dem ersten Argument zu
 verwenden.
 
-<!-- Was bedeutet der Punkt denn nochmal? Ist das wie bei Git?-->
-<!-- Das sollte eigentlich durch das folgende Beispiel klargemacht werden. Da hat aber die Markierung gefehlt. Ist es jetzt so klar? DISCUSS-->
-
 > Wir könnten also auch expliziter schreiben:
 
 ```{r, eval=FALSE}
@@ -1591,6 +1587,16 @@ alle Spalten mit gleichen Namen als ID-Spalten.
 Zwar geben sie zur Info eine Warnung aus, aber Sie sollten das trotzdem
 immer vermeiden und möglichst explizit sein. 
 Daher sollte `by` immer explizit gesetzt werden!
+Ansonsten erhalten Sie (ohne Warnung) solche ungewünschten Ergebnisse:
+
+```{r}
+debt_data_IWF <- data.frame(Land=c("DEU", "GRC"), 
+                            Schulden=c(10, 50))
+debt_data_WELTBANK <- data.frame(Land=c("GRC", "DEU"), 
+                                 Schulden=c(100, 25))
+debt_data <- full_join(debt_data_IWF, debt_data_WELTBANK)
+debt_data
+```
 
 Darüber hinaus findet sich das optionale Argument `suffix` sowohl bei 
 `inner_join()`, `left_join()`, `right_join()` als auch `full_join()`.
@@ -1602,8 +1608,10 @@ haben, diese aber nicht als ID-Spalte verwendet wird, beide Spalten als
 `Schulden.x` und `Schulden.y` in den gemeinsamen Datensatz aufgenommen werden:
 
 ```{r}
-debt_data_IWF <- data.frame(Land=c("DEU", "GRC"), Schulden=c(10, 50))
-debt_data_WELTBANK <- data.frame(Land=c("GRC", "DEU"), Schulden=c(100, 25))
+debt_data_IWF <- data.frame(Land=c("DEU", "GRC"), 
+                            Schulden=c(10, 50))
+debt_data_WELTBANK <- data.frame(Land=c("GRC", "DEU"), 
+                                 Schulden=c(100, 25))
 debt_data <- full_join(debt_data_IWF, debt_data_WELTBANK, 
                        by=c("Land"))
 debt_data
@@ -1618,10 +1626,6 @@ debt_data <- full_join(debt_data_IWF, debt_data_WELTBANK,
                        suffix=c(".IWF", ".WELTBANK"))
 debt_data
 ```
-
-<!-- Was würde passieren wenn wir Schulden als ID-Spalte verwenden würden? Hätten wir dann in einem Feld 2 unterschiedliche Zahlen und somit un-tidy data? Sollte man immer, wenn es Daten gibt die sich unterscheiden könnten (also nicht sowas wie Jahr oder Land), die nicht als ID-Spalte verwenden sondern als suffix? Wie geht man dann in der Analyse damit um? Kickt man dann irgendwann eine der beiden Spalten wieder heraus, weil man sich zB dafür entscheidet die Weltbank Daten zu benutzen? -->
-
-<!-- Diesen Kommentar habe ich noch nicht ganz verstanden: DISCUSS-->
 
 Tabelle \@ref(tab:joins) fasst die gerade diskutierten Funktionen noch einmal 
 zusammen.
@@ -1922,7 +1926,7 @@ angeben, dann könnten wir mit der Funktion `mutate()` die Spalte `country` ganz
 einfach verändern:
 
 ```{r}
-unemp_data_wb <- unemp_data_wb %>%
+unemp_data_wb2 <- unemp_data_wb %>%
   mutate(
     country = countrycode(country, "iso2c", "iso3c")
     )
@@ -1935,11 +1939,7 @@ Rechts neben dem `=` wird die Berechnung der neuen Werte spezifiziert.
 Wie das Beispiel zeigt, kann hier durchaus der ursprüngliche Wert der Spalte
 verwendet werden.
 
-<!-- Aber hier steht ja jetzt mehr als nur der Name und der neue Ausdruck hinter dem =. Und der Name der zur verändernden Spalte steht ja eigl vor dem Gleichheitszeichen (und dann danach nochmal in den Klammern). Der Aufbau hinter dem Gleichheitszeichen ist mir hier also noch nicht 100% klar -->
-
-<!-- Ist das jetzt klar? DISCUSS-->
-
-Wir können mit `mutate()` aber auch einfach neue Spalten erstellen, wenn der
+Wir können mit `dplyr::mutate()` aber auch einfach neue Spalten erstellen, wenn der
 Name links vom `=` noch nicht als Spalte im Datensatz existiert.
 
 Wenn Sie nun z.B. wissen möchten, wie viele Frauen absolut in Deutschland und 
