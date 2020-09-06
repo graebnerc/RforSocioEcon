@@ -1927,7 +1927,7 @@ einfach verändern:
 ```{r}
 unemp_data_wb2 <- unemp_data_wb %>%
   dplyr::mutate(
-    country = countrycode(country, "iso2c", "iso3c")
+    country = countrycode::countrycode(country, "iso2c", "iso3c")
     )
 head(unemp_data_wb, 2)
 ```
