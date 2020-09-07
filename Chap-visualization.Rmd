@@ -1692,9 +1692,9 @@ vermeiden können finden Sie [hier](https://www.data-to-viz.com/caveats.html).
 
 ### Clutterplots und ihre Tranformation zum beschrifteten Streudiagramm
 
-Die folgende Abbildung ist aus @hanson[S. 55]:
+Schauen wir zunächst auf die folgende Abbildung \@ref(fig:Hanson) aus @hanson[S. 55]:
 
-```{r}
+```{r Hanson, echo=FALSE, fig.cap="Abbildung nach Hanson, 2012"}
 knitr::include_graphics(here("figures/vis-failes-hanson.png"), auto_pdf = T)
 ```
 
@@ -1763,65 +1763,67 @@ hanson_data <- fread(here("data/tidy/hanson-prepared.csv"),
 Zunächst replizieren wir das originale visuelle Verbrechen:
 
 ```{r}
-ggplot(data = hanson_data, 
+ggplot2::ggplot(data = hanson_data, 
        mapping = aes(x=schooling, y=rca_purged)) +
-  geom_point(color="#264062") + 
-  geom_text(aes(label=country), nudge_x = 0.5, color="#264062") +
-  geom_smooth(method = "lm", se = FALSE, color="black") +
-  ggtitle("Ausbildungsniveau und Exporte von Büromaschinen") +
-  scale_x_continuous(name = "Durchschnittliche Schulbildung in Jahren (2005)") +
-  scale_y_continuous(name = "RCA in Büromaschinen (Durchschnitt 2006-08)") +
-  theme_icae()
+  ggplot2::geom_point(color="#264062") + 
+  ggplot2::geom_text(aes(label=country), nudge_x = 0.5, color="#264062") +
+  ggplot2::geom_smooth(method = "lm", se = FALSE, color="black") +
+  ggplot2::ggtitle("Ausbildungsniveau und Exporte von Büromaschinen") +
+  ggplot2::scale_x_continuous(name = "Durchschnittliche Schulbildung in Jahren (2005)") +
+  ggplot2::scale_y_continuous(name = "RCA in Büromaschinen (Durchschnitt 2006-08)") +
+  icaeDesign::theme_icae()
 ```
 
-Abgesehen davon, dass es einfach hässlich ist so viele Überlappungen zu haben
+<!-- Hier war ich ein wenig erstaunt über die "Farbe" #264062. Ist das einfach irgendeine Farbbezeichnung die du schön findest? Warum nicht einfach color="black"? Und: In der Pdf wechselt der Farbcode irgendwie zwischendrin, und die letzten 3 layer stehen da in grün, nicht in blau (ebenso wie die plusse in grün sind nicht mehr in rot. Hat das irgendwas zu bedeuten?) -->
+
+Abgesehen davon, dass es einfach hässlich ist so viele Überlappungen zu haben,
 setzt dieser Graph voraus, dass Sie fließend die `iso3c`-Codes beherrschen und
 schnell die fünf Länder finden, um die es im Text geht. Das ist nicht sonderlich
 leser*innenfreundlich...
 
-Wie @schwabischVis bilden wir zunächst einmal die Labels nur für die fünf
+Wie @schwabischVis bilden wir zunächst einmal die Labels nur für die fünf uns
 interessierenden Länder ab. Das machen wir, indem wir die Funktion
-`geom_text()`, welche die Ländernamen abbildet, nicht den Standarddatensatz
+`ggplot2::geom_text()`, welche die Ländernamen abbildet, nicht den Standarddatensatz
 verwenden lassen, sondern einen reduzierten Datensatz übergeben.
 In diesem reduzierten Datensatz übersetzen wir die Ländernamen bereits ins
 Deutsche.
-Überhaupt ersetzen wir `geom_text()` besser mit `geom_label_repel()` aus dem
+Überhaupt ersetzen wir `ggplot2::geom_text()` besser mit `geom_label_repel()` aus dem
 Paket [ggrepel](https://github.com/slowkow/ggrepel) [@r-ggrepel], welches quasi 
 genauso funktioniert, aber den Text so verschiebt, dass es zu keinen 
 Überschneidungen kommt.
 
 Außerdem wählen wir eine stärkere Farbe für diese Namen aus.
-Damit es besser zu den Punkten passt plotten wir die Punkte dieser Länder in der
+Damit es besser zu den Punkten passt, plotten wir die Punkte dieser Länder in der
 gleichen Farbe, und alle anderen Punkte in einem Grauton.
 Dazu verwenden wir einfach zwei unterschiedliche Layer, jeweils produziert durch
-`geom_point()`, aber mit unterschiedlichen Datensätzen.
+`ggplot2::geom_point()`, aber mit unterschiedlichen Datensätzen.
 
 ```{r}
 interessierende_laender <- countrycode(
   c("China", "Malaysia", "Costa Rica", "Philippines", "Thailand"), 
   "country.name", "iso3c")
 
-ggplot(data = hanson_data, 
+ggplot2::ggplot(data = hanson_data, 
        mapping = aes(x=schooling, y=rca_purged)) +
-  geom_point(
+  ggplot2::geom_point(
     data = filter(hanson_data, 
                   country %in% interessierende_laender), 
     color="#264062") + 
-  geom_point(
+  ggplot2::geom_point(
     data = filter(hanson_data, 
                   !country %in% interessierende_laender), 
     color="grey") + 
-  geom_label_repel(
+  ggplot2::geom_label_repel(
     data = filter(hanson_data, 
                   country %in% interessierende_laender),
     aes(label=countrycode(country, "iso3c", "country.name.de")), 
     color="black", label.size = NA
     ) +
-  geom_smooth(method = "lm", se = FALSE, color="black") +
-  ggtitle("Ausbildungsniveau und Exporte von Büromaschinen") +
-  scale_x_continuous(name = "Durchschnittliche Schulbildung in Jahren (2005)") +
-  scale_y_continuous(name = "RCA in Büromaschinen (Durchschnitt 2006-08)") +
-  theme_icae()
+  ggplot2::geom_smooth(method = "lm", se = FALSE, color="black") +
+  ggplot2::ggtitle("Ausbildungsniveau und Exporte von Büromaschinen") +
+  ggplot2::scale_x_continuous(name = "Durchschnittliche Schulbildung in Jahren (2005)") +
+  ggplot2::scale_y_continuous(name = "RCA in Büromaschinen (Durchschnitt 2006-08)") +
+  icaeDesign::theme_icae()
 ```
 
 
@@ -1835,20 +1837,20 @@ wenn man die abgebildeten Punkte auf das wirklich Wesentliche reduziert.
 
 ### Ein 'unbalancierter' Plot
 
-An anderes schönes Beispiel ist folgende Abbildung, die angeblich von der 
-NY Times und der OECD verwendet wurde. 
+An anderes schönes Beispiel ist die folgende Abbildung \@ref(fig:managers), 
+die angeblich von der NY Times und der OECD verwendet wurde. 
 Zwar funktionieren alle angegeben Links nicht mehr und der genaue Datensatz, 
 welcher der Abbildung zurundeliegt bleibt ebenfalls unerwähnt (Sie sehen die
 Verbesserungsmöglichkeiten), allerdings ist er ein schönes Negativbeispiel:
 
 
-```{r, echo=FALSE}
+```{r managers, echo=FALSE, fig.cap="Beispiel für einen 'unbalancierten' Plot"}
 knitr::include_graphics(here("figures/vis-failes-oecd.png"), auto_pdf = T)
 ```
 
 Selbt mit der Beschreibung im Text ist schwer verständlich was uns diese
 Abbildung jetzt genau sagen soll. 
-Wahrscheinlich versucht die Autoring zu zeigen, dass Frauen weniger 
+Wahrscheinlich versucht der Autor oder die Autorin zu zeigen, dass Frauen weniger 
 in Führungspositionen vertreten sind als Männer. 
 Warum dann allerdings die Werte für Frauen mit mehr Fläche dargestellt sind als
 die der Männer bleibt genauso schleierhaft wie die Begründung für die 
@@ -1878,7 +1880,7 @@ Wir wissen ja aus letztem Kapitel wie wir hiermit umzugehen haben:
 
 ```{r}
 oecd_data <- oecd_data %>%
-  pivot_wider(names_from = "Sex", 
+  tidyr::pivot_wider(names_from = "Sex", 
               values_from = "Value", 
               id_cols = "COU")
 head(oecd_data)
@@ -1886,12 +1888,12 @@ head(oecd_data)
 
 Auch möchten wir die Ländernamen noch anpassen. 
 Hier haben wir aber einen Fall in dem wir nicht einfach blind die Funktion
-`countrycode()` verwenden können: zum einen enthält unser Datensatz das 
+`countrycode::countrycode()` verwenden können: zum einen enthält unser Datensatz das 
 'Land' `OAVG`, was der Durchschnitt aller OECD Länder ist. Diesen müssen wir
-separat übersetztn. 
+separat übersetzen. 
 Wir erledigen das mit der Funktion `ifelse()`.
 Diese Funktion erlaubt bedingte Befehle: wir formulieren als erstes Argument
-einen Test, als zweites Argument den Wert, den die Funktion ausbegen soll, 
+einen Test, als zweites Argument den Wert, den die Funktion ausgegen soll, 
 wenn der Test erfüllt wird und als drittes Argument den Wert wenn der Test
 nicht erfüllt ist, so wie in folgendem Beispiel:
 
@@ -1908,11 +1910,12 @@ das manuell an:
 
 ```{r, warning=FALSE}
 oecd_data_plot <- oecd_data %>%
-  mutate(COU = ifelse(COU=="OAVG", "OECD Durchschnitt", 
-                      countrycode(COU, "iso3c", "country.name.de")),
+  dplyr::mutate(COU = ifelse(COU=="OAVG", "OECD Durchschnitt", 
+                      countrycode::countrycode(COU, "iso3c", "country.name.de")),
          COU = ifelse(COU=="Korea, Republik von", "Südkorea", COU))
 ```
 
+<!-- Ist das hier korrekt, dass mutate aus dplyr kommt, und nicht aus ggpubr? -->
 
 Mit diesen erstellen wir den Lollipop-Graphen folgendermaßen:
 
@@ -1920,36 +1923,36 @@ Mit diesen erstellen wir den Lollipop-Graphen folgendermaßen:
 farbe_m <- "#355383"
 farbe_w <- "#d95d2c"
 
-ggplot(oecd_data_plot) +
-  geom_segment(aes(x=reorder(COU, Women), 
+ggplot2::ggplot(oecd_data_plot) +
+  ggplot2::geom_segment(aes(x=reorder(COU, Women), 
                    xend=COU,
                    y=Women, 
                    yend=Men), 
                color="grey") +
-  geom_point(
+  ggplot2::geom_point(
     aes(x=COU, 
         y=Women, 
         color="Frauen"), 
     size=3 ) +
-  geom_point(
+  ggplot2::geom_point(
     aes(x=COU, 
         y=Men,
         color="Männer"), 
     size=3 ) +
-  scale_color_manual(values = c("Männer"=farbe_m, "Frauen"=farbe_w), name="Geschlecht") +
-  geom_text(
+  ggplot2::scale_color_manual(values = c("Männer"=farbe_m, "Frauen"=farbe_w), name="Geschlecht") +
+  ggplot2::geom_text(
     aes(x=COU, y=Women, label=COU), 
     nudge_y = -0.25, hjust=1, color=rgb(110, 113, 123, maxColorValue = 255)
     ) +
-  scale_y_continuous(name = "Prozent", 
+  ggplot2::scale_y_continuous(name = "Prozent", 
                      expand = expand_scale(mult = c(0, 0), 
                                            add = c(3.5, 1))
                      ) +
-  coord_flip() +
-  labs(title = "Anteil der Beschäftigten im Management (2015)", 
+  ggplot2::coord_flip() +
+  ggplot2::labs(title = "Anteil der Beschäftigten im Management (2015)", 
        caption = "Quelle: OECD, eigene Darstellung.") +
-  theme_icae() +
-  theme(
+  icaeDesign::theme_icae() +
+  ggplot2::theme(
     panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank(),
     legend.position = c(0.8, 0.1),
@@ -1962,31 +1965,33 @@ ggplot(oecd_data_plot) +
   )
 ```
 
+<!-- Hier frag ich mich wieder etwas warum so komplizierte Nummern bei den Farben -->
+
 Wie Sie sehen wird der Graph nicht durch eine eigene Funktion, sondern durch 
 das sukzessive Hinzufügen von Strichen und Punkten erstellt.
 Besonders hervorzuheben am Code sind folgende Features:
 
 * Wir verwenden die Funktion `reorder()` um die Werte auf der x-Achse nach
 Anteil der Frauen im Management zu ordnern
-* Da wir mit der Funktion `coord_flip()` die Achsen umdrehen um eine 
+* Da wir mit der Funktion `ggplot2::coord_flip()` die Achsen umdrehen um eine 
 horizontale Darstellung zu bekommen müssen wir bei allen Werten, die sich auf
 eine Achse beziehen umdenken
-* Wir verwenden die Funktion `expand_scale()` wie oben eingeführt, da die 
+* Wir verwenden die Funktion `ggplot2::expand_scale()` wie oben eingeführt, da die 
 x-Achse sonst nach links zu wenig Platz für die Länderbezeichnungen lassen würde
-* Das Argument `hjust=1` innerhalb von `geom_text()` sorgt dafür, dass der 
-Text genau bei dem y-Wert aus `aes()` aufhört, also linksbündig formatiert wird
+* Das Argument `hjust=1` innerhalb von `ggplot2::geom_text()` sorgt dafür, dass der 
+Text genau bei dem y-Wert aus `ggplot2::aes()` aufhört, also linksbündig formatiert wird
 (`hjust=0` korrespondiert entsprechend zu rechsbündigem, `hjust=0.5` zu
 mittig formatierem Text).
-* Mit `scale_color_manual()` erstellen wir eine manuelle Tabelle, da wir die
-Farben für Mönner und Frauen in unterschiedlichen Layer plaziert haben. Wichtig
+* Mit `ggplot2::scale_color_manual()` erstellen wir eine manuelle Tabelle, da wir die
+Farben für Männer und Frauen in unterschiedlichen Layer plaziert haben. Wichtig
 ist, dass die Farbzuschreibung als *aesthetic mapping* definiert wird, da wir
 sonst keine Legende erstellen können. Die Syntax der Funktion ist dafür 
 selbsterklärend.
 
 ## Lügen mit grafischer Statistik {#vis-lies}
 
-Grafiken können sehr leicht zur Manipulation der Betrachter eingesetzt werden.
-Im folgenden wollen wir das an zwei klassischen Beispielen verdeutlichen.
+Grafiken können sehr leicht zur Manipulation der Betrachter*innen eingesetzt werden.
+Im Folgenden wollen wir das an zwei klassischen Beispielen verdeutlichen.
 Eine schöne Übersicht finden Sie ansonsten in @luegen
 
 ### Klassiker 1: Kontraintuitiver 'Nullpunkt'
@@ -1999,7 +2004,7 @@ In diesem Fall könnten Sie sich ein Beispiel an Fox News nehmen
 knitr::include_graphics(here("figures/vis-fox-news.jpg"), auto_pdf = T)
 ```
 
-Die Autoren haben Ihre Manupulation hier entsprechend clever versteckt indem sie
+Die Autor*innen haben ihre Manupulation hier entsprechend clever versteckt indem sie
 einfach gar keine Werte auf die y-Achse geschrieben haben. Das geht natürlich
 gar nicht, da wir intuitiv die beiden Flächen, bzw. Höhen der Balken ins
 Verhältnis setzen und uns weniger durch die abstrakten Zahlen beeinflussen lassen.
@@ -2009,58 +2014,63 @@ absoluten Nullpunkt zu starten.^[Wir wissen schließlich aus
 Verhältnisvergleiche nur für verhältnis-skalierte Daten Sinn machen und diese
 durch die Existenz eines absoluten Nullpunkts definiert sind!]
 
-Im folgenden sehen wir die manupulierende und korrekte Grafik nebeneinander:
+Im Folgenden sehen wir die manipulierende und korrekte Grafik nebeneinander:
 
 ```{r}
 data_used <- data.frame(Werte=c(6000000, 7066000), Art=c("Zustand", "Ziel"))
 
-normal <- ggplot(data = data_used,
+normal <- ggplot2::ggplot(data = data_used,
                       mapping = aes(x=reorder(Art, Werte), y=Werte)) +
-  geom_bar(stat = "identity", fill="#003366", alpha=0.75) + 
-  geom_text(aes(label=as.character(format(Werte, scientific = FALSE))), 
+  ggplot2::geom_bar(stat = "identity", fill="#003366", alpha=0.75) + 
+  ggplot2::geom_text(aes(label=as.character(format(Werte, scientific = FALSE))), 
             size=6, vjust=1.75, color="#f2f2f2") +
-  scale_y_continuous(
+  ggplot2::scale_y_continuous(
     name = "Anzahl von Nutzer*innen in Hunderttausend",
     breaks = seq(0, 8000000, 1000000),
     labels = seq(0, 80, 10),
     expand = expand_scale(c(0,0), 
                           c(0, 500000))
     ) +
-  labs(title = "Nutzer*innen von Obamacare", 
+  ggplot2::labs(title = "Nutzer*innen von Obamacare", 
        caption = "Quelle: Fox News") + 
-  theme_icae() +
-  theme(
+  icaeDesign::theme_icae() +
+  ggplot2::theme(
     axis.title.y = element_text(),
     axis.text.x = element_text(size = 12),
     axis.title.x = element_blank(),
     plot.title = element_text(size=14, face = "bold")
   )
 
+#Hier kommt in der PDF irgendwie eine Warnung und viel leerer Platz zwischen
+
 manipulativ <- normal +
-  coord_cartesian(ylim=c(5750000, 7200000)) +
-  theme(
+  ggplot2::coord_cartesian(ylim=c(5750000, 7200000)) +
+  ggplot2::theme(
     panel.grid = element_blank(),
     axis.title = element_blank(),
     axis.line.y = element_blank(), 
     axis.text.y = element_blank()
     )
 
-ggarrange(manipulativ, normal, ncol = 2)
+ggpubr::ggarrange(manipulativ, normal, ncol = 2)
 ```
 
 Eine beliebte Variante ist es, die y-Achse zwar im Nullpunkt starten zu lassen,
-aber einfach die Achse zwischenrein 
+aber einfach die Achse zwischendrin 
 [abzuschneiden](http://ksrowell.com/blog-visualizing-data/2013/08/12/how-to-simulate-a-broken-axis-value-axis/). 
-Das Prinzip bleibt das gleiche uns so etwas ist in keinem Fall eine gute Idee!
+
+<!-- Ich hab den Link gerade mal kontrolliert (mache ich bei allen, auch aus Eigeninteresse), und bei diesem hier kam eine Fehlermeldung, die Seite scheint nicht mehr zu existieren leider -->
+
+Das Prinzip bleibt das gleiche und so etwas ist in keinem Fall eine gute Idee!
 
 ### Klassiker 2: Geschickt gewählter Zeitraum und clever gewählte Achsenabschnitte
 
 Sie möchten eine Tendenz zum Ausdruck bringen, die es gar nicht gibt? 
 Grundsätzlich bieten sich hier drei Vorgehen an:
 
-1. Sie wählen aus den ganzen Beobachtungen den Zeitraum aus in dem die Tendenz besteht
-2. Sie machen die Zeitachse möglichst kurz, dann wirken Veränderungen größer
-3. Sie zoomen in die y-Achse rein, auch das lässt Veränderungen größer werden
+1. Sie wählen aus den ganzen Beobachtungen den Zeitraum aus in dem die Tendenz besteht.
+2. Sie machen die Zeitachse möglichst kurz, dann wirken Veränderungen größer.
+3. Sie zoomen in die y-Achse rein, auch das lässt Veränderungen größer werden.
 
 Sehr gut funktioniert das bei schwankenden Größen wie der Arbeitslosigkeit.
 Gerade der erste Punkt funktioniert bei Arbeitslosenstatistiken immer sehr gut:
@@ -2078,72 +2088,72 @@ al_daten <- fread(here("data/tidy/al_daten_de.csv"),
 ```
 
 ```{r}
-agenda_daten <- filter(al_daten, year>2000)
+agenda_daten <- dplyr::filter(al_daten, year>2000)
 
-manipulativ <- ggplot(data = agenda_daten,
+manipulativ <- ggplot2::ggplot(data = agenda_daten,
                       mapping = aes(x=year, y=unemp_rate)
                       ) +
-  geom_point() +
-  geom_line() +
-  geom_vline(xintercept = 2005) +
-  scale_y_continuous(
+  ggplot2::geom_point() +
+  ggplot2::geom_line() +
+  ggplot2::geom_vline(xintercept = 2005) +
+  ggplot2::scale_y_continuous(
     name = "Arbeitslosigkeit", 
     labels = scales::percent_format(accuracy = 1, scale = 1)
     ) +
-  labs(title = "Arbeitslosigkeit seit Einführung der Agenda 2010",
+  ggplot2::labs(title = "Arbeitslosigkeit seit Einführung der Agenda 2010",
        caption = "Quelle: AMECO") +
-  theme_icae() +
-  theme(axis.title.x = element_blank())
+  icaeDesign::theme_icae() +
+  ggplot2::theme(axis.title.x = element_blank())
 
 
-normal <- ggplot(data = al_daten,
+normal <- ggplot2::ggplot(data = al_daten,
                       mapping = aes(x=year, y=unemp_rate)
                       ) +
-  geom_point() +
-  geom_line() +
-  geom_smooth(method = "loess", se = F) +
-  scale_y_continuous(
+  ggplot2::geom_point() +
+  ggplot2::geom_line() +
+  ggplot2::geom_smooth(method = "loess", se = F) +
+  ggplot2::scale_y_continuous(
     name = "Arbeitslosigkeit", 
     labels = scales::percent_format(accuracy = 1, scale = 1)
     ) +
-  labs(title = "Arbeitslosigkeit in der langen Frist",
+  ggplot2::labs(title = "Arbeitslosigkeit in der langen Frist",
        caption = "Quelle: AMECO") +
-  theme_icae() +
-  theme(axis.title.x = element_blank())
+  icaeDesign::theme_icae() +
+  ggplot2::theme(axis.title.x = element_blank())
 
-ggarrange(normal, manipulativ, nrow=2)
+ggpubr::ggarrange(normal, manipulativ, nrow=2)
 ```
 
 Selbstverständlich ist der obere Graph auch nicht ganz manipulationsfrei.
 Aber es wird deutlich, wie viel Spielraum Sie nur über die Darstellung von 
 bestimmten Grafiken haben.
 
-Die weiteren beiden Punkte lassen sich anhand der Staastausgaben in Deutschland
+Die weiteren beiden Punkte lassen sich anhand der Staatsausgaben in Deutschland
 auch sehr schön illustrieren.
 Die Rohdaten stammen von der 
 [AMECO Homepage](https://ec.europa.eu/info/business-economy-euro/indicators-statistics/economic-databases/macro-economic-database-ameco/download-annual-data-set-macro-economic-database-ameco_e)
 und sind dem Kapitel "General Government/excessive deficit procedure" entnommen.
 Sie sind ein schönes Beispiel für die weit verbreiteten 'breiten' Daten, die 
-wir erst einmal in eine brauchbares Format bringen müssen:
+wir erst einmal in ein brauchbares Format bringen müssen:
 
 ```{r, warning=FALSE, message=FALSE, eval=FALSE}
-ameco_data <- fread(here("data/raw/AMECO16.TXT"), fill = T, header = T) %>%
-  filter(
+ameco_data <- data.table::fread(here::here("data/raw/AMECO16.TXT"), fill = T, header = T) %>%
+  dyplr::filter(
     TITLE=="Total current expenditure: general government :- Excessive deficit procedure",
     COUNTRY=="Germany",
     UNIT %in% c("(Percentage of GDP at current prices (excessive deficit procedure))", 
                 "Mrd ECU/EUR")) %>%
-  select(-one_of("CODE", "COUNTRY", "SUB-CHAPTER", "TITLE", "V68")) %>%
-  mutate(UNIT=ifelse(UNIT=="Mrd ECU/EUR", "Abs", "PercGDP")) %>%
-  pivot_longer(names_to = "Jahr", values_to = "Wert", cols = -UNIT) %>%
-  filter(Jahr>1990) %>%
-  pivot_wider(names_from = UNIT, values_from = Wert)
+  dplyr::select(-one_of("CODE", "COUNTRY", "SUB-CHAPTER", "TITLE", "V68")) %>%
+  dplyr::mutate(UNIT=ifelse(UNIT=="Mrd ECU/EUR", "Abs", "PercGDP")) %>%
+  tidyr::pivot_longer(names_to = "Jahr", values_to = "Wert", cols = -UNIT) %>%
+  dplyr::filter(Jahr>1990) %>%
+  tidyr::pivot_wider(names_from = UNIT, values_from = Wert)
 ```
 ```{r, eval=FALSE, echo=FALSE}
-fwrite(ameco_data, here("data/tidy/ameco_de.csv"))
+data.table::fwrite(ameco_data, here::here("data/tidy/ameco_de.csv"))
 ```
 ```{r, echo=FALSE}
-ameco_data <- fread( here("data/tidy/ameco_de.csv"), 
+ameco_data <- data.table::fread( here::here("data/tidy/ameco_de.csv"), 
                      colClasses = rep("double", 3))
 ```
 
@@ -2152,45 +2162,47 @@ Jetzt können wir die Daten visualisieren:
 
 ```{r}
 ameco_geier_version <- ameco_data %>%
-  filter(Jahr %in% seq(1991, 2021, 5)) 
+  dplyr::filter(Jahr %in% seq(1991, 2021, 5)) 
 
-manipulativ <- ggplot(data = ameco_geier_version,
+manipulativ <- ggplot2::ggplot(data = ameco_geier_version,
                       aes(x=Jahr, y=Abs)) +
-  geom_point() +
-  geom_line() +
-  scale_y_continuous(name = "Staatsausgaben in Mrd. ECU/EUR",
+  ggplot2::geom_point() +
+  ggplot2::geom_line() +
+  ggplot2::scale_y_continuous(name = "Staatsausgaben in Mrd. ECU/EUR",
                      limits = c(600, 1600)) +
-  labs(title = "Geier Staat und die Gießkanne", 
+  ggplot2::labs(title = "Geier Staat und die Gießkanne", 
        subtitle = "Steigende Staatsausgaben seit 1991",
        caption = "Quelle: AMECO.") +
-  theme_icae() +
-  theme(axis.title.x = element_blank(),
+  icaeDesign::theme_icae() +
+  ggplot2::theme(axis.title.x = element_blank(),
         plot.title = element_text(hjust = 0, size = 14))
 
-normal <- ggplot(data = ameco_data,
+normal <- ggplot2::ggplot(data = ameco_data,
                       aes(x=Jahr, y=PercGDP)) +
-  geom_point() +
-  geom_line() +
-  scale_y_continuous(name = "Staatsausgaben in % des BIP",
+  ggplot2::geom_point() +
+  ggplot2::geom_line() +
+  ggplot2::scale_y_continuous(name = "Staatsausgaben in % des BIP",
                      limits = c(0, 60)) +
-  labs(title = "Staatsausgaben seit 1991",
+  ggplot2::labs(title = "Staatsausgaben seit 1991",
        caption = "Quelle: AMECO.") +
-  theme_icae() +
-  theme(axis.title.x = element_blank(),
+  icaeDesign::theme_icae() +
+  ggplot2::theme(axis.title.x = element_blank(),
         plot.title = element_text(hjust = 0, size = 14))
 
 
-ggarrange(manipulativ, normal, ncol = 2)
+ggpubr::ggarrange(manipulativ, normal, ncol = 2)
 ```
 
 Falls Sie jetzt meinen: das ist ja eigentlich zu einfach um wirklich vorzukommen,
 dann schauen Sie mal in Abbildung \@ref(fig:fazbetrug) (bei der noch die Dummheit
-hinzukommt eine nominale Größe über die Zeit abzubilden),^[Grunden habe ich die Bilder
+hinzukommt eine nominale Größe über die Zeit abzubilden),^[Gefunden habe ich die Bilder
 über [diesen Tweet](https://twitter.com/PeterBofinger/status/1281894448717344768?s=20).] in Ihre Tageszeitung
 oder in den sozialen Medien. Sie werden (leider) feststellen, dass solche 
 visuellen Tricksereien sowohl in Schund- als auch Qualitätsmedien, aber auch
 in der Wissenschaft sehr weit verbreitet sind. Aber Sie wissen das ja jetzt und
 brauchen sich nicht mehr aufs Glatteis führen zu lassen.
+
+<!-- In der PDF scheint die Referenz nicht anständig zu funktionieren, und auch die 3 Bilder sind nicht nebeneinander gesetzt, aber zumindest die Referenz sieht hier richtig aus. Vllt hab ich noch eine zu alte Pdf und sollte eine neue machen? Ich lasse jetzt einfach erstmal den Kommtar hier, kannst ja nochmal nen Blick auf den Code werden ob ich was übersehe -->
 
 ```{r fazbetrug, echo=FALSE, fig.cap="Quelle: FAZ vom 11. Juli 2020 (linkes Bild) und Bundesministerium für Arbeit und Soziales (mittleres Bild) und Handelsblatt vom 13. Juli 2020 (rechtes Bild)."}
 knitr::include_graphics(here("figures/vis-faz-betrug.png"), auto_pdf = T)
@@ -2205,13 +2217,13 @@ Einen guten Überblick über viele häufig verwendeten Befehle bietet
 
 Die Debatte ob nun `base` oder `ggplot2` 'besser' ist kennt natürlich 
 unzählbar viele Beiträge - die meisten davon geschrieben von Menschen mit
-starker meinung und schwachen Argumenten.
+starker Meinung und schwachen Argumenten.
 Ein recht häufig zitierter 
 [pro-base Blog](https://simplystatistics.org/2016/02/11/why-i-dont-use-ggplot2/)
 von Jeff Leek findet hier eine 
 [pro-ggplot Antwort](http://varianceexplained.org/r/why-I-use-ggplot2/).
 Nathan Yau bezieht sich auf beide Beiträge und vollzieht hier einen
-[sehr pragmatisch geschriebener Vergleich](https://flowingdata.com/2016/03/22/comparing-ggplot2-and-r-base-graphics/)
+[sehr pragmatisch geschriebenen Vergleich](https://flowingdata.com/2016/03/22/comparing-ggplot2-and-r-base-graphics/)
 Auch wenn er das Potenzial von `ggplot2` nicht auch nur im Ansatz ausnutzt
 ist es doch ein netter Vergleich mit in meinen Augen sinnvoller Conclusio:
 "There’s also no problem with using everything available to you. 
@@ -2219,7 +2231,7 @@ At the end of the day, it’s all R."
 
 Für alle die sich mit den theoretischen Grundlagen von `ggplot2` genauer 
 befassen wollen:
-Die `ggplot2` zugrundeliegende Idee einer *grammar of graphics* geht auf 
+Die `ggplot2` zugrundeliegende Idee einer *grammar of graphics* geht, wie anfangs des Kapitels schon beschrieben, auf 
 @GrammarGraphics zurück und wird in @wickhamggplot theoretisch ausgeführt.
 
 @schwabischVis wurde bereits erwähnt und ist eine konstruktive Auseinandersetzung
@@ -2227,7 +2239,7 @@ mit typischen Visualisierungsfehlern, die auch tatsächlich in Top-Journalen
 gemacht wurden. Besonders wichtig: konstruktive Verbesserungsvorschläge sind
 gleich mit dabei.
 
-@luegen ist eine klassische Sammulung manipulativer Grafiken und sicherlich
+@luegen ist eine klassische Sammlung manipulativer Grafiken und sicherlich
 empfehlenswert. Eine allgemeinere Diskussion von bestenfalls irreführenden
 Visualisierungen und ihre Implementierung in R findet sich 
 [hier](https://www.data-to-viz.com/caveats.html).
