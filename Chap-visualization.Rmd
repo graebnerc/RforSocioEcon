@@ -27,13 +27,6 @@ library(WDI)
 library(countrycode)
 ```
 
-Um das Paket `icaeDesign` zu installieren müssen Sie folgendermaßen vorgehen:
-
-```{r, eval=FALSE}
-library(devtools)
-devtools::install_github("graebnerc/icaeDesign")
-```
-
 ## Einleitung {-}
 
 In diesem Kapitel lernen Sie mit Hilfe des Pakets `ggplot2` Ihre Daten
@@ -56,11 +49,14 @@ können.
 Danach werden ausgewählte [fortgeschrittene Techniken](#vis-adv), wie z.B. die 
 Visualisierung von Regressionsergebnissen oder das Erstellen von Plots mit
 mehreren Abbildungen, eingeführt.
+
+<!-- Vielleicht hier jetzt nochmal eine Verlinkung einfügen, dass das folgende Kapitel eine Einführung in Regressionsanalysen bietet? -->
+
 Im fünften Abschnitt zeigen wir aufbauend auf @schwabischVis wie 
 [typische Fehler](#vis-fehler) in der Datenvisualisierung vermieden werden können. 
 Der sechste Abschnitt illustriert ausgewählte
 [Manipulationsstrategien](#vis-manip) bei der Datenvisualisierung.
-Im letzten Abschnitt finden Sie Empfehlungen für [weiterführende Literatur](#vis-lit)
+Im letzten Abschnitt finden Sie Empfehlungen für [weiterführende Literatur](#vis-lit).
 
 <!-- Irgendwie funktionieren in der HTML Version nur die Verlinkungen zu Kapitel 6.4 und 6.5 bei mir. -->
 
@@ -80,9 +76,7 @@ zugrunde liegt:
 `base` funktioniert dabei wie ein Stift und ein Blatt Papier: 
 Sie haben ein leeres Blatt, welches Sie mit dem Aufruf bestimmter `plot`-Funktionen
 beschreiben. 
-Hierbei wird kein besonderes R-Objekt erstellt, in dem die Grafik  
-gespeichert wird - vielmehr speichern Sie am Ende ihr 'vollgemaltes Blatt'
-entweder als Bild ab, oder Sie verwerfen es und beschreiben ein neues 'Blatt'.
+Hierbei wird kein besonderes R-Objekt erstellt, in dem die Grafik gespeichert wird - vielmehr speichern Sie am Ende ihr 'vollgemaltes Blatt' entweder als Bild ab, oder Sie verwerfen es und beschreiben ein neues 'Blatt'.
 
 In `ggplot2` werden die Grafiken dagegen 'scheibchenweise' in einer Art 
 Liste zusammengesetzt.
@@ -110,7 +104,7 @@ sich im Internet gerade auf Englisch viele exzellente Einführungen.
 Und im Endeffekt ist die einzige relevante Frage:
 haben Sie auf eine für Sie möglichst unterhaltsame Art und Weise einen guten 
 Graphen produziert?
-Welches Paket Sie dafür verwendet haben, interessiert am Ende des Tages niemanden...
+Welches Paket Sie dafür verwendet haben, interessiert schlussendlich niemanden...
 
 ### Einleitung zu Wickham's *Grammar of Graphics* {#grammar}
 
@@ -122,14 +116,14 @@ beziehungsweise die Interpretation des Konzepts von @wickhamggplot.
 Dieses Konzept startet mit dem Wunsch eine 'Grammatik' für Grafiken zu entwickeln.
 Eine Grammatik wird hier als eine Sammlung von Konzepten verstanden aus denen
 sämtliche Grafiken hergestellt werden können- eine vollständige Beschreibung der Grafik sozusagen.
-Wie die Grammatik der deutschen Sprache eine Sammlung von Wörtern und Regeln
+So wie die Grammatik der deutschen Sprache eine Sammlung von Wörtern und Regeln
 darstellt, aus denen jede Menge (mehr oder weniger sinnvolle) Aussagen hergestellt
 werden können, verstehen wir unter einer Grammatik für Grafiken eine Sammlung von 
 Konzepten und Regeln aus denen wir jede Menge (mehr oder weniger sinnvolle)
 Grafiken herstellen können.
 
 Im Gegensatz zu der ursprünglich von @GrammarGraphics vorgestellten Grammatik
-folgt die Grammatik von @wickhamggplot einer klaren geordneten Struktur:
+folgt die Grammatik von @wickhamggplot einer klar geordneten Struktur:
 jeder Teil der Grammatik ist unabhängig vom Rest, und eine Grafik wird
 vollends dadurch spezifiziert, dass die einzelnen Teile Stück für Stück
 zusammen geführt werden.
@@ -189,7 +183,7 @@ einen separaten Unter-Plot für jedes einzelne Land erstellen. In diesem Fall
 verwenden wir eine Facettenspezifikation, die für jedes Land einen Teildatensatz
 erstellt.
 
-Alle Komponenten bleiben dabei unabhängig von einander sind:
+Alle Komponenten bleiben dabei unabhängig voneinander:
 die Daten z.B. sind unabhängig vom Rest, weil die gleiche Grafik für
 unterschiedliche Daten produziert werden kann:
 "Daten machen aus einer abstrakten Grafik eine konkrete Grafik" [@wickhamggplot, p. 10].
@@ -199,7 +193,7 @@ Das Besondere an der so formulierten Grammatik ist, dass man mit den Komponenten
 Das Paket `ggplot2` macht sich das zunutze: 
 es formalisiert diese Regeln in R, sodass Sie mit dem entsprechenden R Code
 quasi jede Grafik beschreiben können - und dann durch R erstellen lassen können.
-Dadurch ist auch auch die Vorgehensweise motiviert, zunächst ein Objekt mit der *Beschreibung* der Grafik zu erstellen und die Grafik dann am Ende durch Anwendung einer `print`-Funktion auf diese Beschreibung herzustellen. So können Sie das Objekt mit der Beschreibung vorher bereits speichern und weitergeben und dann zu einem späteren Zeitpunkt erst die eigentliche Grafik erstellen. 
+Dadurch ist auch die Vorgehensweise motiviert, zunächst ein Objekt mit der *Beschreibung* der Grafik zu erstellen und die Grafik dann am Ende durch Anwendung einer `print`-Funktion auf diese Beschreibung herzustellen. So können Sie das Objekt mit der Beschreibung vorher bereits speichern und weitergeben und dann zu einem späteren Zeitpunkt erst die eigentliche Grafik erstellen. 
 Dieses Vorgehen machen wir uns später zunutze wenn wir mehrere Sub-Abbildungen in einer großen Grafik [gemeinsam abbilden wollen](#vis-viele-plots).
 
 Wie Sie später sehen werden repräsentiert die Syntax von `ggplot2` genau diese
@@ -214,30 +208,29 @@ example_data <- data.frame(
   Variab3=c("a", "a", "b")
                            )
 
-ggplot(
+ggplot2::ggplot(
   data = example_data, 
   mapping = aes(x=Variab1, 
                 y=Variab2, 
                 color=Variab3)
   ) + 
-  layer( 
+  ggplot2::layer( 
     geom = "point", 
     stat = "identity", 
     position = "identity") + 
-  scale_color_discrete(
+  ggplot2::scale_color_discrete(
     aesthetics = c("color")
     ) + 
-  coord_cartesian(
+  ggplot2::coord_cartesian(
     xlim = c(0, 4), 
     ylim = c(0, 5)
     ) 
 ```
 
-Die Funktion `ggplot()` erstellt eine Liste, in der die Grafik-Spezifikationen gespeichert
-werden und akzeptiert über die Argumente `data` und `mapping` die Standard-Daten
+Die Funktion `ggplot2::ggplot()` erstellt eine Liste, in der die Grafik-Spezifikationen gespeichert werden und akzeptiert über die Argumente `data` und `mapping` die Standard-Daten
 und Standard-Mappings. Es korrespondiert damit zu Punkt (1) oben.
 
-Als nächstes wird mit `layer()` eine neue Ebene spezifiziert. 
+Als nächstes wird mit `ggplot2::layer()` eine neue Ebene spezifiziert. 
 Wie in der Theorie spezifizieren wir die Ebene über das Argument `geom` bezüglich
 der auf ihr abzubildenden geometrischen Objekte (hier: Punkte), über `stat`
 bezüglich der zu verwendeten statistischen Transformation (hier: keine Transformation, 
@@ -248,26 +241,23 @@ Positionszuweisungen).
 Als nächstes spezifizieren wir die Skala. Für die Ästhetik 'Position' der Variablen
 `Variab1` und `Variab2` ist keine Übersetzung notwendig, aber für den Link zwischen den Werten 
 von Variable `Variab3` und der Ästhetik 'Farbe' müssen wir eine explizite Funktion verwenden.
-Mit der Funktion `scale_color_discrete()` weisen wir also jedem Wert der 
+Mit der Funktion `ggplot2::scale_color_discrete()` weisen wir also jedem Wert der 
 (diskreten) Variable `Variab3` eine Farbe zu.
 
-Schließlich legen wir mit `coord_cartesian()` noch das zu verwendende 
+Schließlich legen wir mit `ggplot2::coord_cartesian()` noch das zu verwendende 
 Koordinatensystem fest indem wir mit den Argumenten `xlim` und `ylim` die Länge
 der x- und y-Achse spezifizieren. 
 Eine besondere Facettenspezifikation verwenden wir hier dagegen nicht.
 
 Wie Sie später sehen werden, verwenden wir in `ggplot2` häufig Abkürzungen für
 die in diesem Beispiel verwendeten 'Originalfunktionen'. 
-So gibt es für eine Ebene mit dem `geom` 'Punkte' die Abkürzung `geom_point()`.
+So gibt es für eine Ebene mit dem `geom` 'Punkte' die Abkürzung `ggplot2::geom_point()`.
 Auch muss nicht jedes Element explizit spezifiziert werden: 
-da z.B. die meisten Grafiken ein kartesisches Koordinatensystem verwenden
-ist dies als Standard-Koordinatensystem in
-`ggplot2` implementiert und Sie müssen 
-nur dann explizit ein Koordinatensystem spezifizieren
-wenn Sie vom Standardwert abweichen wollen.
+da z.B. die meisten Grafiken ein kartesisches Koordinatensystem verwenden,
+ist dies als Standard-Koordinatensystem in `ggplot2` implementiert und Sie müssen 
+nur dann explizit ein Koordinatensystem spezifizieren wenn Sie vom Standardwert abweichen wollen.
 
-Wenn Sie sich genauer mit der hierachischen Grammatik, die `ggplot2` zugrundeliegt, 
-kann ich Ihnen nur den Originalartikel von @wickhamggplot empfehlen.
+Wenn Sie sich genauer mit der hierarchischen Grammatik beschäftigen wollen, die `ggplot2` zugrundeliegt, kann ich Ihnen den Originalartikel von @wickhamggplot empfehlen.
 
 ## Grundlegende Elemente von `ggplot2`-Grafiken {#vis-elemente}
 
@@ -292,20 +282,20 @@ offenheit <- fread(
 Analog zu der gerade vorgestellten [Theorie](#grammar) besteht jeder `ggplot`
 aus den folgenden Komponenten:
 
-* Das **Basisobjekt**, welches einen leeren Plot erstellt und die **Standardwerte**
-für den zu verwendeten Datensatz und die entsprechenden Ästetiken definiert.
+* Dem **Basisobjekt**, welches einen leeren Plot erstellt und die **Standardwerte**
+für den zu verwendeten Datensatz und die entsprechenden Ästhetiken definiert.
 
 * Verschiedenen **Ebenen** (`layer`), auf denen die - ggf. statistisch transformierten - 
-Variablen der Daten auf bestimmten Ästetiken (`aesthetics`) als geometrische
-Objekte (`geoms`) auf den entprechenden Posititionen (`position`) abgebilet werden.
+Variablen der Daten auf bestimmten Ästhetiken (`aesthetics`) als geometrische
+Objekte (`geoms`) auf den entsprechenden Positionen (`position`) abgebilet werden.
 
 Die folgenden Elemente sind ebenfalls Teil eines jeden Plots, werden aber nicht
 notwendigerweise explizit spezifiziert sondern einfach in der sich aus den 
 Ebenen ergebenden Standard-Spezifikation übernommen:
 
-* **Skalen**: Für jedes `mapping` zwischen einer Variable und einer Ästetik
+* **Skalen**: Für jedes `mapping` zwischen einer Variable und einer Ästhetik
 gibt es eine Skala, die mit entsprechenden Funktionen geändert werden kann. 
-So modifiziert die Funktion `scale_color_discrete()` das Mapping zwischen einer
+So modifiziert die Funktion `ggplot2::scale_color_discrete()` das Mapping zwischen einer
 diskreten Variable und der Farbskala.
 * **Labels**: Jeder Plot kann mit Labels, wie Titeln, Achsenbeschriftungen, 
 Legenden oder sonstigem Text ergänzt werden. 
@@ -322,68 +312,68 @@ erstellen.
 Hier ist eine Beispielimplementierung:
 
 ```{r}
-offenheit_plot <- ggplot( # <- Erstellt das Basisobjekt
+offenheit_plot <- ggplot2::ggplot( # <- Erstellt das Basisobjekt
   data = offenheit,  # <- Spezifiziert Standard-Datensatz
-  mapping = aes( # <- Spezifiziert die Mappings zu den Ästetiken
-    x=trade_total_GDP, # Verbinde Ästetik 'x-Achse' & Variable 'trade_total_GDP' 
-    y=gvnt_cons) # Verbinde Ästetik 'y-Achse' & Variable 'gvnt_cons' 
+  mapping = aes( # <- Spezifiziert die Mappings zu den Ästhetiken
+    x=trade_total_GDP, # Verbinde Ästhetik 'x-Achse' & Variable 'trade_total_GDP' 
+    y=gvnt_cons) # Verbinde Ästhetik 'y-Achse' & Variable 'gvnt_cons' 
   ) +
-  layer( # <- Erstelle einen neuen Layer
+  ggplot2::layer( # <- Erstelle einen neuen Layer
     geom = "point", # Die Geoms auf diesem Layer sind Punkte
     stat = "identity", # Die Daten werden nicht statistisch transformiert
     position = "identity", # Positionen der Daten werden nicht geändert
-    mapping = aes(color=Land) # Zusätzlich zur Standard-Ästetik oben: verbinde
-                              # Variable 'Land' mit der Ästetik 'color'
+    mapping = aes(color=Land) # Zusätzlich zur Standard-Ästhetik oben: verbinde
+                              # Variable 'Land' mit der Ästhetik 'color'
     ) +
   # Erstelle noch einen Layer mit der geom 'smooth' (Abkürzung für layer(...)):
-  geom_smooth( 
+  ggplot2::geom_smooth( 
     method = "lm" # <- Verwende eine lineares Modell für die geom 'smooth'
     ) +
   # Gebe der Skala der x-Achse einen neuen Namen:
-  scale_x_continuous(name = "Handel / BIP (in %)") +
+  ggplot2::scale_x_continuous(name = "Handel / BIP (in %)") +
   # Gebe der Skala der y-Achse einen neuen Namen:
-  scale_y_continuous(name = "Staatsausgaben") + 
+  ggplot2::scale_y_continuous(name = "Staatsausgaben") + 
   # Gebe der Farbskala einen neuen Namen:
-  scale_color_discrete(name="Land") + 
-  labs(title = "Handelsoffenheit & Staatsausgaben 1990-2018") + # Ergänze Plot-Titel
-  coord_cartesian() + # Verwende eine kartesisches Koordinatensystem
-  facet_null()  # Verwende nur eine Facette
+  ggplot2::scale_color_discrete(name="Land") + 
+  ggplot2::labs(title = "Handelsoffenheit & Staatsausgaben 1990-2018") + # Ergänze Plot-Titel
+  ggplot2::coord_cartesian() + # Verwende eine kartesisches Koordinatensystem
+  ggplot2::facet_null()  # Verwende nur eine Facette
 ```
 
 
 ```{r, echo=FALSE}
-offenheit_plot_basis <- ggplot(
+offenheit_plot_basis <- ggplot2::ggplot(
   data = offenheit, 
   mapping = aes(x=trade_total_GDP, 
                 y=gvnt_cons)
   ) +
-  ggtitle("Der Basisplot: ") +
-  theme_bw()
+  ggplot2::ggtitle("Der Basisplot: ") +
+  ggplot2::theme_bw()
 
-offenheit_plot_labels <- ggplot(
+offenheit_plot_labels <- ggplot2::ggplot(
   data = offenheit, 
   mapping = aes(x=trade_total_GDP, 
                 y=gvnt_cons)
   ) +
-  xlab("Handel / BIP (in %)") +
-  ylab("Staatsausgaben") +
-  ggtitle(label = "Labels: ",
+  ggplot2::xlab("Handel / BIP (in %)") +
+  ggplot2::ylab("Staatsausgaben") +
+  ggplot2::ggtitle(label = "Labels: ",
           subtitle = "Handelsoffenheit & Staatsausgaben") +
-  theme(axis.title.y = element_text(angle = 90), 
+  ggplot2::theme(axis.title.y = element_text(angle = 90), 
         axis.title.x = element_text(), 
         axis.ticks = element_blank(), 
         axis.text = element_blank(),
         panel.background = element_rect(fill = "white"))
 
 offenheit_layer1 <- offenheit_plot_basis +
-    layer(
+    ggplot2::layer(
     geom = "point",
     stat = "identity",
     position = "identity", 
     mapping = aes(color=Land)
     ) +
-  ggtitle("Erster Layer: ") +
-  theme(axis.ticks = element_blank(), 
+  ggplot2::ggtitle("Erster Layer: ") +
+  ggplot2::theme(axis.ticks = element_blank(), 
         axis.text = element_blank(),
         panel.background = element_rect(fill = "white"), 
         plot.title = element_text(), 
@@ -393,11 +383,11 @@ offenheit_layer1 <- offenheit_plot_basis +
         panel.grid = element_blank())
 
 offenheit_layer2 <- offenheit_plot_basis +
-  geom_smooth(
+  ggplot2::geom_smooth(
     method = "lm"
     ) +
-  ggtitle("Zweiter Layer: ") +
-  theme(axis.ticks = element_blank(), 
+  ggplot2::ggtitle("Zweiter Layer: ") +
+  ggplot2::theme(axis.ticks = element_blank(), 
         axis.text = element_blank(),
         panel.background = element_rect(fill = "white"), 
         plot.title = element_text(), 
@@ -406,7 +396,6 @@ offenheit_layer2 <- offenheit_plot_basis +
         axis.title = element_blank(), 
         panel.grid = element_blank())
 ```
-
 Dieser Code erstellt die einzelnen Elemente des Plots, die in `ggplot2` 
 separat erstellt und am Ende übereinander gelegt werden:
 
@@ -419,16 +408,16 @@ ggpubr::ggarrange(offenheit_plot_basis, offenheit_plot_labels,
 Daraus ergibt sich dann der Gesamtplot:
 
 ```{r, echo=FALSE}
-offenheit_plot <- offenheit_plot + theme_bw()
+offenheit_plot <- offenheit_plot + ggplot2::theme_bw()
 offenheit_plot
 ```
 
 
 ```{r, echo=FALSE}
-ggsave(plot = offenheit_plot, 
+ggplot2::ggsave(plot = offenheit_plot, 
        filename = here("figures/vis-plot-parts.pdf"), 
        height = 4, width = 6)
-ggsave(plot = offenheit_plot, 
+ggplot2::ggsave(plot = offenheit_plot, 
        filename = here("figures/vis-plot-parts.png"), 
        height = 4, width = 6)
 ```
@@ -463,18 +452,18 @@ offenheit_red <- offenheit %>%
 
 ```{r, fig.height=6, fig.width=9}
 # Code für ein Streudiagramm
-streudiagramm <- ggplot(offenheit_red, 
+streudiagramm <- ggplot2::ggplot(offenheit_red, 
                         aes(x=year, y=trade_total_GDP)
                         ) +
-  geom_point() + 
-  theme_bw()
+  ggplot2::geom_point() + 
+  ggplot2::theme_bw()
 
 # Code für ein Liniendiagramm
-liniendiagramm <- ggplot(offenheit_red, 
+liniendiagramm <- ggplot2::ggplot(offenheit_red, 
                         aes(x=year, y=trade_total_GDP)
                         ) +
-  geom_line() + # <- nur diese Zeile verändert
-  theme_bw()
+  ggplot2::geom_line() + # <- nur diese Zeile verändert
+  ggplot2::theme_bw()
 ```
 ```{r, echo=FALSE, out.height='50%', out.width='50%'}
 ggpubr::ggarrange(streudiagramm, liniendiagramm, ncol = 2)
@@ -490,14 +479,14 @@ noch diverse Techniken lernen, wie Sie diese Grafik aufhübschen
 können.
 Übrigens ist die Reihenfolge der Schritte nicht weiter relevant, lediglich
 der erste Schritt muss vor den anderen kommen. 
-Was den Rest angeht sind Sie aber in der Praxis recht flexibel denn Sie erstellen ja am Anfang eine Liste, zu der Sie in den weiteren Schritten weitere Beschreibungsdetails hinzufügen.
+Was den Rest angeht sind Sie aber in der Praxis recht flexibel, denn Sie erstellen ja am Anfang eine Liste, zu der Sie in den weiteren Schritten weitere Beschreibungsdetails hinzufügen.
 Die Grafik wird aus dieser durch `ggplot()` erstellten Liste erst bei
 Aufruf mit einer `print`-Funktion erstellt.
 
 **1. Schritt: Aufbereitung der Daten** 
 
 Ihre Daten sollten 'tidy' sein, genauso wie im [letzten Kapitel](#data)
-beschrieben. Im folgenden gehen wir davon aus, dass wir einen entsprechend 
+beschrieben. Im Folgenden gehen wir davon aus, dass wir einen entsprechend 
 aufbereiteten Datensatz haben:
 
 ```{r, echo=FALSE}
@@ -515,17 +504,15 @@ head(aut_trade)
 Dieser kleine Beispieldatensatz enthält Informationen über das Verhältnis
 von Handelsströmen und BIP in Österreich seit 1965.
 
-
 **2. Schritt: Auswahl des Standarddatensatzes und der Variablen**
-
 Wir entscheiden uns, dass der gerade aufbereitete Datensatz die Basis für unsere
 Visualisierung darstellen soll. Natürlich können wir auch noch Daten aus anderen
 Datensätzen hinzufügen, aber dieser Datensatz soll unser *Standard-Datensatz* für
 die Grafik sein, die verwendet wird wenn wir nichts anderes spezifizieren.
-Genauso spezifizieren wir die *Standard-Ästetik-Links* für die Abbildung.
-Eine Ästetik ist z.B. die Größe, Farbe oder Achse der Abbildung.
+Genauso spezifizieren wir die *Standard-Ästhetik-Links* für die Abbildung.
+Eine Ästhetik ist z.B. die Größe, Farbe oder Achse der Abbildung.
 Es ist hilfreich am Anfang Standardwerte für die Verknüpfung von Variablen
-aus dem Datensatz mit Ästetiken in der Grafik zu spezifizieren.
+aus dem Datensatz mit Ästhetiken in der Grafik zu spezifizieren.
 
 Im Beispiel wollen wir die Variable `Jahr` mit der x-Achse und die Variable 
 `HandelGDP` mit der y-Achse verbinden. 
@@ -533,21 +520,23 @@ Da es sich um die Standardwerte handelt werden Sie in der Funktion
 `ggplot()` spezifiziert:
 
 ```{r}
-aut_trade_plot <- ggplot(
+aut_trade_plot <- ggplot2::ggplot(
   data = aut_trade, 
   mapping = aes(x = Jahr, 
                 y = HandelGDP)
   )
 ```
 
-`ggplot()` erstellt das Grafik-Objekt, bei dem es sich um eine recht 
+`ggplot2::ggplot()` erstellt das Grafik-Objekt, bei dem es sich um eine recht 
 komplexe Liste handelt:
 
 ```{r}
 typeof(aut_trade_plot)
 ```
 
-Die Funktion `ggplot()` wird in der Regel mit zwei Argumenten verwendet:
+<!-- Warum sind im Pdf hier so viele Leerzeichen zwischendurch immer? Muss ich darauf achten das zu formattieren? -->
+
+Die Funktion `ggplot2::ggplot()` wird in der Regel mit zwei Argumenten verwendet:
 `data` spezifiziert den Standard-Datensatz für die Grafik und `mapping` die 
 *aesthetic mappings*, welche die Variablen in `data` zu den ästhetischen 
 Komponenten der Grafik verlinken.
@@ -567,32 +556,32 @@ leer. Zumindest sehen wir, dass die Achsen die Variablen unseres Datensatzes
 repräsentieren.
 
 
-**3. Schritt: Hinzfügen von Ebenen mit geometrischen Objekten**
+**3. Schritt: Hinzufügen von Ebenen mit geometrischen Objekten**
 
 Als nächstes wollen wir die geometrischen Objekte spezifizieren, mit denen
-die Ästetiken auf dem Plot dargestellt werden sollen.
+die Ästhetiken auf dem Plot dargestellt werden sollen.
 Im vorliegenden Fall möchten wir z.B. unsere Beobachtungen mit einer Linie
 visualisieren.
-Das geht mit der Funktion `geom_line()`: sie fügt einen `geom` der Art 'Linie' 
+Das geht mit der Funktion `ggplot2::geom_line()`: sie fügt einen `geom` der Art 'Linie' 
 hinzu. Im übrigen sind die Namen für alle verschiedenen `geoms` gleich aufgebaut,
-es ist immer `geom_*(),` wobei `*` für die Abkürzung des entsprechenden
+es ist immer `ggplot2::geom_*(),` wobei `*` für die Abkürzung des entsprechenden
 `geoms` steht.^[Eine Liste aller möglichen `geoms` finden Sie 
 [hier](https://ggplot2.tidyverse.org/reference/).]
 
-Die Funktionen `geom_*()` verlangen in der Regel kein zusätzliches Argument, 
+Die Funktionen `ggplot2::geom_*()` verlangen in der Regel kein zusätzliches Argument, 
 verwenden aber einige Standardwerte über die Sie Bescheid wissen sollten.
-`data` und `mapping` funktionieren wie oben beschrieben und haben als 
-Standardwert die anfangs in `ggplot()` angegebenen Werte.
-`stat` spezifiziert statistische Transformationen, die an den Daten vor dem
+Die Argumente `data` und `mapping` funktionieren wie oben beschrieben und haben als 
+Standardwert die anfangs in `ggplot2::ggplot()` angegebenen Werte.
+Das Argument `stat` spezifiziert statistische Transformationen, die an den Daten vor dem
 Plotten vorgenommen werden sollen. Wenn die Daten bereits korrekt aufbereitet 
 wurden ist das häufig nicht notwendig und der Standardwert `stat='identity'` ist 
 ausreichend - in diesem Fall werden die Daten so abgebildet wie sie im 
-Datensatz vorhanden sind.^[Alternativ zu `geom_*(stat="...")` können Sie auch 
-immer schreiben `stat_*(geom="...")`. Entsprechend sind folgende Aufrufe äquivalent: 
-`stat_identity(geom="line")` oder `geom_line(stat="identity")`.
+Datensatz vorhanden sind.^[Alternativ zu `ggplot2::geom_*(stat="...")` können Sie auch 
+immer schreiben `ggplot2::stat_*(geom="...")`. Entsprechend sind folgende Aufrufe äquivalent: 
+`ggplot2::stat_identity(geom="line")` oder `ggplot2::geom_line(stat="identity")`.
 Was Sie verwenden ist komplett Ihnen überlassen, allerdings ist die Verwendung
-der `geom_*()`-Funktionen üblicher.]
-Das gleiche gilt für `position`: auch hier ist der Standardwert
+der `ggplot2::geom_*()`-Funktionen üblicher.]
+Das Gleiche gilt für das Argument `position`: auch hier ist der Standardwert
 `position='identity'`, aber Sie können über verschiedene Funktionen die Position
 der `geoms` anpassen, z.B. um Überlappungen zu vermeiden.^[
 Die möglichen Werte für `position` sind: `identitiy` (der Standard, keine
@@ -604,12 +593,12 @@ und zu einer gleichmäßigen Summe normalisiert) und `stack` (die Geoms werden
 Die letzten drei Argumente werden vor allem bei Balkendiagrammen häufig verwendet.
 ]
 
-Da wir zu unserer Grafik `aut_trade_plot` eine Ebene hinzufüen wollen verwenden
+Da wir zu unserer Grafik `aut_trade_plot` eine Ebene hinzufügen wollen, verwenden
 wir einfach den Operator `+`:
 
 ```{r, warning=FALSE}
 aut_trade_plot <- aut_trade_plot + 
-  geom_line()
+  ggplot2::geom_line()
 aut_trade_plot
 ```
 
@@ -618,7 +607,9 @@ Stück für Stück mit `+` hinzuzufügen ist das Grundprinzip von `ggplot2`.
 Auch hier ist die Verbindung zu Wickham's [Grammar of Graphics](#grammar) 
 offensichtlich.
 
-Im Beispiel haben wir `geom_line()` ohne ein einziges Argument 
+<!-- Hier sind in der PDF wieder riesige Leerstellen irgendwie -->
+
+Im Beispiel haben wir `ggplot2::geom_line()` ohne ein einziges Argument 
 aufgerufen. 
 Wir könnten die Argumente `data` und `mapping` verwenden, aber da wir hier die
 in Schritt 1 definierten Standardwerte verwenden besteht dazu keine Veranlassung.
@@ -627,24 +618,26 @@ Wir können durchaus mehrere Ebenen nacheinander hinzufügen.
 Wenn wir die einzelnen Beobachtungen z.B. noch durch Punkte verdeutlichen 
 wollen, dann können wir einfach eine weitere Ebene mit dem `geom` 'Punkt'
 hinzufügen. 
-Das geht mit der Funktion `geom_point()` und da wir die gleichen 
+Das geht mit der Funktion `ggplot2::geom_point()` und da wir die gleichen 
 Standardwerte wie vorher verwenden sind hier auch keine Argumente nötig:
 
 ```{r, warning=FALSE}
 aut_trade_plot <- aut_trade_plot +
-  geom_point()
+  ggplot2::geom_point()
 aut_trade_plot
 ```
 
 Um den Trend der Entwicklung zu verdeutlichen möchten wir vielleicht noch einen
-Trend hinzufügen.
+Trend grafisch hinzufügen.
 Hierzu verwenden wir die Funktion `geom_smooth()`:
 
 ```{r, warning=FALSE, message=FALSE}
 aut_trade_plot <- aut_trade_plot +
-  geom_smooth()
+  ggplot2::geom_smooth()
 aut_trade_plot
 ```
+
+<!-- omg so schön!!! und so simpel!! -->
 
 **4. Schritt: Anpassen der Skalen**
 
@@ -653,10 +646,10 @@ Für uns sind hier vor allem die Skalen der y-Achse und der x-Achse relevant.^[
 Andere Skalen beziehen sich z.B. auf Farben, wenn wir Variablen zu einer farblichen
 Ästetik gemapt hätten, oder die Formen der `geoms`. Beispiele für so 
 fortgeschrittene Anpassungen finden Sie [weiter unten](#vis-adv) in diesem Kapitel.]
-Daher verwenden wir die Funktionen `scale_x_continuous()` und `scale_y_continuous()`, 
+Daher verwenden wir die Funktionen `ggplot2::scale_x_continuous()` und `ggplot2::scale_y_continuous()`, 
 schließlich handelt es sich bei den auf diesen Skalen abgebildeten Variablen um 
 kontinuierliche Variable. Wenn es diskrete Daten gewesen wären, würden wir die Funktionen
-`scale_x_discrete()` und `scale_y_discrete()` verwenden.
+`ggplot2::scale_x_discrete()` und `ggplot2::scale_y_discrete()` verwenden.
 
 Beginnen wir mit der x-Achse. Hier möchten wir vor allem die auf der Skala angegeben 
 Jahreszahlen anpassen und die Länge der Skala auf den Zeitraum 1965-2018 anpassen.
@@ -668,7 +661,7 @@ wir einen Vektor mit zwei Zahlen, dem unteren und dem oberen Limit, übergeben:
 
 ```{r, warning=FALSE, message=FALSE}
 aut_trade_plot <- aut_trade_plot +
-  scale_x_continuous(limits = c(1965, 2018), 
+  ggplot2::scale_x_continuous(limits = c(1965, 2018), 
                      breaks = seq(1965, 2017, 5))
 aut_trade_plot
 ```
@@ -686,7 +679,7 @@ spezifiziert:
 
 ```{r, warning=FALSE, message=FALSE}
 aut_trade_plot <- aut_trade_plot +
-  scale_x_continuous(limits = c(1965, 2018), 
+  ggplot2::scale_x_continuous(limits = c(1965, 2018), 
                      breaks = seq(1960, 2017, 5), 
                      expand = c(0, 0)
                      )
@@ -703,15 +696,15 @@ Standardmäßig ist das der Name der Variable im Datensatz, aber hier wäre es
 schöner wenn dort einer 'Handel / BIP' stehen würde. 
 Das erledigen wir mit dem Argument `name`.^[Wenn wir nichts weiter an der
 Skala verändern wollen außer diesem so genannten Label, dann brauchen wir auch
-nicht die Funktion `scale_y_continuous()` aufrufen, sondern können einfach 
-schreiben `ylab("Handel / BIP")`.]
+nicht die Funktion `ggplot2::scale_y_continuous()` aufrufen, sondern können einfach 
+schreiben `ggplot2::ylab("Handel / BIP")`.]
 
-Auch möchten wir wieder den häßlichen Rand am oberen und unteren Ende der Skala
+Auch möchten wir wieder den hässlichen Rand am oberen und unteren Ende der Skala
 eliminieren und verwenden dazu das Argument `expand` wie vorher:
 
 ```{r, warning=FALSE, message=FALSE}
 aut_trade_plot <- aut_trade_plot +
-  scale_y_continuous(name = "Handel / BIP",  
+  ggplot2::scale_y_continuous(name = "Handel / BIP",  
                      limits = c(0, 110), 
                      breaks = seq(0, 110, 10),
                      expand = c(0, 0)
@@ -721,26 +714,28 @@ aut_trade_plot
 
 **5. Schritt: Titel**
 
-Titel und andere so genannte 'Labels' können Sie mit der Funktion `labs()` 
+Titel und andere so genannte 'Labels' können Sie mit der Funktion `ggplot2::labs()` 
 sehr einfach hinzufügen.
-`labs()` akzeptiert drei optionale Argumente: `title` für den Titel, `subtitle` für den Untertitel und `caption` für eine Fußnote, die sich besonders gut eignet um die Quelle der Daten anzugeben.
+`ggplot2::labs()` akzeptiert drei optionale Argumente: `title` für den Titel, `subtitle` für den Untertitel und `caption` für eine Fußnote, die sich besonders gut eignet um die Quelle der Daten anzugeben.
 
 ```{r, warning=FALSE, message=FALSE}
 aut_trade_plot <- aut_trade_plot +
-  labs(title = "Handel und BIP in Österreich", 
+  ggplot2::labs(title = "Handel und BIP in Österreich", 
           subtitle = "Die Entwicklung zwischen 1965 und 2018",
        caption = "Quelle: Weltbank.")
 aut_trade_plot
 ```
 
-Weit verbreitet ist auch die Funktion `ggtitle()`, die genauso funktioniert, aber nur die Argumente `label` (für den Titel) und `subtitle` akzeptiert.
+<!-- Generelle Frage: Müsste man nicht eigentlich bei der Quelle schreiben "Daten: Weltbank" statt "Quelle: Weltbank", weil die Grafik ja nicht von der Weltbank erstellt wurde? Oder ist das bei deskriptiven Statistiken egal bzw eh klar ob man sagt "Daten" oder "Quelle"? -->
 
-**6. Schritt: Grundlegende Veränderungen mit `theme()`**
+Weit verbreitet ist auch die Funktion `ggplot2::ggtitle()`, die genauso funktioniert, aber nur die Argumente `label` (für den Titel) und `subtitle` akzeptiert.
+
+**6. Schritt: Grundlegende Veränderungen mit `ggplot2::theme()`**
 
 Achtung, Kleinkram-Alarm! Zwar schaut die Grafik jetzt schon erträglich aus, 
 aber es gibt natürlich noch diverse Dinge, die wir verschönern könnten. 
-Warum der Hintergrund z.B. standardmäßig Grau und die Linien in Weiß sind, weiß
-niemand. Solcherlei Veränderungen können Sie über die Funktion `theme()`
+Warum der Hintergrund z.B. standardmäßig grau und die Linien in weiß sind, weiß
+niemand. Solcherlei Veränderungen können Sie über die Funktion `ggplot2::theme()`
 vornehmen. Wir betrachten hier nur ein paar Beispiele, eine Übersicht zu
 allen möglichen Argumenten finden sie 
 [hier](https://ggplot2.tidyverse.org/reference/theme.html).
@@ -750,19 +745,19 @@ das Argument `panel.background`.
 Solcherlei Veränderungen werden immer über bestimmte Funktionen durchgeführt,
 die sich nach der Art des zu veränderten Grafikbestandteils richten.
 Im Falle des Plot-Hintergrundes ist das ein Rechteck, sodass wir die Funktion
-`element_rect()` verwenden, die zahlreiche Gestaltungsmöglichkeiten erlaubt.^[
-Insgesamt gibt es die folgenden Hilfsfunktionen:
+`ggplot2::element_rect()` verwenden, die zahlreiche Gestaltungsmöglichkeiten erlaubt.^[
+Insgesamt gibt es die folgenden Hilfsfunktionen im `ggplot2`-Paket:
 `element_rect()` für Flächen und Kanten, `element_line()` für Linien und
 `element_text()` für Text. Wenn Sie einen Teil eliminieren wollen verwenden
 Sie `element_blank()`.
 Alle diese Funktionen bieten unzählbar viele 
 [Gestaltungsmöglichkeiten](https://ggplot2.tidyverse.org/reference/element.html).]
 Hier wollen wir den Hintergrund weiß füllen, wir schreiben also 
-`element_rect(fill = "white")`:
+`ggplot2::element_rect(fill = "white")`:
 
 ```{r, warning=FALSE, message=FALSE}
 aut_trade_plot <- aut_trade_plot +
-  theme(panel.background = element_rect(fill = "white"))
+  ggplot2::theme(panel.background = element_rect(fill = "white"))
 aut_trade_plot
 ```
 
@@ -772,27 +767,27 @@ Das entsprechende Argument ist `panel.grid`, bzw. `panel.grid.major` und
 `panel.grid.minor` für die Linien auf, bzw. zwischen den auf den Achsen aufgeschriebenen
 Werten .^[Wenn Sie den horizontalen und vertikalen Grid
 separat ändern wollen verwenden Sie jeweils das Suffix `.x`, also
-`panel.grid.minor.x` bzw. `panel.grid.minor.y`.]
+`ggplot2::panel.grid.minor.x` bzw. `ggplot2::panel.grid.minor.y`.]
 Damit wir den Plot nicht überlasten malen wir aber nur auf die auf den
 Achsen auch tatsächlich abgebildeten Werte Linien, verwenden also das 
 Argument `panel.grid.major`.
-Da es sich hier um Linien handelt verwenden wir die Funktion `element_line()`,
+Da es sich hier um Linien handelt verwenden wir die Funktion `ggplot2::element_line()`,
 die wir hier noch über die Farbe des Grids informieren: 
-`element_line(colour = "grey")`.
+`ggplot2::element_line(colour = "grey")`.
 Auch die fehlenden Achsenlinien machen den Plot nicht schöner.
 Wir fügen Sie über das Argument `axis.line` mit der Funktion
-`element_line()` explizit hinzu!
+`ggplot2::element_line()` explizit hinzu!
 
 Sehr hässlich sind auch die kleinen schwarzen Zacken bei jedem Wert auf der
 x- und y-Ache. 
-Diese werden mit `axis.ticks = element_black()` eliminiert. Sie verwenden
-die Funktion `element_blank()` ohne Argument immer wenn Sie einen bestimmten
+Diese werden mit `axis.ticks = ggplot2::element_black()` eliminiert. Sie verwenden
+die Funktion `ggplot2::element_blank()` ohne Argument immer wenn Sie einen bestimmten
 Teil der Grafik eliminieren wollen. 
 Somit bekommen wir insgesamt:
 
 ```{r, warning=FALSE, message=FALSE}
 aut_trade_plot <- aut_trade_plot +
-  theme(
+  ggplot2::theme(
     panel.background = element_rect(fill = "white"), 
     panel.grid.major = element_line(colour = "grey"),
     panel.grid.minor = element_blank(), 
@@ -802,25 +797,28 @@ aut_trade_plot <- aut_trade_plot +
 aut_trade_plot
 ```
 
-Sie merken bereits: mit `theme()` können Sie quasi alles an Ihrer Grafik ändern was 
+<!-- Muss ich hier bei den einzelnen Unterargumenten auch immer jeweils ggplot2:: mit dazufügen? Das hab ich mich auch bei aes() gefragt.. -->
+
+Sie merken bereits: mit `ggplot2::theme()` können Sie quasi alles an Ihrer Grafik ändern was 
 Sie sich irgendwie vorstellen können.
 Einen Überblick über alle möglichen Parameter finden Sie 
 [hier](https://ggplot2.tidyverse.org/reference/theme.html).
-Wie beschäfigten uns [unten](#vis-theme) noch mit ausgewhählten Argumenten etwas 
+Wie beschäfigten uns [unten](#vis-theme) noch mit ausgewählten Argumenten etwas 
 genauer.
 
 Gleichzeitig mag es aber auch nervig sein, so viele Einstellungen immer manuell
 vorzunehmen. Daher gibt auch zahlreiche vorgefertigte Themen, die bestimmte 
 Standard-Spezifikationen vornehmen. Eine Übersicht finden Sie 
 [hier](https://ggplot2.tidyverse.org/reference/ggtheme.html).
-Häufig wird z.B. das Theme `theme_bw()` verwendet:
+Häufig wird z.B. das Theme `ggplot2::theme_bw()` verwendet:
 
 ```{r, warning=FALSE, message=FALSE}
 aut_trade_plot + theme_bw()
 ```
 
 Natürlich können Sie auch eigene Themen schreiben, in denen Sie Ihre 
-Lieblingseinstellungen zusammenfassen.
+Lieblingseinstellungen zusammenfassen.^[Eine gute Anleitung zu Erstellen eigener Themen 
+finden Sie [hier](https://www.statworx.com/at/blog/custom-themes-in-ggplot2/).] 
 
 > **Tipp:** Wenn Ihnen die Abbildungen im Skript bislang und auf den Slides
 gefallen haben können Sie gerne mein Standard-Thema verwenden. Sie können 
@@ -828,8 +826,15 @@ in `ggplot2` nämlich typische Anpassungen, die Sie mit `theme()` regelmäßig
 durchführen, auch automatisieren und eigene Themen verwenden. 
 Das Thema, das ich verwende ist Teil des Pakets 
 [icaeDesign](https://github.com/graebnerc/icaeDesign) [@R-icae] und kann durch
-die Funktion `theme_icae()` verwendet werden. Unser Beispielplot sähe damit
-folgendermaßen aus:
+die Funktion `icaeDesign::theme_icae()` verwendet werden. Um das Paket `icaeDesign` zu installieren müssen Sie folgendermaßen vorgehen:
+
+```{r, eval=FALSE}
+library(devtools)
+devtools::install_github("graebnerc/icaeDesign")
+```
+
+
+Unser Beispielplot sähe damit folgendermaßen aus:
 
 ```{r, warning=FALSE, message=FALSE}
 aut_trade_plot <- aut_trade_plot + theme_icae()
@@ -839,159 +844,23 @@ aut_trade_plot
 Das ist nicht so schlecht, allerdings ist der Untertitel hässlich.
 Da ich selbst so gut wie nie Untertitel verwende ist das aktuell im Thema nicht
 berücksichtigt. 
-Zum Glück können wir mit `theme()` auch nach einem benutzerdefinierten Theme
+Zum Glück können wir mit `ggplot2::theme()` auch nach einem benutzerdefinierten Theme
 noch weitere Modifikationen vornehmen. 
 Da es sich beim Untertitel um Text handelt, verwenden wir die Funktion 
-`element_text()`:
+`ggplot2::element_text()`:
 
 ```{r, warning=FALSE, message=FALSE}
 aut_trade_plot + 
-  theme(plot.subtitle = element_text(hjust = 0.5))
+  ggplot2::theme(plot.subtitle = element_text(hjust = 0.5))
 ```
 
-
-**7. Schritt: Ihre Grafik abspeichern**
-
-Zum Schluss können wir noch unsere Grafik speichern. 
-Das machen wir ganz einfach mit der Funktion `ggsave()`.
-Die wichtigsten Argumente sind 
-`filename` (für Dateinamen und Speicherort),
-`plot` (für den zu speichernden Plot),
-`width` (für die Breite der Abbildung) und `height` (für die Höhe der Figur).^[Standardmäßig werden Breite und Höhe in Zoll angegeben.
-Mit der Funktion `unit()` aus dem Paket [units](https://github.com/r-quantities/units) [@R-units] können Sie aber ganz einfach beliebige Einheiten
-verwenden, z.B. `width = unit(2, "cm")`. In der Praxis probieren Sie einfach
-herum bis Sie die richtige Kombination von Höhe und Breite gefunden haben.
-Für Abbildungen, die aus nur einem Plot bestehen ist `6:4` häufig ein guter
-Ausgangspunkt.]
+Dabei ist der Aufruf `icaeDesign::theme_icae()` eine Abkürzung für folgenden Aufruf von
+`ggplot2::theme()`. Sie müssen die Befehle nicht nachvollziehen, das ist nur zur 
+Info:
 
 ```{r, eval=FALSE}
-ggsave(filename = here("output/trade_ts.pdf"), 
-       plot = aut_trade_plot, 
-       width = 9, 
-       height = 6)
-```
-
-
-Achten Sie auf die Beibehaltung einer übersichtlichen Ordnerstruktur.
-Abbildungen sollten immer im Ordner `output` gespeichert werden!
-
-> **Tipp: Das richtige Format** 
-Wenn nicht irgendwelche gewichtigen Gründe dagegen sprechen (z.B. dass Sie
-Ihre Grafik auf einer Website verwenden wollen) dann sollten Sie Ihre Grafik
-immer als PDF speichern. Da es sich dabei um eine 
-[vektorbasierte Grafik](https://de.wikipedia.org/wiki/Vektorgrafik)
-handelt bleiben Sie sehr flexibel was das spätere Vergrößern oder Verkleiner
-der Grafik angeht.
-Wenn Sie kein PDF verwenden können ist in der Regel PNG die erste Alternative.
-
-**Zusammenfassung**
-
-Abschließend noch einmal der komplette Code für unsere Abbildung:
-
-```{r, eval=FALSE}
-aut_trade_plot <- ggplot(
-  data = aut_trade, 
-  mapping = aes(x = Jahr, 
-                y = HandelGDP)
-) + 
-  geom_line() +
-  geom_point() +
-  geom_smooth() +
-  scale_x_continuous(
-    limits = c(1965, 2018), 
-    breaks = seq(1960, 2017, 5), 
-    expand = c(0, 0)
-  ) +
-  scale_y_continuous(
-    name = "Handel / BIP",  
-    limits = c(0, 110), 
-    breaks = seq(0, 110, 10),
-    expand = c(0, 0)
-  ) + 
-  ggtitle(
-    label = "Handel und BIP in Österreich", 
-    subtitle = "Die Entwicklung zwischen 1965 und 2018"
-    ) +
-  theme(
-    panel.background = element_rect(fill = "white"), 
-    panel.grid.major = element_line(colour = "grey"),
-    panel.grid.minor = element_blank(), 
-    axis.line = element_line(colour = "black"), 
-    axis.ticks = element_blank() 
-  )
-
-ggsave(filename = here("output/trade_ts.pdf"), 
-       plot = aut_trade_plot, 
-       width = 9, 
-       height = 6)
-```
-
-## Arten von Datenvisualisierung
-
-Es gibt viele verschiedene Arten wie Sie einen Datensatz visualisieren können.
-Bevor Sie sich für eine Art entscheiden müssen Sie sich immer fragen: 
-"Welche Information möchte ich der Betrachter*in mit dieser Abbildung vermitteln?" 
-Die Antwort auf diese Frage in Kombination mit den Daten, die Sie zur Verfügung 
-haben bestimmt dann die adequate Darstellgungsform. 
-Abbildung \@ref(fig:visfig) kann dabei als erste Inspiration dienen:
-
-```{r visfig, echo=FALSE, fig.align='center', out.width='100%', fig.cap="Quelle: http://www.perceptualedge.com/blog/wp-content/uploads/2015/07/Abelas-Chart-Selection-Diagram.jpg"}
-knitr::include_graphics(
-  path = here("figures/chap-vis-chart-selection.jpg"), 
-  auto_pdf = T)
-```
-
-
-Im folgenden werde ich Ihnen einige Beispiel-Implementierungen mit `ggplot2` 
-präsentieren.
-Am Ende werden die verschiedenen Visualisierungsmöglichkeiten noch einmal kurz
-in einer Tabelle [zusammengefasst](#vis-kinds-summary).
-Zuvor möchte ich Ihnen jedoch einige Hinweise dazu geben, wie Sie Grafiken
-grundsätzlich ein wenig ansprechender gestalten können.
-
-### Allgemeine Tipps zum Grafikdesign
-
-Die folgenden Punkte sollten Sie beim Erstellen von Grafiken immer im 
-Hinterkopf behalten:
-
-* Entfernen Sie den Kasten um Ihre Abbildung, die normalen Achsen sind 
-vollkommen ausreichend. Das geht über `theme()` mit `panel.border=element_blank()`. Dann sollten Sie allerdings die Achsen wieder mit `axis.line=element_line()` hinzufügen.
-* Überlegen Sie sich gut ob Sie eine Legende brauchen und wo sie möglichst
-platzsparend plaziert werden kann.
-Innerhalb von `theme()` geht das über das Argument `legend.positiont`, welches für Legenden außerhalb des Plots `'top'`, `'bottom'`, `'left'` oder `'right'`, und für Legenden innerhalb des Plotss die Koordinaten innerhalb des Plots mit `c(x, y)` akzeptiert. 
-* Vermeiden Sie ein zu enges Gitter für Ihren Plot, da dies für die 
-Betrachter schnell anstrengend wird. 
-* Überhaupt gilt in der Regel 'Weniger ist mehr'. Wenn Sie sich also nicht
-siche sind ob Sie ein bestimmtes Element in Ihrer Abbildung brauchen, 
-lassen Sie es weg.
-* Das gilt auch für kleinere Elemente wie die Ticks auf den
-Achsen, denen man häufig keine Beachtung schenkt, die aber unbewusst sehr
-störend sind. Sie werden mit `axis.ticks=element_blank()` eliminiert.
-* Verwenden Sie keine Spezialeffekte wie 3d-Balken oder ähnliches
-* Verwenden Sie ein angenehmes Farbschema, häufig sind weniger aggressive 
-Farben besser geeignet (wie z.B. durch das Paket 
-[icaeDesign](https://github.com/graebnerc/icaeDesign) bereit gestellt)
-* Auch ist es häufig besser leicht transparentere Farben zu verwenden.
-* Wenn Sie in Ihren Labels LaTeX-Code verwenden können bietet sich das 
-Paket [latex2exp](https://github.com/stefano-meschiari/latex2exp) an
-
-Wie Sie ja oben gesehen haben können Sie mit `theme()` quasi jeden Teil
-Ihrer Grafik ändern und die Vorschläge entsprechend einfach implementieren.
-Um hier Zeit zu sparen können Sie auch
-[vorgefertigte Themen](https://ggplot2.tidyverse.org/reference/ggtheme.html)
-verwenden oder Ihr eigenes Thema schreiben und dann immer wiederverweden.
-Wenn Ihnen die Abbildungen aus meinen Slides einigermaßen gefallen können Sie
-auch mein Thema verwenden.^[Eine gute Anleitung zu Erstellen eigener Themen 
-finden Sie [hier](https://www.statworx.com/at/blog/custom-themes-in-ggplot2/).] 
-Es ist als Teil des Pakets [icaeDesign](https://github.com/graebnerc/icaeDesign) 
-verfügbar und ich werde es standardmäßig für die Abbildungen unten verwenden. 
-Dabei ist der Aufruf `theme_icae()` eine Abkürzung für folgenden Aufruf von
-`theme()` (wobei Sie die Befehle nicht nachvollziehen müssen, das ist nur zur 
-Info):
-
-```{r, eval=FALSE}
-theme_minimal() +
-theme(
+ggplot2::theme_minimal() +
+ggplot2::theme(
   axis.line = element_line(
     color = rgb(188, 197, 207, maxColorValue = 255),
     linetype = "solid", size = 0.5
@@ -1029,12 +898,147 @@ theme(
     )
 ```
 
+
+**7. Schritt: Ihre Grafik abspeichern**
+
+Zum Schluss können wir noch unsere Grafik speichern. 
+Das machen wir ganz einfach mit der Funktion `ggplot2::ggsave()`.
+Die wichtigsten Argumente sind 
+`filename` (für Dateinamen und Speicherort),
+`plot` (für den zu speichernden Plot),
+`width` (für die Breite der Abbildung) und `height` (für die Höhe der Figur).^[Standardmäßig werden Breite und Höhe in Zoll angegeben.
+Mit der Funktion `unit()` aus dem Paket [units](https://github.com/r-quantities/units) [@R-units] können Sie aber ganz einfach beliebige Einheiten
+verwenden, z.B. `width = unit(2, "cm")`. In der Praxis probieren Sie einfach
+herum bis Sie die richtige Kombination von Höhe und Breite gefunden haben.
+Für Abbildungen, die aus nur einem Plot bestehen ist `6:4` häufig ein guter
+Ausgangspunkt.]
+
+```{r, eval=FALSE}
+ggplot2::ggsave(filename = here::here("output/trade_ts.pdf"), 
+       plot = aut_trade_plot, 
+       width = 9, 
+       height = 6)
+```
+
+
+Achten Sie auf die Beibehaltung einer übersichtlichen Ordnerstruktur.
+Abbildungen sollten immer im Ordner `output` gespeichert werden!
+
+> **Tipp: Das richtige Format** 
+Wenn nicht irgendwelche gewichtigen Gründe dagegen sprechen (z.B. dass Sie
+Ihre Grafik auf einer Website verwenden wollen) dann sollten Sie Ihre Grafik
+immer als PDF speichern. Da es sich dabei um eine 
+[vektorbasierte Grafik](https://de.wikipedia.org/wiki/Vektorgrafik)
+handelt bleiben Sie sehr flexibel was das spätere Vergrößern oder Verkleiner
+der Grafik angeht.
+Wenn Sie kein PDF verwenden können ist in der Regel PNG die erste Alternative.
+
+**Zusammenfassung**
+
+Abschließend noch einmal der komplette Code für unsere Abbildung:
+
+```{r, eval=FALSE}
+aut_trade_plot <- ggplot2::ggplot(
+  data = aut_trade, 
+  mapping = aes(x = Jahr, 
+                y = HandelGDP)
+) + 
+  ggplot2::geom_line() +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth() +
+  ggplot2::scale_x_continuous(
+    limits = c(1965, 2018), 
+    breaks = seq(1960, 2017, 5), 
+    expand = c(0, 0)
+  ) +
+  ggplot2::scale_y_continuous(
+    name = "Handel / BIP",  
+    limits = c(0, 110), 
+    breaks = seq(0, 110, 10),
+    expand = c(0, 0)
+  ) + 
+ ggplot2::ggtitle(
+    label = "Handel und BIP in Österreich", 
+    subtitle = "Die Entwicklung zwischen 1965 und 2018"
+    ) +
+  ggplot2::theme(
+    panel.background = element_rect(fill = "white"), 
+    panel.grid.major = element_line(colour = "grey"),
+    panel.grid.minor = element_blank(), 
+    axis.line = element_line(colour = "black"), 
+    axis.ticks = element_blank() 
+  )
+
+ggplot2::ggsave(filename = here("output/trade_ts.pdf"), 
+       plot = aut_trade_plot, 
+       width = 9, 
+       height = 6)
+```
+
+## Arten von Datenvisualisierung
+
+Es gibt viele verschiedene Arten wie Sie einen Datensatz visualisieren können.
+Bevor Sie sich für eine Art entscheiden müssen Sie sich immer fragen: 
+"Welche Information möchte ich dem oder der Betrachter*in mit dieser Abbildung vermitteln?" 
+Die Antwort auf diese Frage in Kombination mit den Daten, die Sie zur Verfügung 
+haben bestimmt dann die adequate Darstellungsform. 
+Abbildung \@ref(fig:visfig) kann dabei als erste Inspiration dienen:
+
+```{r visfig, echo=FALSE, fig.align='center', out.width='100%', fig.cap="Mögliche Darstellungsformen. Quelle: http://www.perceptualedge.com/blog/wp-content/uploads/2015/07/Abelas-Chart-Selection-Diagram.jpg"}
+knitr::include_graphics(
+  path = here("figures/chap-vis-chart-selection.jpg"), 
+  auto_pdf = T)
+```
+
+
+Im Folgenden werde ich Ihnen einige Beispiel-Implementierungen mit `ggplot2` 
+präsentieren.
+Am Ende werden die verschiedenen Visualisierungsmöglichkeiten noch einmal kurz
+in einer Tabelle [zusammengefasst](#vis-kinds-summary).
+Zuvor möchte ich Ihnen jedoch einige Hinweise dazu geben, wie Sie Grafiken
+grundsätzlich ein wenig ansprechender gestalten können.
+
+### Allgemeine Tipps zum Grafikdesign
+
+Die folgenden Punkte sollten Sie beim Erstellen von Grafiken immer im 
+Hinterkopf behalten:
+
+* Entfernen Sie den Kasten um Ihre Abbildung, die normalen Achsen sind 
+vollkommen ausreichend. Das geht über `ggplot2::theme()` mit `panel.border=element_blank()`. Dann sollten Sie allerdings die Achsen wieder mit `axis.line=element_line()` hinzufügen.
+* Überlegen Sie sich gut ob Sie eine Legende brauchen und wo sie möglichst
+platzsparend plaziert werden kann.
+Innerhalb von `ggplot2::theme()` geht das über das Argument `legend.position`, welches für Legenden außerhalb des Plots `'top'`, `'bottom'`, `'left'` oder `'right'`, und für Legenden innerhalb des Plots die Koordinaten innerhalb des Plots mit `c(x, y)` akzeptiert. 
+* Vermeiden Sie ein zu enges Gitter für Ihren Plot, da dies für die 
+Betrachter*innen schnell anstrengend wird. 
+* Überhaupt gilt in der Regel 'Weniger ist mehr'. Wenn Sie sich also nicht
+sicher sind ob Sie ein bestimmtes Element in Ihrer Abbildung brauchen, 
+lassen Sie es weg.
+* Das gilt auch für kleinere Elemente wie die Ticks auf den
+Achsen, denen man häufig keine Beachtung schenkt, die aber unbewusst sehr
+störend sind. Sie werden mit `axis.ticks=element_blank()` eliminiert.
+* Verwenden Sie keine Spezialeffekte wie 3d-Balken oder ähnliches.
+* Verwenden Sie ein angenehmes Farbschema, häufig sind weniger aggressive 
+Farben besser geeignet (wie z.B. durch das Paket 
+[icaeDesign](https://github.com/graebnerc/icaeDesign) bereit gestellt)
+* Auch ist es häufig besser leicht transparente Farben zu verwenden.
+* Wenn Sie in Ihren Labels LaTeX-Code verwenden bietet sich das 
+Paket [latex2exp](https://github.com/stefano-meschiari/latex2exp) an.
+
+Wie Sie ja oben gesehen haben können Sie mit `ggplot2::theme()` quasi jeden Teil
+Ihrer Grafik ändern und die Vorschläge entsprechend einfach implementieren.
+Um hier Zeit zu sparen können Sie, wie oben bereits erwähnt, auch
+[vorgefertigte Themen](https://ggplot2.tidyverse.org/reference/ggtheme.html)
+verwenden oder Ihr eigenes Thema schreiben und dann immer wiederverwenden.
+ 
+
 ### Streu- oder Blasendiagramm
 
-**Besonders geeignet für:** Zusammenhang von 2 - 3 verhältnis-skalierten Variablen
+<!-- Hier ist irgendwie ein stilitischer Bruch vom Fließtext zu dieser Art von kurzen Übersichten. Soll das so sein oder wolltest du das noch ausformulieren? Oder vllt zumindest ein einleitender Satz hier zum Anfang bevor das "geeignet für" und "mgl Probleme" kommt? -->
+
+**Besonders geeignet für:** Zusammenhang von 2 - 3 verhältnis-skalierten Variablen.
 
 **Mögliche Probleme:** Negative Werte können in der Größendimension nicht 
-dargestellt werden
+dargestellt werden.
 
 **Beispiel 1: Zwei Variablen in einem Streudiagram**
 
@@ -1046,24 +1050,26 @@ Die dieser Abbildung zugrundeliegenden Daten beschreiben die Handelsoffenheit vo
 
 ```{r}
 head(offenheits_daten)
-streudiagramm <- ggplot(
+streudiagramm <- ggplot2::ggplot(
   data = offenheits_daten, 
   mapping = aes(x=trade_total_GDP, 
                 y=gvnt_cons)
   ) +
-  geom_point(alpha=0.75) +
-  scale_y_continuous(name = "Regierungsausgaben") +
-  scale_x_continuous(name = TeX("$\\frac{IMP + EXP}{BIP}\\cdot 100\\%$"), 
+  ggplot2::geom_point(alpha=0.75) +
+  ggplot2::scale_y_continuous(name = "Regierungsausgaben") +
+  ggplot2::scale_x_continuous(name = TeX("$\\frac{IMP + EXP}{BIP}\\cdot 100\\%$"), 
                      breaks = seq(30, 180, 10),
                      labels = scales::percent_format(accuracy = 1, scale = 1)
                      )+
-  labs(
+  ggplot2::labs(
     title = "Handelsoffenheit & Regierungsaktivität in Europa",
     caption = "Quelle: Weltbank; Daten von 1990-2017."
     ) +
-  theme_icae() 
+  icaeDesign::theme_icae() 
 streudiagramm
 ```
+
+<!-- Hier verstehe ich nicht ganz was das alpha=0.75 bei geom.point bedeutet? Gibt das die größe der Punkte an? Würde das kurz erwähnen. -->
 
 **Beispiel 2: Vier Dimensionen in einem Blasendiagramm**
 
@@ -1081,47 +1087,49 @@ ausgangsdaten <- gapminder::gapminder %>%
   arrange(desc(pop)) 
 ```
 
+<!-- Würde hier auch wieder zumindest mit einem Satz in das Beispiel einführen, bevor du die Daten zeigst -->
 
 ```{r}
 head(ausgangsdaten)
 
-bubble_plot <- ggplot(
+bubble_plot <- ggplot2::ggplot(
   data = ausgangsdaten, 
   mapping = aes(x = gdpPercap, 
                 y = lifeExp, 
                 size = pop, 
                 fill = continent)
     ) +
-  geom_point(
+  ggplot2::geom_point(
     alpha=0.5, shape=21, color="black"
     ) +
-  scale_size(
+  ggplot2::scale_size(
     range = c(0.1, 24), name="Bevölkerung", guide = FALSE
     ) +
-  scale_fill_viridis(
+  ggplot2::scale_fill_viridis(
     discrete=TRUE, option="A"
     ) +
-  scale_y_continuous(
+  ggplot2::scale_y_continuous(
     name = "Lebenserwartung in Jahren"
     ) +
-  scale_x_continuous(
+  ggplot2::scale_x_continuous(
     name = "BIP pro Kopf (1000 PPP)"
     ) +
-  labs(
+  ggplot2::labs(
     caption = "Hinweis: Größe der Blasen repräsentiert Bevölkerungsanzahl. Quelle: Gapminder."
     ) +
-  theme_icae() +
-  theme(
+  icaeDesign::theme_icae() +
+  ggplot2::theme(
     legend.position="bottom",
     plot.caption = element_text(hjust = 0)
     )
 bubble_plot
 ```
 
-
 ### Linienchart
 
-**Besonders geeignet für:** Veränderungen weniger Variablen über die Zeit
+<!-- Hier evtl auch wieder ein Einleitungssatz -->
+
+**Besonders geeignet für:** Veränderungen weniger Variablen über die Zeit.
 
 Die klassischen Liniengraphen haben Sie bereits häufiger kennen gelernt.
 Im folgenden wollen wir von mehreren Ländern über die Zeit den 
@@ -1136,29 +1144,30 @@ arbeitslosen_daten <- fread(here("data/tidy/alg_daten.csv"),
                                            rep("double", 2), rep("character, 2"))
                             )
 ```
+<!-- Hier kommt irgendwie eine Warnung -->
 
 ```{r}
 head(arbeitslosen_daten)
 
 gewichtete_daten <- arbeitslosen_daten %>%
-  group_by(year, Gruppe) %>%
-  mutate(population_group=sum(population_ameco)) %>%
-  ungroup() %>%
-  mutate(pop_rel_group=population_ameco / population_group) %>%
-  group_by(year, Gruppe) %>%
-  summarise(
+  dplyr::group_by(year, Gruppe) %>%
+  dplyr::mutate(population_group=sum(population_ameco)) %>%
+  dplyr::ungroup() %>%
+  dplyr::mutate(pop_rel_group=population_ameco / population_group) %>%
+  dplyr::group_by(year, Gruppe) %>%
+  dplyr::summarise(
     unemp_rate_mean=weighted.mean(unemp_rate, 
                                   pop_rel_group),
     unemp_rate_sd=sd(unemp_rate*pop_rel_group)
   ) %>%
-  ungroup() 
+  dplyr::ungroup() 
 
 head(gewichtete_daten)
 ```
 
 Nun erstellen wir den Plot.
 Die Markierung für die Standardabweichung fügen wir mit der Funktion 
-`geom_ribbon()` ein, der wir mit `ymin` und `ymax` jeweils das obere und untere 
+`ggplot2::geom_ribbon()` ein, der wir mit `ymin` und `ymax` jeweils das obere und untere 
 Ende der einzufärbenden Region als Argument übergeben.
 Da wir bereits eine Legende für den Mittelwert haben deaktivieren wir die
 Legende für die Markierung mit dem Argument `show.legend=FALSE`.
@@ -1166,48 +1175,58 @@ Legende für die Markierung mit dem Argument `show.legend=FALSE`.
 ```{r}
 x_axis_breaks <- c(1995, 2000, 2005, 2007, 2010, 2014, 2018)
 
-arbeitslosen_plot <- ggplot(
+arbeitslosen_plot <- ggplot2::ggplot(
   data = gewichtete_daten, 
   mapping = aes(x=year, 
                 y=unemp_rate_mean, 
                 color=Gruppe)
   ) +
-  geom_point() + 
-  geom_line() +
-  geom_ribbon(
+  ggplot2::geom_point() + 
+  ggplot2::geom_line() +
+  ggplot2::geom_ribbon(
     aes(ymin=unemp_rate_mean-unemp_rate_sd, 
         ymax=unemp_rate_mean+unemp_rate_sd,
         linetype=NA, fill=Gruppe), 
     alpha=0.25, 
     show.legend = FALSE) +
-  ylab("Bevölkerungsgewichtete Arbeitslosenquote") +
-  scale_color_icae(
+  ggplot2::ylab("Bevölkerungsgewichtete Arbeitslosenquote") +
+  icaeDesign::scale_color_icae(
     palette = "mixed", 
     aesthetics=c("color", "fill")
     ) +
-  labs(
+  ggplot2::labs(
     title = "Bevölkerungsgewichtete Arbeitslosenquote",
     caption = "Quelle: Gräbner et al. (2019, CJE)"
     ) + 
-  scale_x_continuous(
+  ggplot2::scale_x_continuous(
     breaks=x_axis_breaks, 
     expand = expand_scale(
       mult = c(0, 0), add = c(0, 0.5)
       )
     ) +
-  scale_y_continuous(
+  ggplot2::scale_y_continuous(
     labels = scales::percent_format(accuracy = 1, scale = 1)
     ) +
-  theme_icae() +
-  theme(axis.title.x = element_blank())
+  icaeDesign::theme_icae() +
+  ggplot2::theme(axis.title.x = element_blank())
 arbeitslosen_plot 
 ```
 
-Auch diese Abbildung stammt ursprünglich aus @CJE.
+<!-- Stimmt es dass scale_color_icae aus icaeDesign kommt? -->
+
+Die Grafik stammt aus @CJE.
+Bei den Kernländern handelt es sich um Österreich, Belgien, Finnland, Luxenburg, 
+Deutschland und Holland. Die Peripherieländer sind Griechenland, Irland, 
+Italien, Portugal und Spanien. 
+
+<!-- Kurz zur Info: diese Sätze standen ursprünglich weiter unten, habe die jetzt hier hochgezogen und den Satz mit "auch diese.." an dessen Stelle nach unten gesetzt. -->
+
 
 ### Histogramme und Dichteplots
 
-**Besonders geeignet für:** Verteilung einer Variable
+<!-- Evtl Einleitungssatz -->
+
+**Besonders geeignet für:** Verteilung einer Variable.
 
 **Mögliche Probleme:** Die Breite der Balken hat in der Regel einen großen 
 Einfluss auf das Erscheinungsbild und die Botschaft der Grafik. 
@@ -1229,35 +1248,36 @@ histogram_daten <- data.frame(x = rnorm(500))
 
 ```{r, warning=FALSE, message=FALSE}
 head(histogram_daten)
-ggplot(data = histogram_daten, 
+ggplot2::ggplot(data = histogram_daten, 
        mapping = aes(x=x)) +
-  geom_histogram(alpha=0.75, color=NA, fill="#002966") + 
-  scale_y_continuous(name = "Häufigkeit", 
+  ggplot2::geom_histogram(alpha=0.75, color=NA, fill="#002966") + 
+  ggplot2::scale_y_continuous(name = "Häufigkeit", 
                      expand = expand_scale(c(0, 0), c(0, 1))) +
-  ggtitle("Histogram mit 30 Balken") + 
-  theme_icae() +
-  theme(axis.title.x = element_blank())
+  ggplot2::ggtitle("Histogram mit 30 Balken") + 
+  icaeDesign::theme_icae() +
+  ggplot2::theme(axis.title.x = element_blank())
 ```
 
 
-Im folgenden sehen Sie auch den großen Effekt unterschiedlicher Balkendicken:
+Im Folgenden sehen Sie auch den großen Effekt unterschiedlicher Balkendicken:
 
 ```{r}
 bin_size <- c(5, 20, 50, 100)
 hist_list <- list()
 for (i in 1:length(bin_size)){
-  hist_list[[i]] <- ggplot(data = histogram_daten, 
+  hist_list[[i]] <- ggplot2::ggplot(data = histogram_daten, 
        mapping = aes(x=x)) +
-  geom_histogram(alpha=0.75, color=NA, fill="#002966", bins = bin_size[i]) + 
-  scale_y_continuous(name = "Häufigkeit", 
+  ggplot2::geom_histogram(alpha=0.75, color=NA, fill="#002966", bins = bin_size[i]) + 
+  ggplot2::scale_y_continuous(name = "Häufigkeit", 
                      expand = expand_scale(c(0, 0), c(0, 1))) +
-  ggtitle(paste0("Histogram mit ", bin_size[i], " Balken")) + 
-  theme_icae() +
-  theme(axis.title.x = element_blank())
+  ggplot2::ggtitle(paste0("Histogram mit ", bin_size[i], " Balken")) + 
+  icaeDesign::theme_icae() +
+  ggplot2::theme(axis.title.x = element_blank())
 }
 ggpubr::ggarrange(plotlist = hist_list, ncol = 2, nrow = 2)
 ```
 
+<!-- Hier sind in der PDF wieder Warning nachrichten  -->
 
 **Beispiel 2: Dichteverteilung von Exportkörben**
 
@@ -1277,43 +1297,40 @@ head(exportzusammensetzung)
 
 Aufgrund der großen Datenmenge kann die Verteilung der Exporte hier direkt über
 die Dichte dargestellt werden. 
-Hierzu wird die Funktion `geom_density()` verwendet.
+Hierzu wird die Funktion `ggplot2::geom_density()` verwendet.
 Um die Güter nach ihrem tatsächlichen Exportwert zu gewichten verwenden wir 
-die Ästetik `weight`: 
+die Ästhetik `weight`: 
 
 ```{r, warning=FALSE, message=FALSE}
-ggplot(data = exportzusammensetzung, 
+ggplot2::ggplot(data = exportzusammensetzung, 
        mapping = aes(
          x=pci, 
          color=cgroup, 
          fill=cgroup)
        ) + 
-  geom_density(
+  ggplot2::geom_density(
     mapping = aes(weight=exp_share), 
     alpha=0.5
     ) + 
-  labs(
+  ggplot2::labs(
     title = "Produktkomplexität von Exportkörben (2000-2017)",
     caption = "Quelle: Gräbner et al. (2019, CJE)"
     ) + 
-  ylab("Dichte der Produkte im Exportkorb") +
-  xlab("Produktkomplexität") +
-  scale_y_continuous(limits = c(0, 0.62), expand = c(0, 0)) +
-  scale_x_continuous(limits = c(-3, 3), expand = c(0, 0)) +
-  scale_color_icae(palette = "mixed", aesthetics = c("color", "fill")) +
-  theme_icae() +
-  theme(legend.position = c(0.175, 0.8))
+  ggplot2::ylab("Dichte der Produkte im Exportkorb") +
+  ggplot2::xlab("Produktkomplexität") +
+  ggplot2::scale_y_continuous(limits = c(0, 0.62), expand = c(0, 0)) +
+  ggplot2::scale_x_continuous(limits = c(-3, 3), expand = c(0, 0)) +
+  ggplot2::scale_color_icae(palette = "mixed", aesthetics = c("color", "fill")) +
+  icaeDesign::theme_icae() +
+  ggplot2::theme(legend.position = c(0.175, 0.8))
 ```
 
-Die Grafik stammt aus @CJE.
-Bei den Kernländern handelt es sich um Österreich, Belgien, Finnland, Luxenburg, 
-Deutschland und Holland. Die Peripherieländer sind Griechenland, Irland, 
-Italien, Portugal und Spanien. 
+Auch diese Abbildung stammt ursprünglich aus @CJE.
 
 ### Balkendiagramme
 
 **Besonders geeignet für:** Vergleich der Ausprägung der gleichen Variable in
-mehreren Gruppen
+mehreren Gruppen.
 
 Balkendiagramme sind auf den ersten Blick sehr ähnlich zu Histogrammen, sie 
 geben jedoch nicht notwendigerweise Häufigkeiten an.
@@ -1329,30 +1346,32 @@ daten_cum_growth <- fread(here("data/kumul_wachstum.csv"),
 ```
 
 Eine häufige Herausforderung ist es, die Balken nach Größe zu sortieren.
-Das geht mit der Funktion `reorder()`, die sie innerhalb der Funktion `aes()` 
+Das geht mit der Funktion `stats::reorder()`, die sie innerhalb der Funktion `aes()` 
 anwenden:
 
+<!-- Ist das korrekt dass reorder im Paket stats ist? -->
+
 ```{r}
-cum_growth_countries_full <- ggplot(
+cum_growth_countries_full <- ggplot2::ggplot(
   data = daten_cum_growth) + 
-  geom_bar(
-    aes(x=reorder(Land, -Wachstum.Land.kum), 
+  ggplot2::geom_bar(
+    aes(x=stats::reorder(Land, -Wachstum.Land.kum), 
         y=Wachstum.Land.kum), 
     color="#002966", fill="#002966", 
     stat = "identity"
     ) +
-  ylab("Kumulierte Wachstumsrate") + 
-  ggtitle("Kumuliertes Wachstum von 2009 bis 2018") + 
-  geom_hline(yintercept = 0) +
-  scale_y_continuous(
+  ggplot2::ylab("Kumulierte Wachstumsrate") + 
+  ggplot2::ggtitle("Kumuliertes Wachstum von 2009 bis 2018") + 
+  ggplot2::geom_hline(yintercept = 0) +
+  ggplot2::scale_y_continuous(
     limits = c(-25, max(daten_cum_growth$Wachstum.Land.kum) + 5), 
     breaks = seq(-25, max(daten_cum_growth$Wachstum.Land.kum) + 5, 
                  by=12.5), 
     expand = c(0, 0),
     labels = scales::percent_format(accuracy = 1, scale = 1)
     ) + 
-  theme_icae() + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1), 
+  icaeDesign::theme_icae() + 
+  ggplot2::theme(axis.text.x = element_text(angle = 90, hjust = 1), 
         axis.title.x = element_blank(), 
         legend.position = "none") 
 cum_growth_countries_full
@@ -1379,10 +1398,12 @@ Warum Kuchendiagramme so grausig sind können Sie
 
 ### Zusammenfassung {#vis-kinds-summary}
 
-Die folgende Tabelle fasst die hier diskutierten Visualisierungsmöglichkeiten
+Tabelle \@ref(tab:diagramme)  fasst die hier diskutierten Visualisierungsmöglichkeiten
 noch einmal kurz zusammen.
 
-| **Art** | **Anwendungsgebiet** | **Relevante Funktion** |
+Table: (\#tab:diagramme) Visualisierungsmöglichkeiten in R.
+
+| **Art** | **Anwendungsgebiet** | **Relevante Funktion aus ggplot2** |
 |---------+----------------------------+------------------------|
 | Balkendiagramm | Vergleich von Werten | `geom_bar()` |
 | Linienchart | Dynamiken | `geom_line()`, `geom_ribbon()`|
@@ -1524,7 +1545,7 @@ ggarrange(arbeitslosen_plot,
 Häufig möchten Sie Ihre Skalen transformieren. 
 
 Bei eigentlich jedem Plot stehen Sie vor der Frage wie Sie mit den 
-häßlichen Rändern umgehen, die `ggplot` standardmäßig an beide Enden
+hässlichen Rändern umgehen, die `ggplot` standardmäßig an beide Enden
 der Achsen hinzufügt. 
 Wir haben oben zwar bereits gelernt, dass wir diese Ränder mit 
 `expand=c(0, 0)` innerhalb der Funktion `scale_*_continuous()` abschalten
@@ -1744,7 +1765,7 @@ ggplot(data = hanson_data,
   theme_icae()
 ```
 
-Abgesehen davon, dass es einfach häßlich ist so viele Überlappungen zu haben
+Abgesehen davon, dass es einfach hässlich ist so viele Überlappungen zu haben
 setzt dieser Graph voraus, dass Sie fließend die `iso3c`-Codes beherrschen und
 schnell die fünf Länder finden, um die es im Text geht. Das ist nicht sonderlich
 leser*innenfreundlich...
