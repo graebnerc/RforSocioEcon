@@ -1346,16 +1346,17 @@ daten_cum_growth <- fread(here("data/kumul_wachstum.csv"),
 ```
 
 Eine häufige Herausforderung ist es, die Balken nach Größe zu sortieren.
-Das geht mit der Funktion `stats::reorder()`, die sie innerhalb der Funktion `aes()` 
+Das geht mit der Funktion `reorder()`, die sie innerhalb der Funktion `aes()` 
 anwenden:
 
-<!-- Ist das korrekt dass reorder im Paket stats ist? -->
+<!-- Reorder ist im Paket stats, aber wenn ich das richtig verstehe ist das auch
+eins der basic programme, die man nicht in einer library laden muss, korrekt? deshalb würde ich das jetzt hier nicht separat angeben. Oder soll ich "stats::reorder" schreiben?-->
 
 ```{r}
 cum_growth_countries_full <- ggplot2::ggplot(
   data = daten_cum_growth) + 
   ggplot2::geom_bar(
-    aes(x=stats::reorder(Land, -Wachstum.Land.kum), 
+    aes(x=reorder(Land, -Wachstum.Land.kum), 
         y=Wachstum.Land.kum), 
     color="#002966", fill="#002966", 
     stat = "identity"
@@ -1442,32 +1443,32 @@ abbilden.
 Im einfachsten Falle soll es nur die aus einer linearen Regression 
 resultierenden Gerade sein. 
 Das können wir dann ganz einfach als eigenen Layer mit der Funktion 
-`geom_smooth(method="lm")` hinzufügen. 
+`ggplot2::geom_smooth(method="lm")` hinzufügen. 
 Mit den weiteren Argumenten können wir z.B. die Farbe der Linie
 (`color=black`) oder die Standardfehler um die Linie deaktivieren 
 (`se=FALSE`):
 
 ```{r}
-mort_rate_plot <- ggplot(data = development_data, 
+mort_rate_plot <- ggplot2::ggplot(data = development_data, 
        mapping = aes(x=log(GDP_PPPpc), 
                      y=log(MORTRATE))
        ) +
-  geom_point(alpha=0.25) +
-  labs(
+  ggplot2::geom_point(alpha=0.25) +
+  ggplot2::labs(
     title = "Pro-Kopf Einkommen und Kindersterblichkeit", 
     caption = "Quelle: Weltbank."
   ) +
-  xlab("BIP pro Kopf (PPP, log)") + 
-  ylab("Kindersterblichkeit in % (log)") +
-  theme_icae()
+  ggplot2::xlab("BIP pro Kopf (PPP, log)") + 
+  ggplot2::ylab("Kindersterblichkeit in % (log)") +
+  icaeDesign::theme_icae()
 
-mort_rate_plot + geom_smooth(method = "lm", 
+mort_rate_plot + ggplot2::geom_smooth(method = "lm", 
                              color="#002966", 
                              se = TRUE) 
 ```
 
 
-Alternativ kann die Gerade auch mit Hilfe der Funktion `geom_abline()` 
+Alternativ kann die Gerade auch mit Hilfe der Funktion `ggplot2::geom_abline()` 
 eingezeichnet werden. 
 Dazu müssen wir Regression vorher aber explizit mit `lm()` durchführen:
 
@@ -1477,33 +1478,39 @@ lm_obj <- lm(log(MORTRATE) ~ log(GDP_PPPpc),
 summary(lm_obj)
 ```
 
+<!-- An dieser Stelle kommt jetzt Output, der den Leser*innen an dieser Stelle noch nicht vertraut ist, ich denke mal weil das Regressionskapitel halt nach hinten verschoben wurde. Denkst du das ist ein Problem? Vllt nochmal eine Referenz auf das Regressionskapitel setzen? -->
+
 Häufig möchten wir auch noch die Regressionsgleichung im Plot abbilden, 
 und eventuell Kennzahlen der Regression, wie das $R^2$ hinzufügen.
-Das können wir mit der Funktion `annotate()` machen.
+Das können wir mit der Funktion `ggplot2::annotate()` machen.
 Als erstes Argument müssen wir mit `geom` die Art der Anmerkung spezifizieren
 (in diesem Falle: `geom='text'`). Danach werden über `x` und `y` die 
-Koordinaten angegeben werden. Über `label` wird dann der eigentliche Text
+Koordinaten angegeben. Über `label` wird dann der eigentliche Text
 angegeben, der über `hjust` wie oben beschrieben noch formatiert werden kann.
+
+<!-- Hier ist im Pdf output wieder ein weirder großer Absatz mit nichts -->
 
 Da eine Regressionsgleichung in der Regel leichter in LaTeX zu schreiben
 ist, empfiehlt sich hier die Verwendung der Funktion `TeX()` aus dem Paket
 [latex2exp](https://github.com/stefano-meschiari/latex2exp) [@R-latex].
 Hier können wir quasi normalen LaTeX-Code verwenden, müssen aber das
-häufig verwendete `\` als `\\` schreiben, damit es in LaTeX als `\` interpretiert
+häufig verwendete `\` als `\\` schreiben, damit es in R als `\` interpretiert
 wird:
+
+<!-- Das müsste "in R" heißen hier, nicht "in LaTex", oder? Oder versteh ich das falsch? -->
 
 ```{r, warning=FALSE}
 reg_eq <- "$\\log(MORTRATE) = \\beta_0 + \\beta_1 \\log(GDP) + \\epsilon$"
 rsq <- paste0("$R^2=", round(summary(lm_obj)[["r.squared"]], 3), "$")
 mort_rate_plot_marked <- mort_rate_plot + 
-  geom_abline(
+  ggplot2::geom_abline(
     intercept = lm_obj[["coefficients"]][1],
     slope = lm_obj[["coefficients"]][2]) +
-  annotate(geom = "text", 
+  ggplot2::annotate(geom = "text", 
            x = 6.25, 
            y = 1.25, hjust = 0,
            label = TeX(reg_eq)) +
-    annotate(geom = "text", 
+  ggplot2::annotate(geom = "text", 
            x = 6.25, 
            y = 0.85, hjust = 0,
            label = TeX(rsq))
@@ -1517,12 +1524,12 @@ Sehr häufig möchten wir in einer Grafik mehrere Plots unterbringen.
 Das ist mit dem Paket [ggpubr](https://github.com/kassambara/ggpubr) [@R-ggpubr]
 leicht zu machen.
 Dieses Paket bietet zahlreiche Gestaltungsmöglichkeiten. 
-Für mehrere Plots ist die Funktion `ggarrange()` das richtige.
+Für mehrere Plots ist die Funktion `ggpubr::ggarrange()` das Richtige.
 Sie akzeptiert zunächst einmal eine beliebige Anzahl an `ggplot2`-Objekten (oder 
 eine Liste solcher Objekte über das Argument `plotlist`).
 Danach können noch einige optionale Argumente verwendet werden.
 
-`ncol` bzw. `nrow` spezifizieren die Anzahl der Plots in einer Reihe, bzw. einer
+Die Argumente `ncol` bzw. `nrow` spezifizieren die Anzahl der Plots in einer Reihe, bzw. einer
 Spalte. Mit `labels` können Sie Anmerkungen wie 'a)', 'b)' hinzufügen und mit
 `font.label` die Schriftgröße und -art bestimmen.
 Mit `common.legend` können Sie angeben ob die Plots eine gemeinsame
@@ -1532,39 +1539,41 @@ das Argument `legend` mit `top`, `bottom`, `left` oder `right` spezifiziert
 werden:
 
 ```{r, warning=FALSE}
-ggarrange(arbeitslosen_plot, 
-          mort_rate_plot+geom_smooth(color="#002966", method = "lm"), 
+ggpubr::ggarrange(arbeitslosen_plot, 
+          mort_rate_plot+ggplot2::geom_smooth(color="#002966", method = "lm"), 
           ncol = 2, 
           labels = c("A)", "B)"), 
           font.label = list(face="bold"))
 ```
 
+<!-- Hier ist beim Output in der PDF irgendwie eine Überschneidung bei A) und B) und den beiden Überschriften. Soll das korrigiert werden? -->
 
-### Mehr zu den Skalen: `expand_scale()` und Skalentransformation
+
+### Mehr zu den Skalen: `ggplot2::expand_scale()` und Skalentransformation
 
 Häufig möchten Sie Ihre Skalen transformieren. 
 
 Bei eigentlich jedem Plot stehen Sie vor der Frage wie Sie mit den 
-hässlichen Rändern umgehen, die `ggplot` standardmäßig an beide Enden
+hässlichen Rändern umgehen, die `ggplot2::ggplot` standardmäßig an beide Enden
 der Achsen hinzufügt. 
 Wir haben oben zwar bereits gelernt, dass wir diese Ränder mit 
-`expand=c(0, 0)` innerhalb der Funktion `scale_*_continuous()` abschalten
+`expand=c(0, 0)` innerhalb der Funktion `ggplot2::scale_*_continuous()` abschalten
 können, aber manchmal wollen wir das nur an einer Seite machen.
-In diesem Fall können wir die Hilfsfunktion `expand_scale()` verwenden.
+In diesem Fall können wir die Hilfsfunktion `ggplot2::expand_scale()` verwenden.
 Sie akzeptiert zwei Argumente, `mult` und `add`, die wie oben beschrieben
 funktionieren. Entsprechend sind die folgenden beiden Aufrufe äquivalent:
 
 ```{r, eval=FALSE}
-scale_y_continuous(expand = c(0, 0))
-scale_y_continuous(expand = expand_scale(mult = 0, add = 0))
+ggplot2::scale_y_continuous(expand = c(0, 0))
+ggplot2::scale_y_continuous(expand = expand_scale(mult = 0, add = 0))
 ```
 
-Allerdings kann `expand_scale()` auch jeweils einen Vektor mit zwei Elementen
+Allerdings kann `ggplot2::expand_scale()` auch jeweils einen Vektor mit zwei Elementen
 verarbeiten, wobei dann die erste Zahl für den unteren und die zweite für den
 oberen Rand steht:
 
 ```{r, eval=FALSE}
-scale_y_continuous(expand = expand_scale(mult = c(0, 0), add = c(0, 2))
+ggplot2::scale_y_continuous(expand = expand_scale(mult = c(0, 0), add = c(0, 2))
 ```
 
 Letzterer Code verländert die y-Achse nur in der Länge. Das ist nützlich,
@@ -1572,38 +1581,38 @@ wenn wir um den Nullpunkt keinen, aber nach außen einen kleinen Rand haben
 wollen und wir häufig bei Histogrammen benutzt:
 
 ```{r, warning=FALSE}
-dichte_1 <- ggplot(
+dichte_1 <- ggplot2::ggplot(
   data = exportzusammensetzung, 
   mapping = aes(
     x=pci, 
     color=cgroup, 
     fill=cgroup)
   ) + 
-  geom_density(
+  ggplot2::geom_density(
     mapping = aes(weight=exp_share), 
     alpha=0.5
     ) + 
-  labs(
+  ggplot2::labs(
     title = "Keine Korrektur der Skalen",
     caption = "Quelle: Gräbner et al. (2019, CJE)"
     ) + 
-  ylab("Dichte der Produkte im Exportkorb") +
-  xlab("Produktkomplexität") +
-  scale_color_icae(palette = "mixed", 
+  ggplot2::ylab("Dichte der Produkte im Exportkorb") +
+  ggplot2::xlab("Produktkomplexität") +
+  icaeDesign::scale_color_icae(palette = "mixed", 
                    aesthetics = c("color", "fill")) +
-  theme_icae() +
-  theme(legend.position = c(0.275, 0.8))
+  icaeDesign::theme_icae() +
+  ggplot2::theme(legend.position = c(0.275, 0.8))
 
 dichte_2 <- dichte_1 +
-  ggtitle("Korrektur der Skalen") +
-  scale_y_continuous(limits = c(0, 0.6), 
+  ggplot2::ggtitle("Korrektur der Skalen") +
+  ggplot2::scale_y_continuous(limits = c(0, 0.6), 
                      expand = expand_scale(mult = c(0, 0), 
                                            add = c(0, 0.05))) +
-  scale_x_continuous(limits = c(-3, 3),
+  ggplot2::scale_x_continuous(limits = c(-3, 3),
                      expand = expand_scale(mult = c(0, 0), 
                                            add = c(0, 0)))
 
-ggarrange(dichte_1, dichte_2, ncol = 2)
+ggpubr::ggarrange(dichte_1, dichte_2, ncol = 2)
 ```
 
 Auch werden Sie häufig die Labels auf Ihren Achsen ändern wollen. 
@@ -1611,21 +1620,21 @@ Gerade die Transformation hin zu Prozentwerten ist aber nicht immer ganz
 trivial. 
 Am besten verwenden Sie die Funktion `percent_format()`
 aus dem Paket [scales](https://github.com/r-lib/scales) [@R-scales]
-um das entsprechende Argument `labels` in `scale_*_continuous()` zu spezifizieren.
+um das entsprechende Argument `labels` in `ggplot2::scale_*_continuous()` zu spezifizieren.
 
 Die Funktion bedarf zweier Argumente `accuracy` und `scale`.
-`accuracy` bezeichnet die Dezimalstelle auf die gerundet werden soll.
+Das Argument `accuracy` bezeichnet die Dezimalstelle auf die gerundet werden soll.
 Dies ist ein Einfallstor für viele Fehler, da die Funktion keine Fehler
 ausgibt wenn irreführende Werte angegeben werden. Vergleichen Sie immer
 die Skala vor und nach der Transformation um sicher zu gehen, dass sich keine
 Fehler eingeschlichen haben!
 
-`scale` bezeichnet die Skala in den Daten, also ob die Daten bereits in Prozent
+Das Argument `scale` bezeichnet die Skala in den Daten, also ob die Daten bereits in Prozent
 angegeben sind (in dem Falle wäre `scale=100`), oder ob der Wert `1` zu
 `100%` korrespondiert (in diesem Falle wäre `scale=1`). Auch hier sollten 
 Sie immer die Ache vor und nach der Transformation vergleichen.
 
-Im folgenden sehen sie ein Anwendungsbeispiel:
+Im Folgenden sehen sie ein Anwendungsbeispiel:
 
 ```{r, echo=FALSE}
 cum_growth_countries_full <- ggplot(
@@ -1654,14 +1663,14 @@ cum_growth_countries_full <- ggplot(
 
 ```{r, warning=FALSE, message=FALSE}
 cum_growth_countries_full_percent <- cum_growth_countries_full +
-    scale_y_continuous(
-      labels = percent_format(accuracy = 1, scale = 1)
+    ggplot2::scale_y_continuous(
+      labels = scales::percent_format(accuracy = 1, scale = 1)
     )
 ```
 
 ```{r}
-ggarrange(cum_growth_countries_full + ggtitle("Ohne Prozent-Transformation"),
-          cum_growth_countries_full_percent + ggtitle("Mit Prozent-Transformation"),
+ggpubr::ggarrange(cum_growth_countries_full + ggplot2::ggtitle("Ohne Prozent-Transformation"),
+          cum_growth_countries_full_percent + ggplot2::ggtitle("Mit Prozent-Transformation"),
           nrow = 2
           )
 ```
