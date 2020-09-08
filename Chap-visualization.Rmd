@@ -49,16 +49,16 @@ können.
 Danach werden ausgewählte [fortgeschrittene Techniken](#vis-adv), wie z.B. die 
 Visualisierung von Regressionsergebnissen oder das Erstellen von Plots mit
 mehreren Abbildungen, eingeführt.
-
-<!-- Vielleicht hier jetzt nochmal eine Verlinkung einfügen, dass das folgende Kapitel eine Einführung in Regressionsanalysen bietet? -->
+Dabei greifen wir an einigen optionalen Stellen natürlich auf das Kapitel
+zur linearen Regression vor (siehe Kapitel \@ref(linmodel)), allerdings sollten 
+die Inhalte hier auch ohne tieferen Kenntnisse der Regressionsanalyse 
+verständlich sein.
 
 Im fünften Abschnitt zeigen wir aufbauend auf @schwabischVis wie 
 [typische Fehler](#vis-fehler) in der Datenvisualisierung vermieden werden können. 
 Der sechste Abschnitt illustriert ausgewählte
 [Manipulationsstrategien](#vis-manip) bei der Datenvisualisierung.
 Im letzten Abschnitt finden Sie Empfehlungen für [weiterführende Literatur](#vis-lit).
-
-<!-- Irgendwie funktionieren in der HTML Version nur die Verlinkungen zu Kapitel 6.4 und 6.5 bei mir. -->
 
 ## Optional: Theoretische Grundlagen {#vis-theorie}
 
@@ -76,7 +76,9 @@ zugrunde liegt:
 `base` funktioniert dabei wie ein Stift und ein Blatt Papier: 
 Sie haben ein leeres Blatt, welches Sie mit dem Aufruf bestimmter `plot`-Funktionen
 beschreiben. 
-Hierbei wird kein besonderes R-Objekt erstellt, in dem die Grafik gespeichert wird - vielmehr speichern Sie am Ende ihr 'vollgemaltes Blatt' entweder als Bild ab, oder Sie verwerfen es und beschreiben ein neues 'Blatt'.
+Hierbei wird kein besonderes R-Objekt erstellt, in dem die Grafik gespeichert 
+wird - vielmehr speichern Sie am Ende ihr 'vollgemaltes Blatt' entweder als Bild 
+ab, oder Sie verwerfen es und beschreiben ein neues 'Blatt'.
 
 In `ggplot2` werden die Grafiken dagegen 'scheibchenweise' in einer Art 
 Liste zusammengesetzt.
@@ -89,15 +91,13 @@ Am Ende des Tages werden Sie wenige Dinge finden, die Sie nur mit `base` oder
 nur mit `ggplot2` erreichen können. 
 Und wahrscheinlich gilt für die meisten, dass sie einfach bei dem Ansatz hängen
 bleiben, der Ihnen am Anfang intuitiv am besten gefallen hat.
-Ich habe in der [weiterführenden Literatur](#vis-links) einige Diskussionsbeiträge zum
-Thema `base` vs. `ggplot2` gesammelt und fasse mich hier daher kurz:
+Ich habe in der [weiterführenden Literatur](#vis-links) einige Diskussionsbeiträge 
+zum Thema `base` vs. `ggplot2` gesammelt und fasse mich hier daher kurz:
 in dieser Einführung verwenden wir `ggplot2`. 
 Ich finde, dass die resultierenden Grafiken einen Tick schöner, die Syntax
 ein wenig einfacher und die Dokumentation im Internet ein wenig besser ist.
 Vor allem finde ich den Code leichter lesbar und den von @wickhamggplot
 vorgeschlagenen *Grammar of Graphics* Ansatz sehr intuitiv.
-
-<!-- Irgendwie ist es manchmal capitalized, manchmal nicht. Ich würde es einfach jetzt mal überall capitalizen um hervorzuheben dass es ein Eigenname ist? -->
 
 Wenn Sie dagegen lieber mit `base` arbeiten wollen - kein Problem. Es finden
 sich im Internet gerade auf Englisch viele exzellente Einführungen. 
@@ -115,7 +115,8 @@ beziehungsweise die Interpretation des Konzepts von @wickhamggplot.
 
 Dieses Konzept startet mit dem Wunsch eine 'Grammatik' für Grafiken zu entwickeln.
 Eine Grammatik wird hier als eine Sammlung von Konzepten verstanden aus denen
-sämtliche Grafiken hergestellt werden können- eine vollständige Beschreibung der Grafik sozusagen.
+sämtliche Grafiken hergestellt werden können- eine vollständige Beschreibung der 
+Grafik sozusagen.
 So wie die Grammatik der deutschen Sprache eine Sammlung von Wörtern und Regeln
 darstellt, aus denen jede Menge (mehr oder weniger sinnvolle) Aussagen hergestellt
 werden können, verstehen wir unter einer Grammatik für Grafiken eine Sammlung von 
@@ -132,7 +133,8 @@ Nach Wickham's Grammatik besteht jede statistische Grafik aus den folgenden
 Komponenten:
 
 1. Einem **Standard-Datensatz** gemeinsam mit den Funktionen (*engl.: mappings*), 
-die bestimmten Variablen aus dem Datensatz eine so genannten **Ästhetik** (*engl.: aesthetic*) zuweisen.
+die bestimmten Variablen aus dem Datensatz eine so genannten **Ästhetik** 
+(*engl.: aesthetic*) zuweisen.
 Die sogenannten *mappings* (es handelt sich dabei eigentlich um einfache Funktionen)
 verlinken eine Variable in den Daten mit einer Ästhetik in der Grafik.
 Beispielsweise könnten wir die Variable 'Jahr' in den Daten mit der Ästhetik
@@ -193,8 +195,14 @@ Das Besondere an der so formulierten Grammatik ist, dass man mit den Komponenten
 Das Paket `ggplot2` macht sich das zunutze: 
 es formalisiert diese Regeln in R, sodass Sie mit dem entsprechenden R Code
 quasi jede Grafik beschreiben können - und dann durch R erstellen lassen können.
-Dadurch ist auch die Vorgehensweise motiviert, zunächst ein Objekt mit der *Beschreibung* der Grafik zu erstellen und die Grafik dann am Ende durch Anwendung einer `print`-Funktion auf diese Beschreibung herzustellen. So können Sie das Objekt mit der Beschreibung vorher bereits speichern und weitergeben und dann zu einem späteren Zeitpunkt erst die eigentliche Grafik erstellen. 
-Dieses Vorgehen machen wir uns später zunutze wenn wir mehrere Sub-Abbildungen in einer großen Grafik [gemeinsam abbilden wollen](#vis-viele-plots).
+Dadurch ist auch die Vorgehensweise motiviert, zunächst ein Objekt mit der 
+*Beschreibung* der Grafik zu erstellen und die Grafik dann am Ende durch 
+Anwendung einer `print`-Funktion auf diese Beschreibung herzustellen. 
+So können Sie das Objekt mit der Beschreibung vorher bereits speichern und 
+weitergeben und dann zu einem späteren Zeitpunkt erst die eigentliche Grafik 
+erstellen. 
+Dieses Vorgehen machen wir uns später zunutze wenn wir mehrere Sub-Abbildungen 
+in einer großen Grafik [gemeinsam abbilden wollen](#vis-viele-plots).
 
 Wie Sie später sehen werden repräsentiert die Syntax von `ggplot2` genau diese
 theoretische Beschreibung von Grafiken. 
@@ -227,8 +235,16 @@ ggplot2::ggplot(
     ) 
 ```
 
-Die Funktion `ggplot2::ggplot()` erstellt eine Liste, in der die Grafik-Spezifikationen gespeichert werden und akzeptiert über die Argumente `data` und `mapping` die Standard-Daten
-und Standard-Mappings. Es korrespondiert damit zu Punkt (1) oben.
+Die Funktion `ggplot2::ggplot()` erstellt eine Liste, in der die 
+Grafik-Spezifikationen gespeichert werden und akzeptiert über die Argumente 
+`data` und `mapping` die Standard-Daten und Standard-Mappings.^[Normalerweise 
+geben wir bei jeder Funktion die Paketzugehörigkeit über die `::`-Schreibweise
+explizit an. Wir werden darauf verzichten, wenn es sich um Hilfsfunktionen
+innerhalb anderer Funktionen handelt. So wird die Funktion `ggplot2::aes()`
+nur innherhalt der Funktion `ggplot2:ggplot()` aufgerufen. Daher werden wir
+bei `aes()` und vergleichbaren Funktionen auf den Zusatz `ggplot2::` im Sinne
+der besseren Lesbarkeit verzichten.]
+Es korrespondiert damit zu Punkt (1) oben.
 
 Als nächstes wird mit `ggplot2::layer()` eine neue Ebene spezifiziert. 
 Wie in der Theorie spezifizieren wir die Ebene über das Argument `geom` bezüglich
@@ -257,15 +273,16 @@ da z.B. die meisten Grafiken ein kartesisches Koordinatensystem verwenden,
 ist dies als Standard-Koordinatensystem in `ggplot2` implementiert und Sie müssen 
 nur dann explizit ein Koordinatensystem spezifizieren wenn Sie vom Standardwert abweichen wollen.
 
-Wenn Sie sich genauer mit der hierarchischen Grammatik beschäftigen wollen, die `ggplot2` zugrundeliegt, kann ich Ihnen den Originalartikel von @wickhamggplot empfehlen.
+Wenn Sie sich genauer mit der hierarchischen Grammatik beschäftigen wollen, 
+die `ggplot2` zugrundeliegt, kann ich Ihnen den Originalartikel von @wickhamggplot empfehlen.
 
 ## Grundlegende Elemente von `ggplot2`-Grafiken {#vis-elemente}
 
 ### Elemente eines `ggplot`
 
 ```{r, echo=FALSE}
-offenheit <- fread(
-  here("data/tidy/government_openness.csv")
+offenheit <- data.table::fread(
+  here::here("data/tidy/government_openness.csv")
   ) %>%
   filter(
     year > 1990, year <= 2017,    
@@ -415,10 +432,10 @@ offenheit_plot
 
 ```{r, echo=FALSE}
 ggplot2::ggsave(plot = offenheit_plot, 
-       filename = here("figures/vis-plot-parts.pdf"), 
+       filename = here::here("figures/vis-plot-parts.pdf"), 
        height = 4, width = 6)
 ggplot2::ggsave(plot = offenheit_plot, 
-       filename = here("figures/vis-plot-parts.png"), 
+       filename = here::here("figures/vis-plot-parts.png"), 
        height = 4, width = 6)
 ```
 
@@ -479,7 +496,9 @@ noch diverse Techniken lernen, wie Sie diese Grafik aufhübschen
 können.
 Übrigens ist die Reihenfolge der Schritte nicht weiter relevant, lediglich
 der erste Schritt muss vor den anderen kommen. 
-Was den Rest angeht sind Sie aber in der Praxis recht flexibel, denn Sie erstellen ja am Anfang eine Liste, zu der Sie in den weiteren Schritten weitere Beschreibungsdetails hinzufügen.
+Was den Rest angeht sind Sie aber in der Praxis recht flexibel, denn Sie 
+erstellen ja am Anfang eine Liste, zu der Sie in den weiteren Schritten weitere 
+Beschreibungsdetails hinzufügen.
 Die Grafik wird aus dieser durch `ggplot()` erstellten Liste erst bei
 Aufruf mit einer `print`-Funktion erstellt.
 
@@ -490,7 +509,7 @@ beschrieben. Im Folgenden gehen wir davon aus, dass wir einen entsprechend
 aufbereiteten Datensatz haben:
 
 ```{r, echo=FALSE}
-gov_trade <- fread(here("data/tidy/government_openness.csv")) %>%
+gov_trade <- data.table::fread(here::here("data/tidy/government_openness.csv")) %>%
   select(iso3c, year, trade_total_GDP, gvnt_cons) %>%
   rename(Land=iso3c, Jahr=year, 
          HandelGDP=trade_total_GDP, 
@@ -533,8 +552,6 @@ komplexe Liste handelt:
 ```{r}
 typeof(aut_trade_plot)
 ```
-
-<!-- Warum sind im Pdf hier so viele Leerzeichen zwischendurch immer? Muss ich darauf achten das zu formattieren? -->
 
 Die Funktion `ggplot2::ggplot()` wird in der Regel mit zwei Argumenten verwendet:
 `data` spezifiziert den Standard-Datensatz für die Grafik und `mapping` die 
@@ -607,8 +624,6 @@ Stück für Stück mit `+` hinzuzufügen ist das Grundprinzip von `ggplot2`.
 Auch hier ist die Verbindung zu Wickham's [Grammar of Graphics](#grammar) 
 offensichtlich.
 
-<!-- Hier sind in der PDF wieder riesige Leerstellen irgendwie -->
-
 Im Beispiel haben wir `ggplot2::geom_line()` ohne ein einziges Argument 
 aufgerufen. 
 Wir könnten die Argumente `data` und `mapping` verwenden, aber da wir hier die
@@ -637,7 +652,6 @@ aut_trade_plot <- aut_trade_plot +
 aut_trade_plot
 ```
 
-<!-- omg so schön!!! und so simpel!! -->
 
 **4. Schritt: Anpassen der Skalen**
 
@@ -716,19 +730,21 @@ aut_trade_plot
 
 Titel und andere so genannte 'Labels' können Sie mit der Funktion `ggplot2::labs()` 
 sehr einfach hinzufügen.
-`ggplot2::labs()` akzeptiert drei optionale Argumente: `title` für den Titel, `subtitle` für den Untertitel und `caption` für eine Fußnote, die sich besonders gut eignet um die Quelle der Daten anzugeben.
+`ggplot2::labs()` akzeptiert drei optionale Argumente: `title` für den Titel, 
+`subtitle` für den Untertitel und `caption` für eine Fußnote, die sich besonders 
+gut eignet um die Quelle der Daten anzugeben.
 
 ```{r, warning=FALSE, message=FALSE}
 aut_trade_plot <- aut_trade_plot +
   ggplot2::labs(title = "Handel und BIP in Österreich", 
           subtitle = "Die Entwicklung zwischen 1965 und 2018",
-       caption = "Quelle: Weltbank.")
+       caption = "Daten: Weltbank.")
 aut_trade_plot
 ```
 
-<!-- Generelle Frage: Müsste man nicht eigentlich bei der Quelle schreiben "Daten: Weltbank" statt "Quelle: Weltbank", weil die Grafik ja nicht von der Weltbank erstellt wurde? Oder ist das bei deskriptiven Statistiken egal bzw eh klar ob man sagt "Daten" oder "Quelle"? -->
-
-Weit verbreitet ist auch die Funktion `ggplot2::ggtitle()`, die genauso funktioniert, aber nur die Argumente `label` (für den Titel) und `subtitle` akzeptiert.
+Weit verbreitet ist auch die Funktion `ggplot2::ggtitle()`, die genauso 
+funktioniert, aber nur die Argumente `label` (für den Titel) und `subtitle` 
+akzeptiert.
 
 **6. Schritt: Grundlegende Veränderungen mit `ggplot2::theme()`**
 
@@ -782,7 +798,9 @@ Sehr hässlich sind auch die kleinen schwarzen Zacken bei jedem Wert auf der
 x- und y-Ache. 
 Diese werden mit `axis.ticks = ggplot2::element_black()` eliminiert. Sie verwenden
 die Funktion `ggplot2::element_blank()` ohne Argument immer wenn Sie einen bestimmten
-Teil der Grafik eliminieren wollen. 
+Teil der Grafik eliminieren wollen.^[Auch im folgenden code wird die 
+Zugehörigkeit der `element_*`-Funktionen zu `ggplot2` der einfachen Lesbarkeit
+halber nicht explizit deutlich gemacht.] 
 Somit bekommen wir insgesamt:
 
 ```{r, warning=FALSE, message=FALSE}
@@ -797,10 +815,8 @@ aut_trade_plot <- aut_trade_plot +
 aut_trade_plot
 ```
 
-<!-- Muss ich hier bei den einzelnen Unterargumenten auch immer jeweils ggplot2:: mit dazufügen? Das hab ich mich auch bei aes() gefragt.. -->
-
-Sie merken bereits: mit `ggplot2::theme()` können Sie quasi alles an Ihrer Grafik ändern was 
-Sie sich irgendwie vorstellen können.
+Sie merken bereits: mit `ggplot2::theme()` können Sie quasi alles an Ihrer Grafik 
+ändern was Sie sich irgendwie vorstellen können.
 Einen Überblick über alle möglichen Parameter finden Sie 
 [hier](https://ggplot2.tidyverse.org/reference/theme.html).
 Wie beschäfigten uns [unten](#vis-theme) noch mit ausgewählten Argumenten etwas 
@@ -826,7 +842,8 @@ in `ggplot2` nämlich typische Anpassungen, die Sie mit `theme()` regelmäßig
 durchführen, auch automatisieren und eigene Themen verwenden. 
 Das Thema, das ich verwende ist Teil des Pakets 
 [icaeDesign](https://github.com/graebnerc/icaeDesign) [@R-icae] und kann durch
-die Funktion `icaeDesign::theme_icae()` verwendet werden. Um das Paket `icaeDesign` zu installieren müssen Sie folgendermaßen vorgehen:
+die Funktion `icaeDesign::theme_icae()` verwendet werden. 
+Um das Paket `icaeDesign` zu installieren müssen Sie folgendermaßen vorgehen:
 
 ```{r, eval=FALSE}
 library(devtools)
@@ -837,6 +854,7 @@ devtools::install_github("graebnerc/icaeDesign")
 Unser Beispielplot sähe damit folgendermaßen aus:
 
 ```{r, warning=FALSE, message=FALSE}
+library(icaeDesign)
 aut_trade_plot <- aut_trade_plot + theme_icae()
 aut_trade_plot
 ```
@@ -906,8 +924,10 @@ Das machen wir ganz einfach mit der Funktion `ggplot2::ggsave()`.
 Die wichtigsten Argumente sind 
 `filename` (für Dateinamen und Speicherort),
 `plot` (für den zu speichernden Plot),
-`width` (für die Breite der Abbildung) und `height` (für die Höhe der Figur).^[Standardmäßig werden Breite und Höhe in Zoll angegeben.
-Mit der Funktion `unit()` aus dem Paket [units](https://github.com/r-quantities/units) [@R-units] können Sie aber ganz einfach beliebige Einheiten
+`width` (für die Breite der Abbildung) und `height` (für die Höhe der Figur).^[
+Standardmäßig werden Breite und Höhe in Zoll angegeben.
+Mit der Funktion `unit()` aus dem Paket [units](https://github.com/r-quantities/units) [@R-units] 
+können Sie aber ganz einfach beliebige Einheiten
 verwenden, z.B. `width = unit(2, "cm")`. In der Praxis probieren Sie einfach
 herum bis Sie die richtige Kombination von Höhe und Breite gefunden haben.
 Für Abbildungen, die aus nur einem Plot bestehen ist `6:4` häufig ein guter
@@ -969,7 +989,7 @@ aut_trade_plot <- ggplot2::ggplot(
     axis.ticks = element_blank() 
   )
 
-ggplot2::ggsave(filename = here("output/trade_ts.pdf"), 
+ggplot2::ggsave(filename = here::here("output/trade_ts.pdf"), 
        plot = aut_trade_plot, 
        width = 9, 
        height = 6)
@@ -986,7 +1006,7 @@ Abbildung \@ref(fig:visfig) kann dabei als erste Inspiration dienen:
 
 ```{r visfig, echo=FALSE, fig.align='center', out.width='100%', fig.cap="Mögliche Darstellungsformen. Quelle: http://www.perceptualedge.com/blog/wp-content/uploads/2015/07/Abelas-Chart-Selection-Diagram.jpg"}
 knitr::include_graphics(
-  path = here("figures/chap-vis-chart-selection.jpg"), 
+  path = here::here("figures/chap-vis-chart-selection.jpg"), 
   auto_pdf = T)
 ```
 
@@ -1004,10 +1024,16 @@ Die folgenden Punkte sollten Sie beim Erstellen von Grafiken immer im
 Hinterkopf behalten:
 
 * Entfernen Sie den Kasten um Ihre Abbildung, die normalen Achsen sind 
-vollkommen ausreichend. Das geht über `ggplot2::theme()` mit `panel.border=element_blank()`. Dann sollten Sie allerdings die Achsen wieder mit `axis.line=element_line()` hinzufügen.
+vollkommen ausreichend. Das geht über `ggplot2::theme()` mit 
+`panel.border=element_blank()`. 
+Dann sollten Sie allerdings die Achsen wieder mit `axis.line=element_line()` 
+hinzufügen.
 * Überlegen Sie sich gut ob Sie eine Legende brauchen und wo sie möglichst
 platzsparend plaziert werden kann.
-Innerhalb von `ggplot2::theme()` geht das über das Argument `legend.position`, welches für Legenden außerhalb des Plots `'top'`, `'bottom'`, `'left'` oder `'right'`, und für Legenden innerhalb des Plots die Koordinaten innerhalb des Plots mit `c(x, y)` akzeptiert. 
+Innerhalb von `ggplot2::theme()` geht das über das Argument `legend.position`, 
+welches für Legenden außerhalb des Plots `'top'`, `'bottom'`, `'left'` oder 
+`'right'`, und für Legenden innerhalb des Plots die Koordinaten innerhalb des 
+Plots mit `c(x, y)` akzeptiert. 
 * Vermeiden Sie ein zu enges Gitter für Ihren Plot, da dies für die 
 Betrachter*innen schnell anstrengend wird. 
 * Überhaupt gilt in der Regel 'Weniger ist mehr'. Wenn Sie sich also nicht
@@ -1029,11 +1055,14 @@ Ihrer Grafik ändern und die Vorschläge entsprechend einfach implementieren.
 Um hier Zeit zu sparen können Sie, wie oben bereits erwähnt, auch
 [vorgefertigte Themen](https://ggplot2.tidyverse.org/reference/ggtheme.html)
 verwenden oder Ihr eigenes Thema schreiben und dann immer wiederverwenden.
+
+Im Folgenden werden einige Beispiel-Visualisierungsformen kurz eingeführt, aber
+nicht im Detail diskutiert. 
+Weitere Ideen und tiefergehende Diskussionen finden Sie z.B. auf der
+exzellenten Homepage von @dataviz.
  
 
 ### Streu- oder Blasendiagramm
-
-<!-- Hier ist irgendwie ein stilitischer Bruch vom Fließtext zu dieser Art von kurzen Übersichten. Soll das so sein oder wolltest du das noch ausformulieren? Oder vllt zumindest ein einleitender Satz hier zum Anfang bevor das "geeignet für" und "mgl Probleme" kommt? -->
 
 **Besonders geeignet für:** Zusammenhang von 2 - 3 verhältnis-skalierten Variablen.
 
@@ -1046,7 +1075,8 @@ dargestellt werden.
 offenheits_daten <- offenheit
 ```
 
-Die dieser Abbildung zugrundeliegenden Daten beschreiben die Handelsoffenheit von Österreich über die Zeit:
+Die dieser Abbildung zugrundeliegenden Daten beschreiben die Handelsoffenheit 
+von Österreich über die Zeit:
 
 ```{r}
 head(offenheits_daten)
@@ -1063,13 +1093,16 @@ streudiagramm <- ggplot2::ggplot(
                      )+
   ggplot2::labs(
     title = "Handelsoffenheit & Regierungsaktivität in Europa",
-    caption = "Quelle: Weltbank; Daten von 1990-2017."
+    caption = "; Daten von 1990-2017."
     ) +
   icaeDesign::theme_icae() 
 streudiagramm
 ```
 
-<!-- Hier verstehe ich nicht ganz was das alpha=0.75 bei geom.point bedeutet? Gibt das die größe der Punkte an? Würde das kurz erwähnen. -->
+Mit dem Keyword `alpha` in `ggplot2::geom_point(alpha=0.75)` können Sie die 
+Transparenz der Punkte kontrollieren. 
+Gerade bei überlappenden Punkten, bzw. sehr dichten Punktewolken hilft das
+häufig, das Erscheinungsbild deutlich zu verbessern.
 
 **Beispiel 2: Vier Dimensionen in einem Blasendiagramm**
 
@@ -1087,8 +1120,6 @@ ausgangsdaten <- gapminder::gapminder %>%
   arrange(desc(pop)) 
 ```
 
-<!-- Würde hier auch wieder zumindest mit einem Satz in das Beispiel einführen, bevor du die Daten zeigst -->
-
 ```{r}
 head(ausgangsdaten)
 
@@ -1105,7 +1136,7 @@ bubble_plot <- ggplot2::ggplot(
   ggplot2::scale_size(
     range = c(0.1, 24), name="Bevölkerung", guide = FALSE
     ) +
-  ggplot2::scale_fill_viridis(
+  viridis::scale_fill_viridis(
     discrete=TRUE, option="A"
     ) +
   ggplot2::scale_y_continuous(
@@ -1127,8 +1158,6 @@ bubble_plot
 
 ### Linienchart
 
-<!-- Hier evtl auch wieder ein Einleitungssatz -->
-
 **Besonders geeignet für:** Veränderungen weniger Variablen über die Zeit.
 
 Die klassischen Liniengraphen haben Sie bereits häufiger kennen gelernt.
@@ -1139,12 +1168,12 @@ Zuerst aggregieren wir die Daten mit den im letzten Kapitel kennen gelernten
 Funktionen:
 
 ```{r, echo=FALSE}
-arbeitslosen_daten <- fread(here("data/tidy/alg_daten.csv"), 
-                            colClasses = c("double", "character", 
-                                           rep("double", 2), rep("character, 2"))
-                            )
+arbeitslosen_daten <- data.table::fread(
+  here::here("data/tidy/alg_daten.csv"), 
+  colClasses = c("double", "character", 
+                 rep("double", 2), "character")
+  )
 ```
-<!-- Hier kommt irgendwie eine Warnung -->
 
 ```{r}
 head(arbeitslosen_daten)
@@ -1200,7 +1229,7 @@ arbeitslosen_plot <- ggplot2::ggplot(
     ) + 
   ggplot2::scale_x_continuous(
     breaks=x_axis_breaks, 
-    expand = expand_scale(
+    expand = expansion(
       mult = c(0, 0), add = c(0, 0.5)
       )
     ) +
@@ -1212,25 +1241,20 @@ arbeitslosen_plot <- ggplot2::ggplot(
 arbeitslosen_plot 
 ```
 
-<!-- Stimmt es dass scale_color_icae aus icaeDesign kommt? -->
-
 Die Grafik stammt aus @CJE.
 Bei den Kernländern handelt es sich um Österreich, Belgien, Finnland, Luxenburg, 
 Deutschland und Holland. Die Peripherieländer sind Griechenland, Irland, 
 Italien, Portugal und Spanien. 
 
-<!-- Kurz zur Info: diese Sätze standen ursprünglich weiter unten, habe die jetzt hier hochgezogen und den Satz mit "auch diese.." an dessen Stelle nach unten gesetzt. -->
-
 
 ### Histogramme und Dichteplots
-
-<!-- Evtl Einleitungssatz -->
 
 **Besonders geeignet für:** Verteilung einer Variable.
 
 **Mögliche Probleme:** Die Breite der Balken hat in der Regel einen großen 
 Einfluss auf das Erscheinungsbild und die Botschaft der Grafik. 
-Die Entscheidung ist nicht einfach und es gibt [mehrere Heuristiken](https://en.wikipedia.org/wiki/Histogram#Number_of_bins_and_width).
+Die Entscheidung ist nicht einfach und es gibt 
+[mehrere Heuristiken](https://en.wikipedia.org/wiki/Histogram#Number_of_bins_and_width).
 
 **Hinweis:** Wenn Sie extrem viele Datenpunkte haben können Sie die Daten als 
 stetig interpretieren und gleich eine Wahrscheinlichkeitsdichte auf Basis Ihrer 
@@ -1252,7 +1276,7 @@ ggplot2::ggplot(data = histogram_daten,
        mapping = aes(x=x)) +
   ggplot2::geom_histogram(alpha=0.75, color=NA, fill="#002966") + 
   ggplot2::scale_y_continuous(name = "Häufigkeit", 
-                     expand = expand_scale(c(0, 0), c(0, 1))) +
+                     expand = expansion(c(0, 0), c(0, 1))) +
   ggplot2::ggtitle("Histogram mit 30 Balken") + 
   icaeDesign::theme_icae() +
   ggplot2::theme(axis.title.x = element_blank())
@@ -1269,15 +1293,13 @@ for (i in 1:length(bin_size)){
        mapping = aes(x=x)) +
   ggplot2::geom_histogram(alpha=0.75, color=NA, fill="#002966", bins = bin_size[i]) + 
   ggplot2::scale_y_continuous(name = "Häufigkeit", 
-                     expand = expand_scale(c(0, 0), c(0, 1))) +
+                     expand = expansion(c(0, 0), c(0, 1))) +
   ggplot2::ggtitle(paste0("Histogram mit ", bin_size[i], " Balken")) + 
   icaeDesign::theme_icae() +
   ggplot2::theme(axis.title.x = element_blank())
 }
 ggpubr::ggarrange(plotlist = hist_list, ncol = 2, nrow = 2)
 ```
-
-<!-- Hier sind in der PDF wieder Warning nachrichten  -->
 
 **Beispiel 2: Dichteverteilung von Exportkörben**
 
@@ -1286,11 +1308,11 @@ Finnland und China bezüglich ihrer
 [ökonomischen Komplexität](http://atlas.cid.harvard.edu/glossary):
 
 ```{r, echo=FALSE}
-exportzusammensetzung <- fread(
-  here("data/export_data.csv"), 
+exportzusammensetzung <- data.table::fread(
+  here::here("data/export_data.csv"), 
   colClasses = c("character", "character", "double", "double")
   ) %>%
-  mutate(cgroup=ifelse(
+  dplyr::mutate(cgroup=ifelse(
     cgroup=="Core countries", "Kernländer", "Peripherieländer"))
 head(exportzusammensetzung)
 ```
@@ -1314,15 +1336,16 @@ ggplot2::ggplot(data = exportzusammensetzung,
     ) + 
   ggplot2::labs(
     title = "Produktkomplexität von Exportkörben (2000-2017)",
-    caption = "Quelle: Gräbner et al. (2019, CJE)"
+    caption = "Quelle: Gräbner et al. (2020, CJE)"
     ) + 
   ggplot2::ylab("Dichte der Produkte im Exportkorb") +
   ggplot2::xlab("Produktkomplexität") +
   ggplot2::scale_y_continuous(limits = c(0, 0.62), expand = c(0, 0)) +
   ggplot2::scale_x_continuous(limits = c(-3, 3), expand = c(0, 0)) +
-  ggplot2::scale_color_icae(palette = "mixed", aesthetics = c("color", "fill")) +
-  icaeDesign::theme_icae() +
-  ggplot2::theme(legend.position = c(0.175, 0.8))
+  ggplot2::theme_bw() +
+  ggplot2::theme(legend.position = c(0.175, 0.8), 
+                 panel.border = element_blank(), 
+                 axis.line = element_line())
 ```
 
 Auch diese Abbildung stammt ursprünglich aus @CJE.
@@ -1340,17 +1363,15 @@ verwendet werden.
 **Beispiel: Balkendiagramm für kumulierte Wachstumsraten in mehreren Ländern**
 
 ```{r, echo=FALSE}
-daten_cum_growth <- fread(here("data/kumul_wachstum.csv"), 
-                          colClasses = c("character", "character", 
-                                         rep("double", 4)))
+daten_cum_growth <- data.table::fread(
+  here::here("data/kumul_wachstum.csv"), 
+  colClasses = c("character", "character", 
+                 rep("double", 4)))
 ```
 
 Eine häufige Herausforderung ist es, die Balken nach Größe zu sortieren.
 Das geht mit der Funktion `reorder()`, die sie innerhalb der Funktion `aes()` 
 anwenden:
-
-<!-- Reorder ist im Paket stats, aber wenn ich das richtig verstehe ist das auch
-eins der basic programme, die man nicht in einer library laden muss, korrekt? deshalb würde ich das jetzt hier nicht separat angeben. Oder soll ich "stats::reorder" schreiben?-->
 
 ```{r}
 cum_growth_countries_full <- ggplot2::ggplot(
@@ -1384,7 +1405,11 @@ in Europa und möglichen Gegenmaßnahmen auseinandersetzt.
 
 ### Kuchendiagramme {#vis-pie}
 
-> A table is nearly always better than a dumb pie chart; the only worse design than a pie chart is several of them, for  then the viewer is asked to compare quantities located in spatial disarray both within and between charts [...] Given their low density and failure to order numbers along a visual dimension, pie charts should never be used.
+> A table is nearly always better than a dumb pie chart; the only worse design 
+than a pie chart is several of them, for  then the viewer is asked to compare 
+quantities located in spatial disarray both within and between charts [...] 
+Given their low density and failure to order numbers along a visual dimension, 
+pie charts should never be used.
 > `r tufte::quote_footer('--- Edward Tufte')`
 
 Es gibt keine kontraproduktiveren Abbildungen als Kuchendiagramme.
@@ -1419,6 +1444,11 @@ deshalb in etwas größerem Detail besprochen.
 
 ### Regressionsgerade
 
+In diesem Unterabschnitt werden einige Themen aus Kapitel \@ref(linmodel)
+zum Thema Regressionsanalyse vorausgesetzt. 
+Falls Sie noch nichts von linearen Regressionen gehört haben können Sie diesen
+Abschnitt einfach überspringen.
+
 ```{r, eval=FALSE, echo=FALSE}
 wb_data_set <- WDI::WDI(indicator = c("sp.dyn.le00.in",
                                       "SI.POV.GINI", 
@@ -1430,10 +1460,10 @@ wb_data_set <- WDI::WDI(indicator = c("sp.dyn.le00.in",
          MORTRATE=SH.DYN.MORT) %>%
   filter(!is.na(LIFEEXP), !is.na(GINI_WB), 
          !is.na(GDP_PPPpc), !is.na(MORTRATE))
-fwrite(wb_data_set, here("data/tidy/wb_bip_ineq_mort.csv"))
+fwrite(wb_data_set, here::here("data/tidy/wb_bip_ineq_mort.csv"))
 ```
 ```{r, echo=FALSE}
-development_data <- fread(here("data/tidy/wb_bip_ineq_mort.csv"), 
+development_data <- data.table::fread(here::here("data/tidy/wb_bip_ineq_mort.csv"), 
                           colClasses = c("character", "character", 
                                          rep("double", 5)))
 ```
@@ -1456,7 +1486,7 @@ mort_rate_plot <- ggplot2::ggplot(data = development_data,
   ggplot2::geom_point(alpha=0.25) +
   ggplot2::labs(
     title = "Pro-Kopf Einkommen und Kindersterblichkeit", 
-    caption = "Quelle: Weltbank."
+    caption = "Daten: Weltbank."
   ) +
   ggplot2::xlab("BIP pro Kopf (PPP, log)") + 
   ggplot2::ylab("Kindersterblichkeit in % (log)") +
@@ -1478,8 +1508,6 @@ lm_obj <- lm(log(MORTRATE) ~ log(GDP_PPPpc),
 summary(lm_obj)
 ```
 
-<!-- An dieser Stelle kommt jetzt Output, der den Leser*innen an dieser Stelle noch nicht vertraut ist, ich denke mal weil das Regressionskapitel halt nach hinten verschoben wurde. Denkst du das ist ein Problem? Vllt nochmal eine Referenz auf das Regressionskapitel setzen? -->
-
 Häufig möchten wir auch noch die Regressionsgleichung im Plot abbilden, 
 und eventuell Kennzahlen der Regression, wie das $R^2$ hinzufügen.
 Das können wir mit der Funktion `ggplot2::annotate()` machen.
@@ -1488,16 +1516,12 @@ Als erstes Argument müssen wir mit `geom` die Art der Anmerkung spezifizieren
 Koordinaten angegeben. Über `label` wird dann der eigentliche Text
 angegeben, der über `hjust` wie oben beschrieben noch formatiert werden kann.
 
-<!-- Hier ist im Pdf output wieder ein weirder großer Absatz mit nichts -->
-
 Da eine Regressionsgleichung in der Regel leichter in LaTeX zu schreiben
 ist, empfiehlt sich hier die Verwendung der Funktion `TeX()` aus dem Paket
 [latex2exp](https://github.com/stefano-meschiari/latex2exp) [@R-latex].
 Hier können wir quasi normalen LaTeX-Code verwenden, müssen aber das
-häufig verwendete `\` als `\\` schreiben, damit es in R als `\` interpretiert
+häufig verwendete `\` als `\\` schreiben, damit es als `\` interpretiert
 wird:
-
-<!-- Das müsste "in R" heißen hier, nicht "in LaTex", oder? Oder versteh ich das falsch? -->
 
 ```{r, warning=FALSE}
 reg_eq <- "$\\log(MORTRATE) = \\beta_0 + \\beta_1 \\log(GDP) + \\epsilon$"
@@ -1549,7 +1573,7 @@ ggpubr::ggarrange(arbeitslosen_plot,
 <!-- Hier ist beim Output in der PDF irgendwie eine Überschneidung bei A) und B) und den beiden Überschriften. Soll das korrigiert werden? -->
 
 
-### Mehr zu den Skalen: `ggplot2::expand_scale()` und Skalentransformation
+### Mehr zu den Skalen: `ggplot2::expansion()` und Skalentransformation
 
 Häufig möchten Sie Ihre Skalen transformieren. 
 
@@ -1559,21 +1583,21 @@ der Achsen hinzufügt.
 Wir haben oben zwar bereits gelernt, dass wir diese Ränder mit 
 `expand=c(0, 0)` innerhalb der Funktion `ggplot2::scale_*_continuous()` abschalten
 können, aber manchmal wollen wir das nur an einer Seite machen.
-In diesem Fall können wir die Hilfsfunktion `ggplot2::expand_scale()` verwenden.
+In diesem Fall können wir die Hilfsfunktion `ggplot2::expansion()` verwenden.
 Sie akzeptiert zwei Argumente, `mult` und `add`, die wie oben beschrieben
 funktionieren. Entsprechend sind die folgenden beiden Aufrufe äquivalent:
 
 ```{r, eval=FALSE}
 ggplot2::scale_y_continuous(expand = c(0, 0))
-ggplot2::scale_y_continuous(expand = expand_scale(mult = 0, add = 0))
+ggplot2::scale_y_continuous(expand = expansion(mult = 0, add = 0))
 ```
 
-Allerdings kann `ggplot2::expand_scale()` auch jeweils einen Vektor mit zwei Elementen
+Allerdings kann `ggplot2::expansion()` auch jeweils einen Vektor mit zwei Elementen
 verarbeiten, wobei dann die erste Zahl für den unteren und die zweite für den
 oberen Rand steht:
 
 ```{r, eval=FALSE}
-ggplot2::scale_y_continuous(expand = expand_scale(mult = c(0, 0), add = c(0, 2))
+ggplot2::scale_y_continuous(expand = expansion(mult = c(0, 0), add = c(0, 2))
 ```
 
 Letzterer Code verländert die y-Achse nur in der Länge. Das ist nützlich,
@@ -1606,10 +1630,10 @@ dichte_1 <- ggplot2::ggplot(
 dichte_2 <- dichte_1 +
   ggplot2::ggtitle("Korrektur der Skalen") +
   ggplot2::scale_y_continuous(limits = c(0, 0.6), 
-                     expand = expand_scale(mult = c(0, 0), 
+                     expand = expansion(mult = c(0, 0), 
                                            add = c(0, 0.05))) +
   ggplot2::scale_x_continuous(limits = c(-3, 3),
-                     expand = expand_scale(mult = c(0, 0), 
+                     expand = expansion(mult = c(0, 0), 
                                            add = c(0, 0)))
 
 ggpubr::ggarrange(dichte_1, dichte_2, ncol = 2)
@@ -1682,6 +1706,79 @@ dem Paket. Überhaut bietet das Paket [scales](https://github.com/r-lib/scales)
 noch viele weitere Hilfsfunktionen an. Wenn Sie Probleme mit Skalierungen haben 
 lohnt sich ein Blick auf die Paket-Homepage.
 
+### Mehr zur Farbauswahl
+
+Wie Sie bereits bemerkt haben können Sie in Ihren Abbildungen eine Vielzahl 
+an Farben verwenden. 
+Einen Überblick über alle in R definierten Farben finden Sie dabei leicht im
+Internet. 
+Besonders attraktiv ist es jedoch, Farben durch ihren HEX Code anzugeben.
+Durch Angabe des HEX Codes können Sie quasi jede beliebige Farbe in R 
+verwenden. 
+Am einfachsten ist es, im Internet einen *Color Picker* zu verwenden und sich
+den HEX Code ausgeben zu lassen und diesen dann in R zu verwenden. 
+Einen empfehlenswerten *Color Picker* finden Sie z.B. unter
+[https://www.w3schools.com/colors/colors_picker.asp](https://www.w3schools.com/colors/colors_picker.asp).
+
+Wenn Sie mehrere Farben verwenden wollen, die gut zueinander passen empfiehlt
+sich die Verwendung einer Farbpalette.
+Dabei handelt es sich um eine 'Sammplung' von zueinander passenden Farben.
+Es zahlreiche vordefinierte Paletten im Internet und alle 
+funktionieren ähnlich. 
+Eine sehr bekannte und nützliche Palette ist die so gennannte *Viridis*-Palette
+von Stefan van der Walt and Nathaniel Smith.
+In der Grundversion schaut sie folgendermaßen aus:
+
+```{r, echo=FALSE, fig.height=0.5, fig.width=7}
+x <- seq(1, 10, length.out=50)
+y <- rep(1, length(x))
+data <- data.frame(x=x, y=y)
+ggplot(data, 
+       aes(x, y, z= x)
+       ) + 
+  geom_tile(aes(fill = x)) + 
+  scale_fill_viridis_c() +
+  ggtitle("Die Viridis-Palette") +
+  theme_void() + 
+  theme(legend.position = "none", 
+        plot.title = element_text(hjust = 0.5, size = 10))
+```
+
+
+Wenn Sie die Farben Ihrer Ästhetiken gemäß der Viridis-Palette verwenden wollen
+geht dies durch vordefinierte Funktionen. 
+Für Füllfarben gibt es z.B. die Funktion `scale_fill_viridis()` und für
+Linienfarben `scale_color_viridis()`.
+Das gleiche Schema funktioniert aber auch für die meisten anderen Paletten, 
+die Sie im Internet finden können.
+
+Sie können sich auch HEX-Farbcodes direkt ausgeben lassen.
+Für den Fall von Viridis geht das über die Funktion `viridis::viridis()`.
+Das einzig notwendige Argument ist `n`. Es spezifiziert die Anzahl der
+HEX-Codes. 
+
+```{r}
+viridis::viridis(n = 3) # Drei Farben aus der Viridis-Palette
+```
+
+Darüber hinaus können Sie noch die Transparenz (`alpha`), den Ausschnitt der
+Palette (`begin` und `end`) und die Richtung der Palette (`direction`) 
+spezifizieren.
+Mit der Richtung ist gemeint, dass normalerweise eine Palette die Farben von
+Dunkel nach Hell sortiert, diese Richtung aber natürlich auch umgedreht werden
+kann.
+Im folgenden Beispiel sind die Farben zu 50 Prozent transparent und es wird
+nur die Mitte der Palette verwendet. 
+Zudem wird die Richtung der Palette umgedreht, also die Farben von Hell nach
+Dunkel sortiert:
+
+```{r}
+viridis::viridis(n = 3, begin = 0.25, end = 0.5, direction = -1)
+```
+
+Gerade was die Wahl von Farben angeht empfiehlt sich das weitere 
+Selbststudium und Ausprobieren anhand von Visualisierungsanleitungen und Blogs
+im Internet.
 
 ## Typische Fehler in der Datenvisualisierung vermeiden {#vis-fehler}
 
@@ -1695,10 +1792,11 @@ vermeiden können finden Sie [hier](https://www.data-to-viz.com/caveats.html).
 Schauen wir zunächst auf die folgende Abbildung \@ref(fig:Hanson) aus @hanson[S. 55]:
 
 ```{r Hanson, echo=FALSE, fig.cap="Abbildung nach Hanson, 2012"}
-knitr::include_graphics(here("figures/vis-failes-hanson.png"), auto_pdf = T)
+knitr::include_graphics(here::here("figures/vis-failes-hanson.png"), auto_pdf = T)
 ```
 
-Da sich der Autor zusätzlich nicht erbarmt hat seinen Datensatz zu publizieren, müssen wir auch noch die der
+Da sich der Autor zusätzlich nicht erbarmt hat seinen Datensatz zu publizieren, 
+müssen wir auch noch die der
 Abbildung zugrundeliegenden Daten selbst beschaffen - in diesen Momenten merken
 Sie wie wichtig es ist, zu jeder Publikation die Daten und den Code für die 
 Abbildungen mit zu veröffentlichen. Zwar wurden die Datenquellen 
@@ -1725,7 +1823,7 @@ schooling_data <- WDI(indicator = c("BAR.SCHL.15UP", "sp.pop.totl"),
 ```
 
 ```{r, eval=FALSE, echo=FALSE}
-load(here("data/raw/country_sitcproduct2digit_year.RData"))
+load(here::here("data/raw/country_sitcproduct2digit_year.RData"))
 ```
 ```{r, eval=FALSE, echo=FALSE}
 rca_data <- table %>%
@@ -1751,11 +1849,11 @@ rca_data <- table %>%
 full_data <- left_join(schooling_data, rca_data, by=c("country"="location_code"))
 purge_data <- lm(rca_raw~log(population), data = full_data)
 full_data[["rca_purged"]] <- purge_data$residuals
-fwrite(full_data, file = here("data/tidy/hanson-prepared.csv"))
+fwrite(full_data, file = here::here("data/tidy/hanson-prepared.csv"))
 ```
 
 ```{r, echo=FALSE}
-hanson_data <- fread(here("data/tidy/hanson-prepared.csv"), 
+hanson_data <- data.table::fread(here::here("data/tidy/hanson-prepared.csv"), 
                      colClasses = c("character", rep("double", 4)))
 ```
 
@@ -1773,8 +1871,6 @@ ggplot2::ggplot(data = hanson_data,
   ggplot2::scale_y_continuous(name = "RCA in Büromaschinen (Durchschnitt 2006-08)") +
   icaeDesign::theme_icae()
 ```
-
-<!-- Hier war ich ein wenig erstaunt über die "Farbe" #264062. Ist das einfach irgendeine Farbbezeichnung die du schön findest? Warum nicht einfach color="black"? Und: In der Pdf wechselt der Farbcode irgendwie zwischendrin, und die letzten 3 layer stehen da in grün, nicht in blau (ebenso wie die plusse in grün sind nicht mehr in rot. Hat das irgendwas zu bedeuten?) -->
 
 Abgesehen davon, dass es einfach hässlich ist so viele Überlappungen zu haben,
 setzt dieser Graph voraus, dass Sie fließend die `iso3c`-Codes beherrschen und
@@ -1813,7 +1909,7 @@ ggplot2::ggplot(data = hanson_data,
     data = filter(hanson_data, 
                   !country %in% interessierende_laender), 
     color="grey") + 
-  ggplot2::geom_label_repel(
+  ggrepel::geom_label_repel(
     data = filter(hanson_data, 
                   country %in% interessierende_laender),
     aes(label=countrycode(country, "iso3c", "country.name.de")), 
@@ -1845,7 +1941,7 @@ Verbesserungsmöglichkeiten), allerdings ist er ein schönes Negativbeispiel:
 
 
 ```{r managers, echo=FALSE, fig.cap="Beispiel für einen 'unbalancierten' Plot"}
-knitr::include_graphics(here("figures/vis-failes-oecd.png"), auto_pdf = T)
+knitr::include_graphics(here::here("figures/vis-failes-oecd.png"), auto_pdf = T)
 ```
 
 Selbt mit der Beschreibung im Text ist schwer verständlich was uns diese
@@ -1868,7 +1964,7 @@ Zuerst müssen jedoch die Daten in einen nutzbaren Zustand gebracht werden:
 Diese Daten sehen im Rohzustand (nach Auswahl der relevanten Spalten) so aus:
 
 ```{r, echo=FALSE}
-oecd_data <- fread(here("data/raw/oecd_gener_managers.csv")) %>%
+oecd_data <- data.table::fread(here::here("data/raw/oecd_gener_managers.csv")) %>%
   filter(Time==2015) %>%
   select(one_of("COU", "Sex", "Value")) 
 ```
@@ -1915,9 +2011,10 @@ oecd_data_plot <- oecd_data %>%
          COU = ifelse(COU=="Korea, Republik von", "Südkorea", COU))
 ```
 
-<!-- Ist das hier korrekt, dass mutate aus dplyr kommt, und nicht aus ggpubr? -->
-
-Mit diesen erstellen wir den Lollipop-Graphen folgendermaßen:
+Mit diesen erstellen wir den Lollipop-Graphen folgendermaßen:^[Die Farben
+haben wir wieder vorher auf 
+[https://www.w3schools.com/colors/colors_picker.asp](https://www.w3schools.com/colors/colors_picker.asp) 
+herausgesucht.]
 
 ```{r, fig.height=9, fig.width=6}
 farbe_m <- "#355383"
@@ -1945,7 +2042,7 @@ ggplot2::ggplot(oecd_data_plot) +
     nudge_y = -0.25, hjust=1, color=rgb(110, 113, 123, maxColorValue = 255)
     ) +
   ggplot2::scale_y_continuous(name = "Prozent", 
-                     expand = expand_scale(mult = c(0, 0), 
+                     expand = expansion(mult = c(0, 0), 
                                            add = c(3.5, 1))
                      ) +
   ggplot2::coord_flip() +
@@ -1965,8 +2062,6 @@ ggplot2::ggplot(oecd_data_plot) +
   )
 ```
 
-<!-- Hier frag ich mich wieder etwas warum so komplizierte Nummern bei den Farben -->
-
 Wie Sie sehen wird der Graph nicht durch eine eigene Funktion, sondern durch 
 das sukzessive Hinzufügen von Strichen und Punkten erstellt.
 Besonders hervorzuheben am Code sind folgende Features:
@@ -1976,7 +2071,7 @@ Anteil der Frauen im Management zu ordnern
 * Da wir mit der Funktion `ggplot2::coord_flip()` die Achsen umdrehen um eine 
 horizontale Darstellung zu bekommen müssen wir bei allen Werten, die sich auf
 eine Achse beziehen umdenken
-* Wir verwenden die Funktion `ggplot2::expand_scale()` wie oben eingeführt, da die 
+* Wir verwenden die Funktion `ggplot2::expansion()` wie oben eingeführt, da die 
 x-Achse sonst nach links zu wenig Platz für die Länderbezeichnungen lassen würde
 * Das Argument `hjust=1` innerhalb von `ggplot2::geom_text()` sorgt dafür, dass der 
 Text genau bei dem y-Wert aus `ggplot2::aes()` aufhört, also linksbündig formatiert wird
@@ -2001,7 +2096,7 @@ In diesem Fall könnten Sie sich ein Beispiel an Fox News nehmen
 (siehe Abbildung \@ref(fig:foxnews)).
 
 ```{r foxnews, echo=FALSE, fig.cap="Quelle: https://thenextweb.com/wp-content/blogs.dir/1/files/2015/05/viz3.jpg"}
-knitr::include_graphics(here("figures/vis-fox-news.jpg"), auto_pdf = T)
+knitr::include_graphics(here::here("figures/vis-fox-news.jpg"), auto_pdf = T)
 ```
 
 Die Autor*innen haben ihre Manupulation hier entsprechend clever versteckt indem sie
@@ -2028,7 +2123,7 @@ normal <- ggplot2::ggplot(data = data_used,
     name = "Anzahl von Nutzer*innen in Hunderttausend",
     breaks = seq(0, 8000000, 1000000),
     labels = seq(0, 80, 10),
-    expand = expand_scale(c(0,0), 
+    expand = expansion(c(0,0), 
                           c(0, 500000))
     ) +
   ggplot2::labs(title = "Nutzer*innen von Obamacare", 
@@ -2040,8 +2135,6 @@ normal <- ggplot2::ggplot(data = data_used,
     axis.title.x = element_blank(),
     plot.title = element_text(size=14, face = "bold")
   )
-
-#Hier kommt in der PDF irgendwie eine Warnung und viel leerer Platz zwischen
 
 manipulativ <- normal +
   ggplot2::coord_cartesian(ylim=c(5750000, 7200000)) +
@@ -2056,12 +2149,8 @@ ggpubr::ggarrange(manipulativ, normal, ncol = 2)
 ```
 
 Eine beliebte Variante ist es, die y-Achse zwar im Nullpunkt starten zu lassen,
-aber einfach die Achse zwischendrin 
-[abzuschneiden](http://ksrowell.com/blog-visualizing-data/2013/08/12/how-to-simulate-a-broken-axis-value-axis/). 
-
-<!-- Ich hab den Link gerade mal kontrolliert (mache ich bei allen, auch aus Eigeninteresse), und bei diesem hier kam eine Fehlermeldung, die Seite scheint nicht mehr zu existieren leider -->
-
-Das Prinzip bleibt das gleiche und so etwas ist in keinem Fall eine gute Idee!
+aber einfach die Achse zwischendrin abzuschneiden. 
+Das Prinzip bleibt aber das gleiche und so etwas ist in keinem Fall eine gute Idee!
 
 ### Klassiker 2: Geschickt gewählter Zeitraum und clever gewählte Achsenabschnitte
 
@@ -2079,11 +2168,11 @@ Gerade der erste Punkt funktioniert bei Arbeitslosenstatistiken immer sehr gut:
 al_daten <- MacroDataR::macro_data %>%
   filter(iso3c=="DEU", year>=1960) %>%
   select(one_of("year", "unemp_rate")) 
-fwrite(al_daten, here("data/tidy/al_daten_de.csv"))
+fwrite(al_daten, here::here("data/tidy/al_daten_de.csv"))
 ```
 
 ```{r,echo=FALSE}
-al_daten <- fread(here("data/tidy/al_daten_de.csv"), 
+al_daten <- data.table::fread(here::here("data/tidy/al_daten_de.csv"), 
                   colClasses = rep("double", 2))
 ```
 
@@ -2202,11 +2291,8 @@ visuellen Tricksereien sowohl in Schund- als auch Qualitätsmedien, aber auch
 in der Wissenschaft sehr weit verbreitet sind. Aber Sie wissen das ja jetzt und
 brauchen sich nicht mehr aufs Glatteis führen zu lassen.
 
-<!-- In der PDF scheint die Referenz nicht anständig zu funktionieren, und auch die 3 Bilder sind nicht nebeneinander gesetzt, aber zumindest die Referenz sieht hier richtig aus. Vllt hab ich noch eine zu alte Pdf und sollte eine neue machen? Ich lasse jetzt einfach erstmal den Kommtar hier, kannst ja nochmal nen Blick auf den Code werden ob ich was übersehe -->
-
 ```{r fazbetrug, echo=FALSE, fig.cap="Quelle: FAZ vom 11. Juli 2020 (linkes Bild) und Bundesministerium für Arbeit und Soziales (mittleres Bild) und Handelsblatt vom 13. Juli 2020 (rechtes Bild)."}
-knitr::include_graphics(here("figures/vis-faz-betrug.png"), auto_pdf = T)
-knitr::include_graphics(here("figures/vis-hb-betrug.png"), auto_pdf = T)
+knitr::include_graphics(here::here("figures/vis-hb-faz.pdf"), auto_pdf = T)
 ```
 
 
@@ -2231,7 +2317,8 @@ At the end of the day, it’s all R."
 
 Für alle die sich mit den theoretischen Grundlagen von `ggplot2` genauer 
 befassen wollen:
-Die `ggplot2` zugrundeliegende Idee einer *grammar of graphics* geht, wie anfangs des Kapitels schon beschrieben, auf 
+Die `ggplot2` zugrundeliegende Idee einer *grammar of graphics* geht, 
+wie anfangs des Kapitels schon beschrieben, auf 
 @GrammarGraphics zurück und wird in @wickhamggplot theoretisch ausgeführt.
 
 @schwabischVis wurde bereits erwähnt und ist eine konstruktive Auseinandersetzung
