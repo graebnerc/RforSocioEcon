@@ -50,6 +50,17 @@ library(ggrepel)
 library(ggpubr)
 library(latex2exp)
 library(matlib)
+```
+
+```
+#> Warning in rgl.init(initValue, onlyNULL): RGL: unable to open X11 display
+```
+
+```
+#> Warning: 'rgl.init' failed, running with 'rgl.useNULL = TRUE'.
+```
+
+```r
 library(fitdistrplus)
 library(moments)
 library(ineq)
@@ -151,11 +162,11 @@ head(beispiel_daten_at, 4)
 ```
 
 ```
-#>   country      BIP year
-#> 1 Austria 37941.04 2018
-#> 2 Austria 37140.79 2017
-#> 3 Austria 36469.39 2016
-#> 4 Austria 36129.03 2015
+#>    country      BIP year
+#> 1: Austria 37941.04 2018
+#> 2: Austria 37140.79 2017
+#> 3: Austria 36469.39 2016
+#> 4: Austria 36129.03 2015
 ```
 
 ```r
@@ -165,11 +176,11 @@ head(beispiel_daten_at, 4)
 ```
 
 ```
-#>   country      BIP year
-#> 1 Austria 36123.43 2014
-#> 2 Austria 36129.03 2015
-#> 3 Austria 36469.39 2016
-#> 4 Austria 37140.79 2017
+#>    country      BIP year
+#> 1: Austria 36123.43 2014
+#> 2: Austria 36129.03 2015
+#> 3: Austria 36469.39 2016
+#> 4: Austria 37140.79 2017
 ```
 
 
@@ -180,12 +191,12 @@ beispiel_daten_at
 ```
 
 ```
-#>   country      BIP year BIP_Wachstum
-#> 1 Austria 36123.43 2014           NA
-#> 2 Austria 36129.03 2015   0.01550613
-#> 3 Austria 36469.39 2016   0.94206769
-#> 4 Austria 37140.79 2017   1.84100901
-#> 5 Austria 37941.04 2018   2.15464100
+#>    country      BIP year BIP_Wachstum
+#> 1: Austria 36123.43 2014           NA
+#> 2: Austria 36129.03 2015   0.01550613
+#> 3: Austria 36469.39 2016   0.94206769
+#> 4: Austria 37140.79 2017   1.84100901
+#> 5: Austria 37941.04 2018   2.15464100
 ```
 
 Falls wir innerhalb des Datensatzes unterschiedliche Beobachtungsobjekte haben,
@@ -200,11 +211,11 @@ head(beispiel_daten, 4)
 ```
 
 ```
-#>   country      BIP year
-#> 1 Austria 37941.04 2018
-#> 2 Germany 35866.00 2018
-#> 3 Austria 37140.79 2017
-#> 4 Germany 35477.89 2017
+#>    country      BIP year
+#> 1: Austria 37941.04 2018
+#> 2: Germany 35866.00 2018
+#> 3: Austria 37140.79 2017
+#> 4: Germany 35477.89 2017
 ```
 
 
@@ -2499,19 +2510,19 @@ dplyr::select(outlier_teuer, Titel, Preis)
 ```
 
 ```
-#>                                          Titel Preis
-#> 1                         Ecological Economics  1170
-#> 2                            Applied Economics  2120
-#> 3               Journal of Banking and Finance  1539
-#> 4  Journal of Economic Behavior & Organization  1154
-#> 5                              Research Policy  1234
-#> 6                            Economics Letters  1492
-#> 7                     European Economic Review  1154
-#> 8                            World Development  1450
-#> 9                  Journal of Public Economics  1431
-#> 10                     Journal of Econometrics  1893
-#> 11                  Journal of Economic Theory  1400
-#> 12              Journal of Financial Economics  1339
+#>                                           Titel Preis
+#>  1:                        Ecological Economics  1170
+#>  2:                           Applied Economics  2120
+#>  3:              Journal of Banking and Finance  1539
+#>  4: Journal of Economic Behavior & Organization  1154
+#>  5:                             Research Policy  1234
+#>  6:                           Economics Letters  1492
+#>  7:                    European Economic Review  1154
+#>  8:                           World Development  1450
+#>  9:                 Journal of Public Economics  1431
+#> 10:                     Journal of Econometrics  1893
+#> 11:                  Journal of Economic Theory  1400
+#> 12:              Journal of Financial Economics  1339
 ```
 
 ```r
@@ -2519,8 +2530,7 @@ dplyr::select(outlier_billig, Titel, Preis)
 ```
 
 ```
-#> [1] Titel Preis
-#> <0 rows> (or 0-length row.names)
+#> Empty data.table (0 rows and 2 cols): Titel,Preis
 ```
 
 Wir sehen hier, dass es nur Ausreißer nach oben, also nur besonders teure
@@ -2681,7 +2691,7 @@ Blog übernommen:
 [https://www.leansigmacorporation.com/box-plot-with-minitab/](https://www.leansigmacorporation.com/box-plot-with-minitab/).]
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/figures/boxplot-anatomy} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/boxplot-anatomy} \end{center}
 
 Die Box in der Mitte des Boxplots repräsentiert die IQR der Daten, der Median
 ist mit einem Strich innerhalb der Box dargestellt. 

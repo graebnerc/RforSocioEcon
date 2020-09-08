@@ -2419,7 +2419,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7fc40faee048>
+#> <bytecode: 0x7f9aa1b59418>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2450,7 +2450,7 @@ dplyr::lead
 #>     vec_c(vec_slice(inputs$x, -seq_len(n)), vec_rep(inputs$default, 
 #>         n))
 #> }
-#> <bytecode: 0x7fc43f12f8b8>
+#> <bytecode: 0x7f9ae2e2c970>
 #> <environment: namespace:dplyr>
 ```
 
