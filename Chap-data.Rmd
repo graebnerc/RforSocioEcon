@@ -14,15 +14,17 @@ In diesem Kapitel geht es um den auf den ersten Blick unspannendsten Teil der
 Forschung: Datenaufbereitung und -management.
 Gleichzeitig ist es einer der wichtigsten Schritte: 
 ohne Daten können viele Forschungsfragen nicht angemessen beantwortet werden.
+Abbildung \@ref(fig:Arbeitsablauf) zeigt den typischen Arbeitsablauf eines 
+Forschungsprojekts.
 
-```{r, echo=FALSE, fig.align='center'}
+```{r Arbeitsablauf, echo=FALSE, fig.align='center', fig.cap="Typischer Arbeitsablauf eines Forschungsprojekts"}
 knitr::include_graphics("figures/chap-data-Ablaufschema.png", auto_pdf = T)
 ```
 
-In diesem Kaptitel liegt der Fokus auf den ersten beiden Abschnitten, der Akquise
-und der Aufbereitung ihrer Daten.
+In diesem Kapitel liegt der Fokus auf den ersten beiden Abschnitten, der Akquise
+und der Aufbereitung Ihrer Daten.
 Laut [dieser Umfrage](https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/)
-verwenden Datenspezialisten regelmäßig 80\% ihrer Arbeitszeit auf diese beiden
+verwenden Datenspezialist\*innen regelmäßig 80\% ihrer Arbeitszeit auf diese beiden
 Schritte.
 Um hier also Zeit und Nerven zu sparen ist es wichtig, 
 sich mit den grundlegenden Arbeitsschritten und Algorithmen vertraut zu machen.
@@ -46,15 +48,15 @@ Das Wichtigste bei diesem Prozess: Sie dürfen **nie die Rohdaten selbst veränd
 Alle Änderungen an den Rohdaten müssen durch ein R Skript vorgenommen werden, und
 die veränderten Daten müssen unter neuem Namen gespeichert werden. 
 Wenn Sie sich das einmal angewöhnt haben, können Sie nicht nur vollkommen 
-transparent in Ihrer Forschung sein, sie können auch nicht aus Versehen und 
-unwiderruflich ihre wertvollen Rohdaten zerstören.
+transparent in Ihrer Forschung sein, Sie können auch nicht aus Versehen und 
+unwiderruflich Ihre wertvollen Rohdaten zerstören.
 
 Und wenn Sie sich mit den grundlegenden Algorithmen einmal vertraut gemacht haben
 kann Datenaufbereitung wider Erwarten auch wirklich Spaß machen!
 
 Dieses Kapitel folgt dem typischen Arbeitsablauf eines Forschungsprojektes und 
 beschäftigt sich mit den ersten beiden Abschnitten aus der obigen Grafik, der
-Daten-Akquise und der Daten-Aufbereitung, wobei letztere im Mittelpunkt stehen
+Daten-Akquise und der Daten-Aufbereitung, wobei Letztere im Mittelpunkt stehen
 soll.
 Entsprechend ist das Kapitel folgendermaßen strukturiert:
 
@@ -70,7 +72,7 @@ statistische Analyse geeignet ist.
 Zum Abschluss des Kapitels wird noch die 
 [Rolle des Datenmanagements für transparente Forschung](#data-role) verdeutlicht 
 und auf die Debatten über die Ko-Existenz [verschiedener Pakete für die 
-Datenaufbereitung in R](#data-packages) hingewisen.
+Datenaufbereitung in R](#data-packages) hingewiesen.
 
 ## Verwendete Pakete {-}
 
@@ -84,9 +86,9 @@ library(R.utils)
 library(haven)
 ```
 
-> **Disclaimer**: In diesem Kapitel verwenden wir für die Arbeit mit Daten vor
-allem Pakete aus dem so genannten [tidyverse](https://www.tidyverse.org/).
-Ich habe mich für diese Pakete entschieden, weil es meiner Meinung nach die
+> **Hinweis**: In diesem Kapitel verwenden wir für die Arbeit mit Daten vor
+allem Pakete aus dem sogenannten [tidyverse](https://www.tidyverse.org/).
+Ich habe mich für diese Pakete entschieden, weil sie meiner Meinung nach die
 für R-Beginner am einfachsten zu lernenden Pakete sind und sie zu sehr einfach
 zu lesendem Code führen. 
 Zudem sind sie sehr weit verbreitet. 
@@ -115,7 +117,8 @@ In der Praxis werden Sie aber merken, dass die Grenze zwischen quantitativen und
 qualitativen Daten häufig deutlich schwammiger ist, als man das auf den ersten 
 Blick glauben möchte, denn häufig werden qualitative Beschreibungen 
 quantifiziert und dann mit typischen quantitativen Methoden analysiert.
-Auch werden s.g. *mixed methods*-Ansätze immer beliebter.
+Auch werden sogenannte *mixed methods*-Ansätze immer beliebter, welche qualitative 
+und quantitative Methoden kombinieren.
 
 Vor allem in der Psychologie unterscheidet man zwischen **manifesten** und 
 **latenten Variablen**.
@@ -127,7 +130,7 @@ ist.
 *Latente* Variablen sind **nicht** direkt beobachtbar und sind häufig 
 erklärungsbedürftig.
 *Nutzen* ist zum Beispiel nicht beobachtbar.^[Das klassische Beispiel in der
-Psychologie ist 'Intelligenz',]
+Psychologie ist 'Intelligenz'.]
 Zudem muss in der Regel erst einmal deutlich gemacht werden, was mit dem Begriff
 genau gemeint ist.
 
@@ -136,9 +139,10 @@ Variable durch eine oder mehrere manifeste Variablen.
 Wir sprechen dann davon, dass eine oder mehrere manifeste Variablen als Indikator 
 für eine latente Variable verwendet werden.
 *Wirtschaftliche Entwicklung* z.B. ist als solche nicht direkt beobachtbar und wird
-häufig durch das BIP operationalisiert.^[Interessanterweise hat der 'Erfinder' des 
-modernen BIP Simon Kurznets in @BIP davon abgeraten, diese Operationalisierung
-als Indikator für wirtschaftliche Entwicklung zu verwenden.]
+häufig durch das BIP operationalisiert.^[Interessanterweise hat der maßgeblich an der Entwicklung des Indikators BIP beteiligte Simon Kuznets in @BIP davon abgeraten, diese Operationalisierung
+als Indikator für wirtschaftliche Entwicklung zu verwenden.
+Für mehr Infos dazu siehe z.B. @BIPHIST.]
+
 Der *Human Development Index* ist der Versuch, wirtschaftliche Entwicklung durch
 mehr als eine manifeste Variable zu operationalisieren, also durch beobachtbare
 Variablen messbar zu machen.
@@ -151,9 +155,10 @@ In der Praxis sehr relevant ist zudem die Unterscheidung der
 welche Methode angemessen ist um die Daten zu analysieren. 
 Hier wird zwischen **nominal**, **ordinal**, **intervall** und **verhältnis** 
 skalierten Daten unterschieden, wobei intervall- und verhältnisskalierte 
-Daten häufig unter dem Label **kardinal**-skalierte Daten zusammen gefasst werden:
+Daten häufig unter dem Label **kardinalskalierte** Daten zusammen gefasst werden, 
+wie aus der Abbildung \@ref(fig:skalenniveaus) hervorgeht:
 
-```{r, echo=FALSE, fig.align='center', out.height=='100%'}
+```{r skalenniveaus, echo=FALSE, fig.align='center', out.height='100%', fig.cap='Skalenniveaus von Daten'}
 knitr::include_graphics("figures/data-data-classification.png", auto_pdf = T)
 ```
 
@@ -162,7 +167,7 @@ der Daten zwar bestimmte Werte oder eindeutige Beschreibungen zuordnen können,
 diese aber keine natürliche Rangfolge aufweisen.
 So können wir einer Person eine Haarfarbe zuordnen, allerdings die verschiedenen
 Haarfarben in keine natürliche Rangfolge einordnen. 
-Genausowenig können wir z.B. Tiere in die Kategorien "Hund", "Katze" und 
+Ebenso können wir z.B. Tiere in die Kategorien "Hund", "Katze" und 
 "Sonstiges" einordnen, aber eine natürliche Rangfolge dieser Kategorien gibt es
 nicht.
 Als Konsequenz können wir die einzelnen Ausprägungen zwar zählen, aber sonst keine 
@@ -170,41 +175,47 @@ komplexeren mathematischen Operationen - wie z.B. die Berechnung eines Mittelwer
 ausführen.
 
 In R werden solche Daten in der Regel als `character` oder als `factor` beschrieben.
-Die einzelnen Ausprägungen eines Faktors können mit der Funktion `table` gezählt
-werden. Der häufigste wird dabei 'Modus' genannt:
+In der Regel ist es einfacher die Daten erst als `character` zu erstellen und
+dann mit der Funktion `factor()` in Faktoren umzuwandeln:
 
 ```{r}
 beobachtete_haarfarben <- c("Blond", "Braun", "Schwarz", 
                             "Blond", "Braun", "Braun")
 typeof(beobachtete_haarfarben)
 beobachtete_haarfarben <- factor(beobachtete_haarfarben)
-typeof(beobachtete_haarfarben)
-table(beobachtete_haarfarben)
+beobachtete_haarfarben
 ```
 
-Bei der Funktion `as.factor()` können Sie die Ausprägungen auch selbst
-spezifizieren. Das ist vor allem dann wichtig, wenn eine Ausprägung nicht
-vorkommt:
+Beachten Sie, dass Faktoren besondere Arten von `integer` sind. 
+Um zu testen, ob eine Variable als Faktor kodiert ist, können Sie die Funktion
+`is.factor()` verwenden:
 
 ```{r}
-beobachtete_haarfarben <- c("Blond", "Braun", "Schwarz", 
-                            "Blond", "Braun", "Braun")
-beobachtete_haarfarben <- factor(beobachtete_haarfarben, 
-                                 levels=c("Blond", "Braun", 
-                                          "Schwarz", "Glatze"))
+typeof(beobachtete_haarfarben)
+is.factor(beobachtete_haarfarben)
+```
+
+Die einzelnen Ausprägungen eines Faktors können mit der Funktion `table` gezählt
+werden. Der häufigste wird dabei 'Modus' genannt:
+
+```{r}
 table(beobachtete_haarfarben)
 ```
 
+Mehr Informationen zur Arbeit mit Objekten des Typs `factor` finden Sie
+in Abschnitt \@ref(introfactors).
 
 Bei **ordinalskalierten** Daten können die einzelnen Ausprägungen in eine 
 klare Rangfolge gebracht werden, aber die Abstände sind nicht sinnvoll 
-interpretiertbar.
+interpretierbar.
 Das klassische Beispiel sind Schulnoten: eine '1' ist besser als eine '2', aber 
 weder ist eine 1 'doppelt so gut' wie eine 2, noch sind zwei einser genauso gut
 wie eine 2.
 
 Ordinalskalierte Daten werden in R am besten auch als `factor` behandelt, allerdings
-müssen Sie die Reihenfolge explizit spezifizieren:
+müssen Sie die Reihenfolge explizit spezifizieren indem Sie die Level über das
+Argument `levels` explizit angeben und dem Argument `ordered` den Wert `TRUE`
+übergeben:
 
 ```{r}
 noten <- c(rep(1, 3), rep(2, 4), rep(3, 6), rep(4, 2), rep(5, 3))
@@ -213,10 +224,11 @@ noten <- factor(noten, levels = 1:6, ordered = T)
 noten
 ```
 
-Wir erkennen, dass der Faktor geordnet ist daran, adss bei der Auflistung der
-Levels das Symbol `<` verwendet wird um die Reihenfolge zu illutrieren.
+Dass der Faktor geordnet ist erkennen wir daran, dass bei der Auflistung der
+Levels das Symbol `<` verwendet wird um die Reihenfolge zu illustrieren.
 Um bei bestehenden Faktoren die Reihenfolge zu spezifizieren, verwenden Sie die
-Funktion `ordered()`:
+Funktion `ordered()` (das und weitere technische Besonderheiten von Objekten des
+Typs `factor` werden in Abschnitt \@ref(introfactors) genauer beschrieben):
 
 ```{r}
 noten <- factor(noten, levels = 1:6, ordered = F)
@@ -240,36 +252,43 @@ quantile(noten, type = 1)
 Bei **intervallskalierten** Daten können wir die Ausprägungen nicht nur in eine
 Rangfolge bringen, sondern auch die Abstände zwischen den Ausprägungen sinnvoll
 interpretieren. 
-Während es bei Noten also keinen Sinn macht mathematische Operationen wir 'Addition'
+Während es bei Noten also keinen Sinn ergibt, mathematische Operationen wie 'Addition'
 oder 'Substraktion' zu verwenden (und die Abstände entsprechend nicht konsistent zu
 interpretieren sind), ist dies bei intervallskalierten Daten wie z.B. Jahreszahlen
 möglich: 
 zwischen 1999 und 2005 liegt der gleiche Abstand wie zwischen 2009 und 2015.
-Entsprechend werden intervall-skalierte Daten in in der Regel als `integer` oder
+Entsprechend werden intervallskalierte Daten in in der Regel als `integer` oder
 `double` gespeichert und wir können Kennzahlen wie den Mittelwert oder die Varianz
-bereichnen.
+berrechnen.
 
-Allerdings verfügen intervall-skalierte Daten über keinen absoluten Nullpunkt, 
+Allerdings verfügen intervallskalierte Daten über keinen absoluten Nullpunkt, 
 sodass Divisionen und Multiplikationen keinen Sinn machen. 
 Das ist bei **verhältnisskalierten** Daten wie Gewicht, Preis oder Alter anders.
 Das kann man am besten an folgendem Beispiel illustrieren:
 
 > **Beispiel: Inverall- vs. verhältnisskalierte Temperaturen**
 Wenn wir die Temperatur in Grad Celsius messen haben wir eine Skala ohne absoluten
-Nullpunkt. Entsprechend können wir nicht sagen, dass 20 Grad Celsius doppelt 
-so warm sind wie 40 Grad Celsius, nur das der Abstand der Gleiche ist wie 
+Nullpunkt. Entsprechend können wir nicht sagen, dass 40 Grad Celsius doppelt 
+so warm sind wie 20 Grad Celsius, nur das der Abstand der Gleiche ist wie 
 zwischen 10 und 30 Grad Celsius. Das wird deutlich, wenn wir uns fragen ob 10
 Grad Celsius doppelt so warm wären wie -10 Grad Celsius.
 Eine Lösung ist die Temperatur in Kelvin anzugeben, denn für Kelvin ist ein 
 absoluter Nullpunkt definiert. Entsprechend können wir auch sagen, dass 20 
 Kelvin halb so warm ist wie 40 Kelvin - wobei beides ziemlich kalt wäre.
 
-Da sowohl intervall- als auch verhältnis-skalierte Daten als `double` oder `integer`
+Da sowohl intervall- als auch verhältnisskalierte Daten als `double` oder `integer`
 repräsentiert werden, ist Vorsicht geboten: wir müssen immer selbst entscheiden
 welche Maße wir für die Daten berechnen und R gibt uns keinen Fehler aus, wenn
-wir für zwei intervall-skalierte Variablen ein Verhältnis berechnen wollen.
+wir für zwei intervallskalierte Variablen ein Verhältnis berechnen wollen.
 
-Die folgende Tabelle fasst das noch einmal zusammen:
+Tabelle \@ref(tab:scales) gibt nochmal einen Überblick über die Skalenniveaus 
+und die dazugehörigen Objekte.
+Wie oben erwähnt bestimmt das Skalenniveau die anwendbaren statistischen Operationen
+und Maße. Tabelle \@ref(tab:measures) fasst das für die uns bislang 
+bekannten statistischen Maße kurz zusammen. 
+Alle diese Konzepte werden im Kapitel \@ref(desk-stat) vertiefter behandelt.
+
+Table: (\#tab:scales) Skalenniveaus und die dazugehörigen R-Objekte.
 
 | **Skalenniveau** | **Beispiel** | **Messbare Eigenschaften** | **Typisches R Objekt** |
 |------------------+--------------+----------------------------+------------------------|
@@ -278,9 +297,7 @@ Die folgende Tabelle fasst das noch einmal zusammen:
 | Intervall | Temperatur in C$^\circ$, Jahreszahl | Häufigkeit, Rangfolge, Abstand  | `integer`, `double` | 
 | Verhältnis | Preise, Alter |  Häufigkeit, Rangfolge, Abstand, abs. Nullpunkt | `integer`, `double` | 
 
-Wie oben erwähnt bestimmt das Skalenniveau die anwendbaren statistischen Operationen
-und Maße. Zur Illustration fasst die folgende Tabelle zusammen, welche uns bislang 
-bekannten statistischen Maße für welche Skalenniveaus definiert sind:
+Table: (\#tab:measures) Skalenniveaus und die anwendbaren statistischen Operationen.
 
 | | **Nominal** | **Ordinal** | **Intervall** | **Verhältnis** |
 |-+:-----------:+:-----------:|:-------------:|:--------------:|
@@ -300,10 +317,10 @@ ordinale Daten eher diskret, allerdings gibt es auch diskrete kardinale Daten
 (aber keine stetigen nominalen Daten).
 
 > **Hinweis zum Angeben:** Aus der Skalierung oben wird ersichtlich, dass man 
-mit ordinal-skalierten Daten keine Durchschnitte bilden darf - man kann sie ja
+mit ordinalskalierten Daten keine Durchschnitte bilden darf - man kann sie ja
 noch nicht einmal addieren. Ein Bereich wo dieser fundamentalen Regel ständig 
 Gewalt angetan wird ist die Schule: wer hat noch nie von einer 
-Durchschnittsnote gehört? Zum Glück gehört das bei uns an der Universität der 
+Durchschnittsnote gehört? Zum Glück gehört das an der Universität der 
 Vergangenheit an...
 
 ## Datenakquise {#data-get}
@@ -312,10 +329,10 @@ Der erste Schritt in der Arbeit mit Daten ist immer die Akquise der Daten.
 Je nach verwendeter Methode und Fragestellung ist das mehr oder weniger Arbeit.
 Im einfachsten Fall sind die von Ihnen benötigten Daten bereits erhoben und 
 über das Internet frei zugänglich.
-Das trifft z.B. auf viele makroökonomische Indikatoren, wie das BIP, den Gini
+Das trifft z.B. auf viele makroökonomische Indikatoren, wie das BIP, den Gini-Index
 oder die Arbeitslosigkeit zu.
 In diesem Falle müssen Sie einfach nur noch die passende Quelle finden,^[Das 
-bedeutet natürlich nicht, dass Sie (a) diesen Daten blind vertrauen sollten und
+bedeutet natürlich weder, dass Sie (a) diesen Daten blind vertrauen sollten, noch dass
 (b) Ihre Daten tatsächlich die 
 [latente Variable](https://de.wikipedia.org/wiki/Latentes_Variablenmodell)
 messen, an der Sie interessiert sind.
@@ -333,7 +350,7 @@ ob sie die Daten sogar [direkt mit R herunterladen](#data-download-R) wollen.
 
 Gerade wenn Sie mit makroökonomischen Daten arbeiten werden Sie häufig in Kontakt
 mit Ländercodes kommen. 
-In vielen Danksätzen werden Länder unterschiedlich abgekürzt.
+In vielen Datensätzen werden Länder unterschiedlich abgekürzt.
 So mögen manche Datensätze zwar ausgeschriebene Ländernamen wie "Deutschland" 
 verwenden, andere verwenden aber eher den 
 [iso3c-Code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) 
@@ -358,21 +375,21 @@ Nehmen wir einmal an, wir möchten die `iso2c`-Codes für Frankreich und die
 Schweiz herausfinden. Das geht folgendermaßen:
 
 ```{r}
-countrycode(
+countrycode::countrycode(
   sourcevar = c("Frankreich", "Schweiz"), 
   origin = "country.name.de", 
   destination = "iso3c")
 ```
 
 In diesem Fall verdeutlicht `origin="country.name.de"`, dass wir die Originalnamen
-auf Deutsch angegeben haben und `destination="iso2c"` dass wir in `iso2c`
+auf Deutsch angegeben haben und `destination="iso3c"` dass wir in `iso3c`
 übersetzen wollen.
 
 Wenn wir wissen wollen welches Land sich hinter der IWF Nummer `112` verbirgt
 schreiben wir:
 
 ```{r}
-countrycode(
+countrycode::countrycode(
   sourcevar = c("112"), 
   origin = "imf",
   destination = "country.name.de")
@@ -380,33 +397,78 @@ countrycode(
 
 Die Funktion `countrycode()` kennt bereits alle wichtigen Ländercodes. 
 Schauen Sie in der Hilfefunktion nach wie die Codes abgekürzt werden.
-Aber manchmal möchten Sie vielleicht eine besonders ausgefallene 
-Übersetzung durchführen. In einem solchen Falle können Sie 
-`countrycode()` über das Argument `custom_dict` auch einen `data.frame` mit 
-dem neuen Code übergeben und die Funktion ansonsten äquivalent nutzen.
-
 Grundsätzlich empfehle ich Ihnen in Ihrer Arbeit möglichst auf das Ausschreiben
-von Ländernamen zu verzichten und stattdessen mit eindeutigeren Kürzeln zu
+von Ländernamen zu verzichten und stattdessen mit eindeutigen Kürzeln zu
 arbeiten. 
-Ich arbeite z.B. immer mit den `iso3c`-Codes, da sie trotzdem sehr intuitiv
+Ich arbeite z.B. immer mit den `iso3c`-Codes, da sie trotz Abkürzung sehr intuitiv
 lesbar sind.
 
 Das Problem mit ausgeschriebenen Ländernamen lässt sich anhand der 
 Tschechischen Republik gut verdeutlichen. 
 Der `iso3c`-Code ist hier eindeutig `CZE`, allerding verwenden manche Datenbanken
 den Namen 'Czechia' und andere 'Czech Republik'. 
-Das `countrycode`-Paket übersezt beide Namen in `CZE`:
+Das `countrycode`-Paket übersetzt beide Namen in `CZE`:
 
 ```{r}
-countrycode("Czech Republic", "country.name", "iso3c")
-countrycode("Czechia", "country.name", "iso3c")
+countrycode::countrycode("Czech Republic", "country.name", "iso3c")
+countrycode::countrycode("Czechia", "country.name", "iso3c")
 ```
 
 Das kann manchmal zu Problemen beim Zusammenführen von Datensätzen führen, 
 da R nicht von sich aus weiß, dass 'Czechia' und 'Czech Republik' das gleiche 
-Land meinen. 
+Land bezeichnen. 
 Da die Ländercodes immer eindeutig sind empfehle ich daher immer mit den Kürzeln
-zu arbeiten und beim ersten Übersetzen immer besondern vorsichtig zu sein.
+zu arbeiten und beim ersten Übersetzen immer besonders vorsichtig zu sein.
+
+Das Anwendungsgebiet von `countrycode()` geht übrigens weit über das Übersetzen 
+von Länderkürzeln hinaus: manchmal möchten Sie vielleicht eine ganz andere
+Übersetzung durchführen. In einem solchen Falle können Sie 
+`countrycode()` über das Argument `custom_dict` auch einen `data.frame` mit 
+dem neuen Code übergeben und die Funktion ansonsten äquivalent nutzen.
+Das kann z.B. passieren wenn Sie Daten von einer Quelle verwenden, die Länder
+oder andere Beobachtungen nach einer eigenen Klassifizierung kodiert und diese
+Kodierung durch eine eigene Tabelle beschreibt.
+Im folgenden Beispiel ist genau das der Fall: wie haben Daten über die Exporte
+verschiedener Güterarten. Die Güter sind jedoch nach dem *Harmonized System* 
+der UN kodiert (siehe 
+[hier](https://unstats.un.org/unsd/tradekb/Knowledgebase/50018/Harmonized-Commodity-Description-and-Coding-Systems-HS)):
+
+```{r, echo=FALSE}
+export_data <- data.table::fread(here("data/raw/ComtradeExports.csv"), 
+                     colClasses = c("character", "double"))
+```
+```{r}
+head(export_data)
+```
+
+Wir können uns aber eine *Korrespondenztabelle* herunterladen, welche die Codes
+in konkrete Beschreibungen übersetzt. 
+Eine solche Tabelle sieht folgendermaßen aus:
+
+```{r, echo=FALSE}
+correspondence_table <- data.table::fread(
+  here("data/raw/ComtradeCommodityClassifications.csv"), 
+  colClasses = c("character", "character"), nrows = 7)
+```
+```{r}
+head(correspondence_table, 3)
+```
+
+Wir können nun die Funktion `countrycode()` zur Übersetzung der Codes in ihre
+Beschreibung verwenden (dabei müssen Tabellen in anderen Formaten immer mit
+`as.data.frame()` in einen Data Frame umgewandelt werden):
+
+```{r}
+export_data <- dplyr::mutate(
+  export_data, 
+  Good_Description=countrycode(
+    Good, "Code", "Description", 
+    custom_dict = as.data.frame(correspondence_table)
+    )
+  )
+export_data
+```
+
 
 ### Exkurs 2: Daten direkt mit R herunterladen {#data-download-R}
 
@@ -425,10 +487,9 @@ konservieren.]
 
 Es lohnt sich daher, gerade wenn Sie aus einer Quelle mehrere Daten beziehen wollen,
 nachzuschauen ob ein R Paket oder eine besondere API verfügbar ist. 
-Im Folgenden möchte das Vorgehen mit dem Paket
-[WDI](https://github.com/vincentarelbundock/WDI) [@R-WDI], welches Ihnen Zugriff
-auf die [Weltbankdaten](https://data.worldbank.org/) ermöglicht, 
-illustrieren.
+Im Folgenden möchte ich das Vorgehen mit dem Paket
+[WDI](https://github.com/vincentarelbundock/WDI) [@R-WDI] illustrieren, welches Ihnen Zugriff
+auf die [Weltbankdaten](https://data.worldbank.org/) ermöglicht.
 
 Das Paket `WDI` stellt Funktionen sowohl zum Suchen als auch zum direkten 
 Download von Daten aus der Datenbank der Weltbank zur Verfügung. 
@@ -442,17 +503,17 @@ Nehmen wir einmal an, Sie wollen Daten zum Export und zur Arbeitslosigkeit
 für Deutschland und Österreich für die Jahre 2012-2014 haben. 
 
 Sie suchen also nach den Indikatoren und lesen den Code aus der URL des 
-Indikators ab:^[Zwar gibt es im `WDI`-Paket auch die Funktion `WDI::WDIsearch()`, 
-mit der Sie Datensätze direkt suchen können, allerdings funktioniert das nach 
+Indikators ab, wie in Abbildung \@ref(fig:WDI) dargestellt:^[Zwar gibt es im `WDI`-Paket auch die Funktion `WDI::WDIsearch()`, 
+mit der Sie Datensätze direkt suchen können, allerdings funktioniert das 
 meiner Erfahrung nach nicht optimal.]
 
-```{r, echo=FALSE, fig.align='center'}
+```{r WDI, echo=FALSE, fig.align='center', fig.cap="Ablesen des Codes aus der URL"}
 knitr::include_graphics("figures/chap-data-world-bank.png")
 ```
 
 
 Über die Weltbankseite finden Sie heraus, dass die beiden von Ihnen gesuchten 
-Indikatoren mit `NE.EXP.GNFS.ZS` und `SL.UEM.TOTL.ZS` kodiert sind
+Indikatoren mit `NE.EXP.GNFS.ZS` und `SL.UEM.TOTL.ZS` kodiert sind.
 Nun verwenden Sie die Funktion `WDI::WDI()` um direkt auf die Daten zuzugreifen.
 Die Funktion benötigt dabei die folgenden Argumente:
 `country` verlangt nach einem Vektor mit Länderkürzeln. 
@@ -471,19 +532,19 @@ bekommen:
 ```{r, eval=FALSE}
 t_beginn <- 2012
 t_ende <- 2014
-laender <- countrycode(c("Germany", "Austria"), 
+laender <- countrycode::countrycode(c("Germany", "Austria"), 
                        "country.name", "wb")
-indikatores <- c("NE.EXP.GNFS.ZS", "SL.UEM.TOTL.ZS")
+indikatoren <- c("NE.EXP.GNFS.ZS", "SL.UEM.TOTL.ZS")
 
 daten <- WDI::WDI(
   country = laender, 
-  indicator = indikatores,
+  indicator = indikatoren
   start = t_beginn,
   end = t_ende
 )
 ```
 ```{r, echo=FALSE}
-daten <- fread(here("data/tidy/wb_example.csv"))
+daten <- data.table::fread(here("data/tidy/wb_example.csv"))
 ```
 ```{r}
 daten
@@ -496,7 +557,7 @@ Sie mehrere Datensätze von der gleichen Quelle benötigen.
 
 ### Einlesen von Datensätzen
 
-Wenige Arbeitsschritte können so frustrierende sein wie das Einlesen von Daten.
+Wenige Arbeitsschritte können so frustrierend sein wie das Einlesen von Daten.
 Sie können sich gar nicht vorstellen was hier alles schiefgehen kann! 
 Aber kein Grund zur übertriebenen Sorge: 
 wir können viel Frustration vermeiden wenn wir am Anfang unserer Karriere 
@@ -512,13 +573,13 @@ Aufgrund dieser Einfachheit sind diese Dateien auf allen Plattformen und quasi
 von allen Programmen ohne Probleme lesbar.
 
 In R gibt es verschiedene Möglichkeiten csv-Dateien einzulesen.
-Die mit Abstand beste Option ist dabei die Funktion `fread()` aus dem Paket 
+Die mit Abstand beste Option ist dabei die Funktion `data.table::fread()` aus dem Paket 
 `data.table`, da sie nicht nur sehr flexibel spezifiziert werden kann, sondern
 auch deutlich schneller als andere Funktionen arbeitet.
 
 Wir gehen im Folgenden davon aus, dass wir die Datei `data/tidy/export_daten.csv`
 einlesen wollen.
-Die Datei sieht im Rohformat folgendermaßen aus:
+Die Datei sieht folgendermaßen aus:
 
 ```
 iso2c,year,Exporte
@@ -528,18 +589,18 @@ AT,2014,53.38
 ```
 
 Es handelt sich also um eine sehr standardmäßige csv-Datei, die wir einfach 
-mit der Funktion `fread()` einlesen können. 
-Dazu übergeben wir `fread()` nur das einzige wirklich notwendige Argument:
+mit der Funktion `data.table::fread()` einlesen können. 
+Dazu übergeben wir `data.table::fread()` nur das einzige wirklich notwendige Argument:
 den Dateipfad. 
 Der besseren Übersicht halber sollte dieser immer separat definiert werden:
 
 ```{r}
-daten_pfad <- here("data/tidy/export_daten.csv")
-daten <- fread(daten_pfad)
+daten_pfad <- here::here("data/tidy/export_daten.csv")
+daten <- data.table::fread(daten_pfad)
 daten
 ```
 
-Vielleicht fragen Sie sich wie `fread()` die Spalten bezüglich ihres 
+Vielleicht fragen Sie sich wie `data.table::fread()` die Spalten bezüglich ihres 
 [Datentyps](#basics-types-vectors) interpretiert hat?
 Das können wir folgendermaßen überprüfen:
 
@@ -547,22 +608,22 @@ Das können wir folgendermaßen überprüfen:
 typeof(daten$year)
 ```
 
-In der Regel funktioniert die automatische Typerkennung von `fread()` sehr gut.
-Ich empfehle dennoch die Typen immer manuell zu spezifizieren, aus folgenden 
+In der Regel funktioniert die automatische Typerkennung von `data.table::fread()` sehr gut.
+Ich empfehle dennoch die Typen im Zweifel manuell zu spezifizieren, aus folgenden 
 Gründen: (1) Sie merken leichter wenn es mit einer Spalte ein Problem gibt,
 z.B. wenn in einer Spalte, die ausschließlich aus Zahlen besteht ein Wort 
 vorkommt. Wenn Sie diese Spalte nicht manuell als `double` spezifizieren würden, 
-würde `fread()` sie einfach still und heimlich als `character` verstehen und Sie
+würde `data.table::fread()` sie einfach still und heimlich als `character` interpretieren und Sie
 wundern sich später, warum Sie für die Spalte keinen Durchschnitt berechnen können;
-(2) Ihr Code wird leichter lesbar und (3) der Lesevorgang wird deutlich 
-beschleunigt.
+(2) Ihr Code wird leichter lesbar; und (3) der Einlesevorgang wird deutlich 
+beschleunigt da `data.table::fread()` die Typen nicht selbst 'erraten' muss.
 
 Sie können die Spaltentypen manuell über das Argument `colClasses` einstellen, 
 indem Sie einfach einen Vektor mit den Datentypen angeben:
 
 ```{r}
-daten_pfad <- here("data/tidy/export_daten.csv")
-daten <- fread(daten_pfad, 
+daten_pfad <- here::here("data/tidy/export_daten.csv")
+daten <- data.table::fread(daten_pfad, 
                colClasses = c("character", "double", "double"))
 typeof(daten$year)
 ```
@@ -577,7 +638,7 @@ verwenden:
 
 ```{r}
 daten_pfad <- here("data/tidy/export_daten.csv")
-daten <- fread(daten_pfad, 
+daten <- data.table::fread(daten_pfad, 
                colClasses = c("character", "double", "double"),
                nrows = 1)
 daten
@@ -585,12 +646,12 @@ daten
 
 Manchmal möchten Sie auch nur eine bestimmte Auswahl an Spalten einlesen.
 Auch das kann bei großen Datensätzen viel Zeit sparen.
-Wenn wir oben nur das Jahr und die Anzahl der Exporte haben spezifizieren wir
+Wenn wir nur das Land und die Anzahl der Exporte haben wollen, spezifizieren wir
 das über das Argument `select`:
 
 ```{r}
-daten_pfad <- here("data/tidy/export_daten.csv")
-daten <- fread(daten_pfad, 
+daten_pfad <- here::here("data/tidy/export_daten.csv")
+daten <- data.table::fread(daten_pfad, 
                colClasses = c("character", "double", "double"),
                nrows = 1, 
                select = c("iso2c", "Exporte"))
@@ -612,12 +673,12 @@ AT;2014;53,38
 
 Zum Glück können wir das Spaltentrennzeichen über das Argument `sep` und das 
 Kommatrennzeichen über das Argument `dec` manuell spezifizieren:^[Auch hier gilt,
-dass die automatische Erkennung von `fread()` schon sehr gut funktioniert, aber
+dass die automatische Erkennung von `data.table::fread()` schon sehr gut funktioniert, aber
 die manuelle Eingabe immer sicherer und transparenter ist.]
 
 ```{r}
-daten_pfad <- here("data/tidy/export_daten_dt.csv")
-daten <- fread(daten_pfad, 
+daten_pfad <- here::here("data/tidy/export_daten_dt.csv")
+daten <- data.table::fread(daten_pfad, 
                colClasses = c("character", "double", "double"), 
                sep = ";", 
                dec = ","
@@ -625,17 +686,17 @@ daten <- fread(daten_pfad,
 daten
 ```
 
-`fread()` verfügt noch über viele weitere Spezifizierungsmöglichkeiten, die Sie
-sich am besten am konkreten Anwendungsfall vertraut machen.
+`data.table::fread()` verfügt noch über viele weitere Spezifizierungsmöglichkeiten, mit denen Sie
+sich am besten im konkreten Anwendungsfall vertraut machen.
 Auch ein Blick in die Hilfeseite ist recht illustrativ. 
 Für die meisten Anwendungsfälle sind Sie jetzt aber gut aufgestellt.
 
 > **Anmerkungen zu komprimierten Dateien:** Häufig werden Sie auch komprimierte 
 Dateien einlesen wollen. Gerade komprimierte csv-Dateien kommen häufig vor.
-In den meisten Fällen können Sie diese Dateien direkt mit `fread()` einlesen.
-Falls nicht, können Sie `fread()` aber auch dem entsprechenden UNIX-Befehl zum 
+In den meisten Fällen können Sie diese Dateien direkt mit `data.table::fread()` einlesen.
+Falls nicht, können Sie `data.table::fread()` aber auch dem entsprechenden UNIX-Befehl zum 
 Entpacken als Argument `cmd` übergeben, also z.B. 
-`fread("unzip -p data/gezipte_daten.csv.bz2")`. Weitere Informationen finden
+`data.table::fread("unzip -p data/gezipte_daten.csv.bz2")`. Weitere Informationen finden
 Sie sehr einfach im Internet.
 
 Auch wenn csv-Dateien die am weitesten verbreiteten Daten sind: 
@@ -655,7 +716,7 @@ Solche Dateien können mit der Funktion `readRDS()` gelesen werden, die als
 einziges Argument den Dateinamen annimmt:
 
 ```{r}
-daten_pfad <- here("data/tidy/export_daten.rds")
+daten_pfad <- here::here("data/tidy/export_daten.rds")
 daten <- readRDS(daten_pfad)
 daten
 ```
@@ -676,7 +737,7 @@ save(list=c("test_dat", "test_vec"),
      file=here("data/tidy/test_daten.RData"))
 ```
 ```{r}
-load(here("data/tidy/test_daten.RData"))
+load(here::here("data/tidy/test_daten.RData"))
 test_dat
 test_vec
 ```
@@ -692,8 +753,8 @@ Um Dateien in diesem Format lesen zu können verwenden Sie die Funktion
 die als einziges Argumente den Dateinamen akzeptiert:
 
 ```{r}
-dta_datei <- here("data/tidy/export_daten.dta")
-dta_daten <- read_dta(dta_datei)
+dta_datei <- here::here("data/tidy/export_daten.dta")
+dta_daten <- haven::read_dta(dta_datei)
 head(dta_daten, 2)
 ```
 
@@ -711,7 +772,7 @@ test_data <- data.frame(
 ```
 
 
-Im Vergleich zum Einlesen von Daten ist das Schreiben deutlich einfacher, weil
+Im Vergleich zum Einlesen von Daten ist das Speichern deutlich einfacher, weil
 sich die Daten ja bereits in einem vernünftigen Format befinden. 
 Die größte Frage hier ist also: in welchem Dateiformat sollten Sie Ihre Daten 
 speichern?
@@ -725,34 +786,33 @@ Die schnellste und meines Erachtens mit Abstand beste Funktion zum Schreiben von
 csv-Dateien ist die Funktion `fwrite()` aus dem Paket `data.table`.
 Angenommen wir haben einen Datensatz `test_data`, den wir im Unterordner 
 `data/tidy` als `test_data.csv` speichern wollen.
-Das geht mit `fwrite()` ganz einfach:
+Das geht mit `data.table::fwrite()` ganz einfach:
 
 ```{r, eval=FALSE}
-datei_name <- here("data/tidy/test_data.csv")
-fwrite(test_data, file = datei_name)
+datei_name <- here::here("data/tidy/test_data.csv")
+data.table::fwrite(test_data, file = datei_name)
 ```
 
 Neben dem zu schreibenden Objekt als erstem Argument benötigen Sie noch das 
 Argument `file`, welches den Namen und Pfad der zu schreibenden Datei spezifiziert. 
 Der Übersicht halber ist es oft empfehlenswert diesen Pfad zuerst als 
-`character`-Objekt zu speichern und dann an die Funktion `fwrite()` zu übergeben.
+`character`-Objekt zu speichern und dann an die Funktion `data.table::fwrite()` zu übergeben.
 
-`fwrite()` akzeptiert noch einige weitere optionale Argumente, die Sie im 
+`data.table::fwrite()` akzeptiert noch einige weitere optionale Argumente, die Sie im 
 Großteil der Fälle aber nicht benötigen. 
 Schauen Sie bei Interesse einfach einmal in die Hilfefunktion!
 
 Falls Ihr Datensatz im csv-Format doch zu groß ist, Sie aber aufgrund von
 Kompatibilitätsanforderungen kein spezialisiertes Format benutzen wollen, bietet
 es sich an die csv-Datei zu komprimieren. 
-Natürlich könnten Sie das händisch in Ihrem Datei-Explorer machen, aber das ist 
-natürlich vollkommen überholt. 
+Natürlich könnten Sie das händisch in Ihrem Datei-Explorer machen, aber das ist vollkommen überholt. 
 Sie können das gleich in R miterledigen indem Sie z.B. die Funktion `gzip`
 aus dem Paket `R.utils` [@R-R.utils] verwenden:
 
 ```{r, eval=FALSE}
-csv_datei_name <- here("data/tidy/test_data.csv")
-fwrite(test_data, file = csv_datei_name)
-gzip(csv_datei_name,
+csv_datei_name <- here::here("data/tidy/test_data.csv")
+data.table::fwrite(test_data, file = csv_datei_name)
+R.utils::gzip(csv_datei_name,
       destname=paste0(csv_datei_name, ".gz"), 
       overwrite = TRUE, remove=TRUE)
 ```
@@ -764,36 +824,36 @@ tragen soll und einige weitere optionale Argumente. Häufig bietet sich
 überschreiben, und `remove=TRUE` um die un-komprimierte Datei nach erfolgter
 Komprimierung zu löschen.
 
-> **Hinweise zu verschiedenen zip-Formaten:** Die Funktion `gzip()` komprimiert
+> **Hinweise zu verschiedenen zip-Formaten:** Die Funktion `R.utils::gzip()` komprimiert
 eine Datei mit dem [GNU zip Algorithmus](https://de.wikipedia.org/wiki/Gzip). 
 Die resultierende komprimierten Dateien sollten mit der zusätzlichen Endung `.gz` 
-gekennzeichnet werden. `gzip()` ist eine relativ schnell arbeitende Funktion, 
+gekennzeichnet werden. `R.utils::gzip()` ist eine relativ schnell arbeitende Funktion, 
 allerdings mit mäßigen Kompressionseigenschaften.
 Wenn Sie bereit sind längere Arbeitszeit für ein besseres Kompressionsergebnis
-in Kauf zu nehmen, sollten Sie sich die Funktion `bzip2()` ansehen, welche den 
+in Kauf zu nehmen, sollten Sie sich die Funktion `R.utils::bzip2()` ansehen, welche den 
 [bzip2-Algorithmus](https://de.wikipedia.org/wiki/Bzip2) implementiert. 
 Dieser hat eine deutlich bessere Kompressionsrate (die komprimierten Dateien sind
-also deutlich kleiner), allerdings ist `bzip2()` auch deutlich langsamer als `gzip()`.
-Dateien, die mit `bzip2()` komprimiert wurden, sollten mit der Endung `.bz2` 
-gekennzeichnet werden. Entsprechend sieht der Code von oben mit `bzip2()`
-anstatt `gzip()` folgendermaßen aus:
+also deutlich kleiner), allerdings ist `R.utils::bzip2()` auch deutlich langsamer als `R.utils::gzip()`.
+Dateien, die mit `R.utils::bzip2()` komprimiert wurden, sollten mit der Endung `.bz2` 
+gekennzeichnet werden. Entsprechend sieht der Code von oben mit `R.utils::bzip2()`
+anstatt `R.utils::gzip()` folgendermaßen aus:
 
 ```{r, eval=FALSE}
-csv_datei_name <- here("data/tidy/test_data.csv")
-fwrite(test_data, csv_datei_name)
-bzip2(csv_datei_name,
+csv_datei_name <- here::here("data/tidy/test_data.csv")
+data.table::fwrite(test_data, csv_datei_name)
+R.utils::bzip2(csv_datei_name,
       destname=paste0(csv_datei_name, ".bz2"), 
       overwrite = TRUE)
 ```
 
 > Einen Vergleich der Kompressionseigenschaften und Lese- und Schreibgeschwindigkeiten
 ist immer auch kontextabhängig, im Internet finden sich viele Diskussionen zu dem
-Thema. Am Anfang sind Sie mit `gzip()` und `bzip2()` aber eigentlich für alle
+Thema. Am Anfang sind Sie mit `R.utils::gzip()` und `R.utils::bzip2()` aber eigentlich für alle
 relevanten Fälle gut aufgestellt.
 
-Ich möchte Ihnen noch zwei R-spezifische Formate vorstellen: `.Rdata` und `.rds`, die 
-deutliche Geschwindigkeits- und Komprimierungsvorteile gegenüber dem csv-Format 
-haben und dabei trotzdem vollkommen plattformkompatibel sind.
+Die oben bereits vorgestellten R-spezifischen Formate `.Rdata` und `.rds` verfügen 
+über deutliche Geschwindigkeits- und Komprimierungsvorteile gegenüber dem csv-Format 
+und sind dabei trotzdem vollkommen plattformkompatibel.
 Einziger Nachteil: 
 alle Irren, die nicht R benutzen, können Ihre Daten nicht öffnen.
 Manchmal mag das eine verdiente Strafe, manchmal aber auch ein Ausschlusskriterium
@@ -829,16 +889,15 @@ allerdings können Sie mit `compression_level` zusätzlich noch die Stärke von 
 (schnell, aber wenig Kompression) bis `9` (langsamer, aber starke Kompression) 
 auswählen.
 
-Da gerade in der Ökonomik auch häufig mit der kostenpflichtigen Software 
+Da, wie oben erwähnt, gerade in der Ökonomik auch häufig mit der kostenpflichtigen Software 
 [STATA](https://de.wikipedia.org/wiki/Stata) gearbeitet wird, möchte ich noch 
 kurz erkläutern, wie man einen Datensatz im STATA-Format `.dta` speichern kann. 
 Dazu verwenden wir die Funktion `write_dta()`
 aus dem Paket [haven](https://github.com/tidyverse/haven).
 
 ```{r, eval=FALSE}
-library(haven)
-write_dta(test_data, 
-          here("data/tidy/test_daten.dta"))
+haven::write_dta(test_data, 
+          here::here("data/tidy/test_daten.dta"))
 ```
 
 Für `SAS`- und `SPSS`-Daten gibt es ähnliche Funktionen, die ebenfalls durch das
@@ -855,17 +914,17 @@ ihrer Geschwindigkeit vergleichen finden Sie z.B.
 
 ## Verarbeitung von Daten ('data wrangling') {#data-wrangling}
 
-Nachdem Sie ihre Daten erhoben haben, müssen Sie die Rohdaten in eine Form 
+Nachdem Sie Ihre Daten erhoben haben, müssen Sie die Rohdaten in eine Form 
 bringen, mit der Sie sinnvoll weiterarbeiten können.
 Dieser Prozess wird oft als 'Datenaufbereitung' bezeichnet und stellt häufig 
-einen der zeitaufwändigsten Arbeitsschritte in der Forschungsarbeit dar:
+einen der zeitaufwendigsten Arbeitsschritte in der Forschungsarbeit dar:
 Laut [dieser Umfrage](https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/)
-macht es sogar 60 \% der Arbeitszeit von Datenspezialisten aus.
+macht es sogar 60 \% der Arbeitszeit von Datenspezialist\*innen aus.
 Entsprechend wichtig ist es, sich mit den typischen Arbeitsschritten und 
 Algorithmen vertraut zu machen um in diesem aufwendigen Arbeitsschritt Zeit zu
 sparen.
 
-Ein großes Problem in der Forschungspraxis ist häufig, dass Forscher*innen den
+Ein großes Problem in der Forschungspraxis ist häufig, dass Forscher\*innen den
 Datenaufbereitungsprozess nicht richtig dokumentieren. 
 In diesem Fall ist unklar was für Änderungen an den Rohdaten vorgenommen wurden
 bevor die eigentliche Analyse begonnen wurde.
@@ -875,15 +934,24 @@ vornehmen zu dokumentieren.
 
 Am einfachsten ist es, für die Datenaufbereitung einfach ein R-Skript zu schreiben,
 in dem Sie die Rohdaten einlesen und am Ende die aufbereiteten Daten unter neuem
-Namen speichern.
-**Nie** sollten Sie ihre Rohdaten überschreiben!
+Namen speichern. 
+Am besten legen Sie in Ihrem Ordner `data` zwei Unterordner an:
+Die Rohdaten speichern Sie dann in einem Unterordner `raw`, die bearbeiteten und 
+aufbereiteten Daten in einem Unterordner `tidy`.
+So behalten Sie immer den Überblick.
+**Nie** sollten Sie Ihre Rohdaten überschreiben!
 Damit sind Sie in Ihrer Forschung vollkommen transparent und es entsteht Ihnen 
-im Prinzip keine Mehrarbeit.
+im Prinzip keine Mehrarbeit (siehe Abbildung \@ref(fig:rawtidy)).
 
-In diesem Abschnitt lernen Sie Lösungen für die typischen Herausforderungen, 
-die während der Datenaufbereitung auftreten, kennen 
+
+```{r rawtidy, echo=FALSE, fig.align='center', out.width='40%', fig.cap='Eine übersichtliche Art und Weise Ihre Daten zu speichern. Die Dateien im Unterordner `raw` werden nie geändert. Die Datei `exports-tidy` im Ordner `tidy` wurde mit dem Skript `exports-preparation.R` aus dem Rohdatensatz `exports-raw.csv` erstellt.'}
+knitr::include_graphics(here("figures/chap-data-raw-tidy.png"), auto_pdf = T)
+```
+
+In diesem Abschnitt lernen Sie Lösungen für Probleme, 
+die typischerweise während der Datenaufbereitung auftreten. 
 Dafür beschäftigen wir uns zunächst mit dem gewünschten Ergebnis: sogenannter
-[tidy data](#data-tidy-daty). 
+[tidy data](#data-tidy-data). 
 Diese Art von Datensätzen sollte das Ergebnis jeder Datenaufbereitung sein.
 
 Auf dem Weg zu *tidy data* bedarf es häufig einer 
@@ -891,7 +959,7 @@ Auf dem Weg zu *tidy data* bedarf es häufig einer
 Außerdem werden Sie häufig mehrere 
 [Datensätze zusammenführen](#data-merge-data) und Ihre 
 [Daten filtern, selektieren und aggregieren](#data-select).
-Zudem möchten Sie manchmal Daten auch [reduzieren und zusammenfassen](#data-sumamry).
+Zudem möchten Sie manchmal Daten auch [reduzieren und zusammenfassen](#data-summary).
 
 > **Beispiel für berühmte Menschen mit miserabler Datenaufbereitung: Der Reinhart-Rogoff Skandal**  
 Eines der dramatischsten Beispiele für Fehler in der Datenaufbereitung mit 
@@ -936,7 +1004,7 @@ Vorschlag für eine hilfreiche Ordnerstruktur beschrieben).
 
 Aber was zeichnet `tidy data` aus? Wie von @tidy beschrieben kann ein Datensatz
 auf vielerlei Art und Weise 'unordentlich' sein, aber nur auf eine Art und Weise
-'tidy'. Eine 'tidy' Datensatz ist durch folgende drei Eigenschaften gekennzeichnet:
+'tidy'. Ein 'tidy' Datensatz ist durch folgende drei Eigenschaften gekennzeichnet:
 
 1. Jede **Spalte** korrespondiert zu genau einer **Variable**
 2. Jede **Zeile** korrespondiert zu genau einer **Beobachtung**
@@ -964,13 +1032,13 @@ z.B. nicht nochmal eine Liste mit mehreren Werten, wie es ja bei einem
 beschriebenen Sinn:
 
 ```{r, echo=FALSE}
-exports_unemp_data_tidy <- fread(here("data/tidy/wb_example.csv")) %>%
-  rename(Land=iso2c, 
+exports_unemp_data_tidy <- data.table::fread(here("data/tidy/wb_example.csv")) %>%
+  dplyr::rename(Land=iso2c, 
          Jahr=year,
          Exporte=NE.EXP.GNFS.ZS, 
          Arbeitslosigkeit=SL.UEM.TOTL.ZS) %>%
-  filter(Jahr>2012) %>%
-  select(-country)
+  dplyr::filter(Jahr>2012) %>%
+  dplyr::select(-country)
 ```
 
 
@@ -978,22 +1046,22 @@ exports_unemp_data_tidy <- fread(here("data/tidy/wb_example.csv")) %>%
 exports_unemp_data_tidy
 ```
 
-> Wir haben vier Spalten, die jeweils zu einer der drei Variablen `Land`, `Jahr`, 
+> Wir haben vier Spalten, die jeweils zu einer der vier Variablen `Land`, `Jahr`, 
 `Exporte` und `Arbeitslosigkeit` korrespondieren. 
 Jede Zeile korrespondiert zur Beobachtung von `BIP` und `Exporte` in
 genau einem Jahr in genau einem Land. Und die einzelnen Zellen enthalten genau
 einen Wert, jeweils für das Land, das Jahr, die Exporte und die Arbeitslosigkeit.
 
 > **Beispiel: Verstoß gegen (1) **: Der folgende Datensatz, welcher nur Informationen
-zu den Exporten und für das Jahr 2013 enthält, ist nicht 'tidy', da er gegen 
+zu den Exporten und für das Jahr 2014 enthält, ist nicht 'tidy', da er gegen 
 Anforderung (1) verstößt:
 
 ```{r, echo=FALSE}
 exports_unemp_data_untidy_1 <- exports_unemp_data_tidy %>%
-  select(-Arbeitslosigkeit) %>%
-  filter(Jahr==2014) %>%
-  gather(Variable, value, -Land, -Jahr) %>%
-  spread(Jahr, value)
+  dplyr::select(-Arbeitslosigkeit) %>%
+  dplyr::filter(Jahr==2014) %>%
+  tidyr::gather(Variable, value, -Land, -Jahr) %>%
+  tidyr::spread(Jahr, value)
 exports_unemp_data_untidy_1
 ```
 
@@ -1003,13 +1071,13 @@ exports_unemp_data_untidy_1
 Die Bedeutung dieser Unterscheidung wird im nächsten Beispiel deutlich.
 
 > **Beispiel: Verstoß gegen (1) und (2):**
-Wenn wir in dem Datensatz aus dem ersten Datensatz alle Informationen belassen 
+Wenn wir in dem ersten Datensatz alle Informationen belassen, 
 würde er in der gerade dargestellten Form sowohl gegen (1) als auch (2) verstoßen:
 
 ```{r, echo=FALSE}
 exports_unemp_data_untidy_2 <- exports_unemp_data_tidy %>%
-  gather(Variable, value, -Land, -Jahr) %>%
-  spread(Jahr, value)
+  tidyr::gather(Variable, value, -Land, -Jahr) %>%
+  tidyr::spread(Jahr, value)
 exports_unemp_data_untidy_2
 ```
 
@@ -1021,7 +1089,7 @@ widerspricht:
 
 ```{r, echo=FALSE}
 exports_unemp_data_untidy_3 <- exports_unemp_data_tidy %>%
-  gather(Variable, Wert, -Land, -Jahr) 
+  tidyr::gather(Variable, Wert, -Land, -Jahr) 
 exports_unemp_data_untidy_3
 ```
 
@@ -1045,14 +1113,14 @@ menschliche Auge besser geeignet.
 'Lange' Daten haben in der Regel viele Zeilen und wenige Spalten. 
 Alle `tidy` Datensätze sind im langen Datenformat. 'Breite' Daten haben
 mehr Spalten und weniger Zeilen und sind häufig das, was wir aus dem
-Internet herunterladen. Im folgenden ist der gleiche Datensatz einmal im 
+Internet herunterladen. Im Folgenden ist der gleiche Datensatz einmal im 
 langen und einmal im breiten Format dargestellt.
 
 Zuerst das 'lange' Format, in dem wir verhältnismäßig viele Zeilen haben:
 
 ```{r, echo=FALSE}
 exports_unemp_data_tidy %>%
-  select(-Arbeitslosigkeit)
+  dplyr::select(-Arbeitslosigkeit)
   
 ```
 
@@ -1060,51 +1128,57 @@ Und hier das 'breite' Format mit verhältnismäßig mehr Spalten:
 
 ```{r, echo=FALSE}
 exports_unemp_data_tidy %>%
-  select(-Arbeitslosigkeit) %>%
-  gather(Variable, Werte, -Land, -Jahr) %>%
-  spread(Jahr, Werte)
+  dplyr::select(-Arbeitslosigkeit) %>%
+  tidyr::gather(Variable, Werte, -Land, -Jahr) %>%
+  tidyr::spread(Jahr, Werte)
 ```
 
 Häufig werden Sie während Ihrer Datenaufbereitung mehrmals zwischen den beiden
-Formaten hin und her wechseln, da für manche Aufgaben das eine, für andere das
-andere Format besser ist (siehe [unten](#data-summary)).
+Formaten hin und her wechseln, da für manche statistischen Zwischenschritte das 
+eine, für andere das andere Format besser ist.^[Das steht nicht im Widerspruch
+zu dem oben formulierten Ziel am Ende `tidy` Daten zu haben. Es ist nur so, 
+dass Sie für manche statistischen Transformationen als Zwischenschritt in
+ein anderes Format wechseln müssen, oder der Weg hin zu `tidy` Daten das 
+Wechseln zwischen langen und breiten Datensätzen erforderlich macht. Das wird
+durch die Beispiele später in diesem Kapitel praktisch deutlich werden.]
+
 Um zwischen den Formaten hin und herzuwechseln verwenden wir vor allem die 
 Funktionen `pivot_longer()` und `pivot_wider()` aus dem Paket 
 [tidyr](https://github.com/tidyverse/tidyr) [@R-tidyr], welches auch Teil des 
 `tidyverse` ist.^[Die Funktionen `pivot_longer()` und `pivot_wider()` wurden in 
 der neuesten Version von `tidyr` eingeführt. Achten Sie also darauf, dass Sie 
-die neueste Version installiert haben. Sie ersetzen die Funktionen `spread()` und 
-`gather()`, die natürlich noch weiterhin funktionieren und die Sie in älterem Code 
+die neueste Version installiert haben. Sie ersetzen die Funktionen `tidyr::spread()` und 
+`tidyr::gather()`, die natürlich noch weiterhin funktionieren und die Sie in älterem Code 
 sicher noch häufig finden werden. 
 In diesem [Blog-Post](https://www.tidyverse.org/blog/2019/09/tidyr-1-0-0/)
-beschreibt Chefentwickler Hadley Wickham die neuen Funktionen und grenzt Sie
+beschreibt Chefentwickler Hadley Wickham die neuen Funktionen und grenzt sie
 von den älteren Implementierungen ab.]
 
-Wir verwenden `pivot_longer()` um einen Datensätz 'länger' zu machen.
+Wir verwenden `tidyr::pivot_longer()` um einen Datensatz 'länger' zu machen.
 Wir verwenden dazu folgenden Datensatz als Ausgangsbeispiel, der Werte
 für die Arbeitslosigkeit in Deutschland und Österreich in zwei Jahren 
 enthält:
 
 ```{r, echo=FALSE}
 data_wide <- exports_unemp_data_tidy %>%
-  select(-Exporte) %>%
-  gather(Variable, Werte, -Land, -Jahr) %>%
-  spread(Jahr, Werte) %>%
-  select(-Variable)
+  dplyr::select(-Exporte) %>%
+  tidyr::gather(Variable, Werte, -Land, -Jahr) %>%
+  tidyr::spread(Jahr, Werte) %>%
+  dplyr::select(-Variable)
 ```
 ```{r}
 data_wide
 ```
 
-Das erste Argument für `pivot_longer()` heißt `data` und nimmt den Datensatz, 
+Das erste Argument für `tidyr::pivot_longer()` heißt `data` und nimmt den Datensatz, 
 den wir länger machen wollen. In unserem Beispiel also `data_wide`.
 
 Das zweite Argument heißt `cols` und beschreibt die Spalten an denen Änderungen 
 vorgenommen werden sollen. 
 In unserem Falle sind das die Spalten `2013` und `2014`.
-Um hier eine Liste von Spaltennamen zu übergeben verwenden wir die Hilfsfuntion
+Um hier eine Liste von Spaltennamen zu übergeben verwenden wir die Hilfsfunktion
 `one_of()`, die es uns erlaubt die Spaltennamen als `character` zu schreiben.
-Das Argumtent wird also als `cols=one_of("2013", "2014")` spezifiziert.
+Das Argument wird also als `cols=one_of("2013", "2014")` spezifiziert.
 
 Das dritte Argument, `names_to` akzeptiert einen `character`, der den Namen der
 neu zu schaffenden Spalte beschreibt. 
@@ -1112,13 +1186,13 @@ In unserem Fall macht es Sinn, diese Spalte `Jahr` zu nennen.
 
 Das vierte Argument, `values_to` spezifiziert den Namen der Spalte, welche die
 Werte des verlängerten Datensatzes beschreibt. 
-In unserem Falle bietet sich der Name `Arbeitslosenquote`, da es bei dem Datensat um
-Arbeitslosenquotenstatistiken handelt.
+In unserem Falle bietet sich der Name `Arbeitslosenquote` an, da es sich bei dem 
+Datensatz um Arbeitslosenquotenstatistiken handelt.
 
 Insgesamt erhalten wir damit den folgenden Funktionsaufruf:
 
 ```{r}
-data_long <- pivot_longer(data = data_wide,
+data_long <- tidyr::pivot_longer(data = data_wide,
                           cols = one_of("2013", "2014"), 
                           names_to = "Jahr", 
                           values_to = "Arbeitslosenquote")
@@ -1126,7 +1200,7 @@ data_long
 ```
 
 Wenn wir den umgekehrten Weg gehen wollen, also einen langen Datensatz 'breiter'
-machen wollen, verwenden wir die Funktion `pivot_wider()`.
+machen wollen, verwenden wir die Funktion `tidyr::pivot_wider()`.
 Hier wird die Anzahl der Zeilen reduziert und die Anzahl der Spalten erhöht
 Gehen wir einmal vom gerade produzierten Datensatz aus:
 
@@ -1134,7 +1208,7 @@ Gehen wir einmal vom gerade produzierten Datensatz aus:
 data_long
 ```
 
-Die Funktion `pivot_wider()` verlangt als erstes Argumt wieder `data`, also
+Die Funktion `tidyr::pivot_wider()` verlangt als erstes Argumt wieder `data`, also
 den zu manipulierenden Datensatz. Im Beispiel ist das `data_long`.
 
 Das zweite Argument, `id_cols`, legt die Spalten fest, die nicht verändert 
@@ -1148,7 +1222,7 @@ breiten Datensatz als einzelne Spalten aufgeteilt werden sollen.
 In unserem Falle wäre das die Spalte `Jahr`, weil wir in unserem breiten 
 Datensatz separate Spalten für die einzelnen Jahre haben wollen.
 
-Das vierte Argumten ist `values_from` spezifiziert die Spalte aus der die 
+Das vierte Argument ist `values_from` und spezifiziert die Spalte aus der die 
 Werte für die neuen Spalten genommen werden sollen. 
 In unserem Falle wäre das die Spalte `Arbeitslosenquote`, da wir ja in die
 Spalten für die einzelnen Jahre die Arbeitslosenquoten schreiben wollen.
@@ -1157,29 +1231,29 @@ Insgesamt sieht der Funktionsaufruf also so aus:
 
 
 ```{r}
-data_wide_neu <- pivot_wider(data = data_long,
+data_wide_neu <- tidyr::pivot_wider(data = data_long,
                              id_cols = one_of("Land"), 
                              names_from = "Jahr", 
                              values_from = "Arbeitslosenquote")
 data_wide_neu
 ```
 
-Zum Schluss möchten wir uns noch ein Beispiel ansehen indem wir beide Befehle 
+Zum Schluss möchten wir uns noch ein Beispiel ansehen in dem wir beide Befehle 
 nacheinander verwenden.
 Betrachten wir folgenden Datensatz, der Beobachtungen sowohl zur 
 Arbeitslosenquote also auch zu den Exporten enthält:
 
 ```{r, echo=FALSE}
-data_al_exp <- fread(here("data/tidy/wb_example.csv")) %>%
-  rename(Land=iso2c, 
+data_al_exp <- data.table::fread(here("data/tidy/wb_example.csv")) %>%
+  dplyr::rename(Land=iso2c, 
          Jahr=year,
          Exporte=NE.EXP.GNFS.ZS, 
          Arbeitslosigkeit=SL.UEM.TOTL.ZS) %>%
-  select(-country) %>%
-  pivot_longer(cols = one_of("Exporte", "Arbeitslosigkeit"), 
+  dplyr::select(-country) %>%
+  tidyr::pivot_longer(cols = one_of("Exporte", "Arbeitslosigkeit"), 
                names_to = "Variable", 
                values_to = "Wert") %>%
-  pivot_wider(id_cols = one_of("Land", "Variable"), 
+  tidyr::pivot_wider(id_cols = one_of("Land", "Variable"), 
               names_from = "Jahr", 
               values_from = "Wert") 
 data_al_exp
@@ -1189,10 +1263,10 @@ Eine `tidy` Version dieses Datensatzes sähe so aus:
 
 ```{r, echo=FALSE}
 data_al_exp_tidy <- data_al_exp %>%
-  pivot_longer(cols = -one_of("Land", "Variable"), 
+  tidyr::pivot_longer(cols = -one_of("Land", "Variable"), 
                names_to = "Jahr", 
                values_to = "Wert") %>%
-  pivot_wider(id_cols = one_of("Land", "Jahr"), 
+  tidyr::pivot_wider(id_cols = one_of("Land", "Jahr"), 
               values_from = "Wert", 
               names_from = "Variable")
 data_al_exp_tidy
@@ -1209,7 +1283,7 @@ der Liste der Namen ein `-` voran und R wird entsprechend alle hier nicht
 genannten Spalten für die Transformation verwenden:
 
 ```{r}
-data_al_exp_longer <- pivot_longer(data = data_al_exp, 
+data_al_exp_longer <- tidyr::pivot_longer(data = data_al_exp, 
                                    cols = -one_of("Land", "Variable"), 
                                    names_to = "Jahr", 
                                    values_to = "Wert")
@@ -1227,7 +1301,7 @@ Um unser gewünschtes Endergebnis zu erhalten müssen wir diesen Datensatz nun n
 noch breiter machen:
 
 ```{r}
-data_al_exp_tidy <- pivot_wider(data = data_al_exp_longer, 
+data_al_exp_tidy <- tidyr::pivot_wider(data = data_al_exp_longer, 
                                 id_cols = one_of("Land", "Jahr"), 
                                 values_from = "Wert", 
                                 names_from = "Variable")
@@ -1237,12 +1311,12 @@ data_al_exp_tidy
 Insgesamt sähe der Code damit folgendermaßen aus:
 
 ```{r, eval=FALSE}
-data_al_exp_longer <- pivot_longer(data = data_al_exp, 
+data_al_exp_longer <- tidyr::pivot_longer(data = data_al_exp, 
                                    cols = -one_of("Land", "Variable"), 
                                    names_to = "Jahr", 
                                    values_to = "Wert")
 
-data_al_exp_tidy <- pivot_wider(data = data_al_exp_longer, 
+data_al_exp_tidy <- tidyr::pivot_wider(data = data_al_exp_longer, 
                                 id_cols = one_of("Land", "Jahr"), 
                                 values_from = "Wert", 
                                 names_from = "Variable")
@@ -1260,11 +1334,11 @@ Wir könnten also auch schreiben:
 
 ```{r, eval=FALSE}
 data_al_exp_tidy <- data_al_exp %>%
-  pivot_longer(
+  tidyr::pivot_longer(
     cols = -one_of("Land", "Variable"), 
     names_to = "Jahr", 
     values_to = "Wert") %>%
-  pivot_wider(
+  tidyr::pivot_wider(
     id_cols = one_of("Land", "Jahr"), 
     values_from = "Wert", 
     names_from = "Variable")
@@ -1272,27 +1346,30 @@ data_al_exp_tidy <- data_al_exp %>%
 
 Das ist gleich viel besser lesbar! 
 In der ersten Zeile schreiben wir nur das Ausgangsobjekt `data_al_exp`, 
-welches über `%>%` dann unmittelbar als erstes Argument an `pivot_longer()` 
-übergeben wird. Da es sich beim ersten Argumetn um `data` handelt ist das genau 
+welches über `%>%` dann unmittelbar als erstes Argument an `tidyr::pivot_longer()` 
+übergeben wird. Da es sich beim ersten Argument um `data` handelt ist das genau 
 das was wir wollen.
 
 Das Schreiben mit `%>%` führt in der Regel zu sehr transparentem und 
-nochvollziehbarem Code, da Sie die einzelnen Manipulationsschritte schön von 
+nachvollziehbarem Code, da Sie die einzelnen Manipulationsschritte schön von 
 oben nach unten nachlesen können.
 
 > **Tipp:** Streng genommen gibt `%>%` den Output der aktuellen Zeile nicht 
 automatisch als erstes Argument für den Funktionsaufruf der nächsten Zeile weiter.
 Das ist nur das Standardverfahren. Eigentlich gibt es den Output als `.` weiter.
-Wir könnten also auch expliziter schreiben:
+Das erlaubt Ihnen den Output auch in einem anderen als dem ersten Argument zu
+verwenden.
+
+> Wir könnten also auch expliziter schreiben:
 
 ```{r, eval=FALSE}
 data_al_exp_tidy <- data_al_exp %>%
-  pivot_longer(
+  tidyr::pivot_longer(
     data = .,
     cols = -one_of("Land", "Variable"), 
     names_to = "Jahr", 
     values_to = "Wert") %>%
-  pivot_wider(
+  tidyr::pivot_wider(
     data = .,
     id_cols = one_of("Land", "Jahr"), 
     values_from = "Wert", 
@@ -1300,26 +1377,26 @@ data_al_exp_tidy <- data_al_exp %>%
 ```
 
 > Das ist hilfreich, wenn Sie den Output einer Zeile nicht als erstes, sondern
-z.B. als zweites Argument in der nächsen Funktion verwenden wollen.
+z.B. als zweites Argument in der nächsten Funktion verwenden wollen.
 Dann verwenden Sie den `.` einfach explizit da wo Sie ihn brauchen. Da Sie 
 die Argumente ja nicht in der richtigen Reihenfolge angeben müssen solange die 
 Namen stimmen funktioniert also auch folgender Code:
 
 ```{r, eval=FALSE}
 data_al_exp_tidy <- data_al_exp %>%
-  pivot_longer(
+  tidyr::pivot_longer(
     cols = -one_of("Land", "Variable"), 
     names_to = "Jahr", 
     values_to = "Wert",
     data = .) %>%
-  pivot_wider(
+  tidyr::pivot_wider(
     id_cols = one_of("Land", "Jahr"), 
     values_from = "Wert", 
     names_from = "Variable",
     data = .)
 ```
 
-Beide Funktionen, `pivot_wider()` and `pivot_longer()` können noch viel 
+Beide Funktionen, `tidyr::pivot_wider()` and `tidyr::pivot_longer()`, können noch viel 
 komplexere Probleme lösen. 
 Für weitere Anwendungen verweisen wir auf die offizielle
 [Dokumentation](https://tidyr.tidyverse.org/articles/pivot.html).
@@ -1364,20 +1441,20 @@ werden können, zwei Datensätze zusammenzuführen:
 
 Wir vergleichen nun das Verhalten der verschiedenen Funktionen mit Hilfe der 
 beiden Beispiel-Datensätze zum BIP und zur Ungleichheit und fassen sie am Ende 
-des Abschnitts nochmals in einer Tabelle zusammen.
+des Abschnitts nochmals in einer Tabelle (siehe Tabelle \@ref(tab:joins)) zusammen.
 
-Wie alle Funktionen der `*_join()`-Familie verlangt `left_join()` zwei 
+Wie alle Funktionen der `*_join()`-Familie aus dem `dplyr` Paket verlangt `left_join()` zwei 
 notwendige Argumente, `x` und `y`, welche die beiden zu verbindenden Datensätze
 spezifizieren. 
 Wir nennen dabei `x` den 'linken' und `y` den 'rechten' Datensatz.
 
-Die Funktion `left_join()` sollten Sie verewnden, wenn Sie zu allen Zeilen in `x` 
+Die Funktion `dplyr::left_join()` sollten Sie verwenden, wenn Sie zu allen Zeilen in `x` 
 (dem 'linken' Datensatz) die passenden Werte aus `y` hinzufügen wollen. 
 Wenn eine Beobachtung nur in `y` vorkommt, wird diese im finalen Datensatz nicht
 berücksichtigt. 
 Wenn eine Beobachtung nur in `x` vorkommt, wird in den Spalten aus `y` der Wert
 `NA` eingefügt. 
-Man könnte sagen, der 'linke' Datensatz hat in `left_join()` 'Priorität'.
+Man könnte sagen, der 'linke' Datensatz hat in `dplyr::left_join()` 'Priorität'.
 
 Um zu spezifizieren gemäß welcher Spalten die Datensätze verbunden werden sollen
 können wir über das optionale Argument `id` die 'ID-Spalten' definieren. 
@@ -1389,99 +1466,109 @@ Jahren entsprechend zusammenführen schreiben wir:
 `by=c("Jahr"="year", "Land"="country")`, also den Spaltennamen in `x` auf die 
 linke Seite von `=` und das Pendant in `y` auf der rechten Seite vom `=`.
 
-Im Falle von `left_join()` ergibt sich also:
+Im Falle von `dplyr::left_join()` ergibt sich also:
 
 ```{r}
-data_bip_gini_left_join <- left_join(data_BIP, data_gini, 
+data_bip_gini_left_join <- dplyr::left_join(data_BIP, data_gini, 
                                      by=c("Jahr"="year", "Land"="country"))
 data_bip_gini_left_join
 ```
 
-Verwenden wir dagegen `data_gini` als linken und `data_BIP` als 'rechten' Datensatz 
-gibt `left_join()` einen kürzeren gemeinsamen Datensatz aus, da es nur die 
+Verwenden wir dagegen `data_gini` als 'linken' und `data_BIP` als 'rechten' Datensatz 
+gibt `dplyr::left_join()` einen kürzeren gemeinsamen Datensatz aus, da es nur die 
 Beobachtungen aus dem rechten Datensatz übernimmt, für die es ein Pendant im 
 linken Datensatz gibt.
 
 ```{r}
-data_gini_bip_left_join <- left_join(data_gini, data_BIP, 
+data_gini_bip_left_join <- dplyr::left_join(data_gini, data_BIP, 
                                      by=c("year"="Jahr", "country"="Land"))
 data_gini_bip_left_join
 ```
 
-Die Funktion `inner_join()` unterscheidet sich von `left_join()` darin, dass
-nur die Zeilen in den gemeinsamen Datensatz übernimmt, die sowohl in `x` als 
-auch `y` enthalten sind:
+Die Funktion `dplyr::inner_join()` unterscheidet sich von `dplyr::left_join()` darin, dass
+nur die Zeilen in den gemeinsamen Datensatz übernommen werden, die sowohl in `x` als 
+auch in `y` enthalten sind:
 
 ```{r}
-data_bip_gini_inner_join <- inner_join(data_BIP, data_gini, 
+data_bip_gini_inner_join <- dplyr::inner_join(data_BIP, data_gini, 
                                       by=c("Jahr"="year", "Land"="country"))
 data_bip_gini_inner_join
 ```
 
 
-Das Verhalten von `right_join()` ist analog zu `left_join()`, nur hat hier der
+Das Verhalten von `dplyr::right_join()` ist analog zu `dplyr::left_join()`, nur hat hier der
 'rechte' Datensatz, also der dem Argument `y` übergebene Datensatz Priorität:
 
 ```{r}
-data_gini_bip_right_join <- right_join(data_gini, data_BIP, 
+data_gini_bip_right_join <- dplyr::right_join(data_gini, data_BIP, 
                                        by=c("year"="Jahr", "country"="Land"))
 data_gini_bip_right_join
 ```
 
 Wenn Sie keinem der beiden Datensätze eine Priorität einräumen möchten und
 alle Zeilen in jedem Fall behalten wollen, dann wählen Sie am besten die Funktion
-`full_join()`:
+`dplyr::full_join()`:
 
 ```{r}
-data_bip_gini_full_join <- full_join(data_BIP, data_gini, 
+data_bip_gini_full_join <- dplyr::full_join(data_BIP, data_gini, 
                                       by=c("Jahr"="year", "Land"="country"))
 data_bip_gini_full_join
 ```
 
-`semi_join()` und `anti_join()` funktionieren ein wenig anders als die bisher
-vorgestellten Funktionen, da sie Datensätze strikt genommen nicht 
-zusammenführen. 
-Vielmehr filtern Sie die Zeilen von `x` gemäß der in `y` vorkommenden Werte.
+Die Funktionen `dplyr::semi_join()` und `dplyr::anti_join()` funktionieren ein 
+wenig anders als die bisher vorgestellten Funktionen, da sie Datensätze strikt
+genommen nicht zusammenführen. 
+Vielmehr filtern sie die Zeilen von `x` gemäß der in `y` vorkommenden Werte.
 
-`semi_join()` produziert einen Datensatz, der alle Spalten und Zeilen von `x`
+`dplyr::semi_join()` produziert einen Datensatz, der alle Spalten und Zeilen von `x`
 enthält, für die es auch in `y` einen entsprechenden Wert gibt.
 Der resultierende Datensatz enthält aber *nur die Spalten vom linken Datensatz*
-(`x`):
+(`x`). Das kann hilfreich sein, wenn der Datensatz `x` deutlich kleiner ist und
+Sie in `x` keinerlei fehlende Werte haben wollen:
 
 ```{r}
-data_bip_gini_semi_join <- semi_join(data_BIP, data_gini, 
+data_bip_gini_semi_join <- dplyr::semi_join(data_BIP, data_gini, 
                                      by=c("Jahr"="year", "Land"="country"))
 data_bip_gini_semi_join
 ```
 
-`anti_join()` ist quasi das 'Spiegelbild' zu `semi_join()`: 
+`dplyr::anti_join()` ist quasi das 'Spiegelbild' zu `dplyr::semi_join()`: 
 genau wie `semi_join()` produziert es einen Datensatz, der nur die Spalten von
 `x` enthält, und zwar diese, für die es in `y` **keinen** entsprechenden Wert 
 gibt:
 
 ```{r}
-data_bip_gini_anti_join <- anti_join(data_BIP, data_gini, 
+data_bip_gini_anti_join <- dplyr::anti_join(data_BIP, data_gini, 
                                      by=c("Jahr"="year", "Land"="country"))
 data_bip_gini_anti_join
 ```
 
-Zum Schluss kommen wir mit `nest_join()` zu der komplexesten Funktion in der
+Zum Schluss kommen wir mit `dplyr::nest_join()` zu der komplexesten Funktion in der
 `*_join()`-Familie.
 Hier wird für jede Zeile im linken Datensatz in einer neuen Spalte ein ganzer
 `data.frame`^[Eigentlich ein [tibble](https://r4ds.had.co.nz/tibbles.html).] hinzugefügt,
-der alle Zeilen vom rechten Datensatz enthält, die zu der entsprechenden Zeile passen:
+der alle Zeilen vom rechten Datensatz enthält, die zu der entsprechenden linken Zeile passen:
 
 ```{r}
-data_bip_gini_nest_join <- nest_join(data_BIP, data_gini, 
+data_bip_gini_nest_join <- dplyr::nest_join(data_BIP, data_gini, 
                                      by=c("Jahr"="year", "Land"="country"))
 data_bip_gini_nest_join
 ```
 
-Wenn wir die angehängten `data.frame`s inspizieren:
+In der Spalte `y` finden sich nun also sechs Data Frames (einer pro Zeile):
+
+```{r}
+data_bip_gini_nest_join[["y"]] # die neue Spalte
+```
+
+Jedes einzelne Element der Spalte `y` ist dabei ein eigener `data.frame`:
 
 ```{r}
 data_bip_gini_nest_join[["y"]][[1]] # erste Zeile der neuen Spalte
 ```
+
+Das bedeutet, dass zur ersten Zeile des Datensatzes `data_BIP` aus dem Datensatz 
+`data_gini` genau eine Spalte passt und diese Spalte den Wert `1` enthält.
 
 In der Praxis werden Sie `nest_join()` wenig verwenden, es ist wegen seiner 
 Flexibilität jedoch für das Programmieren extrem hilfreich.
@@ -1494,14 +1581,24 @@ vorliegen sollten, so wie `data_BIP` und `data_Gini` in unserem Beispiel.
 
 Das dritte (optionale) Argument `by`, welches die ID-Spalten spezifiziert, 
 ist ebenfalls bei allen Funktionen gleich.
-Achtung: wenn sie `by` nicht explizit spezifizieren verwenden die Funktionen 
+Achtung: wenn Sie `by` nicht explizit spezifizieren verwenden die Funktionen 
 alle Spalten mit gleichen Namen als ID-Spalten. 
-Zwar geben Sie zu Ihrer Info eine Warnung aus, aber Sie sollten das trotzdem
+Zwar geben sie zur Info eine Warnung aus, aber Sie sollten das trotzdem
 immer vermeiden und möglichst explizit sein. 
 Daher sollte `by` immer explizit gesetzt werden!
+Ansonsten erhalten Sie (ohne Warnung) solche ungewünschten Ergebnisse:
+
+```{r}
+debt_data_IWF <- data.frame(Land=c("DEU", "GRC"), 
+                            Schulden=c(10, 50))
+debt_data_WELTBANK <- data.frame(Land=c("GRC", "DEU"), 
+                                 Schulden=c(100, 25))
+debt_data <- dplyr::full_join(debt_data_IWF, debt_data_WELTBANK)
+debt_data
+```
 
 Darüber hinaus findet sich das optionale Argument `suffix` sowohl bei 
-`inner_join()`, `left_join()`, `right_join()` als auch `full_join()`.
+`dplyr::inner_join()`, `dplyr::left_join()`, `dplyr::right_join()` als auch `dplyr::full_join()`.
 Hier spezifizieren Sie eine Zeichenkette, die verwendet wird um Spalten, die in
 beiden Datensätzen vorkommen, aber keine ID-Spalten sind, im gemeinsamen 
 Datensatz voneinander abzugrenzen. Standardmäßig ist dieses Argument auf 
@@ -1510,25 +1607,30 @@ haben, diese aber nicht als ID-Spalte verwendet wird, beide Spalten als
 `Schulden.x` und `Schulden.y` in den gemeinsamen Datensatz aufgenommen werden:
 
 ```{r}
-debt_data_IWF <- data.frame(Land=c("DEU", "GRC"), Schulden=c(10, 50))
-debt_data_WELTBANK <- data.frame(Land=c("GRC", "DEU"), Schulden=c(100, 25))
-debt_data <- full_join(debt_data_IWF, debt_data_WELTBANK, 
+debt_data_IWF <- data.frame(Land=c("DEU", "GRC"), 
+                            Schulden=c(10, 50))
+debt_data_WELTBANK <- data.frame(Land=c("GRC", "DEU"), 
+                                 Schulden=c(100, 25))
+debt_data <- dplyr::full_join(debt_data_IWF, debt_data_WELTBANK, 
                        by=c("Land"))
 debt_data
 ```
 
-Oder mit explizitem `suffix`:
+Oder wir geben für den finalen Datensatz ein explizites `suffix` an, damit die
+Variablennamen aussagekräftig werden:
 
 ```{r, warning=FALSE}
-debt_data <- full_join(debt_data_IWF, debt_data_WELTBANK, 
+debt_data <- dplyr::full_join(debt_data_IWF, debt_data_WELTBANK, 
                        by=c("Land"), 
                        suffix=c(".IWF", ".WELTBANK"))
 debt_data
 ```
 
-Abschließend fassen wir noch die Funktionen in einer Tabelle zusammen, wobei 
-'DS' für 'Datensatz steht, mit `x` der linke und `y` der rechte Datensatz 
-gemeint ist, wie in den Argumennten von `*_join()`.
+Tabelle \@ref(tab:joins) fasst die gerade diskutierten Funktionen noch einmal 
+zusammen.
+
+
+Table: (\#tab:joins) Überblick zu den Funktionen der `*_join()`-Familie des Pakets `dplyr`. 'DS' steht für 'Datensatz', mit `x` ist der linke und mit`y` der rechte Datensatz gemeint, wie in den Argumenten von `*_join()`.
 
 | Funktion | Effekt                   | Veränderung Anzahl Zeilen? | 
 |----------+--------------------------+----------------------------|
@@ -1548,10 +1650,10 @@ man überprüfen ob die Anzahl an Zeilen so wie erwartet ist und ob durch das
 Zusammenführen Duplikate entstanden sind. Letzteres kann gerade in der Arbeit
 mit makroökonomischen Daten häufig vorkommen, wenn in einem Datensatz z.B. 
 zwischen Ost-Deutschland und West-Deutschland unterschieden wird und man vorher
-die Namen aber in Länderkürzen überführt hat. In diesem Fall trefen um 1990 
+die Namen aber in Länderkürzel überführt hat. In diesem Fall treten um 1990 
 herum häufig Duplikate auf. Damit kann man umgehen, man muss es aber erst einmal
 merken. Ich benutze z.B. immer die folgende selbst geschriebene Funktion um zu
-überprüfen ob es in einem neu generierten Datensatz auch keine Duplikate gibt:
+überprüfen ob es in einem neu generierten Datensatz Duplikate gibt:
 
 ```{r}
 #' Test uniqueness of data table
@@ -1585,7 +1687,7 @@ test_uniqueness <- function(data_table, index_vars, print_pos=TRUE){
 > Hier ein kleines Anwendungsbeispiel:
 
 ```{r}
-data_bip_gini_full_join <- full_join(data_BIP, data_gini, 
+data_bip_gini_full_join <- dplyr::full_join(data_BIP, data_gini, 
                                       by=c("Jahr"="year", "Land"="country"))
 test_uniqueness(data_bip_gini_full_join, 
                 index_vars = c("Jahr", "Land"))
@@ -1610,8 +1712,8 @@ gini_data <- data.frame(Land=c("West Germany", "Germany", "West Germany",
 ```{r}
 bip_data
 gini_data
-gini_data <- mutate(gini_data, Land=countrycode(Land, "country.name", "iso3c"))
-full_data <- full_join(bip_data, gini_data, 
+gini_data <- dplyr::mutate(gini_data, Land=countrycode(Land, "country.name", "iso3c"))
+full_data <- dplyr::full_join(bip_data, gini_data, 
                        by=c("Land", "Jahr"))
 full_data
 test_uniqueness(full_data, 
@@ -1627,11 +1729,9 @@ Datensätzem im `data.table`-Format findet sich
 
 Sehr häufig haben Sie einen Rohdatensatz erhoben und benötigen für die 
 weitere Analyse nur einen Teil dieses Datensatzes.
-Zwei Szenarien sind denkbar: 
-zum einen möchten Sie bestimmte Spalten nicht verwenden. 
+Zwei Szenarien sind denkbar. Zum einen möchten Sie bestimmte Spalten nicht verwenden. 
 Wir sprechen dann davon den Datensatz zu *selektieren*.
-Zum anderen möchten sie vielleicht nur Beobachtungen verwenden, die eine
-bestimmte Bedingung erfüllen, z.B. im Zeitraum 2012-2014 erhoben zu sein.
+Zum anderen möchten Sie bestimmte Zeilen nicht verwenden. Sie wollen nur Beobachtungen verwenden, die eine bestimmte Bedingung erfüllen, z.B. im Zeitraum 2012-2014 erhoben zu sein.
 In diesem Fall sprechen wir von *filtern*.
 
 Wir lernen hier wie wir diese beiden Aufgaben mit den Funktionen `filter()` und
@@ -1644,7 +1744,7 @@ Betrachten wir folgenden Beispieldatensatz:
 data_al_exp_tidy
 ```
 
-Um einzelne Spalten zu selektieren verwenden wir die Funktion `select()`.
+Um einzelne Spalten zu selektieren verwenden wir die Funktion `dplyr::select()`.
 Diese verlangt als erstes Argument den zu manipulierenden Datensatz und
 danach die Namen oder Indices der Spalten, die behalten oder eliminiert
 werden sollen. Spalten die behalten werden sollen werden einfach benannt, 
@@ -1652,31 +1752,31 @@ bei Spalten, die eliminiert werden sollen schreiben Sie ein `-` vor den Namen:
 
 ```{r}
 head(
-  select(data_al_exp_tidy, Land, Exporte), 
+  dplyr::select(data_al_exp_tidy, Land, Exporte), 
   2)
 ```
 
 ```{r}
 head(
-  select(data_al_exp_tidy, -Exporte), 
+  dplyr::select(data_al_exp_tidy, -Exporte), 
   2)
 ```
 
 Häufig ist es besser die Namen der Spalten als `character` zu übergeben.
-Das ist nicht nur besser lesbar, Sie haben es später auch einfacher komplexere
+Das ist nicht nur besser lesbar, es wird später auch einfacher komplexere
 Vorgänge zu programmieren indem Sie Funktionen schreiben, die den Namen von 
 Spalten als Argumente akzeptieren.
 In diesem Fall können Sie wieder die Hilfsfunktion `one_of()` verwenden:
 
 ```{r}
 head(
-  select(data_al_exp_tidy, one_of("Land", "Jahr")), 
+  dplyr::select(data_al_exp_tidy, one_of("Land", "Jahr")), 
   2)
 ```
 
 ```{r}
 head(
-  select(data_al_exp_tidy, -one_of("Land", "Jahr")), 
+  dplyr::select(data_al_exp_tidy, -one_of("Land", "Jahr")), 
   2)
 ```
 
@@ -1695,7 +1795,7 @@ ersten Argument zu verwenden:
 
 ```{r}
 data_al_exp_selected <- data_al_exp_tidy %>%
-  select(one_of("Land", "Jahr", "Exporte"))
+  dplyr::select(one_of("Land", "Jahr", "Exporte"))
 head(data_al_exp_selected, 2)
 ```
 
@@ -1703,8 +1803,8 @@ Als nächstes wollen wir den Datensatz nach bestimmten Bedingungen filtern.
 Dabei ist es wichtig, die [logischen Operatoren](#basics-logic) zu kennen,
 denn diese werden verwendet um Datensätze zu filtern.
 
-Die Funktion `filter()` akzeptiert als erstes Argument den Datensatz.
-Wie oben folgen wir der Konvention das in der Regel implizit über `%>%` zu
+Die Funktion `dplyr::filter()` akzeptiert als erstes Argument den Datensatz.
+Wie oben folgen wir der Konvention das Argument in der Regel implizit über `%>%` zu
 übergeben.
 Danach können wir beliebig viele logische Abfragen, jeweils durch Komma getrennt,
 an die Funktion übergeben. 
@@ -1713,7 +1813,7 @@ wollen geht das mit:
 
 ```{r}
 data_al_exp_filtered <- data_al_exp_tidy %>%
-  filter(Land == "AT",
+  dplyr::filter(Land == "AT",
          Jahr > 2012)
 data_al_exp_filtered
 ```
@@ -1726,22 +1826,22 @@ geht das mit:
 
 ```{r}
 data_al_exp_filtered <- data_al_exp_tidy %>%
-  filter(
+  dplyr::filter(
     (Land == "AT" & Jahr %in% c(2012, 2014)) | (Land=="DE" & Arbeitslosigkeit>5.3)
     )
 data_al_exp_filtered
 ```
 
 Zuletzt wollen wir noch sehen wie wir einzelne **Spalten umbenennen** können.
-Das geht ganz einfach mit der Funktion `rename()`, welche als erstes Argument
-den Datensatz, und dann die Umbennenungsvorgänge in der Form `Name_neu = Name_alt`
+Das geht ganz einfach mit der Funktion `dplyr::rename()`, welche als erstes Argument
+den Datensatz, und dann die Umbenennungsvorgänge in der Form `Name_neu = Name_alt`
 verlangt.
 
 Als Beispiel:
 
 ```{r}
 data_al_exp_tidy %>%
-  rename(country=Land, 
+  dplyr::rename(country=Land, 
          year_observation=Jahr, 
          exports=Exporte, 
          unemployment=Arbeitslosigkeit)
@@ -1758,14 +1858,14 @@ den Code, mit dem wir
 
 ```{r}
 data_al_exp_tidy %>%
-  select(
+  dplyr::select(
     -one_of("Arbeitslosigkeit")
     ) %>%
-  filter(
+  dplyr::filter(
     Jahr>2012,
     Land=="DE"
     ) %>%
-  rename(
+  dplyr::rename(
     country=Land, 
     year_observation=Jahr, 
     exports=Exporte)
@@ -1788,7 +1888,7 @@ Zweck werden wir hier die Funktionen `mutate()`, `summarise()` und `group_by()`
 aus dem Paket [dplyr](https://github.com/tidyverse/dplyr) 
 [@R-dplyr] verwenden.
 
-Wir verwenden `mutate()` um bestehende Spalten zu verändern oder neue Spalten zu
+Wir verwenden `dplyr::mutate()` um bestehende Spalten zu verändern oder neue Spalten zu
 erstellen. 
 Betrachten wir dafür folgenden Beispieldatensatz:
 
@@ -1798,22 +1898,22 @@ unemp_data_wb <- WDI::WDI(country = c("DE", "AT"),
                                         "SL.TLF.TOTL.FE.ZS", #"SL.TLF.TOTL.MA.ZS",
                                         "SP.POP.TOTL", "SL.TLF.TOTL.IN"), 
                           start = 2010, end = 2016) %>%
-  rename(workforce_total=SL.TLF.TOTL.IN, # 1000 Persons
+  dplyr::rename(workforce_total=SL.TLF.TOTL.IN, # 1000 Persons
          population_total=SP.POP.TOTL, # 1000 Persons
          laborforce_female=SL.TLF.TOTL.FE.ZS, # % of total labor force
          #laborforce_female=SL.TLF.TOTL.MA.ZS, # % of total labor force
          unemp_male=SL.UEM.TOTL.MA.ZS, # % of male labor force
          unemp_female=SL.UEM.TOTL.FE.ZS) # % of female labor force
-fwrite(unemp_data_wb, here("data/tidy/wb_unemployment.csv"))
+data.table::fwrite(unemp_data_wb, here("data/tidy/wb_unemployment.csv"))
 ```
 
 ```{r, echo=FALSE}
-unemp_data_wb <- fread(here("data/tidy/wb_unemployment.csv"), 
+unemp_data_wb <- data.table::fread(here("data/tidy/wb_unemployment.csv"), 
                        colClasses = c(rep("character", 2), rep("double", 6))
                        ) %>%
-  select(-country) %>%
-  rename(country=iso2c) %>%
-  select(one_of("country", "year", "laborforce_female", 
+  dplyr::select(-country) %>%
+  dplyr::rename(country=iso2c) %>%
+  dplyr::select(one_of("country", "year", "laborforce_female", 
                 "workforce_total", "population_total"))
 ```
 ```{r}
@@ -1821,20 +1921,24 @@ head(unemp_data_wb)
 ```
 
 Angenommen wir möchten das Land mit den `iso3c`-Codes anstatt der `iso2c`-Codes
-angeben, dann könnten wir mit der Funktion `mutate()` die Spalte `country` ganz
+angeben, dann könnten wir mit der Funktion `dplyr::mutate()` die Spalte `country` ganz
 einfach verändern:
 
 ```{r}
-unemp_data_wb <- unemp_data_wb %>%
-  mutate(
-    country = countrycode(country, "iso2c", "iso3c")
+unemp_data_wb2 <- unemp_data_wb %>%
+  dplyr::mutate(
+    country = countrycode::countrycode(country, "iso2c", "iso3c")
     )
 head(unemp_data_wb, 2)
 ```
 
-Wir schreiben also einfach den Namen der zu verändernden Spalte und den 
-neuen Ausdruck hinter das `=`.
-Wir können mit `mutate()` aber auch einfach neue Spalten erstellen, wenn der
+Links neben dem `=` steht der Name der neuen Spalte 
+(wenn der Name bereits existiert wird die existierende Spalte verändert).
+Rechts neben dem `=` wird die Berechnung der neuen Werte spezifiziert.
+Wie das Beispiel zeigt, kann hier durchaus der ursprüngliche Wert der Spalte
+verwendet werden.
+
+Wir können mit `dplyr::mutate()` aber auch einfach neue Spalten erstellen, wenn der
 Name links vom `=` noch nicht als Spalte im Datensatz existiert.
 
 Wenn Sie nun z.B. wissen möchten, wie viele Frauen absolut in Deutschland und 
@@ -1842,12 +1946,12 @@ Wenn Sie nun z.B. wissen möchten, wie viele Frauen absolut in Deutschland und
 der Anzahl an Erwerbstätigen multiplizieren.
 Das bedeutet, wir müssen die Spalten `laborforce_female` und `workforce_total`
 multiplizieren und durch 100 Teilen, da laborforce_female in Prozent angegeben ist. 
-Das machen wir mit der Funktion `mutate()`, wobei wir eine neue
+Das machen wir mit der Funktion `dplyr::mutate()`, wobei wir eine neue
 Spalte mit dem Namen `workers_female_total` erstellen wollen:
 
 ```{r}
 unemp_data_wb <- unemp_data_wb %>%
-  mutate(
+  dplyr::mutate(
     workers_female_total = laborforce_female*workforce_total/100
     )
 head(unemp_data_wb, 2)
@@ -1855,64 +1959,64 @@ head(unemp_data_wb, 2)
 
 Vielleicht sind wir für unseren Anwendungsfall gar nicht so sehr an der 
 Veränderung über die Zeit interessiert, sondern wollen die 
-durchschnittliche Anzahl an Frauen in der Erwerbsbevölkerung berechnen?
+durchschnittliche Anzahl an Frauen in der Erwerbsbevölkerung berechnen.
 Das würde bedeuten, dass wir die Anzahl der Spalten in unserem Datensatz 
-reduzieren - etwas das bei der Anwendung von `mutate()` nie passieren würde.
-Dafür gibt es die Funktion `summarise()`:^[Die Funktionen `summarize()` und 
-`summarise()` sind Synonyme.]
+reduzieren - etwas das bei der Anwendung von `dplyr::mutate()` nie passieren würde.
+Dafür gibt es die Funktion `dplyr::summarise()`:^[Die Funktionen `dplyr::summarize()` und 
+`dplyr::summarise()` sind Synonyme.]
 
 ```{r}
 unemp_data_wb_summarized <- unemp_data_wb %>%
-  summarise(
+  dplyr::summarise(
     fem_workers_avg = mean(workers_female_total)
     )
 unemp_data_wb_summarized
 ```
 
-Wie Sie sehen, funktioniert die Syntax quasi äquivalent zu `mutate()`, allerdings
-kondensiert `summarise()` den gesammten Datensatz auf die definierte Zahl. 
+Wie Sie sehen, funktioniert die Syntax quasi äquivalent zu `dplyr::mutate()`, allerdings
+kondensiert `dplyr::summarise()` den gesamten Datensatz auf die definierte Zahl. 
 
 Im gerade berechneten Durchschnitt sind sowohl die Werte für Deutschland als auch
 Österreich eingegangen. Das erscheint erst einmal irreführend, es wäre wohl 
 besser einen Durchschnittswert jeweils für Deutschland und Österreich getrennt
-zu berechnen
+zu berechnen.
 Das können wir erreichen, indem wir den Datensatz vor der Anwendung von 
-`summarise()` **gruppieren**.
-Das funktioniert mit der Funktion `group_by()`, die als Argumente die 
+`dplyr::summarise()` **gruppieren**.
+Das funktioniert mit der Funktion `dplyr::group_by()`, die als Argumente die 
 Spalten, nach denen wir gruppieren wollen, akzeptiert.
 Sie sollten sich in jedem Fall angewöhnen, nach dem Gruppieren den Datensatz mit
-`ungroup()` wieder in den ursprünglichen Zustand zurückzuführen:
+`dplyr::ungroup()` wieder in den ursprünglichen Zustand zurückzuführen:
 
 ```{r}
 unemp_data_wb %>%
-  group_by(country) %>%
-  summarise(
+  dplyr::group_by(country) %>%
+  dplyr::summarise(
     fem_workers_avg = mean(workers_female_total)
     ) %>%
-  ungroup()
+  dplyr::ungroup()
 ```
 
-Natürlich können Sie `group_by()` auch im Zusammenhang mit `mutate()` oder anderen
+Natürlich können Sie `dplyr::group_by()` auch im Zusammenhang mit `dplyr::mutate()` oder anderen
 Funktionen verwenden. 
 Wie Sie sehen ist der Effekt aber durchaus unterschiedlich:
 
 ```{r}
 unemp_data_wb %>%
-  group_by(country) %>%
-  mutate(
+  dplyr::group_by(country) %>%
+  dplyr::mutate(
     fem_workers_avg = mean(workers_female_total)
     ) %>%
-  ungroup()
+  dplyr::ungroup()
 ```
 
 Der Datensatz wird nicht verkleinert und keine Spalte geht verloren. 
 Dafür wiederholen sich die Werte in der neu geschaffenen Spalte.
-Je nach Anwendungsfall ist also die Verwendung von `mutate()` oder 
-`summarise()` im Zusammenspiel mit `group_by()` angemessen.
+Je nach Anwendungsfall ist also die Verwendung von `dplyr::mutate()` oder 
+`dplyr::summarise()` im Zusammenspiel mit `dplyr::group_by()` angemessen.
 
 Im Folgenden werden wir uns noch ein etwas komplexeres Beispiel anschauen:
 wir werden zunächst die jährliche Veränderung in der absoluten Anzahl der 
-weiblichen Erwertbstätigen in Österreich und Deutschland beschäftigen und
+weiblichen Erwertbstätigen in Österreich und Deutschland ermitteln und
 dann vergleichen ob dieser Wert größer ist als das Bevölkerungswachstum in dieser
 Zeit.
 Dazu verwenden wir die Funktion `dplyr::lag()` um den Wert vor dem aktuellen 
@@ -1926,49 +2030,49 @@ Zuletzt wollen wir nur noch die berechneten Spalten im Datensatz behalten.
 
 ```{r}
 unemp_data_wb_growth <- unemp_data_wb %>%
-  group_by(country) %>%
-  mutate(
+  dplyr::group_by(country) %>%
+  dplyr::mutate(
     pop_growth=(
       population_total-lag(population_total))/lag(population_total),
     fem_force_growth=(
       workers_female_total-lag(workers_female_total))/lag(workers_female_total)
     ) %>%
-  ungroup() %>%
-  mutate(fem_force_growth_bigger=fem_force_growth>pop_growth) %>%
-  select(one_of("country", "year", "pop_growth", 
+  dplyr::ungroup() %>%
+  dplyr::mutate(fem_force_growth_bigger=fem_force_growth>pop_growth) %>%
+  dplyr::select(one_of("country", "year", "pop_growth", 
                 "fem_force_growth", "fem_force_growth_bigger"))
 unemp_data_wb_growth
 ```
 
-Besonders hilfreich sind die Versionen von `mutate()` und `summarize()`, 
+Besonders hilfreich sind die Versionen von `dplyr::mutate()` und `dplyr::summarize()`, 
 welche mehrere Spalten auf einmal bearbeiten. Ich werde hier nicht im 
-Detail darauf eingehen, sondern einen kurzen Einblick in diese Funktionalität 
+Detail darauf eingehen, sondern nur einen kurzen Einblick in diese Funktionalität 
 geben. Angenommen Sie wollen das durchschnittliche Wachstum in Deutschland und
 Österreich sowohl für das Bevölkerungswachstum als auch das Wachstum der 
 weiblichen Erwerbsbevölkerung berechnen.
-Ausgehen vom letzten Datensatz
+Ausgehend vom letzten Datensatz
 
 ```{r}
 unemp_data_wb_growth_avg <- unemp_data_wb_growth %>%
-  select(-fem_force_growth_bigger)
+  dplyr::select(-fem_force_growth_bigger)
 head(unemp_data_wb_growth_avg, 2)
 ```
 
-geht das folgendermaßen mit der Funktion `summarise_all()`:
+geht das folgendermaßen mit der Funktion `dplyr::summarise_all()`:
 
 ```{r}
 unemp_data_wb_growth_avg %>%
-  select(-year) %>%
-  group_by(country) %>%
-  summarise_all(mean, na.rm=TRUE) %>%
-  ungroup()
+  dplyr::select(-year) %>%
+  dplyr::group_by(country) %>%
+  dplyr::summarise_all(mean, na.rm=TRUE) %>%
+  dplyr::ungroup()
 ```
 
 Eine schöne Übersicht über diese praktischen Funktionen gibt es 
 [hier](https://dplyr.tidyverse.org/reference/scoped.html).
 
-Es gibt noch zahlreiche hilfreiche Erweiterungen zu den Funktionen `mutate()`,
-`summarize()`, `group_by()` und Co. Schauen Sie doch mal auf die Homepage des
+Es gibt noch zahlreiche hilfreiche Erweiterungen zu den Funktionen `dplyr::mutate()`,
+`dplyr::summarize()`, `dplyr::group_by()` und Co. Schauen Sie doch mal auf die Homepage des
 Pakets [dplyr](https://github.com/tidyverse/dplyr).
 Ansonsten können Sie durch Googlen eigentlich immer eine passgenaue Lösung
 für Ihr Problem herausfinden - auch wenn es beim ersten Mal häufig ein wenig
@@ -1981,32 +2085,32 @@ Das zentrale Leitmotiv dieses Kapitels war die Idee, dass
 sein sollte.
 Wenn Sie gefragt werden, wie Ihre Ergebnisse zustande gekommen sind, sollten Sie
 in der Lage sein, jeden einzelnen Arbeitsschritt seit der ersten Akquise der
-Daten offenzulegen, bzw. nachvollziebar zu machen.
+Daten offenzulegen, bzw. nachvollziehbar zu machen.
 
-Es ist ein zentraler Nachteil von *point-and-click*-Software, bei der eine 
-Reproduktion bedeuten würde, dass Sie jeden einzelnen Mausklick vor dem Rechner
+Es ist ein zentraler Nachteil von *point-and-click*-Software (wie z.B. SPSS), 
+dass Sie für eine Reproduktion jeden einzelnen Mausklick vor dem Rechner
 wiederholen, bzw. erklären müssten. 
 Zum Glück ist das mit Skript-basierten Sprachen wie R anders:
-Sie können einfach ein Skript `Datenaufbereitung.R` anlegen, in dem Sie die aus
+Sie können einfach ein Skript `Datenaufbereitung.R` anlegen, in welchem Sie die aus
 dem Internet heruntergeladenen Daten in den für die Analyse aufbereiteten Datensatz
 umwandeln.
-Wenn jemand wissen möchte, wo die Daten, die Sie in Ihrer Analyse verwenden, 
-herkommen, brauchen Sie der Person nur die Quelle der Daten zu nennen und ihr 
+Wenn jemand wissen möchte, wo die Daten herkommen, die Sie in Ihrer Analyse verwenden, 
+brauchen Sie der Person nur die Quelle der Daten zu nennen und ihr 
 Skript zu zeigen.
-So ist es für Sie auch leicht Ihre Analyse mit geupdateten Daten zu aktualisieren.
+So ist es für Sie auch leicht Ihre Analyse mit neuen Daten zu aktualisieren.
 
-Daher hat sich in der Praxis häufig die folgende oder eine ähnliche Ordnerstruktur
-bewährt:
+Daher hat sich in der Praxis häufig die in Abbildung \@ref(fig:Ordnerstruktur-data) 
+aufgezeigte oder eine ähnliche Ordnerstruktur bewährt:
 
-```{r, echo=FALSE, fig.align='center'}
+```{r Ordnerstruktur-data, echo=FALSE, fig.align='center', out.width='40%', fig.cap='Bewährte Ordnerstruktur für Forschungsprojekte mit R.'}
 knitr::include_graphics("figures/chap-data-Ordnerstruktur.png")
 ```
 
 Der Vorteil an dieser Ordnerstruktur ist, dass Sie die Rohdaten in einem separaten 
-Ordner gespeichert haben und so explizit vom Rest ihres Workflows abgrenzen.
+Ordner gespeichert haben und so explizit vom Rest Ihres Workflows abgrenzen.
 Denn: **Rohdaten sollten nie bearbeitet werden**. 
-Zu leicht geht in Vergessenheit welche Änderungen tatsächlich vorgenommen wurden
-und ihre Forschung wird dadurch nicht mehr replizierbar - weder für Sie noch
+Zu leicht gerät in Vergessenheit welche Änderungen tatsächlich vorgenommen wurden
+und Ihre Forschung wird dadurch nicht mehr replizierbar - weder für Sie noch
 für andere.
 Alle weiteren Änderungen an den Rohdaten sollten über ein Skript vorgenommen
 werden, sodass immer klar ist wie Sie von den Rohdaten zu den Analysedaten kommen.
@@ -2022,7 +2126,7 @@ In der Praxis würden Sie also aus den Daten in `raw`, die entweder direkt aus d
 Internet geladen wurden oder direkt aus einem Experiment hervorgegangen sind, per
 Skript `Datenaufbereitung.R` den Datensatz `AufbereiteteDaten.csv` erstellen.
 Dabei können auch mehrere Rohdatensätze zusammengeführt werden.
-Dieser kann dann in der weiteren Analyse verwendet werden, z.B. im Skript
+Dieser Datensatz kann dann in der weiteren Analyse verwendet werden, z.B. im Skript
 `StatistischeAnalyse.R`, das dann einen Output in Form einer Datei
 `WunderbarerErgebnisplot.pdf` produziert.
 
@@ -2030,7 +2134,7 @@ Der Vorteil: wenn jemand genau wissen möchte, wie `WunderbarerErgebnisplot.pdf`
 produziert wurde können Sie sämtliche Schritte ausgehend von den vollkommen 
 unangetasteten Rohdaten transparent machen.
 Durch die Trennung unterschiedlicher Arbeitsschritte - wie Datenaufbereitung und
-statistische Analyse - bleibt ihr Projekt zudem übersichtlich.
+statistische Analyse - bleibt Ihr Projekt zudem übersichtlich.
 
 
 ## Anmerkungen zu Paketen {#data-packages}
@@ -2043,7 +2147,7 @@ Dies wird in diesem [kritischen Blogpost](https://github.com/matloff/TidyverseSk
 sehr schön beschrieben.
 
 Was die Einsteigerfreundlichkeit vom `tidyverse` angeht, bin ich jedoch anderer 
-Meinung als der Verfasser: meiner Meinung nach machen diese Pakete die Arbeit mit 
+Meinung als der Verfasser des Blogposts: meiner Meinung nach machen diese Pakete die Arbeit mit 
 Datensätzen sehr einfach, und für kleine Datensätze (<500MB) benutze ich das 
 `tidyverse` auch in meiner eigenen Forschung. 
 Es sollte jedoch klar sein, dass es nur eine Option 
@@ -2051,17 +2155,12 @@ unter mehreren ist, weswegen ich versuche in meinen Paketen vollständig auf
 das `tidyverse` zu verzichten - auch weil es in puncto Performance deutlich 
 schlechter ist als z.B. [data.table](https://rdatatable.gitlab.io/data.table/) 
 [@R-data.table], das auch für mehrere hundert GB große Datensätze gut geeignet ist. 
-
-Aufgrund der Einsteigerfreundlichkeit habe ich aber entschlossen, in diesem Skript
-häufig mit dem `tidyverse` zu arbeiten. Ich empfehle jedoch jedem, den 
-[folgenden kritischen Blogpost](https://github.com/matloff/TidyverseSkeptic)
-zu lesen und, falls Sie weiter mit R arbeiten, sich das Paket 
-[data.table](https://rdatatable.gitlab.io/data.table/) [@R-data.table] anzueignen.
-Das [offizielle Tutorial](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) 
-ist dafür gut geeignet, macht m.E. aber auch deutlich, 
+Zur Aneignung des Pakets 
+[data.table](https://rdatatable.gitlab.io/data.table/) [@R-data.table] ist das [offizielle Tutorial](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) 
+gut geeignet, macht m.E. aber auch deutlich, 
 dass es für die ersten Schritte mit R etwas unintuitiver ist als das `tidyverse`.
 
 Wenn Sie später einmal beide Ansätze beherrschen, können Sie das tun, was in einer 
-diversen Sprache wie R das einzig richtige ist:
+diversen Sprache wie R das einzig Richtige ist:
 je nach Anwendungsfall das passende Paket wählen - ganz wie im Falle von Paradigmen
 in einer Pluralen Ökonomik.

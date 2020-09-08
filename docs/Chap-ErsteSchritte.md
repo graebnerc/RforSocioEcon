@@ -2016,9 +2016,9 @@ matrix_a %*% solve(matrix_a)
 ```
 
 ```
-#>      [,1]         [,2]
-#> [1,]    1 2.775558e-17
-#> [2,]    0 1.000000e+00
+#>               [,1]         [,2]
+#> [1,]  1.000000e+00 2.775558e-17
+#> [2,] -5.551115e-17 1.000000e+00
 ```
 
 Die minimalen Abweichungen sind auf machinelle Rundungsfehler zurückzuführen und
@@ -2419,7 +2419,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7fe376905d60>
+#> <bytecode: 0x7fc40faee048>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2440,17 +2440,17 @@ dplyr::lead
 #>     }
 #>     if (length(n) != 1 || !is.numeric(n) || n < 0) {
 #>         bad_args("n", "must be a nonnegative integer scalar, ", 
-#>             "not {friendly_type_of(n)} of length {length(n)}")
+#>             "not {friendly_type_of(n)} of length {length(n)}.")
 #>     }
 #>     if (n == 0) 
 #>         return(x)
-#>     xlen <- length(x)
+#>     xlen <- vec_size(x)
 #>     n <- pmin(n, xlen)
-#>     out <- c(x[-seq_len(n)], rep(default, n))
-#>     attributes(out) <- attributes(x)
-#>     out
+#>     inputs <- vec_cast_common(default = default, x = x)
+#>     vec_c(vec_slice(inputs$x, -seq_len(n)), vec_rep(inputs$default, 
+#>         n))
 #> }
-#> <bytecode: 0x7fe37435d738>
+#> <bytecode: 0x7fc43f12f8b8>
 #> <environment: namespace:dplyr>
 ```
 

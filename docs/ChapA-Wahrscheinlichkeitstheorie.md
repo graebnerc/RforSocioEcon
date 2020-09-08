@@ -446,7 +446,11 @@ sample_binom
 ```
 
 ```
+<<<<<<< HEAD
 ## [1] 2 4 7 4 2
+=======
+## [1] 4 3 5 6 5
+>>>>>>> ch5-b
 ```
 
 > **Anwendungsbeispiel Binomialverteilung:** Unser Zufallsexperiment besteht

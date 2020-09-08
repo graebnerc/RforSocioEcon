@@ -132,7 +132,7 @@ In meinem Fall ist das Arbeitsverzeichnis das Folgende:
 
 
 ```
-#> [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR"
+#> [1] "/Volumes/develop/packages/RforSocioEcon"
 ```
 
 Wenn ich R nun sagen würde, es solle ein File unter dem Namen `test.pdf` speichern, 
@@ -140,7 +140,7 @@ dann würde es am folgenden Ort gespeichert werden:
 
 
 ```
-#> [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf"
+#> [1] "/Volumes/develop/packages/RforSocioEcon/test.pdf"
 ```
 
 R geht in einem solchen Fall immer vom Arbeitsverzeichnis aus.
@@ -156,7 +156,7 @@ speichern:
 
 
 ```
-#> [1] "/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf"
+#> [1] "/Volumes/develop/packages/RforSocioEcon/test.pdf"
 ```
 
 Wir werden hier **immer** relative Pfade verwenden. 

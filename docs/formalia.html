@@ -24,7 +24,11 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
+<<<<<<< HEAD
 <meta name="date" content="2020-07-20" />
+=======
+<meta name="date" content="2020-07-13" />
+>>>>>>> ch5-b
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -168,7 +172,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3.10" data-path="basics.html"><a href="basics.html#intro-matrix"><i class="fa fa-check"></i><b>3.3.10</b> Matrizen</a></li>
 <li class="chapter" data-level="3.3.11" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.3.11</b> Data Frames</a></li>
 </ul></li>
+<<<<<<< HEAD
 <li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#es:pakete"><i class="fa fa-check"></i><b>3.4</b> Pakete</a></li>
+=======
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#packages"><i class="fa fa-check"></i><b>3.5</b> Pakete</a></li>
+<li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.6</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
+>>>>>>> ch5-b
 </ul></li>
 <li class="chapter" data-level="4" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>4</b> Datenkunde und Datenaufbereitung</a><ul>
 <li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
@@ -391,6 +400,7 @@ Die Analyse von Verteilungen spielt eine sehr wichtige Rolle in der Sozioökonom
 da Themen wie Einkommens- und Vermögensverteilung bzw. Ungleichheitsforschung
 traditionell ein wichtiges Kernthema der Sozioökonomik ausmachen.</p>
 <p>In diesem Kapitel werden die folgenden R Pakete verwendet:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb537-1" data-line-number="1"><span class="kw">library</span>(here)</a>
 <a class="sourceLine" id="cb537-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
 <a class="sourceLine" id="cb537-3" data-line-number="3"><span class="kw">library</span>(data.table)</a>
@@ -403,6 +413,20 @@ traditionell ein wichtiges Kernthema der Sozioökonomik ausmachen.</p>
 <a class="sourceLine" id="cb537-10" data-line-number="10"><span class="kw">library</span>(moments)</a>
 <a class="sourceLine" id="cb537-11" data-line-number="11"><span class="kw">library</span>(ineq)</a>
 <a class="sourceLine" id="cb537-12" data-line-number="12"><span class="kw">library</span>(rmutil)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb567-1" data-line-number="1"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb567-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb567-3" data-line-number="3"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb567-4" data-line-number="4"><span class="kw">library</span>(icaeDesign)</a>
+<a class="sourceLine" id="cb567-5" data-line-number="5"><span class="kw">library</span>(ggrepel)</a>
+<a class="sourceLine" id="cb567-6" data-line-number="6"><span class="kw">library</span>(ggpubr)</a>
+<a class="sourceLine" id="cb567-7" data-line-number="7"><span class="kw">library</span>(latex2exp)</a>
+<a class="sourceLine" id="cb567-8" data-line-number="8"><span class="kw">library</span>(matlib)</a>
+<a class="sourceLine" id="cb567-9" data-line-number="9"><span class="kw">library</span>(fitdistrplus)</a>
+<a class="sourceLine" id="cb567-10" data-line-number="10"><span class="kw">library</span>(moments)</a>
+<a class="sourceLine" id="cb567-11" data-line-number="11"><span class="kw">library</span>(ineq)</a>
+<a class="sourceLine" id="cb567-12" data-line-number="12"><span class="kw">library</span>(rmutil)</a></code></pre></div>
+>>>>>>> ch5-b
 <blockquote>
 <p><strong>Hinweis</strong>: Das Paket <a href="http://friendly.github.io/matlib/">matlib</a> <span class="citation">(Friendly, Fox, and Chalmers <a href="#ref-R-matlib">2019</a>)</span>
 verwenden wir für einige Matrizenoperationen und zum Lösen linearer
@@ -413,7 +437,11 @@ Der Output von <code>matlib::Solve()</code> ist aber schöner und etwas informat
 </blockquote>
 </div>
 <div id="formalia-wachstum" class="section level2">
+<<<<<<< HEAD
 <h2><span class="header-section-number">6.2</span> Änderungsraten und die Rolle des Logarithmus</h2>
+=======
+<h2><span class="header-section-number">7.2</span> Änderungsraten und die Rolle des Logarithmus</h2>
+>>>>>>> ch5-b
 <p>Die sozioökonomische Forschung beschäftigt sich häufig mit Veränderungen über
 die Zeit.
 Je nach Fragestellung sind dabei <em>absolute</em> oder <em>relative</em> Änderungen von
@@ -448,6 +476,7 @@ in <em>Prozentpunkten</em>. Im Beispiel haben wir also eine Änderung von einem
 Prozentpunkt, bzw. einer relativen Änderung von 25%.</p>
 <p>In R können wir die Funktionen <code>lag()</code> und <code>lead()</code> aus dem Paket
 <a href="https://dplyr.tidyverse.org/">dplyr</a> <span class="citation">(Wickham et al. <a href="#ref-R-dplyr">2019</a>)</span>
+<<<<<<< HEAD
 verwenden um Änderungsraten zu berechnen.<a href="#fn38" class="footnote-ref" id="fnref38"><sup>38</sup></a>
 <code>lag()</code> akzeptieren dabei zwei Argumente: den Vektor der Werte und die Anzahl
 der Schritte, die zurück bzw. vor gesprungen werden sollen.</p>
@@ -455,6 +484,15 @@ der Schritte, die zurück bzw. vor gesprungen werden sollen.</p>
 <div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb538-1" data-line-number="1">werte &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">2.2</span>, <span class="fl">3.25</span>, <span class="fl">0.5</span>, <span class="fl">0.1</span>, <span class="fl">-0.1</span>, <span class="fl">0.2</span>)</a>
 <a class="sourceLine" id="cb538-2" data-line-number="2">rel_change &lt;-<span class="st"> </span>(werte <span class="op">-</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">lag</span>(werte)) <span class="op">/</span><span class="st"> </span><span class="kw">abs</span>(dplyr<span class="op">::</span><span class="kw">lag</span>(werte)) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a>
 <a class="sourceLine" id="cb538-3" data-line-number="3">rel_change</a></code></pre></div>
+=======
+verwenden um Änderungsraten zu berechnen.<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a>
+<code>lag()</code> akzeptieren dabei zwei Argumente: den Vektor der Werte und die Anzahl
+der Schritte, die zurück bzw. vor gesprungen werden sollen.</p>
+<p>Entsprechend können wir Änderungsraten folgendermaßen berechnen:</p>
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb568-1" data-line-number="1">werte &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">2.2</span>, <span class="fl">3.25</span>, <span class="fl">0.5</span>, <span class="fl">0.1</span>, <span class="fl">-0.1</span>, <span class="fl">0.2</span>)</a>
+<a class="sourceLine" id="cb568-2" data-line-number="2">rel_change &lt;-<span class="st"> </span>(werte <span class="op">-</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">lag</span>(werte)) <span class="op">/</span><span class="st"> </span><span class="kw">abs</span>(dplyr<span class="op">::</span><span class="kw">lag</span>(werte)) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb568-3" data-line-number="3">rel_change</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; [1]         NA  120.00000   47.72727  -84.61538  -80.00000 -200.00000  300.00000</code></pre>
 <p>Die gleiche Syntax können wir auch für die Arbeit mit einem <code>data.frame</code>
 verwenden.
@@ -462,23 +500,39 @@ Hier müssen wir aber darauf achten, die Daten auch tatsächlich nach dem
 Beobachtungszeitpunkt zu so sortieren, damit <code>lag(x, 1)</code> auch vorherigen Wert
 ausgibt. Dazu verwenden wir die Funktion <code>arrange()</code>, welche die Zeilen eines
 <code>data.frame</code> gemäß einer oder mehrerer Variablen ordnet:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb540-1" data-line-number="1"><span class="kw">head</span>(beispiel_daten_at, <span class="dv">4</span>)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb570-1" data-line-number="1"><span class="kw">head</span>(beispiel_daten_at, <span class="dv">4</span>)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;   country      BIP year
 #&gt; 1 Austria 37941.04 2018
 #&gt; 2 Austria 37140.79 2017
 #&gt; 3 Austria 36469.39 2016
 #&gt; 4 Austria 36129.03 2015</code></pre>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb542-1" data-line-number="1">beispiel_daten_at &lt;-<span class="st"> </span>beispiel_daten_at <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb542-2" data-line-number="2"><span class="st">  </span><span class="kw">arrange</span>(year)</a>
 <a class="sourceLine" id="cb542-3" data-line-number="3"><span class="kw">head</span>(beispiel_daten_at, <span class="dv">4</span>)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb572-1" data-line-number="1">beispiel_daten_at &lt;-<span class="st"> </span>beispiel_daten_at <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb572-2" data-line-number="2"><span class="st">  </span><span class="kw">arrange</span>(year)</a>
+<a class="sourceLine" id="cb572-3" data-line-number="3"><span class="kw">head</span>(beispiel_daten_at, <span class="dv">4</span>)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;   country      BIP year
 #&gt; 1 Austria 36123.43 2014
 #&gt; 2 Austria 36129.03 2015
 #&gt; 3 Austria 36469.39 2016
 #&gt; 4 Austria 37140.79 2017</code></pre>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb544-1" data-line-number="1">beispiel_daten_at &lt;-<span class="st"> </span>beispiel_daten_at <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb544-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">BIP_Wachstum =</span> (BIP<span class="op">-</span>dplyr<span class="op">::</span><span class="kw">lag</span>(BIP))<span class="op">/</span><span class="kw">abs</span>(dplyr<span class="op">::</span><span class="kw">lag</span>(BIP))<span class="op">*</span><span class="dv">100</span>)</a>
 <a class="sourceLine" id="cb544-3" data-line-number="3">beispiel_daten_at</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb574-1" data-line-number="1">beispiel_daten_at &lt;-<span class="st"> </span>beispiel_daten_at <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb574-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">BIP_Wachstum =</span> (BIP<span class="op">-</span>dplyr<span class="op">::</span><span class="kw">lag</span>(BIP))<span class="op">/</span><span class="kw">abs</span>(dplyr<span class="op">::</span><span class="kw">lag</span>(BIP))<span class="op">*</span><span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb574-3" data-line-number="3">beispiel_daten_at</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;   country      BIP year BIP_Wachstum
 #&gt; 1 Austria 36123.43 2014           NA
 #&gt; 2 Austria 36129.03 2015   0.01550613
@@ -488,18 +542,31 @@ ausgibt. Dazu verwenden wir die Funktion <code>arrange()</code>, welche die Zeil
 <p>Falls wir innerhalb des Datensatzes unterschiedliche Beobachtungsobjekte haben,
 z.B. verschiedene Länder, müssen wir den Datensatz vor Berechnung der
 Wachstumsrate gruppieren:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb546-1" data-line-number="1"><span class="kw">head</span>(beispiel_daten, <span class="dv">4</span>)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb576-1" data-line-number="1"><span class="kw">head</span>(beispiel_daten, <span class="dv">4</span>)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;   country      BIP year
 #&gt; 1 Austria 37941.04 2018
 #&gt; 2 Germany 35866.00 2018
 #&gt; 3 Austria 37140.79 2017
 #&gt; 4 Germany 35477.89 2017</code></pre>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb548-1" data-line-number="1">beispiel_daten &lt;-<span class="st"> </span>beispiel_daten <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb548-2" data-line-number="2"><span class="st">  </span><span class="kw">arrange</span>(country, year) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb548-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb548-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">BIP_Wachstum =</span> (BIP<span class="op">-</span>dplyr<span class="op">::</span><span class="kw">lag</span>(BIP))<span class="op">/</span><span class="kw">abs</span>(dplyr<span class="op">::</span><span class="kw">lag</span>(BIP))<span class="op">*</span><span class="dv">100</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb548-5" data-line-number="5"><span class="st">  </span><span class="kw">ungroup</span>()</a>
 <a class="sourceLine" id="cb548-6" data-line-number="6">beispiel_daten</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb578-1" data-line-number="1">beispiel_daten &lt;-<span class="st"> </span>beispiel_daten <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb578-2" data-line-number="2"><span class="st">  </span><span class="kw">arrange</span>(country, year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb578-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb578-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">BIP_Wachstum =</span> (BIP<span class="op">-</span>dplyr<span class="op">::</span><span class="kw">lag</span>(BIP))<span class="op">/</span><span class="kw">abs</span>(dplyr<span class="op">::</span><span class="kw">lag</span>(BIP))<span class="op">*</span><span class="dv">100</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb578-5" data-line-number="5"><span class="st">  </span><span class="kw">ungroup</span>()</a>
+<a class="sourceLine" id="cb578-6" data-line-number="6">beispiel_daten</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; # A tibble: 10 x 4
 #&gt;    country    BIP  year BIP_Wachstum
 #&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt;
@@ -520,7 +587,11 @@ folgendermaßen approximieren:</p>
 <p>Sie fragen sich vielleicht warum wir uns mit der Verwendung des Logarithmus
 überhaupt beschäftigen, wo durch die ‘Vereinfachung’ doch eine kleine
 Ungenauigkeit eingeführt wird? Tatsächlich ist die Verwendung des Logarithmus
+<<<<<<< HEAD
 häufig hilfreich für die grafische Darstellung von Wachstumsraten:<a href="#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a></p>
+=======
+häufig hilfreich für die grafische Darstellung von Wachstumsraten:<a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a></p>
+>>>>>>> ch5-b
 <p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-12-1.png" width="75%" height="50%" style="display: block; margin: auto;" /></p>
 <p>In dieser Darstellung gilt: die Steigung im logarithmierten Plot gibt die
 <em>relative</em> Änderung der Variable an.
@@ -549,7 +620,11 @@ von Wachstumsraten in linearen Regressionsmodellen deutlich vereinfacht.</p>
 <div id="formalia-diff" class="section level2">
 <h2><span class="header-section-number">6.3</span> Grundlagen der Differentialrechnung</h2>
 <div id="einleitung-differential--und-integralrechnung" class="section level3">
+<<<<<<< HEAD
 <h3><span class="header-section-number">6.3.1</span> Einleitung: Differential- und Integralrechnung</h3>
+=======
+<h3><span class="header-section-number">7.3.1</span> Einleitung: Differential- und Integralrechnung</h3>
+>>>>>>> ch5-b
 <p>Die Differentialrechnung ist eng verwandt mit der Integralrechnung:
 in beiden Bereichen studiert man die Veränderungen von Funktionen.
 Während die Differentialrechnung sich mit der lokalen Änderung einer Funktion
@@ -576,7 +651,11 @@ Modellierungsparadigmen und genauso in der Ökonometrie spielt die
 Maximierung eine wichtige Rolle.</p>
 </div>
 <div id="wiederholung-ableitungsregeln" class="section level3">
+<<<<<<< HEAD
 <h3><span class="header-section-number">6.3.2</span> Wiederholung: Ableitungsregeln</h3>
+=======
+<h3><span class="header-section-number">7.3.2</span> Wiederholung: Ableitungsregeln</h3>
+>>>>>>> ch5-b
 <p>Für einfache Funktionen gibt es unmittelbare Ableitungsregeln, die uns für jeden
 Ausdruck die entsprechende Ableitung geben. Komplexere Ausdrücke versucht man
 über entsprechende Regeln auf diese einfacheren Ausdrücke zurückzuführen und
@@ -655,7 +734,11 @@ f&#39;(x)&amp;=2(x^2+4)\cdot 2x
 \end{align}\]</span></p>
 </div>
 <div id="ableitungen-in-r" class="section level3">
+<<<<<<< HEAD
 <h3><span class="header-section-number">6.3.3</span> Ableitungen in R</h3>
+=======
+<h3><span class="header-section-number">7.3.3</span> Ableitungen in R</h3>
+>>>>>>> ch5-b
 <p>Sie müssen Ableitungen nicht händisch ausrechnen, sondern können die Funktionen
 auch in R direkt ableiten lassen.
 Dazu verwenden wir die Funktion <code>expression()</code> um unsere abzuleitende Funktion
@@ -663,6 +746,7 @@ zu definieren und dann die Funktion <code>D()</code> um die Ableitung zu bilden.
 <p>Betrachten wir folgendes Beispiel:</p>
 <p><span class="math display">\[f(x) = x^2 + 3x\]</span></p>
 <p>Zunächst wird die Funktion in eine <code>expression</code> übersetzt:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb550-1" data-line-number="1">f &lt;-<span class="st"> </span><span class="kw">expression</span>(x<span class="op">^</span><span class="dv">2</span><span class="op">+</span><span class="dv">3</span><span class="op">*</span>x)</a>
 <a class="sourceLine" id="cb550-2" data-line-number="2">f</a></code></pre></div>
 <pre><code>#&gt; expression(x^2 + 3 * x)</code></pre>
@@ -674,17 +758,38 @@ Werte ausrechnen lassen:</p>
 <p>Zudem können wir mit der Funktion <code>D()</code> direkt die Ableitung einer <code>expression</code>
 berechnen:</p>
 <div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb554-1" data-line-number="1"><span class="kw">D</span>(f, <span class="st">&quot;x&quot;</span>)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb580-1" data-line-number="1">f &lt;-<span class="st"> </span><span class="kw">expression</span>(x<span class="op">^</span><span class="dv">2</span><span class="op">+</span><span class="dv">3</span><span class="op">*</span>x)</a>
+<a class="sourceLine" id="cb580-2" data-line-number="2">f</a></code></pre></div>
+<pre><code>#&gt; expression(x^2 + 3 * x)</code></pre>
+<p>Eine solche <code>expression</code> können Sie über die Funktion <code>eval()</code> für konkrete
+Werte ausrechnen lassen:</p>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb582-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb582-2" data-line-number="2"><span class="kw">eval</span>(f)</a></code></pre></div>
+<pre><code>#&gt; [1]  4 10 18 28 40</code></pre>
+<p>Zudem können wir mit der Funktion <code>D()</code> direkt die Ableitung einer <code>expression</code>
+berechnen:</p>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb584-1" data-line-number="1"><span class="kw">D</span>(f, <span class="st">&quot;x&quot;</span>)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; 2 * x + 3</code></pre>
 <p>Wir haben also:</p>
 <p><span class="math display">\[\frac{\partial f(x) }{\partial x}=2x+3\]</span></p>
 <p>Wir können Aufrufe von <code>D()</code> auch verschachteln um höhere Ableitungen zu
 berechnen:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb556-1" data-line-number="1"><span class="kw">D</span>(<span class="kw">D</span>(f, <span class="st">&quot;x&quot;</span>), <span class="st">&quot;x&quot;</span>)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb586-1" data-line-number="1"><span class="kw">D</span>(<span class="kw">D</span>(f, <span class="st">&quot;x&quot;</span>), <span class="st">&quot;x&quot;</span>)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; [1] 2</code></pre>
 <p><span class="math display">\[\frac{\partial f(x) }{\partial x^2}=2\]</span></p>
 </div>
 <div id="maximierung-die-analytische-perspektive" class="section level3">
+<<<<<<< HEAD
 <h3><span class="header-section-number">6.3.4</span> Maximierung: die analytische Perspektive</h3>
+=======
+<h3><span class="header-section-number">7.3.4</span> Maximierung: die analytische Perspektive</h3>
+>>>>>>> ch5-b
 <p>Eine der wichtigsten Anwendungen der Differentialrechnung ist die Berechnung von
 Minima und Maxima, so genannten Extrema, einer Funktion.
 Die interessierende Funktion wird in diesem Kontext in der Regel <em>Zielfunktion</em>
@@ -722,7 +827,11 @@ Daher ist der erste Schritt bei der analytischen Suche nach Extremwerten immer
 die Ableitung der Funktion und die Identifikation der Nullstellen.
 Als nächstes untersucht man die <strong>hinreichenden Bedingungen</strong>, die einem
 genauere Informationen über den Punkt geben.</p>
+<<<<<<< HEAD
 <p>Hierbei hat sich folgende Heuristik in der Praxis bewährt:<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a></p>
+=======
+<p>Hierbei hat sich folgende Heuristik in der Praxis bewährt:<a href="#fn53" class="footnote-ref" id="fnref53"><sup>53</sup></a></p>
+>>>>>>> ch5-b
 <table>
 <thead>
 <tr class="header">
@@ -761,7 +870,11 @@ Die Standard-Methode hier ist die so genannte <em>Lagrange-Optimierung</em>.
 Details finden sich in zahlreichen Lehrbüchern, z.B. in <span class="citation">Wainwright and Chiang (<a href="#ref-chiang">2005</a>)</span></p>
 </div>
 <div id="maximierung-die-algorithmische-perspektive" class="section level3">
+<<<<<<< HEAD
 <h3><span class="header-section-number">6.3.5</span> Maximierung: die algorithmische Perspektive</h3>
+=======
+<h3><span class="header-section-number">7.3.5</span> Maximierung: die algorithmische Perspektive</h3>
+>>>>>>> ch5-b
 <p>Bei vielen Funktionen wäre die analytische Berechnung von Extrema zu aufwendig
 oder gar nicht möglich.
 Daher verwendet man den Computer um die Extrema zu finden.
@@ -779,7 +892,11 @@ möglicherweise dazu führen, dass der Computer auf dem lokalen Extremum bei
 <p>Um das zu vermeiden verwenden die Optimierungsalgorithmen einige Tricks.
 Für die R-Funktion <code>optim()</code> können Sie z.B. zwischen sieben solcher ausgefeilter
 Algorithmen wählen. Schauen Sie einmal in die Hilfefunktion wenn Sie mehr Informationen
+<<<<<<< HEAD
 über diese Algorithmen bekommen möchten.<a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a></p>
+=======
+über diese Algorithmen bekommen möchten.<a href="#fn54" class="footnote-ref" id="fnref54"><sup>54</sup></a></p>
+>>>>>>> ch5-b
 <p>Wichtig zu unterscheiden ist die Art der zu opmtimierenden Funktion und der
 Nebenbedingungen.
 Grob können wir zwischen den folgenden drei Fällen unterscheiden:</p>
@@ -846,13 +963,18 @@ spezialisierten Einführungen.</p>
 <p>Betrachten wir die folgende Zielfunktion:</p>
 <p><span class="math display">\[f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2\]</span>
 In R:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb558-1" data-line-number="1">f_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="dv">8</span><span class="op">*</span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.5</span><span class="op">*</span>x<span class="op">**</span><span class="dv">3</span> <span class="op">-</span><span class="st"> </span><span class="fl">4.25</span><span class="op">*</span>x<span class="op">**</span><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+=======
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb588-1" data-line-number="1">f_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="dv">8</span><span class="op">*</span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.5</span><span class="op">*</span>x<span class="op">**</span><span class="dv">3</span> <span class="op">-</span><span class="st"> </span><span class="fl">4.25</span><span class="op">*</span>x<span class="op">**</span><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+>>>>>>> ch5-b
 <p>Grafisch sieht die Funktion folgendermaßen aus, sie verfügt also über ein
 lokales Maximum bei <span class="math inline">\(x_a=-0.77\)</span>, ein lokales Minimum bei <span class="math inline">\(x_b=0\)</span> und ein globales
 Maximum bei <span class="math inline">\(x_c=1.22\)</span>:</p>
 <p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-22-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Wir können für solcherlei eindimensionale Probleme die Funktion <code>optimize()</code>
 verwenden:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb559-1" data-line-number="1">opt_obj &lt;-<span class="st"> </span><span class="kw">optimize</span>(<span class="dt">f =</span> f_<span class="dv">1</span>, </a>
 <a class="sourceLine" id="cb559-2" data-line-number="2">                    <span class="dt">lower =</span> <span class="fl">-1.25</span>, <span class="dt">upper =</span> <span class="fl">1.75</span>, </a>
 <a class="sourceLine" id="cb559-3" data-line-number="3">                    <span class="dt">maximum =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
@@ -868,6 +990,23 @@ Dem x-Wert des gesuchten Minimums:</p>
 <a class="sourceLine" id="cb564-2" data-line-number="2">                        <span class="dt">lower =</span> <span class="fl">-1.25</span>, <span class="dt">upper =</span> <span class="fl">1.75</span>, </a>
 <a class="sourceLine" id="cb564-3" data-line-number="3">                        <span class="dt">maximum =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb564-4" data-line-number="4">opt_obj_max</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb589-1" data-line-number="1">opt_obj &lt;-<span class="st"> </span><span class="kw">optimize</span>(<span class="dt">f =</span> f_<span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb589-2" data-line-number="2">                    <span class="dt">lower =</span> <span class="fl">-1.25</span>, <span class="dt">upper =</span> <span class="fl">1.75</span>, </a>
+<a class="sourceLine" id="cb589-3" data-line-number="3">                    <span class="dt">maximum =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>Das Ergebnis ist eine Liste mit zwei Elementen.
+Dem x-Wert des gesuchten Minimums:</p>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb590-1" data-line-number="1">opt_obj[[<span class="st">&quot;minimum&quot;</span>]]</a></code></pre></div>
+<pre><code>#&gt; [1] -7.54766e-06</code></pre>
+<p>Und dem dazugehörigen Funktionswert:</p>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb592-1" data-line-number="1">opt_obj[[<span class="st">&quot;objective&quot;</span>]]</a></code></pre></div>
+<pre><code>#&gt; [1] 2</code></pre>
+<p>Falls wir ein Maximum suchen setzen wir <code>maximum=TRUE</code>:</p>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb594-1" data-line-number="1">opt_obj_max &lt;-<span class="st"> </span><span class="kw">optimize</span>(<span class="dt">f =</span> f_<span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb594-2" data-line-number="2">                        <span class="dt">lower =</span> <span class="fl">-1.25</span>, <span class="dt">upper =</span> <span class="fl">1.75</span>, </a>
+<a class="sourceLine" id="cb594-3" data-line-number="3">                        <span class="dt">maximum =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb594-4" data-line-number="4">opt_obj_max</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; $maximum
 #&gt; [1] 1.215492
 #&gt; 
@@ -875,10 +1014,17 @@ Dem x-Wert des gesuchten Minimums:</p>
 #&gt; [1] 9.032067</code></pre>
 <p>Falls wir den Suchbereich entsprechend einschränken finden wir das lokale
 Maximum auf der linken Seite:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb566-1" data-line-number="1">opt_obj_max &lt;-<span class="st"> </span><span class="kw">optimize</span>(<span class="dt">f =</span> f_<span class="dv">1</span>, </a>
 <a class="sourceLine" id="cb566-2" data-line-number="2">                        <span class="dt">lower =</span> <span class="fl">-1.25</span>, <span class="dt">upper =</span> <span class="dv">0</span>, </a>
 <a class="sourceLine" id="cb566-3" data-line-number="3">                        <span class="dt">maximum =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb566-4" data-line-number="4">opt_obj_max</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb596-1" data-line-number="1">opt_obj_max &lt;-<span class="st"> </span><span class="kw">optimize</span>(<span class="dt">f =</span> f_<span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb596-2" data-line-number="2">                        <span class="dt">lower =</span> <span class="fl">-1.25</span>, <span class="dt">upper =</span> <span class="dv">0</span>, </a>
+<a class="sourceLine" id="cb596-3" data-line-number="3">                        <span class="dt">maximum =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb596-4" data-line-number="4">opt_obj_max</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; $maximum
 #&gt; [1] -0.7743199
 #&gt; 
@@ -887,9 +1033,15 @@ Maximum auf der linken Seite:</p>
 <p>Wir sind übrigens nicht auf eindimensionale Funktionen beschränkt.
 Wir können z.B. auch die folgende Zielfunktion optimieren:</p>
 <p><span class="math display">\[f(x,y)=(a-x)^2 + b(y-x^2)^2\]</span></p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb568-1" data-line-number="1">f_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">a=</span><span class="dv">1</span>, <span class="dt">b=</span><span class="dv">100</span>){</a>
 <a class="sourceLine" id="cb568-2" data-line-number="2">  (a <span class="op">-</span><span class="st"> </span>x[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>b<span class="op">*</span>(x[<span class="dv">2</span>]<span class="op">-</span>x[<span class="dv">1</span>]<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span></a>
 <a class="sourceLine" id="cb568-3" data-line-number="3">}</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb598-1" data-line-number="1">f_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">a=</span><span class="dv">1</span>, <span class="dt">b=</span><span class="dv">100</span>){</a>
+<a class="sourceLine" id="cb598-2" data-line-number="2">  (a <span class="op">-</span><span class="st"> </span>x[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>b<span class="op">*</span>(x[<span class="dv">2</span>]<span class="op">-</span>x[<span class="dv">1</span>]<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb598-3" data-line-number="3">}</a></code></pre></div>
+>>>>>>> ch5-b
 <p>Bei dieser Funktion handelt es sich um die in der Optimierung sehr häufig
 als Benchmark verwendete
 <a href="https://en.wikipedia.org/wiki/Rosenbrock_function">Rosenbrock Funktion</a>.
@@ -903,6 +1055,7 @@ Extremum, also die Werte, mit der die Funktion ihre Suche beginnen soll.
 Danach als zweites Argument <code>fn</code> die zu optmierende Funktion.
 Falls diese Funktion noch weitere Argumente akzeptiert können wir die hier auch
 einfach hinzufügen. Für unseren Fall haben wir also:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb569-1" data-line-number="1">opt_objekt &lt;-<span class="st"> </span><span class="kw">optim</span>(</a>
 <a class="sourceLine" id="cb569-2" data-line-number="2">  <span class="dt">par =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>),</a>
 <a class="sourceLine" id="cb569-3" data-line-number="3">  <span class="dt">fn =</span> f_<span class="dv">2</span></a>
@@ -917,10 +1070,27 @@ Wert <code>0</code>:</p>
 <pre><code>#&gt; [1] 1 1</code></pre>
 <p>Und den Wert der Zielfunktion im Extremum über den Listeneintrag <code>value</code>:</p>
 <div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb574-1" data-line-number="1">opt_objekt[[<span class="st">&quot;value&quot;</span>]]</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb599-1" data-line-number="1">opt_objekt &lt;-<span class="st"> </span><span class="kw">optim</span>(</a>
+<a class="sourceLine" id="cb599-2" data-line-number="2">  <span class="dt">par =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb599-3" data-line-number="3">  <span class="dt">fn =</span> f_<span class="dv">2</span></a>
+<a class="sourceLine" id="cb599-4" data-line-number="4">  )</a></code></pre></div>
+<p>Zunächst schauen wir ob der Algorithmus erfolgreich einen Extremwert
+gefunden hat. Bei erfolgreicher Suche hat der Listeneintrat <code>convergence</code> den
+Wert <code>0</code>:</p>
+<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb600-1" data-line-number="1">opt_objekt[[<span class="st">&quot;convergence&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">0</span> </a></code></pre></div>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<p>Die optimalen Argumente erhalten wir über den Listeneintrag <code>par</code>:</p>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb602-1" data-line-number="1">opt_objekt[[<span class="st">&quot;par&quot;</span>]]</a></code></pre></div>
+<pre><code>#&gt; [1] 1 1</code></pre>
+<p>Und den Wert der Zielfunktion im Extremum über den Listeneintrag <code>value</code>:</p>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb604-1" data-line-number="1">opt_objekt[[<span class="st">&quot;value&quot;</span>]]</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; [1] 0</code></pre>
 <p>Wenn wir <code>optim</code> übrigens zur Maximierung einsetzen wollen müssen wir nichts
 weiter tun als dem Argument <code>control</code> eine Liste mit dem Eintrag <code>fnscale=-1</code>
 zu übergeben:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb576-1" data-line-number="1">f_x &lt;-<span class="st"> </span><span class="cf">function</span> (x) <span class="dv">4</span><span class="op">*</span>x <span class="op">-</span><span class="st"> </span>x<span class="op">**</span><span class="dv">2</span></a>
 <a class="sourceLine" id="cb576-2" data-line-number="2">opt_objekt &lt;-<span class="st"> </span><span class="kw">optim</span>(</a>
 <a class="sourceLine" id="cb576-3" data-line-number="3">  <span class="kw">c</span>(<span class="dv">1</span>),</a>
@@ -935,11 +1105,31 @@ zu übergeben:</p>
 <div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb578-1" data-line-number="1">opt_objekt<span class="op">$</span>par</a></code></pre></div>
 <pre><code>#&gt; [1] 2</code></pre>
 <div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb580-1" data-line-number="1">opt_objekt<span class="op">$</span>value</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb606-1" data-line-number="1">f_x &lt;-<span class="st"> </span><span class="cf">function</span> (x) <span class="dv">4</span><span class="op">*</span>x <span class="op">-</span><span class="st"> </span>x<span class="op">**</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb606-2" data-line-number="2">opt_objekt &lt;-<span class="st"> </span><span class="kw">optim</span>(</a>
+<a class="sourceLine" id="cb606-3" data-line-number="3">  <span class="kw">c</span>(<span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb606-4" data-line-number="4">  <span class="dt">fn =</span> f_x, </a>
+<a class="sourceLine" id="cb606-5" data-line-number="5">  <span class="dt">method =</span> <span class="st">&quot;Brent&quot;</span>, </a>
+<a class="sourceLine" id="cb606-6" data-line-number="6">  <span class="dt">lower =</span> <span class="dv">-4</span>, <span class="dt">upper =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb606-7" data-line-number="7">  <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">fnscale=</span><span class="op">-</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb606-8" data-line-number="8">  )</a>
+<a class="sourceLine" id="cb606-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb606-10" data-line-number="10">opt_objekt<span class="op">$</span>convergence <span class="op">==</span><span class="st"> </span><span class="dv">0</span></a></code></pre></div>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb608-1" data-line-number="1">opt_objekt<span class="op">$</span>par</a></code></pre></div>
+<pre><code>#&gt; [1] 2</code></pre>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb610-1" data-line-number="1">opt_objekt<span class="op">$</span>value</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; [1] 4</code></pre>
 <p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-35-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="anwendungsbeispiel" class="section level3">
+<<<<<<< HEAD
 <h3><span class="header-section-number">6.3.6</span> Anwendungsbeispiel</h3>
+=======
+<h3><span class="header-section-number">7.3.6</span> Anwendungsbeispiel</h3>
+>>>>>>> ch5-b
 <p>Wir betrachten erneut das klassische keynesianische Modell, wobei wir die
 Notation leicht um <span class="math inline">\(T\)</span> als die Steuerlast erweitern:</p>
 <p><span class="math display">\[
@@ -952,8 +1142,13 @@ anwenden.</p>
 <p>Aber natürlich können wir das Ganze ganz einfach in R lösen.
 Um die Ableitung herzuleiten verwenden wir dabei einfach wieder die
 Funktion <code>D()</code>:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb582-1" data-line-number="1">keynes_model &lt;-<span class="st"> </span><span class="kw">expression</span>(<span class="dt">Y=</span>(c_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>I <span class="op">+</span><span class="st"> </span>G) <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>c_<span class="dv">0</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>T)))</a>
 <a class="sourceLine" id="cb582-2" data-line-number="2"><span class="kw">D</span>(<span class="dt">expr =</span> keynes_model, <span class="dt">name =</span> <span class="st">&quot;G&quot;</span>)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb612-1" data-line-number="1">keynes_model &lt;-<span class="st"> </span><span class="kw">expression</span>(<span class="dt">Y=</span>(c_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>I <span class="op">+</span><span class="st"> </span>G) <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>c_<span class="dv">0</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>T)))</a>
+<a class="sourceLine" id="cb612-2" data-line-number="2"><span class="kw">D</span>(<span class="dt">expr =</span> keynes_model, <span class="dt">name =</span> <span class="st">&quot;G&quot;</span>)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; 1/(1 - c_0 * (1 - T))</code></pre>
 <p>Es gilt also:</p>
 <p><span class="math display">\[\begin{align}
@@ -968,14 +1163,22 @@ oben eingeführten Ableitungsregeln herleiten.</p>
 </div>
 </div>
 <div id="formalia-linalg" class="section level2">
+<<<<<<< HEAD
 <h2><span class="header-section-number">6.4</span> Lineare Algebra</h2>
+=======
+<h2><span class="header-section-number">7.4</span> Lineare Algebra</h2>
+>>>>>>> ch5-b
 <p>Ebenfalls sehr häufig werden Sie Matrizen und den dazugehörigen
 Rechenoperationen (‘Matrizenalgebra’ genannt) in Kontakt kommen.
 Das Ziel dieses Abschnitts ist keine abschließende Einführung in Matrizen
 und Matrizenalgebra, sondern Ihnen einen groben Überblick über typische
 Rechenoperationen und deren Implementierung in R zu bekommen.
 Für eine ausführlichere Einführung verweisen wir auf <span class="citation">Wainwright and Chiang (<a href="#ref-chiang">2005</a>)</span> oder <span class="citation">Aleskerov, Ersel, and Piontkovski (<a href="#ref-linalg">2011</a>)</span>.</p>
+<<<<<<< HEAD
 <p>Matrizen werden häufig im Kontext der <em>linearen Algebra</em> verwendet.<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a>
+=======
+<p>Matrizen werden häufig im Kontext der <em>linearen Algebra</em> verwendet.<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a>
+>>>>>>> ch5-b
 Zahlreiche sozioökonomische Konzepte bedienen sich der linearen Algebra, in der
 Matrizen häufig verwendet werden, um lineare Gleichungssysteme
 dazustellen.
@@ -1065,15 +1268,24 @@ Wir werden das Beispiel des OLS-Schätzers unten noch genauer besprechen.
 Zunächst beginnen wir mit einer allgemeinen Einführung in den Umgang mit
 Matrizen in R.</p>
 <div id="einführung-von-matrizen" class="section level3">
+<<<<<<< HEAD
 <h3><span class="header-section-number">6.4.1</span> Einführung von Matrizen</h3>
+=======
+<h3><span class="header-section-number">7.4.1</span> Einführung von Matrizen</h3>
+>>>>>>> ch5-b
 <p>Technisch handelt es sich bei Matrizen um zweidimensionale Objekte mit Zeilen
 und Spalten, bei denen es sich jeweils um atomare Vektoren handelt.</p>
 <p>In R werden Matrizen mit der Funktion <code>matrix()</code>erstellt.
 Diese Funktion nimmt als erstes Argument die Elemente der Matrix und dann
 die Spezifikation der Anzahl von Zeilen (<code>nrow</code>) und/oder der Anzahl von
 Spalten (<code>ncol</code>):</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb584-1" data-line-number="1">m_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">11</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">nrow =</span> <span class="dv">5</span>)</a>
 <a class="sourceLine" id="cb584-2" data-line-number="2">m_<span class="dv">1</span></a></code></pre></div>
+=======
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb614-1" data-line-number="1">m_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">11</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">nrow =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb614-2" data-line-number="2">m_<span class="dv">1</span></a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]   11   16
 #&gt; [2,]   12   17
@@ -1082,11 +1294,19 @@ Spalten (<code>ncol</code>):</p>
 #&gt; [5,]   15   20</code></pre>
 <p>Wie können die Zeilen, Spalten und einzelne Werte folgendermaßen extrahieren
 und ggf. Ersetzungen vornehmen:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb586-1" data-line-number="1">m_<span class="dv">1</span>[,<span class="dv">1</span>] <span class="co"># Erste Spalte</span></a></code></pre></div>
 <pre><code>#&gt; [1] 11 12 13 14 15</code></pre>
 <div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb588-1" data-line-number="1">m_<span class="dv">1</span>[<span class="dv">1</span>,] <span class="co"># Erste Zeile</span></a></code></pre></div>
 <pre><code>#&gt; [1] 11 16</code></pre>
 <div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb590-1" data-line-number="1">m_<span class="dv">1</span>[<span class="dv">2</span>,<span class="dv">2</span>] <span class="co"># Element [2,2]</span></a></code></pre></div>
+=======
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb616-1" data-line-number="1">m_<span class="dv">1</span>[,<span class="dv">1</span>] <span class="co"># Erste Spalte</span></a></code></pre></div>
+<pre><code>#&gt; [1] 11 12 13 14 15</code></pre>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb618-1" data-line-number="1">m_<span class="dv">1</span>[<span class="dv">1</span>,] <span class="co"># Erste Zeile</span></a></code></pre></div>
+<pre><code>#&gt; [1] 11 16</code></pre>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb620-1" data-line-number="1">m_<span class="dv">1</span>[<span class="dv">2</span>,<span class="dv">2</span>] <span class="co"># Element [2,2]</span></a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; [1] 17</code></pre>
 <p>Es gibt einige <strong>besondere Matrizen</strong>, die aufgrund ihrer speziellen
 Eigenschaften Eigennamen erhalten haben.</p>
@@ -1150,7 +1370,11 @@ ist das Ergebnis die ursprüngliche Matrix selbst, daher der Name.
 Wir können <span class="math inline">\(\mathbb{I}_n\)</span> in R mit <code>diag(n)</code> direkt erstellen.</p>
 </div>
 <div id="grundregeln-der-matrizenalgebra" class="section level3">
+<<<<<<< HEAD
 <h3><span class="header-section-number">6.4.2</span> Grundregeln der Matrizenalgebra</h3>
+=======
+<h3><span class="header-section-number">7.4.2</span> Grundregeln der Matrizenalgebra</h3>
+>>>>>>> ch5-b
 <p>Matrizenalgebra spielt in vielen statistischen Anwendungen eine wichtige Rolle.
 Sie funktioniert aber ein wenig anders als die ‘herkömmliche’ Algebra, mit denen
 die meisten von Ihnen schon vertraut sein werden.
@@ -1167,8 +1391,13 @@ Matrizen kurz einführen und dabei die folgenden Beispielmatrizen verwenden:</p>
 0 &amp; 2 \\                                               
 4 &amp; 8 \\                                               
 \end{array}\right)\]</span></p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb592-1" data-line-number="1">matrix_a &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">3</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb592-2" data-line-number="2">matrix_b &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">8</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb622-1" data-line-number="1">matrix_a &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">3</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb622-2" data-line-number="2">matrix_b &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">8</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a></code></pre></div>
+>>>>>>> ch5-b
 <p><strong>Matrix-Transponierung</strong></p>
 <p>Die transponierte Matrix <span class="math inline">\(A&#39;\)</span> ergibt sich aus <span class="math inline">\(A\)</span> indem die Spalten und
 Zeilen vertauscht werden.
@@ -1188,11 +1417,19 @@ A&#39; = \left(
 \right)
 \]</span></p>
 <p>In R können wir eine Matrix mit der Funktion <code>t()</code> transponieren:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb593-1" data-line-number="1">matrix_a</a></code></pre></div>
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]    1    6
 #&gt; [2,]    5    3</code></pre>
 <div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb595-1" data-line-number="1"><span class="kw">t</span>(matrix_a)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb623-1" data-line-number="1">matrix_a</a></code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]    1    6
+#&gt; [2,]    5    3</code></pre>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb625-1" data-line-number="1"><span class="kw">t</span>(matrix_a)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]    1    5
 #&gt; [2,]    6    3</code></pre>
@@ -1205,7 +1442,11 @@ A&#39; = \left(
 \end{array}
 \right)\]</span></p>
 <p>In R:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb597-1" data-line-number="1"><span class="dv">4</span> <span class="op">+</span><span class="st"> </span>matrix_a</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb627-1" data-line-number="1"><span class="dv">4</span> <span class="op">+</span><span class="st"> </span>matrix_a</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]    5   10
 #&gt; [2,]    9    7</code></pre>
@@ -1217,7 +1458,11 @@ a_{11} + b_{11} &amp; a_{21} + b_{21}\\
 a_{12} + b_{12} &amp; a_{22} + b_{22}\\                                               
 \end{array}
 \right)\]</span></p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb599-1" data-line-number="1">matrix_a <span class="op">+</span><span class="st"> </span>matrix_b</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb629-1" data-line-number="1">matrix_a <span class="op">+</span><span class="st"> </span>matrix_b</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]    1    8
 #&gt; [2,]    9   11</code></pre>
@@ -1229,7 +1474,11 @@ a_{12} + b_{12} &amp; a_{22} + b_{22}\\
 2\cdot a_{12} &amp; 2\cdot a_{22} \\                                               
 \end{array}
 \right)\]</span></p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb601-1" data-line-number="1"><span class="dv">2</span><span class="op">*</span>matrix_a</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb631-1" data-line-number="1"><span class="dv">2</span><span class="op">*</span>matrix_a</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]    2   12
 #&gt; [2,]   10    6</code></pre>
@@ -1241,7 +1490,11 @@ a_{11}\cdot b_{11} &amp; a_{21}\cdot b_{21}\\
 a_{12}\cdot b_{12} &amp; a_{22}\cdot b_{22}\\                                               
 \end{array}
 \right)\]</span></p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb603-1" data-line-number="1">matrix_a <span class="op">*</span><span class="st"> </span>matrix_b</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb633-1" data-line-number="1">matrix_a <span class="op">*</span><span class="st"> </span>matrix_b</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]    0   12
 #&gt; [2,]   20   24</code></pre>
@@ -1253,16 +1506,28 @@ a_{11}\cdot b_{11} + a_{12}\cdot b_{21} &amp; a_{11}\cdot b_{21}+a_{12}\cdot b_{
 a_{21}\cdot b_{11} + a_{22}\cdot b_{21} &amp; a_{21}\cdot b_{12}+a_{22}\cdot b_{22}\\                     
 \end{array}
 \right)\]</span></p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb605-1" data-line-number="1">matrix_a <span class="op">%*%</span><span class="st"> </span>matrix_b</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb635-1" data-line-number="1">matrix_a <span class="op">%*%</span><span class="st"> </span>matrix_b</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]   24   50
 #&gt; [2,]   12   34</code></pre>
 <p>Wir wissen von oben auch, dass <span class="math inline">\(A\mathbb{I}_2=A\)</span>:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb607-1" data-line-number="1">matrix_a</a></code></pre></div>
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]    1    6
 #&gt; [2,]    5    3</code></pre>
 <div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb609-1" data-line-number="1">matrix_a <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(<span class="dv">2</span>)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb637-1" data-line-number="1">matrix_a</a></code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]    1    6
+#&gt; [2,]    5    3</code></pre>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb639-1" data-line-number="1">matrix_a <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(<span class="dv">2</span>)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]    1    6
 #&gt; [2,]    5    3</code></pre>
@@ -1271,6 +1536,7 @@ a_{21}\cdot b_{11} + a_{22}\cdot b_{21} &amp; a_{21}\cdot b_{12}+a_{22}\cdot b_{
 definiert sodass gilt
 <span class="math display">\[\boldsymbol{A}\boldsymbol{A}^{-1}=\boldsymbol{I}\]</span>
 Sie kann in R mit der Funktion <code>inv()</code> aus dem Paket
+<<<<<<< HEAD
 <a href="http://friendly.github.io/matlib/">matlib</a><a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a> identifiziert werden, wobei wir
 die Matrix als erstes oder Argument <code>X</code> an <code>inv()</code> übergeben:</p>
 <div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb611-1" data-line-number="1"><span class="kw">inv</span>(<span class="dt">X =</span> matrix_a)</a></code></pre></div>
@@ -1278,6 +1544,15 @@ die Matrix als erstes oder Argument <code>X</code> an <code>inv()</code> überge
 #&gt; [1,] -0.1111111  0.22222222
 #&gt; [2,]  0.1851852 -0.03703704</code></pre>
 <div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb613-1" data-line-number="1">matrix_a <span class="op">%*%</span><span class="st"> </span><span class="kw">inv</span>(matrix_a)</a></code></pre></div>
+=======
+<a href="http://friendly.github.io/matlib/">matlib</a><a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a> identifiziert werden, wobei wir
+die Matrix als erstes oder Argument <code>X</code> an <code>inv()</code> übergeben:</p>
+<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb641-1" data-line-number="1"><span class="kw">inv</span>(<span class="dt">X =</span> matrix_a)</a></code></pre></div>
+<pre><code>#&gt;            [,1]        [,2]
+#&gt; [1,] -0.1111111  0.22222222
+#&gt; [2,]  0.1851852 -0.03703704</code></pre>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb643-1" data-line-number="1">matrix_a <span class="op">%*%</span><span class="st"> </span><span class="kw">inv</span>(matrix_a)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;       [,1]   [,2]
 #&gt; [1,] 1e+00 -2e-08
 #&gt; [2,] 2e-08  1e+00</code></pre>
@@ -1308,26 +1583,45 @@ und
 <p>In diesem Fall können wir das Gleichungssystem in R lösen indem wir <code>Solve()</code>
 direkt die Matrix <span class="math inline">\(A\)</span> (über das Argument <code>A</code>) und den Vektor <span class="math inline">\(b\)</span>
 (über das Argument <code>b</code>) übergeben:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb615-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">-2</span>, <span class="dv">3</span>, <span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb615-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">9</span>, <span class="dv">-4</span>), <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb615-3" data-line-number="3"><span class="kw">Solve</span>(<span class="dt">A =</span> A, <span class="dt">b =</span> b)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb645-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">-2</span>, <span class="dv">3</span>, <span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb645-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">9</span>, <span class="dv">-4</span>), <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb645-3" data-line-number="3"><span class="kw">Solve</span>(<span class="dt">A =</span> A, <span class="dt">b =</span> b)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; x1    =  3 
 #&gt;   x2  =  2</code></pre>
 <p>Wir sehen also unmittelbar, dass das Gleichungssystem - und damit unser Modell -
 konsistent ist und eine eindeutige Lösung
+<<<<<<< HEAD
 <span class="math inline">\(x=\left(\begin{array}{c} 3 \\ 2 \end{array}\right)\)</span> aufweist.<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a>
 Dieses können wir folgendermaßen verifizieren:</p>
 <div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb617-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>), <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb617-2" data-line-number="2">A <span class="op">%*%</span><span class="st"> </span>x</a></code></pre></div>
+=======
+<span class="math inline">\(x=\left(\begin{array}{c} 3 \\ 2 \end{array}\right)\)</span> aufweist.<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a>
+Dieses können wir folgendermaßen verifizieren:</p>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb647-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>), <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb647-2" data-line-number="2">A <span class="op">%*%</span><span class="st"> </span>x</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;      [,1]
 #&gt; [1,]    9
 #&gt; [2,]   -4</code></pre>
 <p>Wie erwartet erhalten wir hier also wieder unseren ursprünglichen Wert für <span class="math inline">\(b\)</span>.</p>
 <p>Wenn allerdings <span class="math inline">\(A=\left(\begin{array}{cc} -2 &amp; 1 \\ -4 &amp; 2 \end{array}\right)\)</span>
 und <span class="math inline">\(b=\left(\begin{array}{c} 3 \\ 2 \end{array}\right)\)</span>, dann würde folgendes passieren:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb619-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">-4</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb619-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>), <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb619-3" data-line-number="3"><span class="kw">Solve</span>(<span class="dt">A =</span> A, <span class="dt">b =</span> b)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb649-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">-4</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb649-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>), <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb649-3" data-line-number="3"><span class="kw">Solve</span>(<span class="dt">A =</span> A, <span class="dt">b =</span> b)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; x1 - 0.5*x2  =  -0.5 
 #&gt;           0  =     2</code></pre>
 <p>Wir sehen also direkt, dass das System nicht lösbar wäre, denn das resultierende
@@ -1335,7 +1629,11 @@ Gleichungssystem weist einen eindeutigen Widerspruch (<code>0=2</code>) auf.
 Der Grund ist, dass die Matrix <span class="math inline">\(A\)</span> <em>singulär</em> ist, das heißt sie besitzt keine
 Inverse.
 Das können Sie unmittelbar überprüfen:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb621-1" data-line-number="1"><span class="kw">inv</span>(A)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb651-1" data-line-number="1"><span class="kw">inv</span>(A)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; Error in Inverse(X, tol = sqrt(.Machine$double.eps), ...): X is numerically singular</code></pre>
 <p>Wir können also nur über die Analyse der Matrix Schlussfolgerungen bezüglich des
 gesamten Gleichungssystems ziehen.
@@ -1345,9 +1643,15 @@ komplexer sind, von enormer Bedeutung.</p>
 <span class="math inline">\(A=\left(\begin{array}{cc} 1 &amp; 3 \\ -2 &amp; 1 \end{array}\right)\)</span>
 und
 <span class="math inline">\(b=\left(\begin{array}{c} 9 \\ 4 \end{array}\right)\)</span>:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb623-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">-2</span>, <span class="dv">-2</span>, <span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb623-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">-3</span>), <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb623-3" data-line-number="3"><span class="kw">Solve</span>(<span class="dt">A =</span> A, <span class="dt">b =</span> b)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb653-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">-2</span>, <span class="dv">-2</span>, <span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb653-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">-3</span>), <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb653-3" data-line-number="3"><span class="kw">Solve</span>(<span class="dt">A =</span> A, <span class="dt">b =</span> b)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; x1 - 0.5*x2  =  1.5 
 #&gt;           0  =    0</code></pre>
 <p>In diesem Falle sehen wir keinen Widerspruch im Gleichungssystem, aber auch
@@ -1366,7 +1670,11 @@ Modell, das eine eindeutige Vorhersage produziert.</p></li>
 genauer anschauen.</p>
 </div>
 <div id="anwendungsbeispiel-1-das-einfache-keynesianische-modell" class="section level3">
+<<<<<<< HEAD
 <h3><span class="header-section-number">6.4.3</span> Anwendungsbeispiel 1: Das einfache Keynesianische Modell</h3>
+=======
+<h3><span class="header-section-number">7.4.3</span> Anwendungsbeispiel 1: Das einfache Keynesianische Modell</h3>
+>>>>>>> ch5-b
 <p>In der Einleitung haben wir schon gesehen, dass wir das einfache
 Keynesianische Modell</p>
 <p><span class="math display">\[\begin{align}
@@ -1387,6 +1695,7 @@ und die marginale Konsumneigung mit <span class="math inline">\(b=0.4\)</span> u
 mit <span class="math inline">\(a=1\)</span> gegeben, können wir direkt überprüfen ob das System konsistent ist und,
 da <span class="math inline">\(x=\left(\begin{array}{cc} Y \\ C \end{array}\right)\)</span>
 welche Werte für den Konsum und das Gesamteinkommen impliziert werden.</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb625-1" data-line-number="1">I_keynes &lt;-<span class="st"> </span><span class="dv">2</span></a>
 <a class="sourceLine" id="cb625-2" data-line-number="2">G_keynes &lt;-<span class="st"> </span><span class="dv">2</span></a>
 <a class="sourceLine" id="cb625-3" data-line-number="3">b_keynes &lt;-<span class="st"> </span><span class="fl">0.4</span></a>
@@ -1395,6 +1704,16 @@ welche Werte für den Konsum und das Gesamteinkommen impliziert werden.</p>
 <a class="sourceLine" id="cb625-6" data-line-number="6">A_keynes &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="op">-</span>b_keynes, <span class="dv">-1</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb625-7" data-line-number="7">d_keynes &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(I_keynes <span class="op">+</span><span class="st"> </span>G_keynes, a_keynes), <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb625-8" data-line-number="8"><span class="kw">Solve</span>(<span class="dt">A =</span> A_keynes, <span class="dt">b =</span> d_keynes)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb655-1" data-line-number="1">I_keynes &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb655-2" data-line-number="2">G_keynes &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb655-3" data-line-number="3">b_keynes &lt;-<span class="st"> </span><span class="fl">0.4</span></a>
+<a class="sourceLine" id="cb655-4" data-line-number="4">a_keynes &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb655-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb655-6" data-line-number="6">A_keynes &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="op">-</span>b_keynes, <span class="dv">-1</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb655-7" data-line-number="7">d_keynes &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(I_keynes <span class="op">+</span><span class="st"> </span>G_keynes, a_keynes), <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb655-8" data-line-number="8"><span class="kw">Solve</span>(<span class="dt">A =</span> A_keynes, <span class="dt">b =</span> d_keynes)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; x1    =  8.33333333 
 #&gt;   x2  =  4.33333333</code></pre>
 <p>In diesem Fall sehen wir, dass das System konsistent ist und eine eindeutige
@@ -1402,7 +1721,11 @@ Lösung für das Einkommen <span class="math inline">\(Y=8\frac{1}{3}\)</span> u
 impliziert.</p>
 </div>
 <div id="anwendungsbeispiel-2-ols-regression" class="section level3">
+<<<<<<< HEAD
 <h3><span class="header-section-number">6.4.4</span> Anwendungsbeispiel 2: OLS-Regression</h3>
+=======
+<h3><span class="header-section-number">7.4.4</span> Anwendungsbeispiel 2: OLS-Regression</h3>
+>>>>>>> ch5-b
 <p>Aus der Einleitung wissen wir, dass wir das lineare Regressionsmodell mit <span class="math inline">\(n\)</span>
 Beobachtungen von <span class="math inline">\(p\)</span> Variablen</p>
 <p><span class="math display">\[\begin{align}
@@ -1452,6 +1775,7 @@ und <span class="math inline">\(\boldsymbol{y}=\left(\begin{array}{c} 15.8 \\ 19
 <p>Es lässt sich allgemein zeigen, dass der gesuchte Schätzer
 <span class="math inline">\(\boldsymbol{\hat{\beta}}=\left(\begin{array}{cc} \hat{\beta}_0 \\ \hat{\beta}_1 \\ \hat{\beta}_2 \end{array}\right)\)</span>
 für das unbekannte <span class="math inline">\(\boldsymbol{\beta}=\left(\begin{array}{cc} \beta_0 \\ \beta_1 \\ \beta_2 \end{array}\right)\)</span> die Lösung
+<<<<<<< HEAD
 des folgenden Gleichungssystems darstellt:<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a></p>
 <p><span class="math display">\[\boldsymbol{\hat{\beta}}=\left(\boldsymbol{X}&#39;\boldsymbol{X} \right)^{-1}\boldsymbol{X}&#39;\boldsymbol{Y}\]</span></p>
 <p>Das können wir wiederum in R lösen:</p>
@@ -1460,12 +1784,26 @@ des folgenden Gleichungssystems darstellt:<a href="#fn45" class="footnote-ref" i
 <a class="sourceLine" id="cb628-3" data-line-number="3">ols_y &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">15.8</span>, <span class="fl">19.7</span>, <span class="fl">15.0</span>, <span class="fl">21.4</span>), <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb628-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb628-5" data-line-number="5"><span class="kw">solve</span>(<span class="kw">t</span>(ols_X) <span class="op">%*%</span><span class="st"> </span>ols_X) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(ols_X) <span class="op">%*%</span><span class="st"> </span>ols_y</a></code></pre></div>
+=======
+des folgenden Gleichungssystems darstellt:<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a></p>
+<p><span class="math display">\[\boldsymbol{\hat{\beta}}=\left(\boldsymbol{X}&#39;\boldsymbol{X} \right)^{-1}\boldsymbol{X}&#39;\boldsymbol{Y}\]</span></p>
+<p>Das können wir wiederum in R lösen:</p>
+<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb658-1" data-line-number="1">ols_X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">264</span>, <span class="dv">8</span>, <span class="dv">1</span>, <span class="dv">175</span>, <span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">335</span>, <span class="dv">8</span>, <span class="dv">1</span>, <span class="dv">109</span>, <span class="dv">4</span>), </a>
+<a class="sourceLine" id="cb658-2" data-line-number="2">                <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> T)</a>
+<a class="sourceLine" id="cb658-3" data-line-number="3">ols_y &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">15.8</span>, <span class="fl">19.7</span>, <span class="fl">15.0</span>, <span class="fl">21.4</span>), <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb658-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb658-5" data-line-number="5"><span class="kw">solve</span>(<span class="kw">t</span>(ols_X) <span class="op">%*%</span><span class="st"> </span>ols_X) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(ols_X) <span class="op">%*%</span><span class="st"> </span>ols_y</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;             [,1]
 #&gt; [1,] 26.37086491
 #&gt; [2,] -0.01783627
 #&gt; [3,] -0.68592421</code></pre>
 <p>Oder direkt mit <code>lm()</code>:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb630-1" data-line-number="1"><span class="kw">lm</span>(Verbrauch<span class="op">~</span>PS<span class="op">+</span>Zylinder, <span class="dt">data =</span> ols_beispiel)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb660-1" data-line-number="1"><span class="kw">lm</span>(Verbrauch<span class="op">~</span>PS<span class="op">+</span>Zylinder, <span class="dt">data =</span> ols_beispiel)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = Verbrauch ~ PS + Zylinder, data = ols_beispiel)
@@ -1475,7 +1813,11 @@ des folgenden Gleichungssystems darstellt:<a href="#fn45" class="footnote-ref" i
 #&gt;    26.37086     -0.01784     -0.68592</code></pre>
 </div>
 <div id="ols-deriv" class="section level3">
+<<<<<<< HEAD
 <h3><span class="header-section-number">6.4.5</span> Optional: Herleitung des OLS-Schätzers</h3>
+=======
+<h3><span class="header-section-number">7.4.5</span> Optional: Herleitung des OLS-Schätzers</h3>
+>>>>>>> ch5-b
 <p>Mit dem bislang gewonnenen Verständnis vonn Matrizenalgebra ist es bereits
 möglich die Herleitung des OLS-Schätzers nachzuvollziehen.
 Diese Herleitung wird im Folgenden beschrieben.</p>
@@ -1488,7 +1830,11 @@ schreiben als:</p>
 \left(\begin{array}{cc} e_1 \\ e_2 \\ \vdots \\ e_n \end{array}\right)
 =\left(\begin{array}{cccc} e_1\times e_1 &amp; e_2 \times e_2 &amp; ... &amp; 
 e_n \times e_n \end{array}\right)\]</span></p>
+<<<<<<< HEAD
 <p>Wir können dann schreiben:<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a></p>
+=======
+<p>Wir können dann schreiben:<a href="#fn59" class="footnote-ref" id="fnref59"><sup>59</sup></a></p>
+>>>>>>> ch5-b
 <p><span class="math display">\[\begin{align}
 \boldsymbol{e&#39;e} &amp;= \left(\boldsymbol{Y}-\boldsymbol{X\hat{\beta}}\right)&#39;
 \left(\boldsymbol{Y}-\boldsymbol{X\hat{\beta}}\right)\nonumber\\
@@ -1508,7 +1854,11 @@ Koeffizienten <span class="math inline">\(\boldsymbol{\hat{\beta}}\)</span> ab:<
 \boldsymbol{X&#39;X\hat{\beta}}&amp;=\boldsymbol{X&#39;Y}\nonumber
 \end{align}\]</span></p>
 <p>Da gilt, dass <span class="math inline">\(\left(\boldsymbol{X&#39;X}\right)^{-1}\left(\boldsymbol{X&#39;X}\right)=I\)</span>
+<<<<<<< HEAD
 multiplizieren wir beide Seiten mit <span class="math inline">\(\left(\boldsymbol{X&#39;X}\right)^{-1}\)</span>:<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a></p>
+=======
+multiplizieren wir beide Seiten mit <span class="math inline">\(\left(\boldsymbol{X&#39;X}\right)^{-1}\)</span>:<a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a></p>
+>>>>>>> ch5-b
 <p><span class="math display">\[\begin{align}
 \left(\boldsymbol{X&#39;X}\right)^{-1}\boldsymbol{X&#39;X\hat{\beta}} &amp;= 
 \left(\boldsymbol{X&#39;X}\right)^{-1}\boldsymbol{X&#39;Y}\nonumber\\
@@ -1518,7 +1868,11 @@ multiplizieren wir beide Seiten mit <span class="math inline">\(\left(\boldsymbo
 <p>Damit haben wir den Schätzer für <span class="math inline">\(\boldsymbol{\hat{\beta}}\)</span> hergeleitet.</p>
 </div>
 <div id="weiterführende-literatur" class="section level3">
+<<<<<<< HEAD
 <h3><span class="header-section-number">6.4.6</span> Weiterführende Literatur</h3>
+=======
+<h3><span class="header-section-number">7.4.6</span> Weiterführende Literatur</h3>
+>>>>>>> ch5-b
 <p>Es gibt im Internet zahlreiche gute Überblicksartikel zum Thema Matrizenalgebra
 in R, z.B. <a href="https://www.statmethods.net/advstats/matrix.html">hier</a>
 oder in größerem Umfang
@@ -1528,7 +1882,11 @@ bietet sich <span class="citation">Wainwright and Chiang (<a href="#ref-chiang">
 </div>
 </div>
 <div id="formalia-dist" class="section level2">
+<<<<<<< HEAD
 <h2><span class="header-section-number">6.5</span> Analyse von Verteilungen</h2>
+=======
+<h2><span class="header-section-number">7.5</span> Analyse von Verteilungen</h2>
+>>>>>>> ch5-b
 <p>Fragen nach Verteilungen stehen im Zentrum vieler sozioökonomischer Arbeiten.
 Verteilung von Einkommen und Vermögen, sozialem, kulturellem oder physischen
 Kapital, Firmenproduktivitäten oder natürlichen Ressourcen - in vielen Bereichen
@@ -1556,7 +1914,11 @@ wir die quantitativen Kennzahlen immer ergänzen sollten und schließen das
 Kapitel schließlich mit einigen <a href="formalia.html#vert-bemerkungen">abschließenden Bemerkungen</a>
 ab.</p>
 <div id="vert-begriff" class="section level3">
+<<<<<<< HEAD
 <h3><span class="header-section-number">6.5.1</span> Theoretische und empirische Verteilungen</h3>
+=======
+<h3><span class="header-section-number">7.5.1</span> Theoretische und empirische Verteilungen</h3>
+>>>>>>> ch5-b
 <p>Wenn wir über Verteilungen sprechen wird der Begriff (mindestens) in zwei
 verwandten aber unterschiedlichen Arten verwendet:
 im Sinne der <strong>Verteilung einer Zufallsvariablen</strong> und im Sinne einer
@@ -1564,11 +1926,16 @@ im Sinne der <strong>Verteilung einer Zufallsvariablen</strong> und im Sinne ein
 <p>Eine empirische Verteilung beschreiben wir in der Regel durch bestimmte
 Kennzahlen, wie den Mittelwert, die Standardabweichung oder den Gini-Index.
 Das erlaubt uns Informationen über die Daten in wenigen Zahlen zu
+<<<<<<< HEAD
 kondensieren.<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a></p>
+=======
+kondensieren.<a href="#fn61" class="footnote-ref" id="fnref61"><sup>61</sup></a></p>
+>>>>>>> ch5-b
 <p>Dennoch werden beide Perspektiven auch häufig kombiniert, vor allem wenn wir
 einen empirischen Datensatz mit einem parametrischen Wahrscheinlichkeitsmodell
 beschreiben wollen. Das bedeutet, dass wir die empirischen Daten als Realisierung
 einer theoretischen ZV interpretieren und die für die theoretische ZV relevanten
+<<<<<<< HEAD
 Parameter dann aus den Daten heraus schätzen.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a>
 Wenn Sie sich nicht mehr ganz sicher sind was wir unter eine ZV oder einem
 theoretischen Wahrscheinlichkeitsmodell verstehen, schauen Sie doch noch einmal
@@ -1584,6 +1951,23 @@ in den <a href="#stat-stoch">Anhang zur Wahrscheinlichkeitstheorie</a>.</p>
 <p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-62-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Beachten Sie, dass die y-Achse die empirische Dichte der Beobachtungen auf der
 x-Achse angibt, also ein Maß für die relative Häufigkeit der Beobachtungen.<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a>
+=======
+Parameter dann aus den Daten heraus schätzen.<a href="#fn62" class="footnote-ref" id="fnref62"><sup>62</sup></a>
+Wenn Sie sich nicht mehr ganz sicher sind was wir unter eine ZV oder einem
+theoretischen Wahrscheinlichkeitsmodell verstehen, schauen Sie doch noch einmal
+in den <a href="stat-stoch.html#stat-stoch">Anhang zur Wahrscheinlichkeitstheorie</a>.</p>
+<p><strong>Anwendungsbeispiel</strong></p>
+<p>Stellen Sie sich vor Sie haben folgende Stichprobe vor sich:</p>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb662-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> sample_data) <span class="op">+</span></a>
+<a class="sourceLine" id="cb662-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>r, <span class="kw">stat</span>(density)), <span class="dt">binwidth =</span> <span class="fl">0.4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb662-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb662-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">expand_scale</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb662-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_icae</span>()</a></code></pre></div>
+<pre><code>#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.</code></pre>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-62-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Beachten Sie, dass die y-Achse die empirische Dichte der Beobachtungen auf der
+x-Achse angibt, also ein Maß für die relative Häufigkeit der Beobachtungen.<a href="#fn63" class="footnote-ref" id="fnref63"><sup>63</sup></a>
+>>>>>>> ch5-b
 Dies haben wir mit der Funktion <code>stat(density)</code> innerhalb von <code>geom_histogram()</code>
 erreicht.</p>
 <p>Wenn wir die Daten so betrachten erscheint es naheliegend, Sie als Realisierung
@@ -1591,6 +1975,7 @@ einer Normalverteilung zu interpretieren: die Form ist grob glockenförmig und
 symmetrisch.
 Wir können diese plausibilisieren indem wir mit <code>geom_density()</code> die
 <em>empirische Dichtefunktion</em> der Verteilung schätzen und über die Daten legen:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb634-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> sample_data) <span class="op">+</span></a>
 <a class="sourceLine" id="cb634-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(</a>
 <a class="sourceLine" id="cb634-3" data-line-number="3">    <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>r, <span class="kw">stat</span>(density)), </a>
@@ -1602,6 +1987,19 @@ Wir können diese plausibilisieren indem wir mit <code>geom_density()</code> die
 <a class="sourceLine" id="cb634-9" data-line-number="9"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">expand_scale</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>), </a>
 <a class="sourceLine" id="cb634-10" data-line-number="10">                                           <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="op">+</span></a>
 <a class="sourceLine" id="cb634-11" data-line-number="11"><span class="st">  </span><span class="kw">theme_icae</span>()</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb664-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> sample_data) <span class="op">+</span></a>
+<a class="sourceLine" id="cb664-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(</a>
+<a class="sourceLine" id="cb664-3" data-line-number="3">    <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>r, <span class="kw">stat</span>(density)), </a>
+<a class="sourceLine" id="cb664-4" data-line-number="4">    <span class="dt">binwidth =</span> <span class="fl">0.4</span>, <span class="dt">alpha=</span><span class="fl">0.4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb664-5" data-line-number="5"><span class="st">    </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">6</span>, <span class="dv">12</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb664-6" data-line-number="6"><span class="st">  </span><span class="kw">stat_density</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>r), </a>
+<a class="sourceLine" id="cb664-7" data-line-number="7">               <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>, </a>
+<a class="sourceLine" id="cb664-8" data-line-number="8">               <span class="dt">geom=</span><span class="st">&quot;line&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb664-9" data-line-number="9"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">expand_scale</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>), </a>
+<a class="sourceLine" id="cb664-10" data-line-number="10">                                           <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb664-11" data-line-number="11"><span class="st">  </span><span class="kw">theme_icae</span>()</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; Warning: `expand_scale()` is deprecated; use `expansion()` instead.</code></pre>
 <p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-63-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Das bedeutet, dass wir unsere Daten mit Hilfe der Dichtefunktion
@@ -1646,10 +2044,17 @@ selbst für die besten Parameter einen schlechten Fit.</p>
 Dazu verwenden wir die Funktion <code>fitdist()</code> aus dem Paket
 <a href="https://github.com/cran/fitdistrplus">fitdistrplus</a> <span class="citation">(Delignette-Muller and Dutang <a href="#ref-R-fit">2015</a>)</span>.
 Dieser Funktion geben wir über das Argument <code>data</code> unsere Stichprobe und über das
+<<<<<<< HEAD
 Argument <code>distr</code> das Kürzel für die Verteilungsklasse, die wir annehmen.<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a></p>
 <div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb637-1" data-line-number="1">fit_dist &lt;-<span class="st"> </span><span class="kw">fitdist</span>(<span class="dt">data =</span> sample_data<span class="op">$</span>r, </a>
 <a class="sourceLine" id="cb637-2" data-line-number="2">                    <span class="dt">distr =</span> <span class="st">&quot;norm&quot;</span>)</a>
 <a class="sourceLine" id="cb637-3" data-line-number="3">fit_dist[[<span class="st">&quot;estimate&quot;</span>]]</a></code></pre></div>
+=======
+Argument <code>distr</code> das Kürzel für die Verteilungsklasse, die wir annehmen.<a href="#fn64" class="footnote-ref" id="fnref64"><sup>64</sup></a></p>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb667-1" data-line-number="1">fit_dist &lt;-<span class="st"> </span><span class="kw">fitdist</span>(<span class="dt">data =</span> sample_data<span class="op">$</span>r, </a>
+<a class="sourceLine" id="cb667-2" data-line-number="2">                    <span class="dt">distr =</span> <span class="st">&quot;norm&quot;</span>)</a>
+<a class="sourceLine" id="cb667-3" data-line-number="3">fit_dist[[<span class="st">&quot;estimate&quot;</span>]]</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;     mean       sd 
 #&gt; 4.023254 1.967130</code></pre>
 <p>Wir sehen also, dass die optimale Parametrisierung zu <span class="math inline">\(\mu=4.02\)</span> und
@@ -1662,9 +2067,15 @@ tatsächlich plausibel ist, also ob Sie die Hypothese, dass die Daten aus einer
 Für den Fall der Normalverteilung können wir dies z.B. mit einem
 <a href="https://de.wikipedia.org/wiki/Shapiro-Wilk-Test">Shapiro-Wilk-Test</a> machen.</p>
 <p>Hier testen wir die <span class="math inline">\(H_0\)</span>, dass die Daten tatsächlich durch eine
+<<<<<<< HEAD
 Normalverteilung generiert wurden.<a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a></p>
 <div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb639-1" data-line-number="1">shapiro_test &lt;-<span class="st"> </span><span class="kw">shapiro.test</span>(sample_data<span class="op">$</span>r)</a>
 <a class="sourceLine" id="cb639-2" data-line-number="2">shapiro_test</a></code></pre></div>
+=======
+Normalverteilung generiert wurden.<a href="#fn65" class="footnote-ref" id="fnref65"><sup>65</sup></a></p>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb669-1" data-line-number="1">shapiro_test &lt;-<span class="st"> </span><span class="kw">shapiro.test</span>(sample_data<span class="op">$</span>r)</a>
+<a class="sourceLine" id="cb669-2" data-line-number="2">shapiro_test</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; 
 #&gt;  Shapiro-Wilk normality test
 #&gt; 
@@ -1680,13 +2091,21 @@ testen wollen.
 Dies ist ein komplexes Thema, das wir in diesem Kapitel nicht weitergehend
 behandeln. <span class="citation">Clauset, Shalizi, and Newman (<a href="#ref-clauset">2009</a>)</span> ist ein sehr bekanntest Paper, das eine praktische Anleitung
 für den Fall der Pareto-Verteilung enthält, aber auch für andere Verteilungen
+<<<<<<< HEAD
 verwendet werden kann.<a href="#fn53" class="footnote-ref" id="fnref53"><sup>53</sup></a>
+=======
+verwendet werden kann.<a href="#fn66" class="footnote-ref" id="fnref66"><sup>66</sup></a>
+>>>>>>> ch5-b
 Ansonsten finden Sie
 <a href="https://cran.r-project.org/web/packages/fitdistrplus/vignettes/paper2JSS.pdf">hier</a> oder
 <a href="https://stats.stackexchange.com/questions/132652/how-to-determine-which-distribution-fits-my-data-best">hier</a> praktische Anleitungen und Diskussionen.</p>
 </div>
 <div id="vert-kennzahlen" class="section level3">
+<<<<<<< HEAD
 <h3><span class="header-section-number">6.5.2</span> Kennzahlen zur Beschreibung empirischer Verteilungen</h3>
+=======
+<h3><span class="header-section-number">7.5.2</span> Kennzahlen zur Beschreibung empirischer Verteilungen</h3>
+>>>>>>> ch5-b
 <p>Jede Beschreibung einer Verteilung mittels Kennzahlen sollte verschiedene
 Aspekte der Verteilung abdecken.
 Insbesondere sollten Aussagen zu <strong>Lage</strong>, zur <strong>Streuung</strong>, zur <strong>Form</strong> und zu
@@ -1771,7 +2190,11 @@ Bereichen auf.</p>
 </table>
 <p>Für die folgenden Illustrationen nehmen wir an, dass wir es mit einem Datensatz
 mit <span class="math inline">\(N\)</span> kontinuiertlichen Beobachtungen <span class="math inline">\(x_1, x_2, ..., x_n\)</span> zu tun haben.
+<<<<<<< HEAD
 Als Beispiel dient uns der Datensatz zu ökonomischen Journalen aus <span class="citation">Kleiber and Zeileis (<a href="#ref-AER">2008</a>)</span>:<a href="#fn54" class="footnote-ref" id="fnref54"><sup>54</sup></a></p>
+=======
+Als Beispiel dient uns der Datensatz zu ökonomischen Journalen aus <span class="citation">Kleiber and Zeileis (<a href="#ref-AER">2008</a>)</span>:<a href="#fn67" class="footnote-ref" id="fnref67"><sup>67</sup></a></p>
+>>>>>>> ch5-b
 <pre><code>#&gt;    Kuerzel                                               Titel
 #&gt; 1:    APEL                   Asian-Pacific Economic Literature
 #&gt; 2:  SAJoEH           South African Journal of Economic History
@@ -1799,8 +2222,13 @@ Es ist anwendbar wenn wir es mit kontinuierlichen und mindestens
 intervall-skalierten Daten zu tun haben und ist definiert als:</p>
 <p><span class="math display">\[\bar{x}=\frac{1}{N}\sum_{i=1}^Nx_i\]</span></p>
 <p>In R wird das arithmetische Mittel mit der Funktion <code>mean()</code> berechnet:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb642-1" data-line-number="1">avg_preis &lt;-<span class="st"> </span><span class="kw">mean</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
 <a class="sourceLine" id="cb642-2" data-line-number="2">avg_preis</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb672-1" data-line-number="1">avg_preis &lt;-<span class="st"> </span><span class="kw">mean</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
+<a class="sourceLine" id="cb672-2" data-line-number="2">avg_preis</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; [1] 417.7222</code></pre>
 <p>Der durchschnittliche Preis der Journale ist also 417.72.</p>
 <p>Das arithmetische Mittel ist sehr anfällig gegenüber Ausreißern.
@@ -1814,10 +2242,17 @@ x_{0.5} = \begin{cases}
 \end{align}\]</span></p>
 <p>wobei wir annehmen, dass die Werte der Verteilung ihrer Größe nach geordnet
 sind, also <span class="math inline">\((x_1\leq x_2\leq x_3 \leq...\leq x_n)\)</span> und <span class="math inline">\(\lfloor x \rfloor\)</span>
+<<<<<<< HEAD
 die <a href="">Abrundungsfunktion</a> bezeichnet.<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a></p>
 <p>In R wird das arithmetische Mittel mit der Funktion <code>median()</code> berechnet:</p>
 <div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb644-1" data-line-number="1">med_preis &lt;-<span class="st"> </span><span class="kw">mean</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
 <a class="sourceLine" id="cb644-2" data-line-number="2">med_preis</a></code></pre></div>
+=======
+die <a href="">Abrundungsfunktion</a> bezeichnet.<a href="#fn68" class="footnote-ref" id="fnref68"><sup>68</sup></a></p>
+<p>In R wird das arithmetische Mittel mit der Funktion <code>median()</code> berechnet:</p>
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb674-1" data-line-number="1">med_preis &lt;-<span class="st"> </span><span class="kw">mean</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
+<a class="sourceLine" id="cb674-2" data-line-number="2">med_preis</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; [1] 417.7222</code></pre>
 <p>Da es insgesamt 180 Journale gibt gilt, dass 90 Journale teurer und 90 Journale
 billiger als <span class="math inline">\(417.72\)</span> Dollar sind.</p>
@@ -1836,7 +2271,11 @@ x_{\alpha} = \begin{cases}
 <p>In R können wir Quantile einfach mit der Funktion <code>quantile()</code> berechnen.
 Diese Funktion akzeptiert als erstes Argument einen Vektor von Daten und als
 zweites Argument ein oder mehrere Werte für <span class="math inline">\(\alpha\)</span>:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb646-1" data-line-number="1"><span class="kw">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>))</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb676-1" data-line-number="1"><span class="kw">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>))</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;    25%    50%    75% 
 #&gt; 134.50 282.00 540.75</code></pre>
 <p>Wie wir hier sehen ist der Median gleich dem <span class="math inline">\(50\%\)</span>-Quantil.</p>
@@ -1846,9 +2285,15 @@ Daher ist der Modus auch schon für nominal-skalierte Daten verfügbar.</p>
 <p>In R gibt es aber leider keine Funktion, die den Modus direkt berechnet.
 Vielleicht erinnern Sie sich aber, dass wir mit der Funktion <code>table()</code> eine
 Häufigkeitstabelle ausgeben können.
+<<<<<<< HEAD
 Daher bekommen wir den Modus über folgenden Umweg:<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a></p>
 <div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb648-1" data-line-number="1"><span class="kw">names</span>(<span class="kw">table</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
 <a class="sourceLine" id="cb648-2" data-line-number="2">      )[<span class="kw">table</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])<span class="op">==</span><span class="kw">max</span>(<span class="kw">table</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]]))]</a></code></pre></div>
+=======
+Daher bekommen wir den Modus über folgenden Umweg:<a href="#fn69" class="footnote-ref" id="fnref69"><sup>69</sup></a></p>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb678-1" data-line-number="1"><span class="kw">names</span>(<span class="kw">table</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
+<a class="sourceLine" id="cb678-2" data-line-number="2">      )[<span class="kw">table</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])<span class="op">==</span><span class="kw">max</span>(<span class="kw">table</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]]))]</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; [1] &quot;90&quot;</code></pre>
 <p><strong>Kennzahlen zur Streuung einer Verteilung</strong></p>
 <p>Von besonderem Interesse in der sozioökonomischen Forschung ist die Analyse
@@ -1866,6 +2311,7 @@ Quotient der empirische Standardabweichung und dem arithmetischen Mittel
 definitiert:</p>
 <p><span class="math display">\[v_x=\frac{s_x}{\bar{x}}\]</span></p>
 <p>In R können die drei Maße folgendermaßen berechnet werden:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb650-1" data-line-number="1">var_preis &lt;-<span class="st"> </span><span class="kw">var</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
 <a class="sourceLine" id="cb650-2" data-line-number="2">var_preis</a></code></pre></div>
 <pre><code>#&gt; [1] 148868.3</code></pre>
@@ -1874,6 +2320,16 @@ definitiert:</p>
 <pre><code>#&gt; [1] 385.8346</code></pre>
 <div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb654-1" data-line-number="1">varcoef_preis &lt;-<span class="st"> </span><span class="kw">sd</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]]) <span class="op">/</span><span class="st"> </span><span class="kw">mean</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
 <a class="sourceLine" id="cb654-2" data-line-number="2">varcoef_preis</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb680-1" data-line-number="1">var_preis &lt;-<span class="st"> </span><span class="kw">var</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
+<a class="sourceLine" id="cb680-2" data-line-number="2">var_preis</a></code></pre></div>
+<pre><code>#&gt; [1] 148868.3</code></pre>
+<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb682-1" data-line-number="1">sd_preis &lt;-<span class="st"> </span><span class="kw">sd</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
+<a class="sourceLine" id="cb682-2" data-line-number="2">sd_preis</a></code></pre></div>
+<pre><code>#&gt; [1] 385.8346</code></pre>
+<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb684-1" data-line-number="1">varcoef_preis &lt;-<span class="st"> </span><span class="kw">sd</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]]) <span class="op">/</span><span class="st"> </span><span class="kw">mean</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
+<a class="sourceLine" id="cb684-2" data-line-number="2">varcoef_preis</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; [1] 0.9236631</code></pre>
 <p>Ein ebenfalls häufig verwendetes Streuungsmaß ist der <strong>Interquantilsabstand</strong>
 (*inter-quantile-range, IQR), welcher als die Differenz zwischen dem <span class="math inline">\(25\)</span> und
@@ -1882,7 +2338,11 @@ definitiert:</p>
 <p>Hierbei handelt es sich also um das Intervall, das die ‘mittlere Hälfte’ der
 Verteilung umfasst.
 In R können wir den IQR mit der Funktion <code>IQR</code> berechnen:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb656-1" data-line-number="1"><span class="kw">IQR</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb686-1" data-line-number="1"><span class="kw">IQR</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; [1] 406.25</code></pre>
 <p>Ein weit verbreitetes Maß zur Messung der Streuung ist der
 <a href="https://de.wikipedia.org/wiki/Gini-Koeffizient">Gini-Index</a>.
@@ -1894,11 +2354,19 @@ dem Fall, dass ein Beobachtungssubjekt alles und alle anderen nichts besitzen.</
 <a href="https://cran.r-project.org/package=ineq">ineq</a> <span class="citation">(Zeileis <a href="#ref-R-ineq">2014</a>)</span> berechnen, wobei wir
 hier die Korrektur für Stichproben verwenden müssen indem wir das Argument
 <code>corr = TRUE</code> setzen:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb658-1" data-line-number="1">test_data_equality &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="fl">0.5</span>, <span class="dv">5</span>)</a>
 <a class="sourceLine" id="cb658-2" data-line-number="2">test_data_inequality &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">4</span>), <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb658-3" data-line-number="3"><span class="kw">Gini</span>(test_data_equality, <span class="dt">corr =</span> T)</a></code></pre></div>
 <pre><code>#&gt; [1] 0</code></pre>
 <div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb660-1" data-line-number="1"><span class="kw">Gini</span>(test_data_inequality, <span class="dt">corr =</span> T)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb688-1" data-line-number="1">test_data_equality &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="fl">0.5</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb688-2" data-line-number="2">test_data_inequality &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">4</span>), <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb688-3" data-line-number="3"><span class="kw">Gini</span>(test_data_equality, <span class="dt">corr =</span> T)</a></code></pre></div>
+<pre><code>#&gt; [1] 0</code></pre>
+<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb690-1" data-line-number="1"><span class="kw">Gini</span>(test_data_inequality, <span class="dt">corr =</span> T)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; [1] 1</code></pre>
 <p>Um die Besonderheiten des Gini’s zu verstehen wollen wir
 uns genauer mit der Berechnung des Indices vertraut machen.
@@ -1942,7 +2410,11 @@ Ressourcenverteilung.
 Wenn diese Änderungen von besonderem Interesse sind bietet sich die Verwendung
 des <a href="https://en.wikipedia.org/wiki/Theil_index">Theil-Index</a> an.
 Er ist leider nicht so einfach zu interpretieren wie der Gini und eignet sich
+<<<<<<< HEAD
 daher vor allem für Vergleiche über die Zeit.<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a>
+=======
+daher vor allem für Vergleiche über die Zeit.<a href="#fn70" class="footnote-ref" id="fnref70"><sup>70</sup></a>
+>>>>>>> ch5-b
 Die Definition ist folgendermaßen:</p>
 <p><span class="math display">\[\begin{align}
 \mathcal{T}= \frac{1}{N}\sum_{i=1}^N\frac{x_i}{\bar{x}}\ln\frac{x_i}{\bar{x}}
@@ -1951,8 +2423,13 @@ Die Definition ist folgendermaßen:</p>
 Person <span class="math inline">\(i\)</span> und <span class="math inline">\(\bar{x}\)</span> das arithmetische Mittel der Ressourcenausstattung ist.</p>
 <p>In R können wir den Theil Index mit der Funktion <code>Theil()</code> aus dem Paket
 <code>ineq</code> berechnen:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb662-1" data-line-number="1">dist_expl &lt;-<span class="st"> </span><span class="kw">rpareto</span>(<span class="dv">100</span>, <span class="dv">3</span>, <span class="fl">2.1</span>)</a>
 <a class="sourceLine" id="cb662-2" data-line-number="2"><span class="kw">Theil</span>(dist_expl)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb692-1" data-line-number="1">dist_expl &lt;-<span class="st"> </span><span class="kw">rpareto</span>(<span class="dv">100</span>, <span class="dv">3</span>, <span class="fl">2.1</span>)</a>
+<a class="sourceLine" id="cb692-2" data-line-number="2"><span class="kw">Theil</span>(dist_expl)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; [1] 1.290735</code></pre>
 <p>Welches Verteilungsmaß für den jeweiligen Anwendungsfall am besten geeignet
 ist hängt auch von der Art der zugrundeliegenden Verteilung ab.
@@ -2012,7 +2489,11 @@ Abbildung verdeutlichen:</p>
 <p>In R können wir die Schiefe einer Verteilung mit der Funktion <code>skewness()</code>
 aus dem Paket <a href="https://cran.r-project.org/package=moments">moments</a> <span class="citation">(Komsta and Novomestky <a href="#ref-R-moments">2015</a>)</span>
 berechnen:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb664-1" data-line-number="1"><span class="kw">skewness</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb694-1" data-line-number="1"><span class="kw">skewness</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; [1] 1.691223</code></pre>
 <p>Wir würden hier also von einer <em>recht-schiefen</em> Verteilung der Preise
 sprechen. Das sehen wir hier auch grafisch:</p>
@@ -2028,7 +2509,11 @@ Freiheitsgrade korrigieren, sodass die praktische Schätzfunktion gegeben ist du
 <p><span class="math display">\[\hat{\omega}_x = \frac{1}{(n-1)(n-2)}\sum_{i=1}^n\left( \frac{x_i-\bar{x}}{s_x}\right)^4\]</span></p>
 <p>Wir können die Kurtosis einer Verteilung mit der Funktion <code>kurtosis()</code> aus dem
 Paket <a href="https://cran.r-project.org/package=moments">moments</a> berechnen:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb667-1" data-line-number="1"><span class="kw">kurtosis</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb697-1" data-line-number="1"><span class="kw">kurtosis</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; [1] 5.992058</code></pre>
 <p>Da die Kurtosis an sich nicht leicht zu interpretieren ist wird der
 Wert häufig mit dem einer Standardnormalverteilung verglichen. Da deren Wert
@@ -2042,7 +2527,11 @@ Für den Fall der Preisverteilung von Journalen haben wir es also mit einer
 steilgipfligen Verteilung zu tun.</p>
 <p>Zur Verdeutlichung des Konzepts im folgenden noch ein grafisches Beispiel:</p>
 <p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-82-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb669-1" data-line-number="1"><span class="kw">kurtosis</span>(<span class="kw">filter</span>(kurt_data, Kurtosis<span class="op">==</span><span class="st">&quot;Normalverteilung&quot;</span>)<span class="op">$</span>Dichte)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb699-1" data-line-number="1"><span class="kw">kurtosis</span>(<span class="kw">filter</span>(kurt_data, Kurtosis<span class="op">==</span><span class="st">&quot;Normalverteilung&quot;</span>)<span class="op">$</span>Dichte)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; [1] NaN</code></pre>
 <p><strong>Ausreißer und Schwanz-Eigenschaften</strong></p>
 <p>Ausreißer können einen großen Effekt auf Ihre Ergebnisse haben.
@@ -2059,6 +2548,7 @@ Dies führt häufig zu einer zu recht restriktiven Definition von Ausreißern, i
 aber ein guter erster Schritt.
 Wir können die Ausreißer hier einfach identifizieren indem wir den Datensatz
 entsprechend filtern, z.B.:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb671-1" data-line-number="1">IQR_Grenzen &lt;-<span class="st"> </span><span class="kw">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))</a>
 <a class="sourceLine" id="cb671-2" data-line-number="2">untere_grenze &lt;-<span class="st"> </span>IQR_Grenzen[<span class="st">&quot;25%&quot;</span>] <span class="op">-</span><span class="st"> </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
 <a class="sourceLine" id="cb671-3" data-line-number="3">obere_grenze &lt;-<span class="st"> </span>IQR_Grenzen[<span class="st">&quot;75%&quot;</span>] <span class="op">+</span><span class="st"> </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
@@ -2071,6 +2561,20 @@ entsprechend filtern, z.B.:</p>
 <a class="sourceLine" id="cb671-10" data-line-number="10"> </a>
 <a class="sourceLine" id="cb671-11" data-line-number="11"></a>
 <a class="sourceLine" id="cb671-12" data-line-number="12">dplyr<span class="op">::</span><span class="kw">select</span>(outlier_teuer, Titel, Preis)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb701-1" data-line-number="1">IQR_Grenzen &lt;-<span class="st"> </span><span class="kw">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))</a>
+<a class="sourceLine" id="cb701-2" data-line-number="2">untere_grenze &lt;-<span class="st"> </span>IQR_Grenzen[<span class="st">&quot;25%&quot;</span>] <span class="op">-</span><span class="st"> </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
+<a class="sourceLine" id="cb701-3" data-line-number="3">obere_grenze &lt;-<span class="st"> </span>IQR_Grenzen[<span class="st">&quot;75%&quot;</span>] <span class="op">+</span><span class="st"> </span><span class="fl">1.5</span><span class="op">*</span><span class="kw">IQR</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
+<a class="sourceLine" id="cb701-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb701-5" data-line-number="5">outlier_teuer &lt;-<span class="st"> </span>journal_daten <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb701-6" data-line-number="6"><span class="st">  </span><span class="kw">filter</span>(Preis <span class="op">&gt;</span><span class="st"> </span>obere_grenze)</a>
+<a class="sourceLine" id="cb701-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb701-8" data-line-number="8">outlier_billig &lt;-<span class="st"> </span>journal_daten <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb701-9" data-line-number="9"><span class="st">  </span><span class="kw">filter</span>(Preis <span class="op">&lt;</span><span class="st"> </span>untere_grenze)</a>
+<a class="sourceLine" id="cb701-10" data-line-number="10"> </a>
+<a class="sourceLine" id="cb701-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb701-12" data-line-number="12">dplyr<span class="op">::</span><span class="kw">select</span>(outlier_teuer, Titel, Preis)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;                                          Titel Preis
 #&gt; 1                         Ecological Economics  1170
 #&gt; 2                            Applied Economics  2120
@@ -2084,7 +2588,11 @@ entsprechend filtern, z.B.:</p>
 #&gt; 10                     Journal of Econometrics  1893
 #&gt; 11                  Journal of Economic Theory  1400
 #&gt; 12              Journal of Financial Economics  1339</code></pre>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb673-1" data-line-number="1">dplyr<span class="op">::</span><span class="kw">select</span>(outlier_billig, Titel, Preis)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb703-1" data-line-number="1">dplyr<span class="op">::</span><span class="kw">select</span>(outlier_billig, Titel, Preis)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt; [1] Titel Preis
 #&gt; &lt;0 rows&gt; (or 0-length row.names)</code></pre>
 <p>Wir sehen hier, dass es nur Ausreißer nach oben, also nur besonders teure
@@ -2151,14 +2659,21 @@ Beobachtung ausgelassen worden wäre.</p>
 Funktion <code>cooks.distance()</code> berechnen.
 Zum Zwecke der Illustration regressieren wir in dem Journaldatensatz die Variable
 ‘Preis’ auf die Variablen ‘Seitenanzahl’ und ‘Zitationen’:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb675-1" data-line-number="1">reg_objekt &lt;-<span class="st"> </span><span class="kw">lm</span>(Preis <span class="op">~</span><span class="st"> </span>Seitenanzahl <span class="op">+</span><span class="st"> </span>Zitationen, </a>
 <a class="sourceLine" id="cb675-2" data-line-number="2">                 <span class="dt">data =</span> journal_daten)</a>
 <a class="sourceLine" id="cb675-3" data-line-number="3">distanzen &lt;-<span class="st"> </span><span class="kw">cooks.distance</span>(reg_objekt)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb705-1" data-line-number="1">reg_objekt &lt;-<span class="st"> </span><span class="kw">lm</span>(Preis <span class="op">~</span><span class="st"> </span>Seitenanzahl <span class="op">+</span><span class="st"> </span>Zitationen, </a>
+<a class="sourceLine" id="cb705-2" data-line-number="2">                 <span class="dt">data =</span> journal_daten)</a>
+<a class="sourceLine" id="cb705-3" data-line-number="3">distanzen &lt;-<span class="st"> </span><span class="kw">cooks.distance</span>(reg_objekt)</a></code></pre></div>
+>>>>>>> ch5-b
 <p>Ab wann eine Beobachtung als Ausreißer im Sinne von der
 Cook’schen Distanz gilt ist nicht klar zu definieren, als Daumenregel hat sich
 die Grenze <span class="math inline">\(\frac{4}{n-k-1}\)</span> etabliert, aber in der Praxis macht es immer Sinn
 einfach die Werte mit der größten Distanz genauer anzuschauen.
 Im vorliegenden Falle wären das:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb676-1" data-line-number="1">dist_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
 <a class="sourceLine" id="cb676-2" data-line-number="2">  <span class="dt">Index=</span><span class="kw">names</span>(distanzen),</a>
 <a class="sourceLine" id="cb676-3" data-line-number="3">  <span class="dt">Distanz=</span><span class="kw">unname</span>(distanzen), </a>
@@ -2177,6 +2692,26 @@ Im vorliegenden Falle wären das:</p>
 <a class="sourceLine" id="cb676-16" data-line-number="16">        <span class="dt">panel.grid.minor.x =</span> <span class="kw">element_blank</span>())</a></code></pre></div>
 <p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-86-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb677-1" data-line-number="1"><span class="kw">filter</span>(dist_data, Distanz<span class="op">&gt;</span>cook_threshold)<span class="op">$</span>Titel</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb706-1" data-line-number="1">dist_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb706-2" data-line-number="2">  <span class="dt">Index=</span><span class="kw">names</span>(distanzen),</a>
+<a class="sourceLine" id="cb706-3" data-line-number="3">  <span class="dt">Distanz=</span><span class="kw">unname</span>(distanzen), </a>
+<a class="sourceLine" id="cb706-4" data-line-number="4">  <span class="dt">Titel=</span>journal_daten[<span class="kw">as.double</span>(<span class="kw">names</span>(distanzen))]<span class="op">$</span>Titel, </a>
+<a class="sourceLine" id="cb706-5" data-line-number="5">  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb706-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb706-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb706-8" data-line-number="8">cook_threshold &lt;-<span class="st"> </span><span class="dv">4</span> <span class="op">/</span><span class="st"> </span>(reg_objekt<span class="op">$</span>df.residual <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb706-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb706-10" data-line-number="10"><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(dist_data), </a>
+<a class="sourceLine" id="cb706-11" data-line-number="11">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>Index, <span class="dt">y=</span>Distanz)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb706-12" data-line-number="12"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb706-13" data-line-number="13"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> cook_threshold, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb706-14" data-line-number="14"><span class="st">  </span><span class="kw">theme_icae</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb706-15" data-line-number="15"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid.major.x =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb706-16" data-line-number="16">        <span class="dt">panel.grid.minor.x =</span> <span class="kw">element_blank</span>())</a></code></pre></div>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-86-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb707-1" data-line-number="1"><span class="kw">filter</span>(dist_data, Distanz<span class="op">&gt;</span>cook_threshold)<span class="op">$</span>Titel</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;  [1] &quot;Managerial and Decision Econ&quot;   &quot;Applied Economics&quot;             
 #&gt;  [3] &quot;Journal of Banking and Finance&quot; &quot;Economics Letters&quot;             
 #&gt;  [5] &quot;World Development&quot;              &quot;Journal of Public Economics&quot;   
@@ -2186,11 +2721,16 @@ Im vorliegenden Falle wären das:</p>
 #&gt; [13] &quot;Econometrica&quot;</code></pre>
 </div>
 <div id="vert-grafik" class="section level3">
+<<<<<<< HEAD
 <h3><span class="header-section-number">6.5.3</span> Grafische Komplemente zu klassischen Kennzahlen</h3>
+=======
+<h3><span class="header-section-number">7.5.3</span> Grafische Komplemente zu klassischen Kennzahlen</h3>
+>>>>>>> ch5-b
 <p>Ein hilfreiches Mittel zur Beschreibung von Verteilungen ist der
 <strong>Boxplot</strong>.
 Bei dem Boxplot handelt es sich um eine grafischen Zusammenfassung einiger
 zentraler deskriptiver Kennzahlen:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb679-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> wb_data, </a>
 <a class="sourceLine" id="cb679-2" data-line-number="2">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>region, <span class="dt">y=</span>Lebenserwartung)</a>
 <a class="sourceLine" id="cb679-3" data-line-number="3">       ) <span class="op">+</span></a>
@@ -2202,6 +2742,19 @@ zentraler deskriptiver Kennzahlen:</p>
 <p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-89-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Im Boxplot werden mehrere relevante Kennzahlen zusammengefasst.
 Eine schöne Übersicht bietet diese Abbilung:<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a></p>
+=======
+<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb709-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> wb_data, </a>
+<a class="sourceLine" id="cb709-2" data-line-number="2">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>region, <span class="dt">y=</span>Lebenserwartung)</a>
+<a class="sourceLine" id="cb709-3" data-line-number="3">       ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb709-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb709-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_icae</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb709-6" data-line-number="6"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Lebenserwartungen in den Weltregionen&quot;</span>, </a>
+<a class="sourceLine" id="cb709-7" data-line-number="7">       <span class="dt">caption =</span> <span class="st">&quot;Quelle: Weltbank&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb709-8" data-line-number="8"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>())</a></code></pre></div>
+<p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-89-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Im Boxplot werden mehrere relevante Kennzahlen zusammengefasst.
+Eine schöne Übersicht bietet diese Abbilung:<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a></p>
+>>>>>>> ch5-b
 <p><img src="figures/boxplot-anatomy.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Die Box in der Mitte des Boxplots repräsentiert die IQR der Daten, der Median
 ist mit einem Strich innerhalb der Box dargestellt.
@@ -2226,6 +2779,7 @@ Beobachtungen ploten sollten.
 Für größere Datensätzen können Sie einfach einen
 <a href="https://www.r-graph-gallery.com/violin.html">Violinenplot</a>
 verwenen, wie im folgenden Beispiel gezeigt:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb680-1" data-line-number="1">boxplot_classic &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> wb_data, </a>
 <a class="sourceLine" id="cb680-2" data-line-number="2">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>region, <span class="dt">y=</span>Lebenserwartung)</a>
 <a class="sourceLine" id="cb680-3" data-line-number="3">       ) <span class="op">+</span></a>
@@ -2255,6 +2809,37 @@ verwenen, wie im folgenden Beispiel gezeigt:</p>
 <a class="sourceLine" id="cb680-27" data-line-number="27">        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb680-28" data-line-number="28"></a>
 <a class="sourceLine" id="cb680-29" data-line-number="29"><span class="kw">ggarrange</span>(boxplot_classic, boxplot_jitter, violin_plot, <span class="dt">ncol =</span> <span class="dv">3</span>)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb710-1" data-line-number="1">boxplot_classic &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> wb_data, </a>
+<a class="sourceLine" id="cb710-2" data-line-number="2">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>region, <span class="dt">y=</span>Lebenserwartung)</a>
+<a class="sourceLine" id="cb710-3" data-line-number="3">       ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb710-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb710-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_icae</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb710-6" data-line-number="6"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Klassische Darstellung&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb710-7" data-line-number="7"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>(), </a>
+<a class="sourceLine" id="cb710-8" data-line-number="8">        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb710-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb710-10" data-line-number="10">boxplot_jitter &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> wb_data, </a>
+<a class="sourceLine" id="cb710-11" data-line-number="11">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>region, <span class="dt">y=</span>Lebenserwartung)</a>
+<a class="sourceLine" id="cb710-12" data-line-number="12">       ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb710-13" data-line-number="13"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb710-14" data-line-number="14"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.25</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb710-15" data-line-number="15"><span class="st">  </span><span class="kw">theme_icae</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb710-16" data-line-number="16"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Klassische Darstellung mit jitter&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb710-17" data-line-number="17"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>(), </a>
+<a class="sourceLine" id="cb710-18" data-line-number="18">        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb710-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb710-20" data-line-number="20">violin_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> wb_data, </a>
+<a class="sourceLine" id="cb710-21" data-line-number="21">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>region, <span class="dt">y=</span>Lebenserwartung)</a>
+<a class="sourceLine" id="cb710-22" data-line-number="22">       ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb710-23" data-line-number="23"><span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb710-24" data-line-number="24"><span class="st">  </span><span class="kw">theme_icae</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb710-25" data-line-number="25"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Violinen-Plot&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb710-26" data-line-number="26"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>(), </a>
+<a class="sourceLine" id="cb710-27" data-line-number="27">        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb710-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb710-29" data-line-number="29"><span class="kw">ggarrange</span>(boxplot_classic, boxplot_jitter, violin_plot, <span class="dt">ncol =</span> <span class="dv">3</span>)</a></code></pre></div>
+>>>>>>> ch5-b
 <p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-91-1.png" width="100%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Es ist jedoch immer wichtig eine Verteilung nicht nur mit Kennzahlen, sondern
 auch grafisch zu beschreiben.
@@ -2266,8 +2851,13 @@ sind.
 Diese offensichtlichen Unterschiede werden aber nur durch grafische Inspektion
 deutlich.</p>
 <p>Der Datensatz ist in jeder R Installation vorhanden:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb681-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;anscombe&quot;</span>)</a>
 <a class="sourceLine" id="cb681-2" data-line-number="2"><span class="kw">head</span>(anscombe)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb711-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;anscombe&quot;</span>)</a>
+<a class="sourceLine" id="cb711-2" data-line-number="2"><span class="kw">head</span>(anscombe)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>#&gt;   x1 x2 x3 x4   y1   y2    y3   y4
 #&gt; 1 10 10 10  8 8.04 9.14  7.46 6.58
 #&gt; 2  8  8  8  8 6.95 8.14  6.77 5.76
@@ -2310,10 +2900,17 @@ deutlich.</p>
 tatsächlich sind:</p>
 <p><img src="Chap-Formalia_files/figure-html/unnamed-chunk-93-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Damit zeigt sich, dass jede gute Beschreibung einer Verteilung sowohl aus
+<<<<<<< HEAD
 quantitativen als auch grafischen Teilen bestehen sollte.<a href="#fn59" class="footnote-ref" id="fnref59"><sup>59</sup></a></p>
 </div>
 <div id="vert-bemerkungen" class="section level3">
 <h3><span class="header-section-number">6.5.4</span> Abschließende Bemerkungen</h3>
+=======
+quantitativen als auch grafischen Teilen bestehen sollte.<a href="#fn72" class="footnote-ref" id="fnref72"><sup>72</sup></a></p>
+</div>
+<div id="vert-bemerkungen" class="section level3">
+<h3><span class="header-section-number">7.5.4</span> Abschließende Bemerkungen</h3>
+>>>>>>> ch5-b
 <p>Es ist wichtig, dass wir uns mit der Verteilung unserer Daten nicht nur
 theoretisch, sondern auch empirisch und praktisch auseinandersetzen.
 Für viele Verteilungen sind z.B. bestimmte Kennzahlen nicht definiert.
@@ -2324,8 +2921,11 @@ Daher haben aus Stichproben geschätzte Kennzahlen, die sich dieser Konzepte
 bedienen, keine wirkliche Aussagekraft.
 Eine exzellente Beschreibung der Probleme, möglicher Alternativen und ein
 gutes Anwendungsbeispiel findet sich z.B. in <span class="citation">Yang et al. (<a href="#ref-torsten-dist">2019</a>)</span>.</p>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ch5-b
 
 </div>
 </div>
@@ -2367,8 +2967,13 @@ gutes Anwendungsbeispiel findet sich z.B. in <span class="citation">Yang et al. 
 </div>
 <div id="ref-R-ineq">
 <p>Zeileis, Achim. 2014. <em>Ineq: Measuring Inequality, Concentration, and Poverty</em>. <a href="https://CRAN.R-project.org/package=ineq">https://CRAN.R-project.org/package=ineq</a>.</p>
+<<<<<<< HEAD
 </div>
 </div>
+=======
+</div>
+</div>
+>>>>>>> ch5-b
             </section>
 
           </div>

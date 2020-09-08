@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Ausgewählte nichtlineare Schätzverfahren | R für die sozio-ökonomische Forschung</title>
+  <title>Chapter 7 Ausgewählte nichtlineare Schätzverfahren | R für die sozio-ökonomische Forschung</title>
   <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Ausgewählte nichtlineare Schätzverfahren | R für die sozio-ökonomische Forschung" />
+  <meta property="og:title" content="Chapter 7 Ausgewählte nichtlineare Schätzverfahren | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Ausgewählte nichtlineare Schätzverfahren | R für die sozio-ökonomische Forschung" />
+  <meta name="twitter:title" content="Chapter 7 Ausgewählte nichtlineare Schätzverfahren | R für die sozio-ökonomische Forschung" />
   
   <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-07-20" />
+<meta name="date" content="2020-09-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,8 @@
   
   
 <link rel="prev" href="advlin.html"/>
-<link rel="next" href="markdown.html"/>
+
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,25 +54,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -131,19 +133,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R für die sozioökonomische Forschung</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Willkommen</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Willkommen</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie"><i class="fa fa-check"></i>Änderungshistorie</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a><ul>
+<li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="precons.html"><a href="precons.html#warum-r"><i class="fa fa-check"></i><b>1.1</b> Warum R?</a></li>
 <li class="chapter" data-level="1.2" data-path="precons.html"><a href="precons.html#besonderheiten-von-r"><i class="fa fa-check"></i><b>1.2</b> Besonderheiten von R</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="einrichtung.html"><a href="einrichtung.html"><i class="fa fa-check"></i><b>2</b> Einrichtung</a><ul>
+<li class="chapter" data-level="2" data-path="einrichtung.html"><a href="einrichtung.html"><i class="fa fa-check"></i><b>2</b> Einrichtung</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="einrichtung.html"><a href="einrichtung.html#installation-von-r-und-r-studio"><i class="fa fa-check"></i><b>2.1</b> Installation von R und R-Studio</a></li>
 <li class="chapter" data-level="2.2" data-path="einrichtung.html"><a href="einrichtung.html#die-r-studio-oberfläche"><i class="fa fa-check"></i><b>2.2</b> Die R Studio Oberfläche</a></li>
-<li class="chapter" data-level="2.3" data-path="einrichtung.html"><a href="einrichtung.html#einrichtung-eines-r-projekts"><i class="fa fa-check"></i><b>2.3</b> Einrichtung eines R Projekts</a><ul>
+<li class="chapter" data-level="2.3" data-path="einrichtung.html"><a href="einrichtung.html#einrichtung-eines-r-projekts"><i class="fa fa-check"></i><b>2.3</b> Einrichtung eines R Projekts</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="einrichtung.html"><a href="einrichtung.html#arbeitsverzeichnisse-und-pfade"><i class="fa fa-check"></i><b>2.3.1</b> Arbeitsverzeichnisse und Pfade</a></li>
 <li class="chapter" data-level="2.3.2" data-path="einrichtung.html"><a href="einrichtung.html#schritt-1-projektordner-anlegen"><i class="fa fa-check"></i><b>2.3.2</b> Schritt 1: Projektordner anlegen</a></li>
 <li class="chapter" data-level="2.3.3" data-path="einrichtung.html"><a href="einrichtung.html#schritt-2-ein-r-studio-projekt-im-projektordner-erstellen"><i class="fa fa-check"></i><b>2.3.3</b> Schritt 2: Ein R-Studio Projekt im Projektordner erstellen</a></li>
@@ -152,10 +158,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4" data-path="einrichtung.html"><a href="einrichtung.html#optional-schritt-4-und-das-here-paket"><i class="fa fa-check"></i><b>2.4</b> Optional: Schritt 4 und das here-Paket</a></li>
 <li class="chapter" data-level="2.5" data-path="einrichtung.html"><a href="einrichtung.html#abschließende-bemerkungen"><i class="fa fa-check"></i><b>2.5</b> Abschließende Bemerkungen</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a><ul>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#es:befehle"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
 <li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#es:objekte"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
-<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#es:objektarten"><i class="fa fa-check"></i><b>3.3</b> Grundlegende Objeke in R</a><ul>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#es:objektarten"><i class="fa fa-check"></i><b>3.3</b> Grundlegende Objeke in R</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.3.1</b> Funktionen</a></li>
 <li class="chapter" data-level="3.3.2" data-path="basics.html"><a href="basics.html#basics-types-vectors"><i class="fa fa-check"></i><b>3.3.2</b> Vektoren</a></li>
 <li class="chapter" data-level="3.3.3" data-path="basics.html"><a href="basics.html#basics-logic"><i class="fa fa-check"></i><b>3.3.3</b> Logische Werte (logical)</a></li>
@@ -170,18 +178,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#es:pakete"><i class="fa fa-check"></i><b>3.4</b> Pakete</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>4</b> Datenkunde und Datenaufbereitung</a><ul>
+<li class="chapter" data-level="4" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>4</b> Datenkunde und Datenaufbereitung</a>
+<ul>
 <li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="4.1" data-path="data.html"><a href="data.html#data-arten"><i class="fa fa-check"></i><b>4.1</b> Arten von Daten</a></li>
-<li class="chapter" data-level="4.2" data-path="data.html"><a href="data.html#data-get"><i class="fa fa-check"></i><b>4.2</b> Datenakquise</a><ul>
+<li class="chapter" data-level="4.2" data-path="data.html"><a href="data.html#data-get"><i class="fa fa-check"></i><b>4.2</b> Datenakquise</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="data.html"><a href="data.html#exkurs-1-ländercodes-übersetzen"><i class="fa fa-check"></i><b>4.2.1</b> Exkurs 1: Ländercodes übersetzen</a></li>
 <li class="chapter" data-level="4.2.2" data-path="data.html"><a href="data.html#data-download-R"><i class="fa fa-check"></i><b>4.2.2</b> Exkurs 2: Daten direkt mit R herunterladen</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="data.html"><a href="data.html#data-read-write"><i class="fa fa-check"></i><b>4.3</b> Daten einlesen und schreiben</a><ul>
+<li class="chapter" data-level="4.3" data-path="data.html"><a href="data.html#data-read-write"><i class="fa fa-check"></i><b>4.3</b> Daten einlesen und schreiben</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="data.html"><a href="data.html#einlesen-von-datensätzen"><i class="fa fa-check"></i><b>4.3.1</b> Einlesen von Datensätzen</a></li>
 <li class="chapter" data-level="4.3.2" data-path="data.html"><a href="data.html#speichern-von-daten"><i class="fa fa-check"></i><b>4.3.2</b> Speichern von Daten</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="data.html"><a href="data.html#data-wrangling"><i class="fa fa-check"></i><b>4.4</b> Verarbeitung von Daten (‘data wrangling’)</a><ul>
+<li class="chapter" data-level="4.4" data-path="data.html"><a href="data.html#data-wrangling"><i class="fa fa-check"></i><b>4.4</b> Verarbeitung von Daten (‘data wrangling’)</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="data.html"><a href="data.html#das-konzept-von-tidy-data"><i class="fa fa-check"></i><b>4.4.1</b> Das Konzept von ‘tidy data’</a></li>
 <li class="chapter" data-level="4.4.2" data-path="data.html"><a href="data.html#data-long-wide"><i class="fa fa-check"></i><b>4.4.2</b> Von langen und breiten Datensätzen</a></li>
 <li class="chapter" data-level="4.4.3" data-path="data.html"><a href="data.html#data-merge"><i class="fa fa-check"></i><b>4.4.3</b> Zusammenführen von Daten</a></li>
@@ -191,149 +203,91 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="data.html"><a href="data.html#data-role"><i class="fa fa-check"></i><b>4.5</b> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</a></li>
 <li class="chapter" data-level="4.6" data-path="data.html"><a href="data.html#data-packages"><i class="fa fa-check"></i><b>4.6</b> Anmerkungen zu Paketen</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>5</b> Visualisierung von Daten</a><ul>
-<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#verwendete-pakete-1"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
-<li class="chapter" data-level="5.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>5.1</b> Optional: Theoretische Grundlagen</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="vis.html"><a href="vis.html#vis-base-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> <code>ggplot2</code> vs. <code>base plot</code></a></li>
-<li class="chapter" data-level="5.1.2" data-path="vis.html"><a href="vis.html#grammar"><i class="fa fa-check"></i><b>5.1.2</b> Einleitung zu Wickham’s <em>grammar of graphics</em></a></li>
+<li class="chapter" data-level="5" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>5</b> Lineare statistische Modelle in R</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>5.1</b> Einleitung und Überblick</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>5.1.1</b> Einführung in die lineare Regression</a></li>
+<li class="chapter" data-level="5.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>5.1.2</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="5.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>5.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="vis.html"><a href="vis.html#vis-elemente"><i class="fa fa-check"></i><b>5.2</b> Grundlegende Elemente von <code>ggplot2</code>-Grafiken</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="vis.html"><a href="vis.html#elemente-eines-ggplot"><i class="fa fa-check"></i><b>5.2.1</b> Elemente eines <code>ggplot</code></a></li>
-<li class="chapter" data-level="5.2.2" data-path="vis.html"><a href="vis.html#beispiel-workflow"><i class="fa fa-check"></i><b>5.2.2</b> Beispiel Workflow</a></li>
+<li class="chapter" data-level="5.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>5.2</b> Grundlagen der einfachen linearen Regression</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="linmodel.html"><a href="linmodel.html#grundlegende-begriffe"><i class="fa fa-check"></i><b>5.2.1</b> Grundlegende Begriffe</a></li>
+<li class="chapter" data-level="5.2.2" data-path="linmodel.html"><a href="linmodel.html#schätzung-mit-der-kleinste-quadrate-methode"><i class="fa fa-check"></i><b>5.2.2</b> Schätzung mit der Kleinste-Quadrate-Methode</a></li>
+<li class="chapter" data-level="5.2.3" data-path="linmodel.html"><a href="linmodel.html#ols-ass"><i class="fa fa-check"></i><b>5.2.3</b> Annahmen für den OLS Schätzer</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="vis.html"><a href="vis.html#arten-von-datenvisualisierung"><i class="fa fa-check"></i><b>5.3</b> Arten von Datenvisualisierung</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="vis.html"><a href="vis.html#allgemeine-tipps-zum-grafikdesign"><i class="fa fa-check"></i><b>5.3.1</b> Allgemeine Tipps zum Grafikdesign</a></li>
-<li class="chapter" data-level="5.3.2" data-path="vis.html"><a href="vis.html#streu--oder-blasendiagramm"><i class="fa fa-check"></i><b>5.3.2</b> Streu- oder Blasendiagramm</a></li>
-<li class="chapter" data-level="5.3.3" data-path="vis.html"><a href="vis.html#linienchart"><i class="fa fa-check"></i><b>5.3.3</b> Linienchart</a></li>
-<li class="chapter" data-level="5.3.4" data-path="vis.html"><a href="vis.html#histogramme-und-dichteplots"><i class="fa fa-check"></i><b>5.3.4</b> Histogramme und Dichteplots</a></li>
-<li class="chapter" data-level="5.3.5" data-path="vis.html"><a href="vis.html#balkendiagramme"><i class="fa fa-check"></i><b>5.3.5</b> Balkendiagramme</a></li>
-<li class="chapter" data-level="5.3.6" data-path="vis.html"><a href="vis.html#vis-pie"><i class="fa fa-check"></i><b>5.3.6</b> Kuchendiagramme</a></li>
-<li class="chapter" data-level="5.3.7" data-path="vis.html"><a href="vis.html#vis-kinds-summary"><i class="fa fa-check"></i><b>5.3.7</b> Zusammenfassung</a></li>
+<li class="chapter" data-level="5.3" data-path="linmodel.html"><a href="linmodel.html#lin-kennzahlen"><i class="fa fa-check"></i><b>5.3</b> Kennzahlen in der linearen Regression</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="linmodel.html"><a href="linmodel.html#erklärte-varianz-und-das-r2"><i class="fa fa-check"></i><b>5.3.1</b> Erklärte Varianz und das <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="linmodel.html"><a href="linmodel.html#hypothesentests-und-statistische-signifikanz"><i class="fa fa-check"></i><b>5.3.2</b> Hypothesentests und statistische Signifikanz</a></li>
+<li class="chapter" data-level="5.3.3" data-path="linmodel.html"><a href="linmodel.html#konfidenzintervalle-für-die-schätzer"><i class="fa fa-check"></i><b>5.3.3</b> Konfidenzintervalle für die Schätzer</a></li>
+<li class="chapter" data-level="5.3.4" data-path="linmodel.html"><a href="linmodel.html#zur-rolle-der-stichprobengröße"><i class="fa fa-check"></i><b>5.3.4</b> Zur Rolle der Stichprobengröße</a></li>
+<li class="chapter" data-level="5.3.5" data-path="linmodel.html"><a href="linmodel.html#linmod-residuals"><i class="fa fa-check"></i><b>5.3.5</b> Residuenanalyse</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="vis.html"><a href="vis.html#vis-adv"><i class="fa fa-check"></i><b>5.4</b> Beispiele aus der Praxis und fortgeschrittene Themen</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="vis.html"><a href="vis.html#regressionsgerade"><i class="fa fa-check"></i><b>5.4.1</b> Regressionsgerade</a></li>
-<li class="chapter" data-level="5.4.2" data-path="vis.html"><a href="vis.html#vis-viele-plots"><i class="fa fa-check"></i><b>5.4.2</b> Mehrere Plots in einer Abbildung</a></li>
-<li class="chapter" data-level="5.4.3" data-path="vis.html"><a href="vis.html#mehr-zu-den-skalen-expand_scale-und-skalentransformation"><i class="fa fa-check"></i><b>5.4.3</b> Mehr zu den Skalen: <code>expand_scale()</code> und Skalentransformation</a></li>
+<li class="chapter" data-level="5.4" data-path="linmodel.html"><a href="linmodel.html#stat-ablauf"><i class="fa fa-check"></i><b>5.4</b> Zum Ablauf einer Regression</a></li>
+<li class="chapter" data-level="5.5" data-path="linmodel.html"><a href="linmodel.html#lin-multi"><i class="fa fa-check"></i><b>5.5</b> Multiple lineare Regression</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="vis.html"><a href="vis.html#vis-fehler"><i class="fa fa-check"></i><b>5.5</b> Typische Fehler in der Datenvisualisierung vermeiden</a><ul>
-<li class="chapter" data-level="5.5.1" data-path="vis.html"><a href="vis.html#clutterplots-und-ihre-tranformation-zum-beschrifteten-streudiagramm"><i class="fa fa-check"></i><b>5.5.1</b> Clutterplots und ihre Tranformation zum beschrifteten Streudiagramm</a></li>
-<li class="chapter" data-level="5.5.2" data-path="vis.html"><a href="vis.html#ein-unbalancierter-plot"><i class="fa fa-check"></i><b>5.5.2</b> Ein ‘unbalancierter’ Plot</a></li>
+<li class="chapter" data-level="6" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>6</b> Fortgeschrittene Themen der linearen Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="advlin.html"><a href="advlin.html#annahmen-und-eigenschaften-des-einfachen-ols-modells"><i class="fa fa-check"></i><b>6.1</b> Annahmen und Eigenschaften des einfachen OLS Modells</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="advlin.html"><a href="advlin.html#annahmen-im-matrixschreibweise"><i class="fa fa-check"></i><b>6.1.1</b> Annahmen im Matrixschreibweise</a></li>
+<li class="chapter" data-level="6.1.2" data-path="advlin.html"><a href="advlin.html#erwartungstreue-effizienz-und-konsistenz"><i class="fa fa-check"></i><b>6.1.2</b> Erwartungstreue, Effizienz und Konsistenz</a></li>
+<li class="chapter" data-level="6.1.3" data-path="advlin.html"><a href="advlin.html#abweichungen-von-den-ols-annahmen"><i class="fa fa-check"></i><b>6.1.3</b> Abweichungen von den OLS Annahmen</a></li>
+<li class="chapter" data-level="6.1.4" data-path="advlin.html"><a href="advlin.html#monte-carlo-simulationen-in-r"><i class="fa fa-check"></i><b>6.1.4</b> Monte Carlo Simulationen in R</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="vis.html"><a href="vis.html#vis-lies"><i class="fa fa-check"></i><b>5.6</b> Lügen mit grafischer Statistik</a><ul>
-<li class="chapter" data-level="5.6.1" data-path="vis.html"><a href="vis.html#klassiker-1-kontraintuitiver-nullpunkt"><i class="fa fa-check"></i><b>5.6.1</b> Klassiker 1: Kontraintuitiver ‘Nullpunkt’</a></li>
-<li class="chapter" data-level="5.6.2" data-path="vis.html"><a href="vis.html#klassiker-2-geschickt-gewählter-zeitraum-und-clever-gewählte-achsenabschnitte"><i class="fa fa-check"></i><b>5.6.2</b> Klassiker 2: Geschickt gewählter Zeitraum und clever gewählte Achsenabschnitte</a></li>
+<li class="chapter" data-level="6.2" data-path="advlin.html"><a href="advlin.html#heteroskedastie"><i class="fa fa-check"></i><b>6.2</b> Heteroskedastie</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="advlin.html"><a href="advlin.html#liegt-heteroskedastie-vor"><i class="fa fa-check"></i><b>6.2.1</b> Liegt Heteroskedastie vor?</a></li>
+<li class="chapter" data-level="6.2.2" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-heteroskedastie"><i class="fa fa-check"></i><b>6.2.2</b> Reaktionen auf Heteroskedastie</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="vis.html"><a href="vis.html#vis-links"><i class="fa fa-check"></i><b>5.7</b> Links und weiterführende Literatur</a></li>
+<li class="chapter" data-level="6.3" data-path="advlin.html"><a href="advlin.html#autokorrelation"><i class="fa fa-check"></i><b>6.3</b> Autokorrelation</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="advlin.html"><a href="advlin.html#folgen-von-autokorrelation"><i class="fa fa-check"></i><b>6.3.1</b> Folgen von Autokorrelation</a></li>
+<li class="chapter" data-level="6.3.2" data-path="advlin.html"><a href="advlin.html#testen-auf-autokorrelation"><i class="fa fa-check"></i><b>6.3.2</b> Testen auf Autokorrelation</a></li>
+<li class="chapter" data-level="6.3.3" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-autokorrelation"><i class="fa fa-check"></i><b>6.3.3</b> Reaktionen auf Autokorrelation</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="formalia.html"><a href="formalia.html"><i class="fa fa-check"></i><b>6</b> Formale Methoden der Sozioökonomie</a><ul>
-<li class="chapter" data-level="6.1" data-path="formalia.html"><a href="formalia.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>6.1</b> Einleitung und Überblick</a></li>
-<li class="chapter" data-level="6.2" data-path="formalia.html"><a href="formalia.html#formalia-wachstum"><i class="fa fa-check"></i><b>6.2</b> Änderungsraten und die Rolle des Logarithmus</a></li>
-<li class="chapter" data-level="6.3" data-path="formalia.html"><a href="formalia.html#formalia-diff"><i class="fa fa-check"></i><b>6.3</b> Grundlagen der Differentialrechnung</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="formalia.html"><a href="formalia.html#einleitung-differential--und-integralrechnung"><i class="fa fa-check"></i><b>6.3.1</b> Einleitung: Differential- und Integralrechnung</a></li>
-<li class="chapter" data-level="6.3.2" data-path="formalia.html"><a href="formalia.html#wiederholung-ableitungsregeln"><i class="fa fa-check"></i><b>6.3.2</b> Wiederholung: Ableitungsregeln</a></li>
-<li class="chapter" data-level="6.3.3" data-path="formalia.html"><a href="formalia.html#ableitungen-in-r"><i class="fa fa-check"></i><b>6.3.3</b> Ableitungen in R</a></li>
-<li class="chapter" data-level="6.3.4" data-path="formalia.html"><a href="formalia.html#maximierung-die-analytische-perspektive"><i class="fa fa-check"></i><b>6.3.4</b> Maximierung: die analytische Perspektive</a></li>
-<li class="chapter" data-level="6.3.5" data-path="formalia.html"><a href="formalia.html#maximierung-die-algorithmische-perspektive"><i class="fa fa-check"></i><b>6.3.5</b> Maximierung: die algorithmische Perspektive</a></li>
-<li class="chapter" data-level="6.3.6" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel"><i class="fa fa-check"></i><b>6.3.6</b> Anwendungsbeispiel</a></li>
+<li class="chapter" data-level="6.4" data-path="advlin.html"><a href="advlin.html#multikollinearität"><i class="fa fa-check"></i><b>6.4</b> Multikollinearität</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="advlin.html"><a href="advlin.html#folgen-von-multikollinearität"><i class="fa fa-check"></i><b>6.4.1</b> Folgen von Multikollinearität</a></li>
+<li class="chapter" data-level="6.4.2" data-path="advlin.html"><a href="advlin.html#testen-auf-multikollinearität"><i class="fa fa-check"></i><b>6.4.2</b> Testen auf Multikollinearität</a></li>
+<li class="chapter" data-level="6.4.3" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-multikollinearität"><i class="fa fa-check"></i><b>6.4.3</b> Reaktionen auf Multikollinearität</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="formalia.html"><a href="formalia.html#formalia-linalg"><i class="fa fa-check"></i><b>6.4</b> Lineare Algebra</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="formalia.html"><a href="formalia.html#einführung-von-matrizen"><i class="fa fa-check"></i><b>6.4.1</b> Einführung von Matrizen</a></li>
-<li class="chapter" data-level="6.4.2" data-path="formalia.html"><a href="formalia.html#grundregeln-der-matrizenalgebra"><i class="fa fa-check"></i><b>6.4.2</b> Grundregeln der Matrizenalgebra</a></li>
-<li class="chapter" data-level="6.4.3" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-1-das-einfache-keynesianische-modell"><i class="fa fa-check"></i><b>6.4.3</b> Anwendungsbeispiel 1: Das einfache Keynesianische Modell</a></li>
-<li class="chapter" data-level="6.4.4" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-2-ols-regression"><i class="fa fa-check"></i><b>6.4.4</b> Anwendungsbeispiel 2: OLS-Regression</a></li>
-<li class="chapter" data-level="6.4.5" data-path="formalia.html"><a href="formalia.html#ols-deriv"><i class="fa fa-check"></i><b>6.4.5</b> Optional: Herleitung des OLS-Schätzers</a></li>
-<li class="chapter" data-level="6.4.6" data-path="formalia.html"><a href="formalia.html#weiterführende-literatur"><i class="fa fa-check"></i><b>6.4.6</b> Weiterführende Literatur</a></li>
+<li class="chapter" data-level="6.5" data-path="advlin.html"><a href="advlin.html#advlin-omitted-var"><i class="fa fa-check"></i><b>6.5</b> Vergessene Variablen</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="advlin.html"><a href="advlin.html#folgen-vergessener-variablen"><i class="fa fa-check"></i><b>6.5.1</b> Folgen vergessener Variablen</a></li>
+<li class="chapter" data-level="6.5.2" data-path="advlin.html"><a href="advlin.html#testen-auf-vergessene-variablen"><i class="fa fa-check"></i><b>6.5.2</b> Testen auf vergessene Variablen</a></li>
+<li class="chapter" data-level="6.5.3" data-path="advlin.html"><a href="advlin.html#reaktion-auf-vergessene-variablen"><i class="fa fa-check"></i><b>6.5.3</b> Reaktion auf vergessene Variablen</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="formalia.html"><a href="formalia.html#formalia-dist"><i class="fa fa-check"></i><b>6.5</b> Analyse von Verteilungen</a><ul>
-<li class="chapter" data-level="6.5.1" data-path="formalia.html"><a href="formalia.html#vert-begriff"><i class="fa fa-check"></i><b>6.5.1</b> Theoretische und empirische Verteilungen</a></li>
-<li class="chapter" data-level="6.5.2" data-path="formalia.html"><a href="formalia.html#vert-kennzahlen"><i class="fa fa-check"></i><b>6.5.2</b> Kennzahlen zur Beschreibung empirischer Verteilungen</a></li>
-<li class="chapter" data-level="6.5.3" data-path="formalia.html"><a href="formalia.html#vert-grafik"><i class="fa fa-check"></i><b>6.5.3</b> Grafische Komplemente zu klassischen Kennzahlen</a></li>
-<li class="chapter" data-level="6.5.4" data-path="formalia.html"><a href="formalia.html#vert-bemerkungen"><i class="fa fa-check"></i><b>6.5.4</b> Abschließende Bemerkungen</a></li>
+<li class="chapter" data-level="6.6" data-path="advlin.html"><a href="advlin.html#falsche-funktionale-form"><i class="fa fa-check"></i><b>6.6</b> Falsche funktionale Form</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="advlin.html"><a href="advlin.html#folgen-einer-falschen-funktionalen-form"><i class="fa fa-check"></i><b>6.6.1</b> Folgen einer falschen funktionalen Form</a></li>
+<li class="chapter" data-level="6.6.2" data-path="advlin.html"><a href="advlin.html#testen-auf-die-richtige-funktionale-form"><i class="fa fa-check"></i><b>6.6.2</b> Testen auf die richtige funktionale Form</a></li>
+<li class="chapter" data-level="6.6.3" data-path="advlin.html"><a href="advlin.html#wahl-der-funktionalen-form"><i class="fa fa-check"></i><b>6.6.3</b> Wahl der funktionalen Form</a></li>
 </ul></li>
+<li class="chapter" data-level="6.7" data-path="advlin.html"><a href="advlin.html#weitere-fehlerquellen-systematische-messfehler-selbstselektion-und-simulatanität"><i class="fa fa-check"></i><b>6.7</b> Weitere Fehlerquellen: Systematische Messfehler, Selbstselektion und Simulatanität</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="advlin.html"><a href="advlin.html#messfehler"><i class="fa fa-check"></i><b>6.7.1</b> Messfehler</a></li>
+<li class="chapter" data-level="6.7.2" data-path="advlin.html"><a href="advlin.html#selbstselektion"><i class="fa fa-check"></i><b>6.7.2</b> Selbstselektion</a></li>
+<li class="chapter" data-level="6.7.3" data-path="advlin.html"><a href="advlin.html#simulatanität"><i class="fa fa-check"></i><b>6.7.3</b> Simulatanität</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>7</b> Lineare statistische Modelle in R</a><ul>
-<li class="chapter" data-level="7.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick-1"><i class="fa fa-check"></i><b>7.1</b> Einleitung und Überblick</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>7.1.1</b> Einführung in die lineare Regression</a></li>
-<li class="chapter" data-level="7.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>7.1.2</b> Einführungsbeispiel</a></li>
-<li class="chapter" data-level="7.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>7.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>7.2</b> Grundlagen der einfachen linearen Regression</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="linmodel.html"><a href="linmodel.html#grundlegende-begriffe"><i class="fa fa-check"></i><b>7.2.1</b> Grundlegende Begriffe</a></li>
-<li class="chapter" data-level="7.2.2" data-path="linmodel.html"><a href="linmodel.html#schätzung-mit-der-kleinste-quadrate-methode"><i class="fa fa-check"></i><b>7.2.2</b> Schätzung mit der Kleinste-Quadrate-Methode</a></li>
-<li class="chapter" data-level="7.2.3" data-path="linmodel.html"><a href="linmodel.html#ols-ass"><i class="fa fa-check"></i><b>7.2.3</b> Annahmen für den OLS Schätzer</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3" data-path="linmodel.html"><a href="linmodel.html#lin-kennzahlen"><i class="fa fa-check"></i><b>7.3</b> Kennzahlen in der linearen Regression</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="linmodel.html"><a href="linmodel.html#erklärte-varianz-und-das-r2"><i class="fa fa-check"></i><b>7.3.1</b> Erklärte Varianz und das <span class="math inline">\(R^2\)</span></a></li>
-<li class="chapter" data-level="7.3.2" data-path="linmodel.html"><a href="linmodel.html#hypothesentests-und-statistische-signifikanz"><i class="fa fa-check"></i><b>7.3.2</b> Hypothesentests und statistische Signifikanz</a></li>
-<li class="chapter" data-level="7.3.3" data-path="linmodel.html"><a href="linmodel.html#konfidenzintervalle-für-die-schätzer"><i class="fa fa-check"></i><b>7.3.3</b> Konfidenzintervalle für die Schätzer</a></li>
-<li class="chapter" data-level="7.3.4" data-path="linmodel.html"><a href="linmodel.html#zur-rolle-der-stichprobengröße"><i class="fa fa-check"></i><b>7.3.4</b> Zur Rolle der Stichprobengröße</a></li>
-<li class="chapter" data-level="7.3.5" data-path="linmodel.html"><a href="linmodel.html#linmod-residuals"><i class="fa fa-check"></i><b>7.3.5</b> Residuenanalyse</a></li>
-</ul></li>
-<li class="chapter" data-level="7.4" data-path="linmodel.html"><a href="linmodel.html#stat-ablauf"><i class="fa fa-check"></i><b>7.4</b> Zum Ablauf einer Regression</a></li>
-<li class="chapter" data-level="7.5" data-path="linmodel.html"><a href="linmodel.html#lin-multi"><i class="fa fa-check"></i><b>7.5</b> Multiple lineare Regression</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>8</b> Fortgeschrittene Themen der linearen Regression</a><ul>
-<li class="chapter" data-level="8.1" data-path="advlin.html"><a href="advlin.html#annahmen-und-eigenschaften-des-einfachen-ols-modells"><i class="fa fa-check"></i><b>8.1</b> Annahmen und Eigenschaften des einfachen OLS Modells</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="advlin.html"><a href="advlin.html#annahmen-im-matrixschreibweise"><i class="fa fa-check"></i><b>8.1.1</b> Annahmen im Matrixschreibweise</a></li>
-<li class="chapter" data-level="8.1.2" data-path="advlin.html"><a href="advlin.html#erwartungstreue-effizienz-und-konsistenz"><i class="fa fa-check"></i><b>8.1.2</b> Erwartungstreue, Effizienz und Konsistenz</a></li>
-<li class="chapter" data-level="8.1.3" data-path="advlin.html"><a href="advlin.html#abweichungen-von-den-ols-annahmen"><i class="fa fa-check"></i><b>8.1.3</b> Abweichungen von den OLS Annahmen</a></li>
-<li class="chapter" data-level="8.1.4" data-path="advlin.html"><a href="advlin.html#monte-carlo-simulationen-in-r"><i class="fa fa-check"></i><b>8.1.4</b> Monte Carlo Simulationen in R</a></li>
-</ul></li>
-<li class="chapter" data-level="8.2" data-path="advlin.html"><a href="advlin.html#heteroskedastie"><i class="fa fa-check"></i><b>8.2</b> Heteroskedastie</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="advlin.html"><a href="advlin.html#liegt-heteroskedastie-vor"><i class="fa fa-check"></i><b>8.2.1</b> Liegt Heteroskedastie vor?</a></li>
-<li class="chapter" data-level="8.2.2" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-heteroskedastie"><i class="fa fa-check"></i><b>8.2.2</b> Reaktionen auf Heteroskedastie</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="advlin.html"><a href="advlin.html#autokorrelation"><i class="fa fa-check"></i><b>8.3</b> Autokorrelation</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="advlin.html"><a href="advlin.html#folgen-von-autokorrelation"><i class="fa fa-check"></i><b>8.3.1</b> Folgen von Autokorrelation</a></li>
-<li class="chapter" data-level="8.3.2" data-path="advlin.html"><a href="advlin.html#testen-auf-autokorrelation"><i class="fa fa-check"></i><b>8.3.2</b> Testen auf Autokorrelation</a></li>
-<li class="chapter" data-level="8.3.3" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-autokorrelation"><i class="fa fa-check"></i><b>8.3.3</b> Reaktionen auf Autokorrelation</a></li>
-</ul></li>
-<li class="chapter" data-level="8.4" data-path="advlin.html"><a href="advlin.html#multikollinearität"><i class="fa fa-check"></i><b>8.4</b> Multikollinearität</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="advlin.html"><a href="advlin.html#folgen-von-multikollinearität"><i class="fa fa-check"></i><b>8.4.1</b> Folgen von Multikollinearität</a></li>
-<li class="chapter" data-level="8.4.2" data-path="advlin.html"><a href="advlin.html#testen-auf-multikollinearität"><i class="fa fa-check"></i><b>8.4.2</b> Testen auf Multikollinearität</a></li>
-<li class="chapter" data-level="8.4.3" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-multikollinearität"><i class="fa fa-check"></i><b>8.4.3</b> Reaktionen auf Multikollinearität</a></li>
-</ul></li>
-<li class="chapter" data-level="8.5" data-path="advlin.html"><a href="advlin.html#advlin-omitted-var"><i class="fa fa-check"></i><b>8.5</b> Vergessene Variablen</a><ul>
-<li class="chapter" data-level="8.5.1" data-path="advlin.html"><a href="advlin.html#folgen-vergessener-variablen"><i class="fa fa-check"></i><b>8.5.1</b> Folgen vergessener Variablen</a></li>
-<li class="chapter" data-level="8.5.2" data-path="advlin.html"><a href="advlin.html#testen-auf-vergessene-variablen"><i class="fa fa-check"></i><b>8.5.2</b> Testen auf vergessene Variablen</a></li>
-<li class="chapter" data-level="8.5.3" data-path="advlin.html"><a href="advlin.html#reaktion-auf-vergessene-variablen"><i class="fa fa-check"></i><b>8.5.3</b> Reaktion auf vergessene Variablen</a></li>
-</ul></li>
-<li class="chapter" data-level="8.6" data-path="advlin.html"><a href="advlin.html#falsche-funktionale-form"><i class="fa fa-check"></i><b>8.6</b> Falsche funktionale Form</a><ul>
-<li class="chapter" data-level="8.6.1" data-path="advlin.html"><a href="advlin.html#folgen-einer-falschen-funktionalen-form"><i class="fa fa-check"></i><b>8.6.1</b> Folgen einer falschen funktionalen Form</a></li>
-<li class="chapter" data-level="8.6.2" data-path="advlin.html"><a href="advlin.html#testen-auf-die-richtige-funktionale-form"><i class="fa fa-check"></i><b>8.6.2</b> Testen auf die richtige funktionale Form</a></li>
-<li class="chapter" data-level="8.6.3" data-path="advlin.html"><a href="advlin.html#wahl-der-funktionalen-form"><i class="fa fa-check"></i><b>8.6.3</b> Wahl der funktionalen Form</a></li>
-</ul></li>
-<li class="chapter" data-level="8.7" data-path="advlin.html"><a href="advlin.html#weitere-fehlerquellen-systematische-messfehler-selbstselektion-und-simulatanität"><i class="fa fa-check"></i><b>8.7</b> Weitere Fehlerquellen: Systematische Messfehler, Selbstselektion und Simulatanität</a><ul>
-<li class="chapter" data-level="8.7.1" data-path="advlin.html"><a href="advlin.html#messfehler"><i class="fa fa-check"></i><b>8.7.1</b> Messfehler</a></li>
-<li class="chapter" data-level="8.7.2" data-path="advlin.html"><a href="advlin.html#selbstselektion"><i class="fa fa-check"></i><b>8.7.2</b> Selbstselektion</a></li>
-<li class="chapter" data-level="8.7.3" data-path="advlin.html"><a href="advlin.html#simulatanität"><i class="fa fa-check"></i><b>8.7.3</b> Simulatanität</a></li>
-</ul></li>
-<li class="chapter" data-level="8.8" data-path="advlin.html"><a href="advlin.html#anhang-übersicht-über-die-testverfahren"><i class="fa fa-check"></i><b>8.8</b> Anhang: Übersicht über die Testverfahren</a></li>
-<li class="chapter" data-level="8.9" data-path="advlin.html"><a href="advlin.html#advlin-proofs"><i class="fa fa-check"></i><b>8.9</b> Anhang: Relevante Theoreme und ihre mathematischen Beweise</a><ul>
-<li class="chapter" data-level="8.9.1" data-path="advlin.html"><a href="advlin.html#theoreme"><i class="fa fa-check"></i><b>8.9.1</b> Theoreme</a></li>
-<li class="chapter" data-level="8.9.2" data-path="advlin.html"><a href="advlin.html#beweise"><i class="fa fa-check"></i><b>8.9.2</b> Beweise</a></li>
+<li class="chapter" data-level="6.8" data-path="advlin.html"><a href="advlin.html#anhang-übersicht-über-die-testverfahren"><i class="fa fa-check"></i><b>6.8</b> Anhang: Übersicht über die Testverfahren</a></li>
+<li class="chapter" data-level="6.9" data-path="advlin.html"><a href="advlin.html#advlin-proofs"><i class="fa fa-check"></i><b>6.9</b> Anhang: Relevante Theoreme und ihre mathematischen Beweise</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="advlin.html"><a href="advlin.html#theoreme"><i class="fa fa-check"></i><b>6.9.1</b> Theoreme</a></li>
+<li class="chapter" data-level="6.9.2" data-path="advlin.html"><a href="advlin.html#beweise"><i class="fa fa-check"></i><b>6.9.2</b> Beweise</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>9</b> Ausgewählte nichtlineare Schätzverfahren</a><ul>
-<li class="chapter" data-level="9.1" data-path="nonlin.html"><a href="nonlin.html#logit"><i class="fa fa-check"></i><b>9.1</b> Binäre abhängige Variablen: Logit- und Probit-Modelle</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="nonlin.html"><a href="nonlin.html#warum-nicht-ols"><i class="fa fa-check"></i><b>9.1.1</b> Warum nicht OLS?</a></li>
-<li class="chapter" data-level="9.1.2" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-theoretische-grundidee"><i class="fa fa-check"></i><b>9.1.2</b> Logit und Probit: theoretische Grundidee</a></li>
-<li class="chapter" data-level="9.1.3" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-implementierung-in-r"><i class="fa fa-check"></i><b>9.1.3</b> Logit und Probit: Implementierung in R</a></li>
-<li class="chapter" data-level="9.1.4" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-interpretation-der-ergebnisse"><i class="fa fa-check"></i><b>9.1.4</b> Logit und Probit: Interpretation der Ergebnisse</a></li>
+<li class="chapter" data-level="7" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>7</b> Ausgewählte nichtlineare Schätzverfahren</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="nonlin.html"><a href="nonlin.html#logit"><i class="fa fa-check"></i><b>7.1</b> Binäre abhängige Variablen: Logit- und Probit-Modelle</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="nonlin.html"><a href="nonlin.html#warum-nicht-ols"><i class="fa fa-check"></i><b>7.1.1</b> Warum nicht OLS?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-theoretische-grundidee"><i class="fa fa-check"></i><b>7.1.2</b> Logit und Probit: theoretische Grundidee</a></li>
+<li class="chapter" data-level="7.1.3" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-implementierung-in-r"><i class="fa fa-check"></i><b>7.1.3</b> Logit und Probit: Implementierung in R</a></li>
+<li class="chapter" data-level="7.1.4" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-interpretation-der-ergebnisse"><i class="fa fa-check"></i><b>7.1.4</b> Logit und Probit: Interpretation der Ergebnisse</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>10</b> Eine kurze Einführung in R Markdown</a><ul>
-<li class="chapter" data-level="10.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>10.1</b> Markdown vs. R-Markdown</a></li>
-<li class="chapter" data-level="10.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>10.2</b> Installation von R-Markdown</a></li>
-<li class="chapter" data-level="10.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>10.3</b> Der R-Markdown Workflow</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>10.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
-<li class="chapter" data-level="10.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>10.3.2</b> Der Titelblock</a></li>
-<li class="chapter" data-level="10.3.3" data-path="markdown.html"><a href="markdown.html#der-textkörper"><i class="fa fa-check"></i><b>10.3.3</b> Der Textkörper</a></li>
-<li class="chapter" data-level="10.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>10.3.4</b> Kompillieren von Dokumenten</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>10.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
-<li class="chapter" data-level="10.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>10.5</b> Weitere Quellen</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -355,8 +309,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="nonlin" class="section level1">
-<h1><span class="header-section-number">Chapter 9</span> Ausgewählte nichtlineare Schätzverfahren</h1>
+<div id="nonlin" class="section level1" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Ausgewählte nichtlineare Schätzverfahren</h1>
 <p>Eine der zentralsten und gleichzeitig restriktivsten Annahmen des
 OLS Modells ist die Annahme eines linearen Zusammenhangs zwischen der
 abhängigen und den unabhängigen Variablen.
@@ -385,17 +339,17 @@ klar verletzt.
 In diesem Kapitel lernen wir dabei logit- und probit-Modelle als alternative
 Schätzverfahren kennen.</p>
 <p>Dabei werden die folgenden Pakete verwendet:</p>
-<div class="sourceCode" id="cb797"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb797-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb797-2" data-line-number="2"><span class="kw">library</span>(data.table)</a>
-<a class="sourceLine" id="cb797-3" data-line-number="3"><span class="kw">library</span>(here)</a>
-<a class="sourceLine" id="cb797-4" data-line-number="4"><span class="kw">library</span>(icaeDesign)</a></code></pre></div>
-<div id="logit" class="section level2">
-<h2><span class="header-section-number">9.1</span> Binäre abhängige Variablen: Logit- und Probit-Modelle</h2>
-<p>Das folgende Beispiel verwendet angepasste Daten aus <span class="citation">Kleiber and Zeileis (<a href="#ref-AER">2008</a>)</span> zur
+<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="nonlin.html#cb579-1" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb579-2"><a href="nonlin.html#cb579-2" aria-hidden="true"></a><span class="kw">library</span>(data.table)</span>
+<span id="cb579-3"><a href="nonlin.html#cb579-3" aria-hidden="true"></a><span class="kw">library</span>(here)</span>
+<span id="cb579-4"><a href="nonlin.html#cb579-4" aria-hidden="true"></a><span class="kw">library</span>(icaeDesign)</span></code></pre></div>
+<div id="logit" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Binäre abhängige Variablen: Logit- und Probit-Modelle</h2>
+<p>Das folgende Beispiel verwendet angepasste Daten aus <span class="citation">Kleiber and Zeileis (<a href="#ref-AER" role="doc-biblioref">2008</a>)</span> zur
 Beschäftigunssituation von Frauen aus der Schweiz:</p>
-<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb798-1" data-line-number="1">schweiz_al &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/tidy/nonlinmodels_schweizer-arbeit.csv&quot;</span>), </a>
-<a class="sourceLine" id="cb798-2" data-line-number="2">                    <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;double&quot;</span>, <span class="kw">rep</span>(<span class="st">&quot;double&quot;</span>, <span class="dv">5</span>), <span class="st">&quot;factor&quot;</span>))</a>
-<a class="sourceLine" id="cb798-3" data-line-number="3"><span class="kw">head</span>(schweiz_al)</a></code></pre></div>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="nonlin.html#cb580-1" aria-hidden="true"></a>schweiz_al &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/tidy/nonlinmodels_schweizer-arbeit.csv&quot;</span>), </span>
+<span id="cb580-2"><a href="nonlin.html#cb580-2" aria-hidden="true"></a>                    <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;double&quot;</span>, <span class="kw">rep</span>(<span class="st">&quot;double&quot;</span>, <span class="dv">5</span>), <span class="st">&quot;factor&quot;</span>))</span>
+<span id="cb580-3"><a href="nonlin.html#cb580-3" aria-hidden="true"></a><span class="kw">head</span>(schweiz_al)</span></code></pre></div>
 <pre><code>#&gt;    Arbeitslos Einkommen_log Alter Ausbildung_Jahre Kinder_jung Kinder_alt
 #&gt; 1:          1      10.78750    30                8           1          1
 #&gt; 2:          0      10.52425    45                8           0          1
@@ -413,18 +367,18 @@ Beschäftigunssituation von Frauen aus der Schweiz:</p>
 <p>Wir sind interessiert welchen Einfluss die erklärenden Variablen auf die
 Wahrscheinlichkeit haben, dass eine Frau Arbeitslos ist, also die Variable
 <code>Arbeitslos</code> den Wert <code>1</code> annimmt.</p>
-<div id="warum-nicht-ols" class="section level3">
-<h3><span class="header-section-number">9.1.1</span> Warum nicht OLS?</h3>
+<div id="warum-nicht-ols" class="section level3" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Warum nicht OLS?</h3>
 <p>Wir könnten natürlich zunächst einmal unser bekanntes und geliebtes OLS Modell
 verwenden um den Zusammenhang zu schätzen.
 Um die Probleme zu illustrieren schätzen wir einmal nur den bivariaten
 Zusammenhang zwischen <code>Arbeitslos</code> und <code>Einkommen_log</code>:</p>
-<div class="sourceCode" id="cb800"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb800-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
-<a class="sourceLine" id="cb800-2" data-line-number="2">  <span class="dt">data =</span> schweiz_al,</a>
-<a class="sourceLine" id="cb800-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>Einkommen_log, <span class="dt">y=</span>Arbeitslos, <span class="dt">group=</span><span class="dv">1</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb800-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">14</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb800-5" data-line-number="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Arbeitslosigkeit&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Arbeitsunabh. Einkommen (log)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb800-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">fullrange=</span><span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_icae</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="nonlin.html#cb582-1" aria-hidden="true"></a><span class="kw">ggplot</span>(</span>
+<span id="cb582-2"><a href="nonlin.html#cb582-2" aria-hidden="true"></a>  <span class="dt">data =</span> schweiz_al,</span>
+<span id="cb582-3"><a href="nonlin.html#cb582-3" aria-hidden="true"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>Einkommen_log, <span class="dt">y=</span>Arbeitslos, <span class="dt">group=</span><span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb582-4"><a href="nonlin.html#cb582-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">14</span>)) <span class="op">+</span></span>
+<span id="cb582-5"><a href="nonlin.html#cb582-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Arbeitslosigkeit&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Arbeitsunabh. Einkommen (log)&quot;</span>) <span class="op">+</span></span>
+<span id="cb582-6"><a href="nonlin.html#cb582-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">fullrange=</span><span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_icae</span>()</span></code></pre></div>
 <pre><code>#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Chap-nonlinmodels-binary_files/figure-html/unnamed-chunk-5-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Unser Modell würde für bestimmte Levels an arbeitsunabhängigem Einkommen
@@ -433,21 +387,21 @@ annehmen kann und die, da wir die Werte für <span class="math inline">\(y\)</sp
 interpretieren wollen, auch gar keinen Sinn ergeben wollen.</p>
 <p>Unser Ziel ist da eher ein funktionaler Zusammenhang wie in folgender
 Abbildung zu sehen:</p>
-<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb802-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
-<a class="sourceLine" id="cb802-2" data-line-number="2">  <span class="dt">data =</span> schweiz_al,</a>
-<a class="sourceLine" id="cb802-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>Einkommen_log, <span class="dt">y=</span>Arbeitslos, <span class="dt">group=</span><span class="dv">1</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb802-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">14</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb802-5" data-line-number="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Arbeitslosigkeit&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Arbeitsunabh. Einkommen (log)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb802-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">y=</span>Arbeitslos), <span class="dt">method =</span> <span class="st">&quot;glm&quot;</span>,</a>
-<a class="sourceLine" id="cb802-7" data-line-number="7">                             <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>), </a>
-<a class="sourceLine" id="cb802-8" data-line-number="8">                             <span class="dt">fullrange=</span><span class="ot">TRUE</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_icae</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="nonlin.html#cb584-1" aria-hidden="true"></a><span class="kw">ggplot</span>(</span>
+<span id="cb584-2"><a href="nonlin.html#cb584-2" aria-hidden="true"></a>  <span class="dt">data =</span> schweiz_al,</span>
+<span id="cb584-3"><a href="nonlin.html#cb584-3" aria-hidden="true"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>Einkommen_log, <span class="dt">y=</span>Arbeitslos, <span class="dt">group=</span><span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb584-4"><a href="nonlin.html#cb584-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">14</span>)) <span class="op">+</span></span>
+<span id="cb584-5"><a href="nonlin.html#cb584-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Arbeitslosigkeit&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Arbeitsunabh. Einkommen (log)&quot;</span>) <span class="op">+</span></span>
+<span id="cb584-6"><a href="nonlin.html#cb584-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">y=</span>Arbeitslos), <span class="dt">method =</span> <span class="st">&quot;glm&quot;</span>,</span>
+<span id="cb584-7"><a href="nonlin.html#cb584-7" aria-hidden="true"></a>                             <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>), </span>
+<span id="cb584-8"><a href="nonlin.html#cb584-8" aria-hidden="true"></a>                             <span class="dt">fullrange=</span><span class="ot">TRUE</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_icae</span>()</span></code></pre></div>
 <pre><code>#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Chap-nonlinmodels-binary_files/figure-html/unnamed-chunk-6-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Dieser Zusammenhang ist jedoch nicht linear und damit inkonsisten mit A1 des
 OLS Modells.</p>
 </div>
-<div id="logit-und-probit-theoretische-grundidee" class="section level3">
-<h3><span class="header-section-number">9.1.2</span> Logit und Probit: theoretische Grundidee</h3>
+<div id="logit-und-probit-theoretische-grundidee" class="section level3" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Logit und Probit: theoretische Grundidee</h3>
 <p>Wir sind interessiert an <span class="math inline">\(\mathbb{P}(y=1|\boldsymbol{x})\)</span>, also der
 Wahrscheinlichkeit, dass <span class="math inline">\(y\)</span> den Wert <span class="math inline">\(1\)</span> annimmt, gegeben die unabhängigen
 Variablen <span class="math inline">\(\boldsymbol{x}\)</span>.</p>
@@ -502,8 +456,8 @@ beiden Modelle sehr ähnlich:</p>
 <p>Wir werden der Einfachheit halber im folgenden in der Regel das
 <em>logit</em> Modell verwenden, aber die Implementierung in R ist wirklich sehr ähnlich.</p>
 </div>
-<div id="logit-und-probit-implementierung-in-r" class="section level3">
-<h3><span class="header-section-number">9.1.3</span> Logit und Probit: Implementierung in R</h3>
+<div id="logit-und-probit-implementierung-in-r" class="section level3" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> Logit und Probit: Implementierung in R</h3>
 <p>Da <em>logit</em> und <em>probit</em> Modell zu den so genannten <em>generalisierten Modellen</em>
 gehören verwenden wir die Funktion <code>glm</code> um die Modelle zu schätzen.
 Die Spezifikation ist dabei sehr ähnlich zu den linearen Modellen, die wir
@@ -514,22 +468,22 @@ der Arbeitslosigkeit schätzen.</p>
 <p>Als erstes Argument <code>formula</code> übergeben wir wieder die Schätzgleichung.
 In unserem Falle wäre das also <code>Arbeitslos ~ Alter + Einkommen_log</code>.</p>
 <p>Als zweites Argument (<code>family</code>) müssen wir die Schätzart spezifizieren.
-Für <em>logit</em> Modelle schreiben wir <code>family = binomial(link = &quot;logit&quot;)</code>, für
-<em>probit</em> Modelle entsprechend <code>family = binomial(link = &quot;probit&quot;)</code>.</p>
+Für <em>logit</em> Modelle schreiben wir <code>family = binomial(link = "logit")</code>, für
+<em>probit</em> Modelle entsprechend <code>family = binomial(link = "probit")</code>.</p>
 <p>Das letzte Argument ist dann <code>data</code>.
 Insgesamt erhalten wir also für das <em>logit</em>-Modell:</p>
-<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb805-1" data-line-number="1">arbeitslogit_test &lt;-<span class="st"> </span><span class="kw">glm</span>(</a>
-<a class="sourceLine" id="cb805-2" data-line-number="2">  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter, </a>
-<a class="sourceLine" id="cb805-3" data-line-number="3">  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), </a>
-<a class="sourceLine" id="cb805-4" data-line-number="4">  <span class="dt">data =</span> schweiz_al)</a></code></pre></div>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="nonlin.html#cb587-1" aria-hidden="true"></a>arbeitslogit_test &lt;-<span class="st"> </span><span class="kw">glm</span>(</span>
+<span id="cb587-2"><a href="nonlin.html#cb587-2" aria-hidden="true"></a>  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter, </span>
+<span id="cb587-3"><a href="nonlin.html#cb587-3" aria-hidden="true"></a>  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), </span>
+<span id="cb587-4"><a href="nonlin.html#cb587-4" aria-hidden="true"></a>  <span class="dt">data =</span> schweiz_al)</span></code></pre></div>
 <p>Und das <em>probit</em>-Modell:</p>
-<div class="sourceCode" id="cb806"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb806-1" data-line-number="1">arbeitsprobit_test &lt;-<span class="st"> </span><span class="kw">glm</span>(</a>
-<a class="sourceLine" id="cb806-2" data-line-number="2">  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter, </a>
-<a class="sourceLine" id="cb806-3" data-line-number="3">  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </a>
-<a class="sourceLine" id="cb806-4" data-line-number="4">  <span class="dt">data =</span> schweiz_al)</a></code></pre></div>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="nonlin.html#cb588-1" aria-hidden="true"></a>arbeitsprobit_test &lt;-<span class="st"> </span><span class="kw">glm</span>(</span>
+<span id="cb588-2"><a href="nonlin.html#cb588-2" aria-hidden="true"></a>  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter, </span>
+<span id="cb588-3"><a href="nonlin.html#cb588-3" aria-hidden="true"></a>  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </span>
+<span id="cb588-4"><a href="nonlin.html#cb588-4" aria-hidden="true"></a>  <span class="dt">data =</span> schweiz_al)</span></code></pre></div>
 <p>Für die Schätzergebnisse können wir wie bilang die Funktion <code>summary()</code>
 verwenden:</p>
-<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb807-1" data-line-number="1"><span class="kw">summary</span>(arbeitslogit_test)</a></code></pre></div>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="nonlin.html#cb589-1" aria-hidden="true"></a><span class="kw">summary</span>(arbeitslogit_test)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; glm(formula = Arbeitslos ~ Einkommen_log + Alter, family = binomial(link = &quot;logit&quot;), 
@@ -558,20 +512,20 @@ verwenden:</p>
 Da das ein wenig schwieriger ist beschäftigen wir uns damit im nächsten
 Abschnitt.</p>
 </div>
-<div id="logit-und-probit-interpretation-der-ergebnisse" class="section level3">
-<h3><span class="header-section-number">9.1.4</span> Logit und Probit: Interpretation der Ergebnisse</h3>
+<div id="logit-und-probit-interpretation-der-ergebnisse" class="section level3" number="7.1.4">
+<h3><span class="header-section-number">7.1.4</span> Logit und Probit: Interpretation der Ergebnisse</h3>
 <p>Wie wir oben gesehen haben ist die abhängige Variable in der Logit-Regression
 der Logarithmus der <em>Odds Ratio</em>.
 Das ist nicht ganz einfach zu interpretieren.
 So bedeutet der Koeffizient für <code>Auslaender1</code> in folgender Ergebnistabelle,
 dass sich die logarithmierte <em>Odds Ratio</em> <em>ceteris paribus</em> um 1.3 Prozent
 reduziert, wenn die betroffene Person Ausländerin ist:</p>
-<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb809-1" data-line-number="1">arbeitslogit &lt;-<span class="st"> </span><span class="kw">glm</span>(</a>
-<a class="sourceLine" id="cb809-2" data-line-number="2">  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter <span class="op">+</span><span class="st"> </span>Ausbildung_Jahre <span class="op">+</span><span class="st"> </span>Kinder_jung <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb809-3" data-line-number="3"><span class="st">    </span>Kinder_alt <span class="op">+</span><span class="st"> </span>Auslaender, </a>
-<a class="sourceLine" id="cb809-4" data-line-number="4">  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), </a>
-<a class="sourceLine" id="cb809-5" data-line-number="5">  <span class="dt">data =</span> schweiz_al)</a>
-<a class="sourceLine" id="cb809-6" data-line-number="6"><span class="kw">summary</span>(arbeitslogit)</a></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="nonlin.html#cb591-1" aria-hidden="true"></a>arbeitslogit &lt;-<span class="st"> </span><span class="kw">glm</span>(</span>
+<span id="cb591-2"><a href="nonlin.html#cb591-2" aria-hidden="true"></a>  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter <span class="op">+</span><span class="st"> </span>Ausbildung_Jahre <span class="op">+</span><span class="st"> </span>Kinder_jung <span class="op">+</span><span class="st"> </span></span>
+<span id="cb591-3"><a href="nonlin.html#cb591-3" aria-hidden="true"></a><span class="st">    </span>Kinder_alt <span class="op">+</span><span class="st"> </span>Auslaender, </span>
+<span id="cb591-4"><a href="nonlin.html#cb591-4" aria-hidden="true"></a>  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), </span>
+<span id="cb591-5"><a href="nonlin.html#cb591-5" aria-hidden="true"></a>  <span class="dt">data =</span> schweiz_al)</span>
+<span id="cb591-6"><a href="nonlin.html#cb591-6" aria-hidden="true"></a><span class="kw">summary</span>(arbeitslogit)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; glm(formula = Arbeitslos ~ Einkommen_log + Alter + Ausbildung_Jahre + 
@@ -617,20 +571,20 @@ relevanten Änderungen und den zu betrachtenden Bereich angeben.
 Je nach Anzahl der abhängigen Variablen kann diese Tabelle recht groß werden,
 sie ist aber notwendig, da der Zusammenhang zwischen abhängigen und unabhängiger
 Variable ja nicht-linear ist.</p>
-<p>Als drittes Argument müssen wir noch <code>type = &quot;response&quot;</code> übergeben damit
+<p>Als drittes Argument müssen wir noch <code>type = "response"</code> übergeben damit
 wir die Vorhersagen auf der Skala der zugrundeliegenden abhänigigen Variable
 bekommen, also direkt als Wahrscheinlichkeiten:</p>
-<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb811-1" data-line-number="1">predicted_probs &lt;-<span class="st"> </span><span class="kw">predict</span>(<span class="dt">object =</span> arbeitslogit, </a>
-<a class="sourceLine" id="cb811-2" data-line-number="2">        <span class="dt">newdata =</span> <span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb811-3" data-line-number="3">          <span class="st">&quot;Einkommen_log&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), </a>
-<a class="sourceLine" id="cb811-4" data-line-number="4">          <span class="st">&quot;Alter&quot;</span>=<span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">30</span>), </a>
-<a class="sourceLine" id="cb811-5" data-line-number="5">          <span class="st">&quot;Ausbildung_Jahre&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb811-6" data-line-number="6">          <span class="st">&quot;Kinder_alt&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </a>
-<a class="sourceLine" id="cb811-7" data-line-number="7">          <span class="st">&quot;Kinder_jung&quot;</span>=<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb811-8" data-line-number="8">          <span class="st">&quot;Auslaender&quot;</span> =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb811-9" data-line-number="9">          ),</a>
-<a class="sourceLine" id="cb811-10" data-line-number="10">        <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</a>
-<a class="sourceLine" id="cb811-11" data-line-number="11">predicted_probs</a></code></pre></div>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="nonlin.html#cb593-1" aria-hidden="true"></a>predicted_probs &lt;-<span class="st"> </span><span class="kw">predict</span>(<span class="dt">object =</span> arbeitslogit, </span>
+<span id="cb593-2"><a href="nonlin.html#cb593-2" aria-hidden="true"></a>        <span class="dt">newdata =</span> <span class="kw">data.frame</span>(</span>
+<span id="cb593-3"><a href="nonlin.html#cb593-3" aria-hidden="true"></a>          <span class="st">&quot;Einkommen_log&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), </span>
+<span id="cb593-4"><a href="nonlin.html#cb593-4" aria-hidden="true"></a>          <span class="st">&quot;Alter&quot;</span>=<span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">30</span>), </span>
+<span id="cb593-5"><a href="nonlin.html#cb593-5" aria-hidden="true"></a>          <span class="st">&quot;Ausbildung_Jahre&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
+<span id="cb593-6"><a href="nonlin.html#cb593-6" aria-hidden="true"></a>          <span class="st">&quot;Kinder_alt&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
+<span id="cb593-7"><a href="nonlin.html#cb593-7" aria-hidden="true"></a>          <span class="st">&quot;Kinder_jung&quot;</span>=<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb593-8"><a href="nonlin.html#cb593-8" aria-hidden="true"></a>          <span class="st">&quot;Auslaender&quot;</span> =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb593-9"><a href="nonlin.html#cb593-9" aria-hidden="true"></a>          ),</span>
+<span id="cb593-10"><a href="nonlin.html#cb593-10" aria-hidden="true"></a>        <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb593-11"><a href="nonlin.html#cb593-11" aria-hidden="true"></a>predicted_probs</span></code></pre></div>
 <pre><code>#&gt;         1         2 
 #&gt; 0.6175431 0.8593445</code></pre>
 <p>Das erste Element ist die Wahrscheinlichkeit arbeitslos zu sein für eine
@@ -641,32 +595,277 @@ Die zweite Wahrscheinlichkeit gilt für eine Frau mit den gleichen Eigenschaften
 aber zwei jungen Kindern.
 Mit <code>diff()</code> bekommen wir gleich den entsprechenden Effekt des zweiten jungen
 Kindes auf die Wahrscheinlichkeit arbeitslos zu sein:</p>
-<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb813-1" data-line-number="1"><span class="kw">diff</span>(predicted_probs)</a></code></pre></div>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="nonlin.html#cb595-1" aria-hidden="true"></a><span class="kw">diff</span>(predicted_probs)</span></code></pre></div>
 <pre><code>#&gt;         2 
 #&gt; 0.2418014</code></pre>
 <p>Die Wahrscheinlichkeit ist also nach dem Modell ca. <span class="math inline">\(25\%\)</span> größer!
 Wenn wir wissen wollen ob der Effekt für Ausländerinnen ähnlich ist rechnen wir:</p>
-<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb815-1" data-line-number="1"><span class="kw">diff</span>(</a>
-<a class="sourceLine" id="cb815-2" data-line-number="2">  <span class="kw">predict</span>(<span class="dt">object =</span> arbeitslogit, </a>
-<a class="sourceLine" id="cb815-3" data-line-number="3">        <span class="dt">newdata =</span> <span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb815-4" data-line-number="4">          <span class="st">&quot;Einkommen_log&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), </a>
-<a class="sourceLine" id="cb815-5" data-line-number="5">          <span class="st">&quot;Alter&quot;</span>=<span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">30</span>), </a>
-<a class="sourceLine" id="cb815-6" data-line-number="6">          <span class="st">&quot;Ausbildung_Jahre&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb815-7" data-line-number="7">          <span class="st">&quot;Kinder_alt&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </a>
-<a class="sourceLine" id="cb815-8" data-line-number="8">          <span class="st">&quot;Kinder_jung&quot;</span>=<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb815-9" data-line-number="9">          <span class="st">&quot;Auslaender&quot;</span> =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb815-10" data-line-number="10">          ),</a>
-<a class="sourceLine" id="cb815-11" data-line-number="11">        <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</a>
-<a class="sourceLine" id="cb815-12" data-line-number="12">)</a></code></pre></div>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="nonlin.html#cb597-1" aria-hidden="true"></a><span class="kw">diff</span>(</span>
+<span id="cb597-2"><a href="nonlin.html#cb597-2" aria-hidden="true"></a>  <span class="kw">predict</span>(<span class="dt">object =</span> arbeitslogit, </span>
+<span id="cb597-3"><a href="nonlin.html#cb597-3" aria-hidden="true"></a>        <span class="dt">newdata =</span> <span class="kw">data.frame</span>(</span>
+<span id="cb597-4"><a href="nonlin.html#cb597-4" aria-hidden="true"></a>          <span class="st">&quot;Einkommen_log&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), </span>
+<span id="cb597-5"><a href="nonlin.html#cb597-5" aria-hidden="true"></a>          <span class="st">&quot;Alter&quot;</span>=<span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">30</span>), </span>
+<span id="cb597-6"><a href="nonlin.html#cb597-6" aria-hidden="true"></a>          <span class="st">&quot;Ausbildung_Jahre&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
+<span id="cb597-7"><a href="nonlin.html#cb597-7" aria-hidden="true"></a>          <span class="st">&quot;Kinder_alt&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
+<span id="cb597-8"><a href="nonlin.html#cb597-8" aria-hidden="true"></a>          <span class="st">&quot;Kinder_jung&quot;</span>=<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb597-9"><a href="nonlin.html#cb597-9" aria-hidden="true"></a>          <span class="st">&quot;Auslaender&quot;</span> =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb597-10"><a href="nonlin.html#cb597-10" aria-hidden="true"></a>          ),</span>
+<span id="cb597-11"><a href="nonlin.html#cb597-11" aria-hidden="true"></a>        <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb597-12"><a href="nonlin.html#cb597-12" aria-hidden="true"></a>)</span></code></pre></div>
 <pre><code>#&gt;         2 
 #&gt; 0.3189543</code></pre>
 <p>Hier ist der Effekt mit ca. <span class="math inline">\(32\%\)</span> also noch größer!</p>
 
 
+<div id="refs" class="references hanging-indent">
+<div>
+<p>Arel-Bundock, Vincent. 2019. <em>WDI: World Development Indicators (World Bank)</em>. <a href="https://CRAN.R-project.org/package=WDI">https://CRAN.R-project.org/package=WDI</a>.</p>
+</div>
+<div>
+<p>Arel-Bundock, Vincent, Nils Enevoldsen, and CJ Yetman. 2018. “Countrycode: An R Package to Convert Country Names and Country Codes.” <em>Journal of Open Source Software</em> 3 (28): 848. <a href="https://doi.org/10.21105/joss.00848">https://doi.org/10.21105/joss.00848</a>.</p>
+</div>
+<div>
+<p>Bengtsson, Henrik. 2019. <em>R.utils: Various Programming Utilities</em>. <a href="https://CRAN.R-project.org/package=R.utils">https://CRAN.R-project.org/package=R.utils</a>.</p>
+</div>
+<div>
+<p>Dowle, Matt, and Arun Srinivasan. 2019. <em>Data.table: Extension of ‘Data.frame‘</em>. <a href="https://CRAN.R-project.org/package=data.table">https://CRAN.R-project.org/package=data.table</a>.</p>
+</div>
+<div>
+<p>Epple, Dennis, and Bennett T. McCallum. 2006. “Simultaneous Equation Econometrics: The Missing Example.” <em>Economic Inquiry</em> 44 (2).</p>
+</div>
+<div>
+<p>Greene, William H. 2018. <em>Econometric Analysis</em>. New York, NY: Pearson.</p>
+</div>
+<div>
+<p>Heckman, James. 1979. “Sample Selection Bias as a Specification Error.” <em>Econometrica</em>. <a href="https://doi.org/doi:10.2307/1912352">https://doi.org/doi:10.2307/1912352</a>.</p>
+</div>
+<div>
+<p>Herndon, Thomas, Michael Ash, and Robert Pollin. 2013. “Does high public debt consistently stifle economic growth? A critique of Reinhart and Rogoff.” <em>Cambridge Journal of Economics</em> 38 (2): 257–79. <a href="https://doi.org/10.1093/cje/bet075">https://doi.org/10.1093/cje/bet075</a>.</p>
+</div>
+<div>
+<p>Kleiber, Christian, and Achim Zeileis. 2008. <em>Applied Econometrics with R</em>. New York: Springer-Verlag. <a href="https://CRAN.R-project.org/package=AER">https://CRAN.R-project.org/package=AER</a>.</p>
+</div>
+<div>
+<p>Kuznets, Simon. 1934. <em>National Income, 1929-1932</em>. Washington D.C.: U.S. Government Printing Office. <a href="https://fraser.stlouisfed.org/title/971">https://fraser.stlouisfed.org/title/971</a>.</p>
+</div>
+<div>
+<p>Lepenies, Philipp. 2016. <em>The Power of a Single Number</em>. New York, NY: Columbia University Press.</p>
+</div>
+<div>
+<p>Müller, Kirill. 2017. <em>Here: A Simpler Way to Find Your Files</em>. <a href="https://CRAN.R-project.org/package=here">https://CRAN.R-project.org/package=here</a>.</p>
+</div>
+<div>
+<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
+</div>
+<div>
+<p>Venables, W. N., and B. D. Ripley. 2002. <em>Modern Applied Statistics with S</em>. Fourth. New York: Springer. <a href="http://www.stats.ox.ac.uk/pub/MASS4">http://www.stats.ox.ac.uk/pub/MASS4</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley. 2014. “Tidy Data.” <em>The Journal of Statistical Software</em> 59 (10). <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>.</p>
+</div>
+<div>
+<p>———. 2019. <em>Advanced R</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/">https://adv-r.hadley.nz/</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Jennifer Bryan. 2019. <em>Advanced R</em>. 2nd ed. Sebastopol, CA: O’Reilly Media. <a href="https://r-pkgs.org/">https://r-pkgs.org/</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2019. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Lionel Henry. 2019. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Evan Miller. 2019. <em>Haven: Import and Export ’Spss’, ’Stata’ and ’Sas’ Files</em>. <a href="https://CRAN.R-project.org/package=haven">https://CRAN.R-project.org/package=haven</a>.</p>
+</div>
+<div>
+<p>Zeileis, Achim. 2004. “Econometric Computing with HC and HAC Covariance Matrix Estimators.” <em>Journal of Statistical Software</em> 11 (10): 1–17. <a href="https://doi.org/10.18637/jss.v011.i10">https://doi.org/10.18637/jss.v011.i10</a>.</p>
+</div>
+<div>
+<p>Zeileis, Achim, and Torsten Hothorn. 2002. “Diagnostic Checking in Regression Relationships.” <em>R News</em> 2 (3): 7–10. <a href="https://CRAN.R-project.org/doc/Rnews/">https://CRAN.R-project.org/doc/Rnews/</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-</div>
-</div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-AER">
@@ -678,8 +877,8 @@ Wenn wir wissen wollen ob der Effekt für Ausländerinnen ähnlich ist rechnen w
           </div>
         </div>
       </div>
-<a href="advlin.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="advlin.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

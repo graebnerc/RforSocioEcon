@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Einrichtung | R für die sozio-ökonomische Forschung</title>
   <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Einrichtung | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-07-20" />
+<meta name="date" content="2020-09-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="precons.html"/>
 <link rel="next" href="basics.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,25 +54,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -131,19 +133,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R für die sozioökonomische Forschung</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Willkommen</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Willkommen</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie"><i class="fa fa-check"></i>Änderungshistorie</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a><ul>
+<li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="precons.html"><a href="precons.html#warum-r"><i class="fa fa-check"></i><b>1.1</b> Warum R?</a></li>
 <li class="chapter" data-level="1.2" data-path="precons.html"><a href="precons.html#besonderheiten-von-r"><i class="fa fa-check"></i><b>1.2</b> Besonderheiten von R</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="einrichtung.html"><a href="einrichtung.html"><i class="fa fa-check"></i><b>2</b> Einrichtung</a><ul>
+<li class="chapter" data-level="2" data-path="einrichtung.html"><a href="einrichtung.html"><i class="fa fa-check"></i><b>2</b> Einrichtung</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="einrichtung.html"><a href="einrichtung.html#installation-von-r-und-r-studio"><i class="fa fa-check"></i><b>2.1</b> Installation von R und R-Studio</a></li>
 <li class="chapter" data-level="2.2" data-path="einrichtung.html"><a href="einrichtung.html#die-r-studio-oberfläche"><i class="fa fa-check"></i><b>2.2</b> Die R Studio Oberfläche</a></li>
-<li class="chapter" data-level="2.3" data-path="einrichtung.html"><a href="einrichtung.html#einrichtung-eines-r-projekts"><i class="fa fa-check"></i><b>2.3</b> Einrichtung eines R Projekts</a><ul>
+<li class="chapter" data-level="2.3" data-path="einrichtung.html"><a href="einrichtung.html#einrichtung-eines-r-projekts"><i class="fa fa-check"></i><b>2.3</b> Einrichtung eines R Projekts</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="einrichtung.html"><a href="einrichtung.html#arbeitsverzeichnisse-und-pfade"><i class="fa fa-check"></i><b>2.3.1</b> Arbeitsverzeichnisse und Pfade</a></li>
 <li class="chapter" data-level="2.3.2" data-path="einrichtung.html"><a href="einrichtung.html#schritt-1-projektordner-anlegen"><i class="fa fa-check"></i><b>2.3.2</b> Schritt 1: Projektordner anlegen</a></li>
 <li class="chapter" data-level="2.3.3" data-path="einrichtung.html"><a href="einrichtung.html#schritt-2-ein-r-studio-projekt-im-projektordner-erstellen"><i class="fa fa-check"></i><b>2.3.3</b> Schritt 2: Ein R-Studio Projekt im Projektordner erstellen</a></li>
@@ -152,10 +158,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4" data-path="einrichtung.html"><a href="einrichtung.html#optional-schritt-4-und-das-here-paket"><i class="fa fa-check"></i><b>2.4</b> Optional: Schritt 4 und das here-Paket</a></li>
 <li class="chapter" data-level="2.5" data-path="einrichtung.html"><a href="einrichtung.html#abschließende-bemerkungen"><i class="fa fa-check"></i><b>2.5</b> Abschließende Bemerkungen</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a><ul>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#es:befehle"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
 <li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#es:objekte"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
-<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#es:objektarten"><i class="fa fa-check"></i><b>3.3</b> Grundlegende Objeke in R</a><ul>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#es:objektarten"><i class="fa fa-check"></i><b>3.3</b> Grundlegende Objeke in R</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.3.1</b> Funktionen</a></li>
 <li class="chapter" data-level="3.3.2" data-path="basics.html"><a href="basics.html#basics-types-vectors"><i class="fa fa-check"></i><b>3.3.2</b> Vektoren</a></li>
 <li class="chapter" data-level="3.3.3" data-path="basics.html"><a href="basics.html#basics-logic"><i class="fa fa-check"></i><b>3.3.3</b> Logische Werte (logical)</a></li>
@@ -170,18 +178,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#es:pakete"><i class="fa fa-check"></i><b>3.4</b> Pakete</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>4</b> Datenkunde und Datenaufbereitung</a><ul>
+<li class="chapter" data-level="4" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>4</b> Datenkunde und Datenaufbereitung</a>
+<ul>
 <li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="4.1" data-path="data.html"><a href="data.html#data-arten"><i class="fa fa-check"></i><b>4.1</b> Arten von Daten</a></li>
-<li class="chapter" data-level="4.2" data-path="data.html"><a href="data.html#data-get"><i class="fa fa-check"></i><b>4.2</b> Datenakquise</a><ul>
+<li class="chapter" data-level="4.2" data-path="data.html"><a href="data.html#data-get"><i class="fa fa-check"></i><b>4.2</b> Datenakquise</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="data.html"><a href="data.html#exkurs-1-ländercodes-übersetzen"><i class="fa fa-check"></i><b>4.2.1</b> Exkurs 1: Ländercodes übersetzen</a></li>
 <li class="chapter" data-level="4.2.2" data-path="data.html"><a href="data.html#data-download-R"><i class="fa fa-check"></i><b>4.2.2</b> Exkurs 2: Daten direkt mit R herunterladen</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="data.html"><a href="data.html#data-read-write"><i class="fa fa-check"></i><b>4.3</b> Daten einlesen und schreiben</a><ul>
+<li class="chapter" data-level="4.3" data-path="data.html"><a href="data.html#data-read-write"><i class="fa fa-check"></i><b>4.3</b> Daten einlesen und schreiben</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="data.html"><a href="data.html#einlesen-von-datensätzen"><i class="fa fa-check"></i><b>4.3.1</b> Einlesen von Datensätzen</a></li>
 <li class="chapter" data-level="4.3.2" data-path="data.html"><a href="data.html#speichern-von-daten"><i class="fa fa-check"></i><b>4.3.2</b> Speichern von Daten</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="data.html"><a href="data.html#data-wrangling"><i class="fa fa-check"></i><b>4.4</b> Verarbeitung von Daten (‘data wrangling’)</a><ul>
+<li class="chapter" data-level="4.4" data-path="data.html"><a href="data.html#data-wrangling"><i class="fa fa-check"></i><b>4.4</b> Verarbeitung von Daten (‘data wrangling’)</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="data.html"><a href="data.html#das-konzept-von-tidy-data"><i class="fa fa-check"></i><b>4.4.1</b> Das Konzept von ‘tidy data’</a></li>
 <li class="chapter" data-level="4.4.2" data-path="data.html"><a href="data.html#data-long-wide"><i class="fa fa-check"></i><b>4.4.2</b> Von langen und breiten Datensätzen</a></li>
 <li class="chapter" data-level="4.4.3" data-path="data.html"><a href="data.html#data-merge"><i class="fa fa-check"></i><b>4.4.3</b> Zusammenführen von Daten</a></li>
@@ -191,149 +203,91 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="data.html"><a href="data.html#data-role"><i class="fa fa-check"></i><b>4.5</b> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</a></li>
 <li class="chapter" data-level="4.6" data-path="data.html"><a href="data.html#data-packages"><i class="fa fa-check"></i><b>4.6</b> Anmerkungen zu Paketen</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>5</b> Visualisierung von Daten</a><ul>
-<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#verwendete-pakete-1"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
-<li class="chapter" data-level="5.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>5.1</b> Optional: Theoretische Grundlagen</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="vis.html"><a href="vis.html#vis-base-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> <code>ggplot2</code> vs. <code>base plot</code></a></li>
-<li class="chapter" data-level="5.1.2" data-path="vis.html"><a href="vis.html#grammar"><i class="fa fa-check"></i><b>5.1.2</b> Einleitung zu Wickham’s <em>grammar of graphics</em></a></li>
+<li class="chapter" data-level="5" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>5</b> Lineare statistische Modelle in R</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>5.1</b> Einleitung und Überblick</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>5.1.1</b> Einführung in die lineare Regression</a></li>
+<li class="chapter" data-level="5.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>5.1.2</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="5.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>5.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="vis.html"><a href="vis.html#vis-elemente"><i class="fa fa-check"></i><b>5.2</b> Grundlegende Elemente von <code>ggplot2</code>-Grafiken</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="vis.html"><a href="vis.html#elemente-eines-ggplot"><i class="fa fa-check"></i><b>5.2.1</b> Elemente eines <code>ggplot</code></a></li>
-<li class="chapter" data-level="5.2.2" data-path="vis.html"><a href="vis.html#beispiel-workflow"><i class="fa fa-check"></i><b>5.2.2</b> Beispiel Workflow</a></li>
+<li class="chapter" data-level="5.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>5.2</b> Grundlagen der einfachen linearen Regression</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="linmodel.html"><a href="linmodel.html#grundlegende-begriffe"><i class="fa fa-check"></i><b>5.2.1</b> Grundlegende Begriffe</a></li>
+<li class="chapter" data-level="5.2.2" data-path="linmodel.html"><a href="linmodel.html#schätzung-mit-der-kleinste-quadrate-methode"><i class="fa fa-check"></i><b>5.2.2</b> Schätzung mit der Kleinste-Quadrate-Methode</a></li>
+<li class="chapter" data-level="5.2.3" data-path="linmodel.html"><a href="linmodel.html#ols-ass"><i class="fa fa-check"></i><b>5.2.3</b> Annahmen für den OLS Schätzer</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="vis.html"><a href="vis.html#arten-von-datenvisualisierung"><i class="fa fa-check"></i><b>5.3</b> Arten von Datenvisualisierung</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="vis.html"><a href="vis.html#allgemeine-tipps-zum-grafikdesign"><i class="fa fa-check"></i><b>5.3.1</b> Allgemeine Tipps zum Grafikdesign</a></li>
-<li class="chapter" data-level="5.3.2" data-path="vis.html"><a href="vis.html#streu--oder-blasendiagramm"><i class="fa fa-check"></i><b>5.3.2</b> Streu- oder Blasendiagramm</a></li>
-<li class="chapter" data-level="5.3.3" data-path="vis.html"><a href="vis.html#linienchart"><i class="fa fa-check"></i><b>5.3.3</b> Linienchart</a></li>
-<li class="chapter" data-level="5.3.4" data-path="vis.html"><a href="vis.html#histogramme-und-dichteplots"><i class="fa fa-check"></i><b>5.3.4</b> Histogramme und Dichteplots</a></li>
-<li class="chapter" data-level="5.3.5" data-path="vis.html"><a href="vis.html#balkendiagramme"><i class="fa fa-check"></i><b>5.3.5</b> Balkendiagramme</a></li>
-<li class="chapter" data-level="5.3.6" data-path="vis.html"><a href="vis.html#vis-pie"><i class="fa fa-check"></i><b>5.3.6</b> Kuchendiagramme</a></li>
-<li class="chapter" data-level="5.3.7" data-path="vis.html"><a href="vis.html#vis-kinds-summary"><i class="fa fa-check"></i><b>5.3.7</b> Zusammenfassung</a></li>
+<li class="chapter" data-level="5.3" data-path="linmodel.html"><a href="linmodel.html#lin-kennzahlen"><i class="fa fa-check"></i><b>5.3</b> Kennzahlen in der linearen Regression</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="linmodel.html"><a href="linmodel.html#erklärte-varianz-und-das-r2"><i class="fa fa-check"></i><b>5.3.1</b> Erklärte Varianz und das <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="linmodel.html"><a href="linmodel.html#hypothesentests-und-statistische-signifikanz"><i class="fa fa-check"></i><b>5.3.2</b> Hypothesentests und statistische Signifikanz</a></li>
+<li class="chapter" data-level="5.3.3" data-path="linmodel.html"><a href="linmodel.html#konfidenzintervalle-für-die-schätzer"><i class="fa fa-check"></i><b>5.3.3</b> Konfidenzintervalle für die Schätzer</a></li>
+<li class="chapter" data-level="5.3.4" data-path="linmodel.html"><a href="linmodel.html#zur-rolle-der-stichprobengröße"><i class="fa fa-check"></i><b>5.3.4</b> Zur Rolle der Stichprobengröße</a></li>
+<li class="chapter" data-level="5.3.5" data-path="linmodel.html"><a href="linmodel.html#linmod-residuals"><i class="fa fa-check"></i><b>5.3.5</b> Residuenanalyse</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="vis.html"><a href="vis.html#vis-adv"><i class="fa fa-check"></i><b>5.4</b> Beispiele aus der Praxis und fortgeschrittene Themen</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="vis.html"><a href="vis.html#regressionsgerade"><i class="fa fa-check"></i><b>5.4.1</b> Regressionsgerade</a></li>
-<li class="chapter" data-level="5.4.2" data-path="vis.html"><a href="vis.html#vis-viele-plots"><i class="fa fa-check"></i><b>5.4.2</b> Mehrere Plots in einer Abbildung</a></li>
-<li class="chapter" data-level="5.4.3" data-path="vis.html"><a href="vis.html#mehr-zu-den-skalen-expand_scale-und-skalentransformation"><i class="fa fa-check"></i><b>5.4.3</b> Mehr zu den Skalen: <code>expand_scale()</code> und Skalentransformation</a></li>
+<li class="chapter" data-level="5.4" data-path="linmodel.html"><a href="linmodel.html#stat-ablauf"><i class="fa fa-check"></i><b>5.4</b> Zum Ablauf einer Regression</a></li>
+<li class="chapter" data-level="5.5" data-path="linmodel.html"><a href="linmodel.html#lin-multi"><i class="fa fa-check"></i><b>5.5</b> Multiple lineare Regression</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="vis.html"><a href="vis.html#vis-fehler"><i class="fa fa-check"></i><b>5.5</b> Typische Fehler in der Datenvisualisierung vermeiden</a><ul>
-<li class="chapter" data-level="5.5.1" data-path="vis.html"><a href="vis.html#clutterplots-und-ihre-tranformation-zum-beschrifteten-streudiagramm"><i class="fa fa-check"></i><b>5.5.1</b> Clutterplots und ihre Tranformation zum beschrifteten Streudiagramm</a></li>
-<li class="chapter" data-level="5.5.2" data-path="vis.html"><a href="vis.html#ein-unbalancierter-plot"><i class="fa fa-check"></i><b>5.5.2</b> Ein ‘unbalancierter’ Plot</a></li>
+<li class="chapter" data-level="6" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>6</b> Fortgeschrittene Themen der linearen Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="advlin.html"><a href="advlin.html#annahmen-und-eigenschaften-des-einfachen-ols-modells"><i class="fa fa-check"></i><b>6.1</b> Annahmen und Eigenschaften des einfachen OLS Modells</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="advlin.html"><a href="advlin.html#annahmen-im-matrixschreibweise"><i class="fa fa-check"></i><b>6.1.1</b> Annahmen im Matrixschreibweise</a></li>
+<li class="chapter" data-level="6.1.2" data-path="advlin.html"><a href="advlin.html#erwartungstreue-effizienz-und-konsistenz"><i class="fa fa-check"></i><b>6.1.2</b> Erwartungstreue, Effizienz und Konsistenz</a></li>
+<li class="chapter" data-level="6.1.3" data-path="advlin.html"><a href="advlin.html#abweichungen-von-den-ols-annahmen"><i class="fa fa-check"></i><b>6.1.3</b> Abweichungen von den OLS Annahmen</a></li>
+<li class="chapter" data-level="6.1.4" data-path="advlin.html"><a href="advlin.html#monte-carlo-simulationen-in-r"><i class="fa fa-check"></i><b>6.1.4</b> Monte Carlo Simulationen in R</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="vis.html"><a href="vis.html#vis-lies"><i class="fa fa-check"></i><b>5.6</b> Lügen mit grafischer Statistik</a><ul>
-<li class="chapter" data-level="5.6.1" data-path="vis.html"><a href="vis.html#klassiker-1-kontraintuitiver-nullpunkt"><i class="fa fa-check"></i><b>5.6.1</b> Klassiker 1: Kontraintuitiver ‘Nullpunkt’</a></li>
-<li class="chapter" data-level="5.6.2" data-path="vis.html"><a href="vis.html#klassiker-2-geschickt-gewählter-zeitraum-und-clever-gewählte-achsenabschnitte"><i class="fa fa-check"></i><b>5.6.2</b> Klassiker 2: Geschickt gewählter Zeitraum und clever gewählte Achsenabschnitte</a></li>
+<li class="chapter" data-level="6.2" data-path="advlin.html"><a href="advlin.html#heteroskedastie"><i class="fa fa-check"></i><b>6.2</b> Heteroskedastie</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="advlin.html"><a href="advlin.html#liegt-heteroskedastie-vor"><i class="fa fa-check"></i><b>6.2.1</b> Liegt Heteroskedastie vor?</a></li>
+<li class="chapter" data-level="6.2.2" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-heteroskedastie"><i class="fa fa-check"></i><b>6.2.2</b> Reaktionen auf Heteroskedastie</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="vis.html"><a href="vis.html#vis-links"><i class="fa fa-check"></i><b>5.7</b> Links und weiterführende Literatur</a></li>
+<li class="chapter" data-level="6.3" data-path="advlin.html"><a href="advlin.html#autokorrelation"><i class="fa fa-check"></i><b>6.3</b> Autokorrelation</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="advlin.html"><a href="advlin.html#folgen-von-autokorrelation"><i class="fa fa-check"></i><b>6.3.1</b> Folgen von Autokorrelation</a></li>
+<li class="chapter" data-level="6.3.2" data-path="advlin.html"><a href="advlin.html#testen-auf-autokorrelation"><i class="fa fa-check"></i><b>6.3.2</b> Testen auf Autokorrelation</a></li>
+<li class="chapter" data-level="6.3.3" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-autokorrelation"><i class="fa fa-check"></i><b>6.3.3</b> Reaktionen auf Autokorrelation</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="formalia.html"><a href="formalia.html"><i class="fa fa-check"></i><b>6</b> Formale Methoden der Sozioökonomie</a><ul>
-<li class="chapter" data-level="6.1" data-path="formalia.html"><a href="formalia.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>6.1</b> Einleitung und Überblick</a></li>
-<li class="chapter" data-level="6.2" data-path="formalia.html"><a href="formalia.html#formalia-wachstum"><i class="fa fa-check"></i><b>6.2</b> Änderungsraten und die Rolle des Logarithmus</a></li>
-<li class="chapter" data-level="6.3" data-path="formalia.html"><a href="formalia.html#formalia-diff"><i class="fa fa-check"></i><b>6.3</b> Grundlagen der Differentialrechnung</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="formalia.html"><a href="formalia.html#einleitung-differential--und-integralrechnung"><i class="fa fa-check"></i><b>6.3.1</b> Einleitung: Differential- und Integralrechnung</a></li>
-<li class="chapter" data-level="6.3.2" data-path="formalia.html"><a href="formalia.html#wiederholung-ableitungsregeln"><i class="fa fa-check"></i><b>6.3.2</b> Wiederholung: Ableitungsregeln</a></li>
-<li class="chapter" data-level="6.3.3" data-path="formalia.html"><a href="formalia.html#ableitungen-in-r"><i class="fa fa-check"></i><b>6.3.3</b> Ableitungen in R</a></li>
-<li class="chapter" data-level="6.3.4" data-path="formalia.html"><a href="formalia.html#maximierung-die-analytische-perspektive"><i class="fa fa-check"></i><b>6.3.4</b> Maximierung: die analytische Perspektive</a></li>
-<li class="chapter" data-level="6.3.5" data-path="formalia.html"><a href="formalia.html#maximierung-die-algorithmische-perspektive"><i class="fa fa-check"></i><b>6.3.5</b> Maximierung: die algorithmische Perspektive</a></li>
-<li class="chapter" data-level="6.3.6" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel"><i class="fa fa-check"></i><b>6.3.6</b> Anwendungsbeispiel</a></li>
+<li class="chapter" data-level="6.4" data-path="advlin.html"><a href="advlin.html#multikollinearität"><i class="fa fa-check"></i><b>6.4</b> Multikollinearität</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="advlin.html"><a href="advlin.html#folgen-von-multikollinearität"><i class="fa fa-check"></i><b>6.4.1</b> Folgen von Multikollinearität</a></li>
+<li class="chapter" data-level="6.4.2" data-path="advlin.html"><a href="advlin.html#testen-auf-multikollinearität"><i class="fa fa-check"></i><b>6.4.2</b> Testen auf Multikollinearität</a></li>
+<li class="chapter" data-level="6.4.3" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-multikollinearität"><i class="fa fa-check"></i><b>6.4.3</b> Reaktionen auf Multikollinearität</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="formalia.html"><a href="formalia.html#formalia-linalg"><i class="fa fa-check"></i><b>6.4</b> Lineare Algebra</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="formalia.html"><a href="formalia.html#einführung-von-matrizen"><i class="fa fa-check"></i><b>6.4.1</b> Einführung von Matrizen</a></li>
-<li class="chapter" data-level="6.4.2" data-path="formalia.html"><a href="formalia.html#grundregeln-der-matrizenalgebra"><i class="fa fa-check"></i><b>6.4.2</b> Grundregeln der Matrizenalgebra</a></li>
-<li class="chapter" data-level="6.4.3" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-1-das-einfache-keynesianische-modell"><i class="fa fa-check"></i><b>6.4.3</b> Anwendungsbeispiel 1: Das einfache Keynesianische Modell</a></li>
-<li class="chapter" data-level="6.4.4" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-2-ols-regression"><i class="fa fa-check"></i><b>6.4.4</b> Anwendungsbeispiel 2: OLS-Regression</a></li>
-<li class="chapter" data-level="6.4.5" data-path="formalia.html"><a href="formalia.html#ols-deriv"><i class="fa fa-check"></i><b>6.4.5</b> Optional: Herleitung des OLS-Schätzers</a></li>
-<li class="chapter" data-level="6.4.6" data-path="formalia.html"><a href="formalia.html#weiterführende-literatur"><i class="fa fa-check"></i><b>6.4.6</b> Weiterführende Literatur</a></li>
+<li class="chapter" data-level="6.5" data-path="advlin.html"><a href="advlin.html#advlin-omitted-var"><i class="fa fa-check"></i><b>6.5</b> Vergessene Variablen</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="advlin.html"><a href="advlin.html#folgen-vergessener-variablen"><i class="fa fa-check"></i><b>6.5.1</b> Folgen vergessener Variablen</a></li>
+<li class="chapter" data-level="6.5.2" data-path="advlin.html"><a href="advlin.html#testen-auf-vergessene-variablen"><i class="fa fa-check"></i><b>6.5.2</b> Testen auf vergessene Variablen</a></li>
+<li class="chapter" data-level="6.5.3" data-path="advlin.html"><a href="advlin.html#reaktion-auf-vergessene-variablen"><i class="fa fa-check"></i><b>6.5.3</b> Reaktion auf vergessene Variablen</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="formalia.html"><a href="formalia.html#formalia-dist"><i class="fa fa-check"></i><b>6.5</b> Analyse von Verteilungen</a><ul>
-<li class="chapter" data-level="6.5.1" data-path="formalia.html"><a href="formalia.html#vert-begriff"><i class="fa fa-check"></i><b>6.5.1</b> Theoretische und empirische Verteilungen</a></li>
-<li class="chapter" data-level="6.5.2" data-path="formalia.html"><a href="formalia.html#vert-kennzahlen"><i class="fa fa-check"></i><b>6.5.2</b> Kennzahlen zur Beschreibung empirischer Verteilungen</a></li>
-<li class="chapter" data-level="6.5.3" data-path="formalia.html"><a href="formalia.html#vert-grafik"><i class="fa fa-check"></i><b>6.5.3</b> Grafische Komplemente zu klassischen Kennzahlen</a></li>
-<li class="chapter" data-level="6.5.4" data-path="formalia.html"><a href="formalia.html#vert-bemerkungen"><i class="fa fa-check"></i><b>6.5.4</b> Abschließende Bemerkungen</a></li>
+<li class="chapter" data-level="6.6" data-path="advlin.html"><a href="advlin.html#falsche-funktionale-form"><i class="fa fa-check"></i><b>6.6</b> Falsche funktionale Form</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="advlin.html"><a href="advlin.html#folgen-einer-falschen-funktionalen-form"><i class="fa fa-check"></i><b>6.6.1</b> Folgen einer falschen funktionalen Form</a></li>
+<li class="chapter" data-level="6.6.2" data-path="advlin.html"><a href="advlin.html#testen-auf-die-richtige-funktionale-form"><i class="fa fa-check"></i><b>6.6.2</b> Testen auf die richtige funktionale Form</a></li>
+<li class="chapter" data-level="6.6.3" data-path="advlin.html"><a href="advlin.html#wahl-der-funktionalen-form"><i class="fa fa-check"></i><b>6.6.3</b> Wahl der funktionalen Form</a></li>
 </ul></li>
+<li class="chapter" data-level="6.7" data-path="advlin.html"><a href="advlin.html#weitere-fehlerquellen-systematische-messfehler-selbstselektion-und-simulatanität"><i class="fa fa-check"></i><b>6.7</b> Weitere Fehlerquellen: Systematische Messfehler, Selbstselektion und Simulatanität</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="advlin.html"><a href="advlin.html#messfehler"><i class="fa fa-check"></i><b>6.7.1</b> Messfehler</a></li>
+<li class="chapter" data-level="6.7.2" data-path="advlin.html"><a href="advlin.html#selbstselektion"><i class="fa fa-check"></i><b>6.7.2</b> Selbstselektion</a></li>
+<li class="chapter" data-level="6.7.3" data-path="advlin.html"><a href="advlin.html#simulatanität"><i class="fa fa-check"></i><b>6.7.3</b> Simulatanität</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>7</b> Lineare statistische Modelle in R</a><ul>
-<li class="chapter" data-level="7.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick-1"><i class="fa fa-check"></i><b>7.1</b> Einleitung und Überblick</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>7.1.1</b> Einführung in die lineare Regression</a></li>
-<li class="chapter" data-level="7.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>7.1.2</b> Einführungsbeispiel</a></li>
-<li class="chapter" data-level="7.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>7.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>7.2</b> Grundlagen der einfachen linearen Regression</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="linmodel.html"><a href="linmodel.html#grundlegende-begriffe"><i class="fa fa-check"></i><b>7.2.1</b> Grundlegende Begriffe</a></li>
-<li class="chapter" data-level="7.2.2" data-path="linmodel.html"><a href="linmodel.html#schätzung-mit-der-kleinste-quadrate-methode"><i class="fa fa-check"></i><b>7.2.2</b> Schätzung mit der Kleinste-Quadrate-Methode</a></li>
-<li class="chapter" data-level="7.2.3" data-path="linmodel.html"><a href="linmodel.html#ols-ass"><i class="fa fa-check"></i><b>7.2.3</b> Annahmen für den OLS Schätzer</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3" data-path="linmodel.html"><a href="linmodel.html#lin-kennzahlen"><i class="fa fa-check"></i><b>7.3</b> Kennzahlen in der linearen Regression</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="linmodel.html"><a href="linmodel.html#erklärte-varianz-und-das-r2"><i class="fa fa-check"></i><b>7.3.1</b> Erklärte Varianz und das <span class="math inline">\(R^2\)</span></a></li>
-<li class="chapter" data-level="7.3.2" data-path="linmodel.html"><a href="linmodel.html#hypothesentests-und-statistische-signifikanz"><i class="fa fa-check"></i><b>7.3.2</b> Hypothesentests und statistische Signifikanz</a></li>
-<li class="chapter" data-level="7.3.3" data-path="linmodel.html"><a href="linmodel.html#konfidenzintervalle-für-die-schätzer"><i class="fa fa-check"></i><b>7.3.3</b> Konfidenzintervalle für die Schätzer</a></li>
-<li class="chapter" data-level="7.3.4" data-path="linmodel.html"><a href="linmodel.html#zur-rolle-der-stichprobengröße"><i class="fa fa-check"></i><b>7.3.4</b> Zur Rolle der Stichprobengröße</a></li>
-<li class="chapter" data-level="7.3.5" data-path="linmodel.html"><a href="linmodel.html#linmod-residuals"><i class="fa fa-check"></i><b>7.3.5</b> Residuenanalyse</a></li>
-</ul></li>
-<li class="chapter" data-level="7.4" data-path="linmodel.html"><a href="linmodel.html#stat-ablauf"><i class="fa fa-check"></i><b>7.4</b> Zum Ablauf einer Regression</a></li>
-<li class="chapter" data-level="7.5" data-path="linmodel.html"><a href="linmodel.html#lin-multi"><i class="fa fa-check"></i><b>7.5</b> Multiple lineare Regression</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>8</b> Fortgeschrittene Themen der linearen Regression</a><ul>
-<li class="chapter" data-level="8.1" data-path="advlin.html"><a href="advlin.html#annahmen-und-eigenschaften-des-einfachen-ols-modells"><i class="fa fa-check"></i><b>8.1</b> Annahmen und Eigenschaften des einfachen OLS Modells</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="advlin.html"><a href="advlin.html#annahmen-im-matrixschreibweise"><i class="fa fa-check"></i><b>8.1.1</b> Annahmen im Matrixschreibweise</a></li>
-<li class="chapter" data-level="8.1.2" data-path="advlin.html"><a href="advlin.html#erwartungstreue-effizienz-und-konsistenz"><i class="fa fa-check"></i><b>8.1.2</b> Erwartungstreue, Effizienz und Konsistenz</a></li>
-<li class="chapter" data-level="8.1.3" data-path="advlin.html"><a href="advlin.html#abweichungen-von-den-ols-annahmen"><i class="fa fa-check"></i><b>8.1.3</b> Abweichungen von den OLS Annahmen</a></li>
-<li class="chapter" data-level="8.1.4" data-path="advlin.html"><a href="advlin.html#monte-carlo-simulationen-in-r"><i class="fa fa-check"></i><b>8.1.4</b> Monte Carlo Simulationen in R</a></li>
-</ul></li>
-<li class="chapter" data-level="8.2" data-path="advlin.html"><a href="advlin.html#heteroskedastie"><i class="fa fa-check"></i><b>8.2</b> Heteroskedastie</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="advlin.html"><a href="advlin.html#liegt-heteroskedastie-vor"><i class="fa fa-check"></i><b>8.2.1</b> Liegt Heteroskedastie vor?</a></li>
-<li class="chapter" data-level="8.2.2" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-heteroskedastie"><i class="fa fa-check"></i><b>8.2.2</b> Reaktionen auf Heteroskedastie</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="advlin.html"><a href="advlin.html#autokorrelation"><i class="fa fa-check"></i><b>8.3</b> Autokorrelation</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="advlin.html"><a href="advlin.html#folgen-von-autokorrelation"><i class="fa fa-check"></i><b>8.3.1</b> Folgen von Autokorrelation</a></li>
-<li class="chapter" data-level="8.3.2" data-path="advlin.html"><a href="advlin.html#testen-auf-autokorrelation"><i class="fa fa-check"></i><b>8.3.2</b> Testen auf Autokorrelation</a></li>
-<li class="chapter" data-level="8.3.3" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-autokorrelation"><i class="fa fa-check"></i><b>8.3.3</b> Reaktionen auf Autokorrelation</a></li>
-</ul></li>
-<li class="chapter" data-level="8.4" data-path="advlin.html"><a href="advlin.html#multikollinearität"><i class="fa fa-check"></i><b>8.4</b> Multikollinearität</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="advlin.html"><a href="advlin.html#folgen-von-multikollinearität"><i class="fa fa-check"></i><b>8.4.1</b> Folgen von Multikollinearität</a></li>
-<li class="chapter" data-level="8.4.2" data-path="advlin.html"><a href="advlin.html#testen-auf-multikollinearität"><i class="fa fa-check"></i><b>8.4.2</b> Testen auf Multikollinearität</a></li>
-<li class="chapter" data-level="8.4.3" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-multikollinearität"><i class="fa fa-check"></i><b>8.4.3</b> Reaktionen auf Multikollinearität</a></li>
-</ul></li>
-<li class="chapter" data-level="8.5" data-path="advlin.html"><a href="advlin.html#advlin-omitted-var"><i class="fa fa-check"></i><b>8.5</b> Vergessene Variablen</a><ul>
-<li class="chapter" data-level="8.5.1" data-path="advlin.html"><a href="advlin.html#folgen-vergessener-variablen"><i class="fa fa-check"></i><b>8.5.1</b> Folgen vergessener Variablen</a></li>
-<li class="chapter" data-level="8.5.2" data-path="advlin.html"><a href="advlin.html#testen-auf-vergessene-variablen"><i class="fa fa-check"></i><b>8.5.2</b> Testen auf vergessene Variablen</a></li>
-<li class="chapter" data-level="8.5.3" data-path="advlin.html"><a href="advlin.html#reaktion-auf-vergessene-variablen"><i class="fa fa-check"></i><b>8.5.3</b> Reaktion auf vergessene Variablen</a></li>
-</ul></li>
-<li class="chapter" data-level="8.6" data-path="advlin.html"><a href="advlin.html#falsche-funktionale-form"><i class="fa fa-check"></i><b>8.6</b> Falsche funktionale Form</a><ul>
-<li class="chapter" data-level="8.6.1" data-path="advlin.html"><a href="advlin.html#folgen-einer-falschen-funktionalen-form"><i class="fa fa-check"></i><b>8.6.1</b> Folgen einer falschen funktionalen Form</a></li>
-<li class="chapter" data-level="8.6.2" data-path="advlin.html"><a href="advlin.html#testen-auf-die-richtige-funktionale-form"><i class="fa fa-check"></i><b>8.6.2</b> Testen auf die richtige funktionale Form</a></li>
-<li class="chapter" data-level="8.6.3" data-path="advlin.html"><a href="advlin.html#wahl-der-funktionalen-form"><i class="fa fa-check"></i><b>8.6.3</b> Wahl der funktionalen Form</a></li>
-</ul></li>
-<li class="chapter" data-level="8.7" data-path="advlin.html"><a href="advlin.html#weitere-fehlerquellen-systematische-messfehler-selbstselektion-und-simulatanität"><i class="fa fa-check"></i><b>8.7</b> Weitere Fehlerquellen: Systematische Messfehler, Selbstselektion und Simulatanität</a><ul>
-<li class="chapter" data-level="8.7.1" data-path="advlin.html"><a href="advlin.html#messfehler"><i class="fa fa-check"></i><b>8.7.1</b> Messfehler</a></li>
-<li class="chapter" data-level="8.7.2" data-path="advlin.html"><a href="advlin.html#selbstselektion"><i class="fa fa-check"></i><b>8.7.2</b> Selbstselektion</a></li>
-<li class="chapter" data-level="8.7.3" data-path="advlin.html"><a href="advlin.html#simulatanität"><i class="fa fa-check"></i><b>8.7.3</b> Simulatanität</a></li>
-</ul></li>
-<li class="chapter" data-level="8.8" data-path="advlin.html"><a href="advlin.html#anhang-übersicht-über-die-testverfahren"><i class="fa fa-check"></i><b>8.8</b> Anhang: Übersicht über die Testverfahren</a></li>
-<li class="chapter" data-level="8.9" data-path="advlin.html"><a href="advlin.html#advlin-proofs"><i class="fa fa-check"></i><b>8.9</b> Anhang: Relevante Theoreme und ihre mathematischen Beweise</a><ul>
-<li class="chapter" data-level="8.9.1" data-path="advlin.html"><a href="advlin.html#theoreme"><i class="fa fa-check"></i><b>8.9.1</b> Theoreme</a></li>
-<li class="chapter" data-level="8.9.2" data-path="advlin.html"><a href="advlin.html#beweise"><i class="fa fa-check"></i><b>8.9.2</b> Beweise</a></li>
+<li class="chapter" data-level="6.8" data-path="advlin.html"><a href="advlin.html#anhang-übersicht-über-die-testverfahren"><i class="fa fa-check"></i><b>6.8</b> Anhang: Übersicht über die Testverfahren</a></li>
+<li class="chapter" data-level="6.9" data-path="advlin.html"><a href="advlin.html#advlin-proofs"><i class="fa fa-check"></i><b>6.9</b> Anhang: Relevante Theoreme und ihre mathematischen Beweise</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="advlin.html"><a href="advlin.html#theoreme"><i class="fa fa-check"></i><b>6.9.1</b> Theoreme</a></li>
+<li class="chapter" data-level="6.9.2" data-path="advlin.html"><a href="advlin.html#beweise"><i class="fa fa-check"></i><b>6.9.2</b> Beweise</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>9</b> Ausgewählte nichtlineare Schätzverfahren</a><ul>
-<li class="chapter" data-level="9.1" data-path="nonlin.html"><a href="nonlin.html#logit"><i class="fa fa-check"></i><b>9.1</b> Binäre abhängige Variablen: Logit- und Probit-Modelle</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="nonlin.html"><a href="nonlin.html#warum-nicht-ols"><i class="fa fa-check"></i><b>9.1.1</b> Warum nicht OLS?</a></li>
-<li class="chapter" data-level="9.1.2" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-theoretische-grundidee"><i class="fa fa-check"></i><b>9.1.2</b> Logit und Probit: theoretische Grundidee</a></li>
-<li class="chapter" data-level="9.1.3" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-implementierung-in-r"><i class="fa fa-check"></i><b>9.1.3</b> Logit und Probit: Implementierung in R</a></li>
-<li class="chapter" data-level="9.1.4" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-interpretation-der-ergebnisse"><i class="fa fa-check"></i><b>9.1.4</b> Logit und Probit: Interpretation der Ergebnisse</a></li>
+<li class="chapter" data-level="7" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>7</b> Ausgewählte nichtlineare Schätzverfahren</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="nonlin.html"><a href="nonlin.html#logit"><i class="fa fa-check"></i><b>7.1</b> Binäre abhängige Variablen: Logit- und Probit-Modelle</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="nonlin.html"><a href="nonlin.html#warum-nicht-ols"><i class="fa fa-check"></i><b>7.1.1</b> Warum nicht OLS?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-theoretische-grundidee"><i class="fa fa-check"></i><b>7.1.2</b> Logit und Probit: theoretische Grundidee</a></li>
+<li class="chapter" data-level="7.1.3" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-implementierung-in-r"><i class="fa fa-check"></i><b>7.1.3</b> Logit und Probit: Implementierung in R</a></li>
+<li class="chapter" data-level="7.1.4" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-interpretation-der-ergebnisse"><i class="fa fa-check"></i><b>7.1.4</b> Logit und Probit: Interpretation der Ergebnisse</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>10</b> Eine kurze Einführung in R Markdown</a><ul>
-<li class="chapter" data-level="10.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.r-markdown"><i class="fa fa-check"></i><b>10.1</b> Markdown vs. R-Markdown</a></li>
-<li class="chapter" data-level="10.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>10.2</b> Installation von R-Markdown</a></li>
-<li class="chapter" data-level="10.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>10.3</b> Der R-Markdown Workflow</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>10.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
-<li class="chapter" data-level="10.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>10.3.2</b> Der Titelblock</a></li>
-<li class="chapter" data-level="10.3.3" data-path="markdown.html"><a href="markdown.html#der-textkörper"><i class="fa fa-check"></i><b>10.3.3</b> Der Textkörper</a></li>
-<li class="chapter" data-level="10.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>10.3.4</b> Kompillieren von Dokumenten</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>10.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
-<li class="chapter" data-level="10.5" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>10.5</b> Weitere Quellen</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -355,9 +309,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="einrichtung" class="section level1">
+<div id="einrichtung" class="section level1" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Einrichtung</h1>
-<div id="installation-von-r-und-r-studio" class="section level2">
+<div id="installation-von-r-und-r-studio" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Installation von R und R-Studio</h2>
 <p>Die Installation von R ist in der Regel unproblematisch.
 Auf der <a href="https://www.r-project.org/">R homepage</a> wählt man unter dem Reiter
@@ -371,7 +325,7 @@ Das Programm kann <a href="https://www.rstudio.com/products/rstudio/download/">h
 heruntergeladen werden.
 Bitte darauf achten ‘RStuio Desktop’ zu installieren.</p>
 </div>
-<div id="die-r-studio-oberfläche" class="section level2">
+<div id="die-r-studio-oberfläche" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Die R Studio Oberfläche</h2>
 <p>Nach dem Installationsprozess öffnen wir R Studio zum ersten Mal.
 Abbildung <a href="einrichtung.html#fig:gui">2.1</a> zeigt die verschiedenen Elemente der Oberfläche, deren
@@ -433,7 +387,7 @@ kennenlernen.</p>
 <p>Es macht Sinn, sich einmal die möglichen Einstellungsmöglichkeiten für R Studio
 anzuschauen und gegebenenfalls eine andere Darstellungsversion zu wählen.</p>
 </div>
-<div id="einrichtung-eines-r-projekts" class="section level2">
+<div id="einrichtung-eines-r-projekts" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> Einrichtung eines R Projekts</h2>
 <p>Im Folgenden werden wir lernen wie man ein neues R Projekt anlegt, R Code
 schreiben und ausführen kann.</p>
@@ -454,7 +408,7 @@ Problem zu lösen, z.B. einen Datensatz zu visualisieren.</p>
 die folgenden Konzepte diskutieren:
 (1) das Konzept eines <em>Arbeitsverzeichnisses</em> (<em>working directory</em>) und
 (2) die Unterscheidung zwischen <em>absoluten</em> und <em>relativen</em> Pfaden.</p>
-<div id="arbeitsverzeichnisse-und-pfade" class="section level3">
+<div id="arbeitsverzeichnisse-und-pfade" class="section level3" number="2.3.1">
 <h3><span class="header-section-number">2.3.1</span> Arbeitsverzeichnisse und Pfade</h3>
 <p>Das <strong>Arbeitsverzeichnis</strong> ist ein Ordner auf dem Computer, in dem R
 standardmäßig sämtlichen Output speichert und von dem aus es auf Datensätze und
@@ -463,10 +417,10 @@ Wenn wir mit Projekten arbeiten ist das Arbeitsverzeichnis der Ordner, in dem da
 R-Projektfile abgelegt ist, ansonsten ist es das Benutzerverzeichnis.
 Wir können uns das Arbeitsverzeichnis mit der Funktion <code>getwd()</code> anzeigen lassen.
 In meinem Fall ist das Arbeitsverzeichnis das Folgende:</p>
-<pre><code>#&gt; [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR&quot;</code></pre>
+<pre><code>#&gt; [1] &quot;/Volumes/develop/packages/RforSocioEcon&quot;</code></pre>
 <p>Wenn ich R nun sagen würde, es solle ein File unter dem Namen <code>test.pdf</code> speichern,
 dann würde es am folgenden Ort gespeichert werden:</p>
-<pre><code>#&gt; [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf&quot;</code></pre>
+<pre><code>#&gt; [1] &quot;/Volumes/develop/packages/RforSocioEcon/test.pdf&quot;</code></pre>
 <p>R geht in einem solchen Fall immer vom Arbeitsverzeichnis aus.
 Da wir im vorliegenden Fall den Speicherort relativ zum Arbeitsverzeichnis
 angegeben haben, sprechen wir hier von einem <strong>relativen Pfad</strong>.</p>
@@ -476,7 +430,7 @@ diesem Fall geben wir den kompletten Pfad, ausgehend vom
 Computers, an.
 Wir würden R also <em>explizit</em> auffordern, das File an folgendem Ort zu
 speichern:</p>
-<pre><code>#&gt; [1] &quot;/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/test.pdf&quot;</code></pre>
+<pre><code>#&gt; [1] &quot;/Volumes/develop/packages/RforSocioEcon/test.pdf&quot;</code></pre>
 <p>Wir werden hier <strong>immer</strong> relative Pfade verwenden.
 Relative Pfade sind fast immer die bessere Variante, da es uns erlaubt den
 gleichen Code auf verschiedenen Computern zu verwenden.
@@ -486,7 +440,7 @@ teilen.</p>
 <p>Wir lernen mehr über dieses Thema wenn wir uns später mit Dateninput und -output
 beschäftigen.</p>
 </div>
-<div id="schritt-1-projektordner-anlegen" class="section level3">
+<div id="schritt-1-projektordner-anlegen" class="section level3" number="2.3.2">
 <h3><span class="header-section-number">2.3.2</span> Schritt 1: Projektordner anlegen</h3>
 <p>Zuerst müssen Sie sich für einen Ordner auf Ihrem Computer entscheiden, in dem
 alle Daten, die mit ihrem Projekt zu tun haben, also Daten, Skripte, Abbildungen,
@@ -495,7 +449,7 @@ Es macht Sinn, einen solchen Ordner mit einem informativen Namen ohne Leer- und
 Sonderzeichen zu versehen, z.B. <code>Learning-R</code>.</p>
 <p>Dieser Schritt kann theoretisch auch gemeinsam mit Schritt 2 erfolgen.</p>
 </div>
-<div id="schritt-2-ein-r-studio-projekt-im-projektordner-erstellen" class="section level3">
+<div id="schritt-2-ein-r-studio-projekt-im-projektordner-erstellen" class="section level3" number="2.3.3">
 <h3><span class="header-section-number">2.3.3</span> Schritt 2: Ein R-Studio Projekt im Projektordner erstellen</h3>
 <p>Wir möchten nun R Studio mitteilen den in Schritt 1 erstellten Ordner als R
 Projekt zu behandeln.
@@ -533,7 +487,7 @@ befindet. Damit ist die formale Erstellung eines Projekts abgeschlossen.
 Es empfiehlt sich jedoch dringend gleich eine sinnvolle Unterordnerstruktur mit
 anzulegen.</p>
 </div>
-<div id="unterordner" class="section level3">
+<div id="unterordner" class="section level3" number="2.3.4">
 <h3><span class="header-section-number">2.3.4</span> Schritt 3: Relevante Unterordner erstellen</h3>
 <p>Eine sinnvolle Unterordnerstruktur hilft (1) den Überblick über das eigene
 Projekt nicht zu verlieren, (2) mit anderen über verschiedene Computer hinweg
@@ -592,12 +546,12 @@ verwendet und den Abschnitt zu einem späteren Zeitpunkt lesen (R-Pakete werden
 in Abschnit <a href="#packages"><strong>??</strong></a> eingeführt).</p>
 </div>
 </div>
-<div id="optional-schritt-4-und-das-here-paket" class="section level2">
+<div id="optional-schritt-4-und-das-here-paket" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> Optional: Schritt 4 und das here-Paket</h2>
 <p>Es gibt einen weiteren Schritt, den Sie bei der Einrichtung eines neuen Projekts
 immer durchführen sollten.
 Dieser Schritt beinhaltet die Verwendung des R-Pakets
-<a href="https://github.com/r-lib/here">here</a> <span class="citation">(Müller <a href="#ref-here">2017</a>)</span>.
+<a href="https://github.com/r-lib/here">here</a> <span class="citation">(Müller <a href="#ref-here" role="doc-biblioref">2017</a>)</span>.
 Falls Sie noch nicht mit der Verwendung von R-Paketen vertraut sind, sollten Sie
 diesen Abschnitt zunächst überspringen.
 Pakete werden in Abschnitt <a href="#packages"><strong>??</strong></a> eingeführt und es macht Sinn, wenn
@@ -610,7 +564,7 @@ R-Markdown.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 <p>Gerade wenn Sie ein Skript einmal an eine*n Kollege*in schicken wollen und
 diese*r nicht das ganze R Projekt öffnet kommt es schnell zu Fehlermeldungen.
 Glücklicherweise gibt es eine recht einfache Lösung für alle derartigen
-Probleme: das Paket <a href="https://github.com/r-lib/here">here</a> <span class="citation">(Müller <a href="#ref-here">2017</a>)</span>.
+Probleme: das Paket <a href="https://github.com/r-lib/here">here</a> <span class="citation">(Müller <a href="#ref-here" role="doc-biblioref">2017</a>)</span>.
 Durch Einlesen des Pakets erhalten Sie Zugriff auf die Funktion (Überraschung!)
 <code>here()</code>.
 Diese Funktion nimmt nur ein einziges Argument und zwar einen relativen Pfad.
@@ -623,20 +577,20 @@ Anhand eines Beispiels lässt sich das am einfachsten nachvollziehen.
 Gehen wir davon aus, dass Birte und Claudius gemeinsam an einem R-Skript
 arbeiten.
 Im Code kommt dabei folgende Zeile vor:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">write</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">file =</span> <span class="st">&quot;output/vektor.txt&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="einrichtung.html#cb4-1" aria-hidden="true"></a><span class="kw">write</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">file =</span> <span class="st">&quot;output/vektor.txt&quot;</span>)</span></code></pre></div>
 <p>Hier wird ein Vektor in einer Textdatei im Unterordner <code>output/</code> gespeichert.
 Damit R die Datei am richtigen Ort speichert müssen Birte und Claudius das gleiche
 Arbeitsverzeichnis verwenden, sonst wirkt der relative Pfad auf ihren jeweiligen
 Computern anders.
 Alternativ könnte Claudius den Pfad auch absolut angeben:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">write</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">file =</span> <span class="st">&quot;/Users/claudius/projekte/R-Projekt-Birte/output/vektor.txt&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="einrichtung.html#cb5-1" aria-hidden="true"></a><span class="kw">write</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">file =</span> <span class="st">&quot;/Users/claudius/projekte/R-Projekt-Birte/output/vektor.txt&quot;</span>)</span></code></pre></div>
 <p>Dann würde die Datei auf seinem Computer immer am richtigen Ort gespeichert,
 egal in welchem Arbeitsverzeichnis er sich gerade befindet.
 Wenn Birte nun allerdings diesen Code bei sich ausführt wird sie mit ziemlicher
 Sicherheit eine Fehlermeldung erhalten.
 Denn auf ihrem Computer liegt das Skript bestimmt an einem anderen Ort.
 Sie müsste also z.B. schreiben:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">write</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">file =</span> <span class="st">&quot;/Users/birte/projekte/R-Projekt-Claudius/output/vektor.txt&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="einrichtung.html#cb6-1" aria-hidden="true"></a><span class="kw">write</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">file =</span> <span class="st">&quot;/Users/birte/projekte/R-Projekt-Claudius/output/vektor.txt&quot;</span>)</span></code></pre></div>
 <p>Dieser Code wiederum würde bei Claudius nicht funktionieren.
 Natürlich könnten die beiden den Code immer individuell vor dem Ausführen auf
 ihrem Computer anpassen.
@@ -645,9 +599,9 @@ dass er ohne Modifikation auf unterschieldlichen Computern funktioniert.
 Sonst macht Zusammenarbeit wenig Spaß.</p>
 <p>Die Funktion <code>here()</code> löst dieses Problem.
 Hier könnten die beiden einfach schreiben:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">write</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">file =</span> <span class="kw">here</span>(<span class="st">&quot;output/vektor.txt&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="einrichtung.html#cb7-1" aria-hidden="true"></a><span class="kw">write</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">file =</span> <span class="kw">here</span>(<span class="st">&quot;output/vektor.txt&quot;</span>))</span></code></pre></div>
 <p>Die Funktion <code>here()</code> baut dann automatisch einen absoluten Pfad.
-Der Output von <code>here(&quot;output/vektor.txt&quot;)</code> sähe auf Claudius’ Computer so aus:</p>
+Der Output von <code>here("output/vektor.txt")</code> sähe auf Claudius’ Computer so aus:</p>
 <pre><code>~/claudius-projekte/R-Projekt-Birte/output/vektor.txt</code></pre>
 <p>Und auf Birte’s Computer aber so:</p>
 <pre><code>~/birte-projekte/R-Projekt-Claudius/output/vektor.txt</code></pre>
@@ -664,18 +618,18 @@ Dafür muss beim Erstellen eines Arbeitsverzeichnis <em>einmalig</em> eine Datei
 die relativen Pfade fungieren soll.
 Das ist in aller Regel der Ordner, in dem auch die <code>.Rproj</code> Datei liegt.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
 <p>Dazu führen wir nach Schritt 3 noch folgende Befehle aus:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">here<span class="op">::</span><span class="kw">here</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="einrichtung.html#cb10-1" aria-hidden="true"></a>here<span class="op">::</span><span class="kw">here</span>()</span></code></pre></div>
 <p>Wenn der angezeigte Pfad mit dem Pfad zu Ihrem gewünschten Arbeitsverzeichnis
 übereinstimmt, führen Sie nun folgenden Befehl aus:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">here<span class="op">::</span><span class="kw">set_here</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="einrichtung.html#cb11-1" aria-hidden="true"></a>here<span class="op">::</span><span class="kw">set_here</span>()</span></code></pre></div>
 <p>Falls nicht geben Sie der Funktion <code>here::set_here()</code> den absoluten Pfad
 zu Ihrem Arbeitsverzeichnis als Argument, z.B.:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">here<span class="op">::</span><span class="kw">set_here</span>(<span class="st">&quot;/Users/claudius/projekte/R-Projekt-Birte&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="einrichtung.html#cb12-1" aria-hidden="true"></a>here<span class="op">::</span><span class="kw">set_here</span>(<span class="st">&quot;/Users/claudius/projekte/R-Projekt-Birte&quot;</span>)</span></code></pre></div>
 <p>Sie sollten nun eine Nachricht bekommen haben, dass in Ihrem Arbeitsverzeichnis
 eine neue Datei <code>.here</code> erstellt wurde.
 Damit ist die Einrichtung Ihres Projekts vollständig abgeschlossen.</p>
 </div>
-<div id="abschließende-bemerkungen" class="section level2">
+<div id="abschließende-bemerkungen" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> Abschließende Bemerkungen</h2>
 <p>Eine gute Ordnerstruktur ist nicht nur absolut essenziell um selbst einen
 Überblick über seine Forschungsprojekte zu behalten, sondern auch wenn man
@@ -692,6 +646,21 @@ Eine (optionale) kurze Einführung in Git und Github finden Sie in Kapitel
 <div id="ref-here">
 <p>Müller, Kirill. 2017. <em>Here: A Simpler Way to Find Your Files</em>. <a href="https://CRAN.R-project.org/package=here">https://CRAN.R-project.org/package=here</a>.</p>
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="2">
+<li id="fn2"><p>Mit R Markdown können Sie in R direkt Texte schreiben und somit
+die statistische Analyse und die Beschreibung der Ergebnisse in einem Dokument
+integrieren. Dieses Buch ist z.B. auch vollständig in R-Markdown geschrieben.
+Eine kurze Einführung finden Sie in Kapitel <a href="#markdown"><strong>??</strong></a>.<a href="einrichtung.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>
+Strikt genommen ist das Erstellen der <code>.here</code> Datei nicht nötig, da
+<code>here()</code> im Zweifel von dem Ordner als Ausgangspunkt ausgeht, in dem es die
+nächste <code>.Rproj</code>-Datei findet. Es ist aber besser hier explizit zu seine
+<code>.here</code>-Datei beim Einrichten eines neuen Projekts immer mit zu erstellen.
+Dann funktioniert der Code in jedem Fall immer.<a href="einrichtung.html#fnref3" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
