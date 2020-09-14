@@ -2093,7 +2093,7 @@ Intervall $(0,1)$ normiert wird und den Wert 0 im Falle einer kompletten
 Gleichverteilung und den Wert 1 im Falle eine kompletten Konzentration, d.h. 
 dem Fall, dass ein Beobachtungssubjekt alles und alle anderen nichts besitzen.
 
-In R können wir den Gini Index z.B. mit der Funktion `Gini()` aus dem Paket 
+In R können wir den Gini-Index z.B. mit der Funktion `Gini()` aus dem Paket 
 [ineq](https://cran.r-project.org/package=ineq) [@R-ineq] berechnen, wobei wir 
 hier die Korrektur für Stichproben verwenden müssen indem wir das Argument
 `corr = TRUE` setzen:
@@ -2101,8 +2101,8 @@ hier die Korrektur für Stichproben verwenden müssen indem wir das Argument
 ```{r}
 test_data_equality <- rep(0.5, 5)
 test_data_inequality <- c(rep(0, 4), 1)
-Gini(test_data_equality, corr = T)
-Gini(test_data_inequality, corr = T)
+ineq::Gini(test_data_equality, corr = T)
+ineq::Gini(test_data_inequality, corr = T)
 ```
 
 
@@ -2162,11 +2162,11 @@ Linie per definitionem keine Kurve verlaufen kann):
 \mathcal{G}= 2\cdot \int_0^1\left(p-\mathcal{L}\left(p\right)\right)\text{d}p = 1-2\cdot \int_0^1\left(\mathcal{L}\left(p\right)\right)\text{d}p
 \end{align}
 
-Der Gini-Indix ist ein recht hilfreiches Maß für Ungleichverteilung wenn wir
+Der Gini-Index ist ein recht hilfreiches Maß für Ungleichverteilung wenn wir
 es mit *symmetrischen* Verteilungen zu tun haben, wie die lila Kurve in der
 Abbildung oben.
 Es ist jedoch ein schwierigeres Maß sobald eine *assymmetrische*
-Verteilung vorliegt, wie bei der blauen Kurveoben.
+Verteilung vorliegt, wie bei der blauen Kurve oben.
 In letzterem Fall werden wir möglicherweise die gleichen Ginis für recht
 unterschiedliche Verteilungen erhalten.
 Da Vermögens- und Einkommensverteilungen in der Regel immer asymmetrisch sind
@@ -2184,6 +2184,9 @@ Insbesondere können die Beiträge von Ungleichheiten
 innerhalb verschiedener Subgruppen und die Ungleichheiten zwischen Gruppen als
 solchen aus dem Index abgeleitet werden. Weitere Informationen finden sich z.B.
 [hier](http://siteresources.worldbank.org/PGLP/Resources/PMch6.pdf)]
+
+<!-- Irgendwie kann ich den Link nicht aufrufen, es sagt mit "gesicherte Verbindung fehlgeschlagen", weiß aber nicht ob das an meinem Internet oder der Seite liegt -->
+
 Die Definition ist folgendermaßen:
 
 \begin{align}
@@ -2198,7 +2201,7 @@ In R können wir den Theil Index mit der Funktion `Theil()` aus dem Paket
 
 ```{r}
 dist_expl <- rpareto(100, 3, 2.1)
-Theil(dist_expl)
+ineq::Theil(dist_expl)
 ```
 
 Welches Verteilungsmaß für den jeweiligen Anwendungsfall am besten geeignet
@@ -2212,9 +2215,9 @@ unsere Stichprobengröße messen [@torsten-dist].
 Das richtige Maß hängt also immer von unseren theoretischen Vorüberlegungen zur
 zugrundeliegenden Verteilung und unserem konkreten Erkenntnisinteresse ab.
 
-In diesem Sinne ist vor allem die weite Verbreitung des Gini-Indices als 
+In diesem Sinne ist vor allem die weite Verbreitung des Gini-Indexes als 
 *dem* Verteilungsmaß schlechthin durchaus kritisch zu sehen. 
-So reagiert der Gini Index vor allem auf Änderungen in den mittleren Bereichen
+So reagiert der Gini-Index vor allem auf Änderungen in den mittleren Bereichen
 der Verteilung und weniger auf Änderungen an den Rändern. Wer Effekte
 von wachsender Vermögenskonzentration bei den reichsten Individuen messen möchte
 sollte also lieber ein anderes Maß verwenden.
@@ -2222,9 +2225,9 @@ Sein Nutzen ist insofern auch von der zugrundeliegenden Forschungsfrage
 abhängig. Das gilt natürlich auch für alle anderen Indices. So eignet sich
 der Theil-Index vor allem bei der Analyse von Änderungen über die Zeit in der
 gleichen Gruppe, da er nicht normiert ist. Er reagiert deutlich besser auf
-Änderungen an den Extremen als der Gini Index.
+Änderungen an den Extremen als der Gini-Index.
 
-Für eine gute kritische Auseinandersetzung mit dem Gini Index und einen
+Für eine gute kritische Auseinandersetzung mit dem Gini-Index und einen
 konstruktiven Gegenvorschlag siehe z.B. @gini-critique.
 
 Zahlreiche gängige Verteilungsmaße sind in dem Paket
@@ -2241,11 +2244,11 @@ nur für unimodale Verteilungen intuitiv interpretiert werden können.
 Ganz strikt genommen sprechen wir von einer **unimodalen** oder **eingipfligen**
 Verteilung wenn Sie nur einen Gipfel hat, also nur einen Modus
 Ansonsten sprechen wir von einer **multimodalen** oder **mehrgipfligen** 
-(oder genauer *ein*gipfligen, *zwei*gipfligen, ...) Verteilung.
+(oder genauer *zwei*gipfligen, *drei*gipfligen, ...) Verteilung.
 
-In der Praxis haben viele Funktionen aber einen eindeutigen Modus,
+In der Praxis haben viele Funktionen einen eindeutigen Modus,
 besitzen aber mehrere andere lokale Optima, also kleinere "Gipfel", sodass wir 
-in der Regel von einer multimodelen Verteilung sprechen sobald es mehrere lokale 
+in der Regel von einer multimodalen Verteilung sprechen sobald es mehrere lokale 
 Maxima gibt:
 
 ```{r, echo=FALSE}
@@ -2254,16 +2257,17 @@ eingipflig <- dnorm(x_vals)
 zweigipflig <- 0.75*dnorm(x_vals) + 0.25*dnorm(x_vals, mean = -4)
 dreigipflig <- 0.6*dnorm(x_vals) + 0.15*dnorm(x_vals, mean = -5) + 0.25*dnorm(x_vals, mean = 5)
 mod_data <- data.frame(x_vals, eingipflig, zweigipflig, dreigipflig) %>%
-  pivot_longer(cols = -one_of("x_vals"), 
+  tidyr::pivot_longer(cols = -one_of("x_vals"), 
                names_to = "Art", 
                values_to = "Dichte")
 
-ggplot(data = mod_data, mapping = aes(x=x_vals, y=Dichte, color=Art)) +
-  geom_line() +
-  theme_icae() +
-  scale_color_icae()
+ggplot2::ggplot(data = mod_data, mapping = aes(x=x_vals, y=Dichte, color=Art)) +
+  ggplot2::geom_line() +
+  ggplot2::theme_bw() 
+  
 ```
 
+<!-- Hier ist wieder ein scale_color_icae() command bei dem ich nicht weiß wie ich den auswechseln soll -->
 
 **Kennzahlen zur Form der Verteilung**
 
@@ -2293,54 +2297,55 @@ Abbildung verdeutlichen:
 dist_vals <- data.frame(
   x_vals = seq(0, 1, 0.01)
 ) %>%
-  mutate(
+  dplyr::mutate(
     linkssteil = dbeta(x_vals, shape1 = 5, shape2 = 2),
     rechtssteil = dbeta(x_vals, shape1 = 2, shape2 = 5),
     symmetrisch = dbeta(x_vals, shape1 = 5, shape2 = 5)
   ) %>% 
-  pivot_longer(names_to = "Schiefe", 
+  tidyr::pivot_longer(names_to = "Schiefe", 
                values_to = "Dichte", 
                cols = -one_of("x_vals"))
 
-ggplot(data = dist_vals, 
+ggplot2::ggplot(data = dist_vals, 
        mapping = aes(x=x_vals, 
                      y=Dichte, 
                      color=Schiefe)
        ) +
-  geom_line() + 
-  labs(title = "PDF für schiefe und symmetrische Verteilungen") +
-  scale_y_continuous(limits = c(0, 2.5), expand = c(0, 0)) +
-  theme_icae() +
-  scale_color_icae(palette = "mixed") + 
-  theme(axis.title.x = element_blank())
+  ggplot2::geom_line() + 
+  ggplot2::labs(title = "PDF für schiefe und symmetrische Verteilungen") +
+  ggplot2::scale_y_continuous(limits = c(0, 2.5), expand = c(0, 0)) +
+  ggplot2::theme_bw() +
+  ggplot2::theme(axis.title.x = element_blank())
 ```
+
+<!-- Hier in der vorletzten Zeile wieder rausgenommen:   scale_color_icae(palette = "mixed")  -->
 
 In R können wir die Schiefe einer Verteilung mit der Funktion `skewness()`
 aus dem Paket [moments](https://cran.r-project.org/package=moments) [@R-moments] 
 berechnen:
 
 ```{r}
-skewness(journal_daten[["Preis"]])
+moments::skewness(journal_daten[["Preis"]])
 ```
 
 Wir würden hier also von einer *recht-schiefen* Verteilung der Preise 
 sprechen. Das sehen wir hier auch grafisch:
 
 ```{r, echo=FALSE}
-ggplot(data = journal_daten) +
-  geom_histogram(
+ggplot2::ggplot(data = journal_daten) +
+  ggplot2::geom_histogram(
     mapping = aes(x=Preis, stat(density)), bins=30,
     alpha=0.4) +
-  ylab("Dichte") + 
-  labs(title = "Verteilung der Journalpreise") +
-  stat_density(mapping = aes(x=Preis), 
+  ggplot2::ylab("Dichte") + 
+  ggplot2::labs(title = "Verteilung der Journalpreise") +
+  ggplot2::stat_density(mapping = aes(x=Preis), 
                color="blue", 
                geom="line") +
-  scale_y_continuous(
+  ggplot2::scale_y_continuous(
     expand = expand_scale(c(0, 0.0005), 
                           c(0, 0))
     ) +
-  theme_icae()
+  ggplot2::theme_bw()
   
 ```
 
@@ -2359,7 +2364,7 @@ Wir können die Kurtosis einer Verteilung mit der Funktion `kurtosis()` aus dem
 Paket [moments](https://cran.r-project.org/package=moments) berechnen:
 
 ```{r}
-kurtosis(journal_daten[["Preis"]])
+moments::kurtosis(journal_daten[["Preis"]])
 ```
 
 
@@ -2374,34 +2379,36 @@ $\tilde{\omega}_x<0$.
 Für den Fall der Preisverteilung von Journalen haben wir es also mit einer
 steilgipfligen Verteilung zu tun.
 
-Zur Verdeutlichung des Konzepts im folgenden noch ein grafisches Beispiel:
+<!-- Gibt es da denn dann jetzt irgendeine praktische/intuitive Interpretation zu? -->
+
+Zur Verdeutlichung des Konzepts im Folgenden noch ein grafisches Beispiel:
 
 ```{r, echo=FALSE}
 kurt_data <- data.frame(
   xvals = seq(-5, 5, 0.01)
 ) %>%
-  mutate(
+  dplyr::mutate(
     "1.8" = dlogis(xvals),
     "2.7" = dnorm(xvals),
     "6.4" = dnorm(xvals, sd = 0.5)
   ) %>%
-  pivot_longer(names_to = "Kurtosis", 
+  tidyr::pivot_longer(names_to = "Kurtosis", 
                values_to = "Dichte", 
                cols = -one_of("xvals"))
 
 
-ggplot(data = kurt_data, mapping = aes(x=xvals, y=Dichte, color=Kurtosis)) +
-  geom_line(aes()) +
-  theme_icae() + 
-  scale_color_icae(palette = "mixed") +
-  theme(legend.title = element_text(), 
+ggplot2::ggplot(data = kurt_data, mapping = aes(x=xvals, y=Dichte, color=Kurtosis)) +
+  ggplot2::geom_line(aes()) +
+  ggplot2::theme_bw() + 
+  ggplot2::theme(legend.title = element_text(), 
         axis.title.x = element_blank())
 ```
 
 ```{r}
-kurtosis(filter(kurt_data, Kurtosis=="Normalverteilung")$Dichte)
+moments::kurtosis(dplyr::filter(kurt_data, Kurtosis=="Normalverteilung")$Dichte)
 ```
 
+<!-- wieder raus: scale_color_icae(palette = "mixed") -->
 
 **Ausreißer und Schwanz-Eigenschaften**
 
@@ -2428,10 +2435,10 @@ untere_grenze <- IQR_Grenzen["25%"] - 1.5*IQR(journal_daten[["Preis"]])
 obere_grenze <- IQR_Grenzen["75%"] + 1.5*IQR(journal_daten[["Preis"]])
 
 outlier_teuer <- journal_daten %>%
-  filter(Preis > obere_grenze)
+  dplyr::filter(Preis > obere_grenze)
 
 outlier_billig <- journal_daten %>%
-  filter(Preis < untere_grenze)
+  dplyr::filter(Preis < untere_grenze)
  
 
 dplyr::select(outlier_teuer, Titel, Preis)
@@ -2443,8 +2450,6 @@ Journale gibt.
 Nun können/müssen wir uns für diese Fälle überlegen wie wir mit den
 Ausreißern umgehen wollen.
 
-Das bringt uns zu der zweiten Frage, also die Frage wie wir mit Ausreißern 
-umzugehen haben. 
 Manche Ausreißer sind die Folge von Messfehlern oder Fehlern in der 
 Datenaufbereitung.
 Idealerweise würden wir solche Ausreißer aus dem Datensatz entfernen wollen.
@@ -2458,8 +2463,10 @@ Im Bereich der Finanzmarktanalyse sind extreme Preisausschläge häufig gerade
 besonders relevant. Sie dürfen auf gar keinen Fall ausgeschlossen werden, denn
 häufig sind sie Ausgangspunkt von Krisen.
 
-Daher ist die beste Vorgehensweise, sich Ausreißer explizit anzuschauen, indem
-wir den Datensatz nach extremen Werten 
+Häufig werden solche Ausreißer eliminiert da die Daten ohne sie leicht durch
+eine Normalverteilung approximiert werden können. Rechnet man mit diesen 
+Modellen unterschätzt man aber per definitionem die Wahrscheinlichkeit für
+Extremwerte in der Zukunft. Daher ist die beste Vorgehensweise, sich Ausreißer explizit anzuschauen, indem wir den Datensatz nach extremen Werten 
 (oder Werten mit einer hohen Cook'schen Distanz) filtern und dann selbst 
 entscheiden ob diese Werte eher Resultat eines Messfehlers oder ein besonders
 interessanter Wert sind. Es gilt jedoch: im Zweifel sollten die Datenpunkte
@@ -2467,8 +2474,8 @@ immer im Datensatz gelassen werden. Ein Ausreißer darf nur eliminiert werden
 wenn es *wirklich sehr gute Gründe* dafür gibt.
 
 Im Falle der Journale ist es fraglich ob es wirklich gute Gründe gibt, 
-diese 12 Journale aus Ausreißer zu eliminieren.
-Im vorliegenden Falle spricht wenig dafür und wir sollten uns eher überlegen 
+diese 12 Journale als Ausreißer zu eliminieren.
+Im vorliegenden Fall spricht wenig dafür und wir sollten uns eher überlegen 
 wie diese besondere Stellung der Journale erklärt werden kann, z.B. über ihre
 Popularität. 
 
@@ -2484,19 +2491,7 @@ es gibt zwar sehr viele Menschen mit geringen, und nur wenige mit sehr
 hohen Einkommen, aber mehr Menschen mit hohen Einkommen als wir es bei einer
 Exponentialverteilung erwarten würden.
 
-Diese Kategorie ist in diesem Kontext, da bei endlastigen Verteilungen 
-"Ausreißer" sehr viel häufiger vorkommen. 
-Sie sind aber eine wichtige Folge der zugrundeliegenden Prozesse, und die 
-Ignoranz dieser Beobachtungen würde zu sehr irreführenden Schlussfolgerungen 
-führen. 
-Häufig werden solche Ausreißer eliminiert da die Daten ohne sie leicht durch
-eine Normalverteilung approximiert werden können. Rechnet man mit diesen 
-Modellen unterschätzt man aber per definitionem die Wahrscheinlichkeit für
-Extremwerte in der Zukunft. 
-Dieses Problem ist häufig auf den Finanzmärkten vor der Finanzkrise 2007ff 
-aufgetreten.
-
-Eine Alternative Definition von Ausreißern im Kontext der Regressionsanalyse ist 
+Eine alternative Definition von Ausreißern im Kontext der Regressionsanalyse ist 
 die Berechnung der 'Cook'schen Distanz' für jeden Beobachtungswert. 
 Die 'Cook'sche Distanz' wird immer im Hinblick auf ein bestimmtes 
 Regressionsmodell berechnet und gibt den Einfluss einer jeden Variable
@@ -2508,7 +2503,7 @@ Die Grundidee der 'Cook'schen Distanz' ist für jede Beobachtung das
 Regressionsergebnis zu vergleichen mit dem hypothetischen Fall, dass diese
 Beobachtung ausgelassen worden wäre. 
 
-Wir können für ein bestimmtes Regressionmodell die Cook'schen Distanz mit der
+Wir können für ein bestimmtes Regressionmodell die Cook'sche Distanz mit der
 Funktion `cooks.distance()` berechnen.
 Zum Zwecke der Illustration regressieren wir in dem Journaldatensatz die Variable
 'Preis' auf die Variablen 'Seitenanzahl' und 'Zitationen':
@@ -2535,15 +2530,15 @@ dist_data <- data.frame(
 
 cook_threshold <- 4 / (reg_objekt$df.residual - 1)
 
-ggplot(data = data.frame(dist_data), 
+ggplot2::ggplot(data = data.frame(dist_data), 
        mapping = aes(x=Index, y=Distanz)) +
-  geom_bar(stat = "identity") +
-  geom_hline(yintercept = cook_threshold, color="red") +
-  theme_icae() +
-  theme(panel.grid.major.x = element_blank(),
+  ggplot2::geom_bar(stat = "identity") +
+  ggplot2::geom_hline(yintercept = cook_threshold, color="red") +
+  ggplot2::theme_bw() +
+  ggplot2::theme(panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank())
 
-filter(dist_data, Distanz>cook_threshold)$Titel
+dplyr::filter(dist_data, Distanz>cook_threshold)$Titel
 ```
 
 
@@ -2567,38 +2562,39 @@ wb_data <- wb_data %>%
 wb_data <- wb_data %>% 
   dplyr::select(-one_of("iso2c", "capital", "longitude", 
                         "latitude", "lending"))
-fwrite(wb_data, here("data/tidy/wb_regions.csv"))
+data.table::fwrite(wb_data, here("data/tidy/wb_regions.csv"))
 ```
 ```{r, echo=FALSE}
-wb_data <- fread(here("data/tidy/wb_regions.csv")) %>% 
-  filter(!region %in% c("Aggregates", ""), 
+wb_data <- data.table::fread(here("data/tidy/wb_regions.csv")) %>% 
+  dplyr::filter(!region %in% c("Aggregates", ""), 
          !income %in% c("Aggregates", "")) %>%
   group_by(country, region, income) %>% 
-  summarise_if(is.double, mean, na.rm=TRUE) %>% 
-  ungroup() %>% 
-  filter(!is.nan(BIPpk), 
+  dplyr::summarise_if(is.double, mean, na.rm=TRUE) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::filter(!is.nan(BIPpk), 
          !is.nan(Lebenserwartung), 
          !is.nan(Fertilitätsrate))
 ```
 ```{r}
-ggplot(data = wb_data, 
+ggplot2::ggplot(data = wb_data, 
        mapping = aes(x=region, y=Lebenserwartung)
        ) +
-  geom_boxplot() +
-  theme_icae() +
-  labs(title = "Lebenserwartungen in den Weltregionen", 
+  ggplot2::geom_boxplot() +
+  ggplot2::theme_bw() +
+  ggplot2::labs(title = "Lebenserwartungen in den Weltregionen", 
        caption = "Quelle: Weltbank") +
-  theme(axis.title.x = element_blank())
+  ggplot2::theme(axis.title.x = element_blank())
 ```
 
 Im Boxplot werden mehrere relevante Kennzahlen zusammengefasst. 
-Eine schöne Übersicht bietet diese Abbilung:^[Die Abbildung ist von folgendem
+Eine schöne Übersicht bietet Abbildung \@ref(fig:boxplot) :^[Die Abbildung ist von folgendem
 Blog übernommen: 
 [https://www.leansigmacorporation.com/box-plot-with-minitab/](https://www.leansigmacorporation.com/box-plot-with-minitab/).]
 
-```{r, echo=FALSE}
-knitr::include_graphics(here("figures/boxplot-anatomy.png"))
+```{r boxplot, echo=FALSE, fig.cap="Boxplot Anatomie. Quelle: https://www.leansigmacorporation.com/box-plot-with-minitab/"}
+knitr::include_graphics(here::here("figures/boxplot-anatomy.png"))
 ```
+<!-- Quelle in Fußnote? Ich hab sie jetzt sonst auch mal in die figure caption gesetzt und würde die fußnote dann eher wegnehmen -->
 
 Die Box in der Mitte des Boxplots repräsentiert die IQR der Daten, der Median
 ist mit einem Strich innerhalb der Box dargestellt. 
@@ -2614,47 +2610,47 @@ und [hier](https://www.r-graph-gallery.com/boxplot.html).
 
 In [diesem Post](https://www.data-to-viz.com/caveat/boxplot.html) werden auch 
 die Nachteile dieser Visualisierungsform sehr gut beschrieben.
-Der größte Nachteil liegt zweifelslos im Verstecken der eigentlichen Verteilung
+Der größte Nachteil liegt zweifellos im Verstecken der eigentlichen Verteilung
 'hinter der Box'. Es ist nicht klar, ob sich ein Großteil der Daten am oberen
 oder unteren Teil befindet oder ob die Daten eher gleichverteilt sind. Eine
 einfache Lösung für kleinere Datensätze liegt in der Ergänzung der einzelnen
 Beobachtungen durch `boxplot_jitter`, wobei sie hier die Transparenz durch
 `alpha=0.25` anpassen sollten, und den Boxplot zur besseren Lesbarkeit über die
-Beobachtungen ploten sollten.
+Beobachtungen plotten sollten.
 Für größere Datensätzen können Sie einfach einen
 [Violinenplot](https://www.r-graph-gallery.com/violin.html) 
-verwenen, wie im folgenden Beispiel gezeigt:
+verwenden, wie im folgenden Beispiel gezeigt:
 
 ```{r, out.height = '75%', out.width = '100%'}
-boxplot_classic <- ggplot(data = wb_data, 
+boxplot_classic <- ggplot2::ggplot(data = wb_data, 
        mapping = aes(x=region, y=Lebenserwartung)
        ) +
-  geom_boxplot() +
-  theme_icae() +
-  labs(title = "Klassische Darstellung") +
-  theme(axis.title.x = element_blank(), 
+  ggplot2::geom_boxplot() +
+  ggplot2::theme_bw() +
+  ggplot2::labs(title = "Klassische Darstellung") +
+  ggplot2::theme(axis.title.x = element_blank(), 
         axis.text.x = element_text(angle = 90, hjust = 1))
 
-boxplot_jitter <- ggplot(data = wb_data, 
+boxplot_jitter <- ggplot2::ggplot(data = wb_data, 
        mapping = aes(x=region, y=Lebenserwartung)
        ) +
-  geom_boxplot() +
-  geom_jitter(alpha=0.25) +
-  theme_icae() +
-  labs(title = "Klassische Darstellung mit jitter") +
-  theme(axis.title.x = element_blank(), 
+  ggplot2::geom_boxplot() +
+  ggplot2::geom_jitter(alpha=0.25) +
+  ggplot2::theme_bw() +
+  ggplot2::labs(title = "Klassische Darstellung mit jitter") +
+  ggplot2::theme(axis.title.x = element_blank(), 
         axis.text.x = element_text(angle = 90, hjust = 1))
 
-violin_plot <- ggplot(data = wb_data, 
+violin_plot <- ggplot2::ggplot(data = wb_data, 
        mapping = aes(x=region, y=Lebenserwartung)
        ) +
-  geom_violin() +
-  theme_icae() +
-  labs(title = "Violinen-Plot") +
-  theme(axis.title.x = element_blank(), 
+  ggplot2::geom_violin() +
+  ggplot2::theme_bw() +
+  ggplot2::labs(title = "Violinen-Plot") +
+  ggplot2::theme(axis.title.x = element_blank(), 
         axis.text.x = element_text(angle = 90, hjust = 1))
 
-ggarrange(boxplot_classic, boxplot_jitter, violin_plot, ncol = 3)
+ggpubr::ggarrange(boxplot_classic, boxplot_jitter, violin_plot, ncol = 3)
 ```
 
 Es ist jedoch immer wichtig eine Verteilung nicht nur mit Kennzahlen, sondern
@@ -2674,7 +2670,9 @@ data("anscombe")
 head(anscombe)
 ```
 
-Die folgende Tabelle gibt die Werte der quantitativen Kennzahlen an:
+Tabelle \@ref(tab:anscombe) gibt die Werte der quantitativen Kennzahlen an.
+
+Table: (\#tab:anscombe) Werte der quantitativen Kennzahlen bei Anscombe
 
 | Kennzahl | Wert  |
 |----------|------|
@@ -2688,39 +2686,39 @@ Nur die grafische Inspektion zeigt, wie unterschiedlich die Verteilungen
 tatsächlich sind:
 
 ```{r, echo=FALSE}
-ans_1 <- ggplot(anscombe, 
+ans_1 <- ggplot2::ggplot(anscombe, 
                 aes(x=x1, y=y1)) +
-  geom_point() +
-  xlab("x") + 
-  ylab("y") +
-  ggtitle("Der erste Datensatz aus Ascombe's Quartett") +
-  theme_icae()
+  ggplot2::geom_point() +
+  ggplot2::xlab("x") + 
+  ggplot2::ylab("y") +
+  ggplot2::ggtitle("Der erste Datensatz aus Ascombe's Quartett") +
+  ggplot2::theme_bw()
 
-ans_2 <- ggplot(anscombe, 
+ans_2 <- ggplot2::ggplot(anscombe, 
                 aes(x=x2, y=y2)) +
-  geom_point() +
-  xlab("x") + 
-  ylab("y") +
-  ggtitle("Der zweite Datensatz aus Ascombe's Quartett") +
-  theme_icae()
+  ggplot2::geom_point() +
+  ggplot2::xlab("x") + 
+  ggplot2::ylab("y") +
+  ggplot2::ggtitle("Der zweite Datensatz aus Ascombe's Quartett") +
+  ggplot2::theme_bw()
 
-ans_3 <- ggplot(anscombe, 
+ans_3 <- ggplot2::ggplot(anscombe, 
                 aes(x=x3, y=y3)) +
-  geom_point() +
-  xlab("x") + 
-  ylab("y") +
-  ggtitle("Der dritte Datensatz aus Ascombe's Quartett") +
-  theme_icae()
+  ggplot2::geom_point() +
+  ggplot2::xlab("x") + 
+  ggplot2::ylab("y") +
+  ggplot2::ggtitle("Der dritte Datensatz aus Ascombe's Quartett") +
+  ggplot2::theme_bw()
 
-ans_4 <- ggplot(anscombe, 
+ans_4 <- ggplot2::ggplot(anscombe, 
                 aes(x=x4, y=y4)) +
-  geom_point() +
-  xlab("x") + 
-  ylab("y") +
-  ggtitle("Der vierte Datensatz aus Ascombe's Quartett") +
-  theme_icae()
+  ggplot2::geom_point() +
+  ggplot2::xlab("x") + 
+  ggplot2::ylab("y") +
+  ggplot2::ggtitle("Der vierte Datensatz aus Ascombe's Quartett") +
+  ggplot2::theme_bw()
 
-ans_full <- ggarrange(ans_1, ans_2, ans_3, ans_4,
+ans_full <- ggpubr::ggarrange(ans_1, ans_2, ans_3, ans_4,
                       ncol = 2, nrow = 2)
 ans_full
 ```
