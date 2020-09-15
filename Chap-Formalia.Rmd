@@ -10,8 +10,6 @@ knitr::opts_chunk$set(comment = "#>")
 knitr::opts_chunk$set(out.height = '75%', out.width = '75%', fig.align = 'center') 
 ```
 
-## Einleitung und Überblick 
-
 > Refusing to deal with numbers rarely serves the interest of the least well-off.
 >
 > `r tufte::quote_footer('--- Thomas Piketty')`
@@ -44,7 +42,7 @@ Die Analyse von Verteilungen spielt eine sehr wichtige Rolle in der Sozioökonom
 da Themen wie Einkommens- und Vermögensverteilung bzw. Ungleichheitsforschung 
 traditionell ein wichtiges Kernthema der Sozioökonomik ausmachen.
 
-In diesem Kapitel werden die folgenden R Pakete verwendet:
+## Verwendete Pakete {-}
 
 ```{r, message=FALSE}
 library(here)
@@ -58,6 +56,7 @@ library(fitdistrplus)
 library(moments)
 library(ineq)
 library(rmutil)
+library(viridis)
 ```
 
 > **Hinweis**: Das Paket [matlib](http://friendly.github.io/matlib/) [@R-matlib]
@@ -66,8 +65,6 @@ Gleichungssysteme.
 Streng genommen ist das Paket nicht dringend nötig, da anstatt der Funktion
 `matlib::Solve()` auch die Funktion `base::solve()` verwendet werden kann.
 Der Output von `matlib::Solve()` ist aber schöner und etwas informativer.
-
-<!-- In den Kapiteln data und visualizations waren die Verwendeten Pakete dem 1. Unterkapitel vorgelagert. Könnte man evtl hier auch so machen. Ich sehe auch gerade dass auch die Einleitung in Kapitel visualizations vorgelagert ist. Vllt könnte man das mit den anderen Kapiteln noch vereinheitlichen. -->
 
 ## Änderungsraten und die Rolle des Logarithmus {#formalia-wachstum}
 
@@ -150,10 +147,11 @@ beispiel_daten <- WDI::WDI(country = c("AT", "DE"),
   select(-iso2c)
 data.table::fwrite(beispiel_daten, here::here("data/tidy/bip_growth.csv"))
 ```
-<!-- Beim ausführen dieses Chunks kriege ich eine Fehlermeldung -->
 
 ```{r, echo=FALSE}
-beispiel_daten_at <- data.table::fread(here("data/tidy/bip_growth.csv")) %>%
+beispiel_daten_at <- data.table::fread(
+  here::here("data/tidy/bip_growth.csv")
+  ) %>%
   dplyr::arrange(-year) %>%
   dplyr::filter(country == "Austria")
 ```
@@ -360,10 +358,12 @@ Null normiert. Zudem habe ich die Werte mit 100 multipliziert, sodass eine
 Änderung von 1 auf der y-Ache zu einer einprozentigen Änderung des S&P Kurses
 korrespondiert.
 
-[Später]() werden wir zudem lernen, dass die logarithmierte Form die Analyse
-von Wachstumsraten in linearen Regressionsmodellen deutlich vereinfacht.
+Im Rahmen der Regressionsanalyse werden wir zudem lernen, dass die logarithmierte 
+Form die Analyse von Wachstumsraten in linearen Regressionsmodellen deutlich 
+vereinfacht (siehe Kapitel \@ref(advlin)).
 
 <!-- In diesem Unterkapitel habe ich die Graphen auch wieder nicht eingebettet, weil es hier ja wieder darauf ankommt, dass sie an der richtigen Stelle im Text stehe und nicht "floaten", oder? War mir allerdings nicht ganz sicher -->
+<!-- Hier die drei Abbildungen im Text als Floats mit Verweisen einbetten-->
 
 ## Grundlagen der Differentialrechnung {#formalia-diff}
 
@@ -374,17 +374,14 @@ Die Differentialrechnung ist eng verwandt mit der Integralrechnung:
 in beiden Bereichen studiert man die Veränderungen von Funktionen.
 Während die Differentialrechnung sich mit der lokalen Änderung einer Funktion
 beschäftigt, also vor allem versucht die Steigung der durch die Funktion 
-definierten Kurven zu berechnen, studiert die Integralrechnung die 
-
-<!-- Satzteil fehlt hier -->
-
-Grafisch bedeutet dies, dass man an den Flächen unter bzw. zwischen Kurven
-interessiert ist.
+definierten Kurven zu berechnen, studiert die Integralrechnung die Flächen und
+Volumina, die durch eine Funktion definiert sind.
+Grafisch bedeutet dies, dass wir bei der Integralrechnung an den Flächen unter 
+einer bzw. zwischen mehrerenKurven interessiert sind
 
 Die beiden Bereiche sind eng miteinander verbunden.
 Besonders deutlich wird das in dem so genannten *Fundamentalsatz der Analysis* 
 (auch: *Hauptsatz der Differential- und Integralrechnung*) deutlich.
-
 In der Differentialrechnung leiten wir Funktionen *ab* und in der 
 Integralrechnung leiten wir Funktionen *auf*. Der Fundamentalsatz der Analysis
 zeigt, dass die beiden Vorgehensweise jeweils die Umkehrung des anderen Darstellen:
@@ -485,8 +482,6 @@ f'(x)&=\frac{2x\cdot 2 - x^2\cdot 2}{v(x)^2}=\frac{2x-2x^2}{(2x)^2}
 Zuletzt betrachten wir noch die **Kettenregel**, die es uns erlaubt 
 geschachtelte Funktionen abzuleiten. 
 Darunter verstehen wir Funktionen wie $f(x)=u(x) \circ v(x)=u(v(x))$.
-
-<!-- Diese Darstellung mit dem circle ist mir irgendwie gar nicht vertraut.. ist das einfach nur eine andere Art zu sagen u(v(x))? -->
 
 Hier gilt:
 
@@ -624,8 +619,6 @@ mult_max <- ggplot2::ggplot(data, aes(x=x, y=y_2)) +
 mult_max
 ```
 
-<!-- Hier war ich mir auch wieder nicht sicher ob einbetten oder nicht. Hab es hier jetzt mal gemacht. -->
-
 Es kann gezeigt werden, dass eine **notwendige Bedingung** für die Existenz eines
 Extremwertes am Punkt $x^*$ ist, dass $f'(x^*)=0$.
 Daher ist der erste Schritt bei der analytischen Suche nach Extremwerten immer
@@ -662,17 +655,21 @@ Details finden sich in zahlreichen Lehrbüchern, z.B. in @chiang.
 
 ### Maximierung: die algorithmische Perspektive
 
+<!-- In dem Absatz noch das Bild einbetten-->
+
 Bei vielen Funktionen wäre die analytische Berechnung von Extrema zu aufwendig
 oder gar nicht möglich. 
 Daher verwendet man den Computer um die Extrema zu finden. 
-Das ist bei einfachen Funktionen kein großes Problem, da Sie sich für folgenden 
-Fall leicht vorstellen können, dass der Computer einfach mit einem beliebigen
-Startwert $x_0$ anfängt und sich so lange auf dem Definitionsbereich fortbewegt
-solange der Funktionswert steigt und damit dann in jedem Fall den Punkt $x^*_{globmax}$
-identifiziert. 
-<!-- Verstehe das "in jedem Fall" in diesem Satz nicht genau. -->
-Für Funktionen mit lokalen Extremwerten funktioniert das natürlich
-nicht mehr:
+Ironischerweise ist das gerade bei einfachen Funktionen kein großes Problem.
+Für die im linken Teil der Abbildung XX dargestellte Funktion kann der 
+Computer einfach mit einem beliebigem Startwert $x_0$ beginnen und sich 
+auf dem Definitionsbereich in Richtung steigender Funktionswerte fortbewegt
+bis er den Punkt $x^*_{globmax}=0$ erreicht.
+Für Funktionen mit lokalen Extremwerten wie im rechten Teil von Abbildung
+funktioniert diese Strategie unter Umständen nicht mehr, da der Computer leicht 
+auf lokalen Optima "steckenbleibt".
+Im vorliegenden Beispiel besteht bei einer unglücklichen Wahl des Startwertes
+die Gefahr, auf dem lokalen Extremum bei $x=0.77$ hängen zu bleiben.
 
 ```{r, echo=FALSE}
 f_1 <- function(x) -8*x**2 + 2
@@ -702,11 +699,6 @@ mult_max <- ggplot2::ggplot(data, aes(x=x, y=y_2)) +
 ggpubr::ggarrange(one_max, mult_max, ncol = 2)
 ```
 
-Bei der linken Funktion ist es mit einem solchen Vorgang recht einfach das 
-Maximum bei $x=0$ zu finden, aber bei der rechten Funktion würde das gleiche 
-möglicherweise dazu führen, dass der Computer auf dem lokalen Extremum bei 
-$x=0.77$ 'stecken bleibt'.
-
 Um das zu vermeiden verwenden die Optimierungsalgorithmen einige Tricks.
 Für die R-Funktion `optim()` können Sie z.B. zwischen sieben solcher ausgefeilter
 Algorithmen wählen. Schauen Sie einmal in die Hilfefunktion wenn Sie mehr Informationen
@@ -722,12 +714,10 @@ Grob können wir zwischen den folgenden drei Fällen unterscheiden:
 
 1. **Lineares Programmieren (LP)**: Sowohl Zielfunktion als auch Nebenbedingungen sind
 linear. Beispiel: $\max s.t. Ax<b, x\geq 0$
-2. **Quadratisches Programmieren (QP)** Zielfunktion ist quadratisch, Nebenbedingungen 
-sind linear. Beispiel: $\max s.t. Ax<b, x\geq 0$
+2. **Quadratisches Programmieren (QP)** Zielfunktion ist quadratisch, 
+Nebenbedingungen sind linear. Beispiel: $\max s.t. Ax<b, x\geq 0$
 3. **Nicht-lineares Programmieren (NLP)**: Die Zielfunktion oder zumindest eine 
 Nebenbedingung ist nicht-linear.
-
-<!-- Müsste es im 3. Fall nicht "und" heißen, statt "oder"? Ich kenne diese 3-teilige Aufteilung nicht, aber wenn es so ist wie es jetzt da steht wäre ja Fall 2 nur eine Unterkategorie von Fall 3, oder? -->
 
 Die Unterscheidung spielt eine ähnliche Rolle wie die Unterscheidung 
 verschiedener Skalenstufen bei der Datenanalyse: 
@@ -766,9 +756,10 @@ In R:
 f_1 <- function(x) 8*x^2 + 2.5*x**3 - 4.25*x**4 + 2
 ```
 
-Grafisch sieht die Funktion folgendermaßen aus, sie verfügt also über ein 
+Die Funktion ist in Abbildung XX dargestellt.
+Wir man sieht verfügt sie über ein 
 lokales Maximum bei $x_a=-0.77$, ein lokales Minimum bei $x_b=0$ und ein globales 
-Maximum bei $x_c=1.22$:
+Maximum bei $x_c=1.22$.
 
 ```{r,echo=FALSE}
 data <- data.frame(x=seq(-2, 2, 0.05)) %>%
@@ -782,12 +773,10 @@ ggplot2::ggplot(data, aes(x=x, y=y)) +
                   xlim = c(-1.2, 1.7), expand = c(0)) +
   ggplot2::theme_bw() 
 ```
-<!-- Irgendwie zeigt die Funktion noch nicht die 3 Extremwerte von denen du oben schreibst. Ich weiß auch nicht ganz wo im Satz oben das "also" herkommt - die Extrema sind ja nciht direkt aus der Funktion ersichtlich -->
+<!-- Hier die Abbildung einbetten. -->
 
-Wir können für solcherlei eindimensionale Probleme die Funktion `optimize()` 
-verwenden:
-
-<!-- Was meinst du hier mit eindimensional? -->
+Wir können für solcherlei eindimensionale Probleme (also Probleme mit nur einer
+Variabel) die Funktion `optimize()` verwenden:
 
 ```{r}
 opt_obj <- optimize(f = f_1, 
@@ -796,7 +785,9 @@ opt_obj <- optimize(f = f_1,
 ```
 
 Das Ergebnis ist eine Liste mit zwei Elementen. 
-Dem x-Wert des gesuchten Minimums:
+Dem x-Wert des gesuchten Minimums:^[Minimale Rundungsfehler sind bei solchen
+numerischen Verfahren normal, daher wird Ihnen in diesem Fall nicht 'exakt' Null
+als Ergebnisangezeigt.]
 
 ```{r}
 opt_obj[["minimum"]]
@@ -807,7 +798,6 @@ Und dem dazugehörigen Funktionswert:
 ```{r}
 opt_obj[["objective"]]
 ```
-<!-- Die Werte sind jetzt auch wieder anders als die die oben im Text stehen oder? Discuss: I'm confused -->
 
 Falls wir ein Maximum suchen setzen wir `maximum=TRUE`:
 
@@ -843,11 +833,16 @@ Bei dieser Funktion handelt es sich um die in der Optimierung sehr häufig
 als Benchmark verwendete 
 [Rosenbrock Funktion](https://en.wikipedia.org/wiki/Rosenbrock_function).
 Grafisch können wir solche Funktionen mit Hilfe einer *Heatmap* darstellen,
-wobei wir hier annehmen, dass $a=1$ und $b=100$:
+wobei wir in unserer Visualisierung in Abbildung XX annehmen, dass $a=1$ und 
+$b=100$. 
+In einer Heatmap geben die beiden Achsen die Kombination der x und y-Werte an,
+der resultierende Funktionswert wird über die Farbe repräsentiert.
+
+<!--grafik einbetten-->
 
 ```{r, echo=FALSE}
-x <- seq(-2, 2, length.out = 150)
-y <- seq(-1, 3, length.out = 150)
+x <- seq(-2, 2, length.out = 250)
+y <- seq(-1, 3, length.out = 250)
 data <- expand.grid(X=x, Y=y) %>%
   dplyr::rowwise() %>%
   dplyr::mutate(Z=f_2(x = c(X, Y)))
@@ -856,11 +851,10 @@ ggplot2::ggplot(data, aes(X, Y, fill= Z)) +
   ggplot2::geom_tile() +
   ggplot2::scale_x_continuous(expand = c(0,0)) +
   ggplot2::scale_y_continuous(expand = c(0,0)) +
+  viridis::scale_fill_viridis(discrete = FALSE) +
   ggplot2::theme_bw() +
   ggplot2::theme(legend.position = "right")
 ```
-
-<!-- Ich weiß nicht, was dieser Graph uns sagen soll.. Und: ich hab "scale_fill_icae(palette = "hot", discrete=FALSE)" rausgenommen, wie kann ich das denn ersetzen durch eine ggplot2 Funktion? -->
 
 Da es sich jetzt ein mehrdimensionales Problem handelt verwenden wir die Funktion
 `optim()` anstatt von `optimize()`. Die Handhabung ist aber sehr ähnlich.
@@ -915,6 +909,10 @@ opt_objekt$convergence == 0
 opt_objekt$par
 opt_objekt$value
 ```
+
+Das Ergebnis ist in Abbildung XX dargestellt.
+<!-- Grafik einbetten -->
+
 ```{r, echo=FALSE}
 plot_data <- data.frame(x=seq(-4, 4, 0.1)) %>% 
   dplyr::rowwise() %>% mutate(y=f_x(x))
@@ -932,18 +930,17 @@ ggplot2::ggplot(
   ggplot2::theme_bw()
 ```
 
-<!-- Hier kommt eine Fehlermeldung -->
+### Anwendungsbeispiel {subsec:keynes-expl}
 
-### Anwendungsbeispiel
-
-Als Anwendungsbeispiel betrachten wir das klassische keynesianische Modell, wobei wir die 
-Notation leicht um $T$ als die Steuerlast erweitern:
+Als Anwendungsbeispiel betrachten wir das klassische keynesianische Modell, 
+wobei wir die Notation leicht um $T$ als die Steuerlast erweitern:
 
 $$
 Y=\frac{c_0 + I + G}{1-c_1(1-T)}
 $$
 
 <!-- Das Modell wurde bisher in den Kapiteln noch nicht vorgestellt. Eventuell bräuchte es hier also eine kurze Legende für die Variablennotation. -->
+<!-- Birte schreibt einen Aufschlag. -->
 
 Wenn wir nun wissen wollen wie $Y$ auf eine Änderung der Staatsausgaben reagiert
 können wir diese Formel nach $G$ ableiten. 
@@ -997,10 +994,13 @@ Die Matrixdarstellung ist dabei nicht nur kompakter, sie erlaubt es uns auch
 relativ leicht zu überprüfen ob das System konsistent und lösbar ist.
 Die foldenden zwei Beispiele machen dies hoffentlich deutlich.
 
-Das erste Beispiel bezieht sich auf das klassischen Keynesianische Modell, 
-das Sie wahrscheinlich in folgender Form kennen:
+### Einführungsbeispiele {#linalg-expls}
+
+Das erste Beispiel bezieht sich wieder auf das klassischen Keynesianische Modell.
+Am geläufigsten ist dabei folgende Formulierung:
 
 <!-- Hier kann jetzt wieder ein Rückbezug auf oben gemacht werden. Die Frage ist nur, ob nicht oben das Modell erst so in seiner klassischen Form (zB ohne T) eingeführt werden sollte? -->
+<!-- Hier nochmal genau auf mögliche Dopplungen achten-->
 
 \begin{align}
 Y&=C+I+G\\
@@ -1025,12 +1025,10 @@ hier $Y$ und $C$ - gibt sodass das gesamte System konsistent ist.
 Wir sehen unten wie genau wir solche Systeme in R recht einfach lösen können.
 
 Ein weiteres Beispiel wo wir - vielleicht auch häufig unbewusst - Methoden der
-linearen Algebra verwenden ist in der Ökonometrie. Wir haben im letzten Kapitel
-das einfache lineare Regressionsmodell kennen gelernt, das wir allgemein
-für $n$ Beochatungen und $p$ erklärenden Variablen folgendermaßen geschrieben
-haben:
-
-<!-- Discuss: Hier der Satz muss umgeschrieben werden, oder rausgenommen werden, da ja das lineare Regressionsmodell jetzt noch nicht vorgestellt wurde Tendiere eher zu umschreiben und auf das spätere Kapitel verweisen -->
+linearen Algebra verwenden ist in der Ökonometrie. 
+So wird das einfache lineare Regressionsmodell für $n$ Beochatungen und $p$ 
+erklärenden Variablen häufig folgendermaßen beschrieben 
+(siehe Kapitel \@ref(linmodel)):
 
 $$Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_p x_{ip} + \epsilon, i=1,...,n$$
 
@@ -1088,8 +1086,10 @@ Und Letzteres wie folgt schreiben:
 
 $$\boldsymbol{Y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}$$
 
-Dementsprechend können wir auch den OLS-Schätzer in Matrixform darstellen.
-Das erlaubt einfachere und allgemeinere Beweise, und ist vor allem für die 
+Dementsprechend können wir auch den OLS-Schätzer in Matrixform darstellen,
+was ab Kapitel \@ref(advlin) auch die standardmäßige Darstellungsform
+sein wird.
+Dies erlaubt einfachere und allgemeinere Beweise, und ist vor allem für die 
 algorithmische Implementierung sehr wichtig. Auch wenn wir uns mit diesen 
 Details nicht notwendigerweise genau auseinandersetzen müssen, sollte die 
 grundlegende Rolle der linearen Algebra doch nicht unterschätzt werden.
@@ -1199,8 +1199,6 @@ ist das Ergebnis die ursprüngliche Matrix selbst, daher der Name.
 Wir können $\mathbb{I}_n$ in R mit `diag(n)` direkt erstellen.
 
 ### Grundregeln der Matrizenalgebra
-
-<!-- Discuss: In Kapitel 3 gibt es ja auch schon ein Unterkapitel zu den Grundrechenarten/Matrizenrechnung in R. Sollte da vllt nochmal drauf verwiesen werden an dieser Stelle? -->
 
 Matrizenalgebra spielt in vielen statistischen Anwendungen eine wichtige Rolle.
 Sie funktioniert aber ein wenig anders als die 'herkömmliche' Algebra, mit denen
@@ -1460,10 +1458,8 @@ Modell, das eine eindeutige Vorhersage produziert.
 
 3. Das Gleichungssystem hat *keine* Lösung, unser Modell ist also inkonsistent.
 
-Im Folgenden werden wir uns das anhand der beiden Beispiele aus der Einleitung 
-genauer anschauen.
-
-<!-- Von welcher Einleitung ist hier genau die Rede? Einleitung des Unterkapitels -->
+Im Folgenden werden wir uns das anhand der beiden Beispiele aus dem Abschnitt
+\@ref(linalg-expls) genauer anschauen.
 
 ### Anwendungsbeispiel 1: Das einfache Keynesianische Modell
 
@@ -1510,7 +1506,8 @@ impliziert.
 
 ### Anwendungsbeispiel 2: OLS-Regression
 
-Aus der Einleitung dieses Unterkapitels wissen wir, dass wir das lineare Regressionsmodell mit $n$ Beobachtungen von $p$ Variablen
+Aus der Einleitung dieses Unterkapitels wissen wir, dass wir das lineare 
+Regressionsmodell mit $n$ Beobachtungen von $p$ Variablen
 
 \begin{align}
 Y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + ... + \beta_p x_{1p} + \epsilon_1\nonumber\\
@@ -1683,9 +1680,9 @@ Forschungspraxis extrem hilfreich.
 Daher wollen wir uns im Folgenden mit verschiedenen Aspekten der Analyse von
 Verteilungen beschäftigen.
 
-Wir steigen mit einem grundlegenden Abschnitt zum (mathematischen) 
-[Begriff der Verteilung](#vert-begriff) ein und diskutieren den Zusammenhang zwischen 
-Verteilungen und stochastischen Prozessen. 
+Wir steigen mit einer Erläuterung des
+(mathematischen) [Verteilungsbegriffs](#vert-begriff) ein und diskutieren den 
+Zusammenhang zwischen Verteilungen und stochastischen Prozessen. 
 Verteilungen sind nämlich immer dann zentral, wenn wir es mit probabilistischen 
 Prozessen zu tun haben.
 
@@ -1698,6 +1695,11 @@ Daraufhin lernen wir einige [grafische Methoden](#vert-grafik) kennen, um die
 wir die quantitativen Kennzahlen immer ergänzen sollten und schließen das 
 Kapitel zuletzt mit einigen [abschließenden Bemerkungen](#vert-bemerkungen)
 ab.
+
+In diesem Abschnitt werden mehrere Konzepte aus der Stochastik vorausgesetzt.
+Wenn Sie sich damit noch unsicher fühlen empfiehlt sich vorher eine
+Lektüre von Kapitel \@ref(stat-stoch).
+
 
 ### Theoretische und empirische Verteilungen {#vert-begriff}
 
@@ -1715,12 +1717,10 @@ einer grafischen Darstellung kombiniert werden sollten.]
 Dennoch werden beide Perspektiven auch häufig kombiniert, vor allem wenn wir 
 einen empirischen Datensatz mit einem parametrischen Wahrscheinlichkeitsmodell
 beschreiben wollen. Das bedeutet, dass wir die empirischen Daten als Realisierung
-einer theoretischen Zufallsvariablen (ZV) interpretieren und die für die theoretische ZV relevanten Parameter dann aus den Daten heraus schätzen.^[Ein "parametrisches Warhscheinlichkeitsmodell" meint dabei eine ZV mit bestimmten Parametern.]
-Wenn Sie sich nicht mehr ganz sicher sind was wir unter eine ZV oder einem
-theoretischen Wahrscheinlichkeitsmodell verstehen, schauen Sie doch noch einmal
-in den [Anhang zur Wahrscheinlichkeitstheorie](#stat-stoch).
-
-<!-- Wenn der Anhang aus dem Anhang herausgenommen und zu einem Kapitel gemacht wird, muss das hier noch angepasst werden -->
+einer theoretischen Zufallsvariablen (ZV) interpretieren und die für die 
+theoretische ZV relevanten Parameter dann aus den Daten heraus schätzen.^[
+Ein "parametrisches Warhscheinlichkeitsmodell" meint dabei eine ZV mit 
+bestimmten Parametern.]
 
 **Anwendungsbeispiel**
 
@@ -1734,7 +1734,9 @@ sample_data <- data.frame(r=rnorm(n = 750, mean = 4, sd = 2))
 
 ```{r, echo=TRUE}
 ggplot2::ggplot(data = sample_data) +
-  ggplot2::geom_histogram(mapping = aes(x=r, stat(density)), binwidth = 0.4) +
+  ggplot2::geom_histogram(
+    mapping = aes(x=r, stat(density)), 
+    binwidth = 0.4) +
   ggplot2::scale_x_continuous(expand = c(0, 1)) + 
   ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0.05), c(0, 0))) +
   ggplot2::theme_bw()
@@ -1742,10 +1744,8 @@ ggplot2::ggplot(data = sample_data) +
 
 Beachten Sie, dass die y-Achse die empirische Dichte der Beobachtungen auf der
 x-Achse angibt, also ein Maß für die relative Häufigkeit der Beobachtungen.
-Dies haben wir mit der Funktion `stat(density)` innerhalb von `ggplot2::geom_histogram()`
-erreicht.
-
-<!-- Ist die Funktion "stat()" aus dem basic paket stats oder aus dem Paket "ggplot2"? Der namespace gibt bei "stat" ggplot2 an, und bei "stat(density)" den namespace stats an -->
+Dies haben wir mit der Funktion `ggplot2::stat(density)` innerhalb von 
+`ggplot2::geom_histogram()` erreicht.
 
 Wenn wir die Daten so betrachten erscheint es naheliegend, sie als Realisierung 
 einer Normalverteilung zu interpretieren: die Form ist grob glockenförmig und 
@@ -1815,19 +1815,18 @@ ggplot2::ggplot(data = sample_data) +
                                            c(0, 0))) +
   ggplot2::guides(color = guide_legend(title = TeX("Parameter der Normalverteilung"), 
                               title.position = "top")) + 
-  scale_color_icae(palette = "mixed", discrete = T,
-                   labels = unname(TeX(c("$\\mu = 2, \\sigma^2 = 4", 
-                                         "$\\mu = 4, \\sigma^2 = 1", 
-                                         "$\\mu = 4, \\sigma^2 = 4", 
-                                         "$\\mu = 4, \\sigma^2 = 16")))
-                   ) +
+  viridis::scale_color_viridis(
+    discrete = T,
+    labels = unname(TeX(c("$\\mu = 2, \\sigma^2 = 4", 
+                          "$\\mu = 4, \\sigma^2 = 1", 
+                          "$\\mu = 4, \\sigma^2 = 4", 
+                          "$\\mu = 4, \\sigma^2 = 16")))
+    ) +
   ggplot2::theme_bw() + 
   ggplot2::ylab("Dichte") +
   ggplot2::ggtitle("Fits verschiedener Normalverteilungen") +
   ggplot2::theme(legend.title = element_text(), axis.title.x = element_blank())
 ```
-
-<!-- Bei diesem chunk weiß ich wieder nicht wie ich scale_color_icae ersetzen soll -->
 
 Die Normalverteilung mit $\mu=4$ und $\sigma^2=4$ passt zu den Daten recht gut.
 Aber wie identifizieren wir diese Werte?
@@ -1853,12 +1852,9 @@ Dazu verwenden wir die Funktion `fitdist()` aus dem Paket
 [fitdistrplus](https://github.com/cran/fitdistrplus) [@R-fit].
 Dieser Funktion geben wir über das Argument `data` unsere Stichprobe und über das
 Argument `distr` das Kürzel für die Verteilungsklasse, die wir annehmen.^[Die
-bekanntesten Verteilungen werden im 
-[Anhang zur Wahrscheinlichkeitstheorie](#stat-stoch) beschrieben. Die
+bekanntesten Verteilungen werden in Kapitel \@ref(stat-stoch) beschrieben. Die
 vollständige Liste der Verteilungskürzel in R finden Sie 
 [hier](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Distributions.html).]
-
-<!-- Hier gibt es wieder einen Verweis auf den Anhang, muss ggf angepasst werden -->
 
 ```{r, message=FALSE, warning=FALSE}
 fit_dist <- fitdistrplus::fitdist(data = sample_data$r, 
@@ -1963,8 +1959,7 @@ avg_preis <- mean(journal_daten[["Preis"]])
 avg_preis
 ```
 
-Der durchschnittliche Preis der Journale ist also `r round(avg_preis, 2)`.
-<!-- Diese Formulierung verstehe ich nicht -->
+Der durchschnittliche Preis der Journale ist also `r round(avg_preis, 2)` Dollar.
 
 Das arithmetische Mittel ist sehr anfällig gegenüber Ausreißern.
 Ein robusteres Maß ist der Median: er ist definiert als der Wert $x_{0.5}$ bei dem
@@ -1979,22 +1974,19 @@ x_{0.5} = \begin{cases}
 
 wobei wir annehmen, dass die Werte der Verteilung ihrer Größe nach geordnet
 sind, also $(x_1\leq x_2\leq x_3 \leq...\leq x_n)$ und $\lfloor x \rfloor$ 
-die [Abrundungsfunktion]() bezeichnet.^[So ist z.B. $\lfloor 1.9 \rfloor=1$ und
-$\lfloor 1.2 \rfloor=1$.]
+die *Abrundungsfunktion* bezeichnet.^[Eine Abrundungsfunktion rundet eine 
+Dezimalzahl auf die nächst-kleinere ganze Zahl ab. 
+So ist z.B. $\lfloor 1.9 \rfloor=1$ und $\lfloor 1.2 \rfloor=1$.]
 
-<!-- Fehlt hinter der Abrundungsfunktion in den Klammern noch was? -->
-
-In R wird das arithmetische Mittel mit der Funktion `median()` berechnet:
+In R wird der Median mit der Funktion `median()` berechnet:
 
 ```{r}
-med_preis <- mean(journal_daten[["Preis"]])
+med_preis <- median(journal_daten[["Preis"]])
 med_preis
 ```
 
 Da es insgesamt 180 Journale gibt gilt, dass 90 Journale teurer und 90 Journale
-billiger als $`r round(med_preis, 2)`$ Dollar sind.
-
-<!-- Hier wird mir der Ausdruck um r round wieder merkwürdig angezeigt -->
+billiger als `r round(med_preis, 2)` Dollar sind.
 
 Die Idee des Medians kann über den Begriff der **Quantile** verallgemeinert 
 werden.
@@ -2182,10 +2174,7 @@ daher vor allem für Vergleiche über die Zeit.^[Der Theil-Index besitzt noch
 weitere attraktivere Eigenschaften. 
 Insbesondere können die Beiträge von Ungleichheiten
 innerhalb verschiedener Subgruppen und die Ungleichheiten zwischen Gruppen als
-solchen aus dem Index abgeleitet werden. Weitere Informationen finden sich z.B.
-[hier](http://siteresources.worldbank.org/PGLP/Resources/PMch6.pdf)]
-
-<!-- Irgendwie kann ich den Link nicht aufrufen, es sagt mit "gesicherte Verbindung fehlgeschlagen", weiß aber nicht ob das an meinem Internet oder der Seite liegt -->
+solchen aus dem Index abgeleitet werden. 
 
 Die Definition ist folgendermaßen:
 
@@ -2263,11 +2252,10 @@ mod_data <- data.frame(x_vals, eingipflig, zweigipflig, dreigipflig) %>%
 
 ggplot2::ggplot(data = mod_data, mapping = aes(x=x_vals, y=Dichte, color=Art)) +
   ggplot2::geom_line() +
+  viridis::scale_color_viridis(discrete = T) + 
   ggplot2::theme_bw() 
   
 ```
-
-<!-- Hier ist wieder ein scale_color_icae() command bei dem ich nicht weiß wie ich den auswechseln soll -->
 
 **Kennzahlen zur Form der Verteilung**
 
@@ -2314,11 +2302,10 @@ ggplot2::ggplot(data = dist_vals,
   ggplot2::geom_line() + 
   ggplot2::labs(title = "PDF für schiefe und symmetrische Verteilungen") +
   ggplot2::scale_y_continuous(limits = c(0, 2.5), expand = c(0, 0)) +
+  viridis::scale_color_viridis(discrete = T) +
   ggplot2::theme_bw() +
   ggplot2::theme(axis.title.x = element_blank())
 ```
-
-<!-- Hier in der vorletzten Zeile wieder rausgenommen:   scale_color_icae(palette = "mixed")  -->
 
 In R können wir die Schiefe einer Verteilung mit der Funktion `skewness()`
 aus dem Paket [moments](https://cran.r-project.org/package=moments) [@R-moments] 
@@ -2370,7 +2357,7 @@ moments::kurtosis(journal_daten[["Preis"]])
 
 Da die Kurtosis an sich nicht leicht zu interpretieren ist wird der
 Wert häufig mit dem einer Standardnormalverteilung verglichen. Da deren Wert
-per definitionem 3 beträgt wird die *Exzess-Kurtosis* mit 
+*per definitionem* 3 beträgt wird die *Exzess-Kurtosis* mit 
 $\tilde{\omega}_x=\omega_x-3$ berechnet und
 wir sprechen von einer *steilgipfligen* ('leptokurtischen') Verteilung wenn 
 $\tilde{\omega}_x>0$ 
@@ -2379,7 +2366,7 @@ $\tilde{\omega}_x<0$.
 Für den Fall der Preisverteilung von Journalen haben wir es also mit einer
 steilgipfligen Verteilung zu tun.
 
-<!-- Gibt es da denn dann jetzt irgendeine praktische/intuitive Interpretation zu? -->
+<!-- Gibt es da denn dann jetzt irgendeine praktische/intuitive Interpretation zu? Birte ergänzt Satz-->
 
 Zur Verdeutlichung des Konzepts im Folgenden noch ein grafisches Beispiel:
 
@@ -2399,16 +2386,11 @@ kurt_data <- data.frame(
 
 ggplot2::ggplot(data = kurt_data, mapping = aes(x=xvals, y=Dichte, color=Kurtosis)) +
   ggplot2::geom_line(aes()) +
+  viridis::scale_color_viridis(discrete = T) +
   ggplot2::theme_bw() + 
   ggplot2::theme(legend.title = element_text(), 
         axis.title.x = element_blank())
 ```
-
-```{r}
-moments::kurtosis(dplyr::filter(kurt_data, Kurtosis=="Normalverteilung")$Dichte)
-```
-
-<!-- wieder raus: scale_color_icae(palette = "mixed") -->
 
 **Ausreißer und Schwanz-Eigenschaften**
 
@@ -2587,14 +2569,11 @@ ggplot2::ggplot(data = wb_data,
 ```
 
 Im Boxplot werden mehrere relevante Kennzahlen zusammengefasst. 
-Eine schöne Übersicht bietet Abbildung \@ref(fig:boxplot) :^[Die Abbildung ist von folgendem
-Blog übernommen: 
-[https://www.leansigmacorporation.com/box-plot-with-minitab/](https://www.leansigmacorporation.com/box-plot-with-minitab/).]
+Eine schöne Übersicht bietet Abbildung \@ref(fig:boxplot):
 
 ```{r boxplot, echo=FALSE, fig.cap="Boxplot Anatomie. Quelle: https://www.leansigmacorporation.com/box-plot-with-minitab/"}
 knitr::include_graphics(here::here("figures/boxplot-anatomy.png"))
 ```
-<!-- Quelle in Fußnote? Ich hab sie jetzt sonst auch mal in die figure caption gesetzt und würde die fußnote dann eher wegnehmen -->
 
 Die Box in der Mitte des Boxplots repräsentiert die IQR der Daten, der Median
 ist mit einem Strich innerhalb der Box dargestellt. 
