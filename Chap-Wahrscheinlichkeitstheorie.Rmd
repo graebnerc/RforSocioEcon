@@ -13,6 +13,8 @@ und die Berechnung von Konfidenzintervallen) werden in den beiden
 Anhängen [zur deskriptiven](#desk-stat) und 
 [schließenden Statistik](#stat-rep) wiederholt.
 
+<!--@Birte: Bitte Verweise zu den Kapiteln setzen -->
+
 ## Verwendete Pakete {-}
 
 ```{r, message=FALSE}
@@ -115,11 +117,17 @@ kann. Das bedeutet, dass auch unendlich große Mengen als abzählbar gelten kön
 Ist $\Omega$ **nicht abzählbar** handelt es sich dagegen um ein 
 **stetiges Wahrscheinlichkeitsmodell**.
 Ein Beispiel hierfür wäre das Fallenlassen von Steinen und die Messung der 
-Falldauer. Die einzelnen Ereignisse wären dann die Falldauer und es würde gelten, 
-dass $\Omega=\mathbb{R^+}$ und $\mathbb{R^+}$ ist nicht abzählbar.
+Falldauer. 
+Die einzelnen Ereignisse wären dann die Falldauer und da wir die Zeiten
+in immer kleineren Intervallen angeben können, es also allein zwischen
+den Messungen "1 Sekunde" und "2 Sekunden" unendlich viele Zwischenschritte
+gibt, würde gelten, dass $\Omega=\mathbb{R^+}$.
+Dabei handelt es sich um eine nicht abzählbare Menge. 
 
 Welches Modell für den konkreten Anwendungsfall vorzuziehen ist, muss auf Basis
 von theoretischen Überlegungen entschieden werden.
+Im Folgenden werden für beide Fälle wichtige Grundkonzepte eingeführt und kurz
+erläutert.
 
 ## Diskrete Wahrscheinlichkeitsmodelle
 
@@ -133,10 +141,13 @@ $$ \mathbb{P}(A)=\sum_{\omega\in A} \mathbb{P}(\{\omega\})$$
 > **Beispiel:** Beim Werfen eines sechseitigen Würfels ist die Wahrscheinlichkeit
 für das Ereignst "Es wird eine gerade Zahl gewürfelt": $\mathbb{P}(2)+\mathbb{P}(4)+\mathbb{P}(6)=\frac{1}{6}+\frac{1}{6}+\frac{1}{6}=\frac{1}{2}$.
 
+### Stochastische Unabhängigkeit
+
 Von Interesse ist häufig aus den Wahrscheinlichkeiten für zwei Ereignisse, 
 $A$ und $B$, die Wahrscheinlichkeit für $A\cap B$, also die Wahrscheinlichkeit,
 dass beide Ereignisse auftreten, zu berechnen. 
-Leider ist das nur im Spezialfall der **stochastischen Unabhängigkeit** möglich.
+Leider ist das nur im Spezialfall der **stochastischen Unabhängigkeit** ohne
+Probleme möglich.
 Stochastische Unabhängigkeit kann immer dann sinnvollerweise angenommen werden, 
 wenn zwischen den beteiligten Ereignissen kein kausaler Zusammenhang besteht.
 In diesem Fall gilt dann:
@@ -160,6 +171,8 @@ Würden wir die Wahrscheinlichkeiten einfach multiplizieren erhielten wir
 allerdings $\mathbb{P}(C)\cdot \mathbb{P}(D)=\frac{5}{36}\cdot\frac{1}{6}=\frac{5}{216}$,
 wobei $\mathbb{P}(C)=\frac{5}{36}$.
 
+### Bedingte Wahrscheinlichkeiten
+
 Ein weiteres wichtiges Konzept ist das der **bedingten Wahrscheinlichkeit**:
 die bedingten Wahrscheinlichkeit von $A$ gegeben $B$, $\mathbb{P}(A|B)$, 
 bezeichnet die Wahrscheindlichkeit für $A$, wenn wir wissen, dass $B$ 
@@ -178,22 +191,90 @@ eingetreten ist, ist $\mathbb{P}(A)$ nicht mehr $\frac{1}{6}$, weil wir ja
 wissen, dass 1, 3 und 5 nicht auftreten können. 
 Vielmehr gilt $\mathbb{P}(A|B)=\frac{1/6}{1/2}=\frac{1}{3}$.
 
-### Bayes Theorem und Gesetz der total Wahrscheinlichkeiten
+### Der Satz von Bayes
 
-Ganz wichtig: es gilt *nicht notwendigerweise* $\mathbb{P}(A|B)=\mathbb{P}(B|A)$.
-Vielmehr gilt nach dem **Satz von Bayes**:
+Wenn wir aus der bedingten Wahrscheinlichkeit für $A$ gegeben $B$ die bedingte
+Wahrscheinlichkeit von $B$ gegeben $A$ berechnen wollen, also aus 
+$\mathbb{P}(A|B)$ den Ausdruck $\mathbb{P}(B|A)$ ableiten möchten, dann müssen
+wir den **Satz von Bayes** anwenden - es gilt nämlich leider nicht
+notwendigerweise $\mathbb{P}(A|B)=\mathbb{P}(B|A)$.
+Vielmehr gilt nach dem *Satz von Bayes*:
 
 $$\mathbb{P}(A|B)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}=\frac{\mathbb{P}(B|A)\mathbb{P}(A)}{\mathbb{P}(B)}$$
 
-Ein in Beweisen sehr häufig verwendeter Zusammenhang ist das 
-**Gesetz der totalen Wahrscheinlichkeit**: seien $A_1,...,A_k$  Ergeignisse, 
-die sich nicht überschneiden und gemeinsam den kompletten Ereignisraum $\Omega$
-abdecken, dann gilt:
+> **Beispiel für die Anwendung von Bayes' Theorem**:
+Nehmen wir an, Claudius fährt an 70% der Tage mit dem Fahrrad in die 
+Universität. 
+Immer wenn Claudius mit dem Fahrrad fährt, ist er zu 80% pünktlich.
+Insgesamt ist er an 60% der Tage pünktlich. 
+Wenn er nun heute pünktlich gekommen ist, wie hoch ist dann die 
+Wahrscheinlichkeit, dass er mit dem Fahrrad gekommen ist?
+Um diese Frage zu beantworten können wir den Satz von Bayes verwenden.
+Sei $A:$ "Claudius kommt mit dem Fahrrad" und $B:$ "Claudius ist pünklich".
+Dann gilt in jedem Falle $\mathbb{P}(A)=0.7$, $\mathbb{P}(B)=0.6$ sowie
+$\mathbb{P}(B|A)=0.8$.
+Wir sind interessiert an $\mathbb{P}(A|B)$, also der Wahrscheinlichkeit, dass Claudius mit dem
+Fahrrad gefahren ist, wenn er pünktlich war. 
+Das können wir nun mit der oben beschriebene Formel herausfinden:
+
+$$\mathbb{P}(A|B)=\frac{\mathbb{P}(B|A)\mathbb{P}(A)}{\mathbb{P}(B)}=\frac{0.8\cdot 0.7}{0.6}\approx 0.93$$
+
+> Die Wahrscheinlichkeit, dass Claudius mit dem Fahrrad gekommen ist beträgt 
+also ca. 93 Prozent!
+
+> **Herleitung von Bayes' Theorem aus den Formeln für bedingte Wahrscheinlichkeiten**
+Wir können Bayes' Theorem aus den oben beschriebenen Formeln für bedingte 
+Wahrscheinlichkeiten recht einfach herleiten. 
+Wir wissen, dass 
+
+$$\mathbb{P}(A|B)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}$$
+
+> Für $\mathbb{P}(A\cap B)$ im Zähler können wir äquivalent $\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(A)}\cdot \mathbb{P}(A)$ schreiben. 
+Daraus ergibt sich für die Formel oben:
+
+$$\mathbb{P}(A|B)=\frac{\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(A)}\cdot \mathbb{P}(A)}{\mathbb{P}(B)}$$
+
+> Gleichzeitig gilt aber auch:
+
+$$\mathbb{P}(B|A)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(A)}$$
+
+> Das können wir nun im Zähler ersetzen und erhalten so den Satz von Bayes:
+
+$$\mathbb{P}(A|B)=\frac{\mathbb{P}(B|A)\cdot \mathbb{P}(A)}{\mathbb{P}(B)}$$
+
+
+### Das Gesetz der total Wahrscheinlichkeiten
+
+Wenn wir die Wahrscheinlichkeiten für mehrstufige Zufallsexperimente berechnen
+wollen müssen wir oft Wahrscheinlichkeiten von verschiedenen Ebenen 
+"aggregieren". Das machen wir mit dem **Gesetz der totalen Wahrscheinlichkeit**,
+das in Beweisen im Bereich der Stochastik sehr häufig verwendet wird.
+Formal besagt das *Gesetz der totalen Wahrscheinlichkeit* folgendes: 
+seien $A_1,...,A_k$  Ergeignisse, die sich nicht überschneiden und gemeinsam 
+den kompletten Ereignisraum $\Omega$ abdecken, dann gilt:
 
 $$\mathbb{P}(B)=\sum_{i=1}^k\mathbb{P}(B|A_k)\mathbb{P}(A_k)$$
 
-Auch wenn das erst einmal sperrig aussieht, ist der Zusammenhang sehr praktisch 
-und wird häufig in Beweisen in der Stochastik verwendet. 
+Das sieht natürlich erst einmal sperrig aus, wie so oft ist es aber eigentlich
+ganz einfach. Das folgende Beispiel illustriert das.
+
+> **Beispiel für die Anwendung vom Gesetz der totalen Wahrscheinlichkeit**:
+Wir haben eine Urne mit drei weißen und sieben schwarzen Kugeln. 
+Wir ziehen zweimal eine Kugel ohne sie dabei zurückzulegen - wir haben es also
+mit einem zweistufigen Zufallsexperiment zu tun.
+Wie hoch ist nun die Wahrscheinlichkeit, dass wir genau eine schwarze Kugel 
+gezogen haben?
+Sei $B:$ "Eine schwarze Kugel wird gezogen" und 
+$A: $ "Eine weiße Kugel wird gezogen".
+Wir addieren nun die Wahrscheinlichkeiten für aller Ergebnisse, die in Kombination
+zu unserem Gesamtereignis führen, also die Wahrscheinlichkeit erst eine weiße
+und dann eine schwarze und die Wahrscheinlichkeit erst eine schwarze
+und dann eine weiße Kugel zu ziehen:
+
+$$\mathbb{P}(B=1)=\frac{7}{9}\cdot\frac{3}{10} + \frac{3}{9}\cdot\frac{7}{10}=\frac{42}{90}$$
+
+> wobei $\mathbb{P}(B|A)=\frac{7}{9}\cdot\frac{3}{10}$ und $\mathbb{P}(A|B)=\frac{3}{9}\cdot\frac{7}{10}$. Die Wahrscheinlichkeit genau
+eine schwarze Kugel zu ziehen liegt also bei ca. $45.5$ Prozent. 
 
 
 ### Diskrete Zufallsvariablen
@@ -207,6 +288,9 @@ $$X:\Omega\rightarrow\mathbb{R}, \omega \mapsto X(\omega)$$
 Im Kontext von ZV sprechen wir häufig nicht von dem zugrundeliegenden 
 Ergebnisraum $\Omega$, sondern - inhaltlich äquivalent - vom *Wertebereich von X*,
 bezeichnet als $W_X$.
+Produkte und Summen von ZV sind selbst wieder Zufallsvariablen.
+Man addiert bzw. multipliziert ZV indem man ihre Werte addiert bzw. mutlipliziert.
+
 
 In der Regel bezeichnen wir Zufallsvariablen (ZV) mit Großbuchstaben und die
 konkrete Realisation einer ZV mit einem Kleinbuchstaben, sodass 
@@ -219,10 +303,8 @@ Dies bedeutet streng genommen, dass die ZV selbst nicht als zufällig definiert 
 Zufällig ist nur der Input $\omega$ der entsprechenden Funktion 
 $X: \Omega\rightarrow X(\omega)$, also z.B. ein Würfelwurf. 
 Der funktionale Zusammenhang zwischen Funktionswert $X(\omega)$ 
-und dem Input $\omega$ ist hingegen eindeutig.
+und dem Input $\omega$ ist hingegen eindeutig und deterministisch.
 
-Das bedeutet streng genommen, dass die ZV nicht *selbst* zufällig ist, sondern
-ihr Input $\omega$. 
 Das impliziert, dass wenn ein Zufallsexperiment zweimal das 
 gleiche Ergebnis $\omega$ hat, ist auch der Wert $X(\omega)$ der gleiche.
 
@@ -230,13 +312,6 @@ Das mag im Moment ein wenig nach 'Pfennigfuchserei' aussehen, die Unterscheidung
 zwischen dem nicht-zufälligem funtionalen Zusammenhangs, aber einem zufälligen
 Input bei ZV ist wichtig, um den Sinn in vielen fortgeschrittenen Beiträgen im 
 Bereich der Ökonometrie zu sehen.
-
-Den unterschiedlichen Realisierungen von einer ZV haben jeweils Wahrscheinlichkeiten, 
-die von den Wahrscheinlichkeiten der zugrundeliegenden Ergebnisse des 
-modellierten Zufallsexperiments abhängen.
-
-Produkte und Summen von ZV sind selbst wieder Zufallsvariables.
-Man addiert bzw. multipliziert ZV indem man ihre Werte addiert bzw. mutlipliziert.
 
 Im Falle von diskreten ZV können wir eine Liste erstellen, die für alle möglichen
 Werte $x_k\in W_X$ die jeweilige Wahrscheinlichkeit $\mathbb{P}(X=x_k)$ angibt.^[Aus den 
@@ -246,11 +321,11 @@ Diese Liste nennen wir
 **Wahrscheinlichkeitsverteilung** (*Probability Mass Function*, PMF) von $X$
 und sie werden häufig visuell dargestellen.
 Um diese Liste zu erstellen verwenden wir die zu $X$ gehörende 
-**Wahrscheinlichkeitsfunktion**, ($p(x_k)$),die uns für jedes Ergebnis die zugehörige 
+**Wahrscheinlichkeitsfunktion**, ($p(x_k)$), die uns für jedes Ergebnis die zugehörige 
 Wahrscheinlichkeit gibt:^[Zu jeder Wahrscheinlichkeitsverteilung gibt es eine 
 eindeutige Wahrscheinlichkeitsfunktion und jede Wahrscheinlichkeitsfunktion 
 definiert umgekehrt eine eindeutig bestimmte diskrete 
-Wahrscheinlichkeitsverteilung. ]
+Wahrscheinlichkeitsverteilung.]
 
 $$p(x_k)=\mathbb{P}(X=x_k)$$
 
@@ -260,7 +335,7 @@ Zur genaueren Beschreibung einer ZV wird entsprechend häufig einfach die
 Wahrscheinlichkeitsfunktion angegeben.
 
 Im folgenden wollen wir einige häufig auftretende Wahrscheinlichkeitsverteilungen
-kurz besprechen.
+kurz einführen
 Am Ende des Abschnitts findet sich dann ein tabellarischer Überblick.
 Doch vorher wollen wir uns noch mit den wichtigsten **Kennzahlen einer Verteilung**
 vertraut machen. 
@@ -365,7 +440,7 @@ pdf_plot <- ggplot(y_vals_pdf,
   theme_icae() +
   ggtitle("PMF der Binomialverteilung") +
   scale_x_continuous(expand = c(0,0)) +
-  scale_y_continuous(expand = expand_scale(c(0,0), c(0, 0.1))) +
+  scale_y_continuous(expand = expansion(c(0,0), c(0, 0.1))) +
   scale_color_icae(palette = "mixed", discrete = T,
                    labels = unname(TeX(c("$n = 50, p = 0.4", 
                                          "$n = 25, p = 0.4", 
@@ -407,7 +482,7 @@ ggplot(data.frame(x = x_vals, y=dbinom(x_vals, anzahl_versuche, 0.25))) +
   geom_line(aes(x=x, y=y)) +
   ylab(TeX("Wahrscheinlichkeit $P(X=x)$")) +
   xlab("Anzahl Erfolge (x)") +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) + 
+  scale_y_continuous(expand = expansion(c(0, 0), c(0, 0.05))) + 
   scale_x_continuous(expand = c(0, 0), breaks = x_vals, limits = c(0, 30)) +
   ggtitle(TeX("Binomialverteilung mit $p=0.25$ und $n=50$")) +
   geom_segment(aes(x = x_val, y = 0, 
@@ -467,7 +542,7 @@ ggplot(data.frame(x = x_vals, y=pbinom(x_vals, anzahl_versuche, 0.25))) +
   geom_line(aes(x=x, y=y)) +
   ylab(TeX("Wahrscheinlichkeit $P(X\\leq x)$")) +
   xlab("Anzahl Erfolge (x)") +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) + 
+  scale_y_continuous(expand = expansion(c(0, 0), c(0, 0.05))) + 
   scale_x_continuous(expand = c(0, 0), breaks = x_vals, limits = c(0, 30)) +
   ggtitle(TeX("Kumulierte Wahrscheinlichkeitsfunktion der Binomialverteilung mit $p=0.25$ und $n=50$")) +
   geom_segment(aes(x = x_val, y = 0, 
@@ -516,7 +591,7 @@ ggplot(data.frame(x = p_vals, y=qbinom(p_vals, anzahl_versuche, 0.25))) +
   geom_line(aes(x=x, y=y)) +
   ylab(TeX("Wahrscheinlichkeit $P(X\\leq x)$")) +
   xlab("Anzahl Erfolge (x)") +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.00))) + 
+  scale_y_continuous(expand = expansion(c(0, 0), c(0, 0.00))) + 
   scale_x_continuous(expand = c(0, 0), breaks = p_vals_breaks) +
   ggtitle(TeX("Invertierte CDF der Binomialverteilung mit $p=0.25$ und $n=50$")) +
   geom_segment(aes(x = x_val, y = 0,
@@ -564,7 +639,7 @@ munzwurfe <- rbinom(n = wurzanzahl, prob = p_zahl, size = wurfe_pro_experiment)
 ggplot(data.frame(x=munzwurfe), aes(x=x)) +
   geom_histogram(bins = wurzanzahl) +
   scale_x_continuous(breaks=seq(0, max(munzwurfe), 1)) +
-  scale_y_continuous(expand = expand_scale(c(0,0), c(0,1))) +
+  scale_y_continuous(expand = expansion(c(0,0), c(0,1))) +
   theme_icae()
 ```
 > Aus der Logik der Konstruktion des Zufallsexperiments und der Inspektion 
@@ -592,7 +667,7 @@ ggplot(data.frame(x=munzwurfe), aes(x=x)) +
                                         size = wurfe_pro_experiment)*wurzanzahl), 
              aes(x=x, y=y, color="Theoretische Verteilung"), alpha=0.5, lwd=1
              ) +
-  scale_y_continuous(expand = expand_scale(c(0,0), c(0,1))) +
+  scale_y_continuous(expand = expansion(c(0,0), c(0,1))) +
   #scale_color_manual(values=c("blue", "red"), name=c("Theoretische Verteilung", "Empirische Verteilung")) +
   theme_icae() + theme(legend.position = "bottom")
 ```
@@ -632,8 +707,8 @@ ggplot(lambdas) +
   geom_point(aes(x=x, y=y, color=lambda, group=lambda)) +
   geom_line(aes(x=x, y=y, color=lambda, group=lambda)) + 
   scale_fill_discrete(name = "New Legend Title") +
-  scale_y_continuous(expand = expand_scale(c(0,0), c(0,0.025))) +
-  scale_x_continuous(expand = expand_scale(c(0,0), c(0,0))) +
+  scale_y_continuous(expand = expansion(c(0,0), c(0,0.025))) +
+  scale_x_continuous(expand = expansion(c(0,0), c(0,0))) +
   scale_color_icae(palette = "mixed", discrete = T) +
   ggtitle(TeX("Die Poisson-Verteilung für verschiedene $\\lambda$")) +
   guides(color = guide_legend(title = TeX("$\\lambda$"), 
@@ -667,8 +742,8 @@ lambdas <- do.call(rbind, list(lambda_1, lambda_4, lambda_8))
 ggplot(lambda_4) +
   geom_point(aes(x=x, y=y, color=lambda, group=lambda)) +
   geom_line(aes(x=x, y=y, color=lambda, group=lambda)) + 
-  scale_y_continuous(expand = expand_scale(c(0,0), c(0,0.025))) +
-  scale_x_continuous(expand = expand_scale(c(0,0), c(0,0))) +
+  scale_y_continuous(expand = expansion(c(0,0), c(0,0.025))) +
+  scale_x_continuous(expand = expansion(c(0,0), c(0,0))) +
   scale_fill_discrete(name = "New Legend Title") +
   scale_color_icae(palette = "mixed", discrete = T) +
   ggtitle(TeX("Die Poisson-Verteilung für $\\lambda = 4$")) +
@@ -708,7 +783,7 @@ ggplot(data.frame(x = x_vals, y=ppois(x_vals, lambda = lambda_val))) +
   geom_line(aes(x=x, y=y)) +
   ylab(TeX("Wahrscheinlichkeit $P(X\\leq x)$")) +
   xlab("x") +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) + 
+  scale_y_continuous(expand = expansion(c(0, 0), c(0, 0.05))) + 
   scale_x_continuous(expand = c(0, 0), breaks = x_vals, limits = c(0, 15)) +
   ggtitle(TeX("Kumulierte Wahrscheinlichkeitsfunktion der Poisson-Verteilung mit $\\lambda = 4$")) +
   geom_segment(aes(x = x_val, y = 0,
@@ -755,7 +830,7 @@ ggplot(data.frame(x = p_vals, y=qpois(p_vals, lambda_val))) +
   geom_line(aes(x=x, y=y)) +
   xlab(TeX("Wahrscheinlichkeit $P(X\\geq x)$")) +
   ylab("Anzahl Erfolge") +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.00))) + 
+  scale_y_continuous(expand = expansion(c(0, 0), c(0, 0.00))) + 
   scale_x_continuous(expand = c(0, 0), breaks = p_vals_breaks) +
   ggtitle(TeX("Invertierte CDF der Poisson-Verteilung mit $\\lambda = 4$")) +
   geom_segment(aes(x = x_val, y = 0,
@@ -896,7 +971,7 @@ q05_plot <- ggplot(data.frame(x = x_vals, y=dnorm(x_vals, mean=0, sd=1))) +
   geom_line(aes(x=x, y=y)) +
   ylab(TeX("$P(x)$")) +
   xlab("x") +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) + 
+  scale_y_continuous(expand = expansion(c(0, 0), c(0, 0.05))) + 
   scale_x_continuous(expand = c(0, 0)) +
   ggtitle(TeX("Dichte der Normalverteilung mit $\\mu = 0$ und $\\sigma = 1$")) +
   stat_function(fun = dnorm, xlim = c(-4, quant_05), geom = "area", 
@@ -911,7 +986,7 @@ q025_plot <- ggplot(data.frame(x = x_vals, y=dnorm(x_vals, mean=0, sd=1))) +
   geom_line(aes(x=x, y=y)) +
   ylab(TeX("$P(x)$")) +
   xlab("x") +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) + 
+  scale_y_continuous(expand = expansion(c(0, 0), c(0, 0.05))) + 
   scale_x_continuous(expand = c(0, 0)) +
   ggtitle(TeX("Dichte der Normalverteilung mit $\\mu = 0$ und $\\sigma = 1$")) +
   stat_function(fun = dnorm, xlim = c(-4, quant_025), geom = "area", 
@@ -941,6 +1016,54 @@ Kumulierte Verteilungsfunktion (CDF) | $\mathbb{P}(X\leq x)$ | $F(x)=\mathbb{P}(
 
 Analog zum diskreten Fall wollen wir uns nun die am häufigsten vorkommenden
 stetigen Verteilungen noch einmal genauer anschauen.
+Vorher wollen wir jedoch die oben eingeführten Konzepte (statistische 
+Unabhängigkeit, bedingte Wahrscheinlichkeiten, etc.) noch für den stegigen
+Fall formulieren - am Prinzip ändert sich hier nichts, nur an der Notation.
+
+### Grundkonzepte der Stochastik im stetigen Fall
+
+Stochastische Unabhängigkeit im stetigen Fall bedeutet inhaltlich genau das
+gleiche wie im diskreten Fall. Lediglich die Notation unterscheidet sich ein
+wenig. 
+Im diskreten Fall hatten wir angegeben:
+
+$$.$$
+
+Im stetigen Fall wird daraus:
+
+$$.$$
+
+Entsprechend ändert sich auch die Formulierung bedingter Wahrscheinlichkeiten.
+Hatten wir im diskreten Fall noch geschrieben dass
+
+$$.$$
+
+schreiben wir nun:
+
+$$.$$
+
+Wenn wir den Satz von Bayes explizit für stetige ZV formulieren wollen verwenden
+wir wieder die Dichte. 
+Entsprechend wird aus der uns bekannten Formulierung
+
+$$\mathbb{P}(A|B)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}=\frac{\mathbb{P}(B|A)\mathbb{P}(A)}{\mathbb{P}(B)}$$
+
+die Folgende, wobei es sich bei $.$ um die Dichte
+
+$$.$$
+
+Schlussendlich wollen wir noch das Gesetz der totalen Wahrscheinlichkeit 
+'übersetzen'. Aus
+
+$$.$$
+
+wird
+
+$$.$$
+
+In all diesen Fällen ändert sich nichts an der Interpretation oder dem 
+zugrundeliegenden Prinzip. 
+Lediglich die Notation ist eine andere.
 
 ### Beispiel: die Uniformverteilung
 
@@ -975,7 +1098,7 @@ ggplot(data.frame(x = x_vals, y=dunif(x_vals, min = x_min, max = x_max))) +
   geom_line(aes(x=x, y=y)) +
   ylab(TeX("$P(x)$")) +
   xlab("x") +
-  scale_y_continuous(limits = c(0,1), expand = expand_scale(c(0, 0), c(0, 0.05))) + 
+  scale_y_continuous(limits = c(0,1), expand = expansion(c(0, 0), c(0, 0.05))) + 
   scale_x_continuous(expand = c(0, 0)) +
   ggtitle(TeX("Dichte der Uniformverteilung mit $a = 2$ und $b = 4$")) +
   theme_icae()
@@ -1010,7 +1133,7 @@ y_val <- punif(x_val, min = x_min, max = x_max)
 ggplot(data.frame(x = x_vals, y=dunif(x_vals, min=x_min, max=x_max))) +
   ylab(TeX("$P(x)$")) +
   xlab("x") +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.1))) + 
+  scale_y_continuous(expand = expansion(c(0, 0), c(0, 0.1))) + 
   scale_x_continuous(breaks = x_vals, limits = c(x_min, x_max), expand = c(0, 0)) +
   ggtitle(TeX("CDF der Uniformverteilung mit $a = 0$ und $b = 1$")) +
   stat_function(fun = punif, xlim = c(0, x_val), geom = "area", 
@@ -1099,7 +1222,7 @@ pdf_plot <- ggplot(y_vals_pdf,
   theme_icae() +
   ggtitle("PDF der Normalverteilung") +
   scale_x_continuous(expand = c(0,0)) +
-  scale_y_continuous(expand = expand_scale(c(0,0), c(0, 0.1))) +
+  scale_y_continuous(expand = expansion(c(0,0), c(0, 0.1))) +
   scale_color_icae(palette = "mixed", discrete = T,
                    labels = unname(TeX(c("$\\mu = 0, \\sigma = 0.25", 
                                          "$\\mu = 0, \\sigma = 1", 
@@ -1118,7 +1241,7 @@ cdf_plot <- ggplot(y_vals_cdf,
   theme_icae() +
   ggtitle("CDF der Normalverteilung") +
   scale_x_continuous(expand = c(0,0)) +
-  scale_y_continuous(expand = expand_scale(c(0,0), c(0, 0.1))) +
+  scale_y_continuous(expand = expansion(c(0,0), c(0, 0.1))) +
   scale_color_icae(palette = "mixed", discrete = T,
                    labels = unname(TeX(c("$\\mu = 0, \\sigma = 0.25", 
                                          "$\\mu = 0, \\sigma = 1", 
@@ -1206,7 +1329,7 @@ pdf_plot <- ggplot(y_vals_pdf,
   theme_icae() +
   ggtitle("PDF") +
   scale_x_continuous(expand = c(0,0)) +
-  scale_y_continuous(expand = expand_scale(c(0,0), c(0, 0.1))) +
+  scale_y_continuous(expand = expansion(c(0,0), c(0, 0.1))) +
   scale_color_icae(palette = "mixed", discrete = T) +
   theme(legend.position = "right", 
         legend.title = element_text())
@@ -1220,7 +1343,7 @@ cdf_plot <- ggplot(y_vals_cdf,
   theme_icae() +
   ggtitle("CDF") +
   scale_x_continuous(expand = c(0,0)) +
-  scale_y_continuous(expand = expand_scale(c(0,0), c(0, 0.1))) +
+  scale_y_continuous(expand = expansion(c(0,0), c(0, 0.1))) +
   scale_color_icae(palette = "mixed", discrete = T) +
   theme(legend.position = "right", 
         legend.title = element_text())
@@ -1248,7 +1371,7 @@ Es gibt übrigens einen
 [wichtigen Zusammenhang](https://www.exponentialverteilung.de/vers/beweise/uebergang_poissonverteilung.html) 
 zwischen der stetigen Exponential- und der diskreten Poisson-Verteilung.
 
-## Zusammenfassung Wahrscheinlichkeitsmodelle
+## Zusammenfassung Wahrscheinlichkeitsmodelle für einzelne ZV
 
 Die folgende Tabelle fasst noch einmal alle Wahscheinlichkeitsmodelle zusammen, 
 die wir bislang betrachtet haben:
@@ -1289,3 +1412,30 @@ Dieses Vorgehen nennen wir *parametrisch*, weil wir hier vor allem Parameter
 schätzen wollen.^[Die Alternative, *nicht-parametrische* Verfahren, nehmen kein 
 konkretes Wahrscheinlichkeitsmodell an, sondern wählen das Modell auch auf Basis 
 der Daten.]
+
+
+## Analyse mehrerer Zufallsvariablen: gemeinsame und marginale Verteilungen
+
+Zum Abschluss dieses Kapitels wollen wir uns noch mit der Analyse von ZV
+beschäftigen, die ihrerseits aus der Kombination anderer ZV entstehen.
+Wir wissen ja bereits, dass die Summe oder das Produkt von ZV selbst wieder eine
+ZV ergibt.^[Trivialerweise ist die Summe einer ZV und einer normalen Zahl 
+ebenfalls eine ZV. Diese ZV folgt aber einfach der Verteilung der alten ZV, weil
+ihr anderer 'Baustein' rein deterministisch ist. Dieser Fall ist daher weniger
+interessant (oder problematisch, je nach Perspektive).]
+Und diese 'neuen' ZV sind genau das, womit wir uns hier noch zum Abschluss 
+beschäftigen möchten.
+
+Die Beispiele, die wir bisland kennen gelernt haben beschreiben alle die 
+Verteilung einer einzelnen ZV beschäftigt.
+Anhand den Konzepten der bedingten Wahrscheinlichkeit und der statistischen
+Unabhängigkeit konnten wir ja schon erahnen, dass es häufig von besonderem 
+Interesse ist, wie mehrere ZV miteinander interagieren.
+Häufig sind wir daran interessiert, die Verteilung dieser neuen ZV zu 
+charakterisieren. 
+Wir nennen die Verteilung einer ZV, die sich aus mehreren ZV ergibt eine
+**gemeinsame Verteilung**.
+Eine gemeinsame Verteilung gibt uns Informationen über die Wahrscheinlichkeit
+von Ereignissen, die von allen beteiligten ZV abhängen.
+
+TBA
