@@ -51,6 +51,8 @@ ziehen.
 
 ## Grundbegriffe der Wahrscheinlichkeitstheorie
 
+### Wahrscheinlichkeitstheoretische Modelle
+
 Ein wahrscheinlichkeitstheoretisches Modell besteht *immer* aus den folgenden drei 
 Komponenten: 
 
@@ -126,20 +128,6 @@ Dabei handelt es sich um eine nicht abzählbare Menge.
 
 Welches Modell für den konkreten Anwendungsfall vorzuziehen ist, muss auf Basis
 von theoretischen Überlegungen entschieden werden.
-Im Folgenden werden für beide Fälle wichtige Grundkonzepte eingeführt und kurz
-erläutert.
-
-## Diskrete Wahrscheinlichkeitsmodelle
-
-Wenn wir die Wahrscheinlichkeit für das Eintreten eines Ereignisses $A$ 
-erfahren möchten können wir im Falle eines diskreten Ergebnisraums einfach
-die Eintrittswahrscheinlichkeiten für alle Ergebnisse, die zu $A$ gehören, 
-aufsummieren:
-
-$$ \mathbb{P}(A)=\sum_{\omega\in A} \mathbb{P}(\{\omega\})$$
-
-> **Beispiel:** Beim Werfen eines sechseitigen Würfels ist die Wahrscheinlichkeit
-für das Ereignst "Es wird eine gerade Zahl gewürfelt": $\mathbb{P}(2)+\mathbb{P}(4)+\mathbb{P}(6)=\frac{1}{6}+\frac{1}{6}+\frac{1}{6}=\frac{1}{2}$.
 
 ### Stochastische Unabhängigkeit
 
@@ -277,6 +265,18 @@ $$\mathbb{P}(B=1)=\frac{7}{9}\cdot\frac{3}{10} + \frac{3}{9}\cdot\frac{7}{10}=\f
 eine schwarze Kugel zu ziehen liegt also bei ca. $45.5$ Prozent. 
 
 
+## Diskrete Wahrscheinlichkeitsmodelle
+
+Wenn wir die Wahrscheinlichkeit für das Eintreten eines Ereignisses $A$ 
+erfahren möchten können wir im Falle eines diskreten Ergebnisraums einfach
+die Eintrittswahrscheinlichkeiten für alle Ergebnisse, die zu $A$ gehören, 
+aufsummieren:
+
+$$ \mathbb{P}(A)=\sum_{\omega\in A} \mathbb{P}(\{\omega\})$$
+
+> **Beispiel:** Beim Werfen eines sechseitigen Würfels ist die Wahrscheinlichkeit
+für das Ereignst "Es wird eine gerade Zahl gewürfelt": $\mathbb{P}(2)+\mathbb{P}(4)+\mathbb{P}(6)=\frac{1}{6}+\frac{1}{6}+\frac{1}{6}=\frac{1}{2}$.
+
 ### Diskrete Zufallsvariablen
 
 Bei Zufallsvariablen (ZV) handelt es sich um besondere *Funktionen*. 
@@ -318,16 +318,31 @@ Werte $x_k\in W_X$ die jeweilige Wahrscheinlichkeit $\mathbb{P}(X=x_k)$ angibt.^
 *Kolmogorow Axiomen* oben ergibt sich, dass die Summe all dieser
 Wahrscheinlichkeiten 1 ergeben muss: $\sum_{k\geq 1}\mathbb{P}(X=x_k)=1$.] 
 Diese Liste nennen wir 
-**Wahrscheinlichkeitsverteilung** (*Probability Mass Function*, PMF) von $X$
+**Wahrscheinlichkeitsverteilung** von $X$
 und sie werden häufig visuell dargestellen.
 Um diese Liste zu erstellen verwenden wir die zu $X$ gehörende 
-**Wahrscheinlichkeitsfunktion**, ($p(x_k)$), die uns für jedes Ergebnis die zugehörige 
-Wahrscheinlichkeit gibt:^[Zu jeder Wahrscheinlichkeitsverteilung gibt es eine 
+**Wahrscheinlichkeitsfunktion** (*Probability Mass Function*, PMF), $p(x_k)$, 
+die uns für jedes Ergebnis die zugehörige Wahrscheinlichkeit gibt:^[Zu 
+jeder Wahrscheinlichkeitsverteilung gibt es eine 
 eindeutige Wahrscheinlichkeitsfunktion und jede Wahrscheinlichkeitsfunktion 
 definiert umgekehrt eine eindeutig bestimmte diskrete 
 Wahrscheinlichkeitsverteilung.]
 
 $$p(x_k)=\mathbb{P}(X=x_k)$$
+
+Ebenfalls häufig verwendet wird die **kumulierte Wahrscheinflichkeitsfunktion**
+(*cumulative distribution function*, CDF):
+
+$$F_X(a)=\mathbb{P}(X\leq x_k)$$
+
+Die CDF einer diskrete ZV $X$ gibt also die Wahrscheinlichkeit an, dass $X$ sich 
+als ein Wert kleiner gleich einem Schwellenwert realisiert. Daher auch der
+Name: sie kumuliert die Eintrittswahrscheinlichkeiten aller Events zwischen
+$-\infty$ und $a$.
+Für eine solche Funktion gilt wie für die PMF, dass $0\leq F_X(a)\leq1$.
+Zudem handelt es sich bei der CDF um eine wachsende Funktion ($F_X(a)\leq F(b) \leftrightarrow a\leq b$) und es gilt, dass $\lim_{a\rightarrow \infty}F_X(a)=1$
+sowie  $\lim_{a\rightarrow -\infty}F_X(a)=0$, d.h. für sehr große Werte von $a$
+geht $F_X$ gegen 1 und für sehr kleine Werte gegen 0.
 
 Wenn wir eine ZV analysieren tun wir dies in der Regel durch eine Analyse ihrer
 Wahrscheinlichkeitsverteilung. 
@@ -692,7 +707,7 @@ Definitionsmenge der Verteilung keine natürliche Grenze hat.
 Die **Wahrscheinlichkeitsfunktion** der Poisson-Verteilung hat die folgende
 Form:
 
-$$P_\lambda(x)=\frac{\lambda^x}{x!}e^{-\lambda}$$
+$$p_\lambda(x)=\frac{\lambda^x}{x!}e^{-\lambda}$$
 Die folgende Abbildung zeigt wie sich die Wahrscheinlichkeitsfunktion für
 unterschiedliche Werte von $\lambda$ manifestiert:
 
@@ -877,10 +892,12 @@ zugewiesen wurde, heißen die Funktionen entsprechend `dbinom()`, `pbinom()`,
 Die folgende Tabelle gibt einen Überblick über gängige Abkürzungen und die 
 Parameter der oben besprochenen diskreten Verteilungen.
 
+
 Verteilung | Abkürzung | Parameter            |
 -----------+-----------+----------------------|
 Binomialverteilung | `binom` | `size`, `prob` |
 Poisson-Verteilung | `pois` | `lambda` |
+
 
 ## Stetige Wahrscheinlichkeitsmodelle 
 
@@ -904,39 +921,73 @@ Im Gegensatz zu diskreten Wahrscheinlichkeitsmodellen hat demnach jeder einzelne
 Punkt im Wertebereich der ZV die Wahrscheinlichkeit 0:
 
 $$\mathbb{P}(X=x_k)=0 \quad \forall x_k \in W_X$$
-wobei $W_X$ für den Wertebereich von ZV $X$ steht
+wobei $W_X$ für den Wertebereich von ZV $X$ steht.
 
 Als Lösung werden Wahrscheinlichkeiten bei stetigen ZV nicht als 
 Punktwahrscheinlichkeiten, sondern als Intervallwahrscheinlichkeiten angeben.
 Aus $\mathbb{P}(X=x)$ im diskreten Fall wird im stetigen Fall also:
 
-$$\mathbb{P}(a<X\leq b), \quad a<b$$
+$$\mathbb{P}(a<X\leq b) = \int_a^bf(x)dx, \quad a<b$$
 
-Bei dieser Funktion sprechen wir von einer  *kumulative Verteilungsfunktion* 
-$F(x)=\mathbb{P}(X\leq x)$, wobei immer gilt:
+Entsprechend wird für stetige ZV eine etwas andere Notation als für diskrete
+ZV verwendet, wobei das Prinzip das gleiche bleibt.
+Zudem werden Sie merken, dass im stetigen Fall anstatt Summen immer Integrale
+verwendet werden. 
+Informell kann man ja auch sagen, dass ein Integral nichts anderes ist als eine
+Summe über stetige Werte.
 
-$$\mathbb{P}(a<X\leq b) = F(b)-F(a)$$
+Wo wir bei diskreten ZV eine Wahrscheinlichkeitsfunktion (PMF) verwendet haben
+verwenden wir nun eine **Wahrscheinlichkeitsdichte** 
+(*probability density function*, PDF).
+Aus der PMF
+$p_X(x)=\mathbb{P}(X=x_k)$
+im diskreten Fall wird nun also die PDF
+$f_X(x)$$, für die gilt, dass $\mathbb{P}(a<X\leq b) = \int_a^bf(x)dx$
+für den stetigen Fall.
 
-Wann immer wir im diskreten Fall eine 
-Wahrscheinlichkeitsfunktion verwendet haben um eine ZV zu beschreiben, verwenden
-wir im stetigen Fall die  **Dichtefunktion** 
-(*probability densitity function* - PDF) einer ZV.
-Hierbei handelt es sich um eine integrierbare und nicht-negative Funktion 
-$f(x)\geq 0 \forall x\in \mathbb{R}$ mit $\int_{-\infty}^{\infty}f(x)dx=1$
-für die gilt: 
+Für die PDF gilt äquivalent zum diskreten Fall, dass $f_X(x)\geq0$ (keine negativen
+Werte) und $\int_{-\infty}^{\infty}f(x)dx=1$ (das Integral (die 
+'stetige Summe') über den ganzen Wertebereich ergibt 1).
+Allerdings gibt es einen wichtigen Unterschied: im Gegensatz zur PMF $p_X(x)$
+gibt die PDF $f_X(x)$ *keine* Wahrscheinlichkeiten an - daher auch nur die 
+Restriktion $f_X(x)\geq0$ und *nicht* $1\geq f_X(x)\geq0$.
+Wenn wir von Wahrscheinlichkeiten reden wollen, müssen wir die PDF integrieren:
 
-$$\mathbb{P}([a,b])=\int_a^bf(x)dx$$
+$$\mathbb{P}((a,b])=\int_a^bf(x)dx$$
 
-Dementsprechend können wir den Ausdruck für die kumulative Verteilungsfunktion
-von oben ergänzen:
+da wir im stetigen Fall für einzelne Punkte keine von Null verschiedenen 
+Wahrscheinlichkeiten haben.
+
+Wen übrigens die unterschiedlichen Bezeichnungen "probability *mass*" und 
+"probablity *density*" irritieren: tatsächlich ist die Verwendung dieser
+Bezeichnungen ganz analog zu den physikalischen Pendents "Masse" und "Dichte"
+in der Physik:
+wenn wir die Masse für einzelne Teile einer Stange haben bekommen wir die
+Gesamtmasse indem wir die Masse der Teile addieren - das ist genauso wie bei
+der PMF: wie bekommen die Gesamtwahrscheinlichkeit indem wir die
+Wahrscheinlichkeiten für einzelne Events addieren und die Einzelgewichte indem
+wir uns die Mass der einzelnen Teile ansehen.
+Wenn wir jetzt eine Stange haben, die unterschiedlich dicht ist, bekommen wir 
+die gesamte Masse indem wir über die Dichte integrieren. 
+Wir können die Stange auch in kleinere Teile schneiden und deren Masse addieren.
+Wenn die Teile unendlich klein werden kommen wir zum gleichen Ergebnis wie bei
+der Integration.
+
+Die **kumulative Verteilungsfunktion** (CDF) ist im stetigen Fall genauso 
+definiert wie im diskreten Fall:
+$F_X(x)=\mathbb{P}(X\leq x)$, wobei immer gilt:
 
 $$\mathbb{P}(a<X\leq b) = F(b)-F(a)=\int_a^bf(x)dx$$
 
-Man sieht hier, dass die Dichtefunktion einer ZV die Ableitung ihrer 
-kumulative Verteilungsfunktion ist. 
-Wie oben beschrieben können wir die Werte an einzlnen Punkten nicht als
+Man sieht hier, dass die Dichtefunktion (PDF) einer ZV die Ableitung ihrer 
+kumulative Verteilungsfunktion (CDF) ist:
+
+$$F_X'(x)=f_X(x)$$
+
+Wie oben beschrieben können wir die Werte an einzlnen Punkten der PDF nicht als
 *absolute* Wahrscheinlichkeiten interpretieren, da die Wahrscheinlichkeit
-für einzelne Punkte immer gleich 0 ist. 
+für einzelne Punkte immer gleich 0 ist und die PDF auch Werte größer 1 
+annehmen kann. 
 Wir können aber die Werte der PDF an zwei oder mehr Punkten vergleichen um die
 *relative* Wahrscheinlichkeit der einzelnen Punkte zu bekommen.
 
@@ -1010,8 +1061,8 @@ Erwartungswert | $\mathbb{E}(x)=\sum_{x\in W_X}\mathbb{P}(X=x)x$ | $\mathbb{E}(X
 Varianz | $Var(X)=\sum_{x\in W_X}\left[x-\mathbb{E}(X)\right]^2 \mathbb{P}(X=x)x$ | $Var(X)= \mathbb{E}(X-\mathbb{E}\left(X)\right)^2$ |
 Standard-abweichung | $\sqrt{Var(X)}$ | $\sqrt{Var(X)}$ |
 $\alpha$-Quantil | $\mathbb{P}(X\leq q(\alpha))=\alpha$ | $\mathbb{P}(X\leq q(\alpha))=\alpha$|
-Dichtefunktion (PDF) | NA | $\mathbb{P}([a,b])=\int_a^bf(x)dx$ |
-Wahrsch's-funktion (PMF) | $p(x_k)=\mathbb{P}(X=x_k)$ | NA |
+Dichtefunktion (PDF) | NA | $f_X(x)=\mathbb{P}([a,b])=\int_a^bf(x)dx$ |
+Wahrsch's-funktion (PMF) | $p_X(x_k)=\mathbb{P}(X=x_k)$ | NA |
 Kumulierte Verteilungsfunktion (CDF) | $\mathbb{P}(X\leq x)$ | $F(x)=\mathbb{P}(X\leq x)$ |
 
 Analog zum diskreten Fall wollen wir uns nun die am häufigsten vorkommenden
@@ -1019,51 +1070,6 @@ stetigen Verteilungen noch einmal genauer anschauen.
 Vorher wollen wir jedoch die oben eingeführten Konzepte (statistische 
 Unabhängigkeit, bedingte Wahrscheinlichkeiten, etc.) noch für den stegigen
 Fall formulieren - am Prinzip ändert sich hier nichts, nur an der Notation.
-
-### Grundkonzepte der Stochastik im stetigen Fall
-
-Stochastische Unabhängigkeit im stetigen Fall bedeutet inhaltlich genau das
-gleiche wie im diskreten Fall. Lediglich die Notation unterscheidet sich ein
-wenig. 
-Im diskreten Fall hatten wir angegeben:
-
-$$.$$
-
-Im stetigen Fall wird daraus:
-
-$$.$$
-
-Entsprechend ändert sich auch die Formulierung bedingter Wahrscheinlichkeiten.
-Hatten wir im diskreten Fall noch geschrieben dass
-
-$$.$$
-
-schreiben wir nun:
-
-$$.$$
-
-Wenn wir den Satz von Bayes explizit für stetige ZV formulieren wollen verwenden
-wir wieder die Dichte. 
-Entsprechend wird aus der uns bekannten Formulierung
-
-$$\mathbb{P}(A|B)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}=\frac{\mathbb{P}(B|A)\mathbb{P}(A)}{\mathbb{P}(B)}$$
-
-die Folgende, wobei es sich bei $.$ um die Dichte
-
-$$.$$
-
-Schlussendlich wollen wir noch das Gesetz der totalen Wahrscheinlichkeit 
-'übersetzen'. Aus
-
-$$.$$
-
-wird
-
-$$.$$
-
-In all diesen Fällen ändert sich nichts an der Interpretation oder dem 
-zugrundeliegenden Prinzip. 
-Lediglich die Notation ist eine andere.
 
 ### Beispiel: die Uniformverteilung
 
@@ -1413,7 +1419,6 @@ schätzen wollen.^[Die Alternative, *nicht-parametrische* Verfahren, nehmen kein
 konkretes Wahrscheinlichkeitsmodell an, sondern wählen das Modell auch auf Basis 
 der Daten.]
 
-
 ## Analyse mehrerer Zufallsvariablen: gemeinsame und marginale Verteilungen
 
 Zum Abschluss dieses Kapitels wollen wir uns noch mit der Analyse von ZV
@@ -1423,10 +1428,10 @@ ZV ergibt.^[Trivialerweise ist die Summe einer ZV und einer normalen Zahl
 ebenfalls eine ZV. Diese ZV folgt aber einfach der Verteilung der alten ZV, weil
 ihr anderer 'Baustein' rein deterministisch ist. Dieser Fall ist daher weniger
 interessant (oder problematisch, je nach Perspektive).]
-Und diese 'neuen' ZV sind genau das, womit wir uns hier noch zum Abschluss 
-beschäftigen möchten.
+Und diese 'neuen' ZV sind genau das, was uns in diesem Abschnitt interessiert.
+Diese 'kombinierten' ZV sind in der Praxis häufig besonders relevant.
 
-Die Beispiele, die wir bisland kennen gelernt haben beschreiben alle die 
+Die Verteilungen, die wir bisland kennen gelernt haben beschreiben alle die 
 Verteilung einer einzelnen ZV beschäftigt.
 Anhand den Konzepten der bedingten Wahrscheinlichkeit und der statistischen
 Unabhängigkeit konnten wir ja schon erahnen, dass es häufig von besonderem 
@@ -1438,4 +1443,250 @@ Wir nennen die Verteilung einer ZV, die sich aus mehreren ZV ergibt eine
 Eine gemeinsame Verteilung gibt uns Informationen über die Wahrscheinlichkeit
 von Ereignissen, die von allen beteiligten ZV abhängen.
 
-TBA
+**Beispiel:**
+Ein Beispiel für eine praktisch sehr relevante 'kombinierte' ZV wäre die 
+gemeinsame Verteilung von Luftverschmutzung und Atemwegserkrankungen. 
+Sowohl der Grad an Luftverschmutzung als auch das Auftreten einer 
+Atemwegserkrankung kann jeweils als isolierte ZV modelliert werden, aber von
+besonderem Interesse ist natürlich deren gemeinsame Verteilung, bzw. die 
+bedingten Wahrscheinlichkeiten (also für einen bestimmten Grad an Luftverschmutung
+eine Atemwegserkrankung zu bekommen).
+
+### Gemeinsame Verteilungen für diskrete ZV
+
+Nehmen wir einmal an wir haben es mit zwei diskreten ZV Variablen, $X$ und $Y$,
+zu tun. $X$ kann dabei die Werte $\{x_1, x_2,...,x_n\}$ und $Y$ die Werte
+$\{y_1, y_2,...,y_n\}$ annehmen.
+Die gemeinsame Verteilungsfunktion sollte nun Wahrscheinlichkeiten für alle 
+möglichen Kombinationen $\{(x_1,y_1), (x_1,y_2),...,(x_n,y_m)\}$ angeben.
+Wir sprechen hier also von einer gemeinsamen PMF $p_{XY}(x_i,y_j)$ für die gilt:
+
+$$p_{XY}(x_i,y_j)=\mathbb{P}(X=x_i, Y=y_i) $$
+
+Eine solche gemeinsame PMF hat zwei Eigenschaften, ganz analog zur 'normalen'
+PMF:
+
+1. $0\leq p_{XY}(x_i,y_i)\leq1$: die Wahrscheinlichkeiten für jede
+Kombination müssen zwischen 0 und 1 liegen; 
+2. $\sum_{i=1}^n\sum_{j=1}^m p_{XY}(x_i,y_i)=1$: die Summe aller 
+Einzelwahrscheinlichkeiten ist 1.
+
+**Beispiel: das Werfen zweier Würfel** Da wir den Wurf eines einzelnen Würfels
+als diskrete ZV repräsentieren können, können wir den Wurf zweier Würfel als 
+eine gemeinsame diskrete ZV repräsentieren. Grafisch können wir die 
+Wahrscheinlichkeiten recht anschaulich in einer Tabelle abbilden, wobei die
+einzelnen Zellen jeweils die Werte der gemeinsamen PMF enthalten 
+(siehe Abbildung \@ref(tab:joint-dice)).
+$X$ und $Y$ beschreiben dabei jeweils die ZV für den ersten und zweiten Würfel.
+
+\begin{table}
+\centering
+\caption{Die gemeinsame Verteilung für das Werfen zweier Würfel.}\label{tab:joint-dice}
+\begin{tabular}{c | c | c | c | c | c | c }
+\toprule
+$X$/$Y$ & 1 & 2 & 3 & 4 & 5 & 6\\
+\midrule
+1 & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$\\
+\midrule
+2 & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$\\
+\midrule
+3 & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$\\
+\midrule
+4 & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$\\
+\midrule
+5 & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$\\
+\midrule
+6 & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+### Gemeinsame Verteilungen für stetige ZV
+
+Die Darstellung des stetigen Falles ist komplett äquivalent:
+nehmen wir an $X$ sei eine stetige ZV mit Wertebereich $[a,b]$ und $Y$ eine
+stetige ZV mit Wertebereich $[c,d]$, dann ist der Wertebereich der gemeinsamen
+PDF $f_{XY}(x,y)$ gegeben durch $[a,b]\times [c,d]$.
+Auch für $f_{XY}(x,y)$ gilt analog zum einfachen Fall:
+
+1. $p_{XY}(x_i,y_i)\leq1$: die Wahrscheinlichkeitsdichte für jede
+Kombination muss zwischen größer Null sein;
+2. $\int_{c}^d\int_{a}^b f_{XY}(x,y)=1$: das Integral über den gesamten
+Wertebereich ist 1.
+
+Grafisch könnten wir die gemeinsame PDF als Quadrad darstellen 
+(siehe Abbildung \@ref(fig:jointstetig)).
+
+```{r jointstetig, echo=FALSE, fig.align='center', out.width='50%', fig.cap="Gemeinsame Verteilung zweier stetiger ZV. Die Wahrscheinlichkeit eines Events korrespondiert zur Fläche."}
+knitr::include_graphics("figures/continuous_joint_dist.pdf")
+```
+
+
+### Gemeinsame kumulative Verteilungen
+
+Auch die kumulativen Verteilungen für mehrere ZV sind äquivalent zum einfachen Fall definiert.
+In der allgemeinen Schreibweise schreiben wir:
+
+$$F_{XY}(x,y)=\mathbb{P}(X\leq x, Y\leq y).$$
+
+Für den diskreten Breich übersetzt sich das konkret in:
+
+$$F_{XY}(x,y)=\sum_{x_i\leq x} \sum_{y_j\leq y}p(x,y) $$.
+
+Im kontiniueirlichen Fall ist diese Funktion wieder für den Wertebereich $[a,b]\times [c,d]$ definiert als:
+
+$$F_{XY}(x,y==\int_{c}^d\int_a^b f(x,y)dxdy$$.
+
+Wenn wir aus der CDF die PDF herleiten wollen müssen wir die CDF nach beiden Variablen ableiten:
+
+$$f(x,y)=\frac{\partial^2F}{\partial x \partial y}(x,y) $$.
+
+Ansonsten sind die Eigenschaften der gemeinsamen CDF wieder vergleichbar zu denen der einfachen CDF (wachsend und für positive/negative Extremwerte von x und y geht der Wert gegen 0/1).
+
+### Marginale Verteilungen
+
+Häufig kennen wir die gemeinsame Verteilung von zwei oder mehr ZV und wollen aus 
+dieser gemeinsamen Verteilung die Verteilungen der einzelnen ZV ableiten.
+Haben wir es z.B. mit einer gemeinsamen Verteilung $p_{XY}(x,y)$ zu tun wollen 
+wir häufig die separaten Verteilungen $p_X(x)$ und $p_Y(y)$ ableiten.
+Wir sprechen in diesem Fall von der Herleitung einer *marginalen* Verteilung von 
+$X$ bzw. $Y$.
+Im Ergebnis ist eine marginale Verteilung eine 'ganz normale' Verteilung, so
+wie wir sie vor diesem Abschnitt besprochen haben - der Zusatz 'marginal' 
+ergibt sich nur daraus, dass sie aus einer gemeinsamen Verteilung abgeleitet
+wurde.
+
+Im diskreten Fall erhalten wir die marginalen Verteilungen durch das Aufsummieren 
+bei Konstanthaltung der anderen Variablen. 
+Im Falle der gemeinsamen Verteilung $p_{XY}(x,y)$ gilt dabei also:
+
+$$p_X(x_i) = \sum_jp(x_i,y_j)$$
+und 
+
+$$p_Y(y_i) = \sum_ip(x_i,y_j)$$
+**Beispiel:** Für das oben beschriebene Beispiel des Werfens zweier Würfel
+können wir die marginale Verteilung des ersten Würfelwurfes (also von $X$)
+auf die in Abbildung \@ref(tab:joint-dice-marg) dargestellte Art und Weise
+erhalten.
+Hier wird auch deutlich, wo der Name 'marginal' herkommt: wir betrachten die
+aufsummierten Wahrscheinlichkeiten 'am Rand'.
+Die marginale Verteilung im stetigen Fall hat genau die gleiche Bedeutung wie
+im diskreten Fall.
+
+\begin{table}
+\centering
+\caption{Die gemeinsame Verteilung für das Werfen zweier Würfel.}\label{tab:joint-dice-marg}
+\begin{tabular}{c | c | c | c | c | c | c | c}
+\toprule
+$X$/$Y$ & 1 & 2 & 3 & 4 & 5 & 6 & $\boldsymbol{p_X(x_i)}$\\
+\midrule
+1 & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\sum_jp(1,y_j)=\frac{1}{6}$\\
+\midrule
+2 & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\sum_jp(2,y_j)=\frac{1}{6}$\\
+\midrule
+3 & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\sum_jp(3,y_j)=\frac{1}{6}$\\
+\midrule
+4 & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\sum_jp(4,y_j)=\frac{1}{6}$\\
+\midrule
+5 & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\sum_jp(5,y_j)=\frac{1}{6}$\\
+\midrule
+6 & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\sum_jp(6,y_j)=\frac{1}{6}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+### Bedingte Verteilungen und bedinge Momente
+
+Die bedingte Verteilung einer ZV beschreibt die Verteilung einer ZV für den 
+Fall dass eine andere ZV auf einen bestimmten Realisationswert bedingt ist.
+Die Definition ist analog zur allgemeinen bedingten Wahrscheinlichkeit, die wir
+schon weiter oben eingeführt haben.
+Daher betrachten wir hier nur ein Beispiel und zwar den folgenden Zusammenhang 
+zwischen $X$ und $Y$, wobei gilt, dass $X:$ "Es schneit" und $Y:$ "Es ist kalt".
+Dann wäre eine solche gemeinsame Verteilung plausibel:
+
+| | Kalt ($X=1$) | Warm ($X=0$) | 
+|-+--------------+--------------|
+| Schnee ($Y=1$) | $0.15$ | $0.07$ | 
+| Kein Schnee ($Y=0$) | $0.15$ | $0.63$ |
+
+Um aus dieser gemeinsamen Verteilung die bedingte Verteilung von $Y$ 
+abzuleiten verwenden wir die bereits oben eingeführte Formel:
+
+$$\mathbb{P}(A|B)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}$$
+
+und passen sie für unseren Verteilungsfall an:
+
+$$\mathbb{P}(X=x | Y=y)=\frac{\mathbb{P}(X=x, Y=y)}{\mathbb{P}(Y=y)}$$
+
+Sind wir z.B. an der Wahrscheinleichkeit für Schnee interessiert, gegeben dass
+das Wetter kalt ist, dann ergibt sich:
+
+$$\mathbb{P}(Y=1 | X=1)=\frac{\mathbb{P}(X=1, Y=1)}{\mathbb{P}(X=1)}=\frac{0.15}{0.3}=0.5$$
+
+Wir können nun die bereits oben beschriebene Eigenschaft der *Unabhängigkeit* auch
+noch einmal im Kontext von gemeinsamen Verteilungen formulieren:
+zwei ZV $X$ und $Y$ gelten als unabhängig, wenn die bedingte Verteilung von
+$X$ gegeben $Y$ nicht von $Y$ abhängt, also gilt, dass 
+$\mathbb{P}(X=x | Y=y)=\mathbb{P}(X=x)$.
+
+Ganz analog zur Verteilung können wir bedingte Momente 
+(wie den Erwartungswert oder die Varianz)nformulieren. 
+Besonders häufig verwendet wird dabei der *bedingte Erwartungswert*.
+Ein in diesem Kontext häufig gebrauchtes Konzept ist das 
+*Gesetz der wiederholten Erwartungen* (**law of iterated expectations**), das
+einen Zusammenhang zwischen dem Erwartungswert und dem bedingten 
+Erwartungswert herstellt:
+
+$$\mathbb{E}(X)=\mathbb{E}\left[\mathbb{E}\left(X | Y\right)\right]$$
+
+Im diskreten Fall können wir das Konzept noch leichter verdeutlichen. 
+Hier gilt:
+
+
+\begin{align}
+\mathbb{E}(X)=\mathbb{E}\left[\mathbb{E}\left(X | Y\right)\right] = \sum_i \mathbb{E}\left(X | Y=y_i\right) \cdot \mathbb{P}\left(Y=y\right)
+\end{align}
+
+Für den Fall zweier Würfen ist das nichts anderes aus das Summieren der 
+Zeile, wobei jedes Event mit der Eintrittswahrscheinlichkeit gewichtet wird.
+
+\begin{align}
+\mathbb{E}(X)=\mathbb{E}\left[\mathbb{E}\left(X | Y\right)\right] = \mathbb{E}\left(X | Y=1\right) \cdot \frac{1}{6} + \mathbb{E}\left(X | Y=2\right) \cdot \frac{1}{6} + \mathbb{E}\left(X | Y=3\right) \cdot \frac{1}{6} + \mathbb{E}\left(X | Y=4\right) \cdot \frac{1}{6} + \mathbb{E}\left(X | Y=5\right) \cdot \frac{1}{6} + \mathbb{E}\left(X | Y=6\right) \cdot \frac{1}{6}
+\end{align}
+
+Für den Fall, dass wir am Erwartungswert für eine 6 beim ersten Würfel 
+interessiert sind wäre das also:
+
+\begin{equation}
+\begin{aligned}
+\mathbb{E}(X=6) ={} &\mathbb{E}\left[\mathbb{E}\left(X=6 | Y\right)\right] = \mathbb{E}\left(X=6 | Y=1\right) \cdot \frac{1}{6} + \mathbb{E}\left(X=6 | Y=2\right) \cdot \frac{1}{6} + \mathbb{E}\left(X=6 | Y=3\right) \cdot \frac{1}{6}\\
+& + \mathbb{E}\left(X=6 | Y=4\right) \cdot \frac{1}{6} + \mathbb{E}\left(X=6 | Y=5\right) \cdot \frac{1}{6} + \mathbb{E}\left(X=6 | Y=6\right) \cdot \frac{1}{6}\\
+{}={} & \mathbb{E}\left[\mathbb{E}\left(X=6 | Y\right)\right] = \frac{1}{6} \cdot \frac{1}{6} + \frac{1}{6} \cdot \frac{1}{6} + \frac{1}{6}\cdot \frac{1}{6} + \frac{1}{6} \cdot \frac{1}{6} + \frac{1}{6} \cdot \frac{1}{6} + \frac{1}{6} \cdot \frac{1}{6}= \frac{1}{6}
+\end{aligned}
+\end{equation}
+
+Im Falle der Würfel liegt übrigens ein Beispiel von *mean independence* vor,
+denn in diesem Fall gilt:
+
+$$\mathbb{E}(X|Y) = \mathbb{E}(X)$$
+
+Im Falle des doppelten Wüfelwurfes gilt nämlich, dass 
+$\mathbb{E}(X=6|Y) = \mathbb{E}(X=6)=\frac{1}{6}$.
+
+Das Gesetz der wiederholten Erwartungen funktioniert auch bei abhängigen ZV.
+Schauen wir noch einmal auf das Beispiel mit der Kälte und dem Schnee und 
+berechnen wir die Erwartung, dass es schneit:
+
+$$\mathbb{E}(Y=1)=\mathbb{E}\left[\mathbb{E}\left(Y=1 | X\right)\right]=0.15\cdot0.3 + 0.07\cdot0.7=0.094$$
+
+Dabei liegt hier *keine mean independence* vor, denn:
+$\mathbb{E}(Y=1)=\mathbb{E}(X=1, Y=1) + \mathbb{E}(X=0, Y=1)=0.22$,
+aber $\mathbb{E}(Y=1|X=0)=0.07$ und $\mathbb{E}(Y=1|X=1)=0.15$.
+Sie können sich leicht merken, dass für abhängige ZV nie, und für unabhängige ZV 
+immer *mean independence* bvorliegt (der umgekehrte Fall gilt jedoch nicht!).
+
+Wir werden später im Kontext der Regressionsanalyse noch sehr häufig auf dieses
+Gesetz und die Konzepte der marginalen und bedingten Verteilungen zurückkommen.
