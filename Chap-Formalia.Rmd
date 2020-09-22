@@ -902,7 +902,7 @@ opt_objekt$value
 ```
 
 Das Ergebnis ist in Abbildung \@ref(fig:optim) dargestellt.
-<!-- Claudius: Kurze Frage: ist nicht die Idee von optim vs optimize dass man optim für mehrdimensionale Funktionen verwendet? Warum dann hier im Beispiel wieder eine eindimensionale? -->
+<!-- Claudius: Kurze Frage: ist nicht die Idee von optim vs optimize dass man optim für mehrdimensionale Funktionen verwendet? Warum dann hier im Beispiel wieder eine eindimensionale? STIMMT, WOBEI ICH MIT DEM QUADRATTERM NOCHMAL SCHAUEN MUSS; CHECK ICH ANSONSTEN AM ENDE BEI DER FINALEN ÜBERARBEITUNG-->
 
 ```{r optim, echo=FALSE, fig.cap="Ergebnis der Maximierung mit der Funktion optim()"}
 plot_data <- data.frame(x=seq(-4, 4, 0.1)) %>% 
@@ -1732,7 +1732,7 @@ ggplot2::ggplot(data = sample_data) +
   ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0.05), c(0, 0))) +
   ggplot2::theme_bw()
 ```
-<!-- Claudius: Diese Graphik Einbetten? und die folgenden hierunter? -->
+<!-- Claudius: Diese Graphik Einbetten? und die folgenden hierunter? JA; EVTL IN ZWEI PANELE? ABER ZWEI FIGUREN PASSEN AUCH-->
 
 Beachten Sie, dass die y-Achse die empirische Dichte der Beobachtungen auf der
 x-Achse angibt, also ein Maß für die relative Häufigkeit der Beobachtungen.
@@ -2493,7 +2493,7 @@ Cook'schen Distanz gilt ist nicht klar zu definieren. Als Daumenregel hat sich
 die Grenze $\frac{4}{n-k-1}$ etabliert, aber in der Praxis ergibt es immer Sinn 
 einfach die Werte mit der größten Distanz genauer anzuschauen. Diese lassen sich 
 aus Abbildung \@ref(fig:CookScheDistanz).
-<!-- Claudius: ist hier mit absicht kein Echo=False drin? Das war doch oben oft bei den chunks wo es eigl hauptsächlich darum ging den output zu zeigen und nicht den code, oder? -->
+<!-- Claudius: ist hier mit absicht kein Echo=False drin? Das war doch oben oft bei den chunks wo es eigl hauptsächlich darum ging den output zu zeigen und nicht den code, oder? JA, KANN EIGENTLICH RAUS ODER?-->
 
 ```{r Cook-ScheDistanz, fig.cap="Betrachtung der Ausreißer nach der Cook'schen Distanz"}
 dist_data <- data.frame(
@@ -2561,7 +2561,7 @@ ggplot2::ggplot(data = wb_data,
   ggplot2::theme(axis.title.x = element_blank())
 ```
 
-<!-- Claudius: Bei diesem Boxplot sind die Bezeichnungen der Weltregionen auf der X-Achse sehr unschön, fällt mir gerade noch auf. Wahrscheinlich anpassen oder? (Ich könnte versuchen es zu machen, du kannst das aber wahrscheinlich sehr viel schneller&effektiver. soll ich versuchen oder machst du lieber?) -->
+<!-- Claudius: Bei diesem Boxplot sind die Bezeichnungen der Weltregionen auf der X-Achse sehr unschön, fällt mir gerade noch auf. Wahrscheinlich anpassen oder? (Ich könnte versuchen es zu machen, du kannst das aber wahrscheinlich sehr viel schneller&effektiver. soll ich versuchen oder machst du lieber?) ICH WÜRDE ES BEI DER FINALEN ÜBERARBEITUNG MACHEN, ABER WENN DU MAGST KANNST DU ES VERSUCHEN, MUSST ABER NICHT-->
 
 Im Boxplot werden mehrere relevante Kennzahlen zusammengefasst. 
 Eine schöne Übersicht bietet Abbildung \@ref(fig:boxplot):
