@@ -202,11 +202,11 @@ $$\left(\left[ \frac{X_t}{X_{t-s}} \right]^{\frac{1}{s}} -1 \right)\approx \ln \
 Sie fragen sich vielleicht warum wir uns mit der Verwendung des Logarithmus
 überhaupt beschäftigen, wo durch die 'Vereinfachung' doch eine kleine 
 Ungenauigkeit eingeführt wird? Tatsächlich ist die Verwendung des Logarithmus 
-häufig hilfreich für die grafische Darstellung von Wachstumsraten:^[Zur 
+häufig hilfreich für die grafische Darstellung von Wachstumsraten.^[Zur 
 Transformation der y-Achse verwenden wir in `ggplot2` die Funktion
 `scale_y_continuous()` und setzen das Argument `trans = "log"`.]
 
-```{r, echo=FALSE, out.height='50%'}
+```{r normal&log, fig.cap="Vergleich normaler und logarithmierter Darstellung" echo=FALSE, out.height='50%'}
 x0 <- 100
 x <- c(x0, rep(NA, 99))
 for (i in 2:100){
@@ -235,17 +235,16 @@ plot_log <- ggplot2::ggplot(data = expl_data,
 ggpubr::ggarrange(plot_normal, plot_log, ncol = 2)
 ```
 
-In dieser Darstellung gilt: die Steigung im logarithmierten Plot gibt die
+In Darstellung \@ref(fig:normal&log) gilt: die Steigung im logarithmierten Plot gibt die
 *relative* Änderung der Variable an.
 Das bedeutet wenn wir im logarithmierten Plot eine lineare Steigung
 haben wächst die Variable konstant mit der gleichen Wachstumsrate über die Zeit -
 so wie im obigen Beispiel.
 
 Diese Art der Darstellung ist zum Beispiel bei der langfristigen Betrachtung von
-Wachstumsraten und dem Vergleich zwischen Ländern sehr hilfreich, da Unterschiede 
-in der logarithmierten Darstellung besser erkennbar sind:
+Wachstumsraten und dem Vergleich zwischen Ländern sehr hilfreich, da, wie in Abbildung  \@ref(fig:LogDarstellung) Unterschiede in der logarithmierten Darstellung besser erkennbar sind.
 
-```{r, echo=FALSE, message=FALSE}
+```{r LogDarstellung, echo=FALSE, fig.cap="Vergleich normaler und logarithmierter Darstellung bei langfristiger vergleichender Betrachtung von Wachstumsraten", message=FALSE}
 hist_data <- data.table::fread(here::here("data/tidy/historical-gdp.csv"), 
                    colClasses = c(rep("character", 2), rep("double", 2))
                    ) %>%
@@ -304,12 +303,12 @@ ggpubr::ggarrange(plot_norm, plot_log, nrow = 2,
 ```
 
 
-Das folgende Beispiel zeigt wie wichtig eine solche Darstellung sein kann um
+Abbildung \@ref(fig:DepressionFinanzkrise) zeigt wie wichtig eine solche Darstellung sein kann um
 Events, die zu sehr unterschiedlichen Zeitpunkten stattgefunden haben, 
 vergleichbar zu machen:
 
 
-```{r, echo=FALSE}
+```{r DepressionFinanzkrise, echo=FALSE, fig.cap="Vergleich normaler und logarithmierter Darstellung bei Events, die zu sehr unterschiedlichen Zeitpunkten stattgefunden haben"}
 shiller_data <- data.table::fread(here("data/tidy/shiller_sp500.csv"), 
                       colClasses = c("double", "double"), 
                       sep = ";", dec = ",") %>%
@@ -349,8 +348,8 @@ ggpubr::ggarrange(shiller_norm, shiller_log, nrow = 2)
 ```
 
 Während die absoluten Zahlen die Volatilität während der Großen Depression
-verschwindend gering erscheinen lassen wird im unteren Graph deutlich, dass
-die Volatilität damals tatsächlich noch größer war.
+verschwindend gering erscheinen lassen wird im unteren Graph von Abbildung \@ref(fig:DepressionFinanzkrise) deutlich, dass die Volatilität damals tatsächlich
+noch größer war.
 
 Um die Achsen intuitiver verständlich zu machen habe ich von allen Werten den
 Wert für 1871 (die erste Beobachtung) abgezogen und den Wert für 1871 somit auf
@@ -361,9 +360,6 @@ korrespondiert.
 Im Rahmen der Regressionsanalyse werden wir zudem lernen, dass die logarithmierte 
 Form die Analyse von Wachstumsraten in linearen Regressionsmodellen deutlich 
 vereinfacht (siehe Kapitel \@ref(advlin)).
-
-<!-- In diesem Unterkapitel habe ich die Graphen auch wieder nicht eingebettet, weil es hier ja wieder darauf ankommt, dass sie an der richtigen Stelle im Text stehe und nicht "floaten", oder? War mir allerdings nicht ganz sicher -->
-<!-- Hier die drei Abbildungen im Text als Floats mit Verweisen einbetten-->
 
 ## Grundlagen der Differentialrechnung {#formalia-diff}
 
@@ -655,8 +651,6 @@ Details finden sich in zahlreichen Lehrbüchern, z.B. in @chiang.
 
 ### Maximierung: die algorithmische Perspektive
 
-<!-- In dem Absatz noch das Bild einbetten-->
-
 Bei vielen Funktionen wäre die analytische Berechnung von Extrema zu aufwendig
 oder gar nicht möglich. 
 Daher verwendet man den Computer um die Extrema zu finden. 
@@ -668,10 +662,9 @@ bis er den Punkt $x^*_{globmax}=0$ erreicht.
 Für Funktionen mit lokalen Extremwerten wie im rechten Teil von Abbildung
 funktioniert diese Strategie unter Umständen nicht mehr, da der Computer leicht 
 auf lokalen Optima "steckenbleibt".
-Im vorliegenden Beispiel besteht bei einer unglücklichen Wahl des Startwertes
-die Gefahr, auf dem lokalen Extremum bei $x=0.77$ hängen zu bleiben.
+Im Beispiel in Abbildung \@ref(fig:Steckengeblieben) besteht bei einer unglücklichen Wahl des Startwertes die Gefahr, auf dem lokalen Extremum bei $x=0.77$ hängen zu bleiben.
 
-```{r, echo=FALSE}
+```{r Steckengeblieben, echo=FALSE, fig.cap="Beispiel für die Gefahr auf einem lokalen Extremum hängen zu bleiben (rechter Graph)"}
 f_1 <- function(x) -8*x**2 + 2
 
 f_2 <- function(x) 8*x^2 + 2.5*x**3 - 4.25*x**4 + 2
@@ -756,12 +749,12 @@ In R:
 f_1 <- function(x) 8*x^2 + 2.5*x**3 - 4.25*x**4 + 2
 ```
 
-Die Funktion ist in Abbildung XX dargestellt.
-Wir man sieht verfügt sie über ein 
+Die Funktion ist in Abbildung \@ref(fig:Funktion) dargestellt.
+Wie man sieht verfügt sie über ein 
 lokales Maximum bei $x_a=-0.77$, ein lokales Minimum bei $x_b=0$ und ein globales 
 Maximum bei $x_c=1.22$.
 
-```{r,echo=FALSE}
+```{r Funktion,echo=FALSE, fig.cap="Graph der zu optimierenden Funktion"}
 data <- data.frame(x=seq(-2, 2, 0.05)) %>%
   dplyr::rowwise() %>%
   dplyr::mutate(y = f_1(x))
@@ -773,10 +766,9 @@ ggplot2::ggplot(data, aes(x=x, y=y)) +
                   xlim = c(-1.2, 1.7), expand = c(0)) +
   ggplot2::theme_bw() 
 ```
-<!-- Hier die Abbildung einbetten. -->
 
 Wir können für solcherlei eindimensionale Probleme (also Probleme mit nur einer
-Variabel) die Funktion `optimize()` verwenden:
+Variablen) die Funktion `optimize()` verwenden:
 
 ```{r}
 opt_obj <- optimize(f = f_1, 
@@ -833,14 +825,13 @@ Bei dieser Funktion handelt es sich um die in der Optimierung sehr häufig
 als Benchmark verwendete 
 [Rosenbrock Funktion](https://en.wikipedia.org/wiki/Rosenbrock_function).
 Grafisch können wir solche Funktionen mit Hilfe einer *Heatmap* darstellen,
-wobei wir in unserer Visualisierung in Abbildung XX annehmen, dass $a=1$ und 
+wobei wir in unserer Visualisierung in Abbildung \@ref(fig:Heatmap) annehmen, dass $a=1$ und 
 $b=100$. 
 In einer Heatmap geben die beiden Achsen die Kombination der x und y-Werte an,
 der resultierende Funktionswert wird über die Farbe repräsentiert.
 
-<!--grafik einbetten-->
 
-```{r, echo=FALSE}
+```{r Heatmap, echo=FALSE, fig.cap="Darstellung einer Funktion als Heatmap"}
 x <- seq(-2, 2, length.out = 250)
 y <- seq(-1, 3, length.out = 250)
 data <- expand.grid(X=x, Y=y) %>%
@@ -856,7 +847,7 @@ ggplot2::ggplot(data, aes(X, Y, fill= Z)) +
   ggplot2::theme(legend.position = "right")
 ```
 
-Da es sich jetzt ein mehrdimensionales Problem handelt verwenden wir die Funktion
+Da es sich jetzt um ein mehrdimensionales Problem handelt verwenden wir die Funktion
 `optim()` anstatt von `optimize()`. Die Handhabung ist aber sehr ähnlich.
 Als erstes Argument übergeben wir `par` unsere ersten Vermutungen für das 
 Extremum, also die Werte, mit der die Funktion ihre Suche beginnen soll.
@@ -910,10 +901,10 @@ opt_objekt$par
 opt_objekt$value
 ```
 
-Das Ergebnis ist in Abbildung XX dargestellt.
-<!-- Grafik einbetten -->
+Das Ergebnis ist in Abbildung \@ref(fig:optim) dargestellt.
+<!-- Claudius: Kurze Frage: ist nicht die Idee von optim vs optimize dass man optim für mehrdimensionale Funktionen verwendet? Warum dann hier im Beispiel wieder eine eindimensionale? -->
 
-```{r, echo=FALSE}
+```{r optim, echo=FALSE, fig.cap="Ergebnis der Maximierung mit der Funktion optim()"}
 plot_data <- data.frame(x=seq(-4, 4, 0.1)) %>% 
   dplyr::rowwise() %>% mutate(y=f_x(x))
 ggplot2::ggplot(
@@ -1000,7 +991,7 @@ Das erste Beispiel bezieht sich wieder auf das klassischen Keynesianische Modell
 Am geläufigsten ist dabei folgende Formulierung:
 
 <!-- Hier kann jetzt wieder ein Rückbezug auf oben gemacht werden. Die Frage ist nur, ob nicht oben das Modell erst so in seiner klassischen Form (zB ohne T) eingeführt werden sollte? -->
-<!-- Hier nochmal genau auf mögliche Dopplungen achten-->
+<!-- Birte: Hier nochmal genau auf mögliche Dopplungen achten-->
 
 \begin{align}
 Y&=C+I+G\\
@@ -1741,6 +1732,7 @@ ggplot2::ggplot(data = sample_data) +
   ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0.05), c(0, 0))) +
   ggplot2::theme_bw()
 ```
+<!-- Claudius: Diese Graphik Einbetten? und die folgenden hierunter? -->
 
 Beachten Sie, dass die y-Achse die empirische Dichte der Beobachtungen auf der
 x-Achse angibt, also ein Maß für die relative Häufigkeit der Beobachtungen.
@@ -2114,11 +2106,11 @@ würden, da $p\%$ der Population auch $q=p=\mathcal{L}(p)\%$ der Ressource halte
 würden.
 Die Lorenz-Kurve visualisiert nun die *Abweichung* von diesem idealtypischen
 Fall in dem $p=q$.
-Dies wird in der folgenden Abbildung deutlich, in der zwei mögliche 
+Dies wird in Abbildung \@ref(fig:Lorenz-Kurven) deutlich, in der zwei mögliche 
 Lorenz-Kurven dem hypothetischen Fall der perfekten Gleichverteilung
 gegenübergestellt werden:
 
-```{r, echo=FALSE}
+```{r Lorenz-Kurven, echo=FALSE, fig.cap="Vergleich zweier Lorenz-Kurven"}
 normalize <- function(x){(x-min(x))/(max(x)-min(x))}
 set.seed(123)
 Distr1 <- normalize(rpareto(100, m = 2.4, s = 1.4))
@@ -2238,9 +2230,9 @@ Ansonsten sprechen wir von einer **multimodalen** oder **mehrgipfligen**
 In der Praxis haben viele Funktionen einen eindeutigen Modus,
 besitzen aber mehrere andere lokale Optima, also kleinere "Gipfel", sodass wir 
 in der Regel von einer multimodalen Verteilung sprechen sobald es mehrere lokale 
-Maxima gibt:
+Maxima gibt. Beispiele einer solch multimodalen Verteilung sind in Abbildung \@ref(fig:multimodal) dargestellt.
 
-```{r, echo=FALSE}
+```{r multimodal, echo=FALSE, fig.cap="Beispiele multimodaler Verteilungen"}
 x_vals <- seq(-10, 10, 0.01)
 eingipflig <- dnorm(x_vals)
 zweigipflig <- 0.75*dnorm(x_vals) + 0.25*dnorm(x_vals, mean = -4)
@@ -2278,10 +2270,10 @@ Wir nennen eine Verteilung *symmetrisch* wenn $\gamma_x=0$,
 **links-schief** (oder *rechts-steil*) wenn $\gamma_x<0$
 und **rechts-schief** (oder *links-steil*) wenn $\gamma_x>0$. 
 
-Woher diese Begriffe kommen können wir uns am besten mit Hilfe folgender 
-Abbildung verdeutlichen:
+Woher diese Begriffe kommen können wir uns am besten mit Hilfe von 
+Abbildung \@ref(fig:Symmetrie) verdeutlichen.
 
-```{r, echo=FALSE}
+```{r Symmetrie, echo=FALSE, fig.cap="Beispiele für Verteilungen mit unterschiedlichen Schiefen"}
 dist_vals <- data.frame(
   x_vals = seq(0, 1, 0.01)
 ) %>%
@@ -2315,10 +2307,10 @@ berechnen:
 moments::skewness(journal_daten[["Preis"]])
 ```
 
-Wir würden hier also von einer *recht-schiefen* Verteilung der Preise 
-sprechen. Das sehen wir hier auch grafisch:
+Wir würden hier also von einer *rechts-schiefen* Verteilung der Preise 
+sprechen. Das sehen wir hier auch grafisch in Abbildung \@ref(fig:rechtsschief).
 
-```{r, echo=FALSE}
+```{r rechtsschief, echo=FALSE, fig.cap="Rechts-schiefe Verteilung der Journalpreise"}
 ggplot2::ggplot(data = journal_daten) +
   ggplot2::geom_histogram(
     mapping = aes(x=Preis, stat(density)), bins=30,
@@ -2366,11 +2358,11 @@ $\tilde{\omega}_x<0$.
 Für den Fall der Preisverteilung von Journalen haben wir es also mit einer
 steilgipfligen Verteilung zu tun.
 
-<!-- Gibt es da denn dann jetzt irgendeine praktische/intuitive Interpretation zu? Birte ergänzt Satz-->
+<!-- Birte: Gibt es da denn dann jetzt irgendeine praktische/intuitive Interpretation zu? Birte ergänzt Satz-->
 
-Zur Verdeutlichung des Konzepts im Folgenden noch ein grafisches Beispiel:
+Zur Verdeutlichung des Konzepts bietet Abbildung \@ref(fig:Kurtosis) ein grafisches Beispiel.
 
-```{r, echo=FALSE}
+```{r Kurtosis, echo=FALSE, fig.cap="Beispiel von Verteilungen mit verschiedener Kurtosis"}
 kurt_data <- data.frame(
   xvals = seq(-5, 5, 0.01)
 ) %>%
@@ -2497,12 +2489,13 @@ distanzen <- cooks.distance(reg_objekt)
 ```
 
 Ab wann eine Beobachtung als Ausreißer im Sinne von der 
-Cook'schen Distanz gilt ist nicht klar zu definieren, als Daumenregel hat sich 
-die Grenze $\frac{4}{n-k-1}$ etabliert, aber in der Praxis macht es immer Sinn 
-einfach die Werte mit der größten Distanz genauer anzuschauen. 
-Im vorliegenden Falle wären das:
+Cook'schen Distanz gilt ist nicht klar zu definieren. Als Daumenregel hat sich 
+die Grenze $\frac{4}{n-k-1}$ etabliert, aber in der Praxis ergibt es immer Sinn 
+einfach die Werte mit der größten Distanz genauer anzuschauen. Diese lassen sich 
+aus Abbildung \@ref(fig:CookScheDistanz).
+<!-- Claudius: ist hier mit absicht kein Echo=False drin? Das war doch oben oft bei den chunks wo es eigl hauptsächlich darum ging den output zu zeigen und nicht den code, oder? -->
 
-```{r}
+```{r Cook-ScheDistanz, fig.cap="Betrachtung der Ausreißer nach der Cook'schen Distanz"}
 dist_data <- data.frame(
   Index=names(distanzen),
   Distanz=unname(distanzen), 
@@ -2529,7 +2522,7 @@ dplyr::filter(dist_data, Distanz>cook_threshold)$Titel
 Ein hilfreiches Mittel zur Beschreibung von Verteilungen ist der 
 **Boxplot**.
 Bei dem Boxplot handelt es sich um eine grafischen Zusammenfassung einiger
-zentraler deskriptiver Kennzahlen: 
+zentraler deskriptiver Kennzahlen, wie in Abbildung \@ref(fig:BoxplotBsp) zu sehen ist.
 
 ```{r, echo=FALSE, eval=FALSE}
 wb_data <- WDI::WDI(extra = TRUE, 
@@ -2557,7 +2550,7 @@ wb_data <- data.table::fread(here("data/tidy/wb_regions.csv")) %>%
          !is.nan(Lebenserwartung), 
          !is.nan(Fertilitätsrate))
 ```
-```{r}
+```{r BoxplotBsp, fig.cap="Darstellung der Lebenserwartungen in den Weltregionen anhand eines Boxplots"}
 ggplot2::ggplot(data = wb_data, 
        mapping = aes(x=region, y=Lebenserwartung)
        ) +
@@ -2567,6 +2560,8 @@ ggplot2::ggplot(data = wb_data,
        caption = "Quelle: Weltbank") +
   ggplot2::theme(axis.title.x = element_blank())
 ```
+
+<!-- Claudius: Bei diesem Boxplot sind die Bezeichnungen der Weltregionen auf der X-Achse sehr unschön, fällt mir gerade noch auf. Wahrscheinlich anpassen oder? (Ich könnte versuchen es zu machen, du kannst das aber wahrscheinlich sehr viel schneller&effektiver. soll ich versuchen oder machst du lieber?) -->
 
 Im Boxplot werden mehrere relevante Kennzahlen zusammengefasst. 
 Eine schöne Übersicht bietet Abbildung \@ref(fig:boxplot):
@@ -2598,9 +2593,9 @@ Beobachtungen durch `boxplot_jitter`, wobei sie hier die Transparenz durch
 Beobachtungen plotten sollten.
 Für größere Datensätzen können Sie einfach einen
 [Violinenplot](https://www.r-graph-gallery.com/violin.html) 
-verwenden, wie im folgenden Beispiel gezeigt:
+verwenden, wie in Abbildung \@ref(fig:Violinenplot) gezeigt.
 
-```{r, out.height = '75%', out.width = '100%'}
+```{r Violinenplot, out.height = '75%', out.width = '100%', fig.cap="Vergleich von klassischen Darstellungen und dem Violinenplot"}
 boxplot_classic <- ggplot2::ggplot(data = wb_data, 
        mapping = aes(x=region, y=Lebenserwartung)
        ) +
@@ -2662,9 +2657,9 @@ Table: (\#tab:anscombe) Werte der quantitativen Kennzahlen bei Anscombe
 | Korrelation zw. $x$ und $y$ | ```r round(cor(anscombe$x1, anscombe$y1), 2)``` |
 
 Nur die grafische Inspektion zeigt, wie unterschiedlich die Verteilungen 
-tatsächlich sind:
+tatsächlich sind - siehe Abbildung \@ref(fig:Anscombefigure).
 
-```{r, echo=FALSE}
+```{r Anscombefigure, echo=FALSE, fig.cap="Graphischer Vergleich der vier Verteilungen"}
 ans_1 <- ggplot2::ggplot(anscombe, 
                 aes(x=x1, y=y1)) +
   ggplot2::geom_point() +
