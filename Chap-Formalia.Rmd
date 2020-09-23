@@ -923,8 +923,20 @@ ggplot2::ggplot(
 
 ### Anwendungsbeispiel {subsec:keynes-expl}
 
-Als Anwendungsbeispiel betrachten wir das klassische keynesianische Modell, 
-wobei wir die Notation leicht um $T$ als die Steuerlast erweitern:
+Als Anwendungsbeispiel betrachten wir das klassische keynesianische Modell. Am 
+geläufigsten ist dabei folgende Formulierung: 
+
+\begin{align}
+Y&=C+I+G\\
+C&=a+bY
+\end{align}
+
+Hier wird also dargestellt, dass sich die gesamtwirtschaftliche Güternachfrage $Y$ 
+aus dem Konsum $C$, den Investitionen $I$ sowie den Staatsausgaben $G$ ergibt, 
+wobei die Konsumfunktion selbst als lineare Funktion dargestellt wird, bei welcher $a$ 
+den autonomen Konsum und $b$ die marginale Konsumquote beschreibt.
+
+Wir können nun die Notation leicht um $T$ als die Steuerlast erweitern:
 
 $$
 Y=\frac{c_0 + I + G}{1-c_1(1-T)}
@@ -932,6 +944,7 @@ $$
 
 <!-- Das Modell wurde bisher in den Kapiteln noch nicht vorgestellt. Eventuell bräuchte es hier also eine kurze Legende für die Variablennotation. -->
 <!-- Birte schreibt einen Aufschlag. -->
+<!-- An Claudius: Ich habe den Text angepasst, aber wenn ich das richtig sehe ist die Notation hier oben etwas anders als unten, oder? Also die Parameter $a$ und $b$ werden unten verwendet, deshalb hab ich die hier übernommen, im chunk (und in den hier folgenden Erläuterungen) sind jetzt allerdings $c_0$ und $c_1$ verwendet. Sollten wir wahrscheinlich anpassen oder? Was wäre besser? Wenn wir hier oben $c_0$ und $c_1$ nehmen würde ich das unten an den zwei folgenden Stellen wo es nochmal drankommt dann auch ändern damit es einheitlich ist. -->
 
 Wenn wir nun wissen wollen wie $Y$ auf eine Änderung der Staatsausgaben reagiert
 können wir diese Formel nach $G$ ableiten. 
@@ -948,18 +961,20 @@ keynes_model <- expression(Y=(c_0 + I + G) / (1 - c_0*(1-T)))
 D(expr = keynes_model, name = "G")
 ```
 
+<!-- Claudius: mir fällt gerade auf: müsste es nicht hier im r chunk bei dem zweiten $c_0$ eigl $c_1$ heißen? Das ist doch die marginale Konsumquote. Irgendwie ist $c_0$ jetzt 2mal drin.. Glaub das ist ein Fehler. Ich änder das hierdrunter mal (im chunk lasse ichs gerade nochmal stehen dass du kurz prüfen kannst) - evtl würden wir aber ja eh jetzt die $c_0$ und $c_1$ in a und b umwandeln oder? -->
+
 Es gilt also:
 
 \begin{align}
-\frac{\partial Y}{\partial G} &= \frac{1}{1-c_0(1-T)}
+\frac{\partial Y}{\partial G} &= \frac{1}{1-c_1(1-T)}
 \end{align}
 
-Nehmen wir einmal an die marginale Konsumquote $c_0$ läge bei $20\%$ und der 
+Nehmen wir einmal an die marginale Konsumquote $c_1$ läge bei $20\%$ und der 
 Steuersatz $T$ bei $20\%$.
 Eine Erhöhung der Staatsausgaben würde dann $Y$ über den Multiplikator
 $\frac{1}{1-0.2(1-0.25)}=1.176471$ erhöhen.
 
-Alternativ können wir das Ergebnis natürlich analytisch unter Zuhilfename der
+Alternativ können wir das Ergebnis natürlich analytisch unter Zuhilfenahme der
 oben eingeführten Ableitungsregeln herleiten.
 
 ## Lineare Algebra {#formalia-linalg}
@@ -987,18 +1002,15 @@ Die foldenden zwei Beispiele machen dies hoffentlich deutlich.
 
 ### Einführungsbeispiele {#linalg-expls}
 
-Das erste Beispiel bezieht sich wieder auf das klassischen Keynesianische Modell.
-Am geläufigsten ist dabei folgende Formulierung:
+Das erste Beispiel bezieht sich wieder auf das oben eingeführte klassischen Keynesianische Modell:
 
-<!-- Hier kann jetzt wieder ein Rückbezug auf oben gemacht werden. Die Frage ist nur, ob nicht oben das Modell erst so in seiner klassischen Form (zB ohne T) eingeführt werden sollte? -->
-<!-- Birte: Hier nochmal genau auf mögliche Dopplungen achten-->
 
 \begin{align}
 Y&=C+I+G\\
 C&=a+bY
 \end{align}
 
-Nehmen wir an die Staatsausgaben und Investitionen wären exogen bekannt.
+Nehmen wir nun an, die Staatsausgaben und Investitionen wären exogen bekannt.
 Dann kann dieses Modell äquivalent in Matrixform geschrieben werden:
 
 \begin{align}
@@ -1454,7 +1466,7 @@ Im Folgenden werden wir uns das anhand der beiden Beispiele aus dem Abschnitt
 
 ### Anwendungsbeispiel 1: Das einfache Keynesianische Modell
 
-In der Einleitung haben wir schon gesehen, dass wir das einfache 
+In der Einleitung dieses Unterkapitels haben wir schon gesehen, dass wir das einfache 
 Keynesianische Modell
 
 \begin{align}
@@ -2559,7 +2571,7 @@ ggplot2::ggplot(data = wb_data,
   ggplot2::theme(axis.title.x = element_blank())
 ```
 
-<!-- Claudius: Bei diesem Boxplot sind die Bezeichnungen der Weltregionen auf der X-Achse sehr unschön, fällt mir gerade noch auf. Wahrscheinlich anpassen oder? (Ich könnte versuchen es zu machen, du kannst das aber wahrscheinlich sehr viel schneller&effektiver. soll ich versuchen oder machst du lieber?) ICH WÜRDE ES BEI DER FINALEN ÜBERARBEITUNG MACHEN, ABER WENN DU MAGST KANNST DU ES VERSUCHEN, MUSST ABER NICHT-->
+<!-- Claudius: Bei diesem Boxplot sind die Bezeichnungen der Weltregionen auf der X-Achse sehr unschön, fällt mir gerade noch auf. Wahrscheinlich anpassen oder? (Ich könnte versuchen es zu machen, du kannst das aber wahrscheinlich sehr viel schneller&effektiver. soll ich versuchen oder machst du lieber?) ICH WÜRDE ES BEI DER FINALEN ÜBERARBEITUNG MACHEN, ABER WENN DU MAGST KANNST DU ES VERSUCHEN, MUSST ABER NICHT Birte: ok dann lass ichs erstmal und fokussier mich erstmal auf die anderen kapitel die wir morgen noch durchsprechen wollten-->
 
 Im Boxplot werden mehrere relevante Kennzahlen zusammengefasst. 
 Eine schöne Übersicht bietet Abbildung \@ref(fig:boxplot):
