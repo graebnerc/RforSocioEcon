@@ -1715,27 +1715,18 @@ bestimmten Parametern.]
 
 **Anwendungsbeispiel**
 
-
-Stellen Sie sich vor Sie haben folgende Stichprobe vor sich:
+Stellen Sie sich vor Sie haben eine Stichprobe vor sich, welche die Verteilung in Abbildung \@ref(fig:Stichprobenverteilung) (linker Graph) aufweist.
 
 ```{r, echo=FALSE}
 set.seed(123)
 sample_data <- data.frame(r=rnorm(n = 750, mean = 4, sd = 2))
+
 ```
 
-```{r, echo=TRUE}
-ggplot2::ggplot(data = sample_data) +
-  ggplot2::geom_histogram(
-    mapping = aes(x=r, stat(density)), 
-    binwidth = 0.4) +
-  ggplot2::scale_x_continuous(expand = c(0, 1)) + 
-  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0.05), c(0, 0))) +
-  ggplot2::theme_bw()
-```
-<!-- Claudius: Diese Graphik Einbetten? und die folgenden hierunter? JA; EVTL IN ZWEI PANELE? ABER ZWEI FIGUREN PASSEN AUCH-->
+<!-- Claudius: Diese Graphik Einbetten? und die folgenden hierunter? JA; EVTL IN ZWEI PANELE? ABER ZWEI FIGUREN PASSEN AUCH. Birte: okidoks, habs jetzt unten in 2 Panels gesetzt-->
 
 Beachten Sie, dass die y-Achse die empirische Dichte der Beobachtungen auf der
-x-Achse angibt, also ein Maß für die relative Häufigkeit der Beobachtungen.
+x-Achse angibt, wir haben hier also ein Maß für die relative Häufigkeit der Beobachtungen.
 Dies haben wir mit der Funktion `ggplot2::stat(density)` innerhalb von 
 `ggplot2::geom_histogram()` erreicht.
 
@@ -1743,10 +1734,19 @@ Wenn wir die Daten so betrachten erscheint es naheliegend, sie als Realisierung
 einer Normalverteilung zu interpretieren: die Form ist grob glockenförmig und 
 symmetrisch. 
 Wir können diese Annahme plausibilisieren indem wir mit `ggplot2::geom_density()` die 
-*empirische Dichtefunktion* der Verteilung schätzen und über die Daten legen:
+*empirische Dichtefunktion* der Verteilung schätzen und über die Daten legen, wie im rechten Graph der Abbildung \@ref(fig:Stichprobenverteilung).
 
-```{r}
-ggplot2::ggplot(data = sample_data) +
+```{r Stichprobenverteilung, echo=TRUE, fig.cap="Stichprobe (linker Graph) und Stichprobe mit empirischer Dichtefunktion (rechter Graph)"}
+
+Stichprobe <- ggplot2::ggplot(data = sample_data) +
+  ggplot2::geom_histogram(
+    mapping = aes(x=r, stat(density)), 
+    binwidth = 0.4) +
+  ggplot2::scale_x_continuous(expand = c(0, 1)) + 
+  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0.05), c(0, 0))) +
+  ggplot2::theme_bw()
+
+Dichtefunktion <- ggplot2::ggplot(data = sample_data) +
   ggplot2::geom_histogram(
     mapping = aes(x=r, stat(density)), 
     binwidth = 0.4, alpha=0.4) +
@@ -1757,6 +1757,8 @@ ggplot2::ggplot(data = sample_data) +
   ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0.05), 
                                            c(0, 0))) +
   ggplot2::theme_bw()
+
+ggpubr::ggarrange(Stichprobe, Dichtefunktion, ncol = 2)
 ```
 
 Das bedeutet, dass wir unsere Daten mit Hilfe der Dichtefunktion 
@@ -1782,11 +1784,11 @@ wir argumentieren, dass unsere Daten sinnvoll durch eine normalverteilte ZV
 Wir sagen dann, dass unsere Stichprobe *approximativ normalverteilt* ist.
 Dann müssen wir im nächsten Schritt nur noch die Werte für die beiden Parameter
 der Normalverteilung finden, sodass die Verteilung optimal zu unseren Daten passt.
-Das bedeutet wir 'fitten' die Verteilung zu unseren Daten.
+Das bedeutet wir 'fitten' die Verteilung zu unseren Daten. Abbildung \@ref(fig:fitting) verdeutlicht die Fits verschiedener Normalverteilungen.
 
 Was damit gemeint ist verdeutlicht die folgende Darstellung: 
 
-```{r, echo=FALSE}
+```{r fitting, echo=FALSE, fig.cap="Beispiel zur Verdeutlichung von Fits verschiedener Normalverteilungen mit unterschiedlichen Parameterwerten"}
 x_vals <- seq(-12, 14, 0.1)
 y_vals_pdf <- data.frame(
   "x" = x_vals,
@@ -2347,18 +2349,14 @@ moments::kurtosis(journal_daten[["Preis"]])
 ```
 
 
-Da die Kurtosis an sich nicht leicht zu interpretieren ist wird der
-Wert häufig mit dem einer Standardnormalverteilung verglichen. Da deren Wert
+Da der Wert der Kurtosis $\omega_x$ an sich nicht leicht zu interpretieren ist wird er
+häufig mit dem einer Standardnormalverteilung verglichen. Da deren Wert
 *per definitionem* 3 beträgt wird die *Exzess-Kurtosis* mit 
-$\tilde{\omega}_x=\omega_x-3$ berechnet und
-wir sprechen von einer *steilgipfligen* ('leptokurtischen') Verteilung wenn 
-$\tilde{\omega}_x>0$ 
+$\tilde{\omega}_x=\omega_x-3$ berechnet. Wir sprechen von einer *steilgipfligen* ('leptokurtischen') Verteilung wenn $\tilde{\omega}_x>0$ 
 und von einer *flachgipfligen* ('platykurtischen') Verteilung wenn 
 $\tilde{\omega}_x<0$.
 Für den Fall der Preisverteilung von Journalen haben wir es also mit einer
-steilgipfligen Verteilung zu tun.
-
-<!-- Birte: Gibt es da denn dann jetzt irgendeine praktische/intuitive Interpretation zu? Birte ergänzt Satz-->
+steilgipfligen Verteilung zu tun, d.h. die Verteilung der Journalpreise ist 'schmaler' als eine Normalverteilung.
 
 Zur Verdeutlichung des Konzepts bietet Abbildung \@ref(fig:Kurtosis) ein grafisches Beispiel.
 
@@ -2493,9 +2491,9 @@ Cook'schen Distanz gilt ist nicht klar zu definieren. Als Daumenregel hat sich
 die Grenze $\frac{4}{n-k-1}$ etabliert, aber in der Praxis ergibt es immer Sinn 
 einfach die Werte mit der größten Distanz genauer anzuschauen. Diese lassen sich 
 aus Abbildung \@ref(fig:CookScheDistanz).
-<!-- Claudius: ist hier mit absicht kein Echo=False drin? Das war doch oben oft bei den chunks wo es eigl hauptsächlich darum ging den output zu zeigen und nicht den code, oder? JA, KANN EIGENTLICH RAUS ODER?-->
+<!-- Claudius: ist hier mit absicht kein Echo=False drin? Das war doch oben oft bei den chunks wo es eigl hauptsächlich darum ging den output zu zeigen und nicht den code, oder? JA, KANN EIGENTLICH RAUS ODER? B: Habs mal eingefügt-->
 
-```{r Cook-ScheDistanz, fig.cap="Betrachtung der Ausreißer nach der Cook'schen Distanz"}
+```{r Cook-ScheDistanz, echo=FALSE, fig.cap="Betrachtung der Ausreißer nach der Cook'schen Distanz"}
 dist_data <- data.frame(
   Index=names(distanzen),
   Distanz=unname(distanzen), 
