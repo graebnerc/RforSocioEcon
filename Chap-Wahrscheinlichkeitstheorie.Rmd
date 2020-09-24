@@ -1,16 +1,18 @@
-# Wiederholung: Wahrscheinlichkeitstheorie {#stat-stoch}
+# Grundlagen der Wahrscheinlichkeitstheorie {#stat-stoch}
 
-In diesem Kapitel werden Grundlagen der Wahrscheinlichkeitstheorie wiederholt. 
-Die zentralen Themen sind dabei:
+In diesem Kapitel werden einige grundlegende Konzepte der 
+Wahrscheinlichkeitstheorie eingeführt, bzw. wiederholt. 
+Die zentralen Themen auf die wir uns fokussieren werden sind dabei:
 
 * Der Zusammenhang zwischen Wahrscheinlichkeitstheorie und Statistik
 * Grundbegriffe der Wahrscheinlichkeitstheorie und Statistik
 * Zufallsvariablen
-* Diskrete und stetige Verteilungen
+* Diskrete und stetige Verteilungen einzelner und mehrerer Zufallsvariablen
 
-Grundkonzepte der deskriptiven und schließenden Statistik (insb. Parameterschätzung, Hypothesentests
-und die Berechnung von Konfidenzintervallen) werden in den beiden folgenden Kapiteln
-zur deskriptiven und schließenden Statistik (siehe Kapitel \@ref(desk-stat) und Kapitel \@ref(stat-rep) wiederholt.
+Grundkonzepte der deskriptiven und schließenden Statistik (insb. 
+Parameterschätzung, Hypothesentests und die Berechnung von Konfidenzintervallen) 
+werden in den beiden folgenden Kapiteln zur deskriptiven und schließenden 
+Statistik (siehe Kapitel \@ref(desk-stat) und Kapitel \@ref(stat-rep) behandelt.
 
 
 ## Verwendete Pakete {-}
@@ -20,10 +22,9 @@ library(here)
 library(tidyverse)
 library(ggpubr)
 library(latex2exp)
-library(icaeDesign)
 library(data.table)
+library(viridis)
 ```
-<!-- Icaedesign ist jetzt erstmal doch wieder drin weil das theme in einigen chunks verwendet wurden, die chunks allerdings alle nicht angezeigt werden im text -->
 
 ## Einleitung: Wahrscheinlichkeitstheorie und Statistik
 
@@ -372,7 +373,7 @@ Wenn $W_X$ der Wertebereich von $X$ ist, dann gilt:
 
 $$\mathbb{E}(x)=\mu_X=\sum_{x_k\in W_X}p(x_k)x_k$$
 
-> Beispiel: Der Erwartungswert einer ZV $X$, die das Werfen eines fairen 
+> **Beispiel:** Der Erwartungswert einer ZV $X$, die das Werfen eines fairen 
 Würfels beschreibt ist: $\mathbb{E}(X)=\sum_{k=1}^6k\cdot\frac{1}{6}=3.5$.
 
 Wie wir im Kapitel \@ref(stat-rep) sehen werden, wird der Erwartungswert in der empirischen
@@ -384,7 +385,7 @@ Letztere wird häufiger verwendet, weil sie die gleiche Einheit hat wie $X$:
 
 $$Var(X)=\sum_{x_k\in W_X}\left[x_k-\mathbb{E}(X)\right]^2 p(x_k)$$
 
-> Beispiel: Die Standardabweichung einer ZV $X$, die das Werfen eines fairen 
+> **Beispiel:** Die Standardabweichung einer ZV $X$, die das Werfen eines fairen 
 Würfels beschreibt ist: $\sigma_X=\sqrt{\sum_{k}^6\left[x_k-\mathbb{E}(X)\right]^2 p(x_k)}=\sqrt{5.83}\approx 2.414$.
 
 Im Folgenden wollen wir uns einige der am häufigsten verwendeten ZV und ihre
@@ -434,7 +435,7 @@ im Statistikbuch Ihres Vertrauens oder auf
 
 In Abbildung \@ref(fig:Binomialverteilung) sehen wir eine Darstellung der Wahrscheinlichkeitsverteilung der Binomialverteilung für verschiedene Parameterwerte.
 
-```{r Binomialverteilung, warning=FALSE, fig.align='center', echo=FALSE, fig.height=3, fig.cap= "Wahrscheinlichkeitsverteilung der Binomialverteilung für verschiedene Parameterwerte"}
+```{r Binomialverteilung, warning=FALSE, fig.align='center', echo=FALSE, fig.height=3, fig.cap= "Wahrscheinlichkeitsverteilung der Binomialverteilung für verschiedene Parameterwerte."}
 x_vals <- seq(0, 45, 1)
 y_vals_pdf <- data.frame(
   x = x_vals,
@@ -443,8 +444,8 @@ y_vals_pdf <- data.frame(
   "n=25, p=0.6" = dbinom(x_vals, size = 25, prob = 0.6),
   "n=50, p=0.6" = dbinom(x_vals, size = 50, prob = 0.6),
   "n=50, p=0.2" = dbinom(x_vals, size = 50, prob = 0.1)
-) %>%
-  gather("Parameter", "y", -x)
+) %>% tidyr::pivot_longer(
+  cols = -x, names_to = "Parameter", values_to = "y")
 
 pdf_plot <- ggplot2::ggplot(y_vals_pdf, 
                    aes(x=x, y=y, color=Parameter)
@@ -453,23 +454,25 @@ pdf_plot <- ggplot2::ggplot(y_vals_pdf,
   ggplot2::geom_point() +
   ggplot2::guides(color = guide_legend(title = TeX("$Parameter$"), 
                               title.position = "top")) + 
-  theme_icae() +
   ggplot2::ggtitle("PMF der Binomialverteilung") +
   ggplot2::scale_x_continuous(expand = c(0,0)) +
-  ggplot2::scale_y_continuous(expand = expansion(c(0,0), c(0, 0.1))) +
-  scale_color_icae(palette = "mixed", discrete = T,
-                   labels = unname(TeX(c("$n = 50, p = 0.4", 
-                                         "$n = 25, p = 0.4", 
-                                         "$n = 25, p = 0.6", 
-                                         "$n = 50, p = 0.6",
-                                         "$n = 50, p = 0.2")))
-                   ) +  
-  ggplot2::theme(legend.position = "bottom", 
-        legend.title = element_text())
+  ggplot2::scale_y_continuous(
+    expand = expansion(c(0, 0.1), c(0, 0.1))
+    ) +
+  viridis::scale_color_viridis(
+    labels = unname(TeX(c("$n = 50, p = 0.4", 
+                          "$n = 25, p = 0.4", 
+                          "$n = 25, p = 0.6", 
+                          "$n = 50, p = 0.6",
+                          "$n = 50, p = 0.2"))), 
+    discrete = T
+  ) +  
+  ggplot2::theme_bw() + 
+  ggplot2::theme(
+    legend.position = "bottom", legend.title = element_text(hjust = 0.5), 
+    panel.border = element_blank(), axis.line = element_line())
 pdf_plot
 ```
-
-<!-- Discuss: Soll ich jetzt hier icae rausnehmen oder nicht? Es ist eh in einem echo=False chunk, deshalb wär's eigl egal, aber ich hatte das Paket jetzt oben aus der library Übersicht rausgenommen, dh dann müssten wir es vllt doch wieder reinsetzen. Oder doch wieder viridis verwenden? Same issue with figures below -->
 
 R stellt uns einige nützliche Funktionen bereit, mit denen wir typische 
 Rechenaufgaben einfach lösen können: 
@@ -486,7 +489,7 @@ dbinom(x = 10, size = 50, prob = 0.25)
 Das bedeutet, wenn $X \propto B(50, 0.25)$, dann: $\mathbb{P}(X=10)=0.09852$.
 Dies ist in Abbildung \@ref(fig:bspbinverteilung) illustriert.
 
-```{r bspbinverteilung, warning=FALSE, fig.align='center', echo=FALSE, fig.height=2, fig.cap="Beispiel einer Binomialverteilung mit $p$=0.25 und $n$=50"}
+```{r bspbinverteilung, warning=FALSE, fig.align='center', echo=FALSE, fig.height=2, fig.cap="Beispiel einer Binomialverteilung mit $p$=0.25 und $n$=50."}
 x_vals <- seq(0, 50, 1)
 x_val <- 10
 anzahl_versuche <- 50
@@ -517,7 +520,8 @@ ggplot2::ggplot(data.frame(x = x_vals, y=dbinom(x_vals, anzahl_versuche, 0.25)))
            x = 4, y =0.1125, 
            label = "0.098",
            colour = "#800080") +
-  theme_icae()
+  theme_bw() +
+  theme(panel.border = element_blank(), axis.line = element_line())
 ```
 
 Natürlich können wir an die Funktion auch einen atomaren Vektor als erstes 
@@ -546,8 +550,6 @@ pbinom(q = 10, size = 50, prob = 0.25)
 Die Wahrscheinlichkeit 10 oder weniger Erfolge bei 10 Versuchen und einer 
 Erfolgswahrscheinlichkeit von 25% zu erzielen beträgt also 26.2%. Dies ist auch
 in Abbildung \@ref(fig:kumulativ) ersichtlich.
-
-<!-- Hier stand vorher 5 statt 10 und 25.2% statt 26.2%. Aber 10 und 26.2% müssten eigl richtig sein oder? -->
 
 ```{r kumulativ, warning=FALSE, fig.align='center', echo=FALSE, fig.height=2, fig.cap="Kumulative Wahrscheinlichkeitsfunktion mit $p$=0.25 und $n$=50"}
 x_vals <- seq(0, 50, 1)
@@ -580,9 +582,9 @@ ggplot2::ggplot(data.frame(x = x_vals, y=pbinom(x_vals, anzahl_versuche, 0.25)))
            x = 4, y =y_val+0.075, 
            label = "0.26",
            colour = "#800080") +
-  theme_icae()
+  theme_bw() +
+  theme(panel.border = element_blank(), axis.line = element_line())
 ```
-<!-- Der Titel wird hier bei mir irgendwie nicht anständig angezeigt, scheint zu lang zu sein für die Maße des Graphs -->
 
 Schlussendlich haben wir die Funktion `qbinom()`, welche als ersten Input eine
 Wahrscheinlichkeit `p` akzeptiert und dann den kleinsten Wert $x$ findet,
@@ -630,9 +632,9 @@ ggplot2::ggplot(data.frame(x = p_vals, y=qbinom(p_vals, anzahl_versuche, 0.25)))
            x = 0.13, y =y_val+9,
            label = "12",
            colour = "#800080") +
-  theme_icae()
+  theme_bw() +
+  theme(panel.border = element_blank(), axis.line = element_line())
 ```
-<!-- Same problem hier mit dem title -->
 
 Möchten wir schließlich eine bestimmte Menge an **Realisierungen** aus einer
 Binomialverteilung ziehen geht das mit der Funktion `rbinom()`, welche auch wieder
@@ -644,8 +646,6 @@ sample_binom <- rbinom(n = 5, size = 10, prob = 0.4)
 sample_binom
 ```
 
-<!-- Würde hier vorschlagen "sample_binom" zu löschen und einfach direkt die funktion zu schreiben damit es einheitlich ist wie bei den anderen Funktionen oben, wo auch keine variable assigned wurde -->
-
 > **Anwendungsbeispiel Binomialverteilung:** Unser Zufallsexperiment besteht
 aus dem zehnmaligen Werfen einer fairen Münze. Unter 'Erfolg' verstehen wir
 das Werfen von 'Zahl'. Nehmen wir an, wir führen das Zufallsexperiment 10 Mal durch,
@@ -653,9 +653,9 @@ werfen also insgesamt 100 Mal die Münze und schreiben jeweils auf, wie häufig 
 dabei einen Erfolg verbuchen konnten. Wenn wir unsere Ergebnisse aufmalen, indem
 wir auf der x-Achse die Anzahl der Erfolge, und auf der y-Achse die Anzahl der
 Experimente mit genau dieser Anzahl an Erfolgen festhalten, erhalten wir ein 
-Histogram, das ungefähr aussieht wie in Abbildung \@ref(fig:Münzwurf) aufgezeigt.
+Histogram, das ungefähr so aussieht wie in Abbildung \@ref(fig:Munzwurf).
 
-```{r Münzwurf, echo=FALSE}
+```{r Munzwurf, echo=FALSE, caption = "Histogram für einen Münzwurf."}
 set.seed(123)
 wurzanzahl <- 200
 wurfe_pro_experiment <- 10
@@ -665,8 +665,10 @@ ggplot2::ggplot(data.frame(x=munzwurfe), aes(x=x)) +
   ggplot2::geom_histogram(bins = wurzanzahl) +
   ggplot2::scale_x_continuous(breaks=seq(0, max(munzwurfe), 1)) +
   ggplot2::scale_y_continuous(expand = expansion(c(0,0), c(0,1))) +
-  theme_icae()
+  theme_bw() +
+  theme(panel.border = element_blank(), axis.line = element_line())
 ```
+
 > Aus der Logik der Konstruktion des Zufallsexperiments und der Inspektion 
 unserer Daten können wir schließen, dass die Binomialverteilung eine sinnvolle
 Beschreibung des Zufallsexperiments und der daraus entstandenen Stichprobe von
@@ -675,9 +677,9 @@ Sinn für die Binomialverteilung $p=0.5$ anzunehmen, und da wir in jedem einzeln
 Experiment die Münze 10 Mal geworfen haben für $n=10$. Wenn wir die mit $n=10$ und
 $p=0.5$ parametrisierte theoretische Binomialverteilung nehmen und ihre theoretische
 Verteilungsfunktion über die Aufzeichnungen unserer Ergebnisse legen, können wir 
-uns in dieser Vermutung bestärkt fühlen, wie in Abbildung \@ref(fig:Münzwurfverteilung) ersichtlich ist.
+uns in dieser Vermutung bestärkt fühlen, wie in Abbildung \@ref(fig:Munzwurfverteilung) ersichtlich ist.
 
-```{r Münzwurfverteilung, echo=FALSE, fig.cap="Vergleich der empirischen Stichprobe und der parametrisierten theoretischen Binomialverteilungsfunktion"}
+```{r Munzwurfverteilung, echo=FALSE, fig.cap="Vergleich der empirischen Stichprobe und der parametrisierten theoretischen Binomialverteilungsfunktion"}
 ggplot2::ggplot(data.frame(x=munzwurfe), aes(x=x)) +
   #geom_histogram(bins = wurzanzahl) +
   ggplot2::geom_point(data=data.frame(table(munzwurfe)), 
@@ -693,12 +695,10 @@ ggplot2::ggplot(data.frame(x=munzwurfe), aes(x=x)) +
              aes(x=x, y=y, color="Theoretische Verteilung"), alpha=0.5, lwd=1
              ) +
   ggplot2::scale_y_continuous(expand = expansion(c(0,0), c(0,1))) +
-  #scale_color_manual(values=c("blue", "red"), name=c("Theoretische Verteilung", "Empirische Verteilung")) +
-  theme_icae() + 
-  ggplot2::theme(legend.position = "bottom")
+  ggplot2::theme_bw() + 
+  theme(panel.border = element_blank(), axis.line = element_line(),
+        legend.position = "bottom")
 ```
-
-<!-- ich hab hier mal auf echo=false gestellt weil eigl ist ja wieder nur der graph wichtig oder? -->
 
 ### Beispiel: die Poisson-Verteilung
 
@@ -723,7 +723,7 @@ $$p_\lambda(x)=\frac{\lambda^x}{x!}e^{-\lambda}$$
 Abbildung \@ref(fig:Poisson) zeigt wie sich die Wahrscheinlichkeitsfunktion für
 unterschiedliche Werte von $\lambda$ manifestiert.
 
-```{r Poisson, warning=FALSE, fig.align='center', echo=FALSE, fig.height=2, fig.cap="Poisson-Verteilung für verschiedene Lambda-Werte"}
+```{r Poisson, warning=FALSE, fig.align='center', echo=FALSE, fig.height=2, fig.cap="Poisson-Verteilung für verschiedene Parameter."}
 x_range <- 0:18
 lambda_1 <- data.frame(x=x_range, y=dpois(x_range, lambda = 1), lambda="1")
 lambda_4 <- data.frame(x=x_range, y=dpois(x_range, lambda = 4), lambda="4")
@@ -740,9 +740,10 @@ ggplot2::ggplot(lambdas) +
   ggplot2::ggtitle(TeX("Die Poisson-Verteilung für verschiedene $\\lambda$")) +
   ggplot2::guides(color = guide_legend(title = TeX("$\\lambda$"), 
                              title.position = "top")) + 
-  theme_icae() + 
-  ggplot2::theme(legend.title = element_text(), 
-                       legend.position = "right")
+  theme_bw() + 
+  ggplot2::theme(
+    legend.title = element_text(), legend.position = "right",
+    panel.border = element_blank(), axis.line = element_line())
 ```
 
 Wir können die Verteilung mit sehr ähnlichen Funktionen wie bei der 
@@ -752,15 +753,14 @@ gibt.
 
 Möchten wir die Wahrscheinlichkeit berechnen, genau $x$ Erfolge zu
 beobachten, also $\mathbb{P}(X=x)$ geht das mit der Funktion `dpois()`.
-Das einzige notwendige Argument ist `lambda`:
+Das einzige notwendige Argument ist `lambda` 
+(siehe zudem Abbildung \@ref(fig:PoissonBsp)):
 
 ```{r}
 dpois(5, lambda = 4)
 ```
 
-Abbildung \@ref(fig:PoissonBsp)
-
-```{r PoissonBsp, warning=FALSE, fig.align='center', echo=FALSE, fig.height=2, fig.cap="Poisson-Verteilung für Lambda=4"}
+```{r PoissonBsp, warning=FALSE, fig.align='center', echo=FALSE, fig.height=2, fig.cap="Poisson-Verteilung mit ausgewählten Parameterwerten."}
 x_range <- 0:18
 x_val <- 5
 y_val <- dpois(5, lambda = 4)
@@ -793,12 +793,14 @@ ggplot2::ggplot(lambda_4) +
            colour = "#800080") +
   ggplot2::guides(color = guide_legend(title = TeX("$\\lambda$"), 
                              title.position = "top")) + 
-  theme_icae() + theme(legend.title = element_text(), 
-                       legend.position = "none")
+  theme_bw() + 
+  ggplot2::theme(panel.border = element_blank(), axis.line = element_line(),
+                 legend.title = element_text(), legend.position = "none")
 ```
 
 Informationen über die CDF erhalten wir über die Funktion `ppois()`, die zwei
-Argumente, `q` und `lambda`, annimmt. Grafisch dargestellt ist dies in Abbildung \@ref(fig:PoissonCDF).
+Argumente, `q` und `lambda`, annimmt. Grafisch dargestellt ist dies in Abbildung 
+\@ref(fig:PoissonCDF).
 
 
 ```{r PoissonCDF, warning=FALSE, fig.align='center', echo=FALSE, fig.height=2, fig.cap="Kumulierte Wahrscheinlichkeitsfunktion der Poisson-Verteilung mit $\\lambda = 4$"}
@@ -830,10 +832,9 @@ ggplot2::ggplot(data.frame(x = x_vals, y=ppois(x_vals, lambda = lambda_val))) +
            x = 3.4, y =y_val+0.075,
            label = as.character(round(y_val, 2)),
            colour = "#800080") +
-  theme_icae()
+  ggplot2::theme_bw() +
+  ggplot2::theme(panel.border = element_blank(), axis.line = element_line())
 ```
-
-<!-- kurze generelle Frage: wollen wir bei den graphen die eine caption haben den Titel rausnehmen? Der müsste ja eh nochmal neu formatiert werden und ich hab jetzt oft in der caption sehr ähnliche Sachen wie im Titel geschrieben (hier bei diesem chunk hab ichs sogar einfach nur kopiert) -->
 
 Mit der Funktion `qpois()` finden wir für eine Wahrscheinlichkeit `p` den 
 kleinsten Wert $x$, für den gilt, dass $\mathbb{P}(X=x)\geq p$.
@@ -847,7 +848,8 @@ qpois(p = 0.5, lambda = 4)
 
 Es gilt also: $\mathbb{P}(X=4)\geq 0.5$.
 
-Wir können dies erneut grafisch verdeutlichen, wie in Abbildung \@ref(fig:PoissonCDFinv) dargestellt.
+Wir können dies erneut grafisch verdeutlichen, wie in Abbildung 
+\@ref(fig:PoissonCDFinv) dargestellt.
 
 ```{r PoissonCDFinv, warning=FALSE, fig.align='center', echo=FALSE, fig.height=2, fig.cap="Invertierte CDF der Poisson-Verteilung mit $\\lambda = 4$"}
 p_vals <- seq(0, 1, 0.001)
@@ -878,7 +880,7 @@ ggplot2::ggplot(data.frame(x = p_vals, y=qpois(p_vals, lambda_val))) +
            x = 0.14, y =y_val+1.5,
            label = as.character(y_val),
            colour = "#800080") +
-  theme_icae()
+  theme_bw()
 ```
 
 Möchten wir schließlich eine bestimmte Menge an **Realisierungen** der ZV aus einer
@@ -890,8 +892,6 @@ Parameter $\lambda$:
 pois_sample <- rpois(n = 5, lambda = 4)
 pois_sample
 ```
-<!-- Mmmh hier frag ich mich wieder warum der Umweg über die Definition einer Variablen? MAn kriegt doch auch den output der 5 Zahlen wenn man einfach nur rpois() in den chunk schreibt und ausführen lässt? -->
-
 
 ### Hinweise zu diskreten Wahrscheinlichkeitsverteilungen
 
@@ -1050,7 +1050,10 @@ q05_plot <- ggplot2::ggplot(data.frame(x = x_vals, y=dnorm(x_vals, mean=0, sd=1)
            x = quant_05, y = dnorm(quant_05)+0.025,
            label = paste0("q(0.5)=", round(quant_05, 2)),
            colour = "#800080") +
-  theme_icae()
+  ggplot2::theme_bw() +
+  ggplot2::theme(
+    axis.line = element_line(), panel.border = element_blank()
+  )
 
 q025_plot <- ggplot2::ggplot(data.frame(x = x_vals, y=dnorm(x_vals, mean=0, sd=1))) +
   ggplot2::geom_line(aes(x=x, y=y)) +
@@ -1065,7 +1068,10 @@ q025_plot <- ggplot2::ggplot(data.frame(x = x_vals, y=dnorm(x_vals, mean=0, sd=1
            x = -2, y = dnorm(quant_025)-0.025,
            label = paste0("q(0.25)=", round(quant_025, 2)),
            colour = "steelblue") +
-  theme_icae()
+  ggplot2::theme_bw() +
+  ggplot2::theme(
+    axis.line = element_line(), panel.border = element_blank()
+  )
 
 ggpubr::ggarrange(q05_plot, q025_plot, ncol = 2)
 ```
@@ -1127,7 +1133,7 @@ ggplot(data.frame(x = x_vals, y=dunif(x_vals, min = x_min, max = x_max))) +
   scale_y_continuous(limits = c(0,1), expand = expansion(c(0, 0), c(0, 0.05))) + 
   scale_x_continuous(expand = c(0, 0)) +
   ggtitle(TeX("Dichte der Uniformverteilung mit $a = 2$ und $b = 4$")) +
-  theme_icae()
+  theme_bw() + theme(axis.line = element_line(), panel.border = element_blank())
 ```
 
 Die Abkürung in R für die Uniformverteilung ist `unif`. Endsprechend berechnen
@@ -1170,7 +1176,8 @@ ggplot2::ggplot(data.frame(x = x_vals, y=dunif(x_vals, min=x_min, max=x_max))) +
            x = x_val, y = punif(x_val)+0.035,
            label = round(y_val, 2),
            colour = "steelblue") +
-  theme_icae()
+  ggplot2::theme_bw() +
+  ggplot2::theme(axis.line = element_line(), panel.border = element_blank())
 ```
 
 Auch ansonsten können wir die Syntax der diskreten Verteilungen mehr oder weniger
@@ -1183,8 +1190,6 @@ zu generieren:
 uniform_sample <- runif(5, min = 0, max = 4)
 uniform_sample
 ```
-
-<!-- Hier ist die r Funktion wieder mit einem variablen-assignment angegeben, weiß immer noch nicht warum  -->
 
 ### Beispiel: die Normalverteilung
 
@@ -1247,18 +1252,19 @@ pdf_plot <- ggplot2::ggplot(y_vals_pdf,
   ggplot2::geom_line() +
   ggplot2::guides(color = guide_legend(title = TeX("Parameter"), 
                               title.position = "top")) + 
-  theme_icae() +
+  theme_bw() +
   ggplot2::ggtitle("PDF der Normalverteilung") +
   ggplot2::scale_x_continuous(expand = c(0,0)) +
   ggplot2::scale_y_continuous(expand = expansion(c(0,0), c(0, 0.1))) +
-  scale_color_icae(palette = "mixed", discrete = T,
-                   labels = unname(TeX(c("$\\mu = 0, \\sigma = 0.25", 
-                                         "$\\mu = 0, \\sigma = 1", 
-                                         "$\\mu = 0, \\sigma = 2", 
-                                         "$\\mu = 2, \\sigma = 1")))
-                   ) +
-  ggplot2::theme(legend.position = "bottom", 
-        legend.title = element_text())
+  viridis::scale_color_viridis(
+    discrete = T,
+    labels = unname(TeX(
+      c("$\\mu = 0, \\sigma = 0.25", "$\\mu = 0, \\sigma = 1", 
+        "$\\mu = 0, \\sigma = 2", "$\\mu = 2, \\sigma = 1")))
+    ) +
+  ggplot2::theme(
+    legend.position = "bottom", legend.title = element_text(),
+    axis.line = element_line(), panel.border = element_blank())
 
 cdf_plot <- ggplot2::ggplot(y_vals_cdf, 
                    aes(x=x, y=y, color=Parameter)
@@ -1266,18 +1272,19 @@ cdf_plot <- ggplot2::ggplot(y_vals_cdf,
   ggplot2::geom_line() +
   ggplot2::guides(color = guide_legend(title = TeX("Parameter"), 
                               title.position = "top")) + 
-  theme_icae() +
+  ggplot2::theme_bw() +
   ggplot2::ggtitle("CDF der Normalverteilung") +
   ggplot2::scale_x_continuous(expand = c(0,0)) +
   ggplot2::scale_y_continuous(expand = expansion(c(0,0), c(0, 0.1))) +
-  scale_color_icae(palette = "mixed", discrete = T,
-                   labels = unname(TeX(c("$\\mu = 0, \\sigma = 0.25", 
-                                         "$\\mu = 0, \\sigma = 1", 
-                                         "$\\mu = 0, \\sigma = 2", 
-                                         "$\\mu = 2, \\sigma = 1")))
-                   ) +
-  ggplot2::theme(legend.position = "bottom", 
-        legend.title = element_text())
+  viridis::scale_color_viridis(
+    discrete = T,
+    labels = unname(TeX(
+      c("$\\mu = 0, \\sigma = 0.25", "$\\mu = 0, \\sigma = 1", 
+        "$\\mu = 0, \\sigma = 2", "$\\mu = 2, \\sigma = 1")))
+    ) +
+  ggplot2::theme(
+    legend.position = "bottom", legend.title = element_text(),
+    axis.line = element_line(), panel.border = element_blank())
 
 full_plot <- ggpubr::ggarrange(pdf_plot, cdf_plot, ncol = 2, 
                        legend = "bottom", common.legend = T)
@@ -1296,8 +1303,6 @@ qnorm(c(0.5, 0.75), mean = 1, sd = 2) # Werte der I-CDF
 norm_sample <- rnorm(5, mean = 1, sd = 2) # 5 Realisierungen der ZV
 norm_sample
 ```
-
-<!-- Okay vllt verstehe ich jetzt langsam: definierst du das immer als Variable weil man in der praktischen Anwendung nie rnorm verwenden wird, außer um damit ein sample anzulegen? Während dnorm dafür verwendet werden etwas über die Verteilung auszusagen, und deshalb sehr anders verwendet werden/ne andere Funktion haben als rnorm - und über die Variablen-Assignments weist du auf diesen Unterschied hin? -->
 
 > **Beispiel zum Zusammenhang** `dnorm()` und `qnorm()` 
 
@@ -1356,13 +1361,14 @@ pdf_plot <- ggplot2::ggplot(y_vals_pdf,
   ggplot2::geom_line() +
   ggplot2::guides(color = guide_legend(title = TeX("$\\lambda$"), 
                               title.position = "top")) + 
-  theme_icae() +
+  theme_bw() +
   ggplot2::ggtitle("PDF") +
   ggplot2::scale_x_continuous(expand = c(0,0)) +
   ggplot2::scale_y_continuous(expand = expansion(c(0,0), c(0, 0.1))) +
-  scale_color_icae(palette = "mixed", discrete = T) +
-  ggplot2::theme(legend.position = "right", 
-        legend.title = element_text())
+  viridis::scale_color_viridis(discrete = T) +
+  ggplot2::theme(
+    legend.position = "right", legend.title = element_text(),
+    axis.line = element_line(), panel.border = element_blank())
 
 cdf_plot <- ggplot2::ggplot(y_vals_cdf, 
                    aes(x=x, y=y, color=lambda)
@@ -1370,13 +1376,14 @@ cdf_plot <- ggplot2::ggplot(y_vals_cdf,
   ggplot2::geom_line() +
   ggplot2::guides(color = guide_legend(title = TeX("$\\lambda$"), 
                               title.position = "top")) + 
-  theme_icae() +
+  theme_bw() +
   ggplot2::ggtitle("CDF") +
   ggplot2::scale_x_continuous(expand = c(0,0)) +
   ggplot2::scale_y_continuous(expand = expansion(c(0,0), c(0, 0.1))) +
-  scale_color_icae(palette = "mixed", discrete = T) +
-  ggplot2::theme(legend.position = "right", 
-        legend.title = element_text())
+  viridis::scale_color_viridis(discrete = T) +
+  ggplot2::theme(
+    legend.position = "right", legend.title = element_text(),
+    axis.line = element_line(), panel.border = element_blank())
 
 full_plot <- ggpubr::ggarrange(pdf_plot, cdf_plot, ncol = 2)
 full_plot
@@ -1468,16 +1475,14 @@ Wir nennen die Verteilung einer ZV, die sich aus mehreren ZV ergibt eine
 Eine gemeinsame Verteilung gibt uns Informationen über die Wahrscheinlichkeit
 von Ereignissen, die von allen beteiligten ZV abhängen.
 
-**Beispiel:**
-Ein Beispiel für eine praktisch sehr relevante 'kombinierte' ZV wäre die 
-gemeinsame Verteilung von Luftverschmutzung und Atemwegserkrankungen. 
-Sowohl der Grad an Luftverschmutzung als auch das Auftreten einer 
-Atemwegserkrankung kann jeweils als isolierte ZV modelliert werden, aber von
-besonderem Interesse ist natürlich deren gemeinsame Verteilung, bzw. die 
-bedingten Wahrscheinlichkeiten (also für einen bestimmten Grad an Luftverschmutung
-eine Atemwegserkrankung zu bekommen).
-
-<!-- Sind Beispiele oben nicht oft anders formatiert gewesen? (und dann auch farblich abgehoben im Markdown Skript?) Oder vertu ich mich gerade? same fürs nächste beispiel bissi weiter unten) -->
+> **Beispiel:**
+> Ein Beispiel für eine praktisch sehr relevante 'kombinierte' ZV wäre die 
+> gemeinsame Verteilung von Luftverschmutzung und Atemwegserkrankungen. 
+> Sowohl der Grad an Luftverschmutzung als auch das Auftreten einer 
+> Atemwegserkrankung kann jeweils als isolierte ZV modelliert werden, aber von
+> besonderem Interesse ist natürlich deren gemeinsame Verteilung, bzw. die 
+> bedingten Wahrscheinlichkeiten (also für einen bestimmten Grad an Luftverschmutung
+> eine Atemwegserkrankung zu bekommen).
 
 ### Gemeinsame Verteilungen für diskrete ZV
 
@@ -1498,7 +1503,7 @@ Kombination müssen zwischen 0 und 1 liegen;
 2. $\sum_{i=1}^n\sum_{j=1}^m p_{XY}(x_i,y_i)=1$: die Summe aller 
 Einzelwahrscheinlichkeiten ist 1.
 
-**Beispiel: das Werfen zweier Würfel** Da wir den Wurf eines einzelnen Würfels
+> **Beispiel: das Werfen zweier Würfel** Da wir den Wurf eines einzelnen Würfels
 als diskrete ZV repräsentieren können, können wir den Wurf zweier Würfel als 
 eine gemeinsame diskrete ZV repräsentieren. Grafisch können wir die 
 Wahrscheinlichkeiten recht anschaulich in einer Tabelle abbilden, wobei die
@@ -1537,9 +1542,8 @@ stetige ZV mit Wertebereich $[c,d]$, dann ist der Wertebereich der gemeinsamen
 PDF $f_{XY}(x,y)$ gegeben durch $[a,b]\times [c,d]$.
 Auch für $f_{XY}(x,y)$ gilt analog zum einfachen Fall:
 
-1. $p_{XY}(x_i,y_i)\leq1$: die Wahrscheinlichkeitsdichte für jede
-Kombination muss zwischen größer Null sein;
-<!-- verstehe das nicht. zwischen größer Null? und die formel sagt doch kleiner gleich 1? -->
+1. $p_{XY}(x_i,y_i)\geq0$: die Wahrscheinlichkeitsdichte für jede
+Kombination muss größer Null sein;
 2. $\int_{c}^d\int_{a}^b f_{XY}(x,y)=1$: das Integral über den gesamten
 Wertebereich ist 1.
 
@@ -1636,8 +1640,6 @@ Daher betrachten wir hier nur ein Beispiel und zwar den folgenden Zusammenhang
 zwischen $X$ und $Y$, wobei gilt, dass $X:$ "Es schneit" und $Y:$ "Es ist kalt".
 Dann wäre eine solche gemeinsame Verteilung plausibel:
 
-<!-- Hier die Tabelle würde ich evtl nicht einbetten weil es nur ein anschauliches Beispiel ist und wahrscheinlich direkt an dieser Stelle im Text kommen soll oder? -->
-
 | | Kalt ($X=1$) | Warm ($X=0$) | 
 |-+--------------+--------------|
 | Schnee ($Y=1$) | $0.15$ | $0.07$ | 
@@ -1684,9 +1686,11 @@ Hier gilt:
 Für den Fall zweier Würfe ist das nichts anderes aus das Summieren der 
 Zeile, wobei jedes Event mit der Eintrittswahrscheinlichkeit gewichtet wird.
 
-\begin{align}
-\mathbb{E}(X)=\mathbb{E}\left[\mathbb{E}\left(X | Y\right)\right] = \mathbb{E}\left(X | Y=1\right) \cdot \frac{1}{6} + \mathbb{E}\left(X | Y=2\right) \cdot \frac{1}{6} + \mathbb{E}\left(X | Y=3\right) \cdot \frac{1}{6} + \mathbb{E}\left(X | Y=4\right) \cdot \frac{1}{6} + \mathbb{E}\left(X | Y=5\right) \cdot \frac{1}{6} + \mathbb{E}\left(X | Y=6\right) \cdot \frac{1}{6}
-\end{align}
+\begin{equation}
+\begin{aligned}
+\mathbb{E}(X) ={} & \mathbb{E}\left[\mathbb{E}\left(X | Y\right)\right] = \mathbb{E}\left(X | Y=1\right) \cdot \frac{1}{6} + \mathbb{E}\left(X | Y=2\right) \cdot \frac{1}{6} + \mathbb{E}\left(X | Y=3\right) \cdot \frac{1}{6} + \mathbb{E}\left(X | Y=4\right) \cdot \frac{1}{6} + \\ & \mathbb{E}\left(X | Y=5\right) \cdot \frac{1}{6} + \mathbb{E}\left(X | Y=6\right) \cdot \frac{1}{6}
+\end{aligned}
+\end{equation}
 
 Für den Fall, dass wir am Erwartungswert für eine 6 beim ersten Würfel 
 interessiert sind wäre das also:
