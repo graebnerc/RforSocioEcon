@@ -57,6 +57,7 @@ library(moments)
 library(ineq)
 library(rmutil)
 library(viridis)
+library(optimx)
 ```
 
 > **Hinweis**: Das Paket [matlib](http://friendly.github.io/matlib/) [@R-matlib]
@@ -664,7 +665,7 @@ funktioniert diese Strategie unter Umständen nicht mehr, da der Computer leicht
 auf lokalen Optima "steckenbleibt".
 Im Beispiel in Abbildung \@ref(fig:Steckengeblieben) besteht bei einer unglücklichen Wahl des Startwertes die Gefahr, auf dem lokalen Extremum bei $x=0.77$ hängen zu bleiben.
 
-```{r Steckengeblieben, echo=FALSE, fig.cap="Beispiel für die Gefahr auf einem lokalen Extremum hängen zu bleiben (rechter Graph)"}
+```{r Steckengeblieben, echo=FALSE, fig.cap="Beispiel für die Gefahr auf einem lokalen Extremum hängen zu bleiben (rechter Graph).", out.height='35%', fig.height='35%'}
 f_1 <- function(x) -8*x**2 + 2
 
 f_2 <- function(x) 8*x^2 + 2.5*x**3 - 4.25*x**4 + 2
@@ -680,14 +681,18 @@ one_max <- ggplot2::ggplot(data, aes(x=x, y=y_1)) +
   ggplot2::coord_cartesian(ylim = c(-2, 2.5), 
                   xlim = c(-0.75, 0.75), 
                   expand = c(0)) +
-  ggplot2::theme_bw() 
+  ggplot2::theme_bw() + 
+  ggplot2::theme(panel.border = element_blank(), 
+                 axis.line = element_line())
 
 mult_max <- ggplot2::ggplot(data, aes(x=x, y=y_2)) +
   ggplot2::geom_line() +
   ggplot2::ggtitle(TeX("$f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2$")) +
   ggplot2::coord_cartesian(ylim = c(0, 10), 
                   xlim = c(-1.2, 1.7), expand = c(0)) +
-  ggplot2::theme_bw() 
+  ggplot2::theme_bw() + 
+  ggplot2::theme(panel.border = element_blank(), 
+                 axis.line = element_line())
 
 ggpubr::ggarrange(one_max, mult_max, ncol = 2)
 ```
@@ -718,32 +723,41 @@ je nach Art des Problems müssen wir andere Methoden anwenden.
 In diesem Fall bedeutet das, dass wir für unterschiedliche Arten von Funktionen
 andere Pakete verwenden müssen um Extremwerte zu finden.
 Zusätzlich gibt es aber auch noch ein paar *general-purpose*-Funktionen, die wir
-auf alle Klassen anwenden können - auf Kosten der Performance. Diese sind in Tabelle \@ref(tab:genpurpose) zusammengefasst.
-
-Table: (\#tab:genpurpose) Übersicht zu *general-purpose*-Funktionen.
-
-| **Art** | **Optimierungsfunktion** | **Paket**  |
-|-----------+------------------------+------------|
-| Allgemein | `optimize()`, `optim()`| `base`     |
-| LP        | `lp()`                 | `lpSolve`  |
-| QP        | `solve.QP()`           | `quadprog` |
-| NLP       | `optimize()`           | `optimize` |
-| NLP       | `optimx()`             | `optimx`   |
-
+auf alle Klassen anwenden können - auf Kosten der Performance. 
+Diese sind in Tabelle \@ref(tab:genpurpose) zusammengefasst.^[Es gibt auch
+zwei Optimierungsfunktionen in `base`, allerdings sind diese mittlerweile ein
+wenig in die Jahre gekommen. Es wird daher empfohlen, anstatt `optim()` und
+`optimize()` die Funktion `optimx::optimr()` zu verwenden, die größtenteils
+aber auch die gleiche Syntax verwendet. Eine Übersicht über die meisten
+verfügbaren Funktionen finden Sie 
+[hier](https://cran.r-project.org/web/views/Optimization.html).]
 
 Das Schöne ist, dass trotz der Vielzahl an Paketen alle Optimierungsfunktionen
 nach einem sehr ähnlichen Schema aufgebaut sind. Die ersten beiden Argumente
 sind immer die Zielfunktion und die Nebenbedingungen. Danach folgen Argumente
 mit denen Sie die Suchintervalle, den konkreten Algorithmus oder weitere 
 Spezifika festlegen können.
+Für eine genauere Einführung bietet sich auch die Lektüre der Vignette
+für das allgemein gehaltene Paket `optimx` [@optimx] an, die 
+[hier](https://cran.r-project.org/web/packages/optimx/vignettes/Extend-optimx.pdf)
+abgerufen werden kann.
+
+Table: (\#tab:genpurpose) Generell anwendbare Optimierungsfunktionen.
+
+| **Art** | **Optimierungsfunktion** | **Paket**  |
+|-----------+------------------------+------------|
+| Allgemein (eindimensional)  | `optimize()`| `stats`  |
+| Allgemein (mehrdimensional) | `optimr()`  | `optimx` |
+| LP        | `lp()`                 | `lpSolve`  |
+| QP        | `solve.QP()`           | `quadprog` |
+| NLP       | `optimize()`           | `optimize` |
+| NLP       | `optimx()`             | `optimx`   |
 
 
 Im Folgenden wollen wir anhand einiger einfacher Beispiele sehen wie Sie 
 Optimierungsprobleme in R lösen können.
 Für eine tiefergehende Auseinandersetzung verweisen wir auf die entsprechenden
 spezialisierten Einführungen.
-
-<!-- HIER IST NOCH EIN PROBLEM-->
 
 Betrachten wir die folgende Zielfunktion:
 
@@ -762,7 +776,7 @@ Wie man sieht verfügt sie über ein
 lokales Maximum bei $x_a=-0.77$, ein lokales Minimum bei $x_b=0$ und ein globales 
 Maximum bei $x_c=1.22$.
 
-```{r Funktion, echo=FALSE, fig.cap="Graph der zu optimierenden Funktion"}
+```{r Funktion, echo=FALSE, fig.cap="Graph der zu optimierenden Funktion."}
 data <- data.frame(x=seq(-2, 2, 0.05)) %>%
   dplyr::rowwise() %>%
   dplyr::mutate(y = f_1(x))
@@ -772,16 +786,19 @@ ggplot2::ggplot(data, aes(x=x, y=y)) +
   ggplot2::ggtitle(TeX("$f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2$")) +
   ggplot2::coord_cartesian(ylim = c(0, 10), 
                   xlim = c(-1.2, 1.7), expand = c(0)) +
-  ggplot2::theme_bw() 
+  ggplot2::theme_bw() + 
+  ggplot2::theme(panel.border = element_blank(), axis.line = element_line())
 ```
 
-Wir können für solcherlei eindimensionale Probleme (also Probleme mit nur einer
-Variablen) die Funktion `optimize()` verwenden:
+Da es sich hier um ein eindimensionales Problem handelt, können wir die 
+allgemeine Funktion `optimize()` verwenden. 
+Wir übergeben als Argument `f` die zu optimierende Funktion und geben über
+`interval` das Intervall an, in dem nach einem Minimum (oder Maximum) gesucht
+werden soll:
 
 ```{r}
-opt_obj <- optimize(f = f_1, 
-                    lower = -1.25, upper = 1.75, 
-                    maximum = FALSE)
+opt_obj <- optimize(f = f_1, interval = c(-1.25, 1.75))
+opt_obj
 ```
 
 Das Ergebnis ist eine Liste mit zwei Elementen. 
@@ -802,9 +819,8 @@ opt_obj[["objective"]]
 Falls wir ein Maximum suchen setzen wir `maximum=TRUE`:
 
 ```{r}
-opt_obj_max <- optimize(f = f_1, 
-                        lower = -1.25, upper = 1.75, 
-                        maximum = TRUE)
+opt_obj_max <- optimize(
+  f = f_1, interval = c(-1.25, 1.75), maximum = TRUE)
 opt_obj_max
 ```
 
@@ -812,9 +828,8 @@ Falls wir den Suchbereich entsprechend einschränken finden wir das lokale
 Maximum auf der linken Seite:
 
 ```{r}
-opt_obj_max <- optimize(f = f_1, 
-                        lower = -1.25, upper = 0, 
-                        maximum = TRUE)
+opt_obj_max <- optimize(
+  f = f_1, interval = c(-1.25, 0), maximum = TRUE)
 opt_obj_max
 ```
 
@@ -856,7 +871,7 @@ ggplot2::ggplot(data, aes(X, Y, fill= Z)) +
 ```
 
 Da es sich jetzt um ein mehrdimensionales Problem handelt verwenden wir die Funktion
-`optim()` anstatt von `optimize()`. Die Handhabung ist aber sehr ähnlich.
+`optimx::optimr()` anstatt von `optimize()`. Die Handhabung ist aber sehr ähnlich.
 Als erstes Argument übergeben wir `par` unsere ersten Vermutungen für das 
 Extremum, also die Werte, mit der die Funktion ihre Suche beginnen soll.
 Danach als zweites Argument `fn` die zu optmierende Funktion.
@@ -864,7 +879,7 @@ Falls diese Funktion noch weitere Argumente akzeptiert können wir die hier auch
 einfach hinzufügen. Für unseren Fall haben wir also:
 
 ```{r}
-opt_objekt <- optim(
+opt_objekt <- optimx::optimr(
   par = c(1, 1),
   fn = f_2
   )
@@ -890,43 +905,19 @@ Und den Wert der Zielfunktion im Extremum über den Listeneintrag `value`:
 opt_objekt[["value"]]
 ```
 
-Wenn wir `optim` übrigens zur Maximierung einsetzen wollen müssen wir nichts
-weiter tun als dem Argument `control` eine Liste mit dem Eintrag `fnscale=-1`
-zu übergeben:
+Wenn wir `optimx::optimr()` übrigens zur Maximierung einsetzen wollen müssen wir 
+nichts weiter tun als dem Argument `control` eine Liste mit dem Eintrag 
+`fnscale=-1` zu übergeben:
 
 ```{r}
-f_x <- function (x) 4*x - x**2
-opt_objekt <- optim(
-  c(1),
-  fn = f_x, 
-  method = "Brent", 
-  lower = -4, upper = 4,
-  control = list(fnscale=-1)
+opt_objekt <- optimx::optimr(
+  par = c(1, 1),
+  fn = f_2, control = list(fnscale=-1)
   )
 
 opt_objekt$convergence == 0
 opt_objekt$par
 opt_objekt$value
-```
-
-Das Ergebnis ist in Abbildung \@ref(fig:optim) dargestellt.
-<!-- Claudius: Kurze Frage: ist nicht die Idee von optim vs optimize dass man optim für mehrdimensionale Funktionen verwendet? Warum dann hier im Beispiel wieder eine eindimensionale? STIMMT, WOBEI ICH MIT DEM QUADRATTERM NOCHMAL SCHAUEN MUSS; CHECK ICH ANSONSTEN AM ENDE BEI DER FINALEN ÜBERARBEITUNG-->
-
-```{r optim, echo=FALSE, fig.cap="Ergebnis der Maximierung mit der Funktion optim()"}
-plot_data <- data.frame(x=seq(-4, 4, 0.1)) %>% 
-  dplyr::rowwise() %>% mutate(y=f_x(x))
-ggplot2::ggplot(
-  data = plot_data,
-  mapping = aes(x=x, y=y)) +
-  ggplot2::ggtitle(TeX("$f(x) = 4x - x^2$")) +
-  ggplot2::geom_line() +
-  ggplot2::coord_cartesian(ylim = c(-10, 5), xlim = c(-2, 4)) +
-  ggplot2::annotate(geom="segment",
-           x=opt_objekt$par,
-           xend=opt_objekt$par,
-           y = -50,
-           yend = opt_objekt$value) +
-  ggplot2::theme_bw()
 ```
 
 ### Anwendungsbeispiel {#subsec:keynes-expl}
