@@ -930,7 +930,6 @@ ggplot2::ggplot(
 ```
 
 ### Anwendungsbeispiel {#subsec:keynes-expl}
-<!--@Birte: bei section muss immer der Hashtag davor-->
 
 Als Anwendungsbeispiel betrachten wir das klassische keynesianische Modell. Am 
 geläufigsten ist dabei folgende Formulierung: 
@@ -953,9 +952,6 @@ Wir können nun die Notation leicht um $T$ als die Steuerlast erweitern:
 Y=\frac{c_0 + I + G}{1-c_1(1-T)}
 \end{align}
 
-<!-- An Claudius: Ich habe den Text angepasst, aber wenn ich das richtig sehe ist die Notation hier oben etwas anders als unten, oder? Also die Parameter $a$ und $b$ werden unten verwendet, deshalb hab ich die hier übernommen, im chunk (und in den hier folgenden Erläuterungen) sind jetzt allerdings $c_0$ und $c_1$ verwendet. Sollten wir wahrscheinlich anpassen oder? Was wäre besser? Wenn wir hier oben $c_0$ und $c_1$ nehmen würde ich das unten an den zwei folgenden Stellen wo es nochmal drankommt dann auch ändern damit es einheitlich ist. -->
-<!-- Hab jetzt immer c0 und c1 genommen-->
-
 Wenn wir nun wissen wollen wie $Y$ auf eine Änderung der Staatsausgaben reagiert
 können wir diese Formel nach $G$ ableiten. 
 Dazu müssten wir gleich mehrere Regeln, die wir oben kennen gelernt haben,
@@ -971,9 +967,6 @@ keynes_model <- expression(Y=(c_0 + I + G) / (1 - c_1*(1-T)))
 D(expr = keynes_model, name = "G")
 ```
 
-<!-- Claudius: mir fällt gerade auf: müsste es nicht hier im r chunk bei dem zweiten $c_0$ eigl $c_1$ heißen? Das ist doch die marginale Konsumquote. Irgendwie ist $c_0$ jetzt 2mal drin.. Glaub das ist ein Fehler. Ich änder das hierdrunter mal (im chunk lasse ichs gerade nochmal stehen dass du kurz prüfen kannst) - evtl würden wir aber ja eh jetzt die $c_0$ und $c_1$ in a und b umwandeln oder? -->
-<!-- Genau: hast du dich Rechnung mit korrigiert?-->
-
 Es gilt also:
 
 \begin{align}
@@ -981,7 +974,7 @@ Es gilt also:
 \end{align}
 
 Nehmen wir einmal an die marginale Konsumquote $c_1$ läge bei $20\%$ und der 
-Steuersatz $T$ bei $20\%$.
+Steuersatz $T$ bei $25\%$.
 Eine Erhöhung der Staatsausgaben würde dann $Y$ über den Multiplikator
 $\frac{1}{1-0.2(1-0.25)}=1.176471$ erhöhen.
 
@@ -1018,7 +1011,7 @@ Das erste Beispiel bezieht sich wieder auf das oben eingeführte klassischen Key
 
 \begin{align}
 Y&=C+I+G\\
-C&=a+bY
+C&=c_0+c_1Y
 \end{align}
 
 Nehmen wir nun an, die Staatsausgaben und Investitionen wären exogen bekannt.
@@ -1027,9 +1020,9 @@ Dann kann dieses Modell äquivalent in Matrixform geschrieben werden:
 \begin{align}
 Ax = d
 \end{align}
-wobei $A=\left(\begin{array}{cc} 1 & -1 \\ -b & 1 \end{array}\right)$,
+wobei $A=\left(\begin{array}{cc} 1 & -1 \\ -c_1 & 1 \end{array}\right)$,
 $x=\left(\begin{array}{cc} Y \\ C \end{array}\right)$ und
-$d=\left(\begin{array}{cc} I + G  \\ a \end{array}\right)$,
+$d=\left(\begin{array}{cc} I + G  \\ c_0 \end{array}\right)$,
 wobei die beiden Unbekannten in diesem Fall das Einkommen $Y$ und der 
 Konsum $C$ sind.
 
