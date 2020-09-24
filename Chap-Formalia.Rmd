@@ -206,7 +206,7 @@ häufig hilfreich für die grafische Darstellung von Wachstumsraten.^[Zur
 Transformation der y-Achse verwenden wir in `ggplot2` die Funktion
 `scale_y_continuous()` und setzen das Argument `trans = "log"`.]
 
-```{r normal&log, fig.cap="Vergleich normaler und logarithmierter Darstellung" echo=FALSE, out.height='50%'}
+```{r normalandlog, fig.cap="Vergleich normaler und logarithmierter Darstellung", echo=FALSE, out.height='50%'}
 x0 <- 100
 x <- c(x0, rep(NA, 99))
 for (i in 2:100){
@@ -235,7 +235,7 @@ plot_log <- ggplot2::ggplot(data = expl_data,
 ggpubr::ggarrange(plot_normal, plot_log, ncol = 2)
 ```
 
-In Darstellung \@ref(fig:normal&log) gilt: die Steigung im logarithmierten Plot gibt die
+In Darstellung \@ref(fig:normalandlog) gilt: die Steigung im logarithmierten Plot gibt die
 *relative* Änderung der Variable an.
 Das bedeutet wenn wir im logarithmierten Plot eine lineare Steigung
 haben wächst die Variable konstant mit der gleichen Wachstumsrate über die Zeit -
@@ -730,21 +730,29 @@ Table: (\#tab:genpurpose) Übersicht zu *general-purpose*-Funktionen.
 | NLP       | `optimize()`           | `optimize` |
 | NLP       | `optimx()`             | `optimx`   |
 
+
 Das Schöne ist, dass trotz der Vielzahl an Paketen alle Optimierungsfunktionen
 nach einem sehr ähnlichen Schema aufgebaut sind. Die ersten beiden Argumente
 sind immer die Zielfunktion und die Nebenbedingungen. Danach folgen Argumente
 mit denen Sie die Suchintervalle, den konkreten Algorithmus oder weitere 
 Spezifika festlegen können.
 
+
 Im Folgenden wollen wir anhand einiger einfacher Beispiele sehen wie Sie 
 Optimierungsprobleme in R lösen können.
 Für eine tiefergehende Auseinandersetzung verweisen wir auf die entsprechenden
 spezialisierten Einführungen.
 
+<!-- HIER IST NOCH EIN PROBLEM-->
+
 Betrachten wir die folgende Zielfunktion:
 
-$$f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2$$
+\begin{align}
+f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2
+\end{align}
+
 In R:
+
 ```{r}
 f_1 <- function(x) 8*x^2 + 2.5*x**3 - 4.25*x**4 + 2
 ```
@@ -754,7 +762,7 @@ Wie man sieht verfügt sie über ein
 lokales Maximum bei $x_a=-0.77$, ein lokales Minimum bei $x_b=0$ und ein globales 
 Maximum bei $x_c=1.22$.
 
-```{r Funktion,echo=FALSE, fig.cap="Graph der zu optimierenden Funktion"}
+```{r Funktion, echo=FALSE, fig.cap="Graph der zu optimierenden Funktion"}
 data <- data.frame(x=seq(-2, 2, 0.05)) %>%
   dplyr::rowwise() %>%
   dplyr::mutate(y = f_1(x))
@@ -921,30 +929,32 @@ ggplot2::ggplot(
   ggplot2::theme_bw()
 ```
 
-### Anwendungsbeispiel {subsec:keynes-expl}
+### Anwendungsbeispiel {#subsec:keynes-expl}
+<!--@Birte: bei section muss immer der Hashtag davor-->
 
 Als Anwendungsbeispiel betrachten wir das klassische keynesianische Modell. Am 
 geläufigsten ist dabei folgende Formulierung: 
 
 \begin{align}
 Y&=C+I+G\\
-C&=a+bY
+C&=c_0+c_1 Y
 \end{align}
 
-Hier wird also dargestellt, dass sich die gesamtwirtschaftliche Güternachfrage $Y$ 
-aus dem Konsum $C$, den Investitionen $I$ sowie den Staatsausgaben $G$ ergibt, 
-wobei die Konsumfunktion selbst als lineare Funktion dargestellt wird, bei welcher $a$ 
-den autonomen Konsum und $b$ die marginale Konsumquote beschreibt.
+In dem Modell geht man davon aus, dass sich die gesamtwirtschaftliche 
+Güternachfrage $Y$ aus dem Konsum $C$, den Investitionen $I$ sowie den 
+Staatsausgaben $G$ ergibt.
+Die Konsumfunktion selbst wird als lineare Funktion modelliert, wobei $c_0$ 
+den autonomen Konsum (also den vom Einkommen unabhängigen Konsum) und 
+$c_1$ die marginale Konsumquote beschreibt.
 
 Wir können nun die Notation leicht um $T$ als die Steuerlast erweitern:
 
-$$
+\begin{align}
 Y=\frac{c_0 + I + G}{1-c_1(1-T)}
-$$
+\end{align}
 
-<!-- Das Modell wurde bisher in den Kapiteln noch nicht vorgestellt. Eventuell bräuchte es hier also eine kurze Legende für die Variablennotation. -->
-<!-- Birte schreibt einen Aufschlag. -->
 <!-- An Claudius: Ich habe den Text angepasst, aber wenn ich das richtig sehe ist die Notation hier oben etwas anders als unten, oder? Also die Parameter $a$ und $b$ werden unten verwendet, deshalb hab ich die hier übernommen, im chunk (und in den hier folgenden Erläuterungen) sind jetzt allerdings $c_0$ und $c_1$ verwendet. Sollten wir wahrscheinlich anpassen oder? Was wäre besser? Wenn wir hier oben $c_0$ und $c_1$ nehmen würde ich das unten an den zwei folgenden Stellen wo es nochmal drankommt dann auch ändern damit es einheitlich ist. -->
+<!-- Hab jetzt immer c0 und c1 genommen-->
 
 Wenn wir nun wissen wollen wie $Y$ auf eine Änderung der Staatsausgaben reagiert
 können wir diese Formel nach $G$ ableiten. 
@@ -957,11 +967,12 @@ Um die Ableitung herzuleiten verwenden wir dabei einfach wieder die
 Funktion `D()`:
 
 ```{r}
-keynes_model <- expression(Y=(c_0 + I + G) / (1 - c_0*(1-T)))
+keynes_model <- expression(Y=(c_0 + I + G) / (1 - c_1*(1-T)))
 D(expr = keynes_model, name = "G")
 ```
 
 <!-- Claudius: mir fällt gerade auf: müsste es nicht hier im r chunk bei dem zweiten $c_0$ eigl $c_1$ heißen? Das ist doch die marginale Konsumquote. Irgendwie ist $c_0$ jetzt 2mal drin.. Glaub das ist ein Fehler. Ich änder das hierdrunter mal (im chunk lasse ichs gerade nochmal stehen dass du kurz prüfen kannst) - evtl würden wir aber ja eh jetzt die $c_0$ und $c_1$ in a und b umwandeln oder? -->
+<!-- Genau: hast du dich Rechnung mit korrigiert?-->
 
 Es gilt also:
 
@@ -1033,7 +1044,9 @@ So wird das einfache lineare Regressionsmodell für $n$ Beochatungen und $p$
 erklärenden Variablen häufig folgendermaßen beschrieben 
 (siehe Kapitel \@ref(linmodel)):
 
-$$Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_p x_{ip} + \epsilon, i=1,...,n$$
+\begin{align}
+Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_p x_{ip} + \epsilon, i=1,...,n
+\end{align}
 
 Da wir in der Praxis regelmäßig mehr als eine erklärende Variable verwenden (also $p>1$)
 werden Schätzgleichungen fast ausschließlich in Matrixform dargestellt, denn
@@ -1087,7 +1100,9 @@ Y_n\\
 
 Und Letzteres wie folgt schreiben:
 
-$$\boldsymbol{Y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}$$
+\begin{align}
+\boldsymbol{Y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}
+\end{align}
 
 Dementsprechend können wir auch den OLS-Schätzer in Matrixform darstellen,
 was ab Kapitel \@ref(advlin) auch die standardmäßige Darstellungsform
@@ -1136,7 +1151,7 @@ Eigenschaften Eigennamen erhalten haben.
 Eine Matrix mit der gleichen Anzahl von Zeilen und Spalten wird 
 **quadratische Matrix** genannt.
 
-$$
+\begin{align}
 \left( 
 \begin{array}{cccc}                                
 a_{11} & a_{12} & a_{13} & a_{14} \\                                               
@@ -1145,7 +1160,7 @@ a_{31} & a_{32} & a_{33} & a_{34} \\
 a_{41} & a_{42} & a_{43} & a_{44} \\
 \end{array}
 \right)
-$$
+\end{align}
 
 Die Elemente auf der 'Diagonalen' einer quadratischen $n\times n$-Matrix, also
 $\{a_ii\}^n_{i=1}$, werden die *Hauptdiagonale* dieser Matrix genannt.
@@ -1153,7 +1168,7 @@ $\{a_ii\}^n_{i=1}$, werden die *Hauptdiagonale* dieser Matrix genannt.
 Eine Matrix, die von Null verschiedene Einträge nur auf der Hauptdiagonale
 aufweist heißt **Diagonalmatrix**:
 
-$$
+\begin{align}
 \left( 
 \begin{array}{cccc}                                
 1 & 0 & 0 & 0 \\                                               
@@ -1162,14 +1177,14 @@ $$
 0 & 0 & 0 & 4 \\
 \end{array}
 \right)
-$$
+\end{align}
 
 Bei der **oberen Dreiecksmatrix** befinden sich von Null verschiedene 
 Einträge ausschließlich auf oder über der Hauptdiagonale, bei der 
 **unteren Dreiecksmatrix** ist dies genau umgekehrt.
 Hier ein Beispiel für eine untere Dreiecksmatrix:
 
-$$
+\begin{align}
 \left( 
 \begin{array}{cccc}                                
 1 & 0 & 0 & 0 \\                                               
@@ -1178,14 +1193,14 @@ $$
 1 & 2 & 3 & 4 \\
 \end{array}
 \right)
-$$
+\end{align}
 
 Bei der **Identitätsmatrix** (oder: 'Einheitsmatrix') handelt es sich um eine
 quadratische Matrix, die auf der Hauptdiagonalen nur 1er und neben der 
 Haupdiagonalen nur 0er enthält. Sie wird mit $\mathbb{I_n}$ bezeichnet, wobei
 $n$ die Anzahl der Zeilen und Spalten angibt:
 
-$$
+\begin{align}
 \mathbb{I_4}=
 \left( 
 \begin{array}{cccc}                                
@@ -1195,7 +1210,7 @@ $$
 0 & 0 & 0 & 1 \\
 \end{array}
 \right)
-$$
+\end{align}
 
 Wird eine beliebige Matrix mit einer passenden Identitätsmatrix multipliziert,
 ist das Ergebnis die ursprüngliche Matrix selbst, daher der Name.
@@ -1210,7 +1225,8 @@ Zum Glück ist es in R sehr einfach die typischen Rechenoperationen für Matrize
 zu implementieren. Im Folgenden werden wir die wichtigsten Rechenregeln für 
 Matrizen kurz einführen und dabei die folgenden Beispielmatrizen verwenden:
 
-$$A = \left( 
+\begin{align}
+A = \left( 
 \begin{array}{rrr}                                
 1 & 6 \\                                               
 5 & 3 \\                                               
@@ -1219,7 +1235,8 @@ $$A = \left(
 \begin{array}{rrr}                                
 0 & 2 \\                                               
 4 & 8 \\                                               
-\end{array}\right)$$
+\end{array}\right)
+\end{align}
 
 
 ```{r}
@@ -1233,7 +1250,7 @@ Die transponierte Matrix $A'$ ergibt sich aus $A$ indem die Spalten und
 Zeilen vertauscht werden.
 Im Folgenden ist unsere Beispielmatrix und ihre Transponierung dargestellt:
 
-$$
+\begin{align}
 A = \left( 
 \begin{array}{rrr}                                
 1 & 6 \\                                               
@@ -1246,7 +1263,7 @@ A' = \left(
 6 & 3 \\                                               
 \end{array}
 \right)
-$$
+\end{align}
 
 In R können wir eine Matrix mit der Funktion `t()` transponieren:
 
@@ -1260,13 +1277,15 @@ t(matrix_a)
 
 **Skalar-Addition**
 
-$$4+\boldsymbol{A}=
+\begin{align}
+4+\boldsymbol{A}=
 \left( 
 \begin{array}{rrr}                                
 4+a_{11} & 4+a_{21} \\                                               
 4+a_{12} & 4+a_{22} \\                                               
 \end{array}
-\right)$$
+\right)
+\end{align}
 
 In R: 
 
@@ -1276,13 +1295,15 @@ In R:
 
 **Matrizen-Addition**
 
-$$\boldsymbol{A}+\boldsymbol{B}=
+\begin{align}
+\boldsymbol{A}+\boldsymbol{B}=
 \left(
 \begin{array}{rrr}                                
 a_{11} + b_{11} & a_{21} + b_{21}\\                                               
 a_{12} + b_{12} & a_{22} + b_{22}\\                                               
 \end{array}
-\right)$$
+\right)
+\end{align}
 
 ```{r}
 matrix_a + matrix_b
@@ -1291,13 +1312,15 @@ matrix_a + matrix_b
 
 **Skalar-Multiplikation**
 
-$$2\cdot\boldsymbol{A}=
+\begin{align}
+2\cdot\boldsymbol{A}=
 \left( 
 \begin{array}{rrr}                                
 2\cdot a_{11} & 2\cdot a_{21} \\                                               
 2\cdot a_{12} & 2\cdot a_{22} \\                                               
 \end{array}
-\right)$$
+\right)
+\end{align}
 
 ```{r}
 2*matrix_a
@@ -1306,26 +1329,30 @@ $$2\cdot\boldsymbol{A}=
 
 **Elementenweise Matrix Multiplikation (auch 'Hadamard-Produkt')**
 
-$$\boldsymbol{A}\odot\boldsymbol{B}=
+\begin{align}
+\boldsymbol{A}\odot\boldsymbol{B}=
 \left(
 \begin{array}{rrr}                                
 a_{11}\cdot b_{11} & a_{21}\cdot b_{21}\\                                               
 a_{12}\cdot b_{12} & a_{22}\cdot b_{22}\\                                               
 \end{array}
-\right)$$
+\right)
+\end{align}
 
 ```{r}
 matrix_a * matrix_b
 ```
 
 **Matrizen-Multiplikation**
-$$\boldsymbol{A}\cdot\boldsymbol{B}=
+\begin{align}
+\boldsymbol{A}\cdot\boldsymbol{B}=
 \left(
 \begin{array}{rrr}                                
 a_{11}\cdot b_{11} + a_{12}\cdot b_{21} & a_{11}\cdot b_{21}+a_{12}\cdot b_{22}\\                     
 a_{21}\cdot b_{11} + a_{22}\cdot b_{21} & a_{21}\cdot b_{12}+a_{22}\cdot b_{22}\\                     
 \end{array}
-\right)$$
+\right)
+\end{align}
 
 ```{r}
 matrix_a %*% matrix_b
@@ -1342,7 +1369,11 @@ matrix_a %*% diag(2)
 
 Die Inverse einer Matrix $\boldsymbol{A}$, $\boldsymbol{A}^{-1}$, ist 
 definiert sodass gilt
-$$\boldsymbol{A}\boldsymbol{A}^{-1}=\boldsymbol{I}$$
+
+\begin{align}
+\boldsymbol{A}\boldsymbol{A}^{-1}=\boldsymbol{I}
+\end{align}
+
 Sie kann in R mit der Funktion `inv()` aus dem Paket 
 [matlib](http://friendly.github.io/matlib/)^[Alternativ können Sie auch die 
 Funktion `solve()` aus `base` verwenden; hier ist das erste Argument `a` und 
@@ -1364,7 +1395,9 @@ Matrizenalgebra lineare Gleichungssysteme wie oben beschrieben lösen können.
 Denn diese Gleichungssysteme können - wie in der Einleitung beschrieben - in die
 Form 
 
-$$Ax=b$$
+\begin{align}
+Ax=b
+\end{align}
 
 gebracht werden. In Anwendungsfällen ist $A$ eine Matrix mit Koeffizienten, 
 $x$ ein Vektor von unbekannten Variablen und $b$ ein Vektor mit Konstanten.
@@ -1521,7 +1554,10 @@ Y_n = \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + ... + \beta_p x_{np} + \epsilo
 
 auch folgendermaßen schreiben können:
 
-$$\boldsymbol{Y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}$$
+\begin{align}
+\boldsymbol{Y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}
+\end{align}
+
 Wobei $\boldsymbol{Y}$ eine $n\times 1$-Matrix mit den Beobachtungen für die
 abhängige Variable, $\boldsymbol{X}$ eine $n\times p$-Matrix in der jede Spalte
 zu einem Vektor mit allen $n$ Beobachtungen einer der $p$ erklärenden Variablen 
@@ -1576,7 +1612,9 @@ für das unbekannte $\boldsymbol{\beta}=\left(\begin{array}{cc} \beta_0 \\ \beta
 des folgenden Gleichungssystems darstellt:^[Die genaue Herleitung finden Sie im 
 [nächsten (optionalen) Abschnitt](#ols-deriv).]
 
-$$\boldsymbol{\hat{\beta}}=\left(\boldsymbol{X}'\boldsymbol{X} \right)^{-1}\boldsymbol{X}'\boldsymbol{Y}$$
+\begin{align}
+\boldsymbol{\hat{\beta}}=\left(\boldsymbol{X}'\boldsymbol{X} \right)^{-1}\boldsymbol{X}'\boldsymbol{Y}
+\end{align}
 
 Das können wir wiederum in R lösen:
 
@@ -1607,11 +1645,13 @@ $$\boldsymbol{e}=\boldsymbol{Y}-\boldsymbol{X\hat{\beta}}$$
 Wir können die Summe der quadrierten Residuen (RSS) in Matrixschreibweise 
 schreiben als:
 
-$$\boldsymbol{e'e}= 
+\begin{align}
+\boldsymbol{e'e}= 
 \left(\begin{array}{cccc} e_1 & e_2 & ... & e_n \end{array}\right)
 \left(\begin{array}{cc} e_1 \\ e_2 \\ \vdots \\ e_n \end{array}\right)
 =\left(\begin{array}{cccc} e_1\times e_1 & e_2 \times e_2 & ... & 
-e_n \times e_n \end{array}\right)$$
+e_n \times e_n \end{array}\right)
+\end{align}
 
 Wir können dann schreiben:^[Beachte dabei, dass 
 $\boldsymbol{Y'X\hat{\beta}}=(\boldsymbol{Y'X\hat{\beta}})'=\boldsymbol{\hat{\beta}'X'Y}$.]
@@ -1629,8 +1669,10 @@ Wir wollen diesen Ausdruck nun minimieren.
 Dazu leiten wir nach dem Vektor der zu schätzenden
 Koeffizienten $\boldsymbol{\hat{\beta}}$ ab:
 
-$$\frac{\partial \boldsymbol{e'e}}{\partial\boldsymbol{\hat{\beta}}}=
--2\boldsymbol{X'y} + 2\boldsymbol{X'X\hat{\beta}} = 0$$
+\begin{align}
+\frac{\partial \boldsymbol{e'e}}{\partial\boldsymbol{\hat{\beta}}}=
+-2\boldsymbol{X'y} + 2\boldsymbol{X'X\hat{\beta}} = 0
+\end{align}
 
 Diese Gleichung können wir nun umformen zu:
 
@@ -1732,10 +1774,7 @@ Stellen Sie sich vor Sie haben eine Stichprobe vor sich, welche die Verteilung i
 ```{r, echo=FALSE}
 set.seed(123)
 sample_data <- data.frame(r=rnorm(n = 750, mean = 4, sd = 2))
-
 ```
-
-<!-- Claudius: Diese Graphik Einbetten? und die folgenden hierunter? JA; EVTL IN ZWEI PANELE? ABER ZWEI FIGUREN PASSEN AUCH. Birte: okidoks, habs jetzt unten in 2 Panels gesetzt-->
 
 Beachten Sie, dass die y-Achse die empirische Dichte der Beobachtungen auf der
 x-Achse angibt, wir haben hier also ein Maß für die relative Häufigkeit der Beobachtungen.
@@ -1746,7 +1785,8 @@ Wenn wir die Daten so betrachten erscheint es naheliegend, sie als Realisierung
 einer Normalverteilung zu interpretieren: die Form ist grob glockenförmig und 
 symmetrisch. 
 Wir können diese Annahme plausibilisieren indem wir mit `ggplot2::geom_density()` die 
-*empirische Dichtefunktion* der Verteilung schätzen und über die Daten legen, wie im rechten Graph der Abbildung \@ref(fig:Stichprobenverteilung).
+*empirische Dichtefunktion* der Verteilung schätzen und über die Daten legen, 
+wie im rechten Graph der Abbildung \@ref(fig:Stichprobenverteilung).
 
 ```{r Stichprobenverteilung, echo=TRUE, fig.cap="Stichprobe (linker Graph) und Stichprobe mit empirischer Dichtefunktion (rechter Graph)"}
 
@@ -1755,8 +1795,10 @@ Stichprobe <- ggplot2::ggplot(data = sample_data) +
     mapping = aes(x=r, stat(density)), 
     binwidth = 0.4) +
   ggplot2::scale_x_continuous(expand = c(0, 1)) + 
-  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0.05), c(0, 0))) +
-  ggplot2::theme_bw()
+  ggplot2::scale_y_continuous(expand = expansion(c(0, 0.05), c(0, 0))) +
+  ggplot2::theme_bw() + 
+  theme(panel.border = element_blank(), 
+        axis.line = element_line())
 
 Dichtefunktion <- ggplot2::ggplot(data = sample_data) +
   ggplot2::geom_histogram(
@@ -1766,9 +1808,11 @@ Dichtefunktion <- ggplot2::ggplot(data = sample_data) +
   ggplot2::stat_density(mapping = aes(x=r), 
                color="blue", 
                geom="line") +
-  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0.05), 
+  ggplot2::scale_y_continuous(expand = expansion(c(0, 0.05), 
                                            c(0, 0))) +
-  ggplot2::theme_bw()
+  ggplot2::theme_bw() + 
+  theme(panel.border = element_blank(), 
+        axis.line = element_line())
 
 ggpubr::ggarrange(Stichprobe, Dichtefunktion, ncol = 2)
 ```
@@ -1778,7 +1822,9 @@ Das bedeutet, dass wir unsere Daten mit Hilfe der Dichtefunktion
 Die Formel an sich ist dabei weniger illustrativ, aber sie zeigt was wir mit 
 einem *parametrischen* Wahrscheinlichkeitsmodell meinen:
 
-$$f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
+\begin{align}
+f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\end{align}
 
 Wenn Sie die Formel genau anschauen finden sich darin zwei Parameter:
 ein Lageparameter $\mu$ und ein Streuparameter $\sigma^2$. 
@@ -1817,7 +1863,7 @@ ggplot2::ggplot(data = sample_data) +
     binwidth = 0.4, alpha=0.4) +
     coord_cartesian(xlim = c(-6, 14)) +
   ggplot2::geom_line(data = y_vals_pdf, mapping = aes(x=x, y=y, color=Parameter)) +
-  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0.05), 
+  ggplot2::scale_y_continuous(expand = expansion(c(0, 0.05), 
                                            c(0, 0))) +
   ggplot2::guides(color = guide_legend(title = TeX("Parameter der Normalverteilung"), 
                               title.position = "top")) + 
@@ -2045,7 +2091,9 @@ Verteilungen von besonderer praktischer Bedeutung sind.
 Die am weitesten verbreiteten Streuungsmaße sind die **Varianz** $Var$ und ihre 
 Quadratwurzel, die **Standardabweichung**, $s$:
 
-$$s_x=\sqrt{Var(x)}=\sqrt{\frac{1}{N-1}\sum_{i=1}^N\left(x_i-\bar{x}\right)^2}$$
+\begin{align}
+s_x=\sqrt{Var(x)}=\sqrt{\frac{1}{N-1}\sum_{i=1}^N\left(x_i-\bar{x}\right)^2}
+\end{align}
 
 Dabei ist zu beachten, dass die empirische Standardabweichung oft einfacher zu
 interpretieren ist, da sie in den gleichen Einheiten gemessen wird wie die 
@@ -2054,7 +2102,9 @@ Der **Variationskoeffizient** ist eine einheitslose Variante und ist als
 Quotient der empirische Standardabweichung und dem arithmetischen Mittel
 definitiert: 
 
-$$v_x=\frac{s_x}{\bar{x}}$$
+\begin{align}
+v_x=\frac{s_x}{\bar{x}}
+\end{align}
 
 In R können die drei Maße folgendermaßen berechnet werden:
 
@@ -2335,7 +2385,7 @@ ggplot2::ggplot(data = journal_daten) +
                color="blue", 
                geom="line") +
   ggplot2::scale_y_continuous(
-    expand = expand_scale(c(0, 0.0005), 
+    expand = expansion(c(0, 0.0005), 
                           c(0, 0))
     ) +
   ggplot2::theme_bw()
@@ -2503,7 +2553,6 @@ Cook'schen Distanz gilt ist nicht klar zu definieren. Als Daumenregel hat sich
 die Grenze $\frac{4}{n-k-1}$ etabliert, aber in der Praxis ergibt es immer Sinn 
 einfach die Werte mit der größten Distanz genauer anzuschauen. Diese lassen sich 
 aus Abbildung \@ref(fig:CookScheDistanz).
-<!-- Claudius: ist hier mit absicht kein Echo=False drin? Das war doch oben oft bei den chunks wo es eigl hauptsächlich darum ging den output zu zeigen und nicht den code, oder? JA, KANN EIGENTLICH RAUS ODER? B: Habs mal eingefügt-->
 
 ```{r Cook-ScheDistanz, echo=FALSE, fig.cap="Betrachtung der Ausreißer nach der Cook'schen Distanz"}
 dist_data <- data.frame(
@@ -2560,6 +2609,7 @@ wb_data <- data.table::fread(here("data/tidy/wb_regions.csv")) %>%
          !is.nan(Lebenserwartung), 
          !is.nan(Fertilitätsrate))
 ```
+
 ```{r BoxplotBsp, fig.cap="Darstellung der Lebenserwartungen in den Weltregionen anhand eines Boxplots"}
 ggplot2::ggplot(data = wb_data, 
        mapping = aes(x=region, y=Lebenserwartung)
@@ -2568,10 +2618,10 @@ ggplot2::ggplot(data = wb_data,
   ggplot2::theme_bw() +
   ggplot2::labs(title = "Lebenserwartungen in den Weltregionen", 
        caption = "Quelle: Weltbank") +
-  ggplot2::theme(axis.title.x = element_blank())
+  ggplot2::theme(
+    axis.title.x = element_blank(), 
+    axis.text.x = element_text(angle = 10, vjust = 0.65))
 ```
-
-<!-- Claudius: Bei diesem Boxplot sind die Bezeichnungen der Weltregionen auf der X-Achse sehr unschön, fällt mir gerade noch auf. Wahrscheinlich anpassen oder? (Ich könnte versuchen es zu machen, du kannst das aber wahrscheinlich sehr viel schneller&effektiver. soll ich versuchen oder machst du lieber?) ICH WÜRDE ES BEI DER FINALEN ÜBERARBEITUNG MACHEN, ABER WENN DU MAGST KANNST DU ES VERSUCHEN, MUSST ABER NICHT Birte: ok dann lass ichs erstmal und fokussier mich erstmal auf die anderen kapitel die wir morgen noch durchsprechen wollten-->
 
 Im Boxplot werden mehrere relevante Kennzahlen zusammengefasst. 
 Eine schöne Übersicht bietet Abbildung \@ref(fig:boxplot):
