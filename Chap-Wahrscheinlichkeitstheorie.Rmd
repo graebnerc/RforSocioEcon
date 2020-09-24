@@ -736,7 +736,7 @@ ggplot2::ggplot(lambdas) +
   ggplot2::scale_fill_discrete(name = "New Legend Title") +
   ggplot2::scale_y_continuous(expand = expansion(c(0,0), c(0,0.025))) +
   ggplot2::scale_x_continuous(expand = expansion(c(0,0), c(0,0))) +
-  ggplot2::scale_color_icae(palette = "mixed", discrete = T) +
+  viridis::scale_color_viridis(discrete = T) +
   ggplot2::ggtitle(TeX("Die Poisson-Verteilung für verschiedene $\\lambda$")) +
   ggplot2::guides(color = guide_legend(title = TeX("$\\lambda$"), 
                              title.position = "top")) + 
@@ -775,7 +775,7 @@ ggplot2::ggplot(lambda_4) +
   ggplot2::scale_y_continuous(expand = expansion(c(0,0), c(0,0.025))) +
   ggplot2::scale_x_continuous(expand = expansion(c(0,0), c(0,0))) +
   ggplot2::scale_fill_discrete(name = "New Legend Title") +
-  ggplot2::scale_color_icae(palette = "mixed", discrete = T) +
+  viridis::scale_color_viridis(discrete = T) +
   ggplot2::ggtitle(TeX("Die Poisson-Verteilung für $\\lambda = 4$")) +
   ggplot2::geom_segment(aes(x = x_val, y = 0, 
                    xend = x_val, yend = y_val),
