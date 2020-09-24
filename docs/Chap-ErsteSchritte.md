@@ -1869,162 +1869,9 @@ is.matrix(2.0)
 #> [1] FALSE
 ```
 
-
-
-**Matrizenalgebra**
-
-Matrizenalgebra spielt in vielen statistischen Anwendungen eine wichtige Rolle.
-In R ist es sehr einfach die typischen Rechenoperationen für Matrizen zu
-implementieren. Hier nur ein paar Beispiele, für die wir die folgenden 
-Matrizen verwenden:
-
-$$A = \left( 
-\begin{array}{rrr}                                
-1 & 6 \\                                               
-5 & 3 \\                                               
-\end{array}
-\right) \quad B = \left( 
-\begin{array}{rrr}                                
-0 & 2 \\                                               
-4 & 8 \\                                               
-\end{array}\right)$$
-
-```r
-matrix_a <- matrix(c(1,5,6,3), ncol = 2)
-matrix_b <- matrix(c(0,4,2,8), ncol = 2)
-```
-
-Skalar-Addition:
-$$4+\boldsymbol{A}=
-\left( 
-\begin{array}{rrr}                                
-4+a_{11} & 4+a_{21} \\                                               
-4+a_{12} & 4+a_{22} \\                                               
-\end{array}
-\right)$$
-
-
-```r
-4+matrix_a
-```
-
-```
-#>      [,1] [,2]
-#> [1,]    5   10
-#> [2,]    9    7
-```
-
-Matrizen-Addition:
-$$\boldsymbol{A}+\boldsymbol{B}=
-\left(
-\begin{array}{rrr}                                
-a_{11} + b_{11} & a_{21} + b_{21}\\                                               
-a_{12} + b_{12} & a_{22} + b_{22}\\                                               
-\end{array}
-\right)$$
-
-
-```r
-matrix_a + matrix_b
-```
-
-```
-#>      [,1] [,2]
-#> [1,]    1    8
-#> [2,]    9   11
-```
-
-
-Skalar-Multiplikation:
-$$2\cdot\boldsymbol{A}=
-\left( 
-\begin{array}{rrr}                                
-2\cdot a_{11} & 2\cdot a_{21} \\                                               
-2\cdot a_{12} & 2\cdot a_{22} \\                                               
-\end{array}
-\right)$$
-
-
-```r
-2*matrix_a
-```
-
-```
-#>      [,1] [,2]
-#> [1,]    2   12
-#> [2,]   10    6
-```
-
-
-Elementenweise Matrix Multiplikation (auch 'Hadamard-Produkt'):
-$$\boldsymbol{A}\odot\boldsymbol{B}=
-\left(
-\begin{array}{rrr}                                
-a_{11}\cdot b_{11} & a_{21}\cdot b_{21}\\                                               
-a_{12}\cdot b_{12} & a_{22}\cdot b_{22}\\                                               
-\end{array}
-\right)$$
-
-
-```r
-matrix_a * matrix_b
-```
-
-```
-#>      [,1] [,2]
-#> [1,]    0   12
-#> [2,]   20   24
-```
-
-Matrizen-Multiplikation:
-$$\boldsymbol{A}\cdot\boldsymbol{B}=
-\left(
-\begin{array}{rrr}                                
-a_{11}\cdot b_{11} + a_{12}\cdot b_{21} & a_{11}\cdot b_{21}+a_{12}\cdot b_{22}\\                     a_{21}\cdot b_{11} + a_{22}\cdot b_{21} & a_{21}\cdot b_{12}+a_{22}\cdot b_{22}\\                     
-\end{array}
-\right)$$
-
-
-```r
-matrix_a %*% matrix_b
-```
-
-```
-#>      [,1] [,2]
-#> [1,]   24   50
-#> [2,]   12   34
-```
-
-Die Inverse einer Matrix $\boldsymbol{A}$, $\boldsymbol{A}^{-1}$, ist 
-definiert sodass gilt
-$$\boldsymbol{A}\boldsymbol{A}^{-1}=\boldsymbol{I}$$
-Sie kann in R mit der Funktion `solve()` identifiziert werden:
-
-
-```r
-solve(matrix_a)
-```
-
-```
-#>            [,1]        [,2]
-#> [1,] -0.1111111  0.22222222
-#> [2,]  0.1851852 -0.03703704
-```
-
-```r
-matrix_a %*% solve(matrix_a)
-```
-
-```
-#>               [,1]         [,2]
-#> [1,]  1.000000e+00 2.775558e-17
-#> [2,] -5.551115e-17 1.000000e+00
-```
-
-Die minimalen Abweichungen sind auf machinelle Rundungsfehler zurückzuführen und
-treten häufig auf.
-
-Es gibt im Internet zahlreiche gute Überblicksartikel zum Thema Matrizenalgebra
+Die Grundlagen der Matrizenalgebra und ihre Implementierung in R wird später
+in Kapitel \@ref(formalia) erläutert.
+Zudem gibt es im Internet zahlreiche gute Überblicksartikel zum Thema Matrizenalgebra
 in R, z.B. [hier](https://www.statmethods.net/advstats/matrix.html)
 oder in größerem Umfang 
 [hier](https://www.math.uh.edu/~jmorgan/Math6397/day13/LinearAlgebraR-Handout.pdf).
@@ -2419,7 +2266,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7f9aa1b59418>
+#> <bytecode: 0x7fa0ab07ceb8>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2450,7 +2297,7 @@ dplyr::lead
 #>     vec_c(vec_slice(inputs$x, -seq_len(n)), vec_rep(inputs$default, 
 #>         n))
 #> }
-#> <bytecode: 0x7f9ae2e2c970>
+#> <bytecode: 0x7fa0cce49460>
 #> <environment: namespace:dplyr>
 ```
 
