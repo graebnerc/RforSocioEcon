@@ -226,7 +226,7 @@ verschiedene nicht-lineare Zusammenhänge, welche allerdings je einen
 Korrelationskoeffizienten von 0 ergeben würden.
 
 
-```{r korrelation, fig.align='center', echo=FALSE, warning=FALSE, message=FALSE}
+```{r korrelation, fig.align='center', echo=FALSE, warning=FALSE, message=FALSE, caption="Unterschiedliche Daten mit gleichen Korrelationswerten."}
 c0_1a <- -50:50
 c0_1b <- sapply(-50:50, function(x) x**2)
 c0_1 <- ggplot2::ggplot(data.frame(x=c0_1a, 
@@ -320,7 +320,7 @@ ggpubr::ggarrange(c0_1, c0_2,
 Daher ist es immer wichtig die Daten auch visuell zu inspizieren, etwa mit den 
 Methoden die wir in Kapitel \@ref(vis) kennengelernt haben.
 
-## Hinweise zur quantitativen und visuellen Datenbeschreibung
+## Hinweise zur quantitativen und visuellen Datenbeschreibung {#descVis}
 
 Wie das Beispiel der Korrelationsmaße gerade demonstriert hat, ist bei der 
 Verwendung von quantitativen Maßen zur Beschreibung von Datensätzen immer große
@@ -330,11 +330,7 @@ Darstellungsformen, wie Streudiagrammen oder Histogrammen verwendet werden.
 Eine schöne Illustration ist
 [Anscombe's Quartett]() [@Anscombe].
 
-<!-- Discuss: Dieser Teil ist auch schon im Vizualizationskapitel drin (oder zumindest irgendwo in den letzten paar Kapiteln, erinner mich noch recht genau daran). Finde das Beispiel zwar sehr schön aber glaub das wäre vllt etwas zu viel das hier nochmal reinzusetzen? Außer halt wenn du wirklich davon ausgehst dass niemand das Buch von vorne bis hinten durchließt sondern sich immer nur einzelne Teile rauspickt.. Aber ansonsten vielleicht eher nochmal auf das Beispiel verweisen statt es nochmal wiederzugeben? -->
-
-<!-- Nachtrag: weil noch nicht klar ob drinbleibt oder nicht habe ich jetzt figure und table noch nicht eingebettet beim beispiel -->
-
-<!-- DISCUSS: Das war im Abschnitt Verteilungen zu formalen Methoden. Sollten wir kurz drüber sprechen wo es besser hinpasst. -->
+<!-- BIRTE: Einbetten, weil es hier bleibt. -->
 
 
 Dabei handelt es sich um vier Datensätze, die alle (fast exakt) gleiche

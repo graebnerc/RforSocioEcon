@@ -2538,7 +2538,7 @@ die Grenze $\frac{4}{n-k-1}$ etabliert, aber in der Praxis ergibt es immer Sinn
 einfach die Werte mit der größten Distanz genauer anzuschauen. Diese lassen sich 
 aus Abbildung \@ref(fig:CookScheDistanz).
 
-```{r Cook-ScheDistanz, echo=FALSE, fig.cap="Betrachtung der Ausreißer nach der Cook'schen Distanz"}
+```{r CookScheDistanz, echo=FALSE, fig.cap="Betrachtung der Ausreißer nach der Cook'schen Distanz"}
 dist_data <- data.frame(
   Index=names(distanzen),
   Distanz=unname(distanzen), 
@@ -2671,84 +2671,10 @@ violin_plot <- ggplot2::ggplot(data = wb_data,
 ggpubr::ggarrange(boxplot_classic, boxplot_jitter, violin_plot, ncol = 3)
 ```
 
-Es ist jedoch immer wichtig eine Verteilung nicht nur mit Kennzahlen, sondern
-auch grafisch zu beschreiben. 
-Dies wurde erstmals durch @Anscombe durch sein "Anscombe's Quartett"
-illustriert.
-Dabei handelt es sich um vier Datensätze, die alle (fast exakt) gleiche
-deskriptive Statistiken aufweisen, jedoch offensichtlich sehr unterschiedlich
-sind. 
-Diese offensichtlichen Unterschiede werden aber nur durch grafische Inspektion 
-deutlich.
-
-Der Datensatz ist in jeder R Installation vorhanden:
-
-```{r}
-data("anscombe")
-head(anscombe)
-```
-
-Tabelle \@ref(tab:anscombe) gibt die Werte der quantitativen Kennzahlen an.
-
-Table: (\#tab:anscombe) Werte der quantitativen Kennzahlen bei Anscombe
-
-| Kennzahl | Wert  |
-|----------|------|
-| Mittelwert von $x$ | ```r round(mean(anscombe$x1), 2)``` |
-| Mittelwert von $y$ | ```r round(mean(anscombe$y1), 2)``` |
-| Varianz von $x$ | ```r round(var(anscombe$x1), 2)``` |
-| Varianz von $y$ | ```r round(var(anscombe$y1), 2)``` |
-| Korrelation zw. $x$ und $y$ | ```r round(cor(anscombe$x1, anscombe$y1), 2)``` |
-
-Nur die grafische Inspektion zeigt, wie unterschiedlich die Verteilungen 
-tatsächlich sind - siehe Abbildung \@ref(fig:Anscombefigure).
-
-```{r Anscombefigure, echo=FALSE, fig.cap="Graphischer Vergleich der vier Verteilungen"}
-ans_1 <- ggplot2::ggplot(anscombe, 
-                aes(x=x1, y=y1)) +
-  ggplot2::geom_point() +
-  ggplot2::xlab("x") + 
-  ggplot2::ylab("y") +
-  ggplot2::ggtitle("Der erste Datensatz aus Ascombe's Quartett") +
-  ggplot2::theme_bw()
-
-ans_2 <- ggplot2::ggplot(anscombe, 
-                aes(x=x2, y=y2)) +
-  ggplot2::geom_point() +
-  ggplot2::xlab("x") + 
-  ggplot2::ylab("y") +
-  ggplot2::ggtitle("Der zweite Datensatz aus Ascombe's Quartett") +
-  ggplot2::theme_bw()
-
-ans_3 <- ggplot2::ggplot(anscombe, 
-                aes(x=x3, y=y3)) +
-  ggplot2::geom_point() +
-  ggplot2::xlab("x") + 
-  ggplot2::ylab("y") +
-  ggplot2::ggtitle("Der dritte Datensatz aus Ascombe's Quartett") +
-  ggplot2::theme_bw()
-
-ans_4 <- ggplot2::ggplot(anscombe, 
-                aes(x=x4, y=y4)) +
-  ggplot2::geom_point() +
-  ggplot2::xlab("x") + 
-  ggplot2::ylab("y") +
-  ggplot2::ggtitle("Der vierte Datensatz aus Ascombe's Quartett") +
-  ggplot2::theme_bw()
-
-ans_full <- ggpubr::ggarrange(ans_1, ans_2, ans_3, ans_4,
-                      ncol = 2, nrow = 2)
-ans_full
-```
-
-Damit zeigt sich, dass jede gute Beschreibung einer Verteilung sowohl aus 
-quantitativen als auch grafischen Teilen bestehen sollte.^[Interessanterweise 
-ist bis heute nicht bekannt wie @Anscombe seinen Datensatz erstellt hat.
-Für neuere Sammlungen von Datensätzen, die das gleiche Phänomen illustrieren
-siehe z.B. @AnscombeNew1 oder @AnscombeNew2 .
-Eine sehr schöne Illustration der Idee findet sich auch auf 
-[dieser Homepage](https://www.autodeskresearch.com/publications/samestats),
-die vom Autor von @AnscombeNew2 gestaltet wurde.]
+Beachten Sie, dass es immer wichtig ist, eine Verteilung nicht nur mit 
+quantitativen Kennzahlen, sondern auch grafisch zu beschreiben und zu 
+analysieren: andernfalls übersehen Sie leicht wichtige Strukturen in den
+Daten (siehe dazu auch Abschnit \@ref(descVis) in Kapitel \@ref(desk-stat)).
 
 ### Abschließende Bemerkungen {#vert-bemerkungen}
 

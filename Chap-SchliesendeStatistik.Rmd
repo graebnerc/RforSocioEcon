@@ -81,7 +81,7 @@ Wenn wir schließlich ein Intervall für $p$ spezifizieren wollen, das mit den
 Beobachtungen kompatibel ist, dann suchen wir nach einem *Konfidenzintervall* 
 für $p$.
 
-Im folgenden werden die drei Verfahren in größerem Detail besprochen.
+Im Folgenden werden die drei Verfahren in größerem Detail besprochen.
 
 ## Verwendete Pakete {-}
 
@@ -94,7 +94,6 @@ library(AER)
 library(MASS)
 ```
 
-<!-- Verwendete Pakete auch wieder nach ganz oben setzen?  -->
 <!-- DISCUSS: Sollte einfach überall gleich sein -> Ganzu am Ende nochmal bei allen Kapiteln checken?  -->
 
 ## Punktschätzung
@@ -205,8 +204,10 @@ In der Regel formulieren wir eine Hypothese, die wir verwerfen wollen als
 $H_0$.^[An manchen Stellen der sozial- und wirtschaftswissenschaftlichen Literatur 
 wird anstelle von "verwerfen" auch das Wort "falsifizieren" benutzt um die 
 Zurückweisung der Null-Hypothese zu umschreiben. 
-Diese Wortwahl ist allerdings irreführend, da hier nicht Aussagen aus einer 
-Theorie widerlegt werden, die einen gewissen Zusammenhang behaupten. 
+Diese Wortwahl ist allerdings vor dem Hintergrund der Verwendung von 
+"falsifizieren" im kritischen Rationalismus' Karl Poppers potenziell irreführend, 
+da hier nicht Aussagen aus einer Theorie widerlegt werden, 
+die einen gewissen Zusammenhang behaupten. 
 Im Gegensatz wird die Hypothese zurückgewiesen, dass der vermutete Zusammenhang 
 eben nicht besteht - die zu Grunde gelegte Theorie wird also durch die 
 Zurückweisung der Null-Hypothese im Normalfall nicht widerlegt sondern vielmehr 
@@ -296,10 +297,9 @@ $H_0$ eigentlich falsch ist.
 Aus dem gewählten Signifikanzniveau ergibt sich dann der **Verwerfungsbereich**
 für unsere Nullhypothese. Wenn unsere beobachteten Daten im Verwerfungsbereich
 liegen wollen wir $H_0$ als verworfen betrachten.^[
-Ganz im Sinne von Popper können mit Hilfe von statistischen Tests alle Hypothesen 
-immer nur verworfen werden. Verifizieren können wir nichts!]
-
-<!-- Ich frage mich ob sich das hier nicht widerspricht mit deinem Punkt oben in der fußnote um zeile 200 herum. Ich verstehe das so: wir können keine hypothesen verifizieren, aber (laut deinem punkt oben) die theorie schon bestätigen(verifizieren), indem wir die null-hypothese verwerfen. Dir gefällt das Wort "falsifizieren" nicht, weil das so klingt als würde es sich auf die theorie beziehen (statt nur eine hypothese zu verwerfen=zu falsifizieren). Ich glaube mein Punkt ist dass es scheint als würdest du verifizeren/bestätigen sowie falsifizieren/verwerfen unterschiedlich verwenden, mit verifizieren/bestätigen Bezug auf hypothese/theorie und falsifizieren/verwerfen Bezug auf theorie/hypothese. weiß nicht ob die Begrifflichkeit so allgemein verwendet wird? -->
+Zu beachten ist allerdings, dass wir nicht davon sprechen, $H_1$ ($H_0$) 
+*anzunehmen*, wenn $H_0$ ($H_1$) abgelehnt wurde. Es geht hier nur um das 
+Verwerfen von Hypothesen.]
 
 Es ergibt sich logisch aus dem vorher Gesagten, dass ein höheres $\alpha$ mit 
 einem größeren Verwerfungsbereich einhergeht.
