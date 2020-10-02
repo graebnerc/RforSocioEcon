@@ -254,9 +254,10 @@ durch eine R Funktion in einem der nächsten Schritte übernommen, aber es macht
 Sinn, sich das grundsätzliche Vorgehen dennoch in dieser Sequenz bewusst zu machen.
 Diese theoretische Verteilung können wir dann mit den tatsächlichen Daten 
 vergleichen und fragen, wie wahrscheinlich es ist diese Daten tatsächlich so
-beobachten zu können wenn $H_0$ wahr wäre:
+beobachten zu können wenn $H_0$ wahr wäre. Abbildung \@ref(fig:hypothesentest)
+veranschaulicht dies.
   
-```{r, fig.align='center', echo=FALSE}
+```{r hypothesentest, fig.align='center', echo=FALSE, fig.cap="Vergleich unseres eingetretenen Ereignisses mit der theoretischen Verteilung unter $H_0$."}
 ggplot2::ggplot(data.frame(x = c(0, 100)), aes(x = x)) +
   ggplot2::stat_function(fun = dbinom, args = list(size = 100, prob=0.5)) +
   ggplot2::ylab("Wahrscheinlichkeit") +
@@ -303,9 +304,9 @@ einem größeren Verwerfungsbereich einhergeht.
 
 Der Verwerfungsbereich für das oben darstellte Beispiel mit
 $H_0: \theta=0$ und $H_1: \theta\neq 0$ ergibt sich für 
-$\alpha=0.05$ also folgendermaßen:
+$\alpha=0.05$ wie in Abbildung \@ref(fig:verwerfungsbereich) dargestellt.
   
-```{r, fig.align='center', echo=FALSE}
+```{r verwerfungsbereich, fig.align='center', echo=FALSE, fig.cap="Verwerfungsbereich der theoretischen Verteilung unter $H_0$ für $\alpha=0.05$."}
 lower_end <- data.frame(y=dbinom(0:45, size = 100, prob=0.5),
                         x=0:45)
 upper_end <- data.frame(y=dbinom(55:100, size = 100, prob=0.5),
@@ -394,9 +395,10 @@ In der zweiten Zeile findet sich zudem der **p-Wert**.
 Der p-Wert gibt die Wahrscheinlichkeit an, mit der die beobacheten Daten unter
 $H_0$ tatsächlich beobachtet werden können.
 Wir können den p-Wert aus der theoretischen Verteilung von oben auf der y-Achse 
-ablesen, wenn wir den beobachteten Wert auf der x-Achse suchen.
+ablesen, wenn wir den beobachteten Wert auf der x-Achse suchen. Dies ist in 
+Abbildung \@ref(fig:p-wert) aufgezeigt.
   
-```{r, fig.align='center', echo=FALSE, fig.height=2}
+```{r p-wert, fig.align='center', echo=FALSE, fig.height=2, fig.cap="Ablesen des p-Werts aus der theoretischen Verteilung."}
 x_observed <- 60
 ggplot2::ggplot(data.frame(x = c(0, 100)), aes(x = x)) +
   ggplot2::stat_function(fun = dbinom, args = list(size = 100, prob=0.5)) +
