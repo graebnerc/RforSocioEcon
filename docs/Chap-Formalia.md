@@ -2733,11 +2733,11 @@ aus Abbildung \@ref(fig:CookScheDistanz).
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Cook-ScheDistanz-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/CookScheDistanz-1} 
 
 }
 
-\caption{Betrachtung der Ausreißer nach der Cook'schen Distanz}(\#fig:Cook-ScheDistanz)
+\caption{Betrachtung der Ausreißer nach der Cook'schen Distanz}(\#fig:CookScheDistanz)
 \end{figure}
 
 ```
@@ -2863,66 +2863,10 @@ ggpubr::ggarrange(boxplot_classic, boxplot_jitter, violin_plot, ncol = 3)
 \caption{Vergleich von klassischen Darstellungen und dem Violinenplot}(\#fig:Violinenplot)
 \end{figure}
 
-Es ist jedoch immer wichtig eine Verteilung nicht nur mit Kennzahlen, sondern
-auch grafisch zu beschreiben. 
-Dies wurde erstmals durch @Anscombe durch sein "Anscombe's Quartett"
-illustriert.
-Dabei handelt es sich um vier Datensätze, die alle (fast exakt) gleiche
-deskriptive Statistiken aufweisen, jedoch offensichtlich sehr unterschiedlich
-sind. 
-Diese offensichtlichen Unterschiede werden aber nur durch grafische Inspektion 
-deutlich.
-
-Der Datensatz ist in jeder R Installation vorhanden:
-
-
-```r
-data("anscombe")
-head(anscombe)
-```
-
-```
-#>   x1 x2 x3 x4   y1   y2    y3   y4
-#> 1 10 10 10  8 8.04 9.14  7.46 6.58
-#> 2  8  8  8  8 6.95 8.14  6.77 5.76
-#> 3 13 13 13  8 7.58 8.74 12.74 7.71
-#> 4  9  9  9  8 8.81 8.77  7.11 8.84
-#> 5 11 11 11  8 8.33 9.26  7.81 8.47
-#> 6 14 14 14  8 9.96 8.10  8.84 7.04
-```
-
-Tabelle \@ref(tab:anscombe) gibt die Werte der quantitativen Kennzahlen an.
-
-Table: (\#tab:anscombe) Werte der quantitativen Kennzahlen bei Anscombe
-
-| Kennzahl | Wert  |
-|----------|------|
-| Mittelwert von $x$ | ``9`` |
-| Mittelwert von $y$ | ``7.5`` |
-| Varianz von $x$ | ``11`` |
-| Varianz von $y$ | ``4.13`` |
-| Korrelation zw. $x$ und $y$ | ``0.82`` |
-
-Nur die grafische Inspektion zeigt, wie unterschiedlich die Verteilungen 
-tatsächlich sind - siehe Abbildung \@ref(fig:Anscombefigure).
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Anscombefigure-1} 
-
-}
-
-\caption{Graphischer Vergleich der vier Verteilungen}(\#fig:Anscombefigure)
-\end{figure}
-
-Damit zeigt sich, dass jede gute Beschreibung einer Verteilung sowohl aus 
-quantitativen als auch grafischen Teilen bestehen sollte.^[Interessanterweise 
-ist bis heute nicht bekannt wie @Anscombe seinen Datensatz erstellt hat.
-Für neuere Sammlungen von Datensätzen, die das gleiche Phänomen illustrieren
-siehe z.B. @AnscombeNew1 oder @AnscombeNew2 .
-Eine sehr schöne Illustration der Idee findet sich auch auf 
-[dieser Homepage](https://www.autodeskresearch.com/publications/samestats),
-die vom Autor von @AnscombeNew2 gestaltet wurde.]
+Beachten Sie, dass es immer wichtig ist, eine Verteilung nicht nur mit 
+quantitativen Kennzahlen, sondern auch grafisch zu beschreiben und zu 
+analysieren: andernfalls übersehen Sie leicht wichtige Strukturen in den
+Daten (siehe dazu auch Abschnit \@ref(descVis) in Kapitel \@ref(desk-stat)).
 
 ### Abschließende Bemerkungen {#vert-bemerkungen}
 
