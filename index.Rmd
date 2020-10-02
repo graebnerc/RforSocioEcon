@@ -1,6 +1,6 @@
 --- 
 title: "R für die sozio-ökonomische Forschung"
-subtitle: "Version 0.7.2"
+subtitle: "Version 1.0.0"
 author: "[Dr. Claudius Gräbner](http://claudius-graebner.com/)"
 date: "`r Sys.Date()`" 
 site: bookdown::bookdown_site
@@ -10,64 +10,69 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: graebnerc/RforSocioEcon
-description: "R Skript in der Version 0.7.2"
+description: "Einführung in R für die sozioökonomische Forschung; Version 0.9.0"
 ---
 
 # Willkommen {-}
 
-```{r, echo=FALSE, fig.align='center', out.height=='75%', out.width='75%'}
-knitr::include_graphics("figures/title_page.png", auto_pdf = T)
-```
-
-Dieses Skript ist als Begleitung für die Lehrveranstaltung 
+Das folgdene Skript ist als eine erste Einführung in die Programmiersprache
+R [@R-Team] und ihrer Anwendung im Bereich der quantitativen sozioökonomischen
+Forschung gedacht. 
+Ursprünglich war es als Begleitung für die Lehrveranstaltung 
 "Wissenschaftstheorie und Einführung in die Methoden der Sozioökonomie"
-im Master "Sozioökonomie" an der Universität Duisburg-Essen gedacht.
+im Master "Sozioökonomie" an der Universität Duisburg-Essen konzipiert, es 
+soll jedoch zu einer eigenständigen Einführung in R weiterentwickelt werden.
+Dabei richtet es sich zunächst an Menschen mit keinen oder geringen 
+Vorkenntnissen in R.
+Einzelne Kapitel, insbesondere die zur Datenaufbereitung und -visualisierung
+könnten aber auch für fortgeschrittene Studierende interessant sein.
 
-Es enthält grundlegende Informationen über die Funktion der
-Programmiersprache R [@R-Team]. 
+Insgesamt ist das Projekt noch in der Anfangsphase und somit unbedingt auf 
+das Feedback von Nutzer\*innen angewiesen. Ich bin Ihnen daher für jegliches
+Feedback sehr dankbar. 
+Am besten Sie verwenden für Ihr Feedback den 
+[Issue-Tracker auf Github](https://github.com/graebnerc/RforSocioEcon/issues).
+Dort ist auch der Quellcode des Skripts verfügbar.
+Sie können mir das Feedback aber auch gerne per Email zukommen lassen.
+Verwenden Sie dafür im Zweifel das 
+[Kontaktformular](https://claudius-graebner.com/contact-1.html)
+auf meiner Homepage. 
+Vielen Dank!
 
-## Verhältnis zur Vorlesung {-}
-
-Einige Kapitel beziehen sich unmittelbar auf bestimmte Vorlesungstermine,
-andere sind als optionale Zusatzinformation gedacht.
-Gerade Menschen ohne Vorkenntnisse in R sollten unbedingt die ersten Kapitel
-vor dem vierten Vorlesungsterm lesen und verstehen. Bei Fragen können Sie sich
-gerne an Claudius Gräbner wenden.
-
-Die folgende Tabelle gibt einen Überblick über die Kapitel und die dazugehörigen
-Vorlesungstermine:
-
-Kapitel              | Zentrale Inhalte            | Verwandter Vorlesungstermin |
-|:------------------:|:----------------------------|:---------------------------:|
-| 1: Vorbemerkungen | Gründe für R; Besonderheiten von R | Vorbereitung |
-| 2: Einrichtung | Installation und Einrichtung von R und R Studio, Projektstrukturierung | Vorbereitung |
-| 3: Erste Schritte in R | Grundlegende Funktionen von R; Objekte in R; Pakete | Vorbereitung |
-| 4: Lineare statistische Modelle in R | Implementierung von uni- und multivariaten linearen Regressionsmodellen | T4 am 06.11.19 |
-| 5: Datenkunde und -aufbereitung | Einlesen und Schreiben sowie Aufbereitung von Datensätzen | T7 am 27.11.19 |
-| 6: Visualisierung | Erstellen von Grafiken | T7 am 27.11.19 |
-| 7: Formalia | Grundlegende formale Konzepte der Sozioökonomie. | T8 am 11.12.19 |
-| 8: Fortgeschrittene Themen der linearen Regression | OLS-Annahmen: Inhalte, Tests und robuste Schätzverfahren | T9-10 am 8.&15.1.20 |
-| 9: Ausgewählte nichtlineare Schätzverfahren | Logit- und Probit-Modelle | T10 am 15.1.20 |
-| 10: Ausblick | Ausblick zu weiteren Anwendungsmöglichkeiten | Optional |
-| A: Einführung in Markdown | Wissenschaftliche Texte in R Markdown schreiben |Optional; relevant für Aufgabenblätter|
-| B: Wiederholung: Wahrscheinlichkeitstheorie  | Wiederholung grundlegender Konzepte der Wahrscheinlichkeitstheorie und ihrer Implementierung in R | Optional; wird für die quantitativen VL vorausgesetzt |
-| C: Wiederholung: Deskriptive Statistik  | Wiederholung grundlegender Konzepte der deskriptiven Statistik und ihrer Implementierung in R | Optional; wird für die quantitativen VL vorausgesetzt |
-| D: Wiederholung: Drei grundlegende Verfahren der schließenden Statistik  | Wiederholung von Parameterschätzung, Hypothesentests und Konfidenzintervalle und deren Implementierung in R| Optional; wird für die quantitativen VL vorausgesetzt |
-| E: Einführung in Git und Github | Verwendung von Git und Github | Optional |
-
-Das Skript ist *work in progress* und jegliches Feedback ist sehr willkommen.
-Dafür wird im Moodle ein extra Bereich eingerichtet.
-Selbstverständlich können Sie Feedback auch den 
-[Issue-Tracker auf Github](https://github.com/graebnerc/RforSocioEcon/issues) 
-verwenden. Dort ist auch der Quellcode des Skripts verfügbar.
+Ein Hinweis zu den unterschiedlichen Versionen: 
+das Skript ist aktuell in einer HTML und einer PDF-Variante verfügbar.
+Ich empfehle Ihnen die PDF-Variante zu verwenden, das diese Version die final
+lektorierte Version ist und bestimmte Formatierungen für die HMTL-Version (noch)
+nicht funktionieren. Entsprechend ist diese Variante leicht unvollständig.
+Sie können die PDF auf der 
+Homepage des Skripts 
+([https://graebnerc.github.io/RforSocioEcon/](https://graebnerc.github.io/RforSocioEcon/)) 
+herunterladen indem Sie auf das
+PDF-Icon oben links (neben dem `i`) klicken. Alternativ können Sie auch 
+[diesem Link](https://graebnerc.github.io/RforSocioEcon/R-SocioEcon-dt.pdf)
+folgen. 
+Aktualisieren Sie vor dem Download aber Ihr Browserfenster um sicherzugehen, 
+dass Sie die aktuellste Version herunterladen.
 
 ## Danksagung {-}
 
 Ich möchte mich bei Jakob Kapeller und Anika Radkowitsch für das regelmäßige 
-Feedback und die guten Hinweise bedanken. Am *work-in-progress*-Charakter
-des Skripts haben sie natürlich keine Mitschuld.
+Feedback und die guten Hinweise bedanken. 
+Bei Birte Strunk möchte ich mich für das hervorragende Lektorat und das 
+Beisteuern vieler guter Ideen bedanken. 
+Am *work-in-progress*-Charakter des Skripts haben alle natürlich keine Mitschuld.
 
-## Änderungshistorie während des Semesters {-}
+## Lizenz {-}
+
+```{r, echo=FALSE, fig.align='center', out.width='20%'}
+knitr::include_graphics("figures/ccbylicense.png")
+```
+
+Das gesamte Skript ist unter der 
+[Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)
+lizensiert.
+
+## Änderungshistorie {-}
 
 *An dieser Stelle werden alle wichtigen Updates des Skripts gesammelt.*
 *Die Versionsnummer hat folgende Struktur: `major`.`minor`.`patch`*
@@ -76,24 +81,4 @@ des Skripts haben sie natürlich keine Mitschuld.
 
 Datum    | Version | Wichtigste Änderungen         |
 :--------+:--------+:------------------------------|
-19.10.19 | 0.1.0    | Erste Version veröffentlicht |
-03.11.19 | 0.2.0    | Markdown-Anhang hinzugefügt  |
-04.11.19 | 0.3.0    | Anhänge zur Wiederholung grundlegender Statistik hinzugefügt  |
-06.11.19 | 0.4.0    | Kapitel zu linearen Modellen hinzugefügt  |
-18.11.19 | 0.5.0    | Kapitel zur Datenaufbereitung und Visualisierung hinzugefügt; kleinere Korrekturen im Kapitel zu lin. Modellen  |
-20.11.19 | 0.5.1    | Korrektur von kleineren Rechtschreib/Grammatikfehlern; Fix für Problem mit html Version auf HP |
-03.12.19 | 0.6.0    | Kapitel zu formalen Konzepten hinzugefügt; kleinere Korrekturen |
-10.12.19 | 0.6.1    | Herleitung OLS hinzugefügt; bessere Beispiele bei Formalie; Konsolidierung Notation Kap. 4 und 7 |
-06.01.20 | 0.7.0    | Kapitel zur fortgeschrittenen Themen der Regression und nichtlinearen Schätzern hinzugefügt |
-12.01.20 | 0.7.1    | Ergänzung Beweise im Kapitel zu fortgeschrittenen Themen der Regression |
-29.01.20 | 0.7.2    | Korrektur der Tabelle in "Wahl der funktionalen Form" in Kapitel 8 im Bezug auf log-log Modelle |
-
-## Lizenz {-}
-
-```{r, echo=FALSE, fig.align='center', out.width='20%'}
-knitr::include_graphics("figures/license.png")
-```
-
-Das gesamte Skript ist unter der 
-[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/)
-lizensiert.
+19.10.19 | 0.9.0    | Erste Version für das Wintersemester 2020/21 |

@@ -4,13 +4,31 @@
 
 
 
-Nach diesen (wichtigen) Vorbereitungsschritten wollen wir nun mit dem 
-eigentlichen Programmieren anfangen.
+Nach den (wichtigen) Vorbereitungsschritten im vorangehenden Kapitel 
+wollen wir an dieser Stelle mit dem eigentlichen Programmieren anfangen.
 Zu diesem Zweck müssen wir uns mit der Syntax von R vertraut machen,
 also mit den Regeln, denen wir folgen müssen, wenn wir Code schreiben, damit der 
 Computer versteht, was wir ihm eigentlich in R sagen wollen.
 
-## Befehle in R an den Computer übermitteln
+Das Kapitel ist dabei folgendermaßen aufgebaut:
+zunächst lernen wir in Abschnitt \@ref(es:befehle) wie wir mit Hilfe von R und 
+R-Studio mit unserem Computer 'kommunizieren' können. 
+Danach lernen wir in Abschnitt \@ref(es:objekte) nicht nur die zentralen Elemente 
+der Programmiersprache R kennen, nämlich Objekte und Funktionen, sondern
+lernen auch wie wir solche Objekte erstellen und ihnen Namen zuweisen können.
+Ein großer Teil des Kapitels (Abschnitt \@ref(es:objektarten)) ist dann den 
+unterschiedlichen Arten von Objekten in R gewidmet. Wir lernen zum Beispiel
+wie sich Vektoren von Listen unterscheiden, und welche Pendants in R es zu
+'Zahlen' und 'Wörtern' in unserer Alltagssprache gibt.
+Abgeschlossen wir das Kapitel mit einer kurzen Einführung von 'Paketen' in
+Abschnitt \@ref(es:pakete).
+Pakete sind ein wichtiger Bestandteil der Open-Source Sprache R:
+hier handelt es sich um Code, den andere Menschen geschrieben und der 
+Allgemeinheit frei zugänglich gemacht haben. 
+Dadurch ist sichergestellt, dass R immer auf dem neuesten Stand der 
+Forschung und Praxis ist.
+
+## Befehle in R an den Computer übermitteln {#es:befehle}
 
 Grundsätzlich können wir über R Studio auf zwei Arten mit dem Computer
 "kommunizieren": über die Konsole direkt, oder indem wir im Skriptbereich ein
@@ -32,12 +50,21 @@ Computer was wir von ihm wollen und gibt uns das entsprechende Ergebnis aus:
 #> [1] 5
 ```
 
-Auf diese Art und Weise könne wir R als einfachen Taschenrechner verwenden,
+Die Zeichenkombination `#>` am Beginn der Zeile zeigt an, dass es sich bei 
+dieser Zeile um den Output eines R-Befehlt handelt. Das kann bei Ihrem
+Computer durchaus anders aussehen. 
+Das Ergebnis von `2+3` ist eine Zahl (genauer: ein 'Skalar'). 
+In R werden Skalare immer als Vektor der Länge 1 dargestellt.
+Die `[1]` gibt also an, dass hier ein Vektor der Länge 1 angezeigt wird.
+Wäre das Ergebnis unserer Berechnung ein Vektor der Länge 2 würde die 
+Outputzeile dementsprechend mit `#> [2]` eingeleitet werden.
+
+Auf diese Art und Weise können wir R als einfachen Taschenrechner verwenden,
 denn für alle einfachen mathematischen Operationen können wir bestimmte Symbole
 als Operatoren verwenden.
 An dieser Stelle sei noch darauf hingewiesen, dass das Symbol `#` in R einen
 Kommentar einleitet, das heißt alles was in einer Zeile nach `#` steht wird
-vom Computer ignoriert und man kann sich einfach Notizen in seinem Code machen.
+vom Computer ignoriert und man kann sich an dieser Stelle Notizen im Code machen.
 
 
 ```r
@@ -79,18 +106,18 @@ Alternativ können wir die Befehle in einem Skript aufschreiben, und dieses Skri
 dann ausführen. Während die Interaktion über die Konsole sinnvoll ist um die 
 Effekte bestimmter Befehle auszuprobieren, bietet sich die Verwendung von 
 Skripten an, wenn wir mit den Befehlen später weiter arbeiten wollen, oder sie
-anderen Menschen zugänglich zu machen. Den das Skript können wir als Datei auf 
+anderen Menschen zugänglich zu machen. Denn das Skript können wir als Datei auf 
 unserem Computer speichern, vorzugsweise im Unterordner `R` unseres R-Projekts
 (siehe Abschnitt [Relevante Unterordner erstellen](#unterordner)), und dann 
 später weiterverwenden. 
 
-Die Berechnungen, die wir bisland durchgeführt haben sind zugegebenermaßen nicht 
+Die Berechnungen, die wir bislang durchgeführt haben sind zugegebenermaßen nicht 
 sonderlich spannend.
 Um fortgeschrittene Operationen in R durchführen und verstehen zu können müssen
 wir uns zunächst mit den Konzepten von **Objekten**, **Funktionen** und
 **Zuweisungen** beschäftigen.
 
-## Objekte, Funktionen und Zuweisungen
+## Objekte, Funktionen und Zuweisungen {#es:objekte}
 
 > To understand computations in R, two slogans are helpful:
 >   Everything that exists is an object.
@@ -105,8 +132,7 @@ In der Berechnung `2 + 3` ist die Zahl `2` genauso ein Objekt wie die Zahl `3`
 und die Additionsfunktion, die durch den Operator `+` aufgerufen wird.
 
 Mit der Aussage 'Alles was in R passiert ist ein Funktionsaufruf' ist gemeint,
-dass wenn wir R eine Berechnung durchführen lassen, tun wir dies indem wir eine
-Funktion aufrufen.
+dass wir R eine Berechnung durchführen lassen indem wir eine Funktion aufrufen.
 
 **Funktionen** sind Algorithmen, die bestimmte Routinen auf einen *Input* 
 anwenden und dabei einen *Output* produzieren. 
@@ -116,7 +142,7 @@ der Addition angewandt und als Output die Zahl `5` ausgegeben.
 Der Output `5` ist dabei in R genauso ein Objekt wie die Inputs `2` und `3`, 
 sowie die Funktion `+`.
 
-Ein 'Problem' ist, dass R im vorliegenden Falle den Output der Berechnung 
+Ein 'Problem' ist, dass R im vorliegenden Fall den Output der Berechnung 
 zwar ausgibt, wir danach aber keinen Zugriff darauf mehr haben:
 
 
@@ -130,7 +156,7 @@ zwar ausgibt, wir danach aber keinen Zugriff darauf mehr haben:
 
 Falls wir den Output weiterverwenden wollen, macht es Sinn, dem Output Objekt
 einen Namen zu geben, damit wir später wieder darauf zugreifen können.
-Der Prozess einem Objekt einen Namen zu Geben wird **Zuweisung** oder 
+Der Prozess einem Objekt einen Namen zu geben wird **Zuweisung** oder 
 **Assignment** genannt und durch die Funktion `assign` vorgenommen:
 
 
@@ -160,24 +186,24 @@ assign("zwischenergebnis", 2 + 3)
 zwischenergebnis <- 2 + 3
 ```
 
-Entsprechend werden wir Zuweisungen immer mit dem `<-` Operator durchführen.
+Daher werden wir Zuweisungen immer mit dem `<-` Operator durchführen.
 ^[Theoretisch kann `<-` auch andersherum verwendet werden: 
 `2 + 3 -> zwischenergebnis`.
 Das mag zwar auf den ersten Blick intuitiver erscheinen, da das aus `2 + 3` 
 resultierende Objekt den Namen `zwischenergebnis` bekommt, also immer erst das
-Objekt erstellt wird und dann der Name zugewiesen wird, es führt jedoch zu 
+Objekt erstellt wird und dann der Name zugewiesen wird. Es führt jedoch zu 
 deutlich weniger lesbarem Code und sollte daher nie verwendet werden.
-Ebensoweinig sollten Zuweisungen durch den `=` Operatur vorgenommen werden, auch
+Ebensowenig sollten Zuweisungen durch den `=` Operator vorgenommen werden, auch
 wenn es im Fall `zwischenergebnis = 2 + 3` funktionieren würde.] 
 
 Wir können in R nicht beliebig Namen vergeben. 
-Gültige (also: syntaktisch korrekte) Namen ...
+Gültige (also: syntaktisch korrekte) Namen
 
 * enthalten nur Buchstaben, Zahlen und die Symbole `.` und `_`
 * fangen nicht mit `.` oder einer Zahl an!
 
 Zudem gibt es einige Wörter, die schlicht nicht als Name verwendet werden 
-dürgen, z.B. `function`, `TRUE`, oder `if`. Die gesamte Liste verbotener Worte
+dürfen, z.B. `function`, `TRUE`, oder `if`. Die gesamte Liste verbotener Worte
 kann mit dem Befehl `?Reserved` ausgegeben werden.
 
 Wenn man einen Namen vergeben möchte, der nicht mit den gerade formulierten 
@@ -192,10 +218,10 @@ TRUE <- 5
 #> Error in TRUE <- 5: invalid (do_set) left-hand side to assignment
 ```
 
-Zudem sollte man folgendes beachten:
+Zudem sollte man Folgendes beachten:
 
-* Namen sollten kurz und informativ sein; entsprechen ist `sample_mean` ein 
-guter Name, `shit15_2` dagegen eher weniger
+* Namen sollten kurz und informativ sein; entsprechend ist `sample_mean` ein 
+guter Name, `vector_2` dagegen eher weniger
 * Man sollte **nie Umlaute in Namen verwenden**
 * R ist *case sensitive*, d.h. `mean_value` ist ein anderer Name als `Mean_Value`
 * Auch wenn möglich, sollte man nie von R bereit gestellte Funktionen 
@@ -204,8 +230,8 @@ in der Regel aber zu großem Unglück, weil man nicht mehr ganz einfach auf die
 zugrundeliegende Funktion zurückgreifen kann.
 
 > **Hinweis**: Alle aktuellen Namenszuweisungen sind im Bereich `Environment`
-in R Studio (Nr. 4 in der Abbildung oben) aufgelistet und können durch die 
-Funktion `ls()` angezeigt werden.
+in R Studio (Nr. 4 in Abbildung \@ref(fig:folder) oben) aufgelistet und können 
+durch die Funktion `ls()` angezeigt werden.
 
 > **Hinweis**: Ein Objekt kann mehrere Namen haben, aber kein Name kann zu 
 mehreren Objekten zeigen, da im Zweifel eine neue Zuweisung die alte 
@@ -257,7 +283,7 @@ x <- 2 + 2 # Zuweisung, R gibt das Ergebnis in der Konsole nicht aus
 ```
 
 
-## Zusammenfassung
+An dieser Stelle wollen wir das bisher Gelernte kurz zusammenfassen:
 
 * Wir können Befehle in R Studio an den Computer übermitteln indem wir (a) den
 R Code in die Konsole schreiben und Enter drücken oder (b) den Code in ein 
@@ -267,15 +293,14 @@ Funktionsaufruf
 * Wir können einem Objekt mit Hilfe von `<-` einen Namen geben und dann später
 wieder aufrufen. Den Prozess der Namensgebung nennen wir **Assignment** und wir
 können uns alle aktuell von uns vergebenen Namen mit der Funktion `ls()` 
-anzeigen lassen.
+anzeigen lassen
 * Eine Funktion ist ein Objekt, das auf einen Input eine bestimmte Routine 
 anwendet und einen Output produziert
 
 An dieser Stelle sei noch auf die Hilfefunktion `help()` hingewiesen.
-Falls Sie Informationen über ein Objekt bekommen wollen können Sie so
-weitere Informationen bekommen. Wenn Sie z.B. genauere Informationen über 
-die Verwendung der Funktion `assign` erhalten wollen, können Sie Folgendes 
-eingeben:
+Über diese können Sie weitere Informationen über ein Objekt bekommen. Wenn Sie 
+z.B. genauere Informationen über die Verwendung der Funktion `assign` erhalten 
+wollen, können Sie Folgendes eingeben:
 
 
 ```r
@@ -283,7 +308,7 @@ help(assign)
 ```
 
 
-## Grundlegende Objeke in R
+## Grundlegende Objeke in R {#es:objektarten}
 
 Wir haben bereits gelernt, dass alles was in R existiert ein Objekt ist.
 Wir haben aber auch schon gelernt, dass es unterschiedliche Typen von Objekten
@@ -291,7 +316,7 @@ gibt: Zahlen, wie `2` oder `3` und Funktionen wie `assign`.^[Wie wir unten
 lernen werden sind `2` und `3` in erster Linie keine Zahlen, sondern Vektoren 
 der Länge 1, und gelten erst in nächster Instanz als 'Zahl' (genauer: 'double').]
 Tatsächlich gibt es noch viel mehr Arten von Objekten.
-Ein gutes Verständnis der Objektarten ist Grundvoraussetzung später 
+Ein gutes Verständnis der Objektarten ist Grundvoraussetzung um später 
 anspruchsvolle Programmieraufgaben zu lösen. 
 Daher wollen wir uns im Folgenden mit den wichtigsten Objektarten in R 
 auseinandersetzen.
@@ -331,11 +356,11 @@ Wir schreiben hier zunächst den Namen der Funktion (im Folgenden Beispiel
 assign("test", 2)
 ```
 
-Ein hin und wieder auftretende Form ist die so genannte *Infix-Form*. 
+Eine hin und wieder auftretende Form ist die sogenannte *Infix-Form*. 
 Hier wird der Funktionsname zwischen die Argumente geschrieben. 
 Dies ist, wie wir oben bereits bemerkt haben, bei vielen mathematischen 
 Funktionen wie `+`, `-` oder `/` der Fall. 
-Streng genommen ist die die Infix-Form aber nur eine *Abkürzung*, denn jeder
+Streng genommen ist die Infix-Form aber nur eine *Abkürzung*, denn jeder
 Funktionsaufruf in Infix-Form kann auch in Prefix-Form geschrieben werden, wie
 folgendes Beispiel zeigt:
 
@@ -359,7 +384,7 @@ folgendes Beispiel zeigt:
 **Die Argumente einer Funktion**
 
 Die Argumente einer Funktion stellen zum einen den *Input* für die in der 
-Funktion implementierten Routine dar.
+Funktion implementierte Routine dar.
 
 Die Funktion `sum` zum Beispiel nimmt als Argumente eine beliebige Anzahl an
 Zahlen (ihr 'Input') und berechnet die Summe dieser Zahlen:
@@ -374,14 +399,15 @@ sum(1,2,3,4)
 ```
 
 Darüber hinaus akzeptiert `sum()` noch ein *optionales Argument*, `na.rm`, 
-welches entweder den Wert `TRUE` oder `FALSE` annehmen kann.
-Wenn wir das Argument nicht explizit spezifizieren nimmt es automatisch `FALSE`
+welches entweder den Wert `TRUE` oder `FALSE` annehmen kann. Die Buchstaben `na`
+stehen hier für "not available", und bezeichnen fehlende Werte. Wenn wir das 
+Argument nicht explizit spezifizieren nimmt es automatisch `FALSE`
 als den Standardwert an.
 
 Dieses optionale Argument ist kein klassischer Input, sondern kontrolliert das 
-genaue Verhalten der Funktion. Im Falle von `sum()` werden fehlende Werte, 
-so genannte `NA` (siehe unten) ignoriert bevor die Summe der Inputs gebildet wird
-wenn `na.rm` den Wert `TRUE` hat:
+genaue Verhalten der Funktion. Wenn `na.rm` den Wert `TRUE` hat, dann werden im 
+Falle von `sum()` die fehlende Werte, also die `NA`, ignoriert bevor die Summe 
+der Inputs gebildet wird:
 
 
 ```r
@@ -401,7 +427,7 @@ sum(1,2,3,4,NA, na.rm = TRUE)
 #> [1] 10
 ```
 
-Wenn wir wissen wollen, welche Argumente eine Funktion akzeptiert ist es immer 
+Wenn wir wissen wollen, welche Argumente eine Funktion akzeptiert, ist es immer 
 eine gute Idee über die Funktion `help()` einen Blick in die Dokumentation zu
 werfen!
 
@@ -411,7 +437,6 @@ Standardwert `FALSE` annimmt.
 
 
 **Eigene Funktionen definieren**
-
 
 Sehr häufig möchten wir selbst Funktionen definieren.
 Das können wir mit dem reservierten Keyword `function` machen.
@@ -424,13 +449,13 @@ die Länge der Hypothenuse bestimmt:
 ```r
 pythagoras <- function(kathete_1, kathete_2){
   hypo_quadrat <- kathete_1**2 + kathete_2**2
-  l_hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
-  return(l_hypothenuse)
+  hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
+  return(hypothenuse)
 }
 ```
 
 Wir definieren eine Funktion durch die Funktion `function()`.
-In der Regel beginnen wir die Definition indem wir der zu erstellenden 
+In der Regel beginnen wir die Definition indem wir die zu erstellende Funktion 
 mit einem Namen assoziieren (hier: 'pythagoras') damit wir sie später auch 
 verwenden können.
 
@@ -446,7 +471,7 @@ genannt wird.
 Dies ist der häufig unter $c^2=a^2 + b^2$ bekannte Teil des Satz von Pythagoras.
 Da wir an der 'normalen' Länge der Hypothenuse interesssiert sind, ziehen wir 
 mit der Funktion `sqrt()` noch die Wurzel von `hypo_quadrat`, und geben dem 
-resultierenden Objekt den Namen `l_hypothenuse`, welches in der letzten Zeile
+resultierenden Objekt den Namen `hypothenuse`, welches in der letzten Zeile
 mit Hilfe des Keywords `return` als der Wert definiert wird, den die Funktion
 als Output ausgibt.^[Das ist strikt genommen nicht 
 notwendig, aber der Übersichtlichkeit werden wir immer `return` 
@@ -467,9 +492,9 @@ pythagoras(2, 4)
 #> [1] 4.472136
 ```
 
-Beachten Sie, dass alle Objet Namen, die innerhalb des *function bodies* verwendet
-werden gehen nach dem Funktionsaufruf verloren:^[Das liegt daran, dass Funktionen 
-ihr eigenes [environment](https://adv-r.hadley.nz/environments.html) haben.]
+Beachten Sie, dass alle Objektnamen, die innerhalb des *function bodies* verwendet
+werden, nach dem Funktionsaufruf verloren gehen, weil Funktionen 
+ihr eigenes [environment](https://adv-r.hadley.nz/environments.html) haben.
 Deswegen kommt es im vorliegenden Falle zu einem Fehler, da `hypo_quadrat` nur
 innerhalb des *function bodies* existiert:
 
@@ -477,8 +502,8 @@ innerhalb des *function bodies* existiert:
 ```r
 pythagoras <- function(kathete_1, kathete_2){
   hypo_quadrat <- kathete_1**2 + kathete_2**2
-  l_hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
-  return(l_hypothenuse)
+  hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
+  return(hypothenuse)
 }
 x <- pythagoras(2, 4)
 hypo_quadrat
@@ -513,8 +538,8 @@ folgendermaßen aussehen:
 #'  rechtwinkligen Dreieckst
 pythagoras <- function(kathete_1, kathete_2){
   hypo_quadrat <- kathete_1**2 + kathete_2**2
-  l_hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
-  return(l_hypothenuse)
+  hypothenuse <- sqrt(hypo_quadrat) # sqrt() zieht die Quadratwurzel
+  return(hypothenuse)
 }
 ```
 
@@ -522,7 +547,7 @@ Die Dokumentation wird also direkt vor die Definition der Funktion gesetzt.
 In der ersten Zeile gibt man der Funktion einen maximal einzeiligen Titel, der 
 nicht länger als 80 Zeichen sein sollte und die Funktion prägnant beschreibt.
 
-Dann, nach einer Lehrzeile wird genauer beschrieben was die Funktion macht.
+Dann, nach einer Leerzeile wird genauer beschrieben was die Funktion macht.
 Danach werden die Argumente der Funktion beschrieben. Für jedes Argument 
 beginnen wir die Reihe mit `@param`, gefolgt von dem Namen des Arguments und
 dann einer kurzen Beschreibung.
@@ -547,11 +572,11 @@ Konventionen folgt).
 2. **Funktionen bieten Struktur.** Funktionen fassen in der Regel Ihre Vorstellung
 davon zusammen, wie ein bestimmtes Problem zu lösen ist. Da man sich diese 
 Gedanken nicht ständig neu machen möchte ist es sinnvoll sie einmalig in einer 
-Funktion zusammen zu fassen.
+Funktion zusammenzufassen.
 3. **Funktionen erleichtern Korrekturen.** Wenn Sie merken, dass Sie in der 
 Implementierung einer Routine einen Fehler gemacht haben müssen Sie im besten
 Falle nur einmal die Definition der Funktion korrigieren - im schlimmsten Falle
-müssen sie in ihrem Code nach der Routine suchen und sie in jedem einzelnen 
+müssen Sie in Ihrem Code nach der Routine suchen und sie in jedem einzelnen 
 Anwendungsfall erneut korrigieren.
 
 Es gibt noch viele weitere Gründe dafür, Funktionen häufig zu verwenden. Viele
@@ -598,12 +623,19 @@ wären `"Hallo"`, `"500"` oder `"1_2_Drei"`.
 * Es gibt noch zwei weitere besondere 'Typen', die strikt gesehen keine 
 atomaren Vektoren darstellen, allerdings in diesem Kontext schon häufig 
 auftauchen: `NULL`, was strikt genommen ein eigener Datentyp ist und immer
-die Länge 0 hat, sowie `NA`, das einen fehlenden Wert darstellt
+die Länge 0 hat, sowie `NA`, das einen fehlenden Wert darstellt.
 
-Hieraus ergibt sich folgende Aufteilung für Vektoren:
+Hieraus ergibt sich die in Abbildung \@ref(fig:vektoren) aufgezeigte Aufteilung 
+von Vektoren.
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{figures/vector-classification} \end{center}
+{\centering \includegraphics[width=0.8\linewidth]{figures/vector-classification} 
+
+}
+
+\caption{Arten von Vektoren in R}(\#fig:vektoren)
+\end{figure}
 
 Wir werden nun die einzelnen Typen genauer betrachten.
 Vorher wollen wir jedoch noch die Funktion `typeof` einführen.
@@ -629,7 +661,7 @@ typeof(x)
 #> [1] "double"
 ```
 
-Wir können auch explizit testen ob ein Objekt ein Objekt bestimmten Typs ist.
+Wir können auch explizit testen ob ein Objekt tatsächlich ein Objekt eines bestimmten Typs ist.
 Die generelle Syntax hierfür ist: `is.*()`, also z.B.:
 
 
@@ -653,7 +685,7 @@ is.double(x)
 Diese Funktion gibt als Output also immer einen logischen Wert aus, je nachdem
 ob die Inputs des entsprechenden Typs sind oder nicht.
 
-Bestimmte Objekte können in einen anderen Typ transformiert werden.
+Bestimmte Objekte können auch in einen anderen Typ transformiert werden.
 Hier spricht man von `coercion` und die generelle Syntax hierfür ist: 
 `as.*()`, also z.B.:
 
@@ -681,7 +713,7 @@ print(
 ```
 
 
-Allerdings ist eine Transformation nicht immer möglicht:
+Allerdings ist eine Transformation nicht immer möglich:
 
 ```r
 as.double("Hallo")
@@ -695,7 +727,7 @@ as.double("Hallo")
 #> [1] NA
 ```
 Da R nicht weiß wie man aus dem Wort 'Hallo' eine Dezimalzahl machen soll,
-transformiert er das Wort in einen 'Fehlenden Wert', der in R als `NA` 
+transformiert R das Wort in einen 'Fehlenden Wert', der in R als `NA` 
 bekannt ist und unten noch genauer diskutiert wird.
 
 
@@ -703,6 +735,23 @@ Für die Grundtypen ergibt sich folgende logische Hierachie an trivialen
 Transformationen: `logical` &rarr; `integer` &rarr; `double` &rarr; `character`,
 d.h. man kann eine Dezimalzahl ohne Probleme in ein Wort transformieren, 
 aber nicht umgekehrt:
+
+***
+
+> **Warum überhaupt transformieren?**
+> 
+> Für eine Programmiersprache sind Datentypen extrem wichtig, weil sonst unklar
+bliebe wie mathematische Operationen auf unterschiedliche Objekte wie Zahlen
+oder Wörter anzuwenden wären.
+Selbst transformieren werden Sie Objekte vor allem wenn Sie eine bestimmte, nur
+für eine bestimmte Objektart definierte Operation verwenden wollen und das 
+Objekt bislang als ein anderer Typ gespeichert ist.
+Das kann zum Beispiel passieren wenn Sie Daten einlesen oder Wörter selbst in
+Zahlenwerte übersetzen. Wenn in Ihrem Code unerwartete Fehler mit kryptischen
+Fehlermeldungen auftauchen ist es immer eine gute Idee, erst einmal die Typen
+der verwendeten Objekte zu checken und die Objekte ggf. zu transformieren.
+
+***
 
 
 ```r
@@ -739,6 +788,30 @@ print(k)
 ```
 #> [1] NA
 ```
+
+Bei der Transformation logischer Werte wird `TRUE` übrigens zu `1` und `FALSE` 
+zu `0`, eine Tatsache, die wir uns später noch zunutze machen werden:
+
+
+```r
+x <- TRUE
+as.integer(x)
+```
+
+```
+#> [1] 1
+```
+
+
+```r
+y <- FALSE
+as.integer(y)
+```
+
+```
+#> [1] 0
+```
+
 Da nicht immer ganz klar ist wann R bei Transformationen entgegen der gerade
 eingeführten Hierachie eine Warnung ausgibt und wann nicht sollte man hier immer
 besondere Vorsicht walten lassen!
@@ -788,7 +861,7 @@ typeof(z)
 #> [1] "double"
 ```
 
-Interessanterweise werden logische Werte ebenfalls transformiert:
+Bei einer Addition werden logische Werte ebenfalls automatisch transformiert:
 
 
 ```r
@@ -805,7 +878,10 @@ print(z)
 Daher sollte man immer den Überblick behalten, mit welchen Objekttypen man 
 gerade arbeitet.
 
-Hier noch ein kurzer Überblick zu den Test- und Transformationsbefehlen:
+Einen Überblick zu den Test- und Transformationsbefehlen finden Sie in 
+Tabelle \@ref(tab:artentests).
+
+Table: (\#tab:artentests) Ein Überblick zu Test- und Transformationsbefehlen in R.
 
 Typ       | Test           | Transformation |
 ----------+----------------+----------------|
@@ -836,7 +912,7 @@ x
 #> [1] 1 2 3
 ```
 
-Dabei können auch Vektoren miteinander verbunden werden:
+Dabei können Vektoren auch miteinander verbunden werden:
 
 
 ```r
@@ -851,7 +927,7 @@ z
 ```
 
 
-Da atomare Vektoren immer nur Objekte des gleichen Typs enthalten können, 
+Da atomare Vektoren immer nur Objekte des gleichen Typs enthalten, 
 könnte man erwarten, dass es zu einem Fehler kommt, wenn wir Objete 
 unterschiedlichen Type kombinieren wollen:
 
@@ -884,7 +960,10 @@ len_x
 Die logischen Werte `TRUE` und `FALSE` sind häufig das Ergebnis von logischen
 Abfragen, z.B. 'Ist 2 größer als 1?'. 
 Solche Abfragen kommen in der Forschungspraxis häufig vor und es macht Sinn,
-sich mit den häufigsten logischen Operatoren vertraut zu machen:
+sich mit den häufigsten logischen Operatoren vertraut zu machen.
+Einen Überblick finden Sie in Tabelle \@ref(tab:logicaloperators).
+
+Table: (\#tab:logicaloperators) Zentrale logische Abfragen in R.
 
 | Operator | Funktion in R | Beispiel |
 |:--------:|:-------------:|:---------|
@@ -969,7 +1048,7 @@ print(
 ### Wörter (character)
 
 Wörter werden in R dadurch gebildet, dass an ihrem Anfang und Ende das Symbol
-`'` oder `""` steht:
+`'` oder `"` steht:
 
 
 ```r
@@ -994,12 +1073,12 @@ Wie andere Vektoren können sie mit der Funktion `c()` verbunden werden:
 
 
 ```r
-z <- c(x, " und ", y)
+z <- c(x, "und", y)
 z
 ```
 
 ```
-#> [1] "Hallo"           " und "           "Auf Wiedersehen"
+#> [1] "Hallo"           "und"             "Auf Wiedersehen"
 ```
 
 Nützlich ist in diesem Zusammenhang die Funktion `paste()`, die Elemente von 
@@ -1019,8 +1098,9 @@ y
 ```
 
 
-`paste()` akzeptiert ein optionales Argument `sep`, mit dem wir den Wert angeben
-können, der zwischen die zu verbindenden Elemente gesetzt wird:
+Die Funktion `paste()` akzeptiert ein optionales Argument `sep`, mit dem wir 
+den Wert angeben können, der zwischen die zu verbindenden Elemente gesetzt wird 
+(der Default ist `sep=" "`):
 
 
 ```r
@@ -1035,7 +1115,7 @@ x_axis
 ```
 
 
-> Hinweis: Hier haben wir ein Beispiel für das so genannte 'Recycling' 
+> Hinweis: Hier haben wir ein Beispiel für das sogenannte 'Recycling' 
 gesehen: da der Vektor `c("Tag")` kürzer war als der Vektor `tag_nr` wird `c("Tag")`
 einfach kopiert damit die Operation mit `paste()` Sinn ergibt. Recycling ist
 oft praktisch, aber manchmal auch schädlich, nämlich dann, wenn man eigentlich
@@ -1047,9 +1127,9 @@ ein Wochentag vergessen wurde:
 
 
 ```r
-tage <- paste("Tag ", 1:7, ":", sep = "")
+tage <- paste("Tag ", 1:7, ":", sep="")
 tag_namen <- c("Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag")
-paste(tage, tag_namen)
+paste(tage, tag_namen) # default ist sep=" "
 ```
 
 ```
@@ -1057,7 +1137,6 @@ paste(tage, tag_namen)
 #> [4] "Tag 4: Donnerstag" "Tag 5: Freitag"    "Tag 6: Samstag"   
 #> [7] "Tag 7: Montag"
 ```
-
 
 ### Fehlende Werte und NULL
 
@@ -1147,9 +1226,48 @@ length(x)
 #> [1] 0
 ```
 
+`NULL` wird häufig verwendet um zu signalisieren, dass etwas nicht existiert.
+So ist ein leerer Vektor `NULL`:
+
+
+```r
+x <- c()
+x
+```
+
+```
+#> NULL
+```
+
+```r
+length(x)
+```
+
+```
+#> [1] 0
+```
+
+Damit unterscheidet er sich von einem Vektor mit einem (oder mehreren) 
+fehlenden Werten:
+
+
+```r
+y <- NA
+length(y)
+```
+
+```
+#> [1] 1
+```
+
+Auch im Programmieren von Funktionen wird `NULL` häufig für optionale Argumente
+verwendet. 
+Solche fortgeschrittene Konzepte werden aber erst an späterer Stelle behandelt.
+Für jetzt reicht die Idee, `NULL` als einen Vektor der Länge 0 zu verstehen.
+
 ### Indizierung und Ersetzung
 
-Einzelne Elemente von atomare Vektoren können mit eckigen Klammern extrahiert 
+Einzelne Elemente von atomaren Vektoren können mit eckigen Klammern extrahiert 
 werden:
 
 
@@ -1219,7 +1337,8 @@ herzustellen, bzw. Rechenoperationen mit ihnen durchzuführen.
 **Herstellung von atomaren Vektoren**:
 
 Eine Sequenz ganzer Zahlen wird in der Regel sehr häufig gebraucht.
-Entsprechend gibt es den hilfreichen Shortcut`:`
+Entsprechend gibt es den hilfreichen Shortcut`:`, den wir bei der Besprechung 
+von Vektoren bereits kennengelernt haben:
 
 
 ```r
@@ -1254,8 +1373,8 @@ print(x)
 ```
 
 In diesem Fall ist `seq()` äquivalent zu `:`. 
-`seq` erlaubt aber mehrere optionale Argumente: so können wir mit `by` die 
-Schrittlänge zwischen den einzelnen Zahlen definieren. 
+Die Funktion `seq` erlaubt aber mehrere optionale Argumente: so können wir 
+mit `by` die Schrittlänge zwischen den einzelnen Zahlen definieren. 
 
 
 ```r
@@ -1284,7 +1403,10 @@ print(z)
 
 Und wenn wir einen Vektor in der Länge eines anderen Vektors erstellen wollen,
 bietet sich das Argument `along.with` an. Dies wird häufig für das Erstellen
-von Indexvektoren verwendet. In einem solchen Fall müssen wir die Indexzahlen
+von Indexvektoren verwendet.^[Ein Indexvektor `x` zu einem beliebigen Vektor
+`y` mit `N` Elementen enthält die ganzen Zahlen von 1 bis `N`. Der n-te Wert
+von x korrespontiert also zum Index des n-ten Wert von `y`.]
+In einem solchen Fall müssen wir die Indexzahlen
 nicht direkt angeben:
 
 
@@ -1296,8 +1418,6 @@ print(z_index)
 ```
 #> [1] 1 2 3 4
 ```
-
-
 
 Auch häufig möchten wir einen bestimmten Wert wiederholen. 
 Das geht mit der Funktion `rep`:
@@ -1352,7 +1472,7 @@ max(x)
 ```
 
 Beide Funktionen besitzen ein optionales Argument `na.rm`, das entweder `TRUE` 
-oder `FALSE` sein kann. Im Fallse von `TRUE` werden alle `NA` Werte für die
+oder `FALSE` sein kann. Im Falle von `TRUE` werden alle `NA` Werte für die
 Rechenoperation entfernt:
 
 
@@ -1404,8 +1524,8 @@ var(y, na.rm = T)
 ```
 
 Ebenfalls häufig sind wir an der **Summe**, bzw, dem **Produkt** aller Elemente
-des Vektors interessiert. `sum()` und `prod()` helfen weiter und auch sie kennen
-das optionale Argument `na.rm`:
+des Vektors interessiert. Die Funktionen `sum()` und `prod()` helfen weiter und 
+auch sie kennen das optionale Argument `na.rm`:
 
 
 ```r
@@ -1424,7 +1544,6 @@ prod(y, na.rm = T)
 ```
 #> [1] 24
 ```
-
 
 ### Listen
 
@@ -1462,8 +1581,8 @@ l_1
 #> [1] FALSE
 ```
 
-Wir können Listen mit der Funktion `str()` inspizieren. In diesem Fall erhalten
-wir unmittelbar Informationen über die Art der Elemente:
+Wir können Listen mit der Funktion `str()` (kurz für "structure") inspizieren. 
+In diesem Fall erhalten wir unmittelbar Informationen über die Art der Elemente:
 
 
 ```r
@@ -1499,8 +1618,8 @@ names(l_2)
 #> [1] "erstes_element"  "zweites_element" "drittes_element"
 ```
 
-Um einzelne Elemente einer Liste auszulesen müssen wir `[[` anstatt `[` verwemden.
-Wir können dann entweder Elemente nach ihrer Position oder ihren Namen auswählen:
+Um einzelne Elemente einer Liste auszulesen müssen wir `[[` anstatt `[` verwenden.
+Wir können dann Elemente entweder nach ihrer Position oder nach ihren Namen auswählen:
 
 
 ```r
@@ -1520,9 +1639,145 @@ l_2[["erstes_element"]]
 ```
 
 
-Im folgenden wollen wir uns noch mit zwei speziellen Typen beschäftigen, die weniger
-fundamental als die bislang diskutierten sind, jedoch häufig in der alltäglichen
-Arbeit vorkommen: Matrizen und Data Frames.
+Im Folgenden wollen wir uns noch mit drei speziellen Typen beschäftigen, die 
+weniger fundamental als die bislang diskutierten Typen sind, jedoch häufig in 
+der alltäglichen Arbeit vorkommen: Faktoren, Matrizen und Data Frames.
+
+### Faktoren {#introfactors}
+
+Faktoren werden verwendet um ordinale oder kategoriale Daten darzustellen.
+Ein Faktor kann nur einen von mehreren vorher definierten Werten annehmen, so
+genannten *Levels*. 
+Faktoren werden über die Funktion `factor()` erstellt. 
+Sie nimmt als erstes Argument die Werte für den Faktor:
+
+
+```r
+x <- c("Frau", "Mann", "Frau")
+x <- factor(c("Frau", "Mann", "Frau"))
+x
+```
+
+```
+#> [1] Frau Mann Frau
+#> Levels: Frau Mann
+```
+
+Wenn wir Levels definieren wollen, die aber aktuell noch keine Ausprägung
+haben können wir dies mit dem Argument `levels` bewerkstelligen:
+
+
+```r
+x <- c("Frau", "Mann", "Frau")
+x <- factor(c("Frau", "Mann", "Frau"), 
+            levels=c("Divers","Frau", "Mann"))
+x
+```
+
+```
+#> [1] Frau Mann Frau
+#> Levels: Divers Frau Mann
+```
+Wenn wir das Argument `levels` verwenden werden dort nicht genannte 
+Ausprägungen den Wert `NA` erhalten:
+
+
+```r
+x <- c("Frau", "Mann", "Frau")
+x <- factor(c("Frau", "Mann", "Frau", "Divers"), 
+            levels=c("Frau", "Mann"))
+x
+```
+
+```
+#> [1] Frau Mann Frau <NA>
+#> Levels: Frau Mann
+```
+
+Die Reihenfolge der einzelnen Levels spielt meist keine Rolle.
+Bei ordinalen Daten möchten wir aber eine sinnvolle Wertigkeit der 
+Ausprägungen sicherstellen. 
+Das geht mit der Funktion `factor()` und dem Argument `ordered`:
+
+
+```r
+x <- c("Hoch", "Hoch", "Gering", "Hoch")
+x <- factor(x, 
+            levels = c("Gering", "Mittel", "Hoch"), 
+            ordered = TRUE)
+x
+```
+
+```
+#> [1] Hoch   Hoch   Gering Hoch  
+#> Levels: Gering < Mittel < Hoch
+```
+
+Häufig handelt es sich bei den Ausprägungen von Faktoren um Wörter, also 
+Objekte vom Type `character`.
+Technisch gesehen werden Faktoren aber als `integer` gespeichert: um 
+Speicherplatz zu sparen wird jedem Level auf dem Computer eine ganze Zahl 
+zugewiesen, die dann auf den eigentlichen Wert gemapt wird. Gerade wenn die 
+Ausprägungen als solche große Zahlen oder lange Wörter sind spart das Speicher,
+weil diese Ausprägungen nur einmal gespeichert werden müssen, und jedes Element
+des Fakors nur noch eine einfache Zahl ist.
+Daher gibt `typeof()` für Faktoren auch `integer` aus:
+
+
+```r
+x <- factor(c("Frau", "Mann", "Frau"), 
+            levels=c("Mann", "Frau", "Divers"))
+typeof(x)
+```
+
+```
+#> [1] "integer"
+```
+
+Um zu überprüfen ob es sich bei einem Objekt um einen Faktor handelt verwenden
+wir die Funktion `is.factor()`:
+
+
+```r
+is.factor(x)
+```
+
+```
+#> [1] TRUE
+```
+
+Manche Operationen, die für `integer` definiert sind, funktionieren bei Faktoren
+aber nicht, z.B. Addition:
+
+
+```r
+x[1] + x[2]
+```
+
+```
+#> Warning in Ops.factor(x[1], x[2]): '+' not meaningful for factors
+```
+
+```
+#> [1] NA
+```
+
+Dafür können wir andere nützliche Dinge mit Faktoren anstellen, z.B. die 
+absoluten Häufigkeiten über die Funktion `table` anzeigen:
+
+
+```r
+table(x)
+```
+
+```
+#> x
+#>   Mann   Frau Divers 
+#>      1      2      0
+```
+
+Faktoren werden vor allem in der Arbeit mit ordinalen und kategorialen Daten
+verwendet (siehe Kapitel \@ref(data)).
 
 ### Matrizen {#intro-matrix}
 
@@ -1531,7 +1786,7 @@ bei denen es sich jeweils um atomare Vektoren handelt.
 
 **Erstellen von Matrizen**
 
-Matrizen werden mit der Funktion `matrix()`erstellt.
+Matrizen werden mit der Funktion `matrix()` erstellt.
 Diese Funktion nimmt als erstes Argument die Elemente der Matrix und dann
 die Spezifikation der Anzahl von Zeilen (`nrow`) und/oder der Anzahl von
 Spalten (`ncol`):
@@ -1550,8 +1805,8 @@ m_1
 #> [4,]   14   19
 #> [5,]   15   20
 ```
-Wie können die Zeilen, Spalten und einzelne Werte folgendermaßen extrahieren
-und ggf. Ersetzungen vornehmen:
+Wir können die Zeilen und Spalten sowie einzelne Werte folgendermaßen extrahieren
+und gegebenenfalls Ersetzungen vornehmen:
 
 
 ```r
@@ -1580,7 +1835,7 @@ m_1[2,2] # Element [2,2]
 #> [1] 17
 ```
 
-> **Optionaler Hinweis:** Matrizen sind weniger 'fundamantal' als atomare Vektoren. 
+> **Optionaler Hinweis:** Matrizen sind weniger 'fundamental' als atomare Vektoren. 
 Entsprechend gibt uns `typeof()` für eine Matrix auch den Typ der enthaltenen 
 atomaren Vektoren an:
 
@@ -1614,162 +1869,9 @@ is.matrix(2.0)
 #> [1] FALSE
 ```
 
-
-
-**Matrizenalgebra**
-
-Matrizenalgebra spielt in vielen statistischen Anwendungen eine wichtige Rolle.
-In R ist es sehr einfach die typischen Rechenoperationen für Matrizen zu
-implementieren. Hier nur ein paar Beispiele, für die wir die folgenden 
-Matrizen verwenden:
-
-$$A = \left( 
-\begin{array}{rrr}                                
-1 & 6 \\                                               
-5 & 3 \\                                               
-\end{array}
-\right) \quad B = \left( 
-\begin{array}{rrr}                                
-0 & 2 \\                                               
-4 & 8 \\                                               
-\end{array}\right)$$
-
-```r
-matrix_a <- matrix(c(1,5,6,3), ncol = 2)
-matrix_b <- matrix(c(0,4,2,8), ncol = 2)
-```
-
-Skalar-Addition:
-$$4+\boldsymbol{A}=
-\left( 
-\begin{array}{rrr}                                
-4+a_{11} & 4+a_{21} \\                                               
-4+a_{12} & 4+a_{22} \\                                               
-\end{array}
-\right)$$
-
-
-```r
-4+matrix_a
-```
-
-```
-#>      [,1] [,2]
-#> [1,]    5   10
-#> [2,]    9    7
-```
-
-Matrizen-Addition:
-$$\boldsymbol{A}+\boldsymbol{B}=
-\left(
-\begin{array}{rrr}                                
-a_{11} + b_{11} & a_{21} + b_{21}\\                                               
-a_{12} + b_{12} & a_{22} + b_{22}\\                                               
-\end{array}
-\right)$$
-
-
-```r
-matrix_a + matrix_b
-```
-
-```
-#>      [,1] [,2]
-#> [1,]    1    8
-#> [2,]    9   11
-```
-
-
-Skalar-Multiplikation:
-$$2\cdot\boldsymbol{A}=
-\left( 
-\begin{array}{rrr}                                
-2\cdot a_{11} & 2\cdot a_{21} \\                                               
-2\cdot a_{12} & 2\cdot a_{22} \\                                               
-\end{array}
-\right)$$
-
-
-```r
-2*matrix_a
-```
-
-```
-#>      [,1] [,2]
-#> [1,]    2   12
-#> [2,]   10    6
-```
-
-
-Elementenweise Matrix Multiplikation (auch 'Hadamard-Produkt'):
-$$\boldsymbol{A}\odot\boldsymbol{B}=
-\left(
-\begin{array}{rrr}                                
-a_{11}\cdot b_{11} & a_{21}\cdot b_{21}\\                                               
-a_{12}\cdot b_{12} & a_{22}\cdot b_{22}\\                                               
-\end{array}
-\right)$$
-
-
-```r
-matrix_a * matrix_b
-```
-
-```
-#>      [,1] [,2]
-#> [1,]    0   12
-#> [2,]   20   24
-```
-
-Matrizen-Multiplikation:
-$$\boldsymbol{A}\cdot\boldsymbol{B}=
-\left(
-\begin{array}{rrr}                                
-a_{11}\cdot b_{11} + a_{12}\cdot b_{21} & a_{11}\cdot b_{21}+a_{12}\cdot b_{22}\\                     a_{21}\cdot b_{11} + a_{22}\cdot b_{21} & a_{21}\cdot b_{12}+a_{22}\cdot b_{22}\\                     
-\end{array}
-\right)$$
-
-
-```r
-matrix_a %*% matrix_b
-```
-
-```
-#>      [,1] [,2]
-#> [1,]   24   50
-#> [2,]   12   34
-```
-
-Die Inverse einer Matrix $\boldsymbol{A}$, $\boldsymbol{A}^{-1}$, ist 
-definiert sodass gilt
-$$\boldsymbol{A}\boldsymbol{A}^{-1}=\boldsymbol{I}$$
-Sie kann in R mit der Funktion `solve()` identifiziert werden:
-
-
-```r
-solve(matrix_a)
-```
-
-```
-#>            [,1]        [,2]
-#> [1,] -0.1111111  0.22222222
-#> [2,]  0.1851852 -0.03703704
-```
-
-```r
-matrix_a %*% solve(matrix_a)
-```
-
-```
-#>      [,1]         [,2]
-#> [1,]    1 2.775558e-17
-#> [2,]    0 1.000000e+00
-```
-
-Die minimalen Abweichungen sind auf machinelle Rundungsfehler zurückzuführen und
-treten häufig auf.
-
-Es gibt im Internet zahlreiche gute Überblicksartikel zum Thema Matrizenalgebra
+Die Grundlagen der Matrizenalgebra und ihre Implementierung in R wird später
+in Kapitel \@ref(formalia) erläutert.
+Zudem gibt es im Internet zahlreiche gute Überblicksartikel zum Thema Matrizenalgebra
 in R, z.B. [hier](https://www.statmethods.net/advstats/matrix.html)
 oder in größerem Umfang 
 [hier](https://www.math.uh.edu/~jmorgan/Math6397/day13/LinearAlgebraR-Handout.pdf).
@@ -1779,7 +1881,7 @@ oder in größerem Umfang
 
 Der `data.frame` ist eine besondere Art von Liste und ist ein in der 
 Datenanalyse regelmäßig auftretender Datentyp.
-Gegensatz zu einer normalen Liste müssen bei einem `data.frame` alle Elemente
+Im Gegensatz zu einer normalen Liste müssen bei einem `data.frame` alle Elemente
 die gleiche Länge aufweisen. 
 Das heißt man kann sich einen `data.frame` als eine rechteckig angeordnete Liste 
 vorstellen.
@@ -1828,9 +1930,8 @@ is.data.frame(l_3)
 #> [1] FALSE
 ```
 
-Wenn wir `df_3` ausgeben sehen wir unmittelbar den Unterschied zu klassischen 
-Liste:^[Gerade bei sehr großen Data Frames möchte man oft nur die ersten paar Elemente inspizieren.
-Das ist mit der Funktion `head()` möglich.]
+Wenn wir `df_3` ausgeben sehen wir unmittelbar den Unterschied zur klassischen 
+Liste:
 
 
 ```r
@@ -1860,7 +1961,6 @@ df_3
 #> 3 3 6 9
 ```
 
-
 Die andere Möglichkeit einen `data.frame` zu erstellen ist direkt über die 
 Funktion `data.frame()`, wobei es hier in der Regel ratsam ist das optionale
 Argument `stringsAsFactors` auf `FALSE` zu setzen, da sonst Wörter in so 
@@ -1872,7 +1972,7 @@ genannte Faktoren umgewandelt werden:^[Zur Geschichte dieses wirklich
 ```r
 df_4 <- data.frame(
   "gender" = c(rep("male", 3), rep("female", 2)),
-  "height" = c(89, 75, 80, 66, 50),
+  "height" = c(189, 175, 180, 166, 150),
   stringsAsFactors = FALSE
 )
 df_4
@@ -1880,11 +1980,11 @@ df_4
 
 ```
 #>   gender height
-#> 1   male     89
-#> 2   male     75
-#> 3   male     80
-#> 4 female     66
-#> 5 female     50
+#> 1   male    189
+#> 2   male    175
+#> 3   male    180
+#> 4 female    166
+#> 5 female    150
 ```
 
 Data Frames sind das klassische Objekt um eingelesene Daten zu repräsentieren.
@@ -1896,12 +1996,13 @@ gibt, welche den `data.frame` mit effizienteren Objekten ersetzen, z.B. dem
 sehr ähnlich zum `data.frame`.]
 Diese Repräsentation erlaubt dann eine einfache Analyse und Manipulation der Daten.
 
-Zwar gibt es eine eigene Vorlesung zur Bearbeitung von Daten, wir wollen aber 
-schon hier einige zentrale Befehle im Zusammenhang von Data Frames einführen.
+Zwar gibt es ein eigenes Kapitel zur Bearbeitung von Daten 
+(siehe Kapitel \@ref(data)), wir wollen aber schon hier einige zentrale Befehle 
+im Zusammenhang von Data Frames einführen.
 
-An dieser Stelle sei jedoch schon angemerkt, dass um Zeilen, Spalten oder 
-einzelne Elemente auszuwählen verwenden die gleichen Befehle wie bei Matrizen 
-verwendet werdenkönnen:
+An dieser Stelle sei schon angemerkt, dass um Zeilen, Spalten oder 
+einzelne Elemente auszuwählen die gleichen Befehle wie bei Matrizen 
+verwendet werden können:
 
 
 ```r
@@ -1918,7 +2019,7 @@ df_4[, 2] # Werte der zweiten Spalte
 ```
 
 ```
-#> [1] 89 75 80 66 50
+#> [1] 189 175 180 166 150
 ```
 Die Abfrage funktioniert nicht nur mit Indices, sondern auch mit 
 Spaltennamen:^[
@@ -1957,8 +2058,8 @@ df_4[1:2, ] # Die ersten beiden Zeilen
 
 ```
 #>   gender height
-#> 1   male     89
-#> 2   male     75
+#> 1   male    189
+#> 2   male    175
 ```
 
 Oder einzelne Werte:
@@ -1968,7 +2069,7 @@ df_4[2, 2] # Zweiter Wert der zweiten Spalte
 ```
 
 ```
-#> [1] 75
+#> [1] 175
 ```
 
 Dies können wir uns zu Nutze machen um den Typ der einzelnen Spalten 
@@ -1983,15 +2084,33 @@ typeof(df_4[["gender"]])
 #> [1] "character"
 ```
 
+Gerade bei sehr großen Data Frames möchte man oft nur die ersten paar Zeilen
+inspizieren.
+Das ist mit der Funktion `head()` möglich.
+Das erste Argument ist immer der Name des Data Frames. 
+Das zweite (optionale) Argument ist ein `integer`, der die Anzahl der 
+anzuzeigenden Zeilen angibt (Standardwert: `5`):
 
-## Pakete
+
+```r
+head(df_4, 2) # gibt die ersten zwei Zeilen aus
+```
+
+```
+#>   gender height
+#> 1   male    189
+#> 2   male    175
+```
+
+
+## Pakete {#es:pakete}
 
 Bei Paketen handelt es sich um eine Kombination aus R Code, Daten, Dokumentationen
 und Tests.
 Sie sind der beste Weg, reproduzierbaren Code zu erstellen und frei zugänglich
 zu machen.
 Zwar werden Pakete häufig der Öffentlichkeit zugänglich gemacht, z.B. über GitHub
-oder CRAN. Es ist aber genauso hilfreich, Pakete für den privaten Gerbrauch zu
+oder CRAN, es ist aber genauso hilfreich, Pakete für den privaten Gebrauch zu
 schreiben, z.B. um für bestimmte Routinen Funktionen zu programmieren, zu
 dokumentieren und in verschiedenen Projekten verfügbar zu machen.^[@Packages 
 bietet eine exzellente Einführung in das Programmieren von R Paketen.]
@@ -2007,7 +2126,7 @@ in der Regel `base R` genannt, weil wir alle Funktionalitäten ohne Weiteres
 nutzen können. 
 
 Die Funktion `assign`, zum Beispiel, ist Teil von `base R`: wir starten R und 
-können Sie ohne Weiteres verwenden.
+können sie ohne Weiteres verwenden.
 
 Im Prinzip kann so gut wie jedwede statistische Prozedur in `base R` implementiert
 werden. Dies ist aber häufig zeitaufwendig und fehleranfällig: wie wir am 
@@ -2033,7 +2152,7 @@ install.packages("data.table")
 ```
 
 Das Paket `data.table` enthält viele Objekte, welche die Arbeit mit großen 
-Datensätzen enorm erleichtern. Darunter ist eine verbesserte Version des
+Datensätzen enorm erleichtern. Beispielsweise ist darunter eine verbesserte Version des
 `data.frame`, der `data.table`. Wir können einen `data.frame` mit Hilfe der
 Funktion `as.data.table()` in einen `data.table` umwandeln.
 
@@ -2071,7 +2190,7 @@ y
 #> 5: 5 25
 ```
 Wir schreiben also den Namen des Pakets, direkt gefolgt von `::` und dann den
-Namen des Objets aus dem Paket, das wir vewendent wollen.
+Namen des Objekts aus dem Paket, das wir verwenden wollen.
 
 Zwar ist das der transparenteste und sauberste Weg auf Objekte aus anderen 
 Paketen zuzugreifen, allerdings kann es auch nervig sein wenn man häufig oder
@@ -2147,7 +2266,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7f90403276a8>
+#> <bytecode: 0x7fa0ab07ceb8>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2168,22 +2287,22 @@ dplyr::lead
 #>     }
 #>     if (length(n) != 1 || !is.numeric(n) || n < 0) {
 #>         bad_args("n", "must be a nonnegative integer scalar, ", 
-#>             "not {friendly_type_of(n)} of length {length(n)}")
+#>             "not {friendly_type_of(n)} of length {length(n)}.")
 #>     }
 #>     if (n == 0) 
 #>         return(x)
-#>     xlen <- length(x)
+#>     xlen <- vec_size(x)
 #>     n <- pmin(n, xlen)
-#>     out <- c(x[-seq_len(n)], rep(default, n))
-#>     attributes(out) <- attributes(x)
-#>     out
+#>     inputs <- vec_cast_common(default = default, x = x)
+#>     vec_c(vec_slice(inputs$x, -seq_len(n)), vec_rep(inputs$default, 
+#>         n))
 #> }
-#> <bytecode: 0x7f9041004d98>
+#> <bytecode: 0x7fa0cce49460>
 #> <environment: namespace:dplyr>
 ```
 
 
-Wenn es zu Maskierungen kommt ist es aber der Transparenz wegen besser in beiden 
+Wenn es zu Maskierungen kommt ist es also der Transparenz wegen besser in beiden 
 Fällen `::` zu verwenden, also `plm::lead` und `dplyr::lead`.
 
 > **Hinweis**: Alle von Konflikten betroffenen Objekte können mit der Funktion
@@ -2196,7 +2315,7 @@ R zuerst im ersten Element des Vektors nach, der globalen Umgebung. Wenn das
 Objekt dort nicht gefunden wird, schaut es im zweiten, etc. 
 Wie man hier auch erkennen kann, werden einige Pakete standardmäßig eingelesen.
 Wenn ein Objekt nirgends gefunden wird gibt R einen Fehler aus. 
-Im vorliegenden Falle zeigt uns die Funktion, dass er erst im Paket 
+Im vorliegenden Fall zeigt uns die Funktion, dass R erst im Paket 
 `plm` nach der Funktion `lead()` sucht, und nicht im Paket `dplyr`:
 
 
@@ -2213,100 +2332,15 @@ search()
 ```
 
 
-> **Weiterführender Hinweis** Um das Maskieren besser zu verstehen sollte man 
+> **Weiterführender Hinweis**: Um das Maskieren besser zu verstehen sollte man 
 sich mit dem Konzept von *namespaces* und *environments* auseinandersetzen. 
 Eine gute Erklärung bietet @Packages.
 
-> **Weiterführender Hinweis** Das Paket `conflicted` führt dazu, dass R immer
-einen fehler ausgibt wenn nicht eindeutige Objektnamen verwendet werden.
+> **Weiterführender Hinweis**: Das Paket `conflicted` führt dazu, dass R immer
+einen Fehler ausgibt wenn nicht eindeutige Objektnamen verwendet werden.
 
-
-
-
-## Kurzer Exkurs zum Einlesen und Schreiben von Daten
-
-Zum Abschluss wollen wir noch kurz einige Befehle zum Einlesen von Daten 
-einführen. Später werden wir uns ein ganzes Kapitel mit dem Einlesen und 
-Schreiben von Daten beschäftigen, da dies in der Regel einen nicht 
-unbeträchtlichen Teil der quantitativen Forschungsarbeit in Anspruch nimmt.
-An dieser Stelle wollen wir aber nur lernen, wie man einen 
-Datensatz in R einliest.
-
-R kann zahlreiche verschiedene Dateiformate einlesen, z.B. `csv`, `dta` oder `txt`,
-auch wenn für manche Formate bestimmte Pakete geladen sein müssen.
-
-Das gerade für kleinere Datensätze mit Abstand beste Format ist in der Regel
-`csv`, da es von zahlreichen Programmen und auf allen Betriebssystemen 
-gelesen und geschrieben werden kann.
-
-Für die Beispiele hier nehmen wir folgende Ordnerstruktur an:
-
-
-\begin{center}\includegraphics[width=0.5\linewidth]{figures/chap3-data-folder} \end{center}
-
-Um die Daten einzulesen verwenden wir das Paket `tidyverse`, die wir später
-genauer kennen lernen werden. Sie enthält viele nützliche Funktionen zur 
-Arbeit mit Datensätzen.
-Zudem verwende ich das Paket `here` um relative Pfade immer von meinem
-Arbeitsverzeichnis aus angeben zu können.^[Das ist notwendig, da dieses Skript 
-in R Markdown geschrieben ist und das Arbeitsverzeichnis automatisch auf den
-Ordner ändert, in dem das .Rmd file liegt. Mehr Information zum Schreiben von
-R Markdown finden Sie im Anhang. Dieser wird auch in der Vorlesung besprochen.]
-
-
-```r
-library(tidyverse)
-library(here)
-```
-
-
-
-
-Nehmen wir an, die Datei `Rohdaten.csv` sähe folgendermaßen aus:
-
-```
-Auto,Verbrauch,Zylinder,PS
-Ford Pantera L,15.8,8,264
-Ferrari Dino,19.7,6,175
-Maserati Bora,15,8,335
-Volvo 142E,21.4,4,109
-```
-
-Wie in einer typischen csv Datei sind die Spalten hier mit einem Komma getrennt. 
-Um diese Datei einzulesen verwenden wir die Funktion `read_csv` mit dem 
-Dateipfad als erstes Argument:
-
-
-```r
-auto_daten <- read_csv(here("data/raw/Rohdaten.csv"))
-auto_daten
-```
-
-```
-#> # A tibble: 4 x 4
-#>   Auto           Verbrauch Zylinder    PS
-#>   <chr>              <dbl>    <dbl> <dbl>
-#> 1 Ford Pantera L      15.8        8   264
-#> 2 Ferrari Dino        19.7        6   175
-#> 3 Maserati Bora       15          8   335
-#> 4 Volvo 142E          21.4        4   109
-```
-
-Wir haben nun einen Datensatz in R, mit dem wir dann weitere Analysen anstellen
-können. 
-Nehmen wir einmal an, wir wollen eine weitere Spalte hinzufügen (Verbrauch/PS)
-und dann den Datensatz im Ordner `data/tidy` speichern.
-Ohne auf die Modifikation des Data Frames einzugehen können wir die Funktion 
-`write_csv` verwenden um den Datensatz zu speichern. 
-Hierzu geben wir den neuen Data Frame als erstes, und den Pfad als zweites 
-Argument an:
-
-
-```r
-auto_daten_neu <- mutate(auto_daten, Verbrauch_pro_PS=Verbrauch/PS)
-write_csv(auto_daten_neu, here("data/tidy/NeueDaten.csv"))
-```
-
-Es wird ein späteres Kapitel (und einen späteren Vorlesungstermin) geben,
-in dem wir uns im Detail mit dem Lesen, Schreiben und Manipulieren von 
-Datensätzen beschäftigen.
+Der besseren Transparenz wegen wird in diesem Buch ab jetzt immer die Notation
+mit `::` verwendet, auch wenn dies nicht unbedingt nötig wäre. 
+So sehen Sie bei jedem Code-Beispiel unmittelbar aus welchem Paket die 
+verwendeten Funktionen stammen. 
+Lediglich bei den Basispaketen werden wir auf `::` verzichten.
