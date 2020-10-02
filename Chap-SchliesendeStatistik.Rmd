@@ -9,8 +9,7 @@ In diesem Kapitel werden wir drei zentrale Verfahren der schließenden Statistik
 wiederholen. 
 Dabei schließen wir unmittelbar an die beiden vorangegangenen Kapitel zur
 [Wahrscheinlichkeitstheorie](#stat-stoch) und [deskriptiven Statistik](#desk-stat)
-an:
-mit Hilfe der Wahrscheinlichkeitstheorie beschreiben wir mögliche Prozesse,
+an. Mit Hilfe der Wahrscheinlichkeitstheorie beschreiben wir mögliche Prozesse,
 die unsere Daten generiert haben könnten (DGP - *data generating processes*).
 Mit Hilfe der deskriptiven Statistik beschreiben wir unsere Daten und wählen 
 auf dieser Basis Kandidaten für den DGP und sinnvolle Schätzverfahren aus.
@@ -18,14 +17,14 @@ In der *schließenden Statistik* geht es nun genau um diese Schätzverfahren,
 die es uns erlauben von unseren Daten Rückschlüsse auf die DGP zu ziehen.
 Eine andere Art dies auszudrücken ist: mit Hilfe der schließenden Statistik
 wollen wir durch Analyse unserer Stichprobe auf die Gesamtpopulation, aus der
-die Stichprobe gezogen wurde schließen - und dabei möglichst die Unsicherheit, 
-die diesem Schließprozess inhärent ist genau quantifizieren.
+die Stichprobe gezogen wurde, schließen - und dabei möglichst die Unsicherheit, 
+die diesem Schließprozess inhärent ist, genau quantifizieren.
 
 Natürlich ist wie immer Vorsicht geboten: wie bei der deskriptiven Statistik
 suggerieren viele der quantitativen Methoden der schließenden Statistik eine
 Genauigkeit und Exaktheit, die in der Wirklichkeit an der Korrektheit vieler 
 Annahmen hängt.
-Man darf daher nicht den Fehler machen, die 'genauen' Ergebnisse der
+Man darf daher nicht den Fehler machen, den 'genauen' Ergebnissen der
 schließenden Statistik unhinterfragt zu glauben. 
 Gleichzeitig darf man sie auch nicht verteufeln, denn viele Annahmen kann man mit
 ein wenig formalem Geschick und theoretischen Kenntnissen auch sinnvoll hinsichtlich
@@ -35,7 +34,7 @@ Dafür ist es wichtig, die Grundlagen der schließenden Statistik gut verstanden
 zu haben. In diesem Kapitel wiederholen wir diese Grundlagen grob und kombinieren
 die Wiederholung mit einer Einführung in die entsprechenden Befehle in R.
 
-Wie oben bereits angekündigt gehen wir in der Regel gehen wir davon aus, dass 
+Wie oben bereits angekündigt gehen wir in der Regel davon aus, dass 
 die von uns beobachteten Daten das Resultat eines gewissen Zufallsprozesses ist, 
 den wir mit Hilfe der Wahrscheinlichkeitstheorie mathematisch beschreiben können.
 Da wir den DGP aber nicht direkt beobachten können, müssen wir auf Basis von
@@ -53,25 +52,24 @@ Hier beschäftigen wir uns jedoch nur mit den parametrischen Verfahren.
 
 In diesem Kontext sind drei Vorgehen in der statistischen Analyse besonders gängig:
 
-1. **Punktschätzung:**
+1. **Punktschätzung**
 
-2. **Statistische Tests:**
+2. **Statistische Tests**
 
 3. **Konfidenzintervalle**
 
-Wir wollen die verschiedenen Vorgehensweisen auf anhand eines Beispiels durchspielen:
+Wir wollen die verschiedenen Vorgehensweisen anhand eines Beispiels durchspielen:
 Nehnem wir an wir haben einen Datensatz und wir nehmen an, dass diese Daten von 
 einer *Binominalverteilung* stammen.^[Wenn Sie nicht mehr wissen, was eine 
-Binominalverteilung ist finden Sie im 
-[Anhang zur Wahrscheinlichkeitstheorie](#stat-stoch) eine Erläuternug.]
+Binominalverteilung ist, dann lesen Sie nochmal das Kapitel \@ref(stat-stoch) zur Wahrscheinlichkeitstheorie.]
 Wir wissen, dass die Binominalverteilung durch zwei Parameter spezifiziert wird: 
 $n$ als die Anzahl der Versuche und $p$ als die Erfolgswahrscheinlichkeit für 
 den einzelnen Versuch.
 Wir sind nun daran interessiert auf Basis von unseren Daten Aussagen über den 
-Paramter $p$ der zugrundeliegenden Binominalverteilung zu treffen.^[Die Annahme, 
+Paramter $p$ der zugrundeliegenden Binominalverteilung zu treffen. Die Annahme, 
 dass die Daten *überhaupt* von einer Binominalverteilung stammen wird hier nicht in 
-Frage gestellt! Das ist genau die Vor-Annahme, die wir bei parametrischen 
-Verfahren treffen müssen.]
+Frage gestellt. Das ist genau die Vor-Annahme, die wir bei parametrischen 
+Verfahren treffen müssen.
 
 Wenn wir einen konkreten Wert für $p$ herausbekommen wollen müssen wir ein 
 Verfahren der *Punktschätzung* wählen.  
@@ -91,10 +89,11 @@ library(here)
 library(tidyverse)
 library(ggpubr)
 library(latex2exp)
-library(icaeDesign)
 library(AER)
 library(MASS)
 ```
+
+<!-- Verwendete Pakete auch wieder nach ganz oben setzen?  -->
 
 ## Punktschätzung
 
@@ -108,9 +107,9 @@ Verteilung man vorher ausgewählt hat.
 Im vorliegenden Fall wollen wir also einen konkreten Wert für $\theta$ auf Basis der 
 Daten schätzen.
 Dabei ist ganz wichtig zu beachten, dass wir den wahren Wert von $\theta$ in der
-Regel nicht kennen und auch nie genau kennen lernen werden.
+Regel nicht kennen und auch nie genau kennen werden.
 
-Um zwischen dem wahren Wert von $\theta$ und dem 
+Um zwischen dem wahren, für uns nicht zugänglichen Wert von $\theta$ und dem 
 Schätzer für $\theta$ in unserer Notation unterscheiden zu können, verwenden wir das
 $\hat{\cdot}$-Symbol. 
 Entsprechend bezeichnet $\hat{\theta}$ einen **Schätzer** für $\theta$.
@@ -125,7 +124,7 @@ $$\hat{\theta}: \mathbb{R}^n \rightarrow \mathbb{R}, \quad \hat{\theta}=\hat{\th
 Damit ist auch klar, dass es sich bei einem Schätzer um eine Zufallsvariable (ZV)
 handelt: Funktionen von ZV sind selbst ZV und unsere Daten $x_1,...,x_n$ 
 interpretieren wir ja als Realisierungen von ZV $X_1,...,X_n$.
-Der unbekannt wahre Wert $\theta$ ist dagegen keine ZV.
+Der unbekannte wahre Wert $\theta$ ist dagegen keine ZV.
 
 
 > **Hinweis: Schätzer vs. geschätzter Wert** 
@@ -139,6 +138,8 @@ den der Schätzer liefert.
 Die Konstruktion von Schätzern ist keine einfache Aufgabe. 
 Wir lernen im Laufe der Veranstaltungen verschiedene Methoden, wie die
 *Momentenmethode* und die *Maximum-Likelihood Methode* genauer kennen.
+<!-- Kommt das noch an späterer Stelle im Buch? Soll ich auf irgendein anderes Kapitel referenzieren? Oder rausnehmen? -->
+
 
 ## Hypothesentests
 
@@ -179,7 +180,8 @@ beschränken uns hier auf so genannte *parametrische* Tests. Das bedeutet,
 dass wir zunächst ein bestimmtes Modell für den Datengenerierungsprozess
 annehmen. Im Beispiel war dieses Modell die Binomialverteilung. Es gibt auch
 Tests, die ohne eine solche Annahme auskommen. Sie werden *nicht-parametrisch* 
-genannt und später in dem Kurs besprochen.]
+genannt und später besprochen.]
+<!-- Kapitel Referenz setzen? -->
 
 **1. Schritt: Aufstellen eines wahrscheinlichkeitstheoretischen Modells**
 Zunächst müssen wir eine Annahme über den Prozess treffen, welcher der 
@@ -187,7 +189,7 @@ Generierung unserer Daten zugrunde liegt.
 Im Beispiel oben haben wir eine Binomialverteilung $\mathcal{B}(n,p)$ angenommen. 
 Diese Entscheidung muss auf Basis von theoretischen und empirischen 
 Überlegungen getroffen werden. 
-Für diskrete Daten macht es z.B. keinen Sinn eine stetige Verteilung
+Für diskrete Daten ergibt es z.B. keinen Sinn eine stetige Verteilung
 anzunehmen und umgekehrt.
 
 **2. Schritt: Formulierung der Nullhypothese**
@@ -196,7 +198,7 @@ genannt.
 Wir wollen also immer fragen, ob $H_0$ gegeben der Daten plausibel ist.
 Die Formulierung von $H_0$ wird also durch unser Erkenntnisinteresse bestimmt.
 In der Regel formulieren wir eine Hypothese, die wir verwerfen wollen als 
-$H_0$.^[An machen Stellen der sozial- und wirtschaftswissenschaftlichen Literatur 
+$H_0$.^[An manchen Stellen der sozial- und wirtschaftswissenschaftlichen Literatur 
 wird anstelle von "verwerfen" auch das Wort "falsifizieren" benutzt um die 
 Zurückweisung der Null-Hypothese zu umschreiben. 
 Diese Wortwahl ist allerdings irreführend, da hier nicht Aussagen aus einer 
@@ -212,8 +214,8 @@ ist.
 
 Aus der Nullhypothese und unserem Erkenntnisinteresse ergibt sich die 
 **Alternativhypothese** $H_1$.
-Sie umfasst alle interessierenden Ereignsse, die $H_0$ widersprechen.
-Je nach dem wie wir $H_1$ formulieren unterscheiden wir folgende Arten von 
+Sie umfasst alle interessierenden Ereignisse, die $H_0$ widersprechen.
+Je nachdem wie wir $H_1$ formulieren unterscheiden wir folgende Arten von 
 Hypothesentests:
   
 $H_0: \theta=0$ und $H_1: \theta\neq 0$: hier sprechen wir von einem
@@ -240,40 +242,42 @@ die Münze zugunsten von Kopf manipuliert wurde völlig außen vor. Beim
 **einseitigen Test nach unten** wäre es genau umgekehrt: $H_0: p=0.5$ und
 $H_1: p<0.5$. KONKRETE BERECHNUNGEN FÜR DEN P WERT
 
+<!-- fehlt hier noch was?bzgl der capital letters? -->
+
 **3. Schritt: Berechnung einer Teststatistik**
 Wir überlegen nun welche Verteilung unserer Daten wir erwarten würden
 *wenn die Nullhypothese korrekt wäre*. 
 Wenn wir im ersten Schritt also eine Binomialverteilung mit $n=100$ angenommen 
 haben und $H_0: p=0.5$, dann würden wir vermuten, dass unsere Daten gemäß $B(n, 0.5)$
-verteilt sind.^[In der Praxis wird die Berechnung der Teststatistik 
+verteilt sind. In der Praxis wird die Berechnung der Teststatistik 
 durch eine R Funktion in einem der nächsten Schritte übernommen, aber es macht 
-Sinn, sich das grundsätzliche Vorgehen dennoch in dieser Sequenz bewusst zu machen.]
+Sinn, sich das grundsätzliche Vorgehen dennoch in dieser Sequenz bewusst zu machen.
 Diese theoretische Verteilung können wir dann mit den tatsächlichen Daten 
 vergleichen und fragen, wie wahrscheinlich es ist diese Daten tatsächlich so
 beobachten zu können wenn $H_0$ wahr wäre:
   
 ```{r, fig.align='center', echo=FALSE}
-ggplot(data.frame(x = c(0, 100)), aes(x = x)) +
-  stat_function(fun = dbinom, args = list(size = 100, prob=0.5)) +
-  ylab("Wahrscheinlichkeit") +
-  xlab("Anzahl Erfolge (Zahl)") +
-  scale_y_continuous(expand = c(0, 0)) + 
-  ggtitle(TeX("Theoretische Verteilung unter $H_0$")) +
-  geom_segment(aes(x = 60, y = 0, 
+ggplot2::ggplot(data.frame(x = c(0, 100)), aes(x = x)) +
+  ggplot2::stat_function(fun = dbinom, args = list(size = 100, prob=0.5)) +
+  ggplot2::ylab("Wahrscheinlichkeit") +
+  ggplot2::xlab("Anzahl Erfolge (Zahl)") +
+  ggplot2::scale_y_continuous(expand = c(0, 0)) + 
+  ggplot2::ggtitle(TeX("Theoretische Verteilung unter $H_0$")) +
+  ggplot2::geom_segment(aes(x = 60, y = 0, 
                    xend = 60, yend = dbinom(60, 100, 0.5)),
                colour = "#800080") +
-  geom_segment(aes(x = 75, y =0.02, 
+  ggplot2::geom_segment(aes(x = 75, y =0.02, 
                    xend = 60, yend =0),
                arrow = arrow(length = unit(0.03, "npc")),
                colour = "#800080") +
-  geom_text(aes(x = 75, y =0.02), nudge_x = 5, nudge_y = 0.002, 
+  ggplot2::geom_text(aes(x = 75, y =0.02), nudge_x = 5, nudge_y = 0.002, 
             label = "Eingetretenes Ereignis", 
             colour = "#800080") +
-  theme_icae()
+  ggplot2::theme_bw()
 ```
 
 **4. Schritt: Festlegung des Signifikanzniveaus**:
-Wir müssen nun festlegen welches Risiko wir bereit sind einzugehen, unsere 
+Wir müssen nun festlegen welches Risiko wir bereit sind für den Fall einzugehen, unsere 
 Nullhypothese $H_0$ zu verwerfen, obwohl sie eigentlich richtig ist.
 Die maximale Wahrscheinlichkeit für dieses unglückliche Ereigns bezeichnen wir mit
 $\alpha$ uns sie bestimmt unser Signifikanzniveau. 
@@ -281,17 +285,20 @@ Typischweise nimmt man als Standardwert $\alpha=0.05$, d.h. wir konstruieren uns
 Test so, dass die Wahrscheinlichkeit, dass wir $H_0$ fälschlicherweise verwerfen
 maximal $\alpha=0.05$ beträgt. 
 Mit anderen Worten, wir legen hier die Wahrscheinlichkeit für einen **Fehler 1. Art**
-explizit fest.^[Wir sprechen von einem *Fehler 1. Art* wenn wir auf Basis eines
+explizit fest. Wir sprechen von einem *Fehler 1. Art* wenn wir auf Basis eines
 Tests $H_0$ verwerfen obwohl sie eigentlich richtig ist. 
 Von einem *Fehler 2. Art* sprechen wir, wenn wir $H_0$ nicht verwerfen, obwohl 
-$H_0$ eigentlich falsch ist.]
+$H_0$ eigentlich falsch ist.
 
 Aus dem gewählten Signifikanzniveau ergibt sich dann der **Verwerfungsbereich**
 für unsere Nullhypothese. Wenn unsere beobachteten Daten im Verwerfungsbereich
 liegen wollen wir $H_0$ als verworfen betrachten.^[
 Ganz im Sinne von Popper können mit Hilfe von statistischen Tests alle Hypothesen 
 immer nur verworfen werden. Verifizieren können wir nichts!]
-Es ergibt sich logisch aus dem vorher gesagten, dass ein höheres $\alpha$ mit 
+
+<!-- Ich frage mich ob sich das hier nicht widerspricht mit deinem Punkt oben in der fußnote um zeile 200 herum. Ich verstehe das so: wir können keine hypothesen verifizieren, aber (laut deinem punkt oben) die theorie schon bestätigen(verifizieren), indem wir die null-hypothese verwerfen. Dir gefällt das Wort "falsifizieren" nicht, weil das so klingt als würde es sich auf die theorie beziehen (statt nur eine hypothese zu verwerfen=zu falsifizieren). Ich glaube mein Punkt ist dass es scheint als würdest du verifizeren/bestätigen sowie falsifizieren/verwerfen unterschiedlich verwenden, mit verifizieren/bestätigen Bezug auf hypothese/theorie und falsifizieren/verwerfen Bezug auf theorie/hypothese. weiß nicht ob die Begrifflichkeit so allgemein verwendet wird? -->
+
+Es ergibt sich logisch aus dem vorher Gesagten, dass ein höheres $\alpha$ mit 
 einem größeren Verwerfungsbereich einhergeht.
 
 Der Verwerfungsbereich für das oben darstellte Beispiel mit
@@ -303,40 +310,40 @@ lower_end <- data.frame(y=dbinom(0:45, size = 100, prob=0.5),
                         x=0:45)
 upper_end <- data.frame(y=dbinom(55:100, size = 100, prob=0.5),
                         x=55:100)
-ggplot(data.frame(x = c(0, 100)), aes(x = x)) +
-  stat_function(fun = dbinom, args = list(size = 100, prob=0.5)) +
-  geom_ribbon(data = lower_end, aes(x=x, ymin=0, ymax=y), 
+ggplot2::ggplot(data.frame(x = c(0, 100)), aes(x = x)) +
+  ggplot2::stat_function(fun = dbinom, args = list(size = 100, prob=0.5)) +
+  ggplot2::geom_ribbon(data = lower_end, aes(x=x, ymin=0, ymax=y), 
               fill="#800080", alpha=0.75) + 
-  geom_ribbon(data = upper_end, aes(x=x, ymin=0, ymax=y), 
+  ggplot2::geom_ribbon(data = upper_end, aes(x=x, ymin=0, ymax=y), 
               fill="#800080", alpha=0.75) + 
-  ylab("Wahrscheinlichkeit") +
-  xlab("Anzahl Erfolge (Zahl)") +
-  scale_y_continuous(expand = c(0, 0)) + 
-  ggtitle(TeX("Theoretische Verteilung unter $H_0$")) +
-  geom_segment(aes(x = 55, y = 0, 
+  ggplot2::ylab("Wahrscheinlichkeit") +
+  ggplot2::xlab("Anzahl Erfolge (Zahl)") +
+  ggplot2::scale_y_continuous(expand = c(0, 0)) + 
+  ggplot2::ggtitle(TeX("Theoretische Verteilung unter $H_0$")) +
+  ggplot2::geom_segment(aes(x = 55, y = 0, 
                    xend = 55, yend = dbinom(55, 100, 0.5)),
                colour = "#800080") +
-  geom_segment(aes(x = 45, y = 0, 
+  ggplot2::geom_segment(aes(x = 45, y = 0, 
                    xend = 45, yend = dbinom(45, 100, 0.5)),
                colour = "#800080") +
-  geom_segment(aes(x = 45, y = 0.02, 
+  ggplot2::geom_segment(aes(x = 45, y = 0.02, 
                    xend = 25, yend = 0.02),
                arrow = arrow(length = unit(0.03, "npc")),
                colour = "#800080") +
-  geom_text(aes(x = 20, y =0.025), nudge_x = 0, nudge_y = 0.002,
+  ggplot2::geom_text(aes(x = 20, y =0.025), nudge_x = 0, nudge_y = 0.002,
             label = "Ablehnung wegen unwahrscheinlich\n weniger Erfolge",
             colour = "#800080") +
-  geom_segment(aes(x = 55, y = 0, 
+  ggplot2::geom_segment(aes(x = 55, y = 0, 
                    xend = 55, yend = dbinom(55, 100, 0.5)),
                colour = "#800080") +
-  geom_segment(aes(x = 55, y = 0.02, 
+  ggplot2::geom_segment(aes(x = 55, y = 0.02, 
                    xend = 75, yend = 0.02),
                arrow = arrow(length = unit(0.03, "npc")),
                colour = "#800080") +
-  geom_text(aes(x = 80, y =0.025), nudge_x = 0, nudge_y = 0.002,
+  ggplot2::geom_text(aes(x = 80, y =0.025), nudge_x = 0, nudge_y = 0.002,
             label = "Ablehnung wegen unwahrscheinlich\n vieler Erfolge",
             colour = "#800080") +
-  theme_icae()
+  ggplot2::theme_bw()
 ```
 
 **5. Schritt: Die Entscheidung**
@@ -387,31 +394,31 @@ In der zweiten Zeile findet sich zudem der **p-Wert**.
 Der p-Wert gibt die Wahrscheinlichkeit an, mit der die beobacheten Daten unter
 $H_0$ tatsächlich beobachtet werden können.
 Wir können den p-Wert aus der theoretischen Verteilung von oben auf der y-Achse 
-ablesen, wenn wir den beobachteten Wert auf der x-Achse suchen:
+ablesen, wenn wir den beobachteten Wert auf der x-Achse suchen.
   
 ```{r, fig.align='center', echo=FALSE, fig.height=2}
 x_observed <- 60
-ggplot(data.frame(x = c(0, 100)), aes(x = x)) +
-  stat_function(fun = dbinom, args = list(size = 100, prob=0.5)) +
-  ylab("Wahrscheinlichkeit") +
-  xlab("Anzahl Erfolge (Zahl)") +
-  scale_y_continuous(expand = c(0, 0)) + 
-  scale_x_continuous(expand = c(0, 0)) +
-  ggtitle(TeX("Theoretische Verteilung unter $H_0$")) +
-  geom_segment(aes(x = 0, y = dbinom(x_observed, 100, 0.5), 
+ggplot2::ggplot(data.frame(x = c(0, 100)), aes(x = x)) +
+  ggplot2::stat_function(fun = dbinom, args = list(size = 100, prob=0.5)) +
+  ggplot2::ylab("Wahrscheinlichkeit") +
+  ggplot2::xlab("Anzahl Erfolge (Zahl)") +
+  ggplot2::scale_y_continuous(expand = c(0, 0)) + 
+  ggplot2::scale_x_continuous(expand = c(0, 0)) +
+  ggplot2::ggtitle(TeX("Theoretische Verteilung unter $H_0$")) +
+  ggplot2::geom_segment(aes(x = 0, y = dbinom(x_observed, 100, 0.5), 
                    xend = x_observed, yend = dbinom(x_observed, 100, 0.5)),
                colour = "#800080") +
-  geom_segment(aes(x = x_observed, y = 0, 
+  ggplot2::geom_segment(aes(x = x_observed, y = 0, 
                    xend = x_observed, yend = dbinom(x_observed, 100, 0.5)),
                colour = "#800080") +
-  geom_segment(aes(x = 10, y =dbinom(x_observed, 100, 0.5)+0.01, 
+  ggplot2::geom_segment(aes(x = 10, y =dbinom(x_observed, 100, 0.5)+0.01, 
                    xend = 1, yend=dbinom(x_observed, 100, 0.5)+0.0001),
                arrow = arrow(length = unit(0.03, "npc")),
                colour = "#800080") +
-  geom_text(aes(x = 10, y =0.02), nudge_x = 5, nudge_y = 0.002, 
+  ggplot2::geom_text(aes(x = 10, y =0.02), nudge_x = 5, nudge_y = 0.002, 
             label = "p-Wert", 
             colour = "#800080") + 
-  theme_icae()
+  ggplot2::theme_bw()
 ```
 
 Die nächste Zeile formuliert dann die Alternativhypothese aus (und hängt entsprechend
@@ -420,7 +427,7 @@ Die Zeilen danach geben das 95%-Intervall an (mehr dazu im nächsten Abschnitt)
 und den Punktschätzer für den zu testenden Parameter (siehe vorheriger Abschnitt).
 
 Wenn wir wissen wollen welche Informationen die so erstellte Liste sonst noch für
-uns bereit hält, bzw. wie wir diese Informationen direkt ausgeben lassen können, 
+uns bereit hält, bzw. wie wir uns diese Informationen direkt ausgeben lassen können, 
 sollten wir uns die Struktur der Liste genauer ansehen:
   
 ```{r}
@@ -434,7 +441,7 @@ können, z.B. den p-Wert:
 b_test_object[["p.value"]]
 ```
 
-Oder das den Punktschätzer für $p$:
+Oder den Punktschätzer für $p$:
   
 ```{r}
 b_test_object[["estimate"]]
@@ -452,9 +459,10 @@ Zum Abschluss dieses Abschnitts wollen wir kurz auf die
 
 **Die Macht eines Tests und Fehler 1. und 2. Art**:
   
-Wir sprechen von einem *Fehler 1. Art* wenn wir auf Basis eines
-Tests $H_0$ verwerfen obwohl sie eigentlich richtig ist. Von einem *Fehler 2. Art*
-sprechen wir, wenn wir $H_0$ nicht verwerfen, obwohl $H_0$ eigentlich falsch ist.
+Wie oben bereits beschrieben sprechen wir von einem *Fehler 1. Art* wenn wir auf 
+Basis eines Tests $H_0$ verwerfen obwohl sie eigentlich richtig ist. Von 
+einem *Fehler 2. Art* sprechen wir, wenn wir $H_0$ nicht verwerfen, obwohl $H_0$ 
+eigentlich falsch ist.
 
 In der Wissenschaft hat es sich ergeben, dass man vor allem auf den Fehler 1.
 Art schaut. Denn man möchte auf gar keinen Fall eine Nullhypothese verwerfen, 
@@ -478,6 +486,8 @@ $$\text{Macht}=1-\mathbb{P}(\text{Fehler 2. Art})$$
 Eine vertiefte Diskussion von Macht und dem Trade-Off zwischen Fehlern 1. und 2.
 Art findet zu einem späteren Zeitpunkt in der Vorlesung statt.
 
+<!-- Wie referenziere ich das? später im buch? einfach rausnehmen? -->
+
 **Die Wahl zwischen einseitigen und zweiseitigen Tests**:
   
 Wir haben oben am Beispiel der potenziell manipulierten Münze folgendermaßen 
@@ -487,7 +497,7 @@ Wir überprüfen also ob die Münze entweder zugunsten oder zulasten von Zahl
 manipuliert wurde.
 
 Beim einseitigen Test testen wir nur gegen eine Alternative: $H_0: p=0.5$
-bleibt gleich allerdings ist die Alternativhypothese nun entweder
+bleibt gleich, allerdings ist die Alternativhypothese nun entweder
 $H_1: p<0.5$ oder $H_1: p>0.5$. 
 Im ersten Fall überprüfen wir also nur ob die Münze zugunsten von Zahl manipuliert 
 wurde, im zweiten Fall nur ob die Münze zugunsten von Kopf manipuliert wurde.
@@ -522,7 +532,7 @@ b_test_object[["conf.int"]]
 ```
 
 
-Die Interpretation dieses Intervals ist dabei die folgende:
+Die Interpretation dieses Intervals ist dabei die Folgende:
 wenn der zugrundeliegende Datengenerierungsprozess sehr häufig wiederholt werden würde,
 dann würde 95% der jeweils berechneten 95%-Konfidenzintervalle diesen wahren Wert
 enthalten.
