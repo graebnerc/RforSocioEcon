@@ -61,7 +61,8 @@ In diesem Kontext sind drei Vorgehen in der statistischen Analyse besonders gän
 Wir wollen die verschiedenen Vorgehensweisen anhand eines Beispiels durchspielen:
 Nehnem wir an wir haben einen Datensatz und wir nehmen an, dass diese Daten von 
 einer *Binominalverteilung* stammen.^[Wenn Sie nicht mehr wissen, was eine 
-Binominalverteilung ist, dann lesen Sie nochmal das Kapitel \@ref(stat-stoch) zur Wahrscheinlichkeitstheorie.]
+Binominalverteilung ist, dann lesen Sie nochmal das Kapitel \@ref(stat-stoch) 
+zur Wahrscheinlichkeitstheorie.]
 Wir wissen, dass die Binominalverteilung durch zwei Parameter spezifiziert wird: 
 $n$ als die Anzahl der Versuche und $p$ als die Erfolgswahrscheinlichkeit für 
 den einzelnen Versuch.
@@ -94,6 +95,7 @@ library(MASS)
 ```
 
 <!-- Verwendete Pakete auch wieder nach ganz oben setzen?  -->
+<!-- DISCUSS: Sollte einfach überall gleich sein -> Ganzu am Ende nochmal bei allen Kapiteln checken?  -->
 
 ## Punktschätzung
 
@@ -136,10 +138,12 @@ Der *geschätzte Wert* ist für einen konkreten Anwendungsfall der Wert,
 den der Schätzer liefert.
 
 Die Konstruktion von Schätzern ist keine einfache Aufgabe. 
-Wir lernen im Laufe der Veranstaltungen verschiedene Methoden, wie die
-*Momentenmethode* und die *Maximum-Likelihood Methode* genauer kennen.
-<!-- Kommt das noch an späterer Stelle im Buch? Soll ich auf irgendein anderes Kapitel referenzieren? Oder rausnehmen? -->
-
+In der Geschichte haben sich verschiedene Methoden, wie die
+*Momentenmethode* und die *Maximum-Likelihood Methode* entwickelt und alle 
+haben ihre Vor- und Nachteile. 
+Einige dieser Methoden werden wir in späteren Kapiteln 
+(u.a. Kapitel \@ref(linmodel), \@ref(advlin) und \@ref(nonlin))
+noch genauer kennen lernen.
 
 ## Hypothesentests
 
@@ -180,8 +184,8 @@ beschränken uns hier auf so genannte *parametrische* Tests. Das bedeutet,
 dass wir zunächst ein bestimmtes Modell für den Datengenerierungsprozess
 annehmen. Im Beispiel war dieses Modell die Binomialverteilung. Es gibt auch
 Tests, die ohne eine solche Annahme auskommen. Sie werden *nicht-parametrisch* 
-genannt und später besprochen.]
-<!-- Kapitel Referenz setzen? -->
+genannt, aber im Rahmen dieses Buches nicht behandelt. Eine eingängige Einführung 
+findet sich z.B. in @wasserman.]
 
 **1. Schritt: Aufstellen eines wahrscheinlichkeitstheoretischen Modells**
 Zunächst müssen wir eine Annahme über den Prozess treffen, welcher der 
@@ -240,9 +244,7 @@ würden wir $H_0: p=0.5$ und $H_1: p>0.5$ testen und damit fragen ob die Münze
 *zugunsten von Zahl* manipuliert wurde. Wir lassen dabei die Möglichkeit, dass
 die Münze zugunsten von Kopf manipuliert wurde völlig außen vor. Beim
 **einseitigen Test nach unten** wäre es genau umgekehrt: $H_0: p=0.5$ und
-$H_1: p<0.5$. KONKRETE BERECHNUNGEN FÜR DEN P WERT
-
-<!-- fehlt hier noch was?bzgl der capital letters? -->
+$H_1: p<0.5$. 
 
 **3. Schritt: Berechnung einer Teststatistik**
 Wir überlegen nun welche Verteilung unserer Daten wir erwarten würden
@@ -306,7 +308,7 @@ Der Verwerfungsbereich für das oben darstellte Beispiel mit
 $H_0: \theta=0$ und $H_1: \theta\neq 0$ ergibt sich für 
 $\alpha=0.05$ wie in Abbildung \@ref(fig:verwerfungsbereich) dargestellt.
   
-```{r verwerfungsbereich, fig.align='center', echo=FALSE, fig.cap="Verwerfungsbereich der theoretischen Verteilung unter $H_0$ für $\alpha=0.05$."}
+```{r verwerfungsbereich, fig.align='center', echo=FALSE, fig.cap="Verwerfungsbereich der theoretischen Verteilung unter $H_0$ für $\\alpha=0.05$."}
 lower_end <- data.frame(y=dbinom(0:45, size = 100, prob=0.5),
                         x=0:45)
 upper_end <- data.frame(y=dbinom(55:100, size = 100, prob=0.5),
@@ -485,10 +487,11 @@ die definiert ist als:
   
 $$\text{Macht}=1-\mathbb{P}(\text{Fehler 2. Art})$$
   
-Eine vertiefte Diskussion von Macht und dem Trade-Off zwischen Fehlern 1. und 2.
-Art findet zu einem späteren Zeitpunkt in der Vorlesung statt.
-
-<!-- Wie referenziere ich das? später im buch? einfach rausnehmen? -->
+Die Abwägung zwischen den beiden Fehlern ist eine schwierige Aufgabe.
+Aus Konvention (und vielleicht auch der Furcht, ein Hypothese 
+fälscherlicherweise zu verwerfen) wird in der Wissenschaft vor allem auf den
+Fehler erster Art geschaut. 
+Diese Konvention ist jedoch durchaus kontrovers, siehe z.B. @power.
 
 **Die Wahl zwischen einseitigen und zweiseitigen Tests**:
   

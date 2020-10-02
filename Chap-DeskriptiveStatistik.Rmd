@@ -136,7 +136,6 @@ quantil_75 <- quantile(journal_daten[["Preis"]], 0.75, names = F)
 quart_differenz <- quantil_75 - quantil_25
 quart_differenz
 ```
-<!-- Ich schlage hier im chunk vor die variable "quart-differenz" statt "quant-differenz" zu nennen damit klar ist dass das hier die Quartilsdifferenz ausgibt oder (auch wenn es dazu die quantile subtrahiert). Passt das? -->
 
 Das optionale Argument `names=FALSE` unterdrückt die Benennung der Ergebnisse.
 Wenn wir das nicht machen würde, würde `quart_differenz` verwirrenderweise
@@ -227,7 +226,7 @@ verschiedene nicht-lineare Zusammenhänge, welche allerdings je einen
 Korrelationskoeffizienten von 0 ergeben würden.
 
 
-```{r korrelation, fig.align='center', echo=FALSE}
+```{r korrelation, fig.align='center', echo=FALSE, warning=FALSE, message=FALSE}
 c0_1a <- -50:50
 c0_1b <- sapply(-50:50, function(x) x**2)
 c0_1 <- ggplot2::ggplot(data.frame(x=c0_1a, 
@@ -335,6 +334,9 @@ Eine schöne Illustration ist
 
 <!-- Nachtrag: weil noch nicht klar ob drinbleibt oder nicht habe ich jetzt figure und table noch nicht eingebettet beim beispiel -->
 
+<!-- DISCUSS: Das war im Abschnitt Verteilungen zu formalen Methoden. Sollten wir kurz drüber sprechen wo es besser hinpasst. -->
+
+
 Dabei handelt es sich um vier Datensätze, die alle (fast exakt) gleiche
 deskriptive Statistiken aufweisen, jedoch offensichtlich sehr unterschiedlich
 sind. 
@@ -368,7 +370,9 @@ ans_1 <- ggplot(anscombe,
   xlab("x") + 
   ylab("y") +
   ggtitle("Der erste Datensatz aus Ascombe's Quartett") +
-  theme_icae()
+  theme_bw() + 
+  theme(panel.border = element_blank(), 
+        axis.line = element_line())
 
 ans_2 <- ggplot(anscombe, 
                 aes(x=x2, y=y2)) +
@@ -376,7 +380,9 @@ ans_2 <- ggplot(anscombe,
   xlab("x") + 
   ylab("y") +
   ggtitle("Der zweite Datensatz aus Ascombe's Quartett") +
-  theme_icae()
+  theme_bw() + 
+  theme(panel.border = element_blank(), 
+        axis.line = element_line())
 
 ans_3 <- ggplot(anscombe, 
                 aes(x=x3, y=y3)) +
@@ -384,7 +390,9 @@ ans_3 <- ggplot(anscombe,
   xlab("x") + 
   ylab("y") +
   ggtitle("Der dritte Datensatz aus Ascombe's Quartett") +
-  theme_icae()
+  theme_bw() + 
+  theme(panel.border = element_blank(), 
+        axis.line = element_line())
 
 ans_4 <- ggplot(anscombe, 
                 aes(x=x4, y=y4)) +
@@ -392,7 +400,9 @@ ans_4 <- ggplot(anscombe,
   xlab("x") + 
   ylab("y") +
   ggtitle("Der vierte Datensatz aus Ascombe's Quartett") +
-  theme_icae()
+  theme_bw() + 
+  theme(panel.border = element_blank(), 
+        axis.line = element_line())
 
 ans_full <- ggarrange(ans_1, ans_2, ans_3, ans_4,
                       ncol = 2, nrow = 2)
