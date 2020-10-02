@@ -655,11 +655,14 @@ wir auf der x-Achse die Anzahl der Erfolge, und auf der y-Achse die Anzahl der
 Experimente mit genau dieser Anzahl an Erfolgen festhalten, erhalten wir ein 
 Histogram, das ungefähr so aussieht wie in Abbildung \@ref(fig:Munzwurf).
 
-```{r Munzwurf, echo=FALSE, caption = "Histogram für einen Münzwurf."}
+```{r, echo=FALSE}
 set.seed(123)
 wurzanzahl <- 200
 wurfe_pro_experiment <- 10
 p_zahl <- 0.5
+```
+
+```{r Munzwurf, echo=FALSE, caption = "Histogram für einen Münzwurf."}
 munzwurfe <- rbinom(n = wurzanzahl, prob = p_zahl, size = wurfe_pro_experiment)
 ggplot2::ggplot(data.frame(x=munzwurfe), aes(x=x)) +
   ggplot2::geom_histogram(bins = wurzanzahl) +
@@ -677,7 +680,8 @@ Sinn für die Binomialverteilung $p=0.5$ anzunehmen, und da wir in jedem einzeln
 Experiment die Münze 10 Mal geworfen haben für $n=10$. Wenn wir die mit $n=10$ und
 $p=0.5$ parametrisierte theoretische Binomialverteilung nehmen und ihre theoretische
 Verteilungsfunktion über die Aufzeichnungen unserer Ergebnisse legen, können wir 
-uns in dieser Vermutung bestärkt fühlen, wie in Abbildung \@ref(fig:Munzwurfverteilung) ersichtlich ist.
+uns in dieser Vermutung bestärkt fühlen, wie in Abbildung 
+\@ref(fig:Munzwurfverteilung) ersichtlich ist.
 
 ```{r Munzwurfverteilung, echo=FALSE, fig.cap="Vergleich der empirischen Stichprobe und der parametrisierten theoretischen Binomialverteilungsfunktion"}
 ggplot2::ggplot(data.frame(x=munzwurfe), aes(x=x)) +
