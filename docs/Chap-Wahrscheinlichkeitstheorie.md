@@ -561,7 +561,7 @@ sample_binom
 ```
 
 ```
-## [1] 2 2 3 5 6
+## [1] 2 4 6 3 5
 ```
 
 > **Anwendungsbeispiel Binomialverteilung:** Unser Zufallsexperiment besteht
@@ -573,6 +573,8 @@ wir auf der x-Achse die Anzahl der Erfolge, und auf der y-Achse die Anzahl der
 Experimente mit genau dieser Anzahl an Erfolgen festhalten, erhalten wir ein 
 Histogram, das ungefähr so aussieht wie in Abbildung \@ref(fig:Munzwurf).
 
+
+
 ![](Chap-Wahrscheinlichkeitstheorie_files/figure-latex/Munzwurf-1.pdf)<!-- --> 
 
 > Aus der Logik der Konstruktion des Zufallsexperiments und der Inspektion 
@@ -583,7 +585,8 @@ Sinn für die Binomialverteilung $p=0.5$ anzunehmen, und da wir in jedem einzeln
 Experiment die Münze 10 Mal geworfen haben für $n=10$. Wenn wir die mit $n=10$ und
 $p=0.5$ parametrisierte theoretische Binomialverteilung nehmen und ihre theoretische
 Verteilungsfunktion über die Aufzeichnungen unserer Ergebnisse legen, können wir 
-uns in dieser Vermutung bestärkt fühlen, wie in Abbildung \@ref(fig:Munzwurfverteilung) ersichtlich ist.
+uns in dieser Vermutung bestärkt fühlen, wie in Abbildung 
+\@ref(fig:Munzwurfverteilung) ersichtlich ist.
 
 ![(\#fig:Munzwurfverteilung)Vergleich der empirischen Stichprobe und der parametrisierten theoretischen Binomialverteilungsfunktion](Chap-Wahrscheinlichkeitstheorie_files/figure-latex/Munzwurfverteilung-1.pdf) 
 

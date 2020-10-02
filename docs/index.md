@@ -1,8 +1,8 @@
 --- 
 title: "R für die sozio-ökonomische Forschung"
-subtitle: "Version 1.0.0"
+subtitle: "Version 0.9.0"
 author: "[Dr. Claudius Gräbner](http://claudius-graebner.com/)"
-date: "2020-09-24" 
+date: "2020-10-02" 
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -10,7 +10,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: graebnerc/RforSocioEcon
-description: "Einführung in R für die sozioökonomische Forschung; Version 1.0.0"
+description: "Einführung in R für die sozioökonomische Forschung; Version 0.9.0"
 ---
 
 # Willkommen {-}
@@ -45,7 +45,8 @@ Ich empfehle Ihnen die PDF-Variante zu verwenden, das diese Version die final
 lektorierte Version ist und bestimmte Formatierungen für die HMTL-Version (noch)
 nicht funktionieren. Entsprechend ist diese Variante leicht unvollständig.
 Sie können die PDF auf der 
-Homepage des Skripts [https://graebnerc.github.io/RforSocioEcon/](https://graebnerc.github.io/RforSocioEcon/) 
+Homepage des Skripts 
+([https://graebnerc.github.io/RforSocioEcon/](https://graebnerc.github.io/RforSocioEcon/)) 
 herunterladen indem Sie auf das
 PDF-Icon oben links (neben dem `i`) klicken. Alternativ können Sie auch 
 [diesem Link](https://graebnerc.github.io/RforSocioEcon/R-SocioEcon-dt.pdf)
@@ -64,10 +65,10 @@ Am *work-in-progress*-Charakter des Skripts haben alle natürlich keine Mitschul
 ## Lizenz {-}
 
 
-\begin{center}\includegraphics[width=0.2\linewidth]{figures/license} \end{center}
+\begin{center}\includegraphics[width=0.2\linewidth]{figures/ccbylicense} \end{center}
 
 Das gesamte Skript ist unter der 
-[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+[Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)
 lizensiert.
 
 ## Änderungshistorie {-}
@@ -79,14 +80,4 @@ lizensiert.
 
 Datum    | Version | Wichtigste Änderungen         |
 :--------+:--------+:------------------------------|
-19.10.19 | 0.1.0    | Erste Version veröffentlicht |
-03.11.19 | 0.2.0    | Markdown-Anhang hinzugefügt  |
-04.11.19 | 0.3.0    | Anhänge zur Wiederholung grundlegender Statistik hinzugefügt  |
-06.11.19 | 0.4.0    | Kapitel zu linearen Modellen hinzugefügt  |
-18.11.19 | 0.5.0    | Kapitel zur Datenaufbereitung und Visualisierung hinzugefügt; kleinere Korrekturen im Kapitel zu lin. Modellen  |
-20.11.19 | 0.5.1    | Korrektur von kleineren Rechtschreib/Grammatikfehlern; Fix für Problem mit html Version auf HP |
-03.12.19 | 0.6.0    | Kapitel zu formalen Konzepten hinzugefügt; kleinere Korrekturen |
-10.12.19 | 0.6.1    | Herleitung OLS hinzugefügt; bessere Beispiele bei Formalie; Konsolidierung Notation Kap. 4 und 7 |
-06.01.20 | 0.7.0    | Kapitel zur fortgeschrittenen Themen der Regression und nichtlinearen Schätzern hinzugefügt |
-12.01.20 | 0.7.1    | Ergänzung Beweise im Kapitel zu fortgeschrittenen Themen der Regression |
-29.01.20 | 0.7.2    | Korrektur der Tabelle in "Wahl der funktionalen Form" in Kapitel 8 im Bezug auf log-log Modelle |
+19.10.19 | 0.9.0    | Erste Version für das Wintersemester 2020/21 |
