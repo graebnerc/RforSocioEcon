@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Weiterführende Quellen | R für die sozio-ökonomische Forschung</title>
+  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Weiterführende Quellen | R für die sozio-ökonomische Forschung" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
+  <meta name="github-repo" content="graebnerc/RforSocioEcon" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Weiterführende Quellen | R für die sozio-ökonomische Forschung" />
+  
+  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 1.0.0" />
+  
+
+<meta name="author" content="Dr. Claudius Gräbner" />
+
+
+<meta name="date" content="2020-09-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="nonlin.html"/>
+
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R für die sozioökonomische Forschung</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Willkommen</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie"><i class="fa fa-check"></i>Änderungshistorie</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="precons.html"><a href="precons.html#warum-r"><i class="fa fa-check"></i><b>1.1</b> Warum R?</a></li>
+<li class="chapter" data-level="1.2" data-path="precons.html"><a href="precons.html#besonderheiten-von-r"><i class="fa fa-check"></i><b>1.2</b> Besonderheiten von R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="einrichtung.html"><a href="einrichtung.html"><i class="fa fa-check"></i><b>2</b> Einrichtung</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="einrichtung.html"><a href="einrichtung.html#installation-von-r-und-r-studio"><i class="fa fa-check"></i><b>2.1</b> Installation von R und R-Studio</a></li>
+<li class="chapter" data-level="2.2" data-path="einrichtung.html"><a href="einrichtung.html#die-r-studio-oberfläche"><i class="fa fa-check"></i><b>2.2</b> Die R Studio Oberfläche</a></li>
+<li class="chapter" data-level="2.3" data-path="einrichtung.html"><a href="einrichtung.html#einrichtung-eines-r-projekts"><i class="fa fa-check"></i><b>2.3</b> Einrichtung eines R Projekts</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="einrichtung.html"><a href="einrichtung.html#arbeitsverzeichnisse-und-pfade"><i class="fa fa-check"></i><b>2.3.1</b> Arbeitsverzeichnisse und Pfade</a></li>
+<li class="chapter" data-level="2.3.2" data-path="einrichtung.html"><a href="einrichtung.html#schritt-1-projektordner-anlegen"><i class="fa fa-check"></i><b>2.3.2</b> Schritt 1: Projektordner anlegen</a></li>
+<li class="chapter" data-level="2.3.3" data-path="einrichtung.html"><a href="einrichtung.html#schritt-2-ein-r-studio-projekt-im-projektordner-erstellen"><i class="fa fa-check"></i><b>2.3.3</b> Schritt 2: Ein R-Studio Projekt im Projektordner erstellen</a></li>
+<li class="chapter" data-level="2.3.4" data-path="einrichtung.html"><a href="einrichtung.html#unterordner"><i class="fa fa-check"></i><b>2.3.4</b> Schritt 3: Relevante Unterordner erstellen</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="einrichtung.html"><a href="einrichtung.html#optional-schritt-4-und-das-here-paket"><i class="fa fa-check"></i><b>2.4</b> Optional: Schritt 4 und das here-Paket</a></li>
+<li class="chapter" data-level="2.5" data-path="einrichtung.html"><a href="einrichtung.html#abschließende-bemerkungen"><i class="fa fa-check"></i><b>2.5</b> Abschließende Bemerkungen</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#es:befehle"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#es:objekte"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#es:objektarten"><i class="fa fa-check"></i><b>3.3</b> Grundlegende Objeke in R</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.3.1</b> Funktionen</a></li>
+<li class="chapter" data-level="3.3.2" data-path="basics.html"><a href="basics.html#basics-types-vectors"><i class="fa fa-check"></i><b>3.3.2</b> Vektoren</a></li>
+<li class="chapter" data-level="3.3.3" data-path="basics.html"><a href="basics.html#basics-logic"><i class="fa fa-check"></i><b>3.3.3</b> Logische Werte (logical)</a></li>
+<li class="chapter" data-level="3.3.4" data-path="basics.html"><a href="basics.html#wörter-character"><i class="fa fa-check"></i><b>3.3.4</b> Wörter (character)</a></li>
+<li class="chapter" data-level="3.3.5" data-path="basics.html"><a href="basics.html#fehlende-werte-und-null"><i class="fa fa-check"></i><b>3.3.5</b> Fehlende Werte und NULL</a></li>
+<li class="chapter" data-level="3.3.6" data-path="basics.html"><a href="basics.html#indizierung-und-ersetzung"><i class="fa fa-check"></i><b>3.3.6</b> Indizierung und Ersetzung</a></li>
+<li class="chapter" data-level="3.3.7" data-path="basics.html"><a href="basics.html#nützliche-funktionen-für-atomare-vektoren"><i class="fa fa-check"></i><b>3.3.7</b> Nützliche Funktionen für atomare Vektoren</a></li>
+<li class="chapter" data-level="3.3.8" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.3.8</b> Listen</a></li>
+<li class="chapter" data-level="3.3.9" data-path="basics.html"><a href="basics.html#introfactors"><i class="fa fa-check"></i><b>3.3.9</b> Faktoren</a></li>
+<li class="chapter" data-level="3.3.10" data-path="basics.html"><a href="basics.html#intro-matrix"><i class="fa fa-check"></i><b>3.3.10</b> Matrizen</a></li>
+<li class="chapter" data-level="3.3.11" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.3.11</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#es:pakete"><i class="fa fa-check"></i><b>3.4</b> Pakete</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>4</b> Datenkunde und Datenaufbereitung</a>
+<ul>
+<li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="4.1" data-path="data.html"><a href="data.html#data-arten"><i class="fa fa-check"></i><b>4.1</b> Arten von Daten</a></li>
+<li class="chapter" data-level="4.2" data-path="data.html"><a href="data.html#data-get"><i class="fa fa-check"></i><b>4.2</b> Datenakquise</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data.html"><a href="data.html#exkurs-1-ländercodes-übersetzen"><i class="fa fa-check"></i><b>4.2.1</b> Exkurs 1: Ländercodes übersetzen</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data.html"><a href="data.html#data-download-R"><i class="fa fa-check"></i><b>4.2.2</b> Exkurs 2: Daten direkt mit R herunterladen</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data.html"><a href="data.html#data-read-write"><i class="fa fa-check"></i><b>4.3</b> Daten einlesen und schreiben</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="data.html"><a href="data.html#einlesen-von-datensätzen"><i class="fa fa-check"></i><b>4.3.1</b> Einlesen von Datensätzen</a></li>
+<li class="chapter" data-level="4.3.2" data-path="data.html"><a href="data.html#speichern-von-daten"><i class="fa fa-check"></i><b>4.3.2</b> Speichern von Daten</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="data.html"><a href="data.html#data-wrangling"><i class="fa fa-check"></i><b>4.4</b> Verarbeitung von Daten (‘data wrangling’)</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="data.html"><a href="data.html#das-konzept-von-tidy-data"><i class="fa fa-check"></i><b>4.4.1</b> Das Konzept von ‘tidy data’</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data.html"><a href="data.html#data-long-wide"><i class="fa fa-check"></i><b>4.4.2</b> Von langen und breiten Datensätzen</a></li>
+<li class="chapter" data-level="4.4.3" data-path="data.html"><a href="data.html#data-merge"><i class="fa fa-check"></i><b>4.4.3</b> Zusammenführen von Daten</a></li>
+<li class="chapter" data-level="4.4.4" data-path="data.html"><a href="data.html#date-select"><i class="fa fa-check"></i><b>4.4.4</b> Datensätze filtern und selektieren</a></li>
+<li class="chapter" data-level="4.4.5" data-path="data.html"><a href="data.html#data-summary"><i class="fa fa-check"></i><b>4.4.5</b> Datensätze zusammenfassen</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data.html"><a href="data.html#data-role"><i class="fa fa-check"></i><b>4.5</b> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</a></li>
+<li class="chapter" data-level="4.6" data-path="data.html"><a href="data.html#data-packages"><i class="fa fa-check"></i><b>4.6</b> Anmerkungen zu Paketen</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>5</b> Visualisierung von Daten</a>
+<ul>
+<li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
+<li class="chapter" data-level="5.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>5.1</b> Optional: Theoretische Grundlagen</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="vis.html"><a href="vis.html#vis-base-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> <code>ggplot2</code> vs. <code>base plot</code></a></li>
+<li class="chapter" data-level="5.1.2" data-path="vis.html"><a href="vis.html#grammar"><i class="fa fa-check"></i><b>5.1.2</b> Einleitung zu Wickham’s <em>Grammar of Graphics</em></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="vis.html"><a href="vis.html#vis-elemente"><i class="fa fa-check"></i><b>5.2</b> Grundlegende Elemente von <code>ggplot2</code>-Grafiken</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="vis.html"><a href="vis.html#elemente-eines-ggplot"><i class="fa fa-check"></i><b>5.2.1</b> Elemente eines <code>ggplot</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="vis.html"><a href="vis.html#beispiel-workflow"><i class="fa fa-check"></i><b>5.2.2</b> Beispiel Workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="vis.html"><a href="vis.html#arten-von-datenvisualisierung"><i class="fa fa-check"></i><b>5.3</b> Arten von Datenvisualisierung</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="vis.html"><a href="vis.html#allgemeine-tipps-zum-grafikdesign"><i class="fa fa-check"></i><b>5.3.1</b> Allgemeine Tipps zum Grafikdesign</a></li>
+<li class="chapter" data-level="5.3.2" data-path="vis.html"><a href="vis.html#streu--oder-blasendiagramm"><i class="fa fa-check"></i><b>5.3.2</b> Streu- oder Blasendiagramm</a></li>
+<li class="chapter" data-level="5.3.3" data-path="vis.html"><a href="vis.html#linienchart"><i class="fa fa-check"></i><b>5.3.3</b> Linienchart</a></li>
+<li class="chapter" data-level="5.3.4" data-path="vis.html"><a href="vis.html#histogramme-und-dichteplots"><i class="fa fa-check"></i><b>5.3.4</b> Histogramme und Dichteplots</a></li>
+<li class="chapter" data-level="5.3.5" data-path="vis.html"><a href="vis.html#balkendiagramme"><i class="fa fa-check"></i><b>5.3.5</b> Balkendiagramme</a></li>
+<li class="chapter" data-level="5.3.6" data-path="vis.html"><a href="vis.html#vis-pie"><i class="fa fa-check"></i><b>5.3.6</b> Kuchendiagramme</a></li>
+<li class="chapter" data-level="5.3.7" data-path="vis.html"><a href="vis.html#vis-kinds-summary"><i class="fa fa-check"></i><b>5.3.7</b> Zusammenfassung</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="vis.html"><a href="vis.html#vis-adv"><i class="fa fa-check"></i><b>5.4</b> Beispiele aus der Praxis und fortgeschrittene Themen</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="vis.html"><a href="vis.html#regressionsgerade"><i class="fa fa-check"></i><b>5.4.1</b> Regressionsgerade</a></li>
+<li class="chapter" data-level="5.4.2" data-path="vis.html"><a href="vis.html#vis-viele-plots"><i class="fa fa-check"></i><b>5.4.2</b> Mehrere Plots in einer Abbildung</a></li>
+<li class="chapter" data-level="5.4.3" data-path="vis.html"><a href="vis.html#mehr-zu-den-skalen-ggplot2expansion-und-skalentransformation"><i class="fa fa-check"></i><b>5.4.3</b> Mehr zu den Skalen: <code>ggplot2::expansion()</code> und Skalentransformation</a></li>
+<li class="chapter" data-level="5.4.4" data-path="vis.html"><a href="vis.html#mehr-zur-farbauswahl"><i class="fa fa-check"></i><b>5.4.4</b> Mehr zur Farbauswahl</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="vis.html"><a href="vis.html#vis-fehler"><i class="fa fa-check"></i><b>5.5</b> Typische Fehler in der Datenvisualisierung vermeiden</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="vis.html"><a href="vis.html#clutterplots-und-ihre-tranformation-zum-beschrifteten-streudiagramm"><i class="fa fa-check"></i><b>5.5.1</b> Clutterplots und ihre Tranformation zum beschrifteten Streudiagramm</a></li>
+<li class="chapter" data-level="5.5.2" data-path="vis.html"><a href="vis.html#ein-unbalancierter-plot"><i class="fa fa-check"></i><b>5.5.2</b> Ein ‘unbalancierter’ Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="vis.html"><a href="vis.html#vis-lies"><i class="fa fa-check"></i><b>5.6</b> Lügen mit grafischer Statistik</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="vis.html"><a href="vis.html#klassiker-1-kontraintuitiver-nullpunkt"><i class="fa fa-check"></i><b>5.6.1</b> Klassiker 1: Kontraintuitiver ‘Nullpunkt’</a></li>
+<li class="chapter" data-level="5.6.2" data-path="vis.html"><a href="vis.html#klassiker-2-geschickt-gewählter-zeitraum-und-clever-gewählte-achsenabschnitte"><i class="fa fa-check"></i><b>5.6.2</b> Klassiker 2: Geschickt gewählter Zeitraum und clever gewählte Achsenabschnitte</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="vis.html"><a href="vis.html#vis-links"><i class="fa fa-check"></i><b>5.7</b> Links und weiterführende Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="formalia.html"><a href="formalia.html"><i class="fa fa-check"></i><b>6</b> Formale Methoden der Sozioökonomie</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="formalia.html"><a href="formalia.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>6.1</b> Einleitung und Überblick</a></li>
+<li class="chapter" data-level="6.2" data-path="formalia.html"><a href="formalia.html#formalia-wachstum"><i class="fa fa-check"></i><b>6.2</b> Änderungsraten und die Rolle des Logarithmus</a></li>
+<li class="chapter" data-level="6.3" data-path="formalia.html"><a href="formalia.html#formalia-diff"><i class="fa fa-check"></i><b>6.3</b> Grundlagen der Differentialrechnung</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="formalia.html"><a href="formalia.html#einleitung-differential--und-integralrechnung"><i class="fa fa-check"></i><b>6.3.1</b> Einleitung: Differential- und Integralrechnung</a></li>
+<li class="chapter" data-level="6.3.2" data-path="formalia.html"><a href="formalia.html#wiederholung-ableitungsregeln"><i class="fa fa-check"></i><b>6.3.2</b> Wiederholung: Ableitungsregeln</a></li>
+<li class="chapter" data-level="6.3.3" data-path="formalia.html"><a href="formalia.html#ableitungen-in-r"><i class="fa fa-check"></i><b>6.3.3</b> Ableitungen in R</a></li>
+<li class="chapter" data-level="6.3.4" data-path="formalia.html"><a href="formalia.html#maximierung-die-analytische-perspektive"><i class="fa fa-check"></i><b>6.3.4</b> Maximierung: die analytische Perspektive</a></li>
+<li class="chapter" data-level="6.3.5" data-path="formalia.html"><a href="formalia.html#maximierung-die-algorithmische-perspektive"><i class="fa fa-check"></i><b>6.3.5</b> Maximierung: die algorithmische Perspektive</a></li>
+<li class="chapter" data-level="6.3.6" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel"><i class="fa fa-check"></i><b>6.3.6</b> Anwendungsbeispiel</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="formalia.html"><a href="formalia.html#formalia-linalg"><i class="fa fa-check"></i><b>6.4</b> Lineare Algebra</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="formalia.html"><a href="formalia.html#einführung-von-matrizen"><i class="fa fa-check"></i><b>6.4.1</b> Einführung von Matrizen</a></li>
+<li class="chapter" data-level="6.4.2" data-path="formalia.html"><a href="formalia.html#grundregeln-der-matrizenalgebra"><i class="fa fa-check"></i><b>6.4.2</b> Grundregeln der Matrizenalgebra</a></li>
+<li class="chapter" data-level="6.4.3" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-1-das-einfache-keynesianische-modell"><i class="fa fa-check"></i><b>6.4.3</b> Anwendungsbeispiel 1: Das einfache Keynesianische Modell</a></li>
+<li class="chapter" data-level="6.4.4" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-2-ols-regression"><i class="fa fa-check"></i><b>6.4.4</b> Anwendungsbeispiel 2: OLS-Regression</a></li>
+<li class="chapter" data-level="6.4.5" data-path="formalia.html"><a href="formalia.html#ols-deriv"><i class="fa fa-check"></i><b>6.4.5</b> Optional: Herleitung des OLS-Schätzers</a></li>
+<li class="chapter" data-level="6.4.6" data-path="formalia.html"><a href="formalia.html#weiterführende-literatur"><i class="fa fa-check"></i><b>6.4.6</b> Weiterführende Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="formalia.html"><a href="formalia.html#formalia-dist"><i class="fa fa-check"></i><b>6.5</b> Analyse von Verteilungen</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="formalia.html"><a href="formalia.html#vert-begriff"><i class="fa fa-check"></i><b>6.5.1</b> Theoretische und empirische Verteilungen</a></li>
+<li class="chapter" data-level="6.5.2" data-path="formalia.html"><a href="formalia.html#vert-kennzahlen"><i class="fa fa-check"></i><b>6.5.2</b> Kennzahlen zur Beschreibung empirischer Verteilungen</a></li>
+<li class="chapter" data-level="6.5.3" data-path="formalia.html"><a href="formalia.html#vert-grafik"><i class="fa fa-check"></i><b>6.5.3</b> Grafische Komplemente zu klassischen Kennzahlen</a></li>
+<li class="chapter" data-level="6.5.4" data-path="formalia.html"><a href="formalia.html#vert-bemerkungen"><i class="fa fa-check"></i><b>6.5.4</b> Abschließende Bemerkungen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>7</b> Lineare statistische Modelle in R</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="formalia.html"><a href="formalia.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>7.1</b> Einleitung und Überblick</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>7.1.1</b> Einführung in die lineare Regression</a></li>
+<li class="chapter" data-level="7.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>7.1.2</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="7.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>7.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>7.2</b> Grundlagen der einfachen linearen Regression</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="linmodel.html"><a href="linmodel.html#grundlegende-begriffe"><i class="fa fa-check"></i><b>7.2.1</b> Grundlegende Begriffe</a></li>
+<li class="chapter" data-level="7.2.2" data-path="linmodel.html"><a href="linmodel.html#schätzung-mit-der-kleinste-quadrate-methode"><i class="fa fa-check"></i><b>7.2.2</b> Schätzung mit der Kleinste-Quadrate-Methode</a></li>
+<li class="chapter" data-level="7.2.3" data-path="linmodel.html"><a href="linmodel.html#ols-ass"><i class="fa fa-check"></i><b>7.2.3</b> Annahmen für den OLS Schätzer</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="linmodel.html"><a href="linmodel.html#lin-kennzahlen"><i class="fa fa-check"></i><b>7.3</b> Kennzahlen in der linearen Regression</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="linmodel.html"><a href="linmodel.html#erklärte-varianz-und-das-r2"><i class="fa fa-check"></i><b>7.3.1</b> Erklärte Varianz und das <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="7.3.2" data-path="linmodel.html"><a href="linmodel.html#hypothesentests-und-statistische-signifikanz"><i class="fa fa-check"></i><b>7.3.2</b> Hypothesentests und statistische Signifikanz</a></li>
+<li class="chapter" data-level="7.3.3" data-path="linmodel.html"><a href="linmodel.html#konfidenzintervalle-für-die-schätzer"><i class="fa fa-check"></i><b>7.3.3</b> Konfidenzintervalle für die Schätzer</a></li>
+<li class="chapter" data-level="7.3.4" data-path="linmodel.html"><a href="linmodel.html#zur-rolle-der-stichprobengröße"><i class="fa fa-check"></i><b>7.3.4</b> Zur Rolle der Stichprobengröße</a></li>
+<li class="chapter" data-level="7.3.5" data-path="linmodel.html"><a href="linmodel.html#linmod-residuals"><i class="fa fa-check"></i><b>7.3.5</b> Residuenanalyse</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="linmodel.html"><a href="linmodel.html#stat-ablauf"><i class="fa fa-check"></i><b>7.4</b> Zum Ablauf einer Regression</a></li>
+<li class="chapter" data-level="7.5" data-path="linmodel.html"><a href="linmodel.html#lin-multi"><i class="fa fa-check"></i><b>7.5</b> Multiple lineare Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>8</b> Fortgeschrittene Themen der linearen Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="advlin.html"><a href="advlin.html#annahmen-und-eigenschaften-des-einfachen-ols-modells"><i class="fa fa-check"></i><b>8.1</b> Annahmen und Eigenschaften des einfachen OLS Modells</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="advlin.html"><a href="advlin.html#annahmen-im-matrixschreibweise"><i class="fa fa-check"></i><b>8.1.1</b> Annahmen im Matrixschreibweise</a></li>
+<li class="chapter" data-level="8.1.2" data-path="advlin.html"><a href="advlin.html#erwartungstreue-effizienz-und-konsistenz"><i class="fa fa-check"></i><b>8.1.2</b> Erwartungstreue, Effizienz und Konsistenz</a></li>
+<li class="chapter" data-level="8.1.3" data-path="advlin.html"><a href="advlin.html#abweichungen-von-den-ols-annahmen"><i class="fa fa-check"></i><b>8.1.3</b> Abweichungen von den OLS Annahmen</a></li>
+<li class="chapter" data-level="8.1.4" data-path="advlin.html"><a href="advlin.html#monte-carlo-simulationen-in-r"><i class="fa fa-check"></i><b>8.1.4</b> Monte Carlo Simulationen in R</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="advlin.html"><a href="advlin.html#heteroskedastie"><i class="fa fa-check"></i><b>8.2</b> Heteroskedastie</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="advlin.html"><a href="advlin.html#liegt-heteroskedastie-vor"><i class="fa fa-check"></i><b>8.2.1</b> Liegt Heteroskedastie vor?</a></li>
+<li class="chapter" data-level="8.2.2" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-heteroskedastie"><i class="fa fa-check"></i><b>8.2.2</b> Reaktionen auf Heteroskedastie</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="advlin.html"><a href="advlin.html#autokorrelation"><i class="fa fa-check"></i><b>8.3</b> Autokorrelation</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="advlin.html"><a href="advlin.html#folgen-von-autokorrelation"><i class="fa fa-check"></i><b>8.3.1</b> Folgen von Autokorrelation</a></li>
+<li class="chapter" data-level="8.3.2" data-path="advlin.html"><a href="advlin.html#testen-auf-autokorrelation"><i class="fa fa-check"></i><b>8.3.2</b> Testen auf Autokorrelation</a></li>
+<li class="chapter" data-level="8.3.3" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-autokorrelation"><i class="fa fa-check"></i><b>8.3.3</b> Reaktionen auf Autokorrelation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="advlin.html"><a href="advlin.html#multikollinearität"><i class="fa fa-check"></i><b>8.4</b> Multikollinearität</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="advlin.html"><a href="advlin.html#folgen-von-multikollinearität"><i class="fa fa-check"></i><b>8.4.1</b> Folgen von Multikollinearität</a></li>
+<li class="chapter" data-level="8.4.2" data-path="advlin.html"><a href="advlin.html#testen-auf-multikollinearität"><i class="fa fa-check"></i><b>8.4.2</b> Testen auf Multikollinearität</a></li>
+<li class="chapter" data-level="8.4.3" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-multikollinearität"><i class="fa fa-check"></i><b>8.4.3</b> Reaktionen auf Multikollinearität</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="advlin.html"><a href="advlin.html#advlin-omitted-var"><i class="fa fa-check"></i><b>8.5</b> Vergessene Variablen</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="advlin.html"><a href="advlin.html#folgen-vergessener-variablen"><i class="fa fa-check"></i><b>8.5.1</b> Folgen vergessener Variablen</a></li>
+<li class="chapter" data-level="8.5.2" data-path="advlin.html"><a href="advlin.html#testen-auf-vergessene-variablen"><i class="fa fa-check"></i><b>8.5.2</b> Testen auf vergessene Variablen</a></li>
+<li class="chapter" data-level="8.5.3" data-path="advlin.html"><a href="advlin.html#reaktion-auf-vergessene-variablen"><i class="fa fa-check"></i><b>8.5.3</b> Reaktion auf vergessene Variablen</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="advlin.html"><a href="advlin.html#falsche-funktionale-form"><i class="fa fa-check"></i><b>8.6</b> Falsche funktionale Form</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="advlin.html"><a href="advlin.html#folgen-einer-falschen-funktionalen-form"><i class="fa fa-check"></i><b>8.6.1</b> Folgen einer falschen funktionalen Form</a></li>
+<li class="chapter" data-level="8.6.2" data-path="advlin.html"><a href="advlin.html#testen-auf-die-richtige-funktionale-form"><i class="fa fa-check"></i><b>8.6.2</b> Testen auf die richtige funktionale Form</a></li>
+<li class="chapter" data-level="8.6.3" data-path="advlin.html"><a href="advlin.html#wahl-der-funktionalen-form"><i class="fa fa-check"></i><b>8.6.3</b> Wahl der funktionalen Form</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="advlin.html"><a href="advlin.html#weitere-fehlerquellen-systematische-messfehler-selbstselektion-und-simulatanität"><i class="fa fa-check"></i><b>8.7</b> Weitere Fehlerquellen: Systematische Messfehler, Selbstselektion und Simulatanität</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="advlin.html"><a href="advlin.html#messfehler"><i class="fa fa-check"></i><b>8.7.1</b> Messfehler</a></li>
+<li class="chapter" data-level="8.7.2" data-path="advlin.html"><a href="advlin.html#selbstselektion"><i class="fa fa-check"></i><b>8.7.2</b> Selbstselektion</a></li>
+<li class="chapter" data-level="8.7.3" data-path="advlin.html"><a href="advlin.html#simulatanität"><i class="fa fa-check"></i><b>8.7.3</b> Simulatanität</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="advlin.html"><a href="advlin.html#anhang-übersicht-über-die-testverfahren"><i class="fa fa-check"></i><b>8.8</b> Anhang: Übersicht über die Testverfahren</a></li>
+<li class="chapter" data-level="8.9" data-path="advlin.html"><a href="advlin.html#advlin-proofs"><i class="fa fa-check"></i><b>8.9</b> Anhang: Relevante Theoreme und ihre mathematischen Beweise</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="advlin.html"><a href="advlin.html#theoreme"><i class="fa fa-check"></i><b>8.9.1</b> Theoreme</a></li>
+<li class="chapter" data-level="8.9.2" data-path="advlin.html"><a href="advlin.html#beweise"><i class="fa fa-check"></i><b>8.9.2</b> Beweise</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>9</b> Ausgewählte nichtlineare Schätzverfahren</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="nonlin.html"><a href="nonlin.html#logit"><i class="fa fa-check"></i><b>9.1</b> Binäre abhängige Variablen: Logit- und Probit-Modelle</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="nonlin.html"><a href="nonlin.html#warum-nicht-ols"><i class="fa fa-check"></i><b>9.1.1</b> Warum nicht OLS?</a></li>
+<li class="chapter" data-level="9.1.2" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-theoretische-grundidee"><i class="fa fa-check"></i><b>9.1.2</b> Logit und Probit: theoretische Grundidee</a></li>
+<li class="chapter" data-level="9.1.3" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-implementierung-in-r"><i class="fa fa-check"></i><b>9.1.3</b> Logit und Probit: Implementierung in R</a></li>
+<li class="chapter" data-level="9.1.4" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-interpretation-der-ergebnisse"><i class="fa fa-check"></i><b>9.1.4</b> Logit und Probit: Interpretation der Ergebnisse</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="outlook.html"><a href="outlook.html"><i class="fa fa-check"></i><b>10</b> Weiterführende Quellen</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R für die sozio-ökonomische Forschung</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="outlook" class="section level1" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Weiterführende Quellen</h1>
+<p>Wie bereits angekündigt sind die besten Ressourcen für R auf Englisch.
+Die folgenden Quellen sind m.E. besonders empfehlenswert:</p>
+<ul>
+<li>Advanced R</li>
+<li>R for Data Science</li>
+<li>R Packages</li>
+</ul>
+<div class="sourceCode" id="cb832"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb832-1"><a href="outlook.html#cb832-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb832-2"><a href="outlook.html#cb832-2" aria-hidden="true"></a><span class="dv">2</span><span class="op">*</span>x</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>Überblick makroökonomische Datenquellen:
+<a href="http://libguides.princeton.edu/c.php?g=84058&amp;p=541121" class="uri">http://libguides.princeton.edu/c.php?g=84058&amp;p=541121</a>
+Wesentliche Daten für OECD, EU und Deutschland:
+OECD: <a href="http://stats.oecd.org/" class="uri">http://stats.oecd.org/</a>
+Europäische Kommission: <a href="http://ec.europa.eu/economy_finance/db_indicators/ameco/index_en.htm" class="uri">http://ec.europa.eu/economy_finance/db_indicators/ameco/index_en.htm</a>
+Bundesbank: <a href="https://www.bundesbank.de/de/statistiken/zeitreihen-datenbanken" class="uri">https://www.bundesbank.de/de/statistiken/zeitreihen-datenbanken</a>
+Statistisches Bundesamt: <a href="https://www.destatis.de/DE/Startseite.html" class="uri">https://www.destatis.de/DE/Startseite.html</a></p>
+
+
+<div id="refs" class="references hanging-indent">
+<div>
+<p>Aleskerov, Fuad, Hasan Ersel, and Dmitri Piontkovski. 2011. <em>Linear Algebra for Economists</em>. Springer. <a href="\url%7Bhttps://www.springer.com/de/book/9783642205699%7D">\url{https://www.springer.com/de/book/9783642205699}</a>.</p>
+</div>
+<div>
+<p>Anscombe, Francis J. 1973. “Graphs in Statistical Analysis.” <em>The American Statistician</em> 27: 17–21. <a href="https://doi.org/10.2307/2682899">https://doi.org/10.2307/2682899</a>.</p>
+</div>
+<div>
+<p>Arel-Bundock, Vincent. 2019. <em>WDI: World Development Indicators (World Bank)</em>. <a href="https://CRAN.R-project.org/package=WDI">https://CRAN.R-project.org/package=WDI</a>.</p>
+</div>
+<div>
+<p>Arel-Bundock, Vincent, Nils Enevoldsen, and CJ Yetman. 2018. “Countrycode: An R Package to Convert Country Names and Country Codes.” <em>Journal of Open Source Software</em> 3 (28): 848. <a href="https://doi.org/10.21105/joss.00848">https://doi.org/10.21105/joss.00848</a>.</p>
+</div>
+<div>
+<p>Bengtsson, Henrik. 2019. <em>R.utils: Various Programming Utilities</em>. <a href="https://CRAN.R-project.org/package=R.utils">https://CRAN.R-project.org/package=R.utils</a>.</p>
+</div>
+<div>
+<p>Chatterjee, Sangit, and Aykut Firat. 2007. “Generating Data with Identical Statistics but Dissimilar Graphics.” <em>The American Statistician</em> 61 (3): 248–54. <a href="https://doi.org/10.1198/000313007X220057">https://doi.org/10.1198/000313007X220057</a>.</p>
+</div>
+<div>
+<p>Clauset, Aaron, Cosma Rohilla Shalizi, and M E J Newman. 2009. “Power-Law Distributions in Empirical Data.” <em>SIAM Review</em> 51 (4): 661–703. <a href="https://doi.org/10.1137/070710111">https://doi.org/10.1137/070710111</a>.</p>
+</div>
+<div>
+<p>Clementi, Fabio, Mauro Gallegati, Lisa Gianmoena, Simone Landini, and Joseph E Stiglitz. 2019. “Mis-measurement of inequality: a critical reflection and new insights.” <em>Journal of Economic Interaction and Coordination</em> 14 (4): 891–921. <a href="https://doi.org/10.1007/s11403-019-00257-2">https://doi.org/10.1007/s11403-019-00257-2</a>.</p>
+</div>
+<div>
+<p>Delignette-Muller, Marie Laure, and Christophe Dutang. 2015. “fitdistrplus: An R Package for Fitting Distributions.” <em>Journal of Statistical Software</em> 64 (4): 1–34. <a href="http://www.jstatsoft.org/v64/i04/">http://www.jstatsoft.org/v64/i04/</a>.</p>
+</div>
+<div>
+<p>Dowle, Matt, and Arun Srinivasan. 2019. <em>Data.table: Extension of ‘Data.frame‘</em>. <a href="https://CRAN.R-project.org/package=data.table">https://CRAN.R-project.org/package=data.table</a>.</p>
+</div>
+<div>
+<p>Epple, Dennis, and Bennett T. McCallum. 2006. “Simultaneous Equation Econometrics: The Missing Example.” <em>Economic Inquiry</em> 44 (2).</p>
+</div>
+<div>
+<p>Friendly, Michael, John Fox, and Phil Chalmers. 2019. <em>Matlib: Matrix Functions for Teaching and Learning Linear Algebra and Multivariate Statistics</em>. <a href="https://CRAN.R-project.org/package=matlib">https://CRAN.R-project.org/package=matlib</a>.</p>
+</div>
+<div>
+<p>Gräbner, Claudius. 2019. <em>IcaeDesign: Corporate Design-Like Functions for the Icae</em>. <a href="https://github.com/graebnerc/icaeDesign">https://github.com/graebnerc/icaeDesign</a>.</p>
+</div>
+<div>
+<p>Gräbner, Claudius, Philipp Heimberger, Jakob Kapeller, and Bernhard Schütz. 2020. “Is Europe disintegrating? Macroeconomic divergence, structural polarization, trade and fragility.” <em>Cambridge Journal of Economics</em> 44 (3): 647–69. <a href="https://doi.org/10.1093/cje/bez059">https://doi.org/10.1093/cje/bez059</a>.</p>
+</div>
+<div>
+<p>Greene, William H. 2018. <em>Econometric Analysis</em>. New York, NY: Pearson.</p>
+</div>
+<div>
+<p>Hanson, Gordon H. 2012. “The Rise of Middle Kingdoms: Emerging Economies in Global Trade.” <em>Journal of Economic Perspectives</em> 26 (2): 41–64. <a href="https://doi.org/10.1257/jep.26.2.41">https://doi.org/10.1257/jep.26.2.41</a>.</p>
+</div>
+<div>
+<p>Heckman, James. 1979. “Sample Selection Bias as a Specification Error.” <em>Econometrica</em>. <a href="https://doi.org/doi:10.2307/1912352">https://doi.org/doi:10.2307/1912352</a>.</p>
+</div>
+<div>
+<p>Herndon, Thomas, Michael Ash, and Robert Pollin. 2013. “Does high public debt consistently stifle economic growth? A critique of Reinhart and Rogoff.” <em>Cambridge Journal of Economics</em> 38 (2): 257–79. <a href="https://doi.org/10.1093/cje/bet075">https://doi.org/10.1093/cje/bet075</a>.</p>
+</div>
+<div>
+<p>Holtz, Yan, and Conor Healy. 2020. “From Data to Viz.” <a href="https://www.data-to-viz.com/">https://www.data-to-viz.com/</a>.</p>
+</div>
+<div>
+<p>Kapeller, Jakob, Claudius Gräbner, and Philipp Heimberger. 2019. <em>Wirtschaftliche Polarisierung in Europa: Ursachen und Handlungsoptionen</em>. Bonn: Friedrich-Ebert Stiftung. <a href="https://www.fes.de/wirtschaftliche-polarisierung-in-europa">https://www.fes.de/wirtschaftliche-polarisierung-in-europa</a>.</p>
+</div>
+<div>
+<p>Kassambara, Alboukadel. 2019. <em>Ggpubr: ’Ggplot2’ Based Publication Ready Plots</em>. <a href="https://CRAN.R-project.org/package=ggpubr">https://CRAN.R-project.org/package=ggpubr</a>.</p>
+</div>
+<div>
+<p>Kleiber, Christian, and Achim Zeileis. 2008. <em>Applied Econometrics with R</em>. New York: Springer-Verlag. <a href="https://CRAN.R-project.org/package=AER">https://CRAN.R-project.org/package=AER</a>.</p>
+</div>
+<div>
+<p>Komsta, Lukasz, and Frederick Novomestky. 2015. <em>Moments: Moments, Cumulants, Skewness, Kurtosis and Related Tests</em>. <a href="https://CRAN.R-project.org/package=moments">https://CRAN.R-project.org/package=moments</a>.</p>
+</div>
+<div>
+<p>Krämer, Walter. 2015. <em>So Lügt Man Mit Statistik</em>. Frankfurt und New York: Campus Verlag.</p>
+</div>
+<div>
+<p>Kuznets, Simon. 1934. <em>National Income, 1929-1932</em>. Washington D.C.: U.S. Government Printing Office. <a href="https://fraser.stlouisfed.org/title/971">https://fraser.stlouisfed.org/title/971</a>.</p>
+</div>
+<div>
+<p>Lepenies, Philipp. 2016. <em>The Power of a Single Number</em>. New York, NY: Columbia University Press.</p>
+</div>
+<div>
+<p>Matejka, Justin, and George Fitzmaurice. 2017. “Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics Through Simulated Annealing.” In <em>Proceedings of the 2017 Chi Conference on Human Factors in Computing Systems</em>, 1290–4. New York, NY: ACM. <a href="https://doi.org/10.1145/3025453.3025912">https://doi.org/10.1145/3025453.3025912</a>.</p>
+</div>
+<div>
+<p>Meschiari, Stefano. 2015. <em>Latex2exp: Use Latex Expressions in Plots</em>. <a href="https://CRAN.R-project.org/package=latex2exp">https://CRAN.R-project.org/package=latex2exp</a>.</p>
+</div>
+<div>
+<p>Müller, Kirill. 2017. <em>Here: A Simpler Way to Find Your Files</em>. <a href="https://CRAN.R-project.org/package=here">https://CRAN.R-project.org/package=here</a>.</p>
+</div>
+<div>
+<p>OECD. 2019. “Share of employed who are managers, by sex.” OECD.stat. <a href="https://doi.org/10.7910/DVN/H8SFD2">https://doi.org/10.7910/DVN/H8SFD2</a>.</p>
+</div>
+<div>
+<p>Pebesma, Edzer, Thomas Mailund, and James Hiebert. 2016. “Measurement Units in R.” <em>R Journal</em> 8 (2): 486–94. <a href="https://doi.org/10.32614/RJ-2016-061">https://doi.org/10.32614/RJ-2016-061</a>.</p>
+</div>
+<div>
+<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
+</div>
+<div>
+<p>Schwabish, Jonathan A. 2014. “An Economist’s Guide to Visualizing Data.” <em>Journal of Economic Perspectives</em> 28 (1): 209–34. <a href="https://doi.org/10.1257/jep.28.1.209">https://doi.org/10.1257/jep.28.1.209</a>.</p>
+</div>
+<div>
+<p>Slowikowski, Kamil. 2019. <em>Ggrepel: Automatically Position Non-Overlapping Text Labels with ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=ggrepel">https://CRAN.R-project.org/package=ggrepel</a>.</p>
+</div>
+<div>
+<p>The Growth Lab at Harvard University. 2019. “International Trade Data (SITC, Rev. 2).” Harvard Dataverse. <a href="https://doi.org/10.7910/DVN/H8SFD2">https://doi.org/10.7910/DVN/H8SFD2</a>.</p>
+</div>
+<div>
+<p>Venables, W. N., and B. D. Ripley. 2002. <em>Modern Applied Statistics with S</em>. Fourth. New York: Springer. <a href="http://www.stats.ox.ac.uk/pub/MASS4">http://www.stats.ox.ac.uk/pub/MASS4</a>.</p>
+</div>
+<div>
+<p>Wainwright, Kevin, and Alpha Chiang. 2005. <em>Fundamental Methods of Mathematical Economics</em>. McGraw-Hill.</p>
+</div>
+<div>
+<p>Wickham, Hadley. 2010. “A Layered Grammar of Graphics.” <em>Journal of Computational and Graphical Statistics</em> 19 (1): 3–28. <a href="https://doi.org/10.1198/jcgs.2009.07098">https://doi.org/10.1198/jcgs.2009.07098</a>.</p>
+</div>
+<div>
+<p>———. 2014. “Tidy Data.” <em>The Journal of Statistical Software</em> 59 (10). <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>.</p>
+</div>
+<div>
+<p>———. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.</p>
+</div>
+<div>
+<p>———. 2018. <em>Scales: Scale Functions for Visualization</em>. <a href="https://CRAN.R-project.org/package=scales">https://CRAN.R-project.org/package=scales</a>.</p>
+</div>
+<div>
+<p>———. 2019. <em>Advanced R</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/">https://adv-r.hadley.nz/</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Jennifer Bryan. 2019. <em>Advanced R</em>. 2nd ed. Sebastopol, CA: O’Reilly Media. <a href="https://r-pkgs.org/">https://r-pkgs.org/</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2019. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Lionel Henry. 2019. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Evan Miller. 2019. <em>Haven: Import and Export ’Spss’, ’Stata’ and ’Sas’ Files</em>. <a href="https://CRAN.R-project.org/package=haven">https://CRAN.R-project.org/package=haven</a>.</p>
+</div>
+<div>
+<p>Wilkinson, Leland. 1999. <em>The Grammar of Graphics</em>. New York: Springer. <a href="https://www.springer.com/de/book/9781475731002">https://www.springer.com/de/book/9781475731002</a>.</p>
+</div>
+<div>
+<p>Yang, Jangho, Torsten Heinrich, Julian Winkler, Francois Lafond, Pantelis Koutroumpis, and J.Doyne Farmer. 2019. “Measuring Productivity Dispersion: A Parametric Approach Using the Levy Alpha-Stable Distribution.” <em>INET Oxford Working Paper</em> 2019-14. <a href="https://www.inet.ox.ac.uk/publications/no-2019-14-measuring-productivity-dispersion-a-parametric-approach-using-the-l%C3%A9vy-alpha-stable-distribution/">https://www.inet.ox.ac.uk/publications/no-2019-14-measuring-productivity-dispersion-a-parametric-approach-using-the-l%C3%A9vy-alpha-stable-distribution/</a>.</p>
+</div>
+<div>
+<p>Zeileis, Achim. 2004. “Econometric Computing with HC and HAC Covariance Matrix Estimators.” <em>Journal of Statistical Software</em> 11 (10): 1–17. <a href="https://doi.org/10.18637/jss.v011.i10">https://doi.org/10.18637/jss.v011.i10</a>.</p>
+</div>
+<div>
+<p>———. 2014. <em>Ineq: Measuring Inequality, Concentration, and Poverty</em>. <a href="https://CRAN.R-project.org/package=ineq">https://CRAN.R-project.org/package=ineq</a>.</p>
+</div>
+<div>
+<p>Zeileis, Achim, and Torsten Hothorn. 2002. “Diagnostic Checking in Regression Relationships.” <em>R News</em> 2 (3): 7–10. <a href="https://CRAN.R-project.org/doc/Rnews/">https://CRAN.R-project.org/doc/Rnews/</a>.</p>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="nonlin.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["R-SocioEcon-dt.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

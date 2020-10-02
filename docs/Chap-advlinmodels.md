@@ -208,6 +208,10 @@ andersherum.
 Folgendes Beispiel illustriert dieses Problem:
 
 
+```
+#> `geom_smooth()` using formula 'y ~ x'
+#> `geom_smooth()` using formula 'y ~ x'
+```
 
 
 \begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-4-1} \end{center}
@@ -422,6 +426,12 @@ dass es unter A1-A4 *keinen* anderen linearen erwartungstreuen Schätzer
 gibt, der noch effizienter ist als $\hat{\boldsymbol{\beta}}$.
 
 Die Eigenschaft der Effizienz wird in folgender Abbildung illustriert:
+
+
+```
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+```
+
 
 
 \begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-6-1} \end{center}
@@ -729,7 +739,13 @@ beta_1_plot <- ggplot(data = full_results,
                                 "Heteroskedastie"="#800000"),
   aesthetics = c("color", "fill")) +
   theme_icae()
+```
 
+```
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+```
+
+```r
 beta_1_plot
 ```
 
@@ -748,6 +764,9 @@ Standardfehler der Regression auswirkt (der Code zum Erstellen der Plots
 ist äquivalent zu oben):
 
 
+```
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+```
 
 ```r
 beta_1_stdf_plot
@@ -1122,6 +1141,11 @@ Effizienz ein wenn die Autokorrelation größer wird.
 Betrachten wir nun noch die geschätzten Standardfehler:
 
 
+```
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+```
 
 
 \begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-38-1} \end{center}
@@ -1477,7 +1501,7 @@ cor(x_1_small, x_2_small)  # Test
 ```
 
 ```
-#> [1] -1.929638e-16
+#> [1] 5.082293e-17
 ```
 
 ```r
@@ -1509,6 +1533,13 @@ Dies führt zu folgender Verteilung der Schätzer:
 
 
 
+```
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+```
 
 \begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-56-1} \end{center}
 
@@ -1903,6 +1934,13 @@ Konsum von Hähnchenfleisch.
 
 Wie wir sehen werden ist dieser Zusammenhang an sich nicht
 linear, kann aber durch Logarithmieren in eine lineare Form gebracht werden:
+
+
+```
+#> `geom_smooth()` using formula 'y ~ x'
+#> `geom_smooth()` using formula 'y ~ x'
+```
+
 
 
 \begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-74-1} \end{center}

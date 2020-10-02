@@ -446,7 +446,11 @@ sample_binom
 ```
 
 ```
-## [1] 1 3 5 5 4
+<<<<<<< HEAD
+## [1] 2 4 7 4 2
+=======
+## [1] 4 3 5 6 5
+>>>>>>> ch5-b
 ```
 
 > **Anwendungsbeispiel Binomialverteilung:** Unser Zufallsexperiment besteht
@@ -457,6 +461,11 @@ dabei einen Erfolg verbuchen konnten. Wenn wir unsere Ergebnisse aufmalen, indem
 wir auf der x-Achse die Anzahl der Erfolge, und auf der y-Achse die Anzahl der
 Experimente mit genau dieser Anzahl an Erfolgen aufmalen erhalten wir ein 
 Histogram, das ungefähr so aussieht:
+
+
+```
+## Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+```
 
 ![](ChapA-Wahrscheinlichkeitstheorie_files/figure-latex/unnamed-chunk-11-1.pdf)<!-- --> 
 > Aus der Logik der Konstruktion des Zufallsexperiments und der Inspektion 
@@ -488,6 +497,10 @@ ggplot(data.frame(x=munzwurfe), aes(x=x)) +
   scale_y_continuous(expand = expand_scale(c(0,0), c(0,1))) +
   #scale_color_manual(values=c("blue", "red"), name=c("Theoretische Verteilung", "Empirische Verteilung")) +
   theme_icae() + theme(legend.position = "bottom")
+```
+
+```
+## Warning: `expand_scale()` is deprecated; use `expansion()` instead.
 ```
 
 ![](ChapA-Wahrscheinlichkeitstheorie_files/figure-latex/unnamed-chunk-12-1.pdf)<!-- --> 

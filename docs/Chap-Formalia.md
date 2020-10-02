@@ -1,8 +1,11 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Formale Methoden der Sozioökonomie {#formalia}
 
 
-
-## Einleitung und Überblick 
 
 > Refusing to deal with numbers rarely serves the interest of the least well-off.
 >
@@ -28,24 +31,21 @@ dabei das Thema der Optimierung, das im Forschungsalltag eine besonders wichtige
 Rolle spielt.
 
 Als nächstes illustrieren wir die Verwendung von Konzepten aus der 
-[linearen Algebra](#formalia-linalg), wobei Sie hier einiges schon aus dem Kapitel
-zu den [linearen Modellen]() und der [Einführung in R]() kennen.
-Allerdings werden wir anhang konkreter Beispiele noch einmal die Allgegenwärtigkeit
-der linearen Algebra verdeutlichen.
+[linearen Algebra](#formalia-linalg), und werden anhand konkreter Beispiele noch 
+einmal die Allgegenwärtigkeit der linearen Algebra verdeutlichen.
 
 Den Schwerpunkt des Kapitels bildet dann der Abschnitt zu [Verteilungen](#formalia-dist).
 Die Analyse von Verteilungen spielt eine sehr wichtige Rolle in der Sozioökonomik,
 da Themen wie Einkommens- und Vermögensverteilung bzw. Ungleichheitsforschung 
 traditionell ein wichtiges Kernthema der Sozioökonomik ausmachen.
 
-In diesem Kapitel werden die folgenden R Pakete verwendet:
+## Verwendete Pakete {-}
 
 
 ```r
 library(here)
 library(tidyverse)
 library(data.table)
-library(icaeDesign)
 library(ggrepel)
 library(ggpubr)
 library(latex2exp)
@@ -54,6 +54,8 @@ library(fitdistrplus)
 library(moments)
 library(ineq)
 library(rmutil)
+library(viridis)
+library(optimx)
 ```
 
 > **Hinweis**: Das Paket [matlib](http://friendly.github.io/matlib/) [@R-matlib]
@@ -71,7 +73,7 @@ Je nach Fragestellung sind dabei *absolute* oder *relative* Änderungen von
 Interesse. 
 
 Um die Änderungsrate einer Variable $X$ zu berechnen wird folgende
-Formen verwendet:
+Formel verwendet:
 
 $$\frac{X_t-X_{t-1}}{|X_{t-1}|}\cdot100\% = \left(\frac{X_t}{|X_{t-1}|}-1\right)\cdot100\%$$
 
@@ -82,7 +84,7 @@ Für die **durchschnittliche Änderungsrate** verwenden wir:
 $$\left(\left[ \frac{X_t}{X_{t-s}} \right]^{\frac{1}{s}} -1 \right)\cdot 100\% $$
 
 Umgekehrt können wir den tatsächlichen Wert der Variable $X$ berechnen wenn
-wir Informationen über die jährliche Anderungsrate $x$ haben.
+wir Informationen über die jährliche Änderungsrate $x$ haben.
 Hierbei gilt:
 
 $$X_{t+s}=X_t\left(1+x\right)^s$$
@@ -92,7 +94,7 @@ approximiert werden:
 
 $$X_{t+s}=X_t\left(1+x\right)^s \approx X_t\cdot e^{xs} $$
 
-Diese Approximation wir später hilfreich werden, wenn wir Wachstumsraten in
+Diese Approximation wird später hilfreich werden, wenn wir Wachstumsraten in
 logarithmierter Form darstellen wollen.
 
 Wenn $X_t=4$, $s=5$ und $x=0.05$ ergibt sich für den Wert nach $s$ Zeitschritten
@@ -109,8 +111,8 @@ $$\frac{5\%-4\%}{|4\%|}=0.25=25\%$$
 Hier von einer 25-prozentigen Änderung zu sprechen ist jedoch nicht eindeutig:
 damit könnte eine relative Änderung von 25% gemeint sein, oder aber eine 
 absolute Änderung von 25%. Daher sprechen wir bei letzterem von einer Änderung
-in *Prozentpunkten*. Im Beispiel haben wir also eine Änderung von einem 
-Prozentpunkt, bzw. einer relativen Änderung von 25%.
+in *Prozentpunkten*. Im Beispiel haben wir also eine absolute Änderung von einem 
+Prozentpunkt, bzw. eine relative Änderung von 25%.
 
 In R können wir die Funktionen `lag()` und `lead()` aus dem Paket 
 [dplyr](https://dplyr.tidyverse.org/) [@R-dplyr] 
@@ -118,7 +120,7 @@ verwenden um Änderungsraten zu berechnen.^[Der Funktionsname 'lag' und 'lead'
 wird leider in sehr vielen Paketen verwendet, u.a. auch in `data.table`.
 Deswegen ist es gerade bei diesen Funktionen besser den expliziten Aufruf
 `dplyr::lag()` und `dplyr::lead()` zu verwenden.]
-`lag()` akzeptieren dabei zwei Argumente: den Vektor der Werte und die Anzahl
+Die Funktion `lag()` akzeptieren dabei zwei Argumente: den Vektor der Werte und die Anzahl
 der Schritte, die zurück bzw. vor gesprungen werden sollen.
 
 Entsprechend können wir Änderungsraten folgendermaßen berechnen:
@@ -137,8 +139,8 @@ rel_change
 Die gleiche Syntax können wir auch für die Arbeit mit einem `data.frame` 
 verwenden. 
 Hier müssen wir aber darauf achten, die Daten auch tatsächlich nach dem 
-Beobachtungszeitpunkt zu so sortieren, damit `lag(x, 1)` auch vorherigen Wert
-ausgibt. Dazu verwenden wir die Funktion `arrange()`, welche die Zeilen eines
+Beobachtungszeitpunkt zu sortieren, damit `data.frame::lag(x, 1)` auch den vorherigen Wert
+ausgibt. Dazu verwenden wir die Funktion `dplyr::arrange()`, welche die Zeilen eines
 `data.frame` gemäß einer oder mehrerer Variablen ordnet:
 
 
@@ -151,41 +153,41 @@ head(beispiel_daten_at, 4)
 ```
 
 ```
-#>   country      BIP year
-#> 1 Austria 37941.04 2018
-#> 2 Austria 37140.79 2017
-#> 3 Austria 36469.39 2016
-#> 4 Austria 36129.03 2015
+#>    country      BIP year
+#> 1: Austria 37941.04 2018
+#> 2: Austria 37140.79 2017
+#> 3: Austria 36469.39 2016
+#> 4: Austria 36129.03 2015
 ```
 
 ```r
 beispiel_daten_at <- beispiel_daten_at %>%
-  arrange(year)
+  dplyr::arrange(year)
 head(beispiel_daten_at, 4)
 ```
 
 ```
-#>   country      BIP year
-#> 1 Austria 36123.43 2014
-#> 2 Austria 36129.03 2015
-#> 3 Austria 36469.39 2016
-#> 4 Austria 37140.79 2017
+#>    country      BIP year
+#> 1: Austria 36123.43 2014
+#> 2: Austria 36129.03 2015
+#> 3: Austria 36469.39 2016
+#> 4: Austria 37140.79 2017
 ```
 
 
 ```r
 beispiel_daten_at <- beispiel_daten_at %>%
-  mutate(BIP_Wachstum = (BIP-dplyr::lag(BIP))/abs(dplyr::lag(BIP))*100)
+  dplyr::mutate(BIP_Wachstum = (BIP-dplyr::lag(BIP))/abs(dplyr::lag(BIP))*100)
 beispiel_daten_at
 ```
 
 ```
-#>   country      BIP year BIP_Wachstum
-#> 1 Austria 36123.43 2014           NA
-#> 2 Austria 36129.03 2015   0.01550613
-#> 3 Austria 36469.39 2016   0.94206769
-#> 4 Austria 37140.79 2017   1.84100901
-#> 5 Austria 37941.04 2018   2.15464100
+#>    country      BIP year BIP_Wachstum
+#> 1: Austria 36123.43 2014           NA
+#> 2: Austria 36129.03 2015   0.01550613
+#> 3: Austria 36469.39 2016   0.94206769
+#> 4: Austria 37140.79 2017   1.84100901
+#> 5: Austria 37941.04 2018   2.15464100
 ```
 
 Falls wir innerhalb des Datensatzes unterschiedliche Beobachtungsobjekte haben,
@@ -200,20 +202,20 @@ head(beispiel_daten, 4)
 ```
 
 ```
-#>   country      BIP year
-#> 1 Austria 37941.04 2018
-#> 2 Germany 35866.00 2018
-#> 3 Austria 37140.79 2017
-#> 4 Germany 35477.89 2017
+#>    country      BIP year
+#> 1: Austria 37941.04 2018
+#> 2: Germany 35866.00 2018
+#> 3: Austria 37140.79 2017
+#> 4: Germany 35477.89 2017
 ```
 
 
 ```r
 beispiel_daten <- beispiel_daten %>%
-  arrange(country, year) %>%
-  group_by(country) %>%
-  mutate(BIP_Wachstum = (BIP-dplyr::lag(BIP))/abs(dplyr::lag(BIP))*100) %>%
-  ungroup()
+  dplyr::arrange(country, year) %>%
+  dplyr::group_by(country) %>%
+  dplyr::mutate(BIP_Wachstum = (BIP-dplyr::lag(BIP))/abs(dplyr::lag(BIP))*100) %>%
+  dplyr::ungroup()
 beispiel_daten
 ```
 
@@ -242,38 +244,55 @@ $$\left(\left[ \frac{X_t}{X_{t-s}} \right]^{\frac{1}{s}} -1 \right)\approx \ln \
 Sie fragen sich vielleicht warum wir uns mit der Verwendung des Logarithmus
 überhaupt beschäftigen, wo durch die 'Vereinfachung' doch eine kleine 
 Ungenauigkeit eingeführt wird? Tatsächlich ist die Verwendung des Logarithmus 
-häufig hilfreich für die grafische Darstellung von Wachstumsraten:^[Zur 
+häufig hilfreich für die grafische Darstellung von Wachstumsraten.^[Zur 
 Transformation der y-Achse verwenden wir in `ggplot2` die Funktion
 `scale_y_continuous()` und setzen das Argument `trans = "log"`.]
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.5\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-12-1} \end{center}
+{\centering \includegraphics[width=0.75\linewidth,height=0.5\textheight]{Chap-Formalia_files/figure-latex/normalandlog-1} 
 
-In dieser Darstellung gilt: die Steigung im logarithmierten Plot gibt die
+}
+
+\caption{Vergleich normaler und logarithmierter Darstellung}(\#fig:normalandlog)
+\end{figure}
+
+In Darstellung \@ref(fig:normalandlog) gilt: die Steigung im logarithmierten Plot gibt die
 *relative* Änderung der Variable an.
-Das bedeutet, dass wenn wir im logarithmierten Plot eine lineare Steigung
+Das bedeutet wenn wir im logarithmierten Plot eine lineare Steigung
 haben wächst die Variable konstant mit der gleichen Wachstumsrate über die Zeit -
 so wie im obigen Beispiel.
 
 Diese Art der Darstellung ist zum Beispiel bei der langfristigen Betrachtung von
-Wachstumsraten und dem Vergleich zwischen Ländern sehr hilfreich, da Unterschiede 
-in der logarithmierten Darstellung besser erkennbar sind:
+Wachstumsraten und dem Vergleich zwischen Ländern sehr hilfreich, da, wie in Abbildung  \@ref(fig:LogDarstellung) Unterschiede in der logarithmierten Darstellung besser erkennbar sind.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/LogDarstellung-1} 
+
+}
+
+\caption{Vergleich normaler und logarithmierter Darstellung bei langfristiger vergleichender Betrachtung von Wachstumsraten}(\#fig:LogDarstellung)
+\end{figure}
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-13-1} \end{center}
-
-
-Das folgende Beispiel zeigt wie wichtig eine solche Darstellung sein kann um
+Abbildung \@ref(fig:DepressionFinanzkrise) zeigt wie wichtig eine solche Darstellung sein kann um
 Events, die zu sehr unterschiedlichen Zeitpunkten stattgefunden haben, 
 vergleichbar zu machen:
 
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-14-1} \end{center}
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/DepressionFinanzkrise-1} 
+
+}
+
+\caption{Vergleich normaler und logarithmierter Darstellung bei Events, die zu sehr unterschiedlichen Zeitpunkten stattgefunden haben}(\#fig:DepressionFinanzkrise)
+\end{figure}
 
 Während die absoluten Zahlen die Volatilität während der Großen Depression
-verschwindend gering erscheinen lassen wird im unteren Graph deutlich, dass
-die Volatilität damals tatsächlich noch größer war.
+verschwindend gering erscheinen lassen wird im unteren Graph von Abbildung \@ref(fig:DepressionFinanzkrise) deutlich, dass die Volatilität damals tatsächlich
+noch größer war.
 
 Um die Achsen intuitiver verständlich zu machen habe ich von allen Werten den
 Wert für 1871 (die erste Beobachtung) abgezogen und den Wert für 1871 somit auf
@@ -281,9 +300,9 @@ Null normiert. Zudem habe ich die Werte mit 100 multipliziert, sodass eine
 Änderung von 1 auf der y-Ache zu einer einprozentigen Änderung des S&P Kurses
 korrespondiert.
 
-[Später]() werden wir zudem lernen, dass die logarithmierte Form die Analyse
-von Wachstumsraten in linearen Regressionsmodellen deutlich vereinfacht.
-
+Im Rahmen der Regressionsanalyse werden wir zudem lernen, dass die logarithmierte 
+Form die Analyse von Wachstumsraten in linearen Regressionsmodellen deutlich 
+vereinfacht (siehe Kapitel \@ref(advlin)).
 
 ## Grundlagen der Differentialrechnung {#formalia-diff}
 
@@ -293,15 +312,15 @@ von Wachstumsraten in linearen Regressionsmodellen deutlich vereinfacht.
 Die Differentialrechnung ist eng verwandt mit der Integralrechnung:
 in beiden Bereichen studiert man die Veränderungen von Funktionen.
 Während die Differentialrechnung sich mit der lokalen Änderung einer Funktion
-beschäftig, also vor allem versucht die Steigung der durch die Funktion 
-definierten Kurven zu berechnen, studiert die Integralrechnung die 
-Grafisch bedeutet dies, dass man mit den Flächen unter bzw. zwischen Kurven
-interessiert ist.
+beschäftigt, also vor allem versucht die Steigung der durch die Funktion 
+definierten Kurven zu berechnen, studiert die Integralrechnung die Flächen und
+Volumina, die durch eine Funktion definiert sind.
+Grafisch bedeutet dies, dass wir bei der Integralrechnung an den Flächen unter 
+einer bzw. zwischen mehrerenKurven interessiert sind
 
 Die beiden Bereiche sind eng miteinander verbunden.
 Besonders deutlich wird das in dem so genannten *Fundamentalsatz der Analysis* 
 (auch: *Hauptsatz der Differential- und Integralrechnung*) deutlich.
-
 In der Differentialrechnung leiten wir Funktionen *ab* und in der 
 Integralrechnung leiten wir Funktionen *auf*. Der Fundamentalsatz der Analysis
 zeigt, dass die beiden Vorgehensweise jeweils die Umkehrung des anderen Darstellen:
@@ -313,8 +332,8 @@ diesem Kapitel jedoch auf der Differentialrechnung liegen, deren
 Anwendungsgebiet noch einmal breiter ist: 
 wann immer Sie eine Funktion maximieren oder minimieren bedienen Sie sich 
 Methoden der Differentialrechnung.
-Und Maximierung spielt nicht nur in den herkümmlichen Modellen, die auf dem
-*homo oeconomicus* aufbauen, eine wichtige Rolle, auch in zahlreichen anderen
+Und Maximierung spielt nicht nur in den herkömmlichen Modellen, die auf dem
+*homo oeconomicus* aufbauen, eine wichtige Rolle. Auch in zahlreichen anderen
 Modellierungsparadigmen und genauso in der Ökonometrie spielt die 
 Maximierung eine wichtige Rolle.
 
@@ -324,15 +343,14 @@ Für einfache Funktionen gibt es unmittelbare Ableitungsregeln, die uns für jed
 Ausdruck die entsprechende Ableitung geben. Komplexere Ausdrücke versucht man
 über entsprechende Regeln auf diese einfacheren Ausdrücke zurückzuführen und 
 Ableitungen von komplexeren Funktionen somit 'Stück für Stück' durchzuführen.
-Bei den komplexeren Ableitungsregeln handelt es sich insbesondere die Summen-, 
-Produkt- und Quotientenregel.
+Bei den komplexeren Ableitungsregeln handelt es sich insbesondere um die Summen-, 
+Produkt-, Quotienten- und Kettenregel.
 Vorher wollen wir uns aber mit den einfachen Grundregeln vertraut machen.
 
 Die Ableitung der Funktion $f(x)$ wird als $f'(x)$ oder mit 
 $\frac{\partial f(x)}{\partial x}$ bezeichnet. Letztere Formulierung ist 
 besonders hilfreich wenn eine Funktion im Bezug auf verschiedene Variablen
-abgeleitet ist, das unter dem Bruchstrich noch einmal explizit angegeben wird
-nach welcher Variable die Funktion abgeleitet wird.
+abgeleitet ist: durch diese Formulierung wird unter dem Bruchstrich noch einmal explizit angegeben nach welcher Variable die Funktion abgeleitet wird.
 
 Grundsätzlich gilt, dass die Ableitung einer Konstanten gleich Null ist:
 
@@ -379,7 +397,7 @@ Für unser Beispiel mit $f(x)=(4+x^2)(1-x^3)$ hätten wir also:
 f'(x)&=u'(x)\cdot v(x) + u(x)\cdot v'(x)\\
 u(x)&=(4+x^2), u'(x)=2x\\
 v(x)&=(1-x^3), v'(x)=3x\\
-f'(x)&=2x(1-x^3) + 3x(4+x^2)) =2x-2x^4 + 12x + 3x^3=-2x^4+3x^3+14x 
+f'(x)&=2x(1-x^3) + 3x(4+x^2) =2x-2x^4 + 12x + 3x^3=-2x^4+3x^3+14x 
 \end{align}
 
 Wenn die beiden Teilfunktionen dagegen dividiert werden müssen wir die 
@@ -402,7 +420,8 @@ f'(x)&=\frac{2x\cdot 2 - x^2\cdot 2}{v(x)^2}=\frac{2x-2x^2}{(2x)^2}
 
 Zuletzt betrachten wir noch die **Kettenregel**, die es uns erlaubt 
 geschachtelte Funktionen abzuleiten. 
-Darunter verstehen wir Funktionen $f(x)=u(x) \circ v(x)=u(v(x))$.
+Darunter verstehen wir Funktionen wie $f(x)=u(x) \circ v(x)=u(v(x))$.
+
 Hier gilt:
 
 $$(u\circ v)'(x_0) = u'\left(v(x_0)\right) \cdot v'(x_0)$$
@@ -483,6 +502,7 @@ D(D(f, "x"), "x")
 ```
 #> [1] 2
 ```
+Für die zweite Ableitung erhalten wir also dementsprechend:
 
 $$\frac{\partial f(x) }{\partial x^2}=2$$
 
@@ -494,8 +514,8 @@ Minima und Maxima, so genannten Extrema, einer Funktion.
 Die interessierende Funktion wird in diesem Kontext in der Regel *Zielfunktion*
 genannt.
 
-Die Differentialrechnung spielt hier eine wichtige Rolle, denn Exterma sind 
-dadurch gekennzeichnet, dass die Ableitung einer Funktion an Ihren Extrempunkten
+Die Differentialrechnung spielt hier eine wichtige Rolle, denn Extrema sind 
+dadurch gekennzeichnet, dass die Ableitung einer Funktion an ihren Extrempunkten
 gleich Null ist. 
 Weil die Nullstellen einer Funktion wiederum recht leicht zu finden sind,
 bietet es sich an, Extrema über die Ableitung einer Funktion zu suchen.
@@ -524,12 +544,17 @@ Wir sprechen beim Punkt $(x^*, f(x^*))$ von einem *globalen Minimum* wenn
 $f(x^*)\leq f(x) \forall x \in x \in D$ und von einem *globalen Maximum* wenn
 $f(x^*)\geq f(x) \forall x \in x \in D$.
 
-Im folgenden Beispiel sehen wir die Extremwerte der Funktion 
-$f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2$:
+In Abbildung \@ref(fig:Extrema) sehen wir beispielhaft die Extremwerte der Funktion 
+$f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2$.
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-19-1} \end{center}
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Extrema-1} 
 
+}
+
+\caption{Beispiel für Extremwerte}(\#fig:Extrema)
+\end{figure}
 
 Es kann gezeigt werden, dass eine **notwendige Bedingung** für die Existenz eines
 Extremwertes am Punkt $x^*$ ist, dass $f'(x^*)=0$.
@@ -538,12 +563,12 @@ die Ableitung der Funktion und die Identifikation der Nullstellen.
 Als nächstes untersucht man die **hinreichenden Bedingungen**, die einem 
 genauere Informationen über den Punkt geben.
 
-Hierbei hat sich folgende Heuristik in der Praxis bewährt:^[Diese Klassifizierung
-ist nicht erschöpfend und in einigen Fällen uneindeutig. Tatsächlich gilt 
-folgendes: sei $f^n(x)$ die $n$-te Ableitung von $f(x)$. Wenn $f'(x)=0$ und 
-die erste von Null verschiedene höhere Ableitung eine Ableitung gerader Ordnung 
+Hierbei hat sich die in Tabelle \@ref(tab:Heuristik) zusammengefasste Heuristik in der Praxis bewährt:^[Diese Klassifizierung ist nicht erschöpfend und in einigen Fällen uneindeutig. Tatsächlich gilt Folgendes: sei $f^n(x)$ die $n$-te Ableitung von $f(x)$. Wenn $f'(x)=0$ und 
+die erste von Null verschiedene höhere Ableitung eine Ableitung gerader Ordnung ist 
 haben wir einen Extrempunkt, ansonsten einen Sattelpunkt. Ansonsten gilt auch,
 dass bei $f^n(x)>0$ ein Minimum und bei $f^n(x)<0$ ein Maximum vorliegt.]
+
+Table: (\#tab:Heuristik) Heuristik zur Untersuchung der hinreichenden Bedingung.
 
 | 1. Ableitung | 2. Ableitung | Ergebnis |
 |:------------:+:------------:+----------|
@@ -551,7 +576,7 @@ dass bei $f^n(x)>0$ ein Minimum und bei $f^n(x)<0$ ein Maximum vorliegt.]
 | $f'(x)=0$    | $f''(x)<0$   | Maximum  |
 | $f'(x)=0$    | $f''(x)=0$   | Wendepunkt |
 
-Das ganze funktioniert natürlich nur wenn eine Funktion auch tatsächlich eine
+Das Ganze funktioniert natürlich nur wenn eine Funktion auch tatsächlich eine
 Ableitung besitzt, es sich also um eine differenzierbare Funktion handelt. 
 Daher wird das auch in vielen ökonomischen Modellen angenommen.
 
@@ -560,9 +585,9 @@ Werte der Extrema vergleichen. Es gibt auch noch einige Heuristiken für besonde
 Sub-Klassen von Funktionen, die wir hier aber nicht genauer diskutieren wollen.
 
 Wenn die Funktion unter bestimmten *Bedingungen* maximiert (minimiert) werden
-soll, sprechen wir von einem *Maximierung unter Nebenbedingung*. 
-Die Standard-Methode hier ist die so genannte *Lagrange-Optimierung*.
-Details finden sich in zahlreichen Lehrbüchern, z.B. in @chiang
+soll, sprechen wir von einer *Maximierung unter Nebenbedingung(en)*. 
+Die Standard-Methode hier ist die sogenannte *Lagrange-Optimierung*.
+Details finden sich in zahlreichen Lehrbüchern, z.B. in @chiang.
 
 
 ### Maximierung: die algorithmische Perspektive
@@ -570,20 +595,24 @@ Details finden sich in zahlreichen Lehrbüchern, z.B. in @chiang
 Bei vielen Funktionen wäre die analytische Berechnung von Extrema zu aufwendig
 oder gar nicht möglich. 
 Daher verwendet man den Computer um die Extrema zu finden. 
-Das ist bei einfachen Funktionen kein großes Problem, da Sie sich für folgenden 
-Fall leicht vorstellen können, dass der Computer einfach mit einem beliebigen
-Startwert $x_0$ anfängt und sich so lange auf dem Definitionsbereich fortbewegt
-solange der Funktionsweg steigt und damit dann in jedem Fall den Punkt $x^*_{globmax}$
-identifiziert. Für Funktionen mit lokalen Extremwerten funktioniert das natürlich
-nicht mehr:
+Ironischerweise ist das gerade bei einfachen Funktionen kein großes Problem.
+Für die im linken Teil der Abbildung XX dargestellte Funktion kann der 
+Computer einfach mit einem beliebigem Startwert $x_0$ beginnen und sich 
+auf dem Definitionsbereich in Richtung steigender Funktionswerte fortbewegt
+bis er den Punkt $x^*_{globmax}=0$ erreicht.
+Für Funktionen mit lokalen Extremwerten wie im rechten Teil von Abbildung
+funktioniert diese Strategie unter Umständen nicht mehr, da der Computer leicht 
+auf lokalen Optima "steckenbleibt".
+Im Beispiel in Abbildung \@ref(fig:Steckengeblieben) besteht bei einer unglücklichen Wahl des Startwertes die Gefahr, auf dem lokalen Extremum bei $x=0.77$ hängen zu bleiben.
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-20-1} \end{center}
+{\centering \includegraphics[width=0.75\linewidth,height=0.35\textheight]{Chap-Formalia_files/figure-latex/Steckengeblieben-1} 
 
-Bei der linken Funktion ist es mit einem solchen Vorgang recht einfach das 
-Maximum bei $x=0$ zu finden, aber bei der rechten Funktion würde das gleiche 
-möglicherweise dazu führen, dass der Computer auf dem lokalen Extremum bei 
-$x=0.77$ 'stecken bleibt'.
+}
+
+\caption{Beispiel für die Gefahr auf einem lokalen Extremum hängen zu bleiben (rechter Graph).}(\#fig:Steckengeblieben)
+\end{figure}
 
 Um das zu vermeiden verwenden die Optimierungsalgorithmen einige Tricks.
 Für die R-Funktion `optim()` können Sie z.B. zwischen sieben solcher ausgefeilter
@@ -594,14 +623,14 @@ nachhelfen und der Opimierungsfunktion weitere Hinweise zur Funktion angeben.
 Für unsere Anwendungsbeispiele ist das nicht weiter relevant, Sie sollten die
 Problematik jedoch im Hinterkopf behalten.]
 
-Wichtig zu unterscheiden ist die Art der zu opmtimierenden Funktion und der 
+Wichtig zu unterscheiden ist die Art der zu optimierenden Funktion und der 
 Nebenbedingungen.
 Grob können wir zwischen den folgenden drei Fällen unterscheiden:
 
 1. **Lineares Programmieren (LP)**: Sowohl Zielfunktion als auch Nebenbedingungen sind
 linear. Beispiel: $\max s.t. Ax<b, x\geq 0$
-2. **Quadratisches Programmieren (QP)** Zielfunktion ist quadratisch, Nebenbedingungen 
-sind linear. Beispiel: $\max s.t. Ax<b, x\geq 0$
+2. **Quadratisches Programmieren (QP)** Zielfunktion ist quadratisch, 
+Nebenbedingungen sind linear. Beispiel: $\max s.t. Ax<b, x\geq 0$
 3. **Nicht-lineares Programmieren (NLP)**: Die Zielfunktion oder zumindest eine 
 Nebenbedingung ist nicht-linear.
 
@@ -611,21 +640,36 @@ je nach Art des Problems müssen wir andere Methoden anwenden.
 In diesem Fall bedeutet das, dass wir für unterschiedliche Arten von Funktionen
 andere Pakete verwenden müssen um Extremwerte zu finden.
 Zusätzlich gibt es aber auch noch ein paar *general-purpose*-Funktionen, die wir
-auf alle Klassen anwenden können - auf Kosten der Performance:
+auf alle Klassen anwenden können - auf Kosten der Performance. 
+Diese sind in Tabelle \@ref(tab:genpurpose) zusammengefasst.^[Es gibt auch
+zwei Optimierungsfunktionen in `base`, allerdings sind diese mittlerweile ein
+wenig in die Jahre gekommen. Es wird daher empfohlen, anstatt `optim()` und
+`optimize()` die Funktion `optimx::optimr()` zu verwenden, die größtenteils
+aber auch die gleiche Syntax verwendet. Eine Übersicht über die meisten
+verfügbaren Funktionen finden Sie 
+[hier](https://cran.r-project.org/web/views/Optimization.html).]
+
+Das Schöne ist, dass trotz der Vielzahl an Paketen alle Optimierungsfunktionen
+nach einem sehr ähnlichen Schema aufgebaut sind. Die ersten beiden Argumente
+sind immer die Zielfunktion und die Nebenbedingungen. Danach folgen Argumente
+mit denen Sie die Suchintervalle, den konkreten Algorithmus oder weitere 
+Spezifika festlegen können.
+Für eine genauere Einführung bietet sich auch die Lektüre der Vignette
+für das allgemein gehaltene Paket `optimx` [@optimx] an, die 
+[hier](https://cran.r-project.org/web/packages/optimx/vignettes/Extend-optimx.pdf)
+abgerufen werden kann.
+
+Table: (\#tab:genpurpose) Generell anwendbare Optimierungsfunktionen.
 
 | **Art** | **Optimierungsfunktion** | **Paket**  |
 |-----------+------------------------+------------|
-| Allgemein | `optimize()`, `optim()`| `base`     |
+| Allgemein (eindimensional)  | `optimize()`| `stats`  |
+| Allgemein (mehrdimensional) | `optimr()`  | `optimx` |
 | LP        | `lp()`                 | `lpSolve`  |
 | QP        | `solve.QP()`           | `quadprog` |
 | NLP       | `optimize()`           | `optimize` |
 | NLP       | `optimx()`             | `optimx`   |
 
-Das Schöne ist dass trotzd der Vielzahl an Paketen alle Optimierungsfunktionen
-nach einem sehr ähnlighcn Schema aufgebaut sind. Die ersten beiden Argumente
-sind immer die Zielfunktion und die Nebenbedingungen. Danach folgen Argumente
-mit denen Sie die Suchintervalle, den konkreten Algorithmus oder weitere 
-Spezifika festlegen können.
 
 Im Folgenden wollen wir anhand einiger einfacher Beispiele sehen wie Sie 
 Optimierungsprobleme in R lösen können.
@@ -634,33 +678,55 @@ spezialisierten Einführungen.
 
 Betrachten wir die folgende Zielfunktion:
 
-$$f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2$$
+\begin{align}
+f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2
+\end{align}
+
 In R:
+
 
 ```r
 f_1 <- function(x) 8*x^2 + 2.5*x**3 - 4.25*x**4 + 2
 ```
 
-Grafisch sieht die Funktion folgendermaßen aus, sie verfügt also über ein 
+Die Funktion ist in Abbildung \@ref(fig:Funktion) dargestellt.
+Wie man sieht verfügt sie über ein 
 lokales Maximum bei $x_a=-0.77$, ein lokales Minimum bei $x_b=0$ und ein globales 
-Maximum bei $x_c=1.22$:
+Maximum bei $x_c=1.22$.
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-22-1} \end{center}
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Funktion-1} 
 
+}
 
-Wir können für solcherlei eindimensionale Probleme die Funktion `optimize()` 
-verwenden:
+\caption{Graph der zu optimierenden Funktion.}(\#fig:Funktion)
+\end{figure}
+
+Da es sich hier um ein eindimensionales Problem handelt, können wir die 
+allgemeine Funktion `optimize()` verwenden. 
+Wir übergeben als Argument `f` die zu optimierende Funktion und geben über
+`interval` das Intervall an, in dem nach einem Minimum (oder Maximum) gesucht
+werden soll:
 
 
 ```r
-opt_obj <- optimize(f = f_1, 
-                    lower = -1.25, upper = 1.75, 
-                    maximum = FALSE)
+opt_obj <- optimize(f = f_1, interval = c(-1.25, 1.75))
+opt_obj
+```
+
+```
+#> $minimum
+#> [1] -7.54766e-06
+#> 
+#> $objective
+#> [1] 2
 ```
 
 Das Ergebnis ist eine Liste mit zwei Elementen. 
-Dem x-Wert des gesuchten Minimums:
+Dem x-Wert des gesuchten Minimums:^[Minimale Rundungsfehler sind bei solchen
+numerischen Verfahren normal, daher wird Ihnen in diesem Fall nicht 'exakt' Null
+als Ergebnisangezeigt.]
 
 
 ```r
@@ -686,9 +752,8 @@ Falls wir ein Maximum suchen setzen wir `maximum=TRUE`:
 
 
 ```r
-opt_obj_max <- optimize(f = f_1, 
-                        lower = -1.25, upper = 1.75, 
-                        maximum = TRUE)
+opt_obj_max <- optimize(
+  f = f_1, interval = c(-1.25, 1.75), maximum = TRUE)
 opt_obj_max
 ```
 
@@ -705,9 +770,8 @@ Maximum auf der linken Seite:
 
 
 ```r
-opt_obj_max <- optimize(f = f_1, 
-                        lower = -1.25, upper = 0, 
-                        maximum = TRUE)
+opt_obj_max <- optimize(
+  f = f_1, interval = c(-1.25, 0), maximum = TRUE)
 opt_obj_max
 ```
 
@@ -735,13 +799,23 @@ Bei dieser Funktion handelt es sich um die in der Optimierung sehr häufig
 als Benchmark verwendete 
 [Rosenbrock Funktion](https://en.wikipedia.org/wiki/Rosenbrock_function).
 Grafisch können wir solche Funktionen mit Hilfe einer *Heatmap* darstellen,
-wobei wir hier annehmen, dass $a=1$ und $b=100$:
+wobei wir in unserer Visualisierung in Abbildung \@ref(fig:Heatmap) annehmen, dass $a=1$ und 
+$b=100$. 
+In einer Heatmap geben die beiden Achsen die Kombination der x und y-Werte an,
+der resultierende Funktionswert wird über die Farbe repräsentiert.
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-29-1} \end{center}
+\begin{figure}
 
-Da es sich jetzt ein mehrdimensionales Problem handelt verwenden wir die Funktion
-`optim()` anstatt von `optimize()`. Die Handhabung ist aber sehr ähnlich.
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Heatmap-1} 
+
+}
+
+\caption{Darstellung einer Funktion als Heatmap}(\#fig:Heatmap)
+\end{figure}
+
+Da es sich jetzt um ein mehrdimensionales Problem handelt verwenden wir die Funktion
+`optimx::optimr()` anstatt von `optimize()`. Die Handhabung ist aber sehr ähnlich.
 Als erstes Argument übergeben wir `par` unsere ersten Vermutungen für das 
 Extremum, also die Werte, mit der die Funktion ihre Suche beginnen soll.
 Danach als zweites Argument `fn` die zu optmierende Funktion.
@@ -750,14 +824,14 @@ einfach hinzufügen. Für unseren Fall haben wir also:
 
 
 ```r
-opt_objekt <- optim(
+opt_objekt <- optimx::optimr(
   par = c(1, 1),
   fn = f_2
   )
 ```
 
 Zunächst schauen wir ob der Algorithmus erfolgreich einen Extremwert 
-gefunden hat. Bei erfolgreicher Suche hat der Listeneintrat `convergence` den 
+gefunden hat. Bei erfolgreicher Suche hat der Listeneintrag `convergence` den 
 Wert `0`:
 
 
@@ -791,19 +865,15 @@ opt_objekt[["value"]]
 #> [1] 0
 ```
 
-Wenn wir `optim` übrigens zur Maximierung einsetzen wollen müssen wir nichts
-weiter tun als dem Argument `control` eine Liste mit dem Eintrag `fnscale=-1`
-zu übergeben:
+Wenn wir `optimx::optimr()` übrigens zur Maximierung einsetzen wollen müssen wir 
+nichts weiter tun als dem Argument `control` eine Liste mit dem Eintrag 
+`fnscale=-1` zu übergeben:
 
 
 ```r
-f_x <- function (x) 4*x - x**2
-opt_objekt <- optim(
-  c(1),
-  fn = f_x, 
-  method = "Brent", 
-  lower = -4, upper = 4,
-  control = list(fnscale=-1)
+opt_objekt <- optimx::optimr(
+  par = c(1, 1),
+  fn = f_2, control = list(fnscale=-1)
   )
 
 opt_objekt$convergence == 0
@@ -818,7 +888,7 @@ opt_objekt$par
 ```
 
 ```
-#> [1] 2
+#> [1]  3.661667e+76 -3.087043e+76
 ```
 
 ```r
@@ -826,19 +896,31 @@ opt_objekt$value
 ```
 
 ```
-#> [1] 4
+#> [1] 1.797693e+308
 ```
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-35-1} \end{center}
+### Anwendungsbeispiel {#subsec:keynes-expl}
 
-### Anwendungsbeispiel
+Als Anwendungsbeispiel betrachten wir das klassische keynesianische Modell. Am 
+geläufigsten ist dabei folgende Formulierung: 
 
-Wir betrachten erneut das klassische keynesianische Modell, wobei wir die 
-Notation leicht um $T$ als die Steuerlast erweitern:
+\begin{align}
+Y&=C+I+G\\
+C&=c_0+c_1 Y
+\end{align}
 
-$$
+In dem Modell geht man davon aus, dass sich die gesamtwirtschaftliche 
+Güternachfrage $Y$ aus dem Konsum $C$, den Investitionen $I$ sowie den 
+Staatsausgaben $G$ ergibt.
+Die Konsumfunktion selbst wird als lineare Funktion modelliert, wobei $c_0$ 
+den autonomen Konsum (also den vom Einkommen unabhängigen Konsum) und 
+$c_1$ die marginale Konsumquote beschreibt.
+
+Wir können nun die Notation leicht um $T$ als die Steuerlast erweitern:
+
+\begin{align}
 Y=\frac{c_0 + I + G}{1-c_1(1-T)}
-$$
+\end{align}
 
 Wenn wir nun wissen wollen wie $Y$ auf eine Änderung der Staatsausgaben reagiert
 können wir diese Formel nach $G$ ableiten. 
@@ -852,34 +934,34 @@ Funktion `D()`:
 
 
 ```r
-keynes_model <- expression(Y=(c_0 + I + G) / (1 - c_0*(1-T)))
+keynes_model <- expression(Y=(c_0 + I + G) / (1 - c_1*(1-T)))
 D(expr = keynes_model, name = "G")
 ```
 
 ```
-#> 1/(1 - c_0 * (1 - T))
+#> 1/(1 - c_1 * (1 - T))
 ```
 
 Es gilt also:
 
 \begin{align}
-\frac{\partial Y}{\partial G} &= \frac{1}{1-c_0(1-T)}
+\frac{\partial Y}{\partial G} &= \frac{1}{1-c_1(1-T)}
 \end{align}
 
-Nehmen wir einmal an die marginale Konsumquote $c_0$ läge bei $20\%$ und der 
-Steuersatz $T$ bei $20\%$.
+Nehmen wir einmal an die marginale Konsumquote $c_1$ läge bei $20\%$ und der 
+Steuersatz $T$ bei $25\%$.
 Eine Erhöhung der Staatsausgaben würde dann $Y$ über den Multiplikator
 $\frac{1}{1-0.2(1-0.25)}=1.176471$ erhöhen.
 
-Alternativ können wir das Ergebnis natürlich analytisch unter Zuhilfename der
+Alternativ können wir das Ergebnis natürlich analytisch unter Zuhilfenahme der
 oben eingeführten Ableitungsregeln herleiten.
 
 ## Lineare Algebra {#formalia-linalg}
 
-Ebenfalls sehr häufig werden Sie Matrizen und den dazugehörigen 
+Ebenfalls sehr häufig werden Sie mit Matrizen und den dazugehörigen 
 Rechenoperationen ('Matrizenalgebra' genannt) in Kontakt kommen.
 Das Ziel dieses Abschnitts ist keine abschließende Einführung in Matrizen
-und Matrizenalgebra, sondern Ihnen einen groben Überblick über typische
+und Matrizenalgebra, sondern soll dazu dienen, einen groben Überblick über typische
 Rechenoperationen und deren Implementierung in R zu bekommen.
 Für eine ausführlichere Einführung verweisen wir auf @chiang oder @linalg.
 
@@ -897,38 +979,42 @@ Die Matrixdarstellung ist dabei nicht nur kompakter, sie erlaubt es uns auch
 relativ leicht zu überprüfen ob das System konsistent und lösbar ist.
 Die foldenden zwei Beispiele machen dies hoffentlich deutlich.
 
-Das erste Beispiel bezieht sich auf das klassischen Keynesianische Modell, 
-das Sie wahrscheinlich in folgender Form kennen:
+### Einführungsbeispiele {#linalg-expls}
+
+Das erste Beispiel bezieht sich wieder auf das oben eingeführte klassischen Keynesianische Modell:
+
 
 \begin{align}
 Y&=C+I+G\\
-C&=a+bY
+C&=c_0+c_1Y
 \end{align}
 
-Nehmen wir an die Staatsausgaben und Investitionen wären exogen bekannt.
+Nehmen wir nun an, die Staatsausgaben und Investitionen wären exogen bekannt.
 Dann kann dieses Modell äquivalent in Matrixform geschrieben werden:
 
 \begin{align}
 Ax = d
 \end{align}
-wobei $A=\left(\begin{array}{cc} 1 & -1 \\ -b & 1 \end{array}\right)$,
+wobei $A=\left(\begin{array}{cc} 1 & -1 \\ -c_1 & 1 \end{array}\right)$,
 $x=\left(\begin{array}{cc} Y \\ C \end{array}\right)$ und
-$d=\left(\begin{array}{cc} I + G  \\ a \end{array}\right)$,
+$d=\left(\begin{array}{cc} I + G  \\ c_0 \end{array}\right)$,
 wobei die beiden Unbekannten in diesem Fall das Einkommen $Y$ und der 
 Konsum $C$ sind.
 
 Matrizen helfen uns solche Gleichungssysteme komprimiert darzustellen und
-zu analysieren, insbesondere zu testen ob es Werte für die freien Parameter - 
+zu analysieren, insbesondere um zu testen ob es Werte für die freien Parameter - 
 hier $Y$ und $C$ - gibt sodass das gesamte System konsistent ist.
 Wir sehen unten wie genau wir solche Systeme in R recht einfach lösen können.
 
 Ein weiteres Beispiel wo wir - vielleicht auch häufig unbewusst - Methoden der
-linearen Algebra verwenden ist in der Ökonometrie. Wir haben im letzten Kapitel
-das einfache lineare Regressionsmodell kennen gelernt, das wir allgemein
-für $n$ Beochatungen und $p$ erklärenden Variablen folgendermaßen geschrieben
-haben:
+linearen Algebra verwenden ist in der Ökonometrie. 
+So wird das einfache lineare Regressionsmodell für $n$ Beochatungen und $p$ 
+erklärenden Variablen häufig folgendermaßen beschrieben 
+(siehe Kapitel \@ref(linmodel)):
 
-$$Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_p x_{ip} + \epsilon, i=1,...,n$$
+\begin{align}
+Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_p x_{ip} + \epsilon, i=1,...,n
+\end{align}
 
 Da wir in der Praxis regelmäßig mehr als eine erklärende Variable verwenden (also $p>1$)
 werden Schätzgleichungen fast ausschließlich in Matrixform dargestellt, denn
@@ -980,12 +1066,16 @@ Y_n\\
 \right)
 \end{align}
 
-Und letzteres wie folgt schreiben:
+Und Letzteres wie folgt schreiben:
 
-$$\boldsymbol{Y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}$$
+\begin{align}
+\boldsymbol{Y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}
+\end{align}
 
-Dementsprechend können wir auch den OLS-Schätzer in Matrixform darstellen.
-Das erlaubt einfachere und allgemeinere Beweise, und ist vor allem für die 
+Dementsprechend können wir auch den OLS-Schätzer in Matrixform darstellen,
+was ab Kapitel \@ref(advlin) auch die standardmäßige Darstellungsform
+sein wird.
+Dies erlaubt einfachere und allgemeinere Beweise, und ist vor allem für die 
 algorithmische Implementierung sehr wichtig. Auch wenn wir uns mit diesen 
 Details nicht notwendigerweise genau auseinandersetzen müssen, sollte die 
 grundlegende Rolle der linearen Algebra doch nicht unterschätzt werden.
@@ -1054,7 +1144,7 @@ Eigenschaften Eigennamen erhalten haben.
 Eine Matrix mit der gleichen Anzahl von Zeilen und Spalten wird 
 **quadratische Matrix** genannt.
 
-$$
+\begin{align}
 \left( 
 \begin{array}{cccc}                                
 a_{11} & a_{12} & a_{13} & a_{14} \\                                               
@@ -1063,7 +1153,7 @@ a_{31} & a_{32} & a_{33} & a_{34} \\
 a_{41} & a_{42} & a_{43} & a_{44} \\
 \end{array}
 \right)
-$$
+\end{align}
 
 Die Elemente auf der 'Diagonalen' einer quadratischen $n\times n$-Matrix, also
 $\{a_ii\}^n_{i=1}$, werden die *Hauptdiagonale* dieser Matrix genannt.
@@ -1071,7 +1161,7 @@ $\{a_ii\}^n_{i=1}$, werden die *Hauptdiagonale* dieser Matrix genannt.
 Eine Matrix, die von Null verschiedene Einträge nur auf der Hauptdiagonale
 aufweist heißt **Diagonalmatrix**:
 
-$$
+\begin{align}
 \left( 
 \begin{array}{cccc}                                
 1 & 0 & 0 & 0 \\                                               
@@ -1080,14 +1170,14 @@ $$
 0 & 0 & 0 & 4 \\
 \end{array}
 \right)
-$$
+\end{align}
 
 Bei der **oberen Dreiecksmatrix** befinden sich von Null verschiedene 
 Einträge ausschließlich auf oder über der Hauptdiagonale, bei der 
 **unteren Dreiecksmatrix** ist dies genau umgekehrt.
 Hier ein Beispiel für eine untere Dreiecksmatrix:
 
-$$
+\begin{align}
 \left( 
 \begin{array}{cccc}                                
 1 & 0 & 0 & 0 \\                                               
@@ -1096,14 +1186,14 @@ $$
 1 & 2 & 3 & 4 \\
 \end{array}
 \right)
-$$
+\end{align}
 
 Bei der **Identitätsmatrix** (oder: 'Einheitsmatrix') handelt es sich um eine
 quadratische Matrix, die auf der Hauptdiagonalen nur 1er und neben der 
 Haupdiagonalen nur 0er enthält. Sie wird mit $\mathbb{I_n}$ bezeichnet, wobei
-$n$ die Anzahl der Zeilen und Spalten angeht:
+$n$ die Anzahl der Zeilen und Spalten angibt:
 
-$$
+\begin{align}
 \mathbb{I_4}=
 \left( 
 \begin{array}{cccc}                                
@@ -1113,7 +1203,7 @@ $$
 0 & 0 & 0 & 1 \\
 \end{array}
 \right)
-$$
+\end{align}
 
 Wird eine beliebige Matrix mit einer passenden Identitätsmatrix multipliziert,
 ist das Ergebnis die ursprüngliche Matrix selbst, daher der Name.
@@ -1125,10 +1215,11 @@ Matrizenalgebra spielt in vielen statistischen Anwendungen eine wichtige Rolle.
 Sie funktioniert aber ein wenig anders als die 'herkömmliche' Algebra, mit denen
 die meisten von Ihnen schon vertraut sein werden.
 Zum Glück ist es in R sehr einfach die typischen Rechenoperationen für Matrizen 
-zu implementieren. Im folgenden werden wir die wichtigsten Rechenregeln für 
+zu implementieren. Im Folgenden werden wir die wichtigsten Rechenregeln für 
 Matrizen kurz einführen und dabei die folgenden Beispielmatrizen verwenden:
 
-$$A = \left( 
+\begin{align}
+A = \left( 
 \begin{array}{rrr}                                
 1 & 6 \\                                               
 5 & 3 \\                                               
@@ -1137,7 +1228,8 @@ $$A = \left(
 \begin{array}{rrr}                                
 0 & 2 \\                                               
 4 & 8 \\                                               
-\end{array}\right)$$
+\end{array}\right)
+\end{align}
 
 
 
@@ -1150,9 +1242,9 @@ matrix_b <- matrix(c(0,4,2,8), ncol = 2)
 
 Die transponierte Matrix $A'$ ergibt sich aus $A$ indem die Spalten und 
 Zeilen vertauscht werden.
-Im folgenden ist unsere Beispielmatrix und ihre Transponierung dargestellt:
+Im Folgenden ist unsere Beispielmatrix und ihre Transponierung dargestellt:
 
-$$
+\begin{align}
 A = \left( 
 \begin{array}{rrr}                                
 1 & 6 \\                                               
@@ -1165,7 +1257,7 @@ A' = \left(
 6 & 3 \\                                               
 \end{array}
 \right)
-$$
+\end{align}
 
 In R können wir eine Matrix mit der Funktion `t()` transponieren:
 
@@ -1193,13 +1285,15 @@ t(matrix_a)
 
 **Skalar-Addition**
 
-$$4+\boldsymbol{A}=
+\begin{align}
+4+\boldsymbol{A}=
 \left( 
 \begin{array}{rrr}                                
 4+a_{11} & 4+a_{21} \\                                               
 4+a_{12} & 4+a_{22} \\                                               
 \end{array}
-\right)$$
+\right)
+\end{align}
 
 In R: 
 
@@ -1216,13 +1310,15 @@ In R:
 
 **Matrizen-Addition**
 
-$$\boldsymbol{A}+\boldsymbol{B}=
+\begin{align}
+\boldsymbol{A}+\boldsymbol{B}=
 \left(
 \begin{array}{rrr}                                
 a_{11} + b_{11} & a_{21} + b_{21}\\                                               
 a_{12} + b_{12} & a_{22} + b_{22}\\                                               
 \end{array}
-\right)$$
+\right)
+\end{align}
 
 
 ```r
@@ -1238,13 +1334,15 @@ matrix_a + matrix_b
 
 **Skalar-Multiplikation**
 
-$$2\cdot\boldsymbol{A}=
+\begin{align}
+2\cdot\boldsymbol{A}=
 \left( 
 \begin{array}{rrr}                                
 2\cdot a_{11} & 2\cdot a_{21} \\                                               
 2\cdot a_{12} & 2\cdot a_{22} \\                                               
 \end{array}
-\right)$$
+\right)
+\end{align}
 
 
 ```r
@@ -1260,13 +1358,15 @@ $$2\cdot\boldsymbol{A}=
 
 **Elementenweise Matrix Multiplikation (auch 'Hadamard-Produkt')**
 
-$$\boldsymbol{A}\odot\boldsymbol{B}=
+\begin{align}
+\boldsymbol{A}\odot\boldsymbol{B}=
 \left(
 \begin{array}{rrr}                                
 a_{11}\cdot b_{11} & a_{21}\cdot b_{21}\\                                               
 a_{12}\cdot b_{12} & a_{22}\cdot b_{22}\\                                               
 \end{array}
-\right)$$
+\right)
+\end{align}
 
 
 ```r
@@ -1280,13 +1380,15 @@ matrix_a * matrix_b
 ```
 
 **Matrizen-Multiplikation**
-$$\boldsymbol{A}\cdot\boldsymbol{B}=
+\begin{align}
+\boldsymbol{A}\cdot\boldsymbol{B}=
 \left(
 \begin{array}{rrr}                                
 a_{11}\cdot b_{11} + a_{12}\cdot b_{21} & a_{11}\cdot b_{21}+a_{12}\cdot b_{22}\\                     
 a_{21}\cdot b_{11} + a_{22}\cdot b_{21} & a_{21}\cdot b_{12}+a_{22}\cdot b_{22}\\                     
 \end{array}
-\right)$$
+\right)
+\end{align}
 
 
 ```r
@@ -1326,12 +1428,16 @@ matrix_a %*% diag(2)
 
 Die Inverse einer Matrix $\boldsymbol{A}$, $\boldsymbol{A}^{-1}$, ist 
 definiert sodass gilt
-$$\boldsymbol{A}\boldsymbol{A}^{-1}=\boldsymbol{I}$$
+
+\begin{align}
+\boldsymbol{A}\boldsymbol{A}^{-1}=\boldsymbol{I}
+\end{align}
+
 Sie kann in R mit der Funktion `inv()` aus dem Paket 
 [matlib](http://friendly.github.io/matlib/)^[Alternativ können Sie auch die 
 Funktion `solve()` aus `base` verwenden; hier ist das erste Argument `a` und 
 der Output ist weniger informativ.] identifiziert werden, wobei wir
-die Matrix als erstes oder Argument `X` an `inv()` übergeben:
+die Matrix als erstes Argument `X` an `inv()` übergeben:
 
 
 ```r
@@ -1362,7 +1468,9 @@ Matrizenalgebra lineare Gleichungssysteme wie oben beschrieben lösen können.
 Denn diese Gleichungssysteme können - wie in der Einleitung beschrieben - in die
 Form 
 
-$$Ax=b$$
+\begin{align}
+Ax=b
+\end{align}
 
 gebracht werden. In Anwendungsfällen ist $A$ eine Matrix mit Koeffizienten, 
 $x$ ein Vektor von unbekannten Variablen und $b$ ein Vektor mit Konstanten.
@@ -1423,7 +1531,7 @@ A %*% x
 Wie erwartet erhalten wir hier also wieder unseren ursprünglichen Wert für $b$.
 
 Wenn allerdings $A=\left(\begin{array}{cc} -2 & 1 \\ -4 & 2 \end{array}\right)$
-und $b=\left(\begin{array}{c} 3 \\ 2 \end{array}\right)$, dann würde folgendes passieren:
+und $b=\left(\begin{array}{c} 3 \\ 2 \end{array}\right)$, dann würde Folgendes passieren:
 
 
 ```r
@@ -1489,13 +1597,12 @@ Modell, das eine eindeutige Vorhersage produziert.
 
 3. Das Gleichungssystem hat *keine* Lösung, unser Modell ist also inkonsistent.
 
-Im Folgenden werden wir uns das anhand der beiden Beispiele aus der Einleitung 
-genauer anschauen.
-
+Im Folgenden werden wir uns das anhand der beiden Beispiele aus dem Abschnitt
+\@ref(linalg-expls) genauer anschauen.
 
 ### Anwendungsbeispiel 1: Das einfache Keynesianische Modell
 
-In der Einleitung haben wir schon gesehen, dass wir das einfache 
+In der Einleitung dieses Unterkapitels haben wir schon gesehen, dass wir das einfache 
 Keynesianische Modell
 
 \begin{align}
@@ -1544,8 +1651,8 @@ impliziert.
 
 ### Anwendungsbeispiel 2: OLS-Regression
 
-Aus der Einleitung wissen wir, dass wir das lineare Regressionsmodell mit $n$
-Beobachtungen von $p$ Variablen
+Aus der Einleitung dieses Unterkapitels wissen wir, dass wir das lineare 
+Regressionsmodell mit $n$ Beobachtungen von $p$ Variablen
 
 \begin{align}
 Y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + ... + \beta_p x_{1p} + \epsilon_1\nonumber\\
@@ -1556,7 +1663,10 @@ Y_n = \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + ... + \beta_p x_{np} + \epsilo
 
 auch folgendermaßen schreiben können:
 
-$$\boldsymbol{Y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}$$
+\begin{align}
+\boldsymbol{Y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}
+\end{align}
+
 Wobei $\boldsymbol{Y}$ eine $n\times 1$-Matrix mit den Beobachtungen für die
 abhängige Variable, $\boldsymbol{X}$ eine $n\times p$-Matrix in der jede Spalte
 zu einem Vektor mit allen $n$ Beobachtungen einer der $p$ erklärenden Variablen 
@@ -1612,7 +1722,9 @@ für das unbekannte $\boldsymbol{\beta}=\left(\begin{array}{cc} \beta_0 \\ \beta
 des folgenden Gleichungssystems darstellt:^[Die genaue Herleitung finden Sie im 
 [nächsten (optionalen) Abschnitt](#ols-deriv).]
 
-$$\boldsymbol{\hat{\beta}}=\left(\boldsymbol{X}'\boldsymbol{X} \right)^{-1}\boldsymbol{X}'\boldsymbol{Y}$$
+\begin{align}
+\boldsymbol{\hat{\beta}}=\left(\boldsymbol{X}'\boldsymbol{X} \right)^{-1}\boldsymbol{X}'\boldsymbol{Y}
+\end{align}
 
 Das können wir wiederum in R lösen:
 
@@ -1651,7 +1763,7 @@ lm(Verbrauch~PS+Zylinder, data = ols_beispiel)
 
 ### Optional: Herleitung des OLS-Schätzers {#ols-deriv}
 
-Mit dem bislang gewonnenen Verständnis vonn Matrizenalgebra ist es bereits
+Mit dem bislang gewonnenen Verständnis von Matrizenalgebra ist es bereits
 möglich die Herleitung des OLS-Schätzers nachzuvollziehen. 
 Diese Herleitung wird im Folgenden beschrieben.
 
@@ -1662,11 +1774,13 @@ $$\boldsymbol{e}=\boldsymbol{Y}-\boldsymbol{X\hat{\beta}}$$
 Wir können die Summe der quadrierten Residuen (RSS) in Matrixschreibweise 
 schreiben als:
 
-$$\boldsymbol{e'e}= 
+\begin{align}
+\boldsymbol{e'e}= 
 \left(\begin{array}{cccc} e_1 & e_2 & ... & e_n \end{array}\right)
 \left(\begin{array}{cc} e_1 \\ e_2 \\ \vdots \\ e_n \end{array}\right)
 =\left(\begin{array}{cccc} e_1\times e_1 & e_2 \times e_2 & ... & 
-e_n \times e_n \end{array}\right)$$
+e_n \times e_n \end{array}\right)
+\end{align}
 
 Wir können dann schreiben:^[Beachte dabei, dass 
 $\boldsymbol{Y'X\hat{\beta}}=(\boldsymbol{Y'X\hat{\beta}})'=\boldsymbol{\hat{\beta}'X'Y}$.]
@@ -1684,8 +1798,10 @@ Wir wollen diesen Ausdruck nun minimieren.
 Dazu leiten wir nach dem Vektor der zu schätzenden
 Koeffizienten $\boldsymbol{\hat{\beta}}$ ab:
 
-$$\frac{\partial \boldsymbol{e'e}}{\partial\boldsymbol{\hat{\beta}}}=
--2\boldsymbol{X'y} + 2\boldsymbol{X'X\hat{\beta}} = 0$$
+\begin{align}
+\frac{\partial \boldsymbol{e'e}}{\partial\boldsymbol{\hat{\beta}}}=
+-2\boldsymbol{X'y} + 2\boldsymbol{X'X\hat{\beta}} = 0
+\end{align}
 
 Diese Gleichung können wir nun umformen zu:
 
@@ -1723,7 +1839,7 @@ bietet sich @chiang sehr gut an.
 ## Analyse von Verteilungen {#formalia-dist}
 
 Fragen nach Verteilungen stehen im Zentrum vieler sozioökonomischer Arbeiten.
-Verteilung von Einkommen und Vermögen, sozialem, kulturellem oder physischen
+Verteilung von Einkommen und Vermögen, sozialem, kulturellem oder physischem
 Kapital, Firmenproduktivitäten oder natürlichen Ressourcen - in vielen Bereichen 
 geht es Verteilungen.
 
@@ -1735,24 +1851,29 @@ zumindest rudimentärer Kenntnis über die Verteilung die Daten.
 
 Kurzum: Wissen über Verteilungen und deren Analyse ist für die sozioökonomische
 Forschungspraxis extrem hilfreich.
-Daher wollen wir uns im folgenden mit verschiedenen Aspekten der Analyse von
+Daher wollen wir uns im Folgenden mit verschiedenen Aspekten der Analyse von
 Verteilungen beschäftigen.
 
-Wir steigen mit einem grundlegenden Abschnitt zum (mathematischen) 
-[Begriff der Verteilung](#vert-begriff) ein und diskutieren den Zusammen zwischen 
-Verteilungen und stochastischen Prozessen. 
+Wir steigen mit einer Erläuterung des
+(mathematischen) [Verteilungsbegriffs](#vert-begriff) ein und diskutieren den 
+Zusammenhang zwischen Verteilungen und stochastischen Prozessen. 
 Verteilungen sind nämlich immer dann zentral, wenn wir es mit probabilistischen 
 Prozessen zu tun haben.
 
 Als nächstes lernen wir [typische Kennzahlen](#vert-kennzahlen) zur Beschreibung
 von Verteilungen kennen. 
-Besonderes Augenmerk legen wir Kennzahlen zur Streuung und Ungleichheit, wie die
+Besonderes Augenmerk legen wir dabei auf Kennzahlen zur Streuung und Ungleichheit, wie die
 Standardabweichung oder den Gini Index.
 
-Als nächstes lernen wir einige [grafische Methoden](#vert-grafik) kennen, um die
+Daraufhin lernen wir einige [grafische Methoden](#vert-grafik) kennen, um die
 wir die quantitativen Kennzahlen immer ergänzen sollten und schließen das 
-Kapitel schließlich mit einigen [abschließenden Bemerkungen](#vert-bemerkungen)
+Kapitel zuletzt mit einigen [abschließenden Bemerkungen](#vert-bemerkungen)
 ab.
+
+In diesem Abschnitt werden mehrere Konzepte aus der Stochastik vorausgesetzt.
+Wenn Sie sich damit noch unsicher fühlen empfiehlt sich vorher eine
+Lektüre von Kapitel \@ref(stat-stoch).
+
 
 ### Theoretische und empirische Verteilungen {#vert-begriff}
 
@@ -1770,73 +1891,75 @@ einer grafischen Darstellung kombiniert werden sollten.]
 Dennoch werden beide Perspektiven auch häufig kombiniert, vor allem wenn wir 
 einen empirischen Datensatz mit einem parametrischen Wahrscheinlichkeitsmodell
 beschreiben wollen. Das bedeutet, dass wir die empirischen Daten als Realisierung
-einer theoretischen ZV interpretieren und die für die theoretische ZV relevanten
-Parameter dann aus den Daten heraus schätzen.^[
-Ein "parametrischen Warhscheinlichkeitsmodell" meint dabei eine ZV mit bestimmten 
-Parametern.]
-Wenn Sie sich nicht mehr ganz sicher sind was wir unter eine ZV oder einem
-theoretischen Wahrscheinlichkeitsmodell verstehen, schauen Sie doch noch einmal
-in den [Anhang zur Wahrscheinlichkeitstheorie](#stat-stoch).
+einer theoretischen Zufallsvariablen (ZV) interpretieren und die für die 
+theoretische ZV relevanten Parameter dann aus den Daten heraus schätzen.^[
+Ein "parametrisches Warhscheinlichkeitsmodell" meint dabei eine ZV mit 
+bestimmten Parametern.]
 
 **Anwendungsbeispiel**
 
-
-Stellen Sie sich vor Sie haben folgende Stichprobe vor sich:
-
+Stellen Sie sich vor Sie haben eine Stichprobe vor sich, welche die Verteilung in Abbildung \@ref(fig:Stichprobenverteilung) (linker Graph) aufweist.
 
 
-
-```r
-ggplot(data = sample_data) +
-  geom_histogram(mapping = aes(x=r, stat(density)), binwidth = 0.4) +
-  scale_x_continuous(expand = c(0, 1)) + 
-  scale_y_continuous(expand = expand_scale(c(0, 0.05), c(0, 0))) +
-  theme_icae()
-```
-
-
-
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-62-1} \end{center}
 
 Beachten Sie, dass die y-Achse die empirische Dichte der Beobachtungen auf der
-x-Achse angibt, also ein Maß für die relative Häufigkeit der Beobachtungen.^[
-Wenn Sie Schwierigkeiten mit derlei Begriffen haben schauen Sie doch einmal in 
-den [Anhang zur Wahrscheinlichkeitstheorie](#stat-stoch).
-]
-Dies haben wir mit der Funktion `stat(density)` innerhalb von `geom_histogram()`
-erreicht.
+x-Achse angibt, wir haben hier also ein Maß für die relative Häufigkeit der Beobachtungen.
+Dies haben wir mit der Funktion `ggplot2::stat(density)` innerhalb von 
+`ggplot2::geom_histogram()` erreicht.
 
-Wenn wir die Daten so betrachten erscheint es naheliegend, Sie als Realisierung 
+Wenn wir die Daten so betrachten erscheint es naheliegend, sie als Realisierung 
 einer Normalverteilung zu interpretieren: die Form ist grob glockenförmig und 
 symmetrisch. 
-Wir können diese plausibilisieren indem wir mit `geom_density()` die 
-*empirische Dichtefunktion* der Verteilung schätzen und über die Daten legen:
+Wir können diese Annahme plausibilisieren indem wir mit `ggplot2::geom_density()` die 
+*empirische Dichtefunktion* der Verteilung schätzen und über die Daten legen, 
+wie im rechten Graph der Abbildung \@ref(fig:Stichprobenverteilung).
 
 
 ```r
-ggplot(data = sample_data) +
-  geom_histogram(
+Stichprobe <- ggplot2::ggplot(data = sample_data) +
+  ggplot2::geom_histogram(
+    mapping = aes(x=r, stat(density)), 
+    binwidth = 0.4) +
+  ggplot2::scale_x_continuous(expand = c(0, 1)) + 
+  ggplot2::scale_y_continuous(expand = expansion(c(0, 0.05), c(0, 0))) +
+  ggplot2::theme_bw() + 
+  theme(panel.border = element_blank(), 
+        axis.line = element_line())
+
+Dichtefunktion <- ggplot2::ggplot(data = sample_data) +
+  ggplot2::geom_histogram(
     mapping = aes(x=r, stat(density)), 
     binwidth = 0.4, alpha=0.4) +
     coord_cartesian(xlim = c(-6, 12)) +
-  stat_density(mapping = aes(x=r), 
+  ggplot2::stat_density(mapping = aes(x=r), 
                color="blue", 
                geom="line") +
-  scale_y_continuous(expand = expand_scale(c(0, 0.05), 
+  ggplot2::scale_y_continuous(expand = expansion(c(0, 0.05), 
                                            c(0, 0))) +
-  theme_icae()
+  ggplot2::theme_bw() + 
+  theme(panel.border = element_blank(), 
+        axis.line = element_line())
+
+ggpubr::ggarrange(Stichprobe, Dichtefunktion, ncol = 2)
 ```
 
+\begin{figure}
 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Stichprobenverteilung-1} 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-63-1} \end{center}
+}
+
+\caption{Stichprobe (linker Graph) und Stichprobe mit empirischer Dichtefunktion (rechter Graph)}(\#fig:Stichprobenverteilung)
+\end{figure}
 
 Das bedeutet, dass wir unsere Daten mit Hilfe der Dichtefunktion 
 (*probability density function* - PDF) der Normalverteilung beschreiben können. 
 Die Formel an sich ist dabei weniger illustrativ, aber sie zeigt was wir mit 
 einem *parametrischen* Wahrscheinlichkeitsmodell meinen:
 
-$$f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
+\begin{align}
+f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\end{align}
 
 Wenn Sie die Formel genau anschauen finden sich darin zwei Parameter:
 ein Lageparameter $\mu$ und ein Streuparameter $\sigma^2$. 
@@ -1848,18 +1971,24 @@ Zahlen vollständig beschreiben könnten.
 Das geht allerdings nicht. 
 Unsere empirisch erhobenen Daten sind nie *komplett* identisch zu einer 
 theoretischen Verteilung.
-Was wir daher machen können ist folgender: 
+Was wir daher machen können ist Folgendes: 
 wir argumentieren, dass unsere Daten sinnvoll durch eine normalverteilte ZV
 *modelliert* werden können.
 Wir sagen dann, dass unsere Stichprobe *approximativ normalverteilt* ist.
 Dann müssen wir im nächsten Schritt nur noch die Werte für die beiden Parameter
 der Normalverteilung finden, sodass die Verteilung optimal zu unseren Daten passt.
-Das bedeutet wir 'fitten' die Verteilung zu unseren Daten.
+Das bedeutet wir 'fitten' die Verteilung zu unseren Daten. Abbildung \@ref(fig:fitting) verdeutlicht die Fits verschiedener Normalverteilungen.
 
 Was damit gemeint ist verdeutlicht die folgende Darstellung: 
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-64-1} \end{center}
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/fitting-1} 
+
+}
+
+\caption{Beispiel zur Verdeutlichung von Fits verschiedener Normalverteilungen mit unterschiedlichen Parameterwerten}(\#fig:fitting)
+\end{figure}
 
 Die Normalverteilung mit $\mu=4$ und $\sigma^2=4$ passt zu den Daten recht gut.
 Aber wie identifizieren wir diese Werte?
@@ -1872,8 +2001,9 @@ aktuellen Beispiel.
 
 Die Grundidee der *Maximum Likelihood*-Schätzung ist simpel: wählen Sie die Parameter der Verteilung so, dass die beobachtete Stichprobe die am wahrscheinlichsten zu beobachtende Stichprobe ist.
 In unserem Falle: 
-wählen Sie $\mu=\mu^*$ und $\sigma^2=\sigma^{2*}$ so, dass $\mathcal{N}(\mu^*, \sigma^{2*})$, die
-die Normalverteilung ist, bei der die Wahrscheinlichkeit unsere Stichprobe zu bekommen am größten ist.
+wählen Sie $\mu=\mu^*$ und $\sigma^2=\sigma^{2*}$ so, dass $\mathcal{N}(\mu^*, \sigma^{2*})$, 
+die Normalverteilung ist, bei der die Wahrscheinlichkeit unsere Stichprobe zu bekommen 
+am größten ist.
 
 Bedenken Sie, dass das nichts darüber aussagt *wie* wahrscheinlich das ist:
 wenn Sie eine unpassende Verteilung mit Maximum Likelihood fitten, bekommen Sie
@@ -1884,14 +2014,13 @@ Dazu verwenden wir die Funktion `fitdist()` aus dem Paket
 [fitdistrplus](https://github.com/cran/fitdistrplus) [@R-fit].
 Dieser Funktion geben wir über das Argument `data` unsere Stichprobe und über das
 Argument `distr` das Kürzel für die Verteilungsklasse, die wir annehmen.^[Die
-bekanntesten Verteilungen werden im 
-[Anhang zur Wahrscheinlichkeitstheorie](#stat-stoch) beschrieben. Die
+bekanntesten Verteilungen werden in Kapitel \@ref(stat-stoch) beschrieben. Die
 vollständige Liste der Verteilungskürzel in R finden Sie 
 [hier](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Distributions.html).]
 
 
 ```r
-fit_dist <- fitdist(data = sample_data$r, 
+fit_dist <- fitdistrplus::fitdist(data = sample_data$r, 
                     distr = "norm")
 fit_dist[["estimate"]]
 ```
@@ -1907,7 +2036,7 @@ Das passt gut zu unserem grafischen Resultat von oben, bei dem uns
 $\mathcal{N}(4,2)$ bereits als guter Fit ins Auge gesprungen ist.
 
 Allerdings müssten Sie zusätzlich noch testen ob die Verteilungsannahme auch
-tatsächlich plausibel ist, also ob Sie die Hypothese, dass die Daten aus einer
+tatsächlich plausibel ist, wir testen also die Hypothese, dass die Daten aus einer
 $\mathcal{N}(4,2)$-Verteilung gezogen wurden. 
 Für den Fall der Normalverteilung können wir dies z.B. mit einem
 [Shapiro-Wilk-Test](https://de.wikipedia.org/wiki/Shapiro-Wilk-Test) machen. 
@@ -1918,7 +2047,7 @@ weniger gut geeignet ist, wenn Sie entscheiden wollen ob Ihre Daten
 normalverteilt 'genug' sind um bestimmte Methoden anzuwenden, die eine 
 Normalverteilung voraussetzen. Dazu sollten Sie unbedingt auch grafische
 Methoden wie [QQ-Plots](https://ggplot2.tidyverse.org/reference/geom_qq.html) 
-verwenenden. Für mehr Details schauen Sie mal in 
+verwenden. Für mehr Details schauen Sie mal in 
 [diesen Blogartikel](http://blog.fellstat.com/?p=61).]
 
 
@@ -1958,8 +2087,10 @@ Jede Beschreibung einer Verteilung mittels Kennzahlen sollte verschiedene
 Aspekte der Verteilung abdecken. 
 Insbesondere sollten Aussagen zu **Lage**, zur **Streuung**, zur **Form** und zu
 möglichen Ausreißern und zu sonstigen **Besonderheiten** gemacht werden.
-Die folgende Tabelle listet die bekanntesten Kennzahlen in den jeweiligen 
+Tabelle \@ref(tab:Kennzahlen) listet die bekanntesten Kennzahlen in den jeweiligen 
 Bereichen auf. 
+
+Table: (\#tab:Kennzahlen) Kennzahlen zur Beschreibung empirischer Verteilungen.
 
 | **Kennzahl** | **Art** | **R-Funktion** | 
 |--------------+---------+----------------|
@@ -2030,7 +2161,7 @@ avg_preis
 #> [1] 417.7222
 ```
 
-Der durchschnittliche Preis der Journale ist also 417.72.
+Der durchschnittliche Preis der Journale ist also 417.72 Dollar.
 
 Das arithmetische Mittel ist sehr anfällig gegenüber Ausreißern.
 Ein robusteres Maß ist der Median: er ist definiert als der Wert $x_{0.5}$ bei dem
@@ -2045,23 +2176,24 @@ x_{0.5} = \begin{cases}
 
 wobei wir annehmen, dass die Werte der Verteilung ihrer Größe nach geordnet
 sind, also $(x_1\leq x_2\leq x_3 \leq...\leq x_n)$ und $\lfloor x \rfloor$ 
-die [Abrundungsfunktion]() bezeichnet.^[So ist z.B. $\lfloor 1.9 \rfloor=1$ und
-$\lfloor 1.2 \rfloor=1$]
+die *Abrundungsfunktion* bezeichnet.^[Eine Abrundungsfunktion rundet eine 
+Dezimalzahl auf die nächst-kleinere ganze Zahl ab. 
+So ist z.B. $\lfloor 1.9 \rfloor=1$ und $\lfloor 1.2 \rfloor=1$.]
 
-In R wird das arithmetische Mittel mit der Funktion `median()` berechnet:
+In R wird der Median mit der Funktion `median()` berechnet:
 
 
 ```r
-med_preis <- mean(journal_daten[["Preis"]])
+med_preis <- median(journal_daten[["Preis"]])
 med_preis
 ```
 
 ```
-#> [1] 417.7222
+#> [1] 282
 ```
 
 Da es insgesamt 180 Journale gibt gilt, dass 90 Journale teurer und 90 Journale
-billiger als $417.72$ Dollar sind.
+billiger als 282 Dollar sind.
 
 Die Idee des Medians kann über den Begriff der **Quantile** verallgemeinert 
 werden.
@@ -2125,16 +2257,20 @@ Verteilungen von besonderer praktischer Bedeutung sind.
 Die am weitesten verbreiteten Streuungsmaße sind die **Varianz** $Var$ und ihre 
 Quadratwurzel, die **Standardabweichung**, $s$:
 
-$$s_x=\sqrt{Var(x)}=\sqrt{\frac{1}{N-1}\sum_{i=1}^N\left(x_i-\bar{x}\right)^2}$$
+\begin{align}
+s_x=\sqrt{Var(x)}=\sqrt{\frac{1}{N-1}\sum_{i=1}^N\left(x_i-\bar{x}\right)^2}
+\end{align}
 
 Dabei ist zu beachten, dass die empirische Standardabweichung oft einfacher zu
-interpretieren ist, das sie in in den gleichen Einheiten gemessen wird wie die 
+interpretieren ist, da sie in den gleichen Einheiten gemessen wird wie die 
 Daten der Stichprobe. 
 Der **Variationskoeffizient** ist eine einheitslose Variante und ist als 
 Quotient der empirische Standardabweichung und dem arithmetischen Mittel
 definitiert: 
 
-$$v_x=\frac{s_x}{\bar{x}}$$
+\begin{align}
+v_x=\frac{s_x}{\bar{x}}
+\end{align}
 
 In R können die drei Maße folgendermaßen berechnet werden:
 
@@ -2168,7 +2304,7 @@ varcoef_preis
 
 
 Ein ebenfalls häufig verwendetes Streuungsmaß ist der **Interquantilsabstand**
-(*inter-quantile-range, IQR), welcher als die Differenz zwischen dem $25$ und
+(*inter-quantile-range, IQR), welcher als die Differenz zwischen dem $25\%-$ und
 $75\%-$Quantil definiert ist:
 
 $$IQR=x_{0.75} - x_{0.25}$$
@@ -2193,7 +2329,7 @@ Intervall $(0,1)$ normiert wird und den Wert 0 im Falle einer kompletten
 Gleichverteilung und den Wert 1 im Falle eine kompletten Konzentration, d.h. 
 dem Fall, dass ein Beobachtungssubjekt alles und alle anderen nichts besitzen.
 
-In R können wir den Gini Index z.B. mit der Funktion `Gini()` aus dem Paket 
+In R können wir den Gini-Index z.B. mit der Funktion `Gini()` aus dem Paket 
 [ineq](https://cran.r-project.org/package=ineq) [@R-ineq] berechnen, wobei wir 
 hier die Korrektur für Stichproben verwenden müssen indem wir das Argument
 `corr = TRUE` setzen:
@@ -2202,7 +2338,7 @@ hier die Korrektur für Stichproben verwenden müssen indem wir das Argument
 ```r
 test_data_equality <- rep(0.5, 5)
 test_data_inequality <- c(rep(0, 4), 1)
-Gini(test_data_equality, corr = T)
+ineq::Gini(test_data_equality, corr = T)
 ```
 
 ```
@@ -2210,7 +2346,7 @@ Gini(test_data_equality, corr = T)
 ```
 
 ```r
-Gini(test_data_inequality, corr = T)
+ineq::Gini(test_data_inequality, corr = T)
 ```
 
 ```
@@ -2220,30 +2356,36 @@ Gini(test_data_inequality, corr = T)
 
 
 Um die Besonderheiten des Gini's zu verstehen wollen wir 
-uns genauer mit der Berechnung des Indices vertraut machen.
+uns genauer mit der Berechnung des Indexes vertraut machen.
 Der Gini-Index ist eng mit dem Konzept der 
 [Lorenz-Kurve](https://en.wikipedia.org/wiki/Lorenz_curve) verknüpft.
 
-Grafisch gesprochen resultiert die Lorentz-Kurve wenn wir auf der x-Achse
+Grafisch gesprochen resultiert die Lorenz-Kurve wenn wir auf der x-Achse
 den Anteil der Beobachtungssubjekte und auf der y-Achse ihren Anteil an
-der relevanten Ressource abbilden. 
+den relevanten Ressource abbilden. 
 Definieren wir $p$ als den Anteil an der Population und $q=\mathcal{L}(p)$ als
 den Anteil an der Ressource, der von $p\%$ der Population gehalten wird.
 Daraus resultiert, dass wir bei völliger Gleichverteilung eine Gerade sehen
 würden, da $p\%$ der Population auch $q=p=\mathcal{L}(p)\%$ der Ressource halten 
 würden.
-Die Lorentz-Kurve visualisiert nun die *Abweichung* von diesem idealtypischen
+Die Lorenz-Kurve visualisiert nun die *Abweichung* von diesem idealtypischen
 Fall in dem $p=q$.
-Dies wird in der folgenden Abbildung deutlich, in der zwei mögliche 
-Lorentzkurve dem hypothetischen Fall der perfekten Gleichverteilung
+Dies wird in Abbildung \@ref(fig:Lorenz-Kurven) deutlich, in der zwei mögliche 
+Lorenz-Kurven dem hypothetischen Fall der perfekten Gleichverteilung
 gegenübergestellt werden:
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-75-1} \end{center}
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Lorenz-Kurven-1} 
+
+}
+
+\caption{Vergleich zweier Lorenz-Kurven}(\#fig:Lorenz-Kurven)
+\end{figure}
 
 Der Gini-Index $\mathcal{G}$ misst diese Abweichung über die normierte Distanz 
 zwischen $p$ und $q$ indem er einfach das Integral von $p-\mathcal{L}(p)$ berechnet.
-Da die Lorentzkurve innerhalb eines $1\times 1$-Quadrats definiert ist 
+Da die Lorenz-Kurve innerhalb eines $1\times 1$-Quadrats definiert ist 
 mutliplizieren wir das Integral mit 2 um die Normierung zwischen 0 und 1 zu
 erreichen, sonst wäre das Maximum des Gini-Indices 0.5 (da über der 45-Grad
 Linie per definitionem keine Kurve verlaufen kann):
@@ -2252,11 +2394,11 @@ Linie per definitionem keine Kurve verlaufen kann):
 \mathcal{G}= 2\cdot \int_0^1\left(p-\mathcal{L}\left(p\right)\right)\text{d}p = 1-2\cdot \int_0^1\left(\mathcal{L}\left(p\right)\right)\text{d}p
 \end{align}
 
-Der Gini-Indix ist ein recht hilfreiches Maß für Ungleichverteilung wenn wir
+Der Gini-Index ist ein recht hilfreiches Maß für Ungleichverteilung wenn wir
 es mit *symmetrischen* Verteilungen zu tun haben, wie die lila Kurve in der
 Abbildung oben.
 Es ist jedoch ein schwierigeres Maß sobald eine *assymmetrische*
-Verteilung vorliegt, wie bei der blauen Kurveoben.
+Verteilung vorliegt, wie bei der blauen Kurve oben.
 In letzterem Fall werden wir möglicherweise die gleichen Ginis für recht
 unterschiedliche Verteilungen erhalten.
 Da Vermögens- und Einkommensverteilungen in der Regel immer asymmetrisch sind
@@ -2272,8 +2414,8 @@ daher vor allem für Vergleiche über die Zeit.^[Der Theil-Index besitzt noch
 weitere attraktivere Eigenschaften. 
 Insbesondere können die Beiträge von Ungleichheiten
 innerhalb verschiedener Subgruppen und die Ungleichheiten zwischen Gruppen als
-solchen aus dem Index abgeleitet werden. Weitere Informationen finden sich z.B.
-[hier](http://siteresources.worldbank.org/PGLP/Resources/PMch6.pdf)]
+solchen aus dem Index abgeleitet werden. 
+
 Die Definition ist folgendermaßen:
 
 \begin{align}
@@ -2289,7 +2431,7 @@ In R können wir den Theil Index mit der Funktion `Theil()` aus dem Paket
 
 ```r
 dist_expl <- rpareto(100, 3, 2.1)
-Theil(dist_expl)
+ineq::Theil(dist_expl)
 ```
 
 ```
@@ -2307,9 +2449,9 @@ unsere Stichprobengröße messen [@torsten-dist].
 Das richtige Maß hängt also immer von unseren theoretischen Vorüberlegungen zur
 zugrundeliegenden Verteilung und unserem konkreten Erkenntnisinteresse ab.
 
-In diesem Sinne ist vor allem die weite Verbreitung des Gini-Indices als 
+In diesem Sinne ist vor allem die weite Verbreitung des Gini-Indexes als 
 *dem* Verteilungsmaß schlechthin durchaus kritisch zu sehen. 
-So reagiert der Gini Index vor allem auf Änderungen in den mittleren Bereichen
+So reagiert der Gini-Index vor allem auf Änderungen in den mittleren Bereichen
 der Verteilung und weniger auf Änderungen an den Rändern. Wer Effekte
 von wachsender Vermögenskonzentration bei den reichsten Individuen messen möchte
 sollte also lieber ein anderes Maß verwenden.
@@ -2317,9 +2459,9 @@ Sein Nutzen ist insofern auch von der zugrundeliegenden Forschungsfrage
 abhängig. Das gilt natürlich auch für alle anderen Indices. So eignet sich
 der Theil-Index vor allem bei der Analyse von Änderungen über die Zeit in der
 gleichen Gruppe, da er nicht normiert ist. Er reagiert deutlich besser auf
-Änderungen an den Extremen als der Gini Index.
+Änderungen an den Extremen als der Gini-Index.
 
-Für eine gute kritische Auseinandersetzung mit dem Gini Index und einen
+Für eine gute kritische Auseinandersetzung mit dem Gini-Index und einen
 konstruktiven Gegenvorschlag siehe z.B. @gini-critique.
 
 Zahlreiche gängige Verteilungsmaße sind in dem Paket
@@ -2336,16 +2478,21 @@ nur für unimodale Verteilungen intuitiv interpretiert werden können.
 Ganz strikt genommen sprechen wir von einer **unimodalen** oder **eingipfligen**
 Verteilung wenn Sie nur einen Gipfel hat, also nur einen Modus
 Ansonsten sprechen wir von einer **multimodalen** oder **mehrgipfligen** 
-(oder genauer *ein*gipfligen, *zwei*gipfligen, ...) Verteilung.
+(oder genauer *zwei*gipfligen, *drei*gipfligen, ...) Verteilung.
 
-In der Praxis haben viele Funktionen aber einen eindeutigen Modus,
+In der Praxis haben viele Funktionen einen eindeutigen Modus,
 besitzen aber mehrere andere lokale Optima, also kleinere "Gipfel", sodass wir 
-in der Regel von einer multimodelen Verteilung sprechen sobald es mehrere lokale 
-Maxima gibt:
+in der Regel von einer multimodalen Verteilung sprechen sobald es mehrere lokale 
+Maxima gibt. Beispiele einer solch multimodalen Verteilung sind in Abbildung \@ref(fig:multimodal) dargestellt.
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-77-1} \end{center}
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/multimodal-1} 
 
+}
+
+\caption{Beispiele multimodaler Verteilungen}(\#fig:multimodal)
+\end{figure}
 
 **Kennzahlen zur Form der Verteilung**
 
@@ -2368,11 +2515,17 @@ Wir nennen eine Verteilung *symmetrisch* wenn $\gamma_x=0$,
 **links-schief** (oder *rechts-steil*) wenn $\gamma_x<0$
 und **rechts-schief** (oder *links-steil*) wenn $\gamma_x>0$. 
 
-Woher diese Begriffe kommen können wir uns am besten mit Hilfe folgender 
-Abbildung verdeutlichen:
+Woher diese Begriffe kommen können wir uns am besten mit Hilfe von 
+Abbildung \@ref(fig:Symmetrie) verdeutlichen.
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-78-1} \end{center}
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Symmetrie-1} 
+
+}
+
+\caption{Beispiele für Verteilungen mit unterschiedlichen Schiefen}(\#fig:Symmetrie)
+\end{figure}
 
 In R können wir die Schiefe einer Verteilung mit der Funktion `skewness()`
 aus dem Paket [moments](https://cran.r-project.org/package=moments) [@R-moments] 
@@ -2380,18 +2533,24 @@ berechnen:
 
 
 ```r
-skewness(journal_daten[["Preis"]])
+moments::skewness(journal_daten[["Preis"]])
 ```
 
 ```
 #> [1] 1.691223
 ```
 
-Wir würden hier also von einer *recht-schiefen* Verteilung der Preise 
-sprechen. Das sehen wir hier auch grafisch:
+Wir würden hier also von einer *rechts-schiefen* Verteilung der Preise 
+sprechen. Das sehen wir hier auch grafisch in Abbildung \@ref(fig:rechtsschief).
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-80-1} \end{center}
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/rechtsschief-1} 
+
+}
+
+\caption{Rechts-schiefe Verteilung der Journalpreise}(\#fig:rechtsschief)
+\end{figure}
 
 Die **Steile** (auch: Kurtosis) $\omega_x$ einer Verteilung gibt ihre 
 'Spitzgipfligkeit' an. Je größer $\omega_x$ desto 'schmaler' wird die 
@@ -2409,7 +2568,7 @@ Paket [moments](https://cran.r-project.org/package=moments) berechnen:
 
 
 ```r
-kurtosis(journal_daten[["Preis"]])
+moments::kurtosis(journal_daten[["Preis"]])
 ```
 
 ```
@@ -2417,31 +2576,25 @@ kurtosis(journal_daten[["Preis"]])
 ```
 
 
-Da die Kurtosis an sich nicht leicht zu interpretieren ist wird der
-Wert häufig mit dem einer Standardnormalverteilung verglichen. Da deren Wert
-per definitionem 3 beträgt wird die *Exzess-Kurtosis* mit 
-$\tilde{\omega}_x=\omega_x-3$ berechnet und
-wir sprechen von einer *steilgipfligen* ('leptokurtischen') Verteilung wenn 
-$\tilde{\omega}_x>0$ 
+Da der Wert der Kurtosis $\omega_x$ an sich nicht leicht zu interpretieren ist wird er
+häufig mit dem einer Standardnormalverteilung verglichen. Da deren Wert
+*per definitionem* 3 beträgt wird die *Exzess-Kurtosis* mit 
+$\tilde{\omega}_x=\omega_x-3$ berechnet. Wir sprechen von einer *steilgipfligen* ('leptokurtischen') Verteilung wenn $\tilde{\omega}_x>0$ 
 und von einer *flachgipfligen* ('platykurtischen') Verteilung wenn 
 $\tilde{\omega}_x<0$.
 Für den Fall der Preisverteilung von Journalen haben wir es also mit einer
-steilgipfligen Verteilung zu tun.
+steilgipfligen Verteilung zu tun, d.h. die Verteilung der Journalpreise ist 'schmaler' als eine Normalverteilung.
 
-Zur Verdeutlichung des Konzepts im folgenden noch ein grafisches Beispiel:
+Zur Verdeutlichung des Konzepts bietet Abbildung \@ref(fig:Kurtosis) ein grafisches Beispiel.
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-82-1} \end{center}
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Kurtosis-1} 
 
+}
 
-```r
-kurtosis(filter(kurt_data, Kurtosis=="Normalverteilung")$Dichte)
-```
-
-```
-#> [1] NaN
-```
-
+\caption{Beispiel von Verteilungen mit verschiedener Kurtosis}(\#fig:Kurtosis)
+\end{figure}
 
 **Ausreißer und Schwanz-Eigenschaften**
 
@@ -2469,29 +2622,29 @@ untere_grenze <- IQR_Grenzen["25%"] - 1.5*IQR(journal_daten[["Preis"]])
 obere_grenze <- IQR_Grenzen["75%"] + 1.5*IQR(journal_daten[["Preis"]])
 
 outlier_teuer <- journal_daten %>%
-  filter(Preis > obere_grenze)
+  dplyr::filter(Preis > obere_grenze)
 
 outlier_billig <- journal_daten %>%
-  filter(Preis < untere_grenze)
+  dplyr::filter(Preis < untere_grenze)
  
 
 dplyr::select(outlier_teuer, Titel, Preis)
 ```
 
 ```
-#>                                          Titel Preis
-#> 1                         Ecological Economics  1170
-#> 2                            Applied Economics  2120
-#> 3               Journal of Banking and Finance  1539
-#> 4  Journal of Economic Behavior & Organization  1154
-#> 5                              Research Policy  1234
-#> 6                            Economics Letters  1492
-#> 7                     European Economic Review  1154
-#> 8                            World Development  1450
-#> 9                  Journal of Public Economics  1431
-#> 10                     Journal of Econometrics  1893
-#> 11                  Journal of Economic Theory  1400
-#> 12              Journal of Financial Economics  1339
+#>                                           Titel Preis
+#>  1:                        Ecological Economics  1170
+#>  2:                           Applied Economics  2120
+#>  3:              Journal of Banking and Finance  1539
+#>  4: Journal of Economic Behavior & Organization  1154
+#>  5:                             Research Policy  1234
+#>  6:                           Economics Letters  1492
+#>  7:                    European Economic Review  1154
+#>  8:                           World Development  1450
+#>  9:                 Journal of Public Economics  1431
+#> 10:                     Journal of Econometrics  1893
+#> 11:                  Journal of Economic Theory  1400
+#> 12:              Journal of Financial Economics  1339
 ```
 
 ```r
@@ -2499,8 +2652,7 @@ dplyr::select(outlier_billig, Titel, Preis)
 ```
 
 ```
-#> [1] Titel Preis
-#> <0 rows> (or 0-length row.names)
+#> Empty data.table (0 rows and 2 cols): Titel,Preis
 ```
 
 Wir sehen hier, dass es nur Ausreißer nach oben, also nur besonders teure
@@ -2508,8 +2660,6 @@ Journale gibt.
 Nun können/müssen wir uns für diese Fälle überlegen wie wir mit den
 Ausreißern umgehen wollen.
 
-Das bringt uns zu der zweiten Frage, also die Frage wie wir mit Ausreißern 
-umzugehen haben. 
 Manche Ausreißer sind die Folge von Messfehlern oder Fehlern in der 
 Datenaufbereitung.
 Idealerweise würden wir solche Ausreißer aus dem Datensatz entfernen wollen.
@@ -2523,8 +2673,10 @@ Im Bereich der Finanzmarktanalyse sind extreme Preisausschläge häufig gerade
 besonders relevant. Sie dürfen auf gar keinen Fall ausgeschlossen werden, denn
 häufig sind sie Ausgangspunkt von Krisen.
 
-Daher ist die beste Vorgehensweise, sich Ausreißer explizit anzuschauen, indem
-wir den Datensatz nach extremen Werten 
+Häufig werden solche Ausreißer eliminiert da die Daten ohne sie leicht durch
+eine Normalverteilung approximiert werden können. Rechnet man mit diesen 
+Modellen unterschätzt man aber per definitionem die Wahrscheinlichkeit für
+Extremwerte in der Zukunft. Daher ist die beste Vorgehensweise, sich Ausreißer explizit anzuschauen, indem wir den Datensatz nach extremen Werten 
 (oder Werten mit einer hohen Cook'schen Distanz) filtern und dann selbst 
 entscheiden ob diese Werte eher Resultat eines Messfehlers oder ein besonders
 interessanter Wert sind. Es gilt jedoch: im Zweifel sollten die Datenpunkte
@@ -2532,8 +2684,8 @@ immer im Datensatz gelassen werden. Ein Ausreißer darf nur eliminiert werden
 wenn es *wirklich sehr gute Gründe* dafür gibt.
 
 Im Falle der Journale ist es fraglich ob es wirklich gute Gründe gibt, 
-diese 12 Journale aus Ausreißer zu eliminieren.
-Im vorliegenden Falle spricht wenig dafür und wir sollten uns eher überlegen 
+diese 12 Journale als Ausreißer zu eliminieren.
+Im vorliegenden Fall spricht wenig dafür und wir sollten uns eher überlegen 
 wie diese besondere Stellung der Journale erklärt werden kann, z.B. über ihre
 Popularität. 
 
@@ -2549,19 +2701,7 @@ es gibt zwar sehr viele Menschen mit geringen, und nur wenige mit sehr
 hohen Einkommen, aber mehr Menschen mit hohen Einkommen als wir es bei einer
 Exponentialverteilung erwarten würden.
 
-Diese Kategorie ist in diesem Kontext, da bei endlastigen Verteilungen 
-"Ausreißer" sehr viel häufiger vorkommen. 
-Sie sind aber eine wichtige Folge der zugrundeliegenden Prozesse, und die 
-Ignoranz dieser Beobachtungen würde zu sehr irreführenden Schlussfolgerungen 
-führen. 
-Häufig werden solche Ausreißer eliminiert da die Daten ohne sie leicht durch
-eine Normalverteilung approximiert werden können. Rechnet man mit diesen 
-Modellen unterschätzt man aber per definitionem die Wahrscheinlichkeit für
-Extremwerte in der Zukunft. 
-Dieses Problem ist häufig auf den Finanzmärkten vor der Finanzkrise 2007ff 
-aufgetreten.
-
-Eine Alternative Definition von Ausreißern im Kontext der Regressionsanalyse ist 
+Eine alternative Definition von Ausreißern im Kontext der Regressionsanalyse ist 
 die Berechnung der 'Cook'schen Distanz' für jeden Beobachtungswert. 
 Die 'Cook'sche Distanz' wird immer im Hinblick auf ein bestimmtes 
 Regressionsmodell berechnet und gibt den Einfluss einer jeden Variable
@@ -2573,7 +2713,7 @@ Die Grundidee der 'Cook'schen Distanz' ist für jede Beobachtung das
 Regressionsergebnis zu vergleichen mit dem hypothetischen Fall, dass diese
 Beobachtung ausgelassen worden wäre. 
 
-Wir können für ein bestimmtes Regressionmodell die Cook'schen Distanz mit der
+Wir können für ein bestimmtes Regressionmodell die Cook'sche Distanz mit der
 Funktion `cooks.distance()` berechnen.
 Zum Zwecke der Illustration regressieren wir in dem Journaldatensatz die Variable
 'Preis' auf die Variablen 'Seitenanzahl' und 'Zitationen':
@@ -2586,38 +2726,19 @@ distanzen <- cooks.distance(reg_objekt)
 ```
 
 Ab wann eine Beobachtung als Ausreißer im Sinne von der 
-Cook'schen Distanz gilt ist nicht klar zu definieren, als Daumenregel hat sich 
-die Grenze $\frac{4}{n-k-1}$ etabliert, aber in der Praxis macht es immer Sinn 
-einfach die Werte mit der größten Distanz genauer anzuschauen. 
-Im vorliegenden Falle wären das:
+Cook'schen Distanz gilt ist nicht klar zu definieren. Als Daumenregel hat sich 
+die Grenze $\frac{4}{n-k-1}$ etabliert, aber in der Praxis ergibt es immer Sinn 
+einfach die Werte mit der größten Distanz genauer anzuschauen. Diese lassen sich 
+aus Abbildung \@ref(fig:CookScheDistanz).
 
+\begin{figure}
 
-```r
-dist_data <- data.frame(
-  Index=names(distanzen),
-  Distanz=unname(distanzen), 
-  Titel=journal_daten[as.double(names(distanzen))]$Titel, 
-  stringsAsFactors = FALSE
-)
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Cook-ScheDistanz-1} 
 
-cook_threshold <- 4 / (reg_objekt$df.residual - 1)
+}
 
-ggplot(data = data.frame(dist_data), 
-       mapping = aes(x=Index, y=Distanz)) +
-  geom_bar(stat = "identity") +
-  geom_hline(yintercept = cook_threshold, color="red") +
-  theme_icae() +
-  theme(panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank())
-```
-
-
-
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-86-1} \end{center}
-
-```r
-filter(dist_data, Distanz>cook_threshold)$Titel
-```
+\caption{Betrachtung der Ausreißer nach der Cook'schen Distanz}(\#fig:Cook-ScheDistanz)
+\end{figure}
 
 ```
 #>  [1] "Managerial and Decision Econ"   "Applied Economics"             
@@ -2635,33 +2756,45 @@ filter(dist_data, Distanz>cook_threshold)$Titel
 Ein hilfreiches Mittel zur Beschreibung von Verteilungen ist der 
 **Boxplot**.
 Bei dem Boxplot handelt es sich um eine grafischen Zusammenfassung einiger
-zentraler deskriptiver Kennzahlen: 
+zentraler deskriptiver Kennzahlen, wie in Abbildung \@ref(fig:BoxplotBsp) zu sehen ist.
+
 
 
 
 
 ```r
-ggplot(data = wb_data, 
+ggplot2::ggplot(data = wb_data, 
        mapping = aes(x=region, y=Lebenserwartung)
        ) +
-  geom_boxplot() +
-  theme_icae() +
-  labs(title = "Lebenserwartungen in den Weltregionen", 
+  ggplot2::geom_boxplot() +
+  ggplot2::theme_bw() +
+  ggplot2::labs(title = "Lebenserwartungen in den Weltregionen", 
        caption = "Quelle: Weltbank") +
-  theme(axis.title.x = element_blank())
+  ggplot2::theme(
+    axis.title.x = element_blank(), 
+    axis.text.x = element_text(angle = 10, vjust = 0.65))
 ```
 
+\begin{figure}
 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/BoxplotBsp-1} 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-89-1} \end{center}
+}
+
+\caption{Darstellung der Lebenserwartungen in den Weltregionen anhand eines Boxplots}(\#fig:BoxplotBsp)
+\end{figure}
 
 Im Boxplot werden mehrere relevante Kennzahlen zusammengefasst. 
-Eine schöne Übersicht bietet diese Abbilung:^[Die Abbildung ist von folgendem
-Blog übernommen: 
-[https://www.leansigmacorporation.com/box-plot-with-minitab/](https://www.leansigmacorporation.com/box-plot-with-minitab/).]
+Eine schöne Übersicht bietet Abbildung \@ref(fig:boxplot):
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/figures/boxplot-anatomy} \end{center}
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/boxplot-anatomy} 
+
+}
+
+\caption{Boxplot Anatomie. Quelle: https://www.leansigmacorporation.com/box-plot-with-minitab/}(\#fig:boxplot)
+\end{figure}
 
 Die Box in der Mitte des Boxplots repräsentiert die IQR der Daten, der Median
 ist mit einem Strich innerhalb der Box dargestellt. 
@@ -2677,53 +2810,58 @@ und [hier](https://www.r-graph-gallery.com/boxplot.html).
 
 In [diesem Post](https://www.data-to-viz.com/caveat/boxplot.html) werden auch 
 die Nachteile dieser Visualisierungsform sehr gut beschrieben.
-Der größte Nachteil liegt zweifelslos im Verstecken der eigentlichen Verteilung
+Der größte Nachteil liegt zweifellos im Verstecken der eigentlichen Verteilung
 'hinter der Box'. Es ist nicht klar, ob sich ein Großteil der Daten am oberen
 oder unteren Teil befindet oder ob die Daten eher gleichverteilt sind. Eine
 einfache Lösung für kleinere Datensätze liegt in der Ergänzung der einzelnen
 Beobachtungen durch `boxplot_jitter`, wobei sie hier die Transparenz durch
 `alpha=0.25` anpassen sollten, und den Boxplot zur besseren Lesbarkeit über die
-Beobachtungen ploten sollten.
+Beobachtungen plotten sollten.
 Für größere Datensätzen können Sie einfach einen
 [Violinenplot](https://www.r-graph-gallery.com/violin.html) 
-verwenen, wie im folgenden Beispiel gezeigt:
+verwenden, wie in Abbildung \@ref(fig:Violinenplot) gezeigt.
 
 
 ```r
-boxplot_classic <- ggplot(data = wb_data, 
+boxplot_classic <- ggplot2::ggplot(data = wb_data, 
        mapping = aes(x=region, y=Lebenserwartung)
        ) +
-  geom_boxplot() +
-  theme_icae() +
-  labs(title = "Klassische Darstellung") +
-  theme(axis.title.x = element_blank(), 
+  ggplot2::geom_boxplot() +
+  ggplot2::theme_bw() +
+  ggplot2::labs(title = "Klassische Darstellung") +
+  ggplot2::theme(axis.title.x = element_blank(), 
         axis.text.x = element_text(angle = 90, hjust = 1))
 
-boxplot_jitter <- ggplot(data = wb_data, 
+boxplot_jitter <- ggplot2::ggplot(data = wb_data, 
        mapping = aes(x=region, y=Lebenserwartung)
        ) +
-  geom_boxplot() +
-  geom_jitter(alpha=0.25) +
-  theme_icae() +
-  labs(title = "Klassische Darstellung mit jitter") +
-  theme(axis.title.x = element_blank(), 
+  ggplot2::geom_boxplot() +
+  ggplot2::geom_jitter(alpha=0.25) +
+  ggplot2::theme_bw() +
+  ggplot2::labs(title = "Klassische Darstellung mit jitter") +
+  ggplot2::theme(axis.title.x = element_blank(), 
         axis.text.x = element_text(angle = 90, hjust = 1))
 
-violin_plot <- ggplot(data = wb_data, 
+violin_plot <- ggplot2::ggplot(data = wb_data, 
        mapping = aes(x=region, y=Lebenserwartung)
        ) +
-  geom_violin() +
-  theme_icae() +
-  labs(title = "Violinen-Plot") +
-  theme(axis.title.x = element_blank(), 
+  ggplot2::geom_violin() +
+  ggplot2::theme_bw() +
+  ggplot2::labs(title = "Violinen-Plot") +
+  ggplot2::theme(axis.title.x = element_blank(), 
         axis.text.x = element_text(angle = 90, hjust = 1))
 
-ggarrange(boxplot_classic, boxplot_jitter, violin_plot, ncol = 3)
+ggpubr::ggarrange(boxplot_classic, boxplot_jitter, violin_plot, ncol = 3)
 ```
 
+\begin{figure}
 
+{\centering \includegraphics[width=1\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Violinenplot-1} 
 
-\begin{center}\includegraphics[width=1\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-91-1} \end{center}
+}
+
+\caption{Vergleich von klassischen Darstellungen und dem Violinenplot}(\#fig:Violinenplot)
+\end{figure}
 
 Es ist jedoch immer wichtig eine Verteilung nicht nur mit Kennzahlen, sondern
 auch grafisch zu beschreiben. 
@@ -2753,7 +2891,9 @@ head(anscombe)
 #> 6 14 14 14  8 9.96 8.10  8.84 7.04
 ```
 
-Die folgende Tabelle gibt die Werte der quantitativen Kennzahlen an:
+Tabelle \@ref(tab:anscombe) gibt die Werte der quantitativen Kennzahlen an.
+
+Table: (\#tab:anscombe) Werte der quantitativen Kennzahlen bei Anscombe
 
 | Kennzahl | Wert  |
 |----------|------|
@@ -2764,10 +2904,16 @@ Die folgende Tabelle gibt die Werte der quantitativen Kennzahlen an:
 | Korrelation zw. $x$ und $y$ | ``0.82`` |
 
 Nur die grafische Inspektion zeigt, wie unterschiedlich die Verteilungen 
-tatsächlich sind:
+tatsächlich sind - siehe Abbildung \@ref(fig:Anscombefigure).
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/unnamed-chunk-93-1} \end{center}
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Anscombefigure-1} 
+
+}
+
+\caption{Graphischer Vergleich der vier Verteilungen}(\#fig:Anscombefigure)
+\end{figure}
 
 Damit zeigt sich, dass jede gute Beschreibung einer Verteilung sowohl aus 
 quantitativen als auch grafischen Teilen bestehen sollte.^[Interessanterweise 

@@ -50,7 +50,7 @@ Klicken Sie einfach auf den Button `Neu` und wählen dort dann
 `R Markdown` aus, wie auf folgendem Screenshot zu sehen ist:
 
 
-\begin{center}\includegraphics[width=0.75\linewidth]{/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/figures/A-Markdown-NewFile} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth]{/Volumes/develop/packages/RforSocioEcon/figures/A-Markdown-NewFile} \end{center}
 
 Im folgenden Fenster können Sie getrost die Standardeinstellungen
 so wie vorgeschlagen belassen, da Sie alles später noch sehr leicht ändern 
@@ -63,7 +63,7 @@ Ein R-Markdown Dokument besteht in der Regel aus zwei Teilen:
 dem Titelblock und dem darunter folgenden Dokumentenkörper:
 
 
-\begin{center}\includegraphics[width=0.75\linewidth]{/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/figures/A-Markdown-Title} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth]{/Volumes/develop/packages/RforSocioEcon/figures/A-Markdown-Title} \end{center}
 
 ### Der Titelblock
 
@@ -97,7 +97,7 @@ Um einen Chunk zu Ihrem Dokument hinzuzufügen klicken Sie oben rechts im
 Skripbereich auf 'Insert' und wählen `R` aus:
 
 
-\begin{center}\includegraphics[width=0.75\linewidth]{/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/figures/A-Markdown-Chunk1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth]{/Volumes/develop/packages/RforSocioEcon/figures/A-Markdown-Chunk1} \end{center}
 
 Daraufhin wird an der Stelle des Cursors ein Chunk in Ihr Dokument 
 eingefügt.
@@ -106,7 +106,7 @@ In der ersten Zeile wird zusätzlich innerhalb von geschweiften Klammern die
 Programmiersprache des Chunks definiert:
 
 
-\begin{center}\includegraphics[width=0.75\linewidth]{/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/figures/A-Markdown-Chunk3} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth]{/Volumes/develop/packages/RforSocioEcon/figures/A-Markdown-Chunk3} \end{center}
 
 Darüber hinaus kann das Ausführverhalten für den Chunk durch weitere 
 Argumente innerhalb der geschweiften Klammer weiter spezifiziert werden.
@@ -117,7 +117,7 @@ Dies können Sie durch die Option `eval=FALSE` erreichen.
 In diesem Fall sähe Ihr Chunk so aus:
 
 
-\begin{center}\includegraphics[width=0.75\linewidth]{/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/figures/A-Markdown-Chunk4} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth]{/Volumes/develop/packages/RforSocioEcon/figures/A-Markdown-Chunk4} \end{center}
 
 In diesem Beispiel wird die Zuweisung `x <- 4` bei der Kompillierung des 
 Dokuments nicht ausgeführt.
@@ -178,7 +178,7 @@ Um das Problem zu illustrieren nehmen wir einmal folgende Ordnerstruktur an,
 wobei der Ordner `MarkdownProject` unser Arbeitsverzeichnis ist:
 
 
-\begin{center}\includegraphics[width=7.11in,height=0.25\textheight]{/Users/claudius/work-claudius/general/paper-projects/packages/SocioEconMethodsR/figures/A-Markdown-Ordnerstruktur} \end{center}
+\begin{center}\includegraphics[width=7.11in,height=0.25\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/A-Markdown-Ordnerstruktur} \end{center}
 
 Das Problem ist nun, dass wenn Sie eine R-Markdown Datei kompillieren, diese
 Datei alle Pfade **nicht** ausgehend von Ihrem Arbeitsverzeichnis 

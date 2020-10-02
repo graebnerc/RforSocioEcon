@@ -296,6 +296,15 @@ Zusammenhänge zugrunde liegen:
 
 
 
+```
+## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+
+
 \begin{center}\includegraphics{ChapA-DeskriptiveStatistik_files/figure-latex/unnamed-chunk-11-1} \end{center}
 
 Daher ist es immer wichtig die Daten auch visuell zu inspizieren. 

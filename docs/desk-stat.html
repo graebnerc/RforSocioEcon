@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>C Wiederholung: Deskriptive Statistik | R für die sozio-ökonomische Forschung</title>
   <meta name="description" content="R Skript in der Version 0.7.2" />
-  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="C Wiederholung: Deskriptive Statistik | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,11 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-01-29" />
+<<<<<<< HEAD
+<meta name="date" content="2020-07-01" />
+=======
+<meta name="date" content="2020-07-13" />
+>>>>>>> ch5-b
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,41 +57,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -125,11 +154,31 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.3.3" data-path="einrichtung.html"><a href="einrichtung.html#schritt-2-ein-r-studio-projekt-im-projektordner-erstellen"><i class="fa fa-check"></i><b>2.3.3</b> Schritt 2: Ein R-Studio Projekt im Projektordner erstellen</a></li>
 <li class="chapter" data-level="2.3.4" data-path="einrichtung.html"><a href="einrichtung.html#unterordner"><i class="fa fa-check"></i><b>2.3.4</b> Schritt 3: Relevante Unterordner erstellen</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="einrichtung.html"><a href="einrichtung.html#abschließende-bemerkungen"><i class="fa fa-check"></i><b>2.4</b> Abschließende Bemerkungen</a></li>
+<li class="chapter" data-level="2.4" data-path="einrichtung.html"><a href="einrichtung.html#optional-schritt-4-und-das-here-paket"><i class="fa fa-check"></i><b>2.4</b> Optional: Schritt 4 und das here-Paket</a></li>
+<li class="chapter" data-level="2.5" data-path="einrichtung.html"><a href="einrichtung.html#abschließende-bemerkungen"><i class="fa fa-check"></i><b>2.5</b> Abschließende Bemerkungen</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in R</a><ul>
 <li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#befehle-in-r-an-den-computer-übermitteln"><i class="fa fa-check"></i><b>3.1</b> Befehle in R an den Computer übermitteln</a></li>
 <li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#objekte-funktionen-und-zuweisungen"><i class="fa fa-check"></i><b>3.2</b> Objekte, Funktionen und Zuweisungen</a></li>
+<<<<<<< HEAD
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#grundlegende-objeke-in-r"><i class="fa fa-check"></i><b>3.3</b> Grundlegende Objeke in R</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.3.1</b> Funktionen</a></li>
+<li class="chapter" data-level="3.3.2" data-path="basics.html"><a href="basics.html#basics-types-vectors"><i class="fa fa-check"></i><b>3.3.2</b> Vektoren</a></li>
+<li class="chapter" data-level="3.3.3" data-path="basics.html"><a href="basics.html#basics-logic"><i class="fa fa-check"></i><b>3.3.3</b> Logische Werte (logical)</a></li>
+<li class="chapter" data-level="3.3.4" data-path="basics.html"><a href="basics.html#wörter-character"><i class="fa fa-check"></i><b>3.3.4</b> Wörter (character)</a></li>
+<li class="chapter" data-level="3.3.5" data-path="basics.html"><a href="basics.html#fehlende-werte-und-null"><i class="fa fa-check"></i><b>3.3.5</b> Fehlende Werte und NULL</a></li>
+<li class="chapter" data-level="3.3.6" data-path="basics.html"><a href="basics.html#indizierung-und-ersetzung"><i class="fa fa-check"></i><b>3.3.6</b> Indizierung und Ersetzung</a></li>
+<li class="chapter" data-level="3.3.7" data-path="basics.html"><a href="basics.html#nützliche-funktionen-für-atomare-vektoren"><i class="fa fa-check"></i><b>3.3.7</b> Nützliche Funktionen für atomare Vektoren</a></li>
+<li class="chapter" data-level="3.3.8" data-path="basics.html"><a href="basics.html#listen"><i class="fa fa-check"></i><b>3.3.8</b> Listen</a></li>
+<li class="chapter" data-level="3.3.9" data-path="basics.html"><a href="basics.html#into-factors"><i class="fa fa-check"></i><b>3.3.9</b> Faktoren</a></li>
+<li class="chapter" data-level="3.3.10" data-path="basics.html"><a href="basics.html#intro-matrix"><i class="fa fa-check"></i><b>3.3.10</b> Matrizen</a></li>
+<li class="chapter" data-level="3.3.11" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.3.11</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#packages"><i class="fa fa-check"></i><b>3.4</b> Pakete</a></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.5</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>4</b> Datenkunde und Datenaufbereitung</a><ul>
+=======
 <li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#zusammenfassung"><i class="fa fa-check"></i><b>3.3</b> Zusammenfassung</a></li>
 <li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#grundlegende-objeke-in-r"><i class="fa fa-check"></i><b>3.4</b> Grundlegende Objeke in R</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="basics.html"><a href="basics.html#funktionen"><i class="fa fa-check"></i><b>3.4.1</b> Funktionen</a></li>
@@ -143,7 +192,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.4.9" data-path="basics.html"><a href="basics.html#intro-matrix"><i class="fa fa-check"></i><b>3.4.9</b> Matrizen</a></li>
 <li class="chapter" data-level="3.4.10" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>3.4.10</b> Data Frames</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#pakete"><i class="fa fa-check"></i><b>3.5</b> Pakete</a></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#packages"><i class="fa fa-check"></i><b>3.5</b> Pakete</a></li>
 <li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#kurzer-exkurs-zum-einlesen-und-schreiben-von-daten"><i class="fa fa-check"></i><b>3.6</b> Kurzer Exkurs zum Einlesen und Schreiben von Daten</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>4</b> Lineare statistische Modelle in R</a><ul>
@@ -168,86 +217,108 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.5" data-path="linmodel.html"><a href="linmodel.html#lin-multi"><i class="fa fa-check"></i><b>4.5</b> Multiple lineare Regression</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>5</b> Datenkunde und Datenaufbereitung</a><ul>
+>>>>>>> ch5-b
 <li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="5.1" data-path="data.html"><a href="data.html#data-arten"><i class="fa fa-check"></i><b>5.1</b> Arten von Daten</a></li>
-<li class="chapter" data-level="5.2" data-path="data.html"><a href="data.html#data-get"><i class="fa fa-check"></i><b>5.2</b> Datenakquise</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="data.html"><a href="data.html#exkurs-1-ländercodes-übersetzen"><i class="fa fa-check"></i><b>5.2.1</b> Exkurs 1: Ländercodes übersetzen</a></li>
-<li class="chapter" data-level="5.2.2" data-path="data.html"><a href="data.html#data-download-R"><i class="fa fa-check"></i><b>5.2.2</b> Exkurs 2: Daten direkt mit R herunterladen</a></li>
+<li class="chapter" data-level="4.1" data-path="data.html"><a href="data.html#data-arten"><i class="fa fa-check"></i><b>4.1</b> Arten von Daten</a></li>
+<li class="chapter" data-level="4.2" data-path="data.html"><a href="data.html#data-get"><i class="fa fa-check"></i><b>4.2</b> Datenakquise</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="data.html"><a href="data.html#exkurs-1-ländercodes-übersetzen"><i class="fa fa-check"></i><b>4.2.1</b> Exkurs 1: Ländercodes übersetzen</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data.html"><a href="data.html#data-download-R"><i class="fa fa-check"></i><b>4.2.2</b> Exkurs 2: Daten direkt mit R herunterladen</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="data.html"><a href="data.html#data-read-write"><i class="fa fa-check"></i><b>5.3</b> Daten einlesen und schreiben</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="data.html"><a href="data.html#einlesen-von-datensätzen"><i class="fa fa-check"></i><b>5.3.1</b> Einlesen von Datensätzen</a></li>
-<li class="chapter" data-level="5.3.2" data-path="data.html"><a href="data.html#speichern-von-daten"><i class="fa fa-check"></i><b>5.3.2</b> Speichern von Daten</a></li>
+<li class="chapter" data-level="4.3" data-path="data.html"><a href="data.html#data-read-write"><i class="fa fa-check"></i><b>4.3</b> Daten einlesen und schreiben</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="data.html"><a href="data.html#einlesen-von-datensätzen"><i class="fa fa-check"></i><b>4.3.1</b> Einlesen von Datensätzen</a></li>
+<li class="chapter" data-level="4.3.2" data-path="data.html"><a href="data.html#speichern-von-daten"><i class="fa fa-check"></i><b>4.3.2</b> Speichern von Daten</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="data.html"><a href="data.html#data-wrangling"><i class="fa fa-check"></i><b>5.4</b> Verarbeitung von Daten (‘data wrangling’)</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="data.html"><a href="data.html#das-konzept-von-tidy-data"><i class="fa fa-check"></i><b>5.4.1</b> Das Konzept von ‘tidy data’</a></li>
-<li class="chapter" data-level="5.4.2" data-path="data.html"><a href="data.html#data-long-wide"><i class="fa fa-check"></i><b>5.4.2</b> Von langen und breiten Datensätzen</a></li>
-<li class="chapter" data-level="5.4.3" data-path="data.html"><a href="data.html#data-merge"><i class="fa fa-check"></i><b>5.4.3</b> Zusammenführen von Daten</a></li>
-<li class="chapter" data-level="5.4.4" data-path="data.html"><a href="data.html#date-select"><i class="fa fa-check"></i><b>5.4.4</b> Datensätze filtern und selektieren</a></li>
-<li class="chapter" data-level="5.4.5" data-path="data.html"><a href="data.html#data-summary"><i class="fa fa-check"></i><b>5.4.5</b> Datensätze zusammenfassen</a></li>
+<li class="chapter" data-level="4.4" data-path="data.html"><a href="data.html#data-wrangling"><i class="fa fa-check"></i><b>4.4</b> Verarbeitung von Daten (‘data wrangling’)</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="data.html"><a href="data.html#das-konzept-von-tidy-data"><i class="fa fa-check"></i><b>4.4.1</b> Das Konzept von ‘tidy data’</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data.html"><a href="data.html#data-long-wide"><i class="fa fa-check"></i><b>4.4.2</b> Von langen und breiten Datensätzen</a></li>
+<li class="chapter" data-level="4.4.3" data-path="data.html"><a href="data.html#data-merge"><i class="fa fa-check"></i><b>4.4.3</b> Zusammenführen von Daten</a></li>
+<li class="chapter" data-level="4.4.4" data-path="data.html"><a href="data.html#date-select"><i class="fa fa-check"></i><b>4.4.4</b> Datensätze filtern und selektieren</a></li>
+<li class="chapter" data-level="4.4.5" data-path="data.html"><a href="data.html#data-summary"><i class="fa fa-check"></i><b>4.4.5</b> Datensätze zusammenfassen</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="data.html"><a href="data.html#data-role"><i class="fa fa-check"></i><b>5.5</b> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</a></li>
-<li class="chapter" data-level="5.6" data-path="data.html"><a href="data.html#data-packages"><i class="fa fa-check"></i><b>5.6</b> Anmerkungen zu Paketen</a></li>
+<li class="chapter" data-level="4.5" data-path="data.html"><a href="data.html#data-role"><i class="fa fa-check"></i><b>4.5</b> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</a></li>
+<li class="chapter" data-level="4.6" data-path="data.html"><a href="data.html#data-packages"><i class="fa fa-check"></i><b>4.6</b> Anmerkungen zu Paketen</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>6</b> Visualisierung von Daten</a><ul>
+<li class="chapter" data-level="5" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>5</b> Visualisierung von Daten</a><ul>
 <li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#verwendete-pakete-1"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
-<li class="chapter" data-level="6.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>6.1</b> Optional: Theoretische Grundlagen</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="vis.html"><a href="vis.html#vis-base-ggplot2"><i class="fa fa-check"></i><b>6.1.1</b> <code>ggplot2</code> vs. <code>base plot</code></a></li>
-<li class="chapter" data-level="6.1.2" data-path="vis.html"><a href="vis.html#grammar"><i class="fa fa-check"></i><b>6.1.2</b> Einleitung zu Wickham’s <em>grammar of graphics</em></a></li>
+<li class="chapter" data-level="5.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>5.1</b> Optional: Theoretische Grundlagen</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="vis.html"><a href="vis.html#vis-base-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> <code>ggplot2</code> vs. <code>base plot</code></a></li>
+<li class="chapter" data-level="5.1.2" data-path="vis.html"><a href="vis.html#grammar"><i class="fa fa-check"></i><b>5.1.2</b> Einleitung zu Wickham’s <em>grammar of graphics</em></a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="vis.html"><a href="vis.html#vis-elemente"><i class="fa fa-check"></i><b>6.2</b> Grundlegende Elemente von <code>ggplot2</code>-Grafiken</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="vis.html"><a href="vis.html#elemente-eines-ggplot"><i class="fa fa-check"></i><b>6.2.1</b> Elemente eines <code>ggplot</code></a></li>
-<li class="chapter" data-level="6.2.2" data-path="vis.html"><a href="vis.html#beispiel-workflow"><i class="fa fa-check"></i><b>6.2.2</b> Beispiel Workflow</a></li>
+<li class="chapter" data-level="5.2" data-path="vis.html"><a href="vis.html#vis-elemente"><i class="fa fa-check"></i><b>5.2</b> Grundlegende Elemente von <code>ggplot2</code>-Grafiken</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="vis.html"><a href="vis.html#elemente-eines-ggplot"><i class="fa fa-check"></i><b>5.2.1</b> Elemente eines <code>ggplot</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="vis.html"><a href="vis.html#beispiel-workflow"><i class="fa fa-check"></i><b>5.2.2</b> Beispiel Workflow</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="vis.html"><a href="vis.html#arten-von-datenvisualisierung"><i class="fa fa-check"></i><b>6.3</b> Arten von Datenvisualisierung</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="vis.html"><a href="vis.html#allgemeine-tipps-zum-grafikdesign"><i class="fa fa-check"></i><b>6.3.1</b> Allgemeine Tipps zum Grafikdesign</a></li>
-<li class="chapter" data-level="6.3.2" data-path="vis.html"><a href="vis.html#streu--oder-blasendiagramm"><i class="fa fa-check"></i><b>6.3.2</b> Streu- oder Blasendiagramm</a></li>
-<li class="chapter" data-level="6.3.3" data-path="vis.html"><a href="vis.html#linienchart"><i class="fa fa-check"></i><b>6.3.3</b> Linienchart</a></li>
-<li class="chapter" data-level="6.3.4" data-path="vis.html"><a href="vis.html#histogramme-und-dichteplots"><i class="fa fa-check"></i><b>6.3.4</b> Histogramme und Dichteplots</a></li>
-<li class="chapter" data-level="6.3.5" data-path="vis.html"><a href="vis.html#balkendiagramme"><i class="fa fa-check"></i><b>6.3.5</b> Balkendiagramme</a></li>
-<li class="chapter" data-level="6.3.6" data-path="vis.html"><a href="vis.html#vis-pie"><i class="fa fa-check"></i><b>6.3.6</b> Kuchendiagramme</a></li>
-<li class="chapter" data-level="6.3.7" data-path="vis.html"><a href="vis.html#vis-kinds-summary"><i class="fa fa-check"></i><b>6.3.7</b> Zusammenfassung</a></li>
+<li class="chapter" data-level="5.3" data-path="vis.html"><a href="vis.html#arten-von-datenvisualisierung"><i class="fa fa-check"></i><b>5.3</b> Arten von Datenvisualisierung</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="vis.html"><a href="vis.html#allgemeine-tipps-zum-grafikdesign"><i class="fa fa-check"></i><b>5.3.1</b> Allgemeine Tipps zum Grafikdesign</a></li>
+<li class="chapter" data-level="5.3.2" data-path="vis.html"><a href="vis.html#streu--oder-blasendiagramm"><i class="fa fa-check"></i><b>5.3.2</b> Streu- oder Blasendiagramm</a></li>
+<li class="chapter" data-level="5.3.3" data-path="vis.html"><a href="vis.html#linienchart"><i class="fa fa-check"></i><b>5.3.3</b> Linienchart</a></li>
+<li class="chapter" data-level="5.3.4" data-path="vis.html"><a href="vis.html#histogramme-und-dichteplots"><i class="fa fa-check"></i><b>5.3.4</b> Histogramme und Dichteplots</a></li>
+<li class="chapter" data-level="5.3.5" data-path="vis.html"><a href="vis.html#balkendiagramme"><i class="fa fa-check"></i><b>5.3.5</b> Balkendiagramme</a></li>
+<li class="chapter" data-level="5.3.6" data-path="vis.html"><a href="vis.html#vis-pie"><i class="fa fa-check"></i><b>5.3.6</b> Kuchendiagramme</a></li>
+<li class="chapter" data-level="5.3.7" data-path="vis.html"><a href="vis.html#vis-kinds-summary"><i class="fa fa-check"></i><b>5.3.7</b> Zusammenfassung</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="vis.html"><a href="vis.html#vis-adv"><i class="fa fa-check"></i><b>6.4</b> Beispiele aus der Praxis und fortgeschrittene Themen</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="vis.html"><a href="vis.html#regressionsgerade"><i class="fa fa-check"></i><b>6.4.1</b> Regressionsgerade</a></li>
-<li class="chapter" data-level="6.4.2" data-path="vis.html"><a href="vis.html#vis-viele-plots"><i class="fa fa-check"></i><b>6.4.2</b> Mehrere Plots in einer Abbildung</a></li>
-<li class="chapter" data-level="6.4.3" data-path="vis.html"><a href="vis.html#mehr-zu-den-skalen-expand_scale-und-skalentransformation"><i class="fa fa-check"></i><b>6.4.3</b> Mehr zu den Skalen: <code>expand_scale()</code> und Skalentransformation</a></li>
+<li class="chapter" data-level="5.4" data-path="vis.html"><a href="vis.html#vis-adv"><i class="fa fa-check"></i><b>5.4</b> Beispiele aus der Praxis und fortgeschrittene Themen</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="vis.html"><a href="vis.html#regressionsgerade"><i class="fa fa-check"></i><b>5.4.1</b> Regressionsgerade</a></li>
+<li class="chapter" data-level="5.4.2" data-path="vis.html"><a href="vis.html#vis-viele-plots"><i class="fa fa-check"></i><b>5.4.2</b> Mehrere Plots in einer Abbildung</a></li>
+<li class="chapter" data-level="5.4.3" data-path="vis.html"><a href="vis.html#mehr-zu-den-skalen-expand_scale-und-skalentransformation"><i class="fa fa-check"></i><b>5.4.3</b> Mehr zu den Skalen: <code>expand_scale()</code> und Skalentransformation</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="vis.html"><a href="vis.html#vis-fehler"><i class="fa fa-check"></i><b>6.5</b> Typische Fehler in der Datenvisualisierung vermeiden</a><ul>
-<li class="chapter" data-level="6.5.1" data-path="vis.html"><a href="vis.html#clutterplots-und-ihre-tranformation-zum-beschrifteten-streudiagramm"><i class="fa fa-check"></i><b>6.5.1</b> Clutterplots und ihre Tranformation zum beschrifteten Streudiagramm</a></li>
-<li class="chapter" data-level="6.5.2" data-path="vis.html"><a href="vis.html#ein-unbalancierter-plot"><i class="fa fa-check"></i><b>6.5.2</b> Ein ‘unbalancierter’ Plot</a></li>
+<li class="chapter" data-level="5.5" data-path="vis.html"><a href="vis.html#vis-fehler"><i class="fa fa-check"></i><b>5.5</b> Typische Fehler in der Datenvisualisierung vermeiden</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="vis.html"><a href="vis.html#clutterplots-und-ihre-tranformation-zum-beschrifteten-streudiagramm"><i class="fa fa-check"></i><b>5.5.1</b> Clutterplots und ihre Tranformation zum beschrifteten Streudiagramm</a></li>
+<li class="chapter" data-level="5.5.2" data-path="vis.html"><a href="vis.html#ein-unbalancierter-plot"><i class="fa fa-check"></i><b>5.5.2</b> Ein ‘unbalancierter’ Plot</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="vis.html"><a href="vis.html#vis-lies"><i class="fa fa-check"></i><b>6.6</b> Lügen mit grafischer Statistik</a><ul>
-<li class="chapter" data-level="6.6.1" data-path="vis.html"><a href="vis.html#klassiker-1-kontraintuitiver-nullpunkt"><i class="fa fa-check"></i><b>6.6.1</b> Klassiker 1: Kontraintuitiver ‘Nullpunkt’</a></li>
-<li class="chapter" data-level="6.6.2" data-path="vis.html"><a href="vis.html#klassiker-2-geschickt-gewählter-zeitraum-und-clever-gewählte-achsenabschnitte"><i class="fa fa-check"></i><b>6.6.2</b> Klassiker 2: Geschickt gewählter Zeitraum und clever gewählte Achsenabschnitte</a></li>
+<li class="chapter" data-level="5.6" data-path="vis.html"><a href="vis.html#vis-lies"><i class="fa fa-check"></i><b>5.6</b> Lügen mit grafischer Statistik</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="vis.html"><a href="vis.html#klassiker-1-kontraintuitiver-nullpunkt"><i class="fa fa-check"></i><b>5.6.1</b> Klassiker 1: Kontraintuitiver ‘Nullpunkt’</a></li>
+<li class="chapter" data-level="5.6.2" data-path="vis.html"><a href="vis.html#klassiker-2-geschickt-gewählter-zeitraum-und-clever-gewählte-achsenabschnitte"><i class="fa fa-check"></i><b>5.6.2</b> Klassiker 2: Geschickt gewählter Zeitraum und clever gewählte Achsenabschnitte</a></li>
 </ul></li>
-<li class="chapter" data-level="6.7" data-path="vis.html"><a href="vis.html#vis-links"><i class="fa fa-check"></i><b>6.7</b> Links und weiterführende Literatur</a></li>
+<li class="chapter" data-level="5.7" data-path="vis.html"><a href="vis.html#vis-links"><i class="fa fa-check"></i><b>5.7</b> Links und weiterführende Literatur</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="formalia.html"><a href="formalia.html"><i class="fa fa-check"></i><b>7</b> Formale Methoden der Sozioökonomie</a><ul>
-<li class="chapter" data-level="7.1" data-path="formalia.html"><a href="formalia.html#einleitung-und-überblick-1"><i class="fa fa-check"></i><b>7.1</b> Einleitung und Überblick</a></li>
-<li class="chapter" data-level="7.2" data-path="formalia.html"><a href="formalia.html#formalia-wachstum"><i class="fa fa-check"></i><b>7.2</b> Änderungsraten und die Rolle des Logarithmus</a></li>
-<li class="chapter" data-level="7.3" data-path="formalia.html"><a href="formalia.html#formalia-diff"><i class="fa fa-check"></i><b>7.3</b> Grundlagen der Differentialrechnung</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="formalia.html"><a href="formalia.html#einleitung-differential--und-integralrechnung"><i class="fa fa-check"></i><b>7.3.1</b> Einleitung: Differential- und Integralrechnung</a></li>
-<li class="chapter" data-level="7.3.2" data-path="formalia.html"><a href="formalia.html#wiederholung-ableitungsregeln"><i class="fa fa-check"></i><b>7.3.2</b> Wiederholung: Ableitungsregeln</a></li>
-<li class="chapter" data-level="7.3.3" data-path="formalia.html"><a href="formalia.html#ableitungen-in-r"><i class="fa fa-check"></i><b>7.3.3</b> Ableitungen in R</a></li>
-<li class="chapter" data-level="7.3.4" data-path="formalia.html"><a href="formalia.html#maximierung-die-analytische-perspektive"><i class="fa fa-check"></i><b>7.3.4</b> Maximierung: die analytische Perspektive</a></li>
-<li class="chapter" data-level="7.3.5" data-path="formalia.html"><a href="formalia.html#maximierung-die-algorithmische-perspektive"><i class="fa fa-check"></i><b>7.3.5</b> Maximierung: die algorithmische Perspektive</a></li>
-<li class="chapter" data-level="7.3.6" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel"><i class="fa fa-check"></i><b>7.3.6</b> Anwendungsbeispiel</a></li>
+<li class="chapter" data-level="6" data-path="formalia.html"><a href="formalia.html"><i class="fa fa-check"></i><b>6</b> Formale Methoden der Sozioökonomie</a><ul>
+<li class="chapter" data-level="6.1" data-path="formalia.html"><a href="formalia.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>6.1</b> Einleitung und Überblick</a></li>
+<li class="chapter" data-level="6.2" data-path="formalia.html"><a href="formalia.html#formalia-wachstum"><i class="fa fa-check"></i><b>6.2</b> Änderungsraten und die Rolle des Logarithmus</a></li>
+<li class="chapter" data-level="6.3" data-path="formalia.html"><a href="formalia.html#formalia-diff"><i class="fa fa-check"></i><b>6.3</b> Grundlagen der Differentialrechnung</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="formalia.html"><a href="formalia.html#einleitung-differential--und-integralrechnung"><i class="fa fa-check"></i><b>6.3.1</b> Einleitung: Differential- und Integralrechnung</a></li>
+<li class="chapter" data-level="6.3.2" data-path="formalia.html"><a href="formalia.html#wiederholung-ableitungsregeln"><i class="fa fa-check"></i><b>6.3.2</b> Wiederholung: Ableitungsregeln</a></li>
+<li class="chapter" data-level="6.3.3" data-path="formalia.html"><a href="formalia.html#ableitungen-in-r"><i class="fa fa-check"></i><b>6.3.3</b> Ableitungen in R</a></li>
+<li class="chapter" data-level="6.3.4" data-path="formalia.html"><a href="formalia.html#maximierung-die-analytische-perspektive"><i class="fa fa-check"></i><b>6.3.4</b> Maximierung: die analytische Perspektive</a></li>
+<li class="chapter" data-level="6.3.5" data-path="formalia.html"><a href="formalia.html#maximierung-die-algorithmische-perspektive"><i class="fa fa-check"></i><b>6.3.5</b> Maximierung: die algorithmische Perspektive</a></li>
+<li class="chapter" data-level="6.3.6" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel"><i class="fa fa-check"></i><b>6.3.6</b> Anwendungsbeispiel</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="formalia.html"><a href="formalia.html#formalia-linalg"><i class="fa fa-check"></i><b>7.4</b> Lineare Algebra</a><ul>
-<li class="chapter" data-level="7.4.1" data-path="formalia.html"><a href="formalia.html#einführung-von-matrizen"><i class="fa fa-check"></i><b>7.4.1</b> Einführung von Matrizen</a></li>
-<li class="chapter" data-level="7.4.2" data-path="formalia.html"><a href="formalia.html#grundregeln-der-matrizenalgebra"><i class="fa fa-check"></i><b>7.4.2</b> Grundregeln der Matrizenalgebra</a></li>
-<li class="chapter" data-level="7.4.3" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-1-das-einfache-keynesianische-modell"><i class="fa fa-check"></i><b>7.4.3</b> Anwendungsbeispiel 1: Das einfache Keynesianische Modell</a></li>
-<li class="chapter" data-level="7.4.4" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-2-ols-regression"><i class="fa fa-check"></i><b>7.4.4</b> Anwendungsbeispiel 2: OLS-Regression</a></li>
-<li class="chapter" data-level="7.4.5" data-path="formalia.html"><a href="formalia.html#ols-deriv"><i class="fa fa-check"></i><b>7.4.5</b> Optional: Herleitung des OLS-Schätzers</a></li>
-<li class="chapter" data-level="7.4.6" data-path="formalia.html"><a href="formalia.html#weiterführende-literatur"><i class="fa fa-check"></i><b>7.4.6</b> Weiterführende Literatur</a></li>
+<li class="chapter" data-level="6.4" data-path="formalia.html"><a href="formalia.html#formalia-linalg"><i class="fa fa-check"></i><b>6.4</b> Lineare Algebra</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="formalia.html"><a href="formalia.html#einführung-von-matrizen"><i class="fa fa-check"></i><b>6.4.1</b> Einführung von Matrizen</a></li>
+<li class="chapter" data-level="6.4.2" data-path="formalia.html"><a href="formalia.html#grundregeln-der-matrizenalgebra"><i class="fa fa-check"></i><b>6.4.2</b> Grundregeln der Matrizenalgebra</a></li>
+<li class="chapter" data-level="6.4.3" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-1-das-einfache-keynesianische-modell"><i class="fa fa-check"></i><b>6.4.3</b> Anwendungsbeispiel 1: Das einfache Keynesianische Modell</a></li>
+<li class="chapter" data-level="6.4.4" data-path="formalia.html"><a href="formalia.html#anwendungsbeispiel-2-ols-regression"><i class="fa fa-check"></i><b>6.4.4</b> Anwendungsbeispiel 2: OLS-Regression</a></li>
+<li class="chapter" data-level="6.4.5" data-path="formalia.html"><a href="formalia.html#ols-deriv"><i class="fa fa-check"></i><b>6.4.5</b> Optional: Herleitung des OLS-Schätzers</a></li>
+<li class="chapter" data-level="6.4.6" data-path="formalia.html"><a href="formalia.html#weiterführende-literatur"><i class="fa fa-check"></i><b>6.4.6</b> Weiterführende Literatur</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="formalia.html"><a href="formalia.html#formalia-dist"><i class="fa fa-check"></i><b>7.5</b> Analyse von Verteilungen</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="formalia.html"><a href="formalia.html#vert-begriff"><i class="fa fa-check"></i><b>7.5.1</b> Theoretische und empirische Verteilungen</a></li>
-<li class="chapter" data-level="7.5.2" data-path="formalia.html"><a href="formalia.html#vert-kennzahlen"><i class="fa fa-check"></i><b>7.5.2</b> Kennzahlen zur Beschreibung empirischer Verteilungen</a></li>
-<li class="chapter" data-level="7.5.3" data-path="formalia.html"><a href="formalia.html#vert-grafik"><i class="fa fa-check"></i><b>7.5.3</b> Grafische Komplemente zu klassischen Kennzahlen</a></li>
-<li class="chapter" data-level="7.5.4" data-path="formalia.html"><a href="formalia.html#vert-bemerkungen"><i class="fa fa-check"></i><b>7.5.4</b> Abschließende Bemerkungen</a></li>
+<li class="chapter" data-level="6.5" data-path="formalia.html"><a href="formalia.html#formalia-dist"><i class="fa fa-check"></i><b>6.5</b> Analyse von Verteilungen</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="formalia.html"><a href="formalia.html#vert-begriff"><i class="fa fa-check"></i><b>6.5.1</b> Theoretische und empirische Verteilungen</a></li>
+<li class="chapter" data-level="6.5.2" data-path="formalia.html"><a href="formalia.html#vert-kennzahlen"><i class="fa fa-check"></i><b>6.5.2</b> Kennzahlen zur Beschreibung empirischer Verteilungen</a></li>
+<li class="chapter" data-level="6.5.3" data-path="formalia.html"><a href="formalia.html#vert-grafik"><i class="fa fa-check"></i><b>6.5.3</b> Grafische Komplemente zu klassischen Kennzahlen</a></li>
+<li class="chapter" data-level="6.5.4" data-path="formalia.html"><a href="formalia.html#vert-bemerkungen"><i class="fa fa-check"></i><b>6.5.4</b> Abschließende Bemerkungen</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>7</b> Lineare statistische Modelle in R</a><ul>
+<li class="chapter" data-level="7.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick-1"><i class="fa fa-check"></i><b>7.1</b> Einleitung und Überblick</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>7.1.1</b> Einführung in die lineare Regression</a></li>
+<li class="chapter" data-level="7.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>7.1.2</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="7.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>7.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>7.2</b> Grundlagen der einfachen linearen Regression</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="linmodel.html"><a href="linmodel.html#grundlegende-begriffe"><i class="fa fa-check"></i><b>7.2.1</b> Grundlegende Begriffe</a></li>
+<li class="chapter" data-level="7.2.2" data-path="linmodel.html"><a href="linmodel.html#schätzung-mit-der-kleinste-quadrate-methode"><i class="fa fa-check"></i><b>7.2.2</b> Schätzung mit der Kleinste-Quadrate-Methode</a></li>
+<li class="chapter" data-level="7.2.3" data-path="linmodel.html"><a href="linmodel.html#ols-ass"><i class="fa fa-check"></i><b>7.2.3</b> Annahmen für den OLS Schätzer</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="linmodel.html"><a href="linmodel.html#lin-kennzahlen"><i class="fa fa-check"></i><b>7.3</b> Kennzahlen in der linearen Regression</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="linmodel.html"><a href="linmodel.html#erklärte-varianz-und-das-r2"><i class="fa fa-check"></i><b>7.3.1</b> Erklärte Varianz und das <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="7.3.2" data-path="linmodel.html"><a href="linmodel.html#hypothesentests-und-statistische-signifikanz"><i class="fa fa-check"></i><b>7.3.2</b> Hypothesentests und statistische Signifikanz</a></li>
+<li class="chapter" data-level="7.3.3" data-path="linmodel.html"><a href="linmodel.html#konfidenzintervalle-für-die-schätzer"><i class="fa fa-check"></i><b>7.3.3</b> Konfidenzintervalle für die Schätzer</a></li>
+<li class="chapter" data-level="7.3.4" data-path="linmodel.html"><a href="linmodel.html#zur-rolle-der-stichprobengröße"><i class="fa fa-check"></i><b>7.3.4</b> Zur Rolle der Stichprobengröße</a></li>
+<li class="chapter" data-level="7.3.5" data-path="linmodel.html"><a href="linmodel.html#linmod-residuals"><i class="fa fa-check"></i><b>7.3.5</b> Residuenanalyse</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="linmodel.html"><a href="linmodel.html#stat-ablauf"><i class="fa fa-check"></i><b>7.4</b> Zum Ablauf einer Regression</a></li>
+<li class="chapter" data-level="7.5" data-path="linmodel.html"><a href="linmodel.html#lin-multi"><i class="fa fa-check"></i><b>7.5</b> Multiple lineare Regression</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>8</b> Fortgeschrittene Themen der linearen Regression</a><ul>
 <li class="chapter" data-level="8.1" data-path="advlin.html"><a href="advlin.html#annahmen-und-eigenschaften-des-einfachen-ols-modells"><i class="fa fa-check"></i><b>8.1</b> Annahmen und Eigenschaften des einfachen OLS Modells</a><ul>
@@ -366,21 +437,58 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="desk-stat" class="section level1">
 <h1><span class="header-section-number">C</span> Wiederholung: Deskriptive Statistik</h1>
-<p>Bevor wir uns im <a href="stat-rep.html#stat-rep">nächsten Anhang</a> mit dem Schluss von den Daten auf die Parameter des zugrundeliegenden Wahrscheinlichkeitsmodells beschäftigen, wollen wir uns im Folgenden noch mit Methoden der deskriptiven Statistik beschäftigen: denn zum einen setzt dieser Rückschluss der Daten auf das Populationsmodell voraus, dass wir uns überhaupt mit den Daten auseinandergesetzt haben, zum anderen sollte die Wahl des zugrundeliegenden Populationsmodell und der Art der Schätzung auf Basis der Daten erfolgen - und auch dafür benötigen wir Methoden der deskriptiven Statistik.</p>
-<p>Die Methoden der deskriptiven Statistik helfen uns die Daten, die wir erhoben haben möglichst gut zu <em>beschreiben</em>. Die <em>deskriptive</em> Statistik grenzt sich von der <em>induktiven</em> Statistik davon ab, dass wir keine Aussagen über unseren Datensatz hinaus treffen wollen: wenn unser Datensatz also z.B. aus 1000 Schüler<em>innen besteht treffen wir mit den Methoden der deskriptiven Statistik nur Aussagen über genau diese 1000 Schüler</em>innen. Mit Methoden der <em>induktiven</em> Statistik würden wir versuchen Aussagen über Schüler*innen im Allgemeinen, zumindest über mehr als diese 1000 Schüler*innen zu treffen. Das ist genau der am Ende des vorherigen Anhangs angesprochene Schluss von den Daten auf den <em>data generating process</em> (DGP).</p>
-<p>In diesem Abschnitt beschäftigen wir uns zunächst nur mit der deskriptiven Statistik. Das ist konsistent mit dem praktischen Vorgehen: bevor wir irgendwelche Methoden der induktiven Statistik anwenden müssen wir immer zunächst unsere Daten mit Hilfe deskriptiver Statistik besser verstehen.</p>
+<p>Bevor wir uns im <a href="stat-rep.html#stat-rep">nächsten Anhang</a> mit dem Schluss von den Daten auf
+die Parameter des zugrundeliegenden Wahrscheinlichkeitsmodells beschäftigen,
+wollen wir uns im Folgenden noch mit Methoden der deskriptiven Statistik beschäftigen:
+denn zum einen setzt dieser Rückschluss der Daten auf das Populationsmodell voraus,
+dass wir uns überhaupt mit den Daten auseinandergesetzt haben, zum anderen sollte
+die Wahl des zugrundeliegenden Populationsmodell und der Art der Schätzung auf
+Basis der Daten erfolgen - und auch dafür benötigen wir Methoden der deskriptiven
+Statistik.</p>
+<p>Die Methoden der deskriptiven Statistik helfen uns die Daten, die wir
+erhoben haben möglichst gut zu <em>beschreiben</em>.
+Die <em>deskriptive</em> Statistik grenzt sich von der <em>induktiven</em> Statistik davon
+ab, dass wir keine Aussagen über unseren Datensatz hinaus treffen wollen:
+wenn unser Datensatz also z.B. aus 1000 Schüler<em>innen besteht treffen wir mit
+den Methoden der deskriptiven Statistik nur Aussagen über genau diese 1000
+Schüler</em>innen.
+Mit Methoden der <em>induktiven</em> Statistik würden wir versuchen Aussagen über
+Schüler*innen im Allgemeinen, zumindest über mehr als diese 1000 Schüler*innen
+zu treffen.
+Das ist genau der am Ende des vorherigen Anhangs angesprochene Schluss von den
+Daten auf den <em>data generating process</em> (DGP).</p>
+<p>In diesem Abschnitt beschäftigen wir uns zunächst nur mit der deskriptiven
+Statistik.
+Das ist konsistent mit dem praktischen Vorgehen: bevor wir irgendwelche Methoden
+der induktiven Statistik anwenden müssen wir immer zunächst unsere Daten mit
+Hilfe deskriptiver Statistik besser verstehen.</p>
 <div id="verwendete-pakete-und-datensätze" class="section level2 unnumbered">
 <h2>Verwendete Pakete und Datensätze</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(here)
-<span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(data.table)
-<span class="kw">library</span>(ggpubr)
-<span class="kw">library</span>(latex2exp)
-<span class="kw">library</span>(icaeDesign)
-<span class="kw">library</span>(MASS)</code></pre></div>
-<p>Für die direkte Anwendung in R verwenden wir einen Datensatz zu ökonomischen Journalen:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">journal_daten &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/tidy/journaldaten.csv&quot;</span>))
-<span class="kw">head</span>(journal_daten)</code></pre></div>
+<<<<<<< HEAD
+<div class="sourceCode" id="cb861"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb861-1" data-line-number="1"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb861-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb861-3" data-line-number="3"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb861-4" data-line-number="4"><span class="kw">library</span>(ggpubr)</a>
+<a class="sourceLine" id="cb861-5" data-line-number="5"><span class="kw">library</span>(latex2exp)</a>
+<a class="sourceLine" id="cb861-6" data-line-number="6"><span class="kw">library</span>(icaeDesign)</a>
+<a class="sourceLine" id="cb861-7" data-line-number="7"><span class="kw">library</span>(MASS)</a></code></pre></div>
+<p>Für die direkte Anwendung in R verwenden wir einen Datensatz zu ökonomischen
+Journalen:</p>
+<div class="sourceCode" id="cb862"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb862-1" data-line-number="1">journal_daten &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/tidy/journaldaten.csv&quot;</span>))</a>
+<a class="sourceLine" id="cb862-2" data-line-number="2"><span class="kw">head</span>(journal_daten)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb850-1" data-line-number="1"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb850-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb850-3" data-line-number="3"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb850-4" data-line-number="4"><span class="kw">library</span>(ggpubr)</a>
+<a class="sourceLine" id="cb850-5" data-line-number="5"><span class="kw">library</span>(latex2exp)</a>
+<a class="sourceLine" id="cb850-6" data-line-number="6"><span class="kw">library</span>(icaeDesign)</a>
+<a class="sourceLine" id="cb850-7" data-line-number="7"><span class="kw">library</span>(MASS)</a></code></pre></div>
+<p>Für die direkte Anwendung in R verwenden wir einen Datensatz zu ökonomischen
+Journalen:</p>
+<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb851-1" data-line-number="1">journal_daten &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/tidy/journaldaten.csv&quot;</span>))</a>
+<a class="sourceLine" id="cb851-2" data-line-number="2"><span class="kw">head</span>(journal_daten)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>##    Kuerzel                                               Titel
 ## 1:    APEL                   Asian-Pacific Economic Literature
 ## 2:  SAJoEH           South African Journal of Economic History
@@ -402,80 +510,224 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 4:      1991          2      Area Studies
 ## 5:      1972         96 Interdisciplinary
 ## 6:      1994         15             Labor</code></pre>
-<p>Dieser Datensatz enthält Informationen über Preise, Seiten, Zitationen und Abonennten von 180 Journalen aus der Ökonomik im Jahr 2004.<a href="#fn86" class="footnoteRef" id="fnref86"><sup>86</sup></a></p>
+<p>Dieser Datensatz enthält Informationen über Preise, Seiten, Zitationen und
+<<<<<<< HEAD
+Abonennten von 180 Journalen aus der Ökonomik im Jahr 2004.<a href="#fn87" class="footnote-ref" id="fnref87"><sup>87</sup></a></p>
+=======
+Abonennten von 180 Journalen aus der Ökonomik im Jahr 2004.<a href="#fn89" class="footnote-ref" id="fnref89"><sup>89</sup></a></p>
+>>>>>>> ch5-b
 </div>
 <div id="kennzahlen-zur-lage-und-streuung-der-daten" class="section level2">
 <h2><span class="header-section-number">C.1</span> Kennzahlen zur Lage und Streuung der Daten</h2>
-<p>Die am häufigsten verwendeten Kennzahlen der deskriptiven Statistik sind das <strong>arithmetische Mittel</strong>, die <strong>Standardabweichung</strong> und die <strong>Quantile</strong>. Für die folgenden Illustrationen nehmen wir an, dass wir es mit einem Datensatz mit <span class="math inline">\(N\)</span> kontinuiertlichen Beobachtungen <span class="math inline">\(x_1, x_2, ..., x_n\)</span> zu tun haben.</p>
+<p>Die am häufigsten verwendeten Kennzahlen der deskriptiven Statistik sind
+das <strong>arithmetische Mittel</strong>, die <strong>Standardabweichung</strong> und die <strong>Quantile</strong>.
+Für die folgenden Illustrationen nehmen wir an, dass wir es mit einem Datensatz
+mit <span class="math inline">\(N\)</span> kontinuiertlichen Beobachtungen <span class="math inline">\(x_1, x_2, ..., x_n\)</span> zu tun haben.</p>
 <p>Das <strong>arithmetische Mittel</strong> ist ein klassisches Lagemaß und definiert als:</p>
-<p><span class="math display">\[\bar{x}=\frac{1}{N}\sum_{i=1}^Nx_i\]</span> In R wird das arithmetische Mittel mit der Funktion <code>mean()</code> berechnet:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">avg_preis &lt;-<span class="st"> </span><span class="kw">mean</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])
-avg_preis</code></pre></div>
+<p><span class="math display">\[\bar{x}=\frac{1}{N}\sum_{i=1}^Nx_i\]</span>
+In R wird das arithmetische Mittel mit der Funktion <code>mean()</code> berechnet:</p>
+<<<<<<< HEAD
+<div class="sourceCode" id="cb864"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb864-1" data-line-number="1">avg_preis &lt;-<span class="st"> </span><span class="kw">mean</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
+<a class="sourceLine" id="cb864-2" data-line-number="2">avg_preis</a></code></pre></div>
 <pre><code>## [1] 417.7222</code></pre>
 <p>Der durchschnittliche Preis der Journale ist also 417.7222222.</p>
-<p>Die <strong>Standardabweichung</strong> ist dagegen ein Maß für die Streuung der Daten und wird als die Quadratwurzel der <em>Varianz</em> definiert:<a href="#fn87" class="footnoteRef" id="fnref87"><sup>87</sup></a></p>
+<p>Die <strong>Standardabweichung</strong> ist dagegen ein Maß für die Streuung der Daten
+und wird als die Quadratwurzel der <em>Varianz</em> definiert:<a href="#fn88" class="footnote-ref" id="fnref88"><sup>88</sup></a></p>
 <p><span class="math display">\[s_x=\sqrt{Var(x)}=\sqrt{\frac{1}{N-1}\sum_{i=1}^N\left(x_i-\bar{x}\right)^2}\]</span></p>
-<p>Wir verwenden in R die Funktionen <code>var()</code> und <code>sd()</code> um Varianz und Standardabweichung zu berechnen:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">preis_var &lt;-<span class="st"> </span><span class="kw">var</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])
-preis_sd &lt;-<span class="st"> </span><span class="kw">sd</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])
-<span class="kw">cat</span>(<span class="kw">paste0</span>(
-  <span class="st">&quot;Varianz: &quot;</span>, preis_var, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>,
-  <span class="st">&quot;Standardabweichung: &quot;</span>, preis_sd
-))</code></pre></div>
+<p>Wir verwenden in R die Funktionen <code>var()</code> und <code>sd()</code> um Varianz und
+Standardabweichung zu berechnen:</p>
+<div class="sourceCode" id="cb866"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb866-1" data-line-number="1">preis_var &lt;-<span class="st"> </span><span class="kw">var</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
+<a class="sourceLine" id="cb866-2" data-line-number="2">preis_sd &lt;-<span class="st"> </span><span class="kw">sd</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
+<a class="sourceLine" id="cb866-3" data-line-number="3"><span class="kw">cat</span>(<span class="kw">paste0</span>(</a>
+<a class="sourceLine" id="cb866-4" data-line-number="4">  <span class="st">&quot;Varianz: &quot;</span>, preis_var, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>,</a>
+<a class="sourceLine" id="cb866-5" data-line-number="5">  <span class="st">&quot;Standardabweichung: &quot;</span>, preis_sd</a>
+<a class="sourceLine" id="cb866-6" data-line-number="6">))</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb853-1" data-line-number="1">avg_preis &lt;-<span class="st"> </span><span class="kw">mean</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
+<a class="sourceLine" id="cb853-2" data-line-number="2">avg_preis</a></code></pre></div>
+<pre><code>## [1] 417.7222</code></pre>
+<p>Der durchschnittliche Preis der Journale ist also 417.7222222.</p>
+<p>Die <strong>Standardabweichung</strong> ist dagegen ein Maß für die Streuung der Daten
+und wird als die Quadratwurzel der <em>Varianz</em> definiert:<a href="#fn90" class="footnote-ref" id="fnref90"><sup>90</sup></a></p>
+<p><span class="math display">\[s_x=\sqrt{Var(x)}=\sqrt{\frac{1}{N-1}\sum_{i=1}^N\left(x_i-\bar{x}\right)^2}\]</span></p>
+<p>Wir verwenden in R die Funktionen <code>var()</code> und <code>sd()</code> um Varianz und
+Standardabweichung zu berechnen:</p>
+<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb855-1" data-line-number="1">preis_var &lt;-<span class="st"> </span><span class="kw">var</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
+<a class="sourceLine" id="cb855-2" data-line-number="2">preis_sd &lt;-<span class="st"> </span><span class="kw">sd</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</a>
+<a class="sourceLine" id="cb855-3" data-line-number="3"><span class="kw">cat</span>(<span class="kw">paste0</span>(</a>
+<a class="sourceLine" id="cb855-4" data-line-number="4">  <span class="st">&quot;Varianz: &quot;</span>, preis_var, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>,</a>
+<a class="sourceLine" id="cb855-5" data-line-number="5">  <span class="st">&quot;Standardabweichung: &quot;</span>, preis_sd</a>
+<a class="sourceLine" id="cb855-6" data-line-number="6">))</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>## Varianz: 148868.335816263
 ## Standardabweichung: 385.834596448094</code></pre>
-<p>Das <span class="math inline">\(\alpha\)</span>-<strong>Quantil</strong> eines Datensatzes ist der Wert, bei dem <span class="math inline">\(\alpha\cdot 100\%\)</span> der Datenwerte kleiner und <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> der Datenwerte größer sind. In R können wir Quantile einfach mit der Funktion <code>quantile()</code> berechnen. Diese Funktion akzeptiert als erstes Argument einen Vektor von Daten und als zweites Argument ein oder mehrere Werte für <span class="math inline">\(\alpha\)</span>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="fl">0.5</span>)</code></pre></div>
+<p>Das <span class="math inline">\(\alpha\)</span>-<strong>Quantil</strong> eines Datensatzes ist der Wert, bei dem <span class="math inline">\(\alpha\cdot 100\%\)</span>
+der Datenwerte kleiner und <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> der Datenwerte größer sind.
+In R können wir Quantile einfach mit der Funktion <code>quantile()</code> berechnen.
+Diese Funktion akzeptiert als erstes Argument einen Vektor von Daten und als
+zweites Argument ein oder mehrere Werte für <span class="math inline">\(\alpha\)</span>:</p>
+<<<<<<< HEAD
+<div class="sourceCode" id="cb868"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb868-1" data-line-number="1"><span class="kw">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="fl">0.5</span>)</a></code></pre></div>
 <pre><code>## 50% 
 ## 282</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>))</code></pre></div>
+<div class="sourceCode" id="cb870"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb870-1" data-line-number="1"><span class="kw">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>))</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb857"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb857-1" data-line-number="1"><span class="kw">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>## 50% 
+## 282</code></pre>
+<div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb859-1" data-line-number="1"><span class="kw">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>))</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>##    25%    50%    75% 
 ## 134.50 282.00 540.75</code></pre>
-<p>Diese Werte können folgendermaßen interpretiert werden: 25% der Journale kosten weniger als 134.5 Dollar, 50% der Journale kosten weniger als 282 Dollar und 75% kosten weniger als 540.75 Dollar.</p>
-<p>Dabei wird das <span class="math inline">\(0.5\)</span>-Quantil auch <strong>Median</strong> genannt. Wie beim Mittelwert handelt es sich hier um einen Lageparameter, der allerdings robuster gegenüber Extremwerten ist, da es sich nur auf die Reihung der Datenpunkte bezieht, nicht auf ihren numerischen Wert.<a href="#fn88" class="footnoteRef" id="fnref88"><sup>88</sup></a></p>
-<p>Wie im Kapitel <a href="basics.html#basics">Erste Schritte in R</a> für <code>mean()</code> und <code>sd()</code> erklärt, akzeptieren auch die Funktionen <code>mean()</code>, <code>var()</code>, <code>sd()</code> und <code>quantile()</code> das optionale Argument <code>na.rm</code>, mit dem fehlende Werte vor der Berechnung eliminiert werden können:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test_daten &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="ot">NA</span>)
-<span class="kw">quantile</span>(test_daten, <span class="fl">0.75</span>)</code></pre></div>
+<p>Diese Werte können folgendermaßen interpretiert werden:
+25% der Journale kosten weniger als 134.5 Dollar, 50% der Journale kosten
+weniger als 282 Dollar und 75% kosten weniger als 540.75 Dollar.</p>
+<p>Dabei wird das <span class="math inline">\(0.5\)</span>-Quantil auch <strong>Median</strong> genannt.
+Wie beim Mittelwert handelt es sich hier um einen Lageparameter, der allerdings
+robuster gegenüber Extremwerten ist, da es sich nur auf die Reihung der
+<<<<<<< HEAD
+Datenpunkte bezieht, nicht auf ihren numerischen Wert.<a href="#fn89" class="footnote-ref" id="fnref89"><sup>89</sup></a></p>
+=======
+Datenpunkte bezieht, nicht auf ihren numerischen Wert.<a href="#fn91" class="footnote-ref" id="fnref91"><sup>91</sup></a></p>
+>>>>>>> ch5-b
+<p>Wie im Kapitel <a href="basics.html#basics">Erste Schritte in R</a> für <code>mean()</code> und <code>sd()</code> erklärt,
+akzeptieren auch die Funktionen <code>mean()</code>, <code>var()</code>, <code>sd()</code> und <code>quantile()</code> das
+optionale Argument <code>na.rm</code>, mit dem fehlende Werte vor der Berechnung eliminiert
+werden können:</p>
+<<<<<<< HEAD
+<div class="sourceCode" id="cb872"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb872-1" data-line-number="1">test_daten &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb872-2" data-line-number="2"><span class="kw">quantile</span>(test_daten, <span class="fl">0.75</span>)</a></code></pre></div>
 <pre><code>## Error in quantile.default(test_daten, 0.75): missing values and NaN&#39;s not allowed if &#39;na.rm&#39; is FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(test_daten, <span class="fl">0.75</span>, <span class="dt">na.rm =</span> T)</code></pre></div>
+<div class="sourceCode" id="cb874"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb874-1" data-line-number="1"><span class="kw">quantile</span>(test_daten, <span class="fl">0.75</span>, <span class="dt">na.rm =</span> T)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb861"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb861-1" data-line-number="1">test_daten &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb861-2" data-line-number="2"><span class="kw">quantile</span>(test_daten, <span class="fl">0.75</span>)</a></code></pre></div>
+<pre><code>## Error in quantile.default(test_daten, 0.75): missing values and NaN&#39;s not allowed if &#39;na.rm&#39; is FALSE</code></pre>
+<div class="sourceCode" id="cb863"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb863-1" data-line-number="1"><span class="kw">quantile</span>(test_daten, <span class="fl">0.75</span>, <span class="dt">na.rm =</span> T)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>##  75% 
 ## 7.75</code></pre>
-<p>Ein häufig verwendetes Steuungsmaß, das im Gegensatz zu Standardabweichung und Varianz robust gegen Ausreißer ist, ist die <strong>Quartilsdifferenz</strong>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">quantil_<span class="dv">25</span> &lt;-<span class="st"> </span><span class="kw">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="fl">0.25</span>, <span class="dt">names =</span> F)
-quantil_<span class="dv">75</span> &lt;-<span class="st"> </span><span class="kw">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="fl">0.75</span>, <span class="dt">names =</span> F)
-quant_differenz &lt;-<span class="st"> </span>quantil_<span class="dv">75</span> <span class="op">-</span><span class="st"> </span>quantil_<span class="dv">25</span>
-quant_differenz</code></pre></div>
+<p>Ein häufig verwendetes Steuungsmaß, das im Gegensatz zu Standardabweichung und
+Varianz robust gegen Ausreißer ist, ist die <strong>Quartilsdifferenz</strong>:</p>
+<<<<<<< HEAD
+<div class="sourceCode" id="cb876"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb876-1" data-line-number="1">quantil_<span class="dv">25</span> &lt;-<span class="st"> </span><span class="kw">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="fl">0.25</span>, <span class="dt">names =</span> F)</a>
+<a class="sourceLine" id="cb876-2" data-line-number="2">quantil_<span class="dv">75</span> &lt;-<span class="st"> </span><span class="kw">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="fl">0.75</span>, <span class="dt">names =</span> F)</a>
+<a class="sourceLine" id="cb876-3" data-line-number="3">quant_differenz &lt;-<span class="st"> </span>quantil_<span class="dv">75</span> <span class="op">-</span><span class="st"> </span>quantil_<span class="dv">25</span></a>
+<a class="sourceLine" id="cb876-4" data-line-number="4">quant_differenz</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb865"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb865-1" data-line-number="1">quantil_<span class="dv">25</span> &lt;-<span class="st"> </span><span class="kw">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="fl">0.25</span>, <span class="dt">names =</span> F)</a>
+<a class="sourceLine" id="cb865-2" data-line-number="2">quantil_<span class="dv">75</span> &lt;-<span class="st"> </span><span class="kw">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="fl">0.75</span>, <span class="dt">names =</span> F)</a>
+<a class="sourceLine" id="cb865-3" data-line-number="3">quant_differenz &lt;-<span class="st"> </span>quantil_<span class="dv">75</span> <span class="op">-</span><span class="st"> </span>quantil_<span class="dv">25</span></a>
+<a class="sourceLine" id="cb865-4" data-line-number="4">quant_differenz</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>## [1] 406.25</code></pre>
-<p>Das optionale Argument <code>names=FALSE</code> unterdrückt die Benennung der Ergebnisse. Wenn wir das nicht machen würde, würde <code>quant_differenz</code> verwirrenderweise den Namen <code>75%</code> tragen.</p>
+<p>Das optionale Argument <code>names=FALSE</code> unterdrückt die Benennung der Ergebnisse.
+Wenn wir das nicht machen würde, würde <code>quant_differenz</code> verwirrenderweise
+den Namen <code>75%</code> tragen.</p>
 </div>
 <div id="korrelationsmaße" class="section level2">
 <h2><span class="header-section-number">C.2</span> Korrelationsmaße</h2>
-<p>Wie im Beispiel der Journale in diesem Kapitel erheben wir für einzelne Untersuchungsobjekte in der Regel mehr als eine Ausprägung. Im vorliegenden Falle haben wir das einzelne Journal z.B. Informationen unter anderem über Preis, Dicke und Zitationen. Häufig möchten wir wissen wie diese verschiedene Ausprägungen miteinender in Beziehung stehen. Zum Beispiel möchten wir wissen, ob dickere Journale tendenziell teurer sind. Neben der wichtigen grafischen Inspektion der Daten, zu der es ein eigenes Kapitel geben wird, gibt es dafür wichtige quantitative Maße, die häufig in den Bereich der Korrelationsmaße fallen.</p>
-<p>Das einfachste Korrelationsmaß ist die empirische <strong>Ko-Varianz</strong>, die zwei stetige Ausprägungen <span class="math inline">\(x\)</span> und <span class="math inline">\(y\)</span> folgendermaßen definiert ist:</p>
+<p>Wie im Beispiel der Journale in diesem Kapitel erheben wir für einzelne
+Untersuchungsobjekte in der Regel mehr als eine Ausprägung.
+Im vorliegenden Falle haben wir das einzelne Journal z.B. Informationen unter
+anderem über Preis, Dicke und Zitationen.
+Häufig möchten wir wissen wie diese verschiedene Ausprägungen miteinender in
+Beziehung stehen.
+Zum Beispiel möchten wir wissen, ob dickere Journale tendenziell teurer sind.
+Neben der wichtigen grafischen Inspektion der Daten, zu der es ein eigenes
+Kapitel geben wird, gibt es dafür wichtige quantitative Maße, die häufig in den
+Bereich der Korrelationsmaße fallen.</p>
+<p>Das einfachste Korrelationsmaß ist die empirische <strong>Ko-Varianz</strong>, die zwei stetige
+Ausprägungen <span class="math inline">\(x\)</span> und <span class="math inline">\(y\)</span> folgendermaßen definiert ist:</p>
 <p><span class="math display">\[s_{xy}=\frac{1}{N-1}\sum_{n=1}^N\left(x_i-\bar{x}\right)\left(y_i-\bar{y}\right) \]</span></p>
-<p>Wenn wir die empirische Kovarianz für den Bereich <span class="math inline">\([-1, 1]\)</span> normieren erhalten wir die <strong>empirische Korrelation</strong> dieser Ausprägungen Handelt es sich bei den beiden Ausprägung um stetige Ausprägungen nennen wir das resultierende Maß den <strong>Pearson-Korrelationskoeffizienten</strong>:</p>
+<p>Wenn wir die empirische Kovarianz für den Bereich <span class="math inline">\([-1, 1]\)</span> normieren erhalten wir
+die <strong>empirische Korrelation</strong> dieser Ausprägungen
+Handelt es sich bei den beiden Ausprägung um stetige Ausprägungen nennen wir das
+resultierende Maß den <strong>Pearson-Korrelationskoeffizienten</strong>:</p>
 <p><span class="math display">\[\rho_{x,y}=\frac{s_{xy}}{s_xs_y}, \quad \rho\in[-1,1]\]</span></p>
-<p>wobei <span class="math inline">\(s_{xy}\)</span> die Kovarianz der Ausprägungen <span class="math inline">\(x\)</span> und <span class="math inline">\(y\)</span> und <span class="math inline">\(s_x\)</span> und <span class="math inline">\(s_y\)</span> deren Standardabweichung bezeichnet.</p>
-<p>Der so definierte Korrelationskoeffizient informiert uns über die Richtung und die Stärke des <strong>linearen Zusammenhangs</strong> zwischen <span class="math inline">\(x\)</span> und <span class="math inline">\(y\)</span>. Wenn <span class="math inline">\(\rho_{x,y}&gt;0\)</span> liegt ein positiver linearer Zusammenhang vor, d.h. größere Werte von <span class="math inline">\(x_i\)</span> treten in der Tendenz mit größeren Werten von <span class="math inline">\(y_i\)</span> auf. Hierbei gilt, dass <span class="math inline">\(\rho_{x,y}=1 \leftrightarrow y_i = a + b x_i\)</span> für <span class="math inline">\(a\in \mathbb{R}\)</span> und <span class="math inline">\(b&gt;0\)</span> Umgekehrt gilt, dass wenn <span class="math inline">\(\rho_{x,y}&lt;0\)</span> ein negativer linearer Zusammenhang vorliegt und <span class="math inline">\(\rho_{x,y}=-1 \leftrightarrow y_i = a + b x_i\)</span> für <span class="math inline">\(a\in \mathbb{R}\)</span> und <span class="math inline">\(b&lt;0\)</span>. Bei <span class="math inline">\(\rho_{x,y}=0\)</span> liegt <strong>kein linearer</strong> Zusammenhang zwischen den Ausprägungen vor.</p>
-<p>Wie wir unten sehen werden, enthält <span class="math inline">\(\rho\)</span> keine Informationen über nicht-lineare Zusammenhänge zwischen <span class="math inline">\(x\)</span> und <span class="math inline">\(y\)</span>. Vorsicht bei der Interpretation ist also angebracht.</p>
-<p>In unserem Datensatz haben wir z.B. Informationen über die Seitenzahl (Spalte <code>Seiten</code>) und den Preis von Journalen (Spalte <code>Preis</code>). Wir könnten uns nun fragen, ob dickere Journale tendenziell teurer sind. Dazu können wir, wenn wir uns nur für den linearen Zusammenhang interessieren, den Pearson-Korrelationskoeffizienten mit der Funktion <code>cor()</code> berechnen:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], journal_daten[[<span class="st">&quot;Seitenanzahl&quot;</span>]], 
-    <span class="dt">method =</span> <span class="st">&quot;pearson&quot;</span>)</code></pre></div>
+<p>wobei <span class="math inline">\(s_{xy}\)</span> die Kovarianz der Ausprägungen <span class="math inline">\(x\)</span> und <span class="math inline">\(y\)</span> und <span class="math inline">\(s_x\)</span> und <span class="math inline">\(s_y\)</span>
+deren Standardabweichung bezeichnet.</p>
+<p>Der so definierte Korrelationskoeffizient informiert uns über die Richtung und
+die Stärke des <strong>linearen Zusammenhangs</strong> zwischen <span class="math inline">\(x\)</span> und <span class="math inline">\(y\)</span>.
+Wenn <span class="math inline">\(\rho_{x,y}&gt;0\)</span> liegt ein positiver linearer Zusammenhang vor, d.h. größere
+Werte von <span class="math inline">\(x_i\)</span> treten in der Tendenz mit größeren Werten von <span class="math inline">\(y_i\)</span> auf.
+Hierbei gilt, dass <span class="math inline">\(\rho_{x,y}=1 \leftrightarrow y_i = a + b x_i\)</span> für <span class="math inline">\(a\in \mathbb{R}\)</span>
+und <span class="math inline">\(b&gt;0\)</span>
+Umgekehrt gilt, dass wenn <span class="math inline">\(\rho_{x,y}&lt;0\)</span> ein negativer linearer Zusammenhang
+vorliegt und <span class="math inline">\(\rho_{x,y}=-1 \leftrightarrow y_i = a + b x_i\)</span> für <span class="math inline">\(a\in \mathbb{R}\)</span>
+und <span class="math inline">\(b&lt;0\)</span>.
+Bei <span class="math inline">\(\rho_{x,y}=0\)</span> liegt <strong>kein linearer</strong> Zusammenhang zwischen den Ausprägungen
+vor.</p>
+<p>Wie wir unten sehen werden, enthält <span class="math inline">\(\rho\)</span> keine Informationen über nicht-lineare
+Zusammenhänge zwischen <span class="math inline">\(x\)</span> und <span class="math inline">\(y\)</span>.
+Vorsicht bei der Interpretation ist also angebracht.</p>
+<p>In unserem Datensatz haben wir z.B. Informationen über die Seitenzahl
+(Spalte <code>Seiten</code>) und den Preis von Journalen (Spalte <code>Preis</code>).
+Wir könnten uns nun fragen, ob dickere Journale tendenziell teurer sind.
+Dazu können wir, wenn wir uns nur für den linearen Zusammenhang interessieren,
+den Pearson-Korrelationskoeffizienten mit der Funktion <code>cor()</code> berechnen:</p>
+<<<<<<< HEAD
+<div class="sourceCode" id="cb878"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb878-1" data-line-number="1"><span class="kw">cor</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], journal_daten[[<span class="st">&quot;Seitenanzahl&quot;</span>]], </a>
+<a class="sourceLine" id="cb878-2" data-line-number="2">    <span class="dt">method =</span> <span class="st">&quot;pearson&quot;</span>)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb867"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb867-1" data-line-number="1"><span class="kw">cor</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], journal_daten[[<span class="st">&quot;Seitenanzahl&quot;</span>]], </a>
+<a class="sourceLine" id="cb867-2" data-line-number="2">    <span class="dt">method =</span> <span class="st">&quot;pearson&quot;</span>)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>## [1] 0.4937243</code></pre>
-<p>Wir sehen also, dass es tatsächlich einen mittleren positiven linearen Zusammenhang zwischen Preis und Seitenzahl zu geben scheint.</p>
-<p>Über das Argument <code>method</code> der Funktion <code>cor()</code> können auch andere Korrelationsmaße berechnet werden: der <a href="https://de.wikipedia.org/wiki/Rangkorrelationskoeffizient#Spearman&#39;scher_Rangkorrelationskoeffizient">Spearman-Korrelationskoeffizient</a> (<code>method='spearman'</code>) oder der <a href="https://de.wikipedia.org/wiki/Rangkorrelationskoeffizient#Kendall&#39;sches_Tau">Kendall-Korrelationskoeffizient</a> (<code>method='kendall'</code>) sind beides Maße, die nur die Ränge der Ausprägungen und nicht deren numerische Werte berücksichtigen. Dies macht sie immun gegen Ausreißer und wir müssen keine Annahme über die Art der Korrelation machen wie beim Pearson-Korrelationskoeffizient, der nur lineare Zusammenhänge quantifiziert. Gleichzeitig gehen uns natürlich auch viele Informationen verloren. Das richtige Maß ist wie immer kontextabhängig und muss entsprechend theoretisch begründet werden.</p>
-<p>Darüber hinaus erlaubt die Funktion <code>cor()</code> über das Argument <code>use</code> noch den Umgang mit fehlenden Werten genauer zu spezifizieren. Wenn Sie an der (nicht-standartisierten) Ko-Varianz interessiert sind, können Sie diese über die Funktion <code>cov()</code> berechnen, die analog zu <code>cor()</code> funktioniert.</p>
-<p>In jedem Fall ist bei der Interpretation von Korrelationen Vorsicht angebracht: da der Korrelationskoeffizient nur die Stärke des <em>linearen</em> Zusammenhangs misst, können dem gleichen Korrelationskoeffizienten sehr unterschiedliche nicht-lineare Zusammenhänge zugrunde liegen:</p>
+<p>Wir sehen also, dass es tatsächlich einen mittleren positiven linearen
+Zusammenhang zwischen Preis und Seitenzahl zu geben scheint.</p>
+<p>Über das Argument <code>method</code> der Funktion <code>cor()</code> können auch andere
+Korrelationsmaße berechnet werden: der
+<a href="https://de.wikipedia.org/wiki/Rangkorrelationskoeffizient#Spearman&#39;scher_Rangkorrelationskoeffizient">Spearman-Korrelationskoeffizient</a> (<code>method='spearman'</code>)
+oder der
+<a href="https://de.wikipedia.org/wiki/Rangkorrelationskoeffizient#Kendall&#39;sches_Tau">Kendall-Korrelationskoeffizient</a> (<code>method='kendall'</code>)
+sind beides Maße, die nur die Ränge der Ausprägungen und nicht deren
+numerische Werte berücksichtigen.
+Dies macht sie immun gegen Ausreißer und wir müssen keine Annahme über die
+Art der Korrelation machen wie beim Pearson-Korrelationskoeffizient, der nur
+lineare Zusammenhänge quantifiziert.
+Gleichzeitig gehen uns natürlich auch viele Informationen verloren.
+Das richtige Maß ist wie immer kontextabhängig und muss entsprechend theoretisch
+begründet werden.</p>
+<p>Darüber hinaus erlaubt die Funktion <code>cor()</code> über das Argument <code>use</code> noch den
+Umgang mit fehlenden Werten genauer zu spezifizieren.
+Wenn Sie an der (nicht-standartisierten) Ko-Varianz interessiert sind, können
+Sie diese über die Funktion <code>cov()</code> berechnen, die analog zu <code>cor()</code> funktioniert.</p>
+<p>In jedem Fall ist bei der Interpretation von Korrelationen Vorsicht angebracht:
+da der Korrelationskoeffizient nur die Stärke des <em>linearen</em> Zusammenhangs misst,
+können dem gleichen Korrelationskoeffizienten sehr unterschiedliche nicht-lineare
+Zusammenhänge zugrunde liegen:</p>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
+## `geom_smooth()` using formula &#39;y ~ x&#39;
+## `geom_smooth()` using formula &#39;y ~ x&#39;
+## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="ChapA-DeskriptiveStatistik_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Daher ist es immer wichtig die Daten auch visuell zu inspizieren. Datenvisualisierung ist aber so wichtig, dass sie in einem eigenen Kapitel behandelt wird.</p>
+<p>Daher ist es immer wichtig die Daten auch visuell zu inspizieren.
+Datenvisualisierung ist aber so wichtig, dass sie in einem eigenen Kapitel
+behandelt wird.</p>
 </div>
 <div id="hinweise-zur-quantitativen-und-visuellen-datenbeschreibung" class="section level2">
 <h2><span class="header-section-number">C.3</span> Hinweise zur quantitativen und visuellen Datenbeschreibung</h2>
-<p>Wie das Beispiel der Korrelationsmaße gerade demonstriert hat, ist bei der Verwendung von quantitativen Maßen zur Beschreibung von Datensätzen immer große Vorsicht geboten. Sie sollten daher <em>immer</em> gemeinsam mit grafischen Darstellungsformen, wie Streudiagrammen oder Histogrammen verwendet werden.</p>
-<p>Eine schöne Illustration ist <a href="">Anscombe’s Quartett</a> <span class="citation">(Anscombe <a href="#ref-Anscombe">1973</a>)</span>. Dabei handelt es sich um vier Datensätze, die alle (fast exakt) gleiche deskriptive Statistiken aufweisen, jedoch offensichtlich sehr unterschiedlich sind. Diese offensichtlichen Unterschiede werden aber nur durch grafische Inspektion deutlich.</p>
+<p>Wie das Beispiel der Korrelationsmaße gerade demonstriert hat, ist bei der
+Verwendung von quantitativen Maßen zur Beschreibung von Datensätzen immer große
+Vorsicht geboten.
+Sie sollten daher <em>immer</em> gemeinsam mit grafischen Darstellungsformen, wie
+Streudiagrammen oder Histogrammen verwendet werden.</p>
+<p>Eine schöne Illustration ist
+<a href="">Anscombe’s Quartett</a> <span class="citation">(Anscombe <a href="#ref-Anscombe">1973</a>)</span>.
+Dabei handelt es sich um vier Datensätze, die alle (fast exakt) gleiche
+deskriptive Statistiken aufweisen, jedoch offensichtlich sehr unterschiedlich
+sind.
+Diese offensichtlichen Unterschiede werden aber nur durch grafische Inspektion
+deutlich.</p>
 <p>Der Datensatz ist in jeder R Installation vorhanden:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;anscombe&quot;</span>)
-<span class="kw">head</span>(anscombe)</code></pre></div>
+<<<<<<< HEAD
+<div class="sourceCode" id="cb881"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb881-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;anscombe&quot;</span>)</a>
+<a class="sourceLine" id="cb881-2" data-line-number="2"><span class="kw">head</span>(anscombe)</a></code></pre></div>
+=======
+<div class="sourceCode" id="cb870"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb870-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;anscombe&quot;</span>)</a>
+<a class="sourceLine" id="cb870-2" data-line-number="2"><span class="kw">head</span>(anscombe)</a></code></pre></div>
+>>>>>>> ch5-b
 <pre><code>##   x1 x2 x3 x4   y1   y2    y3   y4
 ## 1 10 10 10  8 8.04 9.14  7.46 6.58
 ## 2  8  8  8  8 6.95 8.14  6.77 5.76
@@ -514,18 +766,26 @@ quant_differenz</code></pre></div>
 </tr>
 </tbody>
 </table>
-<p>Die grafische Inspektion zeigt, wie unterschiedlich die Datensätze tatsächlich sind:</p>
+<p>Die grafische Inspektion zeigt, wie unterschiedlich die Datensätze tatsächlich
+sind:</p>
 <p><img src="ChapA-DeskriptiveStatistik_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<p>Interessanterweise ist bis heute nicht bekannt wie <span class="citation">Anscombe (<a href="#ref-Anscombe">1973</a>)</span> seinen Datensatz erstellt hat. Für neuere Sammlungen von Datensätzen, die das gleiche Phänomen illustrieren siehe z.B. <span class="citation">Chatterjee and Firat (<a href="#ref-AnscombeNew1">2007</a>)</span> oder <span class="citation">Matejka and Fitzmaurice (<a href="#ref-AnscombeNew2">2017</a>)</span> . Eine sehr schöne Illustration der Idee findet sich auch auf <a href="https://www.autodeskresearch.com/publications/samestats">dieser Homepage</a>, die vom Autor von <span class="citation">Matejka and Fitzmaurice (<a href="#ref-AnscombeNew2">2017</a>)</span> gestaltet wurde.</p>
+<p>Interessanterweise ist bis heute nicht bekannt wie <span class="citation">Anscombe (<a href="#ref-Anscombe">1973</a>)</span> seinen Datensatz
+erstellt hat.
+Für neuere Sammlungen von Datensätzen, die das gleiche Phänomen illustrieren
+siehe z.B. <span class="citation">Chatterjee and Firat (<a href="#ref-AnscombeNew1">2007</a>)</span> oder <span class="citation">Matejka and Fitzmaurice (<a href="#ref-AnscombeNew2">2017</a>)</span> .
+Eine sehr schöne Illustration der Idee findet sich auch auf
+<a href="https://www.autodeskresearch.com/publications/samestats">dieser Homepage</a>,
+die vom Autor von <span class="citation">Matejka and Fitzmaurice (<a href="#ref-AnscombeNew2">2017</a>)</span> gestaltet wurde.</p>
 </div>
 <div id="zusamenfassung" class="section level2">
 <h2><span class="header-section-number">C.4</span> Zusamenfassung</h2>
-<p>In der folgenden Tabelle wollen wir noch einmal die hier besprochenen Funktionen für den Themenbereich ‘Deskriptive Statistik’ zusammenfassen:</p>
+<p>In der folgenden Tabelle wollen wir noch einmal die hier besprochenen Funktionen
+für den Themenbereich ‘Deskriptive Statistik’ zusammenfassen:</p>
 <table>
 <colgroup>
-<col width="13%" />
+<col width="12%" />
 <col width="35%" />
-<col width="50%" />
+<col width="51%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -598,22 +858,14 @@ quant_differenz</code></pre></div>
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-Anscombe">
-<p>Anscombe, Francis J. 1973. “Graphs in Statistical Analysis.” <em>The American Statistician</em> 27: 17–21. <a href="https://doi.org/10.2307/2682899" class="uri">https://doi.org/10.2307/2682899</a>.</p>
+<p>Anscombe, Francis J. 1973. “Graphs in Statistical Analysis.” <em>The American Statistician</em> 27: 17–21. <a href="https://doi.org/10.2307/2682899">https://doi.org/10.2307/2682899</a>.</p>
 </div>
 <div id="ref-AnscombeNew1">
-<p>Chatterjee, Sangit, and Aykut Firat. 2007. “Generating Data with Identical Statistics but Dissimilar Graphics.” <em>The American Statistician</em> 61 (3): 248–54. <a href="https://doi.org/10.1198/000313007X220057" class="uri">https://doi.org/10.1198/000313007X220057</a>.</p>
+<p>Chatterjee, Sangit, and Aykut Firat. 2007. “Generating Data with Identical Statistics but Dissimilar Graphics.” <em>The American Statistician</em> 61 (3): 248–54. <a href="https://doi.org/10.1198/000313007X220057">https://doi.org/10.1198/000313007X220057</a>.</p>
 </div>
 <div id="ref-AnscombeNew2">
-<p>Matejka, Justin, and George Fitzmaurice. 2017. “Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics Through Simulated Annealing.” In <em>Proceedings of the 2017 Chi Conference on Human Factors in Computing Systems</em>, 1290–4. New York, NY: ACM. doi:<a href="https://doi.org/10.1145/3025453.3025912">10.1145/3025453.3025912</a>.</p>
+<p>Matejka, Justin, and George Fitzmaurice. 2017. “Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics Through Simulated Annealing.” In <em>Proceedings of the 2017 Chi Conference on Human Factors in Computing Systems</em>, 1290–4. New York, NY: ACM. <a href="https://doi.org/10.1145/3025453.3025912">https://doi.org/10.1145/3025453.3025912</a>.</p>
 </div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="86">
-<li id="fn86"><p>Bei den hier verwendeten Daten handelt es sich um eine Übersetzung des Datensatzes <code>Journals</code> aus dem Paket <code>AER</code> <span class="citation">(Kleiber and Zeileis <a href="#ref-AER">2008</a>)</span>.<a href="desk-stat.html#fnref86">↩</a></p></li>
-<li id="fn87"><p>Man beachte den im Vergleich zur Varianzformel für theoretische Modelle modifizierten Nenner <span class="math inline">\(N-1\)</span>!<a href="desk-stat.html#fnref87">↩</a></p></li>
-<li id="fn88"><p>Wenn das teuerste Journal sich im Preis verdoppelt erhöht dies den Mittelwert beträchtlich, ändert den Median aber nicht.<a href="desk-stat.html#fnref88">↩</a></p></li>
-</ol>
 </div>
             </section>
 
@@ -637,6 +889,7 @@ quant_differenz</code></pre></div>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -658,6 +911,10 @@ gitbook.start({
 "link": null,
 "text": null
 },
+"view": {
+"link": null,
+"text": null
+},
 "download": ["R-SocioEcon-dt.pdf"],
 "toc": {
 "collapse": "subsection"
@@ -671,7 +928,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

@@ -95,6 +95,10 @@ ggplot(
   geom_point() + geom_smooth(method = "lm", fullrange=TRUE) + theme_icae()
 ```
 
+```
+#> `geom_smooth()` using formula 'y ~ x'
+```
+
 
 
 \begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-nonlinmodels-binary_files/figure-latex/unnamed-chunk-5-1} \end{center}
@@ -117,6 +121,10 @@ ggplot(
   geom_point() + geom_smooth(aes(y=Arbeitslos), method = "glm",
                              method.args = list(family = "binomial"), 
                              fullrange=TRUE, se = TRUE) + theme_icae()
+```
+
+```
+#> `geom_smooth()` using formula 'y ~ x'
 ```
 
 
@@ -186,6 +194,13 @@ Normalverteilung ist.
 Wie sie in folgender Abbildung sehen, die sich wieder auf das 
 Einführungsbeispiel bezieht, sind die funktionalen Formen bei der 
 beiden Modelle sehr ähnlich:
+
+
+```
+#> `geom_smooth()` using formula 'y ~ x'
+#> `geom_smooth()` using formula 'y ~ x'
+```
+
 
 
 \begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-nonlinmodels-binary_files/figure-latex/unnamed-chunk-7-1} \end{center}
