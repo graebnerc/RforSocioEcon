@@ -1,6 +1,6 @@
 # Wiederholung: Deskriptive Statistik {#desk-stat}
 
-Bevor wir uns im [nächsten Anhang](#stat-rep) mit dem Schluss von den Daten auf 
+Bevor wir uns im folgenden Kapitel \@ref(stat-rep) mit dem Schluss von den Daten auf 
 die Parameter des zugrundeliegenden Wahrscheinlichkeitsmodells beschäftigen, 
 wollen wir uns im Folgenden noch mit Methoden der deskriptiven Statistik beschäftigen: 
 denn zum einen setzt dieser Rückschluss der Daten auf das Populationsmodell voraus, 
@@ -13,13 +13,13 @@ Die Methoden der deskriptiven Statistik helfen uns die Daten, die wir
 erhoben haben möglichst gut zu *beschreiben*.
 Die *deskriptive* Statistik grenzt sich von der *induktiven* Statistik davon
 ab, dass wir keine Aussagen über unseren Datensatz hinaus treffen wollen:
-wenn unser Datensatz also z.B. aus 1000 Schüler*innen besteht treffen wir mit
+wenn unser Datensatz also z.B. aus 1000 Schüler\*innen besteht treffen wir mit
 den Methoden der deskriptiven Statistik nur Aussagen über genau diese 1000
-Schüler*innen. 
+Schüler\*innen. 
 Mit Methoden der *induktiven* Statistik würden wir versuchen Aussagen über 
 Schüler\*innen im Allgemeinen, zumindest über mehr als diese 1000 Schüler\*innen
 zu treffen. 
-Das ist genau der am Ende des vorherigen Anhangs angesprochene Schluss von den 
+Das ist genau der im Kapitel \@ref(stat-stoch) angesprochene Schluss von den 
 Daten auf den *data generating process* (DGP).
 
 In diesem Abschnitt beschäftigen wir uns zunächst nur mit der deskriptiven 
@@ -36,13 +36,12 @@ library(tidyverse)
 library(data.table)
 library(ggpubr)
 library(latex2exp)
-library(icaeDesign)
 library(MASS)
 ```
 
 
 Für die direkte Anwendung in R verwenden wir einen Datensatz zu ökonomischen 
-Journalen:
+Journalen, mit dem wir bereits in Kapitel \@ref(formalia) gearbeitet haben:
 
 ```{r}
 journal_daten <- fread(here("data/tidy/journaldaten.csv"))
@@ -59,7 +58,7 @@ aus dem Paket `AER` [@AER].]
 Die am häufigsten verwendeten Kennzahlen der deskriptiven Statistik sind
 das **arithmetische Mittel**, die **Standardabweichung** und die **Quantile**.
 Für die folgenden Illustrationen nehmen wir an, dass wir es mit einem Datensatz
-mit $N$ kontinuiertlichen Beobachtungen $x_1, x_2, ..., x_n$ zu tun haben.
+mit $N$ kontinuierlichen Beobachtungen $x_1, x_2, ..., x_n$ zu tun haben.
 
 Das **arithmetische Mittel** ist ein klassisches Lagemaß und definiert als:
 
@@ -115,7 +114,7 @@ Datenpunkte bezieht, nicht auf ihren numerischen Wert.^[Wenn das teuerste
 Journal sich im Preis verdoppelt erhöht dies den Mittelwert beträchtlich,
 ändert den Median aber nicht.]
 
-Wie im Kapitel [Erste Schritte in R](#basics) für `mean()` und `sd()` erklärt, 
+Wie im Kapitel \@ref(basics) für `mean()` und `sd()` erklärt, 
 akzeptieren auch die Funktionen `mean()`, `var()`, `sd()` und `quantile()` das 
 optionale Argument `na.rm`, mit dem fehlende Werte vor der Berechnung eliminiert 
 werden können:
@@ -134,29 +133,30 @@ Varianz robust gegen Ausreißer ist, ist die **Quartilsdifferenz**:
 ```{r}
 quantil_25 <- quantile(journal_daten[["Preis"]], 0.25, names = F)
 quantil_75 <- quantile(journal_daten[["Preis"]], 0.75, names = F)
-quant_differenz <- quantil_75 - quantil_25
-quant_differenz
+quart_differenz <- quantil_75 - quantil_25
+quart_differenz
 ```
+<!-- Ich schlage hier im chunk vor die variable "quart-differenz" statt "quant-differenz" zu nennen damit klar ist dass das hier die Quartilsdifferenz ausgibt oder (auch wenn es dazu die quantile subtrahiert). Passt das? -->
 
 Das optionale Argument `names=FALSE` unterdrückt die Benennung der Ergebnisse.
-Wenn wir das nicht machen würde, würde `quant_differenz` verwirrenderweise
+Wenn wir das nicht machen würde, würde `quart_differenz` verwirrenderweise
 den Namen `75%` tragen.
 
 ## Korrelationsmaße
 
-Wie im Beispiel der Journale in diesem Kapitel erheben wir für einzelne
-Untersuchungsobjekte in der Regel mehr als eine Ausprägung. 
+Wie wir am Beispiel der Journale in diesem Kapitel gesehen haben, erheben wir für 
+einzelne Untersuchungsobjekte in der Regel mehr als eine Ausprägung. 
 Im vorliegenden Falle haben wir das einzelne Journal z.B. Informationen unter 
 anderem über Preis, Dicke und Zitationen.
-Häufig möchten wir wissen wie diese verschiedene Ausprägungen miteinender in 
+Häufig möchten wir wissen wie diese verschiedene Ausprägungen miteinander in 
 Beziehung stehen.
 Zum Beispiel möchten wir wissen, ob dickere Journale tendenziell teurer sind.
-Neben der wichtigen grafischen Inspektion der Daten, zu der es ein eigenes
-Kapitel geben wird, gibt es dafür wichtige quantitative Maße, die häufig in den
+Neben der wichtigen grafischen Inspektion der Daten, welche wir in Kapitel \@ref(vis) 
+kennengelernt haben, gibt es dafür wichtige quantitative Maße, die häufig in den
 Bereich der Korrelationsmaße fallen.
 
-Das einfachste Korrelationsmaß ist die empirische **Ko-Varianz**, die zwei stetige
-Ausprägungen $x$ und $y$ folgendermaßen definiert ist:
+Das einfachste Korrelationsmaß ist die empirische **Kovarianz**, die für zwei 
+stetige Ausprägungen $x$ und $y$ folgendermaßen definiert ist:
 
 $$s_{xy}=\frac{1}{N-1}\sum_{n=1}^N\left(x_i-\bar{x}\right)\left(y_i-\bar{y}\right) $$
 
@@ -175,7 +175,7 @@ die Stärke des **linearen Zusammenhangs** zwischen $x$ und $y$.
 Wenn $\rho_{x,y}>0$ liegt ein positiver linearer Zusammenhang vor, d.h. größere
 Werte von $x_i$ treten in der Tendenz mit größeren Werten von $y_i$ auf.
 Hierbei gilt, dass $\rho_{x,y}=1 \leftrightarrow y_i = a + b x_i$ für $a\in \mathbb{R}$ 
-und $b>0$
+und $b>0$.
 Umgekehrt gilt, dass wenn $\rho_{x,y}<0$ ein negativer linearer Zusammenhang
 vorliegt und $\rho_{x,y}=-1 \leftrightarrow y_i = a + b x_i$ für $a\in \mathbb{R}$ 
 und $b<0$.
@@ -201,7 +201,7 @@ Wir sehen also, dass es tatsächlich einen mittleren positiven linearen
 Zusammenhang zwischen Preis und Seitenzahl zu geben scheint.
 
 Über das Argument `method` der Funktion `cor()` können auch andere 
-Korrelationsmaße berechnet werden: der 
+Korrelationsmaße berechnet werden: Der 
 [Spearman-Korrelationskoeffizient](https://de.wikipedia.org/wiki/Rangkorrelationskoeffizient#Spearman'scher_Rangkorrelationskoeffizient) (`method='spearman'`)
 oder der 
 [Kendall-Korrelationskoeffizient](https://de.wikipedia.org/wiki/Rangkorrelationskoeffizient#Kendall'sches_Tau) (`method='kendall'`)
@@ -216,7 +216,7 @@ begründet werden.
 
 Darüber hinaus erlaubt die Funktion `cor()` über das Argument `use` noch den
 Umgang mit fehlenden Werten genauer zu spezifizieren. 
-Wenn Sie an der (nicht-standartisierten) Ko-Varianz interessiert sind, können
+Wenn Sie an der (nicht-standartisierten) Kovarianz interessiert sind, können
 Sie diese über die Funktion `cov()` berechnen, die analog zu `cor()` funktioniert.
 
 In jedem Fall ist bei der Interpretation von Korrelationen Vorsicht angebracht:
@@ -228,27 +228,27 @@ Zusammenhänge zugrunde liegen:
 ```{r, fig.align='center', echo=FALSE}
 c0_1a <- -50:50
 c0_1b <- sapply(-50:50, function(x) x**2)
-c0_1 <- ggplot(data.frame(x=c0_1a, 
+c0_1 <- ggplot2::ggplot(data.frame(x=c0_1a, 
                           y=c0_1b
                           ),
        aes(x=x, y=y)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggtitle(paste0("Korrelation: ", 
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
+  ggplot2::ggtitle(paste0("Korrelation: ", 
                  round(cor(c0_1a, c0_1b, method = "pearson"), 2))) +
-  theme_icae()
+  ggplot2::theme_bw()
 
 c0_2a <- -50:50
 c0_2b <- sapply(-50:50, function(x) -x**2)
-c0_2 <- ggplot(data.frame(x=c0_2a, 
+c0_2 <- ggplot2::ggplot(data.frame(x=c0_2a, 
                           y=c0_2b
                           ),
        aes(x=x, y=y)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggtitle(paste0("Korrelation: ", 
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
+  ggplot2::ggtitle(paste0("Korrelation: ", 
                  round(cor(c0_2a, c0_2b, method = "pearson"), 2))) +
-  theme_icae()
+  ggplot2::theme_bw()
 
 set.seed(123)
 data = mvrnorm(n=100, 
@@ -258,15 +258,15 @@ data = mvrnorm(n=100,
                empirical=TRUE)
 c0_3a = data[, 1]  
 c0_3b = data[, 2] 
-c0_3 <- ggplot(data.frame(x=c0_3a, 
+c0_3 <- ggplot2::ggplot(data.frame(x=c0_3a, 
                           y=c0_3b
                           ),
        aes(x=x, y=y)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggtitle(paste0("Korrelation: ", 
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
+  ggplot2::ggtitle(paste0("Korrelation: ", 
                  round(cor(c0_3a, c0_3b, method = "pearson"), 2))) +
-  theme_icae()
+  ggplot2::theme_bw()
 
 set.seed(123)
 data = mvrnorm(n=100, 
@@ -276,60 +276,61 @@ data = mvrnorm(n=100,
                empirical=TRUE)
 c0_4a = data[, 1]  
 c0_4b = data[, 2] 
-c0_4 <- ggplot(data.frame(x=c0_4a, 
+c0_4 <- ggplot2::ggplot(data.frame(x=c0_4a, 
                           y=c0_4b
                           ),
        aes(x=x, y=y)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggtitle(paste0("Korrelation: ", 
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
+  ggplot2::ggtitle(paste0("Korrelation: ", 
                  round(cor(c0_4a, c0_4b, method = "pearson"), 2))) +
-  theme_icae()
+  ggplot2::theme_bw()
 
 
 c0_5a <- seq(-1, 1, 0.01)
 c0_5b <- sapply(c0_5a, function(x) x+1.1)
 
-c0_5 <- ggplot(data.frame(x=c0_5a, 
+c0_5 <- ggplot2::ggplot(data.frame(x=c0_5a, 
                           y=c0_5b
                           ),
        aes(x=x, y=y)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggtitle(paste0("Korrelation: ", 
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
+  ggplot2::ggtitle(paste0("Korrelation: ", 
                  round(cor(c0_5a, c0_5b, method = "pearson"), 2))) +
-  theme_icae()
+  ggplot2::theme_bw()
 
 
 data_sin <- data.frame( x=seq(-10, 11.75, 0.01)) %>%
-  mutate(y=sin(x))
-c0_6 <- ggplot(data_sin,
+  dplyr::mutate(y=sin(x))
+c0_6 <- ggplot2::ggplot(data_sin,
        aes(x=x, y=y)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggtitle(paste0("Korrelation: ", 
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
+  ggplot2::ggtitle(paste0("Korrelation: ", 
                  round(cor(data_sin$x, data_sin$y, method = "pearson"), 2))) +
-  theme_icae()
+  ggplot2::theme_bw()
 
 ggpubr::ggarrange(c0_1, c0_2,
                   c0_4,c0_6, 
                   ncol = 2, nrow = 2)
 ```
 
-Daher ist es immer wichtig die Daten auch visuell zu inspizieren. 
-Datenvisualisierung ist aber so wichtig, dass sie in einem eigenen Kapitel 
-behandelt wird.
+Daher ist es immer wichtig die Daten auch visuell zu inspizieren, etwa mit den 
+Methoden die wir in Kapitel \@ref(vis) kennengelernt haben.
 
 ## Hinweise zur quantitativen und visuellen Datenbeschreibung
 
 Wie das Beispiel der Korrelationsmaße gerade demonstriert hat, ist bei der 
 Verwendung von quantitativen Maßen zur Beschreibung von Datensätzen immer große
-Vorsicht geboten. 
-Sie sollten daher *immer* gemeinsam mit grafischen Darstellungsformen, wie
-Streudiagrammen oder Histogrammen verwendet werden.
+Vorsicht geboten. Diese sollten daher *immer* gemeinsam mit grafischen 
+Darstellungsformen, wie Streudiagrammen oder Histogrammen verwendet werden.
 
 Eine schöne Illustration ist
 [Anscombe's Quartett]() [@Anscombe].
+
+<!-- Discuss: Dieser Teil ist auch schon im Vizualizationskapitel drin (oder zumindest irgendwo in den letzten paar Kapiteln, erinner mich noch recht genau daran). Finde das Beispiel zwar sehr schön aber glaub das wäre vllt etwas zu viel das hier nochmal reinzusetzen? Außer halt wenn du wirklich davon ausgehst dass niemand das Buch von vorne bis hinten durchließt sondern sich immer nur einzelne Teile rauspickt.. Aber ansonsten vielleicht eher nochmal auf das Beispiel verweisen statt es nochmal wiederzugeben? -->
+
 Dabei handelt es sich um vier Datensätze, die alle (fast exakt) gleiche
 deskriptive Statistiken aufweisen, jedoch offensichtlich sehr unterschiedlich
 sind. 
@@ -404,8 +405,10 @@ die vom Autor von @AnscombeNew2 gestaltet wurde.
 
 ## Zusamenfassung
 
-In der folgenden Tabelle wollen wir noch einmal die hier besprochenen Funktionen
-für den Themenbereich 'Deskriptive Statistik' zusammenfassen:
+In Tabelle \@ref(tab:desk-stat-all) wollen wir noch einmal die hier besprochenen Funktionen
+für den Themenbereich 'Deskriptive Statistik' zusammenfassen.
+
+Table: (\#tab:desk-stat-all) Zusammenfassung der Kennzahlen deskriptiver Statistik.
 
 | Maßzahl | Funktion | Beschreibung |
 |---------+-------------------------|:-----------------------------------|
@@ -414,9 +417,9 @@ Varianz | `var()` | Maß für die Streuung; Einheit oft schwer interpretiertbar 
 Standardabweichung | `sd()` | Üblichstes Maß für die Streuung |
 $\alpha$-Quantil | `quantile()` | $\alpha\cdot 100\%$ der Werte sind kleiner $\alpha$ |
 Median | `quantile(0.5)` | Robustes Lagemaß; die Hälfte der Daten sind größer/kleiner |
-Ko-Varianz (num. Daten) | `cov(method = 'pearson')` | Nicht-normierter linearer Zusammenhang |
-Ko-Varianz (Ränge) | `cov(method = 'kendall')` | Ko-Varianz der Ränge nach der Kendall-Methode | 
-Ko-Varianz (Ränge) | `cov(method = 'spearman')` | Ko-Varianz der Ränge nach der Spearman-Methode | 
+Kovarianz (num. Daten) | `cov(method = 'pearson')` | Nicht-normierter linearer Zusammenhang |
+Kovarianz (Ränge) | `cov(method = 'kendall')` | Ko-Varianz der Ränge nach der Kendall-Methode | 
+Kovarianz (Ränge) | `cov(method = 'spearman')` | Ko-Varianz der Ränge nach der Spearman-Methode | 
 Pearson Korrelationskoeffizient |  `cor(method = 'pearson')` | In $[-1, 1]$ normierter linearer Zusammenhang |
 Spearman-Korrelationskoeffizient | `cor(method = 'kendall')` | Korrelation der Ränge nach der Kendall-Methode |
 Kendall-Korrelationskoeffizient | `cor(method = 'spearman')` | Korrelation der Ränge nach der Spearman-Methode | 
