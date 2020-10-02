@@ -222,10 +222,12 @@ Sie diese über die Funktion `cov()` berechnen, die analog zu `cor()` funktionie
 In jedem Fall ist bei der Interpretation von Korrelationen Vorsicht angebracht:
 da der Korrelationskoeffizient nur die Stärke des *linearen* Zusammenhangs misst,
 können dem gleichen Korrelationskoeffizienten sehr unterschiedliche nicht-lineare
-Zusammenhänge zugrunde liegen:
+Zusammenhänge zugrunde liegen. Figure \@ref(fig:korrelation) illustriert vier 
+verschiedene nicht-lineare Zusammenhänge, welche allerdings je einen 
+Korrelationskoeffizienten von 0 ergeben würden.
 
 
-```{r, fig.align='center', echo=FALSE}
+```{r korrelation, fig.align='center', echo=FALSE}
 c0_1a <- -50:50
 c0_1b <- sapply(-50:50, function(x) x**2)
 c0_1 <- ggplot2::ggplot(data.frame(x=c0_1a, 
@@ -330,6 +332,8 @@ Eine schöne Illustration ist
 [Anscombe's Quartett]() [@Anscombe].
 
 <!-- Discuss: Dieser Teil ist auch schon im Vizualizationskapitel drin (oder zumindest irgendwo in den letzten paar Kapiteln, erinner mich noch recht genau daran). Finde das Beispiel zwar sehr schön aber glaub das wäre vllt etwas zu viel das hier nochmal reinzusetzen? Außer halt wenn du wirklich davon ausgehst dass niemand das Buch von vorne bis hinten durchließt sondern sich immer nur einzelne Teile rauspickt.. Aber ansonsten vielleicht eher nochmal auf das Beispiel verweisen statt es nochmal wiederzugeben? -->
+
+<!-- Nachtrag: weil noch nicht klar ob drinbleibt oder nicht habe ich jetzt figure und table noch nicht eingebettet beim beispiel -->
 
 Dabei handelt es sich um vier Datensätze, die alle (fast exakt) gleiche
 deskriptive Statistiken aufweisen, jedoch offensichtlich sehr unterschiedlich
