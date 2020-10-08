@@ -842,7 +842,6 @@ Zu diesem Zweck visualisieren wir Verteilung der geschätzten Werte für $\beta_
 und zeichnen zudem den wahren Wert ein:
 
 ```{r}
-
 beta_1_plot <- ggplot(data = full_results, 
                       mapping = aes(x=b1_coef, color=Fall, fill=Fall)) +
   geom_density(alpha=0.5) +
