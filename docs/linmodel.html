@@ -392,12 +392,12 @@ Schauen Sie als erstes in diesen Kapiteln nach wenn Sie ein hier verwendetes
 Konzept nicht verstehen und konsultieren Sie ansonsten ein Statistiklehrbuch
 (und freundliche Kommiliton*innen) Ihrer Wahl.</p>
 <p>In diesem Kapitel werden die folgenden R Pakete verwendet:</p>
-<div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb746-1"><a href="linmodel.html#cb746-1" aria-hidden="true"></a><span class="kw">library</span>(here)</span>
-<span id="cb746-2"><a href="linmodel.html#cb746-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb746-3"><a href="linmodel.html#cb746-3" aria-hidden="true"></a><span class="kw">library</span>(data.table)</span>
-<span id="cb746-4"><a href="linmodel.html#cb746-4" aria-hidden="true"></a><span class="kw">library</span>(latex2exp)</span>
-<span id="cb746-5"><a href="linmodel.html#cb746-5" aria-hidden="true"></a><span class="kw">library</span>(icaeDesign)</span>
-<span id="cb746-6"><a href="linmodel.html#cb746-6" aria-hidden="true"></a><span class="kw">library</span>(ggpubr)</span></code></pre></div>
+<div class="sourceCode" id="cb745"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb745-1"><a href="linmodel.html#cb745-1" aria-hidden="true"></a><span class="kw">library</span>(here)</span>
+<span id="cb745-2"><a href="linmodel.html#cb745-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb745-3"><a href="linmodel.html#cb745-3" aria-hidden="true"></a><span class="kw">library</span>(data.table)</span>
+<span id="cb745-4"><a href="linmodel.html#cb745-4" aria-hidden="true"></a><span class="kw">library</span>(latex2exp)</span>
+<span id="cb745-5"><a href="linmodel.html#cb745-5" aria-hidden="true"></a><span class="kw">library</span>(icaeDesign)</span>
+<span id="cb745-6"><a href="linmodel.html#cb745-6" aria-hidden="true"></a><span class="kw">library</span>(ggpubr)</span></code></pre></div>
 <p>Ziel solcher Modelle ist es, ausgehend von einem Datensatz ein lineares Modell
 zu schätzen.
 Ein solches lineares Modell hat in der Regel die Form</p>
@@ -457,9 +457,9 @@ Auf dieser Basis können wir auch ausrechnen, wie hoch die Konsumausgaben in
 einer Volkswirtschaft mit einem BIP von 8000 wäre, indem wir uns einfach an der
 geschätzten Gerade bis zu diesem Betrag fortbewegen.</p>
 </blockquote>
-<div class="sourceCode" id="cb748"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb748-1"><a href="linmodel.html#cb748-1" aria-hidden="true"></a>beta_<span class="dv">0</span> &lt;-<span class="st"> </span>schaetzung_bip[[<span class="st">&quot;coefficients&quot;</span>]][<span class="dv">1</span>]</span>
-<span id="cb748-2"><a href="linmodel.html#cb748-2" aria-hidden="true"></a>beta_<span class="dv">1</span> &lt;-<span class="st"> </span>schaetzung_bip[[<span class="st">&quot;coefficients&quot;</span>]][<span class="dv">2</span>]</span>
-<span id="cb748-3"><a href="linmodel.html#cb748-3" aria-hidden="true"></a><span class="kw">unname</span>(beta_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>beta_<span class="dv">1</span><span class="op">*</span><span class="dv">8000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb747"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb747-1"><a href="linmodel.html#cb747-1" aria-hidden="true"></a>beta_<span class="dv">0</span> &lt;-<span class="st"> </span>schaetzung_bip[[<span class="st">&quot;coefficients&quot;</span>]][<span class="dv">1</span>]</span>
+<span id="cb747-2"><a href="linmodel.html#cb747-2" aria-hidden="true"></a>beta_<span class="dv">1</span> &lt;-<span class="st"> </span>schaetzung_bip[[<span class="st">&quot;coefficients&quot;</span>]][<span class="dv">2</span>]</span>
+<span id="cb747-3"><a href="linmodel.html#cb747-3" aria-hidden="true"></a><span class="kw">unname</span>(beta_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>beta_<span class="dv">1</span><span class="op">*</span><span class="dv">8000</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 5324.363</code></pre>
 <blockquote>
 <p>Im aktuellen Beispiel wären das also
@@ -587,7 +587,7 @@ und</p>
 Wir wollen dennoch anhand eines Minimalbeispiels die Werte selber schätzen,
 um unser Ergebnis dann später mit dem Ergebnis von <code>lm()</code> zu vergleichen.</p>
 <p>Dazu betrachten wir folgenden (artifiziellen) Datensatz:</p>
-<div class="sourceCode" id="cb750"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb750-1"><a href="linmodel.html#cb750-1" aria-hidden="true"></a>datensatz</span></code></pre></div>
+<div class="sourceCode" id="cb749"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb749-1"><a href="linmodel.html#cb749-1" aria-hidden="true"></a>datensatz</span></code></pre></div>
 <pre><code>#&gt;     x    y
 #&gt; 1 0.1 2.58
 #&gt; 2 0.2 3.05
@@ -617,14 +617,14 @@ Die LHS und RHS werden dabei mit dem Symbol <code>~</code> abgegrenzt.
 Wir können die Formel entweder direkt als <code>y~x</code> an <code>lm()</code> übergeben, oder wir
 speichern sie vorher als <code>character</code> und verwenden die Funktion <code>as.formula()</code>.
 Entsprechend sind die folgenden beiden Befehle äquivalent:</p>
-<div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="linmodel.html#cb752-1" aria-hidden="true"></a><span class="kw">lm</span>(y<span class="op">~</span>x, <span class="dt">data =</span> datensatz)</span>
-<span id="cb752-2"><a href="linmodel.html#cb752-2" aria-hidden="true"></a>reg_formel &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&quot;y~x&quot;</span>)</span>
-<span id="cb752-3"><a href="linmodel.html#cb752-3" aria-hidden="true"></a><span class="kw">lm</span>(reg_formel, <span class="dt">data =</span> datensatz)</span></code></pre></div>
+<div class="sourceCode" id="cb751"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb751-1"><a href="linmodel.html#cb751-1" aria-hidden="true"></a><span class="kw">lm</span>(y<span class="op">~</span>x, <span class="dt">data =</span> datensatz)</span>
+<span id="cb751-2"><a href="linmodel.html#cb751-2" aria-hidden="true"></a>reg_formel &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&quot;y~x&quot;</span>)</span>
+<span id="cb751-3"><a href="linmodel.html#cb751-3" aria-hidden="true"></a><span class="kw">lm</span>(reg_formel, <span class="dt">data =</span> datensatz)</span></code></pre></div>
 <p>Der Output von <code>lm()</code> ist eine Liste mit mehreren interessanten Informationen:</p>
-<div class="sourceCode" id="cb753"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb753-1"><a href="linmodel.html#cb753-1" aria-hidden="true"></a>schaetzung &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x, <span class="dt">data =</span> datensatz)</span>
-<span id="cb753-2"><a href="linmodel.html#cb753-2" aria-hidden="true"></a><span class="kw">typeof</span>(schaetzung)</span></code></pre></div>
+<div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="linmodel.html#cb752-1" aria-hidden="true"></a>schaetzung &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x, <span class="dt">data =</span> datensatz)</span>
+<span id="cb752-2"><a href="linmodel.html#cb752-2" aria-hidden="true"></a><span class="kw">typeof</span>(schaetzung)</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;list&quot;</code></pre>
-<div class="sourceCode" id="cb755"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb755-1"><a href="linmodel.html#cb755-1" aria-hidden="true"></a>schaetzung</span></code></pre></div>
+<div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb754-1"><a href="linmodel.html#cb754-1" aria-hidden="true"></a>schaetzung</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = y ~ x, data = datensatz)
@@ -637,11 +637,11 @@ unsere Schätzung. Wir sehen unmittelbar, dass wir vorher richtig gerechnet habe
 da wir die gleichen Werte herausbekommen haben.</p>
 <p>Wenn wir noch genauer wissen wollen, wie die Ergebnisliste aufgebaut ist,
 können wir die Funktion <code>str()</code> verwenden:</p>
-<div class="sourceCode" id="cb757"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb757-1"><a href="linmodel.html#cb757-1" aria-hidden="true"></a><span class="kw">str</span>(schaetzung)</span></code></pre></div>
+<div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb756-1"><a href="linmodel.html#cb756-1" aria-hidden="true"></a><span class="kw">str</span>(schaetzung)</span></code></pre></div>
 <p>Da die Liste aber tatsächlich sehr lang ist, wird dieser Code hier nicht
 ausgeführt. Es sei aber darauf hingewiesen, dass wir die geschätzen Werte auf
 folgende Art und Weise direkt ausgeben lassen können:</p>
-<div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb758-1"><a href="linmodel.html#cb758-1" aria-hidden="true"></a>schaetzung[[<span class="st">&quot;coefficients&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb757"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb757-1"><a href="linmodel.html#cb757-1" aria-hidden="true"></a>schaetzung[[<span class="st">&quot;coefficients&quot;</span>]]</span></code></pre></div>
 <pre><code>#&gt; (Intercept)           x 
 #&gt;        2.69        3.08</code></pre>
 <p>Dies ist in der Praxis häufig nützlich, z.B. wenn wir wie in der Einleitung
@@ -776,8 +776,8 @@ Als Maß für die Variation wird dabei die Summe der quadrierten Abweichungen vo
 <em>Total Sum of Squares</em> - ‘Summe der Quadrate der Totalen Abweichungen’) genannt:</p>
 <p><span class="math display">\[TSS=\sum_{i=1}^n(Y_i-\bar{Y})^2\]</span>
 In R:</p>
-<div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb760-1"><a href="linmodel.html#cb760-1" aria-hidden="true"></a>tss &lt;-<span class="st"> </span><span class="kw">sum</span>((datensatz<span class="op">$</span>y <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(datensatz<span class="op">$</span>y))<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb760-2"><a href="linmodel.html#cb760-2" aria-hidden="true"></a>tss</span></code></pre></div>
+<div class="sourceCode" id="cb759"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb759-1"><a href="linmodel.html#cb759-1" aria-hidden="true"></a>tss &lt;-<span class="st"> </span><span class="kw">sum</span>((datensatz<span class="op">$</span>y <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(datensatz<span class="op">$</span>y))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb759-2"><a href="linmodel.html#cb759-2" aria-hidden="true"></a>tss</span></code></pre></div>
 <pre><code>#&gt; [1] 3.30012</code></pre>
 <p>Diese Werte sind in Abbildung <a href="linmodel.html#fig:TSS">10.3</a> für unseren Beispieldatensatz von
 oben grafisch dargestellt:</p>
@@ -796,8 +796,8 @@ Entsprechend definieren wir die <em>Residual Sum of Squares (RSS)</em>
 (dt.: <em>Residuenquadratsumme</em>) als:</p>
 <p><span class="math display">\[RSS=\sum_i^ne_i^2\]</span>
 In R:</p>
-<div class="sourceCode" id="cb762"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb762-1"><a href="linmodel.html#cb762-1" aria-hidden="true"></a>rss &lt;-<span class="st"> </span><span class="kw">sum</span>(schaetzung[[<span class="st">&quot;residuals&quot;</span>]]<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb762-2"><a href="linmodel.html#cb762-2" aria-hidden="true"></a>rss</span></code></pre></div>
+<div class="sourceCode" id="cb761"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb761-1"><a href="linmodel.html#cb761-1" aria-hidden="true"></a>rss &lt;-<span class="st"> </span><span class="kw">sum</span>(schaetzung[[<span class="st">&quot;residuals&quot;</span>]]<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb761-2"><a href="linmodel.html#cb761-2" aria-hidden="true"></a>rss</span></code></pre></div>
 <pre><code>#&gt; [1] 2.35148</code></pre>
 <p>Diese sehen wir in Abbildung <a href="linmodel.html#fig:RSS">10.4</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:RSS"></span>
@@ -813,8 +813,8 @@ Dabei handelt es sich um die quadrierte Differenz zwischen <span class="math inl
 geschätzten Werten <span class="math inline">\(\hat{Y}\)</span>:</p>
 <p><span class="math display">\[ESS=\sum_{i=1}^n(\hat{Y}_i-\bar{Y})^2\]</span>
 Diese ergibt sich in R als:</p>
-<div class="sourceCode" id="cb764"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb764-1"><a href="linmodel.html#cb764-1" aria-hidden="true"></a>ess &lt;-<span class="st"> </span><span class="kw">sum</span>((schaetzung[[<span class="st">&quot;fitted.values&quot;</span>]] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(datensatz<span class="op">$</span>y))<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb764-2"><a href="linmodel.html#cb764-2" aria-hidden="true"></a>ess</span></code></pre></div>
+<div class="sourceCode" id="cb763"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb763-1"><a href="linmodel.html#cb763-1" aria-hidden="true"></a>ess &lt;-<span class="st"> </span><span class="kw">sum</span>((schaetzung[[<span class="st">&quot;fitted.values&quot;</span>]] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(datensatz<span class="op">$</span>y))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb763-2"><a href="linmodel.html#cb763-2" aria-hidden="true"></a>ess</span></code></pre></div>
 <pre><code>#&gt; [1] 0.94864</code></pre>
 <p>Und grafisch wie in Abbildung <a href="linmodel.html#fig:ESS">10.5</a> beschrieben.</p>
 <div class="figure" style="text-align: center"><span id="fig:ESS"></span>
@@ -830,14 +830,14 @@ welches Informationen darüber gibt, welchen Anteil der Variation in <span class
 unser Modell erklärt wird:</p>
 <p><span class="math display">\[R^2=\frac{ESS}{TSS}=1-\frac{RSS}{TSS}\]</span></p>
 <p>Wir können das für unseren Anwendungsfall natürlich händisch berechnen:</p>
-<div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb766-1"><a href="linmodel.html#cb766-1" aria-hidden="true"></a>r_sq_manual &lt;-<span class="st"> </span>ess <span class="op">/</span><span class="st"> </span>tss</span>
-<span id="cb766-2"><a href="linmodel.html#cb766-2" aria-hidden="true"></a>r_sq_manual</span></code></pre></div>
+<div class="sourceCode" id="cb765"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb765-1"><a href="linmodel.html#cb765-1" aria-hidden="true"></a>r_sq_manual &lt;-<span class="st"> </span>ess <span class="op">/</span><span class="st"> </span>tss</span>
+<span id="cb765-2"><a href="linmodel.html#cb765-2" aria-hidden="true"></a>r_sq_manual</span></code></pre></div>
 <pre><code>#&gt; [1] 0.2874562</code></pre>
 <p>Leider wird diese Größe im Output von <code>lm()</code> direkt nicht ausgegeben.
 Wir können aber einen ausführlicheren Output unserer Regression mit der Funktion
 <code>summary()</code> erstellen, dort ist das <span class="math inline">\(R^2\)</span> dann auch enthalten:</p>
-<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="linmodel.html#cb768-1" aria-hidden="true"></a>info_schaetzung &lt;-<span class="st"> </span><span class="kw">summary</span>(schaetzung)</span>
-<span id="cb768-2"><a href="linmodel.html#cb768-2" aria-hidden="true"></a>info_schaetzung[[<span class="st">&quot;r.squared&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb767"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb767-1"><a href="linmodel.html#cb767-1" aria-hidden="true"></a>info_schaetzung &lt;-<span class="st"> </span><span class="kw">summary</span>(schaetzung)</span>
+<span id="cb767-2"><a href="linmodel.html#cb767-2" aria-hidden="true"></a>info_schaetzung[[<span class="st">&quot;r.squared&quot;</span>]]</span></code></pre></div>
 <pre><code>#&gt; [1] 0.2874562</code></pre>
 <p>In unserem Fall erklärt unser Modell also ca.
 29 Prozent
@@ -866,7 +866,7 @@ schätzenden Parameter und werden in der Regel mit <span class="math inline">\(d
 In unserem Fall hier ist <span class="math inline">\(N=5\)</span> und <span class="math inline">\(K=2\)</span>, da mit <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> zwei
 Parameter geschätzt werden.
 Um dieses Maß aus unserem Ergebnisobjekts auszugeben schreiben wir:</p>
-<div class="sourceCode" id="cb770"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb770-1"><a href="linmodel.html#cb770-1" aria-hidden="true"></a>info_schaetzung[[<span class="st">&quot;adj.r.squared&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb769"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb769-1"><a href="linmodel.html#cb769-1" aria-hidden="true"></a>info_schaetzung[[<span class="st">&quot;adj.r.squared&quot;</span>]]</span></code></pre></div>
 <pre><code>#&gt; [1] 0.04994162</code></pre>
 <p>Leider hat es keine so eindeutige Interpretation wie das <span class="math inline">\(R^2\)</span>, aber es sollte
 immer gemeinsam mit letzterem beachtet werden.
@@ -929,35 +929,35 @@ Zunächst erstellen wir den künstlichen Datensatz.
 Dazu spezifizieren wir zunächst die Grundstruktur des datengenerierenden
 Prozess:</p>
 </blockquote>
-<div class="sourceCode" id="cb772"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb772-1"><a href="linmodel.html#cb772-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb772-2"><a href="linmodel.html#cb772-2" aria-hidden="true"></a>true_DGP &lt;-<span class="st"> </span><span class="cf">function</span>(x, b0, b1){</span>
-<span id="cb772-3"><a href="linmodel.html#cb772-3" aria-hidden="true"></a>  y &lt;-<span class="st"> </span>b0 <span class="op">+</span><span class="st"> </span>b1<span class="op">*</span>x <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">length</span>(x), <span class="dv">0</span>, <span class="dv">5</span>)</span>
-<span id="cb772-4"><a href="linmodel.html#cb772-4" aria-hidden="true"></a>  <span class="kw">return</span>(y)</span>
-<span id="cb772-5"><a href="linmodel.html#cb772-5" aria-hidden="true"></a>}</span>
-<span id="cb772-6"><a href="linmodel.html#cb772-6" aria-hidden="true"></a>beta_<span class="dv">0</span>_wahr &lt;-<span class="st"> </span><span class="dv">3</span></span>
-<span id="cb772-7"><a href="linmodel.html#cb772-7" aria-hidden="true"></a>beta_<span class="dv">1</span>_wahr &lt;-<span class="st"> </span><span class="dv">2</span></span>
-<span id="cb772-8"><a href="linmodel.html#cb772-8" aria-hidden="true"></a>sample_size &lt;-<span class="st"> </span><span class="dv">100</span></span>
-<span id="cb772-9"><a href="linmodel.html#cb772-9" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">runif</span>(sample_size, <span class="dv">0</span>, <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb771"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb771-1"><a href="linmodel.html#cb771-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb771-2"><a href="linmodel.html#cb771-2" aria-hidden="true"></a>true_DGP &lt;-<span class="st"> </span><span class="cf">function</span>(x, b0, b1){</span>
+<span id="cb771-3"><a href="linmodel.html#cb771-3" aria-hidden="true"></a>  y &lt;-<span class="st"> </span>b0 <span class="op">+</span><span class="st"> </span>b1<span class="op">*</span>x <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">length</span>(x), <span class="dv">0</span>, <span class="dv">5</span>)</span>
+<span id="cb771-4"><a href="linmodel.html#cb771-4" aria-hidden="true"></a>  <span class="kw">return</span>(y)</span>
+<span id="cb771-5"><a href="linmodel.html#cb771-5" aria-hidden="true"></a>}</span>
+<span id="cb771-6"><a href="linmodel.html#cb771-6" aria-hidden="true"></a>beta_<span class="dv">0</span>_wahr &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb771-7"><a href="linmodel.html#cb771-7" aria-hidden="true"></a>beta_<span class="dv">1</span>_wahr &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb771-8"><a href="linmodel.html#cb771-8" aria-hidden="true"></a>sample_size &lt;-<span class="st"> </span><span class="dv">100</span></span>
+<span id="cb771-9"><a href="linmodel.html#cb771-9" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">runif</span>(sample_size, <span class="dv">0</span>, <span class="dv">10</span>)</span></code></pre></div>
 <blockquote>
 <p>Nun erstellen wir mit Hilfe einer Schleife 1000 Realisierungen der Daten.
 Wir können uns das wie 1000 Erhebungen vorstellen.
 Für jede dieser Realisierungen schätzen wir dann die lineare
 Regressionsgleichung von oben:</p>
 </blockquote>
-<div class="sourceCode" id="cb773"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb773-1"><a href="linmodel.html#cb773-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb773-2"><a href="linmodel.html#cb773-2" aria-hidden="true"></a>n_datensaetze &lt;-<span class="st"> </span><span class="dv">1000</span></span>
-<span id="cb773-3"><a href="linmodel.html#cb773-3" aria-hidden="true"></a>beta_<span class="dv">0</span>_estimates &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, n_datensaetze)</span>
-<span id="cb773-4"><a href="linmodel.html#cb773-4" aria-hidden="true"></a>beta_<span class="dv">1</span>_estimates &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, n_datensaetze)</span>
-<span id="cb773-5"><a href="linmodel.html#cb773-5" aria-hidden="true"></a></span>
-<span id="cb773-6"><a href="linmodel.html#cb773-6" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n_datensaetze){</span>
-<span id="cb773-7"><a href="linmodel.html#cb773-7" aria-hidden="true"></a>  daten_satz &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb773-8"><a href="linmodel.html#cb773-8" aria-hidden="true"></a>    <span class="dt">x =</span> x,</span>
-<span id="cb773-9"><a href="linmodel.html#cb773-9" aria-hidden="true"></a>    <span class="dt">y =</span> <span class="kw">true_DGP</span>(x, beta_<span class="dv">0</span>_wahr, beta_<span class="dv">1</span>_wahr)</span>
-<span id="cb773-10"><a href="linmodel.html#cb773-10" aria-hidden="true"></a>  )</span>
-<span id="cb773-11"><a href="linmodel.html#cb773-11" aria-hidden="true"></a>  schaetzung_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x, <span class="dt">data =</span> daten_satz)</span>
-<span id="cb773-12"><a href="linmodel.html#cb773-12" aria-hidden="true"></a>  beta_<span class="dv">0</span>_estimates[i] &lt;-<span class="st"> </span>schaetzung_<span class="dv">2</span>[[<span class="st">&quot;coefficients&quot;</span>]][<span class="dv">1</span>]</span>
-<span id="cb773-13"><a href="linmodel.html#cb773-13" aria-hidden="true"></a>  beta_<span class="dv">1</span>_estimates[i] &lt;-<span class="st"> </span>schaetzung_<span class="dv">2</span>[[<span class="st">&quot;coefficients&quot;</span>]][<span class="dv">2</span>]</span>
-<span id="cb773-14"><a href="linmodel.html#cb773-14" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb772"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb772-1"><a href="linmodel.html#cb772-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb772-2"><a href="linmodel.html#cb772-2" aria-hidden="true"></a>n_datensaetze &lt;-<span class="st"> </span><span class="dv">1000</span></span>
+<span id="cb772-3"><a href="linmodel.html#cb772-3" aria-hidden="true"></a>beta_<span class="dv">0</span>_estimates &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, n_datensaetze)</span>
+<span id="cb772-4"><a href="linmodel.html#cb772-4" aria-hidden="true"></a>beta_<span class="dv">1</span>_estimates &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, n_datensaetze)</span>
+<span id="cb772-5"><a href="linmodel.html#cb772-5" aria-hidden="true"></a></span>
+<span id="cb772-6"><a href="linmodel.html#cb772-6" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n_datensaetze){</span>
+<span id="cb772-7"><a href="linmodel.html#cb772-7" aria-hidden="true"></a>  daten_satz &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb772-8"><a href="linmodel.html#cb772-8" aria-hidden="true"></a>    <span class="dt">x =</span> x,</span>
+<span id="cb772-9"><a href="linmodel.html#cb772-9" aria-hidden="true"></a>    <span class="dt">y =</span> <span class="kw">true_DGP</span>(x, beta_<span class="dv">0</span>_wahr, beta_<span class="dv">1</span>_wahr)</span>
+<span id="cb772-10"><a href="linmodel.html#cb772-10" aria-hidden="true"></a>  )</span>
+<span id="cb772-11"><a href="linmodel.html#cb772-11" aria-hidden="true"></a>  schaetzung_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x, <span class="dt">data =</span> daten_satz)</span>
+<span id="cb772-12"><a href="linmodel.html#cb772-12" aria-hidden="true"></a>  beta_<span class="dv">0</span>_estimates[i] &lt;-<span class="st"> </span>schaetzung_<span class="dv">2</span>[[<span class="st">&quot;coefficients&quot;</span>]][<span class="dv">1</span>]</span>
+<span id="cb772-13"><a href="linmodel.html#cb772-13" aria-hidden="true"></a>  beta_<span class="dv">1</span>_estimates[i] &lt;-<span class="st"> </span>schaetzung_<span class="dv">2</span>[[<span class="st">&quot;coefficients&quot;</span>]][<span class="dv">2</span>]</span>
+<span id="cb772-14"><a href="linmodel.html#cb772-14" aria-hidden="true"></a>}</span></code></pre></div>
 <blockquote>
 <p>Nun können wir die Streuung der Schätzer in Abbildung
 <a href="linmodel.html#fig:Schaetzervarianz">10.6</a> ablesen.</p>
@@ -986,7 +986,7 @@ Freiheitsgraden dieser Schätzung.</p>
 <p>Dieser Standardfehler ist ein erstes Maß für die Genauigkeit des Schätzers.
 Er wird aufgrund seiner Wichtigkeit auch in der Summary jeder Schätzung angegeben.
 Hier betrachten wir die Schätzung aus dem einführenden Beispiel:</p>
-<div class="sourceCode" id="cb774"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb774-1"><a href="linmodel.html#cb774-1" aria-hidden="true"></a><span class="kw">summary</span>(schaetzung_bip)</span></code></pre></div>
+<div class="sourceCode" id="cb773"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb773-1"><a href="linmodel.html#cb773-1" aria-hidden="true"></a><span class="kw">summary</span>(schaetzung_bip)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = Konsum ~ BIP, data = bip_daten)
@@ -1028,7 +1028,7 @@ Es erscheint daher sehr unplausibel, dass <span class="math inline">\(\beta_1=0\
 Tatsächlich würden wir diese Hypothese auf quasi jedem beliebigen
 Signifikanzniveau verwerfen. Daher ist der Schätzer in der Zusammenfassung mit
 drei Sternen gekennzeichnet:</p>
-<div class="sourceCode" id="cb776"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb776-1"><a href="linmodel.html#cb776-1" aria-hidden="true"></a><span class="kw">summary</span>(schaetzung_bip)</span></code></pre></div>
+<div class="sourceCode" id="cb775"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb775-1"><a href="linmodel.html#cb775-1" aria-hidden="true"></a><span class="kw">summary</span>(schaetzung_bip)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = Konsum ~ BIP, data = bip_daten)
@@ -1076,7 +1076,7 @@ nicht verwerfen können.</p>
 <p>Um diese Intervalle für eine Schätzung in R zu konstruieren verwenden wir die
 Funktion <code>confint</code>, die als erstes Argument das geschätzte Modell und als
 Argument <code>level</code> das Signifikanzniveau <span class="math inline">\(1-\alpha\)</span> akzeptiert:</p>
-<div class="sourceCode" id="cb778"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb778-1"><a href="linmodel.html#cb778-1" aria-hidden="true"></a><span class="kw">confint</span>(schaetzung_bip, <span class="dt">level=</span><span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb777"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb777-1"><a href="linmodel.html#cb777-1" aria-hidden="true"></a><span class="kw">confint</span>(schaetzung_bip, <span class="dt">level=</span><span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>#&gt;                 2.5 %    97.5 %
 #&gt; (Intercept) 0.1171319 0.2632874
 #&gt; BIP         0.6382880 0.6927551</code></pre>
@@ -1090,22 +1090,22 @@ wiederholt werden würde, dann würden 95% der so für <span class="math inline"
 <p>Um die Rolle der Stichprobengröße besser beurteilen zu können, verwenden wir
 hier einen künstlich hergestellten Datensatz für den wir die ‘wahren’ Werte
 <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> kennen:<a href="#fn89" class="footnote-ref" id="fnref89"><sup>89</sup></a></p>
-<div class="sourceCode" id="cb780"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb780-1"><a href="linmodel.html#cb780-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb780-2"><a href="linmodel.html#cb780-2" aria-hidden="true"></a>wahres_b0 &lt;-<span class="st"> </span><span class="dv">3</span></span>
-<span id="cb780-3"><a href="linmodel.html#cb780-3" aria-hidden="true"></a>wahres_b1 &lt;-<span class="st"> </span><span class="fl">1.4</span></span>
-<span id="cb780-4"><a href="linmodel.html#cb780-4" aria-hidden="true"></a></span>
-<span id="cb780-5"><a href="linmodel.html#cb780-5" aria-hidden="true"></a>stichproben_n &lt;-<span class="st"> </span><span class="dv">50</span></span>
-<span id="cb780-6"><a href="linmodel.html#cb780-6" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>stichproben_n <span class="op">*</span><span class="st"> </span><span class="fl">0.1</span></span>
-<span id="cb780-7"><a href="linmodel.html#cb780-7" aria-hidden="true"></a>fehler &lt;-<span class="st"> </span><span class="kw">rnorm</span>(stichproben_n, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">3</span>)</span>
-<span id="cb780-8"><a href="linmodel.html#cb780-8" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, stichproben_n)</span>
-<span id="cb780-9"><a href="linmodel.html#cb780-9" aria-hidden="true"></a></span>
-<span id="cb780-10"><a href="linmodel.html#cb780-10" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>stichproben_n){</span>
-<span id="cb780-11"><a href="linmodel.html#cb780-11" aria-hidden="true"></a>  y[i] &lt;-<span class="st"> </span>wahres_b0 <span class="op">+</span><span class="st"> </span>wahres_b1<span class="op">*</span>x[i] <span class="op">+</span><span class="st"> </span>fehler[i]</span>
-<span id="cb780-12"><a href="linmodel.html#cb780-12" aria-hidden="true"></a>}</span>
-<span id="cb780-13"><a href="linmodel.html#cb780-13" aria-hidden="true"></a>datensatz &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb780-14"><a href="linmodel.html#cb780-14" aria-hidden="true"></a>  <span class="dt">x =</span> x,</span>
-<span id="cb780-15"><a href="linmodel.html#cb780-15" aria-hidden="true"></a>  <span class="dt">y =</span> y</span>
-<span id="cb780-16"><a href="linmodel.html#cb780-16" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb779"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb779-1"><a href="linmodel.html#cb779-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb779-2"><a href="linmodel.html#cb779-2" aria-hidden="true"></a>wahres_b0 &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb779-3"><a href="linmodel.html#cb779-3" aria-hidden="true"></a>wahres_b1 &lt;-<span class="st"> </span><span class="fl">1.4</span></span>
+<span id="cb779-4"><a href="linmodel.html#cb779-4" aria-hidden="true"></a></span>
+<span id="cb779-5"><a href="linmodel.html#cb779-5" aria-hidden="true"></a>stichproben_n &lt;-<span class="st"> </span><span class="dv">50</span></span>
+<span id="cb779-6"><a href="linmodel.html#cb779-6" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>stichproben_n <span class="op">*</span><span class="st"> </span><span class="fl">0.1</span></span>
+<span id="cb779-7"><a href="linmodel.html#cb779-7" aria-hidden="true"></a>fehler &lt;-<span class="st"> </span><span class="kw">rnorm</span>(stichproben_n, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">3</span>)</span>
+<span id="cb779-8"><a href="linmodel.html#cb779-8" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, stichproben_n)</span>
+<span id="cb779-9"><a href="linmodel.html#cb779-9" aria-hidden="true"></a></span>
+<span id="cb779-10"><a href="linmodel.html#cb779-10" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>stichproben_n){</span>
+<span id="cb779-11"><a href="linmodel.html#cb779-11" aria-hidden="true"></a>  y[i] &lt;-<span class="st"> </span>wahres_b0 <span class="op">+</span><span class="st"> </span>wahres_b1<span class="op">*</span>x[i] <span class="op">+</span><span class="st"> </span>fehler[i]</span>
+<span id="cb779-12"><a href="linmodel.html#cb779-12" aria-hidden="true"></a>}</span>
+<span id="cb779-13"><a href="linmodel.html#cb779-13" aria-hidden="true"></a>datensatz &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb779-14"><a href="linmodel.html#cb779-14" aria-hidden="true"></a>  <span class="dt">x =</span> x,</span>
+<span id="cb779-15"><a href="linmodel.html#cb779-15" aria-hidden="true"></a>  <span class="dt">y =</span> y</span>
+<span id="cb779-16"><a href="linmodel.html#cb779-16" aria-hidden="true"></a>)</span></code></pre></div>
 <p>Wie wir in Abbildung <a href="linmodel.html#fig:stichproben">10.7</a> sehen ist die geschätzte Gerade
 nicht exakt deckungsgleich zur ‘wahren’ Gerade, aber doch durchaus nahe dran.</p>
 <div class="figure" style="text-align: center"><span id="fig:stichproben"></span>
@@ -1140,9 +1140,9 @@ Zudem ist die Implementierung in R nicht wirklich schwieriger.</p>
 <p>Im Folgenden wollen wir den uns bereits aus früheren Kapiteln bekannten
 Beispieldatensatz verwenden, in dem Informationen über die Preise von
 ökonomischen Journalen gesammelt sind:</p>
-<div class="sourceCode" id="cb781"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb781-1"><a href="linmodel.html#cb781-1" aria-hidden="true"></a>journal_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/tidy/journaldaten.csv&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb781-2"><a href="linmodel.html#cb781-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(Titel, Preis, Seitenanzahl, Zitationen)</span>
-<span id="cb781-3"><a href="linmodel.html#cb781-3" aria-hidden="true"></a><span class="kw">head</span>(journal_data)</span></code></pre></div>
+<div class="sourceCode" id="cb780"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb780-1"><a href="linmodel.html#cb780-1" aria-hidden="true"></a>journal_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/tidy/journaldaten.csv&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb780-2"><a href="linmodel.html#cb780-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(Titel, Preis, Seitenanzahl, Zitationen)</span>
+<span id="cb780-3"><a href="linmodel.html#cb780-3" aria-hidden="true"></a><span class="kw">head</span>(journal_data)</span></code></pre></div>
 <pre><code>#&gt;                                                  Titel Preis Seitenanzahl
 #&gt; 1:                   Asian-Pacific Economic Literature   123          440
 #&gt; 2:           South African Journal of Economic History    20          309
@@ -1161,8 +1161,8 @@ Beispieldatensatz verwenden, in dem Informationen über die Preise von
 schätzen:</p>
 <p><span class="math display">\[PREIS_i = \beta_0 + \beta_1 SEITEN + \epsilon\]</span></p>
 <p>Das würden wir mit folgendem Befehl in R implementieren:</p>
-<div class="sourceCode" id="cb783"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb783-1"><a href="linmodel.html#cb783-1" aria-hidden="true"></a>reg &lt;-<span class="st"> </span><span class="kw">lm</span>(Preis<span class="op">~</span>Seitenanzahl, <span class="dt">data=</span>journal_data)</span>
-<span id="cb783-2"><a href="linmodel.html#cb783-2" aria-hidden="true"></a><span class="kw">summary</span>(reg)</span></code></pre></div>
+<div class="sourceCode" id="cb782"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb782-1"><a href="linmodel.html#cb782-1" aria-hidden="true"></a>reg &lt;-<span class="st"> </span><span class="kw">lm</span>(Preis<span class="op">~</span>Seitenanzahl, <span class="dt">data=</span>journal_data)</span>
+<span id="cb782-2"><a href="linmodel.html#cb782-2" aria-hidden="true"></a><span class="kw">summary</span>(reg)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = Preis ~ Seitenanzahl, data = journal_data)
@@ -1188,13 +1188,13 @@ linearen Modell arbeiten:</p>
 <p><span class="math display">\[PREIS_i = \beta_0 + \beta_1 SEITEN + \beta_2 ZITATE + \epsilon\]</span></p>
 <p>Tatsächlich ist die einzige Änderungen, die wir auf der technischen Seite machen
 müssen, die Inklusion der neuen erklärenden Variable in die Schätzgleichung:</p>
-<div class="sourceCode" id="cb785"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb785-1"><a href="linmodel.html#cb785-1" aria-hidden="true"></a>reg &lt;-<span class="st"> </span><span class="kw">lm</span>(Preis<span class="op">~</span>Seitenanzahl <span class="op">+</span><span class="st"> </span>Zitationen, <span class="dt">data=</span>journal_data)</span></code></pre></div>
+<div class="sourceCode" id="cb784"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb784-1"><a href="linmodel.html#cb784-1" aria-hidden="true"></a>reg &lt;-<span class="st"> </span><span class="kw">lm</span>(Preis<span class="op">~</span>Seitenanzahl <span class="op">+</span><span class="st"> </span>Zitationen, <span class="dt">data=</span>journal_data)</span></code></pre></div>
 <p>Hierbei ist zu beachten, dass das <code>+</code> nicht im additiven Sinne gemeint ist,
 sondern in der Logik einer Regressionsgleichung.</p>
 <p>Wenn wir uns die Zusammenfassung dieses Objekts anschauen, sehen wir einen
 sehr ähnlichen Output wie für den einfachen linearen Fall, nur dass wir eine
 weitere Zeile für die neue erklärende Variable haben:</p>
-<div class="sourceCode" id="cb786"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb786-1"><a href="linmodel.html#cb786-1" aria-hidden="true"></a><span class="kw">summary</span>(reg)</span></code></pre></div>
+<div class="sourceCode" id="cb785"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb785-1"><a href="linmodel.html#cb785-1" aria-hidden="true"></a><span class="kw">summary</span>(reg)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = Preis ~ Seitenanzahl + Zitationen, data = journal_data)
