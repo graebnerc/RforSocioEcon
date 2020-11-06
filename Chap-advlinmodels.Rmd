@@ -179,7 +179,7 @@ for (i in 1:sample_size){
   y_nonlinear[i] <- beta_0 + beta_1*x_1[i] + x_2[i]**(beta_2) + rnorm(1, mean = 0.1, sd = 0.5)
 }
 
-full_sample <- tibble(x1=x_1, x2=x_2, 
+full_sample <- dplyr::tibble(x1=x_1, x2=x_2, 
                       y_lin=y_linear, 
                       y_loglin=y_loglinear, 
                       y_nonlin=y_nonlinear)
@@ -261,8 +261,8 @@ for (i in 1:50){y_vals_exo[i] <- x_vals[i] + rnorm(1, 10, 2)}
 for (i in 51:100){y_vals_exo[i] <- x_vals[i] + rnorm(1, -10, 2)}
 for (i in 1:100){y_vals_exo_strict[i] <- x_vals[i] + rnorm(1, 0, 2)}
 
-exo_data <- tibble("x"=x_vals, "y"=y_vals_exo)
-exo_strict_data <- tibble("x"=x_vals, "y"=y_vals_exo_strict)
+exo_data <- dplyr::tibble("x"=x_vals, "y"=y_vals_exo)
+exo_strict_data <- dplyr::tibble("x"=x_vals, "y"=y_vals_exo_strict)
 
 exo_plot <- ggplot2::ggplot(data = exo_data, 
                    mapping = aes(x=x, y=y)
@@ -483,11 +483,11 @@ x_range <- seq(-4, 8, 0.01)
 dist_beta_ols <- dnorm(x = x_range, mean = beta_1_wahr, sd = 1)
 dist_beta_biased <- dnorm(x = x_range, mean = beta_1_verzerrt, sd = 1)
 dist_beta_inefficient <- dnorm(x = x_range, mean = beta_1_wahr, sd = 2)
-data_ols <- tibble(yhat=dist_beta_ols, xrange=x_range) %>%
+data_ols <- dplyr::tibble(yhat=dist_beta_ols, xrange=x_range) %>%
   dplyr::mutate(Art="OLS")
-data_biased <- tibble(yhat=dist_beta_biased, xrange=x_range) %>%
+data_biased <- dplyr::tibble(yhat=dist_beta_biased, xrange=x_range) %>%
   dplyr::mutate(Art="Verzerrt")
-data_inefficient <- tibble(yhat=dist_beta_inefficient, xrange=x_range) %>%
+data_inefficient <- dplyr::tibble(yhat=dist_beta_inefficient, xrange=x_range) %>%
   dplyr::mutate(Art="Ineffizient")
 data_total <- bind_rows(list(data_ols, data_biased, data_inefficient))
 
@@ -684,7 +684,7 @@ Dies ist aber nicht immer möglich und manchmal auch recht aufwendig und wenig
 intuitiv.
 
 Die zweite Möglichkeit ist die Analyse von Schätzern mit Hilfe von 
-künstlichen Datensätzen und so genannten [Monte-Carlo Simulationen]().
+künstlichen Datensätzen und so genannten [Monte Carlo Simulationen]().
 <!-- ich glaub hier fehlt noch eine referenz in den klammern? -->
 
 Hier definieren wir unseren datenerzeugenden Prozess selbst und erstellen dann
@@ -721,7 +721,7 @@ Dann schätzen wir ein Modell jeweils für die beiden Prozesse und vergleichen d
 Eigenschaften des OLS-Schätzers. 
 Somit können wir Rückschlüsse auf die Implikationen von Heteroskedastie schließen.
 
-Im Folgenden wollen wir die Methode der Monte-Carlo Simulation über genau dieses 
+Im Folgenden wollen wir die Methode der Monte Carlo Simulation über genau dieses 
 Beispiel einführen.
 
 **1. Schritt: Definition des zu untersuchenden Merkmals**
@@ -767,7 +767,7 @@ dgp <- function(x1, beta0, beta1, hetero=FALSE){
   for (i in 1:length(x1)){
     y[i] <- beta0 + beta1*x1[i] + errors[i]
   }
-  final_data <- tibble(y=y, x1=x1, errors=errors)
+  final_data <- dplyr::tibble(y=y, x1=x1, errors=errors)
   return(final_data)
 }
 ```
@@ -806,7 +806,7 @@ mcs <- function(n_stichproben,
   }
   # In einer Tabelle zusammenfassen:
   Fall_Bezeichnung <- ifelse(heterosk, "Heteroskedastie", "Homoskedastie")
-  ergebnisse <- tibble(
+  ergebnisse <- dplyr::tibble(
     b1_coef=schaetzung_b1,
     b1_stdf=stdfehler_b1,
     Fall=rep(Fall_Bezeichnung, 
@@ -821,7 +821,7 @@ Fälle ausführen.
 
 Wir definieren nun die Parameter und die wahren Werte.
 Hierbei ist es wichtig, die Funktion `set.seed` zu verwenden.
-Das ist wichtig um unsere Monte-Carlo Simulation reproduzierbar zu machen, denn
+Das ist wichtig um unsere Monte Carlo Simulation reproduzierbar zu machen, denn
 mit `set.seed` setzen wir die Anfangsbedingungen für den Zufallszahlen-Generator 
 von R. 
 Das bedeutet, dass wir für den gleichen Seed immer die gleichen Zufallszahlen 
@@ -894,7 +894,7 @@ herum im heteroskedastischen Fall zunimmt!
 Wir wollen nun in Abbildung \@ref(fig:montecarlo2) noch untersuchen wie sich 
 Heteroskedastie auf die Standardfehler der Regression auswirkt.
 
-```{r montecarlo, echo=FALSE, fig.cap="Vergleich der Standardfehler von $\hat{\boldsymbol{\beta}}$ bei Homoskedastie und Heteroskedastie."}
+```{r montecarlo2, echo=FALSE, fig.cap="Vergleich der Standardfehler von $\hat{\boldsymbol{\beta}}$ bei Homoskedastie und Heteroskedastie."}
 beta_1_stdf_plot <- ggplot2::ggplot(data = full_results, 
                            mapping = aes(x=b1_stdf, color=Fall, fill=Fall)) +
   ggplot2::geom_density(alpha=0.5) +
@@ -924,7 +924,7 @@ und Signifikanz der Ergebnisse treffen.
 Das alles bedeutet zwar, dass der OLS Schätzer auch im Falle von Heteroskedastie 
 noch erwartungstreu ist, allerdings die Genauigkeit des Schätzers sinkt und die
 Standardfehler falsch berechnet werden. 
-Da der Fokus hier auf der Beschreibung der Monte-Carlo Simulationsmethode lag
+Da der Fokus hier auf der Beschreibung der Monte Carlo Simulationsmethode lag
 werden wir uns mit den möglichen Lösungen erst später befassen. 
 
 Im Folgenden werden wir nun einen weiteren Blick auf verschiedene OLS Annahmen 
@@ -962,13 +962,13 @@ stichprobe_hetero <- dgp(x1 = x1, beta0 = wahres_b0,
 schaetzung_homo <- lm(schaetzgleichung, data = stichprobe_homo)
 schaetzung_hetero <-lm(schaetzgleichung, data = stichprobe_hetero)
 
-tk_data_homo <- tibble(
+tk_data_homo <- dplyr::tibble(
   "Residuen" = schaetzung_homo$residuals,
   "Gefittete Werte" = schaetzung_homo$fitted.values,
   "Fall" = rep("Homoskedastie", length(x1))
   )
 
-tk_data_hetero <- tibble(
+tk_data_hetero <- dplyr::tibble(
   "Residuen" = schaetzung_hetero$residuals,
   "Gefittete Werte" = schaetzung_hetero$fitted.values,
   "Fall" = rep("Heteroskedastie", length(x1))
@@ -1173,7 +1173,7 @@ Wir sprechen von Autokorrelation wenn die Fehlerterme in der Regression
 untereinander korreliert sind. 
 Wie bei der Heteroskedastizität ist die Varianz-Kovarianz Matrix eine andere
 als ursprünglich angenommen: 
-im Falle der Heteroskedastizität lag die Abweichung auf der Hauptdiagonale,
+im Falle der Heteroskedastizität lag die Abweichung auf der Hauptdiagonalen,
 also der Varianz der einzelnen Fehlerterme, die nicht wie laut A4 konstant ist.
 Im Falle der Autokorrelation liegt das Problem abseits der Hauptdiagonale, bei 
 den Kovarianzen der einzelnen Fehler. 
@@ -1184,26 +1184,28 @@ Besonders häufig tritt Autokorrelation auf, wenn wir mit Zeitreihendaten arbeit
 Denn dann ist es sogar sehr plausibel, dass die Fehler einer Beobachtung in $t$
 mit denen aus der Vorperiode $t-1$ zusammenhängen. 
 Entsprechend groß ist die Literatur zur Autokorrelation in der Zeitreihenanalyse
-und Panel-Schätzung.
-Diese Themenbereich sind jedoch erst viel später unser Thema. 
-Nichtdestotrotz macht es Sinn sich die Folgen von Autokorrelation auch jetzt 
-schon anzusehen.
+und Panel-Schätzung. Auch wenn Zeitreihenanalysen und Panel-Schätzungen hier 
+nicht weiterführend diskutiert werden ist es hilfreich sich die Folgen von 
+Autokorrelation auch jetzt schon anzusehen.
 
 ### Folgen von Autokorrelation
 
 Wir wissen zwar von der Herleitung des OLS-Schätzers bereits, dass 
 Autokorrelation keinen Einfluss auf die Erwartungstreue des Schätzers hat, wir
-wollen aber dennoch die Folgen von Autokorrelation durch eine kleine MCS 
-illustrieren.
+wollen aber dennoch die Folgen von Autokorrelation durch eine kleine Monte Carlo
+Simulation (MCS) illustrieren. 
 
-Dazu erstellen wir einen künstlichen Datensatz in dem die Fehler unterschiedlich
-stark miteinander korreliert sind.
+Dazu erstellen wir zunächst einen künstlichen Datensatz in dem die Fehler unterschiedlich
+stark miteinander korreliert sind. 
 
 Um die Variablen mit vorher spezifizierter Korrelation zu erstellen verwenden
 wir wieder die Funktion `mvrnorm` aus dem Paket 
 [MASS](https://github.com/cran/MASS) [@R-mass]. 
 Eine genauere Erläuterung findet sich 
 [hier](https://stats.stackexchange.com/questions/83172/generate-two-variables-with-precise-pre-specified-correlation).
+
+Das Ergebnis der Simulation lässt sich in Abbildung \@ref(fig:MCautokorr) 
+ablesen.
 
 ```{r, echo=FALSE}
 dgp_acl <- function(beta_0_wahrheit, beta_1_wahrheit, 
@@ -1219,7 +1221,7 @@ dgp_acl <- function(beta_0_wahrheit, beta_1_wahrheit,
     fehler[i] <- korrelation_fehler*fehler[i-1] + rnorm(1)
     y[i] <- beta_0_wahrheit + beta_1_wahrheit*unabh_werte[i] + fehler[i]
   }
-  datensatz <- tibble("x"=unabh_werte, "y"=y, "Fehler"=fehler)
+  datensatz <- dplyr::tibble("x"=unabh_werte, "y"=y, "Fehler"=fehler)
   return(datensatz)
 }
 ```
@@ -1240,7 +1242,7 @@ mcs_act <- function(iterationen, b0_wahrheit, b1_wahrheit,
     b0_stdf[i] <- schaetzung[["coefficients"]][3]
     b1_stdf[i] <- schaetzung[["coefficients"]][4]
   }
-  ergebnisse <- tibble(
+  ergebnisse <- dplyr::tibble(
     "b0_coef"=b0_coef,
     "b1_coef"=b1_coef,
     "b0_stdf"=b0_stdf,
@@ -1280,88 +1282,89 @@ mcs_ergebnisse <- bind_rows(list(mcs_act_ergebnisse_small,
 ```
 
 ```{r, eval=FALSE, echo=FALSE}
-fwrite(mcs_ergebnisse, 
+data.table::fwrite(mcs_ergebnisse, 
        here("data/tidy/advlinmodels_mcs_ergebnisse_autoc.csv"))
 ```
 
 ```{r, echo=FALSE}
-mcs_ergebnisse <- fread(here("data/tidy/advlinmodels_mcs_ergebnisse_autoc.csv"), 
+mcs_ergebnisse <- data.table::fread(here("data/tidy/advlinmodels_mcs_ergebnisse_autoc.csv"), 
                         colClasses = c(rep("double", 4), "character"))
 ```
 
 ```{r, echo=FALSE, warning=FALSE}
-b0_coef_plot <- ggplot(data = mcs_ergebnisse, 
+b0_coef_plot <- ggplot2::ggplot(data = mcs_ergebnisse, 
                        aes(x=b0_coef, color=Fall, fill=Fall)) +
-  geom_density(alpha=0.5) +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
-  scale_x_continuous(limits = c(-2, 2)) +
-  geom_vline(xintercept = beta_0_wahr) +
-  ylab(TeX("Dichte von $\\hat{\\beta}_0$")) +
-  xlab(TeX("$\\hat{\\beta}_0$")) +
+  ggplot2::geom_density(alpha=0.5) +
+  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
+  ggplot2::scale_x_continuous(limits = c(-2, 2)) +
+  ggplot2::geom_vline(xintercept = beta_0_wahr) +
+  ggplot2::ylab(TeX("Dichte von $\\hat{\\beta}_0$")) +
+  ggplot2::xlab(TeX("$\\hat{\\beta}_0$")) +
   ggtitle(TeX("Verteilung von $\\hat{\\beta}_0$")) + 
-  scale_color_icae(palette = "mixed", reverse = T,
+  icaeDesign::scale_color_icae(palette = "mixed", reverse = T,
                    aesthetics=c("color", "fill")
                    ) +
-  theme_icae()
+  icaeDesign::theme_icae()
 
-b1_coef_plot <- ggplot(data = mcs_ergebnisse, 
+b1_coef_plot <- ggplot2::ggplot(data = mcs_ergebnisse, 
                        aes(x=b1_coef, color=Fall, fill=Fall)) +
-  geom_density(alpha=0.5) +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
-  scale_x_continuous(limits = c(-1, 2.5)) +
-  geom_vline(xintercept = beta_1_wahr) +
-  ylab(TeX("Dichte von $\\hat{\\beta}_1$")) +
-  xlab(TeX("$\\hat{\\beta}_1$")) +
-  ggtitle(TeX("Verteilung von $\\hat{\\beta}_1$")) + 
-  scale_color_icae(palette = "mixed", reverse = T,
+  ggplot2::geom_density(alpha=0.5) +
+  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
+  ggplot2::scale_x_continuous(limits = c(-1, 2.5)) +
+  ggplot2::geom_vline(xintercept = beta_1_wahr) +
+  ggplot2::ylab(TeX("Dichte von $\\hat{\\beta}_1$")) +
+  ggplot2::xlab(TeX("$\\hat{\\beta}_1$")) +
+  ggplot2::ggtitle(TeX("Verteilung von $\\hat{\\beta}_1$")) + 
+  icaeDesign::scale_color_icae(palette = "mixed", reverse = T,
                    aesthetics=c("color", "fill")
                    ) +
-  theme_icae()
+  icaeDesign::theme_icae()
 
-full_plot <- ggarrange(b0_coef_plot, b1_coef_plot, ncol = 2, 
+full_plot <- ggpubr::ggarrange(b0_coef_plot, b1_coef_plot, ncol = 2, 
                        common.legend = T, legend = "bottom")
 ```
 
-```{r, echo=FALSE}
+```{r MCautokorr, echo=FALSE, fig.cap="Folgen der Autokorrelation mit Bezug auf Erwartungstreue und Effizienz anhand von Monte Carlo Simulationen."}
 full_plot
 ```
 
 Wie erwartet bleiben die Schätzer erwartungstreu, büßen aber deutlich an 
 Effizienz ein wenn die Autokorrelation größer wird.
-Betrachten wir nun noch die geschätzten Standardfehler:
+Betrachten wir nun noch die geschätzten Standardfehler in 
+Abbildung \@ref(fig:MCautokorr2).
 
 ```{r, echo=FALSE}
-b0_stdf_plot <- ggplot(data = mcs_ergebnisse, 
+b0_stdf_plot <- ggplot2::ggplot(data = mcs_ergebnisse, 
                        aes(x=b0_stdf, color=Fall, fill=Fall)) +
-  geom_density(alpha=0.5) +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
-  #scale_x_continuous(limits = c(0, 2)) +
-  ylab(TeX("Standardfehler von $\\hat{\\beta}_0$")) +
-  xlab(TeX("$\\hat{\\beta}_0$")) +
-  ggtitle(TeX("Standardfehler für $\\hat{\\beta}_0$")) + 
-  scale_color_icae(palette = "mixed", reverse = T,
+  ggplot2::geom_density(alpha=0.5) +
+  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
+  #ggplot2::scale_x_continuous(limits = c(0, 2)) +
+  ggplot2::ylab(TeX("Standardfehler von $\\hat{\\beta}_0$")) +
+  ggplot2::xlab(TeX("$\\hat{\\beta}_0$")) +
+  ggplot2::ggtitle(TeX("Standardfehler für $\\hat{\\beta}_0$")) + 
+  icaeDesign::scale_color_icae(palette = "mixed", reverse = T,
                    aesthetics=c("color", "fill")
                    ) +
-  theme_icae()
+  icaeDesign::theme_icae()
 
-b1_stdf_plot <- ggplot(data = mcs_ergebnisse, 
+b1_stdf_plot <- ggplot2::ggplot(data = mcs_ergebnisse, 
                        aes(x=b1_stdf, color=Fall, fill=Fall)) +
-  geom_density(alpha=0.5) +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
-  #scale_x_continuous(limits = c(0, 2)) +
-  ylab(TeX("Standardfehler von $\\hat{\\beta}_1$")) +
-  xlab(TeX("$\\hat{\\beta}_1$")) +
-  ggtitle(TeX("Standardfehler für $\\hat{\\beta}_1$")) + 
-  scale_color_icae(palette = "mixed", reverse = T,
+  ggplot2::geom_density(alpha=0.5) +
+  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
+  #ggplot2::scale_x_continuous(limits = c(0, 2)) +
+  ggplot2::ylab(TeX("Standardfehler von $\\hat{\\beta}_1$")) +
+  ggplot2::xlab(TeX("$\\hat{\\beta}_1$")) +
+  ggplot2::ggtitle(TeX("Standardfehler für $\\hat{\\beta}_1$")) + 
+  icaeDesign::scale_color_icae(palette = "mixed", reverse = T,
                    aesthetics=c("color", "fill")
                    ) +
-  theme_icae()
+  icaeDesign::theme_icae()
 
-full_plot <- ggarrange(b0_stdf_plot, b1_stdf_plot, ncol = 2, 
+full_plot <- ggpubr::ggarrange(b0_stdf_plot, b1_stdf_plot, ncol = 2, 
                        common.legend = T, legend = "bottom")
 ```
 
-```{r, echo=FALSE}
+```{r MCautokorr2, echo=FALSE, fig.cap="Folgen der Autokorrelation mit Bezug auf Standardfehler anhand von Monte Carlo Simulationen."}
 full_plot
 ```
 
@@ -1376,10 +1379,11 @@ Wie bei der Heteroskedastie sollten wir auch beim Testen auf Autokorrelation
 grafische und quantitative Tests kombinieren.
 Für die grafische Analyse verwenden wir wie vorher den Tukey-Anscombe Plot der
 Residuen. 
+<!-- Hier auch wieder ggf anpassen. -->
 Die Idee ist, dass wenn in den 'echten' Fehlern Autokorrelation vorherrscht wir 
 das auch in den Residuen beobachten können.
-Die folgende Abbildung verdeutlicht wie wir Autokorrelation in den entsprechenden
-Abbildungen erkennen können:
+Abbildung \@ref(fig:autokorrtest) verdeutlicht, wie wir Autokorrelation in den 
+entsprechenden Abbildungen erkennen können.
 
 ```{r, echo=FALSE}
 set.seed("123")
@@ -1387,50 +1391,50 @@ small_acl <- lm(y~x, data=dgp_acl(0.5, 0.75, 1:100, 0.05))
 mid_acl <- lm(y~x, data=dgp_acl(0.5, 0.75, 1:100, 0.5))
 large_acl <- lm(y~x, data=dgp_acl(0.5, 0.75, 1:100, 0.85))
 
-tk_plot_small <- ggplot(
-  data = tibble(
+tk_plot_small <- ggplot2::ggplot(
+  data = dplyr::tibble(
     "Gefittete Werte" = small_acl$fitted.values,
     "Residuen" = small_acl$residuals
   ), 
   mapping = aes(x=UQ(as.name("Gefittete Werte")),
                 y=Residuen)
   ) +
-  geom_point(alpha=0.5) +
-  geom_hline(yintercept = 0) +
-  ggtitle("TA-Plot (keine Autokorrelation)") +
-  theme_icae()
+  ggplot2::geom_point(alpha=0.5) +
+  ggplot2::geom_hline(yintercept = 0) +
+  ggplot2::ggtitle("TA-Plot (keine Autokorrelation)") +
+  icaeDesign::theme_icae()
 
-tk_plot_mid <- ggplot(
-  data = tibble(
+tk_plot_mid <- ggplot2::ggplot(
+  data = dplyr::tibble(
     "Gefittete Werte" = mid_acl$fitted.values,
     "Residuen" = mid_acl$residuals
   ), 
   mapping = aes(x=UQ(as.name("Gefittete Werte")),
                 y=Residuen)
   ) +
-  geom_point(alpha=0.5) +
-  geom_hline(yintercept = 0) +
-  ggtitle("TA-Plot (mittlere Autokorrelation)") +
-  theme_icae()
+  ggplot2::geom_point(alpha=0.5) +
+  ggplot2::geom_hline(yintercept = 0) +
+  ggplot2::ggtitle("TA-Plot (mittlere Autokorrelation)") +
+  icaeDesign::theme_icae()
 
-tk_plot_large <- ggplot(
-  data = tibble(
+tk_plot_large <- ggplot2::ggplot(
+  data = dplyr::tibble(
     "Gefittete Werte" = large_acl$fitted.values,
     "Residuen" = large_acl$residuals
   ), 
   mapping = aes(x=UQ(as.name("Gefittete Werte")),
                 y=Residuen)
   ) +
-  geom_point(alpha=0.5) +
-  geom_hline(yintercept = 0) +
-  ggtitle("TA-Plot (starke Autokorrelation)") +
-  theme_icae()
+  ggplot2::geom_point(alpha=0.5) +
+  ggplot2::geom_hline(yintercept = 0) +
+  ggplot2::ggtitle("TA-Plot (starke Autokorrelation)") +
+  icaeDesign::theme_icae()
 
-tk_plot_autoc <- ggarrange(tk_plot_small, tk_plot_mid, tk_plot_large, 
+tk_plot_autoc <- ggpubr::ggarrange(tk_plot_small, tk_plot_mid, tk_plot_large, 
                            ncol = 3)
 ```
 
-```{r, echo=FALSE}
+```{r autokorrtest, echo=FALSE, fig.cap="Unterschiedlich starke Autokorrelation im Tukey-Anscombe Plot."}
 tk_plot_autoc
 ```
 
@@ -1441,7 +1445,7 @@ Kovarianz der Fehler nicht gleich Null ist.
 
 > **Die vielen Arten von Autokorrelation** 
 Das Problem beim Testen auf Autokorrelation ist, dass die Fehler natürlich auf sehr
-viele Arten und Weiten miteinander korreliert sein können. 
+viele Arten miteinander korreliert sein können. 
 In Zeitreihen beobachten wir häufig einen so genannten *autoregressiven Prozess*,
 bei dem die Fehler in $t$ folgendermaßen bestimmt sind: 
 $\epsilon_t=\rho\epsilon_{t-1}+u$, wobei $u\propto\mathcal{N}(0,\sigma^2)$.
@@ -1450,7 +1454,6 @@ schwierig macht *allgemeine* Tests für Autokorrelation zu entwickeln.
 Wenn wir aufgrund von theoretischen Überlegungen eine bestimmte Struktur der
 Autokorrelation vermuten, können wir spezialisierte Tests verwenden, die über
 deutlich größere Power verfügen als allgemeine Tests.
-Dieses Thema wird im Kurs zur Zeitreihenökonometrie in größerem Umfang behandelt.
 
 Es gibt diverse Tests für Autokorrelation, die für jeweils unterschiedliche
 Settings besonders gut oder weniger gut geeignet sind.
@@ -1463,10 +1466,10 @@ welche die $H_0$ keiner Autokorrelation testen.
 Sie unterscheiden sich in der genauen Berechnung der Teststatistik und können
 als Alternativhypothese eine Autokorrelation von unterschiedlichen Graden 
 testen. 
-Mit unterschiedlichen Graden meinen wir die Anzahl der Lags zwischen den 
-Beobachtungen, deren Fehler noch miteinander korreliert sind.
-Standardmäßig testen wir gegen eine Autokorrelation mit Grad 1, allerdings 
-können je nach Anwendungsfall auch höhere Grade sinnvoll sein.
+Mit unterschiedlichen Graden meinen wir die Anzahl der Lags, also der 
+Verzögerungen, zwischen den Beobachtungen, deren Fehler noch miteinander 
+korreliert sind. Standardmäßig testen wir gegen eine Autokorrelation mit Grad 1, 
+allerdings können je nach Anwendungsfall auch höhere Grade sinnvoll sein.
 
 Die Funktion `Box.test()` kann verwendet werden um diese Tests durchzuführen.
 Das erste Argument sind immer die Residuen der zu untersuchenden Regression,
@@ -1553,7 +1556,7 @@ Oder:
 bgtest(mid_acl, order = 1, type = "Chisq")
 ```
 
-Insgesamt bedard die richtige Wahl des Tests einige theoretische Überlegunden
+Insgesamt bedarf die richtige Wahl des Tests einige theoretische Überlegungen
 für den Anwendungsfall und wir sollten uns nicht auf das Ergebnis eines 
 einzelnen Tests verlassen!
 
@@ -1657,7 +1660,8 @@ cor(x_1_large, x_2_large)  # Test
 Analog zum Vorgehen oben führen wir nun eine Monte Carlo Simulation durch, in
 der wir wiederholt Stichproben aus einem künstlich generierten Datensatz ziehen
 und das oben beschriebene Modell mit Hilfe von OLS schätzen. 
-Dies führt zu folgender Verteilung der Schätzer:
+Dies führt zu der in Abbildung \@ref(MCmultikoll) aufgezeigten Verteilung der 
+Schätzer.
 
 ```{r, echo=FALSE}
 dgp_mc <- function(x_1, x_2, beta_0, beta_1, beta_2){
@@ -1666,7 +1670,7 @@ dgp_mc <- function(x_1, x_2, beta_0, beta_1, beta_2){
   for (i in 1:length(y)){
     y[i] <- beta_0 + beta_1*x_1[i] + beta_2*x_2[i] + errors[i]
   }
-  data_full <- tibble("y"=y, "x_1"=x_1, "x_2"=x_2)
+  data_full <- dplyr::tibble("y"=y, "x_1"=x_1, "x_2"=x_2)
   return(data_full)
 }
 
@@ -1682,7 +1686,7 @@ mcs_mc <- function(iterations, beta_0, beta_1, beta_2,
     beta_1_estimates[i] <- regression$coefficients[2]
     beta_2_estimates[i] <- regression$coefficients[3]
   }
-  result_tibble <- tibble("b0"=beta_0_estimates, 
+  result_tibble <- dplyr::tibble("b0"=beta_0_estimates, 
                           "b1"=beta_1_estimates, 
                           "b2"=beta_2_estimates,
                           "id"=rep(identifier, iterations))
@@ -1704,51 +1708,51 @@ mcs_mid <- mcs_mc(iterations, beta_0, beta_1, beta_2,
 mcs_large <- mcs_mc(iterations, beta_0, beta_1, beta_2, 
                     x_1_large, x_2_large, reg_func, "high")
 mcs_full <- bind_rows(list(mcs_small, mcs_mid, mcs_large))
-fwrite(mcs_full, file = here("data/tidy/advlinmodels_mcs_full.csv"))
+data.table::fwrite(mcs_full, file = here("data/tidy/advlinmodels_mcs_full.csv"))
 ```
 
 ```{r, echo=FALSE}
-mcs_full <- fread(here("data/tidy/advlinmodels_mcs_full.csv"), 
+mcs_full <- data.table::fread(here("data/tidy/advlinmodels_mcs_full.csv"), 
                   colClasses = c("double", "double", "double", "character"))
 ```
 
 
 ```{r, echo=FALSE}
-b0_mc <- ggplot(data = mcs_full, 
+b0_mc <- ggplot2::ggplot(data = mcs_full, 
                 mapping = aes(x=b0, color=id, fill=id)) +
-  geom_density(alpha=0.5) +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
-  ylab(TeX("Dichte der Schätzer")) +
-  xlab(TeX("Wert für $\\hat{\\beta}_0$")) +
-  ggtitle(TeX("Schätzer für $\\hat{\\beta}_0$")) +
-  scale_color_icae(palette = "mixed") +
-  theme_icae()
+  ggplot2::geom_density(alpha=0.5) +
+  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
+  ggplot2::ylab(TeX("Dichte der Schätzer")) +
+  ggplot2::xlab(TeX("Wert für $\\hat{\\beta}_0$")) +
+  ggplot2::ggtitle(TeX("Schätzer für $\\hat{\\beta}_0$")) +
+  icaeDesign::scale_color_icae(palette = "mixed") +
+  icaeDesign::theme_icae()
 
-b1_mc <- ggplot(data = mcs_full, 
+b1_mc <- ggplot2::ggplot(data = mcs_full, 
                 mapping = aes(x=b1, color=id, fill=id)) +
-  geom_density(alpha=0.5) +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
-  ylab(TeX("Dichte der Schätzer")) +
-  xlab(TeX("Wert für $\\hat{\\beta}_1$")) +
-  ggtitle(TeX("Schätzer für $\\hat{\\beta}_1$")) +
-  scale_color_icae(palette = "mixed") +
-  theme_icae()
+  ggplot2::geom_density(alpha=0.5) +
+  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
+  ggplot2::ylab(TeX("Dichte der Schätzer")) +
+  ggplot2::xlab(TeX("Wert für $\\hat{\\beta}_1$")) +
+  ggplot2::ggtitle(TeX("Schätzer für $\\hat{\\beta}_1$")) +
+  icaeDesign::scale_color_icae(palette = "mixed") +
+  icaeDesign::theme_icae()
 
-b2_mc <- ggplot(data = mcs_full, 
+b2_mc <- ggplot2::ggplot(data = mcs_full, 
                 mapping = aes(x=b2, color=id, fill=id)) +
-  geom_density(alpha=0.5) +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
-  ylab(TeX("Dichte der Schätzer")) +
-  xlab(TeX("Wert für $\\hat{\\beta}_2$")) +
-  ggtitle(TeX("Schätzer für $\\hat{\\beta}_2$")) +
-  scale_color_icae(palette = "mixed") +
-  theme_icae()
+  ggplot2::geom_density(alpha=0.5) +
+  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
+  ggplot2::ylab(TeX("Dichte der Schätzer")) +
+  ggplot2::xlab(TeX("Wert für $\\hat{\\beta}_2$")) +
+  ggplot2::ggtitle(TeX("Schätzer für $\\hat{\\beta}_2$")) +
+  icaeDesign::scale_color_icae(palette = "mixed") +
+  icaeDesign::theme_icae()
 
-full_plot <- ggarrange(b0_mc, b1_mc, b2_mc, 
+full_plot <- ggpubr::ggarrange(b0_mc, b1_mc, b2_mc, 
                        ncol = 3, common.legend = T, 
                        legend = "bottom")
 ```
-```{r, echo=FALSE}
+```{r MCmultikoll, echo=FALSE, fig.cap="Folgen der Multikollinearität mit Bezug auf Erwartungstreue und Effizienz anhand von Monte Carlo Simulationen."}
 full_plot
 ```
 
@@ -1766,37 +1770,38 @@ x_{i2} &= \hat{\beta}_0^a + \hat{\beta}_2^a x_{i1} + e^a\\
 \end{align}
 
 Bei $k$ erklärenden Variablen ergeben sich die $k-1$ Hilfsregressionen durch 
-eine Umstellung bei der wir eine erklärenden Variable auf die LHS der 
+eine Umstellung bei der wir eine erklärende Variable auf die LHS der 
 Regressionsgleichung ziehen und alle weiteren erklärenden Variablen auf der RHS
 belassen.
-Im folgenden Bezeichnen wir mit $R^2_h$ das Bestimmtheitsmaß der h-ten
+Im Folgenden bezeichnen wir mit $R^2_h$ das Bestimmtheitsmaß der h-ten
 Hilfsregression (also der Hilfsregression mit $x_{ih}$ als abhängiger Variable).
 
 Es kann nun gezeigt werden, dass für die Varianz des Schätzers 
-$\boldsymbol{\hat{\beta}}$ folgendes gilt (siehe @greene für Details):
+$\boldsymbol{\hat{\beta}}$ Folgendes gilt (siehe @greene für Details):
 
 $$Var(\beta_h) = \frac{\sigma^2}{\left(1-R_h^2\right)\sum_{i=1}^n\left(x_{ih}-\bar{x_h}\right)^2} $$
 Hieraus wird unmittelbar ersichtlich, dass die Varianz des Schätzers steigt
-je größer die Bestimmtheitsmaße der Hilfsregressionen ist!
+je größer das Bestimmtheitsmaß der Hilfsregressionen ist!
 
-Gleichzeitig wissen wir aus den Herleitungen oben auch, dass Multikollinearität
+Gleichzeitig wissen wir aus den obigen Herleitungen auch, dass Multikollinearität
 keinen Einfluss auf die Erwartungstreue oder Effizienz des OLS-Schätzers hat.^[
 Beachten Sie, dass wir den Begriff *Effizienz* hier immer relativ verwenden:
 unter Multikollinearität wird der OLS-Schätzer weniger genau, aber er bleibt 
 dennoch der genauste Schätzer, den wir zur Verfügung haben.
 ]
+<!-- Das ist ein guter Punkt den ich eigentlich aus der Fußnote raus und in den Text setzen würde -->
 
 ### Testen auf Multikollinearität
 
-Da der Begriff der Multikollinearität nicht exakt definiert ist gibt es 
-natürlich auch keinen exakten Test.
+Da der Begriff der Multikollinearität nicht exakt definiert ist (außer für den 
+Fall der perfekten Multikollinearität) gibt es natürlich keinen exakten Test.
 Die Frage welches Ausmaß an Korrelation zwischen den erklärenden Variablen
-akzeptabel ist ist auch immer eine individuelle Entscheidung.
+akzeptabel ist, ist demnach auch immer eine individuelle Entscheidung.
 Es haben sich jedoch einige Faustregeln herausgebildet die zumindest hilfreich
 sind um festzustellen ob Multikollinearität die Größe der Standardfehler in 
 unserer Regression erklären kann.
 
-Zu diesem Zweck führen wir wieder die *Hilfsregressionen* von oben durch durch.
+Zu diesem Zweck führen wir wieder die *Hilfsregressionen* von oben durch.
 Die Bestimmtheitsmaße $R^2$ dieser Hilfsregressionen geben uns einen Hinweis auf das
 Ausmaß der Korrelation zwischen den erklärenden Variablen.
 Ist eines der Bestimmtheitsmaße ähnlich groß wie das Bestimmtheitsmaß der 
@@ -1824,14 +1829,13 @@ anderes übrig als uns zu ärgern und die Kröte der Multikollinearität zu schl
 
 ## Vergessene Variablen {#advlin-omitted-var}
 
-Stellen wir uns vor der 'wahre' Datengenerierende Prozess sie folgendermaßen 
+Stellen wir uns vor, der 'wahre' datengenerierende Prozess sähe folgendermaßen 
 aus:
 
 $$\boldsymbol{y} = \beta_0 + \beta_1 \boldsymbol{x}_1 + \beta_2 \boldsymbol{x}_2 + \boldsymbol{\epsilon}$$
 
 Aufgrund geistiger Umnachtung haben wir in unserem Modell $\boldsymbol{x}_2$
-aber nicht berücksichtigt.
-Unser geschätztes Modell ist also:
+aber nicht berücksichtigt. Unser geschätztes Modell ist also:
 
 $$\boldsymbol{\hat{y}} = \hat{\beta_0} + \hat{\beta_1} \boldsymbol{x}_1 + \boldsymbol{e}$$
 
@@ -1840,7 +1844,7 @@ Dies ist ein praktisch hochrelevantes Problem, denn häufig hat man relevante
 Variablen nicht auf dem Schirm oder es gibt zu uns relevant erscheinenden 
 Variablen keine Daten.
 
-Die Frage, die sich nun stellt: was sind die Implikationen vergessener Variablen?
+Es stellt sich nun die Frage: was sind die Implikationen vergessener Variablen?
 Die Antwort ist recht unbequem, da wir hier nicht so glimpflich wie bisher davon
 kommen:
 im Falle vergessener Variablen ist Annahme A2 nicht mehr erfüllt und unser 
@@ -1858,6 +1862,7 @@ $$\boldsymbol{y} = \beta_0 + \beta_1 \boldsymbol{x}_1 + \beta_2 \boldsymbol{x}_2
 schätzen aber nur folgende Spezifikation:
 
 $$\boldsymbol{\hat{y}} = \hat{\beta_0} + \hat{\beta_1} \boldsymbol{x}_1 + \boldsymbol{e}$$
+Das Ergebnis der Simulation ist in Abbildung \@ref(fig:MComittedvar) ersichtlich.
 
 ```{r, echo=FALSE}
 dgp_ovb <- function(x_1, x_2, beta_0, beta_1, beta_2){
@@ -1866,7 +1871,7 @@ dgp_ovb <- function(x_1, x_2, beta_0, beta_1, beta_2){
   for (i in 1:length(y)){
     y[i] <- beta_0 + beta_1*x_1[i] + beta_2*x_2[i] + errors[i]
   }
-  data_full <- tibble("y"=y, "x_1"=x_1, "x_2"=x_2)
+  data_full <- dplyr::tibble("y"=y, "x_1"=x_1, "x_2"=x_2)
   return(data_full)
 }
 
@@ -1880,7 +1885,7 @@ mcs_ovb_fct <- function(iterations, beta_0, beta_1, beta_2,
     beta_0_estimates[i] <- regression$coefficients[1]
     beta_1_estimates[i] <- regression$coefficients[2]
   }
-  result_tibble <- tibble("b0"=beta_0_estimates, 
+  result_tibble <- dplyr::tibble("b0"=beta_0_estimates, 
                           "b1"=beta_1_estimates)
   return(result_tibble)
 }
@@ -1901,52 +1906,52 @@ reg_func <- as.formula("y~x_1")
 mcs_ovb <- mcs_ovb_fct(iterations, beta_0, beta_1, beta_2, 
                        x_1, x_2, reg_func)
 
-fwrite(mcs_ovb, file = here("data/tidy/advlinmodels_mcs_ovb.csv"))
+data.table::fwrite(mcs_ovb, file = here("data/tidy/advlinmodels_mcs_ovb.csv"))
 ```
 
 
 ```{r, echo=FALSE}
-mcs_ovb <- fread(here("data/tidy/advlinmodels_mcs_ovb.csv"), 
+mcs_ovb <- data.table::fread(here("data/tidy/advlinmodels_mcs_ovb.csv"), 
                   colClasses = c("double", "double"))
 ```
 
 
 ```{r, warning=FALSE, echo=FALSE}
-b0_mc <- ggplot(data = mcs_ovb, 
+b0_mc <- ggplot2::ggplot(data = mcs_ovb, 
                 mapping = aes(x=b0)) +
-  geom_density(alpha=0.5, fill="#006600") +
-  geom_vline(xintercept = beta_0) +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
-  scale_x_continuous(limits = c(0.85, 2.5)) + 
-  ylab(TeX("Dichte der Schätzer")) +
-  xlab(TeX("Wert für $\\hat{\\beta}_0$")) +
-  ggtitle(TeX("Schätzer für $\\hat{\\beta}_0$")) +
-  scale_color_icae(palette = "mixed") +
-  theme_icae()
+  ggplot2::geom_density(alpha=0.5, fill="#006600") +
+  ggplot2::geom_vline(xintercept = beta_0) +
+  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
+  ggplot2::scale_x_continuous(limits = c(0.85, 2.5)) + 
+  ggplot2::ylab(TeX("Dichte der Schätzer")) +
+  ggplot2::xlab(TeX("Wert für $\\hat{\\beta}_0$")) +
+  ggplot2::ggtitle(TeX("Schätzer für $\\hat{\\beta}_0$")) +
+  icaeDesign::scale_color_icae(palette = "mixed") +
+  icaeDesign::theme_icae()
 
-b1_mc <- ggplot(data = mcs_ovb, 
+b1_mc <- ggplot2::ggplot(data = mcs_ovb, 
                 mapping = aes(x=b1)) +
-  geom_density(alpha=0.5, fill="#006600") +
-  geom_vline(xintercept = beta_1) +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
-  scale_x_continuous(limits = c(0.0, 1.3)) + 
-  ylab(TeX("Dichte der Schätzer")) +
-  xlab(TeX("Wert für $\\hat{\\beta}_1$")) +
-  ggtitle(TeX("Schätzer für $\\hat{\\beta}_1$")) +
-  scale_color_icae(palette = "mixed") +
-  theme_icae()
+  ggplot2::geom_density(alpha=0.5, fill="#006600") +
+  ggplot2::geom_vline(xintercept = beta_1) +
+  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
+  ggplot2::scale_x_continuous(limits = c(0.0, 1.3)) + 
+  ggplot2::ylab(TeX("Dichte der Schätzer")) +
+  ggplot2::xlab(TeX("Wert für $\\hat{\\beta}_1$")) +
+  ggplot2::ggtitle(TeX("Schätzer für $\\hat{\\beta}_1$")) +
+  icaeDesign::scale_color_icae(palette = "mixed") +
+  icaeDesign::theme_icae()
 
-full_plot <- ggarrange(b0_mc, b1_mc, 
+full_plot <- ggpubr::ggarrange(b0_mc, b1_mc, 
                        ncol = 2, common.legend = T, 
                        legend = "none")
 ```
-```{r, echo=FALSE}
+```{r MComittedvar, echo=FALSE, fig.cap="Folgen der vergessenen Variablen mit Bezug auf Erwartungstreue anhand von Monte Carlo Simulationen."}
 full_plot
 ```
 
-Wir sehen also, dass unser OLS-Schätzer nun nicht mehr erwartungstreu sind!
+Wir sehen also, dass unsere OLS-Schätzer nun nicht mehr erwartungstreu sind!
 Dies können wir auch recht einfach analytisch zeigen.
-Nehmen wir generell an, das korrekte Modell ist gegeben durch:
+Nehmen wir generell an, das korrekte Modell sei gegeben durch:
 
 $$\boldsymbol{y} = \boldsymbol{X\beta} + \boldsymbol{z}\gamma + \boldsymbol{\epsilon} $$
 wobei $\boldsymbol{z}$ hier eine unabhängige Variable ist, die wir normalerweise
@@ -1975,7 +1980,7 @@ erklärenden Variablen korreliert.
 Es ist sehr unwahrscheinlich, dass dies der Fall ist sollte $\boldsymbol{z}$
 tatsächlich relevant für die Erklärung von $\boldsymbol{y}$ sein.
 
-Das Vergessen relevanter Variablen führt also zu einer Korrelation der andren 
+Das Vergessen relevanter Variablen führt also zu einer Korrelation der anderen 
 unabhängigen Variablen mit dem Fehlerterm, da der Effekt von $\boldsymbol{z}$
 dann im Fehlerterm steckt und dieser dann mit den anderen unabhängigen Variablen
 korreliert. Zudem gilt, dass $\mathbb{E}(\epsilon)\neq0$.
@@ -1990,7 +1995,9 @@ Da wir den wahren datenerzeugenden Prozess nicht kennen ist es unmöglich direkt
 zu testen ob wir eine relevante Variable vergessen haben.
 Es gibt einen möglichen Test, der die Verwendung von *Instrumentenvariablen*
 einschließt - ein Thema, das wir später behandeln werden - allerdings basiert 
-auch dieser Test dann wiederum auch nicht zu testenden Annahmen.
+auch dieser Test dann wiederum auf nicht zu testenden Annahmen.
+<!-- Werden IVs in diesem Buch noch behandelt? Sonst halbsatz oben raus -->
+
 Insgesamt müssen wir uns hier also vor allem auf unsere theoretischen 
 Überlegungen verlassen: 
 wir müssen überlegen welche Variablen einen Einfluss auf unsere zu erklärende
@@ -1999,11 +2006,11 @@ Weise in der Regression berücksichtigt werden!
 
 ### Reaktion auf vergessene Variablen
 
-Das ist diesmal einfach: fügen Sie 'einfach' die relevanten Variablen zu ihrer
+Das ist diesmal einfach: fügen Sie 'einfach' die relevanten Variablen zu Ihrer
 Regression hinzu.
 Wenn Sie dazu keine Daten haben hilft Ihnen allerhöchstens die Verwendung von 
-*Instrumentenvariablen*, einem Thema, das wir später in der Vorlesung
-behandeln werden.
+*Instrumentenvariablen*.
+<!-- Falls das im nächsten Kapitel/diesem Buch nicht mehr angesprochen wird vllt hier eine Fußnote setzen mit weiterführender Literatur oder so? -->
 
 ## Falsche funktionale Form
 
@@ -2020,43 +2027,45 @@ Dies geschieht durch die Wahl der funktionalen Form.
 Am besten wir illustrieren dies durch ein univariates Beispiel.
 
 So ist auf den ersten Blick ersichtlich, dass der Zusammenhang zwischen BIP und
-Konsumausgaben direkt linear ist:
+Konsumausgaben direkt linear ist, siehe Abbildung \@ref(fig:linearBIP).
 
-```{r}
-bipkonsum <- fread(here("data/tidy/BIPKonsum.csv"), 
+```{r linearBIP, echo=FALSE, fig.cap="Linearer Zusammenhang zwischen BIP und Konsumausgaben."}
+bipkonsum <- data.table::fread(here("data/tidy/BIPKonsum.csv"), 
                    colClasses = rep("double", 3))
-ggplot(data = bipkonsum, aes(x=BIP, y=Konsumausgaben)) +
-  geom_point() + theme_icae()
+ggplot2::ggplot(data = bipkonsum, aes(x=BIP, y=Konsumausgaben)) +
+  ggplot2::geom_point() + icaeDesign::theme_icae()
 ```
+
+<!-- Info: ich hab hier beim vorigen chunk mal echo=FALSE eingesetzt, weil hier ja eigl nur der plot wichtig ist und nicht der code. passt? -->
 
 Wir könnten den Zusammenhang also unmittelbar mit OLS schätzen ohne gegen 
 Annahme A1 zu verstoßen.
 
 Der Zusammenhang zwischen BIP pro Kopf und Kindersterblichkeit im Jahr 2000 
-erscheint dagegen nicht linear zu sein:
+erscheint dagegen nicht linear zu sein, siehe Abbildung \@ref(fig:nonlinearBIP).
 
-```{r, echo=FALSE}
-wb_data <- fread(here("data/tidy/wb_bip_ineq_mort.csv"),
+```{r nonlinearBIP, echo=FALSE, fig.cap="Nicht-linearer Zusammenhang zwischen BIP und Kindersterblichkeit."}
+wb_data <- data.table::fread(here("data/tidy/wb_bip_ineq_mort.csv"),
                  colClasses = c(rep("character", 2), rep("double", 5))) %>%
-  filter(year==2000)
-ggplot(data = wb_data, aes(x=GDP_PPPpc, y=MORTRATE)) +
-  xlab("BIP pro Kopf (PPP)") + ylab("Kindersterblichkeit") +
-  geom_point() + theme_icae()
+  dplyr::filter(year==2000)
+ggplot2::ggplot(data = wb_data, aes(x=GDP_PPPpc, y=MORTRATE)) +
+  ggplot2::xlab("BIP pro Kopf (PPP)") + ggplot2::ylab("Kindersterblichkeit") +
+  ggplot2::geom_point() + icaeDesign::theme_icae()
 ```
 
 
-Wenn wir diesen Zusammenhang mit OLS schätzen würden würden wir klar gegen 
+Wenn wir diesen Zusammenhang mit OLS schätzen würden, würden wir klar gegen 
 Annahme A1 verstoßen. Die Konsequenz wäre, dass unser Schätzer weder erwartungstreu,
 noch konsistent noch effizient wäre.
 
-Gleichzeitig können wir durch Wahl einer alternativen funktionalen Form den 
+Gleichzeitig können wir durch die Wahl einer alternativen funktionalen Form den 
 Zusammenhang linearisieren. 
-Dazu nehmen wir einfach den Logarithmus:
+Dazu nehmen wir einfach den Logarithmus, wie in Abbildung \@ref(fig:logBIP).
 
-```{r, echo=FALSE}
-ggplot(data = wb_data, aes(x=log(GDP_PPPpc), y=log(MORTRATE))) +
-  xlab("BIP pro Kopf (PPP, log)") + ylab("Kindersterblichkeit (log)") +
-  geom_point() + theme_icae()
+```{r logBIP, echo=FALSE, fig.cap="Logarithmierter Zusammenhang zwischen BIP und Kindersterblichkeit."}
+ggplot2::ggplot(data = wb_data, aes(x=log(GDP_PPPpc), y=log(MORTRATE))) +
+  ggplot2::xlab("BIP pro Kopf (PPP, log)") + ggplot2::ylab("Kindersterblichkeit (log)") +
+  ggplot2::geom_point() + icaeDesign::theme_icae()
 ```
 
 Diesen Zusammenhang können wir nun mit OLS schätzen ohne gegen A1 zu verstoßen!
@@ -2068,7 +2077,7 @@ Schätzer haben kann!
 
 Wie bereits erwähnt bezieht sich die Wahl der funktionalen Form direkt auf 
 Annahme A1. 
-Wir wir oben gesehen haben ist diese Annahme wichtig um die Konsistenz und 
+Wie wir oben gesehen haben ist diese Annahme wichtig um die Konsistenz und 
 Erwartungstreue des OLS-Schätzers herzuleiten.
 Mit anderen Worten:
 ist A1 nicht erfüllt, z.B. durch die Wahl einer falschen funktionalen Form,
@@ -2080,7 +2089,7 @@ Schätzverfahren wählen.
 
 Bei der Wahl der funktionalen Form spielen vor allem theoretische Überlegungen 
 eine wichtige Rolle.
-Auch eine Inspektion der paarweisen Beziehungen zwischen abhängiger und 
+Auch eine Inspektion der paarweisen Beziehungen zwischen abhängigen und 
 unabhängigen Variablen ist hilfreich.
 
 Eine wirksame Methode zur Überprüfung unserer funktionalen Form ist dagegen 
@@ -2095,31 +2104,31 @@ Für diese Gründe gibt es jedoch zusätzlich noch statistische Tests sodass wir
 durch sukszessives Testen und Ausprobieren eine angemessene funktionale Form
 identifizieren können.
 
-Es gibt auch einige Tests, die manchmal verwendet werden um die richtige 
-Wahr der funktionalen Form zu überprüfen. 
+Es gibt auch einige Tests, die manchmal verwendet werden um die Wahl der
+funktionalen Form zu überprüfen. 
 Der bekannteste Test ist dabei der so genannte *RESET Test*. 
 *RESET* steht dabei für *REgression Specification Error Test*. 
-Dieser Test wird mit der Funktion `resettest()` durchgeführt und testes die
+Dieser Test wird mit der Funktion `resettest()` durchgeführt und testet die
 $H_0$, dass wir die richtige funktionale Form gewählt haben.
 
 Wir illustrieren den Test anhand folgenden Beispiels, in dem wir den uns bereits
 bekannten Datensatz zu Journaldaten analysieren.
 
 ```{r, echo=FALSE}
-journal_daten <- fread(here("data/tidy/journaldaten.csv"), 
+journal_daten <- data.table::fread(here("data/tidy/journaldaten.csv"), 
                        colClasses = c(rep("character", 4), rep("double", 6), 
                                       "character")) %>%
   dplyr::mutate(`Preis pro Zitation` = Preis / Zitationen)
 ```
 
-Wir betrachten den Zusammenhang zwischen Abonnenten und dem Preis pro Zitation.
-Wie wir hier sehen ist dieser Zusammenhang alles andere linear:
+Wir betrachten den Zusammenhang zwischen der Abonnentenanzahl und dem Preis pro 
+Zitation. Wie wir in Abbildung \@ref(fig:Journalnonlinear) sehen ist dieser Zusammenhang alles andere linear:
 
-```{r, echo=FALSE}
-ggplot(data = journal_daten, 
+```{r Journalnonlinear, echo=FALSE, fig.cap="Nicht-linearer Zusammenhang zwischen Abonnenten und dem Preis pro Zitation"}
+ggplot2::ggplot(data = journal_daten, 
        aes(x=UQ(as.name("Preis pro Zitation")),
            y=Abonnenten)) +
-  geom_point() + theme_icae()
+  ggplot2::geom_point() + icaeDesign::theme_icae()
 ```
 
 
@@ -2132,14 +2141,14 @@ $$\text{Abonnenten} = \beta_0 + \beta_1 \text{Zitationspreis} + \epsilon$$
 lin_mod <- lm(Abonnenten~`Preis pro Zitation`, data=journal_daten)
 ```
 
-Wenn wir aber beide Größen logarithmieren würden wäre der Zusammenhang schon
-ziemlich linear:
+Wenn wir aber beide Größen logarithmieren würden, wäre der Zusammenhang schon
+ziemlich linear, siehe Abbildung \@ref(fig:Journalelog).
 
-```{r}
-ggplot(data = journal_daten, 
+```{r Journalelog, echo=FALSE, fig.cap="Logarithmierter Zusammenhang zwischen Abonnenten und Preis pro Zitation."}
+ggplot2::ggplot(data = journal_daten, 
        aes(x=log(UQ(as.name("Preis pro Zitation"))),
            y=log(Abonnenten))) +
-  geom_point() + theme_icae()
+  ggplot2::geom_point() + icaeDesign::theme_icae()
 ```
 
 Die folgende Gleichung wäre also nicht unbedingt mit einem Verstoß gegen A1 verbunden:
@@ -2166,10 +2175,11 @@ Wie sieht es mit dem Log-Lin Modell aus?
 resettest(log_mod)
 ```
 
-Hier kann $H_0$ nicht abgelehnt werden.
+Hier kann $H_0$ nicht abgelehnt werden, dementsprechend können wir nicht davon 
+ausgehen, dass unser Modell misspezifiziert ist.
 
 Beachten Sie aber, dass der RESET Test keine abschließende Sicherheit bieten kann.
-Sie werden immer wieder Situationen erlegebn in denen der RESET Test ein Modell
+Sie werden immer wieder Situationen erleben in denen der RESET Test ein Modell
 ablehnt, das sie aufgrund empirischer und theoretischer Überlegungen gut 
 verteidigen könnten und umgekehrt.
 Daher sollte er immer mit Theorie und Beobachtung kombiniert werden.
@@ -2182,10 +2192,12 @@ Form eine andere ist, kann die Wahl einer bestimmten funktionalen Form auch
 theoretisch motiviert sein.
 Gerade die so genannten 'log-log-Modelle' sind häufig auch theoretisch sehr 
 interessant, da wir hier Elastizitäten direkt schätzen können.
-Die folgende Tabelle gibt einen Überblick über häufig gewählte Spezifikationen
-und ihre Interpretation für das einfache lineare Regressionsmodell.
+Tabelle \@ref(tab:funktform) gibt einen Überblick über häufig gewählte 
+Spezifikationen und ihre Interpretation für das einfache lineare Regressionsmodell.
 Für das Modell mit mehreren unabhängigen Variablen ist die Interpretation 
-äquivalent:
+äquivalent.
+
+Table: (\#tab:funktform) Spezifikationen der funktionalen Form und ihre Interpretationen.
 
 | **Modellart** | **Schätzgleichung** | **Interpretation der Koeffizienten** |
 |---------------+---------------------+--------------------------------------|
@@ -2199,29 +2211,31 @@ Die Daten kommen von @chicken und enthalten Information zum Preis und zum
 Konsum von Hähnchenfleisch.
 
 ```{r, echo=FALSE}
-chicken_daten <- fread(here("data/tidy/chicken_data.csv"), 
+chicken_daten <- data.table::fread(here("data/tidy/chicken_data.csv"), 
                        colClasses = rep("double", 10))
 lin_model <- lm(q~p, data = chicken_daten)
 ```
 
-Wie wir sehen werden ist dieser Zusammenhang an sich nicht
-linear, kann aber durch Logarithmieren in eine lineare Form gebracht werden:
+Wie in Abbildung \@ref(fig:chicken) ersichtlich ist dieser Zusammenhang an sich 
+nicht linear, kann aber durch Logarithmieren in eine lineare Form gebracht werden.
 
-```{r, echo=FALSE}
-chicken_nachfrage <- ggplot(data = chicken_daten, aes(x=p, y=q)) +
-  xlab("Preis") + ylab("Konsum") + geom_point() + theme_icae() +
-  geom_smooth(method = "lm", se = FALSE) +
-  geom_abline() +
-  ggtitle("Preis und Konsum von Hühnchenfleisch")
+```{r chicken, echo=FALSE, fig.cap="Nicht-linearer und logarithmierter Zusammenhang zwischen Preis und Konsum von Hühnchenpreis."}
+chicken_nachfrage <- ggplot2::ggplot(data = chicken_daten, aes(x=p, y=q)) +
+  ggplot2::xlab("Preis") + ggplot2::ylab("Konsum") + ggplot2::geom_point() + 
+  icaeDesign::theme_icae() +
+  ggplot2::geom_smooth(method = "lm", se = FALSE) +
+  ggplot2::geom_abline() +
+  ggplot2::ggtitle("Preis und Konsum von Hühnchenfleisch")
 
-chicken_nachfrage_log <- ggplot(data = chicken_daten, aes(x=p, y=q)) +
-  xlab("log(Preis)") + ylab("log(Konsum)") + geom_point() + theme_icae() +
-  geom_smooth(method = "lm", se = FALSE) +
-  scale_x_continuous(trans = "log") +
-  scale_y_continuous(trans = "log") +
-  ggtitle("Preis und Konsum von Hühnchenfleisch")
+chicken_nachfrage_log <- ggplot2::ggplot(data = chicken_daten, aes(x=p, y=q)) +
+  ggplot2::xlab("log(Preis)") + ggplot2::ylab("log(Konsum)") + ggplot2::geom_point() + 
+  icaeDesign::theme_icae() +
+  ggplot2::geom_smooth(method = "lm", se = FALSE) +
+  ggplot2::scale_x_continuous(trans = "log") +
+  ggplot2::scale_y_continuous(trans = "log") +
+  ggplot2::ggtitle("Preis und Konsum von Hühnchenfleisch")
 
-ggarrange(chicken_nachfrage, chicken_nachfrage_log, 
+ggpubr::ggarrange(chicken_nachfrage, chicken_nachfrage_log, 
           ncol=2, nrow = 1)
 ```
 
@@ -2247,7 +2261,8 @@ Konsum um ca. $1.12\%$ zurückgehen.
 
 ## Weitere Fehlerquellen: Systematische Messfehler, Selbstselektion und Simulatanität
 
-Annahme A2 kann nur aufgrund von drei weiteren Gründen verletzt werden:
+Annahme A2, Exogenität der unabhängigen Variablen, kann nur aufgrund von drei 
+weiteren Gründen verletzt werden:
 aufgrund von Messfehlern, von Selbstselektion der Stichprobe und
 aufgrund von Simulatanität.
 Diese Fehlerquellen sind etwas anders geartet als die anderen hier besprochenen
@@ -2257,7 +2272,7 @@ geschieht entweder auf Ebene der Datenerhebung (Messfehler, Selbstselektion)
 oder ist dem zu untersuchenden Zusammenhang inhärent (Simulatanität).
 Insofern können wir nicht wirklich auf diese Fehler testen sondern müssen 
 bei der Auswahl unserer Daten und der Formulierung unseres Modells diese 
-Fehlerquellen in betracht ziehen.
+Fehlerquellen in Betracht ziehen.
 
 Im Folgenden wollen wir kurz darstellen wie diese drei Fehlerquellen zu einer
 Verletzung von A2 führen.
@@ -2356,6 +2371,12 @@ und damit wiederum ein Verstoß gegen A2!
 
 ## Anhang: Übersicht über die Testverfahren
 
+Tabelle \@ref(tab:testverfahren) bietet einen Überblick über die verschiedenen 
+möglichen Probleme bei OLS Schätzungen, die Tests zur Prüfung dieser Probleme, 
+der Implikationen sowie möglicher Lösungsansätze.
+
+Table: (\#tab:testverfahren) Übersicht über die Testverfahren.
+
 | **Problem**   | **Mögliche Tests**      | **Implikationen**    | **Reaktion**   |
 |---------------+-------------------------+----------------------+----------------|
 | Heteroskedastie              | Tukey-Anscombe Plot, Breusch-Pagan (`bptest()`), Goldfeld-Quandt (`gqtest`) | Reduzierte Effizienz, falsche Standardfehler | Robuste Standardfehler |
@@ -2368,7 +2389,7 @@ und damit wiederum ein Verstoß gegen A2!
 
 An dieser Stelle werden alle relevanten Theoreme gesammelt.
 Während wir im Hauptteil des Kapitels die Implikationen der Theoreme anhand
-von Monte-Carlo Simulationen illustriert haben finden Sie hier die 
+von Monte Carlo Simulationen illustriert haben finden Sie hier die 
 dazugehörigen mathematischen Beweise.
 
 ### Theoreme
