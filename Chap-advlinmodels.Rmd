@@ -842,7 +842,6 @@ Zu diesem Zweck visualisieren wir Verteilung der geschätzten Werte für $\beta_
 und zeichnen zudem den wahren Wert ein:
 
 ```{r}
-
 beta_1_plot <- ggplot(data = full_results, 
                       mapping = aes(x=b1_coef, color=Fall, fill=Fall)) +
   geom_density(alpha=0.5) +
@@ -2547,3 +2546,72 @@ Daher kommt die Relevanz von Theorem \ref{theo:ols-sdf}, welches gleichzeitig di
 \begin{proof}[Beweis von Theorem \ref{theo:ols-konsistenz}]
 	Wir ergänzt.
 \end{proof}
+
+
+
+# Reinkopiert aus letztem Kapitel
+
+### Residuenanalyse {#linmod-residuals}
+
+Eine sehr hilfreiche Art, die Modellannahmen von oben zu überprüfen ist die Analyse der Residuen. 
+
+<!-- was heißt "von oben"? -->
+
+Diese sind im Ergebnisobjekt der Regression gespeichert:
+
+```{r, eval=FALSE}
+schaetzung_bip[["residuals"]]
+```
+
+Wir wollen nun die Residuen verwenden um die folgenden Annahmen unseres Regressionsmodells zu überprüfen:
+
+1. **A3: ** $Var(\epsilon_i)=\sigma^2\forall i$
+
+2. **A4: ** $Cov(\epsilon_i, \epsilon_j)=0 \forall i,j$
+
+3. **A6:** $\epsilon \propto \mathcal{N}(0, \sigma^2)$
+
+<!-- Ich dachte bei 3/A6 ginge es um die Fehler, nicht um die Residuen. I'm confused :(  -->
+
+Um die ersten beiden Annahmen zu überpüfen bilden wir die $e_i$ gegen $\hat{Y}$ ab und erhalten so den so genannten **Tukey-Anscombe-Plot** (siehe Abbildung \@ref(fig:TAPlot)).
+
+```{r TAPlot, echo=FALSE, fig.cap="Tukey-Anscombe-Plot."}
+ggplot2::ggplot(
+  data.frame(
+    GefitteteWerte=schaetzung_bip[["fitted.values"]],
+    Residuen=schaetzung_bip[["residuals"]]),
+  aes(x=GefitteteWerte, y=Residuen)
+  ) +
+  ggplot2::ggtitle("Tukey-Anscombe-Plot") +
+  ggplot2::geom_hline(yintercept = 0) + 
+  ggplot2::geom_point() +
+  icaeDesign::theme_icae()
+```
+
+
+Hier geht es nun darum eine Struktur zu erkennen.
+Wenn alle Annahmen korrekt sind, sehen wir nur eine unstrukturierte Punktewolke. In dem vorliegenden Fall können wir aufgrund der wenigen Datenpunkte den Plot aber nur mit großer Schwerierigkeit interpretieren - auch deswegen sind große Stichproben immer besser.
+Es scheint aber so zu sein, dass die Varianz der Fehler mit $x_i$ steigt, also A3 möglicherweise verletzt ist - zum Glück kann man den OLS-Schätzer leicht modifizieren um damit umzugehen.
+<!-- Varianz der Residuen oder? -->
+
+Ansonsten ist keine Struktur zumindest unmittelbar ersichtlich.
+
+Als nächstes wollen die Annahme normalverteilter Residuen überprüfen. Das geht mit dem so genannten **Q-Q-Plot**, siehe dazu Abbildung \@ref(fig:QQPlot).
+
+```{r QQPlot,echo=FALSE, fig.cap="Q-Q-Plot zur Überprüfung der Residuen."}
+ggplot2::ggplot(data.frame(Residuen=schaetzung_bip[["residuals"]]),
+       aes(sample=Residuen)) + 
+  ggplot2::stat_qq() + ggplot2::stat_qq_line() +
+  ggplot2::ggtitle("Q-Q-Plot für die Residuen") +
+  icaeDesign::theme_icae()
+```
+
+Bei normalverteilten Residuen würden die Punkte möglichst exakt auf der Linie liegen. Das ist hier nur bedingt der Fall, deswegen sollten wir skeptisch bezüglich aller Ergebnisse sein, die auf der Normalverteilungsannahme aufbauen, also auf den Standardfehlern, $p$-Werten und den Konfidenzintervallen.
+
+Natürlich gibt es auch noch weitere Probleme, die bei einer linearen Regression auftreten können. So ist es immer ein Problem, wenn wir eine wichtige erklärende Variable in 
+unserem Modell vergessen haben (**omitted variable bias**), da deren Effekt dann durch die Fehlerterme abgefangen wird und zu einer Verletzung von **A1** und **A2** führt.
+
+Ein großes Problem stellt auch die so genannte **Simultanität** dar: diese tritt auf, wenn zwischen erklärter und erklärender Variable ein wechelseitiges kausales Verhältnis besteht. Wir sprechen dann auch von einem **Endogenitätsproblem**, welches leider sehr häufig auftritt und letztendlich vor allem theoretisch identifiziert werden muss.
+
+Ausführlichere Tests und Möglichkeiten mit verletzten Annahmen umzugehen werden im folgenden Kapitel @ref(#advlin) genauer diskutiert.
+
