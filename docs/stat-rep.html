@@ -24,7 +24,7 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-10-02" />
+<meta name="date" content="2020-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -328,7 +328,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>9.2</b> Hypothesentests</a></li>
 <li class="chapter" data-level="9.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>9.3</b> Berechnung von Konfidenzintervallen</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>10</b> Lineare statistische Modelle in R</a></li>
+<li class="chapter" data-level="10" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>10</b> Lineare statistische Modelle in R</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>10.1</b> Einleitung und Überblick</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1.1</b> Einführung in die lineare Regression</a></li>
+<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.2</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="10.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>10.2</b> Grundlagen der einfachen linearen Regression</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="linmodel.html"><a href="linmodel.html#grundlegende-begriffe"><i class="fa fa-check"></i><b>10.2.1</b> Grundlegende Begriffe</a></li>
+<li class="chapter" data-level="10.2.2" data-path="linmodel.html"><a href="linmodel.html#schätzung-mit-der-kleinste-quadrate-methode"><i class="fa fa-check"></i><b>10.2.2</b> Schätzung mit der Kleinste-Quadrate-Methode</a></li>
+<li class="chapter" data-level="10.2.3" data-path="linmodel.html"><a href="linmodel.html#ols-ass"><i class="fa fa-check"></i><b>10.2.3</b> Annahmen für den OLS Schätzer</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="linmodel.html"><a href="linmodel.html#lin-kennzahlen"><i class="fa fa-check"></i><b>10.3</b> Kennzahlen in der linearen Regression</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="linmodel.html"><a href="linmodel.html#erklärte-varianz-und-das-r2"><i class="fa fa-check"></i><b>10.3.1</b> Erklärte Varianz und das <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="10.3.2" data-path="linmodel.html"><a href="linmodel.html#hypothesentests-und-statistische-signifikanz"><i class="fa fa-check"></i><b>10.3.2</b> Hypothesentests und statistische Signifikanz</a></li>
+<li class="chapter" data-level="10.3.3" data-path="linmodel.html"><a href="linmodel.html#konfidenzintervalle-für-die-schätzer"><i class="fa fa-check"></i><b>10.3.3</b> Konfidenzintervalle für die Schätzer</a></li>
+<li class="chapter" data-level="10.3.4" data-path="linmodel.html"><a href="linmodel.html#zur-rolle-der-stichprobengröße"><i class="fa fa-check"></i><b>10.3.4</b> Zur Rolle der Stichprobengröße</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="linmodel.html"><a href="linmodel.html#lin-multi"><i class="fa fa-check"></i><b>10.4</b> Multiple lineare Regression</a></li>
+<li class="chapter" data-level="10.5" data-path="linmodel.html"><a href="linmodel.html#stat-ablauf"><i class="fa fa-check"></i><b>10.5</b> Zum Ablauf einer Regression</a></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>11</b> Fortgeschrittene Themen der linearen Regression</a></li>
 <li class="chapter" data-level="12" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>12</b> Ausgewählte nichtlineare Schätzverfahren</a></li>
 <li class="chapter" data-level="13" data-path="outlook.html"><a href="outlook.html"><i class="fa fa-check"></i><b>13</b> Ausblick</a></li>
@@ -425,12 +448,12 @@ für <span class="math inline">\(p\)</span>.</p>
 <p>Im Folgenden werden die drei Verfahren in größerem Detail besprochen.</p>
 <div id="verwendete-pakete" class="section level2 unnumbered">
 <h2>Verwendete Pakete</h2>
-<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="stat-rep.html#cb730-1" aria-hidden="true"></a><span class="kw">library</span>(here)</span>
-<span id="cb730-2"><a href="stat-rep.html#cb730-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb730-3"><a href="stat-rep.html#cb730-3" aria-hidden="true"></a><span class="kw">library</span>(ggpubr)</span>
-<span id="cb730-4"><a href="stat-rep.html#cb730-4" aria-hidden="true"></a><span class="kw">library</span>(latex2exp)</span>
-<span id="cb730-5"><a href="stat-rep.html#cb730-5" aria-hidden="true"></a><span class="kw">library</span>(AER)</span>
-<span id="cb730-6"><a href="stat-rep.html#cb730-6" aria-hidden="true"></a><span class="kw">library</span>(MASS)</span></code></pre></div>
+<div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb731-1"><a href="stat-rep.html#cb731-1" aria-hidden="true"></a><span class="kw">library</span>(here)</span>
+<span id="cb731-2"><a href="stat-rep.html#cb731-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb731-3"><a href="stat-rep.html#cb731-3" aria-hidden="true"></a><span class="kw">library</span>(ggpubr)</span>
+<span id="cb731-4"><a href="stat-rep.html#cb731-4" aria-hidden="true"></a><span class="kw">library</span>(latex2exp)</span>
+<span id="cb731-5"><a href="stat-rep.html#cb731-5" aria-hidden="true"></a><span class="kw">library</span>(AER)</span>
+<span id="cb731-6"><a href="stat-rep.html#cb731-6" aria-hidden="true"></a><span class="kw">library</span>(MASS)</span></code></pre></div>
 <!-- DISCUSS: Sollte einfach überall gleich sein -> Ganzu am Ende nochmal bei allen Kapiteln checken?  -->
 </div>
 <div id="punktschätzung" class="section level2" number="9.1">
@@ -496,8 +519,8 @@ wäre, tatsächlich 60 mal Zahl zu beobachten. Diese Wahrscheinlichkeit können 
 berechnen, aus Tabellen auslesen oder von R bestimmen lassen (die genaue
 Verwendung der Funktion <code>binom.test()</code> wird unten genauer besprochen):</p>
 </blockquote>
-<div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb731-1"><a href="stat-rep.html#cb731-1" aria-hidden="true"></a>b_test_object &lt;-<span class="st"> </span><span class="kw">binom.test</span>(<span class="dt">x =</span> <span class="dv">60</span>, <span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">p =</span> <span class="fl">0.5</span>)</span>
-<span id="cb731-2"><a href="stat-rep.html#cb731-2" aria-hidden="true"></a>b_test_object[[<span class="st">&quot;p.value&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="stat-rep.html#cb732-1" aria-hidden="true"></a>b_test_object &lt;-<span class="st"> </span><span class="kw">binom.test</span>(<span class="dt">x =</span> <span class="dv">60</span>, <span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">p =</span> <span class="fl">0.5</span>)</span>
+<span id="cb732-2"><a href="stat-rep.html#cb732-2" aria-hidden="true"></a>b_test_object[[<span class="st">&quot;p.value&quot;</span>]]</span></code></pre></div>
 <pre><code>## [1] 0.05688793</code></pre>
 <blockquote>
 <p>Die Wahrscheinlichkeit liegt also bei
@@ -615,8 +638,8 @@ Im Falle der Binomialverteilung verwenden wir die Funktion <code>binom.test()</c
 welche eine Liste mit relevanten Informationen über den Test erstellt.
 Es macht Sinn, dieser Liste einen Namen zuzuweisen und dann die relevanten
 Informationen explizit abzurufen:</p>
-<div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb733-1"><a href="stat-rep.html#cb733-1" aria-hidden="true"></a>b_test_object &lt;-<span class="st"> </span><span class="kw">binom.test</span>(<span class="dt">x =</span> <span class="dv">60</span>, <span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
-<span id="cb733-2"><a href="stat-rep.html#cb733-2" aria-hidden="true"></a><span class="kw">typeof</span>(b_test_object)</span></code></pre></div>
+<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="stat-rep.html#cb734-1" aria-hidden="true"></a>b_test_object &lt;-<span class="st"> </span><span class="kw">binom.test</span>(<span class="dt">x =</span> <span class="dv">60</span>, <span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
+<span id="cb734-2"><a href="stat-rep.html#cb734-2" aria-hidden="true"></a><span class="kw">typeof</span>(b_test_object)</span></code></pre></div>
 <pre><code>## [1] &quot;list&quot;</code></pre>
 <p>Bevor wir uns mit dem Ergebnis befassen wollen wir uns die notwendigen Argumente
 von <code>binom.test()</code> genauer anschauen (eine gute Erläuterung liefert wie immer
@@ -632,7 +655,7 @@ einseitigen Test nach unten (<code>alternative = "less"</code>) durchführen wol
 Objekt direkt aufrufen. Die Liste wurde innerhalb der Funktion <code>binom.test</code>
 so modifiziert, dass uns die Zusammenfassung visuell ansprechend aufbereitet
 angezeigt wird:</p>
-<div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb735-1"><a href="stat-rep.html#cb735-1" aria-hidden="true"></a>b_test_object</span></code></pre></div>
+<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb736-1"><a href="stat-rep.html#cb736-1" aria-hidden="true"></a>b_test_object</span></code></pre></div>
 <pre><code>## 
 ## 	Exact binomial test
 ## 
@@ -665,7 +688,7 @@ und den Punktschätzer für den zu testenden Parameter (siehe vorheriger Abschni
 <p>Wenn wir wissen wollen welche Informationen die so erstellte Liste sonst noch für
 uns bereit hält, bzw. wie wir uns diese Informationen direkt ausgeben lassen können,
 sollten wir uns die Struktur der Liste genauer ansehen:</p>
-<div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb737-1"><a href="stat-rep.html#cb737-1" aria-hidden="true"></a><span class="kw">str</span>(b_test_object)</span></code></pre></div>
+<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="stat-rep.html#cb738-1" aria-hidden="true"></a><span class="kw">str</span>(b_test_object)</span></code></pre></div>
 <pre><code>## List of 9
 ##  $ statistic  : Named num 60
 ##   ..- attr(*, &quot;names&quot;)= chr &quot;number of successes&quot;
@@ -684,10 +707,10 @@ sollten wir uns die Struktur der Liste genauer ansehen:</p>
 ##  - attr(*, &quot;class&quot;)= chr &quot;htest&quot;</code></pre>
 <p>Wir sehen hier, dass wir viele der Werte wie bei Listen üblich direkt anwählen
 können, z.B. den p-Wert:</p>
-<div class="sourceCode" id="cb739"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb739-1"><a href="stat-rep.html#cb739-1" aria-hidden="true"></a>b_test_object[[<span class="st">&quot;p.value&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="stat-rep.html#cb740-1" aria-hidden="true"></a>b_test_object[[<span class="st">&quot;p.value&quot;</span>]]</span></code></pre></div>
 <pre><code>## [1] 0.05688793</code></pre>
 <p>Oder den Punktschätzer für <span class="math inline">\(p\)</span>:</p>
-<div class="sourceCode" id="cb741"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb741-1"><a href="stat-rep.html#cb741-1" aria-hidden="true"></a>b_test_object[[<span class="st">&quot;estimate&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="stat-rep.html#cb742-1" aria-hidden="true"></a>b_test_object[[<span class="st">&quot;estimate&quot;</span>]]</span></code></pre></div>
 <pre><code>## probability of success 
 ##                    0.6</code></pre>
 <p>Wenn wir eine andere Verteilung annehmen, verwenden wir auch eine andere Testfunktion,
@@ -756,8 +779,8 @@ Signifikanzniveau <span class="math inline">\(\alpha\)</span> als Nullhypothese 
 <p>Wir haben oben auch schon gesehen, dass das Konfidenzintervall ganz leicht aus
 den typischen Test-Funktionen in R ausgelesen werden kann.
 Für das Beispiel der Binomialverteilung schreiben wir daher nur:</p>
-<div class="sourceCode" id="cb743"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb743-1"><a href="stat-rep.html#cb743-1" aria-hidden="true"></a>b_test_object &lt;-<span class="st"> </span><span class="kw">binom.test</span>(<span class="dt">x =</span> <span class="dv">60</span>, <span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
-<span id="cb743-2"><a href="stat-rep.html#cb743-2" aria-hidden="true"></a>b_test_object[[<span class="st">&quot;conf.int&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb744-1"><a href="stat-rep.html#cb744-1" aria-hidden="true"></a>b_test_object &lt;-<span class="st"> </span><span class="kw">binom.test</span>(<span class="dt">x =</span> <span class="dv">60</span>, <span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">p =</span> <span class="fl">0.5</span>, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
+<span id="cb744-2"><a href="stat-rep.html#cb744-2" aria-hidden="true"></a>b_test_object[[<span class="st">&quot;conf.int&quot;</span>]]</span></code></pre></div>
 <pre><code>## [1] 0.4972092 0.6967052
 ## attr(,&quot;conf.level&quot;)
 ## [1] 0.95</code></pre>

@@ -280,7 +280,7 @@ insgesamt die in Abbildung \@ref(fig:folder) dargestellte Ordner und Datenstrukt
 
 \begin{figure}
 
-{\centering \includegraphics[width=2.25in,height=0.5\textheight]{figures/wd-structure} 
+{\centering \includegraphics[height=0.5\textheight]{figures/wd-structure} 
 
 }
 
