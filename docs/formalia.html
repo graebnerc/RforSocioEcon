@@ -24,7 +24,7 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-10-02" />
+<meta name="date" content="2020-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -328,7 +328,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>9.2</b> Hypothesentests</a></li>
 <li class="chapter" data-level="9.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>9.3</b> Berechnung von Konfidenzintervallen</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>10</b> Lineare statistische Modelle in R</a></li>
+<li class="chapter" data-level="10" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>10</b> Lineare statistische Modelle in R</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>10.1</b> Einleitung und Überblick</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1.1</b> Einführung in die lineare Regression</a></li>
+<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.2</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="10.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>10.2</b> Grundlagen der einfachen linearen Regression</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="linmodel.html"><a href="linmodel.html#grundlegende-begriffe"><i class="fa fa-check"></i><b>10.2.1</b> Grundlegende Begriffe</a></li>
+<li class="chapter" data-level="10.2.2" data-path="linmodel.html"><a href="linmodel.html#schätzung-mit-der-kleinste-quadrate-methode"><i class="fa fa-check"></i><b>10.2.2</b> Schätzung mit der Kleinste-Quadrate-Methode</a></li>
+<li class="chapter" data-level="10.2.3" data-path="linmodel.html"><a href="linmodel.html#ols-ass"><i class="fa fa-check"></i><b>10.2.3</b> Annahmen für den OLS Schätzer</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="linmodel.html"><a href="linmodel.html#lin-kennzahlen"><i class="fa fa-check"></i><b>10.3</b> Kennzahlen in der linearen Regression</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="linmodel.html"><a href="linmodel.html#erklärte-varianz-und-das-r2"><i class="fa fa-check"></i><b>10.3.1</b> Erklärte Varianz und das <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="10.3.2" data-path="linmodel.html"><a href="linmodel.html#hypothesentests-und-statistische-signifikanz"><i class="fa fa-check"></i><b>10.3.2</b> Hypothesentests und statistische Signifikanz</a></li>
+<li class="chapter" data-level="10.3.3" data-path="linmodel.html"><a href="linmodel.html#konfidenzintervalle-für-die-schätzer"><i class="fa fa-check"></i><b>10.3.3</b> Konfidenzintervalle für die Schätzer</a></li>
+<li class="chapter" data-level="10.3.4" data-path="linmodel.html"><a href="linmodel.html#zur-rolle-der-stichprobengröße"><i class="fa fa-check"></i><b>10.3.4</b> Zur Rolle der Stichprobengröße</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="linmodel.html"><a href="linmodel.html#lin-multi"><i class="fa fa-check"></i><b>10.4</b> Multiple lineare Regression</a></li>
+<li class="chapter" data-level="10.5" data-path="linmodel.html"><a href="linmodel.html#stat-ablauf"><i class="fa fa-check"></i><b>10.5</b> Zum Ablauf einer Regression</a></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>11</b> Fortgeschrittene Themen der linearen Regression</a></li>
 <li class="chapter" data-level="12" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>12</b> Ausgewählte nichtlineare Schätzverfahren</a></li>
 <li class="chapter" data-level="13" data-path="outlook.html"><a href="outlook.html"><i class="fa fa-check"></i><b>13</b> Ausblick</a></li>
@@ -1491,7 +1514,7 @@ impliziert.</p>
 <p>Aus der Einleitung dieses Unterkapitels wissen wir, dass wir das lineare
 Regressionsmodell mit <span class="math inline">\(n\)</span> Beobachtungen von <span class="math inline">\(p\)</span> Variablen</p>
 <p><span class="math display">\[\begin{align}
-Y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + ... + \beta_p x_{1p} + \epsilon_1\nonumber\\
+Y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{12} + ... + \beta_p x_{1p} + \epsilon_1\nonumber\\
 Y_2 = \beta_0 + \beta_1 x_{21} + \beta_2 x_{22} + ... + \beta_p x_{2p} + \epsilon_2\nonumber\\
 \vdots \nonumber\\
 Y_n = \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + ... + \beta_p x_{np} + \epsilon_n\nonumber
@@ -2360,7 +2383,7 @@ verwenden, wie in Abbildung <a href="formalia.html#fig:Violinenplot">6.18</a> ge
 <span id="cb669-3"><a href="formalia.html#cb669-3" aria-hidden="true"></a>       ) <span class="op">+</span></span>
 <span id="cb669-4"><a href="formalia.html#cb669-4" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
 <span id="cb669-5"><a href="formalia.html#cb669-5" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb669-6"><a href="formalia.html#cb669-6" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Klassische Darstellung&quot;</span>) <span class="op">+</span></span>
+<span id="cb669-6"><a href="formalia.html#cb669-6" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Klassisch&quot;</span>) <span class="op">+</span></span>
 <span id="cb669-7"><a href="formalia.html#cb669-7" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">theme</span>(<span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>(), </span>
 <span id="cb669-8"><a href="formalia.html#cb669-8" aria-hidden="true"></a>        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span>
 <span id="cb669-9"><a href="formalia.html#cb669-9" aria-hidden="true"></a></span>
@@ -2370,7 +2393,7 @@ verwenden, wie in Abbildung <a href="formalia.html#fig:Violinenplot">6.18</a> ge
 <span id="cb669-13"><a href="formalia.html#cb669-13" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
 <span id="cb669-14"><a href="formalia.html#cb669-14" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.25</span>) <span class="op">+</span></span>
 <span id="cb669-15"><a href="formalia.html#cb669-15" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb669-16"><a href="formalia.html#cb669-16" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Klassische Darstellung mit jitter&quot;</span>) <span class="op">+</span></span>
+<span id="cb669-16"><a href="formalia.html#cb669-16" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Klassisch mit jitter&quot;</span>) <span class="op">+</span></span>
 <span id="cb669-17"><a href="formalia.html#cb669-17" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">theme</span>(<span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>(), </span>
 <span id="cb669-18"><a href="formalia.html#cb669-18" aria-hidden="true"></a>        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span>
 <span id="cb669-19"><a href="formalia.html#cb669-19" aria-hidden="true"></a></span>
@@ -2383,9 +2406,11 @@ verwenden, wie in Abbildung <a href="formalia.html#fig:Violinenplot">6.18</a> ge
 <span id="cb669-26"><a href="formalia.html#cb669-26" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">theme</span>(<span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>(), </span>
 <span id="cb669-27"><a href="formalia.html#cb669-27" aria-hidden="true"></a>        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span>
 <span id="cb669-28"><a href="formalia.html#cb669-28" aria-hidden="true"></a></span>
-<span id="cb669-29"><a href="formalia.html#cb669-29" aria-hidden="true"></a>ggpubr<span class="op">::</span><span class="kw">ggarrange</span>(boxplot_classic, boxplot_jitter, violin_plot, <span class="dt">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
+<span id="cb669-29"><a href="formalia.html#cb669-29" aria-hidden="true"></a>compare_plot &lt;-<span class="st"> </span>ggpubr<span class="op">::</span><span class="kw">ggarrange</span>(</span>
+<span id="cb669-30"><a href="formalia.html#cb669-30" aria-hidden="true"></a>  boxplot_classic, boxplot_jitter, violin_plot, </span>
+<span id="cb669-31"><a href="formalia.html#cb669-31" aria-hidden="true"></a>  <span class="dt">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:Violinenplot"></span>
-<img src="Chap-Formalia_files/figure-html/Violinenplot-1.png" alt="Vergleich von klassischen Darstellungen und dem Violinenplot" width="100%" height="75%" />
+<img src="figures/formalia/compare_violin.png" alt="Vergleich von klassischen Darstellungen und dem Violinenplot" width="100%" height="75%" />
 <p class="caption">
 Figure 6.18: Vergleich von klassischen Darstellungen und dem Violinenplot
 </p>

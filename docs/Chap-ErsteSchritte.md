@@ -2266,7 +2266,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7fa97ca2f6b8>
+#> <bytecode: 0x7fe728df72d8>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2297,7 +2297,7 @@ dplyr::lead
 #>     vec_c(vec_slice(inputs$x, -seq_len(n)), vec_rep(inputs$default, 
 #>         n))
 #> }
-#> <bytecode: 0x7fa9ac0b3e60>
+#> <bytecode: 0x7fe70fcbc2f8>
 #> <environment: namespace:dplyr>
 ```
 
@@ -2326,9 +2326,9 @@ search()
 ```
 #>  [1] ".GlobalEnv"         "package:plm"        "package:dplyr"     
 #>  [4] "package:data.table" "package:tufte"      "package:stats"     
-#>  [7] "package:graphics"   "package:grDevices"  "package:utils"     
-#> [10] "package:datasets"   "package:methods"    "Autoloads"         
-#> [13] "package:base"
+#>  [7] "package:graphics"   "package:grDevices"  "package:datasets"  
+#> [10] "renv:shims"         "package:utils"      "package:methods"   
+#> [13] "Autoloads"          "package:base"
 ```
 
 
