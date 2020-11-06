@@ -1,5 +1,12 @@
 # Fortgeschrittene Themen der linearen Regression {#advlin}
 
+<!--
+@Birte: Bitte alle cross-referenzen im Text checken, es sollte immer mit runden 
+klammern sein.
+Bitte im PDF dann auch nochmal checken ob die referenzen tatsächlich funktioniert
+haben.
+-->
+
 ```{r include=FALSE}
 knitr::opts_chunk$set(comment = "#>")
 knitr::opts_chunk$set(out.height = '75%', out.width = '75%', fig.align = 'center') 
@@ -20,11 +27,10 @@ seine attraktiven Eigenschaften nur hat, wenn diese Annahmen erfüllt sind.
 Für die Praxis sind also die folgenden vier Fragen relevant:
 
 1. Was sind die relevanten Annahmen des OLS-Schätzers?
-2. Was passiert wenn die Annahmen nicht erfüllt sind?
+2. Was passiert mit dem OLS-Schätzer wenn die Annahmen nicht erfüllt sind?
 3. Wie können wir überprüfen ob diese Annahmen erfüllt sind?
-4. Was können wir tun wenn die Annahmen *nicht* erfüllt sind?
-
-<!-- 2 und 4 sind irgendwie das gleiche oder? Frage 4 einfach löschen? -->
+4. Was sind mögliche Lösungsstrategien wenn die Annahmen unseres 
+Schätzers *nicht* erfüllt sind?
 
 Diese Fragen zu beantworten ist die zentrale Herausforderung in diesem Kapitel.
 Die erste Frage haben wir dabei im vorigen Kapitel bereits angefangen, verbal zu
@@ -270,7 +276,9 @@ exo_plot <- ggplot2::ggplot(data = exo_data,
   ggplot2::geom_point() +
   ggplot2::geom_smooth(method = "lm", se = FALSE) +
   ggplot2::ggtitle("Exogenität") +
-  icaeDesign::theme_icae()
+  icaeDesign::theme_icae() + 
+  theme(axis.text = element_blank(), 
+        panel.grid = element_blank())
   
 exo_strict_plot <- ggplot2::ggplot(data = exo_strict_data, 
                           mapping = aes(x=x, y=y)
@@ -278,16 +286,16 @@ exo_strict_plot <- ggplot2::ggplot(data = exo_strict_data,
   ggplot2::geom_point() +
   ggplot2::geom_smooth(method = "lm", se = FALSE) +
   ggplot2::ggtitle("Strikte Exogenität") +
-  icaeDesign::theme_icae()
+  icaeDesign::theme_icae() + 
+  theme(axis.text = element_blank(),
+        panel.grid = element_blank())
   
-exo_full_plot <- ggpubr::ggarrange(exo_plot, exo_strict_plot, ncol = 2)
+exo_full_plot <- ggpubr::ggarrange(exo_strict_plot, exo_plot, ncol = 2)
 ```
 
 ```{r, echo=FALSE}
 exo_full_plot
 ```
-
-<!-- warum ist denn bei den figures in diesem kapitel der y- sowie x-achsenabschnitt nicht jeweils bei 0? wäre das nicht schöner? -->
 
 > In der linken Abbildung haben wir einen bedingten Erwartungswert von Null:
 für jede beliebige Beobachtung in $\boldsymbol{x}$ ist der Erwartungswert der
@@ -302,7 +310,7 @@ Für die gesamten Daten ergibt sich dabei auch ein Erwartungswert von $0$, aber
 eben *nicht* für jede einzelne Beobachtung.
 Häufig tritt diese Problem bei quadratischen Zusammenhängen auf.
 
-<!-- Ich glaub diese graphik musst du mir nochmal besser erklären, die verstehe ich noch nicht. wie sehe ich denn in der rechten abbildunge dass der erwartungswert sich unterscheidet zwischen der unteren und oberen hälfte der beobachtungen? das sieht für mich alles ziemlich gleichmäßig aus oder?  -->
+<!-- @Claudius: mit a und b machen und checken dass die bilder zum text passen  -->
 
 Wichtig ist festzuhalten, dass dies eine Annahme über nicht zu beobachtende 
 Größen darstellt: die tatsächlichen Fehlerterme $\boldsymbol{\epsilon}$
@@ -330,11 +338,9 @@ Damit ist aber das gleiche gemeint.
 Die Annahme impliziert zudem, dass $n\geq k$ und dass es eine gewisse 
 Variation in den unabhängigen Variablen gibt. 
 All das ist in der Praxis aber immer erfüllt - nur mit dem Problem der 
-nicht perfekten Kollinearität - also der Situation wo die abhängigen Variablen
+nicht perfekten Multikollinearität - also der Situation wo die abhängigen Variablen
 stark miteinander korrelieren - müssen wir uns häufig herumschlagen.
 Doch dazu später mehr.
-
-<!-- Doofe Frage aber gibt es nen Unterschied zwischen Multikollinearität und Kollinearität? (wenn nicht würde ich hier vllt einfach auch wieder "nicht perfekte Multikollinearität" schreiben einfach um zu zeigen dass der unterschied hier rein in perfekt vs nicht perfekt liegt, nicht in multikollinearität vs kollinearität) -->
 
 **A4: Konstante Varianz und keine Autokorrelation der Fehlerterme**
 
@@ -345,9 +351,8 @@ Für eine Schätzung mit $n$ Beobachtungen handelt es sich dabei um eine
 $n\times n$-Matrix, auf deren Hauptdiagonalen die Varianzen der Fehlerterme
 und in den sonstigen Elementen die Kovarianzen der einzelnen Fehlerpaare 
 gesammelt sind. 
-Für den Fall von zwei abhängigen Variablen hätten wir also folgende 
+Für den Fall von zwei unabhängigen Variablen hätten wir also folgende 
 Varianz-Kovarianz Matrix:
-<!-- Warum 2 abhängige Variablen? wollen wir nicht üblicherweise nur eine abhängige Variable erklären? -->
 
 $$
 \left(
@@ -438,12 +443,19 @@ Fehlerterme, bedingt wie immer auf die unabhängigen Variablen:
 $$\boldsymbol{\epsilon|\boldsymbol{X}} \propto 
 \mathcal{N}(\boldsymbol{0}, \sigma^2\boldsymbol{I})$$
 
-<!-- Ahh mmh ich kenn das gar nicht so dass hier jetzt auch nochmal sigma^2 und I steht, warum ist denn hier das I nochmal dabei wenn es nur darum geht auszudrücken dass die Fehlerterme Gaussian normalverteilt sind (das lässt sich doch einfach mit 0, sigma^2 ausdrücken)? -->
+<!-- 
+Ahh mmh ich kenn das gar nicht so dass hier jetzt auch nochmal sigma^2 und I steht, 
+warum ist denn hier das I nochmal dabei wenn es nur darum geht auszudrücken 
+dass die Fehlerterme Gaussian normalverteilt sind (das lässt sich doch einfach 
+mit 0, sigma^2 ausdrücken)? 
+
+@Claudius: Fussnote adden
+-->
 
 Diese Annahme vereinfacht zahlreiche Herleitungen, ist in der Praxis allerdings 
 weniger relevant, da sie leicht abzuschwächen ist.
 
-<!-- was heißt das genau, dass sie leicht abzuschwächen ist? -->
+<!-- @Claudius: Text anpassen -->
 
 ### Erwartungstreue, Effizienz und Konsistenz
 
@@ -519,9 +531,7 @@ erwartungstreu ist.
 Dies gilt unabhängig der Stichprobengröße und unabhängig davon ob Annahmen A4
 und A5 erfüllt sind.
 Der mathematische Beweis findet sich [im Anhang](#advlin-proofs) 
-(siehe Theorem \ref{theo:ewt-ols-beta}).
-
-<!-- bin mir nicht sicher ob das hier richtig referenziert wird. wie wird ein theorem referenziert? hätte jetzt gedacht mit runden klammern und \@ref, oder? -->
+(siehe Theorem \@ref(theo:ewt-ols-beta)).
 
 Wie oben bereits erwähnt resultiert daraus natürlich nicht, dass für jede einzelne 
 Schätzung der Wert des Schätzers $\hat{\boldsymbol{\beta}}$ gleich dem wahren Wert 
@@ -607,8 +617,22 @@ Ein konsistenter Schätzer trifft im Mittel den wahren Wert
 und seine Varianz geht mit wachsender Stichprobengröße gegen Null.
 Wir können also sagen, dass unsere Schätzungen bei wachsender Stichprobengröße
 immer genauer wird.
-<!-- Aber haben wir das selbe nicht auch für die Erwartungstreue gesagt? Dass zwar für den einzelnen Fall wir nicht erwarten können, dass unser schätzer dem wahren beta Wert entspricht, asymptotisch aber schon? Siehe Zeile 472: "das Mittel unendlich vieler Schätzungen mit  -->
-<!-- $\hat{\boldsymbol{\beta}}$ ist gleich $\beta$." Ich glaube deshalb bin ich verwirrt über den Unterschied zwischen Erwartungstreue und Konsistenz. -->
+<!-- 
+Aber haben wir das selbe nicht auch für die Erwartungstreue gesagt? 
+Dass zwar für den einzelnen Fall wir nicht erwarten können, dass unser schätzer 
+dem wahren beta Wert entspricht, asymptotisch aber schon? 
+Siehe Zeile 472: "das Mittel unendlich vieler Schätzungen mit  
+-->
+
+<!-- 
+$\hat{\boldsymbol{\beta}}$ ist gleich $\beta$." 
+Ich glaube deshalb bin ich verwirrt über den Unterschied zwischen 
+Erwartungstreue und Konsistenz. 
+
+@Claudius: hier eine Box zum Unterschied Erwartungstreue vs. Konsistenz machen
+und erklären dass von erwartungstreue, effizienz und konsistenz die letztere
+die einzige ist, die sich auf das verhalten bei wachsender stichprobe bezieht.
+-->
 
 Formal drücken wir dies unter Verwendung von Grenzwerten aus:
 
@@ -639,7 +663,17 @@ deren geschätzte Werte systematisch von dem wahren Wert abweichen.
 Es sei an dieser Stelle jedoch bereits erwähnt, dass es sinnvolle Ausnahmen 
 von dieser Regel geben kann, nämlich dann wenn wir große Zugewinne an Effizienz
 für kleine Abstriche in der Erwartungstreue 'erkaufen' können.
-<!-- Erwartungstreue oder Konsistenz? In unserer metrics class gestern haben wir auch über einen ähnlichen trade-off geredet, aber da war der tradeoff zwischen effizienz und konsistenz, nicht zwischen effizienz und erwartungstreue. ich glaub ich bin einfach noch bissi verwirrt bzgl des unterschieds zwischen erwartunstreue und konsistenz, und auch warum es hier jetzt wieder um erwartungstreue geht während ja dieser ganze abschnitt hier eigl eher zum thema konsistenz ist oder? -->
+<!-- 
+@Claudius: checkt was birte da gemact hat und passt den text an; ggf. auch
+nochmal im Stachurski Lehrbuch nachschauen
+
+Erwartungstreue oder Konsistenz? In unserer metrics class gestern haben wir 
+auch über einen ähnlichen trade-off geredet, aber da war der tradeoff zwischen 
+effizienz und konsistenz, nicht zwischen effizienz und erwartungstreue. 
+ich glaub ich bin einfach noch bissi verwirrt bzgl des unterschieds zwischen 
+erwartunstreue und konsistenz, und auch warum es hier jetzt wieder um 
+erwartungstreue geht während ja dieser ganze abschnitt hier eigl eher zum 
+thema konsistenz ist oder? -->
 
 In der Literatur wird diese Fragestellung unter dem Stichwort 
 *bias-variance trade-off* diskutiert. 
@@ -684,11 +718,10 @@ Dies ist aber nicht immer möglich und manchmal auch recht aufwendig und wenig
 intuitiv.
 
 Die zweite Möglichkeit ist die Analyse von Schätzern mit Hilfe von 
-künstlichen Datensätzen und so genannten [Monte Carlo Simulationen]().
-<!-- ich glaub hier fehlt noch eine referenz in den klammern? -->
-
-Hier definieren wir unseren datenerzeugenden Prozess selbst und erstellen dann
-einen künstlichen Datensatz. 
+künstlichen Datensätzen und so genannten *Monte Carlo Simulationen* (MCS).
+Bei einer MCS definieren wir unseren datenerzeugenden Prozess selbst und 
+erstellen dann einen künstlichen Datensatz, an dem wir dann die Eigenschaften
+von Schätzern untersuchen können. 
 Diese Vorgehensweise ist zwar weniger 'sicher' als ein mathematischer Beweis
 aber häufig intuitiver und in vielen Fällen tatsächlich auch die einzige 
 Möglichkeit, inbesondere wenn wir Schätzereigenschaften für kleine Stichproben
@@ -741,10 +774,9 @@ kann:
 
 $$Y = \beta_0 + \beta_1 x_1 +  \epsilon$$
 
-wobei wir annehmen, dass $\epsilon \propto \mathcal{N}(\mu, \sigma)$ und $\sigma$
-im Falle der Kontrollgruppe konstant (Fall der Homoskedastie) und im Falle 
-der Testgruppe variabel ist (Fall der Heteroskedastie).
-<!-- Warum nehmen wir hier standardabweichung nicht nicht varianz für die annahmenbeschreibung? es geht doch bei homoskedastie um konstante varianz, also eigl sigma squared oder?-->
+wobei wir annehmen, dass $\epsilon \propto \mathcal{N}(\mu, \sigma^2)$ und 
+$\sigma^2$ im Falle der Kontrollgruppe konstant (Fall der Homoskedastie) und im 
+Falle der Testgruppe variabel ist (Fall der Heteroskedastie).
 
 Wir definieren also folgende Funktion, die für gegebene Werte für $\beta_0$ und 
 $\beta_1$ und ein gegebenes $\boldsymbol{X}$ eine Stichprobe erstellt indem 
@@ -851,15 +883,16 @@ full_results <- rbind(homosc_results, hetero_results)
 ```
 
 ```{r, eval=FALSE, echo=FALSE}
-fwrite(full_results, 
-       file = here::here("data/tidy/advlinmodels_full_results.csv"))
+data.table::fwrite(
+  x = full_results, 
+  file = here::here("data/tidy/advlinmodels_full_results.csv"))
 ```
 
 ```{r, echo=FALSE}
-full_results <- data.table::fread(file = here("data/tidy/advlinmodels_full_results.csv"), 
-                      colClasses = c(rep("double", 4), "character"))
+full_results <- data.table::fread(
+  file = here("data/tidy/advlinmodels_full_results.csv"), 
+  colClasses = c(rep("double", 4), "character"))
 ```
-<!-- Ich krieg hier eine Fehlermeldung wenn ich den chunk hier laufen lasse (hab das pdf noch nicht gecheckt). fehler in fread sagt es -->
 
 **4. Schritt: Vergleichende Analyse der Schätzereigenschaften**
 
@@ -939,12 +972,15 @@ nicht konstant ist.
 ### Liegt Heteroskedastie vor?
 
 Heteroskedastie kann grafisch oder über statistische Tests identifiziert werden.
-Um Heteroskedastie grafisch zu identifizieren verwenden wir den aus dem
-vierten Kapitel bekannten [Tukey-Anscombe-Plot](#linmod-residuals), in dem wir
+Um Heteroskedastie grafisch zu identifizieren verwenden wir den 
+*Tukey-Anscombe-Plot*, in dem wir
 auf der x-Achse die gefitteten Werte $\hat{Y}$ und auf der y-Achse die Residuen 
 $e$ abbilden. Siehe dazu Abbildung \@ref(fig:homoskedastie).
 
-<!-- Hier muss das "vierte" Kapitel angepasst werden, und ich glaube aber auch dass das ja genau der Teil war der jetzt aus linmodels rausgeflogen ist, oder? Dh der müsste hier nochmal neu eingeführt werden?  -->
+<!-- 
+TK Plot einführen von ganz unten; zudem Intuition der Residuenanalyse erklären: 
+residuen als approximation der fehlerterme 
+-->
 
 ```{r homoskedastie, echo=FALSE, fig.cap="Graphische Analyse der Homoskedastie."}
 set.seed("1")
@@ -1379,7 +1415,7 @@ Wie bei der Heteroskedastie sollten wir auch beim Testen auf Autokorrelation
 grafische und quantitative Tests kombinieren.
 Für die grafische Analyse verwenden wir wie vorher den Tukey-Anscombe Plot der
 Residuen. 
-<!-- Hier auch wieder ggf anpassen. -->
+<!-- Hier auch wieder ggf anpassen: auf section davor verweisen -->
 Die Idee ist, dass wenn in den 'echten' Fehlern Autokorrelation vorherrscht wir 
 das auch in den Residuen beobachten können.
 Abbildung \@ref(fig:autokorrtest) verdeutlicht, wie wir Autokorrelation in den 
@@ -1784,12 +1820,10 @@ Hieraus wird unmittelbar ersichtlich, dass die Varianz des Schätzers steigt
 je größer das Bestimmtheitsmaß der Hilfsregressionen ist!
 
 Gleichzeitig wissen wir aus den obigen Herleitungen auch, dass Multikollinearität
-keinen Einfluss auf die Erwartungstreue oder Effizienz des OLS-Schätzers hat.^[
+keinen Einfluss auf die Erwartungstreue oder Effizienz des OLS-Schätzers hat.
 Beachten Sie, dass wir den Begriff *Effizienz* hier immer relativ verwenden:
 unter Multikollinearität wird der OLS-Schätzer weniger genau, aber er bleibt 
 dennoch der genauste Schätzer, den wir zur Verfügung haben.
-]
-<!-- Das ist ein guter Punkt den ich eigentlich aus der Fußnote raus und in den Text setzen würde -->
 
 ### Testen auf Multikollinearität
 
@@ -1996,7 +2030,7 @@ zu testen ob wir eine relevante Variable vergessen haben.
 Es gibt einen möglichen Test, der die Verwendung von *Instrumentenvariablen*
 einschließt - ein Thema, das wir später behandeln werden - allerdings basiert 
 auch dieser Test dann wiederum auf nicht zu testenden Annahmen.
-<!-- Werden IVs in diesem Buch noch behandelt? Sonst halbsatz oben raus -->
+<!-- Add chapter reference as soon as chapter was added -->
 
 Insgesamt müssen wir uns hier also vor allem auf unsere theoretischen 
 Überlegungen verlassen: 
@@ -2009,8 +2043,8 @@ Weise in der Regression berücksichtigt werden!
 Das ist diesmal einfach: fügen Sie 'einfach' die relevanten Variablen zu Ihrer
 Regression hinzu.
 Wenn Sie dazu keine Daten haben hilft Ihnen allerhöchstens die Verwendung von 
-*Instrumentenvariablen*.
-<!-- Falls das im nächsten Kapitel/diesem Buch nicht mehr angesprochen wird vllt hier eine Fußnote setzen mit weiterführender Literatur oder so? -->
+*Instrumentenvariablen*.^[Für eine genauere Einführung in Instrumentenvariablen
+siehe z.B. @greene.]
 
 ## Falsche funktionale Form
 
@@ -2036,7 +2070,6 @@ ggplot2::ggplot(data = bipkonsum, aes(x=BIP, y=Konsumausgaben)) +
   ggplot2::geom_point() + icaeDesign::theme_icae()
 ```
 
-<!-- Info: ich hab hier beim vorigen chunk mal echo=FALSE eingesetzt, weil hier ja eigl nur der plot wichtig ist und nicht der code. passt? -->
 
 Wir könnten den Zusammenhang also unmittelbar mit OLS schätzen ohne gegen 
 Annahme A1 zu verstoßen.
@@ -2260,6 +2293,10 @@ interpretieren: wenn der Preis von Hühnerfleisch um $1\%$ steigt wird der
 Konsum um ca. $1.12\%$ zurückgehen.
 
 ## Weitere Fehlerquellen: Systematische Messfehler, Selbstselektion und Simulatanität
+
+<!--
+Hier noch QQ-Plot und Normalverteilung der Reisiduen rein
+-->
 
 Annahme A2, Exogenität der unabhängigen Variablen, kann nur aufgrund von drei 
 weiteren Gründen verletzt werden:
@@ -2591,3 +2628,78 @@ Daher kommt die Relevanz von Theorem \ref{theo:ols-sdf}, welches gleichzeitig di
 \begin{proof}[Beweis von Theorem \ref{theo:ols-konsistenz}]
 	Wir ergänzt.
 \end{proof}
+
+
+
+
+# Reinkopiert aus letztem Kapitel
+
+### Residuenanalyse {#linmod-residuals}
+
+Eine sehr hilfreiche Art, die Modellannahmen von oben zu überprüfen ist die Analyse der Residuen. 
+
+<!-- was heißt "von oben"? -->
+
+Diese sind im Ergebnisobjekt der Regression gespeichert:
+
+```{r, eval=FALSE}
+schaetzung_bip[["residuals"]]
+```
+
+Wir wollen nun die Residuen verwenden um die folgenden Annahmen unseres Regressionsmodells zu überprüfen:
+
+1. **A3: ** $Var(\epsilon_i)=\sigma^2\forall i$
+
+2. **A4: ** $Cov(\epsilon_i, \epsilon_j)=0 \forall i,j$
+
+3. **A6:** $\epsilon \propto \mathcal{N}(0, \sigma^2)$
+
+<!-- Ich dachte bei 3/A6 ginge es um die Fehler, nicht um die Residuen. I'm confused :(  -->
+
+Um die ersten beiden Annahmen zu überpüfen bilden wir die $e_i$ gegen $\hat{Y}$ ab und erhalten so den so genannten **Tukey-Anscombe-Plot** (siehe Abbildung \@ref(fig:TAPlot)).
+
+```{r TAPlot, echo=FALSE, fig.cap="Tukey-Anscombe-Plot."}
+ggplot2::ggplot(
+  data.frame(
+    GefitteteWerte=schaetzung_bip[["fitted.values"]],
+    Residuen=schaetzung_bip[["residuals"]]),
+  aes(x=GefitteteWerte, y=Residuen)
+  ) +
+  ggplot2::ggtitle("Tukey-Anscombe-Plot") +
+  ggplot2::geom_hline(yintercept = 0) + 
+  ggplot2::geom_point() +
+  icaeDesign::theme_icae()
+```
+
+
+Hier geht es nun darum eine Struktur zu erkennen.
+Wenn alle Annahmen korrekt sind, sehen wir nur eine unstrukturierte Punktewolke. 
+In dem vorliegenden Fall können wir aufgrund der wenigen Datenpunkte den Plot 
+aber nur mit großer Schwerierigkeit interpretieren - auch deswegen sind große 
+Stichproben immer besser.
+Es scheint aber so zu sein, dass die Varianz der Fehler mit $x_i$ steigt, 
+also A3 möglicherweise verletzt ist - zum Glück kann man den OLS-Schätzer 
+leicht modifizieren um damit umzugehen.
+<!-- Varianz der Residuen oder? -->
+
+Ansonsten ist keine Struktur zumindest unmittelbar ersichtlich.
+
+Als nächstes wollen die Annahme normalverteilter Residuen überprüfen. Das geht mit dem so genannten **Q-Q-Plot**, siehe dazu Abbildung \@ref(fig:QQPlot).
+
+```{r QQPlot,echo=FALSE, fig.cap="Q-Q-Plot zur Überprüfung der Residuen."}
+ggplot2::ggplot(data.frame(Residuen=schaetzung_bip[["residuals"]]),
+       aes(sample=Residuen)) + 
+  ggplot2::stat_qq() + ggplot2::stat_qq_line() +
+  ggplot2::ggtitle("Q-Q-Plot für die Residuen") +
+  icaeDesign::theme_icae()
+```
+
+Bei normalverteilten Residuen würden die Punkte möglichst exakt auf der Linie liegen. Das ist hier nur bedingt der Fall, deswegen sollten wir skeptisch bezüglich aller Ergebnisse sein, die auf der Normalverteilungsannahme aufbauen, also auf den Standardfehlern, $p$-Werten und den Konfidenzintervallen.
+
+Natürlich gibt es auch noch weitere Probleme, die bei einer linearen Regression auftreten können. So ist es immer ein Problem, wenn wir eine wichtige erklärende Variable in 
+unserem Modell vergessen haben (**omitted variable bias**), da deren Effekt dann durch die Fehlerterme abgefangen wird und zu einer Verletzung von **A1** und **A2** führt.
+
+Ein großes Problem stellt auch die so genannte **Simultanität** dar: diese tritt auf, wenn zwischen erklärter und erklärender Variable ein wechelseitiges kausales Verhältnis besteht. Wir sprechen dann auch von einem **Endogenitätsproblem**, welches leider sehr häufig auftritt und letztendlich vor allem theoretisch identifiziert werden muss.
+
+Ausführlichere Tests und Möglichkeiten mit verletzten Annahmen umzugehen werden im folgenden Kapitel @ref(#advlin) genauer diskutiert.
+
