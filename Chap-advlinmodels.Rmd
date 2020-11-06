@@ -5,13 +5,14 @@ knitr::opts_chunk$set(comment = "#>")
 knitr::opts_chunk$set(out.height = '75%', out.width = '75%', fig.align = 'center') 
 ```
 
-In diesem Kapitel werden wir auf den formalen Konzepten des letzten Kapitels,
-insbesondere auf den Regeln zur Matrizenalgebra aufbauen und die Annahmen
-und Funktionsweise des OLS-Schätzers genauer untersuchen.
-Der OLS-Schätzer ist das am weitesten verbreitete Schätzverfahren für die
+In diesem Kapitel werden wir auf den formalen Konzepten des Kapitels
+\@ref(formalia) aufbauen, insbesondere auf den Regeln zur Matrizenalgebra.
+Damit werden wir die Annahmen und Funktionsweise des OLS-Schätzers genauer 
+untersuchen. Der OLS-Schätzer, den wir bereits im vorigen Kapitel kennengelernt
+haben, ist das am weitesten verbreitete Schätzverfahren für die
 lineare Regression.
 In diesem Kapitel werden wir sehen, dass dies an seinen attraktiven 
-Eigenschaften wie *Erwartungsreue*, *Effizienz* und *Konsistenz* liegt.
+Eigenschaften wie *Erwartungstreue*, *Effizienz* und *Konsistenz* liegt.
 
 Wie alle Schätzverfahren baut der OLS-Schätzer jedoch auf bestimmten 
 Annahmen auf und es muss uns immer klar sein, dass der OLS-Schätzer
@@ -23,12 +24,17 @@ Für die Praxis sind also die folgenden vier Fragen relevant:
 3. Wie können wir überprüfen ob diese Annahmen erfüllt sind?
 4. Was können wir tun wenn die Annahmen *nicht* erfüllt sind?
 
+<!-- 2 und 4 sind irgendwie das gleiche oder? Frage 4 einfach löschen? -->
+
 Diese Fragen zu beantworten ist die zentrale Herausforderung in diesem Kapitel.
+Die erste Frage haben wir dabei im vorigen Kapitel bereits angefangen, verbal zu
+diskutieren. Diese Diskussion soll nun weiter formalisiert, vertieft und 
+schließlich erweitert werden.
 
 Der Fokus des Hauptkapitels liegt dabei auf der zugrundeliegenden Intuition.
-Daher werden wir uns dort nicht mit den mathematischen Beweisen beschäftigen,
+Daher werden wir uns nicht mit den mathematischen Beweisen beschäftigen,
 sondern das Verhalten des OLS-Schätzers anhand von Simulationen illustrieren.
-Für alle interessierten gibt es jedoch am Ende des Kapitels einen Überblick zu 
+Für alle Interessierten gibt es jedoch am Ende des Kapitels einen Überblick zu 
 allen relevanten Theoremen und ihren mathematischen Beweisen 
 (siehe [Anhang zu Theoremen und Beweisen](#advlin-proofs)).
 
@@ -48,31 +54,29 @@ library(MASS)
 
 ## Annahmen und Eigenschaften des einfachen OLS Modells
 
-In diesem Abschnitt werden wir zunächst unser neu gewonnenes Wissen über 
-Matrixnotation aus dem [letzten Kapitel](#formalia) verwenden um die uns 
-bereits bekannten Annahmen des OLS Modells in Matrixschreibweise 
-auszudrücken.
+In diesem Abschnitt werden wir zunächst unser Wissen über 
+Matrixnotation aus dem Kapitel \@ref(formalia) verwenden um die uns 
+bereits bekannten Annahmen des OLS Modells aus Kapitel \@ref(linmodel) in
+Matrixschreibweise auszudrücken.
 Das wird sich als enorm hilfreich erweisen da alle modernen Texte und 
 fortgeschrittenen Lehrbücher die Matrixschreibweise verwenden und alle 
 relevanten Beweise und Herleitung sich dieser Notation bedienen.
 
 Danach werden wir uns mit den wichtigen Eigenschaften *Erwartungstreue*,
 *Effizienz* und *Konsistenz* von Schätzern beschäftigen.
-Alles drei sind erstrebenswerte Eigenschaften, über die der OLS Schätzer auch
+Alles drei sind erstrebenswerte Eigenschaften, über die der OLS Schätzer
 verfügt wenn die Annahmen für das OLS Modell erfüllt sind.
 Allerdings kann er diese Eigenschaften verlieren wenn einzelne Annahmen 
-verletzt sind. 
-Um die Konsequenzen verletzter Annahmen zu illustrieren verwenden wir häufig die
-Methode der *Monte Carlo Simulation*, die wir am Ende dieses Abschnitts einführen
-werden.
-Einen Überlick zu allen relevanten Theoremen und ihren mathematischen Beweisen
-finden Sie am Ende des Kapitels, im [Anhang zu Theoremen und Beweisen](#advlin-proofs).
+verletzt sind. Um die Konsequenzen verletzter Annahmen zu illustrieren verwenden 
+wir häufig die Methode der *Monte Carlo Simulation*, die wir am Ende dieses 
+Abschnitts einführen werden.
+
 
 ### Annahmen im Matrixschreibweise
 
 An dieser Stelle werden wir die uns aus [diesem Abschnitt](#ols-ass) bekannten
-Annahmen für die OLS Schätzung in Matrixschreibweise ausdrücken und leicht 
-zusammenfassen, bzw. ihre Reihenfolge an die in der Literatur typische 
+verbal formulierten Annahmen für die OLS Schätzung in Matrixschreibweise
+ausdrücken und ihre Reihenfolge an die in der Literatur typische 
 Reihenfolge anpassen.
 
 Zu diesem Zweck betrachten wir das folgende Modell:
@@ -81,7 +85,7 @@ $$\boldsymbol{y} = \boldsymbol{x_1}\beta_1 + ... + \boldsymbol{x_k}\beta_k + \bo
 
 in dem $\boldsymbol{y}$ der $1\times n$ Vektor mit den $n$ Beobachtungen 
 der abhängigen Variable ist.
-Für jede der $k$ unabhängige Variable haben wir die Beobachtungen in einem
+Für jede der $k$ unabhängigen Variablen haben wir die Beobachtungen in einem
 $1\times n$ Vektor $\boldsymbol{x_i} (i\in k)$ gesammelt.
 
 Diese $k$ Vektoren werden häufig in der $n\times k$ Matrix $\boldsymbol{X}$ 
@@ -105,14 +109,14 @@ Unter bestimmten Annahmen hat dieser Schätzer die attraktiven Eigenschaften
 großen Stichproben zudem die Eigenschaft der *Konsistenz*.
 Die relevanten Annahmen sind dabei die folgenden:
 
-**A1: Der Zusammenhang zwischen abhängiger und unabhängigen Variablen ist linear**
+**A1: Der Zusammenhang zwischen abhängigen und unabhängigen Variablen ist linear**
 
 Diese Annahme ergibt sich unmittelbar aus der Formulierung: 
 $\boldsymbol{y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}$.
 Ein Beispiel für einen solchen Zusammenhang findet sich an Abbildung 
-\ref{fig:nonlins}a.
+\@ref(fig:nonlins)a.
 
-Wenn der Zusammenhang zwischen abhängiger und unabhängigen Variablen nicht linear
+Wenn der Zusammenhang zwischen abhängigen und unabhängigen Variablen nicht linear
 ist können wir das klassische OLS Modell in der Regel nicht verwenden.
 Häufig können wir aber die Daten so transformieren, dass wir deren Verhältnis
 als linearen Zusammenhang darstellen können.
@@ -122,13 +126,13 @@ So ist z.B. der folgende Zusammenhang nicht linear:
 \boldsymbol{y} = \boldsymbol{x_1}^{\beta_1} + e^{\epsilon}
 \end{align}
 
-wir können aber einfach die Variablen logarithmieren und erhalten somit die
+Wir können aber einfach die Variablen logarithmieren und erhalten somit die
 folgende lineare Gleichung, die wir dann mit OLS schätzen können:
 
 $$\ln(\boldsymbol{y}) = \ln(\boldsymbol{x_1}){\beta_1} + \boldsymbol{\epsilon}$$
 
 Ein Beispiel für einen solchen Zusammenhang findet sich an Abbildung 
-\ref{fig:nonlins}b und c.
+\@ref(fig:nonlins)b und c.
 
 Insgesamt hat das lineare Regressionsmodell kein Problem mit nichtlinearen
 Transformationen für die abhängigen Variablen wie $\ln(\boldsymbol{x_i})$. 
@@ -138,7 +142,7 @@ die abhängigen Variablen in einer nichtlinearen Transformation vorkommen:^[
 Das ist insofern auch logisch, da wir ja einfach eine neue Variable $z=x_2^2$ 
 erstellen und diese dann als unabhängige Variable in der Regression 
 verwenden könnten. Dann würde noch nicht einmal der Anschein der Nichtlinearität
-erweckt obswohl die Werte der unabhängigen Variablen die gleichen wären.
+erweckt obwohl die Werte der unabhängigen Variablen die gleichen wären.
 ]
 
 $$\boldsymbol{y} = \boldsymbol{x_1}{\beta_1} + \boldsymbol{x_2^2}{\beta_2} + \boldsymbol{\epsilon}$$
@@ -151,12 +155,12 @@ durch folgende Gleichung gegeben:
 
 $$\boldsymbol{y} = \boldsymbol{x_1}{\beta_1} + \boldsymbol{x_2^{\beta_2}} + \boldsymbol{\epsilon}$$
 Ein Beispiel für einen solchen Zusammenhang findet sich an Abbildung 
-\ref{fig:nonlins}.
+\@ref(fig:nonlins).
 Wir werden uns später im Kapitel mit der Frage beschäftigen welche funktionalen
 Transformationen besonders hilfreich sind, nichtlineare Zusammenhänge in die
 lineare Form zu bringen.
 
-```{r nonlins, fig.cap="\\label{fig:nonlins}Lineare und nichtlineare Zusammenhänge.", echo=FALSE}
+```{r nonlins, fig.cap="Lineare und nichtlineare Zusammenhänge.", echo=FALSE}
 set.seed("123")
 sample_size <- 50
 x_1 <- runif(sample_size, min = 0.05, max = 4)
@@ -180,23 +184,27 @@ full_sample <- tibble(x1=x_1, x2=x_2,
                       y_loglin=y_loglinear, 
                       y_nonlin=y_nonlinear)
 
-lin_plot <- ggplot(data = full_sample, mapping = aes(x=x_2, y=y_lin)) +
-  ggtitle("Linearer Zusammenhang") +
-  geom_point() + theme_icae()
+lin_plot <- ggplot2::ggplot(data = full_sample, mapping = aes(x=x_2, y=y_lin)) +
+  ggplot2::ggtitle("Linearer Zusammenhang") +
+  ggplot2::geom_point() + 
+  icaeDesign::theme_icae()
 
-exp_plot <- ggplot(data = full_sample, mapping = aes(x=x_2, y=y_loglinear)) +
-  ggtitle("Exp. Zusammenhang") +
-  geom_point() + theme_icae()
+exp_plot <- ggplot2::ggplot(data = full_sample, mapping = aes(x=x_2, y=y_loglinear)) +
+  ggplot2::ggtitle("Exp. Zusammenhang") +
+  ggplot2::geom_point() + 
+  icaeDesign::theme_icae()
 
-log_plot <- ggplot(data = full_sample, mapping = aes(x=x_2, y=log(y_loglinear))) +
-  ggtitle("Exp. Zusammenhang (log)") +
-  geom_point() + theme_icae()
+log_plot <- ggplot2::ggplot(data = full_sample, mapping = aes(x=x_2, y=log(y_loglinear))) +
+  ggplot2::ggtitle("Exp. Zusammenhang (log)") +
+  ggplot2::geom_point() + 
+  icaeDesign::theme_icae()
 
 nonlin_plot <- ggplot(data = full_sample, mapping = aes(x=x_2, y=y_nonlin)) +
-  ggtitle("Nichtlinearer Zusammenhang") +
-  geom_point() + theme_icae()
+  ggplot2::ggtitle("Nichtlinearer Zusammenhang") +
+  ggplot2::geom_point() + 
+  icaeDesign::theme_icae()
 
-ggarrange(lin_plot, exp_plot, log_plot, nonlin_plot, 
+ggpubr::ggarrange(lin_plot, exp_plot, log_plot, nonlin_plot, 
           ncol = 2, nrow = 2, 
           labels = paste0(letters[1:4], ")"))
 ```
@@ -204,10 +212,9 @@ ggarrange(lin_plot, exp_plot, log_plot, nonlin_plot,
 
 **A2: Exogenität der unabhängigen Variablen**
 
-Die Annahme kombiniert die beiden Annahmen, die wir vorher unter dem Titel 
-"Unabhängigkeit der Fehler mit den erklärenden Variablen"
-und 
-"Erwartungswert der Fehler gleich Null"
+Die Annahme kombiniert die beiden Annahmen, die wir im vorigen Kaptiel unter dem 
+Titel "Unabhängigkeit der Fehler mit den erklärenden Variablen"
+und "Erwartungswert der Fehler gleich Null"
 kennen gelernt haben.
 In der fortgeschrittenen Literatur ist die Referenz zur Exogenität der 
 unabhängigen Variablen gebräuchlicher.
@@ -243,9 +250,9 @@ $\mathbb{E}\left[\boldsymbol{\epsilon} | \boldsymbol{x} \right]=0$,
 den unbedingten Erwartungswert von Null, 
 $\mathbb{E}\left[\boldsymbol{\epsilon}\right]=0$, impliziert, aber nicht
 andersherum. 
-Folgendes Beispiel illustriert dieses Problem:
+Abbildung \@ref(fig:exogen) illustriert dieses Problem.
 
-```{r, echo=FALSE}
+```{r exogen, echo=FALSE, fig.cap="Exogenität und strikte Exogenität."}
 set.seed("123")
 x_vals <- 1:100
 y_vals_exo <- rep(NA, length(x_vals))
@@ -257,28 +264,30 @@ for (i in 1:100){y_vals_exo_strict[i] <- x_vals[i] + rnorm(1, 0, 2)}
 exo_data <- tibble("x"=x_vals, "y"=y_vals_exo)
 exo_strict_data <- tibble("x"=x_vals, "y"=y_vals_exo_strict)
 
-exo_plot <- ggplot(data = exo_data, 
+exo_plot <- ggplot2::ggplot(data = exo_data, 
                    mapping = aes(x=x, y=y)
                    ) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
-  ggtitle("Exogenität") +
-  theme_icae()
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm", se = FALSE) +
+  ggplot2::ggtitle("Exogenität") +
+  icaeDesign::theme_icae()
   
-exo_strict_plot <- ggplot(data = exo_strict_data, 
+exo_strict_plot <- ggplot2::ggplot(data = exo_strict_data, 
                           mapping = aes(x=x, y=y)
                           ) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
-  ggtitle("Strikte Exogenität") +
-  theme_icae()
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm", se = FALSE) +
+  ggplot2::ggtitle("Strikte Exogenität") +
+  icaeDesign::theme_icae()
   
-exo_full_plot <- ggarrange(exo_plot, exo_strict_plot, ncol = 2)
+exo_full_plot <- ggpubr::ggarrange(exo_plot, exo_strict_plot, ncol = 2)
 ```
 
 ```{r, echo=FALSE}
 exo_full_plot
 ```
+
+<!-- warum ist denn bei den figures in diesem kapitel der y- sowie x-achsenabschnitt nicht jeweils bei 0? wäre das nicht schöner? -->
 
 > In der linken Abbildung haben wir einen bedingten Erwartungswert von Null:
 für jede beliebige Beobachtung in $\boldsymbol{x}$ ist der Erwartungswert der
@@ -292,6 +301,8 @@ $-1$.
 Für die gesamten Daten ergibt sich dabei auch ein Erwartungswert von $0$, aber
 eben *nicht* für jede einzelne Beobachtung.
 Häufig tritt diese Problem bei quadratischen Zusammenhängen auf.
+
+<!-- Ich glaub diese graphik musst du mir nochmal besser erklären, die verstehe ich noch nicht. wie sehe ich denn in der rechten abbildunge dass der erwartungswert sich unterscheidet zwischen der unteren und oberen hälfte der beobachtungen? das sieht für mich alles ziemlich gleichmäßig aus oder?  -->
 
 Wichtig ist festzuhalten, dass dies eine Annahme über nicht zu beobachtende 
 Größen darstellt: die tatsächlichen Fehlerterme $\boldsymbol{\epsilon}$
@@ -309,19 +320,21 @@ sind ist notwendig damit der OLS Schätzer
 $\boldsymbol{\hat{\beta}} = 
 \left(\boldsymbol{X'X}\right)^{-1}\left(\boldsymbol{X'Y}\right)$
 überhaupt berechnet werden kann.
-Dann wären zwei oder mehrere unabhängigen Variablen linear abhängig könnten
+Denn wären zwei oder mehrere unabhängige Variablen linear abhängig könnten
 wir von $\boldsymbol{X}$ keine Inverse $\boldsymbol{X}^{-1}$ bilden und 
 der OLS Schätzer von $\boldsymbol{\beta}$ wäre nicht *identifizierbar*.
 Häufig wir diese Annahme auch in 'Matrizensprache' formuliert. 
 Dann sprechen wir von der Annahme, dass die Matrix $\boldsymbol{X}$
 *vollen Rang* hat. 
 Damit ist aber das gleiche gemeint.
-Die Annahme impliziert zudem, dass wir $n\geq k$ und dass es eine gewisse 
+Die Annahme impliziert zudem, dass $n\geq k$ und dass es eine gewisse 
 Variation in den unabhängigen Variablen gibt. 
 All das ist in der Praxis aber immer erfüllt - nur mit dem Problem der 
 nicht perfekten Kollinearität - also der Situation wo die abhängigen Variablen
 stark miteinander korrelieren - müssen wir uns häufig herumschlagen.
 Doch dazu später mehr.
+
+<!-- Doofe Frage aber gibt es nen Unterschied zwischen Multikollinearität und Kollinearität? (wenn nicht würde ich hier vllt einfach auch wieder "nicht perfekte Multikollinearität" schreiben einfach um zu zeigen dass der unterschied hier rein in perfekt vs nicht perfekt liegt, nicht in multikollinearität vs kollinearität) -->
 
 **A4: Konstante Varianz und keine Autokorrelation der Fehlerterme**
 
@@ -334,6 +347,7 @@ und in den sonstigen Elementen die Kovarianzen der einzelnen Fehlerpaare
 gesammelt sind. 
 Für den Fall von zwei abhängigen Variablen hätten wir also folgende 
 Varianz-Kovarianz Matrix:
+<!-- Warum 2 abhängige Variablen? wollen wir nicht üblicherweise nur eine abhängige Variable erklären? -->
 
 $$
 \left(
@@ -418,18 +432,22 @@ $$\mathbb{E}(\boldsymbol{\epsilon\epsilon'| X}) = \sigma^2\boldsymbol{I}$$
 
 **A5: Normalverteilung der Fehlerterme:**
 
-Die letzte typischerweise gemachte Annahme ist die Normalverteilung der 
+Die letzte typischerweise gemachte Annahme ist die der Normalverteilung der 
 Fehlerterme, bedingt wie immer auf die unabhängigen Variablen:
 
 $$\boldsymbol{\epsilon|\boldsymbol{X}} \propto 
 \mathcal{N}(\boldsymbol{0}, \sigma^2\boldsymbol{I})$$
 
-Diese Annahme vereinfacht zahlreiche Herleitungen ist in der Praxis allerdings 
+<!-- Ahh mmh ich kenn das gar nicht so dass hier jetzt auch nochmal sigma^2 und I steht, warum ist denn hier das I nochmal dabei wenn es nur darum geht auszudrücken dass die Fehlerterme Gaussian normalverteilt sind (das lässt sich doch einfach mit 0, sigma^2 ausdrücken)? -->
+
+Diese Annahme vereinfacht zahlreiche Herleitungen, ist in der Praxis allerdings 
 weniger relevant, da sie leicht abzuschwächen ist.
+
+<!-- was heißt das genau, dass sie leicht abzuschwächen ist? -->
 
 ### Erwartungstreue, Effizienz und Konsistenz
 
-Unter den oben beschriebenen Annahmen weist
+Unter den oben beschriebenen Annahmen weist der Schätzer
 $\boldsymbol{\hat{\beta}}$ drei wichtige Eigenschaften auf:
 (1) er ist *erwartungstreu* und (2) er ist *effizient*, auch in kleinen
 Stichproben.
@@ -438,26 +456,26 @@ Alle Eigenschaften beziehen sich auf die *Verteilung* von $\boldsymbol{\hat{\bet
 (wie im [einführenden Kapitel](#linmodel) beschrieben handelt es sich bei 
 $\boldsymbol{\hat{\beta}}$ ja um eine Zufallsvariable).
 
-Ohne die Konzepte schon eingeführt zu haben wollen dennoch bereits an dieser 
-Stelle festhalten, dass für die Erwartungstreue nur A1 und A2 relevant ist.
-Annahmen A4 und A5 sind nur für Inferenz und Standardfehler sowie die Effizienz
-von Bedeutung.
-A3 ist wie oben beschrieben notwendig, damit der OLS Schätzer überhaupt 
-identifizierbar ist.
+Ohne die Konzepte schon formal eingeführt zu haben wollen dennoch bereits an 
+dieser Stelle festhalten, dass für die Erwartungstreue nur A1 und A2 relevant 
+sind. Annahmen A4 und A5 sind nur für Inferenz und Standardfehler sowie die 
+Effizienz von Bedeutung. A3 ist wie oben beschrieben notwendig, damit der OLS 
+Schätzer überhaupt identifizierbar ist.
 
 Unter **Erwartungstreue** verstehen wir die Eigenschaft, dass der Schätzer im 
 Mittel den 'wahren Wert' $\beta$ trifft, also 
 $\mathbb{E}(\hat{\boldsymbol{\beta}})=\beta$.
 Der Schätzvorgang ist also nicht systematisch verzerrt.
-Das bedeutet natürlich nicht, dass wir für eine *einzelne* Schätzung gilt
+Das bedeutet natürlich nicht, dass dies für eine *einzelne* Schätzung gilt
 $\hat{\boldsymbol{\beta}}=\beta$, aber dass $\beta$ der wahrscheinlichste
 Wert für $\hat{\boldsymbol{\beta}}$ ist. 
 Oder technisch: das Mittel unendlich vieler Schätzungen mit 
 $\hat{\boldsymbol{\beta}}$ ist gleich $\beta$.
 
-Diese Eigenschaft des OLS-Schätzers wird in folgender Abbildung illustriert:
+Diese Eigenschaft des OLS-Schätzers wird in Abbildung \@ref(fig:erwartungstreu) 
+illustriert.
 
-```{r, echo=FALSE, warning=FALSE}
+```{r erwartungstreu, echo=FALSE, warning=FALSE, fig.cap="Erwartungstreue von $\hat{\boldsymbol{\beta}}$ unter Annahmen 1 bis 3."}
 beta_1_wahr <- 2
 beta_1_verzerrt <- 3
 x_range <- seq(-4, 8, 0.01)
@@ -476,21 +494,21 @@ data_total <- bind_rows(list(data_ols, data_biased, data_inefficient))
 data_erwartungstreue <- dplyr::filter(data_total, 
                                       Art %in% c("OLS", "Verzerrt"))
 
-erwartungstreue <- ggplot(data = data_erwartungstreue, 
+erwartungstreue <- ggplot2::ggplot(data = data_erwartungstreue, 
                        mapping = aes(x=xrange,
                                      y=yhat, color=Art,
                                      fill=Art)
   ) +
-  geom_ribbon(aes(ymin=0, ymax=yhat, fill=Art), alpha=0.5) +
-  geom_line() +
-  geom_vline(xintercept = beta_1_wahr) +
-  scale_x_continuous(limits = c(-4, 8)) +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
-  ylab(TeX("Dichte von $\\hat{\\beta}_1$")) +
-  xlab(TeX("$\\hat{\\beta_1}}$")) +
-  ggtitle(TeX("Erwartungstreue von $\\hat{\\beta}_1$")) +
-  theme_icae() +
-  scale_color_manual(values = c("OLS"="#006600", "Verzerrt"="#800000"), 
+  ggplot2::geom_ribbon(aes(ymin=0, ymax=yhat, fill=Art), alpha=0.5) +
+  ggplot2::geom_line() +
+  ggplot2::geom_vline(xintercept = beta_1_wahr) +
+  ggplot2::scale_x_continuous(limits = c(-4, 8)) +
+  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
+  ggplot2::ylab(TeX("Dichte von $\\hat{\\beta}_1$")) +
+  ggplot2::xlab(TeX("$\\hat{\\beta_1}}$")) +
+  ggplot2::ggtitle(TeX("Erwartungstreue von $\\hat{\\beta}_1$")) +
+  icaeDesign::theme_icae() +
+  ggplot2::scale_color_manual(values = c("OLS"="#006600", "Verzerrt"="#800000"), 
                      aesthetics = c("color", "fill"))
 
 erwartungstreue
@@ -503,8 +521,10 @@ und A5 erfüllt sind.
 Der mathematische Beweis findet sich [im Anhang](#advlin-proofs) 
 (siehe Theorem \ref{theo:ewt-ols-beta}).
 
-Daraus resultiert natürlich nicht, dass für jede einzelne Schätzung der Wert
-des Schätzers $\hat{\boldsymbol{\beta}}$ gleich dem wahren Wert 
+<!-- bin mir nicht sicher ob das hier richtig referenziert wird. wie wird ein theorem referenziert? hätte jetzt gedacht mit runden klammern und \@ref, oder? -->
+
+Wie oben bereits erwähnt resultiert daraus natürlich nicht, dass für jede einzelne 
+Schätzung der Wert des Schätzers $\hat{\boldsymbol{\beta}}$ gleich dem wahren Wert 
 $\boldsymbol{\beta}$ ist. 
 Jede Schätzung ist aufgrund der Fehler immer mit Unsicherheit behaftet.
 Diese Unsicherheit können wir über die Varianz des Schätzers 
@@ -512,7 +532,7 @@ $\hat{\boldsymbol{\beta}}$ messen: je größer die Varianz desto größer
 die Unsicherheit für die einzelne Schätzung.
 Wir können die Varianz einer Schätzung auch ausrechnen und als 
 Standardfehler der Schätzer angeben. 
-R gibt uns diese Werte immer automatisch mit aus, wie die Schätzer hergeleitet
+R gibt uns diese Werte immer automatisch mit aus. Wie die Schätzer hergeleitet
 und geschätzt werden können Sie über Theorem \ref{theo:ewt-ols-sigma} und 
 \ref{theo:ols-sdf} [im Anhang](#advlin-proofs) nachvollziehen.
 
@@ -525,27 +545,27 @@ Varianz geringer ist und für den Schätzer $\hat{\boldsymbol{\beta}}$ gilt,
 dass es unter A1-A4 *keinen* anderen linearen erwartungstreuen Schätzer
 gibt, der noch effizienter ist als $\hat{\boldsymbol{\beta}}$.
 
-Die Eigenschaft der Effizienz wird in folgender Abbildung illustriert:
+Die Eigenschaft der Effizienz wird in folgender Abbildung \@ref(fig:eig-effizienz) illustriert.
 
-```{r, echo=FALSE}
+```{r eig-effizienz, echo=FALSE, fig.cap="Effizienz von $\hat{\boldsymbol{\beta}}$ unter Annahmen 1 bis 4."}
 data_effizienz <- dplyr::filter(data_total, 
                                       Art %in% c("OLS", "Ineffizient"))
 
-effizienz <- ggplot(data = data_effizienz, 
+effizienz <- ggplot2::ggplot(data = data_effizienz, 
                        mapping = aes(x=xrange,
                                      y=yhat, color=Art,
                                      fill=Art)
   ) +
-  geom_ribbon(aes(ymin=0, ymax=yhat, fill=Art), alpha=0.5) +
-  geom_line() +
-  geom_vline(xintercept = beta_1_wahr) +
-  scale_x_continuous(limits = c(-4, 8)) +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
-  ylab(TeX("Dichte von $\\hat{\\beta}_1$")) +
-  xlab(TeX("$\\hat{\\beta_1}}$")) +
-  ggtitle(TeX("Effizienz von $\\hat{\\beta}_1$")) +
-  theme_icae() +
-  scale_color_manual(values = c("OLS"="#006600", "Ineffizient"="#800000"), 
+  ggplot2::geom_ribbon(aes(ymin=0, ymax=yhat, fill=Art), alpha=0.5) +
+  ggplot2::geom_line() +
+  ggplot2::geom_vline(xintercept = beta_1_wahr) +
+  ggplot2::scale_x_continuous(limits = c(-4, 8)) +
+  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
+  ggplot2::ylab(TeX("Dichte von $\\hat{\\beta}_1$")) +
+  ggplot2::xlab(TeX("$\\hat{\\beta_1}}$")) +
+  ggplot2::ggtitle(TeX("Effizienz von $\\hat{\\beta}_1$")) +
+  icaeDesign::theme_icae() +
+  ggplot2::scale_color_manual(values = c("OLS"="#006600", "Ineffizient"="#800000"), 
                      aesthetics = c("color", "fill"))
 
 effizienz
@@ -554,9 +574,8 @@ effizienz
 Da wir hier die zugrundeliegenden Daten selbst herstellen wissen wir, dass für
 den wahren Wert gilt $\beta_1=2.0$.
 Um die Effizienz des OLS-Schätzers beweisen zu können reichen Annahmen A1-A3 
-nicht aus: hierfür benötigen wir auch die Annahme A4!
-Unter Annahmen A1-A4 gilt die Effizienz des OLS-Schätzers aber auch 
-unabhängig von der Stichprobengröße.
+nicht aus: hierfür benötigen wir auch die Annahme A4: Konstante Varianz und keine Autokorrelation der Fehlerterme. Unter Annahmen A1-A4 gilt die Effizienz des
+OLS-Schätzers auch unabhängig von der Stichprobengröße.
 Für den Beweis siehe Theorem \ref{theo:ewt-ols-effizienz} 
 [im Anhang](#advlin-proofs).
 
@@ -564,7 +583,7 @@ Dass die Eigenschaften der Erwartungstreue und Effizienz beim OLS-Schätzer
 unabhängig von der Stichprobengröße gelten ist eine tolle Sache.
 Solche stichprobenunabhängigen Beweise funktionieren in realen Settings, in
 denen bestimmte Annahmen leicht verletzt sind und die zu schätzenden Funktionen
-komplexer werden häufig nicht.
+komplexer werden, häufig nicht.
 Daher versucht man Eigenschaften von Schätzern wenigstens für große 
 Stichproben zu beweisen.
 Diese Beweise sind wegen bestimmten Gesetzen wie dem 
@@ -584,10 +603,12 @@ nur die Methode der *Monte Carlo Simulation*, die weiter unten eingeführt wird.
 
 Vorher wollen wir jedoch die wichtigste Eigenschaft von Schätzern für große
 Stichproben anhand des OLS-Schätzers einführen: die **Konsistenz**.
-Ein konsistenter Schätzers trifft im Mittel den wahren Wert 
+Ein konsistenter Schätzer trifft im Mittel den wahren Wert 
 und seine Varianz geht mit wachsender Stichprobengröße gegen Null.
 Wir können also sagen, dass unsere Schätzungen bei wachsender Stichprobengröße
 immer genauer wird.
+<!-- Aber haben wir das selbe nicht auch für die Erwartungstreue gesagt? Dass zwar für den einzelnen Fall wir nicht erwarten können, dass unser schätzer dem wahren beta Wert entspricht, asymptotisch aber schon? Siehe Zeile 472: "das Mittel unendlich vieler Schätzungen mit  -->
+<!-- $\hat{\boldsymbol{\beta}}$ ist gleich $\beta$." Ich glaube deshalb bin ich verwirrt über den Unterschied zwischen Erwartungstreue und Konsistenz. -->
 
 Formal drücken wir dies unter Verwendung von Grenzwerten aus:
 
@@ -600,9 +621,9 @@ Operator $\plim$.
 Das steht für *probability limit* und drückt die Idee der letzten Formel aus:
 das *probability limit* einer ZV ist der Wert auf den diese ZV bei unendlich 
 vielen Ziehungen konvergieren wird.
-Wir sagen dann auch: die ZV kovergiert stochastisch gegen einen Wert.^[Eigentlich
+Wir sagen dann auch: die ZV konvergiert stochastisch gegen einen Wert.^[Eigentlich
 ist $\plim$ noch allgemeiner definiert, für die Anwendungen in der Ökonometrie
-ist diese Definition aber ausreichend. Wundern Sie sich aber nicht, dass Sie in
+ist diese Definition aber ausreichend. Wundern Sie sich aber nicht, wenn Sie in
 manchen mathematischen Texten leicht andere Definitionen finden.]
 Oder formal:
 
@@ -618,6 +639,7 @@ deren geschätzte Werte systematisch von dem wahren Wert abweichen.
 Es sei an dieser Stelle jedoch bereits erwähnt, dass es sinnvolle Ausnahmen 
 von dieser Regel geben kann, nämlich dann wenn wir große Zugewinne an Effizienz
 für kleine Abstriche in der Erwartungstreue 'erkaufen' können.
+<!-- Erwartungstreue oder Konsistenz? In unserer metrics class gestern haben wir auch über einen ähnlichen trade-off geredet, aber da war der tradeoff zwischen effizienz und konsistenz, nicht zwischen effizienz und erwartungstreue. ich glaub ich bin einfach noch bissi verwirrt bzgl des unterschieds zwischen erwartunstreue und konsistenz, und auch warum es hier jetzt wieder um erwartungstreue geht während ja dieser ganze abschnitt hier eigl eher zum thema konsistenz ist oder? -->
 
 In der Literatur wird diese Fragestellung unter dem Stichwort 
 *bias-variance trade-off* diskutiert. 
@@ -627,6 +649,8 @@ An dieser Stelle wollen wir uns zunächst auf die erwartungstreuen Schätzer
 konzentrieren, da dies tatsächlich auch die am weitesten verbreiteten 
 Schätzmethoden sind.
 
+<!-- erwartungstreuen oder konsistenten? -->
+
 ### Abweichungen von den OLS Annahmen
 
 Wenn alle Annahmen des OLS-Schätzers erfüllt sind können wir also ohne Bedenken
@@ -634,14 +658,14 @@ die Parameter unseres statistischen Modells mit der klassischen OLS Methode
 schätzen. 
 Aber was ist wenn eine Annahme nicht erfüllt ist? 
 
-Im folgenden wollen wir uns diesem Problem annähern indem wir die folgenden
+Im Folgenden wollen wir uns diesem Problem annähern indem wir die folgenden
 Fragen für die verschiedenen Annahmen anhand der
-folgenden beiden Leitfragen diskutieren:
+folgenden vier Leitfragen diskutieren:
 (1) Unter welchen praktisch relevanten Situationen kann die Annahme verletzt sein?
 (2) Wie können wir testen ob die Annahme verletzt ist?
 (3) Was sind die Konsequenzen wenn die Annahme verletzt ist?
 (4) Was können wir tun um trotz verletzter Annahme konsistente und möglichst 
-effiziente Schätzer zu bekommen.
+effiziente Schätzer zu bekommen?
 
 Diese Fragen sind in der der Praxis nicht einfach zu beantworten.
 Ein Grund dafür ist, dass wir die 'wahren Werte' der zu schätzenden Parameter
@@ -651,7 +675,7 @@ mit Sicherheit sagen, ob eine bestimmte Annahme verletzt ist oder nicht.
 
 Dennoch gibt es zwei Möglichkeiten die relevanten Informationen zu den Schätzern
 zu bekommen: 
-zum einen können wir häufig mathematisch beweisen, dass eine Schätzer 
+zum einen können wir häufig mathematisch beweisen, dass ein Schätzer 
 erwartungstreu oder effizient ist.
 Ein Beispiel dafür ist der Beweis der Erwartungstreue des OLS-Schätzers 
 [hier](#ols-deriv) oder der Beweis der Effizienz des OLS-Schätzers 
@@ -661,18 +685,20 @@ intuitiv.
 
 Die zweite Möglichkeit ist die Analyse von Schätzern mit Hilfe von 
 künstlichen Datensätzen und so genannten [Monte-Carlo Simulationen]().
+<!-- ich glaub hier fehlt noch eine referenz in den klammern? -->
+
 Hier definieren wir unseren datenerzeugenden Prozess selbst und erstellen dann
 einen künstlichen Datensatz. 
 Diese Vorgehensweise ist zwar weniger 'sicher' als ein mathematischer Beweis
 aber häufig intuitiver und in vielen Fällen tatsächlich auch die einzige 
 Möglichkeit, inbesondere wenn wir Schätzereigenschaften für kleine Stichproben
 analysieren wollen.
-Daher wird diese Methode im folgenden kurz beschrieben und später für die
+Daher wird diese Methode im Folgenden kurz beschrieben und später für die
 Illustration der Folgen von verletzten Annahmen verwendet.
 
 ### Monte Carlo Simulationen in R
 
-Der Ablauf einer Monte Carlo Simulation ist immer der folgende:
+Der Ablauf einer Monte Carlo Simulation ist immer der Folgende:
 
 1. Definiere das zu untersuchende Merkmal des datenerzeugenden Prozesses
 2. Formalisiere den datenerzeugenden Prozess als Funktion
@@ -684,7 +710,7 @@ auf die künstlichen Stichproben an
 5. Interpretiere die Ergebnisse
 
 Wir erstellen also selbst einen datenerzeugenden Prozess und untersuchen dann
-das Verhalten des interessierenden Schätzers im Kontext dieses 
+das Verhalten des uns interessierenden Schätzers im Kontext dieses 
 datenerzeugenden Prozesses.
 Wenn wir z.B. untersuchen möchten welchen Effekt Heteroskedastie auf den OLS
 Schätzer hat dann erstellen wir künstliche Datensätze über einen 
@@ -695,7 +721,7 @@ Dann schätzen wir ein Modell jeweils für die beiden Prozesse und vergleichen d
 Eigenschaften des OLS-Schätzers. 
 Somit können wir Rückschlüsse auf die Implikationen von Heteroskedastie schließen.
 
-Im folgenden wollen wir die Methode der Monte-Carlo Simulation über genau dieses 
+Im Folgenden wollen wir die Methode der Monte-Carlo Simulation über genau dieses 
 Beispiel einführen.
 
 **1. Schritt: Definition des zu untersuchenden Merkmals**
@@ -709,7 +735,7 @@ Das zu untersuchende Merkmal des datenerzeugenden Prozesses ist also
 
 Wir formalisieren jetzt einen datenerzeugenden Prozess, der alle Annahmen des
 OLS Schätzers erfüllt außer ggf. der Annahme der Homoskedastie. 
-Der Einfachheit halber wollen wir einen Prozess mit einer erklärenden Variablen
+Der Einfachheit halber wollen wir einen Prozess mit einer erklärenden Variable
 erstellen, also einen Prozess, der durch folgende Gleichung beschrieben werden
 kann:
 
@@ -718,6 +744,7 @@ $$Y = \beta_0 + \beta_1 x_1 +  \epsilon$$
 wobei wir annehmen, dass $\epsilon \propto \mathcal{N}(\mu, \sigma)$ und $\sigma$
 im Falle der Kontrollgruppe konstant (Fall der Homoskedastie) und im Falle 
 der Testgruppe variabel ist (Fall der Heteroskedastie).
+<!-- Warum nehmen wir hier standardabweichung nicht nicht varianz für die annahmenbeschreibung? es geht doch bei homoskedastie um konstante varianz, also eigl sigma squared oder?-->
 
 Wir definieren also folgende Funktion, die für gegebene Werte für $\beta_0$ und 
 $\beta_1$ und ein gegebenes $\boldsymbol{X}$ eine Stichprobe erstellt indem 
@@ -749,7 +776,7 @@ dgp <- function(x1, beta0, beta1, hetero=FALSE){
 **3. Schritt: Künstlichen Datensatz erstellen und Schätzer darauf anwenden**
 
 Wir simulieren nun das Ziehen einer Stichprobe aus dem künstlich erstellten
-DGP indem wir jeweils 1000 Beobachtungen kreieren.
+datengenerierenden Prozess (DGP) indem wir jeweils 1000 Beobachtungen kreieren.
 Da das Ziehen einer Stichprobe immer ein Zufallsprozess ist erstellen wir 
 1000 Stichproben und wenden darauf dann jeweils unseren OLS-Schätzer an.
 Die geschätzten Koeffizienten und Standardfehler speichern wir in einer
@@ -792,7 +819,6 @@ return(ergebnisse)
 Damit können wir die Simulation sehr einfach für die beiden relevanten
 Fälle ausführen.
 
-
 Wir definieren nun die Parameter und die wahren Werte.
 Hierbei ist es wichtig, die Funktion `set.seed` zu verwenden.
 Das ist wichtig um unsere Monte-Carlo Simulation reproduzierbar zu machen, denn
@@ -826,35 +852,35 @@ full_results <- rbind(homosc_results, hetero_results)
 
 ```{r, eval=FALSE, echo=FALSE}
 fwrite(full_results, 
-       file = here("data/tidy/advlinmodels_full_results.csv"))
+       file = here::here("data/tidy/advlinmodels_full_results.csv"))
 ```
 
 ```{r, echo=FALSE}
-full_results <- fread(file = here("data/tidy/advlinmodels_full_results.csv"), 
+full_results <- data.table::fread(file = here("data/tidy/advlinmodels_full_results.csv"), 
                       colClasses = c(rep("double", 4), "character"))
 ```
+<!-- Ich krieg hier eine Fehlermeldung wenn ich den chunk hier laufen lasse (hab das pdf noch nicht gecheckt). fehler in fread sagt es -->
 
-
-**4. Schritt: vergleichende Analyse der Schätzereigenschaften**
+**4. Schritt: Vergleichende Analyse der Schätzereigenschaften**
 
 Als erstes wollen wir die Ergebnisse grafisch analysieren. 
-Zu diesem Zweck visualisieren wir Verteilung der geschätzten Werte für $\beta_1$ 
+Zu diesem Zweck visualisieren wir in Abbildung \@ref(fig:montecarlo) die Verteilung der geschätzten Werte für $\beta_1$ 
 und zeichnen zudem den wahren Wert ein:
 
-```{r}
-beta_1_plot <- ggplot(data = full_results, 
+```{r montecarlo, fig.cap="Vergleich der Verteilung der mit Monte Carlo geschätzten Werte für $\beta_1$ mit dem wahren Wert."}
+beta_1_plot <- ggplot2::ggplot(data = full_results, 
                       mapping = aes(x=b1_coef, color=Fall, fill=Fall)) +
-  geom_density(alpha=0.5) +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
-  scale_x_continuous(limits = c(1.7, 2.2), expand = c(0,0)) +
-  geom_vline(xintercept = wahres_b1) +
-  ylab(TeX("Dichte von $\\hat{\\beta}_1$")) +
-  xlab(TeX("$\\hat{\\beta}_1$")) +
-  ggtitle(TeX("Verteilung von $\\hat{\\beta}_1$")) +
-  scale_color_manual(values = c("Homoskedastie"="#006600",
+  ggplot2::geom_density(alpha=0.5) +
+  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
+  ggplot2::scale_x_continuous(limits = c(1.7, 2.2), expand = c(0,0)) +
+  ggplot2::geom_vline(xintercept = wahres_b1) +
+  ggplot2::ylab(TeX("Dichte von $\\hat{\\beta}_1$")) +
+  ggplot2::xlab(TeX("$\\hat{\\beta}_1$")) +
+  ggplot2::ggtitle(TeX("Verteilung von $\\hat{\\beta}_1$")) +
+  ggplot2::scale_color_manual(values = c("Homoskedastie"="#006600",
                                 "Heteroskedastie"="#800000"),
   aesthetics = c("color", "fill")) +
-  theme_icae()
+  icaeDesign::theme_icae()
 
 beta_1_plot
 ```
@@ -865,32 +891,31 @@ im Mittel trifft der Schätzer den wahren Wert $\beta_1$!
 Allerdings nimmt die Genauigkeit ab, da die Streuung um den wahren Wert
 herum im heteroskedastischen Fall zunimmt!
 
-Wir wollen im Folgenden noch untersuchen wie sich Heteroskedastie auf die 
-Standardfehler der Regression auswirkt (der Code zum Erstellen der Plots
-ist äquivalent zu oben):
+Wir wollen nun in Abbildung \@ref(fig:montecarlo2) noch untersuchen wie sich 
+Heteroskedastie auf die Standardfehler der Regression auswirkt.
 
-```{r, echo=FALSE}
-beta_1_stdf_plot <- ggplot(data = full_results, 
+```{r montecarlo, echo=FALSE, fig.cap="Vergleich der Standardfehler von $\hat{\boldsymbol{\beta}}$ bei Homoskedastie und Heteroskedastie."}
+beta_1_stdf_plot <- ggplot2::ggplot(data = full_results, 
                            mapping = aes(x=b1_stdf, color=Fall, fill=Fall)) +
-  geom_density(alpha=0.5) +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
-  ylab(TeX("Dichte der Standardfehler")) +
-  xlab(TeX("Standardfehler für $\\hat{\\beta}_1$")) +
-  ggtitle(TeX("Standardfehler für $\\hat{\\beta}_1$")) +
-  scale_color_manual(values = c("Homoskedastie"="#006600", 
+  ggplot2::geom_density(alpha=0.5) +
+  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
+  ggplot2::ylab(TeX("Dichte der Standardfehler")) +
+  ggplot2::xlab(TeX("Standardfehler für $\\hat{\\beta}_1$")) +
+  ggplot2::ggtitle(TeX("Standardfehler für $\\hat{\\beta}_1$")) +
+  ggplot2::scale_color_manual(values = c("Homoskedastie"="#006600", 
                                 "Heteroskedastie"="#800000"), 
                      aesthetics = c("color", "fill")) +
-  theme_icae()
+  icaeDesign::theme_icae()
 ```
 ```{r}
 beta_1_stdf_plot
 ```
 
-Wir wir sehen weichen die Standardfehler im heteroskedastischen Fall deutlich
-von denen im homoskedastischen Fall ab!
-Welche Standardfehler sind nun die richtigen?
+Wie wir sehen weichen die Standardfehler im heteroskedastischen Fall deutlich
+von denen im homoskedastischen Fall ab! Welche Standardfehler sind nun die
+richtigen?
 
-Ohne auf die mathematische Herleitung genauer einzugehen (siehe Kapitel 4
+Ohne auf die mathematische Herleitung genauer einzugehen (siehe dazu Kapitel 4
 in @greene) wollen wir dennoch festhalten, dass die geschätzten Standardfehler
 unter Heteroskedastie *falsch* sind. 
 Wir können ohne eine Korrektur also keine Aussagen über die Schätzunsicherheit
@@ -900,7 +925,11 @@ Das alles bedeutet zwar, dass der OLS Schätzer auch im Falle von Heteroskedasti
 noch erwartungstreu ist, allerdings die Genauigkeit des Schätzers sinkt und die
 Standardfehler falsch berechnet werden. 
 Da der Fokus hier auf der Beschreibung der Monte-Carlo Simulationsmethode lag
-werden wir uns mit den möglichen Lösungen erst weiter unten befassen.
+werden wir uns mit den möglichen Lösungen erst später befassen. 
+
+Im Folgenden werden wir nun einen weiteren Blick auf verschiedene OLS Annahmen 
+werfen und besprechen wie die jeweilige Annahme geprüft werden kann und was im 
+Falle einer Verletzung zu tun wäre.
 
 ## Heteroskedastie
 
@@ -913,9 +942,11 @@ Heteroskedastie kann grafisch oder über statistische Tests identifiziert werden
 Um Heteroskedastie grafisch zu identifizieren verwenden wir den aus dem
 vierten Kapitel bekannten [Tukey-Anscombe-Plot](#linmod-residuals), in dem wir
 auf der x-Achse die gefitteten Werte $\hat{Y}$ und auf der y-Achse die Residuen 
-$e$ abbilden:
+$e$ abbilden. Siehe dazu Abbildung \@ref(fig:homoskedastie).
 
-```{r, echo=FALSE}
+<!-- Hier muss das "vierte" Kapitel angepasst werden, und ich glaube aber auch dass das ja genau der Teil war der jetzt aus linmodels rausgeflogen ist, oder? Dh der müsste hier nochmal neu eingeführt werden?  -->
+
+```{r homoskedastie, echo=FALSE, fig.cap="Graphische Analyse der Homoskedastie."}
 set.seed("1")
 x1 <- runif(500, min = 1, max = 10)
 wahres_b0 <- 2
@@ -947,55 +978,51 @@ tk_data <- rbind(tk_data_homo, tk_data_hetero)
 ```
 
 ```{r, echo=FALSE}
-tk_plot_homo <- ggplot(
+tk_plot_homo <- ggplot2::ggplot(
   data = tk_data_homo, 
   mapping = aes(x=UQ(as.name("Gefittete Werte")),
                 y=Residuen)
   ) +
-  geom_point(alpha=0.5) +
-  geom_hline(yintercept = 0) +
-  ggtitle("TA-Plot (homoskedastische Daten)") +
-  theme_icae()
+  ggplot2::geom_point(alpha=0.5) +
+  ggplot2::geom_hline(yintercept = 0) +
+  ggplot2::ggtitle("TA-Plot (homoskedastische Daten)") +
+  icaeDesign::theme_icae()
 ```
 
 ```{r, echo=FALSE}
-tk_plot_hetero <- ggplot(
+tk_plot_hetero <- ggplot2::ggplot(
   data = tk_data_hetero, 
   mapping = aes(x=UQ(as.name("Gefittete Werte")),
                 y=Residuen)
   ) +
-  geom_point(alpha=0.5) +
-  geom_hline(yintercept = 0) +
-  ggtitle("TA-Plot (heteroskedastische Daten)") +
-  theme_icae()
+  ggplot2::geom_point(alpha=0.5) +
+  ggplot2::geom_hline(yintercept = 0) +
+  ggplot2::ggtitle("TA-Plot (heteroskedastische Daten)") +
+  icaeDesign::theme_icae()
 ```
 
 ```{r, echo=FALSE}
-ggarrange(tk_plot_homo, tk_plot_hetero, 
+ggpubr::ggarrange(tk_plot_homo, tk_plot_hetero, 
           ncol = 2, labels = c("a)", "b)"), 
           font.label = list("face"="bold"))
 ```
 
-Im Optimalfall ist die Varianz der Fehler konstant. 
-Das ist in Abbildung (a) der Fall: 
-die Residuen streuen recht zufällt um die Mittelwert 0 herum. 
+Im Optimalfall ist die Varianz der Fehler konstant. Das scheint in Abbildung (a) 
+der Fall zu sein: die Residuen streuen recht zufällig um die Mittelwert 0 herum. 
 In diesem Fall besteht kein Grund zur Annahme, dass Heteroskedastizität vorliegt.
-Anders in Abbildung (b): 
-hier wird die Varianz nach rechts klar größer.
+Anders in Abbildung (b): hier wird die Varianz nach rechts klar größer.
 Das lässt große Zweifel an der Annahme der Homoskedastizität aufkommen.
 
 In der Praxis ist es sinnvoll zusätzlich zur grafischen Inspektion noch 
-statistische Tests zu verwenden.
-Hier gibt es ein breites Angebot an Tests.
+statistische Tests zu verwenden. Hier gibt es ein breites Angebot an Tests.
 Viele davon sind in dem Paket [lmtest](https://github.com/cran/lmtest) 
-[@R-lmtest] gesammelt.
-Wir gehen auf die mathematische Herleitung der Tests hier nicht ein. 
-Genauere Informationen finden Sie in den unten angegebenen weiterführenden
-Quellen.
+[@R-lmtest] gesammelt. Wir gehen auf die mathematische Herleitung der Tests 
+hier nicht ein. Genauere Informationen finden Sie in den später angegebenen 
+weiterführenden Quellen.
 
 Häufig verwendet wird z.B. der **Breusch-Pagan Test**, den wir mit der Funktion 
 `bptest()` durchführen können.
-Diese Funktion nimmt als einziges zwingende Argument das Regressionsobjekt.
+Diese Funktion nimmt als einziges zwingendes Argument das Regressionsobjekt.
 Die weiteren Argumente sollten wir im Normalfall auf den Standardwerten 
 belassen.
 
@@ -1028,7 +1055,7 @@ sollen (Argument `fraction`).
 Zudem können wir über das Argument `alternative` wählen ob für steigende, sinkende
 oder andere Varianz getestet werden soll.
 Diese Wahlmöglichkeiten erhöhen die Power des Tests - wenn wir denn theoretisch
-gut begründete Werte wählen können. Ansonsten ist es im besten die Standardwerte 
+gut begründete Werte wählen können. Ansonsten ist es am besten die Standardwerte 
 zu verwenden und den Test mit anderen Tests und grafischen Methoden zu ergänzen.
 
 Wir verwenden zunächst den Test mit der Standardspezifikation:
@@ -1045,7 +1072,7 @@ gqtest(schaetzung_hetero)
 ```
 
 Komischerweise muss $H_0$ auch für den heteroskedastischen Fall nicht verworfen werden.
-Hätten wir aber für sinkende Varianz getestet hätte $H_0$ abgelehnt
+Hätten wir aber für sinkende Varianz getestet, hätte $H_0$ abgelehnt
 werden können:
 
 ```{r}
@@ -1071,7 +1098,7 @@ umgesetzt werden.
 
 ### Reaktionen auf Heteroskedastie
 
-Aus unseren Vorüberlegungen können wir folgendes festhalten:
+Aus unseren Vorüberlegungen können wir Folgendes festhalten:
 
 1. Der OLS-Schätzer ist auch unter Heteroskedastie erwartungstreu
 2. Der OLS-Schätzer ist weiterhin konsistent 
@@ -1091,21 +1118,18 @@ OLS-Schätzers, verwenden aber die alten geschätzten Koeffizienten weiter.
 Im zweiten Fall verwenden wir die Schätzmethode der *Generalized Least Squares*
 um nicht nur die Standardfehler zu korrigieren sondern auch die Parameter neu
 zu schätzen. 
-Im folgenden fokussieren wir uns auf die erste Strategie, da die GLS Methode mit
-neuen Schwierigkeiten einhergeht und nicht ganz einfach zu implementieren ist.
 
-Denn wie gesagt ist der OLS Schätzer weiterhin konsistent.
-Das bedeutet, dass wir in großen Stichproben eigentlich kein Problem haben.
-In kleinen Stichproben kann die Verwendung dagegen Effizienzverluste mit sich
-bringen - aber keinen Verlust der Erwartungstreue.
-Beim GLS Verfahren schätzen wir die Varianzstruktur. 
-Das funktioniert gut, wenn wir große Stichproben haben.
-Gerade da ist aber die Verwendung der OLS Schätzers aufgrund seiner Konsistenz
-aber gar kein Problem.
-In kleinen Stichproben ist die Schätzung der Varianz dagegen problematisch,
-solange wir keine theoretischen Restriktionen einführen können.
-Insofern ist die sinnvolle Anwendung von GLS eher gering, weswegen wir uns
-im Folgenden darauf beschränken robuste Standardfehler einzuführen.
+Welchen Fall sollten wir verwenden? Wie gesagt ist der OLS Schätzer weiterhin 
+konsistent. Das bedeutet, dass wir in großen Stichproben eigentlich kein Problem
+haben. In kleinen Stichproben kann die Verwendung dagegen Effizienzverluste mit 
+sich bringen - aber keinen Verlust der Erwartungstreue. Beim GLS Verfahren 
+schätzen wir die Varianzstruktur. Das funktioniert gut, wenn wir große 
+Stichproben haben. Gerade da ist aber die Verwendung der OLS Schätzers aufgrund 
+seiner Konsistenz gar kein Problem. In kleinen Stichproben ist die Schätzung der
+Varianz dagegen problematisch, solange wir keine theoretischen Restriktionen 
+einführen können. Insofern ist die sinnvolle Anwendung von GLS eher gering, 
+weswegen wir uns im Folgenden darauf beschränken robuste Standardfehler 
+einzuführen.
 
 Die am weitesten verbreitete Korrektur der Standardfehler sind
 *White's robuste Standardfehler*.^[Die mathematischen 
@@ -1114,12 +1138,12 @@ weiterführenden Literatur erläutert, z.B. in Kapitel 4 von @greene.]
 Um diese in R zu berechnen bedarf es zweier Schritte.
 Zunächst verwenden wir die Funktion `vcovHC()` aus dem Paket
 [sandwich](https://github.com/cran/sandwich) [@R-sandwich] um eine 
-korrigiert Varianz-Kovarianz-Matrix zu berechnen.
+korrigierte Varianz-Kovarianz-Matrix zu berechnen.
 Diese Funktion nimmt als notwendiges Argument das Regressionsobjekt.
 Darüber hinaus können wir über das Argument `type` die genaue Berechnungsmethode
 festlegen. 
 Mehr Infos dazu findet sich z.B. in der Hilfefunktion. 
-Hier verwenden wir die am häufigsten verwendetete Verion `"HC1"`:
+Hier verwenden wir die am häufigsten verwendete Verion `"HC1"`:
 
 ```{r}
 var_covar_matrix <- vcovHC(schaetzung_hetero, type = "HC1")
