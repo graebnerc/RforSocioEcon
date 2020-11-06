@@ -2828,7 +2828,7 @@ boxplot_classic <- ggplot2::ggplot(data = wb_data,
        ) +
   ggplot2::geom_boxplot() +
   ggplot2::theme_bw() +
-  ggplot2::labs(title = "Klassische Darstellung") +
+  ggplot2::labs(title = "Klassisch") +
   ggplot2::theme(axis.title.x = element_blank(), 
         axis.text.x = element_text(angle = 90, hjust = 1))
 
@@ -2838,7 +2838,7 @@ boxplot_jitter <- ggplot2::ggplot(data = wb_data,
   ggplot2::geom_boxplot() +
   ggplot2::geom_jitter(alpha=0.25) +
   ggplot2::theme_bw() +
-  ggplot2::labs(title = "Klassische Darstellung mit jitter") +
+  ggplot2::labs(title = "Klassisch mit jitter") +
   ggplot2::theme(axis.title.x = element_blank(), 
         axis.text.x = element_text(angle = 90, hjust = 1))
 
@@ -2856,13 +2856,11 @@ compare_plot <- ggpubr::ggarrange(
   ncol = 3)
 ```
 
-```r
-compare_plot
-```
+
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Violinenplot-1} 
+{\centering \includegraphics[width=1\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/formalia/compare_violin} 
 
 }
 
