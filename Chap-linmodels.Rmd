@@ -145,7 +145,7 @@ notwendigen Annahmen eingeführt.
 Danach werden wir typische [Kennzahlen einer Regression](#lin-kennzahlen) 
 diskutieren und lernen, wie wir die Güte einer Regression beurteilen können.
 Dieser Abschnitt enthält Auführungen zum $R^2$, Standardfehlern von Schätzern, 
-Konfidenzintervallen und Residuenanalysen. 
+Konfidenzintervallen. 
 Vieles ist eine Anwendung der in Kapitel \@ref(stat-rep)
 beschriebenen Konzepte zu schließender Statistik.
 
@@ -436,7 +436,7 @@ ggplot2::ggplot(datensatz, aes(x=x, y=y)) +
 
 Zwar wissen wir jetzt, wie wir eine einfache lineare Regression schätzen, 
 allerdings hört die Arbeit hier nicht auf! 
-Unsere bisherige Tätigkeiten korrespondieren zu der in Kapitel @ref(stat-rep) 
+Unsere bisherige Tätigkeiten korrespondieren zu der in Kapitel \@ref(stat-rep) 
 beschriebenen *Parameterschätzung*.
 Wir wollen aber auch noch die anderen beiden Verfahren, Hypothesentests und 
 Konfidenzintervalle, 
@@ -449,12 +449,12 @@ erfüllt sein müssen, damit die OLS-Prozedur auch funktioniert.
 
 <!-- 
 @Birte: ich habe diesen Teil nunmehr recht vollständig überarbeitet, bitte 
-nochmal genau checken und vor allem Konsistenz mit dem späteren Test checken.
+nochmal genau checken und vor allem Konsistenz mit dem späteren Test checken. 
 -->
 
 Das lineare Regressionsmodell wird sehr häufig in der sozioökonomischen 
 Forschung verwendet. 
-Wie jedes statistisches Modell basiert es jedoch auf bestimmten Annahmen, 
+Wie jedes statistische Modell basiert es jedoch auf bestimmten Annahmen, 
 aus denen sich der sinnvolle Anwendungsbereich des Modells ergibt. 
 Wann immer wir die lineare Regression verwenden sollten wir daher kritisch 
 prüfen ob die entsprechenden Annahmen für den Anwendungsfall plausibel sind. 
@@ -494,7 +494,7 @@ Insgesamt kann man die Annahme vielleicht auch einfach so (sehr grob)
 zusammenfassen: wir nehmen  an, dass wir unser Modell clever spezifiziert 
 haben.
 Dabei ist wichtig zu beachten, dass wir hier eine Annahme über eine 
-unbeobachtbare G röße der Population treffen, nämlich die Fehlerterme 
+unbeobachtbare Größe der Population treffen, nämlich die Fehlerterme 
 $\epsilon$, und **nicht** über die Residuen $e_i$ unserer Regression.
 Die Residuen $e_i$ können wir beobachten, die echten Fehler $\epsilon_i$ nicht.
 Entsprechend gibt es auch keinen abschließenden 'Test' dieser ersten Annahme.
@@ -520,9 +520,9 @@ Was das genau bedeutet wird im Detail in Kapitel \@ref(advlin) erläutert.]
 Gleiches gilt auch für die Annahme, dass keine der erklärenden Variablen eine 
 lineare Transformation einer anderen erklärenden Variable ist, 
 also $\nexists a,b:   x_i= q+b\cdot x_j \forall i,j$.
-Praktisch tritt dieser Fall, den man auch als 'perfekte Multikolinearität' 
+Praktisch tritt dieser Fall, den man auch als 'perfekte Multikollinearität' 
 bezeichnet, nur selten auf.
-Würde tatsächlich perfekte Multikolinearität herrschen, wäre $\hat{\beta}$ 
+Würde tatsächlich perfekte Multikollinearität herrschen, wäre $\hat{\beta}$ 
 schlicht nicht definiert. 
 Praktisch relevant wird die Annahme allerdings deswegen, weil schon eine starke
 Korrelation zwischen den erklärenden Variablen die Schätzung deutlich ungenauer
@@ -549,19 +549,14 @@ aufgeführten Kernannahmen reduzieren kann.
 Das bedeutet aber auch, dass wann immer eine oder mehrere Annahmen verletzt ist, 
 wir unseren Ergebnissen nur bedingt vertrauen können und einige Ergebnisse und
 Kennzahlen unserer Regression möglicherweise irreführend sind. 
-Daher sollte zu jeder Regressionsanalyse die Überprüfung der Annahmen 
-dazugehören. 
-Die notwendigen Methoden dazu lernen wir in Kapitel \@ref(advlin) kennen.
-
-An dieser Stelle ist es noch einmal wichtig darauf hinzuweisen, dass wir eine 
-Regression mit OLS schätzen können und keine Fehlermeldungen bekommen, obwohl 
+An dieser Stelle ist es wichtig darauf hinzuweisen, dass wir eine 
+Regression mit OLS schätzen können und keine Fehlermeldungen bekommen, auch wenn 
 die Annahmen für OLS nicht erfüllt sind.
-In diesem Fall sind die Ergebnisse jedoch möglicherweise irreführend. 
 Daher ist es immer wichtig, die Korrektheit der Annahmen selbst zu überprüfen 
 und weitere Kennzahlen der Regression zu betrachten um die Ergebnisse unserer
 Schätzung besser einschätzen zu können.
 Während die Methoden zum Test der Annahmen in Kapitel \@ref(advlin) eingeführt 
-werden, betrachten wir im folgenden schon einmal generelle Gütezahlen für eine
+werden, betrachten wir im Folgenden schon einmal generelle Gütezahlen für eine
 lineare Schätzung, die Sie bei jeder Anwendung von OLS zu Rate ziehen sollten. 
 
 ## Kennzahlen in der linearen Regression {#lin-kennzahlen}
@@ -963,6 +958,8 @@ $$\hat{\beta}_0 \propto \mathcal{N}\left(\beta_0, \sigma^2\left( \frac{1}{n} +
 Da $\mathbb{E}(\hat{\beta_i})=\beta_i$ sagen wir, dass die Schätzer 
 *erwartungstreu* sind - wir also erwarten, dass Sie im Mittel den wahren
 Wert für den Parameter schätzen.
+<!-- Erwartungstreu ist doch das gleiche wie konsistent oder? oder gibts da noch irgendeinen kleinen unterschied den ich nicht auf dem schirm habe? wenn es das gleiche ist, dann vllt in einer fußnote sagen dass die begriffe interchangable sind? -->
+
 Es ist dann plausibel die *Genauigkeit* oder *Effizienz* eines Schätzers durch
 seine Varianz zu messen: wenn ein Schätzer eine große Varianz hat bedeutet das, 
 dass wir bei dem einzelnen Schätzwert eine große Unsicherheit haben, ob der 
@@ -1082,7 +1079,7 @@ von 0 verschieden ist. Dazu können wir fragen: "Wie wahrscheinlich ist es,
 gegeben der Daten, dass $\beta_i$ gleich Null ist?".
 
 Das ist die klassische Frage für einen Hypothesentest^[Lesen Sie noch einmal 
-im Kapitel @ref(#stat-rep) zur schließenden Statistik nach, wenn Sie nicht mehr 
+im Kapitel \@ref(#stat-rep) zur schließenden Statistik nach, wenn Sie nicht mehr 
 wissen was ein Hypothesentest ist.] mit $H_0: \beta_0=0$ und $H_1: \beta_0 \neq 0$.
 
 Für einen Hypothesentest brauchen wir zunächst eine Teststatistik, also die 
@@ -1136,7 +1133,7 @@ Ergebnissen ernst zu nehmen, sehr problematisch, Stichwort
 
 Ausgehend von den Überlegungen zur Signifikanz können wir nun 
 **Konfidenzintervalle** für unsere Schätzer konstruieren.
-Wie im Kapitel @ref(#stat-rep) zur schließenden Statistik genauer erläutert 
+Wie im Kapitel \@ref(stat-rep) zur schließenden Statistik genauer erläutert 
 besteht ein ein Konfidenzintervall $I_{\alpha}$ aus 
 allen geschätzten Parameterwerten, für die wir bei einem zweiseitigen 
 Hypothesentest zum Signifikanzniveau $\alpha$ die Nullhypothese $\beta_i=0$ 
@@ -1304,6 +1301,7 @@ Vorgehen bei einer Regression:
 3. Schätzen des Modells
 
 4. Überprüfung der Modellannahmen durch die Residuenanalyse
+<!-- Die Residuenanalyse wurde ja jetzt hier rausgenommen, daher würde ich Punkt 4 löschen. Und wollten wir nicht dieses Unterkapitel ganz an den Schluss dieses Kapitels setzen? -->
 
 5. Inspektion der relevanten Kennzahlen wie $R^2$ und der statistischen 
 Signifikanz der geschätzten Werte; falls relevant: Angabe von Konfidenzintervallen
@@ -1381,7 +1379,7 @@ gelitten hat.
 Der zweite zu beachtende Aspekt bezieht sich auf die Korrelation der 
 verschiedenen erklärenden Variablen. 
 Die Annahmen für OLS schließen an sich nur so genannte *perfekte Kollinearität* 
-(siehe Abschnitt \@ref{ols-ass}= aus. 
+(siehe Abschnitt \@ref(ols-ass)) aus. 
 Das heißt die Situation in der eine erklärende Variable eine perfekte lineare 
 Transformation einer anderen erklärenden Variable ist. 
 Problematisch sind aber auch schon geringere, aber immer noch hohe Korrelationen: 
