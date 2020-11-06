@@ -2639,7 +2639,7 @@ Für größere Datensätzen können Sie einfach einen
 [Violinenplot](https://www.r-graph-gallery.com/violin.html) 
 verwenden, wie in Abbildung \@ref(fig:Violinenplot) gezeigt.
 
-```{r Violinenplot, out.height = '75%', out.width = '100%', fig.cap="Vergleich von klassischen Darstellungen und dem Violinenplot"}
+```{r}
 boxplot_classic <- ggplot2::ggplot(data = wb_data, 
        mapping = aes(x=region, y=Lebenserwartung)
        ) +
@@ -2668,8 +2668,14 @@ violin_plot <- ggplot2::ggplot(data = wb_data,
   ggplot2::theme(axis.title.x = element_blank(), 
         axis.text.x = element_text(angle = 90, hjust = 1))
 
-ggpubr::ggarrange(boxplot_classic, boxplot_jitter, violin_plot, ncol = 3)
+compare_plot <- ggpubr::ggarrange(
+  boxplot_classic, boxplot_jitter, violin_plot, 
+  ncol = 3)
 ```
+```{r Violinenplot, out.height = '75%', out.width = '100%', fig.cap="Vergleich von klassischen Darstellungen und dem Violinenplot"}
+compare_plot
+```
+
 
 Beachten Sie, dass es immer wichtig ist, eine Verteilung nicht nur mit 
 quantitativen Kennzahlen, sondern auch grafisch zu beschreiben und zu 

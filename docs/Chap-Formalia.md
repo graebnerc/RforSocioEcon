@@ -1655,7 +1655,7 @@ Aus der Einleitung dieses Unterkapitels wissen wir, dass wir das lineare
 Regressionsmodell mit $n$ Beobachtungen von $p$ Variablen
 
 \begin{align}
-Y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + ... + \beta_p x_{1p} + \epsilon_1\nonumber\\
+Y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{12} + ... + \beta_p x_{1p} + \epsilon_1\nonumber\\
 Y_2 = \beta_0 + \beta_1 x_{21} + \beta_2 x_{22} + ... + \beta_p x_{2p} + \epsilon_2\nonumber\\
 \vdots \nonumber\\
 Y_n = \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + ... + \beta_p x_{np} + \epsilon_n\nonumber
@@ -2851,7 +2851,13 @@ violin_plot <- ggplot2::ggplot(data = wb_data,
   ggplot2::theme(axis.title.x = element_blank(), 
         axis.text.x = element_text(angle = 90, hjust = 1))
 
-ggpubr::ggarrange(boxplot_classic, boxplot_jitter, violin_plot, ncol = 3)
+compare_plot <- ggpubr::ggarrange(
+  boxplot_classic, boxplot_jitter, violin_plot, 
+  ncol = 3)
+```
+
+```r
+compare_plot
 ```
 
 \begin{figure}
@@ -2862,6 +2868,7 @@ ggpubr::ggarrange(boxplot_classic, boxplot_jitter, violin_plot, ncol = 3)
 
 \caption{Vergleich von klassischen Darstellungen und dem Violinenplot}(\#fig:Violinenplot)
 \end{figure}
+
 
 Beachten Sie, dass es immer wichtig ist, eine Verteilung nicht nur mit 
 quantitativen Kennzahlen, sondern auch grafisch zu beschreiben und zu 
