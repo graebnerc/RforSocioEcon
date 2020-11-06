@@ -1,8 +1,8 @@
 --- 
 title: "R für die sozio-ökonomische Forschung"
-subtitle: "Version 0.9.0"
+subtitle: "Version 0.9.1"
 author: "[Dr. Claudius Gräbner](http://claudius-graebner.com/)"
-date: "2020-10-02" 
+date: "2020-11-06" 
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -15,7 +15,7 @@ description: "Einführung in R für die sozioökonomische Forschung; Version 0.9
 
 # Willkommen {-}
 
-Das folgdene Skript ist als eine erste Einführung in die Programmiersprache
+Das folgende Skript ist als eine erste Einführung in die Programmiersprache
 R [@R-Team] und ihrer Anwendung im Bereich der quantitativen sozioökonomischen
 Forschung gedacht. 
 Ursprünglich war es als Begleitung für die Lehrveranstaltung 
@@ -81,3 +81,4 @@ lizensiert.
 Datum    | Version | Wichtigste Änderungen         |
 :--------+:--------+:------------------------------|
 19.10.19 | 0.9.0    | Erste Version für das Wintersemester 2020/21 |
+06.11.19 | 0.9.1    | Kapitel zur Regressionsanalyse ergänzt |

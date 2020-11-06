@@ -24,7 +24,7 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-10-02" />
+<meta name="date" content="2020-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -328,7 +328,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>9.2</b> Hypothesentests</a></li>
 <li class="chapter" data-level="9.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>9.3</b> Berechnung von Konfidenzintervallen</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>10</b> Lineare statistische Modelle in R</a></li>
+<li class="chapter" data-level="10" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>10</b> Lineare statistische Modelle in R</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>10.1</b> Einleitung und Überblick</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1.1</b> Einführung in die lineare Regression</a></li>
+<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.2</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="10.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>10.2</b> Grundlagen der einfachen linearen Regression</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="linmodel.html"><a href="linmodel.html#grundlegende-begriffe"><i class="fa fa-check"></i><b>10.2.1</b> Grundlegende Begriffe</a></li>
+<li class="chapter" data-level="10.2.2" data-path="linmodel.html"><a href="linmodel.html#schätzung-mit-der-kleinste-quadrate-methode"><i class="fa fa-check"></i><b>10.2.2</b> Schätzung mit der Kleinste-Quadrate-Methode</a></li>
+<li class="chapter" data-level="10.2.3" data-path="linmodel.html"><a href="linmodel.html#ols-ass"><i class="fa fa-check"></i><b>10.2.3</b> Annahmen für den OLS Schätzer</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="linmodel.html"><a href="linmodel.html#lin-kennzahlen"><i class="fa fa-check"></i><b>10.3</b> Kennzahlen in der linearen Regression</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="linmodel.html"><a href="linmodel.html#erklärte-varianz-und-das-r2"><i class="fa fa-check"></i><b>10.3.1</b> Erklärte Varianz und das <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="10.3.2" data-path="linmodel.html"><a href="linmodel.html#hypothesentests-und-statistische-signifikanz"><i class="fa fa-check"></i><b>10.3.2</b> Hypothesentests und statistische Signifikanz</a></li>
+<li class="chapter" data-level="10.3.3" data-path="linmodel.html"><a href="linmodel.html#konfidenzintervalle-für-die-schätzer"><i class="fa fa-check"></i><b>10.3.3</b> Konfidenzintervalle für die Schätzer</a></li>
+<li class="chapter" data-level="10.3.4" data-path="linmodel.html"><a href="linmodel.html#zur-rolle-der-stichprobengröße"><i class="fa fa-check"></i><b>10.3.4</b> Zur Rolle der Stichprobengröße</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="linmodel.html"><a href="linmodel.html#lin-multi"><i class="fa fa-check"></i><b>10.4</b> Multiple lineare Regression</a></li>
+<li class="chapter" data-level="10.5" data-path="linmodel.html"><a href="linmodel.html#stat-ablauf"><i class="fa fa-check"></i><b>10.5</b> Zum Ablauf einer Regression</a></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>11</b> Fortgeschrittene Themen der linearen Regression</a></li>
 <li class="chapter" data-level="12" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>12</b> Ausgewählte nichtlineare Schätzverfahren</a></li>
 <li class="chapter" data-level="13" data-path="outlook.html"><a href="outlook.html"><i class="fa fa-check"></i><b>13</b> Ausblick</a></li>
@@ -1633,7 +1656,7 @@ Wir können das illustrieren indem wir den Namen des Objekts eingeben:</p>
 #&gt; {
 #&gt;     UseMethod(&quot;lead&quot;)
 #&gt; }
-#&gt; &lt;bytecode: 0x7f9bb7228940&gt;
+#&gt; &lt;bytecode: 0x7fe314066b30&gt;
 #&gt; &lt;environment: namespace:plm&gt;</code></pre>
 <p>Aus der letzten Zeile wird ersichtlich, dass <code>lead</code> hier aus dem Paket <code>plm</code>
 kommt.</p>
@@ -1656,7 +1679,7 @@ kommt.</p>
 #&gt;     vec_c(vec_slice(inputs$x, -seq_len(n)), vec_rep(inputs$default, 
 #&gt;         n))
 #&gt; }
-#&gt; &lt;bytecode: 0x7f9bd7242080&gt;
+#&gt; &lt;bytecode: 0x7fe3278b3140&gt;
 #&gt; &lt;environment: namespace:dplyr&gt;</code></pre>
 <p>Wenn es zu Maskierungen kommt ist es also der Transparenz wegen besser in beiden
 Fällen <code>::</code> zu verwenden, also <code>plm::lead</code> und <code>dplyr::lead</code>.</p>
@@ -1677,9 +1700,9 @@ Im vorliegenden Fall zeigt uns die Funktion, dass R erst im Paket
 <div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="basics.html#cb274-1" aria-hidden="true"></a><span class="kw">search</span>()</span></code></pre></div>
 <pre><code>#&gt;  [1] &quot;.GlobalEnv&quot;         &quot;package:plm&quot;        &quot;package:dplyr&quot;     
 #&gt;  [4] &quot;package:data.table&quot; &quot;package:tufte&quot;      &quot;package:stats&quot;     
-#&gt;  [7] &quot;package:graphics&quot;   &quot;package:grDevices&quot;  &quot;package:utils&quot;     
-#&gt; [10] &quot;package:datasets&quot;   &quot;package:methods&quot;    &quot;Autoloads&quot;         
-#&gt; [13] &quot;package:base&quot;</code></pre>
+#&gt;  [7] &quot;package:graphics&quot;   &quot;package:grDevices&quot;  &quot;package:datasets&quot;  
+#&gt; [10] &quot;renv:shims&quot;         &quot;package:utils&quot;      &quot;package:methods&quot;   
+#&gt; [13] &quot;Autoloads&quot;          &quot;package:base&quot;</code></pre>
 <blockquote>
 <p><strong>Weiterführender Hinweis</strong>: Um das Maskieren besser zu verstehen sollte man
 sich mit dem Konzept von <em>namespaces</em> und <em>environments</em> auseinandersetzen.
