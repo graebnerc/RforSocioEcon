@@ -447,11 +447,6 @@ erfüllt sein müssen, damit die OLS-Prozedur auch funktioniert.
 
 ### Annahmen für den OLS Schätzer {#ols-ass}
 
-<!-- 
-@Birte: ich habe diesen Teil nunmehr recht vollständig überarbeitet, bitte 
-nochmal genau checken und vor allem Konsistenz mit dem späteren Test checken. 
--->
-
 Das lineare Regressionsmodell wird sehr häufig in der sozioökonomischen 
 Forschung verwendet. 
 Wie jedes statistische Modell basiert es jedoch auf bestimmten Annahmen, 
@@ -533,11 +528,11 @@ dass wir in den erklärenden Variablen möglichst wenig Redundanz haben sollten.
 Sind alle diese Annahmen erfüllt, dann gilt das so genannte 
 **Gauss-Markov-Theorem** (GMT).
 Dieses Theorem ist ein wichtiger Grund für die Popularität der OLS-Methode:
-nach dem GMT ist der OLS-Schätzer für lineare Modelle der beste konsistente 
+nach dem GMT ist der OLS-Schätzer für lineare Modelle der beste erwartungstreue 
 Schätzer, den wir finden können. 
 Oder cooler ausgedrückt: OLS ist der BLUE - der *Best Linear Unbiased Estimator*. 
 
-Mit konsistent ist dabei gemeint, dass die Schätzer bei vielen Schätzversuchen
+Mit "erwartungsteu" ist dabei gemeint, dass die Schätzer bei vielen Schätzversuchen
 im Mittel den wahren Wert $\beta_i$ treffen, also der Erwartungswert jedes 
 Schätzers $\hat{\beta}_i$ der wahre Werte $\beta$ ist. 
 Mit "der beste" meinen wir "den effizientesten" im Sinne einer minimalen Varianz. 
@@ -958,7 +953,6 @@ $$\hat{\beta}_0 \propto \mathcal{N}\left(\beta_0, \sigma^2\left( \frac{1}{n} +
 Da $\mathbb{E}(\hat{\beta_i})=\beta_i$ sagen wir, dass die Schätzer 
 *erwartungstreu* sind - wir also erwarten, dass Sie im Mittel den wahren
 Wert für den Parameter schätzen.
-<!-- Erwartungstreu ist doch das gleiche wie konsistent oder? oder gibts da noch irgendeinen kleinen unterschied den ich nicht auf dem schirm habe? wenn es das gleiche ist, dann vllt in einer fußnote sagen dass die begriffe interchangable sind? -->
 
 Es ist dann plausibel die *Genauigkeit* oder *Effizienz* eines Schätzers durch
 seine Varianz zu messen: wenn ein Schätzer eine große Varianz hat bedeutet das, 
@@ -1288,24 +1282,6 @@ ggpubr::annotate_figure(full_plot,
                           face = "bold", size = 14))
 ```
 
-
-## Zum Ablauf einer Regression {#stat-ablauf}
-
-Insgesamt ergibt sich aus den eben beschriebenen Schritten also folgendes 
-Vorgehen bei einer Regression:
-
-1. Aufstellen des statistischen Modells
-
-2. Erheben und Aufbereitung der Daten
-
-3. Schätzen des Modells
-
-4. Überprüfung der Modellannahmen durch die Residuenanalyse
-<!-- Die Residuenanalyse wurde ja jetzt hier rausgenommen, daher würde ich Punkt 4 löschen. Und wollten wir nicht dieses Unterkapitel ganz an den Schluss dieses Kapitels setzen? -->
-
-5. Inspektion der relevanten Kennzahlen wie $R^2$ und der statistischen 
-Signifikanz der geschätzten Werte; falls relevant: Angabe von Konfidenzintervallen
-
 ## Multiple lineare Regression {#lin-multi}
 
 Zum Abschluss wollen wir noch das bislang besprochene für den Fall von mehreren 
@@ -1387,3 +1363,20 @@ denn je stärker die erklärenden Variablen untereinander korrelieren, desto gr�
 werden die Standardfehler unserer Schätzer. 
 Mit diesem Problem werden wir uns im folgenden Kapitel noch genauer 
 auseinandersetzen.
+
+## Zum Ablauf einer Regression {#stat-ablauf}
+
+Insgesamt ergibt sich aus den eben beschriebenen Schritten also folgendes 
+Vorgehen bei einer Regression:
+
+1. Aufstellen des statistischen Modells
+
+2. Erheben und Aufbereitung der Daten
+
+3. Schätzen des Modells
+
+4. Überprüfung der Modellannahmen (dazu mehr im Kapitel \@ref(advlin))
+
+5. Inspektion der relevanten Kennzahlen wie $R^2$ und der statistischen 
+Signifikanz der geschätzten Werte; falls relevant: Angabe von 
+Konfidenzintervallen
