@@ -274,7 +274,7 @@ exo_plot <- ggplot2::ggplot(data = exo_data,
                    mapping = aes(x=x, y=y)
                    ) +
   ggplot2::geom_point() +
-  ggplot2::geom_smooth(method = "lm", se = FALSE) +
+  ggplot2::geom_smooth(formula = y~x, method = "lm", se = FALSE) +
   ggplot2::ggtitle("Exogenität") +
   icaeDesign::theme_icae() + 
   theme(axis.text = element_blank(), 
@@ -284,32 +284,40 @@ exo_strict_plot <- ggplot2::ggplot(data = exo_strict_data,
                           mapping = aes(x=x, y=y)
                           ) +
   ggplot2::geom_point() +
-  ggplot2::geom_smooth(method = "lm", se = FALSE) +
+  ggplot2::geom_smooth(formula = y~x, method = "lm", se = FALSE) +
   ggplot2::ggtitle("Strikte Exogenität") +
   icaeDesign::theme_icae() + 
   theme(axis.text = element_blank(),
         panel.grid = element_blank())
   
-exo_full_plot <- ggpubr::ggarrange(exo_strict_plot, exo_plot, ncol = 2)
+exo_full_plot <- ggpubr::ggarrange(
+  exo_strict_plot, exo_plot, ncol = 2, labels = c("a)", "b)"), 
+  font.label = list(font="bold"))
 ```
 
 ```{r, echo=FALSE}
 exo_full_plot
 ```
 
-> In der linken Abbildung haben wir einen bedingten Erwartungswert von Null:
+> In Plot `a)` in  Abbildung \@ref(fig:exogen) haben wir einen bedingten 
+Erwartungswert von Null, also
+$\mathbb{E}\left[\boldsymbol{\epsilon} | \boldsymbol{x} \right]=0$:
 für jede beliebige Beobachtung in $\boldsymbol{x}$ ist der Erwartungswert der
 Fehler Null. 
-Daraus ergibt sich, dass der Erwartungswert für alle Fehler zusammen auch Null 
-ist.
-In der rechten Abbildung ist der bedingte Erwartungswert nicht Null:
+Entsprechend ist der Erwartungswert für alle Fehler zusammen auch Null:
+$\mathbb{E}\left[\boldsymbol{\epsilon} \right]=0$.
+In Plot `b)` aus Abbildung \@ref(fig:exogen) ist der bedingte Erwartungswert 
+nicht Null:
+$\mathbb{E}\left[\boldsymbol{\epsilon} | \boldsymbol{x} \right]\neq0$
 für die untere Hälte der Beobachtungen in $\boldsymbol{x}$ ist der 
-Erwartungswert $1$, für die obere Hälfte der Beobachtungen ist der Erwartungswert
-$-1$.
-Für die gesamten Daten ergibt sich dabei auch ein Erwartungswert von $0$, aber
-eben *nicht* für jede einzelne Beobachtung.
+Erwartungswert $1$, für die obere Hälfte der Beobachtungen ist der 
+Erwartungswert $-1$.
+Für die gesamten Daten ergibt sich dabei auch ein Erwartungswert von $0$, 
+also $\mathbb{E}\left[\boldsymbol{\epsilon} \right]=0$, 
+allerdings eben *nicht* für jede einzelne Beobachtung.
 Häufig tritt diese Problem bei quadratischen Zusammenhängen auf.
 
+<!-- @Birte: habe folgenden Kommentar implementiert. Bitte checken, wenn es passt löschen  -->
 <!-- @Claudius: mit a und b machen und checken dass die bilder zum text passen  -->
 
 Wichtig ist festzuhalten, dass dies eine Annahme über nicht zu beobachtende 
@@ -435,27 +443,29 @@ oder zusammengefasst:
 
 $$\mathbb{E}(\boldsymbol{\epsilon\epsilon'| X}) = \sigma^2\boldsymbol{I}$$ 
 
+Alternativ wird die Annahme auch mit Referenz auf die Varianz-Kovarianz-Matrix
+$\boldsymbol{\Omega}$ angegeben: $\boldsymbol{\Omega}=\sigma^2\boldsymbol{I}$.
+
 **A5: Normalverteilung der Fehlerterme:**
 
 Die letzte typischerweise gemachte Annahme ist die der Normalverteilung der 
 Fehlerterme, bedingt wie immer auf die unabhängigen Variablen:
 
 $$\boldsymbol{\epsilon|\boldsymbol{X}} \propto 
-\mathcal{N}(\boldsymbol{0}, \sigma^2\boldsymbol{I})$$
+\mathcal{N}(0, \sigma^2)$$
 
 <!-- 
-Ahh mmh ich kenn das gar nicht so dass hier jetzt auch nochmal sigma^2 und I steht, 
-warum ist denn hier das I nochmal dabei wenn es nur darum geht auszudrücken 
-dass die Fehlerterme Gaussian normalverteilt sind (das lässt sich doch einfach 
-mit 0, sigma^2 ausdrücken)? 
-
-@Claudius: Fussnote adden
+@Birte: bitte nächsten Absatz checken.
 -->
 
-Diese Annahme vereinfacht zahlreiche Herleitungen, ist in der Praxis allerdings 
-weniger relevant, da sie leicht abzuschwächen ist.
-
-<!-- @Claudius: Text anpassen -->
+Diese Annahme ist weniger zentral als die anderen Annahmen, weswegen sie häufig
+als 'optional' bezeichnet wird.
+Der Grund dafür ist, dass die gleich eingeführten Eigenschaften des
+OLS-Schätzers der *Erwartungstreue*, *Effizienz* und *Konsistenz* nicht von
+der Korrektheit von A5 abhängen. Vielmehr erleichtert diese Annahme die 
+Durchführung der Hypothesentests, die dem Konzept der statistischen
+Signifikanz zugrunde liegen (siehe Abschnitt \@ref(linmodelHypothesentests) 
+in Kapitel \@ref(linmodel)).
 
 ### Erwartungstreue, Effizienz und Konsistenz
 
@@ -487,7 +497,7 @@ $\hat{\boldsymbol{\beta}}$ ist gleich $\beta$.
 Diese Eigenschaft des OLS-Schätzers wird in Abbildung \@ref(fig:erwartungstreu) 
 illustriert.
 
-```{r erwartungstreu, echo=FALSE, warning=FALSE, fig.cap="Erwartungstreue von $\hat{\boldsymbol{\beta}}$ unter Annahmen 1 bis 3."}
+```{r erwartungstreu, echo=FALSE, warning=FALSE, fig.cap="Erwartungstreue von $\\hat{\\boldsymbol{\\beta}}$ unter Annahmen 1 bis 3."}
 beta_1_wahr <- 2
 beta_1_verzerrt <- 3
 x_range <- seq(-4, 8, 0.01)
@@ -557,7 +567,7 @@ gibt, der noch effizienter ist als $\hat{\boldsymbol{\beta}}$.
 
 Die Eigenschaft der Effizienz wird in folgender Abbildung \@ref(fig:eig-effizienz) illustriert.
 
-```{r eig-effizienz, echo=FALSE, fig.cap="Effizienz von $\hat{\boldsymbol{\beta}}$ unter Annahmen 1 bis 4."}
+```{r eig-effizienz, echo=FALSE, fig.cap="Effizienz von $\\hat{\\boldsymbol{\\beta}}$ unter Annahmen 1 bis 4."}
 data_effizienz <- dplyr::filter(data_total, 
                                       Art %in% c("OLS", "Ineffizient"))
 
@@ -617,22 +627,27 @@ Ein konsistenter Schätzer trifft im Mittel den wahren Wert
 und seine Varianz geht mit wachsender Stichprobengröße gegen Null.
 Wir können also sagen, dass unsere Schätzungen bei wachsender Stichprobengröße
 immer genauer wird.
-<!-- 
-Aber haben wir das selbe nicht auch für die Erwartungstreue gesagt? 
-Dass zwar für den einzelnen Fall wir nicht erwarten können, dass unser schätzer 
-dem wahren beta Wert entspricht, asymptotisch aber schon? 
-Siehe Zeile 472: "das Mittel unendlich vieler Schätzungen mit  
--->
 
 <!-- 
-$\hat{\boldsymbol{\beta}}$ ist gleich $\beta$." 
-Ich glaube deshalb bin ich verwirrt über den Unterschied zwischen 
-Erwartungstreue und Konsistenz. 
-
-@Claudius: hier eine Box zum Unterschied Erwartungstreue vs. Konsistenz machen
-und erklären dass von erwartungstreue, effizienz und konsistenz die letztere
-die einzige ist, die sich auf das verhalten bei wachsender stichprobe bezieht.
+@Birte: bitte diese Box checken.
 -->
+
+>**Der Unterschied zwischen Erwartungstreue und Konsistenz** Auf den ersten Blick
+erscheinen die beiden Konzepte eng verwandt, weil beide eine Aussage über den 
+Erwartungswert des OLS-Schätzers aussagen. Allerdings gilt die Erwartungstreue
+unabhängig von der Stichprobengröße: auch in kleinen Stichproben gilt, dass
+$\mathbb{E}(\hat{\boldsymbol{\beta}})=\beta$. Die Konsistenz dagegen bezieht
+sich auf das Verhalten des OLS-Schätzers wenn die Stichprobe immer größer wird.
+Darüber hinaus macht die Konsistenz auch eine Aussage über die Größe der Varianz
+des Schätzers: diese geht bei immer größeren Stichproben gegen Null. Das heißt
+bei sehr großen Stichproben können wir auch bei einer einzelnen Schätzung 
+davon ausgehen, dass wir den wahren Wert ziemlich genau treffen.
+Eine solche Aussage können wir aus der Erwartungstreue nicht ableiten:
+dass wir im Mittel den wahren Wert treffen macht *überhaupt keine* Aussage
+über die einzelne Schätzung. Auf die Eigenschaft der Effizienz ist hier nur
+bedingt hilfreich, weil sie nur besagt, dass der OLS-Schätzer der Schätzer mit
+der *geringsten* Varianz ist - aber nicht *wie gering* diese Varianz ist. 
+Manchmal ist auch die geringste Varianz sehr groß.
 
 Formal drücken wir dies unter Verwendung von Grenzwerten aus:
 
@@ -663,27 +678,15 @@ deren geschätzte Werte systematisch von dem wahren Wert abweichen.
 Es sei an dieser Stelle jedoch bereits erwähnt, dass es sinnvolle Ausnahmen 
 von dieser Regel geben kann, nämlich dann wenn wir große Zugewinne an Effizienz
 für kleine Abstriche in der Erwartungstreue 'erkaufen' können.
-<!-- 
-@Claudius: checkt was birte da gemact hat und passt den text an; ggf. auch
-nochmal im Stachurski Lehrbuch nachschauen
-
-Erwartungstreue oder Konsistenz? In unserer metrics class gestern haben wir 
-auch über einen ähnlichen trade-off geredet, aber da war der tradeoff zwischen 
-effizienz und konsistenz, nicht zwischen effizienz und erwartungstreue. 
-ich glaub ich bin einfach noch bissi verwirrt bzgl des unterschieds zwischen 
-erwartunstreue und konsistenz, und auch warum es hier jetzt wieder um 
-erwartungstreue geht während ja dieser ganze abschnitt hier eigl eher zum 
-thema konsistenz ist oder? -->
 
 In der Literatur wird diese Fragestellung unter dem Stichwort 
-*bias-variance trade-off* diskutiert. 
-Weitergehende Informationen finden Sie in der 
+*bias-variance trade-off* diskutiert und ist vor allem dann relevant, wenn 
+Sie mit Ihrem Regressionsmodell Vorhersagen treffen wollen. 
+Weitergehende Informationen dazu finden Sie in der 
 [weiterführenden Literatur](#adv-lin-readings). 
-An dieser Stelle wollen wir uns zunächst auf die erwartungstreuen Schätzer
-konzentrieren, da dies tatsächlich auch die am weitesten verbreiteten 
-Schätzmethoden sind.
-
-<!-- erwartungstreuen oder konsistenten? -->
+An dieser Stelle wollen wir uns aber zunächst auf die erwartungstreuen 
+(und konsistenten) Schätzer konzentrieren, da dies tatsächlich auch die am 
+weitesten verbreiteten Schätzmethoden sind.
 
 ### Abweichungen von den OLS Annahmen
 
@@ -897,10 +900,11 @@ full_results <- data.table::fread(
 **4. Schritt: Vergleichende Analyse der Schätzereigenschaften**
 
 Als erstes wollen wir die Ergebnisse grafisch analysieren. 
-Zu diesem Zweck visualisieren wir in Abbildung \@ref(fig:montecarlo) die Verteilung der geschätzten Werte für $\beta_1$ 
+Zu diesem Zweck visualisieren wir in Abbildung \@ref(fig:montecarlo) die 
+Verteilung der geschätzten Werte für $\beta_1$ 
 und zeichnen zudem den wahren Wert ein:
 
-```{r montecarlo, fig.cap="Vergleich der Verteilung der mit Monte Carlo geschätzten Werte für $\beta_1$ mit dem wahren Wert."}
+```{r montecarlo, fig.cap="Vergleich der Verteilung der mit Monte Carlo geschätzten Werte für $\\beta_1$ mit dem wahren Wert."}
 beta_1_plot <- ggplot2::ggplot(data = full_results, 
                       mapping = aes(x=b1_coef, color=Fall, fill=Fall)) +
   ggplot2::geom_density(alpha=0.5) +
@@ -927,7 +931,7 @@ herum im heteroskedastischen Fall zunimmt!
 Wir wollen nun in Abbildung \@ref(fig:montecarlo2) noch untersuchen wie sich 
 Heteroskedastie auf die Standardfehler der Regression auswirkt.
 
-```{r montecarlo2, echo=FALSE, fig.cap="Vergleich der Standardfehler von $\hat{\boldsymbol{\beta}}$ bei Homoskedastie und Heteroskedastie."}
+```{r montecarlo2, echo=FALSE, fig.cap="Vergleich der Standardfehler von $\\hat{\\boldsymbol{\\beta}}$ bei Homoskedastie und Heteroskedastie."}
 beta_1_stdf_plot <- ggplot2::ggplot(data = full_results, 
                            mapping = aes(x=b1_stdf, color=Fall, fill=Fall)) +
   ggplot2::geom_density(alpha=0.5) +
@@ -969,18 +973,38 @@ Falle einer Verletzung zu tun wäre.
 Wie oben beschrieben bedeutet Heteroskedastie, dass die Varianz der Fehlerterme
 nicht konstant ist.
 
-### Liegt Heteroskedastie vor?
+### Liegt Heteroskedastie vor? {advlin-hetero-test}
 
 Heteroskedastie kann grafisch oder über statistische Tests identifiziert werden.
 Um Heteroskedastie grafisch zu identifizieren verwenden wir den 
 *Tukey-Anscombe-Plot*, in dem wir
 auf der x-Achse die gefitteten Werte $\hat{Y}$ und auf der y-Achse die Residuen 
 $e$ abbilden. Siehe dazu Abbildung \@ref(fig:homoskedastie).
+Für die Konstruktion der Abbildung sollten Sie beachten, dass die 
+gefitteten Werte und die Residuen einer Schätzung immer im der durch `lm()` 
+produzierten Liste gespeichert werden.
+Gehen wir mal davon aus, dass Sie Ihr Schätzobjekt folgendermaßen definiert 
+haben:
 
-<!-- 
-TK Plot einführen von ganz unten; zudem Intuition der Residuenanalyse erklären: 
-residuen als approximation der fehlerterme 
--->
+```{r, eval=FALSE}
+schaetzung <- lm(y ~ x + y, data = daten)
+```
+
+Dann können Sie auf die gefitteten Werte $\hat{Y}$ über 
+`schaetzung[["fitted.values"]]` und auf die Residuen über 
+`schaetzung[["residuals"]]` zugreifen.
+
+> **Warum überhaupt eine Residuenanalyse?** 
+Die Residuen werden häufig herangezogen wenn es um die Überprüfung
+der OLS-Annahmen geht. Letztere beziehen sich nämlich insbesondere auf die
+Fehlerterme des Modells. 
+Da die Fehlerterme jedoch eine Populationsgröße sind und dementsprechend
+nicht beobachtbar sind, nehmen wir häufig ihr Stichproben-Pendant um die 
+Annahmen zu überprüfen - und dieses Stichproben-Pendant sind eben die Residuen.
+Dennoch ist es extrem wichtig nie zu vergessen, dass die Residuen nur eine
+Approximation der Fehler sind und es durchaus der Fall sein kann, dass die
+Residuen nicht auffällig sind, aber dennoch eine Annahme über die Fehler 
+nicht erfüllt sein kann.
 
 ```{r homoskedastie, echo=FALSE, fig.cap="Graphische Analyse der Homoskedastie."}
 set.seed("1")
@@ -1043,11 +1067,13 @@ ggpubr::ggarrange(tk_plot_homo, tk_plot_hetero,
           font.label = list("face"="bold"))
 ```
 
-Im Optimalfall ist die Varianz der Fehler konstant. Das scheint in Abbildung (a) 
+Im Optimalfall ist die Varianz der Residuen konstant. Das scheint in Abbildung (a) 
 der Fall zu sein: die Residuen streuen recht zufällig um die Mittelwert 0 herum. 
-In diesem Fall besteht kein Grund zur Annahme, dass Heteroskedastizität vorliegt.
+In diesem Fall besteht wenig Grund zur Annahme, dass Heteroskedastizität vorliegt.
 Anders in Abbildung (b): hier wird die Varianz nach rechts klar größer.
 Das lässt große Zweifel an der Annahme der Homoskedastizität aufkommen.
+Denn wenn die Residuen keine konstante Varianz aufweisen tun es die Fehler 
+wahrscheinlich auch nicht.
 
 In der Praxis ist es sinnvoll zusätzlich zur grafischen Inspektion noch 
 statistische Tests zu verwenden. Hier gibt es ein breites Angebot an Tests.
@@ -1063,7 +1089,8 @@ Die weiteren Argumente sollten wir im Normalfall auf den Standardwerten
 belassen.
 
 Die Nullhypothese des Breusch-Pagan Tests ist Homoskedastie.
-Wir führen zunächst den Test für den homoskedastischen Fall aus:
+Wir führen zunächst den Test für den homoskedastischen Fall aus, wobei 
+`schaetzung_homo` das von `lm()` produzierte Objekt ist:
 
 ```{r}
 bptest(schaetzung_homo)
@@ -1414,8 +1441,7 @@ kontrollieren.
 Wie bei der Heteroskedastie sollten wir auch beim Testen auf Autokorrelation
 grafische und quantitative Tests kombinieren.
 Für die grafische Analyse verwenden wir wie vorher den Tukey-Anscombe Plot der
-Residuen. 
-<!-- Hier auch wieder ggf anpassen: auf section davor verweisen -->
+Residuen (siehe Abschnitt \@ref(advlin-hetero-test)). 
 Die Idee ist, dass wenn in den 'echten' Fehlern Autokorrelation vorherrscht wir 
 das auch in den Residuen beobachten können.
 Abbildung \@ref(fig:autokorrtest) verdeutlicht, wie wir Autokorrelation in den 
@@ -2292,11 +2318,98 @@ Wir würden den geschätzten Koeffizienten von $\beta_1$ folgendermaßen
 interpretieren: wenn der Preis von Hühnerfleisch um $1\%$ steigt wird der
 Konsum um ca. $1.12\%$ zurückgehen.
 
-## Weitere Fehlerquellen: Systematische Messfehler, Selbstselektion und Simulatanität
+## Normalverteilung der Fehlerterme
 
-<!--
-Hier noch QQ-Plot und Normalverteilung der Reisiduen rein
+<!-- 
+@Birte: Bitte diesen neuen Teil auch nochmal besonders checken.
 -->
+
+Wie oben beschrieben ist die Annahme A5 für die besonders wichtigen 
+Eigenschaften *Erwartungstreue*, *Effizienz* und *Konsistenz* nicht notwendig.
+Sie erleichtert aber Hypothesentests und wird häufig als Indiz für ein 
+gut spezifiertes Modell gesehen.
+
+Da wir die Fehlerterme nicht direkt beobachten können wird diese Annahme
+überprüft indem die Verteilung der Residuen betrachtet wird.
+Damit eine visuelle Inspektion möglichst einfach ist verwenden wir hier einen
+so genannten *Q-Q-Plot* (siehe dazu Abbildung \@ref(fig:QQPlot)).
+Im Q-Q-Plot werden die tatsächlichen Quantile der Verteilung der Residuen 
+auf der y-Achse gegen die hypothetischen Quantile einer Normalverteilung
+auf der x-Achse abgebildet.
+
+Um einen Q-Q-Plot mit `ggplot2` zu produzieren speichern Sie die Residuen
+Ihrer Schätzung in einem `tibble` und spezifizieren sie als Ästhetik `sample`.
+Dann verwenden Sie als *geoms* die Befehle `ggplot2::stat_qq()` für die 
+Darstellung der Residuen und `ggplot2::stat_qq_line()` um die Gerade zur
+leichteren Interpretation zu ergänzen:
+
+```{r, echo=FALSE}
+set.seed("123")
+residuals_from_reg1 <- rnorm(2000)
+residuals_from_reg2 <- rlogis(2000)
+```
+
+```{r, eval=FALSE}
+ggplot2::ggplot(
+  data = tibble::tibble(
+    Residuen=residuals_from_reg1
+    ),
+  mapping = aes(sample=Residuen)) + 
+  ggplot2::stat_qq() + ggplot2::stat_qq_line() +
+  theme_bw()
+```
+
+```{r, echo=FALSE}
+qq_plot1 <- ggplot2::ggplot(
+  data = tibble::tibble(
+    Residuen=residuals_from_reg1
+    ),
+  mapping = aes(sample=Residuen)) + 
+  labs(title = "Normalverteilte Residuen",
+       x = "Theoretische Quantile", 
+       y = "Stichproben-Quantile") +
+  ggplot2::stat_qq() + ggplot2::stat_qq_line() +
+  theme_bw() +
+  theme(panel.border = element_blank(), axis.line = element_line())
+
+qq_plot2 <- ggplot2::ggplot(
+  data = tibble::tibble(
+    Residuen=residuals_from_reg2
+    ),
+  mapping = aes(sample=Residuen)) + 
+  labs(title = "Nicht-normalverteilte Residuen",
+       x = "Theoretische Quantile", 
+       y = "Stichproben-Quantile") +
+  ggplot2::stat_qq() + ggplot2::stat_qq_line() +
+  theme_bw()+
+  theme(panel.border = element_blank(), axis.line = element_line())
+
+qq_plot <- ggpubr::ggarrange(
+  qq_plot1, qq_plot2, ncol = 2, labels = c("a)", "b)"), 
+  font.label = list(font="bold")
+)
+```
+
+```{r QQPlot, echo=FALSE, fig.cap="Q-Q-Plot zur Überprüfung der Residuen."}
+qq_plot
+```
+
+In Abbildung \@ref(fig:QQPlot) sind zwei Q-Q-Plots abgebildet.
+Plot `a)` zeigt einen relativ idealtypischen Q-Q-Plot, bei dem wir guten
+Gewissens von einer Normalverteilung der Residuen ausgehen können:
+hier liegen die Punkte ziemlich exakt auf der Q-Q-Line.
+Bei Plot `b)` in Abbildung \@ref(fig:QQPlot) ist das dagegen nichtt der Fall, 
+weswegen wir skeptisch bezüglich aller Ergebnisse sein sollten, die auf der
+Normalverteilungsannahme aufbauen, also insbesondere bei den Standardfehlern,
+$p$-Werten und den Konfidenzintervallen.
+In einem solchen Fall können Sie versuchen, über Transformationen Ihrer Daten 
+eine Normalverteilung der Residuen herzustellen.
+Bleibt das erfolglos oder macht wegen dem Anwendungsfall keinen Sinn sollten 
+Sie die Unsicherheit Ihrer Schätzung nicht über die 
+normalen Standardfehler messen, sondern sich Techniken wie dem *Huber-Schätzer*
+oder dem *Bootstrap* bedienen.
+
+## Weitere Fehlerquellen: Systematische Messfehler, Selbstselektion und Simulatanität
 
 Annahme A2, Exogenität der unabhängigen Variablen, kann nur aufgrund von drei 
 weiteren Gründen verletzt werden:
@@ -2628,76 +2741,3 @@ Daher kommt die Relevanz von Theorem \ref{theo:ols-sdf}, welches gleichzeitig di
 \begin{proof}[Beweis von Theorem \ref{theo:ols-konsistenz}]
 	Wir ergänzt.
 \end{proof}
-
-# Reinkopiert aus letztem Kapitel
-
-### Residuenanalyse {#linmod-residuals}
-
-Eine sehr hilfreiche Art, die Modellannahmen von oben zu überprüfen ist die Analyse der Residuen. 
-
-<!-- was heißt "von oben"? -->
-
-Diese sind im Ergebnisobjekt der Regression gespeichert:
-
-```{r, eval=FALSE}
-schaetzung_bip[["residuals"]]
-```
-
-Wir wollen nun die Residuen verwenden um die folgenden Annahmen unseres Regressionsmodells zu überprüfen:
-
-1. **A3: ** $Var(\epsilon_i)=\sigma^2\forall i$
-
-2. **A4: ** $Cov(\epsilon_i, \epsilon_j)=0 \forall i,j$
-
-3. **A6:** $\epsilon \propto \mathcal{N}(0, \sigma^2)$
-
-<!-- Ich dachte bei 3/A6 ginge es um die Fehler, nicht um die Residuen. I'm confused :(  -->
-
-Um die ersten beiden Annahmen zu überpüfen bilden wir die $e_i$ gegen $\hat{Y}$ ab und erhalten so den so genannten **Tukey-Anscombe-Plot** (siehe Abbildung \@ref(fig:TAPlot)).
-
-```{r TAPlot, echo=FALSE, fig.cap="Tukey-Anscombe-Plot."}
-ggplot2::ggplot(
-  data.frame(
-    GefitteteWerte=schaetzung_bip[["fitted.values"]],
-    Residuen=schaetzung_bip[["residuals"]]),
-  aes(x=GefitteteWerte, y=Residuen)
-  ) +
-  ggplot2::ggtitle("Tukey-Anscombe-Plot") +
-  ggplot2::geom_hline(yintercept = 0) + 
-  ggplot2::geom_point() +
-  icaeDesign::theme_icae()
-```
-
-
-Hier geht es nun darum eine Struktur zu erkennen.
-Wenn alle Annahmen korrekt sind, sehen wir nur eine unstrukturierte Punktewolke. 
-In dem vorliegenden Fall können wir aufgrund der wenigen Datenpunkte den Plot 
-aber nur mit großer Schwerierigkeit interpretieren - auch deswegen sind große 
-Stichproben immer besser.
-Es scheint aber so zu sein, dass die Varianz der Fehler mit $x_i$ steigt, 
-also A3 möglicherweise verletzt ist - zum Glück kann man den OLS-Schätzer 
-leicht modifizieren um damit umzugehen.
-
-<!-- Varianz der Residuen oder? -->
-
-Ansonsten ist keine Struktur zumindest unmittelbar ersichtlich.
-
-Als nächstes wollen die Annahme normalverteilter Residuen überprüfen. Das geht mit dem so genannten **Q-Q-Plot**, siehe dazu Abbildung \@ref(fig:QQPlot).
-
-```{r QQPlot,echo=FALSE, fig.cap="Q-Q-Plot zur Überprüfung der Residuen."}
-ggplot2::ggplot(data.frame(Residuen=schaetzung_bip[["residuals"]]),
-       aes(sample=Residuen)) + 
-  ggplot2::stat_qq() + ggplot2::stat_qq_line() +
-  ggplot2::ggtitle("Q-Q-Plot für die Residuen") +
-  icaeDesign::theme_icae()
-```
-
-Bei normalverteilten Residuen würden die Punkte möglichst exakt auf der Linie liegen. Das ist hier nur bedingt der Fall, deswegen sollten wir skeptisch bezüglich aller Ergebnisse sein, die auf der Normalverteilungsannahme aufbauen, also auf den Standardfehlern, $p$-Werten und den Konfidenzintervallen.
-
-Natürlich gibt es auch noch weitere Probleme, die bei einer linearen Regression auftreten können. So ist es immer ein Problem, wenn wir eine wichtige erklärende Variable in 
-unserem Modell vergessen haben (**omitted variable bias**), da deren Effekt dann durch die Fehlerterme abgefangen wird und zu einer Verletzung von **A1** und **A2** führt.
-
-Ein großes Problem stellt auch die so genannte **Simultanität** dar: diese tritt auf, wenn zwischen erklärter und erklärender Variable ein wechelseitiges kausales Verhältnis besteht. Wir sprechen dann auch von einem **Endogenitätsproblem**, welches leider sehr häufig auftritt und letztendlich vor allem theoretisch identifiziert werden muss.
-
-Ausführlichere Tests und Möglichkeiten mit verletzten Annahmen umzugehen werden im folgenden Kapitel @ref(#advlin) genauer diskutiert.
-
