@@ -1353,7 +1353,9 @@ Funktion `data.frame()`, wobei es hier in der Regel ratsam ist das optionale
 Argument `stringsAsFactors` auf `FALSE` zu setzen, da sonst Wörter in so 
 genannte Faktoren umgewandelt werden:^[Zur Geschichte dieses wirklich
 ärgerlichen Verhaltens siehe 
-[diesen Blog](https://simplystatistics.org/2015/07/24/stringsasfactors-an-unauthorized-biography/).]
+[diesen Blog](https://simplystatistics.org/2015/07/24/stringsasfactors-an-unauthorized-biography/). Zwar wurde das Standardverhalten mit R 4.0 umgestellt, allerdings empfiehlt
+sich die explizite Setzung von `stringsAsFactors=F` trotzdem, damit der Code 
+auch mit älteren Versionen gut funktioniert.]
 
 ```{r}
 df_4 <- data.frame(
