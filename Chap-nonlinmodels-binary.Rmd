@@ -22,7 +22,7 @@ Unsere abhängige Variable $\boldsymbol{y}$ ist dabei eine binäre Varianble, di
 entweder den Wert $0$ annimmt wenn eine Person nicht arbeitslos ist oder den
 Wert $1$ annimmt wenn eine Person arbeitslos ist.
 Unsere Matrix $\boldsymbol{X}$ enthält dann Informationen über Variablen, die
-die Arbeitslosigkeit beeinfluss könnten, z.B. Ausbildungsniveau oder Alter.
+die Arbeitslosigkeit beeinflussen könnten, z.B. Ausbildungsniveau oder Alter.
 Wir möchten untersuchen wie Variation in den erklärenden Variablen die 
 Wahrscheinlichkeit bestimmt, dass jemand arbeitslos ist, also 
 $\mathbb{P}(\boldsymbol{y}=\boldsymbol{1} | \boldsymbol{X})$.
@@ -53,7 +53,7 @@ Beschäftigunssituation von Frauen aus der Schweiz:
 ```{r, eval=FALSE, echo=FALSE}
 data("SwissLabor", package = "AER")
 SchweizerArbeit <- SwissLabor %>%
-  rename(
+  dplyr::rename(
     Arbeitslos = participation,
     Einkommen_log = income,
     Alter = age,
@@ -62,14 +62,14 @@ SchweizerArbeit <- SwissLabor %>%
     Kinder_alt = oldkids,
     Auslaender = foreign
   ) %>% 
-  mutate(Arbeitslos=ifelse(Arbeitslos=="no", 1, 0),
+  dplyr::mutate(Arbeitslos=ifelse(Arbeitslos=="no", 1, 0),
          Auslaender=ifelse(Auslaender=="no", 0, 1),
          Alter=Alter*10)
-fwrite(SchweizerArbeit, here("data/tidy/nonlinmodels_schweizer-arbeit.csv"))
+data.table::fwrite(SchweizerArbeit, here("data/tidy/nonlinmodels_schweizer-arbeit.csv"))
 ```
 
 ```{r}
-schweiz_al <- fread(here("data/tidy/nonlinmodels_schweizer-arbeit.csv"), 
+schweiz_al <- data.table::fread(here("data/tidy/nonlinmodels_schweizer-arbeit.csv"), 
                     colClasses = c("double", rep("double", 5), "factor"))
 head(schweiz_al)
 ```
@@ -82,38 +82,39 @@ Wahrscheinlichkeit haben, dass eine Frau Arbeitslos ist, also die Variable
 
 Wir könnten natürlich zunächst einmal unser bekanntes und geliebtes OLS Modell
 verwenden um den Zusammenhang zu schätzen.
-Um die Probleme zu illustrieren schätzen wir einmal nur den bivariaten
-Zusammenhang zwischen `Arbeitslos` und `Einkommen_log`:
+Um die Probleme zu illustrieren schätzen wir in Abbildung \@ref(fig:binaryOLS)
+einmal nur den bivariaten Zusammenhang zwischen `Arbeitslos` und `Einkommen_log`.
 
-```{r}
-ggplot(
+```{r binaryOLS, echo=FALSE, fig.cap="Schätzung mit OLS Modell."}
+ggplot2::ggplot(
   data = schweiz_al,
   mapping = aes(x=Einkommen_log, y=Arbeitslos, group=1)) +
-  scale_x_continuous(limits = c(7, 14)) +
-  ylab("Arbeitslosigkeit") + xlab("Arbeitsunabh. Einkommen (log)") +
-  geom_point() + geom_smooth(method = "lm", fullrange=TRUE) + theme_icae()
+  ggplot2::scale_x_continuous(limits = c(7, 14)) +
+  ggplot2::ylab("Arbeitslosigkeit") + xlab("Arbeitsunabh. Einkommen (log)") +
+  ggplot2::geom_point() + ggplot2::geom_smooth(method = "lm", fullrange=TRUE) +
+  icaeDesign::theme_icae()
 ```
 
 Unser Modell würde für bestimmte Levels an arbeitsunabhängigem Einkommen
 Werte außerhalb des Intervalls $0, 1$ vorhersagen - also Werte, die $y$ gar nicht
 annehmen kann und die, da wir die Werte für $y$ später als Wahrscheinlichkeiten
-interpretieren wollen, auch gar keinen Sinn ergeben wollen. 
+interpretieren wollen, auch gar keinen Sinn ergeben würden. 
 
-Unser Ziel ist da eher ein funktionaler Zusammenhang wie in folgender 
-Abbildung zu sehen:
+Unser Ziel ist da eher ein funktionaler Zusammenhang wie in 
+Abbildung \@ref(fig:binary) zu sehen:
 
-```{r}
-ggplot(
+```{r binary, echo=FALSE, fig.cap="Funktionaler Zusammenhang, den ein binäres Modell abbilden sollte."}
+ggplot2::ggplot(
   data = schweiz_al,
   mapping = aes(x=Einkommen_log, y=Arbeitslos, group=1)) +
-  scale_x_continuous(limits = c(7, 14)) +
-  ylab("Arbeitslosigkeit") + xlab("Arbeitsunabh. Einkommen (log)") +
-  geom_point() + geom_smooth(aes(y=Arbeitslos), method = "glm",
+  ggplot2::scale_x_continuous(limits = c(7, 14)) +
+  ggplot2::ylab("Arbeitslosigkeit") + xlab("Arbeitsunabh. Einkommen (log)") +
+  ggplot2::geom_point() + ggplot2::geom_smooth(aes(y=Arbeitslos), method = "glm",
                              method.args = list(family = "binomial"), 
-                             fullrange=TRUE, se = TRUE) + theme_icae()
+                             fullrange=TRUE, se = TRUE) + icaeDesign::theme_icae()
 ```
 
-Dieser Zusammenhang ist jedoch nicht linear und damit inkonsisten mit A1 des
+Dieser Zusammenhang ist jedoch nicht linear und damit inkonsistent mit A1 des
 OLS Modells. 
 
 ### Logit und Probit: theoretische Grundidee
@@ -126,6 +127,8 @@ Eine Möglichkeit $\mathbb{P}(y=1|\boldsymbol{x})$ auf das Intervall $[0,1]$ zu
 beschränken ist folgende Transformation:
 
 $$\mathbb{P}(y=1|\boldsymbol{x})=\frac{\exp(\boldsymbol{X\beta})}{1+\exp(\boldsymbol{X\beta})}$$
+<!-- Ok ich fühl mich mega dumm aber was dieses "exp" genau bedeutet hab ich auch in meinem ökonometrie kurs an der new school nicht so ganz gecheckt. das scheint eine mathematische grundlage zu sein die jeder kennen sollte :D aber ich könnte dir jetzt nicht erklären was es damit auf sich hat... vllt deshalb hier nochmal erklären für andere leserInnen die ähnlich schlechtes vorwissen haben? -->
+
 Diesen Ausdruck können wir dann folgendermaßen umformen:
 
 $$\frac{\mathbb{P}(y=1|\boldsymbol{x})}{1-\mathbb{P}(y=1|\boldsymbol{x})}=\frac{\frac{\exp(\boldsymbol{X\beta})}{1+\exp(\boldsymbol{X\beta})}}{1-\frac{\exp(\boldsymbol{X\beta})}{1+\exp(\boldsymbol{X\beta})}}$$
@@ -160,8 +163,8 @@ Wir sprechen hier von dem so genannten *logit* Modell, da wir hier auf der
 linken Seite den *Logarithmus* der *Odds* haben.
 Diesen Zusammenhang können wir nun auch ohne Probleme mit unserem OLS-Schätzer
 schätzen, denn hier haben wir einen klaren linearen Zusammenhang.
-Nur die anhängige Variable ist auf den ersten Blick ein wenig merkwürdig:
-der logarithmus der *Odds* des interessierenden Events.
+Nur die abhängige Variable ist auf den ersten Blick ein wenig merkwürdig:
+der Logarithmus der *Odds* des interessierenden Events.
 Aber das ist kein unlösbares Problem wie wir später sehen werden.
 
 *probit* Modelle funktionieren auf eine sehr ähnliche Art und Weise, verwenden
@@ -173,40 +176,45 @@ $$\mathbb{P}(y=1|\boldsymbol{x})=\phi(\boldsymbol{X\beta})$$
 
 wobei $\Phi(\cdot)$ die kumulierte Wahrscheinlichkeitsverteilung der 
 Normalverteilung ist. 
-Wie sie in folgender Abbildung sehen, die sich wieder auf das 
-Einführungsbeispiel bezieht, sind die funktionalen Formen bei der 
-beiden Modelle sehr ähnlich:
+Wie Sie in Abbildung \@ref(fig:logitprobit) sehen, die sich wieder auf das 
+Einführungsbeispiel bezieht, sind die funktionalen Formen beider
+Modelle sehr ähnlich.
 
-```{r, echo=FALSE}
-ggplot(
+```{r logitprobit, echo=FALSE, fig.cap="Vergleich der funktionalen Form bei logit und probit Modellen."}
+ggplot2::ggplot(
   data = schweiz_al,
   mapping = aes(x=Einkommen_log, y=Arbeitslos, group=1)) +
-  ylab("Arbeitslosigkeit") + xlab("Arbeitsunabh. Einkommen (log)") +
-  geom_point() + scale_x_continuous(limits = c(5, 17)) +
-  geom_smooth(
+  ggplot2::ylab("Arbeitslosigkeit") + xlab("Arbeitsunabh. Einkommen (log)") +
+  ggplot2::geom_point() + ggplot2::scale_x_continuous(limits = c(5, 17)) +
+  ggplot2::geom_smooth(
     aes(y=Arbeitslos, color="logit"), method = "glm", 
     method.args = list(family = binomial(link = "logit")), 
     fullrange=TRUE, se = FALSE, alpha=0.5) + 
-    geom_smooth(
+    ggplot2::geom_smooth(
     aes(y=Arbeitslos, color="probit"), method = "glm", 
     method.args = list(family = binomial(link = "probit")), 
     fullrange=TRUE, se = FALSE, alpha=0.5) + 
-  theme_icae()
+  icaeDesign::theme_icae()
 ```
 
 
-Wir werden der Einfachheit halber im folgenden in der Regel das 
-*logit* Modell verwenden, aber die Implementierung in R ist wirklich sehr ähnlich.
+Wir werden der Einfachheit halber im Folgenden in der Regel das 
+*logit* Modell verwenden, aber die Implementierung der beiden Modelle in R ist 
+wirklich sehr ähnlich.
+
+<!-- Unten hast du ja jetzt doch den Code von beiden aufgeführt. ist dieser satz dann überhaupt nötig oder korrekt? Bzw, ich hab jetzt nochmal was weiter gelesen und das logit modell verwendest du unten um die Interpretation zu erklären. Wird denn probit gleich interpretiert? Also ist auch diese Transformation die man machen muss um zu predicted probabilities zu kommen die gleiche zwischen logit und probit? Wenn ja denke ich kann dieser Satz hier stehen bleiben und ich würde unten bei Interpretation nochmal dazu schreiben dass das bei probit genauso funktionieren würde-->
 
 ### Logit und Probit: Implementierung in R
 
-Da *logit* und *probit* Modell zu den so genannten *generalisierten Modellen* 
+Da *logit* und *probit* Modelle zu den so genannten *generalisierten Modellen* 
 gehören verwenden wir die Funktion `glm` um die Modelle zu schätzen. 
 Die Spezifikation ist dabei sehr ähnlich zu den linearen Modellen, die wir 
 mit `lm()` geschätzt haben.
 
+<!-- Mir ist noch eine Sache aufgefallen die glaub ich immer kommt bei diesem Thema- model selection zwischen logit & probit. alles woran ich mich erinner aus meinen classes bisher war dass es basically egal ist welches man nimmt. ist das korrket? würde glaube ich irgendwo noch einen satz zu model choice hinschreiben weil die Leser*innen sich das bestimmt auch fragen werden.. -->
+
 Nehmen wir einmal an wir wollen mit unserem Datensatz von Schweizerinnen
-die Effekt von Alter und arbeitsunabhänigem Einkommen auf die Wahrscheinlichkeit
+die Effekte von Alter und arbeitsunabhängigem Einkommen auf die Wahrscheinlichkeit
 der Arbeitslosigkeit schätzen.
 
 Als erstes Argument `formula` übergeben wir wieder die Schätzgleichung.
@@ -267,7 +275,7 @@ summary(arbeitslogit)
 Es wäre ja deutlich schöner wenn wir Änderungen in den unabhängigen Variablen
 als Änderungen in $\mathbb{P}(y=1|\boldsymbol{x})$ interpretieren könnten.
 In unserem Beispiel also: um wie viel Prozent würde die Wahrscheinlichkeit für
-Arbeitslosigkeit steigen wenn es sich bei der betroffenen Person um eine
+Arbeitslosigkeit steigen, wenn es sich bei der betroffenen Person um eine
 Ausländerin handelt?
 Um dieses Ergebnis zu bekommen bedarf es aber einiger weniger Umformungen.
 
@@ -334,3 +342,5 @@ diff(
 ```
 
 Hier ist der Effekt mit ca. $32\%$ also noch größer!
+
+<!-- Hab das Gefühl hier fehlen noch abschließende Worte, vorallem weil es ja auch das letzte inhaltliche Kapitel ist :) Ansonsten super Kapitel!! -->
