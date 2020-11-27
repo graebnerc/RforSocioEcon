@@ -1,7 +1,7 @@
 # Ausgewählte nichtlineare Schätzverfahren {#nonlin}
 
 ```{r include=FALSE}
-knitr::opts_chunk$set(comment = "#>")
+knitr::opts_chunk$set(comment = "#>", message = FALSE, warning = FALSE)
 knitr::opts_chunk$set(out.height = '75%', out.width = '75%', fig.align = 'center') 
 ```
 
@@ -41,7 +41,7 @@ Dabei werden die folgenden Pakete verwendet:
 library(tidyverse)
 library(data.table)
 library(here)
-library(icaeDesign)
+library(viridis)
 ```
 
 
@@ -92,7 +92,7 @@ ggplot2::ggplot(
   ggplot2::scale_x_continuous(limits = c(7, 14)) +
   ggplot2::ylab("Arbeitslosigkeit") + xlab("Arbeitsunabh. Einkommen (log)") +
   ggplot2::geom_point() + ggplot2::geom_smooth(method = "lm", fullrange=TRUE) +
-  icaeDesign::theme_icae()
+  theme_bw() + theme(panel.border = element_blank(), axis.line = element_line())
 ```
 
 Unser Modell würde für bestimmte Levels an arbeitsunabhängigem Einkommen
@@ -111,7 +111,8 @@ ggplot2::ggplot(
   ggplot2::ylab("Arbeitslosigkeit") + xlab("Arbeitsunabh. Einkommen (log)") +
   ggplot2::geom_point() + ggplot2::geom_smooth(aes(y=Arbeitslos), method = "glm",
                              method.args = list(family = "binomial"), 
-                             fullrange=TRUE, se = TRUE) + icaeDesign::theme_icae()
+                             fullrange=TRUE, se = TRUE) + 
+  theme_bw() + theme(panel.border = element_blank(), axis.line = element_line())
 ```
 
 Dieser Zusammenhang ist jedoch nicht linear und damit inkonsistent mit A1 des
@@ -124,10 +125,22 @@ Wahrscheinlichkeit, dass $y$ den Wert $1$ annimmt, gegeben die unabhängigen
 Variablen $\boldsymbol{x}$.
 
 Eine Möglichkeit $\mathbb{P}(y=1|\boldsymbol{x})$ auf das Intervall $[0,1]$ zu 
-beschränken ist folgende Transformation:
+beschränken ist folgende Transformation:^[
+Falls Sie das $\exp\left( \cdot\right)$ in der Gleichung verwirrt: das ist nur eine 
+alternative Schreibweise für die Exponentialfunktion um schwer lesbare
+Exponenten zu vermeiden. Entsprechend wird Ihnen das häufig begegnen.
+Es gilt aber immer: $\exp\left(x \right)=e^x$ und damit 
+$\exp\left(1 \right)=e\approx 2.718$. Probieren Sie es doch mal in `R` aus,
+hier gibt es dafür die Funktion -- Achtung!! -- `exp()`.]
 
-$$\mathbb{P}(y=1|\boldsymbol{x})=\frac{\exp(\boldsymbol{X\beta})}{1+\exp(\boldsymbol{X\beta})}$$
-<!-- Ok ich fühl mich mega dumm aber was dieses "exp" genau bedeutet hab ich auch in meinem ökonometrie kurs an der new school nicht so ganz gecheckt. das scheint eine mathematische grundlage zu sein die jeder kennen sollte :D aber ich könnte dir jetzt nicht erklären was es damit auf sich hat... vllt deshalb hier nochmal erklären für andere leserInnen die ähnlich schlechtes vorwissen haben? -->
+\begin{align}
+\mathbb{P}(y=1|\boldsymbol{x})=
+\frac{\exp(\boldsymbol{X\beta})}{1+\exp(\boldsymbol{X\beta})}
+\end{align}
+
+<!-- 
+Passt es mit der Fußnote?
+-->
 
 Diesen Ausdruck können wir dann folgendermaßen umformen:
 
@@ -172,13 +185,34 @@ aber eine andere Transformation über die kumulierte Wahrscheinlichkeitsverteilu
 der Normalverteilung.
 Hier wird im Endeffekt folgende Regressionsgleichung geschätzt:
 
-$$\mathbb{P}(y=1|\boldsymbol{x})=\phi(\boldsymbol{X\beta})$$
+\begin{align}
+\mathbb{P}(y=1|\boldsymbol{x})=\phi(\boldsymbol{X\beta})
+\end{align}
 
 wobei $\Phi(\cdot)$ die kumulierte Wahrscheinlichkeitsverteilung der 
 Normalverteilung ist. 
+
+> **Logit oder Probit?**
 Wie Sie in Abbildung \@ref(fig:logitprobit) sehen, die sich wieder auf das 
 Einführungsbeispiel bezieht, sind die funktionalen Formen beider
 Modelle sehr ähnlich.
+Früher war das Logit-Modell beliebter, weil es etwas technisch etwas leichter zu berechnen war. Mit heutigen Computern ist dieser Vorteil jedoch irrelevant 
+geworden. 
+Es gibt jedoch Fälle in denen Logit-Modelle etwas leichter zu interpretieren 
+sind - für die hier vorgestellte Strategie spielt es jedoch ebenfalls keine
+Rolle. 
+In einigen Modifikationen binärer Schätzmodelle ist es einfacher, als 
+Ausgangspunkt das Probit-Modell zu nehmen - aber das ist für die meisten 
+Anwendungsfällte ebenfalls egal.
+Am Ende des Tages gilt: wenn Sie Logit verstanden haben, haben Sie wohl auch 
+Probit verstanden und in der Praxis ist es bis auf wenige Ausnahmen zunächst 
+einmal völlig zweitrangig welches der Modelle Sie verwenden. Eine technisch 
+genauere Diskussion, die Logit und Probit jeweils als Sonderfall der 
+Generalisierten Modelle begreift, siehe z.B. Kapitel 11 in @fitz.
+
+<!--
+@Birte: hier hab ich was zur Auswahl ergänzt.
+-->
 
 ```{r logitprobit, echo=FALSE, fig.cap="Vergleich der funktionalen Form bei logit und probit Modellen."}
 ggplot2::ggplot(
@@ -186,6 +220,7 @@ ggplot2::ggplot(
   mapping = aes(x=Einkommen_log, y=Arbeitslos, group=1)) +
   ggplot2::ylab("Arbeitslosigkeit") + xlab("Arbeitsunabh. Einkommen (log)") +
   ggplot2::geom_point() + ggplot2::scale_x_continuous(limits = c(5, 17)) +
+  viridis::scale_color_viridis(discrete = T) +
   ggplot2::geom_smooth(
     aes(y=Arbeitslos, color="logit"), method = "glm", 
     method.args = list(family = binomial(link = "logit")), 
@@ -194,16 +229,20 @@ ggplot2::ggplot(
     aes(y=Arbeitslos, color="probit"), method = "glm", 
     method.args = list(family = binomial(link = "probit")), 
     fullrange=TRUE, se = FALSE, alpha=0.5) + 
-  icaeDesign::theme_icae()
+  theme_bw() + theme(
+    panel.border = element_blank(), 
+    axis.line = element_line(), 
+    legend.title = element_blank()
+    )
 ```
 
 
-Wir werden der Einfachheit halber im Folgenden in der Regel das 
-*logit* Modell verwenden, aber die Implementierung der beiden Modelle in R ist 
-wirklich sehr ähnlich.
 
 <!-- Unten hast du ja jetzt doch den Code von beiden aufgeführt. ist dieser satz dann überhaupt nötig oder korrekt? Bzw, ich hab jetzt nochmal was weiter gelesen und das logit modell verwendest du unten um die Interpretation zu erklären. Wird denn probit gleich interpretiert? Also ist auch diese Transformation die man machen muss um zu predicted probabilities zu kommen die gleiche zwischen logit und probit? Wenn ja denke ich kann dieser Satz hier stehen bleiben und ich würde unten bei Interpretation nochmal dazu schreiben dass das bei probit genauso funktionieren würde-->
 
+<!--
+Habe oben was ergänzt und den Satz rausgenommen. Unten wird jetzt beides erläutert
+-->
 ### Logit und Probit: Implementierung in R
 
 Da *logit* und *probit* Modelle zu den so genannten *generalisierten Modellen* 
@@ -212,6 +251,10 @@ Die Spezifikation ist dabei sehr ähnlich zu den linearen Modellen, die wir
 mit `lm()` geschätzt haben.
 
 <!-- Mir ist noch eine Sache aufgefallen die glaub ich immer kommt bei diesem Thema- model selection zwischen logit & probit. alles woran ich mich erinner aus meinen classes bisher war dass es basically egal ist welches man nimmt. ist das korrket? würde glaube ich irgendwo noch einen satz zu model choice hinschreiben weil die Leser*innen sich das bestimmt auch fragen werden.. -->
+
+<!--
+Habe ich entsprechend oben und unten ergänzt, sollte jetzt klar sein?
+-->
 
 Nehmen wir einmal an wir wollen mit unserem Datensatz von Schweizerinnen
 die Effekte von Alter und arbeitsunabhängigem Einkommen auf die Wahrscheinlichkeit
@@ -272,12 +315,19 @@ arbeitslogit <- glm(
 summary(arbeitslogit)
 ```
 
-Es wäre ja deutlich schöner wenn wir Änderungen in den unabhängigen Variablen
+Im Falle des Probit-Modells ist die Interpretation noch schwieriger, weil 
+der geschätzte Wert $\hat{\beta}_6$ hier die Änderung im z-Wert der abhängigen
+Variable angibt -- eine Information, die unmittelbar kaum intuitiv zu 
+verarbeiten ist und daher in der Praxis auch nicht groß diskutiert wird.
+
+In jedem Falle wäre es also deutlich schöner wenn wir Änderungen in den 
+unabhängigen Variablen
 als Änderungen in $\mathbb{P}(y=1|\boldsymbol{x})$ interpretieren könnten.
 In unserem Beispiel also: um wie viel Prozent würde die Wahrscheinlichkeit für
 Arbeitslosigkeit steigen, wenn es sich bei der betroffenen Person um eine
 Ausländerin handelt?
-Um dieses Ergebnis zu bekommen bedarf es aber einiger weniger Umformungen.
+Um dieses Ergebnis zu bekommen bedarf es aber einiger weniger Umformungen, die
+in `R` für Logit und Probit glücklicherweise gleich funktionieren.
 
 Da der Zusammenhang zwischen $\mathbb{P}(y=1|\boldsymbol{x})$ und den 
 unabhängigen Variablen nicht-linear ist müssen wir für die Vergleiche der
@@ -342,5 +392,63 @@ diff(
 ```
 
 Hier ist der Effekt mit ca. $32\%$ also noch größer!
+Zum Vergleich führen wir die gleiche Prozedur auch noch einmal für das 
+Probit-Modell durch:
 
-<!-- Hab das Gefühl hier fehlen noch abschließende Worte, vorallem weil es ja auch das letzte inhaltliche Kapitel ist :) Ansonsten super Kapitel!! -->
+```{r}
+arbeitsprobit <- glm(
+  Arbeitslos ~ Einkommen_log + Alter + Ausbildung_Jahre + Kinder_jung + 
+    Kinder_alt + Auslaender, 
+  family = binomial(link = "probit"), 
+  data = schweiz_al)
+
+diff(
+  predict(
+    object = arbeitsprobit, 
+    newdata = data.frame(
+      "Einkommen_log" = c(10, 10), 
+      "Alter"=c(30, 30), 
+      "Ausbildung_Jahre" = c(5, 5),
+      "Kinder_alt" = c(0, 0), 
+      "Kinder_jung"= c(1, 2),
+      "Auslaender" = factor(c(1, 1))
+      ),
+    type = "response")
+)
+```
+
+Wie Sie sehen ist der Unterschied marginal. 
+In der Praxis macht es also meist kaum einen Unterschied welches der beiden 
+Modelle Sie verwenden.
+
+<!--
+@Birte: ist ja sicher nicht der entgültige Abschluss, deswegen habe ich es mal 
+so  formuliert. Passt das?
+-->
+
+## Abschließende Anmerkungen
+
+In diesem Kapitel haben wir uns beispielhaft mit Logit- und Probit-Modellen 
+beschäftigt. 'Beispielhaft' weil das Vorgehen bei diesen Modellen repräsentativ
+für zahlreiche fortgeschrittene Schätzverfahren ist:
+wir beobachten zuerst, dass die zu analysierenden Daten nicht zu den
+Standard-Annahmen von OLS passen. 
+Dann überlegen wir uns eine Transformation der Daten, bzw. eine 
+Transformationsstrategie für die Schätzer sodass wir nach einigen Umformungen
+wieder an einem Punkt ankommen, wo wir das Modell mit OLS schätzen können.
+Das ist ein weiterer Grund warum ein solides Verständnis der OLS-Methode so 
+wertvoll ist: viele komplexe Schätzer inkludieren diverse Transformation, können
+aber an irgendeinem Punkt auf die OLS-Methode (oder, wie sie dann oft bezeichnet
+wird, die *Least Squares*-Methode) zurückgeführt werden.
+Das gilt natürlich nicht für alle, aber für viele in der
+Anwendung weit verbreiteten ökonometrischen Methoden.
+Insofern macht das Verständnis von dem hier vorgestellten Vorgehen auch eine
+Auseinandersetzung mit Schätzmethoden für zensierte Daten (Tobit-Modelle) oder
+Panel-Daten (z.B. Fixed-Effects-Modelle), sowie fortgeschrittene Techniken wie 
+Instrumentenvariablenschätzung deutlich einfacher.
+Nichtsdestotrotz warten auch noch viele andere Schätzverfahren, deren 
+Verständnis zwar durch OLS erleichtert wird, die aber nach etwas anderen 
+Prinzipien funktionieren, z.B. die *Maximum Likelihood*-Methode, 
+der *Generalized Methods of Momements*-Ansatz oder die zahlreichen
+nicht-parametrischen Methoden, mit denen wir uns bisland noch gar nicht 
+auseinandergesetzt haben. Es bleibt also spannend!
