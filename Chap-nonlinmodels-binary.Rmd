@@ -48,7 +48,7 @@ library(viridis)
 ## Binäre abhängige Variablen: Logit- und Probit-Modelle {#logit}
 
 Das folgende Beispiel verwendet angepasste Daten aus @AER zur 
-Beschäftigunssituation von Frauen aus der Schweiz:
+Beschäftigungssituation von Frauen aus der Schweiz:
 
 ```{r, eval=FALSE, echo=FALSE}
 data("SwissLabor", package = "AER")
@@ -138,10 +138,6 @@ hier gibt es dafür die Funktion -- Achtung!! -- `exp()`.]
 \frac{\exp(\boldsymbol{X\beta})}{1+\exp(\boldsymbol{X\beta})}
 \end{align}
 
-<!-- 
-Passt es mit der Fußnote?
--->
-
 Diesen Ausdruck können wir dann folgendermaßen umformen:
 
 $$\frac{\mathbb{P}(y=1|\boldsymbol{x})}{1-\mathbb{P}(y=1|\boldsymbol{x})}=\frac{\frac{\exp(\boldsymbol{X\beta})}{1+\exp(\boldsymbol{X\beta})}}{1-\frac{\exp(\boldsymbol{X\beta})}{1+\exp(\boldsymbol{X\beta})}}$$
@@ -210,10 +206,6 @@ einmal völlig zweitrangig welches der Modelle Sie verwenden. Eine technisch
 genauere Diskussion, die Logit und Probit jeweils als Sonderfall der 
 Generalisierten Modelle begreift, siehe z.B. Kapitel 11 in @fitz.
 
-<!--
-@Birte: hier hab ich was zur Auswahl ergänzt.
--->
-
 ```{r logitprobit, echo=FALSE, fig.cap="Vergleich der funktionalen Form bei logit und probit Modellen."}
 ggplot2::ggplot(
   data = schweiz_al,
@@ -236,25 +228,12 @@ ggplot2::ggplot(
     )
 ```
 
-
-
-<!-- Unten hast du ja jetzt doch den Code von beiden aufgeführt. ist dieser satz dann überhaupt nötig oder korrekt? Bzw, ich hab jetzt nochmal was weiter gelesen und das logit modell verwendest du unten um die Interpretation zu erklären. Wird denn probit gleich interpretiert? Also ist auch diese Transformation die man machen muss um zu predicted probabilities zu kommen die gleiche zwischen logit und probit? Wenn ja denke ich kann dieser Satz hier stehen bleiben und ich würde unten bei Interpretation nochmal dazu schreiben dass das bei probit genauso funktionieren würde-->
-
-<!--
-Habe oben was ergänzt und den Satz rausgenommen. Unten wird jetzt beides erläutert
--->
 ### Logit und Probit: Implementierung in R
 
 Da *logit* und *probit* Modelle zu den so genannten *generalisierten Modellen* 
 gehören verwenden wir die Funktion `glm` um die Modelle zu schätzen. 
 Die Spezifikation ist dabei sehr ähnlich zu den linearen Modellen, die wir 
 mit `lm()` geschätzt haben.
-
-<!-- Mir ist noch eine Sache aufgefallen die glaub ich immer kommt bei diesem Thema- model selection zwischen logit & probit. alles woran ich mich erinner aus meinen classes bisher war dass es basically egal ist welches man nimmt. ist das korrket? würde glaube ich irgendwo noch einen satz zu model choice hinschreiben weil die Leser*innen sich das bestimmt auch fragen werden.. -->
-
-<!--
-Habe ich entsprechend oben und unten ergänzt, sollte jetzt klar sein?
--->
 
 Nehmen wir einmal an wir wollen mit unserem Datensatz von Schweizerinnen
 die Effekte von Alter und arbeitsunabhängigem Einkommen auf die Wahrscheinlichkeit
@@ -421,11 +400,6 @@ Wie Sie sehen ist der Unterschied marginal.
 In der Praxis macht es also meist kaum einen Unterschied welches der beiden 
 Modelle Sie verwenden.
 
-<!--
-@Birte: ist ja sicher nicht der entgültige Abschluss, deswegen habe ich es mal 
-so  formuliert. Passt das?
--->
-
 ## Abschließende Anmerkungen
 
 In diesem Kapitel haben wir uns beispielhaft mit Logit- und Probit-Modellen 
@@ -437,9 +411,9 @@ Dann überlegen wir uns eine Transformation der Daten, bzw. eine
 Transformationsstrategie für die Schätzer sodass wir nach einigen Umformungen
 wieder an einem Punkt ankommen, wo wir das Modell mit OLS schätzen können.
 Das ist ein weiterer Grund warum ein solides Verständnis der OLS-Methode so 
-wertvoll ist: viele komplexe Schätzer inkludieren diverse Transformation, können
-aber an irgendeinem Punkt auf die OLS-Methode (oder, wie sie dann oft bezeichnet
-wird, die *Least Squares*-Methode) zurückgeführt werden.
+wertvoll ist: viele komplexe Schätzer inkludieren diverse Transformationen, 
+können aber an irgendeinem Punkt auf die OLS-Methode (oder, wie sie dann oft 
+bezeichnet wird, die *Least Squares*-Methode) zurückgeführt werden.
 Das gilt natürlich nicht für alle, aber für viele in der
 Anwendung weit verbreiteten ökonometrischen Methoden.
 Insofern macht das Verständnis von dem hier vorgestellten Vorgehen auch eine
@@ -449,6 +423,6 @@ Instrumentenvariablenschätzung deutlich einfacher.
 Nichtsdestotrotz warten auch noch viele andere Schätzverfahren, deren 
 Verständnis zwar durch OLS erleichtert wird, die aber nach etwas anderen 
 Prinzipien funktionieren, z.B. die *Maximum Likelihood*-Methode, 
-der *Generalized Methods of Momements*-Ansatz oder die zahlreichen
-nicht-parametrischen Methoden, mit denen wir uns bisland noch gar nicht 
+der *Generalized Methods of Moments*-Ansatz oder die zahlreichen
+nicht-parametrischen Methoden, mit denen wir uns bislang noch gar nicht 
 auseinandergesetzt haben. Es bleibt also spannend!
