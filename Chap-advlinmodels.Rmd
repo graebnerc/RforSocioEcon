@@ -5,7 +5,11 @@
 klammern sein.
 Bitte im PDF dann auch nochmal checken ob die referenzen tatsächlich funktioniert
 haben.
+
+ANTWORT: Habe sie mal gecheckt im code, und zumindest hier sieht alles gut aus. An 2 Stellen gab es noch Referenzen zum Anhang in diesem Format: [im Anhang](#advlin-proofs), also mit eckigen Klammern und dann #. Die habe ich jetzt auch in der format "im Anhang \@ref(advlin-proofs)" umgeändert. korrekt? oder sollte das für die anhangreferenz in diesem alten format bleiben?
 -->
+
+
 
 ```{r include=FALSE}
 knitr::opts_chunk$set(comment = "#>")
@@ -317,7 +321,6 @@ also $\mathbb{E}\left[\boldsymbol{\epsilon} \right]=0$,
 allerdings eben *nicht* für jede einzelne Beobachtung.
 Häufig tritt diese Problem bei quadratischen Zusammenhängen auf.
 
-<!-- @Birte: habe folgenden Kommentar implementiert. Bitte checken, wenn es passt löschen  -->
 <!-- @Claudius: mit a und b machen und checken dass die bilder zum text passen  -->
 
 Wichtig ist festzuhalten, dass dies eine Annahme über nicht zu beobachtende 
@@ -454,10 +457,6 @@ Fehlerterme, bedingt wie immer auf die unabhängigen Variablen:
 $$\boldsymbol{\epsilon|\boldsymbol{X}} \propto 
 \mathcal{N}(0, \sigma^2)$$
 
-<!-- 
-@Birte: bitte nächsten Absatz checken.
--->
-
 Diese Annahme ist weniger zentral als die anderen Annahmen, weswegen sie häufig
 als 'optional' bezeichnet wird.
 Der Grund dafür ist, dass die gleich eingeführten Eigenschaften des
@@ -540,7 +539,7 @@ Wir können beweisen, dass $\hat{\boldsymbol{\beta}}$ unter Annahmen A1, A2 und 
 erwartungstreu ist. 
 Dies gilt unabhängig der Stichprobengröße und unabhängig davon ob Annahmen A4
 und A5 erfüllt sind.
-Der mathematische Beweis findet sich [im Anhang](#advlin-proofs) 
+Der mathematische Beweis findet sich im Anhang \@ref(advlin-proofs) 
 (siehe Theorem \@ref(theo:ewt-ols-beta)).
 
 Wie oben bereits erwähnt resultiert daraus natürlich nicht, dass für jede einzelne 
@@ -553,8 +552,8 @@ die Unsicherheit für die einzelne Schätzung.
 Wir können die Varianz einer Schätzung auch ausrechnen und als 
 Standardfehler der Schätzer angeben. 
 R gibt uns diese Werte immer automatisch mit aus. Wie die Schätzer hergeleitet
-und geschätzt werden können Sie über Theorem \ref{theo:ewt-ols-sigma} und 
-\ref{theo:ols-sdf} [im Anhang](#advlin-proofs) nachvollziehen.
+und geschätzt werden können Sie über Theorem \@ref(theo:ewt-ols-sigma) und 
+\@ref(theo:ols-sdf) im Anhang \@ref(advlin-proofs) nachvollziehen.
 
 Besonders relevant ist in diesem Kontext die Eigenschaft der **Effizienz**.
 Unter *Effizienz* verstehen wir die Eigenschaft, dass es keinen alternativen
@@ -628,13 +627,9 @@ und seine Varianz geht mit wachsender Stichprobengröße gegen Null.
 Wir können also sagen, dass unsere Schätzungen bei wachsender Stichprobengröße
 immer genauer wird.
 
-<!-- 
-@Birte: bitte diese Box checken.
--->
-
 >**Der Unterschied zwischen Erwartungstreue und Konsistenz** Auf den ersten Blick
 erscheinen die beiden Konzepte eng verwandt, weil beide eine Aussage über den 
-Erwartungswert des OLS-Schätzers aussagen. Allerdings gilt die Erwartungstreue
+Erwartungswert des OLS-Schätzers treffen. Allerdings gilt die Erwartungstreue
 unabhängig von der Stichprobengröße: auch in kleinen Stichproben gilt, dass
 $\mathbb{E}(\hat{\boldsymbol{\beta}})=\beta$. Die Konsistenz dagegen bezieht
 sich auf das Verhalten des OLS-Schätzers wenn die Stichprobe immer größer wird.
@@ -644,7 +639,7 @@ bei sehr großen Stichproben können wir auch bei einer einzelnen Schätzung
 davon ausgehen, dass wir den wahren Wert ziemlich genau treffen.
 Eine solche Aussage können wir aus der Erwartungstreue nicht ableiten:
 dass wir im Mittel den wahren Wert treffen macht *überhaupt keine* Aussage
-über die einzelne Schätzung. Auf die Eigenschaft der Effizienz ist hier nur
+über die einzelne Schätzung. Auch die Eigenschaft der Effizienz ist hier nur
 bedingt hilfreich, weil sie nur besagt, dass der OLS-Schätzer der Schätzer mit
 der *geringsten* Varianz ist - aber nicht *wie gering* diese Varianz ist. 
 Manchmal ist auch die geringste Varianz sehr groß.
@@ -2321,7 +2316,8 @@ Konsum um ca. $1.12\%$ zurückgehen.
 ## Normalverteilung der Fehlerterme
 
 <!-- 
-@Birte: Bitte diesen neuen Teil auch nochmal besonders checken.
+@Birte: Bitte diesen neuen Teil auch nochmal besonders checken. ANTWORT: find
+es super so. nur beim letzten satz mit bootstrap und Huber schätzer vllt noch ne quelle hinzufügen?
 -->
 
 Wie oben beschrieben ist die Annahme A5 für die besonders wichtigen 
@@ -2330,7 +2326,7 @@ Sie erleichtert aber Hypothesentests und wird häufig als Indiz für ein
 gut spezifiertes Modell gesehen.
 
 Da wir die Fehlerterme nicht direkt beobachten können wird diese Annahme
-überprüft indem die Verteilung der Residuen betrachtet wird.
+überprüft, indem die Verteilung der Residuen betrachtet wird.
 Damit eine visuelle Inspektion möglichst einfach ist verwenden wir hier einen
 so genannten *Q-Q-Plot* (siehe dazu Abbildung \@ref(fig:QQPlot)).
 Im Q-Q-Plot werden die tatsächlichen Quantile der Verteilung der Residuen 
@@ -2398,14 +2394,14 @@ In Abbildung \@ref(fig:QQPlot) sind zwei Q-Q-Plots abgebildet.
 Plot `a)` zeigt einen relativ idealtypischen Q-Q-Plot, bei dem wir guten
 Gewissens von einer Normalverteilung der Residuen ausgehen können:
 hier liegen die Punkte ziemlich exakt auf der Q-Q-Line.
-Bei Plot `b)` in Abbildung \@ref(fig:QQPlot) ist das dagegen nichtt der Fall, 
+Bei Plot `b)` in Abbildung \@ref(fig:QQPlot) ist das dagegen nicht der Fall, 
 weswegen wir skeptisch bezüglich aller Ergebnisse sein sollten, die auf der
 Normalverteilungsannahme aufbauen, also insbesondere bei den Standardfehlern,
 $p$-Werten und den Konfidenzintervallen.
 In einem solchen Fall können Sie versuchen, über Transformationen Ihrer Daten 
 eine Normalverteilung der Residuen herzustellen.
-Bleibt das erfolglos oder macht wegen dem Anwendungsfall keinen Sinn sollten 
-Sie die Unsicherheit Ihrer Schätzung nicht über die 
+Bleibt das erfolglos oder ergibt es im konkreten Anwendungsfall keinen Sinn 
+sollten Sie die Unsicherheit Ihrer Schätzung nicht über die 
 normalen Standardfehler messen, sondern sich Techniken wie dem *Huber-Schätzer*
 oder dem *Bootstrap* bedienen.
 
