@@ -1390,8 +1390,8 @@ Das zweite Argument heißt `cols` und beschreibt die Spalten an denen Änderunge
 vorgenommen werden sollen. 
 In unserem Falle sind das die Spalten `2013` und `2014`.
 Um hier eine Liste von Spaltennamen zu übergeben verwenden wir die Hilfsfunktion
-`one_of()`, die es uns erlaubt die Spaltennamen als `character` zu schreiben.
-Das Argument wird also als `cols=one_of("2013", "2014")` spezifiziert.
+`any_of()`, die es uns erlaubt die Spaltennamen als `character` zu schreiben.
+Das Argument wird also als `cols=any_of(c("2013", "2014"))` spezifiziert.
 
 Das dritte Argument, `names_to` akzeptiert einen `character`, der den Namen der
 neu zu schaffenden Spalte beschreibt. 
@@ -1407,7 +1407,7 @@ Insgesamt erhalten wir damit den folgenden Funktionsaufruf:
 
 ```r
 data_long <- tidyr::pivot_longer(data = data_wide,
-                          cols = one_of("2013", "2014"), 
+                          cols = any_of(c("2013", "2014")), 
                           names_to = "Jahr", 
                           values_to = "Arbeitslosenquote")
 data_long
@@ -1449,7 +1449,7 @@ den zu manipulierenden Datensatz. Im Beispiel ist das `data_long`.
 Das zweite Argument, `id_cols`, legt die Spalten fest, die nicht verändert 
 werden sollen, weil sie die Beobachtung als solche spezifizieren. In unserem 
 Fall ist das die Spalte `Land`, aber manchmal ist das auch mehr als eine Spalte.
-In dem Fall ist die Verwendung der Funktion `one_of()` wie im Beispiel oben 
+In dem Fall ist die Verwendung der Funktion `any_of()` wie im Beispiel oben 
 notwendig, im Falle von einer Spalte wie hier ist das optional.
 
 Das dritte Argument, `names_from` verlangt nach den Spalten, deren Inhalte im 
@@ -1468,7 +1468,7 @@ Insgesamt sieht der Funktionsaufruf also so aus:
 
 ```r
 data_wide_neu <- tidyr::pivot_wider(data = data_long,
-                             id_cols = one_of("Land"), 
+                             id_cols = any_of("Land"), 
                              names_from = "Jahr", 
                              values_from = "Arbeitslosenquote")
 data_wide_neu
@@ -1526,7 +1526,7 @@ genannten Spalten für die Transformation verwenden:
 
 ```r
 data_al_exp_longer <- tidyr::pivot_longer(data = data_al_exp, 
-                                   cols = -one_of("Land", "Variable"), 
+                                   cols = -any_of(c("Land", "Variable")), 
                                    names_to = "Jahr", 
                                    values_to = "Wert")
 head(data_al_exp_longer, 2)
@@ -1541,9 +1541,9 @@ head(data_al_exp_longer, 2)
 ```
 
 Beachten Sie wie wir diesmal das Argument `cols` spezifiziert haben:
-anstatt alle Jahre in die Funktion `one_of()` zu schreiben, haben wir stattdessen
+anstatt alle Jahre in die Funktion `any_of()` zu schreiben, haben wir stattdessen
 die Spalten spezifiziert, die *nicht* bearbeitet werden sollen und das mit einem
-`-` vor `one_of()` gekennzeichnet. 
+`-` vor `any_of()` gekennzeichnet. 
 Das ist vor allem dann hilfreich wenn wir sehr viele Spalten zusammenfassen 
 wollen, was häufig vorkommt, wenn es sich bei den Spalten um Jahre handelt.
 
@@ -1553,7 +1553,7 @@ noch breiter machen:
 
 ```r
 data_al_exp_tidy <- tidyr::pivot_wider(data = data_al_exp_longer, 
-                                id_cols = one_of("Land", "Jahr"), 
+                                id_cols = any_of(c("Land", "Jahr")), 
                                 values_from = "Wert", 
                                 names_from = "Variable")
 data_al_exp_tidy
@@ -1576,12 +1576,12 @@ Insgesamt sähe der Code damit folgendermaßen aus:
 
 ```r
 data_al_exp_longer <- tidyr::pivot_longer(data = data_al_exp, 
-                                   cols = -one_of("Land", "Variable"), 
+                                   cols = -any_of(c("Land", "Variable")), 
                                    names_to = "Jahr", 
                                    values_to = "Wert")
 
 data_al_exp_tidy <- tidyr::pivot_wider(data = data_al_exp_longer, 
-                                id_cols = one_of("Land", "Jahr"), 
+                                id_cols = any_of(c("Land", "Jahr")), 
                                 values_from = "Wert", 
                                 names_from = "Variable")
 ```
@@ -1600,11 +1600,11 @@ Wir könnten also auch schreiben:
 ```r
 data_al_exp_tidy <- data_al_exp %>%
   tidyr::pivot_longer(
-    cols = -one_of("Land", "Variable"), 
+    cols = -any_of(c("Land", "Variable")), 
     names_to = "Jahr", 
     values_to = "Wert") %>%
   tidyr::pivot_wider(
-    id_cols = one_of("Land", "Jahr"), 
+    id_cols = any_of(c("Land", "Jahr")), 
     values_from = "Wert", 
     names_from = "Variable")
 ```
@@ -1632,12 +1632,12 @@ verwenden.
 data_al_exp_tidy <- data_al_exp %>%
   tidyr::pivot_longer(
     data = .,
-    cols = -one_of("Land", "Variable"), 
+    cols = -any_of(c("Land", "Variable")), 
     names_to = "Jahr", 
     values_to = "Wert") %>%
   tidyr::pivot_wider(
     data = .,
-    id_cols = one_of("Land", "Jahr"), 
+    id_cols = any_of(c("Land", "Jahr")), 
     values_from = "Wert", 
     names_from = "Variable")
 ```
@@ -1652,12 +1652,12 @@ Namen stimmen funktioniert also auch folgender Code:
 ```r
 data_al_exp_tidy <- data_al_exp %>%
   tidyr::pivot_longer(
-    cols = -one_of("Land", "Variable"), 
+    cols = -any_of(c("Land", "Variable")), 
     names_to = "Jahr", 
     values_to = "Wert",
     data = .) %>%
   tidyr::pivot_wider(
-    id_cols = one_of("Land", "Jahr"), 
+    id_cols = any_of(c("Land", "Jahr")), 
     values_from = "Wert", 
     names_from = "Variable",
     data = .)
@@ -1952,13 +1952,6 @@ debt_data_IWF <- data.frame(Land=c("DEU", "GRC"),
 debt_data_WELTBANK <- data.frame(Land=c("GRC", "DEU"), 
                                  Schulden=c(100, 25))
 debt_data <- dplyr::full_join(debt_data_IWF, debt_data_WELTBANK)
-```
-
-```
-#> Joining, by = c("Land", "Schulden")
-```
-
-```r
 debt_data
 ```
 
@@ -2145,11 +2138,6 @@ test_uniqueness(full_data,
 ```
 
 ```
-#> Warning in test_uniqueness(full_data, index_vars = c("Land", "Jahr")): Rows in
-#> the data.table: 5, rows in the unique data.table:3
-```
-
-```
 #> [1] FALSE
 ```
 
@@ -2230,12 +2218,12 @@ Häufig ist es besser die Namen der Spalten als `character` zu übergeben.
 Das ist nicht nur besser lesbar, es wird später auch einfacher komplexere
 Vorgänge zu programmieren indem Sie Funktionen schreiben, die den Namen von 
 Spalten als Argumente akzeptieren.
-In diesem Fall können Sie wieder die Hilfsfunktion `one_of()` verwenden:
+In diesem Fall können Sie wieder die Hilfsfunktion `any_of()` verwenden:
 
 
 ```r
 head(
-  dplyr::select(data_al_exp_tidy, one_of("Land", "Jahr")), 
+  dplyr::select(data_al_exp_tidy, any_of(c("Land", "Jahr"))), 
   2)
 ```
 
@@ -2250,7 +2238,7 @@ head(
 
 ```r
 head(
-  dplyr::select(data_al_exp_tidy, -one_of("Land", "Jahr")), 
+  dplyr::select(data_al_exp_tidy, -any_of(c("Land", "Jahr"))), 
   2)
 ```
 
@@ -2262,12 +2250,13 @@ head(
 #> 2    53.4             5.34
 ```
 
-> **Tipp: Spalten auswählen:** Die Funktion `one_of()` erlaubt es Spalten mit
+> **Tipp: Spalten auswählen:** Die Funktion `any_of()` erlaubt es Spalten mit
 sehr nützlichen Hilfsfunktionen auszuwählen. Manchmal möchten Sie z.B. alle 
 Spalten auswählen, die mit `year_` anfangen, oder auf eine Zahl enden. Schauen
 Sie sich für solche Fälle einmal die 
 [select_helpers](https://www.rdocumentation.org/packages/dplyr/versions/0.7.2/topics/select_helpers)
-an.
+an, die auch weiter unten am Ende des Kapitels im Abschnitt \@ref(data-manycols) 
+noch einmal aufgegriffen werden. 
 
 Wie im Abschnitt zu [langen und weiten Daten](#data-long-wide) bereits beschrieben
 bietet sich in solchen Fällen die Pipe `%>%` an um Ihren Code zu vereinfachen und
@@ -2278,7 +2267,7 @@ ersten Argument zu verwenden:
 
 ```r
 data_al_exp_selected <- data_al_exp_tidy %>%
-  dplyr::select(one_of("Land", "Jahr", "Exporte"))
+  dplyr::select(any_of(c("Land", "Jahr", "Exporte")))
 head(data_al_exp_selected, 2)
 ```
 
@@ -2383,7 +2372,7 @@ den Code, mit dem wir
 ```r
 data_al_exp_tidy %>%
   dplyr::select(
-    -one_of("Arbeitslosigkeit")
+    -any_of("Arbeitslosigkeit")
     ) %>%
   dplyr::filter(
     Jahr>2012,
@@ -2443,8 +2432,8 @@ head(unemp_data_wb)
 ```
 
 Angenommen wir möchten das Land mit den `iso3c`-Codes anstatt der `iso2c`-Codes
-angeben, dann könnten wir mit der Funktion `dplyr::mutate()` die Spalte `country` ganz
-einfach verändern:
+angeben, dann könnten wir mit der Funktion `dplyr::mutate()` die Spalte 
+`country` ganz einfach verändern:
 
 
 ```r
@@ -2500,9 +2489,10 @@ Vielleicht sind wir für unseren Anwendungsfall gar nicht so sehr an der
 Veränderung über die Zeit interessiert, sondern wollen die 
 durchschnittliche Anzahl an Frauen in der Erwerbsbevölkerung berechnen.
 Das würde bedeuten, dass wir die Anzahl der Spalten in unserem Datensatz 
-reduzieren - etwas das bei der Anwendung von `dplyr::mutate()` nie passieren würde.
-Dafür gibt es die Funktion `dplyr::summarise()`:^[Die Funktionen `dplyr::summarize()` und 
-`dplyr::summarise()` sind Synonyme.]
+reduzieren - etwas das bei der Anwendung von `dplyr::mutate()` nie passieren 
+würde.
+Dafür gibt es die Funktion `dplyr::summarise()`:^[Die Funktionen 
+`dplyr::summarize()` und `dplyr::summarise()` sind Synonyme.]
 
 
 ```r
@@ -2540,10 +2530,6 @@ unemp_data_wb %>%
     fem_workers_avg = mean(workers_female_total)
     ) %>%
   dplyr::ungroup()
-```
-
-```
-#> `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ```
@@ -2620,8 +2606,8 @@ unemp_data_wb_growth <- unemp_data_wb %>%
     ) %>%
   dplyr::ungroup() %>%
   dplyr::mutate(fem_force_growth_bigger=fem_force_growth>pop_growth) %>%
-  dplyr::select(one_of("country", "year", "pop_growth", 
-                "fem_force_growth", "fem_force_growth_bigger"))
+  dplyr::select(any_of(c("country", "year", "pop_growth", 
+                         "fem_force_growth", "fem_force_growth_bigger")))
 unemp_data_wb_growth
 ```
 
@@ -2645,57 +2631,233 @@ unemp_data_wb_growth
 #> 14 DE       2016    0.00810          0.0126  TRUE
 ```
 
-Besonders hilfreich sind die Versionen von `dplyr::mutate()` und `dplyr::summarize()`, 
-welche mehrere Spalten auf einmal bearbeiten. Ich werde hier nicht im 
-Detail darauf eingehen, sondern nur einen kurzen Einblick in diese Funktionalität 
-geben. Angenommen Sie wollen das durchschnittliche Wachstum in Deutschland und
-Österreich sowohl für das Bevölkerungswachstum als auch das Wachstum der 
-weiblichen Erwerbsbevölkerung berechnen.
-Ausgehend vom letzten Datensatz
+
+## Gleichzeigite Bearbeitung mehrerer Spalten {#data-manycols}
+
+Häufig müssen wir mehrere Spalten mit den gleichen Funktionen bearbeiten.
+In diesem Kontext sind die so genannten 
+[select_helpers](https://www.rdocumentation.org/packages/dplyr/versions/0.7.2/topics/select_helpers)
+in Kombination mit der Funktion `dplyr::across()`, die mit Version 1.0 in
+das Paket [dplyr](https://github.com/tidyverse/dplyr/) eingeführt wurde, sehr
+hilfreich.
+Hier möchte ich diese Funktionen anhand eines kurzen Beispiels einführen, 
+verweise aber für eine detailliertere Beschreibung auf die entsprechenden
+offiziellen Vignetten (siehe 
+[hier](https://dplyr.tidyverse.org/reference/select.html) und
+[hier](https://dplyr.tidyverse.org/articles/colwise.html).
+)
+
+
+
+Betrachten wie also folgendes Beispiel:
+
+
+```
+#>    iso3c year     group AIS_mean   AIS_MIP AIS_SGP   AIS_INT   SGP_new
+#> 1:   FRA 2012 Periphery     0.50 0.5833333     0.5 0.2500000 0.1738386
+#> 2:   SVN 2012   Catchup     0.50 0.5000000     0.5 0.5000000 0.1627661
+#> 3:   FIN 2012      Core     0.55 0.5000000     0.5 0.5833333 0.4861746
+#>      SGP_avg
+#> 1: 0.7324741
+#> 2: 0.4489916
+#> 3: 0.1890547
+```
+Dieser Datensatz enthält Informationen wie Länder (`iso3c`) bestimmte Vorgaben
+der EU implementieren. Die Spalte `group` gibt die Gruppe an, zu der das Land
+gehört, die weiteren Spalten enthalten Informationen über die allgemeine
+Implementierung von Vorgaben ('AIS' steht für 'Average Implementation Score')
+aus bestimmten Bereichen. 
+Der Inhalt ist jedoch nicht zentral, vielmehr wollen wir anhand des Datensatzes
+bestimmte Aufbereitungsstrategien illustrieren.
+
+Die `select_helpers` erlauben es uns bestimmte Spalten auszuwählen.
+Wir haben einen dieser Helper bereits kennen gelernt - `dplyr::any_of()`.
+Insgesamt gibt es 9 diesen Hilfsfunktionen, die in Tabelle \@ref(tab:selectors)
+zusammengefasst sind.
+
+Table: (\#tab:selectors) Ein Überblick den `select_helpers()` in `R`. Alle gehören zum Paket `dplyr`.
+
+Funktion         | Funktion       | 
+-----------------+-------------------------------------------------------------|
+`everything()`   | Alle Spalten                                                |
+`last_col()`     | Wählt die letzte Spalte                                     | 
+`starts_with()`  | Alle Spalten, die mit einem bestimmten Prefix starten       |
+`ends_with()`    | Alle Spalten, die mit einem bestimmten Sufffix enden        |
+`contains()`     | Alle Spalten, die einen bestimmten String enthalten         |
+`matches()`      | Sucht mit Hilfe regulärer Ausdrücke ('regular expressions') |
+`num_range()`    | Spalten, die einem numerischen Muster folden                | 
+`all_of()`       | Spalten, die in einem Vektor genannt sind                   |
+`any_of()`       | Wie `all_of()`, aber ohne Fehler wenn nicht alle Spalten vorkommen |
+
+Das Prinzip ist immer gleich, hier wollen wir ihre Funktion anhand von
+`dplyr::starts_with()` illustrieren. Nehmen wir an, wir wollen alle Spalten auswählen, 
+die mit `AIS` beginnen. In diesem Fall verwenden wir die Funktion 
+`dplyr::starts_with()` in Kombination mit `dplyr::select()`:
 
 
 ```r
-unemp_data_wb_growth_avg <- unemp_data_wb_growth %>%
-  dplyr::select(-fem_force_growth_bigger)
-head(unemp_data_wb_growth_avg, 2)
+ais_subset1 <- eu_ais_data %>%
+  dplyr::select(dplyr::starts_with("AIS"))
+head(ais_subset1, 3)
 ```
 
 ```
-#> # A tibble: 2 x 4
-#>   country  year pop_growth fem_force_growth
-#>   <chr>   <dbl>      <dbl>            <dbl>
-#> 1 AT       2010   NA                NA     
-#> 2 AT       2011    0.00338           0.0110
+#>    AIS_mean   AIS_MIP AIS_SGP   AIS_INT
+#> 1:     0.50 0.5833333     0.5 0.2500000
+#> 2:     0.50 0.5000000     0.5 0.5000000
+#> 3:     0.55 0.5000000     0.5 0.5833333
 ```
 
-geht das folgendermaßen mit der Funktion `dplyr::summarise_all()`:
+Eventuell wollen wir auch die Informationen über das Beobachtungsjahr und das
+Land behalten. Dann können wir die `select_helpers` auch kombinieren:
 
 
 ```r
-unemp_data_wb_growth_avg %>%
-  dplyr::select(-year) %>%
-  dplyr::group_by(country) %>%
-  dplyr::summarise_all(mean, na.rm=TRUE) %>%
-  dplyr::ungroup()
+ais_subset1 <- eu_ais_data %>%
+  dplyr::select(
+    dplyr::any_of(c("iso3c", "year")), 
+    dplyr::starts_with("AIS")
+    )
+head(ais_subset1, 3)
 ```
 
 ```
-#> # A tibble: 2 x 3
-#>   country pop_growth fem_force_growth
-#>   <chr>        <dbl>            <dbl>
-#> 1 AT         0.00731          0.0118 
-#> 2 DE         0.00120          0.00771
+#>    iso3c year AIS_mean   AIS_MIP AIS_SGP   AIS_INT
+#> 1:   FRA 2012     0.50 0.5833333     0.5 0.2500000
+#> 2:   SVN 2012     0.50 0.5000000     0.5 0.5000000
+#> 3:   FIN 2012     0.55 0.5000000     0.5 0.5833333
 ```
 
-Eine schöne Übersicht über diese praktischen Funktionen gibt es 
-[hier](https://dplyr.tidyverse.org/reference/scoped.html).
+Mit den `select_helpers` aus Tabelle \@ref(tab:selectors) können Sie eigentlich
+jede beliebige Menge an Spalten auswählen.
+Das wird besonders hilfreich wenn wir die Auswahl von Spalten über die Funktion
+`dplyr::across()` mit anderen Funktionen aus dem `tidyverse` kombinieren.
+Nehmen wir z.B. an wir wollen den Mittelwert von allen Spalten bilden, die
+mit 'AIS' anfangen und dabei die Daten pro Jahr gruppieren:
 
-Es gibt noch zahlreiche hilfreiche Erweiterungen zu den Funktionen `dplyr::mutate()`,
-`dplyr::summarize()`, `dplyr::group_by()` und Co. Schauen Sie doch mal auf die Homepage des
-Pakets [dplyr](https://github.com/tidyverse/dplyr).
-Ansonsten können Sie durch Googlen eigentlich immer eine passgenaue Lösung
-für Ihr Problem herausfinden - auch wenn es beim ersten Mal häufig ein wenig
-dauert.
+
+```r
+eu_ais_data %>%
+  dplyr::group_by(year) %>%
+  dplyr::summarise(
+    dplyr::across(
+      dplyr::starts_with("AIS"), ~mean(., na.rm = TRUE)), 
+    .groups="drop")
+```
+
+```
+#> # A tibble: 5 x 5
+#>    year AIS_mean AIS_MIP AIS_SGP AIS_INT
+#>   <int>    <dbl>   <dbl>   <dbl>   <dbl>
+#> 1  2012    0.555   0.493   0.667   0.535
+#> 2  2013    0.424   0.292   0.667   0.473
+#> 3  2014    0.411   0.383   0.375   0.451
+#> 4  2015    0.455   0.5     0.5     0.5  
+#> 5  2016    0.339   0.375   0.25    0.25
+```
+
+Das erste Argument zu `dplyr::across()` ist der Selektor.
+Die Funktion kann auf verschiedene Arten übergeben werden, hier habe ich mich
+für die Notation mit `~` entschieden, die es einfach macht, noch zusätzliche
+Argumente für die Funktion zu spezifizieren.
+Das finale Argument `.groups` gehört zur Funktion `dplyr::summarise()` und 
+macht das Auflösen der Gruppierung explizit, ist aber nicht absolut notwendig.
+
+Wir können auch mehrere Funktionen auf einmal verwenden und die Namen der
+neuen Spalten manuell festlegen. 
+Das ist hilfreich wenn wir z.B. nicht nur die Mittelwerte, sonder auch die
+Standardabweichung berechnen wollen.
+Dazu bietet sich folgende Schreibweise an:
+
+
+```r
+eu_ais_data %>%
+  dplyr::group_by(group) %>%
+  summarise(
+    across(contains("SGP"), 
+           list(mean = mean, sd = sd),
+           .names = "{.col}-{.fn}"), 
+    .groups="drop"
+    )
+```
+
+```
+#> # A tibble: 4 x 7
+#>   group `AIS_SGP-mean` `AIS_SGP-sd` `SGP_new-mean` `SGP_new-sd` `SGP_avg-mean`
+#>   <chr>          <dbl>        <dbl>          <dbl>        <dbl>          <dbl>
+#> 1 Catc~          0.438        0.315          0.309        0.360          0.451
+#> 2 Core           0.625        0.212          0.521        0.252          0.574
+#> 3 Fina~          0.458        0.246          0.576        0.253          0.450
+#> 4 Peri~          0.5         NA              0.174       NA              0.732
+#> # ... with 1 more variable: `SGP_avg-sd` <dbl>
+```
+
+Hier haben wir mit dem Argumetn `.names` auch die Namen der neuen Spalten 
+festgelegt. Wie das Beispiel zeigt ist die Funktion hier extrem flexibel und
+erlaubt die Verwendung der so genannten `glue`-Schreibweise - Details
+finden Sie bei Bedarf [hier](https://glue.tidyverse.org/).
+
+Hilfreich ist häufig auch die Kombination mit der Funktion `dplyr::where()`, 
+die es uns erlaubt eine Funktion auf alle Spalten anzuwenden, für die ein 
+Test den Wert `TRUE` ausgibt.
+Das ist z.B. hilfreich, wenn wir eine Funktion auf alle Spalten anwenden 
+wollen, die Input eines bestimmten Typs (z.B. `character`) enthalten.
+Der folgende Code zählt die Anzahl der eindeutigen Werte für alle Spalten 
+vom Typ `character`:
+
+
+```r
+eu_ais_data %>%
+  summarise(across(where(is.character), ~length(unique(.))))
+```
+
+```
+#>   iso3c group
+#> 1    10     4
+```
+
+Und der folgende Code berechnet den Mittelwert für alle Spalten vom Typ 
+`double`:
+
+
+```r
+eu_ais_data %>%
+  summarise(across(where(is.double), ~mean(., na.rm=T)))
+```
+
+```
+#>    AIS_mean   AIS_MIP   AIS_SGP   AIS_INT   SGP_new   SGP_avg
+#> 1 0.4511416 0.3933485 0.5357143 0.4752976 0.4797278 0.5226087
+```
+
+Falls Sie übrigens die Mittelwerte über Spalten hinweg berechnen wollen, also
+eine Operation zeilenweise durchführen wollen, dann können Sie die die Variante
+`dplyr::c_across()` mit der Funktion `dplyr::rowwise()` kombinieren:
+
+
+
+```r
+eu_ais_data %>%
+  rowwise() %>%
+  dplyr::mutate(
+    ais_mean = mean(c_across(dplyr::starts_with("AIS")))
+    ) %>%
+  head(3)
+```
+
+```
+#> # A tibble: 3 x 10
+#> # Rowwise: 
+#>   iso3c  year group    AIS_mean AIS_MIP AIS_SGP AIS_INT SGP_new SGP_avg ais_mean
+#>   <chr> <int> <chr>       <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>    <dbl>
+#> 1 FRA    2012 Periphe~     0.5    0.583     0.5   0.25    0.174   0.732    0.458
+#> 2 SVN    2012 Catchup      0.5    0.5       0.5   0.5     0.163   0.449    0.5  
+#> 3 FIN    2012 Core         0.55   0.5       0.5   0.583   0.486   0.189    0.533
+```
+
+Grundsätzlich sind Berechnungen über Spalten hinweg immer umständlicher und
+häufig sollte man sich überlegen nicht einen Umweg über `tidyr::pivot_longer()`
+and `tidyr::pivor_wider()` zu gehen und die Operationen spaltenweise auszuführen.
 
 ## Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts {#data-role}
 

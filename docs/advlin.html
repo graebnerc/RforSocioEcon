@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 Fortgeschrittene Themen der linearen Regression | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.0" />
+  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.2" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Fortgeschrittene Themen der linearen Regression | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.0" />
+  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.2" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 11 Fortgeschrittene Themen der linearen Regression | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.0" />
+  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.2" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-11-06" />
+<meta name="date" content="2020-12-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -200,8 +200,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4.4" data-path="data.html"><a href="data.html#date-select"><i class="fa fa-check"></i><b>4.4.4</b> Datensätze filtern und selektieren</a></li>
 <li class="chapter" data-level="4.4.5" data-path="data.html"><a href="data.html#data-summary"><i class="fa fa-check"></i><b>4.4.5</b> Datensätze zusammenfassen</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="data.html"><a href="data.html#data-role"><i class="fa fa-check"></i><b>4.5</b> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</a></li>
-<li class="chapter" data-level="4.6" data-path="data.html"><a href="data.html#data-packages"><i class="fa fa-check"></i><b>4.6</b> Anmerkungen zu Paketen</a></li>
+<li class="chapter" data-level="4.5" data-path="data.html"><a href="data.html#data-manycols"><i class="fa fa-check"></i><b>4.5</b> Gleichzeigite Bearbeitung mehrerer Spalten</a></li>
+<li class="chapter" data-level="4.6" data-path="data.html"><a href="data.html#data-role"><i class="fa fa-check"></i><b>4.6</b> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</a></li>
+<li class="chapter" data-level="4.7" data-path="data.html"><a href="data.html#data-packages"><i class="fa fa-check"></i><b>4.7</b> Anmerkungen zu Paketen</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>5</b> Visualisierung von Daten</a>
 <ul>
@@ -345,15 +346,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3" data-path="linmodel.html"><a href="linmodel.html#lin-kennzahlen"><i class="fa fa-check"></i><b>10.3</b> Kennzahlen in der linearen Regression</a>
 <ul>
 <li class="chapter" data-level="10.3.1" data-path="linmodel.html"><a href="linmodel.html#erklärte-varianz-und-das-r2"><i class="fa fa-check"></i><b>10.3.1</b> Erklärte Varianz und das <span class="math inline">\(R^2\)</span></a></li>
-<li class="chapter" data-level="10.3.2" data-path="linmodel.html"><a href="linmodel.html#hypothesentests-und-statistische-signifikanz"><i class="fa fa-check"></i><b>10.3.2</b> Hypothesentests und statistische Signifikanz</a></li>
+<li class="chapter" data-level="10.3.2" data-path="linmodel.html"><a href="linmodel.html#linmodelHypothesentests"><i class="fa fa-check"></i><b>10.3.2</b> Hypothesentests und statistische Signifikanz</a></li>
 <li class="chapter" data-level="10.3.3" data-path="linmodel.html"><a href="linmodel.html#konfidenzintervalle-für-die-schätzer"><i class="fa fa-check"></i><b>10.3.3</b> Konfidenzintervalle für die Schätzer</a></li>
 <li class="chapter" data-level="10.3.4" data-path="linmodel.html"><a href="linmodel.html#zur-rolle-der-stichprobengröße"><i class="fa fa-check"></i><b>10.3.4</b> Zur Rolle der Stichprobengröße</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="linmodel.html"><a href="linmodel.html#lin-multi"><i class="fa fa-check"></i><b>10.4</b> Multiple lineare Regression</a></li>
 <li class="chapter" data-level="10.5" data-path="linmodel.html"><a href="linmodel.html#stat-ablauf"><i class="fa fa-check"></i><b>10.5</b> Zum Ablauf einer Regression</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>11</b> Fortgeschrittene Themen der linearen Regression</a></li>
-<li class="chapter" data-level="12" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>12</b> Ausgewählte nichtlineare Schätzverfahren</a></li>
+<li class="chapter" data-level="11" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>11</b> Fortgeschrittene Themen der linearen Regression</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="advlin.html"><a href="advlin.html#annahmen-und-eigenschaften-des-einfachen-ols-modells"><i class="fa fa-check"></i><b>11.1</b> Annahmen und Eigenschaften des einfachen OLS Modells</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="advlin.html"><a href="advlin.html#annahmen-im-matrixschreibweise"><i class="fa fa-check"></i><b>11.1.1</b> Annahmen im Matrixschreibweise</a></li>
+<li class="chapter" data-level="11.1.2" data-path="advlin.html"><a href="advlin.html#erwartungstreue-effizienz-und-konsistenz"><i class="fa fa-check"></i><b>11.1.2</b> Erwartungstreue, Effizienz und Konsistenz</a></li>
+<li class="chapter" data-level="11.1.3" data-path="advlin.html"><a href="advlin.html#abweichungen-von-den-ols-annahmen"><i class="fa fa-check"></i><b>11.1.3</b> Abweichungen von den OLS Annahmen</a></li>
+<li class="chapter" data-level="11.1.4" data-path="advlin.html"><a href="advlin.html#monte-carlo-simulationen-in-r"><i class="fa fa-check"></i><b>11.1.4</b> Monte Carlo Simulationen in R</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="advlin.html"><a href="advlin.html#heteroskedastie"><i class="fa fa-check"></i><b>11.2</b> Heteroskedastie</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="advlin.html"><a href="advlin.html#liegt-heteroskedastie-vor-advlin-hetero-test"><i class="fa fa-check"></i><b>11.2.1</b> Liegt Heteroskedastie vor? {advlin-hetero-test}</a></li>
+<li class="chapter" data-level="11.2.2" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-heteroskedastie"><i class="fa fa-check"></i><b>11.2.2</b> Reaktionen auf Heteroskedastie</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="advlin.html"><a href="advlin.html#autokorrelation"><i class="fa fa-check"></i><b>11.3</b> Autokorrelation</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="advlin.html"><a href="advlin.html#folgen-von-autokorrelation"><i class="fa fa-check"></i><b>11.3.1</b> Folgen von Autokorrelation</a></li>
+<li class="chapter" data-level="11.3.2" data-path="advlin.html"><a href="advlin.html#testen-auf-autokorrelation"><i class="fa fa-check"></i><b>11.3.2</b> Testen auf Autokorrelation</a></li>
+<li class="chapter" data-level="11.3.3" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-autokorrelation"><i class="fa fa-check"></i><b>11.3.3</b> Reaktionen auf Autokorrelation</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="advlin.html"><a href="advlin.html#multikollinearität"><i class="fa fa-check"></i><b>11.4</b> Multikollinearität</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="advlin.html"><a href="advlin.html#folgen-von-multikollinearität"><i class="fa fa-check"></i><b>11.4.1</b> Folgen von Multikollinearität</a></li>
+<li class="chapter" data-level="11.4.2" data-path="advlin.html"><a href="advlin.html#testen-auf-multikollinearität"><i class="fa fa-check"></i><b>11.4.2</b> Testen auf Multikollinearität</a></li>
+<li class="chapter" data-level="11.4.3" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-multikollinearität"><i class="fa fa-check"></i><b>11.4.3</b> Reaktionen auf Multikollinearität</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="advlin.html"><a href="advlin.html#advlin-omitted-var"><i class="fa fa-check"></i><b>11.5</b> Vergessene Variablen</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="advlin.html"><a href="advlin.html#folgen-vergessener-variablen"><i class="fa fa-check"></i><b>11.5.1</b> Folgen vergessener Variablen</a></li>
+<li class="chapter" data-level="11.5.2" data-path="advlin.html"><a href="advlin.html#testen-auf-vergessene-variablen"><i class="fa fa-check"></i><b>11.5.2</b> Testen auf vergessene Variablen</a></li>
+<li class="chapter" data-level="11.5.3" data-path="advlin.html"><a href="advlin.html#reaktion-auf-vergessene-variablen"><i class="fa fa-check"></i><b>11.5.3</b> Reaktion auf vergessene Variablen</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="advlin.html"><a href="advlin.html#falsche-funktionale-form"><i class="fa fa-check"></i><b>11.6</b> Falsche funktionale Form</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="advlin.html"><a href="advlin.html#folgen-einer-falschen-funktionalen-form"><i class="fa fa-check"></i><b>11.6.1</b> Folgen einer falschen funktionalen Form</a></li>
+<li class="chapter" data-level="11.6.2" data-path="advlin.html"><a href="advlin.html#testen-auf-die-richtige-funktionale-form"><i class="fa fa-check"></i><b>11.6.2</b> Testen auf die richtige funktionale Form</a></li>
+<li class="chapter" data-level="11.6.3" data-path="advlin.html"><a href="advlin.html#wahl-der-funktionalen-form"><i class="fa fa-check"></i><b>11.6.3</b> Wahl der funktionalen Form</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="advlin.html"><a href="advlin.html#normalverteilung-der-fehlerterme"><i class="fa fa-check"></i><b>11.7</b> Normalverteilung der Fehlerterme</a></li>
+<li class="chapter" data-level="11.8" data-path="advlin.html"><a href="advlin.html#weitere-fehlerquellen-systematische-messfehler-selbstselektion-und-simulatanität"><i class="fa fa-check"></i><b>11.8</b> Weitere Fehlerquellen: Systematische Messfehler, Selbstselektion und Simulatanität</a>
+<ul>
+<li class="chapter" data-level="11.8.1" data-path="advlin.html"><a href="advlin.html#messfehler"><i class="fa fa-check"></i><b>11.8.1</b> Messfehler</a></li>
+<li class="chapter" data-level="11.8.2" data-path="advlin.html"><a href="advlin.html#selbstselektion"><i class="fa fa-check"></i><b>11.8.2</b> Selbstselektion</a></li>
+<li class="chapter" data-level="11.8.3" data-path="advlin.html"><a href="advlin.html#simulatanität"><i class="fa fa-check"></i><b>11.8.3</b> Simulatanität</a></li>
+</ul></li>
+<li class="chapter" data-level="11.9" data-path="advlin.html"><a href="advlin.html#anhang-übersicht-über-die-testverfahren"><i class="fa fa-check"></i><b>11.9</b> Anhang: Übersicht über die Testverfahren</a></li>
+<li class="chapter" data-level="11.10" data-path="advlin.html"><a href="advlin.html#advlin-proofs"><i class="fa fa-check"></i><b>11.10</b> Anhang: Relevante Theoreme und ihre mathematischen Beweise</a>
+<ul>
+<li class="chapter" data-level="11.10.1" data-path="advlin.html"><a href="advlin.html#theoreme"><i class="fa fa-check"></i><b>11.10.1</b> Theoreme</a></li>
+<li class="chapter" data-level="11.10.2" data-path="advlin.html"><a href="advlin.html#beweise"><i class="fa fa-check"></i><b>11.10.2</b> Beweise</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>12</b> Ausgewählte nichtlineare Schätzverfahren</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="nonlin.html"><a href="nonlin.html#logit"><i class="fa fa-check"></i><b>12.1</b> Binäre abhängige Variablen: Logit- und Probit-Modelle</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="nonlin.html"><a href="nonlin.html#warum-nicht-ols"><i class="fa fa-check"></i><b>12.1.1</b> Warum nicht OLS?</a></li>
+<li class="chapter" data-level="12.1.2" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-theoretische-grundidee"><i class="fa fa-check"></i><b>12.1.2</b> Logit und Probit: theoretische Grundidee</a></li>
+<li class="chapter" data-level="12.1.3" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-implementierung-in-r"><i class="fa fa-check"></i><b>12.1.3</b> Logit und Probit: Implementierung in R</a></li>
+<li class="chapter" data-level="12.1.4" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-interpretation-der-ergebnisse"><i class="fa fa-check"></i><b>12.1.4</b> Logit und Probit: Interpretation der Ergebnisse</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="nonlin.html"><a href="nonlin.html#abschließende-anmerkungen"><i class="fa fa-check"></i><b>12.2</b> Abschließende Anmerkungen</a></li>
+</ul></li>
 <li class="chapter" data-level="13" data-path="outlook.html"><a href="outlook.html"><i class="fa fa-check"></i><b>13</b> Ausblick</a></li>
 <li class="chapter" data-level="14" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>14</b> Eine kurze Einführung in R Markdown</a></li>
 <li class="chapter" data-level="15" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>15</b> Eine kurze Einführung in die Versionskontrolle mit Git</a></li>
@@ -379,8 +441,1831 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="advlin" class="section level1" number="11">
 <h1><span class="header-section-number">Chapter 11</span> Fortgeschrittene Themen der linearen Regression</h1>
-<p>Dieses Kapitel wird gerade noch überarbeitet und zeitnah ergänzt.</p>
+<p>In diesem Kapitel werden wir auf den formalen Konzepten des Kapitels
+<a href="formalia.html#formalia">6</a> aufbauen, insbesondere auf den Regeln zur Matrizenalgebra.
+Damit werden wir die Annahmen und Funktionsweise des OLS-Schätzers genauer
+untersuchen. Der OLS-Schätzer, den wir bereits im vorigen Kapitel kennengelernt
+haben, ist das am weitesten verbreitete Schätzverfahren für die
+lineare Regression.
+In diesem Kapitel werden wir sehen, dass dies an seinen attraktiven
+Eigenschaften wie <em>Erwartungstreue</em>, <em>Effizienz</em> und <em>Konsistenz</em> liegt.</p>
+<p>Wie alle Schätzverfahren baut der OLS-Schätzer jedoch auf bestimmten
+Annahmen auf und es muss uns immer klar sein, dass der OLS-Schätzer
+seine attraktiven Eigenschaften nur hat, wenn diese Annahmen erfüllt sind.
+Für die Praxis sind also die folgenden vier Fragen relevant:</p>
+<ol style="list-style-type: decimal">
+<li>Was sind die relevanten Annahmen des OLS-Schätzers?</li>
+<li>Was passiert mit dem OLS-Schätzer wenn die Annahmen nicht erfüllt sind?</li>
+<li>Wie können wir überprüfen ob diese Annahmen erfüllt sind?</li>
+<li>Was sind mögliche Lösungsstrategien wenn die Annahmen unseres
+Schätzers <em>nicht</em> erfüllt sind?</li>
+</ol>
+<p>Diese Fragen zu beantworten ist die zentrale Herausforderung in diesem Kapitel.
+Die erste Frage haben wir dabei im vorigen Kapitel bereits angefangen, verbal zu
+diskutieren. Diese Diskussion soll nun weiter formalisiert, vertieft und
+schließlich erweitert werden.</p>
+<p>Der Fokus des Hauptkapitels liegt dabei auf der zugrundeliegenden Intuition.
+Daher werden wir uns nicht mit den mathematischen Beweisen beschäftigen,
+sondern das Verhalten des OLS-Schätzers anhand von Simulationen illustrieren.
+Für alle Interessierten gibt es jedoch am Ende des Kapitels einen Überblick zu
+allen relevanten Theoremen und ihren mathematischen Beweisen
+(siehe <a href="advlin.html#advlin-proofs">Anhang zu Theoremen und Beweisen</a>).</p>
+<p>In diesem Kapitel werden die folgenden R Pakete verwendet:</p>
+<div class="sourceCode" id="cb795"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb795-1"><a href="advlin.html#cb795-1" aria-hidden="true"></a><span class="kw">library</span>(here)</span>
+<span id="cb795-2"><a href="advlin.html#cb795-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb795-3"><a href="advlin.html#cb795-3" aria-hidden="true"></a><span class="kw">library</span>(data.table)</span>
+<span id="cb795-4"><a href="advlin.html#cb795-4" aria-hidden="true"></a><span class="kw">library</span>(latex2exp)</span>
+<span id="cb795-5"><a href="advlin.html#cb795-5" aria-hidden="true"></a><span class="kw">library</span>(icaeDesign)</span>
+<span id="cb795-6"><a href="advlin.html#cb795-6" aria-hidden="true"></a><span class="kw">library</span>(ggpubr)</span>
+<span id="cb795-7"><a href="advlin.html#cb795-7" aria-hidden="true"></a><span class="kw">library</span>(lmtest)</span>
+<span id="cb795-8"><a href="advlin.html#cb795-8" aria-hidden="true"></a><span class="kw">library</span>(sandwich)</span>
+<span id="cb795-9"><a href="advlin.html#cb795-9" aria-hidden="true"></a><span class="kw">library</span>(MASS)</span></code></pre></div>
+<div id="annahmen-und-eigenschaften-des-einfachen-ols-modells" class="section level2" number="11.1">
+<h2><span class="header-section-number">11.1</span> Annahmen und Eigenschaften des einfachen OLS Modells</h2>
+<p>In diesem Abschnitt werden wir zunächst unser Wissen über
+Matrixnotation aus dem Kapitel <a href="formalia.html#formalia">6</a> verwenden um die uns
+bereits bekannten Annahmen des OLS Modells aus Kapitel <a href="linmodel.html#linmodel">10</a> in
+Matrixschreibweise auszudrücken.
+Das wird sich als enorm hilfreich erweisen da alle modernen Texte und
+fortgeschrittenen Lehrbücher die Matrixschreibweise verwenden und alle
+relevanten Beweise und Herleitung sich dieser Notation bedienen.</p>
+<p>Danach werden wir uns mit den wichtigen Eigenschaften <em>Erwartungstreue</em>,
+<em>Effizienz</em> und <em>Konsistenz</em> von Schätzern beschäftigen.
+Alles drei sind erstrebenswerte Eigenschaften, über die der OLS Schätzer
+verfügt wenn die Annahmen für das OLS Modell erfüllt sind.
+Allerdings kann er diese Eigenschaften verlieren wenn einzelne Annahmen
+verletzt sind. Um die Konsequenzen verletzter Annahmen zu illustrieren verwenden
+wir häufig die Methode der <em>Monte Carlo Simulation</em>, die wir am Ende dieses
+Abschnitts einführen werden.</p>
+<div id="annahmen-im-matrixschreibweise" class="section level3" number="11.1.1">
+<h3><span class="header-section-number">11.1.1</span> Annahmen im Matrixschreibweise</h3>
+<p>An dieser Stelle werden wir die uns aus <a href="linmodel.html#ols-ass">diesem Abschnitt</a> bekannten
+verbal formulierten Annahmen für die OLS Schätzung in Matrixschreibweise
+ausdrücken und ihre Reihenfolge an die in der Literatur typische
+Reihenfolge anpassen.</p>
+<p>Zu diesem Zweck betrachten wir das folgende Modell:</p>
+<p><span class="math display">\[\boldsymbol{y} = \boldsymbol{x_1}\beta_1 + ... + \boldsymbol{x_k}\beta_k + \boldsymbol{\epsilon}\]</span></p>
+<p>in dem <span class="math inline">\(\boldsymbol{y}\)</span> der <span class="math inline">\(1\times n\)</span> Vektor mit den <span class="math inline">\(n\)</span> Beobachtungen
+der abhängigen Variable ist.
+Für jede der <span class="math inline">\(k\)</span> unabhängigen Variablen haben wir die Beobachtungen in einem
+<span class="math inline">\(1\times n\)</span> Vektor <span class="math inline">\(\boldsymbol{x_i} (i\in k)\)</span> gesammelt.</p>
+<p>Diese <span class="math inline">\(k\)</span> Vektoren werden häufig in der <span class="math inline">\(n\times k\)</span> Matrix <span class="math inline">\(\boldsymbol{X}\)</span>
+zusammengefasst, sodass die folgende kompakte Schreibweise verwendet werden
+kann:</p>
+<p><span class="math display">\[\boldsymbol{y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}\]</span></p>
+<p><span class="math inline">\(\boldsymbol{\beta}\)</span> ist der Vektor der (unbeobachtbaren) Modellparameter
+<span class="math inline">\(\beta_0,...,\beta_k\)</span>, die wir schätzen wollen, und <span class="math inline">\(\boldsymbol{\epsilon}\)</span> ist
+der Vektor der (ebenfalls unbeobachtbaren) Fehlerterme.</p>
+<p>Der OLS Schätzer <span class="math inline">\(\boldsymbol{\hat{\beta}}\)</span> für <span class="math inline">\(\boldsymbol{\beta}\)</span> ist durch
+folgende Gleichung definiert (für die Herleitung siehe <a href="formalia.html#ols-deriv">hier</a>):</p>
+<p><span class="math display">\[\boldsymbol{\hat{\beta}} = 
+\left(\boldsymbol{X&#39;X}\right)^{-1}\left(\boldsymbol{X&#39;y}\right)\]</span></p>
+<p>Unter bestimmten Annahmen hat dieser Schätzer die attraktiven Eigenschaften
+<em>Erwartungstreue</em> und <em>Effizienz</em> unabhängig der Stichprobengröße und in
+großen Stichproben zudem die Eigenschaft der <em>Konsistenz</em>.
+Die relevanten Annahmen sind dabei die folgenden:</p>
+<p><strong>A1: Der Zusammenhang zwischen abhängigen und unabhängigen Variablen ist linear</strong></p>
+<p>Diese Annahme ergibt sich unmittelbar aus der Formulierung:
+<span class="math inline">\(\boldsymbol{y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}\)</span>.
+Ein Beispiel für einen solchen Zusammenhang findet sich an Abbildung
+<a href="advlin.html#fig:nonlins">11.1</a>a.</p>
+<p>Wenn der Zusammenhang zwischen abhängigen und unabhängigen Variablen nicht linear
+ist können wir das klassische OLS Modell in der Regel nicht verwenden.
+Häufig können wir aber die Daten so transformieren, dass wir deren Verhältnis
+als linearen Zusammenhang darstellen können.
+So ist z.B. der folgende Zusammenhang nicht linear:</p>
+<p><span class="math display">\[\begin{align}
+\boldsymbol{y} = \boldsymbol{x_1}^{\beta_1} + e^{\epsilon}
+\end{align}\]</span></p>
+<p>Wir können aber einfach die Variablen logarithmieren und erhalten somit die
+folgende lineare Gleichung, die wir dann mit OLS schätzen können:</p>
+<p><span class="math display">\[\ln(\boldsymbol{y}) = \ln(\boldsymbol{x_1}){\beta_1} + \boldsymbol{\epsilon}\]</span></p>
+<p>Ein Beispiel für einen solchen Zusammenhang findet sich an Abbildung
+<a href="advlin.html#fig:nonlins">11.1</a>b und c.</p>
+<p>Insgesamt hat das lineare Regressionsmodell kein Problem mit nichtlinearen
+Transformationen für die abhängigen Variablen wie <span class="math inline">\(\ln(\boldsymbol{x_i})\)</span>.
+Nur der funktionale Zusammenhang muss linear sein.
+Auch die folgende Spezifikation ist demenstprechend kompatibel mit A1, da nur
+die abhängigen Variablen in einer nichtlinearen Transformation vorkommen:<a href="#fn90" class="footnote-ref" id="fnref90"><sup>90</sup></a></p>
+<p><span class="math display">\[\boldsymbol{y} = \boldsymbol{x_1}{\beta_1} + \boldsymbol{x_2^2}{\beta_2} + \boldsymbol{\epsilon}\]</span></p>
+<p>Daher sprechen wir häufig davon, dass mit OLS zu schätzende Zusammenhänge
+<em>linear in den Parametern</em> sein müssen - nicht notwendigerweise linear per se.
+Ein Beispiel für einen nichtlinearen Zusammenhang, den wir auch nicht durch
+eine entsprechende Transformation linearisieren könnten wäre dagegen z.B.
+durch folgende Gleichung gegeben:</p>
+<p><span class="math display">\[\boldsymbol{y} = \boldsymbol{x_1}{\beta_1} + \boldsymbol{x_2^{\beta_2}} + \boldsymbol{\epsilon}\]</span>
+Ein Beispiel für einen solchen Zusammenhang findet sich an Abbildung
+<a href="advlin.html#fig:nonlins">11.1</a>.
+Wir werden uns später im Kapitel mit der Frage beschäftigen welche funktionalen
+Transformationen besonders hilfreich sind, nichtlineare Zusammenhänge in die
+lineare Form zu bringen.</p>
+<div class="figure" style="text-align: center"><span id="fig:nonlins"></span>
+<img src="Chap-advlinmodels_files/figure-html/nonlins-1.png" alt="Lineare und nichtlineare Zusammenhänge." width="75%" height="75%" />
+<p class="caption">
+Figure 11.1: Lineare und nichtlineare Zusammenhänge.
+</p>
+</div>
+<p><strong>A2: Exogenität der unabhängigen Variablen</strong></p>
+<p>Die Annahme kombiniert die beiden Annahmen, die wir im vorigen Kaptiel unter dem
+Titel “Unabhängigkeit der Fehler mit den erklärenden Variablen”
+und “Erwartungswert der Fehler gleich Null”
+kennen gelernt haben.
+In der fortgeschrittenen Literatur ist die Referenz zur Exogenität der
+unabhängigen Variablen gebräuchlicher.
+Formal können wir schreiben:</p>
+<p><span class="math display">\[\mathbb{E}\left[\boldsymbol{\epsilon} | \boldsymbol{x} \right]=0\]</span></p>
+<p>Daher kommt der Begriff “Exogenität”:
+Die unabhängigen Variablen enthalten keine Informationen über die Fehlerterme.
+Mit Informationen über <span class="math inline">\(\boldsymbol{x}\)</span> können wir die Fehler des Modells also
+nicht vorhersagen - denn <span class="math inline">\(\boldsymbol{x}\)</span> ist <em>exogen</em>.
+Man kann übrigens formal zeigen, dass
+<span class="math inline">\(\mathbb{E}\left[\boldsymbol{\epsilon} | \boldsymbol{x} \right]=0\)</span> auch
+impliziert dass
+<span class="math inline">\(\mathbb{E}\left[\boldsymbol{\epsilon}\right]=0\)</span>.<a href="#fn91" class="footnote-ref" id="fnref91"><sup>91</sup></a>
+Der bedingte Erwartungswert von Null impliziert also den unbedingten
+Erwartungswert von Null - aber nicht umgekehrt.</p>
+<p>Manchmal wird daher auch eine noch strengere Annahme verwendet: <em>strikte Exogenität</em>.
+Darunter verstehen wir die Annahme, dass
+<span class="math inline">\(\mathbb{E}\left[\epsilon_i | \boldsymbol{X} \right]=0\)</span>
+bzw. für alle <span class="math inline">\(\epsilon_i\)</span>:
+<span class="math inline">\(\mathbb{E}\left[\boldsymbol{\epsilon} | \boldsymbol{X} \right]=0\)</span>.
+Hier nehmen wir sogar an, dass jeder einzelne Fehlerterm auch mit den
+unabhängigen Variablen für andere Beobachtungen nicht korreliert.
+Das impliziert, dass Cov<span class="math inline">\((\epsilon_i, \boldsymbol{x})=0\forall i\)</span>.</p>
+<blockquote>
+<p><strong>Bedingter vs. unbedingter Erwartungswert der Fehler</strong>
+Auf den ersten Blick klingt es komisch, dass der bedingte Erwartungswert
+der Fehler von Null,
+<span class="math inline">\(\mathbb{E}\left[\boldsymbol{\epsilon} | \boldsymbol{x} \right]=0\)</span>,
+den unbedingten Erwartungswert von Null,
+<span class="math inline">\(\mathbb{E}\left[\boldsymbol{\epsilon}\right]=0\)</span>, impliziert, aber nicht
+andersherum.
+Abbildung <a href="#fig:exogen"><strong>??</strong></a> illustriert dieses Problem.</p>
+</blockquote>
+<p><img src="Chap-advlinmodels_files/figure-html/unnamed-chunk-3-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<blockquote>
+<p>In Plot <code>a)</code> in Abbildung <a href="#fig:exogen"><strong>??</strong></a> haben wir einen bedingten
+Erwartungswert von Null, also
+<span class="math inline">\(\mathbb{E}\left[\boldsymbol{\epsilon} | \boldsymbol{x} \right]=0\)</span>:
+für jede beliebige Beobachtung in <span class="math inline">\(\boldsymbol{x}\)</span> ist der Erwartungswert der
+Fehler Null.
+Entsprechend ist der Erwartungswert für alle Fehler zusammen auch Null:
+<span class="math inline">\(\mathbb{E}\left[\boldsymbol{\epsilon} \right]=0\)</span>.
+In Plot <code>b)</code> aus Abbildung <a href="#fig:exogen"><strong>??</strong></a> ist der bedingte Erwartungswert
+nicht Null:
+<span class="math inline">\(\mathbb{E}\left[\boldsymbol{\epsilon} | \boldsymbol{x} \right]\neq0\)</span>
+für die untere Hälte der Beobachtungen in <span class="math inline">\(\boldsymbol{x}\)</span> ist der
+Erwartungswert <span class="math inline">\(1\)</span>, für die obere Hälfte der Beobachtungen ist der
+Erwartungswert <span class="math inline">\(-1\)</span>.
+Für die gesamten Daten ergibt sich dabei auch ein Erwartungswert von <span class="math inline">\(0\)</span>,
+also <span class="math inline">\(\mathbb{E}\left[\boldsymbol{\epsilon} \right]=0\)</span>,
+allerdings eben <em>nicht</em> für jede einzelne Beobachtung.
+Häufig tritt diese Problem bei quadratischen Zusammenhängen auf.</p>
+</blockquote>
+<p>Wichtig ist festzuhalten, dass dies eine Annahme über nicht zu beobachtende
+Größen darstellt: die tatsächlichen Fehlerterme <span class="math inline">\(\boldsymbol{\epsilon}\)</span>
+können wir in der Praxis nicht beobachten.
+Wir sprechen daher auch von einer Annahme über die <em>Population</em>.
+Alles was wir aus der Population direkt beobachten können ist eine Stichprobe.
+Und innerhalb der Stichprobe können wir als Annäherung der Fehlerterme
+<span class="math inline">\(\boldsymbol{\epsilon}\)</span> die Residuen <span class="math inline">\(\boldsymbol{e}\)</span> berechnen.
+Die ‘echten’ Fehlerterme können wir aber nicht beobachten.</p>
+<p><strong>A3: Keine perfekte Multikollinearität</strong></p>
+<p>Die Annahme, dass die unabhängigen Variablen nicht linear voneinander abhängig
+sind ist notwendig damit der OLS Schätzer
+<span class="math inline">\(\boldsymbol{\hat{\beta}} = \left(\boldsymbol{X&#39;X}\right)^{-1}\left(\boldsymbol{X&#39;Y}\right)\)</span>
+überhaupt berechnet werden kann.
+Denn wären zwei oder mehrere unabhängige Variablen linear abhängig könnten
+wir von <span class="math inline">\(\boldsymbol{X}\)</span> keine Inverse <span class="math inline">\(\boldsymbol{X}^{-1}\)</span> bilden und
+der OLS Schätzer von <span class="math inline">\(\boldsymbol{\beta}\)</span> wäre nicht <em>identifizierbar</em>.
+Häufig wir diese Annahme auch in ‘Matrizensprache’ formuliert.
+Dann sprechen wir von der Annahme, dass die Matrix <span class="math inline">\(\boldsymbol{X}\)</span>
+<em>vollen Rang</em> hat.
+Damit ist aber das gleiche gemeint.
+Die Annahme impliziert zudem, dass <span class="math inline">\(n\geq k\)</span> und dass es eine gewisse
+Variation in den unabhängigen Variablen gibt.
+All das ist in der Praxis aber immer erfüllt - nur mit dem Problem der
+nicht perfekten Multikollinearität - also der Situation wo die abhängigen Variablen
+stark miteinander korrelieren - müssen wir uns häufig herumschlagen.
+Doch dazu später mehr.</p>
+<p><strong>A4: Konstante Varianz und keine Autokorrelation der Fehlerterme</strong></p>
+<p>Vorher hatten wir diese beiden Annahmen als separate Annahmen formuliert.
+In der Literatur werden sie jedoch oft zusammengefasst, weil sich beide
+Annahmen um die Struktur der <em>Varianz-Kovarianz-Matrix</em> einer Schätzung drehen.
+Für eine Schätzung mit <span class="math inline">\(n\)</span> Beobachtungen handelt es sich dabei um eine
+<span class="math inline">\(n\times n\)</span>-Matrix, auf deren Hauptdiagonalen die Varianzen der Fehlerterme
+und in den sonstigen Elementen die Kovarianzen der einzelnen Fehlerpaare
+gesammelt sind.
+Für den Fall von zwei unabhängigen Variablen hätten wir also folgende
+Varianz-Kovarianz Matrix:</p>
+<p><span class="math display">\[
+\left(
+\begin{array}{rr}                                
+Var(\epsilon_1 | \boldsymbol{X}) &amp; Cov(\epsilon_1, \epsilon_2 | \boldsymbol{X}) \\                                               
+Cov(\epsilon_2, \epsilon_1 | \boldsymbol{X}) &amp; Var(\epsilon_2 | \boldsymbol{X})  
+\end{array} 
+\right)
+\]</span></p>
+<p>Die Annahme der konstanten Varianz - oder “Homoskedastizität” - bezieht sich
+also auf die Hauptdiagonale der Varianz-Kovarianz-Matrix und sagt:</p>
+<p><span class="math display">\[Var(\epsilon_i | \boldsymbol{X}) = \sigma^2 \quad \forall i \]</span></p>
+<p>Die Annahme nichtautokorrelierter Fehler bezieht sich dann auf die Elemente
+außerhalb der Hauptdiagonalen der Varianz-Kovarianz-Matrix und sagt:</p>
+<p><span class="math display">\[Cov(\epsilon_i, \epsilon_j | \boldsymbol{X}) = 0 \quad \forall i\neq j \]</span></p>
+<p>Bei den Fehlertermen <span class="math inline">\(\epsilon_i\)</span> handelt es sich ja im Zufallsvariablen.
+Aufgrund der Definition der Varianz und A2, gemäß derer gilt, dass
+<span class="math inline">\(\mathbb{E}(\epsilon|\boldsymbol{X})=0\)</span>, bekommen wir für die Varianz der
+Fehler:</p>
+<p><span class="math display">\[\begin{align}
+Var(\epsilon_i|\boldsymbol{X})&amp;=\mathbb{E}\left[\left(\epsilon_i-\mathbb{E}(\epsilon_i|\boldsymbol{X})\right)^2|\boldsymbol{X}\right]\nonumber\\
+&amp;=\mathbb{E}\left[\epsilon_i^2 -2\epsilon_i\mathbb{E}(\epsilon_i|\boldsymbol{X}) +\mathbb{E}(\epsilon_i|\boldsymbol{X})^2|\boldsymbol{X}\right]\nonumber\\ 
+&amp;=\mathbb{E}\left[\epsilon_i^2|\boldsymbol{X}\right]=\mathbb{E}\left[\epsilon_i\epsilon_i|\boldsymbol{X}\right]\nonumber
+\end{align}\]</span></p>
+<p>Die zweite Zeile ergibt sich dabei aus der <em>zweiten binomischen Formel</em>.
+Für die Kovarianz gilt entsprechend:</p>
+<p><span class="math display">\[\begin{align}
+Cov(\epsilon_i, \epsilon_j|\boldsymbol{X}) &amp;= 
+\mathbb{E}\left[ \left(\epsilon_i-\mathbb{E}(\epsilon_i|\boldsymbol{X}) \right)\left(\epsilon_j-\mathbb{E}(\epsilon_j|\boldsymbol{X}) \right) |\boldsymbol{X}\right] \nonumber\\
+&amp;= \mathbb{E}\left[
+	\left(
+		\epsilon_i\epsilon_j - 
+		\epsilon_i \mathbb{E}(\epsilon_j|\boldsymbol{X}) - 
+		\epsilon_j \mathbb{E}(\epsilon_i|\boldsymbol{X}) +
+		\mathbb{E}(\epsilon_j|\boldsymbol{X})
+		\mathbb{E}(\epsilon_i|\boldsymbol{X})
+	\right) 	
+	|\boldsymbol{X}\right]\nonumber\\
+&amp;= \mathbb{E}\left[\epsilon_i\epsilon_j|\boldsymbol{X}\right]\nonumber
+\end{align}\]</span></p>
+<p>Hier haben wir in der zweiten Zeile die <em>dritte binomische Formel</em> verwendet.</p>
+<p>Daher kann die Annahme von Homoskedastizität und keiner Autokorrelation auch
+folgendermaßen ausgedrückt werden:</p>
+<p><span class="math display">\[\mathbb{E}(\boldsymbol{\epsilon\epsilon&#39;| X}) = 
+ \left( 
+\begin{array}{rrrr}                                
+\mathbb{E}(\epsilon_1\epsilon_1|\boldsymbol{X}) &amp; 
+\mathbb{E}(\epsilon_1\epsilon_2|\boldsymbol{X}) &amp; ... &amp; 
+\mathbb{E}(\epsilon_1\epsilon_n|\boldsymbol{X})\\                                               
+\mathbb{E}(\epsilon_2\epsilon_1|\boldsymbol{X}) &amp; 
+\mathbb{E}(\epsilon_2\epsilon_2|\boldsymbol{X}) &amp; ... &amp; 
+\mathbb{E}(\epsilon_2\epsilon_n|\boldsymbol{X})\\  
+ &amp;  &amp; \vdots &amp;  \\                                               
+\mathbb{E}(\epsilon_n\epsilon_1|\boldsymbol{X}) &amp; 
+\mathbb{E}(\epsilon_n\epsilon_2|\boldsymbol{X}) &amp; ... &amp; 
+\mathbb{E}(\epsilon_n\epsilon_n|\boldsymbol{X})\\    
+\end{array}
+\right)
+= \left( 
+\begin{array}{rrrr}                                
+\sigma^2 &amp; 0 &amp; ... &amp; 0 \\                                               
+0 &amp; \sigma^2 &amp; ... &amp; 0 \\
+ &amp;  &amp; \vdots &amp;  \\                                               
+0 &amp; 0 &amp; ... &amp; \sigma^2 \\    
+\end{array}
+\right)\]</span></p>
+<p>oder zusammengefasst:</p>
+<p><span class="math display">\[\mathbb{E}(\boldsymbol{\epsilon\epsilon&#39;| X}) = \sigma^2\boldsymbol{I}\]</span></p>
+<p>Alternativ wird die Annahme auch mit Referenz auf die Varianz-Kovarianz-Matrix
+<span class="math inline">\(\boldsymbol{\Omega}\)</span> angegeben: <span class="math inline">\(\boldsymbol{\Omega}=\sigma^2\boldsymbol{I}\)</span>.</p>
+<p><strong>A5: Normalverteilung der Fehlerterme:</strong></p>
+<p>Die letzte typischerweise gemachte Annahme ist die der Normalverteilung der
+Fehlerterme, bedingt wie immer auf die unabhängigen Variablen:</p>
+<p><span class="math display">\[\boldsymbol{\epsilon|\boldsymbol{X}} \propto 
+\mathcal{N}(0, \sigma^2)\]</span></p>
+<p>Diese Annahme ist weniger zentral als die anderen Annahmen, weswegen sie häufig
+als ‘optional’ bezeichnet wird.
+Der Grund dafür ist, dass die gleich eingeführten Eigenschaften des
+OLS-Schätzers der <em>Erwartungstreue</em>, <em>Effizienz</em> und <em>Konsistenz</em> nicht von
+der Korrektheit von A5 abhängen. Vielmehr erleichtert diese Annahme die
+Durchführung der Hypothesentests, die dem Konzept der statistischen
+Signifikanz zugrunde liegen (siehe Abschnitt <a href="linmodel.html#linmodelHypothesentests">10.3.2</a>
+in Kapitel <a href="linmodel.html#linmodel">10</a>).</p>
+</div>
+<div id="erwartungstreue-effizienz-und-konsistenz" class="section level3" number="11.1.2">
+<h3><span class="header-section-number">11.1.2</span> Erwartungstreue, Effizienz und Konsistenz</h3>
+<p>Unter den oben beschriebenen Annahmen weist der Schätzer
+<span class="math inline">\(\boldsymbol{\hat{\beta}}\)</span> drei wichtige Eigenschaften auf:
+(1) er ist <em>erwartungstreu</em> und (2) er ist <em>effizient</em>, auch in kleinen
+Stichproben.
+In großen Stichproben ist er zudem (3) <em>konsistent</em>.
+Alle Eigenschaften beziehen sich auf die <em>Verteilung</em> von <span class="math inline">\(\boldsymbol{\hat{\beta}}\)</span>
+(wie im <a href="linmodel.html#linmodel">einführenden Kapitel</a> beschrieben handelt es sich bei
+<span class="math inline">\(\boldsymbol{\hat{\beta}}\)</span> ja um eine Zufallsvariable).</p>
+<p>Ohne die Konzepte schon formal eingeführt zu haben wollen dennoch bereits an
+dieser Stelle festhalten, dass für die Erwartungstreue nur A1 und A2 relevant
+sind. Annahmen A4 und A5 sind nur für Inferenz und Standardfehler sowie die
+Effizienz von Bedeutung. A3 ist wie oben beschrieben notwendig, damit der OLS
+Schätzer überhaupt identifizierbar ist.</p>
+<p>Unter <strong>Erwartungstreue</strong> verstehen wir die Eigenschaft, dass der Schätzer im
+Mittel den ‘wahren Wert’ <span class="math inline">\(\beta\)</span> trifft, also
+<span class="math inline">\(\mathbb{E}(\hat{\boldsymbol{\beta}})=\beta\)</span>.
+Der Schätzvorgang ist also nicht systematisch verzerrt.
+Das bedeutet natürlich nicht, dass dies für eine <em>einzelne</em> Schätzung gilt
+<span class="math inline">\(\hat{\boldsymbol{\beta}}=\beta\)</span>, aber dass <span class="math inline">\(\beta\)</span> der wahrscheinlichste
+Wert für <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> ist.
+Oder technisch: das Mittel unendlich vieler Schätzungen mit
+<span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> ist gleich <span class="math inline">\(\beta\)</span>.</p>
+<p>Diese Eigenschaft des OLS-Schätzers wird in Abbildung <a href="advlin.html#fig:erwartungstreu">11.2</a>
+illustriert.</p>
+<div class="figure" style="text-align: center"><span id="fig:erwartungstreu"></span>
+<img src="Chap-advlinmodels_files/figure-html/erwartungstreu-1.png" alt="Erwartungstreue von $\hat{\boldsymbol{\beta}}$ unter Annahmen 1 bis 3." width="75%" height="75%" />
+<p class="caption">
+Figure 11.2: Erwartungstreue von <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> unter Annahmen 1 bis 3.
+</p>
+</div>
+<p>Wir können beweisen, dass <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> unter Annahmen A1, A2 und A3
+erwartungstreu ist.
+Dies gilt unabhängig der Stichprobengröße und unabhängig davon ob Annahmen A4
+und A5 erfüllt sind.
+Der mathematische Beweis findet sich im Anhang <a href="advlin.html#advlin-proofs">11.10</a>
+(siehe Theorem <a href="#theo:ewt-ols-beta"><strong>??</strong></a>).</p>
+<p>Wie oben bereits erwähnt resultiert daraus natürlich nicht, dass für jede einzelne
+Schätzung der Wert des Schätzers <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> gleich dem wahren Wert
+<span class="math inline">\(\boldsymbol{\beta}\)</span> ist.
+Jede Schätzung ist aufgrund der Fehler immer mit Unsicherheit behaftet.
+Diese Unsicherheit können wir über die Varianz des Schätzers
+<span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> messen: je größer die Varianz desto größer
+die Unsicherheit für die einzelne Schätzung.
+Wir können die Varianz einer Schätzung auch ausrechnen und als
+Standardfehler der Schätzer angeben.
+R gibt uns diese Werte immer automatisch mit aus. Wie die Schätzer hergeleitet
+und geschätzt werden können Sie über Theorem <a href="#theo:ewt-ols-sigma"><strong>??</strong></a> und
+<a href="#theo:ols-sdf"><strong>??</strong></a> im Anhang <a href="advlin.html#advlin-proofs">11.10</a> nachvollziehen.</p>
+<p>Besonders relevant ist in diesem Kontext die Eigenschaft der <strong>Effizienz</strong>.
+Unter <em>Effizienz</em> verstehen wir die Eigenschaft, dass es keinen alternativen
+Schätzer für <span class="math inline">\(\beta\)</span> gibt, der eine geringere Varianz aufweist.
+Effizienz ist dabei ein <em>relatives Maß</em>:
+ein Schätzer ist effizienter als ein anderer, wenn seine
+Varianz geringer ist und für den Schätzer <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> gilt,
+dass es unter A1-A4 <em>keinen</em> anderen linearen erwartungstreuen Schätzer
+gibt, der noch effizienter ist als <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span>.</p>
+<p>Die Eigenschaft der Effizienz wird in folgender Abbildung <a href="advlin.html#fig:eig-effizienz">11.3</a> illustriert.</p>
+<div class="figure" style="text-align: center"><span id="fig:eig-effizienz"></span>
+<img src="Chap-advlinmodels_files/figure-html/eig-effizienz-1.png" alt="Effizienz von $\hat{\boldsymbol{\beta}}$ unter Annahmen 1 bis 4." width="75%" height="75%" />
+<p class="caption">
+Figure 11.3: Effizienz von <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> unter Annahmen 1 bis 4.
+</p>
+</div>
+<p>Da wir hier die zugrundeliegenden Daten selbst herstellen wissen wir, dass für
+den wahren Wert gilt <span class="math inline">\(\beta_1=2.0\)</span>.
+Um die Effizienz des OLS-Schätzers beweisen zu können reichen Annahmen A1-A3
+nicht aus: hierfür benötigen wir auch die Annahme A4: Konstante Varianz und keine Autokorrelation der Fehlerterme. Unter Annahmen A1-A4 gilt die Effizienz des
+OLS-Schätzers auch unabhängig von der Stichprobengröße.
+Für den Beweis siehe Theorem 
+<a href="advlin.html#advlin-proofs">im Anhang</a>.</p>
+<p>Dass die Eigenschaften der Erwartungstreue und Effizienz beim OLS-Schätzer
+unabhängig von der Stichprobengröße gelten ist eine tolle Sache.
+Solche stichprobenunabhängigen Beweise funktionieren in realen Settings, in
+denen bestimmte Annahmen leicht verletzt sind und die zu schätzenden Funktionen
+komplexer werden, häufig nicht.
+Daher versucht man Eigenschaften von Schätzern wenigstens für große
+Stichproben zu beweisen.
+Diese Beweise sind wegen bestimmten Gesetzen wie dem
+<a href="https://de.wikipedia.org/wiki/Gesetz_der_gro%C3%9Fen_Zahlen">Gesetz der großen Zahl</a>
+oder dem
+<a href="https://de.wikipedia.org/wiki/Zentraler_Grenzwertsatz">Zentralen Grenzwertsatz</a>
+oft deutlich einfacher.
+Wie sprechen dann von <em>asymptotischen Eigenschaften</em>, da sie für den Schätzer
+zutreffen wenn die Stichprobengröße gegen Unendlichkeit wächst.</p>
+<p>Allerdings bleibt dann unklar welche Eigenschaften der Schätzer in kleinen
+Stichproben tatsächlich hat.
+Auch ab welcher Größe eine Stichprobe als “groß” gilt kann nicht ohne Weiteres
+beantwortet werden.
+Um die Schätzereigenschaften für kleine Stichproben zu untersuchen bleibt dann
+nur die Methode der <em>Monte Carlo Simulation</em>, die weiter unten eingeführt wird.</p>
+<p>Vorher wollen wir jedoch die wichtigste Eigenschaft von Schätzern für große
+Stichproben anhand des OLS-Schätzers einführen: die <strong>Konsistenz</strong>.
+Ein konsistenter Schätzer trifft im Mittel den wahren Wert
+und seine Varianz geht mit wachsender Stichprobengröße gegen Null.
+Wir können also sagen, dass unsere Schätzungen bei wachsender Stichprobengröße
+immer genauer wird.</p>
+<blockquote>
+<p><strong>Der Unterschied zwischen Erwartungstreue und Konsistenz</strong> Auf den ersten Blick
+erscheinen die beiden Konzepte eng verwandt, weil beide eine Aussage über den
+Erwartungswert des OLS-Schätzers treffen. Allerdings gilt die Erwartungstreue
+unabhängig von der Stichprobengröße: auch in kleinen Stichproben gilt, dass
+<span class="math inline">\(\mathbb{E}(\hat{\boldsymbol{\beta}})=\beta\)</span>. Die Konsistenz dagegen bezieht
+sich auf das Verhalten des OLS-Schätzers wenn die Stichprobe immer größer wird.
+Darüber hinaus macht die Konsistenz auch eine Aussage über die Größe der Varianz
+des Schätzers: diese geht bei immer größeren Stichproben gegen Null. Das heißt
+bei sehr großen Stichproben können wir auch bei einer einzelnen Schätzung
+davon ausgehen, dass wir den wahren Wert ziemlich genau treffen.
+Eine solche Aussage können wir aus der Erwartungstreue nicht ableiten:
+dass wir im Mittel den wahren Wert treffen macht <em>überhaupt keine</em> Aussage
+über die einzelne Schätzung. Auch die Eigenschaft der Effizienz ist hier nur
+bedingt hilfreich, weil sie nur besagt, dass der OLS-Schätzer der Schätzer mit
+der <em>geringsten</em> Varianz ist - aber nicht <em>wie gering</em> diese Varianz ist.
+Manchmal ist auch die geringste Varianz sehr groß.</p>
+</blockquote>
+<p>Formal drücken wir dies unter Verwendung von Grenzwerten aus:</p>
+<p><span class="math display">\[\lim_{N\rightarrow\infty}\mathbb{P}(|\hat{\beta}-\beta|&gt;\epsilon)=0\]</span></p>
+<p>wobei <span class="math inline">\(\epsilon\)</span> hier eine beliebig kleine Zahl ist.</p>
+<p>Wenn wir asymptotische Eigenschaften ausdrücken wollen verwenden wir häufig den
+Operator <span class="math inline">\(\plim\)</span>.
+Das steht für <em>probability limit</em> und drückt die Idee der letzten Formel aus:
+das <em>probability limit</em> einer ZV ist der Wert auf den diese ZV bei unendlich
+vielen Ziehungen konvergieren wird.
+Wir sagen dann auch: die ZV konvergiert stochastisch gegen einen Wert.<a href="#fn92" class="footnote-ref" id="fnref92"><sup>92</sup></a>
+Oder formal:</p>
+<p><span class="math display">\[\lim_{N\rightarrow\infty}\mathbb{P}(|X_N-X|&gt;\epsilon)=0\]</span></p>
+<p>Wir können die Idee der letzten Gleichung also auch folgendermaßen ausdrücken:</p>
+<p><span class="math display">\[\plim (\hat{\beta})=\beta\]</span></p>
+<p>In der klassischen statistischen Analyse betrachten wir Erwartungstreue als
+eine notwendige Eigenschaft: wir möchten in der Regel keine Schätzer verwenden,
+deren geschätzte Werte systematisch von dem wahren Wert abweichen.
+Es sei an dieser Stelle jedoch bereits erwähnt, dass es sinnvolle Ausnahmen
+von dieser Regel geben kann, nämlich dann wenn wir große Zugewinne an Effizienz
+für kleine Abstriche in der Erwartungstreue ‘erkaufen’ können.</p>
+<p>In der Literatur wird diese Fragestellung unter dem Stichwort
+<em>bias-variance trade-off</em> diskutiert und ist vor allem dann relevant, wenn
+Sie mit Ihrem Regressionsmodell Vorhersagen treffen wollen.
+Weitergehende Informationen dazu finden Sie in der
+<a href="#adv-lin-readings">weiterführenden Literatur</a>.
+An dieser Stelle wollen wir uns aber zunächst auf die erwartungstreuen
+(und konsistenten) Schätzer konzentrieren, da dies tatsächlich auch die am
+weitesten verbreiteten Schätzmethoden sind.</p>
+</div>
+<div id="abweichungen-von-den-ols-annahmen" class="section level3" number="11.1.3">
+<h3><span class="header-section-number">11.1.3</span> Abweichungen von den OLS Annahmen</h3>
+<p>Wenn alle Annahmen des OLS-Schätzers erfüllt sind können wir also ohne Bedenken
+die Parameter unseres statistischen Modells mit der klassischen OLS Methode
+schätzen.
+Aber was ist wenn eine Annahme nicht erfüllt ist?</p>
+<p>Im Folgenden wollen wir uns diesem Problem annähern indem wir die folgenden
+Fragen für die verschiedenen Annahmen anhand der
+folgenden vier Leitfragen diskutieren:
+(1) Unter welchen praktisch relevanten Situationen kann die Annahme verletzt sein?
+(2) Wie können wir testen ob die Annahme verletzt ist?
+(3) Was sind die Konsequenzen wenn die Annahme verletzt ist?
+(4) Was können wir tun um trotz verletzter Annahme konsistente und möglichst
+effiziente Schätzer zu bekommen?</p>
+<p>Diese Fragen sind in der der Praxis nicht einfach zu beantworten.
+Ein Grund dafür ist, dass wir die ‘wahren Werte’ der zu schätzenden Parameter
+in der Regel nicht beobachten können.
+Da wir zudem den ‘wahren’ datenerzeugenden Prozess nicht kennen, können wir nie
+mit Sicherheit sagen, ob eine bestimmte Annahme verletzt ist oder nicht.</p>
+<p>Dennoch gibt es zwei Möglichkeiten die relevanten Informationen zu den Schätzern
+zu bekommen:
+zum einen können wir häufig mathematisch beweisen, dass ein Schätzer
+erwartungstreu oder effizient ist.
+Ein Beispiel dafür ist der Beweis der Erwartungstreue des OLS-Schätzers
+<a href="formalia.html#ols-deriv">hier</a> oder der Beweis der Effizienz des OLS-Schätzers
+<a href="#ols-efficiency">hier</a>.
+Dies ist aber nicht immer möglich und manchmal auch recht aufwendig und wenig
+intuitiv.</p>
+<p>Die zweite Möglichkeit ist die Analyse von Schätzern mit Hilfe von
+künstlichen Datensätzen und so genannten <em>Monte Carlo Simulationen</em> (MCS).
+Bei einer MCS definieren wir unseren datenerzeugenden Prozess selbst und
+erstellen dann einen künstlichen Datensatz, an dem wir dann die Eigenschaften
+von Schätzern untersuchen können.
+Diese Vorgehensweise ist zwar weniger ‘sicher’ als ein mathematischer Beweis
+aber häufig intuitiver und in vielen Fällen tatsächlich auch die einzige
+Möglichkeit, inbesondere wenn wir Schätzereigenschaften für kleine Stichproben
+analysieren wollen.
+Daher wird diese Methode im Folgenden kurz beschrieben und später für die
+Illustration der Folgen von verletzten Annahmen verwendet.</p>
+</div>
+<div id="monte-carlo-simulationen-in-r" class="section level3" number="11.1.4">
+<h3><span class="header-section-number">11.1.4</span> Monte Carlo Simulationen in R</h3>
+<p>Der Ablauf einer Monte Carlo Simulation ist immer der Folgende:</p>
+<ol style="list-style-type: decimal">
+<li>Definiere das zu untersuchende Merkmal des datenerzeugenden Prozesses</li>
+<li>Formalisiere den datenerzeugenden Prozess als Funktion</li>
+<li>Erstelle viele künstliche Stichproben für das zu untersuchende Merkmal; erstelle
+dabei eine Kontrollgruppe in der das zu untersuchende Merkmal nicht vorhanden ist
+und eine Testgruppe mit dem Merkmal und wende den zu untersuchenden Schätzer
+auf die künstlichen Stichproben an</li>
+<li>Analysiere die Verteilung des Schätzers für die Kontrollgruppe und die Testgruppe</li>
+<li>Interpretiere die Ergebnisse</li>
+</ol>
+<p>Wir erstellen also selbst einen datenerzeugenden Prozess und untersuchen dann
+das Verhalten des uns interessierenden Schätzers im Kontext dieses
+datenerzeugenden Prozesses.
+Wenn wir z.B. untersuchen möchten welchen Effekt Heteroskedastie auf den OLS
+Schätzer hat dann erstellen wir künstliche Datensätze über einen
+datenerzeugenden Prozess in den wir Heteroskedastie eingebaut haben und
+und über einen Prozess für den wir wissen, dass er durch Homoskedastie
+gekennzeichnet ist.
+Dann schätzen wir ein Modell jeweils für die beiden Prozesse und vergleichen die
+Eigenschaften des OLS-Schätzers.
+Somit können wir Rückschlüsse auf die Implikationen von Heteroskedastie schließen.</p>
+<p>Im Folgenden wollen wir die Methode der Monte Carlo Simulation über genau dieses
+Beispiel einführen.</p>
+<p><strong>1. Schritt: Definition des zu untersuchenden Merkmals</strong></p>
+<p>Wie gerade beschrieben möchten wir untersuchen welchen Effekt Heteroskedastie
+auf die Eigenschaften des OLS Schätzers hat.
+Das zu untersuchende Merkmal des datenerzeugenden Prozesses ist also
+<em>Heteroskedastie</em>.</p>
+<p><strong>2. Schritt: Formalisierung des datenerzeugenden Prozesses</strong></p>
+<p>Wir formalisieren jetzt einen datenerzeugenden Prozess, der alle Annahmen des
+OLS Schätzers erfüllt außer ggf. der Annahme der Homoskedastie.
+Der Einfachheit halber wollen wir einen Prozess mit einer erklärenden Variable
+erstellen, also einen Prozess, der durch folgende Gleichung beschrieben werden
+kann:</p>
+<p><span class="math display">\[Y = \beta_0 + \beta_1 x_1 +  \epsilon\]</span></p>
+<p>wobei wir annehmen, dass <span class="math inline">\(\epsilon \propto \mathcal{N}(\mu, \sigma^2)\)</span> und
+<span class="math inline">\(\sigma^2\)</span> im Falle der Kontrollgruppe konstant (Fall der Homoskedastie) und im
+Falle der Testgruppe variabel ist (Fall der Heteroskedastie).</p>
+<p>Wir definieren also folgende Funktion, die für gegebene Werte für <span class="math inline">\(\beta_0\)</span> und
+<span class="math inline">\(\beta_1\)</span> und ein gegebenes <span class="math inline">\(\boldsymbol{X}\)</span> eine Stichprobe erstellt indem
+<span class="math inline">\(\boldsymbol{y}\)</span> gemäß des Modells <span class="math inline">\(y=\beta_0 + \beta_1 x + \epsilon\)</span> künstlich
+hergestellt wird.</p>
+<div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb796-1"><a href="advlin.html#cb796-1" aria-hidden="true"></a>dgp &lt;-<span class="st"> </span><span class="cf">function</span>(x1, beta0, beta1, <span class="dt">hetero=</span><span class="ot">FALSE</span>){</span>
+<span id="cb796-2"><a href="advlin.html#cb796-2" aria-hidden="true"></a>  y &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, <span class="kw">length</span>(x1))</span>
+<span id="cb796-3"><a href="advlin.html#cb796-3" aria-hidden="true"></a>  sd_hetero &lt;-<span class="st"> </span><span class="fl">0.25</span> <span class="op">*</span><span class="st"> </span>x1</span>
+<span id="cb796-4"><a href="advlin.html#cb796-4" aria-hidden="true"></a>  sd_homo &lt;-<span class="st"> </span><span class="kw">mean</span>(sd_hetero)</span>
+<span id="cb796-5"><a href="advlin.html#cb796-5" aria-hidden="true"></a>  <span class="cf">if</span> (hetero){</span>
+<span id="cb796-6"><a href="advlin.html#cb796-6" aria-hidden="true"></a>    errors &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="kw">length</span>(x1), <span class="dt">mean =</span> <span class="dv">0</span>, </span>
+<span id="cb796-7"><a href="advlin.html#cb796-7" aria-hidden="true"></a>                    <span class="dt">sd =</span> sd_hetero)</span>
+<span id="cb796-8"><a href="advlin.html#cb796-8" aria-hidden="true"></a>  } <span class="cf">else</span> {</span>
+<span id="cb796-9"><a href="advlin.html#cb796-9" aria-hidden="true"></a>    errors &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="kw">length</span>(x1), <span class="dt">mean =</span> <span class="dv">0</span>, </span>
+<span id="cb796-10"><a href="advlin.html#cb796-10" aria-hidden="true"></a>                    <span class="dt">sd =</span> sd_homo</span>
+<span id="cb796-11"><a href="advlin.html#cb796-11" aria-hidden="true"></a>                    )</span>
+<span id="cb796-12"><a href="advlin.html#cb796-12" aria-hidden="true"></a>  }</span>
+<span id="cb796-13"><a href="advlin.html#cb796-13" aria-hidden="true"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x1)){</span>
+<span id="cb796-14"><a href="advlin.html#cb796-14" aria-hidden="true"></a>    y[i] &lt;-<span class="st"> </span>beta0 <span class="op">+</span><span class="st"> </span>beta1<span class="op">*</span>x1[i] <span class="op">+</span><span class="st"> </span>errors[i]</span>
+<span id="cb796-15"><a href="advlin.html#cb796-15" aria-hidden="true"></a>  }</span>
+<span id="cb796-16"><a href="advlin.html#cb796-16" aria-hidden="true"></a>  final_data &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">y=</span>y, <span class="dt">x1=</span>x1, <span class="dt">errors=</span>errors)</span>
+<span id="cb796-17"><a href="advlin.html#cb796-17" aria-hidden="true"></a>  <span class="kw">return</span>(final_data)</span>
+<span id="cb796-18"><a href="advlin.html#cb796-18" aria-hidden="true"></a>}</span></code></pre></div>
+<p><strong>3. Schritt: Künstlichen Datensatz erstellen und Schätzer darauf anwenden</strong></p>
+<p>Wir simulieren nun das Ziehen einer Stichprobe aus dem künstlich erstellten
+datengenerierenden Prozess (DGP) indem wir jeweils 1000 Beobachtungen kreieren.
+Da das Ziehen einer Stichprobe immer ein Zufallsprozess ist erstellen wir
+1000 Stichproben und wenden darauf dann jeweils unseren OLS-Schätzer an.
+Die geschätzten Koeffizienten und Standardfehler speichern wir in einer
+Liste, da wir sie später dann analysieren wollen.</p>
+<p>Dazu definieren wir die folgende Funktion:</p>
+<div class="sourceCode" id="cb797"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb797-1"><a href="advlin.html#cb797-1" aria-hidden="true"></a>mcs &lt;-<span class="st"> </span><span class="cf">function</span>(n_stichproben, </span>
+<span id="cb797-2"><a href="advlin.html#cb797-2" aria-hidden="true"></a>                x1, wahres_b0, wahres_b1, schaetzgleichung,</span>
+<span id="cb797-3"><a href="advlin.html#cb797-3" aria-hidden="true"></a>                <span class="dt">heterosk=</span><span class="ot">FALSE</span>){</span>
+<span id="cb797-4"><a href="advlin.html#cb797-4" aria-hidden="true"></a>  schaetzung_b1 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, n_stichproben)</span>
+<span id="cb797-5"><a href="advlin.html#cb797-5" aria-hidden="true"></a>  stdfehler_b1 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, n_stichproben)</span>
+<span id="cb797-6"><a href="advlin.html#cb797-6" aria-hidden="true"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n_stichproben){</span>
+<span id="cb797-7"><a href="advlin.html#cb797-7" aria-hidden="true"></a>    <span class="co"># Stichprobe ziehen:</span></span>
+<span id="cb797-8"><a href="advlin.html#cb797-8" aria-hidden="true"></a>    stichprobe &lt;-<span class="st"> </span><span class="kw">dgp</span>(<span class="dt">x1 =</span> x1, <span class="dt">beta0 =</span> wahres_b0, </span>
+<span id="cb797-9"><a href="advlin.html#cb797-9" aria-hidden="true"></a>                      <span class="dt">beta1 =</span> wahres_b1, </span>
+<span id="cb797-10"><a href="advlin.html#cb797-10" aria-hidden="true"></a>                      <span class="dt">hetero =</span> heterosk)</span>
+<span id="cb797-11"><a href="advlin.html#cb797-11" aria-hidden="true"></a>    <span class="co"># Parameter schätzen:</span></span>
+<span id="cb797-12"><a href="advlin.html#cb797-12" aria-hidden="true"></a>    schaetzung &lt;-<span class="st"> </span><span class="kw">summary</span>(</span>
+<span id="cb797-13"><a href="advlin.html#cb797-13" aria-hidden="true"></a>      <span class="kw">lm</span>(<span class="dt">formula =</span> schaetzgleichung, </span>
+<span id="cb797-14"><a href="advlin.html#cb797-14" aria-hidden="true"></a>         <span class="dt">data =</span> stichprobe)</span>
+<span id="cb797-15"><a href="advlin.html#cb797-15" aria-hidden="true"></a>      )</span>
+<span id="cb797-16"><a href="advlin.html#cb797-16" aria-hidden="true"></a>    <span class="co"># Relevante Werte speichern:</span></span>
+<span id="cb797-17"><a href="advlin.html#cb797-17" aria-hidden="true"></a>    schaetzung_b1[i] &lt;-<span class="st"> </span>schaetzung<span class="op">$</span>coefficients[<span class="dv">2</span>]</span>
+<span id="cb797-18"><a href="advlin.html#cb797-18" aria-hidden="true"></a>    stdfehler_b1[i] &lt;-<span class="st"> </span>schaetzung<span class="op">$</span>coefficients[<span class="dv">4</span>]</span>
+<span id="cb797-19"><a href="advlin.html#cb797-19" aria-hidden="true"></a>  }</span>
+<span id="cb797-20"><a href="advlin.html#cb797-20" aria-hidden="true"></a>  <span class="co"># In einer Tabelle zusammenfassen:</span></span>
+<span id="cb797-21"><a href="advlin.html#cb797-21" aria-hidden="true"></a>  Fall_Bezeichnung &lt;-<span class="st"> </span><span class="kw">ifelse</span>(heterosk, <span class="st">&quot;Heteroskedastie&quot;</span>, <span class="st">&quot;Homoskedastie&quot;</span>)</span>
+<span id="cb797-22"><a href="advlin.html#cb797-22" aria-hidden="true"></a>  ergebnisse &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">tibble</span>(</span>
+<span id="cb797-23"><a href="advlin.html#cb797-23" aria-hidden="true"></a>    <span class="dt">b1_coef=</span>schaetzung_b1,</span>
+<span id="cb797-24"><a href="advlin.html#cb797-24" aria-hidden="true"></a>    <span class="dt">b1_stdf=</span>stdfehler_b1,</span>
+<span id="cb797-25"><a href="advlin.html#cb797-25" aria-hidden="true"></a>    <span class="dt">Fall=</span><span class="kw">rep</span>(Fall_Bezeichnung, </span>
+<span id="cb797-26"><a href="advlin.html#cb797-26" aria-hidden="true"></a>             n_stichproben)</span>
+<span id="cb797-27"><a href="advlin.html#cb797-27" aria-hidden="true"></a>  )</span>
+<span id="cb797-28"><a href="advlin.html#cb797-28" aria-hidden="true"></a><span class="kw">return</span>(ergebnisse)</span>
+<span id="cb797-29"><a href="advlin.html#cb797-29" aria-hidden="true"></a>}</span></code></pre></div>
+<p>Damit können wir die Simulation sehr einfach für die beiden relevanten
+Fälle ausführen.</p>
+<p>Wir definieren nun die Parameter und die wahren Werte.
+Hierbei ist es wichtig, die Funktion <code>set.seed</code> zu verwenden.
+Das ist wichtig um unsere Monte Carlo Simulation reproduzierbar zu machen, denn
+mit <code>set.seed</code> setzen wir die Anfangsbedingungen für den Zufallszahlen-Generator
+von R.
+Das bedeutet, dass wir für den gleichen Seed immer die gleichen Zufallszahlen
+produzieren und somit unsere Simulationsergebnisse immer vollständig reproduzierbar
+bleiben.</p>
+<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb798-1"><a href="advlin.html#cb798-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="st">&quot;1234&quot;</span>)</span>
+<span id="cb798-2"><a href="advlin.html#cb798-2" aria-hidden="true"></a>n_stichproben &lt;-<span class="st"> </span><span class="dv">250</span></span>
+<span id="cb798-3"><a href="advlin.html#cb798-3" aria-hidden="true"></a>n_beobachtungen &lt;-<span class="st"> </span><span class="dv">1000</span></span>
+<span id="cb798-4"><a href="advlin.html#cb798-4" aria-hidden="true"></a>x_data &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> n_beobachtungen, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>)</span>
+<span id="cb798-5"><a href="advlin.html#cb798-5" aria-hidden="true"></a>wahres_b0 &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb798-6"><a href="advlin.html#cb798-6" aria-hidden="true"></a>wahres_b1 &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb798-7"><a href="advlin.html#cb798-7" aria-hidden="true"></a>schaetzgleichung &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&quot;y~x1&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="advlin.html#cb799-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="st">&quot;1234&quot;</span>)</span>
+<span id="cb799-2"><a href="advlin.html#cb799-2" aria-hidden="true"></a>homosc_results &lt;-<span class="st"> </span><span class="kw">mcs</span>(<span class="dv">1000</span>, x_data,</span>
+<span id="cb799-3"><a href="advlin.html#cb799-3" aria-hidden="true"></a>                      wahres_b0, wahres_b1, </span>
+<span id="cb799-4"><a href="advlin.html#cb799-4" aria-hidden="true"></a>                      schaetzgleichung, <span class="dt">heterosk =</span> F)</span>
+<span id="cb799-5"><a href="advlin.html#cb799-5" aria-hidden="true"></a>hetero_results &lt;-<span class="st"> </span><span class="kw">mcs</span>(<span class="dv">1000</span>, x_data,</span>
+<span id="cb799-6"><a href="advlin.html#cb799-6" aria-hidden="true"></a>                      wahres_b0, wahres_b1,</span>
+<span id="cb799-7"><a href="advlin.html#cb799-7" aria-hidden="true"></a>                      schaetzgleichung, <span class="dt">heterosk =</span> T)</span>
+<span id="cb799-8"><a href="advlin.html#cb799-8" aria-hidden="true"></a>full_results &lt;-<span class="st"> </span><span class="kw">rbind</span>(homosc_results, hetero_results)</span></code></pre></div>
+<p><strong>4. Schritt: Vergleichende Analyse der Schätzereigenschaften</strong></p>
+<p>Als erstes wollen wir die Ergebnisse grafisch analysieren.
+Zu diesem Zweck visualisieren wir in Abbildung <a href="advlin.html#fig:montecarlo">11.4</a> die
+Verteilung der geschätzten Werte für <span class="math inline">\(\beta_1\)</span>
+und zeichnen zudem den wahren Wert ein:</p>
+<div class="sourceCode" id="cb800"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb800-1"><a href="advlin.html#cb800-1" aria-hidden="true"></a>beta_<span class="dv">1</span>_plot &lt;-<span class="st"> </span>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> full_results, </span>
+<span id="cb800-2"><a href="advlin.html#cb800-2" aria-hidden="true"></a>                      <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>b1_coef, <span class="dt">color=</span>Fall, <span class="dt">fill=</span>Fall)) <span class="op">+</span></span>
+<span id="cb800-3"><a href="advlin.html#cb800-3" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">geom_density</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>) <span class="op">+</span></span>
+<span id="cb800-4"><a href="advlin.html#cb800-4" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">expand_scale</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>))) <span class="op">+</span></span>
+<span id="cb800-5"><a href="advlin.html#cb800-5" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="fl">1.7</span>, <span class="fl">2.2</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb800-6"><a href="advlin.html#cb800-6" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> wahres_b1) <span class="op">+</span></span>
+<span id="cb800-7"><a href="advlin.html#cb800-7" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ylab</span>(<span class="kw">TeX</span>(<span class="st">&quot;Dichte von $</span><span class="ch">\\</span><span class="st">hat{</span><span class="ch">\\</span><span class="st">beta}_1$&quot;</span>)) <span class="op">+</span></span>
+<span id="cb800-8"><a href="advlin.html#cb800-8" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">xlab</span>(<span class="kw">TeX</span>(<span class="st">&quot;$</span><span class="ch">\\</span><span class="st">hat{</span><span class="ch">\\</span><span class="st">beta}_1$&quot;</span>)) <span class="op">+</span></span>
+<span id="cb800-9"><a href="advlin.html#cb800-9" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ggtitle</span>(<span class="kw">TeX</span>(<span class="st">&quot;Verteilung von $</span><span class="ch">\\</span><span class="st">hat{</span><span class="ch">\\</span><span class="st">beta}_1$&quot;</span>)) <span class="op">+</span></span>
+<span id="cb800-10"><a href="advlin.html#cb800-10" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;Homoskedastie&quot;</span>=<span class="st">&quot;#006600&quot;</span>,</span>
+<span id="cb800-11"><a href="advlin.html#cb800-11" aria-hidden="true"></a>                                <span class="st">&quot;Heteroskedastie&quot;</span>=<span class="st">&quot;#800000&quot;</span>),</span>
+<span id="cb800-12"><a href="advlin.html#cb800-12" aria-hidden="true"></a>  <span class="dt">aesthetics =</span> <span class="kw">c</span>(<span class="st">&quot;color&quot;</span>, <span class="st">&quot;fill&quot;</span>)) <span class="op">+</span></span>
+<span id="cb800-13"><a href="advlin.html#cb800-13" aria-hidden="true"></a><span class="st">  </span>icaeDesign<span class="op">::</span><span class="kw">theme_icae</span>()</span>
+<span id="cb800-14"><a href="advlin.html#cb800-14" aria-hidden="true"></a></span>
+<span id="cb800-15"><a href="advlin.html#cb800-15" aria-hidden="true"></a>beta_<span class="dv">1</span>_plot</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:montecarlo"></span>
+<img src="Chap-advlinmodels_files/figure-html/montecarlo-1.png" alt="Vergleich der Verteilung der mit Monte Carlo geschätzten Werte für $\beta_1$ mit dem wahren Wert." width="75%" height="75%" />
+<p class="caption">
+Figure 11.4: Vergleich der Verteilung der mit Monte Carlo geschätzten Werte für <span class="math inline">\(\beta_1\)</span> mit dem wahren Wert.
+</p>
+</div>
+<p>Wie wir sehen ändert die Verletzung der Homoskedastie-Annahme nichts an der
+Erwartungstreue des Schätzers:
+im Mittel trifft der Schätzer den wahren Wert <span class="math inline">\(\beta_1\)</span>!
+Allerdings nimmt die Genauigkeit ab, da die Streuung um den wahren Wert
+herum im heteroskedastischen Fall zunimmt!</p>
+<p>Wir wollen nun in Abbildung <a href="#fig:montecarlo2"><strong>??</strong></a> noch untersuchen wie sich
+Heteroskedastie auf die Standardfehler der Regression auswirkt.</p>
+<div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb801-1"><a href="advlin.html#cb801-1" aria-hidden="true"></a>beta_<span class="dv">1</span>_stdf_plot</span></code></pre></div>
+<p><img src="Chap-advlinmodels_files/figure-html/unnamed-chunk-10-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Wie wir sehen weichen die Standardfehler im heteroskedastischen Fall deutlich
+von denen im homoskedastischen Fall ab! Welche Standardfehler sind nun die
+richtigen?</p>
+<p>Ohne auf die mathematische Herleitung genauer einzugehen (siehe dazu Kapitel 4
+in <span class="citation">Greene (<a href="#ref-greene" role="doc-biblioref">2018</a>)</span>) wollen wir dennoch festhalten, dass die geschätzten Standardfehler
+unter Heteroskedastie <em>falsch</em> sind.
+Wir können ohne eine Korrektur also keine Aussagen über die Schätzunsicherheit
+und Signifikanz der Ergebnisse treffen.</p>
+<p>Das alles bedeutet zwar, dass der OLS Schätzer auch im Falle von Heteroskedastie
+noch erwartungstreu ist, allerdings die Genauigkeit des Schätzers sinkt und die
+Standardfehler falsch berechnet werden.
+Da der Fokus hier auf der Beschreibung der Monte Carlo Simulationsmethode lag
+werden wir uns mit den möglichen Lösungen erst später befassen.</p>
+<p>Im Folgenden werden wir nun einen weiteren Blick auf verschiedene OLS Annahmen
+werfen und besprechen wie die jeweilige Annahme geprüft werden kann und was im
+Falle einer Verletzung zu tun wäre.</p>
+</div>
+</div>
+<div id="heteroskedastie" class="section level2" number="11.2">
+<h2><span class="header-section-number">11.2</span> Heteroskedastie</h2>
+<p>Wie oben beschrieben bedeutet Heteroskedastie, dass die Varianz der Fehlerterme
+nicht konstant ist.</p>
+<div id="liegt-heteroskedastie-vor-advlin-hetero-test" class="section level3" number="11.2.1">
+<h3><span class="header-section-number">11.2.1</span> Liegt Heteroskedastie vor? {advlin-hetero-test}</h3>
+<p>Heteroskedastie kann grafisch oder über statistische Tests identifiziert werden.
+Um Heteroskedastie grafisch zu identifizieren verwenden wir den
+<em>Tukey-Anscombe-Plot</em>, in dem wir
+auf der x-Achse die gefitteten Werte <span class="math inline">\(\hat{Y}\)</span> und auf der y-Achse die Residuen
+<span class="math inline">\(e\)</span> abbilden. Siehe dazu Abbildung <a href="#fig:homoskedastie"><strong>??</strong></a>.
+Für die Konstruktion der Abbildung sollten Sie beachten, dass die
+gefitteten Werte und die Residuen einer Schätzung immer im der durch <code>lm()</code>
+produzierten Liste gespeichert werden.
+Gehen wir mal davon aus, dass Sie Ihr Schätzobjekt folgendermaßen definiert
+haben:</p>
+<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="advlin.html#cb802-1" aria-hidden="true"></a>schaetzung &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y, <span class="dt">data =</span> daten)</span></code></pre></div>
+<p>Dann können Sie auf die gefitteten Werte <span class="math inline">\(\hat{Y}\)</span> über
+<code>schaetzung[["fitted.values"]]</code> und auf die Residuen über
+<code>schaetzung[["residuals"]]</code> zugreifen.</p>
+<blockquote>
+<p><strong>Warum überhaupt eine Residuenanalyse?</strong>
+Die Residuen werden häufig herangezogen wenn es um die Überprüfung
+der OLS-Annahmen geht. Letztere beziehen sich nämlich insbesondere auf die
+Fehlerterme des Modells.
+Da die Fehlerterme jedoch eine Populationsgröße sind und dementsprechend
+nicht beobachtbar sind, nehmen wir häufig ihr Stichproben-Pendant um die
+Annahmen zu überprüfen - und dieses Stichproben-Pendant sind eben die Residuen.
+Dennoch ist es extrem wichtig nie zu vergessen, dass die Residuen nur eine
+Approximation der Fehler sind und es durchaus der Fall sein kann, dass die
+Residuen nicht auffällig sind, aber dennoch eine Annahme über die Fehler
+nicht erfüllt sein kann.</p>
+</blockquote>
+<p><img src="Chap-advlinmodels_files/figure-html/unnamed-chunk-14-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Im Optimalfall ist die Varianz der Residuen konstant. Das scheint in Abbildung (a)
+der Fall zu sein: die Residuen streuen recht zufällig um die Mittelwert 0 herum.
+In diesem Fall besteht wenig Grund zur Annahme, dass Heteroskedastizität vorliegt.
+Anders in Abbildung (b): hier wird die Varianz nach rechts klar größer.
+Das lässt große Zweifel an der Annahme der Homoskedastizität aufkommen.
+Denn wenn die Residuen keine konstante Varianz aufweisen tun es die Fehler
+wahrscheinlich auch nicht.</p>
+<p>In der Praxis ist es sinnvoll zusätzlich zur grafischen Inspektion noch
+statistische Tests zu verwenden. Hier gibt es ein breites Angebot an Tests.
+Viele davon sind in dem Paket <a href="https://github.com/cran/lmtest">lmtest</a>
+<span class="citation">(Zeileis and Hothorn <a href="#ref-R-lmtest" role="doc-biblioref">2002</a>)</span> gesammelt. Wir gehen auf die mathematische Herleitung der Tests
+hier nicht ein. Genauere Informationen finden Sie in den später angegebenen
+weiterführenden Quellen.</p>
+<p>Häufig verwendet wird z.B. der <strong>Breusch-Pagan Test</strong>, den wir mit der Funktion
+<code>bptest()</code> durchführen können.
+Diese Funktion nimmt als einziges zwingendes Argument das Regressionsobjekt.
+Die weiteren Argumente sollten wir im Normalfall auf den Standardwerten
+belassen.</p>
+<p>Die Nullhypothese des Breusch-Pagan Tests ist Homoskedastie.
+Wir führen zunächst den Test für den homoskedastischen Fall aus, wobei
+<code>schaetzung_homo</code> das von <code>lm()</code> produzierte Objekt ist:</p>
+<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb803-1"><a href="advlin.html#cb803-1" aria-hidden="true"></a><span class="kw">bptest</span>(schaetzung_homo)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; 	studentized Breusch-Pagan test
+#&gt; 
+#&gt; data:  schaetzung_homo
+#&gt; BP = 0.0067387, df = 1, p-value = 0.9346</code></pre>
+<p>Wir können <span class="math inline">\(H_0\)</span> (also die Hypothese der Homoskedastie) nicht ablehnen da
+<span class="math inline">\(p&gt;0.05\)</span>.
+Nun führen wir den Test für den heteroskedastischen Fall aus:</p>
+<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb805-1"><a href="advlin.html#cb805-1" aria-hidden="true"></a><span class="kw">bptest</span>(schaetzung_hetero)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; 	studentized Breusch-Pagan test
+#&gt; 
+#&gt; data:  schaetzung_hetero
+#&gt; BP = 88.513, df = 1, p-value &lt; 2.2e-16</code></pre>
+<p>Wir können <span class="math inline">\(H_0\)</span> (also die Hypothese der Homoskedastie) hier klar ablehnen.</p>
+<p>Ein ebenfalls häufig verwendeter Test ist der <strong>Goldfeld-Quandt Test</strong>.
+Dieser wird mit der Funktion <code>gqtest()</code> durchgeführt und hat mehr Freiheitsgrade
+als der Breusch-Pagan Test:
+hier testen wir die Hypothese ob die Fehlervarianz in einem Bereich der Daten
+größer oder kleiner ist als in einem anderen Bereich.
+Standardmäßig wird der Datensatz dabei in zwei gleich große Teile geteilt, aber
+der Trennpunkt kann mit dem Argument <code>point</code> theoretisch beliebig gewählt werden,
+genauso wie der Anteil der Daten um den Trennpunkt, die ausgeschlossen werden
+sollen (Argument <code>fraction</code>).
+Zudem können wir über das Argument <code>alternative</code> wählen ob für steigende, sinkende
+oder andere Varianz getestet werden soll.
+Diese Wahlmöglichkeiten erhöhen die Power des Tests - wenn wir denn theoretisch
+gut begründete Werte wählen können. Ansonsten ist es am besten die Standardwerte
+zu verwenden und den Test mit anderen Tests und grafischen Methoden zu ergänzen.</p>
+<p>Wir verwenden zunächst den Test mit der Standardspezifikation:</p>
+<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb807-1"><a href="advlin.html#cb807-1" aria-hidden="true"></a><span class="kw">gqtest</span>(schaetzung_homo)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; 	Goldfeld-Quandt test
+#&gt; 
+#&gt; data:  schaetzung_homo
+#&gt; GQ = 0.98576, df1 = 248, df2 = 248, p-value = 0.5449
+#&gt; alternative hypothesis: variance increases from segment 1 to 2</code></pre>
+<p>Für den homoskedastischen Fall kann <span class="math inline">\(H_0\)</span> (Homoskedastie) also nicht abgelehnt
+werden.</p>
+<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb809-1"><a href="advlin.html#cb809-1" aria-hidden="true"></a><span class="kw">gqtest</span>(schaetzung_hetero)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; 	Goldfeld-Quandt test
+#&gt; 
+#&gt; data:  schaetzung_hetero
+#&gt; GQ = 0.79606, df1 = 248, df2 = 248, p-value = 0.9635
+#&gt; alternative hypothesis: variance increases from segment 1 to 2</code></pre>
+<p>Komischerweise muss <span class="math inline">\(H_0\)</span> auch für den heteroskedastischen Fall nicht verworfen werden.
+Hätten wir aber für sinkende Varianz getestet, hätte <span class="math inline">\(H_0\)</span> abgelehnt
+werden können:</p>
+<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb811-1"><a href="advlin.html#cb811-1" aria-hidden="true"></a><span class="kw">gqtest</span>(schaetzung_hetero, <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; 	Goldfeld-Quandt test
+#&gt; 
+#&gt; data:  schaetzung_hetero
+#&gt; GQ = 0.79606, df1 = 248, df2 = 248, p-value = 0.03655
+#&gt; alternative hypothesis: variance decreases from segment 1 to 2</code></pre>
+<p>Das zeigt die potenzielle Schwäche des GQ-Tests.
+Wenn wir uns nicht sicher sind ob wir für steigende oder sinkende Varianz testen
+sollen bietet sich natürlich immer auch der zweiseitige Test an, der aber über
+eine verminderte Power vefügt, im vorliegenden Falle aber dennoch das richtige
+Ergebnis liefert:</p>
+<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb813-1"><a href="advlin.html#cb813-1" aria-hidden="true"></a><span class="kw">gqtest</span>(schaetzung_hetero, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; 	Goldfeld-Quandt test
+#&gt; 
+#&gt; data:  schaetzung_hetero
+#&gt; GQ = 0.79606, df1 = 248, df2 = 248, p-value = 0.0731
+#&gt; alternative hypothesis: variance changes from segment 1 to 2</code></pre>
+<p>Wir lernen aus diesen Ergebnissen, dass wir immer mit verschiedenen Methoden
+auf Heteroskedastie testen sollten und immer sowohl grafische als auch
+quantitative Tests verwenden sollten.
+Für den Fall, dass unsere Daten Heteroskedastie aufweisen sollte dann eine
+der im folgenden beschriebenen Strategien als Reaktion auf Heteroskedastie
+umgesetzt werden.</p>
+</div>
+<div id="reaktionen-auf-heteroskedastie" class="section level3" number="11.2.2">
+<h3><span class="header-section-number">11.2.2</span> Reaktionen auf Heteroskedastie</h3>
+<p>Aus unseren Vorüberlegungen können wir Folgendes festhalten:</p>
+<ol style="list-style-type: decimal">
+<li>Der OLS-Schätzer ist auch unter Heteroskedastie erwartungstreu</li>
+<li>Der OLS-Schätzer ist weiterhin konsistent</li>
+<li>Die Varianz des OLS-Schätzers ist unter Heteroskedastie größer und der
+Schätzer ist nicht mehr effizient</li>
+<li>Die Standardfehler unter Heteroskedastie sind nicht mehr korrekt.</li>
+</ol>
+<p>Daraus ergibt sich, dass wir in jedem Fall die Standardfehler korrigieren müssen.
+Darüber hinaus können wir uns überlegen ob wir es bei der Korrektur belassen und
+die geschätzten Werte des
+Standard OLS-Schätzers weiterhin verwenden, da der Schätzer ja weiterhin
+erwartungstreu und konsistent ist, oder ob wir sogar gleich ein alternatives
+Schätzverfahren implementieren um die Effizienz des Schätzers zu steigern.</p>
+<p>Für den ersten Fall korrigieren wir ‘einfach’ die Standardfehler des
+OLS-Schätzers, verwenden aber die alten geschätzten Koeffizienten weiter.
+Im zweiten Fall verwenden wir die Schätzmethode der <em>Generalized Least Squares</em>
+um nicht nur die Standardfehler zu korrigieren sondern auch die Parameter neu
+zu schätzen.</p>
+<p>Welchen Fall sollten wir verwenden? Wie gesagt ist der OLS Schätzer weiterhin
+konsistent. Das bedeutet, dass wir in großen Stichproben eigentlich kein Problem
+haben. In kleinen Stichproben kann die Verwendung dagegen Effizienzverluste mit
+sich bringen - aber keinen Verlust der Erwartungstreue. Beim GLS Verfahren
+schätzen wir die Varianzstruktur. Das funktioniert gut, wenn wir große
+Stichproben haben. Gerade da ist aber die Verwendung der OLS Schätzers aufgrund
+seiner Konsistenz gar kein Problem. In kleinen Stichproben ist die Schätzung der
+Varianz dagegen problematisch, solange wir keine theoretischen Restriktionen
+einführen können. Insofern ist die sinnvolle Anwendung von GLS eher gering,
+weswegen wir uns im Folgenden darauf beschränken robuste Standardfehler
+einzuführen.</p>
+<p>Die am weitesten verbreitete Korrektur der Standardfehler sind
+<em>White’s robuste Standardfehler</em>.<a href="#fn93" class="footnote-ref" id="fnref93"><sup>93</sup></a>
+Um diese in R zu berechnen bedarf es zweier Schritte.
+Zunächst verwenden wir die Funktion <code>vcovHC()</code> aus dem Paket
+<a href="https://github.com/cran/sandwich">sandwich</a> <span class="citation">(Zeileis <a href="#ref-R-sandwich" role="doc-biblioref">2004</a>)</span> um eine
+korrigierte Varianz-Kovarianz-Matrix zu berechnen.
+Diese Funktion nimmt als notwendiges Argument das Regressionsobjekt.
+Darüber hinaus können wir über das Argument <code>type</code> die genaue Berechnungsmethode
+festlegen.
+Mehr Infos dazu findet sich z.B. in der Hilfefunktion.
+Hier verwenden wir die am häufigsten verwendete Verion <code>"HC1"</code>:</p>
+<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb815-1"><a href="advlin.html#cb815-1" aria-hidden="true"></a>var_covar_matrix &lt;-<span class="st"> </span><span class="kw">vcovHC</span>(schaetzung_hetero, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</span>
+<span id="cb815-2"><a href="advlin.html#cb815-2" aria-hidden="true"></a>var_covar_matrix</span></code></pre></div>
+<pre><code>#&gt;              (Intercept)           x1
+#&gt; (Intercept)  0.018596906 -0.004287583
+#&gt; x1          -0.004287583  0.001130885</code></pre>
+<p>Dann können wir die Funktion <code>coeftest()</code> aus dem Paket <code>lmtest</code> verwenden
+um die korrigierten Standardfehler zu erhalten:</p>
+<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb817-1"><a href="advlin.html#cb817-1" aria-hidden="true"></a><span class="kw">coeftest</span>(schaetzung_hetero, <span class="dt">vcov. =</span> var_covar_matrix)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; t test of coefficients:
+#&gt; 
+#&gt;             Estimate Std. Error t value  Pr(&gt;|t|)    
+#&gt; (Intercept) 2.047718   0.136370  15.016 &lt; 2.2e-16 ***
+#&gt; x1          0.482333   0.033629  14.343 &lt; 2.2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Diese unterscheiden sich offensichtlich von den nicht-korrigierten
+Standardfehlern:</p>
+<div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb819-1"><a href="advlin.html#cb819-1" aria-hidden="true"></a><span class="kw">summary</span>(schaetzung_hetero)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = schaetzgleichung, data = stichprobe_hetero)
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min      1Q  Median      3Q     Max 
+#&gt; -6.8628 -0.8143 -0.0055  0.7927  5.7683 
+#&gt; 
+#&gt; Coefficients:
+#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)   2.0477     0.1753   11.68   &lt;2e-16 ***
+#&gt; x1            0.4823     0.0291   16.58   &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 1.657 on 498 degrees of freedom
+#&gt; Multiple R-squared:  0.3556,	Adjusted R-squared:  0.3543 
+#&gt; F-statistic: 274.8 on 1 and 498 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Beachten Sie, dass die korrigierten Standardfehler zwar häufig größer sind,
+dies aber nicht notwendigerweise der Fall sein muss!</p>
+</div>
+</div>
+<div id="autokorrelation" class="section level2" number="11.3">
+<h2><span class="header-section-number">11.3</span> Autokorrelation</h2>
+<p>Wir sprechen von Autokorrelation wenn die Fehlerterme in der Regression
+untereinander korreliert sind.
+Wie bei der Heteroskedastizität ist die Varianz-Kovarianz Matrix eine andere
+als ursprünglich angenommen:
+im Falle der Heteroskedastizität lag die Abweichung auf der Hauptdiagonalen,
+also der Varianz der einzelnen Fehlerterme, die nicht wie laut A4 konstant ist.
+Im Falle der Autokorrelation liegt das Problem abseits der Hauptdiagonale, bei
+den Kovarianzen der einzelnen Fehler.
+Standardmäßig nehmen wir an, dass diese Kovarianz gleich Null ist, in der Praxis
+ist diese Annahme möglicherweise nicht erfüllt.</p>
+<p>Besonders häufig tritt Autokorrelation auf, wenn wir mit Zeitreihendaten arbeiten.
+Denn dann ist es sogar sehr plausibel, dass die Fehler einer Beobachtung in <span class="math inline">\(t\)</span>
+mit denen aus der Vorperiode <span class="math inline">\(t-1\)</span> zusammenhängen.
+Entsprechend groß ist die Literatur zur Autokorrelation in der Zeitreihenanalyse
+und Panel-Schätzung. Auch wenn Zeitreihenanalysen und Panel-Schätzungen hier
+nicht weiterführend diskutiert werden ist es hilfreich sich die Folgen von
+Autokorrelation auch jetzt schon anzusehen.</p>
+<div id="folgen-von-autokorrelation" class="section level3" number="11.3.1">
+<h3><span class="header-section-number">11.3.1</span> Folgen von Autokorrelation</h3>
+<p>Wir wissen zwar von der Herleitung des OLS-Schätzers bereits, dass
+Autokorrelation keinen Einfluss auf die Erwartungstreue des Schätzers hat, wir
+wollen aber dennoch die Folgen von Autokorrelation durch eine kleine Monte Carlo
+Simulation (MCS) illustrieren.</p>
+<p>Dazu erstellen wir zunächst einen künstlichen Datensatz in dem die Fehler unterschiedlich
+stark miteinander korreliert sind.</p>
+<p>Um die Variablen mit vorher spezifizierter Korrelation zu erstellen verwenden
+wir wieder die Funktion <code>mvrnorm</code> aus dem Paket
+<a href="https://github.com/cran/MASS">MASS</a> <span class="citation">(Venables and Ripley <a href="#ref-R-mass" role="doc-biblioref">2002</a>)</span>.
+Eine genauere Erläuterung findet sich
+<a href="https://stats.stackexchange.com/questions/83172/generate-two-variables-with-precise-pre-specified-correlation">hier</a>.</p>
+<p>Das Ergebnis der Simulation lässt sich in Abbildung <a href="advlin.html#fig:MCautokorr">11.5</a>
+ablesen.</p>
+<div class="figure" style="text-align: center"><span id="fig:MCautokorr"></span>
+<img src="Chap-advlinmodels_files/figure-html/MCautokorr-1.png" alt="Folgen der Autokorrelation mit Bezug auf Erwartungstreue und Effizienz anhand von Monte Carlo Simulationen." width="75%" height="75%" />
+<p class="caption">
+Figure 11.5: Folgen der Autokorrelation mit Bezug auf Erwartungstreue und Effizienz anhand von Monte Carlo Simulationen.
+</p>
+</div>
+<p>Wie erwartet bleiben die Schätzer erwartungstreu, büßen aber deutlich an
+Effizienz ein wenn die Autokorrelation größer wird.
+Betrachten wir nun noch die geschätzten Standardfehler in
+Abbildung <a href="advlin.html#fig:MCautokorr2">11.6</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:MCautokorr2"></span>
+<img src="Chap-advlinmodels_files/figure-html/MCautokorr2-1.png" alt="Folgen der Autokorrelation mit Bezug auf Standardfehler anhand von Monte Carlo Simulationen." width="75%" height="75%" />
+<p class="caption">
+Figure 11.6: Folgen der Autokorrelation mit Bezug auf Standardfehler anhand von Monte Carlo Simulationen.
+</p>
+</div>
+<p>Wie bei der Heteroskedastie hat Autokorrelation einen großen Einfluss auf die
+geschätzten Standardfehler.
+Da auch hier geschätzten Standardfehler falsch sind müssen wir entsprechend
+kontrollieren.</p>
+</div>
+<div id="testen-auf-autokorrelation" class="section level3" number="11.3.2">
+<h3><span class="header-section-number">11.3.2</span> Testen auf Autokorrelation</h3>
+<p>Wie bei der Heteroskedastie sollten wir auch beim Testen auf Autokorrelation
+grafische und quantitative Tests kombinieren.
+Für die grafische Analyse verwenden wir wie vorher den Tukey-Anscombe Plot der
+Residuen (siehe Abschnitt <a href="#advlin-hetero-test"><strong>??</strong></a>).
+Die Idee ist, dass wenn in den ‘echten’ Fehlern Autokorrelation vorherrscht wir
+das auch in den Residuen beobachten können.
+Abbildung <a href="advlin.html#fig:autokorrtest">11.7</a> verdeutlicht, wie wir Autokorrelation in den
+entsprechenden Abbildungen erkennen können.</p>
+<div class="figure" style="text-align: center"><span id="fig:autokorrtest"></span>
+<img src="Chap-advlinmodels_files/figure-html/autokorrtest-1.png" alt="Unterschiedlich starke Autokorrelation im Tukey-Anscombe Plot." width="75%" height="75%" />
+<p class="caption">
+Figure 11.7: Unterschiedlich starke Autokorrelation im Tukey-Anscombe Plot.
+</p>
+</div>
+<p>Gerade bei Anwendungen außerhalb der Zeitreihenökonometrie ist Autokorrelation
+aber grafisch nicht so einfach zu identifizieren.
+Dennoch ist gerade bei der starken Autokorrelation offensichtlich, dass die
+Kovarianz der Fehler nicht gleich Null ist.</p>
+<blockquote>
+<p><strong>Die vielen Arten von Autokorrelation</strong>
+Das Problem beim Testen auf Autokorrelation ist, dass die Fehler natürlich auf sehr
+viele Arten miteinander korreliert sein können.
+In Zeitreihen beobachten wir häufig einen so genannten <em>autoregressiven Prozess</em>,
+bei dem die Fehler in <span class="math inline">\(t\)</span> folgendermaßen bestimmt sind:
+<span class="math inline">\(\epsilon_t=\rho\epsilon_{t-1}+u\)</span>, wobei <span class="math inline">\(u\propto\mathcal{N}(0,\sigma^2)\)</span>.
+Es sind aber natürlich viele weitere Möglichkeiten denkbar, was es
+schwierig macht <em>allgemeine</em> Tests für Autokorrelation zu entwickeln.
+Wenn wir aufgrund von theoretischen Überlegungen eine bestimmte Struktur der
+Autokorrelation vermuten, können wir spezialisierte Tests verwenden, die über
+deutlich größere Power verfügen als allgemeine Tests.</p>
+</blockquote>
+<p>Es gibt diverse Tests für Autokorrelation, die für jeweils unterschiedliche
+Settings besonders gut oder weniger gut geeignet sind.
+Insofern macht es Sinn sich für den konkreten Anwendungsfall die am besten
+passenden Tests herauszusuchen und immer mehr als einen Test zu verwenden.
+Im Folgenden werden einige prominente Tests vorgestellt.</p>
+<p>Häufig verwendet wird der <em>Box–Pierce</em>, bzw. <em>Ljung–Box</em> Test,
+welche die <span class="math inline">\(H_0\)</span> keiner Autokorrelation testen.
+Sie unterscheiden sich in der genauen Berechnung der Teststatistik und können
+als Alternativhypothese eine Autokorrelation von unterschiedlichen Graden
+testen.
+Mit unterschiedlichen Graden meinen wir die Anzahl der Lags, also der
+Verzögerungen, zwischen den Beobachtungen, deren Fehler noch miteinander
+korreliert sind. Standardmäßig testen wir gegen eine Autokorrelation mit Grad 1,
+allerdings können je nach Anwendungsfall auch höhere Grade sinnvoll sein.</p>
+<p>Die Funktion <code>Box.test()</code> kann verwendet werden um diese Tests durchzuführen.
+Das erste Argument sind immer die Residuen der zu untersuchenden Regression,
+mit dem Argument <code>type</code> wird dann der Test (<code>"Box-Pierce"</code> oder <code>"Ljung-Box"</code>)
+ausgewählt und mit <code>lag</code> der Grad der Autokorrelation.
+Entsprechend testen wir folgendermaßen auf eine Autokorrelation mit Grad 1:</p>
+<div class="sourceCode" id="cb821"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb821-1"><a href="advlin.html#cb821-1" aria-hidden="true"></a><span class="kw">Box.test</span>(mid_acl<span class="op">$</span>residuals, <span class="dt">lag =</span> <span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;Box-Pierce&quot;</span>)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; 	Box-Pierce test
+#&gt; 
+#&gt; data:  mid_acl$residuals
+#&gt; X-squared = 9.5899, df = 1, p-value = 0.001957</code></pre>
+<p>bzw.:</p>
+<div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb823-1"><a href="advlin.html#cb823-1" aria-hidden="true"></a><span class="kw">Box.test</span>(mid_acl<span class="op">$</span>residuals, <span class="dt">lag =</span> <span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;Ljung-Box&quot;</span>)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; 	Box-Ljung test
+#&gt; 
+#&gt; data:  mid_acl$residuals
+#&gt; X-squared = 9.8805, df = 1, p-value = 0.00167</code></pre>
+<p>In beiden Fällen muss <span class="math inline">\(H_0\)</span> abgelehnt werden.
+Wir müssen also von Autokorrelation ausgehen!</p>
+<p>Ein anderer bekannter Test auf Autokorrelation ist der <em>Durbin-Watson Test</em>,
+der allerdings nicht besonders robust ist.
+Wir können diesen Test mit der Funktion <code>dwtest()</code> aus dem Paket <code>lmtest</code>
+implementieren.
+Dazu übergeben wir als erstes Argument das Schätzobjekt der zu überprüfenden
+Schätzung:</p>
+<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb825-1"><a href="advlin.html#cb825-1" aria-hidden="true"></a><span class="kw">dwtest</span>(small_acl)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; 	Durbin-Watson test
+#&gt; 
+#&gt; data:  small_acl
+#&gt; DW = 1.9569, p-value = 0.3741
+#&gt; alternative hypothesis: true autocorrelation is greater than 0</code></pre>
+<p><span class="math inline">\(H_0\)</span> des DW-Tests ist keine Autokorrelation.
+Im aktuellen Fall können wir <span class="math inline">\(H_0\)</span> (keine Autokorrelation) nicht ablehnen und
+wir brauchen uns keine Gedanken über Autokorrelation machen.
+Allerdings können wir die Alternativhypothese des Tests selbst über das
+Argument <code>alternative</code> festlegen.
+Wir haben dabei die Wahl zwischen verschiedenen Strukturen der Autokorrelation,
+nämlich ob die Fehler in zukünftigen Beobachtungen <em>positive</em>
+(<code>alternative="greater"</code>) oder <em>negativ</em> (<code>alternative="less"</code>) von dem Fehler
+in der aktuellen Beobachtung abhängen.
+Sind wir uns unsicher wählen wir am besten einen zweiseitigen Test
+(<code>alternative="two.sided"</code>).
+Wie immer ist die Power des Tests größer wenn wir <span class="math inline">\(H_1\)</span> restriktiver wählen.</p>
+<p>Im folgenden Beispiel ist die tatsächliche Autokorrelation positiv.
+Die Rolle der gewählten <span class="math inline">\(H_1\)</span> wird so deutlich:</p>
+<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb827-1"><a href="advlin.html#cb827-1" aria-hidden="true"></a><span class="kw">dwtest</span>(mid_acl, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; 	Durbin-Watson test
+#&gt; 
+#&gt; data:  mid_acl
+#&gt; DW = 1.3469, p-value = 0.0003333
+#&gt; alternative hypothesis: true autocorrelation is greater than 0</code></pre>
+<p>Hier gibt der Test also korrektermaßen Autokorrelation an.
+Testen wir dagegen gegen die ‘falsche’ <span class="math inline">\(H_1\)</span>:</p>
+<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="advlin.html#cb829-1" aria-hidden="true"></a><span class="kw">dwtest</span>(mid_acl, <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; 	Durbin-Watson test
+#&gt; 
+#&gt; data:  mid_acl
+#&gt; DW = 1.3469, p-value = 0.9997
+#&gt; alternative hypothesis: true autocorrelation is less than 0</code></pre>
+<p>In diesem Fall wird keine entsprechende Autokorrelation gefunden.
+Im Zweifel ist daher der zweiseitige Test vorzuziehen:</p>
+<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="advlin.html#cb831-1" aria-hidden="true"></a><span class="kw">dwtest</span>(mid_acl, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; 	Durbin-Watson test
+#&gt; 
+#&gt; data:  mid_acl
+#&gt; DW = 1.3469, p-value = 0.0006667
+#&gt; alternative hypothesis: true autocorrelation is not 0</code></pre>
+<p>Hier wird <span class="math inline">\(H_0\)</span> wieder korrektermaßen verworfen.</p>
+<p>Zuletzt wollen wir noch den <em>Breusch-Godfrey Test</em> einführen, der als
+relativ robust und breit anwendbar gilt.
+Er wird mit der Funktion <code>bgtest()</code> aus dem Pakelt <code>lmtest</code> durchgeführt.
+Hier wird als erstes Argument wieder das Regressionsobjekt übergeben.
+Als Spezifikationsalternativen können wir wiederum den höchsten Grad der zu
+testenden Autokorrelation (Argument <code>order</code>) und die Art der Teststatisik
+(Argument <code>type</code>) auswählen.</p>
+<p>Zum Beispiel:</p>
+<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="advlin.html#cb833-1" aria-hidden="true"></a><span class="kw">bgtest</span>(mid_acl, <span class="dt">order =</span> <span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;F&quot;</span>)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; 	Breusch-Godfrey test for serial correlation of order up to 1
+#&gt; 
+#&gt; data:  mid_acl
+#&gt; LM test = 10.702, df1 = 1, df2 = 97, p-value = 0.001483</code></pre>
+<p>Oder:</p>
+<div class="sourceCode" id="cb835"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb835-1"><a href="advlin.html#cb835-1" aria-hidden="true"></a><span class="kw">bgtest</span>(mid_acl, <span class="dt">order =</span> <span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;Chisq&quot;</span>)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; 	Breusch-Godfrey test for serial correlation of order up to 1
+#&gt; 
+#&gt; data:  mid_acl
+#&gt; LM test = 9.9367, df = 1, p-value = 0.00162</code></pre>
+<p>Insgesamt bedarf die richtige Wahl des Tests einige theoretische Überlegungen
+für den Anwendungsfall und wir sollten uns nicht auf das Ergebnis eines
+einzelnen Tests verlassen!</p>
+</div>
+<div id="reaktionen-auf-autokorrelation" class="section level3" number="11.3.3">
+<h3><span class="header-section-number">11.3.3</span> Reaktionen auf Autokorrelation</h3>
+<p>Falls wir Autokorrelation in den Residuen finden sollten wir aktiv werden und die
+Standardfehler unserer Schätzung äquivalent zur Heteroskedastie korrigieren.
+Da der Schätzer selbt weiterhin erwartungstreu ist können wir die OLS-Schätzer
+als solche weiterverwenden.
+Effizienzgewinne sind durch alternative Schätzverfahren möglich, werden hier aber
+nicht weiter verfolgt.</p>
+<p>Das Vorgehen ist dabei quasi äquivalent zum Fall der Heteroskedastie.
+Wir berechnen wieder zunächst eine robuste Varianz-Kovarianzmatrix
+mit der Funktion <code>vcovHAC()</code> aus dem Paket
+<code>sandwich</code> und korrigieren dann die Standardfehler mit der Funktion
+<code>coeftest()</code> and dem Paket <code>lmtest</code>.
+Beachten Sie, dass die resultierenden Standardfehler robust sowohl gegen
+Heteroskedastie als auch Autokorrelation sind.</p>
+<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb837-1"><a href="advlin.html#cb837-1" aria-hidden="true"></a>var_covar_matrix &lt;-<span class="st"> </span><span class="kw">vcovHAC</span>(large_acl) </span>
+<span id="cb837-2"><a href="advlin.html#cb837-2" aria-hidden="true"></a><span class="kw">coeftest</span>(large_acl, <span class="dt">vcov. =</span> var_covar_matrix)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; t test of coefficients:
+#&gt; 
+#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept) 0.186245   0.919704  0.2025   0.8399    
+#&gt; x           0.768353   0.015084 50.9371   &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Diese unterscheiden sich offensichtlich von den nicht-korrigierten
+Standardfehlern:</p>
+<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb839-1"><a href="advlin.html#cb839-1" aria-hidden="true"></a><span class="kw">summary</span>(large_acl)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = y ~ x, data = dgp_acl(0.5, 0.75, 1:100, 0.85))
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min      1Q  Median      3Q     Max 
+#&gt; -2.5399 -1.1799 -0.1028  1.0744  3.5191 
+#&gt; 
+#&gt; Coefficients:
+#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept) 0.186245   0.304383   0.612    0.542    
+#&gt; x           0.768353   0.005233 146.833   &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 1.511 on 98 degrees of freedom
+#&gt; Multiple R-squared:  0.9955,	Adjusted R-squared:  0.9954 
+#&gt; F-statistic: 2.156e+04 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div id="multikollinearität" class="section level2" number="11.4">
+<h2><span class="header-section-number">11.4</span> Multikollinearität</h2>
+<p>In den OLS-Annahmen schließen wir lediglich <em>perfekte Multikollinearität</em> aus.
+Diese läge vor, wenn eine erklärende Variable eine lineare Funktion einer anderen
+erklärenden Variable wäre.
+Da wir in diesem Falle die Matrix <span class="math inline">\(\boldsymbol{X}\)</span> in der Formel für
+<span class="math inline">\(\boldsymbol{\hat{\beta}}\)</span> nicht invertierbar, wir können
+<span class="math inline">\(\boldsymbol{X&#39;X\hat{\beta}}=\boldsymbol{X&#39;Y}\)</span>
+also nicht berechnen und der OLS Schätzer ist überhaupt nicht identifizierbar.</p>
+<p>Es zeigt sich jedoch, dass bereits die Existenz von moderater Multikollinearität
+wichtige Implikationen für den OLS Schätzer hat.
+Wir sprechen von moderater Multikollinearität wenn zwei oder mehrere
+erklärende Variablen miteinander korrelieren.
+Wie wir sehen werden nimmt in diesem Falle die Schätzgenauigkeit ab, weswegen
+man die Inklusion stark miteinander korrlierter erklärenden Variablen vermeiden
+sollte.</p>
+<div id="folgen-von-multikollinearität" class="section level3" number="11.4.1">
+<h3><span class="header-section-number">11.4.1</span> Folgen von Multikollinearität</h3>
+<p>Gehen wir einmal von folgender Regressionsgleichung aus:</p>
+<p><span class="math display">\[Y_i = \hat{\beta}_0 + \hat{\beta}_1 x_{i1} + \hat{\beta}_2 x_{i2} + e\]</span></p>
+<p>Zunächst wollen wir den Effekt von Multikollinearität per Monte Carlo Simulation
+ergründen.
+Zu diesem Zweck erstellen wir drei Datensätze:
+einen mit wenig, einen mit mittel und einen mit stark korrelierten
+erklärenden Variablen. Davon abgesehen bleiben die OLS Annahmen erfüllt.
+Um die Variablen mit vorher spezifizierter Korrelation zu erstellen verwenden
+wir wieder die Funktion <code>mvrnorm</code> aus dem Paket
+<a href="https://github.com/cran/MASS">MASS</a> <span class="citation">(Venables and Ripley <a href="#ref-R-mass" role="doc-biblioref">2002</a>)</span>.
+Eine genauere Erläuterung findet sich
+<a href="https://stats.stackexchange.com/questions/83172/generate-two-variables-with-precise-pre-specified-correlation">hier</a>.</p>
+<div class="sourceCode" id="cb841"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb841-1"><a href="advlin.html#cb841-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="st">&quot;123&quot;</span>)</span>
+<span id="cb841-2"><a href="advlin.html#cb841-2" aria-hidden="true"></a>stichprobengroesse &lt;-<span class="st"> </span><span class="dv">500</span></span>
+<span id="cb841-3"><a href="advlin.html#cb841-3" aria-hidden="true"></a>r_small &lt;-<span class="st"> </span><span class="fl">0.0</span></span>
+<span id="cb841-4"><a href="advlin.html#cb841-4" aria-hidden="true"></a>r_mid &lt;-<span class="st"> </span><span class="fl">0.4</span></span>
+<span id="cb841-5"><a href="advlin.html#cb841-5" aria-hidden="true"></a>r_large &lt;-<span class="st"> </span><span class="fl">0.9</span></span>
+<span id="cb841-6"><a href="advlin.html#cb841-6" aria-hidden="true"></a></span>
+<span id="cb841-7"><a href="advlin.html#cb841-7" aria-hidden="true"></a>data_small =<span class="st"> </span><span class="kw">mvrnorm</span>(<span class="dt">n=</span>stichprobengroesse, <span class="dt">mu=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
+<span id="cb841-8"><a href="advlin.html#cb841-8" aria-hidden="true"></a>                     <span class="dt">Sigma=</span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, r_small, r_small, <span class="dv">1</span>), </span>
+<span id="cb841-9"><a href="advlin.html#cb841-9" aria-hidden="true"></a>                                  <span class="dt">nrow=</span><span class="dv">2</span>), <span class="dt">empirical=</span><span class="ot">TRUE</span>)</span>
+<span id="cb841-10"><a href="advlin.html#cb841-10" aria-hidden="true"></a></span>
+<span id="cb841-11"><a href="advlin.html#cb841-11" aria-hidden="true"></a>data_mid =<span class="st"> </span><span class="kw">mvrnorm</span>(<span class="dt">n=</span>stichprobengroesse, <span class="dt">mu=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
+<span id="cb841-12"><a href="advlin.html#cb841-12" aria-hidden="true"></a>                   <span class="dt">Sigma=</span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, r_mid, r_mid, <span class="dv">1</span>), </span>
+<span id="cb841-13"><a href="advlin.html#cb841-13" aria-hidden="true"></a>                                <span class="dt">nrow=</span><span class="dv">2</span>), <span class="dt">empirical=</span><span class="ot">TRUE</span>)</span>
+<span id="cb841-14"><a href="advlin.html#cb841-14" aria-hidden="true"></a></span>
+<span id="cb841-15"><a href="advlin.html#cb841-15" aria-hidden="true"></a>data_large =<span class="st"> </span><span class="kw">mvrnorm</span>(<span class="dt">n=</span>stichprobengroesse, <span class="dt">mu=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
+<span id="cb841-16"><a href="advlin.html#cb841-16" aria-hidden="true"></a>                     <span class="dt">Sigma=</span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, r_large, r_large, <span class="dv">1</span>), </span>
+<span id="cb841-17"><a href="advlin.html#cb841-17" aria-hidden="true"></a>                                  <span class="dt">nrow=</span><span class="dv">2</span>), <span class="dt">empirical=</span><span class="ot">TRUE</span>)</span>
+<span id="cb841-18"><a href="advlin.html#cb841-18" aria-hidden="true"></a></span>
+<span id="cb841-19"><a href="advlin.html#cb841-19" aria-hidden="true"></a>x_<span class="dv">1</span>_small =<span class="st"> </span>data_small[, <span class="dv">1</span>]  </span>
+<span id="cb841-20"><a href="advlin.html#cb841-20" aria-hidden="true"></a>x_<span class="dv">1</span>_mid =<span class="st"> </span>data_mid[, <span class="dv">1</span>]  </span>
+<span id="cb841-21"><a href="advlin.html#cb841-21" aria-hidden="true"></a>x_<span class="dv">1</span>_large =<span class="st"> </span>data_large[, <span class="dv">1</span>]  </span>
+<span id="cb841-22"><a href="advlin.html#cb841-22" aria-hidden="true"></a></span>
+<span id="cb841-23"><a href="advlin.html#cb841-23" aria-hidden="true"></a>x_<span class="dv">2</span>_small =<span class="st"> </span>data_small[, <span class="dv">2</span>]  </span>
+<span id="cb841-24"><a href="advlin.html#cb841-24" aria-hidden="true"></a>x_<span class="dv">2</span>_mid =<span class="st"> </span>data_mid[, <span class="dv">2</span>]  </span>
+<span id="cb841-25"><a href="advlin.html#cb841-25" aria-hidden="true"></a>x_<span class="dv">2</span>_large =<span class="st"> </span>data_large[, <span class="dv">2</span>]  </span>
+<span id="cb841-26"><a href="advlin.html#cb841-26" aria-hidden="true"></a></span>
+<span id="cb841-27"><a href="advlin.html#cb841-27" aria-hidden="true"></a><span class="kw">cor</span>(x_<span class="dv">1</span>_small, x_<span class="dv">2</span>_small)  <span class="co"># Test</span></span></code></pre></div>
+<pre><code>#&gt; [1] -1.929638e-16</code></pre>
+<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb843-1"><a href="advlin.html#cb843-1" aria-hidden="true"></a><span class="kw">cor</span>(x_<span class="dv">1</span>_mid, x_<span class="dv">2</span>_mid)  <span class="co"># Test</span></span></code></pre></div>
+<pre><code>#&gt; [1] 0.4</code></pre>
+<div class="sourceCode" id="cb845"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb845-1"><a href="advlin.html#cb845-1" aria-hidden="true"></a><span class="kw">cor</span>(x_<span class="dv">1</span>_large, x_<span class="dv">2</span>_large)  <span class="co"># Test</span></span></code></pre></div>
+<pre><code>#&gt; [1] 0.9</code></pre>
+<p>Analog zum Vorgehen oben führen wir nun eine Monte Carlo Simulation durch, in
+der wir wiederholt Stichproben aus einem künstlich generierten Datensatz ziehen
+und das oben beschriebene Modell mit Hilfe von OLS schätzen.
+Dies führt zu der in Abbildung <a href="#MCmultikoll"><strong>??</strong></a> aufgezeigten Verteilung der
+Schätzer.</p>
+<div class="figure" style="text-align: center"><span id="fig:MCmultikoll"></span>
+<img src="Chap-advlinmodels_files/figure-html/MCmultikoll-1.png" alt="Folgen der Multikollinearität mit Bezug auf Erwartungstreue und Effizienz anhand von Monte Carlo Simulationen." width="75%" height="75%" />
+<p class="caption">
+Figure 11.8: Folgen der Multikollinearität mit Bezug auf Erwartungstreue und Effizienz anhand von Monte Carlo Simulationen.
+</p>
+</div>
+<p>Wie wir sehen wird die Schätzgenauigkeit für die Schätzer von <span class="math inline">\(\beta_1\)</span> und
+<span class="math inline">\(\beta_2\)</span> deutlich reduziert!
+Auf den Schätzer des Achsenabschnitts hat Multikollinearität dagegen keinen
+Einfluss.</p>
+<p>Auch analytisch kann der Effekt von Multikollinearität gezeigt werden.
+Betrachten wir dazu die folgenden <em>Hilfsregressionen</em>:</p>
+<p><span class="math display">\[\begin{align}
+x_{i1} &amp;= \hat{\beta}_0^a + \hat{\beta}_3^a x_{i3} + e^a\\
+x_{i2} &amp;= \hat{\beta}_0^a + \hat{\beta}_2^a x_{i1} + e^a\\
+\end{align}\]</span></p>
+<p>Bei <span class="math inline">\(k\)</span> erklärenden Variablen ergeben sich die <span class="math inline">\(k-1\)</span> Hilfsregressionen durch
+eine Umstellung bei der wir eine erklärende Variable auf die LHS der
+Regressionsgleichung ziehen und alle weiteren erklärenden Variablen auf der RHS
+belassen.
+Im Folgenden bezeichnen wir mit <span class="math inline">\(R^2_h\)</span> das Bestimmtheitsmaß der h-ten
+Hilfsregression (also der Hilfsregression mit <span class="math inline">\(x_{ih}\)</span> als abhängiger Variable).</p>
+<p>Es kann nun gezeigt werden, dass für die Varianz des Schätzers
+<span class="math inline">\(\boldsymbol{\hat{\beta}}\)</span> Folgendes gilt (siehe <span class="citation">Greene (<a href="#ref-greene" role="doc-biblioref">2018</a>)</span> für Details):</p>
+<p><span class="math display">\[Var(\beta_h) = \frac{\sigma^2}{\left(1-R_h^2\right)\sum_{i=1}^n\left(x_{ih}-\bar{x_h}\right)^2} \]</span>
+Hieraus wird unmittelbar ersichtlich, dass die Varianz des Schätzers steigt
+je größer das Bestimmtheitsmaß der Hilfsregressionen ist!</p>
+<p>Gleichzeitig wissen wir aus den obigen Herleitungen auch, dass Multikollinearität
+keinen Einfluss auf die Erwartungstreue oder Effizienz des OLS-Schätzers hat.
+Beachten Sie, dass wir den Begriff <em>Effizienz</em> hier immer relativ verwenden:
+unter Multikollinearität wird der OLS-Schätzer weniger genau, aber er bleibt
+dennoch der genauste Schätzer, den wir zur Verfügung haben.</p>
+</div>
+<div id="testen-auf-multikollinearität" class="section level3" number="11.4.2">
+<h3><span class="header-section-number">11.4.2</span> Testen auf Multikollinearität</h3>
+<p>Da der Begriff der Multikollinearität nicht exakt definiert ist (außer für den
+Fall der perfekten Multikollinearität) gibt es natürlich keinen exakten Test.
+Die Frage welches Ausmaß an Korrelation zwischen den erklärenden Variablen
+akzeptabel ist, ist demnach auch immer eine individuelle Entscheidung.
+Es haben sich jedoch einige Faustregeln herausgebildet die zumindest hilfreich
+sind um festzustellen ob Multikollinearität die Größe der Standardfehler in
+unserer Regression erklären kann.</p>
+<p>Zu diesem Zweck führen wir wieder die <em>Hilfsregressionen</em> von oben durch.
+Die Bestimmtheitsmaße <span class="math inline">\(R^2\)</span> dieser Hilfsregressionen geben uns einen Hinweis auf das
+Ausmaß der Korrelation zwischen den erklärenden Variablen.
+Ist eines der Bestimmtheitsmaße ähnlich groß wie das Bestimmtheitsmaß der
+‘originalen’ Regression macht es Sinn sich über Multikollinearität Gedanken zu
+machen.</p>
+<p>Alternativ können wir uns natürlich auch die paarweisen Korrelationen der
+erklärenden Variablen anschauen, allerdings berücksichtigt das nicht
+die Korrelation mehrerer Variablen untereinander - die Hilfsregressionen sind da
+der bessere Weg!</p>
+</div>
+<div id="reaktionen-auf-multikollinearität" class="section level3" number="11.4.3">
+<h3><span class="header-section-number">11.4.3</span> Reaktionen auf Multikollinearität</h3>
+<p>Grundsätzlich sollten Sie es vermeiden, stark miteinander korrlierte Variablen
+gemeinsam als erklärende Variablen in einer Regression zu verwenden.
+Gleichzeitig werden wir weiter unten sehen, dass das Weglassen von Variablen
+schwerwiegende Konsequenzen für die Erwartungstreue des OLS-Schätzers haben kann
+(Stichtwort <em>omitted variable bias</em>, siehe <a href="advlin.html#advlin-omitted-var">unten</a>).
+Insofern müssen wir immer sehr gut überlegen ob wir eine Variable aus der
+Schätzgleichung eliminieren können.</p>
+<p>Manchmal können wir die Daten transformieren um die Multikollinearität zu
+senken oder alternative Variablen erheben, häufig bleibt uns aber auch nichts
+anderes übrig als uns zu ärgern und die Kröte der Multikollinearität zu schlucken.</p>
+</div>
+</div>
+<div id="advlin-omitted-var" class="section level2" number="11.5">
+<h2><span class="header-section-number">11.5</span> Vergessene Variablen</h2>
+<p>Stellen wir uns vor, der ‘wahre’ datengenerierende Prozess sähe folgendermaßen
+aus:</p>
+<p><span class="math display">\[\boldsymbol{y} = \beta_0 + \beta_1 \boldsymbol{x}_1 + \beta_2 \boldsymbol{x}_2 + \boldsymbol{\epsilon}\]</span></p>
+<p>Aufgrund geistiger Umnachtung haben wir in unserem Modell <span class="math inline">\(\boldsymbol{x}_2\)</span>
+aber nicht berücksichtigt. Unser geschätztes Modell ist also:</p>
+<p><span class="math display">\[\boldsymbol{\hat{y}} = \hat{\beta_0} + \hat{\beta_1} \boldsymbol{x}_1 + \boldsymbol{e}\]</span></p>
+<p>Wir haben also eine erklärende Variable vergessen.
+Dies ist ein praktisch hochrelevantes Problem, denn häufig hat man relevante
+Variablen nicht auf dem Schirm oder es gibt zu uns relevant erscheinenden
+Variablen keine Daten.</p>
+<p>Es stellt sich nun die Frage: was sind die Implikationen vergessener Variablen?
+Die Antwort ist recht unbequem, da wir hier nicht so glimpflich wie bisher davon
+kommen:
+im Falle vergessener Variablen ist Annahme A2 nicht mehr erfüllt und unser
+Schätzer <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> ist nun weder erwartungstreu noch konsistent -
+und zwar für alle unabhänigen Variablen in der Regression!</p>
+<div id="folgen-vergessener-variablen" class="section level3" number="11.5.1">
+<h3><span class="header-section-number">11.5.1</span> Folgen vergessener Variablen</h3>
+<p>Zunächst werden wir die Effekt von einer vergessenen Variable per Monte Carlo
+Simulation illustrieren.
+Zu diesem Zweck erzeugen wir Daten gemäß des Modells</p>
+<p><span class="math display">\[\boldsymbol{y} = \beta_0 + \beta_1 \boldsymbol{x}_1 + \beta_2 \boldsymbol{x}_2 + \boldsymbol{\epsilon}\]</span></p>
+<p>schätzen aber nur folgende Spezifikation:</p>
+<p><span class="math display">\[\boldsymbol{\hat{y}} = \hat{\beta_0} + \hat{\beta_1} \boldsymbol{x}_1 + \boldsymbol{e}\]</span>
+Das Ergebnis der Simulation ist in Abbildung <a href="advlin.html#fig:MComittedvar">11.9</a> ersichtlich.</p>
+<div class="figure" style="text-align: center"><span id="fig:MComittedvar"></span>
+<img src="Chap-advlinmodels_files/figure-html/MComittedvar-1.png" alt="Folgen der vergessenen Variablen mit Bezug auf Erwartungstreue anhand von Monte Carlo Simulationen." width="75%" height="75%" />
+<p class="caption">
+Figure 11.9: Folgen der vergessenen Variablen mit Bezug auf Erwartungstreue anhand von Monte Carlo Simulationen.
+</p>
+</div>
+<p>Wir sehen also, dass unsere OLS-Schätzer nun nicht mehr erwartungstreu sind!
+Dies können wir auch recht einfach analytisch zeigen.
+Nehmen wir generell an, das korrekte Modell sei gegeben durch:</p>
+<p><span class="math display">\[\boldsymbol{y} = \boldsymbol{X\beta} + \boldsymbol{z}\gamma + \boldsymbol{\epsilon} \]</span>
+wobei <span class="math inline">\(\boldsymbol{z}\)</span> hier eine unabhängige Variable ist, die wir normalerweise
+in <span class="math inline">\(\boldsymbol{X}\)</span> inkludiert hätten, hier zu Illustrationszwecken jedoch
+separat angeben um zu zeigen, was passiert wenn wir diese Variable vergessen.
+<span class="math inline">\(\gamma\)</span> ist der zugehörige zu schätzende Parameter.</p>
+<p>Wenn wir diese Gleichung nun schätzen ohne <span class="math inline">\(\boldsymbol{z}\)</span> zu berücksichtigen
+bekommen wir folgenden Schätzer:</p>
+<p><span class="math display">\[\boldsymbol{\hat{\beta}} = \left( \boldsymbol{X&#39;X} \right)^{-1} \boldsymbol{X&#39;y} =
+\boldsymbol{\beta} + \left( \boldsymbol{X&#39;X} \right)^{-1} \boldsymbol{X&#39;z\gamma} +
+\left( \boldsymbol{X&#39;X} \right)^{-1} \boldsymbol{X&#39;\epsilon}\]</span></p>
+<p>Daraus resultiert, dass:</p>
+<p><span class="math display">\[\mathbb{E}(\boldsymbol{\hat{\beta}} | \boldsymbol{X, z}) = \boldsymbol{\beta} + \left( \boldsymbol{X&#39;X} \right)^{-1} \boldsymbol{X&#39;z\gamma}\]</span></p>
+<p>Das bedeutet, dass <span class="math inline">\(\boldsymbol{\hat{\beta}}\)</span> nicht erwartungstreu ist, es sei
+denn (1) <span class="math inline">\(\boldsymbol{\gamma}=0\)</span> oder (2) <span class="math inline">\(\boldsymbol{X&#39;z}=0\)</span>.
+Fall (1) würde bedeuten, dass <span class="math inline">\(\boldsymbol{z}\)</span> für die Analyse unserer abhängigen
+Variable gar nicht relevant wäre. Das würde bedeuten, wir hätten die Variable
+nicht ‘vergessen’, sondern zu Recht nicht inkludiert.
+Fall (2) würde bedeutetn, dass <span class="math inline">\(\boldsymbol{z}\)</span> mit keiner der anderen
+erklärenden Variablen korreliert.
+Es ist sehr unwahrscheinlich, dass dies der Fall ist sollte <span class="math inline">\(\boldsymbol{z}\)</span>
+tatsächlich relevant für die Erklärung von <span class="math inline">\(\boldsymbol{y}\)</span> sein.</p>
+<p>Das Vergessen relevanter Variablen führt also zu einer Korrelation der anderen
+unabhängigen Variablen mit dem Fehlerterm, da der Effekt von <span class="math inline">\(\boldsymbol{z}\)</span>
+dann im Fehlerterm steckt und dieser dann mit den anderen unabhängigen Variablen
+korreliert. Zudem gilt, dass <span class="math inline">\(\mathbb{E}(\epsilon)\neq0\)</span>.
+Das alles geht mit einem Verlust der Erwartungstreue und auch der Konsistenz
+des Schätzers einher.
+Daher können wir die Verzerrung auch durch eine Vergößerung der Stichprobe
+nicht beheben.</p>
+</div>
+<div id="testen-auf-vergessene-variablen" class="section level3" number="11.5.2">
+<h3><span class="header-section-number">11.5.2</span> Testen auf vergessene Variablen</h3>
+<p>Da wir den wahren datenerzeugenden Prozess nicht kennen ist es unmöglich direkt
+zu testen ob wir eine relevante Variable vergessen haben.
+Es gibt einen möglichen Test, der die Verwendung von <em>Instrumentenvariablen</em>
+einschließt - ein Thema, das wir später behandeln werden - allerdings basiert
+auch dieser Test dann wiederum auf nicht zu testenden Annahmen.
+<!-- Add chapter reference as soon as chapter was added --></p>
+<p>Insgesamt müssen wir uns hier also vor allem auf unsere theoretischen
+Überlegungen verlassen:
+wir müssen überlegen welche Variablen einen Einfluss auf unsere zu erklärende
+Variable haben könnten und diese Variablen müssen dann auf die eine oder andere
+Weise in der Regression berücksichtigt werden!</p>
+</div>
+<div id="reaktion-auf-vergessene-variablen" class="section level3" number="11.5.3">
+<h3><span class="header-section-number">11.5.3</span> Reaktion auf vergessene Variablen</h3>
+<p>Das ist diesmal einfach: fügen Sie ‘einfach’ die relevanten Variablen zu Ihrer
+Regression hinzu.
+Wenn Sie dazu keine Daten haben hilft Ihnen allerhöchstens die Verwendung von
+<em>Instrumentenvariablen</em>.<a href="#fn94" class="footnote-ref" id="fnref94"><sup>94</sup></a></p>
+</div>
+</div>
+<div id="falsche-funktionale-form" class="section level2" number="11.6">
+<h2><span class="header-section-number">11.6</span> Falsche funktionale Form</h2>
+<p>Eine zentrale Annahme des linearen Regressionsmodells ist die Linearität des
+datenerzeugenden Prozesses (A1).
+Wenn diese Annahme verletzt ist wäre unser Schätzer weder erwartungstreu noch
+konsistent.</p>
+<p>Wir haben aber auch gelernt, dass die Annahme der Linearität sich nur auf die
+<em>Parameter</em> bezieht.
+Das bedeutet, dass bestimmte nicht-lineare Zusammenhänge durchaus mit OLS
+geschätzt werden können, wenn wir die Daten entsprechend transformieren.
+Dies geschieht durch die Wahl der funktionalen Form.
+Am besten wir illustrieren dies durch ein univariates Beispiel.</p>
+<p>So ist auf den ersten Blick ersichtlich, dass der Zusammenhang zwischen BIP und
+Konsumausgaben direkt linear ist, siehe Abbildung <a href="advlin.html#fig:linearBIP">11.10</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:linearBIP"></span>
+<img src="Chap-advlinmodels_files/figure-html/linearBIP-1.png" alt="Linearer Zusammenhang zwischen BIP und Konsumausgaben." width="75%" height="75%" />
+<p class="caption">
+Figure 11.10: Linearer Zusammenhang zwischen BIP und Konsumausgaben.
+</p>
+</div>
+<p>Wir könnten den Zusammenhang also unmittelbar mit OLS schätzen ohne gegen
+Annahme A1 zu verstoßen.</p>
+<p>Der Zusammenhang zwischen BIP pro Kopf und Kindersterblichkeit im Jahr 2000
+erscheint dagegen nicht linear zu sein, siehe Abbildung <a href="advlin.html#fig:nonlinearBIP">11.11</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:nonlinearBIP"></span>
+<img src="Chap-advlinmodels_files/figure-html/nonlinearBIP-1.png" alt="Nicht-linearer Zusammenhang zwischen BIP und Kindersterblichkeit." width="75%" height="75%" />
+<p class="caption">
+Figure 11.11: Nicht-linearer Zusammenhang zwischen BIP und Kindersterblichkeit.
+</p>
+</div>
+<p>Wenn wir diesen Zusammenhang mit OLS schätzen würden, würden wir klar gegen
+Annahme A1 verstoßen. Die Konsequenz wäre, dass unser Schätzer weder erwartungstreu,
+noch konsistent noch effizient wäre.</p>
+<p>Gleichzeitig können wir durch die Wahl einer alternativen funktionalen Form den
+Zusammenhang linearisieren.
+Dazu nehmen wir einfach den Logarithmus, wie in Abbildung <a href="advlin.html#fig:logBIP">11.12</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:logBIP"></span>
+<img src="Chap-advlinmodels_files/figure-html/logBIP-1.png" alt="Logarithmierter Zusammenhang zwischen BIP und Kindersterblichkeit." width="75%" height="75%" />
+<p class="caption">
+Figure 11.12: Logarithmierter Zusammenhang zwischen BIP und Kindersterblichkeit.
+</p>
+</div>
+<p>Diesen Zusammenhang können wir nun mit OLS schätzen ohne gegen A1 zu verstoßen!
+Das zeigt, dass die falsche Wahl der funktionalen Form, also die nicht korrekte
+Transformation der Variablen, große Implikationen für die Eigenschaften unserer
+Schätzer haben kann!</p>
+<div id="folgen-einer-falschen-funktionalen-form" class="section level3" number="11.6.1">
+<h3><span class="header-section-number">11.6.1</span> Folgen einer falschen funktionalen Form</h3>
+<p>Wie bereits erwähnt bezieht sich die Wahl der funktionalen Form direkt auf
+Annahme A1.
+Wie wir oben gesehen haben ist diese Annahme wichtig um die Konsistenz und
+Erwartungstreue des OLS-Schätzers herzuleiten.
+Mit anderen Worten:
+ist A1 nicht erfüllt, z.B. durch die Wahl einer falschen funktionalen Form,
+ist der OLS-Schätzer nicht mehr erwartungstreu und konsistent.
+Wir müssen also entweder die funktionale Form ändern oder ein anderes
+Schätzverfahren wählen.</p>
+</div>
+<div id="testen-auf-die-richtige-funktionale-form" class="section level3" number="11.6.2">
+<h3><span class="header-section-number">11.6.2</span> Testen auf die richtige funktionale Form</h3>
+<p>Bei der Wahl der funktionalen Form spielen vor allem theoretische Überlegungen
+eine wichtige Rolle.
+Auch eine Inspektion der paarweisen Beziehungen zwischen abhängigen und
+unabhängigen Variablen ist hilfreich.</p>
+<p>Eine wirksame Methode zur Überprüfung unserer funktionalen Form ist dagegen
+die Inspektion des Tukey-Anscombe Plots.
+Haben wir die richtige Form gewählt werden wir hier keine Struktur erkennen
+können.
+Zeigen die Residuen jedoch eine klare Struktur auf ist das ein Signal, dass wir
+eine andere funktionale Form ausprobieren sollten.
+Natürlich kann die Struktur der Residuen auch andere Gründe haben, z.B.
+Heteroskedastie.
+Für diese Gründe gibt es jedoch zusätzlich noch statistische Tests sodass wir
+durch sukszessives Testen und Ausprobieren eine angemessene funktionale Form
+identifizieren können.</p>
+<p>Es gibt auch einige Tests, die manchmal verwendet werden um die Wahl der
+funktionalen Form zu überprüfen.
+Der bekannteste Test ist dabei der so genannte <em>RESET Test</em>.
+<em>RESET</em> steht dabei für <em>REgression Specification Error Test</em>.
+Dieser Test wird mit der Funktion <code>resettest()</code> durchgeführt und testet die
+<span class="math inline">\(H_0\)</span>, dass wir die richtige funktionale Form gewählt haben.</p>
+<p>Wir illustrieren den Test anhand folgenden Beispiels, in dem wir den uns bereits
+bekannten Datensatz zu Journaldaten analysieren.</p>
+<p>Wir betrachten den Zusammenhang zwischen der Abonnentenanzahl und dem Preis pro
+Zitation. Wie wir in Abbildung <a href="advlin.html#fig:Journalnonlinear">11.13</a> sehen ist dieser Zusammenhang alles andere linear:</p>
+<div class="figure" style="text-align: center"><span id="fig:Journalnonlinear"></span>
+<img src="Chap-advlinmodels_files/figure-html/Journalnonlinear-1.png" alt="Nicht-linearer Zusammenhang zwischen Abonnenten und dem Preis pro Zitation" width="75%" height="75%" />
+<p class="caption">
+Figure 11.13: Nicht-linearer Zusammenhang zwischen Abonnenten und dem Preis pro Zitation
+</p>
+</div>
+<p>Für die folgende Spezifikation wäre der OLS-Schätzer also weder konsistent noch
+erwartungstreu, da hier ein klarer Verstoß gegen A1 vorliegen würde.
+Die folgende Schätzung ist entsprechend nicht zu gebrauchen:</p>
+<p><span class="math display">\[\text{Abonnenten} = \beta_0 + \beta_1 \text{Zitationspreis} + \epsilon\]</span></p>
+<div class="sourceCode" id="cb847"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb847-1"><a href="advlin.html#cb847-1" aria-hidden="true"></a>lin_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(Abonnenten<span class="op">~</span><span class="st">`</span><span class="dt">Preis pro Zitation</span><span class="st">`</span>, <span class="dt">data=</span>journal_daten)</span></code></pre></div>
+<p>Wenn wir aber beide Größen logarithmieren würden, wäre der Zusammenhang schon
+ziemlich linear, siehe Abbildung <a href="advlin.html#fig:Journalelog">11.14</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:Journalelog"></span>
+<img src="Chap-advlinmodels_files/figure-html/Journalelog-1.png" alt="Logarithmierter Zusammenhang zwischen Abonnenten und Preis pro Zitation." width="75%" height="75%" />
+<p class="caption">
+Figure 11.14: Logarithmierter Zusammenhang zwischen Abonnenten und Preis pro Zitation.
+</p>
+</div>
+<p>Die folgende Gleichung wäre also nicht unbedingt mit einem Verstoß gegen A1 verbunden:</p>
+<p><span class="math display">\[\ln(\text{Abonnenten}) = \beta_0 + \beta_1 \ln(\text{Zitationspreis}) + \epsilon\]</span></p>
+<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb848-1"><a href="advlin.html#cb848-1" aria-hidden="true"></a>log_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(Abonnenten)<span class="op">~</span><span class="kw">log</span>(<span class="st">`</span><span class="dt">Preis pro Zitation</span><span class="st">`</span>), <span class="dt">data=</span>journal_daten)</span></code></pre></div>
+<p>Wir verwenden die Funktion <code>resettest()</code> um diese Intuition zu überprüfen.
+Zunächst testen wir auf eine Misspezifikation im linearen Modell, indem wir
+der Funktion <code>resettest()</code> das Schätzobjekt übergeben:</p>
+<div class="sourceCode" id="cb849"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb849-1"><a href="advlin.html#cb849-1" aria-hidden="true"></a><span class="kw">resettest</span>(lin_mod)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; 	RESET test
+#&gt; 
+#&gt; data:  lin_mod
+#&gt; RESET = 28.99, df1 = 2, df2 = 176, p-value = 1.31e-11</code></pre>
+<p>Wenig überraschend müssen wir die <span class="math inline">\(H_0\)</span> des korrekt spezifizierten Modells klar
+ablehnen.
+Wie sieht es mit dem Log-Lin Modell aus?</p>
+<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb851-1"><a href="advlin.html#cb851-1" aria-hidden="true"></a><span class="kw">resettest</span>(log_mod)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; 	RESET test
+#&gt; 
+#&gt; data:  log_mod
+#&gt; RESET = 1.4409, df1 = 2, df2 = 176, p-value = 0.2395</code></pre>
+<p>Hier kann <span class="math inline">\(H_0\)</span> nicht abgelehnt werden, dementsprechend können wir nicht davon
+ausgehen, dass unser Modell misspezifiziert ist.</p>
+<p>Beachten Sie aber, dass der RESET Test keine abschließende Sicherheit bieten kann.
+Sie werden immer wieder Situationen erleben in denen der RESET Test ein Modell
+ablehnt, das sie aufgrund empirischer und theoretischer Überlegungen gut
+verteidigen könnten und umgekehrt.
+Daher sollte er immer mit Theorie und Beobachtung kombiniert werden.</p>
+</div>
+<div id="wahl-der-funktionalen-form" class="section level3" number="11.6.3">
+<h3><span class="header-section-number">11.6.3</span> Wahl der funktionalen Form</h3>
+<p>Die Wahl der funktionalen Form hat nicht nur das Ziel Annahme 1 zu erfüllen.
+Da auch die Interpretation der geschätzten Koeffizienten je nach funktionaler
+Form eine andere ist, kann die Wahl einer bestimmten funktionalen Form auch
+theoretisch motiviert sein.
+Gerade die so genannten ‘log-log-Modelle’ sind häufig auch theoretisch sehr
+interessant, da wir hier Elastizitäten direkt schätzen können.
+Tabelle <a href="advlin.html#tab:funktform">11.1</a> gibt einen Überblick über häufig gewählte
+Spezifikationen und ihre Interpretation für das einfache lineare Regressionsmodell.
+Für das Modell mit mehreren unabhängigen Variablen ist die Interpretation
+äquivalent.</p>
+<table>
+<caption><span id="tab:funktform">Table 11.1: </span> Spezifikationen der funktionalen Form und ihre Interpretationen.</caption>
+<colgroup>
+<col width="20%" />
+<col width="28%" />
+<col width="51%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Modellart</strong></th>
+<th><strong>Schätzgleichung</strong></th>
+<th><strong>Interpretation der Koeffizienten</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Level-Level</td>
+<td><span class="math inline">\(y=\beta_0+\beta_1x_1+\epsilon\)</span></td>
+<td>Ändert sich <span class="math inline">\(x_1\)</span> um <span class="math inline">\(1\)</span> ändert sich <span class="math inline">\(y\)</span> um <span class="math inline">\(\beta_1\)</span></td>
+</tr>
+<tr class="even">
+<td>Log-Level</td>
+<td><span class="math inline">\(\ln(y)=\beta_0+\beta_1x_1+\epsilon\)</span></td>
+<td>Ändert sich <span class="math inline">\(x_1\)</span> um <span class="math inline">\(1\)</span> ändert sich <span class="math inline">\(y\)</span> c.p. um ca. <span class="math inline">\(100\cdot\beta_1\%\)</span></td>
+</tr>
+<tr class="odd">
+<td>Level-Log</td>
+<td><span class="math inline">\(y=\beta_0+\beta_1\ln(x_1)+\epsilon\)</span></td>
+<td>Ändert sich <span class="math inline">\(x_1\)</span> um ca. <span class="math inline">\(1\%\)</span> ändert sich <span class="math inline">\(y\)</span> c.p. um ca. <span class="math inline">\(\beta_1 / 100\)</span></td>
+</tr>
+<tr class="even">
+<td>Log-Log</td>
+<td><span class="math inline">\(\ln(y)=\beta_0+\beta_1\ln(x_1)+\epsilon\)</span></td>
+<td>Ändert sich <span class="math inline">\(x_1\)</span> um ca. <span class="math inline">\(1\%\)</span> ändert sich <span class="math inline">\(y\)</span> c.p. um ca. <span class="math inline">\(\beta_1\%\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Illustrieren wir die Wahl der funktionalen Form an folgendem Beispiel.
+Die Daten kommen von <span class="citation">Epple and McCallum (<a href="#ref-chicken" role="doc-biblioref">2006</a>)</span> und enthalten Information zum Preis und zum
+Konsum von Hähnchenfleisch.</p>
+<p>Wie in Abbildung <a href="advlin.html#fig:chicken">11.15</a> ersichtlich ist dieser Zusammenhang an sich
+nicht linear, kann aber durch Logarithmieren in eine lineare Form gebracht werden.</p>
+<div class="figure" style="text-align: center"><span id="fig:chicken"></span>
+<img src="Chap-advlinmodels_files/figure-html/chicken-1.png" alt="Nicht-linearer und logarithmierter Zusammenhang zwischen Preis und Konsum von Hühnchenpreis." width="75%" height="75%" />
+<p class="caption">
+Figure 11.15: Nicht-linearer und logarithmierter Zusammenhang zwischen Preis und Konsum von Hühnchenpreis.
+</p>
+</div>
+<p>Die folgende Gleichung ist also konsistent mit A1 und kann entsprechend mit
+OLS geschätzt werden:</p>
+<p><span class="math display">\[\ln(q) = \beta_0 + \beta_1 \ln(p) + \epsilon\]</span></p>
+<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb853-1"><a href="advlin.html#cb853-1" aria-hidden="true"></a>log_model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(q)<span class="op">~</span><span class="kw">log</span>(p), <span class="dt">data =</span> chicken_daten)</span></code></pre></div>
+<p>Diese Form ist dann linear und konsistent mit A1.
+Entsprechend macht es Sinn den Output zu interpretieren.</p>
+<div class="sourceCode" id="cb854"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb854-1"><a href="advlin.html#cb854-1" aria-hidden="true"></a><span class="kw">summary</span>(log_model)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = log(q) ~ log(p), data = chicken_daten)
+#&gt; 
+#&gt; Residuals:
+#&gt;       Min        1Q    Median        3Q       Max 
+#&gt; -0.228363 -0.080077 -0.007662  0.106041  0.218679 
+#&gt; 
+#&gt; Coefficients:
+#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)  3.71694    0.02236   166.2   &lt;2e-16 ***
+#&gt; log(p)      -1.12136    0.04876   -23.0   &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 0.118 on 50 degrees of freedom
+#&gt; Multiple R-squared:  0.9136,	Adjusted R-squared:  0.9119 
+#&gt; F-statistic:   529 on 1 and 50 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Wir würden den geschätzten Koeffizienten von <span class="math inline">\(\beta_1\)</span> folgendermaßen
+interpretieren: wenn der Preis von Hühnerfleisch um <span class="math inline">\(1\%\)</span> steigt wird der
+Konsum um ca. <span class="math inline">\(1.12\%\)</span> zurückgehen.</p>
+</div>
+</div>
+<div id="normalverteilung-der-fehlerterme" class="section level2" number="11.7">
+<h2><span class="header-section-number">11.7</span> Normalverteilung der Fehlerterme</h2>
+<p>Wie oben beschrieben ist die Annahme A5 für die besonders wichtigen
+Eigenschaften <em>Erwartungstreue</em>, <em>Effizienz</em> und <em>Konsistenz</em> nicht notwendig.
+Sie erleichtert aber Hypothesentests und wird häufig als Indiz für ein
+gut spezifiertes Modell gesehen.</p>
+<p>Da wir die Fehlerterme nicht direkt beobachten können wird diese Annahme
+überprüft, indem die Verteilung der Residuen betrachtet wird.
+Damit eine visuelle Inspektion möglichst einfach ist verwenden wir hier einen
+so genannten <em>Q-Q-Plot</em> (siehe dazu Abbildung <a href="advlin.html#fig:QQPlot">11.16</a>).
+Im Q-Q-Plot werden die tatsächlichen Quantile der Verteilung der Residuen
+auf der y-Achse gegen die hypothetischen Quantile einer Normalverteilung
+auf der x-Achse abgebildet.</p>
+<p>Um einen Q-Q-Plot mit <code>ggplot2</code> zu produzieren speichern Sie die Residuen
+Ihrer Schätzung in einem <code>tibble</code> und spezifizieren sie als Ästhetik <code>sample</code>.
+Dann verwenden Sie als <em>geoms</em> die Befehle <code>ggplot2::stat_qq()</code> für die
+Darstellung der Residuen und <code>ggplot2::stat_qq_line()</code> um die Gerade zur
+leichteren Interpretation zu ergänzen:</p>
+<div class="sourceCode" id="cb856"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb856-1"><a href="advlin.html#cb856-1" aria-hidden="true"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(</span>
+<span id="cb856-2"><a href="advlin.html#cb856-2" aria-hidden="true"></a>  <span class="dt">data =</span> tibble<span class="op">::</span><span class="kw">tibble</span>(</span>
+<span id="cb856-3"><a href="advlin.html#cb856-3" aria-hidden="true"></a>    <span class="dt">Residuen=</span>residuals_from_reg1</span>
+<span id="cb856-4"><a href="advlin.html#cb856-4" aria-hidden="true"></a>    ),</span>
+<span id="cb856-5"><a href="advlin.html#cb856-5" aria-hidden="true"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">sample=</span>Residuen)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb856-6"><a href="advlin.html#cb856-6" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">stat_qq</span>() <span class="op">+</span><span class="st"> </span>ggplot2<span class="op">::</span><span class="kw">stat_qq_line</span>() <span class="op">+</span></span>
+<span id="cb856-7"><a href="advlin.html#cb856-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:QQPlot"></span>
+<img src="Chap-advlinmodels_files/figure-html/QQPlot-1.png" alt="Q-Q-Plot zur Überprüfung der Residuen." width="75%" height="75%" />
+<p class="caption">
+Figure 11.16: Q-Q-Plot zur Überprüfung der Residuen.
+</p>
+</div>
+<p>In Abbildung <a href="advlin.html#fig:QQPlot">11.16</a> sind zwei Q-Q-Plots abgebildet.
+Plot <code>a)</code> zeigt einen relativ idealtypischen Q-Q-Plot, bei dem wir guten
+Gewissens von einer Normalverteilung der Residuen ausgehen können:
+hier liegen die Punkte ziemlich exakt auf der Q-Q-Line.
+Bei Plot <code>b)</code> in Abbildung <a href="advlin.html#fig:QQPlot">11.16</a> ist das dagegen nicht der Fall,
+weswegen wir skeptisch bezüglich aller Ergebnisse sein sollten, die auf der
+Normalverteilungsannahme aufbauen, also insbesondere bei den Standardfehlern,
+<span class="math inline">\(p\)</span>-Werten und den Konfidenzintervallen.
+In einem solchen Fall können Sie versuchen, über Transformationen Ihrer Daten
+eine Normalverteilung der Residuen herzustellen.
+Bleibt das erfolglos oder ergibt es im konkreten Anwendungsfall keinen Sinn
+sollten Sie die Unsicherheit Ihrer Schätzung nicht über die
+normalen Standardfehler messen, sondern sich Techniken wie dem <em>Huber-Schätzer</em>
+oder dem <em>Bootstrap</em> bedienen.</p>
+</div>
+<div id="weitere-fehlerquellen-systematische-messfehler-selbstselektion-und-simulatanität" class="section level2" number="11.8">
+<h2><span class="header-section-number">11.8</span> Weitere Fehlerquellen: Systematische Messfehler, Selbstselektion und Simulatanität</h2>
+<p>Annahme A2, Exogenität der unabhängigen Variablen, kann nur aufgrund von drei
+weiteren Gründen verletzt werden:
+aufgrund von Messfehlern, von Selbstselektion der Stichprobe und
+aufgrund von Simulatanität.
+Diese Fehlerquellen sind etwas anders geartet als die anderen hier besprochenen
+Probleme:
+hier liegt keine direkte Fehlspezifikation des Modells vor, sondern der Fehler
+geschieht entweder auf Ebene der Datenerhebung (Messfehler, Selbstselektion)
+oder ist dem zu untersuchenden Zusammenhang inhärent (Simulatanität).
+Insofern können wir nicht wirklich auf diese Fehler testen sondern müssen
+bei der Auswahl unserer Daten und der Formulierung unseres Modells diese
+Fehlerquellen in Betracht ziehen.</p>
+<p>Im Folgenden wollen wir kurz darstellen wie diese drei Fehlerquellen zu einer
+Verletzung von A2 führen.</p>
+<div id="messfehler" class="section level3" number="11.8.1">
+<h3><span class="header-section-number">11.8.1</span> Messfehler</h3>
+<p>Falls wir unsere <strong>abhängige</strong> Variable nicht korrekt messen können
+hängen die Implikationen von der Art des Messfehlers ab.
+Nehmen wir dazu an, die <em>korrekte</em> abhängige Variable wäre
+<span class="math inline">\(y^*\)</span>.
+Wir verfügen aber nur über eine näherungsweise Messung, <span class="math inline">\(y&#39;\)</span>.
+Wenn es sich um einen zufälligen und additiven Messfehler handelt,
+also <span class="math inline">\(y^*=y&#39;+w\)</span> und <span class="math inline">\(w\propto\mathcal{N}(0, \sigma^2)\)</span>, dann kann
+man zeigen, dass der OLS Schätzer weiterhin erwartungstreu ist
+und lediglich ein gewisses Maß an Effizienz einbüst, da:</p>
+<p><span class="math display">\[y^* = \boldsymbol{x&#39;\beta} + \boldsymbol{\epsilon}\]</span></p>
+<p><span class="math display">\[y&#39;= \boldsymbol{x&#39;\beta} + \boldsymbol{\epsilon} + \boldsymbol{w}= \boldsymbol{x&#39;\beta} + \boldsymbol{v}\]</span>
+und <span class="math inline">\(\boldsymbol{v}\propto\mathcal{N}(0, \sigma^2_v)\)</span>, wobei <span class="math inline">\(\sigma^2_v&gt;\sigma^2_{\epsilon}\)</span>.</p>
+<p>Bei anderen Formen des Messfehlers, z.B. multiplikativen
+Messfehler, oder besonderen Verteilungen des Messfehlers können
+wir nichts sicher über die Implikationen des Messfehlers sagen.</p>
+<p>Wird dagegen eine <strong>unabhängige</strong> Variable nicht richtig gemessen
+sind die Implikationen in der Regel mit Sicherheit
+problematischer.
+Nehmen wir an, dass <span class="math inline">\(\boldsymbol{x}^*\)</span> die korrekte Variable
+und <span class="math inline">\(\boldsymbol{x}&#39;\)</span> die gemessene Variable ist.
+Betrachten wir dann die folgende Spezifikation:</p>
+<p><span class="math display">\[\boldsymbol{y}=\beta_0 + \beta_1\boldsymbol{x}^* + \boldsymbol{\epsilon}\]</span></p>
+<p>Wenn wieder wie oben gilt <span class="math inline">\(\boldsymbol{x}&#39; = \boldsymbol{x}^* + \boldsymbol{w}\)</span> und damit <span class="math inline">\(\boldsymbol{x}^* = \boldsymbol{x}&#39; - \boldsymbol{w}\)</span>, dann haben wir:</p>
+<p><span class="math display">\[\boldsymbol{y}=\beta_0 + \beta_1(\boldsymbol{x}&#39; - \boldsymbol{w}) + \boldsymbol{\epsilon}\]</span>
+<span class="math display">\[\boldsymbol{y}=\beta_0 + \beta_1\boldsymbol{x}&#39;  + \boldsymbol{\epsilon} - \beta_1\boldsymbol{w}\]</span>
+<span class="math display">\[\boldsymbol{y}=\beta_0 + \beta_1\boldsymbol{x}&#39;  + \boldsymbol{v}\]</span></p>
+<p>In diesem Fall ist aber
+<span class="math inline">\(Cov(\boldsymbol{x&#39;}, \boldsymbol{v})\neq0\)</span>
+und Annahme A2 somit verletzt!
+Im Falle der multiplen Regression wären dabei die Schätzer für
+<em>alle</em> unabhängigen Variablen verzerrt - nicht nur die der
+falsch geschätzten Variable!</p>
+</div>
+<div id="selbstselektion" class="section level3" number="11.8.2">
+<h3><span class="header-section-number">11.8.2</span> Selbstselektion</h3>
+<p>Eine Verzerrung tritt immer dann auf wenn bei der Erhebung der
+Stichprobe Beobachtungen mit bestimmten Werten einer
+unabhängigen Variablen mit größerer Wahrscheinlichkeit Eingang
+in die Stichprobe finden als andere.
+Dies ist besonders bei Umfragestudien eine große Gefahr.
+So sind in der Regel reiche Menschen weniger willig bei einer
+Vermögensumfrage zu antworten.
+Das klassische Beispiel kommt aus der Soziologie:
+Sie möchten über eine Umfrage die Determinanten für Lesekompetenz
+erfragen und schicken dazu das Material per Post an die
+möglichen Studienteilnehmer*innen.
+Wahrscheinlich werden Personen mit schlechten oder gar keinen
+Lesekompetenzen eher nicht antworten - Ihre Stichprobe wäre also
+verzerrt!</p>
+<p><span class="citation">Heckman (<a href="#ref-heckman" role="doc-biblioref">1979</a>)</span> hat gezeigt, dass die Selbstselektion die gleichen
+technischen Konsequenzen hat wie eine vergessene Variable.
+Entsprechend werden wir die Herleitung hier nicht wiederholen.</p>
+</div>
+<div id="simulatanität" class="section level3" number="11.8.3">
+<h3><span class="header-section-number">11.8.3</span> Simulatanität</h3>
+<p>Wir sprechen von Simulatanität wenn ein beidseitiges kausales
+Verhältnis zwischen der abhängigen Variable und einer
+unabhängigen Variable herrscht.</p>
+<p>Betrachten wir dazu folgenden einfaches Beispiel.
+Die Variablen <span class="math inline">\(Y\)</span> und <span class="math inline">\(X\)</span> werden in der Population folgendermaßen
+bestimmt:</p>
+<p><span class="math display">\[\begin{align}
+Y&amp;=\beta_0 + \beta_1 X + u\nonumber\\
+X&amp;=\alpha_0 + \alpha_1 Y + v\nonumber
+\end{align}\]</span></p>
+<p>Wenn wir die Werte jeweils in die andere Gleichung einsetzen
+erhalten wir:</p>
+<p><span class="math display">\[\begin{align}
+Y&amp;=\frac{\beta_0+\beta_1\alpha_0}{1-\alpha_1\beta_1} + \frac{\beta_1v+u}{1-\alpha_1\beta_1}\nonumber\\
+X&amp;=\frac{\alpha_0+\alpha_1\beta_0}{1-\alpha_1\beta_1} + \frac{v+\alpha_1u}{1-\alpha_1\beta_1}\nonumber
+\end{align}\]</span></p>
+<p>Wenn wir in einem solchen Fall die Gleichung für <span class="math inline">\(Y\)</span> schätzen
+ergibt sich für
+<span class="math inline">\(Cov(X, u)=Cov(\frac{v+\alpha_1u}{1-\alpha_1\beta_1}, u)\neq 0\)</span>
+und damit wiederum ein Verstoß gegen A2!</p>
+</div>
+</div>
+<div id="anhang-übersicht-über-die-testverfahren" class="section level2" number="11.9">
+<h2><span class="header-section-number">11.9</span> Anhang: Übersicht über die Testverfahren</h2>
+<p>Tabelle <a href="advlin.html#tab:testverfahren">11.2</a> bietet einen Überblick über die verschiedenen
+möglichen Probleme bei OLS Schätzungen, die Tests zur Prüfung dieser Probleme,
+der Implikationen sowie möglicher Lösungsansätze.</p>
+<table>
+<caption><span id="tab:testverfahren">Table 11.2: </span> Übersicht über die Testverfahren.</caption>
+<colgroup>
+<col width="19%" />
+<col width="32%" />
+<col width="28%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Problem</strong></th>
+<th><strong>Mögliche Tests</strong></th>
+<th><strong>Implikationen</strong></th>
+<th><strong>Reaktion</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Heteroskedastie</td>
+<td>Tukey-Anscombe Plot, Breusch-Pagan (<code>bptest()</code>), Goldfeld-Quandt (<code>gqtest</code>)</td>
+<td>Reduzierte Effizienz, falsche Standardfehler</td>
+<td>Robuste Standardfehler</td>
+</tr>
+<tr class="even">
+<td>Autokorrelation</td>
+<td>Tukey-Anscombe Plot, Box–Pierce/Ljung–Box (<code>Box.test</code>), Durbin-Watson (<code>dwtest</code>), Breusch-Godfrey (<code>bgtest()</code>)</td>
+<td>Reduzierte Effizienz, falsche Standardfehler</td>
+<td>Robuste Standardfehler</td>
+</tr>
+<tr class="odd">
+<td>Multikollinearität</td>
+<td>Hilfsregressionen</td>
+<td>Größere Standardfehler</td>
+<td>Ggf. alternative unabh. Variablen verwenden</td>
+</tr>
+<tr class="even">
+<td>Falsche funktionale Form</td>
+<td>Theorie, RESET-Test, Tukey-Anscombe Plot</td>
+<td>Verzerrter und ineffizienter Schätzer</td>
+<td>Funktionale Form anpassen</td>
+</tr>
+<tr class="odd">
+<td>Vergessene Variablen</td>
+<td>Theorie, Tukey-Anscombe Plot</td>
+<td>Verzerrter und ineffizienter Schätzer</td>
+<td>Variablen ergänzen</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="advlin-proofs" class="section level2" number="11.10">
+<h2><span class="header-section-number">11.10</span> Anhang: Relevante Theoreme und ihre mathematischen Beweise</h2>
+<p>An dieser Stelle werden alle relevanten Theoreme gesammelt.
+Während wir im Hauptteil des Kapitels die Implikationen der Theoreme anhand
+von Monte Carlo Simulationen illustriert haben finden Sie hier die
+dazugehörigen mathematischen Beweise.</p>
+<div id="theoreme" class="section level3" number="11.10.1">
+<h3><span class="header-section-number">11.10.1</span> Theoreme</h3>
+<p>Bei <span class="math inline">\(\sigma^2\)</span> aus Gleichung  in Theorem  handelt es sich um einen unbekannten Parameter der Population, also Teil des DGP, den wir so nicht direkt beobachten k"onnen.
+Wir m"ussen diesen Parameter also "uber die Stichprobe sch"atzen.
+Daf"ur ben"otigen wir einen entsprechenden Sch"atzer (siehe Theorem ).</p>
+</div>
+<div id="beweise" class="section level3" number="11.10.2">
+<h3><span class="header-section-number">11.10.2</span> Beweise</h3>
 
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-chicken">
+<p>Epple, Dennis, and Bennett T. McCallum. 2006. “Simultaneous Equation Econometrics: The Missing Example.” <em>Economic Inquiry</em> 44 (2).</p>
+</div>
+<div id="ref-greene">
+<p>Greene, William H. 2018. <em>Econometric Analysis</em>. New York, NY: Pearson.</p>
+</div>
+<div id="ref-heckman">
+<p>Heckman, James. 1979. “Sample Selection Bias as a Specification Error.” <em>Econometrica</em>. <a href="https://doi.org/doi:10.2307/1912352">https://doi.org/doi:10.2307/1912352</a>.</p>
+</div>
+<div id="ref-R-mass">
+<p>Venables, W. N., and B. D. Ripley. 2002. <em>Modern Applied Statistics with S</em>. Fourth. New York: Springer. <a href="http://www.stats.ox.ac.uk/pub/MASS4">http://www.stats.ox.ac.uk/pub/MASS4</a>.</p>
+</div>
+<div id="ref-R-sandwich">
+<p>Zeileis, Achim. 2004. “Econometric Computing with HC and HAC Covariance Matrix Estimators.” <em>Journal of Statistical Software</em> 11 (10): 1–17. <a href="https://doi.org/10.18637/jss.v011.i10">https://doi.org/10.18637/jss.v011.i10</a>.</p>
+</div>
+<div id="ref-R-lmtest">
+<p>Zeileis, Achim, and Torsten Hothorn. 2002. “Diagnostic Checking in Regression Relationships.” <em>R News</em> 2 (3): 7–10. <a href="https://CRAN.R-project.org/doc/Rnews/">https://CRAN.R-project.org/doc/Rnews/</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="90">
+<li id="fn90"><p>
+Das ist insofern auch logisch, da wir ja einfach eine neue Variable <span class="math inline">\(z=x_2^2\)</span>
+erstellen und diese dann als unabhängige Variable in der Regression
+verwenden könnten. Dann würde noch nicht einmal der Anschein der Nichtlinearität
+erweckt obwohl die Werte der unabhängigen Variablen die gleichen wären.<a href="advlin.html#fnref90" class="footnote-back">↩︎</a></p></li>
+<li id="fn91"><p>Wen der Beweis interessiert
+wird in <span class="citation">Greene (<a href="#ref-greene" role="doc-biblioref">2018</a>)</span> fündig.<a href="advlin.html#fnref91" class="footnote-back">↩︎</a></p></li>
+<li id="fn92"><p>Eigentlich
+ist <span class="math inline">\(\plim\)</span> noch allgemeiner definiert, für die Anwendungen in der Ökonometrie
+ist diese Definition aber ausreichend. Wundern Sie sich aber nicht, wenn Sie in
+manchen mathematischen Texten leicht andere Definitionen finden.<a href="advlin.html#fnref92" class="footnote-back">↩︎</a></p></li>
+<li id="fn93"><p>Die mathematischen
+Grundlagen behandeln wir hier nicht, sie werden aber in der
+weiterführenden Literatur erläutert, z.B. in Kapitel 4 von <span class="citation">Greene (<a href="#ref-greene" role="doc-biblioref">2018</a>)</span>.<a href="advlin.html#fnref93" class="footnote-back">↩︎</a></p></li>
+<li id="fn94"><p>Für eine genauere Einführung in Instrumentenvariablen
+siehe z.B. <span class="citation">Greene (<a href="#ref-greene" role="doc-biblioref">2018</a>)</span>.<a href="advlin.html#fnref94" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
