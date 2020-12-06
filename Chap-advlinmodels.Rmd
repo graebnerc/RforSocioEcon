@@ -1,18 +1,7 @@
 # Fortgeschrittene Themen der linearen Regression {#advlin}
 
-<!--
-@Birte: Bitte alle cross-referenzen im Text checken, es sollte immer mit runden 
-klammern sein.
-Bitte im PDF dann auch nochmal checken ob die referenzen tatsächlich funktioniert
-haben.
-
-ANTWORT: Habe sie mal gecheckt im code, und zumindest hier sieht alles gut aus. An 2 Stellen gab es noch Referenzen zum Anhang in diesem Format: [im Anhang](#advlin-proofs), also mit eckigen Klammern und dann #. Die habe ich jetzt auch in der format "im Anhang \@ref(advlin-proofs)" umgeändert. korrekt? oder sollte das für die anhangreferenz in diesem alten format bleiben?
--->
-
-
-
 ```{r include=FALSE}
-knitr::opts_chunk$set(comment = "#>")
+knitr::opts_chunk$set(comment = "#>", message = F, warning = F)
 knitr::opts_chunk$set(out.height = '75%', out.width = '75%', fig.align = 'center') 
 ```
 
@@ -320,8 +309,6 @@ Für die gesamten Daten ergibt sich dabei auch ein Erwartungswert von $0$,
 also $\mathbb{E}\left[\boldsymbol{\epsilon} \right]=0$, 
 allerdings eben *nicht* für jede einzelne Beobachtung.
 Häufig tritt diese Problem bei quadratischen Zusammenhängen auf.
-
-<!-- @Claudius: mit a und b machen und checken dass die bilder zum text passen  -->
 
 Wichtig ist festzuhalten, dass dies eine Annahme über nicht zu beobachtende 
 Größen darstellt: die tatsächlichen Fehlerterme $\boldsymbol{\epsilon}$
@@ -2314,11 +2301,6 @@ interpretieren: wenn der Preis von Hühnerfleisch um $1\%$ steigt wird der
 Konsum um ca. $1.12\%$ zurückgehen.
 
 ## Normalverteilung der Fehlerterme
-
-<!-- 
-@Birte: Bitte diesen neuen Teil auch nochmal besonders checken. ANTWORT: find
-es super so. nur beim letzten satz mit bootstrap und Huber schätzer vllt noch ne quelle hinzufügen?
--->
 
 Wie oben beschrieben ist die Annahme A5 für die besonders wichtigen 
 Eigenschaften *Erwartungstreue*, *Effizienz* und *Konsistenz* nicht notwendig.
