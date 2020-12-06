@@ -36,24 +36,24 @@ Skript schreiben und dies dann ausführen.
 
 Als Beispiel für die erste Möglichkeit wollen wir mit Hilfe von R die Zahlen 
 `2` und `5` miteinander addieren. 
-Zu diesem Zweck können wir einfach `2 + 2` in die Konsole eingeben, und den
+Zu diesem Zweck können wir einfach `2 + 5` in die Konsole eingeben, und den
 Befehl mit 'Enter' an den Computer senden. 
-Da es sich beim Ausdruck `2 + 3` um korrekten R Code handelt, 'versteht' der
+Da es sich beim Ausdruck `2 + 5` um korrekten R Code handelt, 'versteht' der
 Computer was wir von ihm wollen und gibt uns das entsprechende Ergebnis aus:
 
 
 ```r
-2 + 3
+2 + 5
 ```
 
 ```
-#> [1] 5
+#> [1] 7
 ```
 
 Die Zeichenkombination `#>` am Beginn der Zeile zeigt an, dass es sich bei 
 dieser Zeile um den Output eines R-Befehlt handelt. Das kann bei Ihrem
 Computer durchaus anders aussehen. 
-Das Ergebnis von `2+3` ist eine Zahl (genauer: ein 'Skalar'). 
+Das Ergebnis von `2+5` ist eine Zahl (genauer: ein 'Skalar'). 
 In R werden Skalare immer als Vektor der Länge 1 dargestellt.
 Die `[1]` gibt also an, dass hier ein Vektor der Länge 1 angezeigt wird.
 Wäre das Ergebnis unserer Berechnung ein Vektor der Länge 2 würde die 
@@ -68,11 +68,11 @@ vom Computer ignoriert und man kann sich an dieser Stelle Notizen im Code machen
 
 
 ```r
-2 + 2 # Addition
+2 + 5 # Addition
 ```
 
 ```
-#> [1] 4
+#> [1] 7
 ```
 
 
@@ -1966,7 +1966,9 @@ Funktion `data.frame()`, wobei es hier in der Regel ratsam ist das optionale
 Argument `stringsAsFactors` auf `FALSE` zu setzen, da sonst Wörter in so 
 genannte Faktoren umgewandelt werden:^[Zur Geschichte dieses wirklich
 ärgerlichen Verhaltens siehe 
-[diesen Blog](https://simplystatistics.org/2015/07/24/stringsasfactors-an-unauthorized-biography/).]
+[diesen Blog](https://simplystatistics.org/2015/07/24/stringsasfactors-an-unauthorized-biography/). Zwar wurde das Standardverhalten mit R 4.0 umgestellt, allerdings empfiehlt
+sich die explizite Setzung von `stringsAsFactors=F` trotzdem, damit der Code 
+auch mit älteren Versionen gut funktioniert.]
 
 
 ```r
@@ -2266,7 +2268,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7fe728df72d8>
+#> <bytecode: 0x7ff5da5ef6b8>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2297,7 +2299,7 @@ dplyr::lead
 #>     vec_c(vec_slice(inputs$x, -seq_len(n)), vec_rep(inputs$default, 
 #>         n))
 #> }
-#> <bytecode: 0x7fe70fcbc2f8>
+#> <bytecode: 0x7ff5f915ee80>
 #> <environment: namespace:dplyr>
 ```
 

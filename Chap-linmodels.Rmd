@@ -76,9 +76,13 @@ bip_daten <- data.table::fread(pfad_bip_daten)
 zusätzliches Einkommen auf die Konsumausgaben in einer Volkswirtschaft 
 auswirken.^[Dabei handelt es sich natürlich um ein eher stilisiertes Beispiel:
 Der Konsum ist ja Teil der Definition des BIP, weswegen ein starker Zusammenhang
-keine Überraschung wäre. Zusammenhänge, die in der Forschung betrachtet werden,
-sind oft weit weniger trivial und die Variablen auf der rechten und linken Seite
-stehen normalerweise nicht in einem wechselseitigen Definitionsverhältnis.] 
+keine Überraschung und eine lineare Regression in diesem Kontext sogar sehr 
+irreführend wäre - mehr dazu in Kapitel \@ref(advlin).
+Zusammenhänge, die in der Forschung betrachtet werden,
+sind oft weit weniger trivial und so gut wie immer steht auf der rechten Seite
+mehr als eine Variable. Alles was Sie für die *einfache* lineare Regression
+lernen gilt aber fast genauso für die *multiple* lineare Regression, die wir 
+dann später in Abschnitt \@ref(lin-multi) kennen lernen werden.] 
 Daher stellen wir folgendes Modell auf:
 
 $$C_i = \beta_0 + \beta_1 Y_i + \epsilon_i$$
@@ -920,7 +924,7 @@ Untersuchungsgegenstandes miteinander vergleichen will - in diesem Fall geht es
 nur darum, welches Modell das höhere $\bar{R}^2$ hat, weniger um den konkreten 
 Wert.
 
-### Hypothesentests und statistische Signifikanz
+### Hypothesentests und statistische Signifikanz {#linmodelHypothesentests}
 
 Wie sicher können wir uns mit den geschätzten Parametern für $\beta_0$ und 
 $\beta_1$ sein? 

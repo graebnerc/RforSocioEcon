@@ -2,13 +2,14 @@
 
 
 
-In diesem Kapitel werden wir auf den formalen Konzepten des letzten Kapitels,
-insbesondere auf den Regeln zur Matrizenalgebra aufbauen und die Annahmen
-und Funktionsweise des OLS-Schätzers genauer untersuchen.
-Der OLS-Schätzer ist das am weitesten verbreitete Schätzverfahren für die
+In diesem Kapitel werden wir auf den formalen Konzepten des Kapitels
+\@ref(formalia) aufbauen, insbesondere auf den Regeln zur Matrizenalgebra.
+Damit werden wir die Annahmen und Funktionsweise des OLS-Schätzers genauer 
+untersuchen. Der OLS-Schätzer, den wir bereits im vorigen Kapitel kennengelernt
+haben, ist das am weitesten verbreitete Schätzverfahren für die
 lineare Regression.
 In diesem Kapitel werden wir sehen, dass dies an seinen attraktiven 
-Eigenschaften wie *Erwartungsreue*, *Effizienz* und *Konsistenz* liegt.
+Eigenschaften wie *Erwartungstreue*, *Effizienz* und *Konsistenz* liegt.
 
 Wie alle Schätzverfahren baut der OLS-Schätzer jedoch auf bestimmten 
 Annahmen auf und es muss uns immer klar sein, dass der OLS-Schätzer
@@ -16,16 +17,20 @@ seine attraktiven Eigenschaften nur hat, wenn diese Annahmen erfüllt sind.
 Für die Praxis sind also die folgenden vier Fragen relevant:
 
 1. Was sind die relevanten Annahmen des OLS-Schätzers?
-2. Was passiert wenn die Annahmen nicht erfüllt sind?
+2. Was passiert mit dem OLS-Schätzer wenn die Annahmen nicht erfüllt sind?
 3. Wie können wir überprüfen ob diese Annahmen erfüllt sind?
-4. Was können wir tun wenn die Annahmen *nicht* erfüllt sind?
+4. Was sind mögliche Lösungsstrategien wenn die Annahmen unseres 
+Schätzers *nicht* erfüllt sind?
 
 Diese Fragen zu beantworten ist die zentrale Herausforderung in diesem Kapitel.
+Die erste Frage haben wir dabei im vorigen Kapitel bereits angefangen, verbal zu
+diskutieren. Diese Diskussion soll nun weiter formalisiert, vertieft und 
+schließlich erweitert werden.
 
 Der Fokus des Hauptkapitels liegt dabei auf der zugrundeliegenden Intuition.
-Daher werden wir uns dort nicht mit den mathematischen Beweisen beschäftigen,
+Daher werden wir uns nicht mit den mathematischen Beweisen beschäftigen,
 sondern das Verhalten des OLS-Schätzers anhand von Simulationen illustrieren.
-Für alle interessierten gibt es jedoch am Ende des Kapitels einen Überblick zu 
+Für alle Interessierten gibt es jedoch am Ende des Kapitels einen Überblick zu 
 allen relevanten Theoremen und ihren mathematischen Beweisen 
 (siehe [Anhang zu Theoremen und Beweisen](#advlin-proofs)).
 
@@ -46,31 +51,29 @@ library(MASS)
 
 ## Annahmen und Eigenschaften des einfachen OLS Modells
 
-In diesem Abschnitt werden wir zunächst unser neu gewonnenes Wissen über 
-Matrixnotation aus dem [letzten Kapitel](#formalia) verwenden um die uns 
-bereits bekannten Annahmen des OLS Modells in Matrixschreibweise 
-auszudrücken.
+In diesem Abschnitt werden wir zunächst unser Wissen über 
+Matrixnotation aus dem Kapitel \@ref(formalia) verwenden um die uns 
+bereits bekannten Annahmen des OLS Modells aus Kapitel \@ref(linmodel) in
+Matrixschreibweise auszudrücken.
 Das wird sich als enorm hilfreich erweisen da alle modernen Texte und 
 fortgeschrittenen Lehrbücher die Matrixschreibweise verwenden und alle 
 relevanten Beweise und Herleitung sich dieser Notation bedienen.
 
 Danach werden wir uns mit den wichtigen Eigenschaften *Erwartungstreue*,
 *Effizienz* und *Konsistenz* von Schätzern beschäftigen.
-Alles drei sind erstrebenswerte Eigenschaften, über die der OLS Schätzer auch
+Alles drei sind erstrebenswerte Eigenschaften, über die der OLS Schätzer
 verfügt wenn die Annahmen für das OLS Modell erfüllt sind.
 Allerdings kann er diese Eigenschaften verlieren wenn einzelne Annahmen 
-verletzt sind. 
-Um die Konsequenzen verletzter Annahmen zu illustrieren verwenden wir häufig die
-Methode der *Monte Carlo Simulation*, die wir am Ende dieses Abschnitts einführen
-werden.
-Einen Überlick zu allen relevanten Theoremen und ihren mathematischen Beweisen
-finden Sie am Ende des Kapitels, im [Anhang zu Theoremen und Beweisen](#advlin-proofs).
+verletzt sind. Um die Konsequenzen verletzter Annahmen zu illustrieren verwenden 
+wir häufig die Methode der *Monte Carlo Simulation*, die wir am Ende dieses 
+Abschnitts einführen werden.
+
 
 ### Annahmen im Matrixschreibweise
 
 An dieser Stelle werden wir die uns aus [diesem Abschnitt](#ols-ass) bekannten
-Annahmen für die OLS Schätzung in Matrixschreibweise ausdrücken und leicht 
-zusammenfassen, bzw. ihre Reihenfolge an die in der Literatur typische 
+verbal formulierten Annahmen für die OLS Schätzung in Matrixschreibweise
+ausdrücken und ihre Reihenfolge an die in der Literatur typische 
 Reihenfolge anpassen.
 
 Zu diesem Zweck betrachten wir das folgende Modell:
@@ -79,7 +82,7 @@ $$\boldsymbol{y} = \boldsymbol{x_1}\beta_1 + ... + \boldsymbol{x_k}\beta_k + \bo
 
 in dem $\boldsymbol{y}$ der $1\times n$ Vektor mit den $n$ Beobachtungen 
 der abhängigen Variable ist.
-Für jede der $k$ unabhängige Variable haben wir die Beobachtungen in einem
+Für jede der $k$ unabhängigen Variablen haben wir die Beobachtungen in einem
 $1\times n$ Vektor $\boldsymbol{x_i} (i\in k)$ gesammelt.
 
 Diese $k$ Vektoren werden häufig in der $n\times k$ Matrix $\boldsymbol{X}$ 
@@ -103,14 +106,14 @@ Unter bestimmten Annahmen hat dieser Schätzer die attraktiven Eigenschaften
 großen Stichproben zudem die Eigenschaft der *Konsistenz*.
 Die relevanten Annahmen sind dabei die folgenden:
 
-**A1: Der Zusammenhang zwischen abhängiger und unabhängigen Variablen ist linear**
+**A1: Der Zusammenhang zwischen abhängigen und unabhängigen Variablen ist linear**
 
 Diese Annahme ergibt sich unmittelbar aus der Formulierung: 
 $\boldsymbol{y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}$.
 Ein Beispiel für einen solchen Zusammenhang findet sich an Abbildung 
-\ref{fig:nonlins}a.
+\@ref(fig:nonlins)a.
 
-Wenn der Zusammenhang zwischen abhängiger und unabhängigen Variablen nicht linear
+Wenn der Zusammenhang zwischen abhängigen und unabhängigen Variablen nicht linear
 ist können wir das klassische OLS Modell in der Regel nicht verwenden.
 Häufig können wir aber die Daten so transformieren, dass wir deren Verhältnis
 als linearen Zusammenhang darstellen können.
@@ -120,13 +123,13 @@ So ist z.B. der folgende Zusammenhang nicht linear:
 \boldsymbol{y} = \boldsymbol{x_1}^{\beta_1} + e^{\epsilon}
 \end{align}
 
-wir können aber einfach die Variablen logarithmieren und erhalten somit die
+Wir können aber einfach die Variablen logarithmieren und erhalten somit die
 folgende lineare Gleichung, die wir dann mit OLS schätzen können:
 
 $$\ln(\boldsymbol{y}) = \ln(\boldsymbol{x_1}){\beta_1} + \boldsymbol{\epsilon}$$
 
 Ein Beispiel für einen solchen Zusammenhang findet sich an Abbildung 
-\ref{fig:nonlins}b und c.
+\@ref(fig:nonlins)b und c.
 
 Insgesamt hat das lineare Regressionsmodell kein Problem mit nichtlinearen
 Transformationen für die abhängigen Variablen wie $\ln(\boldsymbol{x_i})$. 
@@ -136,7 +139,7 @@ die abhängigen Variablen in einer nichtlinearen Transformation vorkommen:^[
 Das ist insofern auch logisch, da wir ja einfach eine neue Variable $z=x_2^2$ 
 erstellen und diese dann als unabhängige Variable in der Regression 
 verwenden könnten. Dann würde noch nicht einmal der Anschein der Nichtlinearität
-erweckt obswohl die Werte der unabhängigen Variablen die gleichen wären.
+erweckt obwohl die Werte der unabhängigen Variablen die gleichen wären.
 ]
 
 $$\boldsymbol{y} = \boldsymbol{x_1}{\beta_1} + \boldsymbol{x_2^2}{\beta_2} + \boldsymbol{\epsilon}$$
@@ -149,7 +152,7 @@ durch folgende Gleichung gegeben:
 
 $$\boldsymbol{y} = \boldsymbol{x_1}{\beta_1} + \boldsymbol{x_2^{\beta_2}} + \boldsymbol{\epsilon}$$
 Ein Beispiel für einen solchen Zusammenhang findet sich an Abbildung 
-\ref{fig:nonlins}.
+\@ref(fig:nonlins).
 Wir werden uns später im Kapitel mit der Frage beschäftigen welche funktionalen
 Transformationen besonders hilfreich sind, nichtlineare Zusammenhänge in die
 lineare Form zu bringen.
@@ -160,16 +163,15 @@ lineare Form zu bringen.
 
 }
 
-\caption{\label{fig:nonlins}Lineare und nichtlineare Zusammenhänge.}(\#fig:nonlins)
+\caption{Lineare und nichtlineare Zusammenhänge.}(\#fig:nonlins)
 \end{figure}
 
 
 **A2: Exogenität der unabhängigen Variablen**
 
-Die Annahme kombiniert die beiden Annahmen, die wir vorher unter dem Titel 
-"Unabhängigkeit der Fehler mit den erklärenden Variablen"
-und 
-"Erwartungswert der Fehler gleich Null"
+Die Annahme kombiniert die beiden Annahmen, die wir im vorigen Kaptiel unter dem 
+Titel "Unabhängigkeit der Fehler mit den erklärenden Variablen"
+und "Erwartungswert der Fehler gleich Null"
 kennen gelernt haben.
 In der fortgeschrittenen Literatur ist die Referenz zur Exogenität der 
 unabhängigen Variablen gebräuchlicher.
@@ -205,28 +207,29 @@ $\mathbb{E}\left[\boldsymbol{\epsilon} | \boldsymbol{x} \right]=0$,
 den unbedingten Erwartungswert von Null, 
 $\mathbb{E}\left[\boldsymbol{\epsilon}\right]=0$, impliziert, aber nicht
 andersherum. 
-Folgendes Beispiel illustriert dieses Problem:
+Abbildung \@ref(fig:exogen) illustriert dieses Problem.
 
 
-```
-#> `geom_smooth()` using formula 'y ~ x'
-#> `geom_smooth()` using formula 'y ~ x'
-```
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-4-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
-> In der linken Abbildung haben wir einen bedingten Erwartungswert von Null:
+> In Plot `a)` in  Abbildung \@ref(fig:exogen) haben wir einen bedingten 
+Erwartungswert von Null, also
+$\mathbb{E}\left[\boldsymbol{\epsilon} | \boldsymbol{x} \right]=0$:
 für jede beliebige Beobachtung in $\boldsymbol{x}$ ist der Erwartungswert der
 Fehler Null. 
-Daraus ergibt sich, dass der Erwartungswert für alle Fehler zusammen auch Null 
-ist.
-In der rechten Abbildung ist der bedingte Erwartungswert nicht Null:
+Entsprechend ist der Erwartungswert für alle Fehler zusammen auch Null:
+$\mathbb{E}\left[\boldsymbol{\epsilon} \right]=0$.
+In Plot `b)` aus Abbildung \@ref(fig:exogen) ist der bedingte Erwartungswert 
+nicht Null:
+$\mathbb{E}\left[\boldsymbol{\epsilon} | \boldsymbol{x} \right]\neq0$
 für die untere Hälte der Beobachtungen in $\boldsymbol{x}$ ist der 
-Erwartungswert $1$, für die obere Hälfte der Beobachtungen ist der Erwartungswert
-$-1$.
-Für die gesamten Daten ergibt sich dabei auch ein Erwartungswert von $0$, aber
-eben *nicht* für jede einzelne Beobachtung.
+Erwartungswert $1$, für die obere Hälfte der Beobachtungen ist der 
+Erwartungswert $-1$.
+Für die gesamten Daten ergibt sich dabei auch ein Erwartungswert von $0$, 
+also $\mathbb{E}\left[\boldsymbol{\epsilon} \right]=0$, 
+allerdings eben *nicht* für jede einzelne Beobachtung.
 Häufig tritt diese Problem bei quadratischen Zusammenhängen auf.
 
 Wichtig ist festzuhalten, dass dies eine Annahme über nicht zu beobachtende 
@@ -245,17 +248,17 @@ sind ist notwendig damit der OLS Schätzer
 $\boldsymbol{\hat{\beta}} = 
 \left(\boldsymbol{X'X}\right)^{-1}\left(\boldsymbol{X'Y}\right)$
 überhaupt berechnet werden kann.
-Dann wären zwei oder mehrere unabhängigen Variablen linear abhängig könnten
+Denn wären zwei oder mehrere unabhängige Variablen linear abhängig könnten
 wir von $\boldsymbol{X}$ keine Inverse $\boldsymbol{X}^{-1}$ bilden und 
 der OLS Schätzer von $\boldsymbol{\beta}$ wäre nicht *identifizierbar*.
 Häufig wir diese Annahme auch in 'Matrizensprache' formuliert. 
 Dann sprechen wir von der Annahme, dass die Matrix $\boldsymbol{X}$
 *vollen Rang* hat. 
 Damit ist aber das gleiche gemeint.
-Die Annahme impliziert zudem, dass wir $n\geq k$ und dass es eine gewisse 
+Die Annahme impliziert zudem, dass $n\geq k$ und dass es eine gewisse 
 Variation in den unabhängigen Variablen gibt. 
 All das ist in der Praxis aber immer erfüllt - nur mit dem Problem der 
-nicht perfekten Kollinearität - also der Situation wo die abhängigen Variablen
+nicht perfekten Multikollinearität - also der Situation wo die abhängigen Variablen
 stark miteinander korrelieren - müssen wir uns häufig herumschlagen.
 Doch dazu später mehr.
 
@@ -268,7 +271,7 @@ Für eine Schätzung mit $n$ Beobachtungen handelt es sich dabei um eine
 $n\times n$-Matrix, auf deren Hauptdiagonalen die Varianzen der Fehlerterme
 und in den sonstigen Elementen die Kovarianzen der einzelnen Fehlerpaare 
 gesammelt sind. 
-Für den Fall von zwei abhängigen Variablen hätten wir also folgende 
+Für den Fall von zwei unabhängigen Variablen hätten wir also folgende 
 Varianz-Kovarianz Matrix:
 
 $$
@@ -352,20 +355,29 @@ oder zusammengefasst:
 
 $$\mathbb{E}(\boldsymbol{\epsilon\epsilon'| X}) = \sigma^2\boldsymbol{I}$$ 
 
+Alternativ wird die Annahme auch mit Referenz auf die Varianz-Kovarianz-Matrix
+$\boldsymbol{\Omega}$ angegeben: $\boldsymbol{\Omega}=\sigma^2\boldsymbol{I}$.
+
 **A5: Normalverteilung der Fehlerterme:**
 
-Die letzte typischerweise gemachte Annahme ist die Normalverteilung der 
+Die letzte typischerweise gemachte Annahme ist die der Normalverteilung der 
 Fehlerterme, bedingt wie immer auf die unabhängigen Variablen:
 
 $$\boldsymbol{\epsilon|\boldsymbol{X}} \propto 
-\mathcal{N}(\boldsymbol{0}, \sigma^2\boldsymbol{I})$$
+\mathcal{N}(0, \sigma^2)$$
 
-Diese Annahme vereinfacht zahlreiche Herleitungen ist in der Praxis allerdings 
-weniger relevant, da sie leicht abzuschwächen ist.
+Diese Annahme ist weniger zentral als die anderen Annahmen, weswegen sie häufig
+als 'optional' bezeichnet wird.
+Der Grund dafür ist, dass die gleich eingeführten Eigenschaften des
+OLS-Schätzers der *Erwartungstreue*, *Effizienz* und *Konsistenz* nicht von
+der Korrektheit von A5 abhängen. Vielmehr erleichtert diese Annahme die 
+Durchführung der Hypothesentests, die dem Konzept der statistischen
+Signifikanz zugrunde liegen (siehe Abschnitt \@ref(linmodelHypothesentests) 
+in Kapitel \@ref(linmodel)).
 
 ### Erwartungstreue, Effizienz und Konsistenz
 
-Unter den oben beschriebenen Annahmen weist
+Unter den oben beschriebenen Annahmen weist der Schätzer
 $\boldsymbol{\hat{\beta}}$ drei wichtige Eigenschaften auf:
 (1) er ist *erwartungstreu* und (2) er ist *effizient*, auch in kleinen
 Stichproben.
@@ -374,37 +386,43 @@ Alle Eigenschaften beziehen sich auf die *Verteilung* von $\boldsymbol{\hat{\bet
 (wie im [einführenden Kapitel](#linmodel) beschrieben handelt es sich bei 
 $\boldsymbol{\hat{\beta}}$ ja um eine Zufallsvariable).
 
-Ohne die Konzepte schon eingeführt zu haben wollen dennoch bereits an dieser 
-Stelle festhalten, dass für die Erwartungstreue nur A1 und A2 relevant ist.
-Annahmen A4 und A5 sind nur für Inferenz und Standardfehler sowie die Effizienz
-von Bedeutung.
-A3 ist wie oben beschrieben notwendig, damit der OLS Schätzer überhaupt 
-identifizierbar ist.
+Ohne die Konzepte schon formal eingeführt zu haben wollen dennoch bereits an 
+dieser Stelle festhalten, dass für die Erwartungstreue nur A1 und A2 relevant 
+sind. Annahmen A4 und A5 sind nur für Inferenz und Standardfehler sowie die 
+Effizienz von Bedeutung. A3 ist wie oben beschrieben notwendig, damit der OLS 
+Schätzer überhaupt identifizierbar ist.
 
 Unter **Erwartungstreue** verstehen wir die Eigenschaft, dass der Schätzer im 
 Mittel den 'wahren Wert' $\beta$ trifft, also 
 $\mathbb{E}(\hat{\boldsymbol{\beta}})=\beta$.
 Der Schätzvorgang ist also nicht systematisch verzerrt.
-Das bedeutet natürlich nicht, dass wir für eine *einzelne* Schätzung gilt
+Das bedeutet natürlich nicht, dass dies für eine *einzelne* Schätzung gilt
 $\hat{\boldsymbol{\beta}}=\beta$, aber dass $\beta$ der wahrscheinlichste
 Wert für $\hat{\boldsymbol{\beta}}$ ist. 
 Oder technisch: das Mittel unendlich vieler Schätzungen mit 
 $\hat{\boldsymbol{\beta}}$ ist gleich $\beta$.
 
-Diese Eigenschaft des OLS-Schätzers wird in folgender Abbildung illustriert:
+Diese Eigenschaft des OLS-Schätzers wird in Abbildung \@ref(fig:erwartungstreu) 
+illustriert.
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-5-1} \end{center}
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/erwartungstreu-1} 
+
+}
+
+\caption{Erwartungstreue von $\hat{\boldsymbol{\beta}}$ unter Annahmen 1 bis 3.}(\#fig:erwartungstreu)
+\end{figure}
 
 Wir können beweisen, dass $\hat{\boldsymbol{\beta}}$ unter Annahmen A1, A2 und A3
 erwartungstreu ist. 
 Dies gilt unabhängig der Stichprobengröße und unabhängig davon ob Annahmen A4
 und A5 erfüllt sind.
-Der mathematische Beweis findet sich [im Anhang](#advlin-proofs) 
-(siehe Theorem \ref{theo:ewt-ols-beta}).
+Der mathematische Beweis findet sich im Anhang \@ref(advlin-proofs) 
+(siehe Theorem \@ref(theo:ewt-ols-beta)).
 
-Daraus resultiert natürlich nicht, dass für jede einzelne Schätzung der Wert
-des Schätzers $\hat{\boldsymbol{\beta}}$ gleich dem wahren Wert 
+Wie oben bereits erwähnt resultiert daraus natürlich nicht, dass für jede einzelne 
+Schätzung der Wert des Schätzers $\hat{\boldsymbol{\beta}}$ gleich dem wahren Wert 
 $\boldsymbol{\beta}$ ist. 
 Jede Schätzung ist aufgrund der Fehler immer mit Unsicherheit behaftet.
 Diese Unsicherheit können wir über die Varianz des Schätzers 
@@ -412,9 +430,9 @@ $\hat{\boldsymbol{\beta}}$ messen: je größer die Varianz desto größer
 die Unsicherheit für die einzelne Schätzung.
 Wir können die Varianz einer Schätzung auch ausrechnen und als 
 Standardfehler der Schätzer angeben. 
-R gibt uns diese Werte immer automatisch mit aus, wie die Schätzer hergeleitet
-und geschätzt werden können Sie über Theorem \ref{theo:ewt-ols-sigma} und 
-\ref{theo:ols-sdf} [im Anhang](#advlin-proofs) nachvollziehen.
+R gibt uns diese Werte immer automatisch mit aus. Wie die Schätzer hergeleitet
+und geschätzt werden können Sie über Theorem \@ref(theo:ewt-ols-sigma) und 
+\@ref(theo:ols-sdf) im Anhang \@ref(advlin-proofs) nachvollziehen.
 
 Besonders relevant ist in diesem Kontext die Eigenschaft der **Effizienz**.
 Unter *Effizienz* verstehen wir die Eigenschaft, dass es keinen alternativen
@@ -425,23 +443,22 @@ Varianz geringer ist und für den Schätzer $\hat{\boldsymbol{\beta}}$ gilt,
 dass es unter A1-A4 *keinen* anderen linearen erwartungstreuen Schätzer
 gibt, der noch effizienter ist als $\hat{\boldsymbol{\beta}}$.
 
-Die Eigenschaft der Effizienz wird in folgender Abbildung illustriert:
+Die Eigenschaft der Effizienz wird in folgender Abbildung \@ref(fig:eig-effizienz) illustriert.
 
+\begin{figure}
 
-```
-#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
-```
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/eig-effizienz-1} 
 
+}
 
-
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-6-1} \end{center}
+\caption{Effizienz von $\hat{\boldsymbol{\beta}}$ unter Annahmen 1 bis 4.}(\#fig:eig-effizienz)
+\end{figure}
 
 Da wir hier die zugrundeliegenden Daten selbst herstellen wissen wir, dass für
 den wahren Wert gilt $\beta_1=2.0$.
 Um die Effizienz des OLS-Schätzers beweisen zu können reichen Annahmen A1-A3 
-nicht aus: hierfür benötigen wir auch die Annahme A4!
-Unter Annahmen A1-A4 gilt die Effizienz des OLS-Schätzers aber auch 
-unabhängig von der Stichprobengröße.
+nicht aus: hierfür benötigen wir auch die Annahme A4: Konstante Varianz und keine Autokorrelation der Fehlerterme. Unter Annahmen A1-A4 gilt die Effizienz des
+OLS-Schätzers auch unabhängig von der Stichprobengröße.
 Für den Beweis siehe Theorem \ref{theo:ewt-ols-effizienz} 
 [im Anhang](#advlin-proofs).
 
@@ -449,7 +466,7 @@ Dass die Eigenschaften der Erwartungstreue und Effizienz beim OLS-Schätzer
 unabhängig von der Stichprobengröße gelten ist eine tolle Sache.
 Solche stichprobenunabhängigen Beweise funktionieren in realen Settings, in
 denen bestimmte Annahmen leicht verletzt sind und die zu schätzenden Funktionen
-komplexer werden häufig nicht.
+komplexer werden, häufig nicht.
 Daher versucht man Eigenschaften von Schätzern wenigstens für große 
 Stichproben zu beweisen.
 Diese Beweise sind wegen bestimmten Gesetzen wie dem 
@@ -469,10 +486,27 @@ nur die Methode der *Monte Carlo Simulation*, die weiter unten eingeführt wird.
 
 Vorher wollen wir jedoch die wichtigste Eigenschaft von Schätzern für große
 Stichproben anhand des OLS-Schätzers einführen: die **Konsistenz**.
-Ein konsistenter Schätzers trifft im Mittel den wahren Wert 
+Ein konsistenter Schätzer trifft im Mittel den wahren Wert 
 und seine Varianz geht mit wachsender Stichprobengröße gegen Null.
 Wir können also sagen, dass unsere Schätzungen bei wachsender Stichprobengröße
 immer genauer wird.
+
+>**Der Unterschied zwischen Erwartungstreue und Konsistenz** Auf den ersten Blick
+erscheinen die beiden Konzepte eng verwandt, weil beide eine Aussage über den 
+Erwartungswert des OLS-Schätzers treffen. Allerdings gilt die Erwartungstreue
+unabhängig von der Stichprobengröße: auch in kleinen Stichproben gilt, dass
+$\mathbb{E}(\hat{\boldsymbol{\beta}})=\beta$. Die Konsistenz dagegen bezieht
+sich auf das Verhalten des OLS-Schätzers wenn die Stichprobe immer größer wird.
+Darüber hinaus macht die Konsistenz auch eine Aussage über die Größe der Varianz
+des Schätzers: diese geht bei immer größeren Stichproben gegen Null. Das heißt
+bei sehr großen Stichproben können wir auch bei einer einzelnen Schätzung 
+davon ausgehen, dass wir den wahren Wert ziemlich genau treffen.
+Eine solche Aussage können wir aus der Erwartungstreue nicht ableiten:
+dass wir im Mittel den wahren Wert treffen macht *überhaupt keine* Aussage
+über die einzelne Schätzung. Auch die Eigenschaft der Effizienz ist hier nur
+bedingt hilfreich, weil sie nur besagt, dass der OLS-Schätzer der Schätzer mit
+der *geringsten* Varianz ist - aber nicht *wie gering* diese Varianz ist. 
+Manchmal ist auch die geringste Varianz sehr groß.
 
 Formal drücken wir dies unter Verwendung von Grenzwerten aus:
 
@@ -485,9 +519,9 @@ Operator $\plim$.
 Das steht für *probability limit* und drückt die Idee der letzten Formel aus:
 das *probability limit* einer ZV ist der Wert auf den diese ZV bei unendlich 
 vielen Ziehungen konvergieren wird.
-Wir sagen dann auch: die ZV kovergiert stochastisch gegen einen Wert.^[Eigentlich
+Wir sagen dann auch: die ZV konvergiert stochastisch gegen einen Wert.^[Eigentlich
 ist $\plim$ noch allgemeiner definiert, für die Anwendungen in der Ökonometrie
-ist diese Definition aber ausreichend. Wundern Sie sich aber nicht, dass Sie in
+ist diese Definition aber ausreichend. Wundern Sie sich aber nicht, wenn Sie in
 manchen mathematischen Texten leicht andere Definitionen finden.]
 Oder formal:
 
@@ -505,12 +539,13 @@ von dieser Regel geben kann, nämlich dann wenn wir große Zugewinne an Effizien
 für kleine Abstriche in der Erwartungstreue 'erkaufen' können.
 
 In der Literatur wird diese Fragestellung unter dem Stichwort 
-*bias-variance trade-off* diskutiert. 
-Weitergehende Informationen finden Sie in der 
+*bias-variance trade-off* diskutiert und ist vor allem dann relevant, wenn 
+Sie mit Ihrem Regressionsmodell Vorhersagen treffen wollen. 
+Weitergehende Informationen dazu finden Sie in der 
 [weiterführenden Literatur](#adv-lin-readings). 
-An dieser Stelle wollen wir uns zunächst auf die erwartungstreuen Schätzer
-konzentrieren, da dies tatsächlich auch die am weitesten verbreiteten 
-Schätzmethoden sind.
+An dieser Stelle wollen wir uns aber zunächst auf die erwartungstreuen 
+(und konsistenten) Schätzer konzentrieren, da dies tatsächlich auch die am 
+weitesten verbreiteten Schätzmethoden sind.
 
 ### Abweichungen von den OLS Annahmen
 
@@ -519,14 +554,14 @@ die Parameter unseres statistischen Modells mit der klassischen OLS Methode
 schätzen. 
 Aber was ist wenn eine Annahme nicht erfüllt ist? 
 
-Im folgenden wollen wir uns diesem Problem annähern indem wir die folgenden
+Im Folgenden wollen wir uns diesem Problem annähern indem wir die folgenden
 Fragen für die verschiedenen Annahmen anhand der
-folgenden beiden Leitfragen diskutieren:
+folgenden vier Leitfragen diskutieren:
 (1) Unter welchen praktisch relevanten Situationen kann die Annahme verletzt sein?
 (2) Wie können wir testen ob die Annahme verletzt ist?
 (3) Was sind die Konsequenzen wenn die Annahme verletzt ist?
 (4) Was können wir tun um trotz verletzter Annahme konsistente und möglichst 
-effiziente Schätzer zu bekommen.
+effiziente Schätzer zu bekommen?
 
 Diese Fragen sind in der der Praxis nicht einfach zu beantworten.
 Ein Grund dafür ist, dass wir die 'wahren Werte' der zu schätzenden Parameter
@@ -536,7 +571,7 @@ mit Sicherheit sagen, ob eine bestimmte Annahme verletzt ist oder nicht.
 
 Dennoch gibt es zwei Möglichkeiten die relevanten Informationen zu den Schätzern
 zu bekommen: 
-zum einen können wir häufig mathematisch beweisen, dass eine Schätzer 
+zum einen können wir häufig mathematisch beweisen, dass ein Schätzer 
 erwartungstreu oder effizient ist.
 Ein Beispiel dafür ist der Beweis der Erwartungstreue des OLS-Schätzers 
 [hier](#ols-deriv) oder der Beweis der Effizienz des OLS-Schätzers 
@@ -545,19 +580,20 @@ Dies ist aber nicht immer möglich und manchmal auch recht aufwendig und wenig
 intuitiv.
 
 Die zweite Möglichkeit ist die Analyse von Schätzern mit Hilfe von 
-künstlichen Datensätzen und so genannten [Monte-Carlo Simulationen]().
-Hier definieren wir unseren datenerzeugenden Prozess selbst und erstellen dann
-einen künstlichen Datensatz. 
+künstlichen Datensätzen und so genannten *Monte Carlo Simulationen* (MCS).
+Bei einer MCS definieren wir unseren datenerzeugenden Prozess selbst und 
+erstellen dann einen künstlichen Datensatz, an dem wir dann die Eigenschaften
+von Schätzern untersuchen können. 
 Diese Vorgehensweise ist zwar weniger 'sicher' als ein mathematischer Beweis
 aber häufig intuitiver und in vielen Fällen tatsächlich auch die einzige 
 Möglichkeit, inbesondere wenn wir Schätzereigenschaften für kleine Stichproben
 analysieren wollen.
-Daher wird diese Methode im folgenden kurz beschrieben und später für die
+Daher wird diese Methode im Folgenden kurz beschrieben und später für die
 Illustration der Folgen von verletzten Annahmen verwendet.
 
 ### Monte Carlo Simulationen in R
 
-Der Ablauf einer Monte Carlo Simulation ist immer der folgende:
+Der Ablauf einer Monte Carlo Simulation ist immer der Folgende:
 
 1. Definiere das zu untersuchende Merkmal des datenerzeugenden Prozesses
 2. Formalisiere den datenerzeugenden Prozess als Funktion
@@ -569,7 +605,7 @@ auf die künstlichen Stichproben an
 5. Interpretiere die Ergebnisse
 
 Wir erstellen also selbst einen datenerzeugenden Prozess und untersuchen dann
-das Verhalten des interessierenden Schätzers im Kontext dieses 
+das Verhalten des uns interessierenden Schätzers im Kontext dieses 
 datenerzeugenden Prozesses.
 Wenn wir z.B. untersuchen möchten welchen Effekt Heteroskedastie auf den OLS
 Schätzer hat dann erstellen wir künstliche Datensätze über einen 
@@ -580,7 +616,7 @@ Dann schätzen wir ein Modell jeweils für die beiden Prozesse und vergleichen d
 Eigenschaften des OLS-Schätzers. 
 Somit können wir Rückschlüsse auf die Implikationen von Heteroskedastie schließen.
 
-Im folgenden wollen wir die Methode der Monte-Carlo Simulation über genau dieses 
+Im Folgenden wollen wir die Methode der Monte Carlo Simulation über genau dieses 
 Beispiel einführen.
 
 **1. Schritt: Definition des zu untersuchenden Merkmals**
@@ -594,15 +630,15 @@ Das zu untersuchende Merkmal des datenerzeugenden Prozesses ist also
 
 Wir formalisieren jetzt einen datenerzeugenden Prozess, der alle Annahmen des
 OLS Schätzers erfüllt außer ggf. der Annahme der Homoskedastie. 
-Der Einfachheit halber wollen wir einen Prozess mit einer erklärenden Variablen
+Der Einfachheit halber wollen wir einen Prozess mit einer erklärenden Variable
 erstellen, also einen Prozess, der durch folgende Gleichung beschrieben werden
 kann:
 
 $$Y = \beta_0 + \beta_1 x_1 +  \epsilon$$
 
-wobei wir annehmen, dass $\epsilon \propto \mathcal{N}(\mu, \sigma)$ und $\sigma$
-im Falle der Kontrollgruppe konstant (Fall der Homoskedastie) und im Falle 
-der Testgruppe variabel ist (Fall der Heteroskedastie).
+wobei wir annehmen, dass $\epsilon \propto \mathcal{N}(\mu, \sigma^2)$ und 
+$\sigma^2$ im Falle der Kontrollgruppe konstant (Fall der Homoskedastie) und im 
+Falle der Testgruppe variabel ist (Fall der Heteroskedastie).
 
 Wir definieren also folgende Funktion, die für gegebene Werte für $\beta_0$ und 
 $\beta_1$ und ein gegebenes $\boldsymbol{X}$ eine Stichprobe erstellt indem 
@@ -626,7 +662,7 @@ dgp <- function(x1, beta0, beta1, hetero=FALSE){
   for (i in 1:length(x1)){
     y[i] <- beta0 + beta1*x1[i] + errors[i]
   }
-  final_data <- tibble(y=y, x1=x1, errors=errors)
+  final_data <- dplyr::tibble(y=y, x1=x1, errors=errors)
   return(final_data)
 }
 ```
@@ -635,7 +671,7 @@ dgp <- function(x1, beta0, beta1, hetero=FALSE){
 **3. Schritt: Künstlichen Datensatz erstellen und Schätzer darauf anwenden**
 
 Wir simulieren nun das Ziehen einer Stichprobe aus dem künstlich erstellten
-DGP indem wir jeweils 1000 Beobachtungen kreieren.
+datengenerierenden Prozess (DGP) indem wir jeweils 1000 Beobachtungen kreieren.
 Da das Ziehen einer Stichprobe immer ein Zufallsprozess ist erstellen wir 
 1000 Stichproben und wenden darauf dann jeweils unseren OLS-Schätzer an.
 Die geschätzten Koeffizienten und Standardfehler speichern wir in einer
@@ -666,7 +702,7 @@ mcs <- function(n_stichproben,
   }
   # In einer Tabelle zusammenfassen:
   Fall_Bezeichnung <- ifelse(heterosk, "Heteroskedastie", "Homoskedastie")
-  ergebnisse <- tibble(
+  ergebnisse <- dplyr::tibble(
     b1_coef=schaetzung_b1,
     b1_stdf=stdfehler_b1,
     Fall=rep(Fall_Bezeichnung, 
@@ -679,10 +715,9 @@ return(ergebnisse)
 Damit können wir die Simulation sehr einfach für die beiden relevanten
 Fälle ausführen.
 
-
 Wir definieren nun die Parameter und die wahren Werte.
 Hierbei ist es wichtig, die Funktion `set.seed` zu verwenden.
-Das ist wichtig um unsere Monte-Carlo Simulation reproduzierbar zu machen, denn
+Das ist wichtig um unsere Monte Carlo Simulation reproduzierbar zu machen, denn
 mit `set.seed` setzen wir die Anfangsbedingungen für den Zufallszahlen-Generator 
 von R. 
 Das bedeutet, dass wir für den gleichen Seed immer die gleichen Zufallszahlen 
@@ -717,41 +752,40 @@ full_results <- rbind(homosc_results, hetero_results)
 
 
 
-
-**4. Schritt: vergleichende Analyse der Schätzereigenschaften**
+**4. Schritt: Vergleichende Analyse der Schätzereigenschaften**
 
 Als erstes wollen wir die Ergebnisse grafisch analysieren. 
-Zu diesem Zweck visualisieren wir Verteilung der geschätzten Werte für $\beta_1$ 
+Zu diesem Zweck visualisieren wir in Abbildung \@ref(fig:montecarlo) die 
+Verteilung der geschätzten Werte für $\beta_1$ 
 und zeichnen zudem den wahren Wert ein:
 
 
 ```r
-beta_1_plot <- ggplot(data = full_results, 
+beta_1_plot <- ggplot2::ggplot(data = full_results, 
                       mapping = aes(x=b1_coef, color=Fall, fill=Fall)) +
-  geom_density(alpha=0.5) +
-  scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
-  scale_x_continuous(limits = c(1.7, 2.2), expand = c(0,0)) +
-  geom_vline(xintercept = wahres_b1) +
-  ylab(TeX("Dichte von $\\hat{\\beta}_1$")) +
-  xlab(TeX("$\\hat{\\beta}_1$")) +
-  ggtitle(TeX("Verteilung von $\\hat{\\beta}_1$")) +
-  scale_color_manual(values = c("Homoskedastie"="#006600",
+  ggplot2::geom_density(alpha=0.5) +
+  ggplot2::scale_y_continuous(expand = expand_scale(c(0, 0), c(0, 0.05))) +
+  ggplot2::scale_x_continuous(limits = c(1.7, 2.2), expand = c(0,0)) +
+  ggplot2::geom_vline(xintercept = wahres_b1) +
+  ggplot2::ylab(TeX("Dichte von $\\hat{\\beta}_1$")) +
+  ggplot2::xlab(TeX("$\\hat{\\beta}_1$")) +
+  ggplot2::ggtitle(TeX("Verteilung von $\\hat{\\beta}_1$")) +
+  ggplot2::scale_color_manual(values = c("Homoskedastie"="#006600",
                                 "Heteroskedastie"="#800000"),
   aesthetics = c("color", "fill")) +
-  theme_icae()
-```
+  icaeDesign::theme_icae()
 
-```
-#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
-```
-
-```r
 beta_1_plot
 ```
 
+\begin{figure}
 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/montecarlo-1} 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-13-1} \end{center}
+}
+
+\caption{Vergleich der Verteilung der mit Monte Carlo geschätzten Werte für $\beta_1$ mit dem wahren Wert.}(\#fig:montecarlo)
+\end{figure}
 
 Wie wir sehen ändert die Verletzung der Homoskedastie-Annahme nichts an der
 Erwartungstreue des Schätzers: 
@@ -759,14 +793,10 @@ im Mittel trifft der Schätzer den wahren Wert $\beta_1$!
 Allerdings nimmt die Genauigkeit ab, da die Streuung um den wahren Wert
 herum im heteroskedastischen Fall zunimmt!
 
-Wir wollen im Folgenden noch untersuchen wie sich Heteroskedastie auf die 
-Standardfehler der Regression auswirkt (der Code zum Erstellen der Plots
-ist äquivalent zu oben):
+Wir wollen nun in Abbildung \@ref(fig:montecarlo2) noch untersuchen wie sich 
+Heteroskedastie auf die Standardfehler der Regression auswirkt.
 
 
-```
-#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
-```
 
 ```r
 beta_1_stdf_plot
@@ -774,13 +804,13 @@ beta_1_stdf_plot
 
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-15-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-10-1} \end{center}
 
-Wir wir sehen weichen die Standardfehler im heteroskedastischen Fall deutlich
-von denen im homoskedastischen Fall ab!
-Welche Standardfehler sind nun die richtigen?
+Wie wir sehen weichen die Standardfehler im heteroskedastischen Fall deutlich
+von denen im homoskedastischen Fall ab! Welche Standardfehler sind nun die
+richtigen?
 
-Ohne auf die mathematische Herleitung genauer einzugehen (siehe Kapitel 4
+Ohne auf die mathematische Herleitung genauer einzugehen (siehe dazu Kapitel 4
 in @greene) wollen wir dennoch festhalten, dass die geschätzten Standardfehler
 unter Heteroskedastie *falsch* sind. 
 Wir können ohne eine Korrektur also keine Aussagen über die Schätzunsicherheit
@@ -789,21 +819,51 @@ und Signifikanz der Ergebnisse treffen.
 Das alles bedeutet zwar, dass der OLS Schätzer auch im Falle von Heteroskedastie 
 noch erwartungstreu ist, allerdings die Genauigkeit des Schätzers sinkt und die
 Standardfehler falsch berechnet werden. 
-Da der Fokus hier auf der Beschreibung der Monte-Carlo Simulationsmethode lag
-werden wir uns mit den möglichen Lösungen erst weiter unten befassen.
+Da der Fokus hier auf der Beschreibung der Monte Carlo Simulationsmethode lag
+werden wir uns mit den möglichen Lösungen erst später befassen. 
+
+Im Folgenden werden wir nun einen weiteren Blick auf verschiedene OLS Annahmen 
+werfen und besprechen wie die jeweilige Annahme geprüft werden kann und was im 
+Falle einer Verletzung zu tun wäre.
 
 ## Heteroskedastie
 
 Wie oben beschrieben bedeutet Heteroskedastie, dass die Varianz der Fehlerterme
 nicht konstant ist.
 
-### Liegt Heteroskedastie vor?
+### Liegt Heteroskedastie vor? {advlin-hetero-test}
 
 Heteroskedastie kann grafisch oder über statistische Tests identifiziert werden.
-Um Heteroskedastie grafisch zu identifizieren verwenden wir den aus dem
-vierten Kapitel bekannten [Tukey-Anscombe-Plot](#linmod-residuals), in dem wir
+Um Heteroskedastie grafisch zu identifizieren verwenden wir den 
+*Tukey-Anscombe-Plot*, in dem wir
 auf der x-Achse die gefitteten Werte $\hat{Y}$ und auf der y-Achse die Residuen 
-$e$ abbilden:
+$e$ abbilden. Siehe dazu Abbildung \@ref(fig:homoskedastie).
+Für die Konstruktion der Abbildung sollten Sie beachten, dass die 
+gefitteten Werte und die Residuen einer Schätzung immer im der durch `lm()` 
+produzierten Liste gespeichert werden.
+Gehen wir mal davon aus, dass Sie Ihr Schätzobjekt folgendermaßen definiert 
+haben:
+
+
+```r
+schaetzung <- lm(y ~ x + y, data = daten)
+```
+
+Dann können Sie auf die gefitteten Werte $\hat{Y}$ über 
+`schaetzung[["fitted.values"]]` und auf die Residuen über 
+`schaetzung[["residuals"]]` zugreifen.
+
+> **Warum überhaupt eine Residuenanalyse?** 
+Die Residuen werden häufig herangezogen wenn es um die Überprüfung
+der OLS-Annahmen geht. Letztere beziehen sich nämlich insbesondere auf die
+Fehlerterme des Modells. 
+Da die Fehlerterme jedoch eine Populationsgröße sind und dementsprechend
+nicht beobachtbar sind, nehmen wir häufig ihr Stichproben-Pendant um die 
+Annahmen zu überprüfen - und dieses Stichproben-Pendant sind eben die Residuen.
+Dennoch ist es extrem wichtig nie zu vergessen, dass die Residuen nur eine
+Approximation der Fehler sind und es durchaus der Fall sein kann, dass die
+Residuen nicht auffällig sind, aber dennoch eine Annahme über die Fehler 
+nicht erfüllt sein kann.
 
 
 
@@ -812,33 +872,32 @@ $e$ abbilden:
 
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-19-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-14-1} \end{center}
 
-Im Optimalfall ist die Varianz der Fehler konstant. 
-Das ist in Abbildung (a) der Fall: 
-die Residuen streuen recht zufällt um die Mittelwert 0 herum. 
-In diesem Fall besteht kein Grund zur Annahme, dass Heteroskedastizität vorliegt.
-Anders in Abbildung (b): 
-hier wird die Varianz nach rechts klar größer.
+Im Optimalfall ist die Varianz der Residuen konstant. Das scheint in Abbildung (a) 
+der Fall zu sein: die Residuen streuen recht zufällig um die Mittelwert 0 herum. 
+In diesem Fall besteht wenig Grund zur Annahme, dass Heteroskedastizität vorliegt.
+Anders in Abbildung (b): hier wird die Varianz nach rechts klar größer.
 Das lässt große Zweifel an der Annahme der Homoskedastizität aufkommen.
+Denn wenn die Residuen keine konstante Varianz aufweisen tun es die Fehler 
+wahrscheinlich auch nicht.
 
 In der Praxis ist es sinnvoll zusätzlich zur grafischen Inspektion noch 
-statistische Tests zu verwenden.
-Hier gibt es ein breites Angebot an Tests.
+statistische Tests zu verwenden. Hier gibt es ein breites Angebot an Tests.
 Viele davon sind in dem Paket [lmtest](https://github.com/cran/lmtest) 
-[@R-lmtest] gesammelt.
-Wir gehen auf die mathematische Herleitung der Tests hier nicht ein. 
-Genauere Informationen finden Sie in den unten angegebenen weiterführenden
-Quellen.
+[@R-lmtest] gesammelt. Wir gehen auf die mathematische Herleitung der Tests 
+hier nicht ein. Genauere Informationen finden Sie in den später angegebenen 
+weiterführenden Quellen.
 
 Häufig verwendet wird z.B. der **Breusch-Pagan Test**, den wir mit der Funktion 
 `bptest()` durchführen können.
-Diese Funktion nimmt als einziges zwingende Argument das Regressionsobjekt.
+Diese Funktion nimmt als einziges zwingendes Argument das Regressionsobjekt.
 Die weiteren Argumente sollten wir im Normalfall auf den Standardwerten 
 belassen.
 
 Die Nullhypothese des Breusch-Pagan Tests ist Homoskedastie.
-Wir führen zunächst den Test für den homoskedastischen Fall aus:
+Wir führen zunächst den Test für den homoskedastischen Fall aus, wobei 
+`schaetzung_homo` das von `lm()` produzierte Objekt ist:
 
 
 ```r
@@ -884,7 +943,7 @@ sollen (Argument `fraction`).
 Zudem können wir über das Argument `alternative` wählen ob für steigende, sinkende
 oder andere Varianz getestet werden soll.
 Diese Wahlmöglichkeiten erhöhen die Power des Tests - wenn wir denn theoretisch
-gut begründete Werte wählen können. Ansonsten ist es im besten die Standardwerte 
+gut begründete Werte wählen können. Ansonsten ist es am besten die Standardwerte 
 zu verwenden und den Test mit anderen Tests und grafischen Methoden zu ergänzen.
 
 Wir verwenden zunächst den Test mit der Standardspezifikation:
@@ -921,7 +980,7 @@ gqtest(schaetzung_hetero)
 ```
 
 Komischerweise muss $H_0$ auch für den heteroskedastischen Fall nicht verworfen werden.
-Hätten wir aber für sinkende Varianz getestet hätte $H_0$ abgelehnt
+Hätten wir aber für sinkende Varianz getestet, hätte $H_0$ abgelehnt
 werden können:
 
 
@@ -967,7 +1026,7 @@ umgesetzt werden.
 
 ### Reaktionen auf Heteroskedastie
 
-Aus unseren Vorüberlegungen können wir folgendes festhalten:
+Aus unseren Vorüberlegungen können wir Folgendes festhalten:
 
 1. Der OLS-Schätzer ist auch unter Heteroskedastie erwartungstreu
 2. Der OLS-Schätzer ist weiterhin konsistent 
@@ -987,21 +1046,18 @@ OLS-Schätzers, verwenden aber die alten geschätzten Koeffizienten weiter.
 Im zweiten Fall verwenden wir die Schätzmethode der *Generalized Least Squares*
 um nicht nur die Standardfehler zu korrigieren sondern auch die Parameter neu
 zu schätzen. 
-Im folgenden fokussieren wir uns auf die erste Strategie, da die GLS Methode mit
-neuen Schwierigkeiten einhergeht und nicht ganz einfach zu implementieren ist.
 
-Denn wie gesagt ist der OLS Schätzer weiterhin konsistent.
-Das bedeutet, dass wir in großen Stichproben eigentlich kein Problem haben.
-In kleinen Stichproben kann die Verwendung dagegen Effizienzverluste mit sich
-bringen - aber keinen Verlust der Erwartungstreue.
-Beim GLS Verfahren schätzen wir die Varianzstruktur. 
-Das funktioniert gut, wenn wir große Stichproben haben.
-Gerade da ist aber die Verwendung der OLS Schätzers aufgrund seiner Konsistenz
-aber gar kein Problem.
-In kleinen Stichproben ist die Schätzung der Varianz dagegen problematisch,
-solange wir keine theoretischen Restriktionen einführen können.
-Insofern ist die sinnvolle Anwendung von GLS eher gering, weswegen wir uns
-im Folgenden darauf beschränken robuste Standardfehler einzuführen.
+Welchen Fall sollten wir verwenden? Wie gesagt ist der OLS Schätzer weiterhin 
+konsistent. Das bedeutet, dass wir in großen Stichproben eigentlich kein Problem
+haben. In kleinen Stichproben kann die Verwendung dagegen Effizienzverluste mit 
+sich bringen - aber keinen Verlust der Erwartungstreue. Beim GLS Verfahren 
+schätzen wir die Varianzstruktur. Das funktioniert gut, wenn wir große 
+Stichproben haben. Gerade da ist aber die Verwendung der OLS Schätzers aufgrund 
+seiner Konsistenz gar kein Problem. In kleinen Stichproben ist die Schätzung der
+Varianz dagegen problematisch, solange wir keine theoretischen Restriktionen 
+einführen können. Insofern ist die sinnvolle Anwendung von GLS eher gering, 
+weswegen wir uns im Folgenden darauf beschränken robuste Standardfehler 
+einzuführen.
 
 Die am weitesten verbreitete Korrektur der Standardfehler sind
 *White's robuste Standardfehler*.^[Die mathematischen 
@@ -1010,12 +1066,12 @@ weiterführenden Literatur erläutert, z.B. in Kapitel 4 von @greene.]
 Um diese in R zu berechnen bedarf es zweier Schritte.
 Zunächst verwenden wir die Funktion `vcovHC()` aus dem Paket
 [sandwich](https://github.com/cran/sandwich) [@R-sandwich] um eine 
-korrigiert Varianz-Kovarianz-Matrix zu berechnen.
+korrigierte Varianz-Kovarianz-Matrix zu berechnen.
 Diese Funktion nimmt als notwendiges Argument das Regressionsobjekt.
 Darüber hinaus können wir über das Argument `type` die genaue Berechnungsmethode
 festlegen. 
 Mehr Infos dazu findet sich z.B. in der Hilfefunktion. 
-Hier verwenden wir die am häufigsten verwendetete Verion `"HC1"`:
+Hier verwenden wir die am häufigsten verwendete Verion `"HC1"`:
 
 
 ```r
@@ -1086,7 +1142,7 @@ Wir sprechen von Autokorrelation wenn die Fehlerterme in der Regression
 untereinander korreliert sind. 
 Wie bei der Heteroskedastizität ist die Varianz-Kovarianz Matrix eine andere
 als ursprünglich angenommen: 
-im Falle der Heteroskedastizität lag die Abweichung auf der Hauptdiagonale,
+im Falle der Heteroskedastizität lag die Abweichung auf der Hauptdiagonalen,
 also der Varianz der einzelnen Fehlerterme, die nicht wie laut A4 konstant ist.
 Im Falle der Autokorrelation liegt das Problem abseits der Hauptdiagonale, bei 
 den Kovarianzen der einzelnen Fehler. 
@@ -1097,20 +1153,19 @@ Besonders häufig tritt Autokorrelation auf, wenn wir mit Zeitreihendaten arbeit
 Denn dann ist es sogar sehr plausibel, dass die Fehler einer Beobachtung in $t$
 mit denen aus der Vorperiode $t-1$ zusammenhängen. 
 Entsprechend groß ist die Literatur zur Autokorrelation in der Zeitreihenanalyse
-und Panel-Schätzung.
-Diese Themenbereich sind jedoch erst viel später unser Thema. 
-Nichtdestotrotz macht es Sinn sich die Folgen von Autokorrelation auch jetzt 
-schon anzusehen.
+und Panel-Schätzung. Auch wenn Zeitreihenanalysen und Panel-Schätzungen hier 
+nicht weiterführend diskutiert werden ist es hilfreich sich die Folgen von 
+Autokorrelation auch jetzt schon anzusehen.
 
 ### Folgen von Autokorrelation
 
 Wir wissen zwar von der Herleitung des OLS-Schätzers bereits, dass 
 Autokorrelation keinen Einfluss auf die Erwartungstreue des Schätzers hat, wir
-wollen aber dennoch die Folgen von Autokorrelation durch eine kleine MCS 
-illustrieren.
+wollen aber dennoch die Folgen von Autokorrelation durch eine kleine Monte Carlo
+Simulation (MCS) illustrieren. 
 
-Dazu erstellen wir einen künstlichen Datensatz in dem die Fehler unterschiedlich
-stark miteinander korreliert sind.
+Dazu erstellen wir zunächst einen künstlichen Datensatz in dem die Fehler unterschiedlich
+stark miteinander korreliert sind. 
 
 Um die Variablen mit vorher spezifizierter Korrelation zu erstellen verwenden
 wir wieder die Funktion `mvrnorm` aus dem Paket 
@@ -1118,6 +1173,8 @@ wir wieder die Funktion `mvrnorm` aus dem Paket
 Eine genauere Erläuterung findet sich 
 [hier](https://stats.stackexchange.com/questions/83172/generate-two-variables-with-precise-pre-specified-correlation).
 
+Das Ergebnis der Simulation lässt sich in Abbildung \@ref(fig:MCautokorr) 
+ablesen.
 
 
 
@@ -1134,21 +1191,30 @@ Eine genauere Erläuterung findet sich
 
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-36-1} \end{center}
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/MCautokorr-1} 
+
+}
+
+\caption{Folgen der Autokorrelation mit Bezug auf Erwartungstreue und Effizienz anhand von Monte Carlo Simulationen.}(\#fig:MCautokorr)
+\end{figure}
 
 Wie erwartet bleiben die Schätzer erwartungstreu, büßen aber deutlich an 
 Effizienz ein wenn die Autokorrelation größer wird.
-Betrachten wir nun noch die geschätzten Standardfehler:
+Betrachten wir nun noch die geschätzten Standardfehler in 
+Abbildung \@ref(fig:MCautokorr2).
 
 
-```
-#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
 
-#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
-```
+\begin{figure}
 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/MCautokorr2-1} 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-38-1} \end{center}
+}
+
+\caption{Folgen der Autokorrelation mit Bezug auf Standardfehler anhand von Monte Carlo Simulationen.}(\#fig:MCautokorr2)
+\end{figure}
 
 Wie bei der Heteroskedastie hat Autokorrelation einen großen Einfluss auf die
 geschätzten Standardfehler.
@@ -1160,16 +1226,22 @@ kontrollieren.
 Wie bei der Heteroskedastie sollten wir auch beim Testen auf Autokorrelation
 grafische und quantitative Tests kombinieren.
 Für die grafische Analyse verwenden wir wie vorher den Tukey-Anscombe Plot der
-Residuen. 
+Residuen (siehe Abschnitt \@ref(advlin-hetero-test)). 
 Die Idee ist, dass wenn in den 'echten' Fehlern Autokorrelation vorherrscht wir 
 das auch in den Residuen beobachten können.
-Die folgende Abbildung verdeutlicht wie wir Autokorrelation in den entsprechenden
-Abbildungen erkennen können:
+Abbildung \@ref(fig:autokorrtest) verdeutlicht, wie wir Autokorrelation in den 
+entsprechenden Abbildungen erkennen können.
 
 
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-40-1} \end{center}
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/autokorrtest-1} 
+
+}
+
+\caption{Unterschiedlich starke Autokorrelation im Tukey-Anscombe Plot.}(\#fig:autokorrtest)
+\end{figure}
 
 Gerade bei Anwendungen außerhalb der Zeitreihenökonometrie ist Autokorrelation 
 aber grafisch nicht so einfach zu identifizieren.
@@ -1178,7 +1250,7 @@ Kovarianz der Fehler nicht gleich Null ist.
 
 > **Die vielen Arten von Autokorrelation** 
 Das Problem beim Testen auf Autokorrelation ist, dass die Fehler natürlich auf sehr
-viele Arten und Weiten miteinander korreliert sein können. 
+viele Arten miteinander korreliert sein können. 
 In Zeitreihen beobachten wir häufig einen so genannten *autoregressiven Prozess*,
 bei dem die Fehler in $t$ folgendermaßen bestimmt sind: 
 $\epsilon_t=\rho\epsilon_{t-1}+u$, wobei $u\propto\mathcal{N}(0,\sigma^2)$.
@@ -1187,7 +1259,6 @@ schwierig macht *allgemeine* Tests für Autokorrelation zu entwickeln.
 Wenn wir aufgrund von theoretischen Überlegungen eine bestimmte Struktur der
 Autokorrelation vermuten, können wir spezialisierte Tests verwenden, die über
 deutlich größere Power verfügen als allgemeine Tests.
-Dieses Thema wird im Kurs zur Zeitreihenökonometrie in größerem Umfang behandelt.
 
 Es gibt diverse Tests für Autokorrelation, die für jeweils unterschiedliche
 Settings besonders gut oder weniger gut geeignet sind.
@@ -1200,10 +1271,10 @@ welche die $H_0$ keiner Autokorrelation testen.
 Sie unterscheiden sich in der genauen Berechnung der Teststatistik und können
 als Alternativhypothese eine Autokorrelation von unterschiedlichen Graden 
 testen. 
-Mit unterschiedlichen Graden meinen wir die Anzahl der Lags zwischen den 
-Beobachtungen, deren Fehler noch miteinander korreliert sind.
-Standardmäßig testen wir gegen eine Autokorrelation mit Grad 1, allerdings 
-können je nach Anwendungsfall auch höhere Grade sinnvoll sein.
+Mit unterschiedlichen Graden meinen wir die Anzahl der Lags, also der 
+Verzögerungen, zwischen den Beobachtungen, deren Fehler noch miteinander 
+korreliert sind. Standardmäßig testen wir gegen eine Autokorrelation mit Grad 1, 
+allerdings können je nach Anwendungsfall auch höhere Grade sinnvoll sein.
 
 Die Funktion `Box.test()` kann verwendet werden um diese Tests durchzuführen.
 Das erste Argument sind immer die Residuen der zu untersuchenden Regression,
@@ -1366,7 +1437,7 @@ bgtest(mid_acl, order = 1, type = "Chisq")
 #> LM test = 9.9367, df = 1, p-value = 0.00162
 ```
 
-Insgesamt bedard die richtige Wahl des Tests einige theoretische Überlegunden
+Insgesamt bedarf die richtige Wahl des Tests einige theoretische Überlegungen
 für den Anwendungsfall und wir sollten uns nicht auf das Ergebnis eines 
 einzelnen Tests verlassen!
 
@@ -1501,7 +1572,7 @@ cor(x_1_small, x_2_small)  # Test
 ```
 
 ```
-#> [1] 5.082293e-17
+#> [1] -1.929638e-16
 ```
 
 ```r
@@ -1523,7 +1594,8 @@ cor(x_1_large, x_2_large)  # Test
 Analog zum Vorgehen oben führen wir nun eine Monte Carlo Simulation durch, in
 der wir wiederholt Stichproben aus einem künstlich generierten Datensatz ziehen
 und das oben beschriebene Modell mit Hilfe von OLS schätzen. 
-Dies führt zu folgender Verteilung der Schätzer:
+Dies führt zu der in Abbildung \@ref(MCmultikoll) aufgezeigten Verteilung der 
+Schätzer.
 
 
 
@@ -1533,15 +1605,14 @@ Dies führt zu folgender Verteilung der Schätzer:
 
 
 
-```
-#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+\begin{figure}
 
-#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/MCmultikoll-1} 
 
-#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
-```
+}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-56-1} \end{center}
+\caption{Folgen der Multikollinearität mit Bezug auf Erwartungstreue und Effizienz anhand von Monte Carlo Simulationen.}(\#fig:MCmultikoll)
+\end{figure}
 
 Wie wir sehen wird die Schätzgenauigkeit für die Schätzer von $\beta_1$ und 
 $\beta_2$ deutlich reduziert! 
@@ -1557,37 +1628,36 @@ x_{i2} &= \hat{\beta}_0^a + \hat{\beta}_2^a x_{i1} + e^a\\
 \end{align}
 
 Bei $k$ erklärenden Variablen ergeben sich die $k-1$ Hilfsregressionen durch 
-eine Umstellung bei der wir eine erklärenden Variable auf die LHS der 
+eine Umstellung bei der wir eine erklärende Variable auf die LHS der 
 Regressionsgleichung ziehen und alle weiteren erklärenden Variablen auf der RHS
 belassen.
-Im folgenden Bezeichnen wir mit $R^2_h$ das Bestimmtheitsmaß der h-ten
+Im Folgenden bezeichnen wir mit $R^2_h$ das Bestimmtheitsmaß der h-ten
 Hilfsregression (also der Hilfsregression mit $x_{ih}$ als abhängiger Variable).
 
 Es kann nun gezeigt werden, dass für die Varianz des Schätzers 
-$\boldsymbol{\hat{\beta}}$ folgendes gilt (siehe @greene für Details):
+$\boldsymbol{\hat{\beta}}$ Folgendes gilt (siehe @greene für Details):
 
 $$Var(\beta_h) = \frac{\sigma^2}{\left(1-R_h^2\right)\sum_{i=1}^n\left(x_{ih}-\bar{x_h}\right)^2} $$
 Hieraus wird unmittelbar ersichtlich, dass die Varianz des Schätzers steigt
-je größer die Bestimmtheitsmaße der Hilfsregressionen ist!
+je größer das Bestimmtheitsmaß der Hilfsregressionen ist!
 
-Gleichzeitig wissen wir aus den Herleitungen oben auch, dass Multikollinearität
-keinen Einfluss auf die Erwartungstreue oder Effizienz des OLS-Schätzers hat.^[
+Gleichzeitig wissen wir aus den obigen Herleitungen auch, dass Multikollinearität
+keinen Einfluss auf die Erwartungstreue oder Effizienz des OLS-Schätzers hat.
 Beachten Sie, dass wir den Begriff *Effizienz* hier immer relativ verwenden:
 unter Multikollinearität wird der OLS-Schätzer weniger genau, aber er bleibt 
 dennoch der genauste Schätzer, den wir zur Verfügung haben.
-]
 
 ### Testen auf Multikollinearität
 
-Da der Begriff der Multikollinearität nicht exakt definiert ist gibt es 
-natürlich auch keinen exakten Test.
+Da der Begriff der Multikollinearität nicht exakt definiert ist (außer für den 
+Fall der perfekten Multikollinearität) gibt es natürlich keinen exakten Test.
 Die Frage welches Ausmaß an Korrelation zwischen den erklärenden Variablen
-akzeptabel ist ist auch immer eine individuelle Entscheidung.
+akzeptabel ist, ist demnach auch immer eine individuelle Entscheidung.
 Es haben sich jedoch einige Faustregeln herausgebildet die zumindest hilfreich
 sind um festzustellen ob Multikollinearität die Größe der Standardfehler in 
 unserer Regression erklären kann.
 
-Zu diesem Zweck führen wir wieder die *Hilfsregressionen* von oben durch durch.
+Zu diesem Zweck führen wir wieder die *Hilfsregressionen* von oben durch.
 Die Bestimmtheitsmaße $R^2$ dieser Hilfsregressionen geben uns einen Hinweis auf das
 Ausmaß der Korrelation zwischen den erklärenden Variablen.
 Ist eines der Bestimmtheitsmaße ähnlich groß wie das Bestimmtheitsmaß der 
@@ -1615,14 +1685,13 @@ anderes übrig als uns zu ärgern und die Kröte der Multikollinearität zu schl
 
 ## Vergessene Variablen {#advlin-omitted-var}
 
-Stellen wir uns vor der 'wahre' Datengenerierende Prozess sie folgendermaßen 
+Stellen wir uns vor, der 'wahre' datengenerierende Prozess sähe folgendermaßen 
 aus:
 
 $$\boldsymbol{y} = \beta_0 + \beta_1 \boldsymbol{x}_1 + \beta_2 \boldsymbol{x}_2 + \boldsymbol{\epsilon}$$
 
 Aufgrund geistiger Umnachtung haben wir in unserem Modell $\boldsymbol{x}_2$
-aber nicht berücksichtigt.
-Unser geschätztes Modell ist also:
+aber nicht berücksichtigt. Unser geschätztes Modell ist also:
 
 $$\boldsymbol{\hat{y}} = \hat{\beta_0} + \hat{\beta_1} \boldsymbol{x}_1 + \boldsymbol{e}$$
 
@@ -1631,7 +1700,7 @@ Dies ist ein praktisch hochrelevantes Problem, denn häufig hat man relevante
 Variablen nicht auf dem Schirm oder es gibt zu uns relevant erscheinenden 
 Variablen keine Daten.
 
-Die Frage, die sich nun stellt: was sind die Implikationen vergessener Variablen?
+Es stellt sich nun die Frage: was sind die Implikationen vergessener Variablen?
 Die Antwort ist recht unbequem, da wir hier nicht so glimpflich wie bisher davon
 kommen:
 im Falle vergessener Variablen ist Annahme A2 nicht mehr erfüllt und unser 
@@ -1649,6 +1718,7 @@ $$\boldsymbol{y} = \beta_0 + \beta_1 \boldsymbol{x}_1 + \beta_2 \boldsymbol{x}_2
 schätzen aber nur folgende Spezifikation:
 
 $$\boldsymbol{\hat{y}} = \hat{\beta_0} + \hat{\beta_1} \boldsymbol{x}_1 + \boldsymbol{e}$$
+Das Ergebnis der Simulation ist in Abbildung \@ref(fig:MComittedvar) ersichtlich.
 
 
 
@@ -1661,12 +1731,18 @@ $$\boldsymbol{\hat{y}} = \hat{\beta_0} + \hat{\beta_1} \boldsymbol{x}_1 + \bolds
 
 
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-62-1} \end{center}
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/MComittedvar-1} 
 
-Wir sehen also, dass unser OLS-Schätzer nun nicht mehr erwartungstreu sind!
+}
+
+\caption{Folgen der vergessenen Variablen mit Bezug auf Erwartungstreue anhand von Monte Carlo Simulationen.}(\#fig:MComittedvar)
+\end{figure}
+
+Wir sehen also, dass unsere OLS-Schätzer nun nicht mehr erwartungstreu sind!
 Dies können wir auch recht einfach analytisch zeigen.
-Nehmen wir generell an, das korrekte Modell ist gegeben durch:
+Nehmen wir generell an, das korrekte Modell sei gegeben durch:
 
 $$\boldsymbol{y} = \boldsymbol{X\beta} + \boldsymbol{z}\gamma + \boldsymbol{\epsilon} $$
 wobei $\boldsymbol{z}$ hier eine unabhängige Variable ist, die wir normalerweise
@@ -1695,7 +1771,7 @@ erklärenden Variablen korreliert.
 Es ist sehr unwahrscheinlich, dass dies der Fall ist sollte $\boldsymbol{z}$
 tatsächlich relevant für die Erklärung von $\boldsymbol{y}$ sein.
 
-Das Vergessen relevanter Variablen führt also zu einer Korrelation der andren 
+Das Vergessen relevanter Variablen führt also zu einer Korrelation der anderen 
 unabhängigen Variablen mit dem Fehlerterm, da der Effekt von $\boldsymbol{z}$
 dann im Fehlerterm steckt und dieser dann mit den anderen unabhängigen Variablen
 korreliert. Zudem gilt, dass $\mathbb{E}(\epsilon)\neq0$.
@@ -1710,7 +1786,9 @@ Da wir den wahren datenerzeugenden Prozess nicht kennen ist es unmöglich direkt
 zu testen ob wir eine relevante Variable vergessen haben.
 Es gibt einen möglichen Test, der die Verwendung von *Instrumentenvariablen*
 einschließt - ein Thema, das wir später behandeln werden - allerdings basiert 
-auch dieser Test dann wiederum auch nicht zu testenden Annahmen.
+auch dieser Test dann wiederum auf nicht zu testenden Annahmen.
+<!-- Add chapter reference as soon as chapter was added -->
+
 Insgesamt müssen wir uns hier also vor allem auf unsere theoretischen 
 Überlegungen verlassen: 
 wir müssen überlegen welche Variablen einen Einfluss auf unsere zu erklärende
@@ -1719,11 +1797,11 @@ Weise in der Regression berücksichtigt werden!
 
 ### Reaktion auf vergessene Variablen
 
-Das ist diesmal einfach: fügen Sie 'einfach' die relevanten Variablen zu ihrer
+Das ist diesmal einfach: fügen Sie 'einfach' die relevanten Variablen zu Ihrer
 Regression hinzu.
 Wenn Sie dazu keine Daten haben hilft Ihnen allerhöchstens die Verwendung von 
-*Instrumentenvariablen*, einem Thema, das wir später in der Vorlesung
-behandeln werden.
+*Instrumentenvariablen*.^[Für eine genauere Einführung in Instrumentenvariablen
+siehe z.B. @greene.]
 
 ## Falsche funktionale Form
 
@@ -1740,40 +1818,50 @@ Dies geschieht durch die Wahl der funktionalen Form.
 Am besten wir illustrieren dies durch ein univariates Beispiel.
 
 So ist auf den ersten Blick ersichtlich, dass der Zusammenhang zwischen BIP und
-Konsumausgaben direkt linear ist:
+Konsumausgaben direkt linear ist, siehe Abbildung \@ref(fig:linearBIP).
 
+\begin{figure}
 
-```r
-bipkonsum <- fread(here("data/tidy/BIPKonsum.csv"), 
-                   colClasses = rep("double", 3))
-ggplot(data = bipkonsum, aes(x=BIP, y=Konsumausgaben)) +
-  geom_point() + theme_icae()
-```
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/linearBIP-1} 
 
+}
 
+\caption{Linearer Zusammenhang zwischen BIP und Konsumausgaben.}(\#fig:linearBIP)
+\end{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-63-1} \end{center}
 
 Wir könnten den Zusammenhang also unmittelbar mit OLS schätzen ohne gegen 
 Annahme A1 zu verstoßen.
 
 Der Zusammenhang zwischen BIP pro Kopf und Kindersterblichkeit im Jahr 2000 
-erscheint dagegen nicht linear zu sein:
+erscheint dagegen nicht linear zu sein, siehe Abbildung \@ref(fig:nonlinearBIP).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/nonlinearBIP-1} 
+
+}
+
+\caption{Nicht-linearer Zusammenhang zwischen BIP und Kindersterblichkeit.}(\#fig:nonlinearBIP)
+\end{figure}
 
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-64-1} \end{center}
-
-
-Wenn wir diesen Zusammenhang mit OLS schätzen würden würden wir klar gegen 
+Wenn wir diesen Zusammenhang mit OLS schätzen würden, würden wir klar gegen 
 Annahme A1 verstoßen. Die Konsequenz wäre, dass unser Schätzer weder erwartungstreu,
 noch konsistent noch effizient wäre.
 
-Gleichzeitig können wir durch Wahl einer alternativen funktionalen Form den 
+Gleichzeitig können wir durch die Wahl einer alternativen funktionalen Form den 
 Zusammenhang linearisieren. 
-Dazu nehmen wir einfach den Logarithmus:
+Dazu nehmen wir einfach den Logarithmus, wie in Abbildung \@ref(fig:logBIP).
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-65-1} \end{center}
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/logBIP-1} 
+
+}
+
+\caption{Logarithmierter Zusammenhang zwischen BIP und Kindersterblichkeit.}(\#fig:logBIP)
+\end{figure}
 
 Diesen Zusammenhang können wir nun mit OLS schätzen ohne gegen A1 zu verstoßen!
 Das zeigt, dass die falsche Wahl der funktionalen Form, also die nicht korrekte
@@ -1784,7 +1872,7 @@ Schätzer haben kann!
 
 Wie bereits erwähnt bezieht sich die Wahl der funktionalen Form direkt auf 
 Annahme A1. 
-Wir wir oben gesehen haben ist diese Annahme wichtig um die Konsistenz und 
+Wie wir oben gesehen haben ist diese Annahme wichtig um die Konsistenz und 
 Erwartungstreue des OLS-Schätzers herzuleiten.
 Mit anderen Worten:
 ist A1 nicht erfüllt, z.B. durch die Wahl einer falschen funktionalen Form,
@@ -1796,7 +1884,7 @@ Schätzverfahren wählen.
 
 Bei der Wahl der funktionalen Form spielen vor allem theoretische Überlegungen 
 eine wichtige Rolle.
-Auch eine Inspektion der paarweisen Beziehungen zwischen abhängiger und 
+Auch eine Inspektion der paarweisen Beziehungen zwischen abhängigen und 
 unabhängigen Variablen ist hilfreich.
 
 Eine wirksame Methode zur Überprüfung unserer funktionalen Form ist dagegen 
@@ -1811,11 +1899,11 @@ Für diese Gründe gibt es jedoch zusätzlich noch statistische Tests sodass wir
 durch sukszessives Testen und Ausprobieren eine angemessene funktionale Form
 identifizieren können.
 
-Es gibt auch einige Tests, die manchmal verwendet werden um die richtige 
-Wahr der funktionalen Form zu überprüfen. 
+Es gibt auch einige Tests, die manchmal verwendet werden um die Wahl der
+funktionalen Form zu überprüfen. 
 Der bekannteste Test ist dabei der so genannte *RESET Test*. 
 *RESET* steht dabei für *REgression Specification Error Test*. 
-Dieser Test wird mit der Funktion `resettest()` durchgeführt und testes die
+Dieser Test wird mit der Funktion `resettest()` durchgeführt und testet die
 $H_0$, dass wir die richtige funktionale Form gewählt haben.
 
 Wir illustrieren den Test anhand folgenden Beispiels, in dem wir den uns bereits
@@ -1823,11 +1911,17 @@ bekannten Datensatz zu Journaldaten analysieren.
 
 
 
-Wir betrachten den Zusammenhang zwischen Abonnenten und dem Preis pro Zitation.
-Wie wir hier sehen ist dieser Zusammenhang alles andere linear:
+Wir betrachten den Zusammenhang zwischen der Abonnentenanzahl und dem Preis pro 
+Zitation. Wie wir in Abbildung \@ref(fig:Journalnonlinear) sehen ist dieser Zusammenhang alles andere linear:
 
+\begin{figure}
 
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-67-1} \end{center}
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/Journalnonlinear-1} 
+
+}
+
+\caption{Nicht-linearer Zusammenhang zwischen Abonnenten und dem Preis pro Zitation}(\#fig:Journalnonlinear)
+\end{figure}
 
 
 Für die folgende Spezifikation wäre der OLS-Schätzer also weder konsistent noch
@@ -1840,20 +1934,17 @@ $$\text{Abonnenten} = \beta_0 + \beta_1 \text{Zitationspreis} + \epsilon$$
 lin_mod <- lm(Abonnenten~`Preis pro Zitation`, data=journal_daten)
 ```
 
-Wenn wir aber beide Größen logarithmieren würden wäre der Zusammenhang schon
-ziemlich linear:
+Wenn wir aber beide Größen logarithmieren würden, wäre der Zusammenhang schon
+ziemlich linear, siehe Abbildung \@ref(fig:Journalelog).
 
+\begin{figure}
 
-```r
-ggplot(data = journal_daten, 
-       aes(x=log(UQ(as.name("Preis pro Zitation"))),
-           y=log(Abonnenten))) +
-  geom_point() + theme_icae()
-```
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/Journalelog-1} 
 
+}
 
-
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-69-1} \end{center}
+\caption{Logarithmierter Zusammenhang zwischen Abonnenten und Preis pro Zitation.}(\#fig:Journalelog)
+\end{figure}
 
 Die folgende Gleichung wäre also nicht unbedingt mit einem Verstoß gegen A1 verbunden:
 
@@ -1898,10 +1989,11 @@ resettest(log_mod)
 #> RESET = 1.4409, df1 = 2, df2 = 176, p-value = 0.2395
 ```
 
-Hier kann $H_0$ nicht abgelehnt werden.
+Hier kann $H_0$ nicht abgelehnt werden, dementsprechend können wir nicht davon 
+ausgehen, dass unser Modell misspezifiziert ist.
 
 Beachten Sie aber, dass der RESET Test keine abschließende Sicherheit bieten kann.
-Sie werden immer wieder Situationen erlegebn in denen der RESET Test ein Modell
+Sie werden immer wieder Situationen erleben in denen der RESET Test ein Modell
 ablehnt, das sie aufgrund empirischer und theoretischer Überlegungen gut 
 verteidigen könnten und umgekehrt.
 Daher sollte er immer mit Theorie und Beobachtung kombiniert werden.
@@ -1914,10 +2006,12 @@ Form eine andere ist, kann die Wahl einer bestimmten funktionalen Form auch
 theoretisch motiviert sein.
 Gerade die so genannten 'log-log-Modelle' sind häufig auch theoretisch sehr 
 interessant, da wir hier Elastizitäten direkt schätzen können.
-Die folgende Tabelle gibt einen Überblick über häufig gewählte Spezifikationen
-und ihre Interpretation für das einfache lineare Regressionsmodell.
+Tabelle \@ref(tab:funktform) gibt einen Überblick über häufig gewählte 
+Spezifikationen und ihre Interpretation für das einfache lineare Regressionsmodell.
 Für das Modell mit mehreren unabhängigen Variablen ist die Interpretation 
-äquivalent:
+äquivalent.
+
+Table: (\#tab:funktform) Spezifikationen der funktionalen Form und ihre Interpretationen.
 
 | **Modellart** | **Schätzgleichung** | **Interpretation der Koeffizienten** |
 |---------------+---------------------+--------------------------------------|
@@ -1932,18 +2026,17 @@ Konsum von Hähnchenfleisch.
 
 
 
-Wie wir sehen werden ist dieser Zusammenhang an sich nicht
-linear, kann aber durch Logarithmieren in eine lineare Form gebracht werden:
+Wie in Abbildung \@ref(fig:chicken) ersichtlich ist dieser Zusammenhang an sich 
+nicht linear, kann aber durch Logarithmieren in eine lineare Form gebracht werden.
 
+\begin{figure}
 
-```
-#> `geom_smooth()` using formula 'y ~ x'
-#> `geom_smooth()` using formula 'y ~ x'
-```
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/chicken-1} 
 
+}
 
-
-\begin{center}\includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/unnamed-chunk-74-1} \end{center}
+\caption{Nicht-linearer und logarithmierter Zusammenhang zwischen Preis und Konsum von Hühnchenpreis.}(\#fig:chicken)
+\end{figure}
 
 Die folgende Gleichung ist also konsistent mit A1 und kann entsprechend mit
 OLS geschätzt werden:
@@ -1988,9 +2081,70 @@ Wir würden den geschätzten Koeffizienten von $\beta_1$ folgendermaßen
 interpretieren: wenn der Preis von Hühnerfleisch um $1\%$ steigt wird der
 Konsum um ca. $1.12\%$ zurückgehen.
 
+## Normalverteilung der Fehlerterme
+
+Wie oben beschrieben ist die Annahme A5 für die besonders wichtigen 
+Eigenschaften *Erwartungstreue*, *Effizienz* und *Konsistenz* nicht notwendig.
+Sie erleichtert aber Hypothesentests und wird häufig als Indiz für ein 
+gut spezifiertes Modell gesehen.
+
+Da wir die Fehlerterme nicht direkt beobachten können wird diese Annahme
+überprüft, indem die Verteilung der Residuen betrachtet wird.
+Damit eine visuelle Inspektion möglichst einfach ist verwenden wir hier einen
+so genannten *Q-Q-Plot* (siehe dazu Abbildung \@ref(fig:QQPlot)).
+Im Q-Q-Plot werden die tatsächlichen Quantile der Verteilung der Residuen 
+auf der y-Achse gegen die hypothetischen Quantile einer Normalverteilung
+auf der x-Achse abgebildet.
+
+Um einen Q-Q-Plot mit `ggplot2` zu produzieren speichern Sie die Residuen
+Ihrer Schätzung in einem `tibble` und spezifizieren sie als Ästhetik `sample`.
+Dann verwenden Sie als *geoms* die Befehle `ggplot2::stat_qq()` für die 
+Darstellung der Residuen und `ggplot2::stat_qq_line()` um die Gerade zur
+leichteren Interpretation zu ergänzen:
+
+
+
+
+```r
+ggplot2::ggplot(
+  data = tibble::tibble(
+    Residuen=residuals_from_reg1
+    ),
+  mapping = aes(sample=Residuen)) + 
+  ggplot2::stat_qq() + ggplot2::stat_qq_line() +
+  theme_bw()
+```
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-advlinmodels_files/figure-latex/QQPlot-1} 
+
+}
+
+\caption{Q-Q-Plot zur Überprüfung der Residuen.}(\#fig:QQPlot)
+\end{figure}
+
+In Abbildung \@ref(fig:QQPlot) sind zwei Q-Q-Plots abgebildet.
+Plot `a)` zeigt einen relativ idealtypischen Q-Q-Plot, bei dem wir guten
+Gewissens von einer Normalverteilung der Residuen ausgehen können:
+hier liegen die Punkte ziemlich exakt auf der Q-Q-Line.
+Bei Plot `b)` in Abbildung \@ref(fig:QQPlot) ist das dagegen nicht der Fall, 
+weswegen wir skeptisch bezüglich aller Ergebnisse sein sollten, die auf der
+Normalverteilungsannahme aufbauen, also insbesondere bei den Standardfehlern,
+$p$-Werten und den Konfidenzintervallen.
+In einem solchen Fall können Sie versuchen, über Transformationen Ihrer Daten 
+eine Normalverteilung der Residuen herzustellen.
+Bleibt das erfolglos oder ergibt es im konkreten Anwendungsfall keinen Sinn 
+sollten Sie die Unsicherheit Ihrer Schätzung nicht über die 
+normalen Standardfehler messen, sondern sich Techniken wie dem *Huber-Schätzer*
+oder dem *Bootstrap* bedienen.
+
 ## Weitere Fehlerquellen: Systematische Messfehler, Selbstselektion und Simulatanität
 
-Annahme A2 kann nur aufgrund von drei weiteren Gründen verletzt werden:
+Annahme A2, Exogenität der unabhängigen Variablen, kann nur aufgrund von drei 
+weiteren Gründen verletzt werden:
 aufgrund von Messfehlern, von Selbstselektion der Stichprobe und
 aufgrund von Simulatanität.
 Diese Fehlerquellen sind etwas anders geartet als die anderen hier besprochenen
@@ -2000,7 +2154,7 @@ geschieht entweder auf Ebene der Datenerhebung (Messfehler, Selbstselektion)
 oder ist dem zu untersuchenden Zusammenhang inhärent (Simulatanität).
 Insofern können wir nicht wirklich auf diese Fehler testen sondern müssen 
 bei der Auswahl unserer Daten und der Formulierung unseres Modells diese 
-Fehlerquellen in betracht ziehen.
+Fehlerquellen in Betracht ziehen.
 
 Im Folgenden wollen wir kurz darstellen wie diese drei Fehlerquellen zu einer
 Verletzung von A2 führen.
@@ -2099,6 +2253,12 @@ und damit wiederum ein Verstoß gegen A2!
 
 ## Anhang: Übersicht über die Testverfahren
 
+Tabelle \@ref(tab:testverfahren) bietet einen Überblick über die verschiedenen 
+möglichen Probleme bei OLS Schätzungen, die Tests zur Prüfung dieser Probleme, 
+der Implikationen sowie möglicher Lösungsansätze.
+
+Table: (\#tab:testverfahren) Übersicht über die Testverfahren.
+
 | **Problem**   | **Mögliche Tests**      | **Implikationen**    | **Reaktion**   |
 |---------------+-------------------------+----------------------+----------------|
 | Heteroskedastie              | Tukey-Anscombe Plot, Breusch-Pagan (`bptest()`), Goldfeld-Quandt (`gqtest`) | Reduzierte Effizienz, falsche Standardfehler | Robuste Standardfehler |
@@ -2111,7 +2271,7 @@ und damit wiederum ein Verstoß gegen A2!
 
 An dieser Stelle werden alle relevanten Theoreme gesammelt.
 Während wir im Hauptteil des Kapitels die Implikationen der Theoreme anhand
-von Monte-Carlo Simulationen illustriert haben finden Sie hier die 
+von Monte Carlo Simulationen illustriert haben finden Sie hier die 
 dazugehörigen mathematischen Beweise.
 
 ### Theoreme

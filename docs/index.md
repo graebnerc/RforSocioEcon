@@ -1,8 +1,8 @@
 --- 
 title: "R für die sozio-ökonomische Forschung"
-subtitle: "Version 0.9.1"
+subtitle: "Version 0.9.2"
 author: "[Dr. Claudius Gräbner](http://claudius-graebner.com/)"
-date: "2020-11-06" 
+date: "2020-12-06" 
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -10,7 +10,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: graebnerc/RforSocioEcon
-description: "Einführung in R für die sozioökonomische Forschung; Version 0.9.0"
+description: "Einführung in R für die sozioökonomische Forschung; Version 0.9.2"
 ---
 
 # Willkommen {-}
@@ -62,23 +62,30 @@ Bei Birte Strunk möchte ich mich für das hervorragende Lektorat und das
 Beisteuern vieler guter Ideen bedanken. 
 Am *work-in-progress*-Charakter des Skripts haben alle natürlich keine Mitschuld.
 
+Darüber hinaus möchte ich mich bei allen Studierenden für Ihre Rückmeldungen
+bedanken. Dank deren Feedback konnten zahlreiche kleinere und größere 
+Ungereimtheiten eliminiert werden. Ohne Anspruch auf Vollständigkeit möchte
+ich mich bei 
+Marie Syska und Marleen Twelsiek
+ganz herzlich bedanken.
+
 ## Lizenz {-}
 
 
-\begin{center}\includegraphics[width=0.2\linewidth]{figures/ccbylicense} \end{center}
+\begin{center}\includegraphics[width=0.2\linewidth]{figures/license} \end{center}
 
 Das gesamte Skript ist unter der 
-[Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)
+[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 lizensiert.
 
 ## Änderungshistorie {-}
 
 *An dieser Stelle werden alle wichtigen Updates des Skripts gesammelt.*
-*Die Versionsnummer hat folgende Struktur: `major`.`minor`.`patch`*
-*Neue Kapitel erhöhen die `minor` Stelle, kleinere, aber signifikante*
-*Korrekturen werden als Patches gekennzeichnet.*
+*Die Versionsnummer hat folgende Struktur: `major`.`minor`.`patch`*.
 
 Datum    | Version | Wichtigste Änderungen         |
 :--------+:--------+:------------------------------|
 19.10.19 | 0.9.0    | Erste Version für das Wintersemester 2020/21 |
 06.11.19 | 0.9.1    | Kapitel zur Regressionsanalyse ergänzt |
+06.12.19 | 0.9.2    | Korrektur Typos; Ergänzung Kapital zur fortgeschrittenen Regression; kleine Ergänzungen Datenkapitel, inkl. `one_of()` zu `any_of()` |
+
