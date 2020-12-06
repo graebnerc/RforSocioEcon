@@ -159,9 +159,18 @@ speichern:
 #> [1] "/Volumes/develop/packages/RforSocioEcon/test.pdf"
 ```
 
+Im vorliegenden Fall sind die resultierenden Pfade identisch.
+Wir können bei absoluten Pfaden aber jeden beliebigen Pfad angeben.
+Wir könnten die Datei z.B. auch an folgendem Ort speicher, wenn wir genau 
+diesen absoluten Pfad angeben:
+
+```
+~/claudius-projekte/R-Projekt/output/test.pdf
+```
+
 Wir werden hier **immer** relative Pfade verwenden. 
-Relative Pfade sind fast immer die bessere Variante, da es uns erlaubt den 
-gleichen Code auf verschiedenen Computern zu verwenden. 
+Relative Pfade sind fast immer die bessere Variante, da ihre Verwendung es uns 
+erlaubt den gleichen Code auf verschiedenen Computern zu verwenden. 
 Denn wie man an den absoluten Pfaden erkennen kann, sehen diese auf jedem 
 Computer anders aus und es ist dementsprechend schwierig, Code miteinander zu
 teilen.

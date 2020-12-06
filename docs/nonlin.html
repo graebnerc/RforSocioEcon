@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 12 Ausgewählte nichtlineare Schätzverfahren | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.0" />
+  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.2" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 12 Ausgewählte nichtlineare Schätzverfahren | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.0" />
+  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.2" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 12 Ausgewählte nichtlineare Schätzverfahren | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.0" />
+  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.2" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-11-06" />
+<meta name="date" content="2020-12-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -200,8 +200,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4.4" data-path="data.html"><a href="data.html#date-select"><i class="fa fa-check"></i><b>4.4.4</b> Datensätze filtern und selektieren</a></li>
 <li class="chapter" data-level="4.4.5" data-path="data.html"><a href="data.html#data-summary"><i class="fa fa-check"></i><b>4.4.5</b> Datensätze zusammenfassen</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="data.html"><a href="data.html#data-role"><i class="fa fa-check"></i><b>4.5</b> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</a></li>
-<li class="chapter" data-level="4.6" data-path="data.html"><a href="data.html#data-packages"><i class="fa fa-check"></i><b>4.6</b> Anmerkungen zu Paketen</a></li>
+<li class="chapter" data-level="4.5" data-path="data.html"><a href="data.html#data-manycols"><i class="fa fa-check"></i><b>4.5</b> Gleichzeigite Bearbeitung mehrerer Spalten</a></li>
+<li class="chapter" data-level="4.6" data-path="data.html"><a href="data.html#data-role"><i class="fa fa-check"></i><b>4.6</b> Abschließende Bemerkungen zum Umgang mit Daten innerhalb eines Forschungsprojekts</a></li>
+<li class="chapter" data-level="4.7" data-path="data.html"><a href="data.html#data-packages"><i class="fa fa-check"></i><b>4.7</b> Anmerkungen zu Paketen</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>5</b> Visualisierung von Daten</a>
 <ul>
@@ -345,15 +346,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3" data-path="linmodel.html"><a href="linmodel.html#lin-kennzahlen"><i class="fa fa-check"></i><b>10.3</b> Kennzahlen in der linearen Regression</a>
 <ul>
 <li class="chapter" data-level="10.3.1" data-path="linmodel.html"><a href="linmodel.html#erklärte-varianz-und-das-r2"><i class="fa fa-check"></i><b>10.3.1</b> Erklärte Varianz und das <span class="math inline">\(R^2\)</span></a></li>
-<li class="chapter" data-level="10.3.2" data-path="linmodel.html"><a href="linmodel.html#hypothesentests-und-statistische-signifikanz"><i class="fa fa-check"></i><b>10.3.2</b> Hypothesentests und statistische Signifikanz</a></li>
+<li class="chapter" data-level="10.3.2" data-path="linmodel.html"><a href="linmodel.html#linmodelHypothesentests"><i class="fa fa-check"></i><b>10.3.2</b> Hypothesentests und statistische Signifikanz</a></li>
 <li class="chapter" data-level="10.3.3" data-path="linmodel.html"><a href="linmodel.html#konfidenzintervalle-für-die-schätzer"><i class="fa fa-check"></i><b>10.3.3</b> Konfidenzintervalle für die Schätzer</a></li>
 <li class="chapter" data-level="10.3.4" data-path="linmodel.html"><a href="linmodel.html#zur-rolle-der-stichprobengröße"><i class="fa fa-check"></i><b>10.3.4</b> Zur Rolle der Stichprobengröße</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="linmodel.html"><a href="linmodel.html#lin-multi"><i class="fa fa-check"></i><b>10.4</b> Multiple lineare Regression</a></li>
 <li class="chapter" data-level="10.5" data-path="linmodel.html"><a href="linmodel.html#stat-ablauf"><i class="fa fa-check"></i><b>10.5</b> Zum Ablauf einer Regression</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>11</b> Fortgeschrittene Themen der linearen Regression</a></li>
-<li class="chapter" data-level="12" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>12</b> Ausgewählte nichtlineare Schätzverfahren</a></li>
+<li class="chapter" data-level="11" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>11</b> Fortgeschrittene Themen der linearen Regression</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="advlin.html"><a href="advlin.html#annahmen-und-eigenschaften-des-einfachen-ols-modells"><i class="fa fa-check"></i><b>11.1</b> Annahmen und Eigenschaften des einfachen OLS Modells</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="advlin.html"><a href="advlin.html#annahmen-im-matrixschreibweise"><i class="fa fa-check"></i><b>11.1.1</b> Annahmen im Matrixschreibweise</a></li>
+<li class="chapter" data-level="11.1.2" data-path="advlin.html"><a href="advlin.html#erwartungstreue-effizienz-und-konsistenz"><i class="fa fa-check"></i><b>11.1.2</b> Erwartungstreue, Effizienz und Konsistenz</a></li>
+<li class="chapter" data-level="11.1.3" data-path="advlin.html"><a href="advlin.html#abweichungen-von-den-ols-annahmen"><i class="fa fa-check"></i><b>11.1.3</b> Abweichungen von den OLS Annahmen</a></li>
+<li class="chapter" data-level="11.1.4" data-path="advlin.html"><a href="advlin.html#monte-carlo-simulationen-in-r"><i class="fa fa-check"></i><b>11.1.4</b> Monte Carlo Simulationen in R</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="advlin.html"><a href="advlin.html#heteroskedastie"><i class="fa fa-check"></i><b>11.2</b> Heteroskedastie</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="advlin.html"><a href="advlin.html#liegt-heteroskedastie-vor-advlin-hetero-test"><i class="fa fa-check"></i><b>11.2.1</b> Liegt Heteroskedastie vor? {advlin-hetero-test}</a></li>
+<li class="chapter" data-level="11.2.2" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-heteroskedastie"><i class="fa fa-check"></i><b>11.2.2</b> Reaktionen auf Heteroskedastie</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="advlin.html"><a href="advlin.html#autokorrelation"><i class="fa fa-check"></i><b>11.3</b> Autokorrelation</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="advlin.html"><a href="advlin.html#folgen-von-autokorrelation"><i class="fa fa-check"></i><b>11.3.1</b> Folgen von Autokorrelation</a></li>
+<li class="chapter" data-level="11.3.2" data-path="advlin.html"><a href="advlin.html#testen-auf-autokorrelation"><i class="fa fa-check"></i><b>11.3.2</b> Testen auf Autokorrelation</a></li>
+<li class="chapter" data-level="11.3.3" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-autokorrelation"><i class="fa fa-check"></i><b>11.3.3</b> Reaktionen auf Autokorrelation</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="advlin.html"><a href="advlin.html#multikollinearität"><i class="fa fa-check"></i><b>11.4</b> Multikollinearität</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="advlin.html"><a href="advlin.html#folgen-von-multikollinearität"><i class="fa fa-check"></i><b>11.4.1</b> Folgen von Multikollinearität</a></li>
+<li class="chapter" data-level="11.4.2" data-path="advlin.html"><a href="advlin.html#testen-auf-multikollinearität"><i class="fa fa-check"></i><b>11.4.2</b> Testen auf Multikollinearität</a></li>
+<li class="chapter" data-level="11.4.3" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-multikollinearität"><i class="fa fa-check"></i><b>11.4.3</b> Reaktionen auf Multikollinearität</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="advlin.html"><a href="advlin.html#advlin-omitted-var"><i class="fa fa-check"></i><b>11.5</b> Vergessene Variablen</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="advlin.html"><a href="advlin.html#folgen-vergessener-variablen"><i class="fa fa-check"></i><b>11.5.1</b> Folgen vergessener Variablen</a></li>
+<li class="chapter" data-level="11.5.2" data-path="advlin.html"><a href="advlin.html#testen-auf-vergessene-variablen"><i class="fa fa-check"></i><b>11.5.2</b> Testen auf vergessene Variablen</a></li>
+<li class="chapter" data-level="11.5.3" data-path="advlin.html"><a href="advlin.html#reaktion-auf-vergessene-variablen"><i class="fa fa-check"></i><b>11.5.3</b> Reaktion auf vergessene Variablen</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="advlin.html"><a href="advlin.html#falsche-funktionale-form"><i class="fa fa-check"></i><b>11.6</b> Falsche funktionale Form</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="advlin.html"><a href="advlin.html#folgen-einer-falschen-funktionalen-form"><i class="fa fa-check"></i><b>11.6.1</b> Folgen einer falschen funktionalen Form</a></li>
+<li class="chapter" data-level="11.6.2" data-path="advlin.html"><a href="advlin.html#testen-auf-die-richtige-funktionale-form"><i class="fa fa-check"></i><b>11.6.2</b> Testen auf die richtige funktionale Form</a></li>
+<li class="chapter" data-level="11.6.3" data-path="advlin.html"><a href="advlin.html#wahl-der-funktionalen-form"><i class="fa fa-check"></i><b>11.6.3</b> Wahl der funktionalen Form</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="advlin.html"><a href="advlin.html#normalverteilung-der-fehlerterme"><i class="fa fa-check"></i><b>11.7</b> Normalverteilung der Fehlerterme</a></li>
+<li class="chapter" data-level="11.8" data-path="advlin.html"><a href="advlin.html#weitere-fehlerquellen-systematische-messfehler-selbstselektion-und-simulatanität"><i class="fa fa-check"></i><b>11.8</b> Weitere Fehlerquellen: Systematische Messfehler, Selbstselektion und Simulatanität</a>
+<ul>
+<li class="chapter" data-level="11.8.1" data-path="advlin.html"><a href="advlin.html#messfehler"><i class="fa fa-check"></i><b>11.8.1</b> Messfehler</a></li>
+<li class="chapter" data-level="11.8.2" data-path="advlin.html"><a href="advlin.html#selbstselektion"><i class="fa fa-check"></i><b>11.8.2</b> Selbstselektion</a></li>
+<li class="chapter" data-level="11.8.3" data-path="advlin.html"><a href="advlin.html#simulatanität"><i class="fa fa-check"></i><b>11.8.3</b> Simulatanität</a></li>
+</ul></li>
+<li class="chapter" data-level="11.9" data-path="advlin.html"><a href="advlin.html#anhang-übersicht-über-die-testverfahren"><i class="fa fa-check"></i><b>11.9</b> Anhang: Übersicht über die Testverfahren</a></li>
+<li class="chapter" data-level="11.10" data-path="advlin.html"><a href="advlin.html#advlin-proofs"><i class="fa fa-check"></i><b>11.10</b> Anhang: Relevante Theoreme und ihre mathematischen Beweise</a>
+<ul>
+<li class="chapter" data-level="11.10.1" data-path="advlin.html"><a href="advlin.html#theoreme"><i class="fa fa-check"></i><b>11.10.1</b> Theoreme</a></li>
+<li class="chapter" data-level="11.10.2" data-path="advlin.html"><a href="advlin.html#beweise"><i class="fa fa-check"></i><b>11.10.2</b> Beweise</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>12</b> Ausgewählte nichtlineare Schätzverfahren</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="nonlin.html"><a href="nonlin.html#logit"><i class="fa fa-check"></i><b>12.1</b> Binäre abhängige Variablen: Logit- und Probit-Modelle</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="nonlin.html"><a href="nonlin.html#warum-nicht-ols"><i class="fa fa-check"></i><b>12.1.1</b> Warum nicht OLS?</a></li>
+<li class="chapter" data-level="12.1.2" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-theoretische-grundidee"><i class="fa fa-check"></i><b>12.1.2</b> Logit und Probit: theoretische Grundidee</a></li>
+<li class="chapter" data-level="12.1.3" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-implementierung-in-r"><i class="fa fa-check"></i><b>12.1.3</b> Logit und Probit: Implementierung in R</a></li>
+<li class="chapter" data-level="12.1.4" data-path="nonlin.html"><a href="nonlin.html#logit-und-probit-interpretation-der-ergebnisse"><i class="fa fa-check"></i><b>12.1.4</b> Logit und Probit: Interpretation der Ergebnisse</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="nonlin.html"><a href="nonlin.html#abschließende-anmerkungen"><i class="fa fa-check"></i><b>12.2</b> Abschließende Anmerkungen</a></li>
+</ul></li>
 <li class="chapter" data-level="13" data-path="outlook.html"><a href="outlook.html"><i class="fa fa-check"></i><b>13</b> Ausblick</a></li>
 <li class="chapter" data-level="14" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>14</b> Eine kurze Einführung in R Markdown</a></li>
 <li class="chapter" data-level="15" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>15</b> Eine kurze Einführung in die Versionskontrolle mit Git</a></li>
@@ -379,8 +441,409 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="nonlin" class="section level1" number="12">
 <h1><span class="header-section-number">Chapter 12</span> Ausgewählte nichtlineare Schätzverfahren</h1>
-<p>Dieses Kapitel wird gerade noch überarbeitet und zeitnah ergänzt.</p>
+<p>Eine der zentralsten und gleichzeitig restriktivsten Annahmen des
+OLS Modells ist die Annahme eines linearen Zusammenhangs zwischen der
+abhängigen und den unabhängigen Variablen.
+Auch wenn wir im letzten Kapitel gesehen haben wie wir manche nicht-lineare
+Zusammenhänge durch angemessene Datentransformationen und der Verwendung
+cleverer funktionaler Formen mit OLS konsistent schätzen können bleiben
+zahlreiche interessante Zusammenhänge außen vor.</p>
+<p>In diesem Kapitel werden wir uns beispielhaft mit dem Fall beschäftigen, in
+dem unsere abhängige Variable binär ist.
+Ein typisches Beispiel ist die Analyse von Arbeitslosigkeit.
+Stellen wir uns vor wir möchten untersuchen unter welchen Umständen Menschen
+arbeitslos werden.
+Unsere abhängige Variable <span class="math inline">\(\boldsymbol{y}\)</span> ist dabei eine binäre Varianble, die
+entweder den Wert <span class="math inline">\(0\)</span> annimmt wenn eine Person nicht arbeitslos ist oder den
+Wert <span class="math inline">\(1\)</span> annimmt wenn eine Person arbeitslos ist.
+Unsere Matrix <span class="math inline">\(\boldsymbol{X}\)</span> enthält dann Informationen über Variablen, die
+die Arbeitslosigkeit beeinflussen könnten, z.B. Ausbildungsniveau oder Alter.
+Wir möchten untersuchen wie Variation in den erklärenden Variablen die
+Wahrscheinlichkeit bestimmt, dass jemand arbeitslos ist, also
+<span class="math inline">\(\mathbb{P}(\boldsymbol{y}=\boldsymbol{1} | \boldsymbol{X})\)</span>.</p>
+<p>Dieser Zusammenhang kann unmöglich als linear aufgefasst werden:
+es ist unmöglich, dass <span class="math inline">\(y&lt;0\)</span> oder <span class="math inline">\(y&gt;1\)</span> und der Zusammenhang im Intervall
+<span class="math inline">\([0,1]\)</span> ist quasi nie linear.
+Daher ist der herkömmliche OLS Schätzer für solche Fälle ungeeignet, denn A1 ist
+klar verletzt.
+In diesem Kapitel lernen wir dabei logit- und probit-Modelle als alternative
+Schätzverfahren kennen.</p>
+<p>Dabei werden die folgenden Pakete verwendet:</p>
+<div class="sourceCode" id="cb857"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb857-1"><a href="nonlin.html#cb857-1" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb857-2"><a href="nonlin.html#cb857-2" aria-hidden="true"></a><span class="kw">library</span>(data.table)</span>
+<span id="cb857-3"><a href="nonlin.html#cb857-3" aria-hidden="true"></a><span class="kw">library</span>(here)</span>
+<span id="cb857-4"><a href="nonlin.html#cb857-4" aria-hidden="true"></a><span class="kw">library</span>(viridis)</span></code></pre></div>
+<div id="logit" class="section level2" number="12.1">
+<h2><span class="header-section-number">12.1</span> Binäre abhängige Variablen: Logit- und Probit-Modelle</h2>
+<p>Das folgende Beispiel verwendet angepasste Daten aus <span class="citation">Kleiber and Zeileis (<a href="#ref-AER" role="doc-biblioref">2008</a>)</span> zur
+Beschäftigungssituation von Frauen aus der Schweiz:</p>
+<div class="sourceCode" id="cb858"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb858-1"><a href="nonlin.html#cb858-1" aria-hidden="true"></a>schweiz_al &lt;-<span class="st"> </span>data.table<span class="op">::</span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/tidy/nonlinmodels_schweizer-arbeit.csv&quot;</span>), </span>
+<span id="cb858-2"><a href="nonlin.html#cb858-2" aria-hidden="true"></a>                    <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;double&quot;</span>, <span class="kw">rep</span>(<span class="st">&quot;double&quot;</span>, <span class="dv">5</span>), <span class="st">&quot;factor&quot;</span>))</span>
+<span id="cb858-3"><a href="nonlin.html#cb858-3" aria-hidden="true"></a><span class="kw">head</span>(schweiz_al)</span></code></pre></div>
+<pre><code>#&gt;    Arbeitslos Einkommen_log Alter Ausbildung_Jahre Kinder_jung Kinder_alt
+#&gt; 1:          1      10.78750    30                8           1          1
+#&gt; 2:          0      10.52425    45                8           0          1
+#&gt; 3:          1      10.96858    46                9           0          0
+#&gt; 4:          1      11.10500    31               11           2          0
+#&gt; 5:          1      11.10847    44               12           0          2
+#&gt; 6:          0      11.02825    42               12           0          1
+#&gt;    Auslaender
+#&gt; 1:          0
+#&gt; 2:          0
+#&gt; 3:          0
+#&gt; 4:          0
+#&gt; 5:          0
+#&gt; 6:          0</code></pre>
+<p>Wir sind interessiert welchen Einfluss die erklärenden Variablen auf die
+Wahrscheinlichkeit haben, dass eine Frau Arbeitslos ist, also die Variable
+<code>Arbeitslos</code> den Wert <code>1</code> annimmt.</p>
+<div id="warum-nicht-ols" class="section level3" number="12.1.1">
+<h3><span class="header-section-number">12.1.1</span> Warum nicht OLS?</h3>
+<p>Wir könnten natürlich zunächst einmal unser bekanntes und geliebtes OLS Modell
+verwenden um den Zusammenhang zu schätzen.
+Um die Probleme zu illustrieren schätzen wir in Abbildung <a href="nonlin.html#fig:binaryOLS">12.1</a>
+einmal nur den bivariaten Zusammenhang zwischen <code>Arbeitslos</code> und <code>Einkommen_log</code>.</p>
+<div class="figure" style="text-align: center"><span id="fig:binaryOLS"></span>
+<img src="Chap-nonlinmodels-binary_files/figure-html/binaryOLS-1.png" alt="Schätzung mit OLS Modell." width="75%" height="75%" />
+<p class="caption">
+Figure 12.1: Schätzung mit OLS Modell.
+</p>
+</div>
+<p>Unser Modell würde für bestimmte Levels an arbeitsunabhängigem Einkommen
+Werte außerhalb des Intervalls <span class="math inline">\(0, 1\)</span> vorhersagen - also Werte, die <span class="math inline">\(y\)</span> gar nicht
+annehmen kann und die, da wir die Werte für <span class="math inline">\(y\)</span> später als Wahrscheinlichkeiten
+interpretieren wollen, auch gar keinen Sinn ergeben würden.</p>
+<p>Unser Ziel ist da eher ein funktionaler Zusammenhang wie in
+Abbildung <a href="nonlin.html#fig:binary">12.2</a> zu sehen:</p>
+<div class="figure" style="text-align: center"><span id="fig:binary"></span>
+<img src="Chap-nonlinmodels-binary_files/figure-html/binary-1.png" alt="Funktionaler Zusammenhang, den ein binäres Modell abbilden sollte." width="75%" height="75%" />
+<p class="caption">
+Figure 12.2: Funktionaler Zusammenhang, den ein binäres Modell abbilden sollte.
+</p>
+</div>
+<p>Dieser Zusammenhang ist jedoch nicht linear und damit inkonsistent mit A1 des
+OLS Modells.</p>
+</div>
+<div id="logit-und-probit-theoretische-grundidee" class="section level3" number="12.1.2">
+<h3><span class="header-section-number">12.1.2</span> Logit und Probit: theoretische Grundidee</h3>
+<p>Wir sind interessiert an <span class="math inline">\(\mathbb{P}(y=1|\boldsymbol{x})\)</span>, also der
+Wahrscheinlichkeit, dass <span class="math inline">\(y\)</span> den Wert <span class="math inline">\(1\)</span> annimmt, gegeben die unabhängigen
+Variablen <span class="math inline">\(\boldsymbol{x}\)</span>.</p>
+<p>Eine Möglichkeit <span class="math inline">\(\mathbb{P}(y=1|\boldsymbol{x})\)</span> auf das Intervall <span class="math inline">\([0,1]\)</span> zu
+beschränken ist folgende Transformation:<a href="#fn95" class="footnote-ref" id="fnref95"><sup>95</sup></a></p>
+<p><span class="math display">\[\begin{align}
+\mathbb{P}(y=1|\boldsymbol{x})=
+\frac{\exp(\boldsymbol{X\beta})}{1+\exp(\boldsymbol{X\beta})}
+\end{align}\]</span></p>
+<p>Diesen Ausdruck können wir dann folgendermaßen umformen:</p>
+<p><span class="math display">\[\frac{\mathbb{P}(y=1|\boldsymbol{x})}{1-\mathbb{P}(y=1|\boldsymbol{x})}=\frac{\frac{\exp(\boldsymbol{X\beta})}{1+\exp(\boldsymbol{X\beta})}}{1-\frac{\exp(\boldsymbol{X\beta})}{1+\exp(\boldsymbol{X\beta})}}\]</span>
+Hier haben wir nun die so genannten <em>odds</em>:
+das Verhältnist dass <span class="math inline">\(\mathbb{P}(y=1|\boldsymbol{x})\)</span> und
+<span class="math inline">\(\mathbb{P}(y\neq0|\boldsymbol{x})\)</span>.
+Wir multiplizieren nun den linken Teil der Gleichung mit
+<span class="math inline">\(1=\frac{\exp(\boldsymbol{X\beta})}{\exp(\boldsymbol{X\beta})}\)</span> um den
+Zähler durch Kürzen zu vereinfachen:</p>
+<p><span class="math display">\[\begin{align}
+\frac{\mathbb{P}(y=1|\boldsymbol{x})}{1-\mathbb{P}(y=1|\boldsymbol{x})} &amp;=
+\frac{\exp(\boldsymbol{X\beta})}{\exp(\boldsymbol{X\beta})\cdot
+\left(\frac{1+\exp(\boldsymbol{X\beta}}{1+\exp(\boldsymbol{X\beta}}-
+\frac{\exp(\boldsymbol{X\beta})}{1+\exp(\boldsymbol{X\beta})}\right)}\nonumber\\
+&amp;=
+\frac{\exp(\boldsymbol{X\beta})}{\left(1+\exp(\boldsymbol{X\beta})\right)\cdot
+\frac{1}{1+\exp(\boldsymbol{X\beta})}}\nonumber\\
+&amp;=\exp(\boldsymbol{X\beta})
+\end{align}\]</span></p>
+<p>Nun können wir durch logarithmieren eine brauchbare Schätzgleichung herleiten:</p>
+<p><span class="math display">\[\begin{align}
+\ln\left(\frac{\mathbb{P}(y=1|\boldsymbol{x})}{1-\mathbb{P}(y=1|\boldsymbol{x})}\right) 
+&amp;= \ln\left(\exp(\boldsymbol{X\beta})\right)\nonumber\\ 
+\ln\left(\frac{\mathbb{P}(y=1|\boldsymbol{x})}{1-\mathbb{P}(y=1|\boldsymbol{x})}\right)  
+&amp;= \boldsymbol{X\beta}
+\end{align}\]</span></p>
+<p>Wir sprechen hier von dem so genannten <em>logit</em> Modell, da wir hier auf der
+linken Seite den <em>Logarithmus</em> der <em>Odds</em> haben.
+Diesen Zusammenhang können wir nun auch ohne Probleme mit unserem OLS-Schätzer
+schätzen, denn hier haben wir einen klaren linearen Zusammenhang.
+Nur die abhängige Variable ist auf den ersten Blick ein wenig merkwürdig:
+der Logarithmus der <em>Odds</em> des interessierenden Events.
+Aber das ist kein unlösbares Problem wie wir später sehen werden.</p>
+<p><em>probit</em> Modelle funktionieren auf eine sehr ähnliche Art und Weise, verwenden
+aber eine andere Transformation über die kumulierte Wahrscheinlichkeitsverteilung
+der Normalverteilung.
+Hier wird im Endeffekt folgende Regressionsgleichung geschätzt:</p>
+<p><span class="math display">\[\begin{align}
+\mathbb{P}(y=1|\boldsymbol{x})=\phi(\boldsymbol{X\beta})
+\end{align}\]</span></p>
+<p>wobei <span class="math inline">\(\Phi(\cdot)\)</span> die kumulierte Wahrscheinlichkeitsverteilung der
+Normalverteilung ist.</p>
+<blockquote>
+<p><strong>Logit oder Probit?</strong>
+Wie Sie in Abbildung <a href="nonlin.html#fig:logitprobit">12.3</a> sehen, die sich wieder auf das
+Einführungsbeispiel bezieht, sind die funktionalen Formen beider
+Modelle sehr ähnlich.
+Früher war das Logit-Modell beliebter, weil es etwas technisch etwas leichter zu berechnen war. Mit heutigen Computern ist dieser Vorteil jedoch irrelevant
+geworden.
+Es gibt jedoch Fälle in denen Logit-Modelle etwas leichter zu interpretieren
+sind - für die hier vorgestellte Strategie spielt es jedoch ebenfalls keine
+Rolle.
+In einigen Modifikationen binärer Schätzmodelle ist es einfacher, als
+Ausgangspunkt das Probit-Modell zu nehmen - aber das ist für die meisten
+Anwendungsfällte ebenfalls egal.
+Am Ende des Tages gilt: wenn Sie Logit verstanden haben, haben Sie wohl auch
+Probit verstanden und in der Praxis ist es bis auf wenige Ausnahmen zunächst
+einmal völlig zweitrangig welches der Modelle Sie verwenden. Eine technisch
+genauere Diskussion, die Logit und Probit jeweils als Sonderfall der
+Generalisierten Modelle begreift, siehe z.B. Kapitel 11 in <span class="citation">Fitzmaurice, Laird, and Ware (<a href="#ref-fitz" role="doc-biblioref">2011</a>)</span>.</p>
+</blockquote>
+<div class="figure" style="text-align: center"><span id="fig:logitprobit"></span>
+<img src="Chap-nonlinmodels-binary_files/figure-html/logitprobit-1.png" alt="Vergleich der funktionalen Form bei logit und probit Modellen." width="75%" height="75%" />
+<p class="caption">
+Figure 12.3: Vergleich der funktionalen Form bei logit und probit Modellen.
+</p>
+</div>
+</div>
+<div id="logit-und-probit-implementierung-in-r" class="section level3" number="12.1.3">
+<h3><span class="header-section-number">12.1.3</span> Logit und Probit: Implementierung in R</h3>
+<p>Da <em>logit</em> und <em>probit</em> Modelle zu den so genannten <em>generalisierten Modellen</em>
+gehören verwenden wir die Funktion <code>glm</code> um die Modelle zu schätzen.
+Die Spezifikation ist dabei sehr ähnlich zu den linearen Modellen, die wir
+mit <code>lm()</code> geschätzt haben.</p>
+<p>Nehmen wir einmal an wir wollen mit unserem Datensatz von Schweizerinnen
+die Effekte von Alter und arbeitsunabhängigem Einkommen auf die Wahrscheinlichkeit
+der Arbeitslosigkeit schätzen.</p>
+<p>Als erstes Argument <code>formula</code> übergeben wir wieder die Schätzgleichung.
+In unserem Falle wäre das also <code>Arbeitslos ~ Alter + Einkommen_log</code>.</p>
+<p>Als zweites Argument (<code>family</code>) müssen wir die Schätzart spezifizieren.
+Für <em>logit</em> Modelle schreiben wir <code>family = binomial(link = "logit")</code>, für
+<em>probit</em> Modelle entsprechend <code>family = binomial(link = "probit")</code>.</p>
+<p>Das letzte Argument ist dann <code>data</code>.
+Insgesamt erhalten wir also für das <em>logit</em>-Modell:</p>
+<div class="sourceCode" id="cb860"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb860-1"><a href="nonlin.html#cb860-1" aria-hidden="true"></a>arbeitslogit_test &lt;-<span class="st"> </span><span class="kw">glm</span>(</span>
+<span id="cb860-2"><a href="nonlin.html#cb860-2" aria-hidden="true"></a>  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter, </span>
+<span id="cb860-3"><a href="nonlin.html#cb860-3" aria-hidden="true"></a>  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), </span>
+<span id="cb860-4"><a href="nonlin.html#cb860-4" aria-hidden="true"></a>  <span class="dt">data =</span> schweiz_al)</span></code></pre></div>
+<p>Und das <em>probit</em>-Modell:</p>
+<div class="sourceCode" id="cb861"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb861-1"><a href="nonlin.html#cb861-1" aria-hidden="true"></a>arbeitsprobit_test &lt;-<span class="st"> </span><span class="kw">glm</span>(</span>
+<span id="cb861-2"><a href="nonlin.html#cb861-2" aria-hidden="true"></a>  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter, </span>
+<span id="cb861-3"><a href="nonlin.html#cb861-3" aria-hidden="true"></a>  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </span>
+<span id="cb861-4"><a href="nonlin.html#cb861-4" aria-hidden="true"></a>  <span class="dt">data =</span> schweiz_al)</span></code></pre></div>
+<p>Für die Schätzergebnisse können wir wie bilang die Funktion <code>summary()</code>
+verwenden:</p>
+<div class="sourceCode" id="cb862"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb862-1"><a href="nonlin.html#cb862-1" aria-hidden="true"></a><span class="kw">summary</span>(arbeitslogit_test)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; glm(formula = Arbeitslos ~ Einkommen_log + Alter, family = binomial(link = &quot;logit&quot;), 
+#&gt;     data = schweiz_al)
+#&gt; 
+#&gt; Deviance Residuals: 
+#&gt;     Min       1Q   Median       3Q      Max  
+#&gt; -1.7448  -1.1855   0.8128   1.1017   1.8279  
+#&gt; 
+#&gt; Coefficients:
+#&gt;                 Estimate Std. Error z value Pr(&gt;|z|)    
+#&gt; (Intercept)   -10.381739   2.003223  -5.183 2.19e-07 ***
+#&gt; Einkommen_log   0.920045   0.185414   4.962 6.97e-07 ***
+#&gt; Alter           0.018013   0.006612   2.724  0.00645 ** 
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; (Dispersion parameter for binomial family taken to be 1)
+#&gt; 
+#&gt;     Null deviance: 1203.2  on 871  degrees of freedom
+#&gt; Residual deviance: 1168.5  on 869  degrees of freedom
+#&gt; AIC: 1174.5
+#&gt; 
+#&gt; Number of Fisher Scoring iterations: 4</code></pre>
+<p>Aber wie sollen wir das interpretieren?
+Da das ein wenig schwieriger ist beschäftigen wir uns damit im nächsten
+Abschnitt.</p>
+</div>
+<div id="logit-und-probit-interpretation-der-ergebnisse" class="section level3" number="12.1.4">
+<h3><span class="header-section-number">12.1.4</span> Logit und Probit: Interpretation der Ergebnisse</h3>
+<p>Wie wir oben gesehen haben ist die abhängige Variable in der Logit-Regression
+der Logarithmus der <em>Odds Ratio</em>.
+Das ist nicht ganz einfach zu interpretieren.
+So bedeutet der Koeffizient für <code>Auslaender1</code> in folgender Ergebnistabelle,
+dass sich die logarithmierte <em>Odds Ratio</em> <em>ceteris paribus</em> um 1.3 Prozent
+reduziert, wenn die betroffene Person Ausländerin ist:</p>
+<div class="sourceCode" id="cb864"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb864-1"><a href="nonlin.html#cb864-1" aria-hidden="true"></a>arbeitslogit &lt;-<span class="st"> </span><span class="kw">glm</span>(</span>
+<span id="cb864-2"><a href="nonlin.html#cb864-2" aria-hidden="true"></a>  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter <span class="op">+</span><span class="st"> </span>Ausbildung_Jahre <span class="op">+</span><span class="st"> </span>Kinder_jung <span class="op">+</span><span class="st"> </span></span>
+<span id="cb864-3"><a href="nonlin.html#cb864-3" aria-hidden="true"></a><span class="st">    </span>Kinder_alt <span class="op">+</span><span class="st"> </span>Auslaender, </span>
+<span id="cb864-4"><a href="nonlin.html#cb864-4" aria-hidden="true"></a>  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), </span>
+<span id="cb864-5"><a href="nonlin.html#cb864-5" aria-hidden="true"></a>  <span class="dt">data =</span> schweiz_al)</span>
+<span id="cb864-6"><a href="nonlin.html#cb864-6" aria-hidden="true"></a><span class="kw">summary</span>(arbeitslogit)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; glm(formula = Arbeitslos ~ Einkommen_log + Alter + Ausbildung_Jahre + 
+#&gt;     Kinder_jung + Kinder_alt + Auslaender, family = binomial(link = &quot;logit&quot;), 
+#&gt;     data = schweiz_al)
+#&gt; 
+#&gt; Deviance Residuals: 
+#&gt;     Min       1Q   Median       3Q      Max  
+#&gt; -2.2681  -1.0675   0.5383   0.9727   1.9384  
+#&gt; 
+#&gt; Coefficients:
+#&gt;                    Estimate Std. Error z value Pr(&gt;|z|)    
+#&gt; (Intercept)      -10.374346   2.166852  -4.788 1.69e-06 ***
+#&gt; Einkommen_log      0.815041   0.205501   3.966 7.31e-05 ***
+#&gt; Alter              0.051033   0.009052   5.638 1.72e-08 ***
+#&gt; Ausbildung_Jahre  -0.031728   0.029036  -1.093    0.275    
+#&gt; Kinder_jung        1.330724   0.180170   7.386 1.51e-13 ***
+#&gt; Kinder_alt         0.021986   0.073766   0.298    0.766    
+#&gt; Auslaender1       -1.310405   0.199758  -6.560 5.38e-11 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; (Dispersion parameter for binomial family taken to be 1)
+#&gt; 
+#&gt;     Null deviance: 1203.2  on 871  degrees of freedom
+#&gt; Residual deviance: 1052.8  on 865  degrees of freedom
+#&gt; AIC: 1066.8
+#&gt; 
+#&gt; Number of Fisher Scoring iterations: 4</code></pre>
+<p>Im Falle des Probit-Modells ist die Interpretation noch schwieriger, weil
+der geschätzte Wert <span class="math inline">\(\hat{\beta}_6\)</span> hier die Änderung im z-Wert der abhängigen
+Variable angibt – eine Information, die unmittelbar kaum intuitiv zu
+verarbeiten ist und daher in der Praxis auch nicht groß diskutiert wird.</p>
+<p>In jedem Falle wäre es also deutlich schöner wenn wir Änderungen in den
+unabhängigen Variablen
+als Änderungen in <span class="math inline">\(\mathbb{P}(y=1|\boldsymbol{x})\)</span> interpretieren könnten.
+In unserem Beispiel also: um wie viel Prozent würde die Wahrscheinlichkeit für
+Arbeitslosigkeit steigen, wenn es sich bei der betroffenen Person um eine
+Ausländerin handelt?
+Um dieses Ergebnis zu bekommen bedarf es aber einiger weniger Umformungen, die
+in <code>R</code> für Logit und Probit glücklicherweise gleich funktionieren.</p>
+<p>Da der Zusammenhang zwischen <span class="math inline">\(\mathbb{P}(y=1|\boldsymbol{x})\)</span> und den
+unabhängigen Variablen nicht-linear ist müssen wir für die Vergleiche der
+Wahrscheinlichkeiten konkrete Werte angeben.</p>
+<p>In einem ersten Schritt verwenden wir die Funktion <code>predict</code>, der wir als
+erstes Argument <code>object</code> unser geschätztes Modell übergeben.
+Als zweites Argument übergeben wir einen <code>data.frame</code>, in dem wir die
+relevanten Änderungen und den zu betrachtenden Bereich angeben.
+Je nach Anzahl der abhängigen Variablen kann diese Tabelle recht groß werden,
+sie ist aber notwendig, da der Zusammenhang zwischen abhängigen und unabhängiger
+Variable ja nicht-linear ist.</p>
+<p>Als drittes Argument müssen wir noch <code>type = "response"</code> übergeben damit
+wir die Vorhersagen auf der Skala der zugrundeliegenden abhänigigen Variable
+bekommen, also direkt als Wahrscheinlichkeiten:</p>
+<div class="sourceCode" id="cb866"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb866-1"><a href="nonlin.html#cb866-1" aria-hidden="true"></a>predicted_probs &lt;-<span class="st"> </span><span class="kw">predict</span>(<span class="dt">object =</span> arbeitslogit, </span>
+<span id="cb866-2"><a href="nonlin.html#cb866-2" aria-hidden="true"></a>        <span class="dt">newdata =</span> <span class="kw">data.frame</span>(</span>
+<span id="cb866-3"><a href="nonlin.html#cb866-3" aria-hidden="true"></a>          <span class="st">&quot;Einkommen_log&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), </span>
+<span id="cb866-4"><a href="nonlin.html#cb866-4" aria-hidden="true"></a>          <span class="st">&quot;Alter&quot;</span>=<span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">30</span>), </span>
+<span id="cb866-5"><a href="nonlin.html#cb866-5" aria-hidden="true"></a>          <span class="st">&quot;Ausbildung_Jahre&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
+<span id="cb866-6"><a href="nonlin.html#cb866-6" aria-hidden="true"></a>          <span class="st">&quot;Kinder_alt&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
+<span id="cb866-7"><a href="nonlin.html#cb866-7" aria-hidden="true"></a>          <span class="st">&quot;Kinder_jung&quot;</span>=<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb866-8"><a href="nonlin.html#cb866-8" aria-hidden="true"></a>          <span class="st">&quot;Auslaender&quot;</span> =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb866-9"><a href="nonlin.html#cb866-9" aria-hidden="true"></a>          ),</span>
+<span id="cb866-10"><a href="nonlin.html#cb866-10" aria-hidden="true"></a>        <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb866-11"><a href="nonlin.html#cb866-11" aria-hidden="true"></a>predicted_probs</span></code></pre></div>
+<pre><code>#&gt;         1         2 
+#&gt; 0.6175431 0.8593445</code></pre>
+<p>Das erste Element ist die Wahrscheinlichkeit arbeitslos zu sein für eine
+dreißigjährige Frau mit einem
+arbeitsunabhänigen Einkommen von <span class="math inline">\(\exp(10)=22025\)</span>, fünfjähiger Ausbildung, keinen
+alten Kindern, einem jungen Kind und mit schweizerischer Staatsangehörigkeit.
+Die zweite Wahrscheinlichkeit gilt für eine Frau mit den gleichen Eigenschaften
+aber zwei jungen Kindern.
+Mit <code>diff()</code> bekommen wir gleich den entsprechenden Effekt des zweiten jungen
+Kindes auf die Wahrscheinlichkeit arbeitslos zu sein:</p>
+<div class="sourceCode" id="cb868"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb868-1"><a href="nonlin.html#cb868-1" aria-hidden="true"></a><span class="kw">diff</span>(predicted_probs)</span></code></pre></div>
+<pre><code>#&gt;         2 
+#&gt; 0.2418014</code></pre>
+<p>Die Wahrscheinlichkeit ist also nach dem Modell ca. <span class="math inline">\(25\%\)</span> größer!
+Wenn wir wissen wollen ob der Effekt für Ausländerinnen ähnlich ist rechnen wir:</p>
+<div class="sourceCode" id="cb870"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb870-1"><a href="nonlin.html#cb870-1" aria-hidden="true"></a><span class="kw">diff</span>(</span>
+<span id="cb870-2"><a href="nonlin.html#cb870-2" aria-hidden="true"></a>  <span class="kw">predict</span>(<span class="dt">object =</span> arbeitslogit, </span>
+<span id="cb870-3"><a href="nonlin.html#cb870-3" aria-hidden="true"></a>        <span class="dt">newdata =</span> <span class="kw">data.frame</span>(</span>
+<span id="cb870-4"><a href="nonlin.html#cb870-4" aria-hidden="true"></a>          <span class="st">&quot;Einkommen_log&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), </span>
+<span id="cb870-5"><a href="nonlin.html#cb870-5" aria-hidden="true"></a>          <span class="st">&quot;Alter&quot;</span>=<span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">30</span>), </span>
+<span id="cb870-6"><a href="nonlin.html#cb870-6" aria-hidden="true"></a>          <span class="st">&quot;Ausbildung_Jahre&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
+<span id="cb870-7"><a href="nonlin.html#cb870-7" aria-hidden="true"></a>          <span class="st">&quot;Kinder_alt&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
+<span id="cb870-8"><a href="nonlin.html#cb870-8" aria-hidden="true"></a>          <span class="st">&quot;Kinder_jung&quot;</span>=<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb870-9"><a href="nonlin.html#cb870-9" aria-hidden="true"></a>          <span class="st">&quot;Auslaender&quot;</span> =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb870-10"><a href="nonlin.html#cb870-10" aria-hidden="true"></a>          ),</span>
+<span id="cb870-11"><a href="nonlin.html#cb870-11" aria-hidden="true"></a>        <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb870-12"><a href="nonlin.html#cb870-12" aria-hidden="true"></a>)</span></code></pre></div>
+<pre><code>#&gt;         2 
+#&gt; 0.3189543</code></pre>
+<p>Hier ist der Effekt mit ca. <span class="math inline">\(32\%\)</span> also noch größer!
+Zum Vergleich führen wir die gleiche Prozedur auch noch einmal für das
+Probit-Modell durch:</p>
+<div class="sourceCode" id="cb872"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb872-1"><a href="nonlin.html#cb872-1" aria-hidden="true"></a>arbeitsprobit &lt;-<span class="st"> </span><span class="kw">glm</span>(</span>
+<span id="cb872-2"><a href="nonlin.html#cb872-2" aria-hidden="true"></a>  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter <span class="op">+</span><span class="st"> </span>Ausbildung_Jahre <span class="op">+</span><span class="st"> </span>Kinder_jung <span class="op">+</span><span class="st"> </span></span>
+<span id="cb872-3"><a href="nonlin.html#cb872-3" aria-hidden="true"></a><span class="st">    </span>Kinder_alt <span class="op">+</span><span class="st"> </span>Auslaender, </span>
+<span id="cb872-4"><a href="nonlin.html#cb872-4" aria-hidden="true"></a>  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </span>
+<span id="cb872-5"><a href="nonlin.html#cb872-5" aria-hidden="true"></a>  <span class="dt">data =</span> schweiz_al)</span>
+<span id="cb872-6"><a href="nonlin.html#cb872-6" aria-hidden="true"></a></span>
+<span id="cb872-7"><a href="nonlin.html#cb872-7" aria-hidden="true"></a><span class="kw">diff</span>(</span>
+<span id="cb872-8"><a href="nonlin.html#cb872-8" aria-hidden="true"></a>  <span class="kw">predict</span>(</span>
+<span id="cb872-9"><a href="nonlin.html#cb872-9" aria-hidden="true"></a>    <span class="dt">object =</span> arbeitsprobit, </span>
+<span id="cb872-10"><a href="nonlin.html#cb872-10" aria-hidden="true"></a>    <span class="dt">newdata =</span> <span class="kw">data.frame</span>(</span>
+<span id="cb872-11"><a href="nonlin.html#cb872-11" aria-hidden="true"></a>      <span class="st">&quot;Einkommen_log&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), </span>
+<span id="cb872-12"><a href="nonlin.html#cb872-12" aria-hidden="true"></a>      <span class="st">&quot;Alter&quot;</span>=<span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">30</span>), </span>
+<span id="cb872-13"><a href="nonlin.html#cb872-13" aria-hidden="true"></a>      <span class="st">&quot;Ausbildung_Jahre&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
+<span id="cb872-14"><a href="nonlin.html#cb872-14" aria-hidden="true"></a>      <span class="st">&quot;Kinder_alt&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
+<span id="cb872-15"><a href="nonlin.html#cb872-15" aria-hidden="true"></a>      <span class="st">&quot;Kinder_jung&quot;</span>=<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb872-16"><a href="nonlin.html#cb872-16" aria-hidden="true"></a>      <span class="st">&quot;Auslaender&quot;</span> =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb872-17"><a href="nonlin.html#cb872-17" aria-hidden="true"></a>      ),</span>
+<span id="cb872-18"><a href="nonlin.html#cb872-18" aria-hidden="true"></a>    <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb872-19"><a href="nonlin.html#cb872-19" aria-hidden="true"></a>)</span></code></pre></div>
+<pre><code>#&gt;         2 
+#&gt; 0.3023284</code></pre>
+<p>Wie Sie sehen ist der Unterschied marginal.
+In der Praxis macht es also meist kaum einen Unterschied welches der beiden
+Modelle Sie verwenden.</p>
+</div>
+</div>
+<div id="abschließende-anmerkungen" class="section level2" number="12.2">
+<h2><span class="header-section-number">12.2</span> Abschließende Anmerkungen</h2>
+<p>In diesem Kapitel haben wir uns beispielhaft mit Logit- und Probit-Modellen
+beschäftigt. ‘Beispielhaft’ weil das Vorgehen bei diesen Modellen repräsentativ
+für zahlreiche fortgeschrittene Schätzverfahren ist:
+wir beobachten zuerst, dass die zu analysierenden Daten nicht zu den
+Standard-Annahmen von OLS passen.
+Dann überlegen wir uns eine Transformation der Daten, bzw. eine
+Transformationsstrategie für die Schätzer sodass wir nach einigen Umformungen
+wieder an einem Punkt ankommen, wo wir das Modell mit OLS schätzen können.
+Das ist ein weiterer Grund warum ein solides Verständnis der OLS-Methode so
+wertvoll ist: viele komplexe Schätzer inkludieren diverse Transformationen,
+können aber an irgendeinem Punkt auf die OLS-Methode (oder, wie sie dann oft
+bezeichnet wird, die <em>Least Squares</em>-Methode) zurückgeführt werden.
+Das gilt natürlich nicht für alle, aber für viele in der
+Anwendung weit verbreiteten ökonometrischen Methoden.
+Insofern macht das Verständnis von dem hier vorgestellten Vorgehen auch eine
+Auseinandersetzung mit Schätzmethoden für zensierte Daten (Tobit-Modelle) oder
+Panel-Daten (z.B. Fixed-Effects-Modelle), sowie fortgeschrittene Techniken wie
+Instrumentenvariablenschätzung deutlich einfacher.
+Nichtsdestotrotz warten auch noch viele andere Schätzverfahren, deren
+Verständnis zwar durch OLS erleichtert wird, die aber nach etwas anderen
+Prinzipien funktionieren, z.B. die <em>Maximum Likelihood</em>-Methode,
+der <em>Generalized Methods of Moments</em>-Ansatz oder die zahlreichen
+nicht-parametrischen Methoden, mit denen wir uns bislang noch gar nicht
+auseinandergesetzt haben. Es bleibt also spannend!</p>
 
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-fitz">
+<p>Fitzmaurice, Garrett, Nan Laird, and James Ware. 2011. <em>Applied Longitudinal Analysis</em>. 2nd ed. Hoboken, NJ: John Wiley; Sons.</p>
+</div>
+<div id="ref-AER">
+<p>Kleiber, Christian, and Achim Zeileis. 2008. <em>Applied Econometrics with R</em>. New York: Springer-Verlag. <a href="https://CRAN.R-project.org/package=AER">https://CRAN.R-project.org/package=AER</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="95">
+<li id="fn95"><p>
+Falls Sie das <span class="math inline">\(\exp\left( \cdot\right)\)</span> in der Gleichung verwirrt: das ist nur eine
+alternative Schreibweise für die Exponentialfunktion um schwer lesbare
+Exponenten zu vermeiden. Entsprechend wird Ihnen das häufig begegnen.
+Es gilt aber immer: <span class="math inline">\(\exp\left(x \right)=e^x\)</span> und damit
+<span class="math inline">\(\exp\left(1 \right)=e\approx 2.718\)</span>. Probieren Sie es doch mal in <code>R</code> aus,
+hier gibt es dafür die Funktion – Achtung!! – <code>exp()</code>.<a href="nonlin.html#fnref95" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
