@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 Fortgeschrittene Themen der linearen Regression | R für die sozio-ökonomische Forschung</title>
   <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.2" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Fortgeschrittene Themen der linearen Regression | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-12-09" />
+<meta name="date" content="2021-03-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="linmodel.html"/>
 <link rel="next" href="nonlin.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -57,6 +57,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -206,7 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>5</b> Visualisierung von Daten</a>
 <ul>
-<li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#verwendete-pakete-1"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
 <li class="chapter" data-level="5.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>5.1</b> Optional: Theoretische Grundlagen</a>
 <ul>
@@ -249,7 +250,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6" data-path="formalia.html"><a href="formalia.html"><i class="fa fa-check"></i><b>6</b> Formale Methoden der Sozioökonomie</a>
 <ul>
-<li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="formalia.html"><a href="formalia.html#verwendete-pakete-2"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="6.1" data-path="formalia.html"><a href="formalia.html#formalia-wachstum"><i class="fa fa-check"></i><b>6.1</b> Änderungsraten und die Rolle des Logarithmus</a></li>
 <li class="chapter" data-level="6.2" data-path="formalia.html"><a href="formalia.html#formalia-diff"><i class="fa fa-check"></i><b>6.2</b> Grundlagen der Differentialrechnung</a>
 <ul>
@@ -280,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7" data-path="stat-stoch.html"><a href="stat-stoch.html"><i class="fa fa-check"></i><b>7</b> Grundlagen der Wahrscheinlichkeitstheorie</a>
 <ul>
-<li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="stat-stoch.html"><a href="stat-stoch.html#verwendete-pakete-3"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="7.1" data-path="stat-stoch.html"><a href="stat-stoch.html#einleitung-wahrscheinlichkeitstheorie-und-statistik"><i class="fa fa-check"></i><b>7.1</b> Einleitung: Wahrscheinlichkeitstheorie und Statistik</a></li>
 <li class="chapter" data-level="7.2" data-path="stat-stoch.html"><a href="stat-stoch.html#grundbegriffe-der-wahrscheinlichkeitstheorie"><i class="fa fa-check"></i><b>7.2</b> Grundbegriffe der Wahrscheinlichkeitstheorie</a>
 <ul>
@@ -324,7 +325,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>9</b> Wiederholung: Drei Verfahren der schließenden Statistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-4"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="9.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>9.1</b> Punktschätzung</a></li>
 <li class="chapter" data-level="9.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>9.2</b> Hypothesentests</a></li>
 <li class="chapter" data-level="9.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>9.3</b> Berechnung von Konfidenzintervallen</a></li>
@@ -471,15 +472,15 @@ Für alle Interessierten gibt es jedoch am Ende des Kapitels einen Überblick zu
 allen relevanten Theoremen und ihren mathematischen Beweisen
 (siehe <a href="advlin.html#advlin-proofs">Anhang zu Theoremen und Beweisen</a>).</p>
 <p>In diesem Kapitel werden die folgenden R Pakete verwendet:</p>
-<div class="sourceCode" id="cb795"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb795-1"><a href="advlin.html#cb795-1" aria-hidden="true"></a><span class="kw">library</span>(here)</span>
-<span id="cb795-2"><a href="advlin.html#cb795-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb795-3"><a href="advlin.html#cb795-3" aria-hidden="true"></a><span class="kw">library</span>(data.table)</span>
-<span id="cb795-4"><a href="advlin.html#cb795-4" aria-hidden="true"></a><span class="kw">library</span>(latex2exp)</span>
-<span id="cb795-5"><a href="advlin.html#cb795-5" aria-hidden="true"></a><span class="kw">library</span>(icaeDesign)</span>
-<span id="cb795-6"><a href="advlin.html#cb795-6" aria-hidden="true"></a><span class="kw">library</span>(ggpubr)</span>
-<span id="cb795-7"><a href="advlin.html#cb795-7" aria-hidden="true"></a><span class="kw">library</span>(lmtest)</span>
-<span id="cb795-8"><a href="advlin.html#cb795-8" aria-hidden="true"></a><span class="kw">library</span>(sandwich)</span>
-<span id="cb795-9"><a href="advlin.html#cb795-9" aria-hidden="true"></a><span class="kw">library</span>(MASS)</span></code></pre></div>
+<div class="sourceCode" id="cb795"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb795-1"><a href="advlin.html#cb795-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb795-2"><a href="advlin.html#cb795-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb795-3"><a href="advlin.html#cb795-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb795-4"><a href="advlin.html#cb795-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
+<span id="cb795-5"><a href="advlin.html#cb795-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(icaeDesign)</span>
+<span id="cb795-6"><a href="advlin.html#cb795-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb795-7"><a href="advlin.html#cb795-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb795-8"><a href="advlin.html#cb795-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
+<span id="cb795-9"><a href="advlin.html#cb795-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div>
 <div id="annahmen-und-eigenschaften-des-einfachen-ols-modells" class="section level2" number="11.1">
 <h2><span class="header-section-number">11.1</span> Annahmen und Eigenschaften des einfachen OLS Modells</h2>
 <p>In diesem Abschnitt werden wir zunächst unser Wissen über
@@ -687,14 +688,14 @@ Für die Kovarianz gilt entsprechend:</p>
 Cov(\epsilon_i, \epsilon_j|\boldsymbol{X}) &amp;= 
 \mathbb{E}\left[ \left(\epsilon_i-\mathbb{E}(\epsilon_i|\boldsymbol{X}) \right)\left(\epsilon_j-\mathbb{E}(\epsilon_j|\boldsymbol{X}) \right) |\boldsymbol{X}\right] \nonumber\\
 &amp;= \mathbb{E}\left[
-	\left(
-		\epsilon_i\epsilon_j - 
-		\epsilon_i \mathbb{E}(\epsilon_j|\boldsymbol{X}) - 
-		\epsilon_j \mathbb{E}(\epsilon_i|\boldsymbol{X}) +
-		\mathbb{E}(\epsilon_j|\boldsymbol{X})
-		\mathbb{E}(\epsilon_i|\boldsymbol{X})
-	\right) 	
-	|\boldsymbol{X}\right]\nonumber\\
+    \left(
+        \epsilon_i\epsilon_j - 
+        \epsilon_i \mathbb{E}(\epsilon_j|\boldsymbol{X}) - 
+        \epsilon_j \mathbb{E}(\epsilon_i|\boldsymbol{X}) +
+        \mathbb{E}(\epsilon_j|\boldsymbol{X})
+        \mathbb{E}(\epsilon_i|\boldsymbol{X})
+    \right)     
+    |\boldsymbol{X}\right]\nonumber\\
 &amp;= \mathbb{E}\left[\epsilon_i\epsilon_j|\boldsymbol{X}\right]\nonumber
 \end{align}\]</span></p>
 <p>Hier haben wir in der zweiten Zeile die <em>dritte binomische Formel</em> verwendet.</p>
@@ -970,24 +971,24 @@ Falle der Testgruppe variabel ist (Fall der Heteroskedastie).</p>
 <span class="math inline">\(\beta_1\)</span> und ein gegebenes <span class="math inline">\(\boldsymbol{X}\)</span> eine Stichprobe erstellt indem
 <span class="math inline">\(\boldsymbol{y}\)</span> gemäß des Modells <span class="math inline">\(y=\beta_0 + \beta_1 x + \epsilon\)</span> künstlich
 hergestellt wird.</p>
-<div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb796-1"><a href="advlin.html#cb796-1" aria-hidden="true"></a>dgp &lt;-<span class="st"> </span><span class="cf">function</span>(x1, beta0, beta1, <span class="dt">hetero=</span><span class="ot">FALSE</span>){</span>
-<span id="cb796-2"><a href="advlin.html#cb796-2" aria-hidden="true"></a>  y &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, <span class="kw">length</span>(x1))</span>
-<span id="cb796-3"><a href="advlin.html#cb796-3" aria-hidden="true"></a>  sd_hetero &lt;-<span class="st"> </span><span class="fl">0.25</span> <span class="op">*</span><span class="st"> </span>x1</span>
-<span id="cb796-4"><a href="advlin.html#cb796-4" aria-hidden="true"></a>  sd_homo &lt;-<span class="st"> </span><span class="kw">mean</span>(sd_hetero)</span>
-<span id="cb796-5"><a href="advlin.html#cb796-5" aria-hidden="true"></a>  <span class="cf">if</span> (hetero){</span>
-<span id="cb796-6"><a href="advlin.html#cb796-6" aria-hidden="true"></a>    errors &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="kw">length</span>(x1), <span class="dt">mean =</span> <span class="dv">0</span>, </span>
-<span id="cb796-7"><a href="advlin.html#cb796-7" aria-hidden="true"></a>                    <span class="dt">sd =</span> sd_hetero)</span>
-<span id="cb796-8"><a href="advlin.html#cb796-8" aria-hidden="true"></a>  } <span class="cf">else</span> {</span>
-<span id="cb796-9"><a href="advlin.html#cb796-9" aria-hidden="true"></a>    errors &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="kw">length</span>(x1), <span class="dt">mean =</span> <span class="dv">0</span>, </span>
-<span id="cb796-10"><a href="advlin.html#cb796-10" aria-hidden="true"></a>                    <span class="dt">sd =</span> sd_homo</span>
-<span id="cb796-11"><a href="advlin.html#cb796-11" aria-hidden="true"></a>                    )</span>
-<span id="cb796-12"><a href="advlin.html#cb796-12" aria-hidden="true"></a>  }</span>
-<span id="cb796-13"><a href="advlin.html#cb796-13" aria-hidden="true"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x1)){</span>
-<span id="cb796-14"><a href="advlin.html#cb796-14" aria-hidden="true"></a>    y[i] &lt;-<span class="st"> </span>beta0 <span class="op">+</span><span class="st"> </span>beta1<span class="op">*</span>x1[i] <span class="op">+</span><span class="st"> </span>errors[i]</span>
-<span id="cb796-15"><a href="advlin.html#cb796-15" aria-hidden="true"></a>  }</span>
-<span id="cb796-16"><a href="advlin.html#cb796-16" aria-hidden="true"></a>  final_data &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">y=</span>y, <span class="dt">x1=</span>x1, <span class="dt">errors=</span>errors)</span>
-<span id="cb796-17"><a href="advlin.html#cb796-17" aria-hidden="true"></a>  <span class="kw">return</span>(final_data)</span>
-<span id="cb796-18"><a href="advlin.html#cb796-18" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb796-1"><a href="advlin.html#cb796-1" aria-hidden="true" tabindex="-1"></a>dgp <span class="ot">&lt;-</span> <span class="cf">function</span>(x1, beta0, beta1, <span class="at">hetero=</span><span class="cn">FALSE</span>){</span>
+<span id="cb796-2"><a href="advlin.html#cb796-2" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(x1))</span>
+<span id="cb796-3"><a href="advlin.html#cb796-3" aria-hidden="true" tabindex="-1"></a>  sd_hetero <span class="ot">&lt;-</span> <span class="fl">0.25</span> <span class="sc">*</span> x1</span>
+<span id="cb796-4"><a href="advlin.html#cb796-4" aria-hidden="true" tabindex="-1"></a>  sd_homo <span class="ot">&lt;-</span> <span class="fu">mean</span>(sd_hetero)</span>
+<span id="cb796-5"><a href="advlin.html#cb796-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (hetero){</span>
+<span id="cb796-6"><a href="advlin.html#cb796-6" aria-hidden="true" tabindex="-1"></a>    errors <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="fu">length</span>(x1), <span class="at">mean =</span> <span class="dv">0</span>, </span>
+<span id="cb796-7"><a href="advlin.html#cb796-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sd =</span> sd_hetero)</span>
+<span id="cb796-8"><a href="advlin.html#cb796-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb796-9"><a href="advlin.html#cb796-9" aria-hidden="true" tabindex="-1"></a>    errors <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="fu">length</span>(x1), <span class="at">mean =</span> <span class="dv">0</span>, </span>
+<span id="cb796-10"><a href="advlin.html#cb796-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sd =</span> sd_homo</span>
+<span id="cb796-11"><a href="advlin.html#cb796-11" aria-hidden="true" tabindex="-1"></a>                    )</span>
+<span id="cb796-12"><a href="advlin.html#cb796-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb796-13"><a href="advlin.html#cb796-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x1)){</span>
+<span id="cb796-14"><a href="advlin.html#cb796-14" aria-hidden="true" tabindex="-1"></a>    y[i] <span class="ot">&lt;-</span> beta0 <span class="sc">+</span> beta1<span class="sc">*</span>x1[i] <span class="sc">+</span> errors[i]</span>
+<span id="cb796-15"><a href="advlin.html#cb796-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb796-16"><a href="advlin.html#cb796-16" aria-hidden="true" tabindex="-1"></a>  final_data <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">y=</span>y, <span class="at">x1=</span>x1, <span class="at">errors=</span>errors)</span>
+<span id="cb796-17"><a href="advlin.html#cb796-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(final_data)</span>
+<span id="cb796-18"><a href="advlin.html#cb796-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p><strong>3. Schritt: Künstlichen Datensatz erstellen und Schätzer darauf anwenden</strong></p>
 <p>Wir simulieren nun das Ziehen einer Stichprobe aus dem künstlich erstellten
 datengenerierenden Prozess (DGP) indem wir jeweils 1000 Beobachtungen kreieren.
@@ -996,35 +997,35 @@ Da das Ziehen einer Stichprobe immer ein Zufallsprozess ist erstellen wir
 Die geschätzten Koeffizienten und Standardfehler speichern wir in einer
 Liste, da wir sie später dann analysieren wollen.</p>
 <p>Dazu definieren wir die folgende Funktion:</p>
-<div class="sourceCode" id="cb797"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb797-1"><a href="advlin.html#cb797-1" aria-hidden="true"></a>mcs &lt;-<span class="st"> </span><span class="cf">function</span>(n_stichproben, </span>
-<span id="cb797-2"><a href="advlin.html#cb797-2" aria-hidden="true"></a>                x1, wahres_b0, wahres_b1, schaetzgleichung,</span>
-<span id="cb797-3"><a href="advlin.html#cb797-3" aria-hidden="true"></a>                <span class="dt">heterosk=</span><span class="ot">FALSE</span>){</span>
-<span id="cb797-4"><a href="advlin.html#cb797-4" aria-hidden="true"></a>  schaetzung_b1 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, n_stichproben)</span>
-<span id="cb797-5"><a href="advlin.html#cb797-5" aria-hidden="true"></a>  stdfehler_b1 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, n_stichproben)</span>
-<span id="cb797-6"><a href="advlin.html#cb797-6" aria-hidden="true"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n_stichproben){</span>
-<span id="cb797-7"><a href="advlin.html#cb797-7" aria-hidden="true"></a>    <span class="co"># Stichprobe ziehen:</span></span>
-<span id="cb797-8"><a href="advlin.html#cb797-8" aria-hidden="true"></a>    stichprobe &lt;-<span class="st"> </span><span class="kw">dgp</span>(<span class="dt">x1 =</span> x1, <span class="dt">beta0 =</span> wahres_b0, </span>
-<span id="cb797-9"><a href="advlin.html#cb797-9" aria-hidden="true"></a>                      <span class="dt">beta1 =</span> wahres_b1, </span>
-<span id="cb797-10"><a href="advlin.html#cb797-10" aria-hidden="true"></a>                      <span class="dt">hetero =</span> heterosk)</span>
-<span id="cb797-11"><a href="advlin.html#cb797-11" aria-hidden="true"></a>    <span class="co"># Parameter schätzen:</span></span>
-<span id="cb797-12"><a href="advlin.html#cb797-12" aria-hidden="true"></a>    schaetzung &lt;-<span class="st"> </span><span class="kw">summary</span>(</span>
-<span id="cb797-13"><a href="advlin.html#cb797-13" aria-hidden="true"></a>      <span class="kw">lm</span>(<span class="dt">formula =</span> schaetzgleichung, </span>
-<span id="cb797-14"><a href="advlin.html#cb797-14" aria-hidden="true"></a>         <span class="dt">data =</span> stichprobe)</span>
-<span id="cb797-15"><a href="advlin.html#cb797-15" aria-hidden="true"></a>      )</span>
-<span id="cb797-16"><a href="advlin.html#cb797-16" aria-hidden="true"></a>    <span class="co"># Relevante Werte speichern:</span></span>
-<span id="cb797-17"><a href="advlin.html#cb797-17" aria-hidden="true"></a>    schaetzung_b1[i] &lt;-<span class="st"> </span>schaetzung<span class="op">$</span>coefficients[<span class="dv">2</span>]</span>
-<span id="cb797-18"><a href="advlin.html#cb797-18" aria-hidden="true"></a>    stdfehler_b1[i] &lt;-<span class="st"> </span>schaetzung<span class="op">$</span>coefficients[<span class="dv">4</span>]</span>
-<span id="cb797-19"><a href="advlin.html#cb797-19" aria-hidden="true"></a>  }</span>
-<span id="cb797-20"><a href="advlin.html#cb797-20" aria-hidden="true"></a>  <span class="co"># In einer Tabelle zusammenfassen:</span></span>
-<span id="cb797-21"><a href="advlin.html#cb797-21" aria-hidden="true"></a>  Fall_Bezeichnung &lt;-<span class="st"> </span><span class="kw">ifelse</span>(heterosk, <span class="st">&quot;Heteroskedastie&quot;</span>, <span class="st">&quot;Homoskedastie&quot;</span>)</span>
-<span id="cb797-22"><a href="advlin.html#cb797-22" aria-hidden="true"></a>  ergebnisse &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">tibble</span>(</span>
-<span id="cb797-23"><a href="advlin.html#cb797-23" aria-hidden="true"></a>    <span class="dt">b1_coef=</span>schaetzung_b1,</span>
-<span id="cb797-24"><a href="advlin.html#cb797-24" aria-hidden="true"></a>    <span class="dt">b1_stdf=</span>stdfehler_b1,</span>
-<span id="cb797-25"><a href="advlin.html#cb797-25" aria-hidden="true"></a>    <span class="dt">Fall=</span><span class="kw">rep</span>(Fall_Bezeichnung, </span>
-<span id="cb797-26"><a href="advlin.html#cb797-26" aria-hidden="true"></a>             n_stichproben)</span>
-<span id="cb797-27"><a href="advlin.html#cb797-27" aria-hidden="true"></a>  )</span>
-<span id="cb797-28"><a href="advlin.html#cb797-28" aria-hidden="true"></a><span class="kw">return</span>(ergebnisse)</span>
-<span id="cb797-29"><a href="advlin.html#cb797-29" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb797"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb797-1"><a href="advlin.html#cb797-1" aria-hidden="true" tabindex="-1"></a>mcs <span class="ot">&lt;-</span> <span class="cf">function</span>(n_stichproben, </span>
+<span id="cb797-2"><a href="advlin.html#cb797-2" aria-hidden="true" tabindex="-1"></a>                x1, wahres_b0, wahres_b1, schaetzgleichung,</span>
+<span id="cb797-3"><a href="advlin.html#cb797-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">heterosk=</span><span class="cn">FALSE</span>){</span>
+<span id="cb797-4"><a href="advlin.html#cb797-4" aria-hidden="true" tabindex="-1"></a>  schaetzung_b1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_stichproben)</span>
+<span id="cb797-5"><a href="advlin.html#cb797-5" aria-hidden="true" tabindex="-1"></a>  stdfehler_b1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_stichproben)</span>
+<span id="cb797-6"><a href="advlin.html#cb797-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_stichproben){</span>
+<span id="cb797-7"><a href="advlin.html#cb797-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Stichprobe ziehen:</span></span>
+<span id="cb797-8"><a href="advlin.html#cb797-8" aria-hidden="true" tabindex="-1"></a>    stichprobe <span class="ot">&lt;-</span> <span class="fu">dgp</span>(<span class="at">x1 =</span> x1, <span class="at">beta0 =</span> wahres_b0, </span>
+<span id="cb797-9"><a href="advlin.html#cb797-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">beta1 =</span> wahres_b1, </span>
+<span id="cb797-10"><a href="advlin.html#cb797-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">hetero =</span> heterosk)</span>
+<span id="cb797-11"><a href="advlin.html#cb797-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Parameter schätzen:</span></span>
+<span id="cb797-12"><a href="advlin.html#cb797-12" aria-hidden="true" tabindex="-1"></a>    schaetzung <span class="ot">&lt;-</span> <span class="fu">summary</span>(</span>
+<span id="cb797-13"><a href="advlin.html#cb797-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">lm</span>(<span class="at">formula =</span> schaetzgleichung, </span>
+<span id="cb797-14"><a href="advlin.html#cb797-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> stichprobe)</span>
+<span id="cb797-15"><a href="advlin.html#cb797-15" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb797-16"><a href="advlin.html#cb797-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Relevante Werte speichern:</span></span>
+<span id="cb797-17"><a href="advlin.html#cb797-17" aria-hidden="true" tabindex="-1"></a>    schaetzung_b1[i] <span class="ot">&lt;-</span> schaetzung<span class="sc">$</span>coefficients[<span class="dv">2</span>]</span>
+<span id="cb797-18"><a href="advlin.html#cb797-18" aria-hidden="true" tabindex="-1"></a>    stdfehler_b1[i] <span class="ot">&lt;-</span> schaetzung<span class="sc">$</span>coefficients[<span class="dv">4</span>]</span>
+<span id="cb797-19"><a href="advlin.html#cb797-19" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb797-20"><a href="advlin.html#cb797-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># In einer Tabelle zusammenfassen:</span></span>
+<span id="cb797-21"><a href="advlin.html#cb797-21" aria-hidden="true" tabindex="-1"></a>  Fall_Bezeichnung <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(heterosk, <span class="st">&quot;Heteroskedastie&quot;</span>, <span class="st">&quot;Homoskedastie&quot;</span>)</span>
+<span id="cb797-22"><a href="advlin.html#cb797-22" aria-hidden="true" tabindex="-1"></a>  ergebnisse <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb797-23"><a href="advlin.html#cb797-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">b1_coef=</span>schaetzung_b1,</span>
+<span id="cb797-24"><a href="advlin.html#cb797-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">b1_stdf=</span>stdfehler_b1,</span>
+<span id="cb797-25"><a href="advlin.html#cb797-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">Fall=</span><span class="fu">rep</span>(Fall_Bezeichnung, </span>
+<span id="cb797-26"><a href="advlin.html#cb797-26" aria-hidden="true" tabindex="-1"></a>             n_stichproben)</span>
+<span id="cb797-27"><a href="advlin.html#cb797-27" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb797-28"><a href="advlin.html#cb797-28" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(ergebnisse)</span>
+<span id="cb797-29"><a href="advlin.html#cb797-29" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Damit können wir die Simulation sehr einfach für die beiden relevanten
 Fälle ausführen.</p>
 <p>Wir definieren nun die Parameter und die wahren Werte.
@@ -1035,41 +1036,41 @@ von R.
 Das bedeutet, dass wir für den gleichen Seed immer die gleichen Zufallszahlen
 produzieren und somit unsere Simulationsergebnisse immer vollständig reproduzierbar
 bleiben.</p>
-<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb798-1"><a href="advlin.html#cb798-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="st">&quot;1234&quot;</span>)</span>
-<span id="cb798-2"><a href="advlin.html#cb798-2" aria-hidden="true"></a>n_stichproben &lt;-<span class="st"> </span><span class="dv">250</span></span>
-<span id="cb798-3"><a href="advlin.html#cb798-3" aria-hidden="true"></a>n_beobachtungen &lt;-<span class="st"> </span><span class="dv">1000</span></span>
-<span id="cb798-4"><a href="advlin.html#cb798-4" aria-hidden="true"></a>x_data &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> n_beobachtungen, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>)</span>
-<span id="cb798-5"><a href="advlin.html#cb798-5" aria-hidden="true"></a>wahres_b0 &lt;-<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb798-6"><a href="advlin.html#cb798-6" aria-hidden="true"></a>wahres_b1 &lt;-<span class="st"> </span><span class="dv">2</span></span>
-<span id="cb798-7"><a href="advlin.html#cb798-7" aria-hidden="true"></a>schaetzgleichung &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&quot;y~x1&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="advlin.html#cb799-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="st">&quot;1234&quot;</span>)</span>
-<span id="cb799-2"><a href="advlin.html#cb799-2" aria-hidden="true"></a>homosc_results &lt;-<span class="st"> </span><span class="kw">mcs</span>(<span class="dv">1000</span>, x_data,</span>
-<span id="cb799-3"><a href="advlin.html#cb799-3" aria-hidden="true"></a>                      wahres_b0, wahres_b1, </span>
-<span id="cb799-4"><a href="advlin.html#cb799-4" aria-hidden="true"></a>                      schaetzgleichung, <span class="dt">heterosk =</span> F)</span>
-<span id="cb799-5"><a href="advlin.html#cb799-5" aria-hidden="true"></a>hetero_results &lt;-<span class="st"> </span><span class="kw">mcs</span>(<span class="dv">1000</span>, x_data,</span>
-<span id="cb799-6"><a href="advlin.html#cb799-6" aria-hidden="true"></a>                      wahres_b0, wahres_b1,</span>
-<span id="cb799-7"><a href="advlin.html#cb799-7" aria-hidden="true"></a>                      schaetzgleichung, <span class="dt">heterosk =</span> T)</span>
-<span id="cb799-8"><a href="advlin.html#cb799-8" aria-hidden="true"></a>full_results &lt;-<span class="st"> </span><span class="kw">rbind</span>(homosc_results, hetero_results)</span></code></pre></div>
+<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb798-1"><a href="advlin.html#cb798-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="st">&quot;1234&quot;</span>)</span>
+<span id="cb798-2"><a href="advlin.html#cb798-2" aria-hidden="true" tabindex="-1"></a>n_stichproben <span class="ot">&lt;-</span> <span class="dv">250</span></span>
+<span id="cb798-3"><a href="advlin.html#cb798-3" aria-hidden="true" tabindex="-1"></a>n_beobachtungen <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb798-4"><a href="advlin.html#cb798-4" aria-hidden="true" tabindex="-1"></a>x_data <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> n_beobachtungen, <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">10</span>)</span>
+<span id="cb798-5"><a href="advlin.html#cb798-5" aria-hidden="true" tabindex="-1"></a>wahres_b0 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb798-6"><a href="advlin.html#cb798-6" aria-hidden="true" tabindex="-1"></a>wahres_b1 <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb798-7"><a href="advlin.html#cb798-7" aria-hidden="true" tabindex="-1"></a>schaetzgleichung <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(<span class="st">&quot;y~x1&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="advlin.html#cb799-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="st">&quot;1234&quot;</span>)</span>
+<span id="cb799-2"><a href="advlin.html#cb799-2" aria-hidden="true" tabindex="-1"></a>homosc_results <span class="ot">&lt;-</span> <span class="fu">mcs</span>(<span class="dv">1000</span>, x_data,</span>
+<span id="cb799-3"><a href="advlin.html#cb799-3" aria-hidden="true" tabindex="-1"></a>                      wahres_b0, wahres_b1, </span>
+<span id="cb799-4"><a href="advlin.html#cb799-4" aria-hidden="true" tabindex="-1"></a>                      schaetzgleichung, <span class="at">heterosk =</span> F)</span>
+<span id="cb799-5"><a href="advlin.html#cb799-5" aria-hidden="true" tabindex="-1"></a>hetero_results <span class="ot">&lt;-</span> <span class="fu">mcs</span>(<span class="dv">1000</span>, x_data,</span>
+<span id="cb799-6"><a href="advlin.html#cb799-6" aria-hidden="true" tabindex="-1"></a>                      wahres_b0, wahres_b1,</span>
+<span id="cb799-7"><a href="advlin.html#cb799-7" aria-hidden="true" tabindex="-1"></a>                      schaetzgleichung, <span class="at">heterosk =</span> T)</span>
+<span id="cb799-8"><a href="advlin.html#cb799-8" aria-hidden="true" tabindex="-1"></a>full_results <span class="ot">&lt;-</span> <span class="fu">rbind</span>(homosc_results, hetero_results)</span></code></pre></div>
 <p><strong>4. Schritt: Vergleichende Analyse der Schätzereigenschaften</strong></p>
 <p>Als erstes wollen wir die Ergebnisse grafisch analysieren.
 Zu diesem Zweck visualisieren wir in Abbildung <a href="advlin.html#fig:montecarlo">11.4</a> die
 Verteilung der geschätzten Werte für <span class="math inline">\(\beta_1\)</span>
 und zeichnen zudem den wahren Wert ein:</p>
-<div class="sourceCode" id="cb800"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb800-1"><a href="advlin.html#cb800-1" aria-hidden="true"></a>beta_<span class="dv">1</span>_plot &lt;-<span class="st"> </span>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="dt">data =</span> full_results, </span>
-<span id="cb800-2"><a href="advlin.html#cb800-2" aria-hidden="true"></a>                      <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>b1_coef, <span class="dt">color=</span>Fall, <span class="dt">fill=</span>Fall)) <span class="op">+</span></span>
-<span id="cb800-3"><a href="advlin.html#cb800-3" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">geom_density</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>) <span class="op">+</span></span>
-<span id="cb800-4"><a href="advlin.html#cb800-4" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">expand_scale</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>))) <span class="op">+</span></span>
-<span id="cb800-5"><a href="advlin.html#cb800-5" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="fl">1.7</span>, <span class="fl">2.2</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span></span>
-<span id="cb800-6"><a href="advlin.html#cb800-6" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> wahres_b1) <span class="op">+</span></span>
-<span id="cb800-7"><a href="advlin.html#cb800-7" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ylab</span>(<span class="kw">TeX</span>(<span class="st">&quot;Dichte von $</span><span class="ch">\\</span><span class="st">hat{</span><span class="ch">\\</span><span class="st">beta}_1$&quot;</span>)) <span class="op">+</span></span>
-<span id="cb800-8"><a href="advlin.html#cb800-8" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">xlab</span>(<span class="kw">TeX</span>(<span class="st">&quot;$</span><span class="ch">\\</span><span class="st">hat{</span><span class="ch">\\</span><span class="st">beta}_1$&quot;</span>)) <span class="op">+</span></span>
-<span id="cb800-9"><a href="advlin.html#cb800-9" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ggtitle</span>(<span class="kw">TeX</span>(<span class="st">&quot;Verteilung von $</span><span class="ch">\\</span><span class="st">hat{</span><span class="ch">\\</span><span class="st">beta}_1$&quot;</span>)) <span class="op">+</span></span>
-<span id="cb800-10"><a href="advlin.html#cb800-10" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;Homoskedastie&quot;</span>=<span class="st">&quot;#006600&quot;</span>,</span>
-<span id="cb800-11"><a href="advlin.html#cb800-11" aria-hidden="true"></a>                                <span class="st">&quot;Heteroskedastie&quot;</span>=<span class="st">&quot;#800000&quot;</span>),</span>
-<span id="cb800-12"><a href="advlin.html#cb800-12" aria-hidden="true"></a>  <span class="dt">aesthetics =</span> <span class="kw">c</span>(<span class="st">&quot;color&quot;</span>, <span class="st">&quot;fill&quot;</span>)) <span class="op">+</span></span>
-<span id="cb800-13"><a href="advlin.html#cb800-13" aria-hidden="true"></a><span class="st">  </span>icaeDesign<span class="op">::</span><span class="kw">theme_icae</span>()</span>
-<span id="cb800-14"><a href="advlin.html#cb800-14" aria-hidden="true"></a></span>
-<span id="cb800-15"><a href="advlin.html#cb800-15" aria-hidden="true"></a>beta_<span class="dv">1</span>_plot</span></code></pre></div>
+<div class="sourceCode" id="cb800"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb800-1"><a href="advlin.html#cb800-1" aria-hidden="true" tabindex="-1"></a>beta_1_plot <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> full_results, </span>
+<span id="cb800-2"><a href="advlin.html#cb800-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>b1_coef, <span class="at">color=</span>Fall, <span class="at">fill=</span>Fall)) <span class="sc">+</span></span>
+<span id="cb800-3"><a href="advlin.html#cb800-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb800-4"><a href="advlin.html#cb800-4" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expand_scale</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>))) <span class="sc">+</span></span>
+<span id="cb800-5"><a href="advlin.html#cb800-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">1.7</span>, <span class="fl">2.2</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb800-6"><a href="advlin.html#cb800-6" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> wahres_b1) <span class="sc">+</span></span>
+<span id="cb800-7"><a href="advlin.html#cb800-7" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ylab</span>(<span class="fu">TeX</span>(<span class="st">&quot;Dichte von $</span><span class="sc">\\</span><span class="st">hat{</span><span class="sc">\\</span><span class="st">beta}_1$&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb800-8"><a href="advlin.html#cb800-8" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">xlab</span>(<span class="fu">TeX</span>(<span class="st">&quot;$</span><span class="sc">\\</span><span class="st">hat{</span><span class="sc">\\</span><span class="st">beta}_1$&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb800-9"><a href="advlin.html#cb800-9" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggtitle</span>(<span class="fu">TeX</span>(<span class="st">&quot;Verteilung von $</span><span class="sc">\\</span><span class="st">hat{</span><span class="sc">\\</span><span class="st">beta}_1$&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb800-10"><a href="advlin.html#cb800-10" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Homoskedastie&quot;</span><span class="ot">=</span><span class="st">&quot;#006600&quot;</span>,</span>
+<span id="cb800-11"><a href="advlin.html#cb800-11" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Heteroskedastie&quot;</span><span class="ot">=</span><span class="st">&quot;#800000&quot;</span>),</span>
+<span id="cb800-12"><a href="advlin.html#cb800-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">aesthetics =</span> <span class="fu">c</span>(<span class="st">&quot;color&quot;</span>, <span class="st">&quot;fill&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb800-13"><a href="advlin.html#cb800-13" aria-hidden="true" tabindex="-1"></a>  icaeDesign<span class="sc">::</span><span class="fu">theme_icae</span>()</span>
+<span id="cb800-14"><a href="advlin.html#cb800-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb800-15"><a href="advlin.html#cb800-15" aria-hidden="true" tabindex="-1"></a>beta_1_plot</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:montecarlo"></span>
 <img src="Chap-advlinmodels_files/figure-html/montecarlo-1.png" alt="Vergleich der Verteilung der mit Monte Carlo geschätzten Werte für $\beta_1$ mit dem wahren Wert." width="75%" height="75%" />
 <p class="caption">
@@ -1083,13 +1084,13 @@ Allerdings nimmt die Genauigkeit ab, da die Streuung um den wahren Wert
 herum im heteroskedastischen Fall zunimmt!</p>
 <p>Wir wollen nun in Abbildung <a href="#fig:montecarlo2"><strong>??</strong></a> noch untersuchen wie sich
 Heteroskedastie auf die Standardfehler der Regression auswirkt.</p>
-<div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb801-1"><a href="advlin.html#cb801-1" aria-hidden="true"></a>beta_<span class="dv">1</span>_stdf_plot</span></code></pre></div>
+<div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb801-1"><a href="advlin.html#cb801-1" aria-hidden="true" tabindex="-1"></a>beta_1_stdf_plot</span></code></pre></div>
 <p><img src="Chap-advlinmodels_files/figure-html/unnamed-chunk-10-1.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Wie wir sehen weichen die Standardfehler im heteroskedastischen Fall deutlich
 von denen im homoskedastischen Fall ab! Welche Standardfehler sind nun die
 richtigen?</p>
 <p>Ohne auf die mathematische Herleitung genauer einzugehen (siehe dazu Kapitel 4
-in <span class="citation">Greene (<a href="#ref-greene" role="doc-biblioref">2018</a>)</span>) wollen wir dennoch festhalten, dass die geschätzten Standardfehler
+in <span class="citation"><a href="git.html#ref-greene" role="doc-biblioref">Greene</a> (<a href="git.html#ref-greene" role="doc-biblioref">2018</a>)</span>) wollen wir dennoch festhalten, dass die geschätzten Standardfehler
 unter Heteroskedastie <em>falsch</em> sind.
 Wir können ohne eine Korrektur also keine Aussagen über die Schätzunsicherheit
 und Signifikanz der Ergebnisse treffen.</p>
@@ -1119,7 +1120,7 @@ gefitteten Werte und die Residuen einer Schätzung immer im der durch <code>lm()
 produzierten Liste gespeichert werden.
 Gehen wir mal davon aus, dass Sie Ihr Schätzobjekt folgendermaßen definiert
 haben:</p>
-<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="advlin.html#cb802-1" aria-hidden="true"></a>schaetzung &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y, <span class="dt">data =</span> daten)</span></code></pre></div>
+<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="advlin.html#cb802-1" aria-hidden="true" tabindex="-1"></a>schaetzung <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">+</span> y, <span class="at">data =</span> daten)</span></code></pre></div>
 <p>Dann können Sie auf die gefitteten Werte <span class="math inline">\(\hat{Y}\)</span> über
 <code>schaetzung[["fitted.values"]]</code> und auf die Residuen über
 <code>schaetzung[["residuals"]]</code> zugreifen.</p>
@@ -1147,7 +1148,7 @@ wahrscheinlich auch nicht.</p>
 <p>In der Praxis ist es sinnvoll zusätzlich zur grafischen Inspektion noch
 statistische Tests zu verwenden. Hier gibt es ein breites Angebot an Tests.
 Viele davon sind in dem Paket <a href="https://github.com/cran/lmtest">lmtest</a>
-<span class="citation">(Zeileis and Hothorn <a href="#ref-R-lmtest" role="doc-biblioref">2002</a>)</span> gesammelt. Wir gehen auf die mathematische Herleitung der Tests
+<span class="citation">(<a href="git.html#ref-R-lmtest" role="doc-biblioref">Zeileis and Hothorn 2002</a>)</span> gesammelt. Wir gehen auf die mathematische Herleitung der Tests
 hier nicht ein. Genauere Informationen finden Sie in den später angegebenen
 weiterführenden Quellen.</p>
 <p>Häufig verwendet wird z.B. der <strong>Breusch-Pagan Test</strong>, den wir mit der Funktion
@@ -1158,18 +1159,18 @@ belassen.</p>
 <p>Die Nullhypothese des Breusch-Pagan Tests ist Homoskedastie.
 Wir führen zunächst den Test für den homoskedastischen Fall aus, wobei
 <code>schaetzung_homo</code> das von <code>lm()</code> produzierte Objekt ist:</p>
-<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb803-1"><a href="advlin.html#cb803-1" aria-hidden="true"></a><span class="kw">bptest</span>(schaetzung_homo)</span></code></pre></div>
+<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb803-1"><a href="advlin.html#cb803-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(schaetzung_homo)</span></code></pre></div>
 <pre><code>#&gt; 
-#&gt; 	studentized Breusch-Pagan test
+#&gt;  studentized Breusch-Pagan test
 #&gt; 
 #&gt; data:  schaetzung_homo
 #&gt; BP = 0.0067387, df = 1, p-value = 0.9346</code></pre>
 <p>Wir können <span class="math inline">\(H_0\)</span> (also die Hypothese der Homoskedastie) nicht ablehnen da
 <span class="math inline">\(p&gt;0.05\)</span>.
 Nun führen wir den Test für den heteroskedastischen Fall aus:</p>
-<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb805-1"><a href="advlin.html#cb805-1" aria-hidden="true"></a><span class="kw">bptest</span>(schaetzung_hetero)</span></code></pre></div>
+<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb805-1"><a href="advlin.html#cb805-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(schaetzung_hetero)</span></code></pre></div>
 <pre><code>#&gt; 
-#&gt; 	studentized Breusch-Pagan test
+#&gt;  studentized Breusch-Pagan test
 #&gt; 
 #&gt; data:  schaetzung_hetero
 #&gt; BP = 88.513, df = 1, p-value &lt; 2.2e-16</code></pre>
@@ -1189,18 +1190,18 @@ Diese Wahlmöglichkeiten erhöhen die Power des Tests - wenn wir denn theoretisc
 gut begründete Werte wählen können. Ansonsten ist es am besten die Standardwerte
 zu verwenden und den Test mit anderen Tests und grafischen Methoden zu ergänzen.</p>
 <p>Wir verwenden zunächst den Test mit der Standardspezifikation:</p>
-<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb807-1"><a href="advlin.html#cb807-1" aria-hidden="true"></a><span class="kw">gqtest</span>(schaetzung_homo)</span></code></pre></div>
+<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb807-1"><a href="advlin.html#cb807-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gqtest</span>(schaetzung_homo)</span></code></pre></div>
 <pre><code>#&gt; 
-#&gt; 	Goldfeld-Quandt test
+#&gt;  Goldfeld-Quandt test
 #&gt; 
 #&gt; data:  schaetzung_homo
 #&gt; GQ = 0.98576, df1 = 248, df2 = 248, p-value = 0.5449
 #&gt; alternative hypothesis: variance increases from segment 1 to 2</code></pre>
 <p>Für den homoskedastischen Fall kann <span class="math inline">\(H_0\)</span> (Homoskedastie) also nicht abgelehnt
 werden.</p>
-<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb809-1"><a href="advlin.html#cb809-1" aria-hidden="true"></a><span class="kw">gqtest</span>(schaetzung_hetero)</span></code></pre></div>
+<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb809-1"><a href="advlin.html#cb809-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gqtest</span>(schaetzung_hetero)</span></code></pre></div>
 <pre><code>#&gt; 
-#&gt; 	Goldfeld-Quandt test
+#&gt;  Goldfeld-Quandt test
 #&gt; 
 #&gt; data:  schaetzung_hetero
 #&gt; GQ = 0.79606, df1 = 248, df2 = 248, p-value = 0.9635
@@ -1208,9 +1209,9 @@ werden.</p>
 <p>Komischerweise muss <span class="math inline">\(H_0\)</span> auch für den heteroskedastischen Fall nicht verworfen werden.
 Hätten wir aber für sinkende Varianz getestet, hätte <span class="math inline">\(H_0\)</span> abgelehnt
 werden können:</p>
-<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb811-1"><a href="advlin.html#cb811-1" aria-hidden="true"></a><span class="kw">gqtest</span>(schaetzung_hetero, <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb811-1"><a href="advlin.html#cb811-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gqtest</span>(schaetzung_hetero, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; 
-#&gt; 	Goldfeld-Quandt test
+#&gt;  Goldfeld-Quandt test
 #&gt; 
 #&gt; data:  schaetzung_hetero
 #&gt; GQ = 0.79606, df1 = 248, df2 = 248, p-value = 0.03655
@@ -1220,9 +1221,9 @@ Wenn wir uns nicht sicher sind ob wir für steigende oder sinkende Varianz teste
 sollen bietet sich natürlich immer auch der zweiseitige Test an, der aber über
 eine verminderte Power vefügt, im vorliegenden Falle aber dennoch das richtige
 Ergebnis liefert:</p>
-<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb813-1"><a href="advlin.html#cb813-1" aria-hidden="true"></a><span class="kw">gqtest</span>(schaetzung_hetero, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb813-1"><a href="advlin.html#cb813-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gqtest</span>(schaetzung_hetero, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; 
-#&gt; 	Goldfeld-Quandt test
+#&gt;  Goldfeld-Quandt test
 #&gt; 
 #&gt; data:  schaetzung_hetero
 #&gt; GQ = 0.79606, df1 = 248, df2 = 248, p-value = 0.0731
@@ -1270,21 +1271,21 @@ einzuführen.</p>
 <em>White’s robuste Standardfehler</em>.<a href="#fn93" class="footnote-ref" id="fnref93"><sup>93</sup></a>
 Um diese in R zu berechnen bedarf es zweier Schritte.
 Zunächst verwenden wir die Funktion <code>vcovHC()</code> aus dem Paket
-<a href="https://github.com/cran/sandwich">sandwich</a> <span class="citation">(Zeileis <a href="#ref-R-sandwich" role="doc-biblioref">2004</a>)</span> um eine
+<a href="https://github.com/cran/sandwich">sandwich</a> <span class="citation">(<a href="git.html#ref-R-sandwich" role="doc-biblioref">Zeileis 2004</a>)</span> um eine
 korrigierte Varianz-Kovarianz-Matrix zu berechnen.
 Diese Funktion nimmt als notwendiges Argument das Regressionsobjekt.
 Darüber hinaus können wir über das Argument <code>type</code> die genaue Berechnungsmethode
 festlegen.
 Mehr Infos dazu findet sich z.B. in der Hilfefunktion.
 Hier verwenden wir die am häufigsten verwendete Verion <code>"HC1"</code>:</p>
-<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb815-1"><a href="advlin.html#cb815-1" aria-hidden="true"></a>var_covar_matrix &lt;-<span class="st"> </span><span class="kw">vcovHC</span>(schaetzung_hetero, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</span>
-<span id="cb815-2"><a href="advlin.html#cb815-2" aria-hidden="true"></a>var_covar_matrix</span></code></pre></div>
+<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb815-1"><a href="advlin.html#cb815-1" aria-hidden="true" tabindex="-1"></a>var_covar_matrix <span class="ot">&lt;-</span> <span class="fu">vcovHC</span>(schaetzung_hetero, <span class="at">type =</span> <span class="st">&quot;HC1&quot;</span>)</span>
+<span id="cb815-2"><a href="advlin.html#cb815-2" aria-hidden="true" tabindex="-1"></a>var_covar_matrix</span></code></pre></div>
 <pre><code>#&gt;              (Intercept)           x1
 #&gt; (Intercept)  0.018596906 -0.004287583
 #&gt; x1          -0.004287583  0.001130885</code></pre>
 <p>Dann können wir die Funktion <code>coeftest()</code> aus dem Paket <code>lmtest</code> verwenden
 um die korrigierten Standardfehler zu erhalten:</p>
-<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb817-1"><a href="advlin.html#cb817-1" aria-hidden="true"></a><span class="kw">coeftest</span>(schaetzung_hetero, <span class="dt">vcov. =</span> var_covar_matrix)</span></code></pre></div>
+<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb817-1"><a href="advlin.html#cb817-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(schaetzung_hetero, <span class="at">vcov. =</span> var_covar_matrix)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; t test of coefficients:
 #&gt; 
@@ -1295,7 +1296,7 @@ um die korrigierten Standardfehler zu erhalten:</p>
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Diese unterscheiden sich offensichtlich von den nicht-korrigierten
 Standardfehlern:</p>
-<div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb819-1"><a href="advlin.html#cb819-1" aria-hidden="true"></a><span class="kw">summary</span>(schaetzung_hetero)</span></code></pre></div>
+<div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb819-1"><a href="advlin.html#cb819-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(schaetzung_hetero)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = schaetzgleichung, data = stichprobe_hetero)
@@ -1312,7 +1313,7 @@ Standardfehlern:</p>
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 #&gt; 
 #&gt; Residual standard error: 1.657 on 498 degrees of freedom
-#&gt; Multiple R-squared:  0.3556,	Adjusted R-squared:  0.3543 
+#&gt; Multiple R-squared:  0.3556, Adjusted R-squared:  0.3543 
 #&gt; F-statistic: 274.8 on 1 and 498 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Beachten Sie, dass die korrigierten Standardfehler zwar häufig größer sind,
 dies aber nicht notwendigerweise der Fall sein muss!</p>
@@ -1347,7 +1348,7 @@ Simulation (MCS) illustrieren.</p>
 stark miteinander korreliert sind.</p>
 <p>Um die Variablen mit vorher spezifizierter Korrelation zu erstellen verwenden
 wir wieder die Funktion <code>mvrnorm</code> aus dem Paket
-<a href="https://github.com/cran/MASS">MASS</a> <span class="citation">(Venables and Ripley <a href="#ref-R-mass" role="doc-biblioref">2002</a>)</span>.
+<a href="https://github.com/cran/MASS">MASS</a> <span class="citation">(<a href="git.html#ref-R-mass" role="doc-biblioref">Venables and Ripley 2002</a>)</span>.
 Eine genauere Erläuterung findet sich
 <a href="https://stats.stackexchange.com/questions/83172/generate-two-variables-with-precise-pre-specified-correlation">hier</a>.</p>
 <p>Das Ergebnis der Simulation lässt sich in Abbildung <a href="advlin.html#fig:MCautokorr">11.5</a>
@@ -1425,16 +1426,16 @@ Das erste Argument sind immer die Residuen der zu untersuchenden Regression,
 mit dem Argument <code>type</code> wird dann der Test (<code>"Box-Pierce"</code> oder <code>"Ljung-Box"</code>)
 ausgewählt und mit <code>lag</code> der Grad der Autokorrelation.
 Entsprechend testen wir folgendermaßen auf eine Autokorrelation mit Grad 1:</p>
-<div class="sourceCode" id="cb821"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb821-1"><a href="advlin.html#cb821-1" aria-hidden="true"></a><span class="kw">Box.test</span>(mid_acl<span class="op">$</span>residuals, <span class="dt">lag =</span> <span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;Box-Pierce&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb821"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb821-1"><a href="advlin.html#cb821-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Box.test</span>(mid_acl<span class="sc">$</span>residuals, <span class="at">lag =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">&quot;Box-Pierce&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; 
-#&gt; 	Box-Pierce test
+#&gt;  Box-Pierce test
 #&gt; 
 #&gt; data:  mid_acl$residuals
 #&gt; X-squared = 9.5899, df = 1, p-value = 0.001957</code></pre>
 <p>bzw.:</p>
-<div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb823-1"><a href="advlin.html#cb823-1" aria-hidden="true"></a><span class="kw">Box.test</span>(mid_acl<span class="op">$</span>residuals, <span class="dt">lag =</span> <span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;Ljung-Box&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb823-1"><a href="advlin.html#cb823-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Box.test</span>(mid_acl<span class="sc">$</span>residuals, <span class="at">lag =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">&quot;Ljung-Box&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; 
-#&gt; 	Box-Ljung test
+#&gt;  Box-Ljung test
 #&gt; 
 #&gt; data:  mid_acl$residuals
 #&gt; X-squared = 9.8805, df = 1, p-value = 0.00167</code></pre>
@@ -1446,9 +1447,9 @@ Wir können diesen Test mit der Funktion <code>dwtest()</code> aus dem Paket <co
 implementieren.
 Dazu übergeben wir als erstes Argument das Schätzobjekt der zu überprüfenden
 Schätzung:</p>
-<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb825-1"><a href="advlin.html#cb825-1" aria-hidden="true"></a><span class="kw">dwtest</span>(small_acl)</span></code></pre></div>
+<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb825-1"><a href="advlin.html#cb825-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dwtest</span>(small_acl)</span></code></pre></div>
 <pre><code>#&gt; 
-#&gt; 	Durbin-Watson test
+#&gt;  Durbin-Watson test
 #&gt; 
 #&gt; data:  small_acl
 #&gt; DW = 1.9569, p-value = 0.3741
@@ -1467,27 +1468,27 @@ Sind wir uns unsicher wählen wir am besten einen zweiseitigen Test
 Wie immer ist die Power des Tests größer wenn wir <span class="math inline">\(H_1\)</span> restriktiver wählen.</p>
 <p>Im folgenden Beispiel ist die tatsächliche Autokorrelation positiv.
 Die Rolle der gewählten <span class="math inline">\(H_1\)</span> wird so deutlich:</p>
-<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb827-1"><a href="advlin.html#cb827-1" aria-hidden="true"></a><span class="kw">dwtest</span>(mid_acl, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb827-1"><a href="advlin.html#cb827-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dwtest</span>(mid_acl, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; 
-#&gt; 	Durbin-Watson test
+#&gt;  Durbin-Watson test
 #&gt; 
 #&gt; data:  mid_acl
 #&gt; DW = 1.3469, p-value = 0.0003333
 #&gt; alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 <p>Hier gibt der Test also korrektermaßen Autokorrelation an.
 Testen wir dagegen gegen die ‘falsche’ <span class="math inline">\(H_1\)</span>:</p>
-<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="advlin.html#cb829-1" aria-hidden="true"></a><span class="kw">dwtest</span>(mid_acl, <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="advlin.html#cb829-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dwtest</span>(mid_acl, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; 
-#&gt; 	Durbin-Watson test
+#&gt;  Durbin-Watson test
 #&gt; 
 #&gt; data:  mid_acl
 #&gt; DW = 1.3469, p-value = 0.9997
 #&gt; alternative hypothesis: true autocorrelation is less than 0</code></pre>
 <p>In diesem Fall wird keine entsprechende Autokorrelation gefunden.
 Im Zweifel ist daher der zweiseitige Test vorzuziehen:</p>
-<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="advlin.html#cb831-1" aria-hidden="true"></a><span class="kw">dwtest</span>(mid_acl, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="advlin.html#cb831-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dwtest</span>(mid_acl, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; 
-#&gt; 	Durbin-Watson test
+#&gt;  Durbin-Watson test
 #&gt; 
 #&gt; data:  mid_acl
 #&gt; DW = 1.3469, p-value = 0.0006667
@@ -1501,16 +1502,16 @@ Als Spezifikationsalternativen können wir wiederum den höchsten Grad der zu
 testenden Autokorrelation (Argument <code>order</code>) und die Art der Teststatisik
 (Argument <code>type</code>) auswählen.</p>
 <p>Zum Beispiel:</p>
-<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="advlin.html#cb833-1" aria-hidden="true"></a><span class="kw">bgtest</span>(mid_acl, <span class="dt">order =</span> <span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;F&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="advlin.html#cb833-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bgtest</span>(mid_acl, <span class="at">order =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">&quot;F&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; 
-#&gt; 	Breusch-Godfrey test for serial correlation of order up to 1
+#&gt;  Breusch-Godfrey test for serial correlation of order up to 1
 #&gt; 
 #&gt; data:  mid_acl
 #&gt; LM test = 10.702, df1 = 1, df2 = 97, p-value = 0.001483</code></pre>
 <p>Oder:</p>
-<div class="sourceCode" id="cb835"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb835-1"><a href="advlin.html#cb835-1" aria-hidden="true"></a><span class="kw">bgtest</span>(mid_acl, <span class="dt">order =</span> <span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;Chisq&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb835"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb835-1"><a href="advlin.html#cb835-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bgtest</span>(mid_acl, <span class="at">order =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">&quot;Chisq&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; 
-#&gt; 	Breusch-Godfrey test for serial correlation of order up to 1
+#&gt;  Breusch-Godfrey test for serial correlation of order up to 1
 #&gt; 
 #&gt; data:  mid_acl
 #&gt; LM test = 9.9367, df = 1, p-value = 0.00162</code></pre>
@@ -1533,8 +1534,8 @@ mit der Funktion <code>vcovHAC()</code> aus dem Paket
 <code>coeftest()</code> and dem Paket <code>lmtest</code>.
 Beachten Sie, dass die resultierenden Standardfehler robust sowohl gegen
 Heteroskedastie als auch Autokorrelation sind.</p>
-<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb837-1"><a href="advlin.html#cb837-1" aria-hidden="true"></a>var_covar_matrix &lt;-<span class="st"> </span><span class="kw">vcovHAC</span>(large_acl) </span>
-<span id="cb837-2"><a href="advlin.html#cb837-2" aria-hidden="true"></a><span class="kw">coeftest</span>(large_acl, <span class="dt">vcov. =</span> var_covar_matrix)</span></code></pre></div>
+<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb837-1"><a href="advlin.html#cb837-1" aria-hidden="true" tabindex="-1"></a>var_covar_matrix <span class="ot">&lt;-</span> <span class="fu">vcovHAC</span>(large_acl) </span>
+<span id="cb837-2"><a href="advlin.html#cb837-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(large_acl, <span class="at">vcov. =</span> var_covar_matrix)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; t test of coefficients:
 #&gt; 
@@ -1545,7 +1546,7 @@ Heteroskedastie als auch Autokorrelation sind.</p>
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Diese unterscheiden sich offensichtlich von den nicht-korrigierten
 Standardfehlern:</p>
-<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb839-1"><a href="advlin.html#cb839-1" aria-hidden="true"></a><span class="kw">summary</span>(large_acl)</span></code></pre></div>
+<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb839-1"><a href="advlin.html#cb839-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(large_acl)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = y ~ x, data = dgp_acl(0.5, 0.75, 1:100, 0.85))
@@ -1562,7 +1563,7 @@ Standardfehlern:</p>
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 #&gt; 
 #&gt; Residual standard error: 1.511 on 98 degrees of freedom
-#&gt; Multiple R-squared:  0.9955,	Adjusted R-squared:  0.9954 
+#&gt; Multiple R-squared:  0.9955, Adjusted R-squared:  0.9954 
 #&gt; F-statistic: 2.156e+04 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
@@ -1593,40 +1594,40 @@ einen mit wenig, einen mit mittel und einen mit stark korrelierten
 erklärenden Variablen. Davon abgesehen bleiben die OLS Annahmen erfüllt.
 Um die Variablen mit vorher spezifizierter Korrelation zu erstellen verwenden
 wir wieder die Funktion <code>mvrnorm</code> aus dem Paket
-<a href="https://github.com/cran/MASS">MASS</a> <span class="citation">(Venables and Ripley <a href="#ref-R-mass" role="doc-biblioref">2002</a>)</span>.
+<a href="https://github.com/cran/MASS">MASS</a> <span class="citation">(<a href="git.html#ref-R-mass" role="doc-biblioref">Venables and Ripley 2002</a>)</span>.
 Eine genauere Erläuterung findet sich
 <a href="https://stats.stackexchange.com/questions/83172/generate-two-variables-with-precise-pre-specified-correlation">hier</a>.</p>
-<div class="sourceCode" id="cb841"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb841-1"><a href="advlin.html#cb841-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="st">&quot;123&quot;</span>)</span>
-<span id="cb841-2"><a href="advlin.html#cb841-2" aria-hidden="true"></a>stichprobengroesse &lt;-<span class="st"> </span><span class="dv">500</span></span>
-<span id="cb841-3"><a href="advlin.html#cb841-3" aria-hidden="true"></a>r_small &lt;-<span class="st"> </span><span class="fl">0.0</span></span>
-<span id="cb841-4"><a href="advlin.html#cb841-4" aria-hidden="true"></a>r_mid &lt;-<span class="st"> </span><span class="fl">0.4</span></span>
-<span id="cb841-5"><a href="advlin.html#cb841-5" aria-hidden="true"></a>r_large &lt;-<span class="st"> </span><span class="fl">0.9</span></span>
-<span id="cb841-6"><a href="advlin.html#cb841-6" aria-hidden="true"></a></span>
-<span id="cb841-7"><a href="advlin.html#cb841-7" aria-hidden="true"></a>data_small =<span class="st"> </span><span class="kw">mvrnorm</span>(<span class="dt">n=</span>stichprobengroesse, <span class="dt">mu=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
-<span id="cb841-8"><a href="advlin.html#cb841-8" aria-hidden="true"></a>                     <span class="dt">Sigma=</span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, r_small, r_small, <span class="dv">1</span>), </span>
-<span id="cb841-9"><a href="advlin.html#cb841-9" aria-hidden="true"></a>                                  <span class="dt">nrow=</span><span class="dv">2</span>), <span class="dt">empirical=</span><span class="ot">TRUE</span>)</span>
-<span id="cb841-10"><a href="advlin.html#cb841-10" aria-hidden="true"></a></span>
-<span id="cb841-11"><a href="advlin.html#cb841-11" aria-hidden="true"></a>data_mid =<span class="st"> </span><span class="kw">mvrnorm</span>(<span class="dt">n=</span>stichprobengroesse, <span class="dt">mu=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
-<span id="cb841-12"><a href="advlin.html#cb841-12" aria-hidden="true"></a>                   <span class="dt">Sigma=</span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, r_mid, r_mid, <span class="dv">1</span>), </span>
-<span id="cb841-13"><a href="advlin.html#cb841-13" aria-hidden="true"></a>                                <span class="dt">nrow=</span><span class="dv">2</span>), <span class="dt">empirical=</span><span class="ot">TRUE</span>)</span>
-<span id="cb841-14"><a href="advlin.html#cb841-14" aria-hidden="true"></a></span>
-<span id="cb841-15"><a href="advlin.html#cb841-15" aria-hidden="true"></a>data_large =<span class="st"> </span><span class="kw">mvrnorm</span>(<span class="dt">n=</span>stichprobengroesse, <span class="dt">mu=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
-<span id="cb841-16"><a href="advlin.html#cb841-16" aria-hidden="true"></a>                     <span class="dt">Sigma=</span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, r_large, r_large, <span class="dv">1</span>), </span>
-<span id="cb841-17"><a href="advlin.html#cb841-17" aria-hidden="true"></a>                                  <span class="dt">nrow=</span><span class="dv">2</span>), <span class="dt">empirical=</span><span class="ot">TRUE</span>)</span>
-<span id="cb841-18"><a href="advlin.html#cb841-18" aria-hidden="true"></a></span>
-<span id="cb841-19"><a href="advlin.html#cb841-19" aria-hidden="true"></a>x_<span class="dv">1</span>_small =<span class="st"> </span>data_small[, <span class="dv">1</span>]  </span>
-<span id="cb841-20"><a href="advlin.html#cb841-20" aria-hidden="true"></a>x_<span class="dv">1</span>_mid =<span class="st"> </span>data_mid[, <span class="dv">1</span>]  </span>
-<span id="cb841-21"><a href="advlin.html#cb841-21" aria-hidden="true"></a>x_<span class="dv">1</span>_large =<span class="st"> </span>data_large[, <span class="dv">1</span>]  </span>
-<span id="cb841-22"><a href="advlin.html#cb841-22" aria-hidden="true"></a></span>
-<span id="cb841-23"><a href="advlin.html#cb841-23" aria-hidden="true"></a>x_<span class="dv">2</span>_small =<span class="st"> </span>data_small[, <span class="dv">2</span>]  </span>
-<span id="cb841-24"><a href="advlin.html#cb841-24" aria-hidden="true"></a>x_<span class="dv">2</span>_mid =<span class="st"> </span>data_mid[, <span class="dv">2</span>]  </span>
-<span id="cb841-25"><a href="advlin.html#cb841-25" aria-hidden="true"></a>x_<span class="dv">2</span>_large =<span class="st"> </span>data_large[, <span class="dv">2</span>]  </span>
-<span id="cb841-26"><a href="advlin.html#cb841-26" aria-hidden="true"></a></span>
-<span id="cb841-27"><a href="advlin.html#cb841-27" aria-hidden="true"></a><span class="kw">cor</span>(x_<span class="dv">1</span>_small, x_<span class="dv">2</span>_small)  <span class="co"># Test</span></span></code></pre></div>
-<pre><code>#&gt; [1] -1.929638e-16</code></pre>
-<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb843-1"><a href="advlin.html#cb843-1" aria-hidden="true"></a><span class="kw">cor</span>(x_<span class="dv">1</span>_mid, x_<span class="dv">2</span>_mid)  <span class="co"># Test</span></span></code></pre></div>
+<div class="sourceCode" id="cb841"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb841-1"><a href="advlin.html#cb841-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="st">&quot;123&quot;</span>)</span>
+<span id="cb841-2"><a href="advlin.html#cb841-2" aria-hidden="true" tabindex="-1"></a>stichprobengroesse <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb841-3"><a href="advlin.html#cb841-3" aria-hidden="true" tabindex="-1"></a>r_small <span class="ot">&lt;-</span> <span class="fl">0.0</span></span>
+<span id="cb841-4"><a href="advlin.html#cb841-4" aria-hidden="true" tabindex="-1"></a>r_mid <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
+<span id="cb841-5"><a href="advlin.html#cb841-5" aria-hidden="true" tabindex="-1"></a>r_large <span class="ot">&lt;-</span> <span class="fl">0.9</span></span>
+<span id="cb841-6"><a href="advlin.html#cb841-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb841-7"><a href="advlin.html#cb841-7" aria-hidden="true" tabindex="-1"></a>data_small <span class="ot">=</span> <span class="fu">mvrnorm</span>(<span class="at">n=</span>stichprobengroesse, <span class="at">mu=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
+<span id="cb841-8"><a href="advlin.html#cb841-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">Sigma=</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, r_small, r_small, <span class="dv">1</span>), </span>
+<span id="cb841-9"><a href="advlin.html#cb841-9" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">nrow=</span><span class="dv">2</span>), <span class="at">empirical=</span><span class="cn">TRUE</span>)</span>
+<span id="cb841-10"><a href="advlin.html#cb841-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb841-11"><a href="advlin.html#cb841-11" aria-hidden="true" tabindex="-1"></a>data_mid <span class="ot">=</span> <span class="fu">mvrnorm</span>(<span class="at">n=</span>stichprobengroesse, <span class="at">mu=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
+<span id="cb841-12"><a href="advlin.html#cb841-12" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Sigma=</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, r_mid, r_mid, <span class="dv">1</span>), </span>
+<span id="cb841-13"><a href="advlin.html#cb841-13" aria-hidden="true" tabindex="-1"></a>                                <span class="at">nrow=</span><span class="dv">2</span>), <span class="at">empirical=</span><span class="cn">TRUE</span>)</span>
+<span id="cb841-14"><a href="advlin.html#cb841-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb841-15"><a href="advlin.html#cb841-15" aria-hidden="true" tabindex="-1"></a>data_large <span class="ot">=</span> <span class="fu">mvrnorm</span>(<span class="at">n=</span>stichprobengroesse, <span class="at">mu=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
+<span id="cb841-16"><a href="advlin.html#cb841-16" aria-hidden="true" tabindex="-1"></a>                     <span class="at">Sigma=</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, r_large, r_large, <span class="dv">1</span>), </span>
+<span id="cb841-17"><a href="advlin.html#cb841-17" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">nrow=</span><span class="dv">2</span>), <span class="at">empirical=</span><span class="cn">TRUE</span>)</span>
+<span id="cb841-18"><a href="advlin.html#cb841-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb841-19"><a href="advlin.html#cb841-19" aria-hidden="true" tabindex="-1"></a>x_1_small <span class="ot">=</span> data_small[, <span class="dv">1</span>]  </span>
+<span id="cb841-20"><a href="advlin.html#cb841-20" aria-hidden="true" tabindex="-1"></a>x_1_mid <span class="ot">=</span> data_mid[, <span class="dv">1</span>]  </span>
+<span id="cb841-21"><a href="advlin.html#cb841-21" aria-hidden="true" tabindex="-1"></a>x_1_large <span class="ot">=</span> data_large[, <span class="dv">1</span>]  </span>
+<span id="cb841-22"><a href="advlin.html#cb841-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb841-23"><a href="advlin.html#cb841-23" aria-hidden="true" tabindex="-1"></a>x_2_small <span class="ot">=</span> data_small[, <span class="dv">2</span>]  </span>
+<span id="cb841-24"><a href="advlin.html#cb841-24" aria-hidden="true" tabindex="-1"></a>x_2_mid <span class="ot">=</span> data_mid[, <span class="dv">2</span>]  </span>
+<span id="cb841-25"><a href="advlin.html#cb841-25" aria-hidden="true" tabindex="-1"></a>x_2_large <span class="ot">=</span> data_large[, <span class="dv">2</span>]  </span>
+<span id="cb841-26"><a href="advlin.html#cb841-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb841-27"><a href="advlin.html#cb841-27" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x_1_small, x_2_small)  <span class="co"># Test</span></span></code></pre></div>
+<pre><code>#&gt; [1] 5.082293e-17</code></pre>
+<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb843-1"><a href="advlin.html#cb843-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x_1_mid, x_2_mid)  <span class="co"># Test</span></span></code></pre></div>
 <pre><code>#&gt; [1] 0.4</code></pre>
-<div class="sourceCode" id="cb845"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb845-1"><a href="advlin.html#cb845-1" aria-hidden="true"></a><span class="kw">cor</span>(x_<span class="dv">1</span>_large, x_<span class="dv">2</span>_large)  <span class="co"># Test</span></span></code></pre></div>
+<div class="sourceCode" id="cb845"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb845-1"><a href="advlin.html#cb845-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x_1_large, x_2_large)  <span class="co"># Test</span></span></code></pre></div>
 <pre><code>#&gt; [1] 0.9</code></pre>
 <p>Analog zum Vorgehen oben führen wir nun eine Monte Carlo Simulation durch, in
 der wir wiederholt Stichproben aus einem künstlich generierten Datensatz ziehen
@@ -1656,7 +1657,7 @@ belassen.
 Im Folgenden bezeichnen wir mit <span class="math inline">\(R^2_h\)</span> das Bestimmtheitsmaß der h-ten
 Hilfsregression (also der Hilfsregression mit <span class="math inline">\(x_{ih}\)</span> als abhängiger Variable).</p>
 <p>Es kann nun gezeigt werden, dass für die Varianz des Schätzers
-<span class="math inline">\(\boldsymbol{\hat{\beta}}\)</span> Folgendes gilt (siehe <span class="citation">Greene (<a href="#ref-greene" role="doc-biblioref">2018</a>)</span> für Details):</p>
+<span class="math inline">\(\boldsymbol{\hat{\beta}}\)</span> Folgendes gilt (siehe <span class="citation"><a href="git.html#ref-greene" role="doc-biblioref">Greene</a> (<a href="git.html#ref-greene" role="doc-biblioref">2018</a>)</span> für Details):</p>
 <p><span class="math display">\[Var(\beta_h) = \frac{\sigma^2}{\left(1-R_h^2\right)\sum_{i=1}^n\left(x_{ih}-\bar{x_h}\right)^2} \]</span>
 Hieraus wird unmittelbar ersichtlich, dass die Varianz des Schätzers steigt
 je größer das Bestimmtheitsmaß der Hilfsregressionen ist!</p>
@@ -1752,7 +1753,7 @@ bekommen wir folgenden Schätzer:</p>
 denn (1) <span class="math inline">\(\boldsymbol{\gamma}=0\)</span> oder (2) <span class="math inline">\(\boldsymbol{X&#39;z}=0\)</span>.
 Fall (1) würde bedeuten, dass <span class="math inline">\(\boldsymbol{z}\)</span> für die Analyse unserer abhängigen
 Variable gar nicht relevant wäre. Das würde bedeuten, wir hätten die Variable
-nicht ‘vergessen’, sondern zu Recht nicht inkludiert.
+nicht ‘vergessen,’ sondern zu Recht nicht inkludiert.
 Fall (2) würde bedeutetn, dass <span class="math inline">\(\boldsymbol{z}\)</span> mit keiner der anderen
 erklärenden Variablen korreliert.
 Es ist sehr unwahrscheinlich, dass dies der Fall ist sollte <span class="math inline">\(\boldsymbol{z}\)</span>
@@ -1883,7 +1884,7 @@ Figure 11.13: Nicht-linearer Zusammenhang zwischen Abonnenten und dem Preis pro 
 erwartungstreu, da hier ein klarer Verstoß gegen A1 vorliegen würde.
 Die folgende Schätzung ist entsprechend nicht zu gebrauchen:</p>
 <p><span class="math display">\[\text{Abonnenten} = \beta_0 + \beta_1 \text{Zitationspreis} + \epsilon\]</span></p>
-<div class="sourceCode" id="cb847"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb847-1"><a href="advlin.html#cb847-1" aria-hidden="true"></a>lin_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(Abonnenten<span class="op">~</span><span class="st">`</span><span class="dt">Preis pro Zitation</span><span class="st">`</span>, <span class="dt">data=</span>journal_daten)</span></code></pre></div>
+<div class="sourceCode" id="cb847"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb847-1"><a href="advlin.html#cb847-1" aria-hidden="true" tabindex="-1"></a>lin_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Abonnenten<span class="sc">~</span><span class="st">`</span><span class="at">Preis pro Zitation</span><span class="st">`</span>, <span class="at">data=</span>journal_daten)</span></code></pre></div>
 <p>Wenn wir aber beide Größen logarithmieren würden, wäre der Zusammenhang schon
 ziemlich linear, siehe Abbildung <a href="advlin.html#fig:Journalelog">11.14</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:Journalelog"></span>
@@ -1894,22 +1895,22 @@ Figure 11.14: Logarithmierter Zusammenhang zwischen Abonnenten und Preis pro Zit
 </div>
 <p>Die folgende Gleichung wäre also nicht unbedingt mit einem Verstoß gegen A1 verbunden:</p>
 <p><span class="math display">\[\ln(\text{Abonnenten}) = \beta_0 + \beta_1 \ln(\text{Zitationspreis}) + \epsilon\]</span></p>
-<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb848-1"><a href="advlin.html#cb848-1" aria-hidden="true"></a>log_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(Abonnenten)<span class="op">~</span><span class="kw">log</span>(<span class="st">`</span><span class="dt">Preis pro Zitation</span><span class="st">`</span>), <span class="dt">data=</span>journal_daten)</span></code></pre></div>
+<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb848-1"><a href="advlin.html#cb848-1" aria-hidden="true" tabindex="-1"></a>log_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(Abonnenten)<span class="sc">~</span><span class="fu">log</span>(<span class="st">`</span><span class="at">Preis pro Zitation</span><span class="st">`</span>), <span class="at">data=</span>journal_daten)</span></code></pre></div>
 <p>Wir verwenden die Funktion <code>resettest()</code> um diese Intuition zu überprüfen.
 Zunächst testen wir auf eine Misspezifikation im linearen Modell, indem wir
 der Funktion <code>resettest()</code> das Schätzobjekt übergeben:</p>
-<div class="sourceCode" id="cb849"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb849-1"><a href="advlin.html#cb849-1" aria-hidden="true"></a><span class="kw">resettest</span>(lin_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb849"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb849-1"><a href="advlin.html#cb849-1" aria-hidden="true" tabindex="-1"></a><span class="fu">resettest</span>(lin_mod)</span></code></pre></div>
 <pre><code>#&gt; 
-#&gt; 	RESET test
+#&gt;  RESET test
 #&gt; 
 #&gt; data:  lin_mod
 #&gt; RESET = 28.99, df1 = 2, df2 = 176, p-value = 1.31e-11</code></pre>
 <p>Wenig überraschend müssen wir die <span class="math inline">\(H_0\)</span> des korrekt spezifizierten Modells klar
 ablehnen.
 Wie sieht es mit dem Log-Lin Modell aus?</p>
-<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb851-1"><a href="advlin.html#cb851-1" aria-hidden="true"></a><span class="kw">resettest</span>(log_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb851-1"><a href="advlin.html#cb851-1" aria-hidden="true" tabindex="-1"></a><span class="fu">resettest</span>(log_mod)</span></code></pre></div>
 <pre><code>#&gt; 
-#&gt; 	RESET test
+#&gt;  RESET test
 #&gt; 
 #&gt; data:  log_mod
 #&gt; RESET = 1.4409, df1 = 2, df2 = 176, p-value = 0.2395</code></pre>
@@ -1971,7 +1972,7 @@ Für das Modell mit mehreren unabhängigen Variablen ist die Interpretation
 </tbody>
 </table>
 <p>Illustrieren wir die Wahl der funktionalen Form an folgendem Beispiel.
-Die Daten kommen von <span class="citation">Epple and McCallum (<a href="#ref-chicken" role="doc-biblioref">2006</a>)</span> und enthalten Information zum Preis und zum
+Die Daten kommen von <span class="citation"><a href="git.html#ref-chicken" role="doc-biblioref">Epple and McCallum</a> (<a href="git.html#ref-chicken" role="doc-biblioref">2006</a>)</span> und enthalten Information zum Preis und zum
 Konsum von Hähnchenfleisch.</p>
 <p>Wie in Abbildung <a href="advlin.html#fig:chicken">11.15</a> ersichtlich ist dieser Zusammenhang an sich
 nicht linear, kann aber durch Logarithmieren in eine lineare Form gebracht werden.</p>
@@ -1984,10 +1985,10 @@ Figure 11.15: Nicht-linearer und logarithmierter Zusammenhang zwischen Preis und
 <p>Die folgende Gleichung ist also konsistent mit A1 und kann entsprechend mit
 OLS geschätzt werden:</p>
 <p><span class="math display">\[\ln(q) = \beta_0 + \beta_1 \ln(p) + \epsilon\]</span></p>
-<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb853-1"><a href="advlin.html#cb853-1" aria-hidden="true"></a>log_model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(q)<span class="op">~</span><span class="kw">log</span>(p), <span class="dt">data =</span> chicken_daten)</span></code></pre></div>
+<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb853-1"><a href="advlin.html#cb853-1" aria-hidden="true" tabindex="-1"></a>log_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(q)<span class="sc">~</span><span class="fu">log</span>(p), <span class="at">data =</span> chicken_daten)</span></code></pre></div>
 <p>Diese Form ist dann linear und konsistent mit A1.
 Entsprechend macht es Sinn den Output zu interpretieren.</p>
-<div class="sourceCode" id="cb854"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb854-1"><a href="advlin.html#cb854-1" aria-hidden="true"></a><span class="kw">summary</span>(log_model)</span></code></pre></div>
+<div class="sourceCode" id="cb854"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb854-1"><a href="advlin.html#cb854-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(log_model)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = log(q) ~ log(p), data = chicken_daten)
@@ -2004,7 +2005,7 @@ Entsprechend macht es Sinn den Output zu interpretieren.</p>
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 #&gt; 
 #&gt; Residual standard error: 0.118 on 50 degrees of freedom
-#&gt; Multiple R-squared:  0.9136,	Adjusted R-squared:  0.9119 
+#&gt; Multiple R-squared:  0.9136, Adjusted R-squared:  0.9119 
 #&gt; F-statistic:   529 on 1 and 50 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Wir würden den geschätzten Koeffizienten von <span class="math inline">\(\beta_1\)</span> folgendermaßen
 interpretieren: wenn der Preis von Hühnerfleisch um <span class="math inline">\(1\%\)</span> steigt wird der
@@ -2029,13 +2030,13 @@ Ihrer Schätzung in einem <code>tibble</code> und spezifizieren sie als Ästheti
 Dann verwenden Sie als <em>geoms</em> die Befehle <code>ggplot2::stat_qq()</code> für die
 Darstellung der Residuen und <code>ggplot2::stat_qq_line()</code> um die Gerade zur
 leichteren Interpretation zu ergänzen:</p>
-<div class="sourceCode" id="cb856"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb856-1"><a href="advlin.html#cb856-1" aria-hidden="true"></a>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(</span>
-<span id="cb856-2"><a href="advlin.html#cb856-2" aria-hidden="true"></a>  <span class="dt">data =</span> tibble<span class="op">::</span><span class="kw">tibble</span>(</span>
-<span id="cb856-3"><a href="advlin.html#cb856-3" aria-hidden="true"></a>    <span class="dt">Residuen=</span>residuals_from_reg1</span>
-<span id="cb856-4"><a href="advlin.html#cb856-4" aria-hidden="true"></a>    ),</span>
-<span id="cb856-5"><a href="advlin.html#cb856-5" aria-hidden="true"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">sample=</span>Residuen)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb856-6"><a href="advlin.html#cb856-6" aria-hidden="true"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">stat_qq</span>() <span class="op">+</span><span class="st"> </span>ggplot2<span class="op">::</span><span class="kw">stat_qq_line</span>() <span class="op">+</span></span>
-<span id="cb856-7"><a href="advlin.html#cb856-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb856"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb856-1"><a href="advlin.html#cb856-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(</span>
+<span id="cb856-2"><a href="advlin.html#cb856-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb856-3"><a href="advlin.html#cb856-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Residuen=</span>residuals_from_reg1</span>
+<span id="cb856-4"><a href="advlin.html#cb856-4" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb856-5"><a href="advlin.html#cb856-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">sample=</span>Residuen)) <span class="sc">+</span> </span>
+<span id="cb856-6"><a href="advlin.html#cb856-6" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">stat_qq</span>() <span class="sc">+</span> ggplot2<span class="sc">::</span><span class="fu">stat_qq_line</span>() <span class="sc">+</span></span>
+<span id="cb856-7"><a href="advlin.html#cb856-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:QQPlot"></span>
 <img src="Chap-advlinmodels_files/figure-html/QQPlot-1.png" alt="Q-Q-Plot zur Überprüfung der Residuen." width="75%" height="75%" />
 <p class="caption">
@@ -2124,7 +2125,7 @@ möglichen Studienteilnehmer*innen.
 Wahrscheinlich werden Personen mit schlechten oder gar keinen
 Lesekompetenzen eher nicht antworten - Ihre Stichprobe wäre also
 verzerrt!</p>
-<p><span class="citation">Heckman (<a href="#ref-heckman" role="doc-biblioref">1979</a>)</span> hat gezeigt, dass die Selbstselektion die gleichen
+<p><span class="citation"><a href="git.html#ref-heckman" role="doc-biblioref">Heckman</a> (<a href="git.html#ref-heckman" role="doc-biblioref">1979</a>)</span> hat gezeigt, dass die Selbstselektion die gleichen
 technischen Konsequenzen hat wie eine vergessene Variable.
 Entsprechend werden wir die Herleitung hier nicht wiederholen.</p>
 </div>
@@ -2225,27 +2226,6 @@ Daf"ur ben"otigen wir einen entsprechenden Sch"atzer (siehe Theorem ).</p>
 </div>
 </div>
 </div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-chicken">
-<p>Epple, Dennis, and Bennett T. McCallum. 2006. “Simultaneous Equation Econometrics: The Missing Example.” <em>Economic Inquiry</em> 44 (2).</p>
-</div>
-<div id="ref-greene">
-<p>Greene, William H. 2018. <em>Econometric Analysis</em>. New York, NY: Pearson.</p>
-</div>
-<div id="ref-heckman">
-<p>Heckman, James. 1979. “Sample Selection Bias as a Specification Error.” <em>Econometrica</em>. <a href="https://doi.org/doi:10.2307/1912352">https://doi.org/doi:10.2307/1912352</a>.</p>
-</div>
-<div id="ref-R-mass">
-<p>Venables, W. N., and B. D. Ripley. 2002. <em>Modern Applied Statistics with S</em>. Fourth. New York: Springer. <a href="http://www.stats.ox.ac.uk/pub/MASS4">http://www.stats.ox.ac.uk/pub/MASS4</a>.</p>
-</div>
-<div id="ref-R-sandwich">
-<p>Zeileis, Achim. 2004. “Econometric Computing with HC and HAC Covariance Matrix Estimators.” <em>Journal of Statistical Software</em> 11 (10): 1–17. <a href="https://doi.org/10.18637/jss.v011.i10">https://doi.org/10.18637/jss.v011.i10</a>.</p>
-</div>
-<div id="ref-R-lmtest">
-<p>Zeileis, Achim, and Torsten Hothorn. 2002. “Diagnostic Checking in Regression Relationships.” <em>R News</em> 2 (3): 7–10. <a href="https://CRAN.R-project.org/doc/Rnews/">https://CRAN.R-project.org/doc/Rnews/</a>.</p>
-</div>
-</div>
 <div class="footnotes">
 <hr />
 <ol start="90">
@@ -2255,16 +2235,16 @@ erstellen und diese dann als unabhängige Variable in der Regression
 verwenden könnten. Dann würde noch nicht einmal der Anschein der Nichtlinearität
 erweckt obwohl die Werte der unabhängigen Variablen die gleichen wären.<a href="advlin.html#fnref90" class="footnote-back">↩︎</a></p></li>
 <li id="fn91"><p>Wen der Beweis interessiert
-wird in <span class="citation">Greene (<a href="#ref-greene" role="doc-biblioref">2018</a>)</span> fündig.<a href="advlin.html#fnref91" class="footnote-back">↩︎</a></p></li>
+wird in <span class="citation"><a href="git.html#ref-greene" role="doc-biblioref">Greene</a> (<a href="git.html#ref-greene" role="doc-biblioref">2018</a>)</span> fündig.<a href="advlin.html#fnref91" class="footnote-back">↩︎</a></p></li>
 <li id="fn92"><p>Eigentlich
 ist <span class="math inline">\(\plim\)</span> noch allgemeiner definiert, für die Anwendungen in der Ökonometrie
 ist diese Definition aber ausreichend. Wundern Sie sich aber nicht, wenn Sie in
 manchen mathematischen Texten leicht andere Definitionen finden.<a href="advlin.html#fnref92" class="footnote-back">↩︎</a></p></li>
 <li id="fn93"><p>Die mathematischen
 Grundlagen behandeln wir hier nicht, sie werden aber in der
-weiterführenden Literatur erläutert, z.B. in Kapitel 4 von <span class="citation">Greene (<a href="#ref-greene" role="doc-biblioref">2018</a>)</span>.<a href="advlin.html#fnref93" class="footnote-back">↩︎</a></p></li>
+weiterführenden Literatur erläutert, z.B. in Kapitel 4 von <span class="citation"><a href="git.html#ref-greene" role="doc-biblioref">Greene</a> (<a href="git.html#ref-greene" role="doc-biblioref">2018</a>)</span>.<a href="advlin.html#fnref93" class="footnote-back">↩︎</a></p></li>
 <li id="fn94"><p>Für eine genauere Einführung in Instrumentenvariablen
-siehe z.B. <span class="citation">Greene (<a href="#ref-greene" role="doc-biblioref">2018</a>)</span>.<a href="advlin.html#fnref94" class="footnote-back">↩︎</a></p></li>
+siehe z.B. <span class="citation"><a href="git.html#ref-greene" role="doc-biblioref">Greene</a> (<a href="git.html#ref-greene" role="doc-biblioref">2018</a>)</span>.<a href="advlin.html#fnref94" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

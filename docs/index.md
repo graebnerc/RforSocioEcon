@@ -1,8 +1,8 @@
 --- 
 title: "R für die sozio-ökonomische Forschung"
-subtitle: "Version 0.9.2"
+subtitle: "Version 0.9.3"
 author: "[Dr. Claudius Gräbner](http://claudius-graebner.com/)"
-date: "2020-12-09" 
+date: "2021-03-05" 
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -66,7 +66,7 @@ Darüber hinaus möchte ich mich bei allen Studierenden für Ihre Rückmeldungen
 bedanken. Dank deren Feedback konnten zahlreiche kleinere und größere 
 Ungereimtheiten eliminiert werden. Ohne Anspruch auf Vollständigkeit möchte
 ich mich bei 
-Marie Syska und Marleen Twelsiek
+Jonas Frederik Katemann, Marie Syska und Marleen Twelsiek
 ganz herzlich bedanken.
 
 ## Lizenz {-}
@@ -85,7 +85,9 @@ lizensiert.
 
 Datum    | Version | Wichtigste Änderungen         |
 :--------+:--------+:------------------------------|
-19.10.19 | 0.9.0    | Erste Version für das Wintersemester 2020/21 |
-06.11.19 | 0.9.1    | Kapitel zur Regressionsanalyse ergänzt |
-06.12.19 | 0.9.2    | Korrektur Typos; Ergänzung Kapital zur fortgeschrittenen Regression; kleine Ergänzungen Datenkapitel, inkl. `one_of()` zu `any_of()` |
+19.10.20 | 0.9.0    | Erste Version für das Wintersemester 2020/21 |
+06.11.20 | 0.9.1    | Kapitel zur Regressionsanalyse ergänzt |
+06.12.20 | 0.9.2    | Korrektur Typos; Ergänzung Kapital zur fortgeschrittenen Regression; kleine Ergänzungen Datenkapitel, inkl. `one_of()` zu `any_of()` |
+05.03.21 | 0.9.3    | Korrektur Typo: Kap 7, OLS in Matrixform ($\beta_0$ vergessen) |
+
 
