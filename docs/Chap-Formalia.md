@@ -1049,8 +1049,8 @@ Y_n\\
 \times 
 \left( 
 \begin{array}{c}                                
-\beta_1 \\                                               
-\beta_2  \\
+\beta_0 \\                                               
+\beta_1  \\
 \vdots\\
 \beta_n\\
 \end{array}
