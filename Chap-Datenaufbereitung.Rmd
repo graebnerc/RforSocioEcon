@@ -18,7 +18,8 @@ Abbildung \@ref(fig:Arbeitsablauf) zeigt den typischen Arbeitsablauf eines
 Forschungsprojekts.
 
 ```{r Arbeitsablauf, echo=FALSE, fig.align='center', fig.cap="Typischer Arbeitsablauf eines Forschungsprojekts"}
-knitr::include_graphics("figures/chap-data-Ablaufschema.png", auto_pdf = T)
+knitr::include_graphics(
+  here::here("figures/Datenaufbereitung/Ablaufschema.png"), auto_pdf = T)
 ```
 
 In diesem Kapitel liegt der Fokus auf den ersten beiden Abschnitten, der Akquise
@@ -159,7 +160,8 @@ Daten häufig unter dem Label **kardinalskalierte** Daten zusammen gefasst werde
 wie aus der Abbildung \@ref(fig:skalenniveaus) hervorgeht:
 
 ```{r skalenniveaus, echo=FALSE, fig.align='center', out.height='100%', fig.cap='Skalenniveaus von Daten'}
-knitr::include_graphics("figures/data-data-classification.png", auto_pdf = T)
+knitr::include_graphics(
+  here("figures/Datenaufbereitung/Skalenniveaus.png"), auto_pdf = T)
 ```
 
 Wir sprechen von **nominalskalierten** Daten wenn wir den einzelnen Ausprägungen
@@ -434,8 +436,10 @@ der UN kodiert (siehe
 [hier](https://unstats.un.org/unsd/tradekb/Knowledgebase/50018/Harmonized-Commodity-Description-and-Coding-Systems-HS)):
 
 ```{r, echo=FALSE}
-export_data <- data.table::fread(here("data/raw/ComtradeExports.csv"), 
-                     colClasses = c("character", "double"))
+export_data <- data.table::fread(
+  here("data/raw/ComtradeExports.csv"), 
+  colClasses = c("character", "double")
+  )
 ```
 ```{r}
 head(export_data)
@@ -508,7 +512,7 @@ mit der Sie Datensätze direkt suchen können, allerdings funktioniert das
 meiner Erfahrung nach nicht optimal.]
 
 ```{r WDI, echo=FALSE, fig.align='center', fig.cap="Ablesen des Codes aus der URL"}
-knitr::include_graphics("figures/chap-data-world-bank.png")
+knitr::include_graphics(here("figures/Datenaufbereitung/world-bank.png"))
 ```
 
 
@@ -623,8 +627,9 @@ indem Sie einfach einen Vektor mit den Datentypen angeben:
 
 ```{r}
 daten_pfad <- here::here("data/tidy/export_daten.csv")
-daten <- data.table::fread(daten_pfad, 
-               colClasses = c("character", "double", "double"))
+daten <- data.table::fread(
+  daten_pfad, colClasses = c("character", "double", "double")
+  )
 typeof(daten$year)
 ```
 
@@ -638,9 +643,9 @@ verwenden:
 
 ```{r}
 daten_pfad <- here("data/tidy/export_daten.csv")
-daten <- data.table::fread(daten_pfad, 
-               colClasses = c("character", "double", "double"),
-               nrows = 1)
+daten <- data.table::fread(
+  daten_pfad, colClasses = c("character", "double", "double"),
+  nrows = 1)
 daten
 ```
 
@@ -651,10 +656,11 @@ das über das Argument `select`:
 
 ```{r}
 daten_pfad <- here::here("data/tidy/export_daten.csv")
-daten <- data.table::fread(daten_pfad, 
-               colClasses = c("character", "double", "double"),
-               nrows = 1, 
-               select = c("iso2c", "Exporte"))
+daten <- data.table::fread(
+  daten_pfad, colClasses = c("character", "double", "double"),
+  nrows = 1, 
+  select = c("iso2c", "Exporte")
+  )
 daten
 ```
 
@@ -678,11 +684,11 @@ die manuelle Eingabe immer sicherer und transparenter ist.]
 
 ```{r}
 daten_pfad <- here::here("data/tidy/export_daten_dt.csv")
-daten <- data.table::fread(daten_pfad, 
-               colClasses = c("character", "double", "double"), 
-               sep = ";", 
-               dec = ","
-               )
+daten <- data.table::fread(
+  daten_pfad, colClasses = c("character", "double", "double"), 
+  sep = ";", 
+  dec = ","
+  )
 daten
 ```
 
@@ -733,8 +739,10 @@ Entsprechend sind sie nach dem Einlesen verfügbar:
 ```{r, echo=FALSE}
 test_dat <- data.frame(a=1:2, b=3:4)
 test_vec <- "Test Vektor"
-save(list=c("test_dat", "test_vec"), 
-     file=here("data/tidy/test_daten.RData"))
+save(
+  list=c("test_dat", "test_vec"), 
+  file=here("data/tidy/test_daten.RData")
+  )
 ```
 ```{r}
 load(here::here("data/tidy/test_daten.RData"))
@@ -812,9 +820,10 @@ aus dem Paket `R.utils` [@R-R.utils] verwenden:
 ```{r, eval=FALSE}
 csv_datei_name <- here::here("data/tidy/test_data.csv")
 data.table::fwrite(test_data, file = csv_datei_name)
-R.utils::gzip(csv_datei_name,
-      destname=paste0(csv_datei_name, ".gz"), 
-      overwrite = TRUE, remove=TRUE)
+R.utils::gzip(
+  csv_datei_name,
+  destname=paste0(csv_datei_name, ".gz"), 
+  overwrite = TRUE, remove=TRUE)
 ```
 
 Diese Funktion akzeptiert als erstes Argument den Pfad zu der zu komprimierenden
@@ -841,9 +850,10 @@ anstatt `R.utils::gzip()` folgendermaßen aus:
 ```{r, eval=FALSE}
 csv_datei_name <- here::here("data/tidy/test_data.csv")
 data.table::fwrite(test_data, csv_datei_name)
-R.utils::bzip2(csv_datei_name,
-      destname=paste0(csv_datei_name, ".bz2"), 
-      overwrite = TRUE)
+R.utils::bzip2(
+  csv_datei_name,
+  destname=paste0(csv_datei_name, ".bz2"), 
+  overwrite = TRUE)
 ```
 
 > Einen Vergleich der Kompressionseigenschaften und Lese- und Schreibgeschwindigkeiten
@@ -860,7 +870,7 @@ Manchmal mag das eine verdiente Strafe, manchmal aber auch ein Ausschlusskriteri
 sein.
 
 ```{r}
-saveRDS(object = test_data,  file = here("data/tidy/export_daten.rds"))
+saveRDS(object = test_data,  file = here::here("data/tidy/export_daten.rds"))
 ```
 
 Wie Sie sehen sind zwei Argumente zentral: das erste Argument, `object` 
@@ -879,8 +889,10 @@ Der folgende Code speichert die beiden Objekte `test_data` und `daten` in der
 Datei `"data/tidy/datensammlung.Rdata"`:
 
 ```{r}
-save(list=c("test_data", "daten"), 
-     file=here("data/tidy/datensammlung.RData"))
+save(
+  list=c("test_data", "daten"), 
+  file=here::here("data/tidy/datensammlung.RData")
+  )
 ```
 
 Wie `saveRDS()` können Sie bei `save()` über das Argument `compress` den 
@@ -896,8 +908,8 @@ Dazu verwenden wir die Funktion `write_dta()`
 aus dem Paket [haven](https://github.com/tidyverse/haven).
 
 ```{r, eval=FALSE}
-haven::write_dta(test_data, 
-          here::here("data/tidy/test_daten.dta"))
+haven::write_dta(
+  test_data, here::here("data/tidy/test_daten.dta"))
 ```
 
 Für `SAS`- und `SPSS`-Daten gibt es ähnliche Funktionen, die ebenfalls durch das
@@ -945,7 +957,8 @@ im Prinzip keine Mehrarbeit (siehe Abbildung \@ref(fig:rawtidy)).
 
 
 ```{r rawtidy, echo=FALSE, fig.align='center', out.width='40%', fig.cap='Eine übersichtliche Art und Weise Ihre Daten zu speichern. Die Dateien im Unterordner `raw` werden nie geändert. Die Datei `exports-tidy` im Ordner `tidy` wurde mit dem Skript `exports-preparation.R` aus dem Rohdatensatz `exports-raw.csv` erstellt.'}
-knitr::include_graphics(here("figures/chap-data-raw-tidy.png"), auto_pdf = T)
+knitr::include_graphics(
+  here::here("figures/Datenaufbereitung/raw-tidy.png"), auto_pdf = T)
 ```
 
 In diesem Abschnitt lernen Sie Lösungen für Probleme, 
@@ -1032,11 +1045,15 @@ z.B. nicht nochmal eine Liste mit mehreren Werten, wie es ja bei einem
 beschriebenen Sinn:
 
 ```{r, echo=FALSE}
-exports_unemp_data_tidy <- data.table::fread(here("data/tidy/wb_example.csv")) %>%
-  dplyr::rename(Land=iso2c, 
-         Jahr=year,
-         Exporte=NE.EXP.GNFS.ZS, 
-         Arbeitslosigkeit=SL.UEM.TOTL.ZS) %>%
+exports_unemp_data_tidy <- data.table::fread(
+  here::here("data/tidy/wb_example.csv")
+  ) %>%
+  dplyr::rename(
+    Land=iso2c, 
+    Jahr=year,
+    Exporte=NE.EXP.GNFS.ZS, 
+    Arbeitslosigkeit=SL.UEM.TOTL.ZS
+    ) %>%
   dplyr::filter(Jahr>2012) %>%
   dplyr::select(-country)
 ```
@@ -1098,7 +1115,7 @@ kommen in der Praxis in der Regel seltener vor, sind aber auch unschön:
 
 ```{r}
 d <- data.frame(Land=c("DE", "AT"))
-d$`Wichtige Industrien` <-  list(c("Autos", "Medikamente"), c("Stahlproduktion", "Holz"))
+d$`Wichtige Industrien` <- list(c("Autos", "Medikamente"), c("Stahlproduktion", "Holz"))
 d
 ```
 
@@ -1121,7 +1138,6 @@ Zuerst das 'lange' Format, in dem wir verhältnismäßig viele Zeilen haben:
 ```{r, echo=FALSE}
 exports_unemp_data_tidy %>%
   dplyr::select(-Arbeitslosigkeit)
-  
 ```
 
 Und hier das 'breite' Format mit verhältnismäßig mehr Spalten:
@@ -1192,10 +1208,12 @@ Datensatz um Arbeitslosenquotenstatistiken handelt.
 Insgesamt erhalten wir damit den folgenden Funktionsaufruf:
 
 ```{r}
-data_long <- tidyr::pivot_longer(data = data_wide,
-                          cols = any_of(c("2013", "2014")), 
-                          names_to = "Jahr", 
-                          values_to = "Arbeitslosenquote")
+data_long <- tidyr::pivot_longer(
+  data = data_wide,
+  cols = any_of(c("2013", "2014")), 
+  names_to = "Jahr", 
+  values_to = "Arbeitslosenquote"
+  )
 data_long
 ```
 
@@ -1231,10 +1249,12 @@ Insgesamt sieht der Funktionsaufruf also so aus:
 
 
 ```{r}
-data_wide_neu <- tidyr::pivot_wider(data = data_long,
-                             id_cols = any_of("Land"), 
-                             names_from = "Jahr", 
-                             values_from = "Arbeitslosenquote")
+data_wide_neu <- tidyr::pivot_wider(
+  data = data_long,
+  id_cols = any_of("Land"), 
+  names_from = "Jahr", 
+  values_from = "Arbeitslosenquote"
+  )
 data_wide_neu
 ```
 
@@ -1244,18 +1264,25 @@ Betrachten wir folgenden Datensatz, der Beobachtungen sowohl zur
 Arbeitslosenquote also auch zu den Exporten enthält:
 
 ```{r, echo=FALSE}
-data_al_exp <- data.table::fread(here("data/tidy/wb_example.csv")) %>%
-  dplyr::rename(Land=iso2c, 
-         Jahr=year,
-         Exporte=NE.EXP.GNFS.ZS, 
-         Arbeitslosigkeit=SL.UEM.TOTL.ZS) %>%
+data_al_exp <- data.table::fread(
+  here::here("data/tidy/wb_example.csv")
+  ) %>%
+  dplyr::rename(
+    Land=iso2c, 
+    Jahr=year,
+    Exporte=NE.EXP.GNFS.ZS, 
+    Arbeitslosigkeit=SL.UEM.TOTL.ZS
+    ) %>%
   dplyr::select(-country) %>%
-  tidyr::pivot_longer(cols = any_of(c("Exporte", "Arbeitslosigkeit")), 
-               names_to = "Variable", 
-               values_to = "Wert") %>%
-  tidyr::pivot_wider(id_cols = any_of(c("Land", "Variable")), 
-              names_from = "Jahr", 
-              values_from = "Wert") 
+  tidyr::pivot_longer(
+    cols = any_of(c("Exporte", "Arbeitslosigkeit")), 
+    names_to = "Variable", 
+    values_to = "Wert"
+    ) %>%
+  tidyr::pivot_wider(
+    id_cols = any_of(c("Land", "Variable")), 
+    names_from = "Jahr", 
+    values_from = "Wert") 
 data_al_exp
 ```
 
@@ -1263,12 +1290,16 @@ Eine `tidy` Version dieses Datensatzes sähe so aus:
 
 ```{r, echo=FALSE}
 data_al_exp_tidy <- data_al_exp %>%
-  tidyr::pivot_longer(cols = -any_of(c("Land", "Variable")), 
-               names_to = "Jahr", 
-               values_to = "Wert") %>%
-  tidyr::pivot_wider(id_cols = any_of(c("Land", "Jahr")), 
-              values_from = "Wert", 
-              names_from = "Variable")
+  tidyr::pivot_longer(
+    cols = -any_of(c("Land", "Variable")), 
+    names_to = "Jahr", 
+    values_to = "Wert"
+    ) %>%
+  tidyr::pivot_wider(
+    id_cols = any_of(c("Land", "Jahr")), 
+    values_from = "Wert", 
+    names_from = "Variable"
+    )
 data_al_exp_tidy
 ```
 
@@ -1283,10 +1314,12 @@ der Liste der Namen ein `-` voran und R wird entsprechend alle hier nicht
 genannten Spalten für die Transformation verwenden:
 
 ```{r}
-data_al_exp_longer <- tidyr::pivot_longer(data = data_al_exp, 
-                                   cols = -any_of(c("Land", "Variable")), 
-                                   names_to = "Jahr", 
-                                   values_to = "Wert")
+data_al_exp_longer <- tidyr::pivot_longer(
+  data = data_al_exp, 
+  cols = -any_of(c("Land", "Variable")), 
+  names_to = "Jahr", 
+  values_to = "Wert"
+  )
 head(data_al_exp_longer, 2)
 ```
 
@@ -1301,25 +1334,29 @@ Um unser gewünschtes Endergebnis zu erhalten müssen wir diesen Datensatz nun n
 noch breiter machen:
 
 ```{r}
-data_al_exp_tidy <- tidyr::pivot_wider(data = data_al_exp_longer, 
-                                id_cols = any_of(c("Land", "Jahr")), 
-                                values_from = "Wert", 
-                                names_from = "Variable")
+data_al_exp_tidy <- tidyr::pivot_wider(
+  data = data_al_exp_longer, 
+  id_cols = any_of(c("Land", "Jahr")), 
+  values_from = "Wert", 
+  names_from = "Variable"
+  )
 data_al_exp_tidy
 ```
 
 Insgesamt sähe der Code damit folgendermaßen aus:
 
 ```{r, eval=FALSE}
-data_al_exp_longer <- tidyr::pivot_longer(data = data_al_exp, 
-                                   cols = -any_of(c("Land", "Variable")), 
-                                   names_to = "Jahr", 
-                                   values_to = "Wert")
+data_al_exp_longer <- tidyr::pivot_longer(
+  data = data_al_exp, 
+  cols = -any_of(c("Land", "Variable")), 
+  names_to = "Jahr", 
+  values_to = "Wert")
 
-data_al_exp_tidy <- tidyr::pivot_wider(data = data_al_exp_longer, 
-                                id_cols = any_of(c("Land", "Jahr")), 
-                                values_from = "Wert", 
-                                names_from = "Variable")
+data_al_exp_tidy <- tidyr::pivot_wider(
+  data = data_al_exp_longer, 
+  id_cols = any_of(c("Land", "Jahr")), 
+  values_from = "Wert", 
+  names_from = "Variable")
 ```
 
 Da die Kombination solcher Schritte in der Praxis sehr häufig vorkommt und 
@@ -1469,8 +1506,8 @@ linke Seite von `=` und das Pendant in `y` auf der rechten Seite vom `=`.
 Im Falle von `dplyr::left_join()` ergibt sich also:
 
 ```{r}
-data_bip_gini_left_join <- dplyr::left_join(data_BIP, data_gini, 
-                                     by=c("Jahr"="year", "Land"="country"))
+data_bip_gini_left_join <- dplyr::left_join(
+  data_BIP, data_gini, by=c("Jahr"="year", "Land"="country"))
 data_bip_gini_left_join
 ```
 
@@ -1480,8 +1517,8 @@ Beobachtungen aus dem rechten Datensatz übernimmt, für die es ein Pendant im
 linken Datensatz gibt.
 
 ```{r}
-data_gini_bip_left_join <- dplyr::left_join(data_gini, data_BIP, 
-                                     by=c("year"="Jahr", "country"="Land"))
+data_gini_bip_left_join <- dplyr::left_join(
+  data_gini, data_BIP, by=c("year"="Jahr", "country"="Land"))
 data_gini_bip_left_join
 ```
 
@@ -1490,8 +1527,8 @@ nur die Zeilen in den gemeinsamen Datensatz übernommen werden, die sowohl in `x
 auch in `y` enthalten sind:
 
 ```{r}
-data_bip_gini_inner_join <- dplyr::inner_join(data_BIP, data_gini, 
-                                      by=c("Jahr"="year", "Land"="country"))
+data_bip_gini_inner_join <- dplyr::inner_join(
+  data_BIP, data_gini, by=c("Jahr"="year", "Land"="country"))
 data_bip_gini_inner_join
 ```
 
@@ -1500,8 +1537,8 @@ Das Verhalten von `dplyr::right_join()` ist analog zu `dplyr::left_join()`, nur 
 'rechte' Datensatz, also der dem Argument `y` übergebene Datensatz Priorität:
 
 ```{r}
-data_gini_bip_right_join <- dplyr::right_join(data_gini, data_BIP, 
-                                       by=c("year"="Jahr", "country"="Land"))
+data_gini_bip_right_join <- dplyr::right_join(
+  data_gini, data_BIP, by=c("year"="Jahr", "country"="Land"))
 data_gini_bip_right_join
 ```
 
@@ -1510,8 +1547,8 @@ alle Zeilen in jedem Fall behalten wollen, dann wählen Sie am besten die Funkti
 `dplyr::full_join()`:
 
 ```{r}
-data_bip_gini_full_join <- dplyr::full_join(data_BIP, data_gini, 
-                                      by=c("Jahr"="year", "Land"="country"))
+data_bip_gini_full_join <- dplyr::full_join(
+  data_BIP, data_gini, by=c("Jahr"="year", "Land"="country"))
 data_bip_gini_full_join
 ```
 
@@ -1527,8 +1564,8 @@ Der resultierende Datensatz enthält aber *nur die Spalten vom linken Datensatz*
 Sie in `x` keinerlei fehlende Werte haben wollen:
 
 ```{r}
-data_bip_gini_semi_join <- dplyr::semi_join(data_BIP, data_gini, 
-                                     by=c("Jahr"="year", "Land"="country"))
+data_bip_gini_semi_join <- dplyr::semi_join(
+  data_BIP, data_gini, by=c("Jahr"="year", "Land"="country"))
 data_bip_gini_semi_join
 ```
 
@@ -1538,8 +1575,8 @@ genau wie `semi_join()` produziert es einen Datensatz, der nur die Spalten von
 gibt:
 
 ```{r}
-data_bip_gini_anti_join <- dplyr::anti_join(data_BIP, data_gini, 
-                                     by=c("Jahr"="year", "Land"="country"))
+data_bip_gini_anti_join <- dplyr::anti_join(
+  data_BIP, data_gini, by=c("Jahr"="year", "Land"="country"))
 data_bip_gini_anti_join
 ```
 
@@ -1550,8 +1587,8 @@ Hier wird für jede Zeile im linken Datensatz in einer neuen Spalte ein ganzer
 der alle Zeilen vom rechten Datensatz enthält, die zu der entsprechenden linken Zeile passen:
 
 ```{r}
-data_bip_gini_nest_join <- dplyr::nest_join(data_BIP, data_gini, 
-                                     by=c("Jahr"="year", "Land"="country"))
+data_bip_gini_nest_join <- dplyr::nest_join(
+  data_BIP, data_gini, by=c("Jahr"="year", "Land"="country"))
 data_bip_gini_nest_join
 ```
 
@@ -1589,10 +1626,10 @@ Daher sollte `by` immer explizit gesetzt werden!
 Ansonsten erhalten Sie (ohne Warnung) solche ungewünschten Ergebnisse:
 
 ```{r}
-debt_data_IWF <- data.frame(Land=c("DEU", "GRC"), 
-                            Schulden=c(10, 50))
-debt_data_WELTBANK <- data.frame(Land=c("GRC", "DEU"), 
-                                 Schulden=c(100, 25))
+debt_data_IWF <- data.frame(
+  Land=c("DEU", "GRC"), Schulden=c(10, 50))
+debt_data_WELTBANK <- data.frame(
+  Land=c("GRC", "DEU"), Schulden=c(100, 25))
 debt_data <- dplyr::full_join(debt_data_IWF, debt_data_WELTBANK)
 debt_data
 ```
@@ -1607,12 +1644,12 @@ haben, diese aber nicht als ID-Spalte verwendet wird, beide Spalten als
 `Schulden.x` und `Schulden.y` in den gemeinsamen Datensatz aufgenommen werden:
 
 ```{r}
-debt_data_IWF <- data.frame(Land=c("DEU", "GRC"), 
-                            Schulden=c(10, 50))
-debt_data_WELTBANK <- data.frame(Land=c("GRC", "DEU"), 
-                                 Schulden=c(100, 25))
-debt_data <- dplyr::full_join(debt_data_IWF, debt_data_WELTBANK, 
-                       by=c("Land"))
+debt_data_IWF <- data.frame(
+  Land=c("DEU", "GRC"), Schulden=c(10, 50))
+debt_data_WELTBANK <- data.frame(
+  Land=c("GRC", "DEU"), Schulden=c(100, 25))
+debt_data <- dplyr::full_join(
+  debt_data_IWF, debt_data_WELTBANK, by=c("Land"))
 debt_data
 ```
 
@@ -1620,9 +1657,9 @@ Oder wir geben für den finalen Datensatz ein explizites `suffix` an, damit die
 Variablennamen aussagekräftig werden:
 
 ```{r, warning=FALSE}
-debt_data <- dplyr::full_join(debt_data_IWF, debt_data_WELTBANK, 
-                       by=c("Land"), 
-                       suffix=c(".IWF", ".WELTBANK"))
+debt_data <- dplyr::full_join(
+  debt_data_IWF, debt_data_WELTBANK, by=c("Land"), 
+  suffix=c(".IWF", ".WELTBANK"))
 debt_data
 ```
 
@@ -1687,10 +1724,11 @@ test_uniqueness <- function(data_table, index_vars, print_pos=TRUE){
 > Hier ein kleines Anwendungsbeispiel:
 
 ```{r}
-data_bip_gini_full_join <- dplyr::full_join(data_BIP, data_gini, 
-                                      by=c("Jahr"="year", "Land"="country"))
-test_uniqueness(data_bip_gini_full_join, 
-                index_vars = c("Jahr", "Land"))
+data_bip_gini_full_join <- dplyr::full_join(
+  data_BIP, data_gini, by=c("Jahr"="year", "Land"="country"))
+
+test_uniqueness(
+  data_bip_gini_full_join, index_vars = c("Jahr", "Land"))
 ```
 
 > Die folgende Situation tritt häufiger auf: in den Daten werden für die Wendezeit
@@ -1700,24 +1738,27 @@ sie in Ländercodes übersetzen. In der Folge entstehen Duplikate, die beim
 Zusammenführen der Daten dann offensichtlich werden (können):
 
 ```{r, echo=FALSE}
-bip_data <- data.frame(Land=c("DEU", "DEU", "DEU"), 
-                       Jahr=1989:1991,
-                       BIP=c(1,2,3), stringsAsFactors = FALSE)
-gini_data <- data.frame(Land=c("West Germany", "Germany", "West Germany", 
-                               "Germany", "Germany"),
-                        Jahr=c(1989, 1989, 1990, 1990, 1991),
-                        Gini=c(1,2,3,4,5), stringsAsFactors = FALSE)
+bip_data <- data.frame(
+  Land=c("DEU", "DEU", "DEU"), 
+  Jahr=1989:1991,
+  BIP=c(1,2,3), 
+  stringsAsFactors = FALSE)
+gini_data <- data.frame(
+  Land=c("West Germany", "Germany", "West Germany", "Germany", "Germany"),
+  Jahr=c(1989, 1989, 1990, 1990, 1991),
+  Gini=c(1,2,3,4,5), 
+  stringsAsFactors = FALSE)
 ```
 
 ```{r}
 bip_data
 gini_data
-gini_data <- dplyr::mutate(gini_data, Land=countrycode(Land, "country.name", "iso3c"))
-full_data <- dplyr::full_join(bip_data, gini_data, 
-                       by=c("Land", "Jahr"))
+gini_data <- dplyr::mutate(
+  gini_data, Land=countrycode(Land, "country.name", "iso3c"))
+full_data <- dplyr::full_join(
+  bip_data, gini_data, by=c("Land", "Jahr"))
 full_data
-test_uniqueness(full_data, 
-                index_vars = c("Land", "Jahr"))
+test_uniqueness(full_data, index_vars = c("Land", "Jahr"))
 ```
 
 
@@ -1814,8 +1855,9 @@ wollen geht das mit:
 
 ```{r}
 data_al_exp_filtered <- data_al_exp_tidy %>%
-  dplyr::filter(Land == "AT",
-         Jahr > 2012)
+  dplyr::filter(
+    Land == "AT",
+    Jahr > 2012)
 data_al_exp_filtered
 ```
 
@@ -1842,10 +1884,11 @@ Als Beispiel:
 
 ```{r}
 data_al_exp_tidy %>%
-  dplyr::rename(country=Land, 
-         year_observation=Jahr, 
-         exports=Exporte, 
-         unemployment=Arbeitslosigkeit)
+  dplyr::rename(
+    country=Land, 
+    year_observation=Jahr, 
+    exports=Exporte, 
+    unemployment=Arbeitslosigkeit)
 ```
 
 Als abschließendes Beispiel kombinieren wir die neuen Funktionen und betrachten 
@@ -2040,9 +2083,13 @@ unemp_data_wb_growth <- unemp_data_wb %>%
       workers_female_total-lag(workers_female_total))/lag(workers_female_total)
     ) %>%
   dplyr::ungroup() %>%
-  dplyr::mutate(fem_force_growth_bigger=fem_force_growth>pop_growth) %>%
-  dplyr::select(any_of(c("country", "year", "pop_growth", 
-                         "fem_force_growth", "fem_force_growth_bigger")))
+  dplyr::mutate(
+    fem_force_growth_bigger=fem_force_growth>pop_growth
+    ) %>%
+  dplyr::select(
+    any_of(c("country", "year", "pop_growth", 
+             "fem_force_growth", "fem_force_growth_bigger"))
+    )
 unemp_data_wb_growth
 ```
 
@@ -2064,9 +2111,10 @@ offiziellen Vignetten (siehe
 
 ```{r, echo=F, eval=F}
 macro_data <- readRDS(here("data/tidy/chap-data/comp_macro.rds")) %>%
-  select(any_of(c("iso3c", "year", "AIS_mean", "AIS_mean_MIP", "AIS_mean_SGP", 
-                  "AIS_mean_Integrated", "country_group_jee"))
-         ) %>%
+  select(any_of(
+    c("iso3c", "year", "AIS_mean", "AIS_mean_MIP", "AIS_mean_SGP", 
+      "AIS_mean_Integrated", "country_group_jee"))
+    ) %>%
   filter(
     !is.na(country_group_jee) & 
       !is.na(AIS_mean)& !is.na(AIS_mean_SGP) & !is.na(AIS_mean_MIP)
@@ -2081,14 +2129,14 @@ macro_data <- readRDS(here("data/tidy/chap-data/comp_macro.rds")) %>%
     AIS_INT=AIS_mean_Integrated,
     group=country_group_jee
   )
-fwrite(macro_data, file = here("data/tidy/chap-data/eu_macro_ais.csv"))
+fwrite(macro_data, file = here::here("data/tidy/chap-data/eu_macro_ais.csv"))
 ```
 
 Betrachten wie also folgendes Beispiel:
 
 ```{r, echo=F}
 eu_ais_data <- data.table::fread(
-  file = here("data/tidy/chap-data/eu_macro_ais.csv")) %>%
+  file = here::here("data/tidy/chap-data/eu_macro_ais.csv")) %>%
   dplyr::select(iso3c, year, group, dplyr::everything())
 head(eu_ais_data, 3)
 ```
@@ -2251,7 +2299,9 @@ Daher hat sich in der Praxis häufig die in Abbildung \@ref(fig:Ordnerstruktur-d
 aufgezeigte oder eine ähnliche Ordnerstruktur bewährt:
 
 ```{r Ordnerstruktur-data, echo=FALSE, fig.align='center', out.width='40%', fig.cap='Bewährte Ordnerstruktur für Forschungsprojekte mit R.'}
-knitr::include_graphics("figures/chap-data-Ordnerstruktur.png")
+knitr::include_graphics(
+  path = here::here("figures/Datenaufbereitung/Ordnerstruktur.png"), 
+  auto_pdf = T)
 ```
 
 Der Vorteil an dieser Ordnerstruktur ist, dass Sie die Rohdaten in einem separaten 
@@ -2304,7 +2354,8 @@ das `tidyverse` zu verzichten - auch weil es in puncto Performance deutlich
 schlechter ist als z.B. [data.table](https://rdatatable.gitlab.io/data.table/) 
 [@R-data.table], das auch für mehrere hundert GB große Datensätze gut geeignet ist. 
 Zur Aneignung des Pakets 
-[data.table](https://rdatatable.gitlab.io/data.table/) [@R-data.table] ist das [offizielle Tutorial](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) 
+[data.table](https://rdatatable.gitlab.io/data.table/) [@R-data.table] 
+ist das [offizielle Tutorial](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) 
 gut geeignet, macht m.E. aber auch deutlich, 
 dass es für die ersten Schritte mit R etwas unintuitiver ist als das `tidyverse`.
 
