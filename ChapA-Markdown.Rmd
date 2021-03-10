@@ -37,11 +37,26 @@ install.packages('rmarkdown')
 ```
 
 Das Standardformat für R-Markdown Dokumente ist html. 
-Wenn Sie aber auch PDF Dokumente erstellen wollen, müssen Sie auf Ihrem 
-Computer [LaTex](https://www.latex-project.org/) installieren.
-Hierfür finden sich zahlreiche Anleitungen im Internet (z.B. 
-[hier](https://www.latex-tutorial.com/installation/) oder 
-[hier](https://www.latex-project.org/get/)).
+
+Damit Sie auch PDF-Dokumente erstellen können müssen Sie noch eine
+[Latex-Distribution](https://www.latex-project.org/).
+Wir empfehlen Ihnen in jedem Fall die Distribution
+[tinytex](https://yihui.org/tinytex/)
+zu installieren, unabhängig davon, ob Sie bereits über eine andere
+Distribution verfügen.
+Beachten Sie, dass nach der Installation des Pakets `tinytex` die 
+die tinytex-Distribution noch **nicht** installiert wurde.
+Das Paket und die Distribution sind zwei unterschiedliche Dinge!
+Um die Distribution zu installieren müssen Sie bei bestehender
+Internetverbindung noch folgenden Befehl in Ihrer R-Konsole
+ausführen:
+
+```{r, eval=FALSE}
+tinytex::install_tinytex()
+```
+
+Beachten Sie, dass das einen kurzen Augenblick dauern kann und dass 
+ca. 65 MB an Dateien aus dem Internet heruntergeladen werden.
 
 ## Der R-Markdown Workflow
 
