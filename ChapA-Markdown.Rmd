@@ -294,7 +294,17 @@ stören? Klassische Kandidaten sind Tabellen, die für das gewählt Format zu
 breit oder sehr lang sind. Reduzieren Sie die Tabellen in diesem Falle
 auf das Notwendige (z.B. durch Verwendung von `head()` oder
 `dplyr::select()`).
-3. Falls Sie Regressionsoutput in Ihrem Dokument haben: häufig ist der
+3. In der Regel sind Nachrichten ('messages') und Warnungen ('warnings') zwar für Sie wichtig, aber für Leser:innen eigentlich immer nur störend. Schalten Sie sie daher in den Chunks eher aus. Das geht über die Chunk Optionen `message=FALASE, warning=FALSE`, aber
+am einfachsten als Standardeinstellung am Anfang Ihres Dokuments:
+```{r, eval=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE, warning = FALSE)
+```
+4. Überhaupt kann man sich über die globalen Chunk-Optionen viel 
+Tipp-Arbeit sparen. So bietet sich häufig auch `fig.align = 'center'`
+oder sogar `echo=FALSE` an, wenn Sie Chunks standardmäßig *nicht*
+im Markdown anzeigen lassen wollen.
+5. Falls Sie Regressionsoutput in Ihrem Dokument haben: häufig ist der
 Output der `summary()` Funktion nicht sonderlich schön. Außerdem wird es
 leicht unübersichtlich wenn Sie mehrere Regressionen ausgeben. 
 Es bietet sich hier häufig die Verwendung von alternativen Paketen wie
@@ -305,7 +315,7 @@ an.
 Für Tabellen bietet sich ansonsten das Paket
 [xtable](https://cran.r-project.org/web/packages/xtable/vignettes/xtableGallery.pdf) 
 an.
-4. Überprüfen Sie ob alle Referenzen (zu Tabellen, Sektionen, etc.) im 
+6. Überprüfen Sie ob alle Referenzen (zu Tabellen, Sektionen, etc.) im 
 Text vorhanden sind oder Sie etwas vergessen haben. Suchen Sie dazu im 
 finalen Dokument einfach nach Fragezeichen.
 
