@@ -1319,7 +1319,6 @@ nicht im Detail diskutiert.
 Weitere Ideen und tiefergehende Diskussionen finden Sie z.B. auf der
 exzellenten Homepage von @dataviz.
  
-
 ### Streu- oder Blasendiagramm
 
 **Besonders geeignet für:** Zusammenhang von 2 - 3 verhältnis-skalierten Variablen.
@@ -1338,23 +1337,43 @@ von Österreich über die Zeit:
 
 ```{r}
 head(offenheits_daten)
+```
+
+```{r}
 streudiagramm <- ggplot2::ggplot(
   data = offenheits_daten, 
-  mapping = aes(x=trade_total_GDP, 
-                y=gvnt_cons)
+  mapping = aes(
+    x=trade_total_GDP, 
+    y=gvnt_cons)
   ) +
   ggplot2::geom_point(alpha=0.75) +
   ggplot2::scale_y_continuous(name = "Regierungsausgaben") +
-  ggplot2::scale_x_continuous(name = TeX("$\\frac{IMP + EXP}{BIP}\\cdot 100\\%$"), 
-                     breaks = seq(30, 180, 10),
-                     labels = scales::percent_format(accuracy = 1, scale = 1)
-                     )+
+  ggplot2::scale_x_continuous(
+    name = TeX("$\\frac{IMP + EXP}{BIP}\\cdot 100\\%$"), 
+    breaks = seq(30, 180, 10),
+    labels = scales::percent_format(accuracy = 1, scale = 1)
+    )+
   ggplot2::labs(
     title = "Handelsoffenheit & Regierungsaktivität in Europa",
-    caption = "; Daten von 1990-2017."
+    caption = "Daten von 1990-2017."
     ) +
   icaeDesign::theme_icae() 
+```
+
+```{r, eval=FALSE}
 streudiagramm
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/handelsoffenheit_bsp.png")
+save_pdf_png(
+  filename = plot_file, plot = streudiagramm, 
+  width = 5, height = 3.5)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Mit dem Keyword `alpha` in `ggplot2::geom_point(alpha=0.75)` können Sie die 
@@ -1369,25 +1388,29 @@ ausgangsdaten <- gapminder::gapminder %>%
   filter(year=="2007") %>% 
   dplyr::select(-year) %>% 
   mutate(
-    continent = ifelse(continent=="Asia", "Asien", 
-                       ifelse(continent=="Americas", "Amerika",
-                              ifelse(continent=="Oceania", "Ozeanien",
-                                     ifelse(continent=="Europe", "Europa", 
-                                            ifelse(continent=="Africa", "Afrika", "mist"))
-                                     )))) %>%
+    continent = ifelse(
+      continent=="Asia", "Asien", 
+      ifelse(continent=="Americas", "Amerika",
+             ifelse(continent=="Oceania", "Ozeanien",
+                    ifelse(continent=="Europe", "Europa", 
+                           ifelse(continent=="Africa", "Afrika", "mist"))
+                    )))) %>%
   arrange(desc(pop)) 
 ```
 
 ```{r}
 head(ausgangsdaten)
+```
 
+```{r}
 bubble_plot <- ggplot2::ggplot(
   data = ausgangsdaten, 
-  mapping = aes(x = gdpPercap, 
-                y = lifeExp, 
-                size = pop, 
-                fill = continent)
-    ) +
+  mapping = aes(
+    x = gdpPercap, 
+    y = lifeExp, 
+    size = pop, 
+    fill = continent)
+  ) +
   ggplot2::geom_point(
     alpha=0.5, shape=21, color="black"
     ) +
@@ -1411,7 +1434,18 @@ bubble_plot <- ggplot2::ggplot(
     legend.position="bottom",
     plot.caption = element_text(hjust = 0)
     )
-bubble_plot
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/bubble_plot_bsp.png")
+save_pdf_png(
+  filename = plot_file, plot = bubble_plot, 
+  width = 5, height = 4)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 ### Linienchart
@@ -1435,7 +1469,9 @@ arbeitslosen_daten <- data.table::fread(
 
 ```{r}
 head(arbeitslosen_daten)
+```
 
+```{r}
 gewichtete_daten <- arbeitslosen_daten %>%
   dplyr::group_by(year, Gruppe) %>%
   dplyr::mutate(population_group=sum(population_ameco)) %>%
@@ -1443,8 +1479,8 @@ gewichtete_daten <- arbeitslosen_daten %>%
   dplyr::mutate(pop_rel_group=population_ameco / population_group) %>%
   dplyr::group_by(year, Gruppe) %>%
   dplyr::summarise(
-    unemp_rate_mean=weighted.mean(unemp_rate, 
-                                  pop_rel_group),
+    unemp_rate_mean=weighted.mean(
+      unemp_rate, pop_rel_group),
     unemp_rate_sd=sd(unemp_rate*pop_rel_group)
   ) %>%
   dplyr::ungroup() 
@@ -1476,7 +1512,7 @@ arbeitslosen_plot <- ggplot2::ggplot(
         linetype=NA, fill=Gruppe), 
     alpha=0.25, 
     show.legend = FALSE) +
-  ggplot2::ylab("Bevölkerungsgewichtete Arbeitslosenquote") +
+  ggplot2::ylab("Bevölkerungsgew. Arbeitslosenquote") +
   icaeDesign::scale_color_icae(
     palette = "mixed", 
     aesthetics=c("color", "fill")
@@ -1496,7 +1532,18 @@ arbeitslosen_plot <- ggplot2::ggplot(
     ) +
   icaeDesign::theme_icae() +
   ggplot2::theme(axis.title.x = element_blank())
-arbeitslosen_plot 
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/arbeitslosen_plot.png")
+save_pdf_png(
+  filename = plot_file, plot = arbeitslosen_plot, 
+  width = 5, height = 4)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Die Grafik stammt aus @CJE.
@@ -1519,8 +1566,6 @@ stetig interpretieren und gleich eine Wahrscheinlichkeitsdichte auf Basis Ihrer
 Daten berechnen. 
 Dann sparen Sie sich das Problem der Balkenbreite.
 
-
-
 **Beispiel 1: Einfaches Histogram**
 
 ```{r, echo=FALSE}
@@ -1530,8 +1575,10 @@ histogram_daten <- data.frame(x = rnorm(500))
 
 ```{r, warning=FALSE, message=FALSE}
 head(histogram_daten)
-ggplot2::ggplot(data = histogram_daten, 
-       mapping = aes(x=x)) +
+historgram_30 <- ggplot2::ggplot(
+  data = histogram_daten, 
+  mapping = aes(x=x)
+  ) +
   ggplot2::geom_histogram(alpha=0.75, color=NA, fill="#002966") + 
   ggplot2::scale_y_continuous(name = "Häufigkeit", 
                      expand = expansion(c(0, 0), c(0, 1))) +
@@ -1540,6 +1587,17 @@ ggplot2::ggplot(data = histogram_daten,
   ggplot2::theme(axis.title.x = element_blank())
 ```
 
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/historgram_30.png")
+save_pdf_png(
+  filename = plot_file, plot = historgram_30, 
+  width = 5, height = 4)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
 
 Im Folgenden sehen Sie auch den großen Effekt unterschiedlicher Balkendicken:
 
@@ -1556,7 +1614,24 @@ for (i in 1:length(bin_size)){
   icaeDesign::theme_icae() +
   ggplot2::theme(axis.title.x = element_blank())
 }
-ggpubr::ggarrange(plotlist = hist_list, ncol = 2, nrow = 2)
+histo_ueberblick <- ggpubr::ggarrange(
+  plotlist = hist_list, ncol = 2, nrow = 2)
+```
+
+```{r, eval=FALSE}
+histo_ueberblick
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/historgram_balkenbreite.png")
+save_pdf_png(
+  filename = plot_file, plot = histo_ueberblick, 
+  width = 6, height = 4)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 **Beispiel 2: Dichteverteilung von Exportkörben**
@@ -1582,16 +1657,16 @@ Um die Güter nach ihrem tatsächlichen Exportwert zu gewichten verwenden wir
 die Ästhetik `weight`: 
 
 ```{r, warning=FALSE, message=FALSE}
-ggplot2::ggplot(data = exportzusammensetzung, 
-       mapping = aes(
-         x=pci, 
-         color=cgroup, 
-         fill=cgroup)
-       ) + 
+dichte_plot <- ggplot2::ggplot(
+  data = exportzusammensetzung, 
+  mapping = aes(
+    x=pci, 
+    color=cgroup, 
+    fill=cgroup)
+  ) + 
   ggplot2::geom_density(
     mapping = aes(weight=exp_share), 
-    alpha=0.5
-    ) + 
+    alpha=0.5) + 
   ggplot2::labs(
     title = "Produktkomplexität von Exportkörben (2000-2017)",
     caption = "Quelle: Gräbner et al. (2020, CJE)"
@@ -1600,10 +1675,29 @@ ggplot2::ggplot(data = exportzusammensetzung,
   ggplot2::xlab("Produktkomplexität") +
   ggplot2::scale_y_continuous(limits = c(0, 0.62), expand = c(0, 0)) +
   ggplot2::scale_x_continuous(limits = c(-3, 3), expand = c(0, 0)) +
+  ggplot2::scale_color_viridis_d(aesthetics = c("color", "fill")) +
   ggplot2::theme_bw() +
-  ggplot2::theme(legend.position = c(0.175, 0.8), 
-                 panel.border = element_blank(), 
-                 axis.line = element_line())
+  ggplot2::theme(
+    legend.position = c(0.175, 0.8), 
+    legend.title = element_blank(),
+    panel.border = element_blank(), 
+    axis.line = element_line())
+```
+
+```{r, eval=FALSE}
+dichte_plot
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/dichteplot.png")
+save_pdf_png(
+  filename = plot_file, plot = dichte_plot, 
+  width = 6, height = 4)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Auch diese Abbildung stammt ursprünglich aus @CJE.
@@ -1654,12 +1748,26 @@ cum_growth_countries_full <- ggplot2::ggplot(
   ggplot2::theme(axis.text.x = element_text(angle = 90, hjust = 1), 
         axis.title.x = element_blank(), 
         legend.position = "none") 
+```
+
+```{r, eval=FALSE}
 cum_growth_countries_full
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/balkendiagram.png")
+save_pdf_png(
+  filename = plot_file, plot = cum_growth_countries_full, 
+  width = 6, height = 4)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Die Abbildung stammt aus @fes, einer Studie, die sich mit Polarisierungstendenzen
 in Europa und möglichen Gegenmaßnahmen auseinandersetzt.
-
 
 ### Kuchendiagramme {#vis-pie}
 
@@ -1708,10 +1816,10 @@ Falls Sie noch nichts von linearen Regressionen gehört haben können Sie diesen
 Abschnitt einfach überspringen.
 
 ```{r, eval=FALSE, echo=FALSE}
-wb_data_set <- WDI::WDI(indicator = c("sp.dyn.le00.in",
-                                      "SI.POV.GINI", 
-                                      "NY.GDP.PCAP.PP.KD",
-                                      "SH.DYN.MORT")) %>%
+wb_data_set <- WDI::WDI(
+  indicator = c("sp.dyn.le00.in", "SI.POV.GINI", 
+                "NY.GDP.PCAP.PP.KD", "SH.DYN.MORT")
+  ) %>%
   rename(GDP_PPPpc=NY.GDP.PCAP.PP.KD,
          GINI_WB=SI.POV.GINI,
          LIFEEXP=sp.dyn.le00.in,
@@ -1720,10 +1828,11 @@ wb_data_set <- WDI::WDI(indicator = c("sp.dyn.le00.in",
          !is.na(GDP_PPPpc), !is.na(MORTRATE))
 fwrite(wb_data_set, here::here("data/tidy/wb_bip_ineq_mort.csv"))
 ```
+
 ```{r, echo=FALSE}
-development_data <- data.table::fread(here::here("data/tidy/wb_bip_ineq_mort.csv"), 
-                          colClasses = c("character", "character", 
-                                         rep("double", 5)))
+development_data <- data.table::fread(
+  here::here("data/tidy/wb_bip_ineq_mort.csv"), 
+  colClasses = c("character", "character", rep("double", 5)))
 ```
 
 Oftmals möchten wir die Ergebnisse einer Regression in den Daten 
@@ -1737,10 +1846,11 @@ Mit den weiteren Argumenten können wir z.B. die Farbe der Linie
 (`se=FALSE`):
 
 ```{r}
-mort_rate_plot <- ggplot2::ggplot(data = development_data, 
-       mapping = aes(x=log(GDP_PPPpc), 
-                     y=log(MORTRATE))
-       ) +
+mort_rate_plot <- ggplot2::ggplot(
+  data = development_data, 
+  mapping = aes(x=log(GDP_PPPpc), 
+                y=log(MORTRATE))
+  ) +
   ggplot2::geom_point(alpha=0.25) +
   ggplot2::labs(
     title = "Pro-Kopf Einkommen und Kindersterblichkeit", 
@@ -1748,21 +1858,35 @@ mort_rate_plot <- ggplot2::ggplot(data = development_data,
   ) +
   ggplot2::xlab("BIP pro Kopf (PPP, log)") + 
   ggplot2::ylab("Kindersterblichkeit in % (log)") +
-  icaeDesign::theme_icae()
-
-mort_rate_plot + ggplot2::geom_smooth(method = "lm", 
-                             color="#002966", 
-                             se = TRUE) 
+  icaeDesign::theme_icae() +
+  ggplot2::geom_smooth(
+    method = "lm", color="#002966", se = TRUE) 
 ```
 
+```{r, eval=FALSE}
+mort_rate_plot
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/regressionsgerade.png")
+save_pdf_png(
+  filename = plot_file, plot = mort_rate_plot, 
+  width = 5, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
 
 Alternativ kann die Gerade auch mit Hilfe der Funktion `ggplot2::geom_abline()` 
 eingezeichnet werden. 
 Dazu müssen wir Regression vorher aber explizit mit `lm()` durchführen:
 
 ```{r}
-lm_obj <- lm(log(MORTRATE) ~ log(GDP_PPPpc), 
-             data = development_data)
+lm_obj <- lm(
+  log(MORTRATE) ~ log(GDP_PPPpc), 
+  data = development_data)
 summary(lm_obj)
 ```
 
@@ -1796,9 +1920,23 @@ mort_rate_plot_marked <- mort_rate_plot +
            x = 6.25, 
            y = 0.85, hjust = 0,
            label = TeX(rsq))
+```
+
+```{r, eval=FALSE}
 mort_rate_plot_marked
 ```
 
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/regressionsgerade-annotated.png")
+save_pdf_png(
+  filename = plot_file, plot = mort_rate_plot_marked, 
+  width = 5, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
 
 ### Mehrere Plots in einer Abbildung {#vis-viele-plots}
 
@@ -1820,16 +1958,30 @@ abgebildet werden soll. Die Position der Legenden kann darüber hinaus über
 das Argument `legend` mit `top`, `bottom`, `left` oder `right` spezifiziert
 werden:
 
-```{r, warning=FALSE}
-ggpubr::ggarrange(arbeitslosen_plot, 
-          mort_rate_plot+ggplot2::geom_smooth(color="#002966", method = "lm"), 
-          ncol = 2, 
-          labels = c("A)", "B)"), 
-          font.label = list(face="bold"))
+```{r, warning=FALSE, message=FALSE}
+plot_kombi <- ggpubr::ggarrange(
+  arbeitslosen_plot, mort_rate_plot+ggplot2::geom_smooth(
+    color="#002966", method = "lm"), 
+  ncol = 2, 
+  labels = c("A)", "B)"), 
+  font.label = list(face="bold", size=10))
 ```
 
-<!-- Hier ist beim Output in der PDF irgendwie eine Überschneidung bei A) und B) und den beiden Überschriften. Soll das korrigiert werden? -->
+```{r, eval=FALSE}
+plot_kombi
+```
 
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/plot_kombi.png")
+save_pdf_png(
+  filename = plot_file, plot = plot_kombi, 
+  width = 8, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
 
 ### Mehr zu den Skalen: `ggplot2::expansion()` und Skalentransformation
 
@@ -1855,7 +2007,8 @@ verarbeiten, wobei dann die erste Zahl für den unteren und die zweite für den
 oberen Rand steht:
 
 ```{r, eval=FALSE}
-ggplot2::scale_y_continuous(expand = expansion(mult = c(0, 0), add = c(0, 2))
+ggplot2::scale_y_continuous(
+  expand = expansion(mult = c(0, 0), add = c(0, 2))
 ```
 
 Letzterer Code verländert die y-Achse nur in der Länge. Das ist nützlich,
@@ -1894,7 +2047,19 @@ dichte_2 <- dichte_1 +
                      expand = expansion(mult = c(0, 0), 
                                            add = c(0, 0)))
 
-ggpubr::ggarrange(dichte_1, dichte_2, ncol = 2)
+dichte_plot <- ggpubr::ggarrange(dichte_1, dichte_2, ncol = 2)
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/dichte_plot.png")
+save_pdf_png(
+  filename = plot_file, plot = dichte_plot, 
+  width = 6, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Auch werden Sie häufig die Labels auf Ihren Achsen ändern wollen. 
@@ -1951,12 +2116,25 @@ cum_growth_countries_full_percent <- cum_growth_countries_full +
 ```
 
 ```{r}
-ggpubr::ggarrange(cum_growth_countries_full + ggplot2::ggtitle("Ohne Prozent-Transformation"),
-          cum_growth_countries_full_percent + ggplot2::ggtitle("Mit Prozent-Transformation"),
-          nrow = 2
-          )
+percent_plot <- ggpubr::ggarrange(
+  cum_growth_countries_full + 
+    ggplot2::ggtitle("Ohne Prozent-Transformation"),
+  cum_growth_countries_full_percent + 
+    ggplot2::ggtitle("Mit Prozent-Transformation"),
+  nrow = 2)
 ```
 
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/prozent_transformation.png")
+save_pdf_png(
+  filename = plot_file, plot = percent_plot, 
+  width = 6, height = 5)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
 
 Die weiteren Argumente sind relativ selbsterklärend und werden in der Regel
 nicht verwendet. Sie sind ähnlich zu den weiteren Formatierungsfunktionen in 
@@ -1987,21 +2165,33 @@ Eine sehr bekannte und nützliche Palette ist die so gennannte *Viridis*-Palette
 von Stefan van der Walt and Nathaniel Smith.
 In der Grundversion schaut sie folgendermaßen aus:
 
-```{r, echo=FALSE, fig.height=0.5, fig.width=7}
+```{r, echo=FALSE}
 x <- seq(1, 10, length.out=50)
 y <- rep(1, length(x))
 data <- data.frame(x=x, y=y)
-ggplot(data, 
-       aes(x, y, z= x)
-       ) + 
+viridis_plot <- ggplot(
+  data, aes(x, y, z= x)
+  ) + 
   geom_tile(aes(fill = x)) + 
   scale_fill_viridis_c() +
   ggtitle("Die Viridis-Palette") +
   theme_void() + 
-  theme(legend.position = "none", 
-        plot.title = element_text(hjust = 0.5, size = 10))
+  theme(
+    legend.position = "none", 
+    plot.title = element_text(hjust = 0.5, size = 10))
 ```
 
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/viridis_plot.png")
+save_pdf_png(
+  filename = plot_file, plot = viridis_plot, 
+  width = 5, height = 0.5)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
 
 Wenn Sie die Farben Ihrer Ästhetiken gemäß der Viridis-Palette verwenden wollen
 geht dies durch vordefinierte Funktionen. 
@@ -2050,7 +2240,8 @@ vermeiden können finden Sie [hier](https://www.data-to-viz.com/caveats.html).
 Schauen wir zunächst auf die folgende Abbildung \@ref(fig:Hanson) aus @hanson[S. 55]:
 
 ```{r Hanson, echo=FALSE, fig.cap="Abbildung nach Hanson, 2012"}
-knitr::include_graphics(here::here("figures/vis-failes-hanson.png"), auto_pdf = T)
+knitr::include_graphics(
+  here::here("figures/Visualisierung/vis-failes-hanson.png"), auto_pdf = T)
 ```
 
 Da sich der Autor zusätzlich nicht erbarmt hat seinen Datensatz zu publizieren, 
@@ -2070,8 +2261,9 @@ abzurufen sind.] finden sich in der Replikation natürlich kleinere Abweichungen
 
 
 ```{r, echo=FALSE, eval=FALSE}
-schooling_data <- WDI(indicator = c("BAR.SCHL.15UP", "sp.pop.totl"), 
-                      start = 2005, end = 2005) %>%
+schooling_data <- WDI(
+  indicator = c("BAR.SCHL.15UP", "sp.pop.totl"), 
+  start = 2005, end = 2005) %>%
   filter(!is.na(BAR.SCHL.15UP), !is.na(sp.pop.totl)) %>%
   mutate(country=countrycode(iso2c, "iso2c", "iso3c")) %>%
   filter(!is.na(country)) %>%
@@ -2111,16 +2303,18 @@ fwrite(full_data, file = here::here("data/tidy/hanson-prepared.csv"))
 ```
 
 ```{r, echo=FALSE}
-hanson_data <- data.table::fread(here::here("data/tidy/hanson-prepared.csv"), 
-                     colClasses = c("character", rep("double", 4)))
+hanson_data <- data.table::fread(
+  here::here("data/tidy/hanson-prepared.csv"), 
+  colClasses = c("character", rep("double", 4)))
 ```
-
 
 Zunächst replizieren wir das originale visuelle Verbrechen:
 
 ```{r}
-ggplot2::ggplot(data = hanson_data, 
-       mapping = aes(x=schooling, y=rca_purged)) +
+hanson_plot <- ggplot2::ggplot(
+  data = hanson_data, 
+  mapping = aes(x=schooling, y=rca_purged)
+  ) +
   ggplot2::geom_point(color="#264062") + 
   ggplot2::geom_text(aes(label=country), nudge_x = 0.5, color="#264062") +
   ggplot2::geom_smooth(method = "lm", se = FALSE, color="black") +
@@ -2128,6 +2322,18 @@ ggplot2::ggplot(data = hanson_data,
   ggplot2::scale_x_continuous(name = "Durchschnittliche Schulbildung in Jahren (2005)") +
   ggplot2::scale_y_continuous(name = "RCA in Büromaschinen (Durchschnitt 2006-08)") +
   icaeDesign::theme_icae()
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/hanson_plot.png")
+save_pdf_png(
+  filename = plot_file, plot = hanson_plot, 
+  width = 6, height = 4)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Abgesehen davon, dass es einfach hässlich ist so viele Überlappungen zu haben,
@@ -2157,19 +2363,20 @@ interessierende_laender <- countrycode(
   c("China", "Malaysia", "Costa Rica", "Philippines", "Thailand"), 
   "country.name", "iso3c")
 
-ggplot2::ggplot(data = hanson_data, 
-       mapping = aes(x=schooling, y=rca_purged)) +
+hanson_plot_fixed <- ggplot2::ggplot(
+  data = hanson_data, 
+  mapping = aes(x=schooling, y=rca_purged)) +
   ggplot2::geom_point(
-    data = filter(hanson_data, 
-                  country %in% interessierende_laender), 
+    data = filter(
+      hanson_data, country %in% interessierende_laender), 
     color="#264062") + 
   ggplot2::geom_point(
-    data = filter(hanson_data, 
-                  !country %in% interessierende_laender), 
+    data = filter(
+      hanson_data, !country %in% interessierende_laender), 
     color="grey") + 
   ggrepel::geom_label_repel(
-    data = filter(hanson_data, 
-                  country %in% interessierende_laender),
+    data = filter(
+      hanson_data, country %in% interessierende_laender),
     aes(label=countrycode(country, "iso3c", "country.name.de")), 
     color="black", label.size = NA
     ) +
@@ -2180,6 +2387,17 @@ ggplot2::ggplot(data = hanson_data,
   icaeDesign::theme_icae()
 ```
 
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/hanson_plot_fixed.png")
+save_pdf_png(
+  filename = plot_file, plot = hanson_plot_fixed, 
+  width = 6, height = 4)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
 
 Wie Sie merken werden diese Farben außerhalb von `mapping` definiert.
 Denn die Farben sollen ja für alle Variablen gleich sein, es handelt sich hier
@@ -2199,7 +2417,8 @@ Verbesserungsmöglichkeiten), allerdings ist er ein schönes Negativbeispiel:
 
 
 ```{r managers, echo=FALSE, fig.cap="Beispiel für einen 'unbalancierten' Plot"}
-knitr::include_graphics(here::here("figures/vis-failes-oecd.png"), auto_pdf = T)
+knitr::include_graphics(
+  here::here("figures/Visualisierung/vis-failes-oecd.png"), auto_pdf = T)
 ```
 
 Selbt mit der Beschreibung im Text ist schwer verständlich was uns diese
@@ -2222,7 +2441,8 @@ Zuerst müssen jedoch die Daten in einen nutzbaren Zustand gebracht werden:
 Diese Daten sehen im Rohzustand (nach Auswahl der relevanten Spalten) so aus:
 
 ```{r, echo=FALSE}
-oecd_data <- data.table::fread(here::here("data/raw/oecd_gener_managers.csv")) %>%
+oecd_data <- data.table::fread(
+  here::here("data/raw/oecd_gener_managers.csv")) %>%
   filter(Time==2015) %>%
   select(one_of("COU", "Sex", "Value")) 
 ```
@@ -2264,9 +2484,10 @@ das manuell an:
 
 ```{r, warning=FALSE}
 oecd_data_plot <- oecd_data %>%
-  dplyr::mutate(COU = ifelse(COU=="OAVG", "OECD Durchschnitt", 
-                      countrycode::countrycode(COU, "iso3c", "country.name.de")),
-         COU = ifelse(COU=="Korea, Republik von", "Südkorea", COU))
+  dplyr::mutate(
+    COU = ifelse(COU=="OAVG", "OECD Durchschnitt", 
+                 countrycode::countrycode(COU, "iso3c", "country.name.de")),
+    COU = ifelse(COU=="Korea, Republik von", "Südkorea", COU))
 ```
 
 Mit diesen erstellen wir den Lollipop-Graphen folgendermaßen:^[Die Farben
@@ -2274,38 +2495,33 @@ haben wir wieder vorher auf
 [https://www.w3schools.com/colors/colors_picker.asp](https://www.w3schools.com/colors/colors_picker.asp) 
 herausgesucht.]
 
-```{r, fig.height=9, fig.width=6}
+```{r}
 farbe_m <- "#355383"
 farbe_w <- "#d95d2c"
 
-ggplot2::ggplot(oecd_data_plot) +
-  ggplot2::geom_segment(aes(x=reorder(COU, Women), 
-                   xend=COU,
-                   y=Women, 
-                   yend=Men), 
-               color="grey") +
+lollipop_plot <- ggplot2::ggplot(oecd_data_plot) +
+  ggplot2::geom_segment(
+    aes(x=reorder(COU, Women), xend=COU, 
+        y=Women, yend=Men), color="grey") +
   ggplot2::geom_point(
-    aes(x=COU, 
-        y=Women, 
-        color="Frauen"), 
-    size=3 ) +
+    aes(x=COU, y=Women, color="Frauen"), size=2.5) +
   ggplot2::geom_point(
-    aes(x=COU, 
-        y=Men,
-        color="Männer"), 
-    size=3 ) +
-  ggplot2::scale_color_manual(values = c("Männer"=farbe_m, "Frauen"=farbe_w), name="Geschlecht") +
+    aes(x=COU, y=Men, color="Männer"), size=2.5) +
+  ggplot2::scale_color_manual(
+    values = c("Männer"=farbe_m, "Frauen"=farbe_w), name="Geschlecht") +
   ggplot2::geom_text(
     aes(x=COU, y=Women, label=COU), 
-    nudge_y = -0.25, hjust=1, color=rgb(110, 113, 123, maxColorValue = 255)
+    nudge_y = -0.25, hjust=1, 
+    color=rgb(110, 113, 123, maxColorValue = 255)
     ) +
-  ggplot2::scale_y_continuous(name = "Prozent", 
-                     expand = expansion(mult = c(0, 0), 
-                                           add = c(3.5, 1))
-                     ) +
+  ggplot2::scale_y_continuous(
+    name = "Prozent", expand = expansion(
+      mult = c(0, 0), add = c(3.5, 1))
+    ) +
   ggplot2::coord_flip() +
-  ggplot2::labs(title = "Anteil der Beschäftigten im Management (2015)", 
-       caption = "Quelle: OECD, eigene Darstellung.") +
+  ggplot2::labs(
+    title = "Anteil der Beschäftigten im Management (2015)", 
+    caption = "Quelle: OECD, eigene Darstellung.") +
   icaeDesign::theme_icae() +
   ggplot2::theme(
     panel.grid.major.y = element_blank(),
@@ -2318,6 +2534,18 @@ ggplot2::ggplot(oecd_data_plot) +
     axis.text.y = element_blank(), 
     plot.title = element_text(face = "bold")
   )
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/lollipop_plot.png")
+save_pdf_png(
+  filename = plot_file, plot = lollipop_plot, 
+  width = 5, height = 7)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Wie Sie sehen wird der Graph nicht durch eine eigene Funktion, sondern durch 
@@ -2354,7 +2582,8 @@ In diesem Fall könnten Sie sich ein Beispiel an Fox News nehmen
 (siehe Abbildung \@ref(fig:foxnews)).
 
 ```{r foxnews, echo=FALSE, fig.cap="Quelle: https://thenextweb.com/wp-content/blogs.dir/1/files/2015/05/viz3.jpg"}
-knitr::include_graphics(here::here("figures/vis-fox-news.jpg"), auto_pdf = T)
+knitr::include_graphics(
+  here::here("figures/Visualisierung/vis-fox-news.jpg"), auto_pdf = T)
 ```
 
 Die Autor*innen haben ihre Manupulation hier entsprechend clever versteckt indem sie
@@ -2372,38 +2601,56 @@ Im Folgenden sehen wir die manipulierende und korrekte Grafik nebeneinander:
 ```{r}
 data_used <- data.frame(Werte=c(6000000, 7066000), Art=c("Zustand", "Ziel"))
 
-normal <- ggplot2::ggplot(data = data_used,
-                      mapping = aes(x=reorder(Art, Werte), y=Werte)) +
-  ggplot2::geom_bar(stat = "identity", fill="#003366", alpha=0.75) + 
-  ggplot2::geom_text(aes(label=as.character(format(Werte, scientific = FALSE))), 
-            size=6, vjust=1.75, color="#f2f2f2") +
+normal <- ggplot2::ggplot(
+  data = data_used, 
+  mapping = aes(x=reorder(Art, Werte), y=Werte)
+  ) +
+  ggplot2::geom_bar(
+    stat = "identity", fill="#003366", alpha=0.75) + 
+  ggplot2::geom_text(
+    aes(label=as.character(format(Werte, scientific = FALSE))), 
+    size=6, vjust=1.75, color="#f2f2f2") +
   ggplot2::scale_y_continuous(
     name = "Anzahl von Nutzer*innen in Hunderttausend",
     breaks = seq(0, 8000000, 1000000),
     labels = seq(0, 80, 10),
-    expand = expansion(c(0,0), 
-                          c(0, 500000))
+    expand = expansion(c(0,0), c(0, 500000))
     ) +
-  ggplot2::labs(title = "Nutzer*innen von Obamacare", 
-       caption = "Quelle: Fox News") + 
+  ggplot2::labs(
+    title = "Nutzer*innen von Obamacare", 
+    caption = "Quelle: Fox News") + 
   icaeDesign::theme_icae() +
   ggplot2::theme(
     axis.title.y = element_text(),
-    axis.text.x = element_text(size = 12),
+    axis.text.x = element_text(size = 10),
     axis.title.x = element_blank(),
-    plot.title = element_text(size=14, face = "bold")
+    plot.title = element_text(size=12, face = "bold")
   )
 
 manipulativ <- normal +
-  ggplot2::coord_cartesian(ylim=c(5750000, 7200000)) +
+  ggplot2::coord_cartesian(ylim=c(5650000, 7200000)) +
   ggplot2::theme(
     panel.grid = element_blank(),
     axis.title = element_blank(),
+    axis.title.y = element_blank(),
     axis.line.y = element_blank(), 
     axis.text.y = element_blank()
     )
 
-ggpubr::ggarrange(manipulativ, normal, ncol = 2)
+bar_plot_manipulation <- ggpubr::ggarrange(
+  manipulativ, normal, ncol = 2)
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/bar_plot_manipulation.png")
+save_pdf_png(
+  filename = plot_file, plot = bar_plot_manipulation, 
+  width = 6, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Eine beliebte Variante ist es, die y-Achse zwar im Nullpunkt starten zu lassen,
@@ -2429,17 +2676,18 @@ al_daten <- MacroDataR::macro_data %>%
 fwrite(al_daten, here::here("data/tidy/al_daten_de.csv"))
 ```
 
-```{r,echo=FALSE}
-al_daten <- data.table::fread(here::here("data/tidy/al_daten_de.csv"), 
-                  colClasses = rep("double", 2))
+```{r, echo=FALSE}
+al_daten <- data.table::fread(
+  here::here("data/tidy/al_daten_de.csv"), colClasses = rep("double", 2))
 ```
 
 ```{r}
 agenda_daten <- dplyr::filter(al_daten, year>2000)
 
-manipulativ <- ggplot2::ggplot(data = agenda_daten,
-                      mapping = aes(x=year, y=unemp_rate)
-                      ) +
+manipulativ <- ggplot2::ggplot(
+  data = agenda_daten,
+  mapping = aes(x=year, y=unemp_rate)
+  ) +
   ggplot2::geom_point() +
   ggplot2::geom_line() +
   ggplot2::geom_vline(xintercept = 2005) +
@@ -2447,15 +2695,16 @@ manipulativ <- ggplot2::ggplot(data = agenda_daten,
     name = "Arbeitslosigkeit", 
     labels = scales::percent_format(accuracy = 1, scale = 1)
     ) +
-  ggplot2::labs(title = "Arbeitslosigkeit seit Einführung der Agenda 2010",
-       caption = "Quelle: AMECO") +
+  ggplot2::labs(
+    title = "Arbeitslosigkeit seit Einführung der Agenda 2010",
+    caption = "Quelle: AMECO") +
   icaeDesign::theme_icae() +
   ggplot2::theme(axis.title.x = element_blank())
 
-
-normal <- ggplot2::ggplot(data = al_daten,
-                      mapping = aes(x=year, y=unemp_rate)
-                      ) +
+normal <- ggplot2::ggplot(
+  data = al_daten,
+  mapping = aes(x=year, y=unemp_rate)
+  ) +
   ggplot2::geom_point() +
   ggplot2::geom_line() +
   ggplot2::geom_smooth(method = "loess", se = F) +
@@ -2463,12 +2712,29 @@ normal <- ggplot2::ggplot(data = al_daten,
     name = "Arbeitslosigkeit", 
     labels = scales::percent_format(accuracy = 1, scale = 1)
     ) +
-  ggplot2::labs(title = "Arbeitslosigkeit in der langen Frist",
-       caption = "Quelle: AMECO") +
+  ggplot2::labs(
+    title = "Arbeitslosigkeit in der langen Frist",
+    caption = "Quelle: AMECO") +
   icaeDesign::theme_icae() +
   ggplot2::theme(axis.title.x = element_blank())
 
-ggpubr::ggarrange(normal, manipulativ, nrow=2)
+agenda_plot <- ggpubr::ggarrange(normal, manipulativ, nrow=2)
+```
+
+```{r, eval=FALSE}
+agenda_plot
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/agenda_plot.png")
+save_pdf_png(
+  filename = plot_file, plot = agenda_plot, 
+  width = 6, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Selbstverständlich ist der obere Graph auch nicht ganz manipulationsfrei.
@@ -2484,26 +2750,34 @@ Sie sind ein schönes Beispiel für die weit verbreiteten 'breiten' Daten, die
 wir erst einmal in ein brauchbares Format bringen müssen:
 
 ```{r, warning=FALSE, message=FALSE, eval=FALSE}
-ameco_data <- data.table::fread(here::here("data/raw/AMECO16.TXT"), fill = T, header = T) %>%
+ameco_data <- data.table::fread(
+  here::here("data/raw/AMECO16.TXT"), 
+  fill = T, header = T) %>%
   dyplr::filter(
     TITLE=="Total current expenditure: general government :- Excessive deficit procedure",
     COUNTRY=="Germany",
-    UNIT %in% c("(Percentage of GDP at current prices (excessive deficit procedure))", 
-                "Mrd ECU/EUR")) %>%
-  dplyr::select(-one_of("CODE", "COUNTRY", "SUB-CHAPTER", "TITLE", "V68")) %>%
-  dplyr::mutate(UNIT=ifelse(UNIT=="Mrd ECU/EUR", "Abs", "PercGDP")) %>%
-  tidyr::pivot_longer(names_to = "Jahr", values_to = "Wert", cols = -UNIT) %>%
+    UNIT %in% c(
+      "(Percentage of GDP at current prices (excessive deficit procedure))", 
+      "Mrd ECU/EUR")) %>%
+  dplyr::select(
+    -dplyr::any_of(c("CODE", "COUNTRY", "SUB-CHAPTER", "TITLE", "V68"))
+    ) %>%
+  dplyr::mutate(
+    UNIT=ifelse(UNIT=="Mrd ECU/EUR", "Abs", "PercGDP")
+    ) %>%
+  tidyr::pivot_longer(
+    names_to = "Jahr", values_to = "Wert", cols = -UNIT) %>%
   dplyr::filter(Jahr>1990) %>%
   tidyr::pivot_wider(names_from = UNIT, values_from = Wert)
 ```
 ```{r, eval=FALSE, echo=FALSE}
-data.table::fwrite(ameco_data, here::here("data/tidy/ameco_de.csv"))
+data.table::fwrite(
+  ameco_data, here::here("data/tidy/ameco_de.csv"))
 ```
 ```{r, echo=FALSE}
-ameco_data <- data.table::fread( here::here("data/tidy/ameco_de.csv"), 
-                     colClasses = rep("double", 3))
+ameco_data <- data.table::fread( 
+  here::here("data/tidy/ameco_de.csv"), colClasses = rep("double", 3))
 ```
-
 
 Jetzt können wir die Daten visualisieren:
 
@@ -2511,33 +2785,51 @@ Jetzt können wir die Daten visualisieren:
 ameco_geier_version <- ameco_data %>%
   dplyr::filter(Jahr %in% seq(1991, 2021, 5)) 
 
-manipulativ <- ggplot2::ggplot(data = ameco_geier_version,
-                      aes(x=Jahr, y=Abs)) +
+manipulativ <- ggplot2::ggplot(
+  data = ameco_geier_version, mapping = aes(x=Jahr, y=Abs)) +
   ggplot2::geom_point() +
   ggplot2::geom_line() +
-  ggplot2::scale_y_continuous(name = "Staatsausgaben in Mrd. ECU/EUR",
-                     limits = c(600, 1600)) +
-  ggplot2::labs(title = "Geier Staat und die Gießkanne", 
-       subtitle = "Steigende Staatsausgaben seit 1991",
-       caption = "Quelle: AMECO.") +
+  ggplot2::scale_y_continuous(
+    name = "Staatsausgaben in Mrd. ECU/EUR",
+    limits = c(600, 1600)
+    ) +
+  ggplot2::labs(
+    title = "Geier Staat und die Gießkanne", 
+    subtitle = "Steigende Staatsausgaben seit 1991",
+    caption = "Quelle: AMECO."
+    ) +
   icaeDesign::theme_icae() +
-  ggplot2::theme(axis.title.x = element_blank(),
-        plot.title = element_text(hjust = 0, size = 14))
+  ggplot2::theme(
+    axis.title.x = element_blank(),
+    plot.title = element_text(hjust = 0, size = 14))
 
-normal <- ggplot2::ggplot(data = ameco_data,
-                      aes(x=Jahr, y=PercGDP)) +
+normal <- ggplot2::ggplot(
+  data = ameco_data, mapping = aes(x=Jahr, y=PercGDP)) +
   ggplot2::geom_point() +
   ggplot2::geom_line() +
-  ggplot2::scale_y_continuous(name = "Staatsausgaben in % des BIP",
-                     limits = c(0, 60)) +
-  ggplot2::labs(title = "Staatsausgaben seit 1991",
-       caption = "Quelle: AMECO.") +
+  ggplot2::scale_y_continuous(
+    name = "Staatsausgaben in % des BIP", limits = c(0, 60)
+    ) +
+  ggplot2::labs(
+    title = "Staatsausgaben seit 1991", caption = "Quelle: AMECO.") +
   icaeDesign::theme_icae() +
-  ggplot2::theme(axis.title.x = element_blank(),
-        plot.title = element_text(hjust = 0, size = 14))
+  ggplot2::theme(
+    axis.title.x = element_blank(),
+    plot.title = element_text(hjust = 0, size = 14))
 
+ameco_geier_plot <- ggpubr::ggarrange(manipulativ, normal, ncol = 2)
+```
 
-ggpubr::ggarrange(manipulativ, normal, ncol = 2)
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/ameco_geier_plot.png")
+save_pdf_png(
+  filename = plot_file, plot = ameco_geier_plot, 
+  width = 6, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Falls Sie jetzt meinen: das ist ja eigentlich zu einfach um wirklich vorzukommen,
@@ -2550,7 +2842,8 @@ in der Wissenschaft sehr weit verbreitet sind. Aber Sie wissen das ja jetzt und
 brauchen sich nicht mehr aufs Glatteis führen zu lassen.
 
 ```{r fazbetrug, echo=FALSE, fig.cap="Quelle: FAZ vom 11. Juli 2020 (linkes Bild) und Bundesministerium für Arbeit und Soziales (mittleres Bild) und Handelsblatt vom 13. Juli 2020 (rechtes Bild)."}
-knitr::include_graphics(here::here("figures/vis-hb-faz.pdf"), auto_pdf = T)
+knitr::include_graphics(
+  here::here("figures/Visualisierung/vis-hb-faz.pdf"), auto_pdf = T)
 ```
 
 
