@@ -6,7 +6,7 @@ output:
 # Visualisierung von Daten {#vis}
 
 ```{r include=FALSE}
-knitr::opts_chunk$set(comment = "#>")
+knitr::opts_chunk$set(comment = "#>", message = FALSE, warning = FALSE)
 knitr::opts_chunk$set(out.height = '75%', out.width = '75%', fig.align = 'center') 
 ```
 
@@ -25,6 +25,10 @@ library(viridis)
 library(latex2exp)
 library(WDI)
 library(countrycode)
+```
+
+```{r, echo=FALSE}
+source(here::here("R/helpers.R"))
 ```
 
 ## Einleitung {-}
@@ -208,19 +212,19 @@ Wie Sie später sehen werden repräsentiert die Syntax von `ggplot2` genau diese
 theoretische Beschreibung von Grafiken. 
 Hier greifen wir mit einem kleinen Beispiel vor:
 
-
 ```{r}
 example_data <- data.frame(
   Variab1=1:3, 
   Variab2=2:4, 
   Variab3=c("a", "a", "b")
-                           )
+  )
 
-ggplot2::ggplot(
+expl_plot <- ggplot2::ggplot(
   data = example_data, 
-  mapping = aes(x=Variab1, 
-                y=Variab2, 
-                color=Variab3)
+  mapping = aes(
+    x=Variab1, 
+    y=Variab2, 
+    color=Variab3)
   ) + 
   ggplot2::layer( 
     geom = "point", 
@@ -233,6 +237,22 @@ ggplot2::ggplot(
     xlim = c(0, 4), 
     ylim = c(0, 5)
     ) 
+```
+
+```{r, eval=FALSE}
+expl_plot
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/expl_plot.png")
+save_pdf_png(
+  filename = plot_file, plot = expl_plot, 
+  width = 5, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Die Funktion `ggplot2::ggplot()` erstellt eine Liste, in der die 
@@ -357,7 +377,6 @@ offenheit_plot <- ggplot2::ggplot( # <- Erstellt das Basisobjekt
   ggplot2::facet_null()  # Verwende nur eine Facette
 ```
 
-
 ```{r, echo=FALSE}
 offenheit_plot_basis <- ggplot2::ggplot(
   data = offenheit, 
@@ -416,33 +435,43 @@ offenheit_layer2 <- offenheit_plot_basis +
 Dieser Code erstellt die einzelnen Elemente des Plots, die in `ggplot2` 
 separat erstellt und am Ende übereinander gelegt werden:
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+layer_plot <- ggpubr::ggarrange(
+  offenheit_plot_basis, offenheit_plot_labels,
+  offenheit_layer1, offenheit_layer2, 
+  ncol = 2, nrow = 2)
+```
+
 ```{r, echo=FALSE}
-ggpubr::ggarrange(offenheit_plot_basis, offenheit_plot_labels,
-                  offenheit_layer1, offenheit_layer2, 
-                  ncol = 2, nrow = 2)
+plot_file <- here::here(
+  "figures/Visualisierung/layer-illustration.png")
+save_pdf_png(
+  filename = plot_file, plot = layer_plot, 
+  width = 6, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Daraus ergibt sich dann der Gesamtplot:
 
 ```{r, echo=FALSE}
 offenheit_plot <- offenheit_plot + ggplot2::theme_bw()
-offenheit_plot
+plot_file <- here::here(
+  "figures/Visualisierung/offenheit_plot.png")
+save_pdf_png(
+  filename = plot_file, plot = offenheit_plot, 
+  width = 5, height = 3)
 ```
-
 
 ```{r, echo=FALSE}
-ggplot2::ggsave(plot = offenheit_plot, 
-       filename = here::here("figures/vis-plot-parts.pdf"), 
-       height = 4, width = 6)
-ggplot2::ggsave(plot = offenheit_plot, 
-       filename = here::here("figures/vis-plot-parts.png"), 
-       height = 4, width = 6)
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
-
 
 Die Rolle der Facetten wird hier deutlich:
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 offenheit_plot <- offenheit_plot + ggtitle("Eine Facette")
 offenheit_plot_facetten <- offenheit_plot +
   facet_wrap(facets = "Land", scales = "free", ncol = 3) +
@@ -452,9 +481,21 @@ full_plot <- ggpubr::ggarrange(
   offenheit_plot, offenheit_plot_facetten, 
   nrow = 1, common.legend = T, 
   legend = "bottom")
-ggpubr::annotate_figure(
+full_plot <- ggpubr::annotate_figure(
   full_plot,
   top = "Handelsoffenheit & Staatsausgaben 1990-2018")
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/facetten_plot.png")
+save_pdf_png(
+  filename = plot_file, plot = full_plot, 
+  width = 8, height = 4)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Der modulare Aufbau eines `ggplot` macht es einfach eine Grafik sukzessive zu ändern: 
@@ -469,26 +510,37 @@ offenheit_red <- offenheit %>%
 
 ```{r, fig.height=6, fig.width=9}
 # Code für ein Streudiagramm
-streudiagramm <- ggplot2::ggplot(offenheit_red, 
-                        aes(x=year, y=trade_total_GDP)
-                        ) +
+streudiagramm <- ggplot2::ggplot(
+  data = offenheit_red, 
+  mapping = aes(x=year, y=trade_total_GDP)
+  ) +
   ggplot2::geom_point() + 
   ggplot2::theme_bw()
 
 # Code für ein Liniendiagramm
-liniendiagramm <- ggplot2::ggplot(offenheit_red, 
-                        aes(x=year, y=trade_total_GDP)
-                        ) +
+liniendiagramm <- ggplot2::ggplot(
+  data = offenheit_red, 
+  mapping = aes(x=year, y=trade_total_GDP)
+  ) +
   ggplot2::geom_line() + # <- nur diese Zeile verändert
   ggplot2::theme_bw()
 ```
-```{r, echo=FALSE, out.height='50%', out.width='50%'}
-ggpubr::ggarrange(streudiagramm, liniendiagramm, ncol = 2)
+
+```{r, echo=FALSE}
+streu_linien_diag <- ggpubr::ggarrange(streudiagramm, liniendiagramm, ncol = 2)
+
+plot_file <- here::here(
+  "figures/Visualisierung/streu_linien_vergleich.png")
+save_pdf_png(
+  filename = plot_file, plot = streu_linien_diag, 
+  width = 6, height = 3)
 ```
 
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
 
 ### Beispiel Workflow
-
 
 Hier betrachten wir den Workflow einer einfachen Grafik.
 Sie werden [unten](#vis-adv)
@@ -509,14 +561,18 @@ beschrieben. Im Folgenden gehen wir davon aus, dass wir einen entsprechend
 aufbereiteten Datensatz haben:
 
 ```{r, echo=FALSE}
-gov_trade <- data.table::fread(here::here("data/tidy/government_openness.csv")) %>%
+gov_trade <- data.table::fread(
+  here::here("data/tidy/government_openness.csv")) %>%
   select(iso3c, year, trade_total_GDP, gvnt_cons) %>%
-  rename(Land=iso3c, Jahr=year, 
-         HandelGDP=trade_total_GDP, 
-         StaatsausgabenGDP=gvnt_cons)
+  rename(
+    Land=iso3c, Jahr=year, 
+    HandelGDP=trade_total_GDP, 
+    StaatsausgabenGDP=gvnt_cons)
+
 aut_trade <- gov_trade %>%
   select(Land, Jahr, HandelGDP) %>%
   filter(Land=="AUT")
+
 head(aut_trade)
 ```
 
@@ -541,9 +597,18 @@ Da es sich um die Standardwerte handelt werden Sie in der Funktion
 ```{r}
 aut_trade_plot <- ggplot2::ggplot(
   data = aut_trade, 
-  mapping = aes(x = Jahr, 
-                y = HandelGDP)
+  mapping = aes(
+    x = Jahr, 
+    y = HandelGDP)
   )
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/aut_trade_plot_1.png")
+save_pdf_png(
+  filename = plot_file, plot = aut_trade_plot, 
+  width = 5, height = 3)
 ```
 
 `ggplot2::ggplot()` erstellt das Grafik-Objekt, bei dem es sich um eine recht 
@@ -564,14 +629,17 @@ Wie oben beschrieben wird die Grafik bei `ggplot2` erst erstellt, wenn Sie das
 Grafik-Objet mit einer `print`-Funktion aufrufen. Das passiert automatisch, 
 wenn Sie das Objekt als solches aufrufen:
 
-```{r}
+```{r, eval=FALSE}
 aut_trade_plot
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Da wir bislang nur die Standardwerte definiert haben ist die Grafik noch recht
 leer. Zumindest sehen wir, dass die Achsen die Variablen unseres Datensatzes
 repräsentieren.
-
 
 **3. Schritt: Hinzufügen von Ebenen mit geometrischen Objekten**
 
@@ -616,7 +684,22 @@ wir einfach den Operator `+`:
 ```{r, warning=FALSE}
 aut_trade_plot <- aut_trade_plot + 
   ggplot2::geom_line()
+```
+
+```{r, eval=FALSE}
 aut_trade_plot
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/aut_trade_plot_2.png")
+save_pdf_png(
+  filename = plot_file, plot = aut_trade_plot, 
+  width = 5, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Am Anfang ein Grafikobjekt zu definieren und dann neue Elemente
@@ -639,7 +722,22 @@ Standardwerte wie vorher verwenden sind hier auch keine Argumente nötig:
 ```{r, warning=FALSE}
 aut_trade_plot <- aut_trade_plot +
   ggplot2::geom_point()
+```
+
+```{r, eval=FALSE}
 aut_trade_plot
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/aut_trade_plot_3.png")
+save_pdf_png(
+  filename = plot_file, plot = aut_trade_plot, 
+  width = 5, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Um den Trend der Entwicklung zu verdeutlichen möchten wir vielleicht noch einen
@@ -649,9 +747,23 @@ Hierzu verwenden wir die Funktion `geom_smooth()`:
 ```{r, warning=FALSE, message=FALSE}
 aut_trade_plot <- aut_trade_plot +
   ggplot2::geom_smooth()
+```
+
+```{r, eval=FALSE}
 aut_trade_plot
 ```
 
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/aut_trade_plot_4.png")
+save_pdf_png(
+  filename = plot_file, plot = aut_trade_plot, 
+  width = 5, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
 
 **4. Schritt: Anpassen der Skalen**
 
@@ -675,9 +787,26 @@ wir einen Vektor mit zwei Zahlen, dem unteren und dem oberen Limit, übergeben:
 
 ```{r, warning=FALSE, message=FALSE}
 aut_trade_plot <- aut_trade_plot +
-  ggplot2::scale_x_continuous(limits = c(1965, 2018), 
-                     breaks = seq(1965, 2017, 5))
+  ggplot2::scale_x_continuous(
+    limits = c(1965, 2018), 
+    breaks = seq(1965, 2017, 5)
+    )
+```
+
+```{r, eval=FALSE}
 aut_trade_plot
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/aut_trade_plot_5.png")
+save_pdf_png(
+  filename = plot_file, plot = aut_trade_plot, 
+  width = 5, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Unschön hier ist nur der 'Rand', den `ggplot2` automatisch an den jeweiligen Enden der Skalen hinzufügt. 
@@ -686,18 +815,40 @@ Wie übergeben `expand` im einfachsten Falle einen Vektor mit zwei Werten:
 der erste Wert bestimmt eine Konstante, die auf beiden Seiten zur Skala 
 hinzuaddiert wird, der zweite Wert einen Skalar der die Skala um den ensprechenden
 Wert multiplikativ streckt.
-In unserem Fall sollen beide Werte gleich 0 sein, denn wir wollen, dass die Skala 
+Tatsächlich können wir über das Argument `expand` das Ganze nochmal separat
+für den Anfang und das Ende der Skala spezifizieren, sodass wir insgesamt bis 
+zu vier Werte angeben können. Damit das nicht verwirrend wird gibt es die
+Hilfsfunktion `ggplot2::expansion()`, welche für die beiden Argumente `mult` und
+`add` jeweils zwei Zahlen akzeptiert und genau den richtigen Vektor für das
+Argument `expand` ausgibt - probieren Sie es ruhig einmal aus.
+In unserem Fall sollen alle Werte gleich 0 sein, denn wir wollen, dass die Skala 
 1960 anfängt und 2017 aufhört, so wie über das Argument `limits` vorher 
-spezifiziert:
-
+spezifiziert. Da das die Default-Werte für `ggplot2::expansion()` sind,
+brauchen wir gar keine expliziten Spezifikationen vornehmen:
 
 ```{r, warning=FALSE, message=FALSE}
 aut_trade_plot <- aut_trade_plot +
-  ggplot2::scale_x_continuous(limits = c(1965, 2018), 
-                     breaks = seq(1960, 2017, 5), 
-                     expand = c(0, 0)
-                     )
+  ggplot2::scale_x_continuous(
+    limits = c(1965, 2018), 
+    breaks = seq(1960, 2017, 5), 
+    expand = ggplot2::expansion()
+    )
+```
+
+```{r, eval=FALSE}
 aut_trade_plot
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/aut_trade_plot_6.png")
+save_pdf_png(
+  filename = plot_file, plot = aut_trade_plot, 
+  width = 5, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Das ist schon nicht so schlecht. 
@@ -718,12 +869,28 @@ eliminieren und verwenden dazu das Argument `expand` wie vorher:
 
 ```{r, warning=FALSE, message=FALSE}
 aut_trade_plot <- aut_trade_plot +
-  ggplot2::scale_y_continuous(name = "Handel / BIP",  
-                     limits = c(0, 110), 
-                     breaks = seq(0, 110, 10),
-                     expand = c(0, 0)
-                     )
+  ggplot2::scale_y_continuous(
+    name = "Handel / BIP",  
+    limits = c(0, 110), 
+    breaks = seq(0, 110, 10),
+    expand = ggplot2::expansion()
+    )
+```
+
+```{r, eval=FALSE}
 aut_trade_plot
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/aut_trade_plot_7.png")
+save_pdf_png(
+  filename = plot_file, plot = aut_trade_plot, 
+  width = 5, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 **5. Schritt: Titel**
@@ -736,10 +903,26 @@ gut eignet um die Quelle der Daten anzugeben.
 
 ```{r, warning=FALSE, message=FALSE}
 aut_trade_plot <- aut_trade_plot +
-  ggplot2::labs(title = "Handel und BIP in Österreich", 
-          subtitle = "Die Entwicklung zwischen 1965 und 2018",
-       caption = "Daten: Weltbank.")
+  ggplot2::labs(
+    title = "Handel und BIP in Österreich", 
+    subtitle = "Die Entwicklung zwischen 1965 und 2018",
+    caption = "Daten: Weltbank.")
+```
+
+```{r, eval=FALSE}
 aut_trade_plot
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/aut_trade_plot_8.png")
+save_pdf_png(
+  filename = plot_file, plot = aut_trade_plot, 
+  width = 5, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Weit verbreitet ist auch die Funktion `ggplot2::ggtitle()`, die genauso 
@@ -774,7 +957,22 @@ Hier wollen wir den Hintergrund weiß füllen, wir schreiben also
 ```{r, warning=FALSE, message=FALSE}
 aut_trade_plot <- aut_trade_plot +
   ggplot2::theme(panel.background = element_rect(fill = "white"))
+```
+
+```{r, eval=FALSE}
 aut_trade_plot
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/aut_trade_plot_9.png")
+save_pdf_png(
+  filename = plot_file, plot = aut_trade_plot, 
+  width = 5, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Das ist besser, allerdings möchten wir schon einen Grid haben um die Achsen
@@ -812,7 +1010,22 @@ aut_trade_plot <- aut_trade_plot +
     axis.line = element_line(colour = "black"), 
     axis.ticks = element_blank() 
     )
+```
+
+```{r, eval=FALSE}
 aut_trade_plot
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/aut_trade_plot_10.png")
+save_pdf_png(
+  filename = plot_file, plot = aut_trade_plot, 
+  width = 5, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Sie merken bereits: mit `ggplot2::theme()` können Sie quasi alles an Ihrer Grafik 
@@ -828,8 +1041,24 @@ Standard-Spezifikationen vornehmen. Eine Übersicht finden Sie
 [hier](https://ggplot2.tidyverse.org/reference/ggtheme.html).
 Häufig wird z.B. das Theme `ggplot2::theme_bw()` verwendet:
 
-```{r, warning=FALSE, message=FALSE}
-aut_trade_plot + theme_bw()
+```{r, warning=FALSE, message=FALSE, eval=FALSE}
+aut_trade_plot + ggplot2::theme_bw()
+```
+
+```{r, eval=FALSE}
+aut_trade_plot <- aut_trade_plot + ggplot2::theme_bw()
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/aut_trade_plot_11.png")
+save_pdf_png(
+  filename = plot_file, plot = aut_trade_plot, 
+  width = 5, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Natürlich können Sie auch eigene Themen schreiben, in denen Sie Ihre 
@@ -850,13 +1079,27 @@ library(devtools)
 devtools::install_github("graebnerc/icaeDesign")
 ```
 
-
 Unser Beispielplot sähe damit folgendermaßen aus:
 
 ```{r, warning=FALSE, message=FALSE}
 library(icaeDesign)
 aut_trade_plot <- aut_trade_plot + theme_icae()
+```
+
+```{r, eval=FALSE}
 aut_trade_plot
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/aut_trade_plot_12.png")
+save_pdf_png(
+  filename = plot_file, plot = aut_trade_plot, 
+  width = 5, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Das ist nicht so schlecht, allerdings ist der Untertitel hässlich.
@@ -868,8 +1111,24 @@ Da es sich beim Untertitel um Text handelt, verwenden wir die Funktion
 `ggplot2::element_text()`:
 
 ```{r, warning=FALSE, message=FALSE}
-aut_trade_plot + 
+aut_trade_plot <- aut_trade_plot + 
   ggplot2::theme(plot.subtitle = element_text(hjust = 0.5))
+```
+
+```{r, eval=FALSE}
+aut_trade_plot
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Visualisierung/aut_trade_plot_13.png")
+save_pdf_png(
+  filename = plot_file, plot = aut_trade_plot, 
+  width = 5, height = 3)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Dabei ist der Aufruf `icaeDesign::theme_icae()` eine Abkürzung für folgenden Aufruf von
@@ -878,44 +1137,43 @@ Info:
 
 ```{r, eval=FALSE}
 ggplot2::theme_minimal() +
-ggplot2::theme(
-  axis.line = element_line(
-    color = rgb(188, 197, 207, maxColorValue = 255),
-    linetype = "solid", size = 0.5
-    ),
-  legend.position = "bottom",
-  legend.spacing.x = unit(0.2, "cm"),
-  legend.title = element_blank(),
-  plot.title = element_text(
-    color = rgb(43, 49, 62, maxColorValue = 255),
-    hjust = 0.5
-    ),
-  axis.title = element_text(
-    color = rgb(43, 49, 62, maxColorValue = 255),
-    size = rel(0.75)
-    ),
-  axis.text = element_text(
-    color = rgb(110, 113, 123, maxColorValue = 255),
-    size = rel(0.5)
-    ),
-  panel.grid.major = element_line(
-    rgb(188, 197, 207, maxColorValue = 255),
-    linetype = "solid"),
-  panel.grid.minor = element_line(
-    rgb(233, 234, 233, maxColorValue = 255),
-    linetype = "dotted",
-    size = rel(4)
-    ),
-  strip.text = element_text(
-    size = rel(0.9),
-    colour = rgb(43, 49, 62, maxColorValue = 255),
-    margin = margin(t = 1, r = 1, b = 1, l = 1, unit = "pt")
-    ),
-  strip.text.x = element_text(
-    margin = margin(t = 5, r = 1, b = 1, l = 1, unit = "pt")
-    )
+  ggplot2::theme(
+    axis.line = element_line(
+      color = rgb(188, 197, 207, maxColorValue = 255),
+      linetype = "solid", size = 0.5
+      ),
+    legend.position = "bottom",
+    legend.spacing.x = unit(0.2, "cm"),
+    legend.title = element_blank(),
+    plot.title = element_text(
+      color = rgb(43, 49, 62, maxColorValue = 255),
+      hjust = 0.5
+      ),
+    axis.title = element_text(
+      color = rgb(43, 49, 62, maxColorValue = 255),
+      size = rel(0.75)
+      ),
+    axis.text = element_text(
+      color = rgb(110, 113, 123, maxColorValue = 255),
+      size = rel(0.5)
+      ),
+    panel.grid.major = element_line(
+      rgb(188, 197, 207, maxColorValue = 255),
+      linetype = "solid"),
+    panel.grid.minor = element_line(
+      rgb(233, 234, 233, maxColorValue = 255),
+      linetype = "dotted",
+      size = rel(4)
+      ),
+    strip.text = element_text(
+      size = rel(0.9),
+      colour = rgb(43, 49, 62, maxColorValue = 255),
+      margin = margin(t = 1, r = 1, b = 1, l = 1, unit = "pt")
+      ),
+    strip.text.x = element_text(
+      margin = margin(t = 5, r = 1, b = 1, l = 1, unit = "pt")
+      )
 ```
-
 
 **7. Schritt: Ihre Grafik abspeichern**
 
@@ -934,12 +1192,11 @@ Für Abbildungen, die aus nur einem Plot bestehen ist `6:4` häufig ein guter
 Ausgangspunkt.]
 
 ```{r, eval=FALSE}
-ggplot2::ggsave(filename = here::here("output/trade_ts.pdf"), 
-       plot = aut_trade_plot, 
-       width = 9, 
-       height = 6)
+ggplot2::ggsave(
+  filename = here::here("output/trade_ts.pdf"), 
+  plot = aut_trade_plot, 
+  width = 9, height = 6)
 ```
-
 
 Achten Sie auf die Beibehaltung einer übersichtlichen Ordnerstruktur.
 Abbildungen sollten immer im Ordner `output` gespeichert werden!
@@ -960,8 +1217,9 @@ Abschließend noch einmal der komplette Code für unsere Abbildung:
 ```{r, eval=FALSE}
 aut_trade_plot <- ggplot2::ggplot(
   data = aut_trade, 
-  mapping = aes(x = Jahr, 
-                y = HandelGDP)
+  mapping = aes(
+    x = Jahr, 
+    y = HandelGDP)
 ) + 
   ggplot2::geom_line() +
   ggplot2::geom_point() +
@@ -975,7 +1233,7 @@ aut_trade_plot <- ggplot2::ggplot(
     name = "Handel / BIP",  
     limits = c(0, 110), 
     breaks = seq(0, 110, 10),
-    expand = c(0, 0)
+    expand = ggplot2::expansion()
   ) + 
  ggplot2::ggtitle(
     label = "Handel und BIP in Österreich", 
@@ -989,10 +1247,10 @@ aut_trade_plot <- ggplot2::ggplot(
     axis.ticks = element_blank() 
   )
 
-ggplot2::ggsave(filename = here::here("output/trade_ts.pdf"), 
-       plot = aut_trade_plot, 
-       width = 9, 
-       height = 6)
+ggplot2::ggsave(
+  filename = here::here("output/trade_ts.pdf"), 
+  plot = aut_trade_plot, 
+  width = 9, height = 6)
 ```
 
 ## Arten von Datenvisualisierung
@@ -1006,7 +1264,7 @@ Abbildung \@ref(fig:visfig) kann dabei als erste Inspiration dienen:
 
 ```{r visfig, echo=FALSE, fig.align='center', out.width='100%', fig.cap="Mögliche Darstellungsformen. Quelle: http://www.perceptualedge.com/blog/wp-content/uploads/2015/07/Abelas-Chart-Selection-Diagram.jpg"}
 knitr::include_graphics(
-  path = here::here("figures/chap-vis-chart-selection.jpg"), 
+  path = here::here("figures/Visualisierung/chart-selection.jpg"), 
   auto_pdf = T)
 ```
 
