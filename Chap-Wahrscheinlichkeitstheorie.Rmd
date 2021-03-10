@@ -1886,17 +1886,23 @@ Die Definition ist analog zur allgemeinen bedingten Wahrscheinlichkeit, die wir
 schon weiter oben eingeführt haben.
 Daher betrachten wir hier nur ein Beispiel und zwar den folgenden Zusammenhang 
 zwischen $X$ und $Y$, wobei gilt, dass $X:$ "Es schneit" und $Y:$ "Es ist kalt".
-Dann wäre eine solche gemeinsame Verteilung plausibel:
-
-
-| | Kalt ($X=1$) | Warm ($X=0$) | 
-|-+--------------+--------------|
-| Schnee ($Y=1$) | $0.15$ | $0.07$ | 
-| Kein Schnee ($Y=0$) | $0.15$ | $0.63$ |
-
-
+Dann wäre eine gemeinsame Verteilung wie in Tabelle \@ref(tab:gemverteilung) 
+angegeben plausibel.
 Um aus dieser gemeinsamen Verteilung die bedingte Verteilung von $Y$ 
 abzuleiten verwenden wir die bereits oben eingeführte Formel:
+
+\begin{table}
+\centering
+\caption{Bedingte Momente für das Anwendungsbeispiel.}\label{tab:gemverteilung}
+\begin{tabular}{c c c}
+\toprule
+& Kalt ($X=1$) & Warm ($X=0$) \\ 
+\midrule
+Schnee ($Y=1$) & $0.15$ & $0.07$ \\
+Kein Schnee ($Y=0$) & $0.15$ & $0.63$\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \begin{align}
 \mathbb{P}(A|B)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}
