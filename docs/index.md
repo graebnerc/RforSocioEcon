@@ -1,8 +1,8 @@
 --- 
 title: "R für die sozio-ökonomische Forschung"
-subtitle: "Version 0.9.3"
+subtitle: "Version 0.9.4"
 author: "[Dr. Claudius Gräbner](http://claudius-graebner.com/)"
-date: "2021-03-05" 
+date: "2021-03-11" 
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -10,7 +10,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: graebnerc/RforSocioEcon
-description: "Einführung in R für die sozioökonomische Forschung; Version 0.9.2"
+description: "Einführung in R für die sozioökonomische Forschung; Version 0.9.4"
 ---
 
 # Willkommen {-}
@@ -72,7 +72,7 @@ ganz herzlich bedanken.
 ## Lizenz {-}
 
 
-\begin{center}\includegraphics[width=0.2\linewidth]{figures/license} \end{center}
+\begin{center}\includegraphics[width=0.2\linewidth]{/Volumes/develop/packages/RforSocioEcon/figures/index/license} \end{center}
 
 Das gesamte Skript ist unter der 
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/)
@@ -89,5 +89,4 @@ Datum    | Version | Wichtigste Änderungen         |
 06.11.20 | 0.9.1    | Kapitel zur Regressionsanalyse ergänzt |
 06.12.20 | 0.9.2    | Korrektur Typos; Ergänzung Kapital zur fortgeschrittenen Regression; kleine Ergänzungen Datenkapitel, inkl. `one_of()` zu `any_of()` |
 05.03.21 | 0.9.3    | Korrektur Typo: Kap 7, OLS in Matrixform ($\beta_0$ vergessen) |
-
-
+10.03.21 | 0.9.4    | Kleinere Korrekturen; Abbildungen werden zwischengespeichert |
