@@ -1017,7 +1017,7 @@ Falle einer Verletzung zu tun wäre.
 Wie oben beschrieben bedeutet Heteroskedastie, dass die Varianz der Fehlerterme
 nicht konstant ist.
 
-### Liegt Heteroskedastie vor? {advlin-hetero-test}
+### Liegt Heteroskedastie vor? {#advlin-hetero-test}
 
 Heteroskedastie kann grafisch oder über statistische Tests identifiziert werden.
 Um Heteroskedastie grafisch zu identifizieren verwenden wir den 
@@ -1317,13 +1317,11 @@ Simulation (MCS) illustrieren.
 
 Dazu erstellen wir zunächst einen künstlichen Datensatz in dem die Fehler unterschiedlich
 stark miteinander korreliert sind. 
-
 Um die Variablen mit vorher spezifizierter Korrelation zu erstellen verwenden
 wir wieder die Funktion `mvrnorm` aus dem Paket 
 [MASS](https://github.com/cran/MASS) [@R-mass]. 
 Eine genauere Erläuterung findet sich 
 [hier](https://stats.stackexchange.com/questions/83172/generate-two-variables-with-precise-pre-specified-correlation).
-
 Das Ergebnis der Simulation lässt sich in Abbildung \@ref(fig:MCautokorr) 
 ablesen.
 
@@ -1811,7 +1809,7 @@ cor(x_1_large, x_2_large)  # Test
 Analog zum Vorgehen oben führen wir nun eine Monte Carlo Simulation durch, in
 der wir wiederholt Stichproben aus einem künstlich generierten Datensatz ziehen
 und das oben beschriebene Modell mit Hilfe von OLS schätzen. 
-Dies führt zu der in Abbildung \@ref(MCmultikoll) aufgezeigten Verteilung der 
+Dies führt zu der in Abbildung \@ref(fig:MCmultikoll) aufgezeigten Verteilung der 
 Schätzer.
 
 ```{r, echo=FALSE}
