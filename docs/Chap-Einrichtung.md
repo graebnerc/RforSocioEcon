@@ -7,6 +7,12 @@ output:
 
 
 
+
+```r
+library(here)
+```
+
+
 ## Installation von R und R-Studio
 
 Die Installation von R ist in der Regel unproblematisch.
@@ -33,7 +39,7 @@ unmittelbar relevant für uns sind.
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{figures/r-studio-light-marked} 
+{\centering \includegraphics[width=1\linewidth]{/Volumes/develop/packages/RforSocioEcon/figures/Einrichtung/r-studio-light-marked} 
 
 }
 
@@ -202,7 +208,7 @@ Abbildung \@ref(fig:newproj1) dargestellte Fenster sehen.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.6\linewidth]{figures/r-studio-new-project} 
+{\centering \includegraphics[width=0.6\linewidth]{/Volumes/develop/packages/RforSocioEcon/figures/Einrichtung/r-studio-new-project} 
 
 }
 
@@ -219,7 +225,7 @@ einfach den vorher erstellten Ordner aus und klicken auf `Create Project`.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.4\linewidth]{figures/r-studio-new-project-exis-dir} \includegraphics[width=0.4\linewidth]{figures/r-studio-new-project-new-dir} 
+{\centering \includegraphics[width=0.4\linewidth]{/Volumes/develop/packages/RforSocioEcon/figures/Einrichtung/r-studio-new-project-exis-dir} \includegraphics[width=0.4\linewidth]{/Volumes/develop/packages/RforSocioEcon/figures/Einrichtung/r-studio-new-project-new-dir} 
 
 }
 
@@ -289,7 +295,7 @@ insgesamt die in Abbildung \@ref(fig:folder) dargestellte Ordner und Datenstrukt
 
 \begin{figure}
 
-{\centering \includegraphics[height=0.5\textheight]{figures/wd-structure} 
+{\centering \includegraphics[height=0.5\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Einrichtung/wd-structure} 
 
 }
 
@@ -353,7 +359,8 @@ Alternativ könnte Claudius den Pfad auch absolut angeben:
 
 
 ```r
-write(c(1,2,3), file = "/Users/claudius/projekte/R-Projekt-Birte/output/vektor.txt")
+write(c(1,2,3), 
+      file = "/Users/claudius/projekte/R-Projekt-Birte/output/vektor.txt")
 ```
 
 Dann würde die Datei auf seinem Computer immer am richtigen Ort gespeichert,
@@ -365,7 +372,8 @@ Sie müsste also z.B. schreiben:
 
 
 ```r
-write(c(1,2,3), file = "/Users/birte/projekte/R-Projekt-Claudius/output/vektor.txt")
+write(c(1,2,3), 
+      file = "/Users/birte/projekte/R-Projekt-Claudius/output/vektor.txt")
 ```
 
 Dieser Code wiederum würde bei Claudius nicht funktionieren.
@@ -380,7 +388,7 @@ Hier könnten die beiden einfach schreiben:
 
 
 ```r
-write(c(1,2,3), file = here("output/vektor.txt"))
+write(c(1,2,3), file = here::here("output/vektor.txt"))
 ```
 
 Die Funktion `here()` baut dann automatisch einen absoluten Pfad.

@@ -95,7 +95,7 @@ library(AER)
 library(MASS)
 ```
 
-<!-- DISCUSS: Sollte einfach überall gleich sein -> Ganzu am Ende nochmal bei allen Kapiteln checken?  -->
+
 
 ## Punktschätzung
 
@@ -266,9 +266,13 @@ vergleichen und fragen, wie wahrscheinlich es ist diese Daten tatsächlich so
 beobachten zu können wenn $H_0$ wahr wäre. Abbildung \@ref(fig:hypothesentest)
 veranschaulicht dies.
   
+
+
+
+
 \begin{figure}
 
-{\centering \includegraphics{Chap-SchliesendeStatistik_files/figure-latex/hypothesentest-1} 
+{\centering \includegraphics{/Volumes/develop/packages/RforSocioEcon/figures/SchliesendeStatistik/hypothesentest_plot} 
 
 }
 
@@ -303,9 +307,13 @@ Der Verwerfungsbereich für das oben darstellte Beispiel mit
 $H_0: \theta=0$ und $H_1: \theta\neq 0$ ergibt sich für 
 $\alpha=0.05$ wie in Abbildung \@ref(fig:verwerfungsbereich) dargestellt.
   
+
+
+
+
 \begin{figure}
 
-{\centering \includegraphics{Chap-SchliesendeStatistik_files/figure-latex/verwerfungsbereich-1} 
+{\centering \includegraphics{/Volumes/develop/packages/RforSocioEcon/figures/SchliesendeStatistik/verwerfungsbereich-plot} 
 
 }
 
@@ -383,9 +391,13 @@ Wir können den p-Wert aus der theoretischen Verteilung von oben auf der y-Achse
 ablesen, wenn wir den beobachteten Wert auf der x-Achse suchen. Dies ist in 
 Abbildung \@ref(fig:p-wert) aufgezeigt.
   
+
+
+
+
 \begin{figure}
 
-{\centering \includegraphics{Chap-SchliesendeStatistik_files/figure-latex/p-wert-1} 
+{\centering \includegraphics{/Volumes/develop/packages/RforSocioEcon/figures/SchliesendeStatistik/pwert-plot} 
 
 }
 

@@ -1,0 +1,61 @@
+---
+title: 'Panel econometrics: introduction'
+author: "Claudius"
+date: "3/10/2021"
+output: 
+  bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+    before_body: title.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Panel Ökonometrie: Einführung
+
+Bislang haben wir wir uns im Kontext der Regression auf Methoden zur Analyse 
+von *Querschnittsdaten* (cross-sectional data) fokussiert.
+Die Schätzer, die wir bisher kennen gelernt haben, sind dafür gemacht, 
+Datensätze zu analysieren, in denen für jedes einzelne Untersuchungsobjekt
+genau eine Beobachtung, typischerweise zum gleichen Zeitpunkt, existiert.
+Da individuelle Untersuchungsobjekte oft mit $i=1,2,3,...,N$ indiziert werden,
+sprechen wir in diesem Fall von der $N$-Dimension. Querschnittsdaten sind also
+nur durch Variation in der $N$-Dimension gekennzeichnet und viele Eigenschaften
+der Schätzer können asymptotisch bewiesen werden, wenn $N$ immer größer wird.
+So ist die *Konsistenz* eine asymptotische Eigenschaft des OLS-Schätzers, die
+gilt wenn die Stichprobe immer größer wird, also wenn $N\rightarrow\infty$.
+
+Wenn wir für das gleiche Untersuchungsobjekt mehrere Beobachtungen zu 
+unterschiedlichen Zeitpunkten haben, sprechen wir von einer *Zeitreihe*.
+In diesem Fall werden die einzelnen Beobachtungen mit $t=1,2,3,...,T$ 
+indiziert und wir sprechen von einer Variation in der $T$-Dimension.
+Schätzer, die zur Analyse von Zeitreihendaten entwickelt wurden, haben 
+Eigenschaften, die sich asymptotisch beweisen lassen für den Fall, dass
+$T\rightarrow\infty$, wenn die Stichprobe also immer größer wird weil wir für
+den gleichen Untersuchungsgegenstand Beobachtungen für immer mehr Zeitpunkte 
+haben.
+
+Das Thema dieses Kapitels sind *Panel-Daten*.
+Diese immer weiter verbreiteten Datensätze haben Variation sowohl in der 
+$N$- als auch der $T$-Dimension.
+Es bestehen also Beobachtungen für unterschiedliche Untersuchungsobjekte zu
+unterschiedlichen Zeitpunkten. 
+Ein Panel-Datensatz besteht z.B. aus einer Menge an
+Ländern, die jeweils zu unterschiedlichen Zeitpunkten beobachtet wurden.
+Wenn wir für Deutschland und Österreich Daten zum BIP für die Jahre 1995-2000
+haben ist das ein Panel-Datensatz mit $N=2$ (Deutschland und Österreich) sowie
+$T=6$ (Beobachtungen für die Jahre 1995-2000).
+Durch die Kombination von Variation in der $T$- und $N$-Dimension ergeben sich
+ganz neue Möglichkeiten und Herausforderungen, sodass zahlreiche spezielle
+Schätzer für Panel-Datensätze entwickelt wurden - insbesondere weil Schätzer
+für Querschnittsdaten in der Regel wenig attraktive Eigenschaften besitzen, 
+wenn sie für die Analyse von Panel-Daten verwendet werden.
+Dabei sind die bestehenden Schätzer viel diverse und manche sind eher für
+'lange' Panels (hohes $T$, kleines $N$), andere für 'breite' Panels (kleines
+$T$ und großes $N$) geeignet.
+

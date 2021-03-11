@@ -1,3 +1,5 @@
+
+
 # Grundlagen der Wahrscheinlichkeitstheorie {#stat-stoch}
 
 In diesem Kapitel werden einige grundlegende Konzepte der 
@@ -25,7 +27,10 @@ library(ggpubr)
 library(latex2exp)
 library(data.table)
 library(viridis)
+library(icaeDesign)
 ```
+
+
 
 ## Einleitung: Wahrscheinlichkeitstheorie und Statistik
 
@@ -436,13 +441,17 @@ im Statistikbuch Ihres Vertrauens oder auf
 
 In Abbildung \@ref(fig:Binomialverteilung) sehen wir eine Darstellung der Wahrscheinlichkeitsverteilung der Binomialverteilung für verschiedene Parameterwerte.
 
+
+
+
+
 \begin{figure}
 
-{\centering \includegraphics{Chap-Wahrscheinlichkeitstheorie_files/figure-latex/Binomialverteilung-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Wahrscheinlichkeitstheorie/pmf} 
 
 }
 
-\caption{Wahrscheinlichkeitsverteilung der Binomialverteilung für verschiedene Parameterwerte.}(\#fig:Binomialverteilung)
+\caption{Die Wahrscheinlichkeitsverteilung der Binomialverteilung für verschiedene Parameterwerte.}(\#fig:Binomialverteilung)
 \end{figure}
 
 R stellt uns einige nützliche Funktionen bereit, mit denen wir typische 
@@ -459,15 +468,19 @@ dbinom(x = 10, size = 50, prob = 0.25)
 ```
 
 ```
-## [1] 0.09851841
+#> [1] 0.09851841
 ```
 
 Das bedeutet, wenn $X \propto B(50, 0.25)$, dann: $\mathbb{P}(X=10)=0.09852$.
 Dies ist in Abbildung \@ref(fig:bspbinverteilung) illustriert.
 
+
+
+
+
 \begin{figure}
 
-{\centering \includegraphics{Chap-Wahrscheinlichkeitstheorie_files/figure-latex/bspbinverteilung-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Wahrscheinlichkeitstheorie/binominalvert} 
 
 }
 
@@ -482,7 +495,7 @@ dbinom(x = 5:10, size = 50, prob = 0.25)
 ```
 
 ```
-## [1] 0.004937859 0.012344647 0.025864974 0.046341412 0.072086641 0.098518410
+#> [1] 0.004937859 0.012344647 0.025864974 0.046341412 0.072086641 0.098518410
 ```
 
 
@@ -504,16 +517,20 @@ pbinom(q = 10, size = 50, prob = 0.25)
 ```
 
 ```
-## [1] 0.2622023
+#> [1] 0.2622023
 ```
 
 Die Wahrscheinlichkeit 10 oder weniger Erfolge bei 10 Versuchen und einer 
 Erfolgswahrscheinlichkeit von 25% zu erzielen beträgt also 26.2%. Dies ist auch
 in Abbildung \@ref(fig:kumulativ) ersichtlich.
 
+
+
+
+
 \begin{figure}
 
-{\centering \includegraphics{Chap-Wahrscheinlichkeitstheorie_files/figure-latex/kumulativ-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Wahrscheinlichkeitstheorie/cdf_bin} 
 
 }
 
@@ -533,16 +550,20 @@ qbinom(p = 0.5, size = 50, prob = 0.25)
 ```
 
 ```
-## [1] 12
+#> [1] 12
 ```
 
 Es gilt also: $\mathbb{P}(X=12)\geq p$.
 
 Abbildung \@ref(fig:qbinom) verdeutlicht dies grafisch.
 
+
+
+
+
 \begin{figure}
 
-{\centering \includegraphics{Chap-Wahrscheinlichkeitstheorie_files/figure-latex/qbinom-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Wahrscheinlichkeitstheorie/cdf_bin_inv} 
 
 }
 
@@ -561,7 +582,7 @@ sample_binom
 ```
 
 ```
-## [1] 3 2 5 5 5
+#> [1] 3 3 5 8 6
 ```
 
 > **Anwendungsbeispiel Binomialverteilung:** Unser Zufallsexperiment besteht
@@ -575,7 +596,16 @@ Histogram, das ungefähr so aussieht wie in Abbildung \@ref(fig:Munzwurf).
 
 
 
-![](Chap-Wahrscheinlichkeitstheorie_files/figure-latex/Munzwurf-1.pdf)<!-- --> 
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Wahrscheinlichkeitstheorie/muenzwuerfe} 
+
+}
+
+\caption{Histogram für einen Münzwurf.}(\#fig:Munzwurf)
+\end{figure}
 
 > Aus der Logik der Konstruktion des Zufallsexperiments und der Inspektion 
 unserer Daten können wir schließen, dass die Binomialverteilung eine sinnvolle
@@ -588,7 +618,18 @@ Verteilungsfunktion über die Aufzeichnungen unserer Ergebnisse legen, können w
 uns in dieser Vermutung bestärkt fühlen, wie in Abbildung 
 \@ref(fig:Munzwurfverteilung) ersichtlich ist.
 
-![(\#fig:Munzwurfverteilung)Vergleich der empirischen Stichprobe und der parametrisierten theoretischen Binomialverteilungsfunktion](Chap-Wahrscheinlichkeitstheorie_files/figure-latex/Munzwurfverteilung-1.pdf) 
+
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Wahrscheinlichkeitstheorie/muenzwuerfe_2} 
+
+}
+
+\caption{Vergleich der empirischen Stichprobe und der parametrisierten theoretischen Binomialverteilungsfunktion}(\#fig:Munzwurfverteilung)
+\end{figure}
 
 ### Beispiel: die Poisson-Verteilung
 
@@ -613,9 +654,13 @@ $$p_\lambda(x)=\frac{\lambda^x}{x!}e^{-\lambda}$$
 Abbildung \@ref(fig:Poisson) zeigt wie sich die Wahrscheinlichkeitsfunktion für
 unterschiedliche Werte von $\lambda$ manifestiert.
 
+
+
+
+
 \begin{figure}
 
-{\centering \includegraphics{Chap-Wahrscheinlichkeitstheorie_files/figure-latex/Poisson-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Wahrscheinlichkeitstheorie/poisson} 
 
 }
 
@@ -638,12 +683,16 @@ dpois(5, lambda = 4)
 ```
 
 ```
-## [1] 0.1562935
+#> [1] 0.1562935
 ```
+
+
+
+
 
 \begin{figure}
 
-{\centering \includegraphics{Chap-Wahrscheinlichkeitstheorie_files/figure-latex/PoissonBsp-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Wahrscheinlichkeitstheorie/poisson_2} 
 
 }
 
@@ -655,9 +704,13 @@ Argumente, `q` und `lambda`, annimmt. Grafisch dargestellt ist dies in Abbildung
 \@ref(fig:PoissonCDF).
 
 
+
+
+
+
 \begin{figure}
 
-{\centering \includegraphics{Chap-Wahrscheinlichkeitstheorie_files/figure-latex/PoissonCDF-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Wahrscheinlichkeitstheorie/poisson_cdf} 
 
 }
 
@@ -676,7 +729,7 @@ qpois(p = 0.5, lambda = 4)
 ```
 
 ```
-## [1] 4
+#> [1] 4
 ```
 
 Es gilt also: $\mathbb{P}(X=4)\geq 0.5$.
@@ -684,9 +737,13 @@ Es gilt also: $\mathbb{P}(X=4)\geq 0.5$.
 Wir können dies erneut grafisch verdeutlichen, wie in Abbildung 
 \@ref(fig:PoissonCDFinv) dargestellt.
 
+
+
+
+
 \begin{figure}
 
-{\centering \includegraphics{Chap-Wahrscheinlichkeitstheorie_files/figure-latex/PoissonCDFinv-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Wahrscheinlichkeitstheorie/poisson_cdf_inv} 
 
 }
 
@@ -705,7 +762,7 @@ pois_sample
 ```
 
 ```
-## [1] 3 8 4 4 3
+#> [1] 3 8 4 4 3
 ```
 
 ### Hinweise zu diskreten Wahrscheinlichkeitsverteilungen
@@ -761,7 +818,9 @@ Als Lösung werden Wahrscheinlichkeiten bei stetigen ZV nicht als
 Punktwahrscheinlichkeiten, sondern als Intervallwahrscheinlichkeiten angeben.
 Aus $\mathbb{P}(X=x)$ im diskreten Fall wird im stetigen Fall also:
 
-$$\mathbb{P}(a<X\leq b) = \int_a^bf(x)dx, \quad a<b$$
+\begin{align}
+\mathbb{P}(a<X\leq b) = \int_a^bf(x)dx, \quad a<b
+\end{align}
 
 Entsprechend wird für stetige ZV eine etwas andere Notation als für diskrete
 ZV verwendet, wobei das Prinzip gleich bleibt.
@@ -846,15 +905,18 @@ $$\mathbb{P}(X\leq q(\alpha))=\alpha$$
 
 In Abbildung \@ref(fig:quantile) werden das $0.25$ und $0.5$-Quantil visuell dargestellt.
 
+
+
+
+
 \begin{figure}
 
-{\centering \includegraphics{Chap-Wahrscheinlichkeitstheorie_files/figure-latex/quantile-1} 
+{\centering \includegraphics[width=1\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Wahrscheinlichkeitstheorie/quantile_plot} 
 
 }
 
 \caption{Vergleich des $0.25$- und $0.5$-Quantils}(\#fig:quantile)
 \end{figure}
-
 
 Tabelle \@ref(tab:diskretstetig) vergleicht noch einmal die Definitionen der Kennzahlen und
 charakteristischer Verteilungen für den stetigen und diskreten Fall.
@@ -900,9 +962,13 @@ Die Varianz ist mit $Var(X)=\frac{(b-a)^2}{12}$ gegeben.
 
 Die Dichtefunktion der Uniformverteilung für $[a,b]=[2,4]$ ist in Abbildung \@ref(fig:dichteuniform) dargestellt:
 
+
+
+
+
 \begin{figure}
 
-{\centering \includegraphics{Chap-Wahrscheinlichkeitstheorie_files/figure-latex/dichteuniform-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Wahrscheinlichkeitstheorie/pdf_uniform} 
 
 }
 
@@ -919,7 +985,7 @@ dunif(seq(2, 3, 0.1), min = 0, max = 4)
 ```
 
 ```
-##  [1] 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25
+#>  [1] 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25
 ```
 
 Wie wir sehen erhalten wir hier immer den gleichen Wert $\frac{1}{b-a}$, was 
@@ -936,14 +1002,18 @@ punif(0.8, min = 0, max = 4)
 ```
 
 ```
-## [1] 0.2
+#> [1] 0.2
 ```
 
 Abbildung \@ref(fig:CDFuniform) zeigt dies grafisch.
 
+
+
+
+
 \begin{figure}
 
-{\centering \includegraphics{Chap-Wahrscheinlichkeitstheorie_files/figure-latex/CDFuniform-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Wahrscheinlichkeitstheorie/cdf_uniform} 
 
 }
 
@@ -963,7 +1033,7 @@ uniform_sample
 ```
 
 ```
-## [1] 3.5209862 1.4563675 1.1529571 0.6825809 0.6886870
+#> [1] 3.5209862 1.4563675 1.1529571 0.6825809 0.6886870
 ```
 
 ### Beispiel: die Normalverteilung
@@ -1001,15 +1071,18 @@ Werte können in R aber leicht über die Funktion `pnorm` (s.u.) abgerufen werde
 
 In Abbildung \@ref(fig:PDFCDFnormal) sind die PDF und CDF für exemplarische Parameterkombinationen dargestellt.
 
+
+
+
+
 \begin{figure}
 
-{\centering \includegraphics{Chap-Wahrscheinlichkeitstheorie_files/figure-latex/PDFCDFnormal-1} 
+{\centering \includegraphics[width=1\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Wahrscheinlichkeitstheorie/normalverteilung} 
 
 }
 
-\caption{Beispielhafter Vergleich einer PDF und CDF bei Normalverteilung}(\#fig:PDFCDFnormal)
+\caption{Vergleich der PDF und CDF der Normalverteilung.}(\#fig:PDFCDFnormal)
 \end{figure}
-
 
 Die Abkürzung in R ist `norm`. Alle Funktionen nehmen die Paramter $\mu$ und 
 $\sigma$ (nicht $\sigma^2$) über `mean` und `sd` als notwendige Argumente. 
@@ -1021,7 +1094,7 @@ dnorm(c(0.5, 0.75), mean = 1, sd = 2) # relative Wahrscheinlichkeiten über PDF
 ```
 
 ```
-## [1] 0.1933341 0.1979188
+#> [1] 0.1933341 0.1979188
 ```
 
 ```r
@@ -1029,7 +1102,7 @@ pnorm(c(0.5, 0.75), mean = 1, sd = 2) # Werte der CDF
 ```
 
 ```
-## [1] 0.4012937 0.4502618
+#> [1] 0.4012937 0.4502618
 ```
 
 ```r
@@ -1037,7 +1110,7 @@ qnorm(c(0.5, 0.75), mean = 1, sd = 2) # Werte der I-CDF
 ```
 
 ```
-## [1] 1.00000 2.34898
+#> [1] 1.00000 2.34898
 ```
 
 ```r
@@ -1046,7 +1119,7 @@ norm_sample
 ```
 
 ```
-## [1]  0.9099446 -0.5698089 -2.3358839  0.2395470  2.8379932
+#> [1]  0.9099446 -0.5698089 -2.3358839  0.2395470  2.8379932
 ```
 
 > **Beispiel zum Zusammenhang** `dnorm()` und `qnorm()` 
@@ -1078,9 +1151,13 @@ $$F(x)=\begin{cases}
 
 Beide Verteilungen sind in Abbildung \@ref(fig:PDFCDFexponential) dargestellt.
 
+
+
+
+
 \begin{figure}
 
-{\centering \includegraphics{Chap-Wahrscheinlichkeitstheorie_files/figure-latex/PDFCDFexponential-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Wahrscheinlichkeitstheorie/exponentialverteilung} 
 
 }
 
@@ -1100,7 +1177,7 @@ dexp(c(0.5, 0.75), rate = 1) # relative Wahrscheinlichkeiten über PDF
 ```
 
 ```
-## [1] 0.6065307 0.4723666
+#> [1] 0.6065307 0.4723666
 ```
 
 ```r
@@ -1108,7 +1185,7 @@ pexp(c(0.5, 0.75), rate = 1) # Werte der CDF
 ```
 
 ```
-## [1] 0.3934693 0.5276334
+#> [1] 0.3934693 0.5276334
 ```
 
 ```r
@@ -1116,7 +1193,7 @@ qexp(c(0.5, 0.75), rate = 1) # Werte der I-CDF
 ```
 
 ```
-## [1] 0.6931472 1.3862944
+#> [1] 0.6931472 1.3862944
 ```
 
 ```r
@@ -1125,7 +1202,7 @@ exp_sample
 ```
 
 ```
-## [1] 0.8232605 0.4757590 3.4635949 1.2740277 1.0814852
+#> [1] 0.8232605 0.4757590 3.4635949 1.2740277 1.0814852
 ```
 
 Es gibt übrigens einen 
@@ -1276,7 +1353,7 @@ Grafisch könnten wir die gemeinsame PDF als Quadrat darstellen
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{figures/continuous_joint_dist} 
+{\centering \includegraphics[width=0.5\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Wahrscheinlichkeitstheorie/continuous_joint_dist} 
 
 }
 
@@ -1367,32 +1444,48 @@ Die Definition ist analog zur allgemeinen bedingten Wahrscheinlichkeit, die wir
 schon weiter oben eingeführt haben.
 Daher betrachten wir hier nur ein Beispiel und zwar den folgenden Zusammenhang 
 zwischen $X$ und $Y$, wobei gilt, dass $X:$ "Es schneit" und $Y:$ "Es ist kalt".
-Dann wäre eine solche gemeinsame Verteilung plausibel:
-
-| | Kalt ($X=1$) | Warm ($X=0$) | 
-|-+--------------+--------------|
-| Schnee ($Y=1$) | $0.15$ | $0.07$ | 
-| Kein Schnee ($Y=0$) | $0.15$ | $0.63$ |
-
+Dann wäre eine gemeinsame Verteilung wie in Tabelle \@ref(tab:gemverteilung) 
+angegeben plausibel.
 Um aus dieser gemeinsamen Verteilung die bedingte Verteilung von $Y$ 
 abzuleiten verwenden wir die bereits oben eingeführte Formel:
 
-$$\mathbb{P}(A|B)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}$$
+\begin{table}
+\centering
+\caption{Bedingte Momente für das Anwendungsbeispiel.}\label{tab:gemverteilung}
+\begin{tabular}{c c c}
+\toprule
+& Kalt ($X=1$) & Warm ($X=0$) \\ 
+\midrule
+Schnee ($Y=1$) & $0.15$ & $0.07$ \\
+Kein Schnee ($Y=0$) & $0.15$ & $0.63$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{align}
+\mathbb{P}(A|B)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}
+\end{align}
 
 und passen sie für unseren Verteilungsfall an:
 
-$$\mathbb{P}(X=x | Y=y)=\frac{\mathbb{P}(X=x, Y=y)}{\mathbb{P}(Y=y)}$$
+\begin{align}
+\mathbb{P}(X=x | Y=y)=\frac{\mathbb{P}(X=x, Y=y)}{\mathbb{P}(Y=y)}
+\end{align}
 
 Sind wir z.B. an der Wahrscheinlichkeit für Schnee interessiert, gegeben dass
 das Wetter kalt ist, dann ergibt sich:
 
-$$\mathbb{P}(Y=1 | X=1)=\frac{\mathbb{P}(X=1, Y=1)}{\mathbb{P}(X=1)}=\frac{0.15}{0.3}=0.5$$
+\begin{align}
+\mathbb{P}(Y=1 | X=1)=\frac{\mathbb{P}(X=1, Y=1)}{\mathbb{P}(X=1)}=\frac{0.15}{0.3}=0.5
+\end{align}
+
 
 Wir können nun die bereits oben beschriebene Eigenschaft der *Unabhängigkeit* auch
 noch einmal im Kontext von gemeinsamen Verteilungen formulieren:
 zwei ZV $X$ und $Y$ gelten als unabhängig, wenn die bedingte Verteilung von
 $X$ gegeben $Y$ nicht von $Y$ abhängt, also gilt, dass 
 $\mathbb{P}(X=x | Y=y)=\mathbb{P}(X=x)$.
+
 
 Ganz analog zur Verteilung können wir bedingte Momente 
 (wie den Erwartungswert oder die Varianz) formulieren. 
@@ -1402,11 +1495,12 @@ Ein in diesem Kontext häufig gebrauchtes Konzept ist das
 einen Zusammenhang zwischen dem Erwartungswert und dem bedingten 
 Erwartungswert herstellt:
 
-$$\mathbb{E}(X)=\mathbb{E}\left[\mathbb{E}\left(X | Y\right)\right]$$
+\begin{align}
+\mathbb{E}(X)=\mathbb{E}\left[\mathbb{E}\left(X | Y\right)\right]
+\end{align}
 
 Im diskreten Fall können wir das Konzept noch leichter verdeutlichen. 
 Hier gilt:
-
 
 \begin{align}
 \mathbb{E}(X)=\mathbb{E}\left[\mathbb{E}\left(X | Y\right)\right] = \sum_i \mathbb{E}\left(X | Y=y_i\right) \cdot \mathbb{P}\left(Y=y\right)

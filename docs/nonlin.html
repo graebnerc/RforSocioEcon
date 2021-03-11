@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 12 Ausgewählte nichtlineare Schätzverfahren | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.2" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 12 Ausgewählte nichtlineare Schätzverfahren | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.2" />
+  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 12 Ausgewählte nichtlineare Schätzverfahren | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.2" />
+  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2020-12-06" />
+<meta name="date" content="2021-03-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="advlin.html"/>
 <link rel="next" href="outlook.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -57,6 +57,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -206,7 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>5</b> Visualisierung von Daten</a>
 <ul>
-<li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#verwendete-pakete-1"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
 <li class="chapter" data-level="5.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>5.1</b> Optional: Theoretische Grundlagen</a>
 <ul>
@@ -249,7 +250,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6" data-path="formalia.html"><a href="formalia.html"><i class="fa fa-check"></i><b>6</b> Formale Methoden der Sozioökonomie</a>
 <ul>
-<li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="formalia.html"><a href="formalia.html#verwendete-pakete-2"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="6.1" data-path="formalia.html"><a href="formalia.html#formalia-wachstum"><i class="fa fa-check"></i><b>6.1</b> Änderungsraten und die Rolle des Logarithmus</a></li>
 <li class="chapter" data-level="6.2" data-path="formalia.html"><a href="formalia.html#formalia-diff"><i class="fa fa-check"></i><b>6.2</b> Grundlagen der Differentialrechnung</a>
 <ul>
@@ -280,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7" data-path="stat-stoch.html"><a href="stat-stoch.html"><i class="fa fa-check"></i><b>7</b> Grundlagen der Wahrscheinlichkeitstheorie</a>
 <ul>
-<li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="stat-stoch.html"><a href="stat-stoch.html#verwendete-pakete-3"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="7.1" data-path="stat-stoch.html"><a href="stat-stoch.html#einleitung-wahrscheinlichkeitstheorie-und-statistik"><i class="fa fa-check"></i><b>7.1</b> Einleitung: Wahrscheinlichkeitstheorie und Statistik</a></li>
 <li class="chapter" data-level="7.2" data-path="stat-stoch.html"><a href="stat-stoch.html#grundbegriffe-der-wahrscheinlichkeitstheorie"><i class="fa fa-check"></i><b>7.2</b> Grundbegriffe der Wahrscheinlichkeitstheorie</a>
 <ul>
@@ -324,7 +325,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>9</b> Wiederholung: Drei Verfahren der schließenden Statistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="data.html"><a href="data.html#verwendete-pakete"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-4"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="9.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>9.1</b> Punktschätzung</a></li>
 <li class="chapter" data-level="9.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>9.2</b> Hypothesentests</a></li>
 <li class="chapter" data-level="9.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>9.3</b> Berechnung von Konfidenzintervallen</a></li>
@@ -364,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="advlin.html"><a href="advlin.html#heteroskedastie"><i class="fa fa-check"></i><b>11.2</b> Heteroskedastie</a>
 <ul>
-<li class="chapter" data-level="11.2.1" data-path="advlin.html"><a href="advlin.html#liegt-heteroskedastie-vor-advlin-hetero-test"><i class="fa fa-check"></i><b>11.2.1</b> Liegt Heteroskedastie vor? {advlin-hetero-test}</a></li>
+<li class="chapter" data-level="11.2.1" data-path="advlin.html"><a href="advlin.html#advlin-hetero-test"><i class="fa fa-check"></i><b>11.2.1</b> Liegt Heteroskedastie vor?</a></li>
 <li class="chapter" data-level="11.2.2" data-path="advlin.html"><a href="advlin.html#reaktionen-auf-heteroskedastie"><i class="fa fa-check"></i><b>11.2.2</b> Reaktionen auf Heteroskedastie</a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="advlin.html"><a href="advlin.html#autokorrelation"><i class="fa fa-check"></i><b>11.3</b> Autokorrelation</a>
@@ -417,7 +418,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.2" data-path="nonlin.html"><a href="nonlin.html#abschließende-anmerkungen"><i class="fa fa-check"></i><b>12.2</b> Abschließende Anmerkungen</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="outlook.html"><a href="outlook.html"><i class="fa fa-check"></i><b>13</b> Ausblick</a></li>
-<li class="chapter" data-level="14" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>14</b> Eine kurze Einführung in R Markdown</a></li>
+<li class="chapter" data-level="14" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>14</b> Eine kurze Einführung in R Markdown</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="markdown.html"><a href="markdown.html#markdown-vs.-r-markdown"><i class="fa fa-check"></i><b>14.1</b> Markdown vs. R-Markdown</a></li>
+<li class="chapter" data-level="14.2" data-path="markdown.html"><a href="markdown.html#installation-von-r-markdown"><i class="fa fa-check"></i><b>14.2</b> Installation von R-Markdown</a></li>
+<li class="chapter" data-level="14.3" data-path="markdown.html"><a href="markdown.html#der-r-markdown-workflow"><i class="fa fa-check"></i><b>14.3</b> Der R-Markdown Workflow</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="markdown.html"><a href="markdown.html#ein-neues-r-markdown-dokument-erstellen"><i class="fa fa-check"></i><b>14.3.1</b> Ein neues R-Markdown Dokument erstellen</a></li>
+<li class="chapter" data-level="14.3.2" data-path="markdown.html"><a href="markdown.html#der-titelblock"><i class="fa fa-check"></i><b>14.3.2</b> Der Titelblock</a></li>
+<li class="chapter" data-level="14.3.3" data-path="markdown.html"><a href="markdown.html#der-textkörper"><i class="fa fa-check"></i><b>14.3.3</b> Der Textkörper</a></li>
+<li class="chapter" data-level="14.3.4" data-path="markdown.html"><a href="markdown.html#kompillieren-von-dokumenten"><i class="fa fa-check"></i><b>14.3.4</b> Kompillieren von Dokumenten</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="markdown.html"><a href="markdown.html#relative-pfade-in-markdown-dokumenten"><i class="fa fa-check"></i><b>14.4</b> Relative Pfade in Markdown-Dokumenten</a></li>
+<li class="chapter" data-level="14.5" data-path="markdown.html"><a href="markdown.html#abschließende-hinweise"><i class="fa fa-check"></i><b>14.5</b> Abschließende Hinweise</a></li>
+<li class="chapter" data-level="14.6" data-path="markdown.html"><a href="markdown.html#weitere-quellen"><i class="fa fa-check"></i><b>14.6</b> Weitere Quellen</a></li>
+</ul></li>
 <li class="chapter" data-level="15" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>15</b> Eine kurze Einführung in die Versionskontrolle mit Git</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -469,17 +484,18 @@ klar verletzt.
 In diesem Kapitel lernen wir dabei logit- und probit-Modelle als alternative
 Schätzverfahren kennen.</p>
 <p>Dabei werden die folgenden Pakete verwendet:</p>
-<div class="sourceCode" id="cb857"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb857-1"><a href="nonlin.html#cb857-1" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb857-2"><a href="nonlin.html#cb857-2" aria-hidden="true"></a><span class="kw">library</span>(data.table)</span>
-<span id="cb857-3"><a href="nonlin.html#cb857-3" aria-hidden="true"></a><span class="kw">library</span>(here)</span>
-<span id="cb857-4"><a href="nonlin.html#cb857-4" aria-hidden="true"></a><span class="kw">library</span>(viridis)</span></code></pre></div>
+<div class="sourceCode" id="cb869"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb869-1"><a href="nonlin.html#cb869-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb869-2"><a href="nonlin.html#cb869-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb869-3"><a href="nonlin.html#cb869-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb869-4"><a href="nonlin.html#cb869-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span></code></pre></div>
 <div id="logit" class="section level2" number="12.1">
 <h2><span class="header-section-number">12.1</span> Binäre abhängige Variablen: Logit- und Probit-Modelle</h2>
-<p>Das folgende Beispiel verwendet angepasste Daten aus <span class="citation">Kleiber and Zeileis (<a href="#ref-AER" role="doc-biblioref">2008</a>)</span> zur
+<p>Das folgende Beispiel verwendet angepasste Daten aus <span class="citation"><a href="git.html#ref-AER" role="doc-biblioref">Kleiber and Zeileis</a> (<a href="git.html#ref-AER" role="doc-biblioref">2008</a>)</span> zur
 Beschäftigungssituation von Frauen aus der Schweiz:</p>
-<div class="sourceCode" id="cb858"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb858-1"><a href="nonlin.html#cb858-1" aria-hidden="true"></a>schweiz_al &lt;-<span class="st"> </span>data.table<span class="op">::</span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/tidy/nonlinmodels_schweizer-arbeit.csv&quot;</span>), </span>
-<span id="cb858-2"><a href="nonlin.html#cb858-2" aria-hidden="true"></a>                    <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;double&quot;</span>, <span class="kw">rep</span>(<span class="st">&quot;double&quot;</span>, <span class="dv">5</span>), <span class="st">&quot;factor&quot;</span>))</span>
-<span id="cb858-3"><a href="nonlin.html#cb858-3" aria-hidden="true"></a><span class="kw">head</span>(schweiz_al)</span></code></pre></div>
+<div class="sourceCode" id="cb870"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb870-1"><a href="nonlin.html#cb870-1" aria-hidden="true" tabindex="-1"></a>schweiz_al <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(</span>
+<span id="cb870-2"><a href="nonlin.html#cb870-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">here</span>(<span class="st">&quot;data/tidy/nonlinmodels_schweizer-arbeit.csv&quot;</span>), </span>
+<span id="cb870-3"><a href="nonlin.html#cb870-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">colClasses =</span> <span class="fu">c</span>(<span class="st">&quot;double&quot;</span>, <span class="fu">rep</span>(<span class="st">&quot;double&quot;</span>, <span class="dv">5</span>), <span class="st">&quot;factor&quot;</span>))</span>
+<span id="cb870-4"><a href="nonlin.html#cb870-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(schweiz_al)</span></code></pre></div>
 <pre><code>#&gt;    Arbeitslos Einkommen_log Alter Ausbildung_Jahre Kinder_jung Kinder_alt
 #&gt; 1:          1      10.78750    30                8           1          1
 #&gt; 2:          0      10.52425    45                8           0          1
@@ -504,7 +520,7 @@ verwenden um den Zusammenhang zu schätzen.
 Um die Probleme zu illustrieren schätzen wir in Abbildung <a href="nonlin.html#fig:binaryOLS">12.1</a>
 einmal nur den bivariaten Zusammenhang zwischen <code>Arbeitslos</code> und <code>Einkommen_log</code>.</p>
 <div class="figure" style="text-align: center"><span id="fig:binaryOLS"></span>
-<img src="Chap-nonlinmodels-binary_files/figure-html/binaryOLS-1.png" alt="Schätzung mit OLS Modell." width="75%" height="75%" />
+<img src="figures/LogitProbit/binary_ols_plot.png" alt="Schätzung mit OLS Modell." width="50%" height="50%" />
 <p class="caption">
 Figure 12.1: Schätzung mit OLS Modell.
 </p>
@@ -516,7 +532,7 @@ interpretieren wollen, auch gar keinen Sinn ergeben würden.</p>
 <p>Unser Ziel ist da eher ein funktionaler Zusammenhang wie in
 Abbildung <a href="nonlin.html#fig:binary">12.2</a> zu sehen:</p>
 <div class="figure" style="text-align: center"><span id="fig:binary"></span>
-<img src="Chap-nonlinmodels-binary_files/figure-html/binary-1.png" alt="Funktionaler Zusammenhang, den ein binäres Modell abbilden sollte." width="75%" height="75%" />
+<img src="figures/LogitProbit/binary_logit_plot.png" alt="Funktionaler Zusammenhang, den ein binäres Modell abbilden sollte." width="50%" height="50%" />
 <p class="caption">
 Figure 12.2: Funktionaler Zusammenhang, den ein binäres Modell abbilden sollte.
 </p>
@@ -593,10 +609,10 @@ Am Ende des Tages gilt: wenn Sie Logit verstanden haben, haben Sie wohl auch
 Probit verstanden und in der Praxis ist es bis auf wenige Ausnahmen zunächst
 einmal völlig zweitrangig welches der Modelle Sie verwenden. Eine technisch
 genauere Diskussion, die Logit und Probit jeweils als Sonderfall der
-Generalisierten Modelle begreift, siehe z.B. Kapitel 11 in <span class="citation">Fitzmaurice, Laird, and Ware (<a href="#ref-fitz" role="doc-biblioref">2011</a>)</span>.</p>
+Generalisierten Modelle begreift, siehe z.B. Kapitel 11 in <span class="citation"><a href="git.html#ref-fitz" role="doc-biblioref">Fitzmaurice, Laird, and Ware</a> (<a href="git.html#ref-fitz" role="doc-biblioref">2011</a>)</span>.</p>
 </blockquote>
 <div class="figure" style="text-align: center"><span id="fig:logitprobit"></span>
-<img src="Chap-nonlinmodels-binary_files/figure-html/logitprobit-1.png" alt="Vergleich der funktionalen Form bei logit und probit Modellen." width="75%" height="75%" />
+<img src="figures/LogitProbit/logit_probit_plot.png" alt="Vergleich der funktionalen Form bei logit und probit Modellen." width="50%" height="50%" />
 <p class="caption">
 Figure 12.3: Vergleich der funktionalen Form bei logit und probit Modellen.
 </p>
@@ -618,18 +634,18 @@ Für <em>logit</em> Modelle schreiben wir <code>family = binomial(link = "logit"
 <em>probit</em> Modelle entsprechend <code>family = binomial(link = "probit")</code>.</p>
 <p>Das letzte Argument ist dann <code>data</code>.
 Insgesamt erhalten wir also für das <em>logit</em>-Modell:</p>
-<div class="sourceCode" id="cb860"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb860-1"><a href="nonlin.html#cb860-1" aria-hidden="true"></a>arbeitslogit_test &lt;-<span class="st"> </span><span class="kw">glm</span>(</span>
-<span id="cb860-2"><a href="nonlin.html#cb860-2" aria-hidden="true"></a>  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter, </span>
-<span id="cb860-3"><a href="nonlin.html#cb860-3" aria-hidden="true"></a>  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), </span>
-<span id="cb860-4"><a href="nonlin.html#cb860-4" aria-hidden="true"></a>  <span class="dt">data =</span> schweiz_al)</span></code></pre></div>
+<div class="sourceCode" id="cb872"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb872-1"><a href="nonlin.html#cb872-1" aria-hidden="true" tabindex="-1"></a>arbeitslogit_test <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb872-2"><a href="nonlin.html#cb872-2" aria-hidden="true" tabindex="-1"></a>  Arbeitslos <span class="sc">~</span> Einkommen_log <span class="sc">+</span> Alter, </span>
+<span id="cb872-3"><a href="nonlin.html#cb872-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>), </span>
+<span id="cb872-4"><a href="nonlin.html#cb872-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> schweiz_al)</span></code></pre></div>
 <p>Und das <em>probit</em>-Modell:</p>
-<div class="sourceCode" id="cb861"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb861-1"><a href="nonlin.html#cb861-1" aria-hidden="true"></a>arbeitsprobit_test &lt;-<span class="st"> </span><span class="kw">glm</span>(</span>
-<span id="cb861-2"><a href="nonlin.html#cb861-2" aria-hidden="true"></a>  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter, </span>
-<span id="cb861-3"><a href="nonlin.html#cb861-3" aria-hidden="true"></a>  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </span>
-<span id="cb861-4"><a href="nonlin.html#cb861-4" aria-hidden="true"></a>  <span class="dt">data =</span> schweiz_al)</span></code></pre></div>
+<div class="sourceCode" id="cb873"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb873-1"><a href="nonlin.html#cb873-1" aria-hidden="true" tabindex="-1"></a>arbeitsprobit_test <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb873-2"><a href="nonlin.html#cb873-2" aria-hidden="true" tabindex="-1"></a>  Arbeitslos <span class="sc">~</span> Einkommen_log <span class="sc">+</span> Alter, </span>
+<span id="cb873-3"><a href="nonlin.html#cb873-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;probit&quot;</span>), </span>
+<span id="cb873-4"><a href="nonlin.html#cb873-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> schweiz_al)</span></code></pre></div>
 <p>Für die Schätzergebnisse können wir wie bilang die Funktion <code>summary()</code>
 verwenden:</p>
-<div class="sourceCode" id="cb862"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb862-1"><a href="nonlin.html#cb862-1" aria-hidden="true"></a><span class="kw">summary</span>(arbeitslogit_test)</span></code></pre></div>
+<div class="sourceCode" id="cb874"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb874-1"><a href="nonlin.html#cb874-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(arbeitslogit_test)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; glm(formula = Arbeitslos ~ Einkommen_log + Alter, family = binomial(link = &quot;logit&quot;), 
@@ -666,12 +682,12 @@ Das ist nicht ganz einfach zu interpretieren.
 So bedeutet der Koeffizient für <code>Auslaender1</code> in folgender Ergebnistabelle,
 dass sich die logarithmierte <em>Odds Ratio</em> <em>ceteris paribus</em> um 1.3 Prozent
 reduziert, wenn die betroffene Person Ausländerin ist:</p>
-<div class="sourceCode" id="cb864"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb864-1"><a href="nonlin.html#cb864-1" aria-hidden="true"></a>arbeitslogit &lt;-<span class="st"> </span><span class="kw">glm</span>(</span>
-<span id="cb864-2"><a href="nonlin.html#cb864-2" aria-hidden="true"></a>  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter <span class="op">+</span><span class="st"> </span>Ausbildung_Jahre <span class="op">+</span><span class="st"> </span>Kinder_jung <span class="op">+</span><span class="st"> </span></span>
-<span id="cb864-3"><a href="nonlin.html#cb864-3" aria-hidden="true"></a><span class="st">    </span>Kinder_alt <span class="op">+</span><span class="st"> </span>Auslaender, </span>
-<span id="cb864-4"><a href="nonlin.html#cb864-4" aria-hidden="true"></a>  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), </span>
-<span id="cb864-5"><a href="nonlin.html#cb864-5" aria-hidden="true"></a>  <span class="dt">data =</span> schweiz_al)</span>
-<span id="cb864-6"><a href="nonlin.html#cb864-6" aria-hidden="true"></a><span class="kw">summary</span>(arbeitslogit)</span></code></pre></div>
+<div class="sourceCode" id="cb876"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb876-1"><a href="nonlin.html#cb876-1" aria-hidden="true" tabindex="-1"></a>arbeitslogit <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb876-2"><a href="nonlin.html#cb876-2" aria-hidden="true" tabindex="-1"></a>  Arbeitslos <span class="sc">~</span> Einkommen_log <span class="sc">+</span> Alter <span class="sc">+</span> Ausbildung_Jahre <span class="sc">+</span> Kinder_jung <span class="sc">+</span> </span>
+<span id="cb876-3"><a href="nonlin.html#cb876-3" aria-hidden="true" tabindex="-1"></a>    Kinder_alt <span class="sc">+</span> Auslaender, </span>
+<span id="cb876-4"><a href="nonlin.html#cb876-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>), </span>
+<span id="cb876-5"><a href="nonlin.html#cb876-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> schweiz_al)</span>
+<span id="cb876-6"><a href="nonlin.html#cb876-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(arbeitslogit)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; glm(formula = Arbeitslos ~ Einkommen_log + Alter + Ausbildung_Jahre + 
@@ -726,17 +742,17 @@ Variable ja nicht-linear ist.</p>
 <p>Als drittes Argument müssen wir noch <code>type = "response"</code> übergeben damit
 wir die Vorhersagen auf der Skala der zugrundeliegenden abhänigigen Variable
 bekommen, also direkt als Wahrscheinlichkeiten:</p>
-<div class="sourceCode" id="cb866"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb866-1"><a href="nonlin.html#cb866-1" aria-hidden="true"></a>predicted_probs &lt;-<span class="st"> </span><span class="kw">predict</span>(<span class="dt">object =</span> arbeitslogit, </span>
-<span id="cb866-2"><a href="nonlin.html#cb866-2" aria-hidden="true"></a>        <span class="dt">newdata =</span> <span class="kw">data.frame</span>(</span>
-<span id="cb866-3"><a href="nonlin.html#cb866-3" aria-hidden="true"></a>          <span class="st">&quot;Einkommen_log&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), </span>
-<span id="cb866-4"><a href="nonlin.html#cb866-4" aria-hidden="true"></a>          <span class="st">&quot;Alter&quot;</span>=<span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">30</span>), </span>
-<span id="cb866-5"><a href="nonlin.html#cb866-5" aria-hidden="true"></a>          <span class="st">&quot;Ausbildung_Jahre&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
-<span id="cb866-6"><a href="nonlin.html#cb866-6" aria-hidden="true"></a>          <span class="st">&quot;Kinder_alt&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
-<span id="cb866-7"><a href="nonlin.html#cb866-7" aria-hidden="true"></a>          <span class="st">&quot;Kinder_jung&quot;</span>=<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
-<span id="cb866-8"><a href="nonlin.html#cb866-8" aria-hidden="true"></a>          <span class="st">&quot;Auslaender&quot;</span> =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span>
-<span id="cb866-9"><a href="nonlin.html#cb866-9" aria-hidden="true"></a>          ),</span>
-<span id="cb866-10"><a href="nonlin.html#cb866-10" aria-hidden="true"></a>        <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb866-11"><a href="nonlin.html#cb866-11" aria-hidden="true"></a>predicted_probs</span></code></pre></div>
+<div class="sourceCode" id="cb878"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb878-1"><a href="nonlin.html#cb878-1" aria-hidden="true" tabindex="-1"></a>predicted_probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(<span class="at">object =</span> arbeitslogit, </span>
+<span id="cb878-2"><a href="nonlin.html#cb878-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">newdata =</span> <span class="fu">data.frame</span>(</span>
+<span id="cb878-3"><a href="nonlin.html#cb878-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;Einkommen_log&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), </span>
+<span id="cb878-4"><a href="nonlin.html#cb878-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;Alter&quot;</span><span class="ot">=</span><span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">30</span>), </span>
+<span id="cb878-5"><a href="nonlin.html#cb878-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;Ausbildung_Jahre&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
+<span id="cb878-6"><a href="nonlin.html#cb878-6" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;Kinder_alt&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
+<span id="cb878-7"><a href="nonlin.html#cb878-7" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;Kinder_jung&quot;</span><span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb878-8"><a href="nonlin.html#cb878-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;Auslaender&quot;</span> <span class="ot">=</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb878-9"><a href="nonlin.html#cb878-9" aria-hidden="true" tabindex="-1"></a>          ),</span>
+<span id="cb878-10"><a href="nonlin.html#cb878-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb878-11"><a href="nonlin.html#cb878-11" aria-hidden="true" tabindex="-1"></a>predicted_probs</span></code></pre></div>
 <pre><code>#&gt;         1         2 
 #&gt; 0.6175431 0.8593445</code></pre>
 <p>Das erste Element ist die Wahrscheinlichkeit arbeitslos zu sein für eine
@@ -747,47 +763,47 @@ Die zweite Wahrscheinlichkeit gilt für eine Frau mit den gleichen Eigenschaften
 aber zwei jungen Kindern.
 Mit <code>diff()</code> bekommen wir gleich den entsprechenden Effekt des zweiten jungen
 Kindes auf die Wahrscheinlichkeit arbeitslos zu sein:</p>
-<div class="sourceCode" id="cb868"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb868-1"><a href="nonlin.html#cb868-1" aria-hidden="true"></a><span class="kw">diff</span>(predicted_probs)</span></code></pre></div>
+<div class="sourceCode" id="cb880"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb880-1"><a href="nonlin.html#cb880-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(predicted_probs)</span></code></pre></div>
 <pre><code>#&gt;         2 
 #&gt; 0.2418014</code></pre>
 <p>Die Wahrscheinlichkeit ist also nach dem Modell ca. <span class="math inline">\(25\%\)</span> größer!
 Wenn wir wissen wollen ob der Effekt für Ausländerinnen ähnlich ist rechnen wir:</p>
-<div class="sourceCode" id="cb870"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb870-1"><a href="nonlin.html#cb870-1" aria-hidden="true"></a><span class="kw">diff</span>(</span>
-<span id="cb870-2"><a href="nonlin.html#cb870-2" aria-hidden="true"></a>  <span class="kw">predict</span>(<span class="dt">object =</span> arbeitslogit, </span>
-<span id="cb870-3"><a href="nonlin.html#cb870-3" aria-hidden="true"></a>        <span class="dt">newdata =</span> <span class="kw">data.frame</span>(</span>
-<span id="cb870-4"><a href="nonlin.html#cb870-4" aria-hidden="true"></a>          <span class="st">&quot;Einkommen_log&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), </span>
-<span id="cb870-5"><a href="nonlin.html#cb870-5" aria-hidden="true"></a>          <span class="st">&quot;Alter&quot;</span>=<span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">30</span>), </span>
-<span id="cb870-6"><a href="nonlin.html#cb870-6" aria-hidden="true"></a>          <span class="st">&quot;Ausbildung_Jahre&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
-<span id="cb870-7"><a href="nonlin.html#cb870-7" aria-hidden="true"></a>          <span class="st">&quot;Kinder_alt&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
-<span id="cb870-8"><a href="nonlin.html#cb870-8" aria-hidden="true"></a>          <span class="st">&quot;Kinder_jung&quot;</span>=<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
-<span id="cb870-9"><a href="nonlin.html#cb870-9" aria-hidden="true"></a>          <span class="st">&quot;Auslaender&quot;</span> =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb870-10"><a href="nonlin.html#cb870-10" aria-hidden="true"></a>          ),</span>
-<span id="cb870-11"><a href="nonlin.html#cb870-11" aria-hidden="true"></a>        <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb870-12"><a href="nonlin.html#cb870-12" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb882"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb882-1"><a href="nonlin.html#cb882-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(</span>
+<span id="cb882-2"><a href="nonlin.html#cb882-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(<span class="at">object =</span> arbeitslogit, </span>
+<span id="cb882-3"><a href="nonlin.html#cb882-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">newdata =</span> <span class="fu">data.frame</span>(</span>
+<span id="cb882-4"><a href="nonlin.html#cb882-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;Einkommen_log&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), </span>
+<span id="cb882-5"><a href="nonlin.html#cb882-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;Alter&quot;</span><span class="ot">=</span><span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">30</span>), </span>
+<span id="cb882-6"><a href="nonlin.html#cb882-6" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;Ausbildung_Jahre&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
+<span id="cb882-7"><a href="nonlin.html#cb882-7" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;Kinder_alt&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
+<span id="cb882-8"><a href="nonlin.html#cb882-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;Kinder_jung&quot;</span><span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb882-9"><a href="nonlin.html#cb882-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;Auslaender&quot;</span> <span class="ot">=</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb882-10"><a href="nonlin.html#cb882-10" aria-hidden="true" tabindex="-1"></a>          ),</span>
+<span id="cb882-11"><a href="nonlin.html#cb882-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb882-12"><a href="nonlin.html#cb882-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>#&gt;         2 
 #&gt; 0.3189543</code></pre>
 <p>Hier ist der Effekt mit ca. <span class="math inline">\(32\%\)</span> also noch größer!
 Zum Vergleich führen wir die gleiche Prozedur auch noch einmal für das
 Probit-Modell durch:</p>
-<div class="sourceCode" id="cb872"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb872-1"><a href="nonlin.html#cb872-1" aria-hidden="true"></a>arbeitsprobit &lt;-<span class="st"> </span><span class="kw">glm</span>(</span>
-<span id="cb872-2"><a href="nonlin.html#cb872-2" aria-hidden="true"></a>  Arbeitslos <span class="op">~</span><span class="st"> </span>Einkommen_log <span class="op">+</span><span class="st"> </span>Alter <span class="op">+</span><span class="st"> </span>Ausbildung_Jahre <span class="op">+</span><span class="st"> </span>Kinder_jung <span class="op">+</span><span class="st"> </span></span>
-<span id="cb872-3"><a href="nonlin.html#cb872-3" aria-hidden="true"></a><span class="st">    </span>Kinder_alt <span class="op">+</span><span class="st"> </span>Auslaender, </span>
-<span id="cb872-4"><a href="nonlin.html#cb872-4" aria-hidden="true"></a>  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </span>
-<span id="cb872-5"><a href="nonlin.html#cb872-5" aria-hidden="true"></a>  <span class="dt">data =</span> schweiz_al)</span>
-<span id="cb872-6"><a href="nonlin.html#cb872-6" aria-hidden="true"></a></span>
-<span id="cb872-7"><a href="nonlin.html#cb872-7" aria-hidden="true"></a><span class="kw">diff</span>(</span>
-<span id="cb872-8"><a href="nonlin.html#cb872-8" aria-hidden="true"></a>  <span class="kw">predict</span>(</span>
-<span id="cb872-9"><a href="nonlin.html#cb872-9" aria-hidden="true"></a>    <span class="dt">object =</span> arbeitsprobit, </span>
-<span id="cb872-10"><a href="nonlin.html#cb872-10" aria-hidden="true"></a>    <span class="dt">newdata =</span> <span class="kw">data.frame</span>(</span>
-<span id="cb872-11"><a href="nonlin.html#cb872-11" aria-hidden="true"></a>      <span class="st">&quot;Einkommen_log&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), </span>
-<span id="cb872-12"><a href="nonlin.html#cb872-12" aria-hidden="true"></a>      <span class="st">&quot;Alter&quot;</span>=<span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">30</span>), </span>
-<span id="cb872-13"><a href="nonlin.html#cb872-13" aria-hidden="true"></a>      <span class="st">&quot;Ausbildung_Jahre&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
-<span id="cb872-14"><a href="nonlin.html#cb872-14" aria-hidden="true"></a>      <span class="st">&quot;Kinder_alt&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
-<span id="cb872-15"><a href="nonlin.html#cb872-15" aria-hidden="true"></a>      <span class="st">&quot;Kinder_jung&quot;</span>=<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
-<span id="cb872-16"><a href="nonlin.html#cb872-16" aria-hidden="true"></a>      <span class="st">&quot;Auslaender&quot;</span> =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb872-17"><a href="nonlin.html#cb872-17" aria-hidden="true"></a>      ),</span>
-<span id="cb872-18"><a href="nonlin.html#cb872-18" aria-hidden="true"></a>    <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb872-19"><a href="nonlin.html#cb872-19" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb884"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb884-1"><a href="nonlin.html#cb884-1" aria-hidden="true" tabindex="-1"></a>arbeitsprobit <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb884-2"><a href="nonlin.html#cb884-2" aria-hidden="true" tabindex="-1"></a>  Arbeitslos <span class="sc">~</span> Einkommen_log <span class="sc">+</span> Alter <span class="sc">+</span> Ausbildung_Jahre <span class="sc">+</span> Kinder_jung <span class="sc">+</span> </span>
+<span id="cb884-3"><a href="nonlin.html#cb884-3" aria-hidden="true" tabindex="-1"></a>    Kinder_alt <span class="sc">+</span> Auslaender, </span>
+<span id="cb884-4"><a href="nonlin.html#cb884-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;probit&quot;</span>), </span>
+<span id="cb884-5"><a href="nonlin.html#cb884-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> schweiz_al)</span>
+<span id="cb884-6"><a href="nonlin.html#cb884-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb884-7"><a href="nonlin.html#cb884-7" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(</span>
+<span id="cb884-8"><a href="nonlin.html#cb884-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(</span>
+<span id="cb884-9"><a href="nonlin.html#cb884-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">object =</span> arbeitsprobit, </span>
+<span id="cb884-10"><a href="nonlin.html#cb884-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">newdata =</span> <span class="fu">data.frame</span>(</span>
+<span id="cb884-11"><a href="nonlin.html#cb884-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;Einkommen_log&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), </span>
+<span id="cb884-12"><a href="nonlin.html#cb884-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;Alter&quot;</span><span class="ot">=</span><span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">30</span>), </span>
+<span id="cb884-13"><a href="nonlin.html#cb884-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;Ausbildung_Jahre&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
+<span id="cb884-14"><a href="nonlin.html#cb884-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;Kinder_alt&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
+<span id="cb884-15"><a href="nonlin.html#cb884-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;Kinder_jung&quot;</span><span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb884-16"><a href="nonlin.html#cb884-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;Auslaender&quot;</span> <span class="ot">=</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb884-17"><a href="nonlin.html#cb884-17" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb884-18"><a href="nonlin.html#cb884-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb884-19"><a href="nonlin.html#cb884-19" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>#&gt;         2 
 #&gt; 0.3023284</code></pre>
 <p>Wie Sie sehen ist der Unterschied marginal.
@@ -822,15 +838,6 @@ der <em>Generalized Methods of Moments</em>-Ansatz oder die zahlreichen
 nicht-parametrischen Methoden, mit denen wir uns bislang noch gar nicht
 auseinandergesetzt haben. Es bleibt also spannend!</p>
 
-</div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-fitz">
-<p>Fitzmaurice, Garrett, Nan Laird, and James Ware. 2011. <em>Applied Longitudinal Analysis</em>. 2nd ed. Hoboken, NJ: John Wiley; Sons.</p>
-</div>
-<div id="ref-AER">
-<p>Kleiber, Christian, and Achim Zeileis. 2008. <em>Applied Econometrics with R</em>. New York: Springer-Verlag. <a href="https://CRAN.R-project.org/package=AER">https://CRAN.R-project.org/package=AER</a>.</p>
 </div>
 </div>
 <div class="footnotes">

@@ -7,7 +7,8 @@ output:
 
 ```{r include=FALSE}
 knitr::opts_chunk$set(comment = "#>")
-knitr::opts_chunk$set(out.height = '75%', out.width = '75%', fig.align = 'center') 
+knitr::opts_chunk$set(
+  out.height = '75%', out.width = '75%', fig.align = 'center') 
 ```
 
 > Refusing to deal with numbers rarely serves the interest of the least well-off.
@@ -59,6 +60,11 @@ library(rmutil)
 library(viridis)
 library(optimx)
 ```
+
+```{r, echo=FALSE}
+source(here::here("R/helpers.R"))
+```
+
 
 > **Hinweis**: Das Paket [matlib](http://friendly.github.io/matlib/) [@R-matlib]
 verwenden wir für einige Matrizenoperationen und zum Lösen linearer
@@ -141,12 +147,18 @@ ausgibt. Dazu verwenden wir die Funktion `dplyr::arrange()`, welche die Zeilen e
 `data.frame` gemäß einer oder mehrerer Variablen ordnet:
 
 ```{r, eval=FALSE, echo=FALSE}
-beispiel_daten <- WDI::WDI(country = c("AT", "DE"), 
-                           indicator = "NY.GDP.PCAP.KN", 
-                           start = 2014, end = 2018) %>%
+beispiel_daten <- WDI::WDI(
+  country = c("AT", "DE"), 
+  indicator = "NY.GDP.PCAP.KN", 
+  start = 2014, end = 2018
+  ) %>%
   dplyr::rename(BIP=NY.GDP.PCAP.KN) %>%
   select(-iso2c)
-data.table::fwrite(beispiel_daten, here::here("data/tidy/bip_growth.csv"))
+
+data.table::fwrite(
+  beispiel_daten, 
+  here::here("data/tidy/bip_growth.csv")
+  )
 ```
 
 ```{r, echo=FALSE}
@@ -168,7 +180,8 @@ head(beispiel_daten_at, 4)
 
 ```{r}
 beispiel_daten_at <- beispiel_daten_at %>%
-  dplyr::mutate(BIP_Wachstum = (BIP-dplyr::lag(BIP))/abs(dplyr::lag(BIP))*100)
+  dplyr::mutate(
+    BIP_Wachstum = (BIP-dplyr::lag(BIP))/abs(dplyr::lag(BIP))*100)
 beispiel_daten_at
 ```
 
@@ -177,7 +190,9 @@ z.B. verschiedene Länder, müssen wir den Datensatz vor Berechnung der
 Wachstumsrate gruppieren:
 
 ```{r, echo=FALSE}
-beispiel_daten <- data.table::fread(here::here("data/tidy/bip_growth.csv")) %>%
+beispiel_daten <- data.table::fread(
+  here::here("data/tidy/bip_growth.csv")
+  ) %>%
   dplyr::arrange(-year) 
 ```
 
@@ -189,7 +204,9 @@ head(beispiel_daten, 4)
 beispiel_daten <- beispiel_daten %>%
   dplyr::arrange(country, year) %>%
   dplyr::group_by(country) %>%
-  dplyr::mutate(BIP_Wachstum = (BIP-dplyr::lag(BIP))/abs(dplyr::lag(BIP))*100) %>%
+  dplyr::mutate(
+    BIP_Wachstum = (BIP-dplyr::lag(BIP))/abs(dplyr::lag(BIP))*100
+    ) %>%
   dplyr::ungroup()
 beispiel_daten
 ```
@@ -207,7 +224,7 @@ häufig hilfreich für die grafische Darstellung von Wachstumsraten.^[Zur
 Transformation der y-Achse verwenden wir in `ggplot2` die Funktion
 `scale_y_continuous()` und setzen das Argument `trans = "log"`.]
 
-```{r normalandlog, fig.cap="Vergleich normaler und logarithmierter Darstellung", echo=FALSE, out.height='50%'}
+```{r echo=FALSE}
 x0 <- 100
 x <- c(x0, rep(NA, 99))
 for (i in 2:100){
@@ -217,24 +234,38 @@ expl_data <- data.frame(
   y=x, x=1:100
 )
 
-plot_normal <- ggplot2::ggplot(data = expl_data, 
-                      mapping = aes(x=x, y=y)
-                      ) + 
+plot_normal <- ggplot2::ggplot(
+  data = expl_data, 
+  mapping = aes(x=x, y=y)
+  ) + 
   ggplot2::geom_line() +
   ggplot2::theme_bw() +
-  ggplot2::labs(title = "Normale Darstellung")
+  ggplot2::labs(title = "Normale Darstellung") +
+  theme(plot.title = element_text(size = 12))
 
-plot_log <- ggplot2::ggplot(data = expl_data, 
-                      mapping = aes(x=x, y=y)
-                      ) + 
+plot_log <- ggplot2::ggplot(
+  data = expl_data, 
+  mapping = aes(x=x, y=y)
+  ) + 
   ggplot2::geom_line() +
   ggplot2::theme_bw() +
   ggplot2::ylab("log(y)") +
   ggplot2::scale_y_continuous(trans = "log") +
-  ggplot2::labs(title = "Logarithmierte Darstellung")
+  ggplot2::labs(title = "Logarithmierte Darstellung") +
+  theme(plot.title = element_text(size = 12))
 
-ggpubr::ggarrange(plot_normal, plot_log, ncol = 2)
+full_plot <- ggpubr::ggarrange(plot_normal, plot_log, ncol = 2)
+plot_file <- here::here(
+  "figures/Formalia/norm_log_comparison.png")
+save_pdf_png(
+  filename = plot_file, plot = full_plot, 
+  width = 6, height = 3)
 ```
+
+```{r normalandlog, fig.cap="Vergleich normaler und logarithmierter Darstellung", echo=FALSE, out.height='50%'}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+
 
 In Darstellung \@ref(fig:normalandlog) gilt: die Steigung im logarithmierten Plot gibt die
 *relative* Änderung der Variable an.
@@ -245,7 +276,7 @@ so wie im obigen Beispiel.
 Diese Art der Darstellung ist zum Beispiel bei der langfristigen Betrachtung von
 Wachstumsraten und dem Vergleich zwischen Ländern sehr hilfreich, da, wie in Abbildung  \@ref(fig:LogDarstellung) Unterschiede in der logarithmierten Darstellung besser erkennbar sind.
 
-```{r LogDarstellung, echo=FALSE, fig.cap="Vergleich normaler und logarithmierter Darstellung bei langfristiger vergleichender Betrachtung von Wachstumsraten", message=FALSE}
+```{r, echo=FALSE, message=FALSE}
 hist_data <- data.table::fread(here::here("data/tidy/historical-gdp.csv"), 
                    colClasses = c(rep("character", 2), rep("double", 2))
                    ) %>%
@@ -271,8 +302,11 @@ plot_norm <- ggplot2::ggplot(
                   color=Land, label=Land), 
     nudge_x = 50,
     show.legend = FALSE) +
-  ggplot2::labs(title = "BIP pro Kopf",
-     caption = "Datenquelle: https://ourworldindata.org/economic-growth") +
+  scale_color_viridis_d() +
+  ggplot2::labs(
+    title = "BIP pro Kopf",
+    caption = "Datenquelle: https://ourworldindata.org/economic-growth"
+    ) +
   ggplot2::theme(axis.title.x = element_blank())
 
 
@@ -287,34 +321,54 @@ plot_log <- ggplot2::ggplot(
     expand = c(0, 0), 
     breaks = seq(1600, 2000, 100)
     ) +
-  ggplot2::scale_y_continuous(name="BIP pro Kopf (logarithmiert)", 
-                     trans = "log") +
+  ggplot2::scale_y_continuous(
+    name="BIP pro Kopf (logarithmiert)", 
+    trans = "log") +
   ggrepel::geom_label_repel(
     data = filter(hist_data, Jahr==2016), 
-    mapping = aes(x=Jahr, y=BIP_pk, 
-                  color=Land, label=Land), 
+    mapping = aes(
+      x=Jahr, y=BIP_pk, 
+      color=Land, label=Land), 
     nudge_x = 50,
     show.legend = FALSE) +
+  scale_color_viridis_d() +
+  ggplot2::labs(
+    title = "BIP pro Kopf",
+    caption = "Datenquelle: https://ourworldindata.org/economic-growth"
+    ) +
   ggplot2::labs(title = "BIP pro Kopf (logarithmiert)",
        caption = "Datenquelle: https://ourworldindata.org/economic-growth") +
   ggplot2::theme(axis.title.x = element_blank())
 
-ggpubr::ggarrange(plot_norm, plot_log, nrow = 2, 
-          common.legend = T, legend = "none")
+full_plot <- ggpubr::ggarrange(
+  plot_norm, plot_log, nrow = 2, 
+  common.legend = T, legend = "none")
+
+plot_file <- here::here(
+  "figures/Formalia/log_BIP_growth.png")
+save_pdf_png(
+  filename = plot_file, plot = full_plot, 
+  width = 6, height = 4)
+```
+
+
+```{r LogDarstellung, echo=FALSE, fig.cap="Vergleich normaler und logarithmierter Darstellung bei langfristiger vergleichender Betrachtung von Wachstumsraten", message=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 
 Abbildung \@ref(fig:DepressionFinanzkrise) zeigt wie wichtig eine solche Darstellung sein kann um
 Events, die zu sehr unterschiedlichen Zeitpunkten stattgefunden haben, 
-vergleichbar zu machen:
+vergleichbar zu machen.
 
-
-```{r DepressionFinanzkrise, echo=FALSE, fig.cap="Vergleich normaler und logarithmierter Darstellung bei Events, die zu sehr unterschiedlichen Zeitpunkten stattgefunden haben"}
-shiller_data <- data.table::fread(here("data/tidy/shiller_sp500.csv"), 
-                      colClasses = c("double", "double"), 
-                      sep = ";", dec = ",") %>%
-  dplyr::mutate(SP500_log=log(SP500),
-         SP500_log=(SP500_log-first(SP500_log))*100 )
+```{r, echo=FALSE, message=FALSE}
+shiller_data <- data.table::fread(
+  here::here("data/tidy/shiller_sp500.csv"), 
+  colClasses = c("double", "double"), 
+  sep = ";", dec = ",") %>%
+  dplyr::mutate(
+    SP500_log=log(SP500),
+    SP500_log=(SP500_log-first(SP500_log))*100 )
 
 shiller_norm <- ggplot2::ggplot(shiller_data, aes(x=Date, y=SP500)) +
   ggplot2::annotate(xmin=1929, xmax=1941, ymin=-100, ymax=500, geom = "rect", 
@@ -324,9 +378,10 @@ shiller_norm <- ggplot2::ggplot(shiller_data, aes(x=Date, y=SP500)) +
   ggplot2::annotate(xmin=1995, xmax=2010, ymin=500, ymax=1600, geom = "rect", 
            fill="#800000", color="transparent", alpha=0.5) +
   ggplot2::annotate(x=1985, y=1800, geom = "text", color="#800000",
-           label="dot.com- & Finanzkrise", hjust=0.25) +
+           label="dot.com- & Finanzkrise", hjust=0.55) +
   ggplot2::geom_line() +
-  ggplot2::labs(title = "S&P 500 (abs.)", caption = "Datenquelle: Shiller (2015).") +
+  ggplot2::labs(
+    title = "S&P 500 (abs.)", caption = "Datenquelle: Shiller (2015).") +
   ggplot2::ylab("S&P 500 (abs.)") +
   ggplot2::theme_bw()
 
@@ -337,15 +392,27 @@ shiller_log <- ggplot2::ggplot(shiller_data, aes(x=Date, y=SP500_log)) +
            label="Große Depression", hjust=0.25) +
   ggplot2::annotate(xmin=1995, xmax=2010, ymin=450, ymax=600, geom = "rect", 
            fill="#800000", color="transparent", alpha=0.5) +
-  ggplot2::annotate(x=1982, y=620, geom = "text", color="#800000",
-           label="dot.com- & Finanzkrise", hjust=0.25, vjust=0) +
+  ggplot2::annotate(x=1982, y=618, geom = "text", color="#800000",
+           label="dot.com- & Finanzkrise", hjust=0.45, vjust=0) +
   ggplot2::geom_line() +
-  ggplot2::labs(title = "S&P 500 (log)", caption = "Datenquelle: Shiller (2015).") +
+  ggplot2::labs(
+    title = "S&P 500 (log)", caption = "Datenquelle: Shiller (2015).") +
   ggplot2::ylab("S&P 500 (log, 1871=0)") +
   ggplot2::scale_y_continuous() +
   ggplot2::theme_bw()
 
-ggpubr::ggarrange(shiller_norm, shiller_log, nrow = 2)
+full_plot <- ggpubr::ggarrange(
+  shiller_norm, shiller_log, nrow = 2)
+
+plot_file <- here::here(
+  "figures/Formalia/log_shiller.png")
+save_pdf_png(
+  filename = plot_file, plot = full_plot, 
+  width = 6, height = 4.5)
+```
+
+```{r DepressionFinanzkrise, echo=FALSE, fig.cap="Vergleich normaler und logarithmierter Darstellung bei Events, die zu sehr unterschiedlichen Zeitpunkten stattgefunden haben"}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Während die absoluten Zahlen die Volatilität während der Großen Depression
@@ -363,7 +430,6 @@ Form die Analyse von Wachstumsraten in linearen Regressionsmodellen deutlich
 vereinfacht (siehe Kapitel \@ref(advlin)).
 
 ## Grundlagen der Differentialrechnung {#formalia-diff}
-
 
 ### Einleitung: Differential- und Integralrechnung
 
@@ -585,7 +651,7 @@ $f(x^*)\geq f(x) \forall x \in x \in D$.
 In Abbildung \@ref(fig:Extrema) sehen wir beispielhaft die Extremwerte der Funktion 
 $f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2$.
 
-```{r Extrema, echo=FALSE, fig.cap="Beispiel für Extremwerte"}
+```{r, echo=FALSE}
 f_2 <- function(x) 8*x^2 + 2.5*x**3 - 4.25*x**4 + 2
 
 data <- data.frame(x=seq(-2, 2, 0.05)) %>%
@@ -594,26 +660,42 @@ data <- data.frame(x=seq(-2, 2, 0.05)) %>%
 
 mult_max <- ggplot2::ggplot(data, aes(x=x, y=y_2)) +
   ggplot2::geom_line() +
-  ggplot2::ggtitle(TeX("$f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2$")) +
+  ggplot2::labs(
+    title = TeX("$f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2$"),
+    y = "y") +
   ggplot2::coord_cartesian(ylim = c(0, 10), 
                   xlim = c(-1.2, 1.7), expand = c(0)) +
   ggplot2::annotate(geom = "text", label="Lokales Maximum", 
-           x = -0.7743199, y = 4.4) +
+           x = -0.76, y = 4.75, size = 3) +
   ggplot2::annotate(geom = "segment", 
            x = -0.7743199, xend = -0.7743199,
            y=0, yend = 4.108106) +
   ggplot2::annotate(geom = "text", label="Globales Maximum", 
-           x = 1.215492, y = 9.4) +
+           x = 1.215492, y = 9.4, size = 3) +
   ggplot2::annotate(geom = "segment", 
            x = 1.215492, xend = 1.215492,
            y=0, yend = 9.032067) +
   ggplot2::annotate(geom = "text", label="Lokales Minimum", 
-           x = -7.54766e-06, y = 2.7) +
+           x = -7.54766e-06, y = 3.6, size=3) +
   ggplot2::annotate(geom = "segment", 
            x = -7.54766e-06, xend = -7.54766e-06,
            y=0, yend = 2) +
-  ggplot2::theme_bw() 
-mult_max
+  ggplot2::theme_bw() +
+  theme(
+    plot.title = element_text(size = 11), 
+    axis.title = element_text(size = 10),
+    axis.text = element_text(size = 9)
+  )
+
+plot_file <- here::here(
+  "figures/Formalia/maximization_example.png")
+save_pdf_png(
+  filename = plot_file, plot = mult_max, 
+  width = 4, height = 3)
+```
+
+```{r Extrema, echo=FALSE, fig.cap="Beispiel für Extremwerte", out.width='75%'}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Es kann gezeigt werden, dass eine **notwendige Bedingung** für die Existenz eines
@@ -665,7 +747,7 @@ funktioniert diese Strategie unter Umständen nicht mehr, da der Computer leicht
 auf lokalen Optima "steckenbleibt".
 Im Beispiel in Abbildung \@ref(fig:Steckengeblieben) besteht bei einer unglücklichen Wahl des Startwertes die Gefahr, auf dem lokalen Extremum bei $x=0.77$ hängen zu bleiben.
 
-```{r Steckengeblieben, echo=FALSE, fig.cap="Beispiel für die Gefahr auf einem lokalen Extremum hängen zu bleiben (rechter Graph).", out.height="35%"}
+```{r, echo=FALSE}
 f_1 <- function(x) -8*x**2 + 2
 
 f_2 <- function(x) 8*x^2 + 2.5*x**3 - 4.25*x**4 + 2
@@ -694,8 +776,19 @@ mult_max <- ggplot2::ggplot(data, aes(x=x, y=y_2)) +
   ggplot2::theme(panel.border = element_blank(), 
                  axis.line = element_line())
 
-ggpubr::ggarrange(one_max, mult_max, ncol = 2)
+many_max <- ggpubr::ggarrange(one_max, mult_max, ncol = 2)
+
+plot_file <- here::here(
+  "figures/Formalia/maximization_multiple-maxima.png")
+save_pdf_png(
+  filename = plot_file, plot = many_max, 
+  width = 6, height = 3.5)
 ```
+
+```{r Steckengeblieben, echo=FALSE, fig.cap="Beispiel für die Gefahr auf einem lokalen Extremum hängen zu bleiben (rechter Graph).", out.height="35%"}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+
 
 Um das zu vermeiden verwenden die Optimierungsalgorithmen einige Tricks.
 Für die R-Funktion `optim()` können Sie z.B. zwischen sieben solcher ausgefeilter
@@ -776,18 +869,28 @@ Wie man sieht verfügt sie über ein
 lokales Maximum bei $x_a=-0.77$, ein lokales Minimum bei $x_b=0$ und ein globales 
 Maximum bei $x_c=1.22$.
 
-```{r Funktion, echo=FALSE, fig.cap="Graph der zu optimierenden Funktion."}
+```{r, echo=FALSE}
 data <- data.frame(x=seq(-2, 2, 0.05)) %>%
   dplyr::rowwise() %>%
   dplyr::mutate(y = f_1(x))
 
-ggplot2::ggplot(data, aes(x=x, y=y)) +
+expl_func_plot <- ggplot2::ggplot(data, aes(x=x, y=y)) +
   ggplot2::geom_line() +
   ggplot2::ggtitle(TeX("$f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2$")) +
   ggplot2::coord_cartesian(ylim = c(0, 10), 
                   xlim = c(-1.2, 1.7), expand = c(0)) +
   ggplot2::theme_bw() + 
   ggplot2::theme(panel.border = element_blank(), axis.line = element_line())
+
+plot_file <- here::here(
+  "figures/Formalia/maximization_example-function.png")
+save_pdf_png(
+  filename = plot_file, plot = expl_func_plot, 
+  width = 4, height = 3)
+```
+
+```{r Funktion, echo=FALSE, fig.cap="Graph der zu optimierenden Funktion.", out.width="50%"}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Da es sich hier um ein eindimensionales Problem handelt, können wir die 
@@ -854,20 +957,30 @@ In einer Heatmap geben die beiden Achsen die Kombination der x und y-Werte an,
 der resultierende Funktionswert wird über die Farbe repräsentiert.
 
 
-```{r Heatmap, echo=FALSE, fig.cap="Darstellung einer Funktion als Heatmap"}
+```{r, echo=FALSE}
 x <- seq(-2, 2, length.out = 250)
 y <- seq(-1, 3, length.out = 250)
 data <- expand.grid(X=x, Y=y) %>%
   dplyr::rowwise() %>%
   dplyr::mutate(Z=f_2(x = c(X, Y)))
 
-ggplot2::ggplot(data, aes(X, Y, fill= Z)) + 
+heapmap_func <- ggplot2::ggplot(data, aes(X, Y, fill= Z)) + 
   ggplot2::geom_tile() +
   ggplot2::scale_x_continuous(expand = c(0,0)) +
   ggplot2::scale_y_continuous(expand = c(0,0)) +
   viridis::scale_fill_viridis(discrete = FALSE) +
   ggplot2::theme_bw() +
   ggplot2::theme(legend.position = "right")
+
+plot_file <- here::here(
+  "figures/Formalia/maximization_heatmap.png")
+save_pdf_png(
+  filename = plot_file, plot = heapmap_func, 
+  width = 5, height = 3)
+```
+
+```{r Heatmap, echo=FALSE, fig.cap="Darstellung einer Funktion als Heatmap"}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Da es sich jetzt um ein mehrdimensionales Problem handelt verwenden wir die Funktion
@@ -1065,8 +1178,8 @@ Y_n\\
 \times 
 \left( 
 \begin{array}{c}                                
-\beta_1 \\                                               
-\beta_2  \\
+\beta_0 \\                                               
+\beta_1  \\
 \vdots\\
 \beta_n\\
 \end{array}
@@ -1772,17 +1885,18 @@ Wir können diese Annahme plausibilisieren indem wir mit `ggplot2::geom_density(
 *empirische Dichtefunktion* der Verteilung schätzen und über die Daten legen, 
 wie im rechten Graph der Abbildung \@ref(fig:Stichprobenverteilung).
 
-```{r Stichprobenverteilung, echo=TRUE, fig.cap="Stichprobe (linker Graph) und Stichprobe mit empirischer Dichtefunktion (rechter Graph)"}
-
+```{r, echo=TRUE}
 Stichprobe <- ggplot2::ggplot(data = sample_data) +
   ggplot2::geom_histogram(
     mapping = aes(x=r, stat(density)), 
     binwidth = 0.4) +
   ggplot2::scale_x_continuous(expand = c(0, 1)) + 
-  ggplot2::scale_y_continuous(expand = expansion(c(0, 0.05), c(0, 0))) +
+  ggplot2::scale_y_continuous(
+    expand = expansion(c(0, 0.05), c(0, 0)), name = "Dichte") +
   ggplot2::theme_bw() + 
   theme(panel.border = element_blank(), 
-        axis.line = element_line())
+        axis.line = element_line(),
+        axis.title.x = element_blank())
 
 Dichtefunktion <- ggplot2::ggplot(data = sample_data) +
   ggplot2::geom_histogram(
@@ -1792,14 +1906,29 @@ Dichtefunktion <- ggplot2::ggplot(data = sample_data) +
   ggplot2::stat_density(mapping = aes(x=r), 
                color="blue", 
                geom="line") +
-  ggplot2::scale_y_continuous(expand = expansion(c(0, 0.05), 
-                                           c(0, 0))) +
+  ggplot2::scale_y_continuous(
+    expand = expansion(c(0, 0.05), c(0, 0)), name = "Dichte") +
   ggplot2::theme_bw() + 
   theme(panel.border = element_blank(), 
-        axis.line = element_line())
+        axis.line = element_line(),
+        axis.title.x = element_blank())
 
-ggpubr::ggarrange(Stichprobe, Dichtefunktion, ncol = 2)
+dichte_plot <- ggpubr::ggarrange(Stichprobe, Dichtefunktion, ncol = 2)
 ```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Formalia/linalg_stichprobe-dichte.png")
+save_pdf_png(
+  filename = plot_file, plot = dichte_plot, 
+  width = 5, height = 3)
+```
+
+
+```{r Stichprobenverteilung, echo=FALSE, fig.cap="Stichprobe (linker Graph) und Stichprobe mit empirischer Dichtefunktion (rechter Graph)", out.width="80%"}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+
 
 Das bedeutet, dass wir unsere Daten mit Hilfe der Dichtefunktion 
 (*probability density function* - PDF) der Normalverteilung beschreiben können. 
@@ -1830,7 +1959,7 @@ Das bedeutet wir 'fitten' die Verteilung zu unseren Daten. Abbildung \@ref(fig:f
 
 Was damit gemeint ist verdeutlicht die folgende Darstellung: 
 
-```{r fitting, echo=FALSE, fig.cap="Beispiel zur Verdeutlichung von Fits verschiedener Normalverteilungen mit unterschiedlichen Parameterwerten"}
+```{r echo=FALSE}
 x_vals <- seq(-12, 14, 0.1)
 y_vals_pdf <- data.frame(
   "x" = x_vals,
@@ -1841,7 +1970,7 @@ y_vals_pdf <- data.frame(
 ) %>%
   tidyr::gather("Parameter", "y", -x)
 
-ggplot2::ggplot(data = sample_data) +
+fit_normal_plot <- ggplot2::ggplot(data = sample_data) +
   ggplot2::geom_histogram(
     mapping = aes(x=r, stat(density)), 
     binwidth = 0.4, alpha=0.4) +
@@ -1862,6 +1991,16 @@ ggplot2::ggplot(data = sample_data) +
   ggplot2::ylab("Dichte") +
   ggplot2::ggtitle("Fits verschiedener Normalverteilungen") +
   ggplot2::theme(legend.title = element_text(), axis.title.x = element_blank())
+
+plot_file <- here::here(
+  "figures/Formalia/linalg_fit-normal.png")
+save_pdf_png(
+  filename = plot_file, plot = fit_normal_plot, 
+  width = 5, height = 3)
+```
+
+```{r fitting, echo=FALSE, fig.cap="Beispiel zur Verdeutlichung von Fits verschiedener Normalverteilungen mit unterschiedlichen Parameterwerten"}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Die Normalverteilung mit $\mu=4$ und $\sigma^2=4$ passt zu den Daten recht gut.
@@ -2158,7 +2297,7 @@ Dies wird in Abbildung \@ref(fig:Lorenz-Kurven) deutlich, in der zwei mögliche
 Lorenz-Kurven dem hypothetischen Fall der perfekten Gleichverteilung
 gegenübergestellt werden:
 
-```{r Lorenz-Kurven, echo=FALSE, fig.cap="Vergleich zweier Lorenz-Kurven"}
+```{r, echo=FALSE}
 normalize <- function(x){(x-min(x))/(max(x)-min(x))}
 set.seed(123)
 Distr1 <- normalize(rpareto(100, m = 2.4, s = 1.4))
@@ -2171,7 +2310,7 @@ Distr_df <- data.frame("p1"=Distr1[1]$p,
                        "p2"=Distr2[1]$p, 
                        "L2"=Distr2[2]$L)
 
-ggplot2::ggplot(data=Distr_df) +
+lorenz_plot <- ggplot2::ggplot(data=Distr_df) +
   ggplot2::geom_point(aes(x=p1, y=L1), color="#002b80", alpha=0.25) +
   ggplot2::geom_line(aes(x=p1, y=L1), color="#002b80") +
   ggplot2::geom_point(aes(x=p2, y=L2), color="#8600b3", alpha=0.25) +
@@ -2181,6 +2320,16 @@ ggplot2::ggplot(data=Distr_df) +
   ggplot2::geom_abline() +
   ggplot2::labs(title = "Die Lorenz-Kurve") +
   ggplot2::theme_bw()
+
+plot_file <- here::here(
+  "figures/Formalia/linalg_lorenz-plot.png")
+save_pdf_png(
+  filename = plot_file, plot = lorenz_plot, 
+  width = 4, height = 3)
+```
+
+```{r Lorenz-Kurven, echo=FALSE, fig.cap="Vergleich zweier Lorenz-Kurven"}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Der Gini-Index $\mathcal{G}$ misst diese Abweichung über die normierte Distanz 
@@ -2280,7 +2429,7 @@ besitzen aber mehrere andere lokale Optima, also kleinere "Gipfel", sodass wir
 in der Regel von einer multimodalen Verteilung sprechen sobald es mehrere lokale 
 Maxima gibt. Beispiele einer solch multimodalen Verteilung sind in Abbildung \@ref(fig:multimodal) dargestellt.
 
-```{r multimodal, echo=FALSE, fig.cap="Beispiele multimodaler Verteilungen"}
+```{r, echo=FALSE}
 x_vals <- seq(-10, 10, 0.01)
 eingipflig <- dnorm(x_vals)
 zweigipflig <- 0.75*dnorm(x_vals) + 0.25*dnorm(x_vals, mean = -4)
@@ -2290,11 +2439,25 @@ mod_data <- data.frame(x_vals, eingipflig, zweigipflig, dreigipflig) %>%
                names_to = "Art", 
                values_to = "Dichte")
 
-ggplot2::ggplot(data = mod_data, mapping = aes(x=x_vals, y=Dichte, color=Art)) +
+multimodal_plot <- ggplot2::ggplot(
+  data = mod_data, mapping = aes(x=x_vals, y=Dichte, color=Art)
+  ) +
   ggplot2::geom_line() +
   viridis::scale_color_viridis(discrete = T) + 
-  ggplot2::theme_bw() 
+  ggplot2::theme_bw() +
+  ggplot2::theme(
+    axis.title.x = element_blank()
+  )
   
+plot_file <- here::here(
+  "figures/Formalia/linalg_multimodal-plot.png")
+save_pdf_png(
+  filename = plot_file, plot = multimodal_plot, 
+  width = 4, height = 3)
+```
+
+```{r multimodal, echo=FALSE, fig.cap="Beispiele multimodaler Verteilungen"}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 **Kennzahlen zur Form der Verteilung**
@@ -2321,7 +2484,7 @@ und **rechts-schief** (oder *links-steil*) wenn $\gamma_x>0$.
 Woher diese Begriffe kommen können wir uns am besten mit Hilfe von 
 Abbildung \@ref(fig:Symmetrie) verdeutlichen.
 
-```{r Symmetrie, echo=FALSE, fig.cap="Beispiele für Verteilungen mit unterschiedlichen Schiefen"}
+```{r, echo=FALSE}
 dist_vals <- data.frame(
   x_vals = seq(0, 1, 0.01)
 ) %>%
@@ -2334,18 +2497,32 @@ dist_vals <- data.frame(
                values_to = "Dichte", 
                cols = -one_of("x_vals"))
 
-ggplot2::ggplot(data = dist_vals, 
-       mapping = aes(x=x_vals, 
-                     y=Dichte, 
-                     color=Schiefe)
-       ) +
+symmetry_plot <- ggplot2::ggplot(
+  data = dist_vals, 
+  mapping = aes(
+    x=x_vals, 
+    y=Dichte, 
+    color=Schiefe)
+  ) +
   ggplot2::geom_line() + 
   ggplot2::labs(title = "PDF für schiefe und symmetrische Verteilungen") +
   ggplot2::scale_y_continuous(limits = c(0, 2.5), expand = c(0, 0)) +
   viridis::scale_color_viridis(discrete = T) +
   ggplot2::theme_bw() +
-  ggplot2::theme(axis.title.x = element_blank())
+  ggplot2::theme(
+    axis.title.x = element_blank())
+
+plot_file <- here::here(
+  "figures/Formalia/linalg_symmetry-plot.png")
+save_pdf_png(
+  filename = plot_file, plot = symmetry_plot, 
+  width = 4, height = 3)
 ```
+
+```{r Symmetrie, echo=FALSE, fig.cap="Beispiele für Verteilungen mit unterschiedlichen Schiefen"}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+
 
 In R können wir die Schiefe einer Verteilung mit der Funktion `skewness()`
 aus dem Paket [moments](https://cran.r-project.org/package=moments) [@R-moments] 
@@ -2358,8 +2535,8 @@ moments::skewness(journal_daten[["Preis"]])
 Wir würden hier also von einer *rechts-schiefen* Verteilung der Preise 
 sprechen. Das sehen wir hier auch grafisch in Abbildung \@ref(fig:rechtsschief).
 
-```{r rechtsschief, echo=FALSE, fig.cap="Rechts-schiefe Verteilung der Journalpreise"}
-ggplot2::ggplot(data = journal_daten) +
+```{r, echo=FALSE}
+rechtsschief_plot <- ggplot2::ggplot(data = journal_daten) +
   ggplot2::geom_histogram(
     mapping = aes(x=Preis, stat(density)), bins=30,
     alpha=0.4) +
@@ -2374,7 +2551,17 @@ ggplot2::ggplot(data = journal_daten) +
     ) +
   ggplot2::theme_bw()
   
+plot_file <- here::here(
+  "figures/Formalia/linalg_rechtsschief.png")
+save_pdf_png(
+  filename = plot_file, plot = rechtsschief_plot, 
+  width = 4, height = 3)
 ```
+
+```{r rechtsschief, echo=FALSE, fig.cap="Rechts-schiefe Verteilung der Journalpreise"}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+
 
 Die **Steile** (auch: Kurtosis) $\omega_x$ einer Verteilung gibt ihre 
 'Spitzgipfligkeit' an. Je größer $\omega_x$ desto 'schmaler' wird die 
@@ -2406,7 +2593,7 @@ steilgipfligen Verteilung zu tun, d.h. die Verteilung der Journalpreise ist 'sch
 
 Zur Verdeutlichung des Konzepts bietet Abbildung \@ref(fig:Kurtosis) ein grafisches Beispiel.
 
-```{r Kurtosis, echo=FALSE, fig.cap="Beispiel von Verteilungen mit verschiedener Kurtosis"}
+```{r, echo=FALSE}
 kurt_data <- data.frame(
   xvals = seq(-5, 5, 0.01)
 ) %>%
@@ -2419,13 +2606,24 @@ kurt_data <- data.frame(
                values_to = "Dichte", 
                cols = -one_of("xvals"))
 
-
-ggplot2::ggplot(data = kurt_data, mapping = aes(x=xvals, y=Dichte, color=Kurtosis)) +
+kurtosis_plot <- ggplot2::ggplot(
+  data = kurt_data, 
+  mapping = aes(x=xvals, y=Dichte, color=Kurtosis)) +
   ggplot2::geom_line(aes()) +
   viridis::scale_color_viridis(discrete = T) +
   ggplot2::theme_bw() + 
   ggplot2::theme(legend.title = element_text(), 
         axis.title.x = element_blank())
+
+plot_file <- here::here(
+  "figures/Formalia/linalg_kurtosis.png")
+save_pdf_png(
+  filename = plot_file, plot = kurtosis_plot, 
+  width = 4, height = 3)
+```
+
+```{r Kurtosis, echo=FALSE, fig.cap="Beispiel von Verteilungen mit verschiedener Kurtosis"}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 **Ausreißer und Schwanz-Eigenschaften**
@@ -2538,7 +2736,7 @@ die Grenze $\frac{4}{n-k-1}$ etabliert, aber in der Praxis ergibt es immer Sinn
 einfach die Werte mit der größten Distanz genauer anzuschauen. Diese lassen sich 
 aus Abbildung \@ref(fig:CookScheDistanz).
 
-```{r CookScheDistanz, echo=FALSE, fig.cap="Betrachtung der Ausreißer nach der Cook'schen Distanz"}
+```{r, echo=FALSE}
 dist_data <- data.frame(
   Index=names(distanzen),
   Distanz=unname(distanzen), 
@@ -2548,17 +2746,31 @@ dist_data <- data.frame(
 
 cook_threshold <- 4 / (reg_objekt$df.residual - 1)
 
-ggplot2::ggplot(data = data.frame(dist_data), 
-       mapping = aes(x=Index, y=Distanz)) +
+cook_distance_plot <- ggplot2::ggplot(
+  data = data.frame(dist_data), 
+  mapping = aes(x=Index, y=Distanz)
+  ) +
   ggplot2::geom_bar(stat = "identity") +
   ggplot2::geom_hline(yintercept = cook_threshold, color="red") +
   ggplot2::theme_bw() +
   ggplot2::theme(panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank())
 
+plot_file <- here::here(
+  "figures/Formalia/linalg_cook-distance.png")
+save_pdf_png(
+  filename = plot_file, plot = cook_distance_plot, 
+  width = 4, height = 3)
+```
+
+```{r, echo=FALSE}
 dplyr::filter(dist_data, Distanz>cook_threshold)$Titel
 ```
 
+
+```{r CookScheDistanz, echo=FALSE, fig.cap="Betrachtung der Ausreißer nach der Cook'schen Distanz"}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
 
 ### Grafische Komplemente zu klassischen Kennzahlen {#vert-grafik}
 
@@ -2582,6 +2794,7 @@ wb_data <- wb_data %>%
                         "latitude", "lending"))
 data.table::fwrite(wb_data, here("data/tidy/wb_regions.csv"))
 ```
+
 ```{r, echo=FALSE}
 wb_data <- data.table::fread(here("data/tidy/wb_regions.csv")) %>% 
   dplyr::filter(!region %in% c("Aggregates", ""), 
@@ -2594,17 +2807,31 @@ wb_data <- data.table::fread(here("data/tidy/wb_regions.csv")) %>%
          !is.nan(Fertilitätsrate))
 ```
 
-```{r BoxplotBsp, fig.cap="Darstellung der Lebenserwartungen in den Weltregionen anhand eines Boxplots"}
-ggplot2::ggplot(data = wb_data, 
-       mapping = aes(x=region, y=Lebenserwartung)
-       ) +
+```{r}
+boxplot_plot <- ggplot2::ggplot(
+  data = wb_data, 
+  mapping = aes(x=region, y=Lebenserwartung)
+  ) +
   ggplot2::geom_boxplot() +
   ggplot2::theme_bw() +
-  ggplot2::labs(title = "Lebenserwartungen in den Weltregionen", 
-       caption = "Quelle: Weltbank") +
+  ggplot2::labs(
+    title = "Lebenserwartungen in den Weltregionen", 
+    caption = "Quelle: Weltbank") +
   ggplot2::theme(
     axis.title.x = element_blank(), 
     axis.text.x = element_text(angle = 10, vjust = 0.65))
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/Formalia/linalg_boxplot-plot.png")
+save_pdf_png(
+  filename = plot_file, plot = boxplot_plot, 
+  width = 6, height = 4)
+```
+
+```{r BoxplotBsp, fig.cap="Darstellung der Lebenserwartungen in den Weltregionen anhand eines Boxplots"}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Im Boxplot werden mehrere relevante Kennzahlen zusammengefasst. 
@@ -2673,20 +2900,20 @@ compare_plot <- ggpubr::ggarrange(
   ncol = 3)
 ```
 
-```{r,echo=FALSE}
-ggsave(
+```{r, echo=FALSE}
+save_pdf_png(
   plot = compare_plot, 
-  filename = here::here("figures/formalia/compare_violin.pdf"), 
+  filename = here::here("figures/Formalia/compare_violin.pdf"), 
   width = 6, height = 4)
-ggsave(
+save_pdf_png(
   plot = compare_plot, 
-  filename = here::here("figures/formalia/compare_violin.png"), 
+  filename = here::here("figures/Formalia/compare_violin.png"), 
   width = 6, height = 4)
 ```
 
 ```{r Violinenplot, echo=F, out.height = '75%', out.width = '100%', fig.cap="Vergleich von klassischen Darstellungen und dem Violinenplot"}
 knitr::include_graphics(
-  here::here("figures/formalia/compare_violin.png"), 
+  here::here("figures/Formalia/compare_violin.png"), 
   auto_pdf = T)
 ```
 

@@ -1,5 +1,11 @@
 # Wiederholung: Deskriptive Statistik {#desk-stat}
 
+```{r include=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>", message = FALSE, warning = FALSE, 
+  fig.align = 'center') 
+```
+
 Bevor wir uns im folgenden Kapitel \@ref(stat-rep) mit dem Schluss von den Daten auf 
 die Parameter des zugrundeliegenden Wahrscheinlichkeitsmodells beschäftigen, 
 wollen wir uns im Folgenden noch mit Methoden der deskriptiven Statistik beschäftigen: 
@@ -39,12 +45,16 @@ library(latex2exp)
 library(MASS)
 ```
 
+```{r, echo=FALSE}
+source(here::here("R/helpers.R"))
+```
 
 Für die direkte Anwendung in R verwenden wir einen Datensatz zu ökonomischen 
 Journalen, mit dem wir bereits in Kapitel \@ref(formalia) gearbeitet haben:
 
 ```{r}
-journal_daten <- fread(here("data/tidy/journaldaten.csv"))
+journal_daten <- fread(
+  here::here("data/tidy/journaldaten.csv"))
 head(journal_daten)
 ```
 
@@ -225,96 +235,136 @@ Zusammenhänge zugrunde liegen. Figure \@ref(fig:korrelation) illustriert vier
 verschiedene nicht-lineare Zusammenhänge, welche allerdings je einen 
 Korrelationskoeffizienten von 0 ergeben würden.
 
-
-```{r korrelation, fig.align='center', echo=FALSE, warning=FALSE, message=FALSE, caption="Unterschiedliche Daten mit gleichen Korrelationswerten."}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 c0_1a <- -50:50
 c0_1b <- sapply(-50:50, function(x) x**2)
-c0_1 <- ggplot2::ggplot(data.frame(x=c0_1a, 
-                          y=c0_1b
-                          ),
-       aes(x=x, y=y)) +
+c0_1 <- ggplot2::ggplot(
+  data.frame(x=c0_1a, y=c0_1b),
+  aes(x=x, y=y)
+  ) +
   ggplot2::geom_point() +
-  ggplot2::geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggplot2::ggtitle(paste0("Korrelation: ", 
-                 round(cor(c0_1a, c0_1b, method = "pearson"), 2))) +
-  ggplot2::theme_bw()
+  ggplot2::geom_smooth(
+    method = "lm", se = FALSE, alpha=0.5) +
+  ggplot2::ggtitle(
+    paste0(
+      "Korrelation: ", round(
+        cor(c0_1a, c0_1b, method = "pearson"), 2))
+    ) +
+  ggplot2::theme_bw() +
+  theme(axis.text = element_blank())
 
 c0_2a <- -50:50
 c0_2b <- sapply(-50:50, function(x) -x**2)
-c0_2 <- ggplot2::ggplot(data.frame(x=c0_2a, 
-                          y=c0_2b
-                          ),
-       aes(x=x, y=y)) +
+c0_2 <- ggplot2::ggplot(
+  data.frame(x=c0_2a, y=c0_2b),
+  aes(x=x, y=y)
+  ) +
   ggplot2::geom_point() +
-  ggplot2::geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggplot2::ggtitle(paste0("Korrelation: ", 
-                 round(cor(c0_2a, c0_2b, method = "pearson"), 2))) +
-  ggplot2::theme_bw()
+  ggplot2::geom_smooth(
+    method = "lm", se = FALSE, alpha=0.5) +
+  ggplot2::ggtitle(
+    paste0(
+      "Korrelation: ", 
+      round(cor(c0_2a, c0_2b, method = "pearson"), 2))
+    ) +
+  ggplot2::theme_bw() +
+  theme(axis.text = element_blank())
 
 set.seed(123)
-data = mvrnorm(n=100, 
-               mu=c(0, 0), 
-               Sigma=matrix(c(2.5, 1, 1, 2.5), 
-                            nrow=2), 
-               empirical=TRUE)
+data = mvrnorm(
+  n=100, mu=c(0, 0), 
+  Sigma=matrix(c(2.5, 1, 1, 2.5), nrow=2), 
+  empirical=TRUE)
 c0_3a = data[, 1]  
 c0_3b = data[, 2] 
-c0_3 <- ggplot2::ggplot(data.frame(x=c0_3a, 
-                          y=c0_3b
-                          ),
-       aes(x=x, y=y)) +
+c0_3 <- ggplot2::ggplot(
+  data.frame(x=c0_3a, y=c0_3b),
+  aes(x=x, y=y)
+  ) +
   ggplot2::geom_point() +
-  ggplot2::geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggplot2::ggtitle(paste0("Korrelation: ", 
-                 round(cor(c0_3a, c0_3b, method = "pearson"), 2))) +
-  ggplot2::theme_bw()
+  ggplot2::geom_smooth(
+    method = "lm", se = FALSE, alpha=0.5) +
+  ggplot2::ggtitle(
+    paste0(
+      "Korrelation: ", 
+      round(cor(c0_3a, c0_3b, method = "pearson"), 2))
+    ) +
+  ggplot2::theme_bw() +
+  theme(axis.text = element_blank())
 
 set.seed(123)
-data = mvrnorm(n=100, 
-               mu=c(0, 0), 
-               Sigma=matrix(c(2.5, 0.0, 0.0, 2.0), 
-                            nrow=2), 
-               empirical=TRUE)
+data = mvrnorm(
+  n=100, mu=c(0, 0), 
+  Sigma=matrix(c(2.5, 0.0, 0.0, 2.0), 
+               nrow=2), 
+  empirical=TRUE)
 c0_4a = data[, 1]  
 c0_4b = data[, 2] 
-c0_4 <- ggplot2::ggplot(data.frame(x=c0_4a, 
-                          y=c0_4b
-                          ),
-       aes(x=x, y=y)) +
+c0_4 <- ggplot2::ggplot(
+  data.frame(x=c0_4a, y=c0_4b),
+  aes(x=x, y=y)
+  ) +
   ggplot2::geom_point() +
-  ggplot2::geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggplot2::ggtitle(paste0("Korrelation: ", 
-                 round(cor(c0_4a, c0_4b, method = "pearson"), 2))) +
+  ggplot2::geom_smooth(
+    method = "lm", se = FALSE, alpha=0.5) +
+  ggplot2::ggtitle(
+    paste0(
+      "Korrelation: ", round(
+        cor(c0_4a, c0_4b, method = "pearson"), 2))
+    ) +
   ggplot2::theme_bw()
-
 
 c0_5a <- seq(-1, 1, 0.01)
 c0_5b <- sapply(c0_5a, function(x) x+1.1)
 
-c0_5 <- ggplot2::ggplot(data.frame(x=c0_5a, 
-                          y=c0_5b
-                          ),
-       aes(x=x, y=y)) +
+c0_5 <- ggplot2::ggplot(
+  data.frame(x=c0_5a, y=c0_5b),
+  aes(x=x, y=y)
+  ) +
   ggplot2::geom_point() +
-  ggplot2::geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggplot2::ggtitle(paste0("Korrelation: ", 
-                 round(cor(c0_5a, c0_5b, method = "pearson"), 2))) +
-  ggplot2::theme_bw()
+  ggplot2::geom_smooth(
+    method = "lm", se = FALSE, alpha=0.5) +
+  ggplot2::ggtitle(
+    paste0(
+      "Korrelation: ", round(
+        cor(c0_5a, c0_5b, method = "pearson"), 2))
+    ) +
+  ggplot2::theme_bw() +
+  theme(axis.text = element_blank())
 
-
-data_sin <- data.frame( x=seq(-10, 11.75, 0.01)) %>%
+data_sin <- data.frame(
+  x=seq(-10, 11.75, 0.01)
+  ) %>%
   dplyr::mutate(y=sin(x))
-c0_6 <- ggplot2::ggplot(data_sin,
-       aes(x=x, y=y)) +
-  ggplot2::geom_point() +
-  ggplot2::geom_smooth(method = "lm", se = FALSE, alpha=0.5) +
-  ggplot2::ggtitle(paste0("Korrelation: ", 
-                 round(cor(data_sin$x, data_sin$y, method = "pearson"), 2))) +
-  ggplot2::theme_bw()
 
-ggpubr::ggarrange(c0_1, c0_2,
-                  c0_4,c0_6, 
-                  ncol = 2, nrow = 2)
+c0_6 <- ggplot2::ggplot(
+  data_sin, aes(x=x, y=y)
+  ) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(
+    method = "lm", se = FALSE, alpha=0.5) +
+  ggplot2::ggtitle(
+    paste0("Korrelation: ", round(
+      cor(data_sin$x, data_sin$y, method = "pearson"), 2))
+    ) +
+  ggplot2::theme_bw() +
+  theme(axis.text = element_blank())
+
+cor_plot <- ggpubr::ggarrange(
+  c0_1, c0_2, c0_4,c0_6, ncol = 2, nrow = 2,
+  labels = paste0(letters[1:4], ")"))
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/DeskriptiveStatistik/korrelation.png")
+save_pdf_png(
+  filename = plot_file, plot = cor_plot, 
+  width = 6, height = 4)
+```
+
+```{r korrelation, fig.align='center', echo=FALSE, warning=FALSE, message=FALSE, fig.cap="Unterschiedliche Daten mit gleichen Korrelationswerten."}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Daher ist es immer wichtig die Daten auch visuell zu inspizieren, etwa mit den 
@@ -330,9 +380,6 @@ Darstellungsformen, wie Streudiagrammen oder Histogrammen verwendet werden.
 Eine schöne Illustration ist
 [Anscombe's Quartett]() [@Anscombe].
 
-<!-- BIRTE: Einbetten, weil es hier bleibt. -->
-
-
 Dabei handelt es sich um vier Datensätze, die alle (fast exakt) gleiche
 deskriptive Statistiken aufweisen, jedoch offensichtlich sehr unterschiedlich
 sind. 
@@ -346,65 +393,86 @@ data("anscombe")
 head(anscombe)
 ```
 
-Die folgende Tabelle gibt die Werte der quantitativen Kennzahlen an:
+Tabelle \@ref(tab:ansc) gibt die Werte der quantitativen Kennzahlen an. Die grafische Inspektion in Abbildung \@ref(fig:tkplot) zeigt, wie unterschiedlich die Datensätze tatsächlich sind. 
 
-| Kennzahl | Wert  |
-|----------|------|
-| Mittelwert von $x$ | ```r round(mean(anscombe$x1), 2)``` |
-| Mittelwert von $y$ | ```r round(mean(anscombe$y1), 2)``` |
-| Varianz von $x$ | ```r round(var(anscombe$x1), 2)``` |
-| Varianz von $y$ | ```r round(var(anscombe$y1), 2)``` |
-| Korrelation zw. $x$ und $y$ | ```r round(cor(anscombe$x1, anscombe$y1), 2)``` |
-
-Die grafische Inspektion zeigt, wie unterschiedlich die Datensätze tatsächlich 
-sind:
+\begin{table}
+\centering
+\caption{Die quantitativen Kennzahlen von Anscombe's Quartett.}\label{tab:ansc}
+\begin{tabular}{c c }
+\toprule
+Kennzahl & Wert\\\midrule
+Mittelwert von $x$ & ```r round(mean(anscombe$x1), 2)``` \\
+Mittelwert von $y$ & ```r round(mean(anscombe$y1), 2)``` \\
+Varianz von $x$ & ```r round(var(anscombe$x1), 2)``` \\
+Varianz von $y$ & ```r round(var(anscombe$y1), 2)``` \\
+Korrelation zw. $x$ und $y$ & ```r round(cor(anscombe$x1, anscombe$y1), 2)``` \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 ```{r, echo=FALSE}
-ans_1 <- ggplot(anscombe, 
-                aes(x=x1, y=y1)) +
+ans_1 <- ggplot(
+  anscombe, aes(x=x1, y=y1)) +
   geom_point() +
   xlab("x") + 
   ylab("y") +
-  ggtitle("Der erste Datensatz aus Ascombe's Quartett") +
+  ggtitle("Der erste Datensatz") +
   theme_bw() + 
   theme(panel.border = element_blank(), 
         axis.line = element_line())
 
-ans_2 <- ggplot(anscombe, 
-                aes(x=x2, y=y2)) +
+ans_2 <- ggplot(
+  anscombe, aes(x=x2, y=y2)) +
   geom_point() +
   xlab("x") + 
   ylab("y") +
-  ggtitle("Der zweite Datensatz aus Ascombe's Quartett") +
+  ggtitle("Der zweite Datensatz") +
   theme_bw() + 
   theme(panel.border = element_blank(), 
         axis.line = element_line())
 
-ans_3 <- ggplot(anscombe, 
-                aes(x=x3, y=y3)) +
+ans_3 <- ggplot(
+  anscombe, aes(x=x3, y=y3)) +
   geom_point() +
   xlab("x") + 
   ylab("y") +
-  ggtitle("Der dritte Datensatz aus Ascombe's Quartett") +
+  ggtitle("Der dritte Datensatz") +
   theme_bw() + 
   theme(panel.border = element_blank(), 
         axis.line = element_line())
 
-ans_4 <- ggplot(anscombe, 
-                aes(x=x4, y=y4)) +
+ans_4 <- ggplot(
+  anscombe, aes(x=x4, y=y4)) +
   geom_point() +
   xlab("x") + 
   ylab("y") +
-  ggtitle("Der vierte Datensatz aus Ascombe's Quartett") +
+  ggtitle("Der vierte Datensatz") +
   theme_bw() + 
   theme(panel.border = element_blank(), 
         axis.line = element_line())
 
-ans_full <- ggarrange(ans_1, ans_2, ans_3, ans_4,
-                      ncol = 2, nrow = 2)
+ans_full <- ggpubr::ggarrange(
+  ans_1, ans_2, ans_3, ans_4, ncol = 2, nrow = 2)
+
+ans_full <- ggpubr::annotate_figure(
+  ans_full, top = ggpubr::text_grob("Ascombe's Quartett", size = 14))
+```
+
+```{r, eval=FALSE}
 ans_full
 ```
 
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/DeskriptiveStatistik/TK-plot.png")
+save_pdf_png(
+  filename = plot_file, plot = ans_full, 
+  width = 7, height = 4)
+```
+
+```{r tkplot, fig.align='center', echo=FALSE, warning=FALSE, message=FALSE, fig.cap="Unterschiedliche Daten mit gleichen Korrelationswerten."}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
 Interessanterweise ist bis heute nicht bekannt wie @Anscombe seinen Datensatz
 erstellt hat.
 Für neuere Sammlungen von Datensätzen, die das gleiche Phänomen illustrieren

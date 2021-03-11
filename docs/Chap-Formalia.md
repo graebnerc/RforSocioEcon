@@ -58,6 +58,9 @@ library(viridis)
 library(optimx)
 ```
 
+
+
+
 > **Hinweis**: Das Paket [matlib](http://friendly.github.io/matlib/) [@R-matlib]
 verwenden wir für einige Matrizenoperationen und zum Lösen linearer
 Gleichungssysteme.
@@ -177,7 +180,8 @@ head(beispiel_daten_at, 4)
 
 ```r
 beispiel_daten_at <- beispiel_daten_at %>%
-  dplyr::mutate(BIP_Wachstum = (BIP-dplyr::lag(BIP))/abs(dplyr::lag(BIP))*100)
+  dplyr::mutate(
+    BIP_Wachstum = (BIP-dplyr::lag(BIP))/abs(dplyr::lag(BIP))*100)
 beispiel_daten_at
 ```
 
@@ -214,7 +218,9 @@ head(beispiel_daten, 4)
 beispiel_daten <- beispiel_daten %>%
   dplyr::arrange(country, year) %>%
   dplyr::group_by(country) %>%
-  dplyr::mutate(BIP_Wachstum = (BIP-dplyr::lag(BIP))/abs(dplyr::lag(BIP))*100) %>%
+  dplyr::mutate(
+    BIP_Wachstum = (BIP-dplyr::lag(BIP))/abs(dplyr::lag(BIP))*100
+    ) %>%
   dplyr::ungroup()
 beispiel_daten
 ```
@@ -248,14 +254,17 @@ häufig hilfreich für die grafische Darstellung von Wachstumsraten.^[Zur
 Transformation der y-Achse verwenden wir in `ggplot2` die Funktion
 `scale_y_continuous()` und setzen das Argument `trans = "log"`.]
 
+
+
 \begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth,height=0.5\textheight]{Chap-Formalia_files/figure-latex/normalandlog-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.5\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Formalia/norm_log_comparison} 
 
 }
 
 \caption{Vergleich normaler und logarithmierter Darstellung}(\#fig:normalandlog)
 \end{figure}
+
 
 In Darstellung \@ref(fig:normalandlog) gilt: die Steigung im logarithmierten Plot gibt die
 *relative* Änderung der Variable an.
@@ -266,9 +275,12 @@ so wie im obigen Beispiel.
 Diese Art der Darstellung ist zum Beispiel bei der langfristigen Betrachtung von
 Wachstumsraten und dem Vergleich zwischen Ländern sehr hilfreich, da, wie in Abbildung  \@ref(fig:LogDarstellung) Unterschiede in der logarithmierten Darstellung besser erkennbar sind.
 
+
+
+
 \begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/LogDarstellung-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Formalia/log_BIP_growth} 
 
 }
 
@@ -278,12 +290,13 @@ Wachstumsraten und dem Vergleich zwischen Ländern sehr hilfreich, da, wie in Ab
 
 Abbildung \@ref(fig:DepressionFinanzkrise) zeigt wie wichtig eine solche Darstellung sein kann um
 Events, die zu sehr unterschiedlichen Zeitpunkten stattgefunden haben, 
-vergleichbar zu machen:
+vergleichbar zu machen.
+
 
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/DepressionFinanzkrise-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Formalia/log_shiller} 
 
 }
 
@@ -305,7 +318,6 @@ Form die Analyse von Wachstumsraten in linearen Regressionsmodellen deutlich
 vereinfacht (siehe Kapitel \@ref(advlin)).
 
 ## Grundlagen der Differentialrechnung {#formalia-diff}
-
 
 ### Einleitung: Differential- und Integralrechnung
 
@@ -547,9 +559,11 @@ $f(x^*)\geq f(x) \forall x \in x \in D$.
 In Abbildung \@ref(fig:Extrema) sehen wir beispielhaft die Extremwerte der Funktion 
 $f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2$.
 
+
+
 \begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Extrema-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Formalia/maximization_example} 
 
 }
 
@@ -605,14 +619,17 @@ funktioniert diese Strategie unter Umständen nicht mehr, da der Computer leicht
 auf lokalen Optima "steckenbleibt".
 Im Beispiel in Abbildung \@ref(fig:Steckengeblieben) besteht bei einer unglücklichen Wahl des Startwertes die Gefahr, auf dem lokalen Extremum bei $x=0.77$ hängen zu bleiben.
 
+
+
 \begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth,height=0.35\textheight]{Chap-Formalia_files/figure-latex/Steckengeblieben-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.35\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Formalia/maximization_multiple-maxima} 
 
 }
 
 \caption{Beispiel für die Gefahr auf einem lokalen Extremum hängen zu bleiben (rechter Graph).}(\#fig:Steckengeblieben)
 \end{figure}
+
 
 Um das zu vermeiden verwenden die Optimierungsalgorithmen einige Tricks.
 Für die R-Funktion `optim()` können Sie z.B. zwischen sieben solcher ausgefeilter
@@ -694,9 +711,11 @@ Wie man sieht verfügt sie über ein
 lokales Maximum bei $x_a=-0.77$, ein lokales Minimum bei $x_b=0$ und ein globales 
 Maximum bei $x_c=1.22$.
 
+
+
 \begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Funktion-1} 
+{\centering \includegraphics[width=0.5\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Formalia/maximization_example-function} 
 
 }
 
@@ -805,9 +824,11 @@ In einer Heatmap geben die beiden Achsen die Kombination der x und y-Werte an,
 der resultierende Funktionswert wird über die Farbe repräsentiert.
 
 
+
+
 \begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Heatmap-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Formalia/maximization_heatmap} 
 
 }
 
@@ -1049,8 +1070,8 @@ Y_n\\
 \times 
 \left( 
 \begin{array}{c}                                
-\beta_1 \\                                               
-\beta_2  \\
+\beta_0 \\                                               
+\beta_1  \\
 \vdots\\
 \beta_n\\
 \end{array}
@@ -1921,10 +1942,12 @@ Stichprobe <- ggplot2::ggplot(data = sample_data) +
     mapping = aes(x=r, stat(density)), 
     binwidth = 0.4) +
   ggplot2::scale_x_continuous(expand = c(0, 1)) + 
-  ggplot2::scale_y_continuous(expand = expansion(c(0, 0.05), c(0, 0))) +
+  ggplot2::scale_y_continuous(
+    expand = expansion(c(0, 0.05), c(0, 0)), name = "Dichte") +
   ggplot2::theme_bw() + 
   theme(panel.border = element_blank(), 
-        axis.line = element_line())
+        axis.line = element_line(),
+        axis.title.x = element_blank())
 
 Dichtefunktion <- ggplot2::ggplot(data = sample_data) +
   ggplot2::geom_histogram(
@@ -1934,23 +1957,28 @@ Dichtefunktion <- ggplot2::ggplot(data = sample_data) +
   ggplot2::stat_density(mapping = aes(x=r), 
                color="blue", 
                geom="line") +
-  ggplot2::scale_y_continuous(expand = expansion(c(0, 0.05), 
-                                           c(0, 0))) +
+  ggplot2::scale_y_continuous(
+    expand = expansion(c(0, 0.05), c(0, 0)), name = "Dichte") +
   ggplot2::theme_bw() + 
   theme(panel.border = element_blank(), 
-        axis.line = element_line())
+        axis.line = element_line(),
+        axis.title.x = element_blank())
 
-ggpubr::ggarrange(Stichprobe, Dichtefunktion, ncol = 2)
+dichte_plot <- ggpubr::ggarrange(Stichprobe, Dichtefunktion, ncol = 2)
 ```
+
+
+
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Stichprobenverteilung-1} 
+{\centering \includegraphics[width=0.8\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Formalia/linalg_stichprobe-dichte} 
 
 }
 
 \caption{Stichprobe (linker Graph) und Stichprobe mit empirischer Dichtefunktion (rechter Graph)}(\#fig:Stichprobenverteilung)
 \end{figure}
+
 
 Das bedeutet, dass wir unsere Daten mit Hilfe der Dichtefunktion 
 (*probability density function* - PDF) der Normalverteilung beschreiben können. 
@@ -1981,9 +2009,11 @@ Das bedeutet wir 'fitten' die Verteilung zu unseren Daten. Abbildung \@ref(fig:f
 
 Was damit gemeint ist verdeutlicht die folgende Darstellung: 
 
+
+
 \begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/fitting-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Formalia/linalg_fit-normal} 
 
 }
 
@@ -2374,9 +2404,11 @@ Dies wird in Abbildung \@ref(fig:Lorenz-Kurven) deutlich, in der zwei mögliche
 Lorenz-Kurven dem hypothetischen Fall der perfekten Gleichverteilung
 gegenübergestellt werden:
 
+
+
 \begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Lorenz-Kurven-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Formalia/linalg_lorenz-plot} 
 
 }
 
@@ -2485,9 +2517,11 @@ besitzen aber mehrere andere lokale Optima, also kleinere "Gipfel", sodass wir
 in der Regel von einer multimodalen Verteilung sprechen sobald es mehrere lokale 
 Maxima gibt. Beispiele einer solch multimodalen Verteilung sind in Abbildung \@ref(fig:multimodal) dargestellt.
 
+
+
 \begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/multimodal-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Formalia/linalg_multimodal-plot} 
 
 }
 
@@ -2518,14 +2552,17 @@ und **rechts-schief** (oder *links-steil*) wenn $\gamma_x>0$.
 Woher diese Begriffe kommen können wir uns am besten mit Hilfe von 
 Abbildung \@ref(fig:Symmetrie) verdeutlichen.
 
+
+
 \begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Symmetrie-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Formalia/linalg_symmetry-plot} 
 
 }
 
 \caption{Beispiele für Verteilungen mit unterschiedlichen Schiefen}(\#fig:Symmetrie)
 \end{figure}
+
 
 In R können wir die Schiefe einer Verteilung mit der Funktion `skewness()`
 aus dem Paket [moments](https://cran.r-project.org/package=moments) [@R-moments] 
@@ -2543,14 +2580,17 @@ moments::skewness(journal_daten[["Preis"]])
 Wir würden hier also von einer *rechts-schiefen* Verteilung der Preise 
 sprechen. Das sehen wir hier auch grafisch in Abbildung \@ref(fig:rechtsschief).
 
+
+
 \begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/rechtsschief-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Formalia/linalg_rechtsschief} 
 
 }
 
 \caption{Rechts-schiefe Verteilung der Journalpreise}(\#fig:rechtsschief)
 \end{figure}
+
 
 Die **Steile** (auch: Kurtosis) $\omega_x$ einer Verteilung gibt ihre 
 'Spitzgipfligkeit' an. Je größer $\omega_x$ desto 'schmaler' wird die 
@@ -2587,9 +2627,11 @@ steilgipfligen Verteilung zu tun, d.h. die Verteilung der Journalpreise ist 'sch
 
 Zur Verdeutlichung des Konzepts bietet Abbildung \@ref(fig:Kurtosis) ein grafisches Beispiel.
 
+
+
 \begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/Kurtosis-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Formalia/linalg_kurtosis} 
 
 }
 
@@ -2731,14 +2773,8 @@ die Grenze $\frac{4}{n-k-1}$ etabliert, aber in der Praxis ergibt es immer Sinn
 einfach die Werte mit der größten Distanz genauer anzuschauen. Diese lassen sich 
 aus Abbildung \@ref(fig:CookScheDistanz).
 
-\begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/CookScheDistanz-1} 
 
-}
-
-\caption{Betrachtung der Ausreißer nach der Cook'schen Distanz}(\#fig:CookScheDistanz)
-\end{figure}
 
 ```
 #>  [1] "Managerial and Decision Econ"   "Applied Economics"             
@@ -2751,6 +2787,15 @@ aus Abbildung \@ref(fig:CookScheDistanz).
 ```
 
 
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Formalia/linalg_cook-distance} 
+
+}
+
+\caption{Betrachtung der Ausreißer nach der Cook'schen Distanz}(\#fig:CookScheDistanz)
+\end{figure}
+
 ### Grafische Komplemente zu klassischen Kennzahlen {#vert-grafik}
 
 Ein hilfreiches Mittel zur Beschreibung von Verteilungen ist der 
@@ -2762,22 +2807,32 @@ zentraler deskriptiver Kennzahlen, wie in Abbildung \@ref(fig:BoxplotBsp) zu seh
 
 
 
+
 ```r
-ggplot2::ggplot(data = wb_data, 
-       mapping = aes(x=region, y=Lebenserwartung)
-       ) +
+boxplot_plot <- ggplot2::ggplot(
+  data = wb_data, 
+  mapping = aes(x=region, y=Lebenserwartung)
+  ) +
   ggplot2::geom_boxplot() +
   ggplot2::theme_bw() +
-  ggplot2::labs(title = "Lebenserwartungen in den Weltregionen", 
-       caption = "Quelle: Weltbank") +
+  ggplot2::labs(
+    title = "Lebenserwartungen in den Weltregionen", 
+    caption = "Quelle: Weltbank") +
   ggplot2::theme(
     axis.title.x = element_blank(), 
     axis.text.x = element_text(angle = 10, vjust = 0.65))
 ```
 
+
+
+
+```r
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+
 \begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{Chap-Formalia_files/figure-latex/BoxplotBsp-1} 
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Formalia/linalg_boxplot-plot} 
 
 }
 
@@ -2860,7 +2915,7 @@ compare_plot <- ggpubr::ggarrange(
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/formalia/compare_violin} 
+{\centering \includegraphics[width=1\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Formalia/compare_violin} 
 
 }
 
