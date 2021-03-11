@@ -1,5 +1,7 @@
 # Wiederholung: Deskriptive Statistik {#desk-stat}
 
+
+
 Bevor wir uns im folgenden Kapitel \@ref(stat-rep) mit dem Schluss von den Daten auf 
 die Parameter des zugrundeliegenden Wahrscheinlichkeitsmodells beschäftigen, 
 wollen wir uns im Folgenden noch mit Methoden der deskriptiven Statistik beschäftigen: 
@@ -41,37 +43,39 @@ library(MASS)
 ```
 
 
+
 Für die direkte Anwendung in R verwenden wir einen Datensatz zu ökonomischen 
 Journalen, mit dem wir bereits in Kapitel \@ref(formalia) gearbeitet haben:
 
 
 ```r
-journal_daten <- fread(here("data/tidy/journaldaten.csv"))
+journal_daten <- fread(
+  here::here("data/tidy/journaldaten.csv"))
 head(journal_daten)
 ```
 
 ```
-##    Kuerzel                                               Titel
-## 1:    APEL                   Asian-Pacific Economic Literature
-## 2:  SAJoEH           South African Journal of Economic History
-## 3:      CE                             Computational Economics
-## 4:  MEPiTE MOCT-MOST Economic Policy in Transitional Economics
-## 5:    JoSE                          Journal of Socio-Economics
-## 6:   LabEc                                    Labour Economics
-##                    Verlag Society Preis Seitenanzahl Buchstaben_pS Zitationen
-## 1:              Blackwell      no   123          440          3822         21
-## 2: So Afr ec history assn      no    20          309          1782         22
-## 3:                 Kluwer      no   443          567          2924         22
-## 4:                 Kluwer      no   276          520          3234         22
-## 5:               Elsevier      no   295          791          3024         24
-## 6:               Elsevier      no   344          609          2967         24
-##    Gruendung Abonnenten           Bereich
-## 1:      1986         14           General
-## 2:      1986         59  Economic History
-## 3:      1987         17       Specialized
-## 4:      1991          2      Area Studies
-## 5:      1972         96 Interdisciplinary
-## 6:      1994         15             Labor
+#>    Kuerzel                                               Titel
+#> 1:    APEL                   Asian-Pacific Economic Literature
+#> 2:  SAJoEH           South African Journal of Economic History
+#> 3:      CE                             Computational Economics
+#> 4:  MEPiTE MOCT-MOST Economic Policy in Transitional Economics
+#> 5:    JoSE                          Journal of Socio-Economics
+#> 6:   LabEc                                    Labour Economics
+#>                    Verlag Society Preis Seitenanzahl Buchstaben_pS Zitationen
+#> 1:              Blackwell      no   123          440          3822         21
+#> 2: So Afr ec history assn      no    20          309          1782         22
+#> 3:                 Kluwer      no   443          567          2924         22
+#> 4:                 Kluwer      no   276          520          3234         22
+#> 5:               Elsevier      no   295          791          3024         24
+#> 6:               Elsevier      no   344          609          2967         24
+#>    Gruendung Abonnenten           Bereich
+#> 1:      1986         14           General
+#> 2:      1986         59  Economic History
+#> 3:      1987         17       Specialized
+#> 4:      1991          2      Area Studies
+#> 5:      1972         96 Interdisciplinary
+#> 6:      1994         15             Labor
 ```
 
 Dieser Datensatz enthält Informationen über Preise, Seiten, Zitationen und
@@ -98,7 +102,7 @@ avg_preis
 ```
 
 ```
-## [1] 417.7222
+#> [1] 417.7222
 ```
 
 Der durchschnittliche Preis der Journale ist also 417.7222222.
@@ -123,8 +127,8 @@ cat(paste0(
 ```
 
 ```
-## Varianz: 148868.335816263
-## Standardabweichung: 385.834596448094
+#> Varianz: 148868.335816263
+#> Standardabweichung: 385.834596448094
 ```
 
 Das $\alpha$-**Quantil** eines Datensatzes ist der Wert, bei dem $\alpha\cdot 100\%$
@@ -139,8 +143,8 @@ quantile(journal_daten[["Preis"]], 0.5)
 ```
 
 ```
-## 50% 
-## 282
+#> 50% 
+#> 282
 ```
 
 ```r
@@ -148,8 +152,8 @@ quantile(journal_daten[["Preis"]], c(0.25, 0.5, 0.75))
 ```
 
 ```
-##    25%    50%    75% 
-## 134.50 282.00 540.75
+#>    25%    50%    75% 
+#> 134.50 282.00 540.75
 ```
 
 Diese Werte können folgendermaßen interpretiert werden:
@@ -175,7 +179,7 @@ quantile(test_daten, 0.75)
 ```
 
 ```
-## Error in quantile.default(test_daten, 0.75): missing values and NaN's not allowed if 'na.rm' is FALSE
+#> Error in quantile.default(test_daten, 0.75): missing values and NaN's not allowed if 'na.rm' is FALSE
 ```
 
 ```r
@@ -183,8 +187,8 @@ quantile(test_daten, 0.75, na.rm = T)
 ```
 
 ```
-##  75% 
-## 7.75
+#>  75% 
+#> 7.75
 ```
 
 Ein häufig verwendetes Steuungsmaß, das im Gegensatz zu Standardabweichung und
@@ -199,7 +203,7 @@ quart_differenz
 ```
 
 ```
-## [1] 406.25
+#> [1] 406.25
 ```
 
 Das optionale Argument `names=FALSE` unterdrückt die Benennung der Ergebnisse.
@@ -263,7 +267,7 @@ cor(journal_daten[["Preis"]], journal_daten[["Seitenanzahl"]],
 ```
 
 ```
-## [1] 0.4937243
+#> [1] 0.4937243
 ```
 
 Wir sehen also, dass es tatsächlich einen mittleren positiven linearen 
@@ -297,7 +301,16 @@ Korrelationskoeffizienten von 0 ergeben würden.
 
 
 
-\begin{center}\includegraphics{Chap-DeskriptiveStatistik_files/figure-latex/korrelation-1} \end{center}
+
+
+\begin{figure}
+
+{\centering \includegraphics{/Volumes/develop/packages/RforSocioEcon/figures/DeskriptiveStatistik/korrelation} 
+
+}
+
+\caption{Unterschiedliche Daten mit gleichen Korrelationswerten.}(\#fig:korrelation)
+\end{figure}
 
 Daher ist es immer wichtig die Daten auch visuell zu inspizieren, etwa mit den 
 Methoden die wir in Kapitel \@ref(vis) kennengelernt haben.
@@ -311,9 +324,6 @@ Darstellungsformen, wie Streudiagrammen oder Histogrammen verwendet werden.
 
 Eine schöne Illustration ist
 [Anscombe's Quartett]() [@Anscombe].
-
-<!-- BIRTE: Einbetten, weil es hier bleibt. -->
-
 
 Dabei handelt es sich um vier Datensätze, die alle (fast exakt) gleiche
 deskriptive Statistiken aufweisen, jedoch offensichtlich sehr unterschiedlich
@@ -330,30 +340,49 @@ head(anscombe)
 ```
 
 ```
-##   x1 x2 x3 x4   y1   y2    y3   y4
-## 1 10 10 10  8 8.04 9.14  7.46 6.58
-## 2  8  8  8  8 6.95 8.14  6.77 5.76
-## 3 13 13 13  8 7.58 8.74 12.74 7.71
-## 4  9  9  9  8 8.81 8.77  7.11 8.84
-## 5 11 11 11  8 8.33 9.26  7.81 8.47
-## 6 14 14 14  8 9.96 8.10  8.84 7.04
+#>   x1 x2 x3 x4   y1   y2    y3   y4
+#> 1 10 10 10  8 8.04 9.14  7.46 6.58
+#> 2  8  8  8  8 6.95 8.14  6.77 5.76
+#> 3 13 13 13  8 7.58 8.74 12.74 7.71
+#> 4  9  9  9  8 8.81 8.77  7.11 8.84
+#> 5 11 11 11  8 8.33 9.26  7.81 8.47
+#> 6 14 14 14  8 9.96 8.10  8.84 7.04
 ```
 
-Die folgende Tabelle gibt die Werte der quantitativen Kennzahlen an:
+Tabelle \@ref(tab:ansc) gibt die Werte der quantitativen Kennzahlen an. Die grafische Inspektion in Abbildung \@ref(fig:tkplot) zeigt, wie unterschiedlich die Datensätze tatsächlich sind. 
 
-| Kennzahl | Wert  |
-|----------|------|
-| Mittelwert von $x$ | ``9`` |
-| Mittelwert von $y$ | ``7.5`` |
-| Varianz von $x$ | ``11`` |
-| Varianz von $y$ | ``4.13`` |
-| Korrelation zw. $x$ und $y$ | ``0.82`` |
+\begin{table}
+\centering
+\caption{Die quantitativen Kennzahlen von Anscombe's Quartett.}\label{tab:ansc}
+\begin{tabular}{c c }
+\toprule
+Kennzahl & Wert\\\midrule
+Mittelwert von $x$ & ``9`` \\
+Mittelwert von $y$ & ``7.5`` \\
+Varianz von $x$ & ``11`` \\
+Varianz von $y$ & ``4.13`` \\
+Korrelation zw. $x$ und $y$ & ``0.82`` \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-Die grafische Inspektion zeigt, wie unterschiedlich die Datensätze tatsächlich 
-sind:
 
-![](Chap-DeskriptiveStatistik_files/figure-latex/unnamed-chunk-12-1.pdf)<!-- --> 
 
+
+```r
+ans_full
+```
+
+
+
+\begin{figure}
+
+{\centering \includegraphics{/Volumes/develop/packages/RforSocioEcon/figures/DeskriptiveStatistik/TK-plot} 
+
+}
+
+\caption{Unterschiedliche Daten mit gleichen Korrelationswerten.}(\#fig:tkplot)
+\end{figure}
 Interessanterweise ist bis heute nicht bekannt wie @Anscombe seinen Datensatz
 erstellt hat.
 Für neuere Sammlungen von Datensätzen, die das gleiche Phänomen illustrieren

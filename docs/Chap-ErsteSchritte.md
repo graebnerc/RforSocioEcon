@@ -630,7 +630,7 @@ von Vektoren.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{figures/vector-classification} 
+{\centering \includegraphics[width=0.8\linewidth]{/Volumes/develop/packages/RforSocioEcon/figures/ErsteSchritte/vector-classification} 
 
 }
 
@@ -2268,7 +2268,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7fadbcee00b0>
+#> <bytecode: 0x7fcf72ed5050>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2299,7 +2299,7 @@ dplyr::lead
 #>     vec_c(vec_slice(inputs$x, -seq_len(n)), vec_rep(inputs$default, 
 #>         n))
 #> }
-#> <bytecode: 0x7fadbcbcb1a0>
+#> <bytecode: 0x7fcf62550408>
 #> <environment: namespace:dplyr>
 ```
 
