@@ -2305,21 +2305,333 @@ Bei der Wahl der funktionalen Form spielen vor allem theoretische Überlegungen
 eine wichtige Rolle.
 Auch eine Inspektion der paarweisen Beziehungen zwischen abhängigen und 
 unabhängigen Variablen ist hilfreich.
+Diese sollte immer am Anfang einer jeden empirischen Untersuchung stehen,
+um einen ersten Überblick über die Art der zu untersuchenden Zusammenhänge
+zu bekommen.
 
-Eine wirksame Methode zur Überprüfung unserer funktionalen Form ist dagegen 
+Wenn Sie ein Schätzung dann nach bestem Wissen durchgeführt haben, sollten 
+Sie natürlich trotzdem abschließend überprüfen ob Sie die richtige 
+funktionale Form ausgewählt haben.
+Eine wirksame Methode zur Überprüfung unserer funktionalen Form ist dabei 
 die Inspektion des Tukey-Anscombe Plots.
 Haben wir die richtige Form gewählt werden wir hier keine Struktur erkennen 
 können. 
 Zeigen die Residuen jedoch eine klare Struktur auf ist das ein Signal, dass wir
 eine andere funktionale Form ausprobieren sollten.
-Natürlich kann die Struktur der Residuen auch andere Gründe haben, z.B.
-Heteroskedastie. 
-Für diese Gründe gibt es jedoch zusätzlich noch statistische Tests sodass wir
-durch sukszessives Testen und Ausprobieren eine angemessene funktionale Form
-identifizieren können.
+Das möchten wir zunächst anhand von folgendem Beispiel kurz illustrieren.
 
-Es gibt auch einige Tests, die manchmal verwendet werden um die Wahl der
-funktionalen Form zu überprüfen. 
+```{r, echo=FALSE, eval=FALSE}
+set.seed(123)
+n_obs <- 1000
+soz_koh <- seq(-0.5, 0.5, length.out = n_obs)
+p_selbstmord <- soz_koh**2 + rnorm(n_obs, mean = 0, sd = 0.005)
+
+selbstmord_daten <- tibble(
+  Zusammenhalt=soz_koh, 
+  Selbstmordwahrscheinlichkeit=p_selbstmord
+) %>%
+  dplyr::mutate(
+    Gesellschaft = ifelse(Zusammenhalt<=0, "Modern", "Archaisch")
+  )
+
+data.table::fwrite(
+  x = selbstmord_daten, file = here::here("data/tidy/selbstmord_daten.csv"))
+```
+
+```{r, echo=FALSE}
+selbstmord_daten <- data.table::fread(
+  here::here("data/tidy/selbstmord_daten.csv"))
+```
+
+> **Anwendungsbeispiel: Durkheim und der Selbstmord**
+in seinem Werk *Der Selbstmord* unterscheidet Emile Durkheim zwischen einem
+'anomischer Selbstmord', der auf eine moralische Verwirrung, bzw. fehlende 
+soziale Einbettung in modernen Gesellschaften zurückzuführen ist, und einem
+'fatalistischer Selbstmord', der seine Ursache in der Erstickung individueller 
+Bedürfnisse in archaischen Gesellschaften hat. 
+Man könnte daraus die Hypothese ableiten, dass es entweder (1) einen U-förmigen 
+Zusammenhang zwischen sozialer Kohäsion und der Wahrscheinlichkeit für einen
+Selbstmord gibt, oder aber, dass (2) es in mordernen Gesellschaften einen 
+negativen, in archaischen Gesellschaften einen positiven Zusammenhang zwischen
+sozialer Kohäsion und der Wahrscheinlichkeit für einen Selbstmord gibt.
+Nehmen wir einmal an, das wäre tatsächlich so und wir hätten Daten zur sozialen
+Kohäsion und Selbstmordwahrscheinlichkeit gesammelt. 
+Eine erste visuelle Inspektion der (hier simulierten) Daten in Abbildung 
+\@ref(fig:durkheimraw) zeigt sofort, dass kein linearer Zusammenhang besteht 
+und auch ein Logarithmieren der Daten nicht weiterhilft.
+Bereits an dieser Stelle sollten wir uns von einer einfachen linearen 
+Spezifikation verabschieden. 
+Gehen wir aber zu Illustrationszwecken davon aus, wir hätten dennoch das 
+folgende lineares Modell geschätzt:
+
+\begin{align}
+P_{\text{Suizid}} = \beta_0 + \beta_1 KOH + \epsilon
+\end{align}
+
+```{r, echo=FALSE}
+selbstmord_daten_plot <- ggplot(
+  data = selbstmord_daten, 
+  mapping = aes(x=Zusammenhalt, y=Selbstmordwahrscheinlichkeit)
+) +
+  geom_point(alpha=0.25, size=0.2) +
+  labs(title = "Selbstmordraten a la Durkheim") +
+  theme_icae()
+
+selbstmord_daten_plot_log <- selbstmord_daten %>%
+  mutate(
+    Zusammenhalt=log(Zusammenhalt + 0.51),
+    Selbstmordwahrscheinlichkeit_log = log(Selbstmordwahrscheinlichkeit+0.05)
+    ) %>%
+  ggplot(
+  data = ., 
+  mapping = aes(x=Zusammenhalt, y=Selbstmordwahrscheinlichkeit)
+) +
+  geom_point(alpha=0.25, size=0.2) +
+  labs(title = "Selbstmordraten a la Durkheim (log)", 
+       x="Zusammenhalt + 0.51 (log)", 
+       y="Selbstmordwahrscheinlichkeit + 0.05 (log)") +
+  theme_icae()
+
+durkheimraw_full <- ggpubr::ggarrange(
+  selbstmord_daten_plot, 
+  selbstmord_daten_plot_log, ncol = 2)
+
+plot_file <- here::here(
+  "figures/LineareReg-2/durkheim_raw.png")
+save_pdf_png(
+  filename = plot_file, plot = durkheimraw_full, 
+  width = 6, height = 3)
+```
+
+```{r durkheimraw, echo=FALSE, fig.cap="Simulierte Daten für Durkheim-Beispiel zum Zusammenhang zwischen sozialem Zusammenhalt und der Wahrscheinlichkeit zum Selbstmord."}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+
+> In diesem Fall würde uns eine 
+Inspektion der Schätzgerade in Abbildung \@ref(fig:durkheimreg)a) oder aber des
+TK-Plots in Abbildung \@ref(fig:durkheimreg)b) schnell vor Augen führen, dass die
+gewählte funktionale Form unpassend ist.
+
+```{r, echo=FALSE}
+komplettes_modell <- lm(
+  Selbstmordwahrscheinlichkeit~Zusammenhalt, data = selbstmord_daten)
+
+komplettes_modell_predictions <- tibble(
+  Selbstmord_predict = predict(
+    komplettes_modell, selbstmord_daten), 
+  Zusammenhalt=selbstmord_daten$Zusammenhalt)
+
+modernes_modell <- lm(
+  Selbstmordwahrscheinlichkeit~Zusammenhalt, 
+  data = dplyr::filter(selbstmord_daten, Gesellschaft=="Modern")
+  )
+
+modernes_modell_predictions <- tibble(
+  Selbstmord_predict = predict(
+    modernes_modell, selbstmord_daten), 
+  Zusammenhalt=selbstmord_daten$Zusammenhalt)
+
+archaisches_modell <- lm(
+  Selbstmordwahrscheinlichkeit~Zusammenhalt, 
+  data = dplyr::filter(selbstmord_daten, Gesellschaft=="Archaisch")
+  )
+
+archaisches_modell_predictions <- tibble(
+  Selbstmord_predict = predict(
+    archaisches_modell, selbstmord_daten), 
+  Zusammenhalt=selbstmord_daten$Zusammenhalt)
+
+quadratisches_modell <- lm(
+  Selbstmordwahrscheinlichkeit~poly(Zusammenhalt, 2), 
+  data = selbstmord_daten
+)
+
+quadratisches_modell_predictions <- tibble(
+  Selbstmord_predict = predict(
+    quadratisches_modell, selbstmord_daten), 
+  Zusammenhalt=selbstmord_daten$Zusammenhalt)
+
+bias_komplettes_modell <- ggplot(
+  data = selbstmord_daten, 
+  mapping = aes(x=Zusammenhalt, y=Selbstmordwahrscheinlichkeit)
+) +
+  geom_point(alpha=0.25, size=0.2) +
+  geom_line(
+    data = komplettes_modell_predictions, 
+    aes(x=Zusammenhalt, y=Selbstmord_predict),
+    color = "#b8103b"
+    ) +
+  labs(title = "Lineares Modell für komplette Daten") +
+  theme_icae()
+
+bias_komplettes_modell_TA <- ggplot(
+  data = tibble(
+    Fitted = komplettes_modell$fitted.values, 
+    Residuen = komplettes_modell$residuals),
+  aes(x=Fitted, y=Residuen)
+) +
+  labs(title = "TA-Plot für komplette Regression") +
+  geom_point(alpha=0.5, size=0.2) + 
+  theme_icae()
+
+durkheimraw_reg <- ggarrange(
+  bias_komplettes_modell, bias_komplettes_modell_TA, ncol = 2
+)
+
+plot_file <- here::here(
+  "figures/LineareReg-2/durkheim_reg.png")
+save_pdf_png(
+  filename = plot_file, plot = durkheimraw_reg, 
+  width = 6, height = 3)
+```
+
+```{r durkheimreg, echo=FALSE, fig.cap="Die Schätzung eines linearen Modells auf die simulierten Durkheim-Daten ist eindeutig fehlspezifiziert."}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+
+> Wenn wir der zweiten Interpretation oben folgen könnten wir in einem nächsten
+Schritt unsere Stichprobe aufteilen und überprüfen ob es in mordernen 
+Gesellschaften einen negativen, in archaischen Gesellschaften einen positiven 
+Zusammenhang zwischen sozialer Kohäsion und der Wahrscheinlichkeit für einen 
+Selbstmord gibt. Wie in Abbildung \@ref(fig:durkheimsep) zu sehen, weisen die
+jeweiligen TA-Plots weiterhin eine klare Strukur auf, auch wenn der Fit des
+Modells insgesamt besser geworden ist. 
+
+```{r, echo=FALSE}
+cols <- c(
+  "Archaische G." = "#61a27c",
+  "Moderne G." = "#b8103b"
+)
+bias_getrennes_modell <- ggplot(
+  data = selbstmord_daten, 
+  mapping = aes(x=Zusammenhalt, y=Selbstmordwahrscheinlichkeit)
+) +
+  geom_point(alpha=0.25, size=0.2, show.legend = F) +
+  geom_line(
+    data = modernes_modell_predictions, 
+    aes(x=Zusammenhalt, y=Selbstmord_predict, color = "Moderne G."),
+    key_glyph = draw_key_rect
+    
+  ) +
+  geom_line(
+    data = archaisches_modell_predictions, 
+    aes(x=Zusammenhalt, y=Selbstmord_predict, color = "Archaische G."),
+    key_glyph = draw_key_rect
+  ) +
+  scale_y_continuous(
+    limits = c(-0.05, 0.3), expand = expansion()
+    ) +
+  scale_color_manual(values = cols) + 
+  labs(title = "Lineare Modelle für getrennte Daten") +
+  theme_icae()
+
+bias_getrennt_A_TA <- ggplot(
+  data = tibble(
+    Fitted = archaisches_modell$fitted.values, 
+    Residuen = archaisches_modell$residuals),
+  aes(x=Fitted, y=Residuen)
+) +
+  labs(title = "TA-Plot für archaische Regression") +
+  geom_point(alpha=0.5, size=0.2) + 
+  theme_icae()
+
+bias_getrennt_M_TA <- ggplot(
+  data = tibble(
+    Fitted = modernes_modell$fitted.values, 
+    Residuen = archaisches_modell$residuals),
+  aes(x=Fitted, y=Residuen)
+) +
+  labs(title = "TA-Plot für moderne Regression") +
+  geom_point(alpha=0.5, size=0.2) + 
+  theme_icae()
+
+getrennt_full <- ggarrange(
+  bias_getrennes_modell, 
+  ggarrange(
+    bias_getrennt_A_TA, 
+    bias_getrennt_M_TA, 
+    nrow = 2), 
+  ncol = 2)
+
+plot_file <- here::here(
+  "figures/LineareReg-2/durkheim_sep.png")
+save_pdf_png(
+  filename = plot_file, plot = getrennt_full, 
+  width = 6, height = 3.5)
+```
+
+```{r durkheimsep, echo=FALSE, fig.cap="Auch eine Aufsplittung der Samples führt nicht dazu, dass der nicht-lineare Zusammenhang richtig geschätzt wird."}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+
+> Im hier vorliegenden stilisierten Beispiel liegt der Grundfehler jedoch darin,
+dass wir bislang immer nur einen *linearen* Zusammenhang zwischen Kohäsion und
+Selbstmordwahrscheinlichkeit untersucht haben. Die Daten sind aber eindeutig
+nicht-linear. Wir können dieses Problem addressieren, indem wir einen
+quadratischen Term in unsere Schätzgleichung aufnehmen und folgendes Modell
+schätzen (das weiterhin linear in den Parametern $\boldsymbol{\beta}$ ist):
+
+\begin{align}
+P_{\text{Suizid}} = \beta_0 + \beta_1 KOH + \beta_2 KOH^2 + \epsilon
+\end{align}
+
+> Wie wir in Abbildung \@ref(fig:durkheimquad) sehen, ist das Modell nun 
+deutlich besser spezifiziert und der TA Plot gibt keinen Hinweis auf einen 
+Verstoß gegen die OLS-Annahmen. Der Preis den wir hier zahlen liegt in der 
+nicht gerade intuitiven Interpretation des quadratischen Terms $\beta_2$ in der 
+Schätzgleichung oben. Es ist hier jedoch der einzige Weg, das Modell ohne
+Verstoß gegen A1 zu schätzen.
+
+```{r, echo=FALSE}
+plot_quadratisches_modell <- ggplot(
+  data = selbstmord_daten, 
+  mapping = aes(x=Zusammenhalt, y=Selbstmordwahrscheinlichkeit)
+) +
+  geom_point(alpha=0.25, size=0.2) +
+  geom_line(
+    data = quadratisches_modell_predictions, 
+    aes(x=Zusammenhalt, y=Selbstmord_predict),
+    color = "#b8103b"
+  ) +
+  labs(title = "Quadratisches Modell für komplette Daten") +
+  theme_icae()
+
+quadratisches_modell_TA <- ggplot(
+  data = tibble(
+    Fitted = quadratisches_modell$fitted.values, 
+    Residuen = quadratisches_modell$residuals),
+  aes(x=Fitted, y=Residuen)
+) +
+  labs(title = "TA-Plot für quadratische Regression") +
+  geom_point(alpha=0.5, size=0.2) + 
+  theme_icae()
+
+plot_quadratisches_modell_full <- ggarrange(
+  plot_quadratisches_modell, quadratisches_modell_TA, ncol = 2
+)
+plot_file <- here::here(
+  "figures/LineareReg-2/durkheim_quad.png")
+save_pdf_png(
+  filename = plot_file, plot = plot_quadratisches_modell_full, 
+  width = 6, height = 3.5)
+```
+
+```{r durkheimquad, echo=FALSE, fig.cap="Durch das Hinzufügen eines quadratischen Terms in die Schätzgleichung kann das Modell korrekt spezifiziert und geschätzt werden."}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+
+Natürlich kann die Struktur der Residuen aber auch andere Gründe haben, z.B.
+Heteroskedastie oder Autokorrelation. Neben der Tatsache, dass die Struktur sich
+grafisch aber meist anders zeigt, haben Sie in den vorangegangenen Abschnitten 
+ja auch statistische Tests für diese Probleme kennen gelernt, sodass Sie durch 
+sukszessives Testen und Ausprobieren die möglichen Gründe für eine 
+Misspezifikation und in der Folge eine angemessene funktionale Form 
+identifizieren können.
+Tatsächlich ist es aber so, dass während die quantitativen Tests für 
+Heteroskedastie und Autokorrelation recht weit verbreitet sind, ist für die
+Untersuchung der Linearitätsannahme der TK-Plot häufig absolut unverzichtbar.
+Aber natürlich gibt es auch einige Tests, die manchmal verwendet werden um die
+Wahl der funktionalen Form zu überprüfen. 
 Der bekannteste Test ist dabei der so genannte *RESET Test*. 
 *RESET* steht dabei für *REgression Specification Error Test*. 
 Dieser Test wird mit der Funktion `resettest()` durchgeführt und testet die
@@ -2337,7 +2649,8 @@ journal_daten <- data.table::fread(
 ```
 
 Wir betrachten den Zusammenhang zwischen der Abonnentenanzahl und dem Preis pro 
-Zitation. Wie wir in Abbildung \@ref(fig:Journalnonlinear) sehen ist dieser Zusammenhang alles andere linear:
+Zitation. Wie wir in Abbildung \@ref(fig:Journalnonlinear) sehen ist dieser 
+Zusammenhang alles andere linear:
 
 ```{r, echo=FALSE}
 journal_nonlin <- ggplot2::ggplot(data = journal_daten, 
@@ -2419,8 +2732,10 @@ Hier kann $H_0$ nicht abgelehnt werden, dementsprechend können wir nicht davon
 ausgehen, dass unser Modell misspezifiziert ist.
 
 Beachten Sie aber, dass der RESET Test keine abschließende Sicherheit bieten kann.
-Sie werden immer wieder Situationen erleben in denen der RESET Test ein Modell
-ablehnt, das sie aufgrund empirischer und theoretischer Überlegungen gut 
+Hypothesentests bezüglich der funktionalen From sind nicht so zuverlässig wie
+z.B. die Tests auf Autokorrelation oder Heteroskedastie.
+Sie werden also immer wieder Situationen erleben in denen der RESET Test ein 
+Modell ablehnt, das sie aufgrund empirischer und theoretischer Überlegungen gut 
 verteidigen könnten und umgekehrt.
 Daher sollte er immer mit Theorie und Beobachtung kombiniert werden.
 
