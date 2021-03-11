@@ -94,7 +94,9 @@ library(AER)
 library(MASS)
 ```
 
-<!-- DISCUSS: Sollte einfach überall gleich sein -> Ganzu am Ende nochmal bei allen Kapiteln checken?  -->
+```{r, echo=FALSE}
+source(here::here("R/helpers.R"))
+```
 
 ## Punktschätzung
 
@@ -260,9 +262,11 @@ vergleichen und fragen, wie wahrscheinlich es ist diese Daten tatsächlich so
 beobachten zu können wenn $H_0$ wahr wäre. Abbildung \@ref(fig:hypothesentest)
 veranschaulicht dies.
   
-```{r hypothesentest, fig.align='center', echo=FALSE, fig.cap="Vergleich unseres eingetretenen Ereignisses mit der theoretischen Verteilung unter $H_0$."}
-ggplot2::ggplot(data.frame(x = c(0, 100)), aes(x = x)) +
-  ggplot2::stat_function(fun = dbinom, args = list(size = 100, prob=0.5)) +
+```{r, echo=FALSE}
+hypothesentest_plot <- ggplot2::ggplot(
+  data.frame(x = c(0, 100)), aes(x = x)) +
+  ggplot2::stat_function(
+    fun = dbinom, args = list(size = 100, prob=0.5)) +
   ggplot2::ylab("Wahrscheinlichkeit") +
   ggplot2::xlab("Anzahl Erfolge (Zahl)") +
   ggplot2::scale_y_continuous(expand = c(0, 0)) + 
@@ -278,6 +282,18 @@ ggplot2::ggplot(data.frame(x = c(0, 100)), aes(x = x)) +
             label = "Eingetretenes Ereignis", 
             colour = "#800080") +
   ggplot2::theme_bw()
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/SchliesendeStatistik/hypothesentest_plot.png")
+save_pdf_png(
+  filename = plot_file, plot = hypothesentest_plot, 
+  width = 6, height = 3)
+```
+
+```{r hypothesentest, fig.align='center', echo=FALSE, fig.cap="Vergleich unseres eingetretenen Ereignisses mit der theoretischen Verteilung unter $H_0$."}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 **4. Schritt: Festlegung des Signifikanzniveaus**:
@@ -308,12 +324,13 @@ Der Verwerfungsbereich für das oben darstellte Beispiel mit
 $H_0: \theta=0$ und $H_1: \theta\neq 0$ ergibt sich für 
 $\alpha=0.05$ wie in Abbildung \@ref(fig:verwerfungsbereich) dargestellt.
   
-```{r verwerfungsbereich, fig.align='center', echo=FALSE, fig.cap="Verwerfungsbereich der theoretischen Verteilung unter $H_0$ für $\\alpha=0.05$."}
+```{r, echo=FALSE}
 lower_end <- data.frame(y=dbinom(0:45, size = 100, prob=0.5),
                         x=0:45)
 upper_end <- data.frame(y=dbinom(55:100, size = 100, prob=0.5),
                         x=55:100)
-ggplot2::ggplot(data.frame(x = c(0, 100)), aes(x = x)) +
+rejection_plot <- ggplot2::ggplot(
+  data.frame(x = c(0, 100)), aes(x = x)) +
   ggplot2::stat_function(fun = dbinom, args = list(size = 100, prob=0.5)) +
   ggplot2::geom_ribbon(data = lower_end, aes(x=x, ymin=0, ymax=y), 
               fill="#800080", alpha=0.75) + 
@@ -329,24 +346,37 @@ ggplot2::ggplot(data.frame(x = c(0, 100)), aes(x = x)) +
   ggplot2::geom_segment(aes(x = 45, y = 0, 
                    xend = 45, yend = dbinom(45, 100, 0.5)),
                colour = "#800080") +
-  ggplot2::geom_segment(aes(x = 45, y = 0.02, 
-                   xend = 25, yend = 0.02),
-               arrow = arrow(length = unit(0.03, "npc")),
-               colour = "#800080") +
-  ggplot2::geom_text(aes(x = 20, y =0.025), nudge_x = 0, nudge_y = 0.002,
-            label = "Ablehnung wegen unwahrscheinlich\n weniger Erfolge",
-            colour = "#800080") +
-  ggplot2::geom_segment(aes(x = 55, y = 0, 
-                   xend = 55, yend = dbinom(55, 100, 0.5)),
-               colour = "#800080") +
-  ggplot2::geom_segment(aes(x = 55, y = 0.02, 
-                   xend = 75, yend = 0.02),
-               arrow = arrow(length = unit(0.03, "npc")),
-               colour = "#800080") +
-  ggplot2::geom_text(aes(x = 80, y =0.025), nudge_x = 0, nudge_y = 0.002,
+  ggplot2::geom_segment(
+    aes(x = 25, y = 0.055, xend = 40, yend = 0.02),
+    arrow = arrow(length = unit(0.03, "npc")),
+    colour = "#800080") +
+  ggplot2::geom_text(
+    aes(x = 20, y =0.06), nudge_x = 0, nudge_y = 0.002,
+    label = "Ablehnung wegen unwahrscheinlich\n weniger Erfolge",
+    colour = "#800080") +
+  ggplot2::geom_segment(
+    aes(x = 55, y = 0, xend = 55, yend = dbinom(55, 100, 0.5)),
+    colour = "#800080") +
+  ggplot2::geom_segment(
+    aes(x = 75, y = 0.055, xend = 59, yend = 0.02),
+    arrow = arrow(length = unit(0.03, "npc")),
+    colour = "#800080") +
+  ggplot2::geom_text(aes(x = 80, y =0.06), nudge_x = 0, nudge_y = 0.002,
             label = "Ablehnung wegen unwahrscheinlich\n vieler Erfolge",
             colour = "#800080") +
   ggplot2::theme_bw()
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/SchliesendeStatistik/verwerfungsbereich-plot.png")
+save_pdf_png(
+  filename = plot_file, plot = rejection_plot, 
+  width = 6, height = 3)
+```
+
+```{r verwerfungsbereich, fig.align='center', echo=FALSE, fig.cap="Verwerfungsbereich der theoretischen Verteilung unter $H_0$ für $\\alpha=0.05$."}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 **5. Schritt: Die Entscheidung**
@@ -400,9 +430,10 @@ Wir können den p-Wert aus der theoretischen Verteilung von oben auf der y-Achse
 ablesen, wenn wir den beobachteten Wert auf der x-Achse suchen. Dies ist in 
 Abbildung \@ref(fig:p-wert) aufgezeigt.
   
-```{r p-wert, fig.align='center', echo=FALSE, fig.height=2, fig.cap="Ablesen des p-Werts aus der theoretischen Verteilung."}
+```{r, echo=FALSE}
 x_observed <- 60
-ggplot2::ggplot(data.frame(x = c(0, 100)), aes(x = x)) +
+p_wert_plot <- ggplot2::ggplot(
+  data.frame(x = c(0, 100)), aes(x = x)) +
   ggplot2::stat_function(fun = dbinom, args = list(size = 100, prob=0.5)) +
   ggplot2::ylab("Wahrscheinlichkeit") +
   ggplot2::xlab("Anzahl Erfolge (Zahl)") +
@@ -423,6 +454,18 @@ ggplot2::ggplot(data.frame(x = c(0, 100)), aes(x = x)) +
             label = "p-Wert", 
             colour = "#800080") + 
   ggplot2::theme_bw()
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/SchliesendeStatistik/pwert-plot.png")
+save_pdf_png(
+  filename = plot_file, plot = p_wert_plot, 
+  width = 6, height = 3)
+```
+
+```{r p-wert, fig.align='center', echo=FALSE, fig.height=2, fig.cap="Ablesen des p-Werts aus der theoretischen Verteilung."}
+knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
 Die nächste Zeile formuliert dann die Alternativhypothese aus (und hängt entsprechend
