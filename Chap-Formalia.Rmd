@@ -511,7 +511,7 @@ Ein Beispiel wäre $f(x)=(4+x^2)(1-x^3)$, wobei $u(x)=(4+x^2)$ und $v(x)=(1-x^3)
 
 Insbesondere gilt hier:
 
-$$f'(x_0)=u'(x_0)\cdot v(x_0) + u(x_0)\cdot v'(x_0)$$
+$$f'(x)=u'(x)\cdot v(x) + u(x)\cdot v'(x)$$
 
 Wir können die komplexere Gesamtfunktion also ableiten indem wir die einzelnen
 Teile separat ableiten und jeweils mit den Ausgangsfunktionen multiplizieren.
@@ -520,26 +520,28 @@ Für unser Beispiel mit $f(x)=(4+x^2)(1-x^3)$ hätten wir also:
 \begin{align}
 f'(x)&=u'(x)\cdot v(x) + u(x)\cdot v'(x)\\
 u(x)&=(4+x^2), u'(x)=2x\\
-v(x)&=(1-x^3), v'(x)=3x\\
-f'(x)&=2x(1-x^3) + 3x(4+x^2) =2x-2x^4 + 12x + 3x^3=-2x^4+3x^3+14x 
+v(x)&=(1-x^3), v'(x)=-3x^2\\
+f'(x)&=2x(1-x^3) -3x^2(4+x^2) = -3x^2(4+x^2)+2x(1-3x^3) \\\nonumber
+\ &= 2x - 12x^2 -5x^4 = x(2-12x-5x^3)
 \end{align}
 
 Wenn die beiden Teilfunktionen dagegen dividiert werden müssen wir die 
 **Quotientenregel** anwenden. 
 Hier gehen wir also von dem Fall $f(x)=\frac{u(x)}{v(x)}$ aus, z.B. von
-$f(x)=\frac{x^2}{2x}$.
+$f(x)=\frac{x^3}{3x}$.
 
 In diesem Fall gilt:
 
-$$ f'(x_0) = \frac{u'(x_0)\cdot v(x_0) - u(x_0)\cdot v'(x_0)}{\left(v(x_0)\right)^2}$$
+$$ f'(x) = \frac{u'(x)\cdot v(x) - u(x)\cdot v'(x)}{\left(v(x)\right)^2}$$
 
 Für unser Beispiel hätten wir dann:
 
 \begin{align}
 f'(x)&=\frac{u'(x)\cdot v(x) - u(x)\cdot v'(x)}{\left(v(x)\right)^2}\\
-u(x)&=x^2, u'(x)=2x\\
-v(x)&=2x, v'(x)=2\\
-f'(x)&=\frac{2x\cdot 2 - x^2\cdot 2}{v(x)^2}=\frac{2x-2x^2}{(2x)^2}
+u(x)&=x^3, u'(x)=3x^2\\
+v(x)&=3x, v'(x)=3\\
+f'(x)&=\frac{3x^2\cdot 3x - x^3\cdot3}{(3x)^2}\\\nonumber
+\ & = \frac{6x^3}{9x^2} = \frac{2}{3}x
 \end{align}
 
 Zuletzt betrachten wir noch die **Kettenregel**, die es uns erlaubt 
@@ -1150,7 +1152,7 @@ werden Schätzgleichungen fast ausschließlich in Matrixform dargestellt, denn
 wir können explizit alle $n$ Gleichungen untereinander schreiben:
 
 \begin{align}
-Y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + ... + \beta_p x_{1p} + e_1\nonumber\\
+Y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{12} + ... + \beta_p x_{1p} + e_1\nonumber\\
 Y_2 = \beta_0 + \beta_1 x_{21} + \beta_2 x_{22} + ... + \beta_p x_{2p} + e_2\nonumber\\
 \vdots \nonumber\\
 Y_n = \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + ... + \beta_p x_{np} + e_n\nonumber
