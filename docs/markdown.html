@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="de" xml:lang="de">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 14 Eine kurze Einführung in R Markdown | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 14 Eine kurze Einführung in R Markdown | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 14 Eine kurze Einführung in R Markdown | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2021-03-11" />
+<meta name="date" content="2021-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,6 +139,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie"><i class="fa fa-check"></i>Änderungshistorie</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#colophon"><i class="fa fa-check"></i>Colophon</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#referenzen"><i class="fa fa-check"></i>Referenzen</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a>
 <ul>
@@ -208,7 +210,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>5</b> Visualisierung von Daten</a>
 <ul>
 <li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#verwendete-pakete-1"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
 <li class="chapter" data-level="5.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>5.1</b> Optional: Theoretische Grundlagen</a>
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="vis.html"><a href="vis.html#vis-base-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> <code>ggplot2</code> vs. <code>base plot</code></a></li>
@@ -317,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>8</b> Wiederholung: Deskriptive Statistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-und-datensätze"><i class="fa fa-check"></i>Verwendete Pakete und Datensätze</a></li>
+<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-4"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="8.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>8.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
 <li class="chapter" data-level="8.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmaße"><i class="fa fa-check"></i><b>8.2</b> Korrelationsmaße</a></li>
 <li class="chapter" data-level="8.3" data-path="desk-stat.html"><a href="desk-stat.html#descVis"><i class="fa fa-check"></i><b>8.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
@@ -325,18 +326,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>9</b> Wiederholung: Drei Verfahren der schließenden Statistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-4"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-5"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="9.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>9.1</b> Punktschätzung</a></li>
 <li class="chapter" data-level="9.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>9.2</b> Hypothesentests</a></li>
 <li class="chapter" data-level="9.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>9.3</b> Berechnung von Konfidenzintervallen</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>10</b> Lineare statistische Modelle in R</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>10.1</b> Einleitung und Überblick</a>
+<li class="chapter" data-level="" data-path="linmodel.html"><a href="linmodel.html#verwendete-pakete-6"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1</b> Einführung in die lineare Regression</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1.1</b> Einführung in die lineare Regression</a></li>
-<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.2</b> Einführungsbeispiel</a></li>
-<li class="chapter" data-level="10.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
+<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.1</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.2</b> Überblick über die Inhalte des Kapitels</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>10.2</b> Grundlagen der einfachen linearen Regression</a>
 <ul>
@@ -356,6 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>11</b> Fortgeschrittene Themen der linearen Regression</a>
 <ul>
+<li class="chapter" data-level="" data-path="advlin.html"><a href="advlin.html#verwendete-pakete-7"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="11.1" data-path="advlin.html"><a href="advlin.html#annahmen-und-eigenschaften-des-einfachen-ols-modells"><i class="fa fa-check"></i><b>11.1</b> Annahmen und Eigenschaften des einfachen OLS Modells</a>
 <ul>
 <li class="chapter" data-level="11.1.1" data-path="advlin.html"><a href="advlin.html#annahmen-im-matrixschreibweise"><i class="fa fa-check"></i><b>11.1.1</b> Annahmen im Matrixschreibweise</a></li>
@@ -408,6 +410,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>12</b> Ausgewählte nichtlineare Schätzverfahren</a>
 <ul>
+<li class="chapter" data-level="" data-path="nonlin.html"><a href="nonlin.html#verwendete-pakete-8"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="12.1" data-path="nonlin.html"><a href="nonlin.html#logit"><i class="fa fa-check"></i><b>12.1</b> Binäre abhängige Variablen: Logit- und Probit-Modelle</a>
 <ul>
 <li class="chapter" data-level="12.1.1" data-path="nonlin.html"><a href="nonlin.html#warum-nicht-ols"><i class="fa fa-check"></i><b>12.1.1</b> Warum nicht OLS?</a></li>
@@ -480,7 +483,7 @@ damit vollständig reproduzierbar gestaltet werden.</p>
 <h2><span class="header-section-number">14.2</span> Installation von R-Markdown</h2>
 <p>Für den Fall, dass Sie mit R-Studio arbeiten brauchen Sie lediglich
 das Paket <code>rmarkdown</code> zu installieren:</p>
-<div class="sourceCode" id="cb886"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb886-1"><a href="markdown.html#cb886-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;rmarkdown&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb890"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb890-1"><a href="markdown.html#cb890-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;rmarkdown&#39;</span>)</span></code></pre></div>
 <p>Das Standardformat für R-Markdown Dokumente ist html.</p>
 <p>Damit Sie auch PDF-Dokumente erstellen können müssen Sie noch eine
 <a href="https://www.latex-project.org/">Latex-Distribution</a>.
@@ -494,7 +497,7 @@ Das Paket und die Distribution sind zwei unterschiedliche Dinge!
 Um die Distribution zu installieren müssen Sie bei bestehender
 Internetverbindung noch folgenden Befehl in Ihrer R-Konsole
 ausführen:</p>
-<div class="sourceCode" id="cb887"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb887-1"><a href="markdown.html#cb887-1" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb891"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb891-1"><a href="markdown.html#cb891-1" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code></pre></div>
 <p>Beachten Sie, dass das einen kurzen Augenblick dauern kann und dass
 ca. 65 MB an Dateien aus dem Internet heruntergeladen werden.</p>
 </div>
@@ -577,16 +580,16 @@ durch die Option <code>eval=FALSE</code> verhindert).</p>
 <p>Die klassische Variante verwendet die Funktion <code>render()</code> aus dem Paket
 <code>rmarkdown</code>. Die wichtigsten Argumente sind dabei die folgenden: <code>input</code>
 spezifiziert die zu kompillierende <code>.Rmd</code>-Datei, <code>output_format</code> das
-für den Output gewünschte Format<a href="#fn96" class="footnote-ref" id="fnref96"><sup>96</sup></a> und
+für den Output gewünschte Format<a href="#fn97" class="footnote-ref" id="fnref97"><sup>97</sup></a> und
 <code>output_file</code> den Pfad und den Namen der zu erstellenden Outputdatei.</p>
 <p>Wenn Sie also das Dokument <code>FirstMarkdown.Rmd</code> kompillieren wollen und den
 Output unter <code>Output/OurMarkdown.html</code> als html-Datei speichern wollen,
 dann können Sie das mit folgendem Code, vorausgesetzt die Datei
 <code>FirstMarkdown.Rmd</code> liegt im Unterordner <code>R</code>:</p>
-<div class="sourceCode" id="cb888"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb888-1"><a href="markdown.html#cb888-1" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(</span>
-<span id="cb888-2"><a href="markdown.html#cb888-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">input =</span> <span class="st">&quot;R/FirstMarkdown.Rmd&quot;</span>, </span>
-<span id="cb888-3"><a href="markdown.html#cb888-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">output_format =</span> <span class="st">&quot;html&quot;</span>, </span>
-<span id="cb888-4"><a href="markdown.html#cb888-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">output_file =</span> <span class="st">&quot;output/FirstMarkdown.html&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb892"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb892-1"><a href="markdown.html#cb892-1" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(</span>
+<span id="cb892-2"><a href="markdown.html#cb892-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">input =</span> <span class="st">&quot;R/FirstMarkdown.Rmd&quot;</span>, </span>
+<span id="cb892-3"><a href="markdown.html#cb892-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">output_format =</span> <span class="st">&quot;html&quot;</span>, </span>
+<span id="cb892-4"><a href="markdown.html#cb892-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">output_file =</span> <span class="st">&quot;output/FirstMarkdown.html&quot;</span>)</span></code></pre></div>
 <p>Weitere Informationen zu den Parametern finden Sie wie immer über die <code>help()</code>
 Funktion.
 Alternativ können Sie auch den Button <code>Knit</code> in der R-Studio Oberfläche
@@ -607,14 +610,14 @@ interpretiert, sondern vom <em>Speicherort</em> der <code>.Rmd</code>-Datei.
 Das ist natürlich hochproblematisch, denn stellen Sie sich vor, Sie möchten
 in Ihrem R-Markdown-Skript die Datei <code>data/BIP-Data.csv</code> einlesen.
 Normalerweise würden Sie dafür den folgenden Code verwenden:</p>
-<div class="sourceCode" id="cb889"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb889-1"><a href="markdown.html#cb889-1" aria-hidden="true" tabindex="-1"></a>bip_data <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;data/BIP-Data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb893"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb893-1"><a href="markdown.html#cb893-1" aria-hidden="true" tabindex="-1"></a>bip_data <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;data/BIP-Data.csv&quot;</span>)</span></code></pre></div>
 <p>Zwar würde der Code in einem R-Skript, z.B. in <code>R/R-Skript.R</code> perfekt
 funktionieren.
 In einem R-Markdown Dokument, das nicht im Arbeitsverzeichnis direkt
 gespeichert ist, jedoch nicht.
 Da in R-Markdown-Dokumenten alle Pfade relativ des Speicherorts des Dokuments
-interpretiert werden, müssten wir hier schreiben:<a href="#fn97" class="footnote-ref" id="fnref97"><sup>97</sup></a></p>
-<div class="sourceCode" id="cb890"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb890-1"><a href="markdown.html#cb890-1" aria-hidden="true" tabindex="-1"></a>bip_data <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;../data/BIP-Data.csv&quot;</span>)</span></code></pre></div>
+interpretiert werden, müssten wir hier schreiben:<a href="#fn98" class="footnote-ref" id="fnref98"><sup>98</sup></a></p>
+<div class="sourceCode" id="cb894"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb894-1"><a href="markdown.html#cb894-1" aria-hidden="true" tabindex="-1"></a>bip_data <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;../data/BIP-Data.csv&quot;</span>)</span></code></pre></div>
 <p>Das wäre allerdings unschön, weil wir dann unterschiedlichen Codes in Skripten
 und in R-Markdown-Dokumenten verwenden müssten und das Ganze dadurch deutlich
 verwirrender werden würde.</p>
@@ -624,12 +627,12 @@ ob wir mit einem <code>.R</code> oder <code>.Rmd</code> Dokument arbeiten und wo
 innerhalb unserer Projekt-Struktur gespeichert ist.</p>
 <p>Zum Glück können wir genau das mit Hilfe des Pakets
 <a href="https://github.com/jennybc/here_here">here</a>
-erreichen.<a href="#fn98" class="footnote-ref" id="fnref98"><sup>98</sup></a>
+erreichen.<a href="#fn99" class="footnote-ref" id="fnref99"><sup>99</sup></a>
 Das Paket enthält eine Funktion <code>here()</code> die als Argument einen Dateinamen
 oder einen relativen Pfad akzeptiert, und daraus einen absoluten Pfad auf dem
 Computer, auf dem der Code gerade ausgeführt wird, konstruiert.</p>
 <p>Wir können also unseren Code von oben einfach folgendermaßen umschreiben:</p>
-<div class="sourceCode" id="cb891"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb891-1"><a href="markdown.html#cb891-1" aria-hidden="true" tabindex="-1"></a>bip_data <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/BIP-Data.csv&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb895"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb895-1"><a href="markdown.html#cb895-1" aria-hidden="true" tabindex="-1"></a>bip_data <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/BIP-Data.csv&quot;</span>))</span></code></pre></div>
 <p>In dieser Form funktioniert er sowohl in <code>.R</code> als auch <code>.Rmd</code> Dateien ohne
 Probleme.</p>
 <blockquote>
@@ -674,8 +677,8 @@ auf das Notwendige (z.B. durch Verwendung von <code>head()</code> oder
 <li>In der Regel sind Nachrichten (‘messages’) und Warnungen (‘warnings’) zwar für Sie wichtig, aber für Leser:innen eigentlich immer nur störend. Schalten Sie sie daher in den Chunks eher aus. Das geht über die Chunk Optionen <code>message=FALASE, warning=FALSE</code>, aber
 am einfachsten als Standardeinstellung am Anfang Ihres Dokuments:</li>
 </ol>
-<div class="sourceCode" id="cb892"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb892-1"><a href="markdown.html#cb892-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(</span>
-<span id="cb892-2"><a href="markdown.html#cb892-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">message =</span> <span class="cn">FALSE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb896"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb896-1"><a href="markdown.html#cb896-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(</span>
+<span id="cb896-2"><a href="markdown.html#cb896-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">message =</span> <span class="cn">FALSE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Überhaupt kann man sich über die globalen Chunk-Optionen viel
 Tipp-Arbeit sparen. So bietet sich häufig auch <code>fig.align = 'center'</code>
@@ -713,16 +716,16 @@ einer Erweiterung von R-Markdown für Bücher, geschrieben.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="96">
-<li id="fn96"><p>R-Markdown Dateien können in sehr viele
+<ol start="97">
+<li id="fn97"><p>R-Markdown Dateien können in sehr viele
 verschiedene Formate kompilliert werden, das am häufigsten verwendete Format
 ist jedoch <code>html</code>. Eine Übersicht finden Sie
-<a href="https://bookdown.org/yihui/rmarkdown/output-formats.html">hier</a>.<a href="markdown.html#fnref96" class="footnote-back">↩︎</a></p></li>
-<li id="fn97"><p>Mit <code>../</code> bewegt man sich
-bei einem relativen Pfad einen Ordner nach oben.<a href="markdown.html#fnref97" class="footnote-back">↩︎</a></p></li>
-<li id="fn98"><p>Tatsächlich ist <code>here</code> dermaßen praktisch, dass ich empfehle grundsätzlich alle
+<a href="https://bookdown.org/yihui/rmarkdown/output-formats.html">hier</a>.<a href="markdown.html#fnref97" class="footnote-back">↩︎</a></p></li>
+<li id="fn98"><p>Mit <code>../</code> bewegt man sich
+bei einem relativen Pfad einen Ordner nach oben.<a href="markdown.html#fnref98" class="footnote-back">↩︎</a></p></li>
+<li id="fn99"><p>Tatsächlich ist <code>here</code> dermaßen praktisch, dass ich empfehle grundsätzlich alle
 Pfade in jedem Projekt - ob R-Markdown oder nicht - mit Hilfe von <code>here</code>
-anzugeben.<a href="markdown.html#fnref98" class="footnote-back">↩︎</a></p></li>
+anzugeben.<a href="markdown.html#fnref99" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

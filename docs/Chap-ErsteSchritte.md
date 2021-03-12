@@ -191,10 +191,24 @@ Daher werden wir Zuweisungen immer mit dem `<-` Operator durchführen.
 `2 + 3 -> zwischenergebnis`.
 Das mag zwar auf den ersten Blick intuitiver erscheinen, da das aus `2 + 3` 
 resultierende Objekt den Namen `zwischenergebnis` bekommt, also immer erst das
-Objekt erstellt wird und dann der Name zugewiesen wird. Es führt jedoch zu 
-deutlich weniger lesbarem Code und sollte daher nie verwendet werden.
-Ebensowenig sollten Zuweisungen durch den `=` Operator vorgenommen werden, auch
-wenn es im Fall `zwischenergebnis = 2 + 3` funktionieren würde.] 
+Objekt erstellt wird und dann der Name zugewiesen wird. Es führt jedoch in der Regel zu 
+deutlich weniger gut lesbarem Code und sollte daher nie verwendet werden.] 
+
+> **Exkurs: warum `<-`?** Die Verwendung der Zeichenkette `<-` als 
+Zuweisungsoperator ist auf den ersten Blick unintuitiv und in der Welt der
+Programmiersprachen ziemlich einzigartig. Viel weiter verbreitet ist die
+Verwendung von `=`. Woher kommt das? Neben praktischen Gründen - `<-` macht
+im Gegensatz zu `=` z.B. die Unidirektionalität einer Zuweisung besser 
+deutlich - hat das vor allem historische Ursachen: `R` entstand aus der 
+Programmiersprache `S`. Diese wiederum hat das `<-` von der Sprache APL
+übernommen. Und die wiederum wurde auf einem Tastaturlayout entwickelt, wo
+es eine Taste für `<-` gab. Zudem war damals der Operator `==` noch nicht
+verbreitet. Dementsprechend war `=` bereits als Test auf Gleichheit 
+vergeben. Und so hatte man sich für die Zuweisung also für `<-` entschieden.
+In R kann man eine Zuweisung seit 2001 auch mit `=` vorgenommen werden, aber
+aufgrund der besseren Lesbarkeit und einiger technischer Spitzfindigkeiten
+sollte `<-` weiterhin der Standard im Bereich der Zuweisung bleiben.
+
 
 Wir können in R nicht beliebig Namen vergeben. 
 Gültige (also: syntaktisch korrekte) Namen
@@ -720,26 +734,18 @@ as.double("Hallo")
 ```
 
 ```
-#> Warning: NAs introduced by coercion
-```
-
-```
 #> [1] NA
 ```
 Da R nicht weiß wie man aus dem Wort 'Hallo' eine Dezimalzahl machen soll,
 transformiert R das Wort in einen 'Fehlenden Wert', der in R als `NA` 
 bekannt ist und unten noch genauer diskutiert wird.
 
-
 Für die Grundtypen ergibt sich folgende logische Hierachie an trivialen 
 Transformationen: `logical` &rarr; `integer` &rarr; `double` &rarr; `character`,
 d.h. man kann eine Dezimalzahl ohne Probleme in ein Wort transformieren, 
 aber nicht umgekehrt:
 
-***
-
-> **Warum überhaupt transformieren?**
-> 
+> **Exkurs: Warum überhaupt transformieren?**
 > Für eine Programmiersprache sind Datentypen extrem wichtig, weil sonst unklar
 bliebe wie mathematische Operationen auf unterschiedliche Objekte wie Zahlen
 oder Wörter anzuwenden wären.
@@ -750,8 +756,6 @@ Das kann zum Beispiel passieren wenn Sie Daten einlesen oder Wörter selbst in
 Zahlenwerte übersetzen. Wenn in Ihrem Code unerwartete Fehler mit kryptischen
 Fehlermeldungen auftauchen ist es immer eine gute Idee, erst einmal die Typen
 der verwendeten Objekte zu checken und die Objekte ggf. zu transformieren.
-
-***
 
 
 ```r
@@ -775,13 +779,6 @@ print(z)
 
 ```r
 k <- as.double("Hallo") # Das nicht
-```
-
-```
-#> Warning: NAs introduced by coercion
-```
-
-```r
 print(k)
 ```
 
@@ -954,6 +951,68 @@ len_x
 ```
 #> [1] 3
 ```
+
+> **Exkurs: Wie groß kann eine ganze Zahl sein?**
+In R werden `integer` als 32-Bit Daten gespeichert. 
+Das bedeutet, dass für einen einzelnen `integer` 32 Bit Speicherplatz zur
+Verfügung steht. Das bedeutet, dass sehr große ganze Zahlen nicht als `integer` 
+gespeichert werden können, einfach weil die 32 Bit nicht ausreichen.
+
+
+```r
+x <- 2147483647L
+typeof(x)
+```
+
+```
+#> [1] "integer"
+```
+
+
+```r
+y <- 2147483648L
+typeof(y)
+```
+
+```
+#> [1] "double"
+```
+
+> Mit 32-Bit Integern kann man also maximal die Zahl 2147483647 speichern. 
+Größere Zahlen können nur als `double` gespeichert werden. Das geht allerdings
+möglicherweise mit einem Verlust an Präzision einher. 
+Wenn man letzteres vermeiden möchte kann man auch 64-Bit Integer verwenden. 
+Diese wurden nachträglich in R eingeführt um auch sehr große Zahlen als Integer speichern zu können. Das geht über das Paket `bit64` (mehr zu Paketen unten 
+in Abschnit \@ref(es:pakete)):
+
+
+```r
+z <- bit64::as.integer64(2147483648)
+bit64::is.integer64(z)
+```
+
+```
+#> [1] TRUE
+```
+
+> Da aber dieser Datentyp später hinzugefügt wurde funktionieren einige Funktionen damit nicht, wenn das Paket `bit64` nicht installiert ist und einige Standard-
+Funktionen geben irreführende Ergebnisse, z.B.:
+
+
+```r
+typeof(z)
+```
+
+```
+#> [1] "double"
+```
+
+> Deswegen, und weil `bit64` nicht 
+Teil der Standard-Installation von R ist, sollten wir sehr große ganze Zahlen 
+und die Verwendung vom Datentyp `integer64` dringend vermeiden, es sei
+denn wir haben gute Gründe dazu. Sehr große ganze Zahlen sollten also entweder
+als Dezimalzahlen gespeichert werden wenn kleine Verluste an Präzision keine
+Rolle spielen, oder aber sie sollten angemessen skaliert werden.
 
 ### Logische Werte (logical) {#basics-logic}
 
@@ -1755,10 +1814,6 @@ x[1] + x[2]
 ```
 
 ```
-#> Warning in Ops.factor(x[1], x[2]): '+' not meaningful for factors
-```
-
-```
 #> [1] NA
 ```
 
@@ -2236,23 +2291,6 @@ library(dplyr)
 library(plm)
 ```
 
-```
-#> 
-#> Attaching package: 'plm'
-```
-
-```
-#> The following objects are masked from 'package:dplyr':
-#> 
-#>     between, lag, lead
-```
-
-```
-#> The following object is masked from 'package:data.table':
-#> 
-#>     between
-```
-
 In beiden Paketen gibt es Objekte mit den Namen `between`, `lag` und `lead`.
 Bei der Verwendung von `library` maskiert das später eingelesene Paket die 
 Objekte des früheren.
@@ -2268,7 +2306,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7fcf72ed5050>
+#> <bytecode: 0x7fa2a3e5f118>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2299,7 +2337,7 @@ dplyr::lead
 #>     vec_c(vec_slice(inputs$x, -seq_len(n)), vec_rep(inputs$default, 
 #>         n))
 #> }
-#> <bytecode: 0x7fcf62550408>
+#> <bytecode: 0x7fa2836ee250>
 #> <environment: namespace:dplyr>
 ```
 
@@ -2327,10 +2365,11 @@ search()
 
 ```
 #>  [1] ".GlobalEnv"         "package:plm"        "package:dplyr"     
-#>  [4] "package:data.table" "package:tufte"      "package:stats"     
-#>  [7] "package:graphics"   "package:grDevices"  "package:datasets"  
-#> [10] "renv:shims"         "package:utils"      "package:methods"   
-#> [13] "Autoloads"          "package:base"
+#>  [4] "package:data.table" "package:bit64"      "package:bit"       
+#>  [7] "package:tufte"      "package:stats"      "package:graphics"  
+#> [10] "package:grDevices"  "package:datasets"   "renv:shims"        
+#> [13] "package:utils"      "package:methods"    "Autoloads"         
+#> [16] "package:base"
 ```
 
 

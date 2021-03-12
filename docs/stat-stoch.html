@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="de" xml:lang="de">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Grundlagen der Wahrscheinlichkeitstheorie | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Grundlagen der Wahrscheinlichkeitstheorie | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 7 Grundlagen der Wahrscheinlichkeitstheorie | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2021-03-11" />
+<meta name="date" content="2021-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,6 +139,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie"><i class="fa fa-check"></i>Änderungshistorie</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#colophon"><i class="fa fa-check"></i>Colophon</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#referenzen"><i class="fa fa-check"></i>Referenzen</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a>
 <ul>
@@ -208,7 +210,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>5</b> Visualisierung von Daten</a>
 <ul>
 <li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#verwendete-pakete-1"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
 <li class="chapter" data-level="5.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>5.1</b> Optional: Theoretische Grundlagen</a>
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="vis.html"><a href="vis.html#vis-base-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> <code>ggplot2</code> vs. <code>base plot</code></a></li>
@@ -317,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>8</b> Wiederholung: Deskriptive Statistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-und-datensätze"><i class="fa fa-check"></i>Verwendete Pakete und Datensätze</a></li>
+<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-4"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="8.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>8.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
 <li class="chapter" data-level="8.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmaße"><i class="fa fa-check"></i><b>8.2</b> Korrelationsmaße</a></li>
 <li class="chapter" data-level="8.3" data-path="desk-stat.html"><a href="desk-stat.html#descVis"><i class="fa fa-check"></i><b>8.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
@@ -325,18 +326,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>9</b> Wiederholung: Drei Verfahren der schließenden Statistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-4"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-5"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="9.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>9.1</b> Punktschätzung</a></li>
 <li class="chapter" data-level="9.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>9.2</b> Hypothesentests</a></li>
 <li class="chapter" data-level="9.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>9.3</b> Berechnung von Konfidenzintervallen</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>10</b> Lineare statistische Modelle in R</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>10.1</b> Einleitung und Überblick</a>
+<li class="chapter" data-level="" data-path="linmodel.html"><a href="linmodel.html#verwendete-pakete-6"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1</b> Einführung in die lineare Regression</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1.1</b> Einführung in die lineare Regression</a></li>
-<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.2</b> Einführungsbeispiel</a></li>
-<li class="chapter" data-level="10.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
+<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.1</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.2</b> Überblick über die Inhalte des Kapitels</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>10.2</b> Grundlagen der einfachen linearen Regression</a>
 <ul>
@@ -356,6 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>11</b> Fortgeschrittene Themen der linearen Regression</a>
 <ul>
+<li class="chapter" data-level="" data-path="advlin.html"><a href="advlin.html#verwendete-pakete-7"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="11.1" data-path="advlin.html"><a href="advlin.html#annahmen-und-eigenschaften-des-einfachen-ols-modells"><i class="fa fa-check"></i><b>11.1</b> Annahmen und Eigenschaften des einfachen OLS Modells</a>
 <ul>
 <li class="chapter" data-level="11.1.1" data-path="advlin.html"><a href="advlin.html#annahmen-im-matrixschreibweise"><i class="fa fa-check"></i><b>11.1.1</b> Annahmen im Matrixschreibweise</a></li>
@@ -408,6 +410,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>12</b> Ausgewählte nichtlineare Schätzverfahren</a>
 <ul>
+<li class="chapter" data-level="" data-path="nonlin.html"><a href="nonlin.html#verwendete-pakete-8"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="12.1" data-path="nonlin.html"><a href="nonlin.html#logit"><i class="fa fa-check"></i><b>12.1</b> Binäre abhängige Variablen: Logit- und Probit-Modelle</a>
 <ul>
 <li class="chapter" data-level="12.1.1" data-path="nonlin.html"><a href="nonlin.html#warum-nicht-ols"><i class="fa fa-check"></i><b>12.1.1</b> Warum nicht OLS?</a></li>
@@ -471,13 +474,13 @@ werden in den beiden folgenden Kapiteln zur deskriptiven und schließenden
 Statistik (siehe Kapitel <a href="desk-stat.html#desk-stat">8</a> und Kapitel <a href="stat-rep.html#stat-rep">9</a> behandelt.</p>
 <div id="verwendete-pakete-3" class="section level2 unnumbered">
 <h2>Verwendete Pakete</h2>
-<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="stat-stoch.html#cb690-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb690-2"><a href="stat-stoch.html#cb690-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb690-3"><a href="stat-stoch.html#cb690-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb690-4"><a href="stat-stoch.html#cb690-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
-<span id="cb690-5"><a href="stat-stoch.html#cb690-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb690-6"><a href="stat-stoch.html#cb690-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
-<span id="cb690-7"><a href="stat-stoch.html#cb690-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(icaeDesign)</span></code></pre></div>
+<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="stat-stoch.html#cb694-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb694-2"><a href="stat-stoch.html#cb694-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb694-3"><a href="stat-stoch.html#cb694-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb694-4"><a href="stat-stoch.html#cb694-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
+<span id="cb694-5"><a href="stat-stoch.html#cb694-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb694-6"><a href="stat-stoch.html#cb694-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb694-7"><a href="stat-stoch.html#cb694-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(icaeDesign)</span></code></pre></div>
 </div>
 <div id="einleitung-wahrscheinlichkeitstheorie-und-statistik" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Einleitung: Wahrscheinlichkeitstheorie und Statistik</h2>
@@ -514,7 +517,7 @@ Das einzelne Ergebnis bezeichnen wir mit <span class="math inline">\(\omega\)</s
 <p><strong>Beispiel:</strong> Handelt es sich bei dem Zufallsexperiment um das Werfen eines
 normalen sechseitigen Würfels, so gilt <span class="math inline">\(\Omega=\{1,2,3,4,5,6\}\)</span>. Wenn der Würfel
 gefallen ist, bezeichnen wir die oben liegende Zahl als das Ergebnis <span class="math inline">\(\omega\)</span> des
-Würfelwurfs, wobei hier gilt <span class="math inline">\(\omega_1=\)</span> “Der Würfel zeigt 1,” u.s.w.</p>
+Würfelwurfs, wobei hier gilt <span class="math inline">\(\omega_1=\)</span> “Der Würfel zeigt 1”, u.s.w.</p>
 </blockquote>
 <p><strong>Ereignisse:</strong> unter Ereignissen <span class="math inline">\(A, B, C,...\)</span> verstehen wir die Teilmengen
 des Ergebnisraums. Ein Ereignis enthält ein oder mehrere Elemente des Ergebnisraums.
@@ -522,17 +525,17 @@ Enthält ein Ereignis genau ein Element, sprechen wir von einem <em>Elementarere
 <blockquote>
 <p><strong>Beispiel:</strong> “Es wird eine gerade Zahl gewürfelt” ist ein mögliches Ereignis
 im oben beschriebenen Zufallsexperiment. Das Ereignis - nennen wir es hier <span class="math inline">\(A\)</span> -
-tritt ein, wenn ein Würfelwurf mit dem Ergebnis “2,” “4” oder “6” endet. Also:
+tritt ein, wenn ein Würfelwurf mit dem Ergebnis “2”, “4” oder “6” endet. Also:
 <span class="math inline">\(A=\{\omega_2, \omega_4, \omega_6\}\)</span>.
 Das Ereignis <span class="math inline">\(B\)</span> “Es wird eine 2 gewürfelt” tritt nur ein, wenn das Ergebnis des
 Würfelwurfs eine 2 ist: <span class="math inline">\(B=\{\omega_2\}\)</span>.
 Entsprechend nennen wir es ein <em>Elementarereignis</em>.</p>
 </blockquote>
 <p>Da es sich bei Ereignissen um Mengen handelt können wir die typischen
-mengentheoretischen Konzepte wie ‘Vereinigung,’ ‘Differenz’ oder ‘Komplement’ zu
+mengentheoretischen Konzepte wie ‘Vereinigung’, ‘Differenz’ oder ‘Komplement’ zu
 ihrer Beschreibung verwenden. Diese sind in Tablle <a href="stat-stoch.html#tab:Mengentheorie">7.1</a> zusammengefasst:</p>
 <table>
-<caption><span id="tab:Mengentheorie">Table 7.1: </span> Mengentheoretische Konzepte und ihre Übersetzungen.</caption>
+<caption><span id="tab:Mengentheorie">Tabelle 7.1: </span> Mengentheoretische Konzepte und ihre Übersetzungen.</caption>
 <thead>
 <tr class="header">
 <th>Konzept</th>
@@ -584,7 +587,7 @@ verschiedene Arten von Wahrscheinlichkeitsmodellen:
 ist <span class="math inline">\(\Omega\)</span> <strong>abzählbar</strong> handelt es sich um ein
 <strong>diskretes Wahrscheinlichkeitsmodell</strong>.
 Der Würfelwurf oder ein Münzwurf sind hierfür Beispiele: die Menge der
-möglichen Ergebnisse ist hier klar abzählbar.<a href="#fn63" class="footnote-ref" id="fnref63"><sup>63</sup></a></p>
+möglichen Ergebnisse ist hier klar abzählbar.<a href="#fn64" class="footnote-ref" id="fnref64"><sup>64</sup></a></p>
 <p>Ist <span class="math inline">\(\Omega\)</span> <strong>nicht abzählbar</strong> handelt es sich dagegen um ein
 <strong>stetiges Wahrscheinlichkeitsmodell</strong>.
 Ein Beispiel hierfür wäre das Fallenlassen von Steinen und die Messung der
@@ -634,11 +637,11 @@ wobei <span class="math inline">\(\mathbb{P}(C)=\frac{5}{36}\)</span>.</p>
 die bedingte Wahrscheinlichkeit von <span class="math inline">\(A\)</span> gegeben <span class="math inline">\(B\)</span>, <span class="math inline">\(\mathbb{P}(A|B)\)</span>,
 bezeichnet die Wahrscheinlichkeit für <span class="math inline">\(A\)</span>, wenn wir wissen, dass <span class="math inline">\(B\)</span>
 bereits eingetreten ist.</p>
-<p>Es gilt dabei:<a href="#fn64" class="footnote-ref" id="fnref64"><sup>64</sup></a></p>
+<p>Es gilt dabei:<a href="#fn65" class="footnote-ref" id="fnref65"><sup>65</sup></a></p>
 <p><span class="math display">\[\mathbb{P}(A|B)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}\]</span></p>
 <blockquote>
 <p><strong>Beispiel:</strong> Sei <span class="math inline">\(A\)</span>: “Der Würfel zeigt eine 6” und <span class="math inline">\(B\)</span>:
-“Der Würfelwurf zeigt eine gerade Zahl.” Wenn wir bereits wissen, dass <span class="math inline">\(B\)</span>
+“Der Würfelwurf zeigt eine gerade Zahl”. Wenn wir bereits wissen, dass <span class="math inline">\(B\)</span>
 eingetreten ist, ist <span class="math inline">\(\mathbb{P}(A)\)</span> nicht mehr <span class="math inline">\(\frac{1}{6}\)</span>, weil wir ja
 wissen, dass 1, 3 und 5 nicht auftreten können.
 Vielmehr gilt <span class="math inline">\(\mathbb{P}(A|B)=\frac{1/6}{1/2}=\frac{1}{3}\)</span>.</p>
@@ -662,7 +665,7 @@ Insgesamt ist er an 60% der Tage pünktlich.
 Wenn er nun heute pünktlich gekommen ist, wie hoch ist dann die
 Wahrscheinlichkeit, dass er mit dem Fahrrad gekommen ist?
 Um diese Frage zu beantworten können wir den Satz von Bayes verwenden.
-Sei <span class="math inline">\(A:\)</span> “Claudius kommt mit dem Fahrrad” und <span class="math inline">\(B:\)</span> “Claudius ist pünklich.”
+Sei <span class="math inline">\(A:\)</span> “Claudius kommt mit dem Fahrrad” und <span class="math inline">\(B:\)</span> “Claudius ist pünklich”.
 Dann gilt in jedem Falle <span class="math inline">\(\mathbb{P}(A)=0.7\)</span>, <span class="math inline">\(\mathbb{P}(B)=0.6\)</span> sowie
 <span class="math inline">\(\mathbb{P}(B|A)=0.8\)</span>.
 Wir sind interessiert an <span class="math inline">\(\mathbb{P}(A|B)\)</span>, also der Wahrscheinlichkeit, dass Claudius mit dem
@@ -699,7 +702,7 @@ Daraus ergibt sich für die Formel oben:</p>
 <h3><span class="header-section-number">7.2.5</span> Das Gesetz der total Wahrscheinlichkeiten</h3>
 <p>Wenn wir die Wahrscheinlichkeiten für mehrstufige Zufallsexperimente berechnen
 wollen müssen wir oft Wahrscheinlichkeiten von verschiedenen Ebenen
-“aggregieren.” Das machen wir mit dem <strong>Gesetz der totalen Wahrscheinlichkeit</strong>,
+“aggregieren”. Das machen wir mit dem <strong>Gesetz der totalen Wahrscheinlichkeit</strong>,
 das in Beweisen im Bereich der Stochastik sehr häufig verwendet wird.
 Formal besagt das <em>Gesetz der totalen Wahrscheinlichkeit</em> folgendes:
 seien <span class="math inline">\(A_1,...,A_k\)</span> Ergeignisse, die sich nicht überschneiden und gemeinsam
@@ -715,7 +718,7 @@ mit einem zweistufigen Zufallsexperiment zu tun.
 Wie hoch ist nun die Wahrscheinlichkeit, dass wir genau eine schwarze Kugel
 gezogen haben?
 Sei <span class="math inline">\(B:\)</span> “Eine schwarze Kugel wird gezogen” und
-$A: $ “Eine weiße Kugel wird gezogen.”
+$A: $ “Eine weiße Kugel wird gezogen”.
 Wir addieren nun die Wahrscheinlichkeiten für aller Ergebnisse, die in Kombination
 zu unserem Gesamtereignis führen, also die Wahrscheinlichkeit erst eine weiße
 und dann eine schwarze und die Wahrscheinlichkeit erst eine schwarze
@@ -768,13 +771,13 @@ zwischen dem nicht-zufälligem funtionalen Zusammenhang, aber einem zufälligen
 Input bei ZV ist wichtig, um den Sinn in vielen fortgeschrittenen Beiträgen im
 Bereich der Ökonometrie zu sehen.</p>
 <p>Im Falle von diskreten ZV können wir eine Liste erstellen, die für alle möglichen
-Werte <span class="math inline">\(x_k\in W_X\)</span> die jeweilige Wahrscheinlichkeit <span class="math inline">\(\mathbb{P}(X=x_k)\)</span> angibt.<a href="#fn65" class="footnote-ref" id="fnref65"><sup>65</sup></a>
+Werte <span class="math inline">\(x_k\in W_X\)</span> die jeweilige Wahrscheinlichkeit <span class="math inline">\(\mathbb{P}(X=x_k)\)</span> angibt.<a href="#fn66" class="footnote-ref" id="fnref66"><sup>66</sup></a>
 Diese Liste nennen wir
 <strong>Wahrscheinlichkeitsverteilung</strong> von <span class="math inline">\(X\)</span>
 und sie wird häufig visuell dargestellt.
 Um diese Liste zu erstellen verwenden wir die zu <span class="math inline">\(X\)</span> gehörende
 <strong>Wahrscheinlichkeitsfunktion</strong> (<em>Probability Mass Function</em>, PMF), <span class="math inline">\(p(x_k)\)</span>,
-die uns für jedes Ergebnis die zugehörige Wahrscheinlichkeit gibt:<a href="#fn66" class="footnote-ref" id="fnref66"><sup>66</sup></a></p>
+die uns für jedes Ergebnis die zugehörige Wahrscheinlichkeit gibt:<a href="#fn67" class="footnote-ref" id="fnref67"><sup>67</sup></a></p>
 <p><span class="math display">\[p(x_k)=\mathbb{P}(X=x_k)\]</span></p>
 <p>Ebenfalls häufig verwendet wird die <strong>kumulierte Wahrscheinlichkeitsfunktion</strong>
 (<em>cumulative distribution function</em>, CDF):</p>
@@ -862,12 +865,12 @@ Dies multiplizieren wir mit der Wahrscheinlichkeit <span class="math inline">\(x
 erzielen und <span class="math inline">\(n-x\)</span>-mal einen Misserfolg zu erzielen.</p>
 <p>Wenn die ZV <span class="math inline">\(X\)</span> einer Binomialverteilung mit bestimmten Parametern <span class="math inline">\(p\)</span> und <span class="math inline">\(n\)</span>
 folgt, dann schreiben wir <span class="math inline">\(P \propto \mathcal{B}(n,p)\)</span> und es gilt, dass
-<span class="math inline">\(\mathbb{E}(X)=np\)</span> und <span class="math inline">\(\sigma(X)=\sqrt{np(1-p)}\)</span>.<a href="#fn67" class="footnote-ref" id="fnref67"><sup>67</sup></a></p>
+<span class="math inline">\(\mathbb{E}(X)=np\)</span> und <span class="math inline">\(\sigma(X)=\sqrt{np(1-p)}\)</span>.<a href="#fn68" class="footnote-ref" id="fnref68"><sup>68</sup></a></p>
 <p>In Abbildung <a href="stat-stoch.html#fig:Binomialverteilung">7.1</a> sehen wir eine Darstellung der Wahrscheinlichkeitsverteilung der Binomialverteilung für verschiedene Parameterwerte.</p>
 <div class="figure" style="text-align: center"><span id="fig:Binomialverteilung"></span>
 <img src="figures/Wahrscheinlichkeitstheorie/pmf.png" alt="Die Wahrscheinlichkeitsverteilung der Binomialverteilung für verschiedene Parameterwerte." width="75%" height="75%" />
 <p class="caption">
-Figure 7.1: Die Wahrscheinlichkeitsverteilung der Binomialverteilung für verschiedene Parameterwerte.
+Abbildung 7.1: Die Wahrscheinlichkeitsverteilung der Binomialverteilung für verschiedene Parameterwerte.
 </p>
 </div>
 <p>R stellt uns einige nützliche Funktionen bereit, mit denen wir typische
@@ -876,19 +879,19 @@ Rechenaufgaben einfach lösen können:</p>
 beobachten, also <span class="math inline">\(\mathbb{P}(X=x)\)</span> geht das mit der Funktion <code>dbinom()</code>.
 Die notwendigen Argumente sind <code>x</code> für den interessierenden x-Wert,
 <code>size</code> für den Parameter <span class="math inline">\(n\)</span> und <code>prob</code> für den Parameter <span class="math inline">\(p\)</span>:</p>
-<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="stat-stoch.html#cb691-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="at">x =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">50</span>, <span class="at">prob =</span> <span class="fl">0.25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb695-1"><a href="stat-stoch.html#cb695-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="at">x =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">50</span>, <span class="at">prob =</span> <span class="fl">0.25</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 0.09851841</code></pre>
 <p>Das bedeutet, wenn <span class="math inline">\(X \propto B(50, 0.25)\)</span>, dann: <span class="math inline">\(\mathbb{P}(X=10)=0.09852\)</span>.
 Dies ist in Abbildung <a href="stat-stoch.html#fig:bspbinverteilung">7.2</a> illustriert.</p>
 <div class="figure" style="text-align: center"><span id="fig:bspbinverteilung"></span>
 <img src="figures/Wahrscheinlichkeitstheorie/binominalvert.png" alt="Beispiel einer Binomialverteilung mit $p$=0.25 und $n$=50." width="75%" height="75%" />
 <p class="caption">
-Figure 7.2: Beispiel einer Binomialverteilung mit <span class="math inline">\(p\)</span>=0.25 und <span class="math inline">\(n\)</span>=50.
+Abbildung 7.2: Beispiel einer Binomialverteilung mit <span class="math inline">\(p\)</span>=0.25 und <span class="math inline">\(n\)</span>=50.
 </p>
 </div>
 <p>Natürlich können wir an die Funktion auch einen atomaren Vektor als erstes
 Argument übergeben:</p>
-<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="stat-stoch.html#cb693-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="at">x =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">size =</span> <span class="dv">50</span>, <span class="at">prob =</span> <span class="fl">0.25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="stat-stoch.html#cb697-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="at">x =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">size =</span> <span class="dv">50</span>, <span class="at">prob =</span> <span class="fl">0.25</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 0.004937859 0.012344647 0.025864974 0.046341412 0.072086641 0.098518410</code></pre>
 <p>Häufig sind wir auch an der <strong>kumulierten Wahrscheinlichkeitsfunktion</strong>
 interessiert.
@@ -900,7 +903,7 @@ also <span class="math inline">\(\mathbb{P}(X\leq x)\)</span>.</p>
 erhalten wir mit der Funktion <code>pbinom()</code>, welche quasi die gleichen Argumente
 benötigt wie <code>dbinom()</code>.
 Nur gibt es anstatt des Parameters <code>x</code> jetzt einen Parameter <code>q</code>:</p>
-<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb695-1"><a href="stat-stoch.html#cb695-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="at">q =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">50</span>, <span class="at">prob =</span> <span class="fl">0.25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="stat-stoch.html#cb699-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="at">q =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">50</span>, <span class="at">prob =</span> <span class="fl">0.25</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 0.2622023</code></pre>
 <p>Die Wahrscheinlichkeit 10 oder weniger Erfolge bei 10 Versuchen und einer
 Erfolgswahrscheinlichkeit von 25% zu erzielen beträgt also 26.2%. Dies ist auch
@@ -908,7 +911,7 @@ in Abbildung <a href="stat-stoch.html#fig:kumulativ">7.3</a> ersichtlich.</p>
 <div class="figure" style="text-align: center"><span id="fig:kumulativ"></span>
 <img src="figures/Wahrscheinlichkeitstheorie/cdf_bin.png" alt="Kumulative Wahrscheinlichkeitsfunktion mit $p$=0.25 und $n$=50" width="75%" height="75%" />
 <p class="caption">
-Figure 7.3: Kumulative Wahrscheinlichkeitsfunktion mit <span class="math inline">\(p\)</span>=0.25 und <span class="math inline">\(n\)</span>=50
+Abbildung 7.3: Kumulative Wahrscheinlichkeitsfunktion mit <span class="math inline">\(p\)</span>=0.25 und <span class="math inline">\(n\)</span>=50
 </p>
 </div>
 <p>Schlussendlich haben wir die Funktion <code>qbinom()</code>, welche als ersten Input eine
@@ -916,27 +919,27 @@ Wahrscheinlichkeit <code>p</code> akzeptiert und dann den kleinsten Wert <span c
 für den gilt, dass <span class="math inline">\(\mathbb{P}(X=x)\geq p\)</span>.</p>
 <p>Wenn wir also wissen möchten wie viele Erfolge mit einer Wahrscheinlichkeit von
 50% mindestens zu erwarten sind, dann schreiben wir:</p>
-<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="stat-stoch.html#cb697-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qbinom</span>(<span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">50</span>, <span class="at">prob =</span> <span class="fl">0.25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb701-1"><a href="stat-stoch.html#cb701-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qbinom</span>(<span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">50</span>, <span class="at">prob =</span> <span class="fl">0.25</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 12</code></pre>
 <p>Es gilt also: <span class="math inline">\(\mathbb{P}(X=12)\geq p\)</span>.</p>
 <p>Abbildung <a href="stat-stoch.html#fig:qbinom">7.4</a> verdeutlicht dies grafisch.</p>
 <div class="figure" style="text-align: center"><span id="fig:qbinom"></span>
 <img src="figures/Wahrscheinlichkeitstheorie/cdf_bin_inv.png" alt="Graph der invertierten kumulierten Wahrscheinlichkeitsfunktion der Binomialverteilung mit $p=0.25$ und $n=50$" width="75%" height="75%" />
 <p class="caption">
-Figure 7.4: Graph der invertierten kumulierten Wahrscheinlichkeitsfunktion der Binomialverteilung mit <span class="math inline">\(p=0.25\)</span> und <span class="math inline">\(n=50\)</span>
+Abbildung 7.4: Graph der invertierten kumulierten Wahrscheinlichkeitsfunktion der Binomialverteilung mit <span class="math inline">\(p=0.25\)</span> und <span class="math inline">\(n=50\)</span>
 </p>
 </div>
 <p>Möchten wir schließlich eine bestimmte Menge an <strong>Realisierungen</strong> aus einer
 Binomialverteilung ziehen geht das mit der Funktion <code>rbinom()</code>, welche auch wieder
 drei Argumente verlangt: <code>n</code> für die Anzahl der zu ziehenden Realisierungen, sowie <code>size</code> und
 <code>prob</code> als da Paramter <span class="math inline">\(n\)</span> und <span class="math inline">\(p\)</span> der Binomialverteilung:</p>
-<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="stat-stoch.html#cb699-1" aria-hidden="true" tabindex="-1"></a>sample_binom <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.4</span>)</span>
-<span id="cb699-2"><a href="stat-stoch.html#cb699-2" aria-hidden="true" tabindex="-1"></a>sample_binom</span></code></pre></div>
-<pre><code>#&gt; [1] 6 3 1 7 8</code></pre>
+<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="stat-stoch.html#cb703-1" aria-hidden="true" tabindex="-1"></a>sample_binom <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.4</span>)</span>
+<span id="cb703-2"><a href="stat-stoch.html#cb703-2" aria-hidden="true" tabindex="-1"></a>sample_binom</span></code></pre></div>
+<pre><code>#&gt; [1] 4 3 4 5 3</code></pre>
 <blockquote>
 <p><strong>Anwendungsbeispiel Binomialverteilung:</strong> Unser Zufallsexperiment besteht
 aus dem zehnmaligen Werfen einer fairen Münze. Unter ‘Erfolg’ verstehen wir
-das Werfen von ‘Zahl.’ Nehmen wir an, wir führen das Zufallsexperiment 10 Mal durch,
+das Werfen von ‘Zahl’. Nehmen wir an, wir führen das Zufallsexperiment 10 Mal durch,
 werfen also insgesamt 100 Mal die Münze und schreiben jeweils auf, wie häufig wir
 dabei einen Erfolg verbuchen konnten. Wenn wir unsere Ergebnisse aufmalen, indem
 wir auf der x-Achse die Anzahl der Erfolge, und auf der y-Achse die Anzahl der
@@ -946,7 +949,7 @@ Histogram, das ungefähr so aussieht wie in Abbildung <a href="stat-stoch.html#f
 <div class="figure" style="text-align: center"><span id="fig:Munzwurf"></span>
 <img src="figures/Wahrscheinlichkeitstheorie/muenzwuerfe.png" alt="Histogram für einen Münzwurf." width="75%" height="75%" />
 <p class="caption">
-Figure 7.5: Histogram für einen Münzwurf.
+Abbildung 7.5: Histogram für einen Münzwurf.
 </p>
 </div>
 <blockquote>
@@ -964,7 +967,7 @@ uns in dieser Vermutung bestärkt fühlen, wie in Abbildung
 <div class="figure" style="text-align: center"><span id="fig:Munzwurfverteilung"></span>
 <img src="figures/Wahrscheinlichkeitstheorie/muenzwuerfe_2.png" alt="Vergleich der empirischen Stichprobe und der parametrisierten theoretischen Binomialverteilungsfunktion" width="75%" height="75%" />
 <p class="caption">
-Figure 7.6: Vergleich der empirischen Stichprobe und der parametrisierten theoretischen Binomialverteilungsfunktion
+Abbildung 7.6: Vergleich der empirischen Stichprobe und der parametrisierten theoretischen Binomialverteilungsfunktion
 </p>
 </div>
 </div>
@@ -989,7 +992,7 @@ unterschiedliche Werte von <span class="math inline">\(\lambda\)</span> manifest
 <div class="figure" style="text-align: center"><span id="fig:Poisson"></span>
 <img src="figures/Wahrscheinlichkeitstheorie/poisson.png" alt="Poisson-Verteilung für verschiedene Parameter." width="75%" height="75%" />
 <p class="caption">
-Figure 7.7: Poisson-Verteilung für verschiedene Parameter.
+Abbildung 7.7: Poisson-Verteilung für verschiedene Parameter.
 </p>
 </div>
 <p>Wir können die Verteilung mit sehr ähnlichen Funktionen wie bei der
@@ -1000,12 +1003,12 @@ gibt.</p>
 beobachten, also <span class="math inline">\(\mathbb{P}(X=x)\)</span> geht das mit der Funktion <code>dpois()</code>.
 Das einzige notwendige Argument ist <code>lambda</code>
 (siehe zudem Abbildung <a href="stat-stoch.html#fig:PoissonBsp">7.8</a>):</p>
-<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb701-1"><a href="stat-stoch.html#cb701-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dpois</span>(<span class="dv">5</span>, <span class="at">lambda =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="stat-stoch.html#cb705-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dpois</span>(<span class="dv">5</span>, <span class="at">lambda =</span> <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 0.1562935</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:PoissonBsp"></span>
 <img src="figures/Wahrscheinlichkeitstheorie/poisson_2.png" alt="Poisson-Verteilung mit ausgewählten Parameterwerten." width="75%" height="75%" />
 <p class="caption">
-Figure 7.8: Poisson-Verteilung mit ausgewählten Parameterwerten.
+Abbildung 7.8: Poisson-Verteilung mit ausgewählten Parameterwerten.
 </p>
 </div>
 <p>Informationen über die CDF erhalten wir über die Funktion <code>ppois()</code>, die zwei
@@ -1014,14 +1017,14 @@ Argumente, <code>q</code> und <code>lambda</code>, annimmt. Grafisch dargestellt
 <div class="figure" style="text-align: center"><span id="fig:PoissonCDF"></span>
 <img src="figures/Wahrscheinlichkeitstheorie/poisson_cdf.png" alt="Kumulierte Wahrscheinlichkeitsfunktion der Poisson-Verteilung mit $\lambda = 4$" width="75%" height="75%" />
 <p class="caption">
-Figure 7.9: Kumulierte Wahrscheinlichkeitsfunktion der Poisson-Verteilung mit <span class="math inline">\(\lambda = 4\)</span>
+Abbildung 7.9: Kumulierte Wahrscheinlichkeitsfunktion der Poisson-Verteilung mit <span class="math inline">\(\lambda = 4\)</span>
 </p>
 </div>
 <p>Mit der Funktion <code>qpois()</code> finden wir für eine Wahrscheinlichkeit <code>p</code> den
 kleinsten Wert <span class="math inline">\(x\)</span>, für den gilt, dass <span class="math inline">\(\mathbb{P}(X=x)\geq p\)</span>.</p>
 <p>Wenn wir also wissen möchten wie viele Erfolge mit einer Wahrscheinlichkeit von
 50% mindestens zu erwarten sind, dann schreiben wir:</p>
-<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="stat-stoch.html#cb703-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qpois</span>(<span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">lambda =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="stat-stoch.html#cb707-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qpois</span>(<span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">lambda =</span> <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 4</code></pre>
 <p>Es gilt also: <span class="math inline">\(\mathbb{P}(X=4)\geq 0.5\)</span>.</p>
 <p>Wir können dies erneut grafisch verdeutlichen, wie in Abbildung
@@ -1029,15 +1032,15 @@ kleinsten Wert <span class="math inline">\(x\)</span>, für den gilt, dass <span
 <div class="figure" style="text-align: center"><span id="fig:PoissonCDFinv"></span>
 <img src="figures/Wahrscheinlichkeitstheorie/poisson_cdf_inv.png" alt="Invertierte CDF der Poisson-Verteilung mit $\lambda = 4$" width="75%" height="75%" />
 <p class="caption">
-Figure 7.10: Invertierte CDF der Poisson-Verteilung mit <span class="math inline">\(\lambda = 4\)</span>
+Abbildung 7.10: Invertierte CDF der Poisson-Verteilung mit <span class="math inline">\(\lambda = 4\)</span>
 </p>
 </div>
 <p>Möchten wir schließlich eine bestimmte Menge an <strong>Realisierungen</strong> der ZV aus einer
 Poisson-Verteilung ziehen geht das mit <code>rpois()</code>, welches zwei notwendige
 Argumente annimmt: <code>n</code> für die Anzahl der Realisierungen und <code>lambda</code> für den
 Parameter <span class="math inline">\(\lambda\)</span>:</p>
-<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="stat-stoch.html#cb705-1" aria-hidden="true" tabindex="-1"></a>pois_sample <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">lambda =</span> <span class="dv">4</span>)</span>
-<span id="cb705-2"><a href="stat-stoch.html#cb705-2" aria-hidden="true" tabindex="-1"></a>pois_sample</span></code></pre></div>
+<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="stat-stoch.html#cb709-1" aria-hidden="true" tabindex="-1"></a>pois_sample <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">lambda =</span> <span class="dv">4</span>)</span>
+<span id="cb709-2"><a href="stat-stoch.html#cb709-2" aria-hidden="true" tabindex="-1"></a>pois_sample</span></code></pre></div>
 <pre><code>#&gt; [1] 3 8 4 4 3</code></pre>
 </div>
 <div id="hinweise-zu-diskreten-wahrscheinlichkeitsverteilungen" class="section level3" number="7.3.4">
@@ -1055,7 +1058,7 @@ zugewiesen wurde, heißen die Funktionen entsprechend <code>dbinom()</code>, <co
 <p>Tabelle <a href="stat-stoch.html#tab:diskret">7.2</a> gibt einen Überblick über gängige Abkürzungen und die
 Parameter der oben besprochenen diskreten Verteilungen.</p>
 <table>
-<caption><span id="tab:diskret">Table 7.2: </span> Überblick der besprochenen diskreten Verteilungen.</caption>
+<caption><span id="tab:diskret">Tabelle 7.2: </span> Überblick der besprochenen diskreten Verteilungen.</caption>
 <thead>
 <tr class="header">
 <th>Verteilung</th>
@@ -1086,7 +1089,7 @@ Parameter der oben besprochenen diskreten Verteilungen.</p>
 beschäftigt.
 Die diesen Modellen zugrundeliegenden ZV hatten einen abzählbaren Wertebereich.
 Häufig interessieren wir uns aber für ZV mit einem nicht abzählbaren
-Wertebereich, z.B. <span class="math inline">\(\mathbb{R}\)</span> oder <span class="math inline">\([0,1]\)</span>.<a href="#fn68" class="footnote-ref" id="fnref68"><sup>68</sup></a></p>
+Wertebereich, z.B. <span class="math inline">\(\mathbb{R}\)</span> oder <span class="math inline">\([0,1]\)</span>.<a href="#fn69" class="footnote-ref" id="fnref69"><sup>69</sup></a></p>
 <p>Bei stetigen Wahrscheinlichkeitsmodellen liegen zwischen zwei Punkten
 unendlich viele Punkte.
 Das hat bedeutende Implikationen für die Angabe von Wahrscheinlichkeiten.
@@ -1167,13 +1170,13 @@ Für den Erwartungswert der ZV <span class="math inline">\(X\)</span> gilt somit
 <div class="figure" style="text-align: center"><span id="fig:quantile"></span>
 <img src="figures/Wahrscheinlichkeitstheorie/quantile_plot.png" alt="Vergleich des $0.25$- und $0.5$-Quantils" width="100%" height="75%" />
 <p class="caption">
-Figure 7.11: Vergleich des <span class="math inline">\(0.25\)</span>- und <span class="math inline">\(0.5\)</span>-Quantils
+Abbildung 7.11: Vergleich des <span class="math inline">\(0.25\)</span>- und <span class="math inline">\(0.5\)</span>-Quantils
 </p>
 </div>
 <p>Tabelle <a href="stat-stoch.html#tab:diskretstetig">7.3</a> vergleicht noch einmal die Definitionen der Kennzahlen und
 charakteristischer Verteilungen für den stetigen und diskreten Fall.</p>
 <table>
-<caption><span id="tab:diskretstetig">Table 7.3: </span> Vergleich der Kennzahlen charakteristischer Verteilungen im stetigen und im diskreten Fall.</caption>
+<caption><span id="tab:diskretstetig">Tabelle 7.3: </span> Vergleich der Kennzahlen charakteristischer Verteilungen im stetigen und im diskreten Fall.</caption>
 <colgroup>
 <col width="18%" />
 <col width="41%" />
@@ -1252,13 +1255,13 @@ Die Varianz ist mit <span class="math inline">\(Var(X)=\frac{(b-a)^2}{12}\)</spa
 <div class="figure" style="text-align: center"><span id="fig:dichteuniform"></span>
 <img src="figures/Wahrscheinlichkeitstheorie/pdf_uniform.png" alt="Dichte der Uniformverteilung mit $a = 2$ und $b = 4$" width="75%" height="75%" />
 <p class="caption">
-Figure 7.12: Dichte der Uniformverteilung mit <span class="math inline">\(a = 2\)</span> und <span class="math inline">\(b = 4\)</span>
+Abbildung 7.12: Dichte der Uniformverteilung mit <span class="math inline">\(a = 2\)</span> und <span class="math inline">\(b = 4\)</span>
 </p>
 </div>
 <p>Die Abkürung in R für die Uniformverteilung ist <code>unif</code>. Endsprechend berechnen
 wir Werte für die Dichte mit <code>dunif()</code>, welches lediglich die Argumente <code>a</code> und
 <code>b</code> für die Grenzen des Intervalls benötigt:</p>
-<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="stat-stoch.html#cb707-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dunif</span>(<span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="fl">0.1</span>), <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="stat-stoch.html#cb711-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dunif</span>(<span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="fl">0.1</span>), <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>#&gt;  [1] 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25</code></pre>
 <p>Wie wir sehen erhalten wir hier immer den gleichen Wert <span class="math inline">\(\frac{1}{b-a}\)</span>, was
 die zentrale Eigenschaft der Uniformverteilung ist.
@@ -1267,13 +1270,13 @@ angibt, da die absolute Wahrscheinlichkeit für jeden einzelnen Wert wie oben
 beschrieben bei stetigen ZV 0 ist.</p>
 <p>Die CDF berechnen wir entsprechend mit <code>punif()</code>.
 Wenn <span class="math inline">\(X\propto U(0,4)\)</span> erhalten wir <span class="math inline">\(\mathbb{P}(X\leq3)\)</span> entprechend mit:</p>
-<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="stat-stoch.html#cb709-1" aria-hidden="true" tabindex="-1"></a><span class="fu">punif</span>(<span class="fl">0.8</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb713-1"><a href="stat-stoch.html#cb713-1" aria-hidden="true" tabindex="-1"></a><span class="fu">punif</span>(<span class="fl">0.8</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 0.2</code></pre>
 <p>Abbildung <a href="stat-stoch.html#fig:CDFuniform">7.13</a> zeigt dies grafisch.</p>
 <div class="figure" style="text-align: center"><span id="fig:CDFuniform"></span>
 <img src="figures/Wahrscheinlichkeitstheorie/cdf_uniform.png" alt="CDF der Uniformverteilung mit $a = 0$ und $b = 1$" width="75%" height="75%" />
 <p class="caption">
-Figure 7.13: CDF der Uniformverteilung mit <span class="math inline">\(a = 0\)</span> und <span class="math inline">\(b = 1\)</span>
+Abbildung 7.13: CDF der Uniformverteilung mit <span class="math inline">\(a = 0\)</span> und <span class="math inline">\(b = 1\)</span>
 </p>
 </div>
 <p>Auch ansonsten können wir die Syntax der diskreten Verteilungen mehr oder weniger
@@ -1281,8 +1284,8 @@ Figure 7.13: CDF der Uniformverteilung mit <span class="math inline">\(a = 0\)</
 gibt uns Werte der inversen CDF.
 <code>runif()</code> kann verwendet werden um Realisierungen einer uniform verteilten ZV
 zu generieren:</p>
-<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="stat-stoch.html#cb711-1" aria-hidden="true" tabindex="-1"></a>uniform_sample <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">5</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">4</span>)</span>
-<span id="cb711-2"><a href="stat-stoch.html#cb711-2" aria-hidden="true" tabindex="-1"></a>uniform_sample</span></code></pre></div>
+<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb715-1"><a href="stat-stoch.html#cb715-1" aria-hidden="true" tabindex="-1"></a>uniform_sample <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">5</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">4</span>)</span>
+<span id="cb715-2"><a href="stat-stoch.html#cb715-2" aria-hidden="true" tabindex="-1"></a>uniform_sample</span></code></pre></div>
 <pre><code>#&gt; [1] 3.5209862 1.4563675 1.1529571 0.6825809 0.6886870</code></pre>
 </div>
 <div id="beispiel-die-normalverteilung" class="section level3" number="7.4.3">
@@ -1300,7 +1303,7 @@ Wir schreiben <span class="math inline">\(X\propto \mathscr{N}(\mu, \sigma^2)\)<
 gilt:</p>
 <p><span class="math display">\[f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\]</span></p>
 <p>Unter der <strong>Standard-Normalverteilung</strong> verstehen wir eine Normalverteilung mit
-den Paramtern <span class="math inline">\(\mu=0\)</span> und <span class="math inline">\(\sigma=1\)</span>.<a href="#fn69" class="footnote-ref" id="fnref69"><sup>69</sup></a>
+den Paramtern <span class="math inline">\(\mu=0\)</span> und <span class="math inline">\(\sigma=1\)</span>.<a href="#fn70" class="footnote-ref" id="fnref70"><sup>70</sup></a>
 Sie verfügt über die deutlich vereinfachte PDF:</p>
 <p><span class="math display">\[f(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}x^2}\]</span></p>
 <p>Die CDF der Normalverteilung ist analytisch nicht einfach darzustellen, die
@@ -1309,20 +1312,20 @@ Werte können in R aber leicht über die Funktion <code>pnorm</code> (s.u.) abge
 <div class="figure" style="text-align: center"><span id="fig:PDFCDFnormal"></span>
 <img src="figures/Wahrscheinlichkeitstheorie/normalverteilung.png" alt="Vergleich der PDF und CDF der Normalverteilung." width="100%" height="75%" />
 <p class="caption">
-Figure 7.14: Vergleich der PDF und CDF der Normalverteilung.
+Abbildung 7.14: Vergleich der PDF und CDF der Normalverteilung.
 </p>
 </div>
 <p>Die Abkürzung in R ist <code>norm</code>. Alle Funktionen nehmen die Paramter <span class="math inline">\(\mu\)</span> und
 <span class="math inline">\(\sigma\)</span> (nicht <span class="math inline">\(\sigma^2\)</span>) über <code>mean</code> und <code>sd</code> als notwendige Argumente.
 Ansonsten ist die Verwendung äquivalent zu den vorherigen Beispielen:</p>
-<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb713-1"><a href="stat-stoch.html#cb713-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">2</span>) <span class="co"># relative Wahrscheinlichkeiten über PDF</span></span></code></pre></div>
+<div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb717-1"><a href="stat-stoch.html#cb717-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">2</span>) <span class="co"># relative Wahrscheinlichkeiten über PDF</span></span></code></pre></div>
 <pre><code>#&gt; [1] 0.1933341 0.1979188</code></pre>
-<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb715-1"><a href="stat-stoch.html#cb715-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">2</span>) <span class="co"># Werte der CDF</span></span></code></pre></div>
+<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb719-1"><a href="stat-stoch.html#cb719-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">2</span>) <span class="co"># Werte der CDF</span></span></code></pre></div>
 <pre><code>#&gt; [1] 0.4012937 0.4502618</code></pre>
-<div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb717-1"><a href="stat-stoch.html#cb717-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">2</span>) <span class="co"># Werte der I-CDF</span></span></code></pre></div>
+<div class="sourceCode" id="cb721"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb721-1"><a href="stat-stoch.html#cb721-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">2</span>) <span class="co"># Werte der I-CDF</span></span></code></pre></div>
 <pre><code>#&gt; [1] 1.00000 2.34898</code></pre>
-<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb719-1"><a href="stat-stoch.html#cb719-1" aria-hidden="true" tabindex="-1"></a>norm_sample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">2</span>) <span class="co"># 5 Realisierungen der ZV</span></span>
-<span id="cb719-2"><a href="stat-stoch.html#cb719-2" aria-hidden="true" tabindex="-1"></a>norm_sample</span></code></pre></div>
+<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb723-1"><a href="stat-stoch.html#cb723-1" aria-hidden="true" tabindex="-1"></a>norm_sample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">2</span>) <span class="co"># 5 Realisierungen der ZV</span></span>
+<span id="cb723-2"><a href="stat-stoch.html#cb723-2" aria-hidden="true" tabindex="-1"></a>norm_sample</span></code></pre></div>
 <pre><code>#&gt; [1]  0.9099446 -0.5698089 -2.3358839  0.2395470  2.8379932</code></pre>
 <blockquote>
 <p><strong>Beispiel zum Zusammenhang</strong> <code>dnorm()</code> und <code>qnorm()</code></p>
@@ -1352,7 +1355,7 @@ Die CDF ist entsprechend:</p>
 <div class="figure" style="text-align: center"><span id="fig:PDFCDFexponential"></span>
 <img src="figures/Wahrscheinlichkeitstheorie/exponentialverteilung.png" alt="Beispielhafter Vergleich einer PDF und CDF bei Exponentialverteilung" width="75%" height="75%" />
 <p class="caption">
-Figure 7.15: Beispielhafter Vergleich einer PDF und CDF bei Exponentialverteilung
+Abbildung 7.15: Beispielhafter Vergleich einer PDF und CDF bei Exponentialverteilung
 </p>
 </div>
 <p>Der Erwartungswert und die Varianz sind für die Exponentialverteilung
@@ -1360,14 +1363,14 @@ Figure 7.15: Beispielhafter Vergleich einer PDF und CDF bei Exponentialverteilun
 <span class="math inline">\(\mathbb{E}(X)=\sigma_X=\frac{1}{\lambda}\)</span>.</p>
 <p>Die Abkürzung in R ist <code>exp</code>. Alle Funktionen nehmen den Paramter <span class="math inline">\(\lambda\)</span> über
 das Argument <code>rate</code> an:</p>
-<div class="sourceCode" id="cb721"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb721-1"><a href="stat-stoch.html#cb721-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dexp</span>(<span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="at">rate =</span> <span class="dv">1</span>) <span class="co"># relative Wahrscheinlichkeiten über PDF</span></span></code></pre></div>
+<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="stat-stoch.html#cb725-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dexp</span>(<span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="at">rate =</span> <span class="dv">1</span>) <span class="co"># relative Wahrscheinlichkeiten über PDF</span></span></code></pre></div>
 <pre><code>#&gt; [1] 0.6065307 0.4723666</code></pre>
-<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb723-1"><a href="stat-stoch.html#cb723-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pexp</span>(<span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="at">rate =</span> <span class="dv">1</span>) <span class="co"># Werte der CDF</span></span></code></pre></div>
+<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="stat-stoch.html#cb727-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pexp</span>(<span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="at">rate =</span> <span class="dv">1</span>) <span class="co"># Werte der CDF</span></span></code></pre></div>
 <pre><code>#&gt; [1] 0.3934693 0.5276334</code></pre>
-<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="stat-stoch.html#cb725-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qexp</span>(<span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="at">rate =</span> <span class="dv">1</span>) <span class="co"># Werte der I-CDF</span></span></code></pre></div>
+<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="stat-stoch.html#cb729-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qexp</span>(<span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="at">rate =</span> <span class="dv">1</span>) <span class="co"># Werte der I-CDF</span></span></code></pre></div>
 <pre><code>#&gt; [1] 0.6931472 1.3862944</code></pre>
-<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="stat-stoch.html#cb727-1" aria-hidden="true" tabindex="-1"></a>exp_sample <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="dv">5</span>, <span class="at">rate =</span> <span class="dv">1</span>) <span class="co"># 5 Realisierungen der ZV</span></span>
-<span id="cb727-2"><a href="stat-stoch.html#cb727-2" aria-hidden="true" tabindex="-1"></a>exp_sample</span></code></pre></div>
+<div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb731-1"><a href="stat-stoch.html#cb731-1" aria-hidden="true" tabindex="-1"></a>exp_sample <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="dv">5</span>, <span class="at">rate =</span> <span class="dv">1</span>) <span class="co"># 5 Realisierungen der ZV</span></span>
+<span id="cb731-2"><a href="stat-stoch.html#cb731-2" aria-hidden="true" tabindex="-1"></a>exp_sample</span></code></pre></div>
 <pre><code>#&gt; [1] 0.8232605 0.4757590 3.4635949 1.2740277 1.0814852</code></pre>
 <p>Es gibt übrigens einen
 <a href="https://www.exponentialverteilung.de/vers/beweise/uebergang_poissonverteilung.html">wichtigen Zusammenhang</a>
@@ -1379,7 +1382,7 @@ zwischen der stetigen Exponential- und der diskreten Poisson-Verteilung.</p>
 <p>Tabelle <a href="stat-stoch.html#tab:verteilungen">7.4</a> fasst noch einmal alle Wahscheinlichkeitsmodelle zusammen,
 die wir bislang betrachtet haben.</p>
 <table>
-<caption><span id="tab:verteilungen">Table 7.4: </span> Überblick der Verteilungen und ihrer Parameter.</caption>
+<caption><span id="tab:verteilungen">Tabelle 7.4: </span> Überblick der Verteilungen und ihrer Parameter.</caption>
 <thead>
 <tr class="header">
 <th>Verteilung</th>
@@ -1442,14 +1445,14 @@ Dann können wir, gegeben unsere Daten, unsere Beschreibung des DGP verfeinern.<
 <p>Das bedeutet, dass wir für den DGP ein bestimmtes
 Wahrscheinlichkeitsmodell annehmen und dann auf Basis unserer Daten die Parameter
 für dieses Modell schätzen. Dieses Vorgehen nennen wir <em>parametrisch</em>, weil wir
-hier vor allem Parameter schätzen wollen.<a href="#fn70" class="footnote-ref" id="fnref70"><sup>70</sup></a></p>
+hier vor allem Parameter schätzen wollen.<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a></p>
 </div>
 <div id="analyse-mehrerer-zufallsvariablen-gemeinsame-und-marginale-verteilungen" class="section level2" number="7.6">
 <h2><span class="header-section-number">7.6</span> Analyse mehrerer Zufallsvariablen: gemeinsame und marginale Verteilungen</h2>
 <p>Zum Abschluss dieses Kapitels wollen wir uns noch mit der Analyse von ZV
 beschäftigen, die ihrerseits aus der Kombination anderer ZV entstehen.
 Wir wissen ja bereits, dass die Summe oder das Produkt von ZV selbst wieder eine
-ZV ergibt.<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a>
+ZV ergibt.<a href="#fn72" class="footnote-ref" id="fnref72"><sup>72</sup></a>
 Und diese ‘neuen’ ZV sind genau das, was uns in diesem Abschnitt interessiert.
 Diese ‘kombinierten’ ZV sind in der Praxis häufig besonders relevant.</p>
 <p>Die Verteilungen, die wir bislang kennengelernt haben beschreiben alle die
@@ -1518,7 +1521,7 @@ Wertebereich ist 1.</li>
 <div class="figure" style="text-align: center"><span id="fig:jointstetig"></span>
 <img src="figures/Wahrscheinlichkeitstheorie/continuous_joint_dist.pdf" alt="Gemeinsame Verteilung zweier stetiger ZV. Die Wahrscheinlichkeit eines Events korrespondiert zur Fläche." width="50%" height="75%" />
 <p class="caption">
-Figure 7.16: Gemeinsame Verteilung zweier stetiger ZV. Die Wahrscheinlichkeit eines Events korrespondiert zur Fläche.
+Abbildung 7.16: Gemeinsame Verteilung zweier stetiger ZV. Die Wahrscheinlichkeit eines Events korrespondiert zur Fläche.
 </p>
 </div>
 </div>
@@ -1558,7 +1561,7 @@ können wir die marginale Verteilung des ersten Würfelwurfes (also von <span cl
 auf die in Abbildung <a href="#tab:joint-dice-marg"><strong>??</strong></a> dargestellte Art und Weise
 erhalten.
 Hier wird auch deutlich, wo der Name ‘marginal’ herkommt: wir betrachten die
-aufsummierten Wahrscheinlichkeiten ‘am Rand.’
+aufsummierten Wahrscheinlichkeiten ‘am Rand’.
 Die marginale Verteilung im stetigen Fall hat genau die gleiche Bedeutung wie
 im diskreten Fall.</p>
 </div>
@@ -1569,7 +1572,7 @@ Fall dass eine andere ZV auf einen bestimmten Realisationswert bedingt ist.
 Die Definition ist analog zur allgemeinen bedingten Wahrscheinlichkeit, die wir
 schon weiter oben eingeführt haben.
 Daher betrachten wir hier nur ein Beispiel und zwar den folgenden Zusammenhang
-zwischen <span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span>, wobei gilt, dass <span class="math inline">\(X:\)</span> “Es schneit” und <span class="math inline">\(Y:\)</span> “Es ist kalt.”
+zwischen <span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span>, wobei gilt, dass <span class="math inline">\(X:\)</span> “Es schneit” und <span class="math inline">\(Y:\)</span> “Es ist kalt”.
 Dann wäre eine gemeinsame Verteilung wie in Tabelle <a href="#tab:gemverteilung"><strong>??</strong></a>
 angegeben plausibel.
 Um aus dieser gemeinsamen Verteilung die bedingte Verteilung von <span class="math inline">\(Y\)</span>
@@ -1644,46 +1647,46 @@ Gesetz und die Konzepte der marginalen und bedingten Verteilungen zurückkommen.
 </div>
 <div class="footnotes">
 <hr />
-<ol start="63">
-<li id="fn63"><p>Wir nennen eine Menge
+<ol start="64">
+<li id="fn64"><p>Wir nennen eine Menge
 abzählbar wenn sie mit Hilfe der ganzen Zahlen <span class="math inline">\(\mathbb{N}\)</span> indiziert werden
-kann. Das bedeutet, dass auch unendlich große Mengen als abzählbar gelten können.<a href="stat-stoch.html#fnref63" class="footnote-back">↩︎</a></p></li>
-<li id="fn64"><p>An der Formel wird noch einmal deutlich, dass wenn <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span>
+kann. Das bedeutet, dass auch unendlich große Mengen als abzählbar gelten können.<a href="stat-stoch.html#fnref64" class="footnote-back">↩︎</a></p></li>
+<li id="fn65"><p>An der Formel wird noch einmal deutlich, dass wenn <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span>
 stochastisch unabhängig sind wir nichts von <span class="math inline">\(B\)</span> über <span class="math inline">\(A\)</span> und umgekehrt lernen
 können, also gilt: <span class="math inline">\(\mathbb{P}(A|B)=\mathbb{P}(A)\)</span> und
-<span class="math inline">\(\mathbb{P}(B|A)=\mathbb{P}(B)\)</span>.<a href="stat-stoch.html#fnref64" class="footnote-back">↩︎</a></p></li>
-<li id="fn65"><p>Aus den
+<span class="math inline">\(\mathbb{P}(B|A)=\mathbb{P}(B)\)</span>.<a href="stat-stoch.html#fnref65" class="footnote-back">↩︎</a></p></li>
+<li id="fn66"><p>Aus den
 <em>Kolmogorow Axiomen</em> oben ergibt sich, dass die Summe all dieser
-Wahrscheinlichkeiten 1 ergeben muss: <span class="math inline">\(\sum_{k\geq 1}\mathbb{P}(X=x_k)=1\)</span>.<a href="stat-stoch.html#fnref65" class="footnote-back">↩︎</a></p></li>
-<li id="fn66"><p>Zu
+Wahrscheinlichkeiten 1 ergeben muss: <span class="math inline">\(\sum_{k\geq 1}\mathbb{P}(X=x_k)=1\)</span>.<a href="stat-stoch.html#fnref66" class="footnote-back">↩︎</a></p></li>
+<li id="fn67"><p>Zu
 jeder Wahrscheinlichkeitsverteilung gibt es eine
 eindeutige Wahrscheinlichkeitsfunktion und jede Wahrscheinlichkeitsfunktion
 definiert umgekehrt eine eindeutig bestimmte diskrete
-Wahrscheinlichkeitsverteilung.<a href="stat-stoch.html#fnref66" class="footnote-back">↩︎</a></p></li>
-<li id="fn67"><p>Die Herleitung finden Sie
+Wahrscheinlichkeitsverteilung.<a href="stat-stoch.html#fnref67" class="footnote-back">↩︎</a></p></li>
+<li id="fn68"><p>Die Herleitung finden Sie
 im Statistikbuch Ihres Vertrauens oder auf
-<a href="https://de.wikipedia.org/wiki/Binomialverteilung#Erwartungswert">Wikipedia</a>.<a href="stat-stoch.html#fnref67" class="footnote-back">↩︎</a></p></li>
-<li id="fn68"><p>Die Intervallschreibweise <span class="math inline">\([0,1]\)</span>
+<a href="https://de.wikipedia.org/wiki/Binomialverteilung#Erwartungswert">Wikipedia</a>.<a href="stat-stoch.html#fnref68" class="footnote-back">↩︎</a></p></li>
+<li id="fn69"><p>Die Intervallschreibweise <span class="math inline">\([0,1]\)</span>
 ist potenziell verwirrend. Es gilt:
 <span class="math inline">\([a,b]=\{x\in\mathbb{R} | a\leq x \leq b\}\)</span> (geschlossenes Intervall),
 <span class="math inline">\((a,b)=\{x\in\mathbb{R} | a &lt; x &lt; b\}\)</span> (offenes Intervall),
 <span class="math inline">\((a,b)=\{x\in\mathbb{R} | a &lt; x \leq b\}\)</span>(linksoffenes Intervall) und
-<span class="math inline">\((a,b)=\{x\in\mathbb{R} | a \leq x &lt; b\}\)</span>(rechtsoffenes Intervall).<a href="stat-stoch.html#fnref68" class="footnote-back">↩︎</a></p></li>
-<li id="fn69"><p>Viele Tabellen mit bestimmten Kennzahlen
+<span class="math inline">\((a,b)=\{x\in\mathbb{R} | a \leq x &lt; b\}\)</span>(rechtsoffenes Intervall).<a href="stat-stoch.html#fnref69" class="footnote-back">↩︎</a></p></li>
+<li id="fn70"><p>Viele Tabellen mit bestimmten Kennzahlen
 der Normalverteilung beziehen sich auf die Standard-Normalverteilung. Wenn man
 diese Werte verwenden will, muss man die tatsächlich verwendete Stichprobe ggf.
 erst <a href="https://de.wikipedia.org/wiki/Standardisierung_(Statistik)">z-transformieren</a>.
 Unter Letzterem versteht man die <em>Normalisierung</em> einer ZV sodass sie den
 Erwartungswert 0 und die Varianz 1 besitzt. Dies geht i.d.R. für jede ZV <span class="math inline">\(X\)</span> recht
 einfach über die Formel <span class="math inline">\(Z=\frac{X-\mu}{\sigma}\)</span>, wobei <span class="math inline">\(Z\)</span> die standardisierte ZV,
-<span class="math inline">\(\mu\)</span> den Erwartungswert und <span class="math inline">\(\sigma\)</span> die Standardabweichung von <span class="math inline">\(X\)</span> bezeichnet<a href="stat-stoch.html#fnref69" class="footnote-back">↩︎</a></p></li>
-<li id="fn70"><p>Die Alternative, <em>nicht-parametrische</em>
+<span class="math inline">\(\mu\)</span> den Erwartungswert und <span class="math inline">\(\sigma\)</span> die Standardabweichung von <span class="math inline">\(X\)</span> bezeichnet<a href="stat-stoch.html#fnref70" class="footnote-back">↩︎</a></p></li>
+<li id="fn71"><p>Die Alternative, <em>nicht-parametrische</em>
 Verfahren, nehmen kein konkretes Wahrscheinlichkeitsmodell an, sondern wählen das
-Modell auch auf Basis der Daten.<a href="stat-stoch.html#fnref70" class="footnote-back">↩︎</a></p></li>
-<li id="fn71"><p>Trivialerweise ist die Summe einer ZV und einer normalen Zahl
+Modell auch auf Basis der Daten.<a href="stat-stoch.html#fnref71" class="footnote-back">↩︎</a></p></li>
+<li id="fn72"><p>Trivialerweise ist die Summe einer ZV und einer normalen Zahl
 ebenfalls eine ZV. Diese ZV folgt aber einfach der Verteilung der alten ZV, weil
 ihr anderer ‘Baustein’ rein deterministisch ist. Dieser Fall ist daher weniger
-interessant (oder problematisch, je nach Perspektive).<a href="stat-stoch.html#fnref71" class="footnote-back">↩︎</a></p></li>
+interessant (oder problematisch, je nach Perspektive).<a href="stat-stoch.html#fnref72" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

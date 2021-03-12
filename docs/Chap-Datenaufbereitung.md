@@ -956,6 +956,52 @@ head(dta_daten, 2)
 Das Paket [haven](https://github.com/tidyverse/haven) stellt auch Funktionen zum 
 Lesen von SAS oder SPSS-Dateien bereit.
 
+> **Exkurs: Große Zahlen und Probleme mit `int64`** Wir haben in Kapital 
+\@ref(basics) ja bereits den etwas besonderen Datentyp 
+`bit64::integer64` kennen gelernt. 
+Da dieser Datentyp mit einigen Operatoren inkompatibel ist und merkwürdiges
+Verhalten verursacht wenn das Paket `bit64` nicht installiert ist, 
+sollten wir seine Verwendung unbedingt vermeiden. Wenn Sie aber mit
+`data.table::fread` einen Datensatz einlesen, der ganze Zahlen beinhaltet,
+die größer sind als 2147483647, dann werden diese automatisch als 
+`bit64::integer64` kodiert.^[Wenn Sie das Paket `bit64` nicht installiert haben, 
+bekommen Sie zudem eine etwas merkwürdig anmutende Warnung zu lesen.] 
+
+
+```r
+large_nb_frame <- data.table::fread(
+  here::here("data/tidy/BIPKonsum.csv"))
+str(large_nb_frame, vec.len=3)
+```
+
+```
+#> Classes 'data.table' and 'data.frame':	27 obs. of  3 variables:
+#>  $ Jahr          : int  1992 1993 1994 1995 1996 1997 1998 1999 ...
+#>  $ Konsumausgaben:integer64 1601342020000 1611040070000 1647698700000 1681059990000 1706080960000 1719658230000 ... 
+#>  $ BIP           :integer64 2077722320000 2057855860000 2108425030000 2145061880000 2162606290000 2202597220000 ... 
+#>  - attr(*, ".internal.selfref")=<externalptr>
+```
+
+> Das können wir verhindern, indem wir die Spaltentypen
+explizit über `colClasses` spezifizieren oder aber zur Sicherheit das
+Argument `integer64` auf `"double"` setzen:
+
+
+```r
+large_nb_frame <- data.table::fread(
+  here::here("data/tidy/BIPKonsum.csv"), 
+  integer64 = "double")
+str(large_nb_frame, vec.len=3)
+```
+
+```
+#> Classes 'data.table' and 'data.frame':	27 obs. of  3 variables:
+#>  $ Jahr          : int  1992 1993 1994 1995 1996 1997 1998 1999 ...
+#>  $ Konsumausgaben: num  1.60e+12 1.61e+12 1.65e+12 1.68e+12 ...
+#>  $ BIP           : num  2.08e+12 2.06e+12 2.11e+12 2.15e+12 ...
+#>  - attr(*, ".internal.selfref")=<externalptr>
+```
+
 ### Speichern von Daten
 
 

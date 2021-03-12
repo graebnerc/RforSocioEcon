@@ -34,7 +34,7 @@ Für alle Interessierten gibt es jedoch am Ende des Kapitels einen Überblick zu
 allen relevanten Theoremen und ihren mathematischen Beweisen 
 (siehe [Anhang zu Theoremen und Beweisen](#advlin-proofs)).
 
-In diesem Kapitel werden die folgenden R Pakete verwendet:
+## Verwendete Pakete {-}
 
 
 ```r
@@ -1933,21 +1933,137 @@ Bei der Wahl der funktionalen Form spielen vor allem theoretische Überlegungen
 eine wichtige Rolle.
 Auch eine Inspektion der paarweisen Beziehungen zwischen abhängigen und 
 unabhängigen Variablen ist hilfreich.
+Diese sollte immer am Anfang einer jeden empirischen Untersuchung stehen,
+um einen ersten Überblick über die Art der zu untersuchenden Zusammenhänge
+zu bekommen.
 
-Eine wirksame Methode zur Überprüfung unserer funktionalen Form ist dagegen 
+Wenn Sie ein Schätzung dann nach bestem Wissen durchgeführt haben, sollten 
+Sie natürlich trotzdem abschließend überprüfen ob Sie die richtige 
+funktionale Form ausgewählt haben.
+Eine wirksame Methode zur Überprüfung unserer funktionalen Form ist dabei 
 die Inspektion des Tukey-Anscombe Plots.
 Haben wir die richtige Form gewählt werden wir hier keine Struktur erkennen 
 können. 
 Zeigen die Residuen jedoch eine klare Struktur auf ist das ein Signal, dass wir
 eine andere funktionale Form ausprobieren sollten.
-Natürlich kann die Struktur der Residuen auch andere Gründe haben, z.B.
-Heteroskedastie. 
-Für diese Gründe gibt es jedoch zusätzlich noch statistische Tests sodass wir
-durch sukszessives Testen und Ausprobieren eine angemessene funktionale Form
-identifizieren können.
+Das möchten wir zunächst anhand von folgendem Beispiel kurz illustrieren.
 
-Es gibt auch einige Tests, die manchmal verwendet werden um die Wahl der
-funktionalen Form zu überprüfen. 
+
+
+
+
+> **Anwendungsbeispiel: Durkheim und der Selbstmord**
+in seinem Werk *Der Selbstmord* unterscheidet Emile Durkheim zwischen einem
+'anomischer Selbstmord', der auf eine moralische Verwirrung, bzw. fehlende 
+soziale Einbettung in modernen Gesellschaften zurückzuführen ist, und einem
+'fatalistischer Selbstmord', der seine Ursache in der Erstickung individueller 
+Bedürfnisse in archaischen Gesellschaften hat. 
+Man könnte daraus die Hypothese ableiten, dass es entweder (1) einen U-förmigen 
+Zusammenhang zwischen sozialer Kohäsion und der Wahrscheinlichkeit für einen
+Selbstmord gibt, oder aber, dass (2) es in mordernen Gesellschaften einen 
+negativen, in archaischen Gesellschaften einen positiven Zusammenhang zwischen
+sozialer Kohäsion und der Wahrscheinlichkeit für einen Selbstmord gibt.
+Nehmen wir einmal an, das wäre tatsächlich so und wir hätten Daten zur sozialen
+Kohäsion und Selbstmordwahrscheinlichkeit gesammelt. 
+Eine erste visuelle Inspektion der (hier simulierten) Daten in Abbildung 
+\@ref(fig:durkheimraw) zeigt sofort, dass kein linearer Zusammenhang besteht 
+und auch ein Logarithmieren der Daten nicht weiterhilft.
+Bereits an dieser Stelle sollten wir uns von einer einfachen linearen 
+Spezifikation verabschieden. 
+Gehen wir aber zu Illustrationszwecken davon aus, wir hätten dennoch das 
+folgende lineares Modell geschätzt:
+
+\begin{align}
+P_{\text{Suizid}} = \beta_0 + \beta_1 KOH + \epsilon
+\end{align}
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/LineareReg-2/durkheim_raw} 
+
+}
+
+\caption{Simulierte Daten für Durkheim-Beispiel zum Zusammenhang zwischen sozialem Zusammenhalt und der Wahrscheinlichkeit zum Selbstmord.}(\#fig:durkheimraw)
+\end{figure}
+
+> In diesem Fall würde uns eine 
+Inspektion der Schätzgerade in Abbildung \@ref(fig:durkheimreg)a) oder aber des
+TK-Plots in Abbildung \@ref(fig:durkheimreg)b) schnell vor Augen führen, dass die
+gewählte funktionale Form unpassend ist.
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/LineareReg-2/durkheim_reg} 
+
+}
+
+\caption{Die Schätzung eines linearen Modells auf die simulierten Durkheim-Daten ist eindeutig fehlspezifiziert.}(\#fig:durkheimreg)
+\end{figure}
+
+> Wenn wir der zweiten Interpretation oben folgen könnten wir in einem nächsten
+Schritt unsere Stichprobe aufteilen und überprüfen ob es in mordernen 
+Gesellschaften einen negativen, in archaischen Gesellschaften einen positiven 
+Zusammenhang zwischen sozialer Kohäsion und der Wahrscheinlichkeit für einen 
+Selbstmord gibt. Wie in Abbildung \@ref(fig:durkheimsep) zu sehen, weisen die
+jeweiligen TA-Plots weiterhin eine klare Strukur auf, auch wenn der Fit des
+Modells insgesamt besser geworden ist. 
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/LineareReg-2/durkheim_sep} 
+
+}
+
+\caption{Auch eine Aufsplittung der Samples führt nicht dazu, dass der nicht-lineare Zusammenhang richtig geschätzt wird.}(\#fig:durkheimsep)
+\end{figure}
+
+> Im hier vorliegenden stilisierten Beispiel liegt der Grundfehler jedoch darin,
+dass wir bislang immer nur einen *linearen* Zusammenhang zwischen Kohäsion und
+Selbstmordwahrscheinlichkeit untersucht haben. Die Daten sind aber eindeutig
+nicht-linear. Wir können dieses Problem addressieren, indem wir einen
+quadratischen Term in unsere Schätzgleichung aufnehmen und folgendes Modell
+schätzen (das weiterhin linear in den Parametern $\boldsymbol{\beta}$ ist):
+
+\begin{align}
+P_{\text{Suizid}} = \beta_0 + \beta_1 KOH + \beta_2 KOH^2 + \epsilon
+\end{align}
+
+> Wie wir in Abbildung \@ref(fig:durkheimquad) sehen, ist das Modell nun 
+deutlich besser spezifiziert und der TA Plot gibt keinen Hinweis auf einen 
+Verstoß gegen die OLS-Annahmen. Der Preis den wir hier zahlen liegt in der 
+nicht gerade intuitiven Interpretation des quadratischen Terms $\beta_2$ in der 
+Schätzgleichung oben. Es ist hier jedoch der einzige Weg, das Modell ohne
+Verstoß gegen A1 zu schätzen.
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/LineareReg-2/durkheim_quad} 
+
+}
+
+\caption{Durch das Hinzufügen eines quadratischen Terms in die Schätzgleichung kann das Modell korrekt spezifiziert und geschätzt werden.}(\#fig:durkheimquad)
+\end{figure}
+
+Natürlich kann die Struktur der Residuen aber auch andere Gründe haben, z.B.
+Heteroskedastie oder Autokorrelation. Neben der Tatsache, dass die Struktur sich
+grafisch aber meist anders zeigt, haben Sie in den vorangegangenen Abschnitten 
+ja auch statistische Tests für diese Probleme kennen gelernt, sodass Sie durch 
+sukszessives Testen und Ausprobieren die möglichen Gründe für eine 
+Misspezifikation und in der Folge eine angemessene funktionale Form 
+identifizieren können.
+Tatsächlich ist es aber so, dass während die quantitativen Tests für 
+Heteroskedastie und Autokorrelation recht weit verbreitet sind, ist für die
+Untersuchung der Linearitätsannahme der TK-Plot häufig absolut unverzichtbar.
+Aber natürlich gibt es auch einige Tests, die manchmal verwendet werden um die
+Wahl der funktionalen Form zu überprüfen. 
 Der bekannteste Test ist dabei der so genannte *RESET Test*. 
 *RESET* steht dabei für *REgression Specification Error Test*. 
 Dieser Test wird mit der Funktion `resettest()` durchgeführt und testet die
@@ -1959,7 +2075,8 @@ bekannten Datensatz zu Journaldaten analysieren.
 
 
 Wir betrachten den Zusammenhang zwischen der Abonnentenanzahl und dem Preis pro 
-Zitation. Wie wir in Abbildung \@ref(fig:Journalnonlinear) sehen ist dieser Zusammenhang alles andere linear:
+Zitation. Wie wir in Abbildung \@ref(fig:Journalnonlinear) sehen ist dieser 
+Zusammenhang alles andere linear:
 
 
 
@@ -2047,8 +2164,10 @@ Hier kann $H_0$ nicht abgelehnt werden, dementsprechend können wir nicht davon
 ausgehen, dass unser Modell misspezifiziert ist.
 
 Beachten Sie aber, dass der RESET Test keine abschließende Sicherheit bieten kann.
-Sie werden immer wieder Situationen erleben in denen der RESET Test ein Modell
-ablehnt, das sie aufgrund empirischer und theoretischer Überlegungen gut 
+Hypothesentests bezüglich der funktionalen From sind nicht so zuverlässig wie
+z.B. die Tests auf Autokorrelation oder Heteroskedastie.
+Sie werden also immer wieder Situationen erleben in denen der RESET Test ein 
+Modell ablehnt, das sie aufgrund empirischer und theoretischer Überlegungen gut 
 verteidigen könnten und umgekehrt.
 Daher sollte er immer mit Theorie und Beobachtung kombiniert werden.
 
@@ -2199,7 +2318,7 @@ eine Normalverteilung der Residuen herzustellen.
 Bleibt das erfolglos oder ergibt es im konkreten Anwendungsfall keinen Sinn 
 sollten Sie die Unsicherheit Ihrer Schätzung nicht über die 
 normalen Standardfehler messen, sondern sich Techniken wie dem *Huber-Schätzer*
-oder dem *Bootstrap* bedienen.
+oder dem noch robusteren *Bootstrap* bedienen.
 
 ## Weitere Fehlerquellen: Systematische Messfehler, Selbstselektion und Simulatanität
 
