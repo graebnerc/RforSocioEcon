@@ -304,13 +304,12 @@ noten
 #> Levels: 1 < 2 < 3 < 4 < 5 < 6
 ```
 
-Da wir ordinal-skalierte Daten ordnen können, ist es hier z.B. auch möglich 
-empirische Quantile zu berechnen. 
-Allerdings müssen wir bei der Funktion noch das Argument `type=1` oder `type=3`^[
+Da wir ordinal-skalierte Daten ordnen können, ist es hier z.B. auch möglich mit
+Hilfe der Funktion `quantile()` empirische Quantile zu berechnen:^[
+Allerdings müssen wir bei der Funktion noch das Argument `type=1` oder `type=3` 
+ergänzen, um einen Quantilsalgorithmus zu wählen, der auch mit Faktoren funktioniert.
 Eine Beschreibung der unterschiedlichen Algorithmen finden Sie über 
 `help(quantile)`.] 
-ergänzen, um einen Quantilsalgorithmus zu wählen, der auch mit Faktoren 
-funktioniert:
 
 
 ```r
@@ -744,7 +743,7 @@ Das können wir folgendermaßen überprüfen:
 
 
 ```r
-typeof(daten$year)
+typeof(daten[["year"]])
 ```
 
 ```
@@ -770,7 +769,7 @@ daten_pfad <- here::here("data/tidy/export_daten.csv")
 daten <- data.table::fread(
   daten_pfad, colClasses = c("character", "double", "double")
   )
-typeof(daten$year)
+typeof(daten[["year"]])
 ```
 
 ```
@@ -1042,7 +1041,7 @@ Falls Ihr Datensatz im csv-Format doch zu groß ist, Sie aber aufgrund von
 Kompatibilitätsanforderungen kein spezialisiertes Format benutzen wollen, bietet
 es sich an die csv-Datei zu komprimieren. 
 Natürlich könnten Sie das händisch in Ihrem Datei-Explorer machen, aber das ist vollkommen überholt. 
-Sie können das gleich in R miterledigen indem Sie z.B. die Funktion `gzip`
+Sie können das gleich in R miterledigen indem Sie z.B. die Funktion `gzip()`
 aus dem Paket `R.utils` [@R-R.utils] verwenden:
 
 
@@ -1310,9 +1309,10 @@ Anforderung (1) verstößt:
 #> 2   DE  Exporte 45.64482
 ```
 
-> Hier haben wir drei Variablen, `Land`, `Jahr` und `Exporte`, aber die Spalte 
-`2013` korrespondiert zu einer Ausprägung der Variable
-`Jahr`, aber nicht zur Variablen als solchen. 
+> Hier haben wir drei Variablen, `Land`, `Jahr` und `Exporte`, die im Jahr 2014
+erhoben wurden. In der Spalte `Variable` kommen aber die ersten drei Variablen
+vor und die Spalte `2013` korrespondiert zu einer Ausprägung der Variable
+`Jahr`, aber nicht zu den eigentlichen Variablen als solchen. 
 Die Bedeutung dieser Unterscheidung wird im nächsten Beispiel deutlich.
 
 > **Beispiel: Verstoß gegen (1) und (2):**
@@ -1353,7 +1353,8 @@ kommen in der Praxis in der Regel seltener vor, sind aber auch unschön:
 
 ```r
 d <- data.frame(Land=c("DE", "AT"))
-d$`Wichtige Industrien` <- list(c("Autos", "Medikamente"), c("Stahlproduktion", "Holz"))
+d[["Wichtige Industrien"]] <- list(
+  c("Autos", "Medikamente"), c("Stahlproduktion", "Holz"))
 d
 ```
 
@@ -2072,7 +2073,7 @@ Tabelle \@ref(tab:joins) fasst die gerade diskutierten Funktionen noch einmal
 zusammen.
 
 
-Table: (\#tab:joins) Überblick zu den Funktionen der `*_join()`-Familie des Pakets `dplyr`. 'DS' steht für 'Datensatz', mit `x` ist der linke und mit`y` der rechte Datensatz gemeint, wie in den Argumenten von `*_join()`.
+Table: (\#tab:joins) Überblick zu den Funktionen der `*_join()`-Familie des Pakets `dplyr`. Mit `x` ist der linke und mit `y` der rechte Datensatz gemeint, wie in den Argumenten von `*_join()`.
 
 | Funktion | Effekt                   | Veränderung Anzahl Zeilen? | 
 |----------+--------------------------+----------------------------|

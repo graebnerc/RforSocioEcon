@@ -631,7 +631,7 @@ imaginäre Komponente komplexer Zahlen verwendet wird.] Beispiele sind
 * Ganze Zahlen und Dezimalzahlen werden häufig unter der Kategorie `numeric`
 zusammengefasst. Dies ist in der Praxis aber quasi nie hilfreich und man sollte
 diese Kategorie möglichst nie verwenden.
-* Wörter (`character`): sie sind dadurch gekennzeichnet, dass sie auch 
+* `character` (Wörter): sie sind dadurch gekennzeichnet, dass sie auch 
 Buchstaben enthalten können und am Anfang und Ende ein `"` haben. Beispiele hier
 wären `"Hallo"`, `"500"` oder `"1_2_Drei"`.
 * Es gibt noch zwei weitere besondere 'Typen', die strikt gesehen keine 
@@ -1818,7 +1818,7 @@ x[1] + x[2]
 ```
 
 Dafür können wir andere nützliche Dinge mit Faktoren anstellen, z.B. die 
-absoluten Häufigkeiten über die Funktion `table` anzeigen:
+absoluten Häufigkeiten über die Funktion `table()` anzeigen:
 
 
 ```r
@@ -2063,7 +2063,7 @@ verwendet werden können:
 
 
 ```r
-df_4[, 1] # erste Spalte
+df_4[, 1] # Werte der ersten Spalte
 ```
 
 ```
@@ -2306,7 +2306,7 @@ lead
 #> {
 #>     UseMethod("lead")
 #> }
-#> <bytecode: 0x7fa2a3e5f118>
+#> <bytecode: 0x7fb951246768>
 #> <environment: namespace:plm>
 ```
 Aus der letzten Zeile wird ersichtlich, dass `lead` hier aus dem Paket `plm`
@@ -2337,7 +2337,7 @@ dplyr::lead
 #>     vec_c(vec_slice(inputs$x, -seq_len(n)), vec_rep(inputs$default, 
 #>         n))
 #> }
-#> <bytecode: 0x7fa2836ee250>
+#> <bytecode: 0x7fb9351e7628>
 #> <environment: namespace:dplyr>
 ```
 
@@ -2350,7 +2350,7 @@ Fällen `::` zu verwenden, also `plm::lead` und `dplyr::lead`.
 
 
 > **Optionale Info**: Um zu überprüfen in welcher Reihenfolge R nach Objekten sucht, kann die
-Funktion `search` verwendet werden. Wenn ein Objekt aufgerufen wird schaut
+Funktion `search()` verwendet werden. Wenn ein Objekt aufgerufen wird schaut
 R zuerst im ersten Element des Vektors nach, der globalen Umgebung. Wenn das
 Objekt dort nicht gefunden wird, schaut es im zweiten, etc. 
 Wie man hier auch erkennen kann, werden einige Pakete standardmäßig eingelesen.

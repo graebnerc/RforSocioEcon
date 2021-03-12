@@ -663,11 +663,8 @@ Typs <code>factor</code> werden in Abschnitt <a href="basics.html#introfactors">
 <span id="cb295-2"><a href="data.html#cb295-2" aria-hidden="true" tabindex="-1"></a>noten</span></code></pre></div>
 <pre><code>#&gt;  [1] 1 1 1 2 2 2 2 3 3 3 3 3 3 4 4 5 5 5
 #&gt; Levels: 1 &lt; 2 &lt; 3 &lt; 4 &lt; 5 &lt; 6</code></pre>
-<p>Da wir ordinal-skalierte Daten ordnen können, ist es hier z.B. auch möglich
-empirische Quantile zu berechnen.
-Allerdings müssen wir bei der Funktion noch das Argument <code>type=1</code> oder <code>type=3</code><a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>
-ergänzen, um einen Quantilsalgorithmus zu wählen, der auch mit Faktoren
-funktioniert:</p>
+<p>Da wir ordinal-skalierte Daten ordnen können, ist es hier z.B. auch möglich mit
+Hilfe der Funktion <code>quantile()</code> empirische Quantile zu berechnen:<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a></p>
 <div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="data.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(noten, <span class="at">type =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>#&gt;   0%  25%  50%  75% 100% 
 #&gt;    1    2    3    4    5 
@@ -1058,7 +1055,7 @@ Der besseren Übersicht halber sollte dieser immer separat definiert werden:</p>
 <p>Vielleicht fragen Sie sich wie <code>data.table::fread()</code> die Spalten bezüglich ihres
 <a href="basics.html#basics-types-vectors">Datentyps</a> interpretiert hat?
 Das können wir folgendermaßen überprüfen:</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="data.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(daten<span class="sc">$</span>year)</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="data.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(daten[[<span class="st">&quot;year&quot;</span>]])</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;integer&quot;</code></pre>
 <p>In der Regel funktioniert die automatische Typerkennung von <code>data.table::fread()</code> sehr gut.
 Ich empfehle dennoch die Typen im Zweifel manuell zu spezifizieren, aus folgenden
@@ -1075,7 +1072,7 @@ indem Sie einfach einen Vektor mit den Datentypen angeben:</p>
 <span id="cb321-2"><a href="data.html#cb321-2" aria-hidden="true" tabindex="-1"></a>daten <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(</span>
 <span id="cb321-3"><a href="data.html#cb321-3" aria-hidden="true" tabindex="-1"></a>  daten_pfad, <span class="at">colClasses =</span> <span class="fu">c</span>(<span class="st">&quot;character&quot;</span>, <span class="st">&quot;double&quot;</span>, <span class="st">&quot;double&quot;</span>)</span>
 <span id="cb321-4"><a href="data.html#cb321-4" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb321-5"><a href="data.html#cb321-5" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(daten<span class="sc">$</span>year)</span></code></pre></div>
+<span id="cb321-5"><a href="data.html#cb321-5" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(daten[[<span class="st">&quot;year&quot;</span>]])</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;double&quot;</code></pre>
 <p>Da es bei sehr großen Dateien einen extremen Unterschied macht ob Sie die
 Spaltentypen angeben oder nicht macht es in einem solchen Fall häufig Sinn,
@@ -1253,7 +1250,7 @@ Schauen Sie bei Interesse einfach einmal in die Hilfefunktion!</p>
 Kompatibilitätsanforderungen kein spezialisiertes Format benutzen wollen, bietet
 es sich an die csv-Datei zu komprimieren.
 Natürlich könnten Sie das händisch in Ihrem Datei-Explorer machen, aber das ist vollkommen überholt.
-Sie können das gleich in R miterledigen indem Sie z.B. die Funktion <code>gzip</code>
+Sie können das gleich in R miterledigen indem Sie z.B. die Funktion <code>gzip()</code>
 aus dem Paket <code>R.utils</code> <span class="citation">(<a href="git.html#ref-R-R.utils" role="doc-biblioref">Bengtsson 2019</a>)</span> verwenden:</p>
 <div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="data.html#cb343-1" aria-hidden="true" tabindex="-1"></a>csv_datei_name <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/tidy/test_data.csv&quot;</span>)</span>
 <span id="cb343-2"><a href="data.html#cb343-2" aria-hidden="true" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(test_data, <span class="at">file =</span> csv_datei_name)</span>
@@ -1472,9 +1469,10 @@ Anforderung (1) verstößt:</p>
 #&gt; 1   AT  Exporte 53.38658
 #&gt; 2   DE  Exporte 45.64482</code></pre>
 <blockquote>
-<p>Hier haben wir drei Variablen, <code>Land</code>, <code>Jahr</code> und <code>Exporte</code>, aber die Spalte
-<code>2013</code> korrespondiert zu einer Ausprägung der Variable
-<code>Jahr</code>, aber nicht zur Variablen als solchen.
+<p>Hier haben wir drei Variablen, <code>Land</code>, <code>Jahr</code> und <code>Exporte</code>, die im Jahr 2014
+erhoben wurden. In der Spalte <code>Variable</code> kommen aber die ersten drei Variablen
+vor und die Spalte <code>2013</code> korrespondiert zu einer Ausprägung der Variable
+<code>Jahr</code>, aber nicht zu den eigentlichen Variablen als solchen.
 Die Bedeutung dieser Unterscheidung wird im nächsten Beispiel deutlich.</p>
 </blockquote>
 <blockquote>
@@ -1508,8 +1506,9 @@ widerspricht:</p>
 kommen in der Praxis in der Regel seltener vor, sind aber auch unschön:</p>
 </blockquote>
 <div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="data.html#cb352-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Land=</span><span class="fu">c</span>(<span class="st">&quot;DE&quot;</span>, <span class="st">&quot;AT&quot;</span>))</span>
-<span id="cb352-2"><a href="data.html#cb352-2" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span><span class="st">`</span><span class="at">Wichtige Industrien</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;Autos&quot;</span>, <span class="st">&quot;Medikamente&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;Stahlproduktion&quot;</span>, <span class="st">&quot;Holz&quot;</span>))</span>
-<span id="cb352-3"><a href="data.html#cb352-3" aria-hidden="true" tabindex="-1"></a>d</span></code></pre></div>
+<span id="cb352-2"><a href="data.html#cb352-2" aria-hidden="true" tabindex="-1"></a>d[[<span class="st">&quot;Wichtige Industrien&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb352-3"><a href="data.html#cb352-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">&quot;Autos&quot;</span>, <span class="st">&quot;Medikamente&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;Stahlproduktion&quot;</span>, <span class="st">&quot;Holz&quot;</span>))</span>
+<span id="cb352-4"><a href="data.html#cb352-4" aria-hidden="true" tabindex="-1"></a>d</span></code></pre></div>
 <pre><code>#&gt;   Land   Wichtige Industrien
 #&gt; 1   DE    Autos, Medikamente
 #&gt; 2   AT Stahlproduktion, Holz</code></pre>
@@ -1982,7 +1981,7 @@ Variablennamen aussagekräftig werden:</p>
 <p>Tabelle <a href="data.html#tab:joins">4.3</a> fasst die gerade diskutierten Funktionen noch einmal
 zusammen.</p>
 <table>
-<caption><span id="tab:joins">Tabelle 4.3: </span> Überblick zu den Funktionen der <code>*_join()</code>-Familie des Pakets <code>dplyr</code>. ‘DS’ steht für ‘Datensatz’, mit <code>x</code> ist der linke und mit<code>y</code> der rechte Datensatz gemeint, wie in den Argumenten von <code>*_join()</code>.</caption>
+<caption><span id="tab:joins">Tabelle 4.3: </span> Überblick zu den Funktionen der <code>*_join()</code>-Familie des Pakets <code>dplyr</code>. Mit <code>x</code> ist der linke und mit <code>y</code> der rechte Datensatz gemeint, wie in den Argumenten von <code>*_join()</code>.</caption>
 <colgroup>
 <col width="15%" />
 <col width="40%" />
@@ -2746,6 +2745,8 @@ Psychologie ist ‘Intelligenz’.<a href="data.html#fnref14" class="footnote-ba
 als Indikator für wirtschaftliche Entwicklung zu verwenden.
 Für mehr Infos dazu siehe z.B. <span class="citation"><a href="git.html#ref-BIPHIST" role="doc-biblioref">Lepenies</a> (<a href="git.html#ref-BIPHIST" role="doc-biblioref">2016</a>)</span>.<a href="data.html#fnref15" class="footnote-back">↩︎</a></p></li>
 <li id="fn16"><p>
+Allerdings müssen wir bei der Funktion noch das Argument <code>type=1</code> oder <code>type=3</code>
+ergänzen, um einen Quantilsalgorithmus zu wählen, der auch mit Faktoren funktioniert.
 Eine Beschreibung der unterschiedlichen Algorithmen finden Sie über
 <code>help(quantile)</code>.<a href="data.html#fnref16" class="footnote-back">↩︎</a></p></li>
 <li id="fn17"><p>Das
