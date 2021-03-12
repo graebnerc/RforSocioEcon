@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="de" xml:lang="de">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Formale Methoden der Sozioökonomie | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Formale Methoden der Sozioökonomie | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 6 Formale Methoden der Sozioökonomie | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2021-03-11" />
+<meta name="date" content="2021-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,6 +139,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie"><i class="fa fa-check"></i>Änderungshistorie</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#colophon"><i class="fa fa-check"></i>Colophon</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#referenzen"><i class="fa fa-check"></i>Referenzen</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a>
 <ul>
@@ -208,7 +210,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>5</b> Visualisierung von Daten</a>
 <ul>
 <li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#verwendete-pakete-1"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
 <li class="chapter" data-level="5.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>5.1</b> Optional: Theoretische Grundlagen</a>
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="vis.html"><a href="vis.html#vis-base-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> <code>ggplot2</code> vs. <code>base plot</code></a></li>
@@ -317,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>8</b> Wiederholung: Deskriptive Statistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-und-datensätze"><i class="fa fa-check"></i>Verwendete Pakete und Datensätze</a></li>
+<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-4"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="8.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>8.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
 <li class="chapter" data-level="8.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmaße"><i class="fa fa-check"></i><b>8.2</b> Korrelationsmaße</a></li>
 <li class="chapter" data-level="8.3" data-path="desk-stat.html"><a href="desk-stat.html#descVis"><i class="fa fa-check"></i><b>8.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
@@ -325,18 +326,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>9</b> Wiederholung: Drei Verfahren der schließenden Statistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-4"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-5"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="9.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>9.1</b> Punktschätzung</a></li>
 <li class="chapter" data-level="9.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>9.2</b> Hypothesentests</a></li>
 <li class="chapter" data-level="9.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>9.3</b> Berechnung von Konfidenzintervallen</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>10</b> Lineare statistische Modelle in R</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>10.1</b> Einleitung und Überblick</a>
+<li class="chapter" data-level="" data-path="linmodel.html"><a href="linmodel.html#verwendete-pakete-6"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1</b> Einführung in die lineare Regression</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1.1</b> Einführung in die lineare Regression</a></li>
-<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.2</b> Einführungsbeispiel</a></li>
-<li class="chapter" data-level="10.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
+<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.1</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.2</b> Überblick über die Inhalte des Kapitels</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>10.2</b> Grundlagen der einfachen linearen Regression</a>
 <ul>
@@ -356,6 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>11</b> Fortgeschrittene Themen der linearen Regression</a>
 <ul>
+<li class="chapter" data-level="" data-path="advlin.html"><a href="advlin.html#verwendete-pakete-7"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="11.1" data-path="advlin.html"><a href="advlin.html#annahmen-und-eigenschaften-des-einfachen-ols-modells"><i class="fa fa-check"></i><b>11.1</b> Annahmen und Eigenschaften des einfachen OLS Modells</a>
 <ul>
 <li class="chapter" data-level="11.1.1" data-path="advlin.html"><a href="advlin.html#annahmen-im-matrixschreibweise"><i class="fa fa-check"></i><b>11.1.1</b> Annahmen im Matrixschreibweise</a></li>
@@ -408,6 +410,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>12</b> Ausgewählte nichtlineare Schätzverfahren</a>
 <ul>
+<li class="chapter" data-level="" data-path="nonlin.html"><a href="nonlin.html#verwendete-pakete-8"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="12.1" data-path="nonlin.html"><a href="nonlin.html#logit"><i class="fa fa-check"></i><b>12.1</b> Binäre abhängige Variablen: Logit- und Probit-Modelle</a>
 <ul>
 <li class="chapter" data-level="12.1.1" data-path="nonlin.html"><a href="nonlin.html#warum-nicht-ols"><i class="fa fa-check"></i><b>12.1.1</b> Warum nicht OLS?</a></li>
@@ -487,21 +490,21 @@ da Themen wie Einkommens- und Vermögensverteilung bzw. Ungleichheitsforschung
 traditionell ein wichtiges Kernthema der Sozioökonomik ausmachen.</p>
 <div id="verwendete-pakete-2" class="section level2 unnumbered">
 <h2>Verwendete Pakete</h2>
-<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="formalia.html#cb553-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb553-2"><a href="formalia.html#cb553-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb553-3"><a href="formalia.html#cb553-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb553-4"><a href="formalia.html#cb553-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb553-5"><a href="formalia.html#cb553-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb553-6"><a href="formalia.html#cb553-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
-<span id="cb553-7"><a href="formalia.html#cb553-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(matlib)</span>
-<span id="cb553-8"><a href="formalia.html#cb553-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fitdistrplus)</span>
-<span id="cb553-9"><a href="formalia.html#cb553-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(moments)</span>
-<span id="cb553-10"><a href="formalia.html#cb553-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ineq)</span>
-<span id="cb553-11"><a href="formalia.html#cb553-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmutil)</span>
-<span id="cb553-12"><a href="formalia.html#cb553-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
-<span id="cb553-13"><a href="formalia.html#cb553-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(optimx)</span></code></pre></div>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="formalia.html#cb557-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb557-2"><a href="formalia.html#cb557-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb557-3"><a href="formalia.html#cb557-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb557-4"><a href="formalia.html#cb557-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb557-5"><a href="formalia.html#cb557-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb557-6"><a href="formalia.html#cb557-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
+<span id="cb557-7"><a href="formalia.html#cb557-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(matlib)</span>
+<span id="cb557-8"><a href="formalia.html#cb557-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fitdistrplus)</span>
+<span id="cb557-9"><a href="formalia.html#cb557-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(moments)</span>
+<span id="cb557-10"><a href="formalia.html#cb557-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ineq)</span>
+<span id="cb557-11"><a href="formalia.html#cb557-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmutil)</span>
+<span id="cb557-12"><a href="formalia.html#cb557-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb557-13"><a href="formalia.html#cb557-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(optimx)</span></code></pre></div>
 <blockquote>
-<p><strong>Hinweis</strong>: Das Paket <a href="http://friendly.github.io/matlib/">matlib</a> <span class="citation">(<a href="git.html#ref-R-matlib" role="doc-biblioref">Friendly, Fox, and Chalmers 2019</a>)</span>
+<p><strong>Hinweis</strong>: Das Paket <a href="http://friendly.github.io/matlib/">matlib</a> <span class="citation">(<a href="git.html#ref-R-matlib" role="doc-biblioref">Friendly, Fox, und Chalmers 2019</a>)</span>
 verwenden wir für einige Matrizenoperationen und zum Lösen linearer
 Gleichungssysteme.
 Streng genommen ist das Paket nicht dringend nötig, da anstatt der Funktion
@@ -544,14 +547,14 @@ absolute Änderung von 25%. Daher sprechen wir bei letzterem von einer Änderung
 in <em>Prozentpunkten</em>. Im Beispiel haben wir also eine absolute Änderung von einem
 Prozentpunkt, bzw. eine relative Änderung von 25%.</p>
 <p>In R können wir die Funktionen <code>lag()</code> und <code>lead()</code> aus dem Paket
-<a href="https://dplyr.tidyverse.org/">dplyr</a> <span class="citation">(<a href="git.html#ref-R-dplyr" role="doc-biblioref">Wickham et al. 2019</a>)</span>
-verwenden um Änderungsraten zu berechnen.<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a>
+<a href="https://dplyr.tidyverse.org/">dplyr</a> <span class="citation">(<a href="git.html#ref-R-dplyr" role="doc-biblioref">Wickham u. a. 2019</a>)</span>
+verwenden um Änderungsraten zu berechnen.<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a>
 Die Funktion <code>lag()</code> akzeptieren dabei zwei Argumente: den Vektor der Werte und die Anzahl
 der Schritte, die zurück bzw. vor gesprungen werden sollen.</p>
 <p>Entsprechend können wir Änderungsraten folgendermaßen berechnen:</p>
-<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="formalia.html#cb554-1" aria-hidden="true" tabindex="-1"></a>werte <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">2.2</span>, <span class="fl">3.25</span>, <span class="fl">0.5</span>, <span class="fl">0.1</span>, <span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">0.2</span>)</span>
-<span id="cb554-2"><a href="formalia.html#cb554-2" aria-hidden="true" tabindex="-1"></a>rel_change <span class="ot">&lt;-</span> (werte <span class="sc">-</span> dplyr<span class="sc">::</span><span class="fu">lag</span>(werte)) <span class="sc">/</span> <span class="fu">abs</span>(dplyr<span class="sc">::</span><span class="fu">lag</span>(werte)) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb554-3"><a href="formalia.html#cb554-3" aria-hidden="true" tabindex="-1"></a>rel_change</span></code></pre></div>
+<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="formalia.html#cb558-1" aria-hidden="true" tabindex="-1"></a>werte <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">2.2</span>, <span class="fl">3.25</span>, <span class="fl">0.5</span>, <span class="fl">0.1</span>, <span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">0.2</span>)</span>
+<span id="cb558-2"><a href="formalia.html#cb558-2" aria-hidden="true" tabindex="-1"></a>rel_change <span class="ot">&lt;-</span> (werte <span class="sc">-</span> dplyr<span class="sc">::</span><span class="fu">lag</span>(werte)) <span class="sc">/</span> <span class="fu">abs</span>(dplyr<span class="sc">::</span><span class="fu">lag</span>(werte)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb558-3"><a href="formalia.html#cb558-3" aria-hidden="true" tabindex="-1"></a>rel_change</span></code></pre></div>
 <pre><code>#&gt; [1]         NA  120.00000   47.72727  -84.61538  -80.00000 -200.00000  300.00000</code></pre>
 <p>Die gleiche Syntax können wir auch für die Arbeit mit einem <code>data.frame</code>
 verwenden.
@@ -559,24 +562,24 @@ Hier müssen wir aber darauf achten, die Daten auch tatsächlich nach dem
 Beobachtungszeitpunkt zu sortieren, damit <code>data.frame::lag(x, 1)</code> auch den vorherigen Wert
 ausgibt. Dazu verwenden wir die Funktion <code>dplyr::arrange()</code>, welche die Zeilen eines
 <code>data.frame</code> gemäß einer oder mehrerer Variablen ordnet:</p>
-<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="formalia.html#cb556-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(beispiel_daten_at, <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="formalia.html#cb560-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(beispiel_daten_at, <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>#&gt;    country      BIP year
 #&gt; 1: Austria 37941.04 2018
 #&gt; 2: Austria 37140.79 2017
 #&gt; 3: Austria 36469.39 2016
 #&gt; 4: Austria 36129.03 2015</code></pre>
-<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="formalia.html#cb558-1" aria-hidden="true" tabindex="-1"></a>beispiel_daten_at <span class="ot">&lt;-</span> beispiel_daten_at <span class="sc">%&gt;%</span></span>
-<span id="cb558-2"><a href="formalia.html#cb558-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(year)</span>
-<span id="cb558-3"><a href="formalia.html#cb558-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(beispiel_daten_at, <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="formalia.html#cb562-1" aria-hidden="true" tabindex="-1"></a>beispiel_daten_at <span class="ot">&lt;-</span> beispiel_daten_at <span class="sc">%&gt;%</span></span>
+<span id="cb562-2"><a href="formalia.html#cb562-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(year)</span>
+<span id="cb562-3"><a href="formalia.html#cb562-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(beispiel_daten_at, <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>#&gt;    country      BIP year
 #&gt; 1: Austria 36123.43 2014
 #&gt; 2: Austria 36129.03 2015
 #&gt; 3: Austria 36469.39 2016
 #&gt; 4: Austria 37140.79 2017</code></pre>
-<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="formalia.html#cb560-1" aria-hidden="true" tabindex="-1"></a>beispiel_daten_at <span class="ot">&lt;-</span> beispiel_daten_at <span class="sc">%&gt;%</span></span>
-<span id="cb560-2"><a href="formalia.html#cb560-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb560-3"><a href="formalia.html#cb560-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">BIP_Wachstum =</span> (BIP<span class="sc">-</span>dplyr<span class="sc">::</span><span class="fu">lag</span>(BIP))<span class="sc">/</span><span class="fu">abs</span>(dplyr<span class="sc">::</span><span class="fu">lag</span>(BIP))<span class="sc">*</span><span class="dv">100</span>)</span>
-<span id="cb560-4"><a href="formalia.html#cb560-4" aria-hidden="true" tabindex="-1"></a>beispiel_daten_at</span></code></pre></div>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="formalia.html#cb564-1" aria-hidden="true" tabindex="-1"></a>beispiel_daten_at <span class="ot">&lt;-</span> beispiel_daten_at <span class="sc">%&gt;%</span></span>
+<span id="cb564-2"><a href="formalia.html#cb564-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb564-3"><a href="formalia.html#cb564-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">BIP_Wachstum =</span> (BIP<span class="sc">-</span>dplyr<span class="sc">::</span><span class="fu">lag</span>(BIP))<span class="sc">/</span><span class="fu">abs</span>(dplyr<span class="sc">::</span><span class="fu">lag</span>(BIP))<span class="sc">*</span><span class="dv">100</span>)</span>
+<span id="cb564-4"><a href="formalia.html#cb564-4" aria-hidden="true" tabindex="-1"></a>beispiel_daten_at</span></code></pre></div>
 <pre><code>#&gt;    country      BIP year BIP_Wachstum
 #&gt; 1: Austria 36123.43 2014           NA
 #&gt; 2: Austria 36129.03 2015   0.01550613
@@ -586,20 +589,20 @@ ausgibt. Dazu verwenden wir die Funktion <code>dplyr::arrange()</code>, welche d
 <p>Falls wir innerhalb des Datensatzes unterschiedliche Beobachtungsobjekte haben,
 z.B. verschiedene Länder, müssen wir den Datensatz vor Berechnung der
 Wachstumsrate gruppieren:</p>
-<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="formalia.html#cb562-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(beispiel_daten, <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="formalia.html#cb566-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(beispiel_daten, <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>#&gt;    country      BIP year
 #&gt; 1: Austria 37941.04 2018
 #&gt; 2: Germany 35866.00 2018
 #&gt; 3: Austria 37140.79 2017
 #&gt; 4: Germany 35477.89 2017</code></pre>
-<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="formalia.html#cb564-1" aria-hidden="true" tabindex="-1"></a>beispiel_daten <span class="ot">&lt;-</span> beispiel_daten <span class="sc">%&gt;%</span></span>
-<span id="cb564-2"><a href="formalia.html#cb564-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(country, year) <span class="sc">%&gt;%</span></span>
-<span id="cb564-3"><a href="formalia.html#cb564-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
-<span id="cb564-4"><a href="formalia.html#cb564-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb564-5"><a href="formalia.html#cb564-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">BIP_Wachstum =</span> (BIP<span class="sc">-</span>dplyr<span class="sc">::</span><span class="fu">lag</span>(BIP))<span class="sc">/</span><span class="fu">abs</span>(dplyr<span class="sc">::</span><span class="fu">lag</span>(BIP))<span class="sc">*</span><span class="dv">100</span></span>
-<span id="cb564-6"><a href="formalia.html#cb564-6" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb564-7"><a href="formalia.html#cb564-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>()</span>
-<span id="cb564-8"><a href="formalia.html#cb564-8" aria-hidden="true" tabindex="-1"></a>beispiel_daten</span></code></pre></div>
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="formalia.html#cb568-1" aria-hidden="true" tabindex="-1"></a>beispiel_daten <span class="ot">&lt;-</span> beispiel_daten <span class="sc">%&gt;%</span></span>
+<span id="cb568-2"><a href="formalia.html#cb568-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(country, year) <span class="sc">%&gt;%</span></span>
+<span id="cb568-3"><a href="formalia.html#cb568-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb568-4"><a href="formalia.html#cb568-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb568-5"><a href="formalia.html#cb568-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">BIP_Wachstum =</span> (BIP<span class="sc">-</span>dplyr<span class="sc">::</span><span class="fu">lag</span>(BIP))<span class="sc">/</span><span class="fu">abs</span>(dplyr<span class="sc">::</span><span class="fu">lag</span>(BIP))<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb568-6"><a href="formalia.html#cb568-6" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb568-7"><a href="formalia.html#cb568-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>()</span>
+<span id="cb568-8"><a href="formalia.html#cb568-8" aria-hidden="true" tabindex="-1"></a>beispiel_daten</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 10 x 4
 #&gt;    country    BIP  year BIP_Wachstum
 #&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt;
@@ -620,11 +623,11 @@ folgendermaßen approximieren:</p>
 <p>Sie fragen sich vielleicht warum wir uns mit der Verwendung des Logarithmus
 überhaupt beschäftigen, wo durch die ‘Vereinfachung’ doch eine kleine
 Ungenauigkeit eingeführt wird? Tatsächlich ist die Verwendung des Logarithmus
-häufig hilfreich für die grafische Darstellung von Wachstumsraten.<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a></p>
+häufig hilfreich für die grafische Darstellung von Wachstumsraten.<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a></p>
 <div class="figure" style="text-align: center"><span id="fig:normalandlog"></span>
 <img src="figures/Formalia/norm_log_comparison.png" alt="Vergleich normaler und logarithmierter Darstellung" width="75%" height="50%" />
 <p class="caption">
-Figure 6.1: Vergleich normaler und logarithmierter Darstellung
+Abbildung 6.1: Vergleich normaler und logarithmierter Darstellung
 </p>
 </div>
 <p>In Darstellung <a href="formalia.html#fig:normalandlog">6.1</a> gilt: die Steigung im logarithmierten Plot gibt die
@@ -637,7 +640,7 @@ Wachstumsraten und dem Vergleich zwischen Ländern sehr hilfreich, da, wie in Ab
 <div class="figure" style="text-align: center"><span id="fig:LogDarstellung"></span>
 <img src="figures/Formalia/log_BIP_growth.png" alt="Vergleich normaler und logarithmierter Darstellung bei langfristiger vergleichender Betrachtung von Wachstumsraten" width="75%" height="75%" />
 <p class="caption">
-Figure 6.2: Vergleich normaler und logarithmierter Darstellung bei langfristiger vergleichender Betrachtung von Wachstumsraten
+Abbildung 6.2: Vergleich normaler und logarithmierter Darstellung bei langfristiger vergleichender Betrachtung von Wachstumsraten
 </p>
 </div>
 <p>Abbildung <a href="formalia.html#fig:DepressionFinanzkrise">6.3</a> zeigt wie wichtig eine solche Darstellung sein kann um
@@ -646,7 +649,7 @@ vergleichbar zu machen.</p>
 <div class="figure" style="text-align: center"><span id="fig:DepressionFinanzkrise"></span>
 <img src="figures/Formalia/log_shiller.png" alt="Vergleich normaler und logarithmierter Darstellung bei Events, die zu sehr unterschiedlichen Zeitpunkten stattgefunden haben" width="75%" height="75%" />
 <p class="caption">
-Figure 6.3: Vergleich normaler und logarithmierter Darstellung bei Events, die zu sehr unterschiedlichen Zeitpunkten stattgefunden haben
+Abbildung 6.3: Vergleich normaler und logarithmierter Darstellung bei Events, die zu sehr unterschiedlichen Zeitpunkten stattgefunden haben
 </p>
 </div>
 <p>Während die absoluten Zahlen die Volatilität während der Großen Depression
@@ -729,28 +732,30 @@ Gehen wir wieder davon aus, dass wir eine komplexe Funktion <span class="math in
 wollen.
 Ein Beispiel wäre <span class="math inline">\(f(x)=(4+x^2)(1-x^3)\)</span>, wobei <span class="math inline">\(u(x)=(4+x^2)\)</span> und <span class="math inline">\(v(x)=(1-x^3)\)</span>.</p>
 <p>Insbesondere gilt hier:</p>
-<p><span class="math display">\[f&#39;(x_0)=u&#39;(x_0)\cdot v(x_0) + u(x_0)\cdot v&#39;(x_0)\]</span></p>
+<p><span class="math display">\[f&#39;(x)=u&#39;(x)\cdot v(x) + u(x)\cdot v&#39;(x)\]</span></p>
 <p>Wir können die komplexere Gesamtfunktion also ableiten indem wir die einzelnen
 Teile separat ableiten und jeweils mit den Ausgangsfunktionen multiplizieren.
 Für unser Beispiel mit <span class="math inline">\(f(x)=(4+x^2)(1-x^3)\)</span> hätten wir also:</p>
 <p><span class="math display">\[\begin{align}
 f&#39;(x)&amp;=u&#39;(x)\cdot v(x) + u(x)\cdot v&#39;(x)\\
 u(x)&amp;=(4+x^2), u&#39;(x)=2x\\
-v(x)&amp;=(1-x^3), v&#39;(x)=3x\\
-f&#39;(x)&amp;=2x(1-x^3) + 3x(4+x^2) =2x-2x^4 + 12x + 3x^3=-2x^4+3x^3+14x 
+v(x)&amp;=(1-x^3), v&#39;(x)=-3x^2\\
+f&#39;(x)&amp;=2x(1-x^3) -3x^2(4+x^2) = -3x^2(4+x^2)+2x(1-3x^3) \\\nonumber
+\ &amp;= 2x - 12x^2 -5x^4 = x(2-12x-5x^3)
 \end{align}\]</span></p>
 <p>Wenn die beiden Teilfunktionen dagegen dividiert werden müssen wir die
 <strong>Quotientenregel</strong> anwenden.
 Hier gehen wir also von dem Fall <span class="math inline">\(f(x)=\frac{u(x)}{v(x)}\)</span> aus, z.B. von
-<span class="math inline">\(f(x)=\frac{x^2}{2x}\)</span>.</p>
+<span class="math inline">\(f(x)=\frac{x^3}{3x}\)</span>.</p>
 <p>In diesem Fall gilt:</p>
-<p><span class="math display">\[ f&#39;(x_0) = \frac{u&#39;(x_0)\cdot v(x_0) - u(x_0)\cdot v&#39;(x_0)}{\left(v(x_0)\right)^2}\]</span></p>
+<p><span class="math display">\[ f&#39;(x) = \frac{u&#39;(x)\cdot v(x) - u(x)\cdot v&#39;(x)}{\left(v(x)\right)^2}\]</span></p>
 <p>Für unser Beispiel hätten wir dann:</p>
 <p><span class="math display">\[\begin{align}
 f&#39;(x)&amp;=\frac{u&#39;(x)\cdot v(x) - u(x)\cdot v&#39;(x)}{\left(v(x)\right)^2}\\
-u(x)&amp;=x^2, u&#39;(x)=2x\\
-v(x)&amp;=2x, v&#39;(x)=2\\
-f&#39;(x)&amp;=\frac{2x\cdot 2 - x^2\cdot 2}{v(x)^2}=\frac{2x-2x^2}{(2x)^2}
+u(x)&amp;=x^3, u&#39;(x)=3x^2\\
+v(x)&amp;=3x, v&#39;(x)=3\\
+f&#39;(x)&amp;=\frac{3x^2\cdot 3x - x^3\cdot3}{(3x)^2}\\\nonumber
+\ &amp; = \frac{6x^3}{9x^2} = \frac{2}{3}x
 \end{align}\]</span></p>
 <p>Zuletzt betrachten wir noch die <strong>Kettenregel</strong>, die es uns erlaubt
 geschachtelte Funktionen abzuleiten.
@@ -778,23 +783,23 @@ zu definieren und dann die Funktion <code>D()</code> um die Ableitung zu bilden.
 <p>Betrachten wir folgendes Beispiel:</p>
 <p><span class="math display">\[f(x) = x^2 + 3x\]</span></p>
 <p>Zunächst wird die Funktion in eine <code>expression</code> übersetzt:</p>
-<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="formalia.html#cb566-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">expression</span>(x<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">3</span><span class="sc">*</span>x)</span>
-<span id="cb566-2"><a href="formalia.html#cb566-2" aria-hidden="true" tabindex="-1"></a>f</span></code></pre></div>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="formalia.html#cb570-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">expression</span>(x<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">3</span><span class="sc">*</span>x)</span>
+<span id="cb570-2"><a href="formalia.html#cb570-2" aria-hidden="true" tabindex="-1"></a>f</span></code></pre></div>
 <pre><code>#&gt; expression(x^2 + 3 * x)</code></pre>
 <p>Eine solche <code>expression</code> können Sie über die Funktion <code>eval()</code> für konkrete
 Werte ausrechnen lassen:</p>
-<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="formalia.html#cb568-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
-<span id="cb568-2"><a href="formalia.html#cb568-2" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(f)</span></code></pre></div>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="formalia.html#cb572-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb572-2"><a href="formalia.html#cb572-2" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(f)</span></code></pre></div>
 <pre><code>#&gt; [1]  4 10 18 28 40</code></pre>
 <p>Zudem können wir mit der Funktion <code>D()</code> direkt die Ableitung einer <code>expression</code>
 berechnen:</p>
-<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="formalia.html#cb570-1" aria-hidden="true" tabindex="-1"></a><span class="fu">D</span>(f, <span class="st">&quot;x&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="formalia.html#cb574-1" aria-hidden="true" tabindex="-1"></a><span class="fu">D</span>(f, <span class="st">&quot;x&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; 2 * x + 3</code></pre>
 <p>Wir haben also:</p>
 <p><span class="math display">\[\frac{\partial f(x) }{\partial x}=2x+3\]</span></p>
 <p>Wir können Aufrufe von <code>D()</code> auch verschachteln um höhere Ableitungen zu
 berechnen:</p>
-<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="formalia.html#cb572-1" aria-hidden="true" tabindex="-1"></a><span class="fu">D</span>(<span class="fu">D</span>(f, <span class="st">&quot;x&quot;</span>), <span class="st">&quot;x&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="formalia.html#cb576-1" aria-hidden="true" tabindex="-1"></a><span class="fu">D</span>(<span class="fu">D</span>(f, <span class="st">&quot;x&quot;</span>), <span class="st">&quot;x&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 2</code></pre>
 <p>Für die zweite Ableitung erhalten wir also dementsprechend:</p>
 <p><span class="math display">\[\frac{\partial f(x) }{\partial x^2}=2\]</span></p>
@@ -834,7 +839,7 @@ Intervall <span class="math inline">\(I=(a,b)\)</span> wenn <span class="math in
 <div class="figure" style="text-align: center"><span id="fig:Extrema"></span>
 <img src="figures/Formalia/maximization_example.png" alt="Beispiel für Extremwerte" width="75%" height="75%" />
 <p class="caption">
-Figure 6.4: Beispiel für Extremwerte
+Abbildung 6.4: Beispiel für Extremwerte
 </p>
 </div>
 <p>Es kann gezeigt werden, dass eine <strong>notwendige Bedingung</strong> für die Existenz eines
@@ -843,9 +848,9 @@ Daher ist der erste Schritt bei der analytischen Suche nach Extremwerten immer
 die Ableitung der Funktion und die Identifikation der Nullstellen.
 Als nächstes untersucht man die <strong>hinreichenden Bedingungen</strong>, die einem
 genauere Informationen über den Punkt geben.</p>
-<p>Hierbei hat sich die in Tabelle <a href="formalia.html#tab:Heuristik">6.1</a> zusammengefasste Heuristik in der Praxis bewährt:<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a></p>
+<p>Hierbei hat sich die in Tabelle <a href="formalia.html#tab:Heuristik">6.1</a> zusammengefasste Heuristik in der Praxis bewährt:<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a></p>
 <table>
-<caption><span id="tab:Heuristik">Table 6.1: </span> Heuristik zur Untersuchung der hinreichenden Bedingung.</caption>
+<caption><span id="tab:Heuristik">Tabelle 6.1: </span> Heuristik zur Untersuchung der hinreichenden Bedingung.</caption>
 <thead>
 <tr class="header">
 <th align="center">1. Ableitung</th>
@@ -880,7 +885,7 @@ Sub-Klassen von Funktionen, die wir hier aber nicht genauer diskutieren wollen.<
 <p>Wenn die Funktion unter bestimmten <em>Bedingungen</em> maximiert (minimiert) werden
 soll, sprechen wir von einer <em>Maximierung unter Nebenbedingung(en)</em>.
 Die Standard-Methode hier ist die sogenannte <em>Lagrange-Optimierung</em>.
-Details finden sich in zahlreichen Lehrbüchern, z.B. in <span class="citation"><a href="git.html#ref-chiang" role="doc-biblioref">Wainwright and Chiang</a> (<a href="git.html#ref-chiang" role="doc-biblioref">2005</a>)</span>.</p>
+Details finden sich in zahlreichen Lehrbüchern, z.B. in <span class="citation"><a href="git.html#ref-chiang" role="doc-biblioref">Wainwright und Chiang</a> (<a href="git.html#ref-chiang" role="doc-biblioref">2005</a>)</span>.</p>
 </div>
 <div id="maximierung-die-algorithmische-perspektive" class="section level3" number="6.2.5">
 <h3><span class="header-section-number">6.2.5</span> Maximierung: die algorithmische Perspektive</h3>
@@ -894,18 +899,18 @@ auf dem Definitionsbereich in Richtung steigender Funktionswerte fortbewegt
 bis er den Punkt <span class="math inline">\(x^*_{globmax}=0\)</span> erreicht.
 Für Funktionen mit lokalen Extremwerten wie im rechten Teil von Abbildung
 funktioniert diese Strategie unter Umständen nicht mehr, da der Computer leicht
-auf lokalen Optima “steckenbleibt.”
+auf lokalen Optima “steckenbleibt”.
 Im Beispiel in Abbildung <a href="formalia.html#fig:Steckengeblieben">6.5</a> besteht bei einer unglücklichen Wahl des Startwertes die Gefahr, auf dem lokalen Extremum bei <span class="math inline">\(x=0.77\)</span> hängen zu bleiben.</p>
 <div class="figure" style="text-align: center"><span id="fig:Steckengeblieben"></span>
 <img src="figures/Formalia/maximization_multiple-maxima.png" alt="Beispiel für die Gefahr auf einem lokalen Extremum hängen zu bleiben (rechter Graph)." width="75%" height="35%" />
 <p class="caption">
-Figure 6.5: Beispiel für die Gefahr auf einem lokalen Extremum hängen zu bleiben (rechter Graph).
+Abbildung 6.5: Beispiel für die Gefahr auf einem lokalen Extremum hängen zu bleiben (rechter Graph).
 </p>
 </div>
 <p>Um das zu vermeiden verwenden die Optimierungsalgorithmen einige Tricks.
 Für die R-Funktion <code>optim()</code> können Sie z.B. zwischen sieben solcher ausgefeilter
 Algorithmen wählen. Schauen Sie einmal in die Hilfefunktion wenn Sie mehr Informationen
-über diese Algorithmen bekommen möchten.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a></p>
+über diese Algorithmen bekommen möchten.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a></p>
 <p>Wichtig zu unterscheiden ist die Art der zu optimierenden Funktion und der
 Nebenbedingungen.
 Grob können wir zwischen den folgenden drei Fällen unterscheiden:</p>
@@ -924,18 +929,18 @@ In diesem Fall bedeutet das, dass wir für unterschiedliche Arten von Funktionen
 andere Pakete verwenden müssen um Extremwerte zu finden.
 Zusätzlich gibt es aber auch noch ein paar <em>general-purpose</em>-Funktionen, die wir
 auf alle Klassen anwenden können - auf Kosten der Performance.
-Diese sind in Tabelle <a href="formalia.html#tab:genpurpose">6.2</a> zusammengefasst.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a></p>
+Diese sind in Tabelle <a href="formalia.html#tab:genpurpose">6.2</a> zusammengefasst.<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a></p>
 <p>Das Schöne ist, dass trotz der Vielzahl an Paketen alle Optimierungsfunktionen
 nach einem sehr ähnlichen Schema aufgebaut sind. Die ersten beiden Argumente
 sind immer die Zielfunktion und die Nebenbedingungen. Danach folgen Argumente
 mit denen Sie die Suchintervalle, den konkreten Algorithmus oder weitere
 Spezifika festlegen können.
 Für eine genauere Einführung bietet sich auch die Lektüre der Vignette
-für das allgemein gehaltene Paket <code>optimx</code> <span class="citation">(<a href="git.html#ref-optimx" role="doc-biblioref">Nash and Varadhan 2011</a>)</span> an, die
+für das allgemein gehaltene Paket <code>optimx</code> <span class="citation">(<a href="git.html#ref-optimx" role="doc-biblioref">Nash und Varadhan 2011</a>)</span> an, die
 <a href="https://cran.r-project.org/web/packages/optimx/vignettes/Extend-optimx.pdf">hier</a>
 abgerufen werden kann.</p>
 <table>
-<caption><span id="tab:genpurpose">Table 6.2: </span> Generell anwendbare Optimierungsfunktionen.</caption>
+<caption><span id="tab:genpurpose">Tabelle 6.2: </span> Generell anwendbare Optimierungsfunktionen.</caption>
 <thead>
 <tr class="header">
 <th><strong>Art</strong></th>
@@ -985,7 +990,7 @@ spezialisierten Einführungen.</p>
 f(x)=8x^2 + 2.5x^3 - 4.25x^4 + 2
 \end{align}\]</span></p>
 <p>In R:</p>
-<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="formalia.html#cb574-1" aria-hidden="true" tabindex="-1"></a>f_1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="dv">8</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fl">2.5</span><span class="sc">*</span>x<span class="sc">**</span><span class="dv">3</span> <span class="sc">-</span> <span class="fl">4.25</span><span class="sc">*</span>x<span class="sc">**</span><span class="dv">4</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="formalia.html#cb578-1" aria-hidden="true" tabindex="-1"></a>f_1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="dv">8</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fl">2.5</span><span class="sc">*</span>x<span class="sc">**</span><span class="dv">3</span> <span class="sc">-</span> <span class="fl">4.25</span><span class="sc">*</span>x<span class="sc">**</span><span class="dv">4</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
 <p>Die Funktion ist in Abbildung <a href="formalia.html#fig:Funktion">6.6</a> dargestellt.
 Wie man sieht verfügt sie über ein
 lokales Maximum bei <span class="math inline">\(x_a=-0.77\)</span>, ein lokales Minimum bei <span class="math inline">\(x_b=0\)</span> und ein globales
@@ -993,7 +998,7 @@ Maximum bei <span class="math inline">\(x_c=1.22\)</span>.</p>
 <div class="figure" style="text-align: center"><span id="fig:Funktion"></span>
 <img src="figures/Formalia/maximization_example-function.png" alt="Graph der zu optimierenden Funktion." width="50%" height="75%" />
 <p class="caption">
-Figure 6.6: Graph der zu optimierenden Funktion.
+Abbildung 6.6: Graph der zu optimierenden Funktion.
 </p>
 </div>
 <p>Da es sich hier um ein eindimensionales Problem handelt, können wir die
@@ -1001,24 +1006,24 @@ allgemeine Funktion <code>optimize()</code> verwenden.
 Wir übergeben als Argument <code>f</code> die zu optimierende Funktion und geben über
 <code>interval</code> das Intervall an, in dem nach einem Minimum (oder Maximum) gesucht
 werden soll:</p>
-<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="formalia.html#cb575-1" aria-hidden="true" tabindex="-1"></a>opt_obj <span class="ot">&lt;-</span> <span class="fu">optimize</span>(<span class="at">f =</span> f_1, <span class="at">interval =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.25</span>, <span class="fl">1.75</span>))</span>
-<span id="cb575-2"><a href="formalia.html#cb575-2" aria-hidden="true" tabindex="-1"></a>opt_obj</span></code></pre></div>
+<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="formalia.html#cb579-1" aria-hidden="true" tabindex="-1"></a>opt_obj <span class="ot">&lt;-</span> <span class="fu">optimize</span>(<span class="at">f =</span> f_1, <span class="at">interval =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.25</span>, <span class="fl">1.75</span>))</span>
+<span id="cb579-2"><a href="formalia.html#cb579-2" aria-hidden="true" tabindex="-1"></a>opt_obj</span></code></pre></div>
 <pre><code>#&gt; $minimum
 #&gt; [1] -7.54766e-06
 #&gt; 
 #&gt; $objective
 #&gt; [1] 2</code></pre>
 <p>Das Ergebnis ist eine Liste mit zwei Elementen.
-Dem x-Wert des gesuchten Minimums:<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a></p>
-<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="formalia.html#cb577-1" aria-hidden="true" tabindex="-1"></a>opt_obj[[<span class="st">&quot;minimum&quot;</span>]]</span></code></pre></div>
+Dem x-Wert des gesuchten Minimums:<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a></p>
+<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="formalia.html#cb581-1" aria-hidden="true" tabindex="-1"></a>opt_obj[[<span class="st">&quot;minimum&quot;</span>]]</span></code></pre></div>
 <pre><code>#&gt; [1] -7.54766e-06</code></pre>
 <p>Und dem dazugehörigen Funktionswert:</p>
-<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="formalia.html#cb579-1" aria-hidden="true" tabindex="-1"></a>opt_obj[[<span class="st">&quot;objective&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="formalia.html#cb583-1" aria-hidden="true" tabindex="-1"></a>opt_obj[[<span class="st">&quot;objective&quot;</span>]]</span></code></pre></div>
 <pre><code>#&gt; [1] 2</code></pre>
 <p>Falls wir ein Maximum suchen setzen wir <code>maximum=TRUE</code>:</p>
-<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="formalia.html#cb581-1" aria-hidden="true" tabindex="-1"></a>opt_obj_max <span class="ot">&lt;-</span> <span class="fu">optimize</span>(</span>
-<span id="cb581-2"><a href="formalia.html#cb581-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">f =</span> f_1, <span class="at">interval =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.25</span>, <span class="fl">1.75</span>), <span class="at">maximum =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb581-3"><a href="formalia.html#cb581-3" aria-hidden="true" tabindex="-1"></a>opt_obj_max</span></code></pre></div>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="formalia.html#cb585-1" aria-hidden="true" tabindex="-1"></a>opt_obj_max <span class="ot">&lt;-</span> <span class="fu">optimize</span>(</span>
+<span id="cb585-2"><a href="formalia.html#cb585-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">f =</span> f_1, <span class="at">interval =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.25</span>, <span class="fl">1.75</span>), <span class="at">maximum =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb585-3"><a href="formalia.html#cb585-3" aria-hidden="true" tabindex="-1"></a>opt_obj_max</span></code></pre></div>
 <pre><code>#&gt; $maximum
 #&gt; [1] 1.215492
 #&gt; 
@@ -1026,9 +1031,9 @@ Dem x-Wert des gesuchten Minimums:<a href="#fn48" class="footnote-ref" id="fnref
 #&gt; [1] 9.032067</code></pre>
 <p>Falls wir den Suchbereich entsprechend einschränken finden wir das lokale
 Maximum auf der linken Seite:</p>
-<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="formalia.html#cb583-1" aria-hidden="true" tabindex="-1"></a>opt_obj_max <span class="ot">&lt;-</span> <span class="fu">optimize</span>(</span>
-<span id="cb583-2"><a href="formalia.html#cb583-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">f =</span> f_1, <span class="at">interval =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.25</span>, <span class="dv">0</span>), <span class="at">maximum =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb583-3"><a href="formalia.html#cb583-3" aria-hidden="true" tabindex="-1"></a>opt_obj_max</span></code></pre></div>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="formalia.html#cb587-1" aria-hidden="true" tabindex="-1"></a>opt_obj_max <span class="ot">&lt;-</span> <span class="fu">optimize</span>(</span>
+<span id="cb587-2"><a href="formalia.html#cb587-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">f =</span> f_1, <span class="at">interval =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.25</span>, <span class="dv">0</span>), <span class="at">maximum =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb587-3"><a href="formalia.html#cb587-3" aria-hidden="true" tabindex="-1"></a>opt_obj_max</span></code></pre></div>
 <pre><code>#&gt; $maximum
 #&gt; [1] -0.7743199
 #&gt; 
@@ -1037,9 +1042,9 @@ Maximum auf der linken Seite:</p>
 <p>Wir sind übrigens nicht auf eindimensionale Funktionen beschränkt.
 Wir können z.B. auch die folgende Zielfunktion optimieren:</p>
 <p><span class="math display">\[f(x,y)=(a-x)^2 + b(y-x^2)^2\]</span></p>
-<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="formalia.html#cb585-1" aria-hidden="true" tabindex="-1"></a>f_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">a=</span><span class="dv">1</span>, <span class="at">b=</span><span class="dv">100</span>){</span>
-<span id="cb585-2"><a href="formalia.html#cb585-2" aria-hidden="true" tabindex="-1"></a>  (a <span class="sc">-</span> x[<span class="dv">1</span>])<span class="sc">**</span><span class="dv">2</span> <span class="sc">+</span> b<span class="sc">*</span>(x[<span class="dv">2</span>]<span class="sc">-</span>x[<span class="dv">1</span>]<span class="sc">**</span><span class="dv">2</span>)<span class="sc">**</span><span class="dv">2</span></span>
-<span id="cb585-3"><a href="formalia.html#cb585-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="formalia.html#cb589-1" aria-hidden="true" tabindex="-1"></a>f_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">a=</span><span class="dv">1</span>, <span class="at">b=</span><span class="dv">100</span>){</span>
+<span id="cb589-2"><a href="formalia.html#cb589-2" aria-hidden="true" tabindex="-1"></a>  (a <span class="sc">-</span> x[<span class="dv">1</span>])<span class="sc">**</span><span class="dv">2</span> <span class="sc">+</span> b<span class="sc">*</span>(x[<span class="dv">2</span>]<span class="sc">-</span>x[<span class="dv">1</span>]<span class="sc">**</span><span class="dv">2</span>)<span class="sc">**</span><span class="dv">2</span></span>
+<span id="cb589-3"><a href="formalia.html#cb589-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Bei dieser Funktion handelt es sich um die in der Optimierung sehr häufig
 als Benchmark verwendete
 <a href="https://en.wikipedia.org/wiki/Rosenbrock_function">Rosenbrock Funktion</a>.
@@ -1051,7 +1056,7 @@ der resultierende Funktionswert wird über die Farbe repräsentiert.</p>
 <div class="figure" style="text-align: center"><span id="fig:Heatmap"></span>
 <img src="figures/Formalia/maximization_heatmap.png" alt="Darstellung einer Funktion als Heatmap" width="75%" height="75%" />
 <p class="caption">
-Figure 6.7: Darstellung einer Funktion als Heatmap
+Abbildung 6.7: Darstellung einer Funktion als Heatmap
 </p>
 </div>
 <p>Da es sich jetzt um ein mehrdimensionales Problem handelt verwenden wir die Funktion
@@ -1061,34 +1066,34 @@ Extremum, also die Werte, mit der die Funktion ihre Suche beginnen soll.
 Danach als zweites Argument <code>fn</code> die zu optmierende Funktion.
 Falls diese Funktion noch weitere Argumente akzeptiert können wir die hier auch
 einfach hinzufügen. Für unseren Fall haben wir also:</p>
-<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="formalia.html#cb586-1" aria-hidden="true" tabindex="-1"></a>opt_objekt <span class="ot">&lt;-</span> optimx<span class="sc">::</span><span class="fu">optimr</span>(</span>
-<span id="cb586-2"><a href="formalia.html#cb586-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">par =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>),</span>
-<span id="cb586-3"><a href="formalia.html#cb586-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">fn =</span> f_2</span>
-<span id="cb586-4"><a href="formalia.html#cb586-4" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="formalia.html#cb590-1" aria-hidden="true" tabindex="-1"></a>opt_objekt <span class="ot">&lt;-</span> optimx<span class="sc">::</span><span class="fu">optimr</span>(</span>
+<span id="cb590-2"><a href="formalia.html#cb590-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">par =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb590-3"><a href="formalia.html#cb590-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">fn =</span> f_2</span>
+<span id="cb590-4"><a href="formalia.html#cb590-4" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p>Zunächst schauen wir ob der Algorithmus erfolgreich einen Extremwert
 gefunden hat. Bei erfolgreicher Suche hat der Listeneintrag <code>convergence</code> den
 Wert <code>0</code>:</p>
-<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="formalia.html#cb587-1" aria-hidden="true" tabindex="-1"></a>opt_objekt[[<span class="st">&quot;convergence&quot;</span>]] <span class="sc">==</span> <span class="dv">0</span> </span></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="formalia.html#cb591-1" aria-hidden="true" tabindex="-1"></a>opt_objekt[[<span class="st">&quot;convergence&quot;</span>]] <span class="sc">==</span> <span class="dv">0</span> </span></code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
 <p>Die optimalen Argumente erhalten wir über den Listeneintrag <code>par</code>:</p>
-<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="formalia.html#cb589-1" aria-hidden="true" tabindex="-1"></a>opt_objekt[[<span class="st">&quot;par&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="formalia.html#cb593-1" aria-hidden="true" tabindex="-1"></a>opt_objekt[[<span class="st">&quot;par&quot;</span>]]</span></code></pre></div>
 <pre><code>#&gt; [1] 1 1</code></pre>
 <p>Und den Wert der Zielfunktion im Extremum über den Listeneintrag <code>value</code>:</p>
-<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="formalia.html#cb591-1" aria-hidden="true" tabindex="-1"></a>opt_objekt[[<span class="st">&quot;value&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="formalia.html#cb595-1" aria-hidden="true" tabindex="-1"></a>opt_objekt[[<span class="st">&quot;value&quot;</span>]]</span></code></pre></div>
 <pre><code>#&gt; [1] 0</code></pre>
 <p>Wenn wir <code>optimx::optimr()</code> übrigens zur Maximierung einsetzen wollen müssen wir
 nichts weiter tun als dem Argument <code>control</code> eine Liste mit dem Eintrag
 <code>fnscale=-1</code> zu übergeben:</p>
-<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="formalia.html#cb593-1" aria-hidden="true" tabindex="-1"></a>opt_objekt <span class="ot">&lt;-</span> optimx<span class="sc">::</span><span class="fu">optimr</span>(</span>
-<span id="cb593-2"><a href="formalia.html#cb593-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">par =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>),</span>
-<span id="cb593-3"><a href="formalia.html#cb593-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">fn =</span> f_2, <span class="at">control =</span> <span class="fu">list</span>(<span class="at">fnscale=</span><span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb593-4"><a href="formalia.html#cb593-4" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb593-5"><a href="formalia.html#cb593-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb593-6"><a href="formalia.html#cb593-6" aria-hidden="true" tabindex="-1"></a>opt_objekt<span class="sc">$</span>convergence <span class="sc">==</span> <span class="dv">0</span></span></code></pre></div>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="formalia.html#cb597-1" aria-hidden="true" tabindex="-1"></a>opt_objekt <span class="ot">&lt;-</span> optimx<span class="sc">::</span><span class="fu">optimr</span>(</span>
+<span id="cb597-2"><a href="formalia.html#cb597-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">par =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb597-3"><a href="formalia.html#cb597-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">fn =</span> f_2, <span class="at">control =</span> <span class="fu">list</span>(<span class="at">fnscale=</span><span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb597-4"><a href="formalia.html#cb597-4" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb597-5"><a href="formalia.html#cb597-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb597-6"><a href="formalia.html#cb597-6" aria-hidden="true" tabindex="-1"></a>opt_objekt<span class="sc">$</span>convergence <span class="sc">==</span> <span class="dv">0</span></span></code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
-<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="formalia.html#cb595-1" aria-hidden="true" tabindex="-1"></a>opt_objekt<span class="sc">$</span>par</span></code></pre></div>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="formalia.html#cb599-1" aria-hidden="true" tabindex="-1"></a>opt_objekt<span class="sc">$</span>par</span></code></pre></div>
 <pre><code>#&gt; [1]  3.661667e+76 -3.087043e+76</code></pre>
-<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="formalia.html#cb597-1" aria-hidden="true" tabindex="-1"></a>opt_objekt<span class="sc">$</span>value</span></code></pre></div>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="formalia.html#cb601-1" aria-hidden="true" tabindex="-1"></a>opt_objekt<span class="sc">$</span>value</span></code></pre></div>
 <pre><code>#&gt; [1] 1.797693e+308</code></pre>
 </div>
 <div id="subsec:keynes-expl" class="section level3" number="6.2.6">
@@ -1116,8 +1121,8 @@ anwenden.</p>
 <p>Aber natürlich können wir das Ganze ganz einfach in R lösen.
 Um die Ableitung herzuleiten verwenden wir dabei einfach wieder die
 Funktion <code>D()</code>:</p>
-<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="formalia.html#cb599-1" aria-hidden="true" tabindex="-1"></a>keynes_model <span class="ot">&lt;-</span> <span class="fu">expression</span>(<span class="at">Y=</span>(c_0 <span class="sc">+</span> I <span class="sc">+</span> G) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> c_1<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>T)))</span>
-<span id="cb599-2"><a href="formalia.html#cb599-2" aria-hidden="true" tabindex="-1"></a><span class="fu">D</span>(<span class="at">expr =</span> keynes_model, <span class="at">name =</span> <span class="st">&quot;G&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="formalia.html#cb603-1" aria-hidden="true" tabindex="-1"></a>keynes_model <span class="ot">&lt;-</span> <span class="fu">expression</span>(<span class="at">Y=</span>(c_0 <span class="sc">+</span> I <span class="sc">+</span> G) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> c_1<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>T)))</span>
+<span id="cb603-2"><a href="formalia.html#cb603-2" aria-hidden="true" tabindex="-1"></a><span class="fu">D</span>(<span class="at">expr =</span> keynes_model, <span class="at">name =</span> <span class="st">&quot;G&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; 1/(1 - c_1 * (1 - T))</code></pre>
 <p>Es gilt also:</p>
 <p><span class="math display">\[\begin{align}
@@ -1138,8 +1143,8 @@ Rechenoperationen (‘Matrizenalgebra’ genannt) in Kontakt kommen.
 Das Ziel dieses Abschnitts ist keine abschließende Einführung in Matrizen
 und Matrizenalgebra, sondern soll dazu dienen, einen groben Überblick über typische
 Rechenoperationen und deren Implementierung in R zu bekommen.
-Für eine ausführlichere Einführung verweisen wir auf <span class="citation"><a href="git.html#ref-chiang" role="doc-biblioref">Wainwright and Chiang</a> (<a href="git.html#ref-chiang" role="doc-biblioref">2005</a>)</span> oder <span class="citation"><a href="git.html#ref-linalg" role="doc-biblioref">Aleskerov, Ersel, and Piontkovski</a> (<a href="git.html#ref-linalg" role="doc-biblioref">2011</a>)</span>.</p>
-<p>Matrizen werden häufig im Kontext der <em>linearen Algebra</em> verwendet.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a>
+Für eine ausführlichere Einführung verweisen wir auf <span class="citation"><a href="git.html#ref-chiang" role="doc-biblioref">Wainwright und Chiang</a> (<a href="git.html#ref-chiang" role="doc-biblioref">2005</a>)</span> oder <span class="citation"><a href="git.html#ref-linalg" role="doc-biblioref">Aleskerov, Ersel, und Piontkovski</a> (<a href="git.html#ref-linalg" role="doc-biblioref">2011</a>)</span>.</p>
+<p>Matrizen werden häufig im Kontext der <em>linearen Algebra</em> verwendet.<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a>
 Zahlreiche sozioökonomische Konzepte bedienen sich der linearen Algebra, in der
 Matrizen häufig verwendet werden, um lineare Gleichungssysteme
 dazustellen.
@@ -1179,7 +1184,7 @@ Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_p x_{ip} + \epsilo
 werden Schätzgleichungen fast ausschließlich in Matrixform dargestellt, denn
 wir können explizit alle <span class="math inline">\(n\)</span> Gleichungen untereinander schreiben:</p>
 <p><span class="math display">\[\begin{align}
-Y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + ... + \beta_p x_{1p} + e_1\nonumber\\
+Y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{12} + ... + \beta_p x_{1p} + e_1\nonumber\\
 Y_2 = \beta_0 + \beta_1 x_{21} + \beta_2 x_{22} + ... + \beta_p x_{2p} + e_2\nonumber\\
 \vdots \nonumber\\
 Y_n = \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + ... + \beta_p x_{np} + e_n\nonumber
@@ -1244,8 +1249,8 @@ und Spalten, bei denen es sich jeweils um atomare Vektoren handelt.</p>
 Diese Funktion nimmt als erstes Argument die Elemente der Matrix und dann
 die Spezifikation der Anzahl von Zeilen (<code>nrow</code>) und/oder der Anzahl von
 Spalten (<code>ncol</code>):</p>
-<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="formalia.html#cb601-1" aria-hidden="true" tabindex="-1"></a>m_1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow =</span> <span class="dv">5</span>)</span>
-<span id="cb601-2"><a href="formalia.html#cb601-2" aria-hidden="true" tabindex="-1"></a>m_1</span></code></pre></div>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="formalia.html#cb605-1" aria-hidden="true" tabindex="-1"></a>m_1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow =</span> <span class="dv">5</span>)</span>
+<span id="cb605-2"><a href="formalia.html#cb605-2" aria-hidden="true" tabindex="-1"></a>m_1</span></code></pre></div>
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]   11   16
 #&gt; [2,]   12   17
@@ -1254,11 +1259,11 @@ Spalten (<code>ncol</code>):</p>
 #&gt; [5,]   15   20</code></pre>
 <p>Wie können die Zeilen, Spalten und einzelne Werte folgendermaßen extrahieren
 und ggf. Ersetzungen vornehmen:</p>
-<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="formalia.html#cb603-1" aria-hidden="true" tabindex="-1"></a>m_1[,<span class="dv">1</span>] <span class="co"># Erste Spalte</span></span></code></pre></div>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="formalia.html#cb607-1" aria-hidden="true" tabindex="-1"></a>m_1[,<span class="dv">1</span>] <span class="co"># Erste Spalte</span></span></code></pre></div>
 <pre><code>#&gt; [1] 11 12 13 14 15</code></pre>
-<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="formalia.html#cb605-1" aria-hidden="true" tabindex="-1"></a>m_1[<span class="dv">1</span>,] <span class="co"># Erste Zeile</span></span></code></pre></div>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="formalia.html#cb609-1" aria-hidden="true" tabindex="-1"></a>m_1[<span class="dv">1</span>,] <span class="co"># Erste Zeile</span></span></code></pre></div>
 <pre><code>#&gt; [1] 11 16</code></pre>
-<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="formalia.html#cb607-1" aria-hidden="true" tabindex="-1"></a>m_1[<span class="dv">2</span>,<span class="dv">2</span>] <span class="co"># Element [2,2]</span></span></code></pre></div>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="formalia.html#cb611-1" aria-hidden="true" tabindex="-1"></a>m_1[<span class="dv">2</span>,<span class="dv">2</span>] <span class="co"># Element [2,2]</span></span></code></pre></div>
 <pre><code>#&gt; [1] 17</code></pre>
 <p>Es gibt einige <strong>besondere Matrizen</strong>, die aufgrund ihrer speziellen
 Eigenschaften Eigennamen erhalten haben.</p>
@@ -1341,8 +1346,8 @@ A = \left(
 4 &amp; 8 \\                                               
 \end{array}\right)
 \end{align}\]</span></p>
-<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="formalia.html#cb609-1" aria-hidden="true" tabindex="-1"></a>matrix_a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">3</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb609-2"><a href="formalia.html#cb609-2" aria-hidden="true" tabindex="-1"></a>matrix_b <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">8</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="formalia.html#cb613-1" aria-hidden="true" tabindex="-1"></a>matrix_a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">3</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb613-2"><a href="formalia.html#cb613-2" aria-hidden="true" tabindex="-1"></a>matrix_b <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">8</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><strong>Matrix-Transponierung</strong></p>
 <p>Die transponierte Matrix <span class="math inline">\(A&#39;\)</span> ergibt sich aus <span class="math inline">\(A\)</span> indem die Spalten und
 Zeilen vertauscht werden.
@@ -1362,11 +1367,11 @@ A&#39; = \left(
 \right)
 \end{align}\]</span></p>
 <p>In R können wir eine Matrix mit der Funktion <code>t()</code> transponieren:</p>
-<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="formalia.html#cb610-1" aria-hidden="true" tabindex="-1"></a>matrix_a</span></code></pre></div>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="formalia.html#cb614-1" aria-hidden="true" tabindex="-1"></a>matrix_a</span></code></pre></div>
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]    1    6
 #&gt; [2,]    5    3</code></pre>
-<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="formalia.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(matrix_a)</span></code></pre></div>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="formalia.html#cb616-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(matrix_a)</span></code></pre></div>
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]    1    5
 #&gt; [2,]    6    3</code></pre>
@@ -1381,7 +1386,7 @@ A&#39; = \left(
 \right)
 \end{align}\]</span></p>
 <p>In R:</p>
-<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="formalia.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">+</span> matrix_a</span></code></pre></div>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="formalia.html#cb618-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">+</span> matrix_a</span></code></pre></div>
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]    5   10
 #&gt; [2,]    9    7</code></pre>
@@ -1395,7 +1400,7 @@ a_{12} + b_{12} &amp; a_{22} + b_{22}\\
 \end{array}
 \right)
 \end{align}\]</span></p>
-<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="formalia.html#cb616-1" aria-hidden="true" tabindex="-1"></a>matrix_a <span class="sc">+</span> matrix_b</span></code></pre></div>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="formalia.html#cb620-1" aria-hidden="true" tabindex="-1"></a>matrix_a <span class="sc">+</span> matrix_b</span></code></pre></div>
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]    1    8
 #&gt; [2,]    9   11</code></pre>
@@ -1409,7 +1414,7 @@ a_{12} + b_{12} &amp; a_{22} + b_{22}\\
 \end{array}
 \right)
 \end{align}\]</span></p>
-<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="formalia.html#cb618-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span>matrix_a</span></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="formalia.html#cb622-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span>matrix_a</span></code></pre></div>
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]    2   12
 #&gt; [2,]   10    6</code></pre>
@@ -1423,7 +1428,7 @@ a_{12}\cdot b_{12} &amp; a_{22}\cdot b_{22}\\
 \end{array}
 \right)
 \end{align}\]</span></p>
-<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="formalia.html#cb620-1" aria-hidden="true" tabindex="-1"></a>matrix_a <span class="sc">*</span> matrix_b</span></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="formalia.html#cb624-1" aria-hidden="true" tabindex="-1"></a>matrix_a <span class="sc">*</span> matrix_b</span></code></pre></div>
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]    0   12
 #&gt; [2,]   20   24</code></pre>
@@ -1437,16 +1442,16 @@ a_{21}\cdot b_{11} + a_{22}\cdot b_{21} &amp; a_{21}\cdot b_{12}+a_{22}\cdot b_{
 \end{array}
 \right)
 \end{align}\]</span></p>
-<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="formalia.html#cb622-1" aria-hidden="true" tabindex="-1"></a>matrix_a <span class="sc">%*%</span> matrix_b</span></code></pre></div>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="formalia.html#cb626-1" aria-hidden="true" tabindex="-1"></a>matrix_a <span class="sc">%*%</span> matrix_b</span></code></pre></div>
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]   24   50
 #&gt; [2,]   12   34</code></pre>
 <p>Wir wissen von oben auch, dass <span class="math inline">\(A\mathbb{I}_2=A\)</span>:</p>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="formalia.html#cb624-1" aria-hidden="true" tabindex="-1"></a>matrix_a</span></code></pre></div>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="formalia.html#cb628-1" aria-hidden="true" tabindex="-1"></a>matrix_a</span></code></pre></div>
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]    1    6
 #&gt; [2,]    5    3</code></pre>
-<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="formalia.html#cb626-1" aria-hidden="true" tabindex="-1"></a>matrix_a <span class="sc">%*%</span> <span class="fu">diag</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="formalia.html#cb630-1" aria-hidden="true" tabindex="-1"></a>matrix_a <span class="sc">%*%</span> <span class="fu">diag</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>#&gt;      [,1] [,2]
 #&gt; [1,]    1    6
 #&gt; [2,]    5    3</code></pre>
@@ -1457,13 +1462,13 @@ definiert sodass gilt</p>
 \boldsymbol{A}\boldsymbol{A}^{-1}=\boldsymbol{I}
 \end{align}\]</span></p>
 <p>Sie kann in R mit der Funktion <code>inv()</code> aus dem Paket
-<a href="http://friendly.github.io/matlib/">matlib</a><a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a> identifiziert werden, wobei wir
+<a href="http://friendly.github.io/matlib/">matlib</a><a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a> identifiziert werden, wobei wir
 die Matrix als erstes Argument <code>X</code> an <code>inv()</code> übergeben:</p>
-<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="formalia.html#cb628-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inv</span>(<span class="at">X =</span> matrix_a)</span></code></pre></div>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="formalia.html#cb632-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inv</span>(<span class="at">X =</span> matrix_a)</span></code></pre></div>
 <pre><code>#&gt;            [,1]        [,2]
 #&gt; [1,] -0.1111111  0.22222222
 #&gt; [2,]  0.1851852 -0.03703704</code></pre>
-<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="formalia.html#cb630-1" aria-hidden="true" tabindex="-1"></a>matrix_a <span class="sc">%*%</span> <span class="fu">inv</span>(matrix_a)</span></code></pre></div>
+<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="formalia.html#cb634-1" aria-hidden="true" tabindex="-1"></a>matrix_a <span class="sc">%*%</span> <span class="fu">inv</span>(matrix_a)</span></code></pre></div>
 <pre><code>#&gt;       [,1]   [,2]
 #&gt; [1,] 1e+00 -2e-08
 #&gt; [2,] 2e-08  1e+00</code></pre>
@@ -1496,26 +1501,26 @@ und
 <p>In diesem Fall können wir das Gleichungssystem in R lösen indem wir <code>Solve()</code>
 direkt die Matrix <span class="math inline">\(A\)</span> (über das Argument <code>A</code>) und den Vektor <span class="math inline">\(b\)</span>
 (über das Argument <code>b</code>) übergeben:</p>
-<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="formalia.html#cb632-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb632-2"><a href="formalia.html#cb632-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">9</span>, <span class="sc">-</span><span class="dv">4</span>), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb632-3"><a href="formalia.html#cb632-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Solve</span>(<span class="at">A =</span> A, <span class="at">b =</span> b)</span></code></pre></div>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="formalia.html#cb636-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb636-2"><a href="formalia.html#cb636-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">9</span>, <span class="sc">-</span><span class="dv">4</span>), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb636-3"><a href="formalia.html#cb636-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Solve</span>(<span class="at">A =</span> A, <span class="at">b =</span> b)</span></code></pre></div>
 <pre><code>#&gt; x1    =  3 
 #&gt;   x2  =  2</code></pre>
 <p>Wir sehen also unmittelbar, dass das Gleichungssystem - und damit unser Modell -
 konsistent ist und eine eindeutige Lösung
-<span class="math inline">\(x=\left(\begin{array}{c} 3 \\ 2 \end{array}\right)\)</span> aufweist.<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a>
+<span class="math inline">\(x=\left(\begin{array}{c} 3 \\ 2 \end{array}\right)\)</span> aufweist.<a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a>
 Dieses können wir folgendermaßen verifizieren:</p>
-<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="formalia.html#cb634-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb634-2"><a href="formalia.html#cb634-2" aria-hidden="true" tabindex="-1"></a>A <span class="sc">%*%</span> x</span></code></pre></div>
+<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="formalia.html#cb638-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb638-2"><a href="formalia.html#cb638-2" aria-hidden="true" tabindex="-1"></a>A <span class="sc">%*%</span> x</span></code></pre></div>
 <pre><code>#&gt;      [,1]
 #&gt; [1,]    9
 #&gt; [2,]   -4</code></pre>
 <p>Wie erwartet erhalten wir hier also wieder unseren ursprünglichen Wert für <span class="math inline">\(b\)</span>.</p>
 <p>Wenn allerdings <span class="math inline">\(A=\left(\begin{array}{cc} -2 &amp; 1 \\ -4 &amp; 2 \end{array}\right)\)</span>
 und <span class="math inline">\(b=\left(\begin{array}{c} 3 \\ 2 \end{array}\right)\)</span>, dann würde Folgendes passieren:</p>
-<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="formalia.html#cb636-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb636-2"><a href="formalia.html#cb636-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb636-3"><a href="formalia.html#cb636-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Solve</span>(<span class="at">A =</span> A, <span class="at">b =</span> b)</span></code></pre></div>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="formalia.html#cb640-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb640-2"><a href="formalia.html#cb640-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb640-3"><a href="formalia.html#cb640-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Solve</span>(<span class="at">A =</span> A, <span class="at">b =</span> b)</span></code></pre></div>
 <pre><code>#&gt; x1 - 0.5*x2  =  -0.5 
 #&gt;           0  =     2</code></pre>
 <p>Wir sehen also direkt, dass das System nicht lösbar wäre, denn das resultierende
@@ -1523,7 +1528,7 @@ Gleichungssystem weist einen eindeutigen Widerspruch (<code>0=2</code>) auf.
 Der Grund ist, dass die Matrix <span class="math inline">\(A\)</span> <em>singulär</em> ist, das heißt sie besitzt keine
 Inverse.
 Das können Sie unmittelbar überprüfen:</p>
-<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="formalia.html#cb638-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inv</span>(A)</span></code></pre></div>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="formalia.html#cb642-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inv</span>(A)</span></code></pre></div>
 <pre><code>#&gt; Error in Inverse(X, tol = sqrt(.Machine$double.eps), ...): X is numerically singular</code></pre>
 <p>Wir können also nur über die Analyse der Matrix Schlussfolgerungen bezüglich des
 gesamten Gleichungssystems ziehen.
@@ -1533,9 +1538,9 @@ komplexer sind, von enormer Bedeutung.</p>
 <span class="math inline">\(A=\left(\begin{array}{cc} 1 &amp; 3 \\ -2 &amp; 1 \end{array}\right)\)</span>
 und
 <span class="math inline">\(b=\left(\begin{array}{c} 9 \\ 4 \end{array}\right)\)</span>:</p>
-<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="formalia.html#cb640-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="dv">1</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb640-2"><a href="formalia.html#cb640-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">6</span>, <span class="sc">-</span><span class="dv">3</span>), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb640-3"><a href="formalia.html#cb640-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Solve</span>(<span class="at">A =</span> A, <span class="at">b =</span> b)</span></code></pre></div>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="formalia.html#cb644-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="dv">1</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb644-2"><a href="formalia.html#cb644-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">6</span>, <span class="sc">-</span><span class="dv">3</span>), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb644-3"><a href="formalia.html#cb644-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Solve</span>(<span class="at">A =</span> A, <span class="at">b =</span> b)</span></code></pre></div>
 <pre><code>#&gt; x1 - 0.5*x2  =  1.5 
 #&gt;           0  =    0</code></pre>
 <p>In diesem Falle sehen wir keinen Widerspruch im Gleichungssystem, aber auch
@@ -1575,14 +1580,14 @@ und die marginale Konsumneigung mit <span class="math inline">\(b=0.4\)</span> u
 mit <span class="math inline">\(a=1\)</span> gegeben, können wir direkt überprüfen ob das System konsistent ist und,
 da <span class="math inline">\(x=\left(\begin{array}{cc} Y \\ C \end{array}\right)\)</span>
 welche Werte für den Konsum und das Gesamteinkommen impliziert werden.</p>
-<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="formalia.html#cb642-1" aria-hidden="true" tabindex="-1"></a>I_keynes <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb642-2"><a href="formalia.html#cb642-2" aria-hidden="true" tabindex="-1"></a>G_keynes <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb642-3"><a href="formalia.html#cb642-3" aria-hidden="true" tabindex="-1"></a>b_keynes <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
-<span id="cb642-4"><a href="formalia.html#cb642-4" aria-hidden="true" tabindex="-1"></a>a_keynes <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb642-5"><a href="formalia.html#cb642-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb642-6"><a href="formalia.html#cb642-6" aria-hidden="true" tabindex="-1"></a>A_keynes <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span>b_keynes, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb642-7"><a href="formalia.html#cb642-7" aria-hidden="true" tabindex="-1"></a>d_keynes <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(I_keynes <span class="sc">+</span> G_keynes, a_keynes), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb642-8"><a href="formalia.html#cb642-8" aria-hidden="true" tabindex="-1"></a><span class="fu">Solve</span>(<span class="at">A =</span> A_keynes, <span class="at">b =</span> d_keynes)</span></code></pre></div>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="formalia.html#cb646-1" aria-hidden="true" tabindex="-1"></a>I_keynes <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb646-2"><a href="formalia.html#cb646-2" aria-hidden="true" tabindex="-1"></a>G_keynes <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb646-3"><a href="formalia.html#cb646-3" aria-hidden="true" tabindex="-1"></a>b_keynes <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
+<span id="cb646-4"><a href="formalia.html#cb646-4" aria-hidden="true" tabindex="-1"></a>a_keynes <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb646-5"><a href="formalia.html#cb646-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb646-6"><a href="formalia.html#cb646-6" aria-hidden="true" tabindex="-1"></a>A_keynes <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span>b_keynes, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb646-7"><a href="formalia.html#cb646-7" aria-hidden="true" tabindex="-1"></a>d_keynes <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(I_keynes <span class="sc">+</span> G_keynes, a_keynes), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb646-8"><a href="formalia.html#cb646-8" aria-hidden="true" tabindex="-1"></a><span class="fu">Solve</span>(<span class="at">A =</span> A_keynes, <span class="at">b =</span> d_keynes)</span></code></pre></div>
 <pre><code>#&gt; x1    =  8.33333333 
 #&gt;   x2  =  4.33333333</code></pre>
 <p>In diesem Fall sehen wir, dass das System konsistent ist und eine eindeutige
@@ -1642,22 +1647,22 @@ und <span class="math inline">\(\boldsymbol{y}=\left(\begin{array}{c} 15.8 \\ 19
 <p>Es lässt sich allgemein zeigen, dass der gesuchte Schätzer
 <span class="math inline">\(\boldsymbol{\hat{\beta}}=\left(\begin{array}{cc} \hat{\beta}_0 \\ \hat{\beta}_1 \\ \hat{\beta}_2 \end{array}\right)\)</span>
 für das unbekannte <span class="math inline">\(\boldsymbol{\beta}=\left(\begin{array}{cc} \beta_0 \\ \beta_1 \\ \beta_2 \end{array}\right)\)</span> die Lösung
-des folgenden Gleichungssystems darstellt:<a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a></p>
+des folgenden Gleichungssystems darstellt:<a href="#fn53" class="footnote-ref" id="fnref53"><sup>53</sup></a></p>
 <p><span class="math display">\[\begin{align}
 \boldsymbol{\hat{\beta}}=\left(\boldsymbol{X}&#39;\boldsymbol{X} \right)^{-1}\boldsymbol{X}&#39;\boldsymbol{Y}
 \end{align}\]</span></p>
 <p>Das können wir wiederum in R lösen:</p>
-<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="formalia.html#cb645-1" aria-hidden="true" tabindex="-1"></a>ols_X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">264</span>, <span class="dv">8</span>, <span class="dv">1</span>, <span class="dv">175</span>, <span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">335</span>, <span class="dv">8</span>, <span class="dv">1</span>, <span class="dv">109</span>, <span class="dv">4</span>), </span>
-<span id="cb645-2"><a href="formalia.html#cb645-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">byrow =</span> T)</span>
-<span id="cb645-3"><a href="formalia.html#cb645-3" aria-hidden="true" tabindex="-1"></a>ols_y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">15.8</span>, <span class="fl">19.7</span>, <span class="fl">15.0</span>, <span class="fl">21.4</span>), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb645-4"><a href="formalia.html#cb645-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb645-5"><a href="formalia.html#cb645-5" aria-hidden="true" tabindex="-1"></a><span class="fu">solve</span>(<span class="fu">t</span>(ols_X) <span class="sc">%*%</span> ols_X) <span class="sc">%*%</span> <span class="fu">t</span>(ols_X) <span class="sc">%*%</span> ols_y</span></code></pre></div>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="formalia.html#cb649-1" aria-hidden="true" tabindex="-1"></a>ols_X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">264</span>, <span class="dv">8</span>, <span class="dv">1</span>, <span class="dv">175</span>, <span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">335</span>, <span class="dv">8</span>, <span class="dv">1</span>, <span class="dv">109</span>, <span class="dv">4</span>), </span>
+<span id="cb649-2"><a href="formalia.html#cb649-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">byrow =</span> T)</span>
+<span id="cb649-3"><a href="formalia.html#cb649-3" aria-hidden="true" tabindex="-1"></a>ols_y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">15.8</span>, <span class="fl">19.7</span>, <span class="fl">15.0</span>, <span class="fl">21.4</span>), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb649-4"><a href="formalia.html#cb649-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb649-5"><a href="formalia.html#cb649-5" aria-hidden="true" tabindex="-1"></a><span class="fu">solve</span>(<span class="fu">t</span>(ols_X) <span class="sc">%*%</span> ols_X) <span class="sc">%*%</span> <span class="fu">t</span>(ols_X) <span class="sc">%*%</span> ols_y</span></code></pre></div>
 <pre><code>#&gt;             [,1]
 #&gt; [1,] 26.37086491
 #&gt; [2,] -0.01783627
 #&gt; [3,] -0.68592421</code></pre>
 <p>Oder direkt mit <code>lm()</code>:</p>
-<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="formalia.html#cb647-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Verbrauch<span class="sc">~</span>PS<span class="sc">+</span>Zylinder, <span class="at">data =</span> ols_beispiel)</span></code></pre></div>
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="formalia.html#cb651-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Verbrauch<span class="sc">~</span>PS<span class="sc">+</span>Zylinder, <span class="at">data =</span> ols_beispiel)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = Verbrauch ~ PS + Zylinder, data = ols_beispiel)
@@ -1682,7 +1687,7 @@ schreiben als:</p>
 =\left(\begin{array}{cccc} e_1\times e_1 &amp; e_2 \times e_2 &amp; ... &amp; 
 e_n \times e_n \end{array}\right)
 \end{align}\]</span></p>
-<p>Wir können dann schreiben:<a href="#fn53" class="footnote-ref" id="fnref53"><sup>53</sup></a></p>
+<p>Wir können dann schreiben:<a href="#fn54" class="footnote-ref" id="fnref54"><sup>54</sup></a></p>
 <p><span class="math display">\[\begin{align}
 \boldsymbol{e&#39;e} &amp;= \left(\boldsymbol{Y}-\boldsymbol{X\hat{\beta}}\right)&#39;
 \left(\boldsymbol{Y}-\boldsymbol{X\hat{\beta}}\right)\nonumber\\
@@ -1704,7 +1709,7 @@ Koeffizienten <span class="math inline">\(\boldsymbol{\hat{\beta}}\)</span> ab:<
 \boldsymbol{X&#39;X\hat{\beta}}&amp;=\boldsymbol{X&#39;Y}\nonumber
 \end{align}\]</span></p>
 <p>Da gilt, dass <span class="math inline">\(\left(\boldsymbol{X&#39;X}\right)^{-1}\left(\boldsymbol{X&#39;X}\right)=I\)</span>
-multiplizieren wir beide Seiten mit <span class="math inline">\(\left(\boldsymbol{X&#39;X}\right)^{-1}\)</span>:<a href="#fn54" class="footnote-ref" id="fnref54"><sup>54</sup></a></p>
+multiplizieren wir beide Seiten mit <span class="math inline">\(\left(\boldsymbol{X&#39;X}\right)^{-1}\)</span>:<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a></p>
 <p><span class="math display">\[\begin{align}
 \left(\boldsymbol{X&#39;X}\right)^{-1}\boldsymbol{X&#39;X\hat{\beta}} &amp;= 
 \left(\boldsymbol{X&#39;X}\right)^{-1}\boldsymbol{X&#39;Y}\nonumber\\
@@ -1720,7 +1725,7 @@ in R, z.B. <a href="https://www.statmethods.net/advstats/matrix.html">hier</a>
 oder in größerem Umfang
 <a href="https://www.math.uh.edu/~jmorgan/Math6397/day13/LinearAlgebraR-Handout.pdf">hier</a>.
 Auch das Angebot an Lehrbüchern ist sehr groß, für die ökonomischen Grundlagen
-bietet sich <span class="citation"><a href="git.html#ref-chiang" role="doc-biblioref">Wainwright and Chiang</a> (<a href="git.html#ref-chiang" role="doc-biblioref">2005</a>)</span> sehr gut an.</p>
+bietet sich <span class="citation"><a href="git.html#ref-chiang" role="doc-biblioref">Wainwright und Chiang</a> (<a href="git.html#ref-chiang" role="doc-biblioref">2005</a>)</span> sehr gut an.</p>
 </div>
 </div>
 <div id="formalia-dist" class="section level2" number="6.4">
@@ -1763,12 +1768,12 @@ im Sinne der <strong>Verteilung einer Zufallsvariablen</strong> und im Sinne ein
 <p>Eine empirische Verteilung beschreiben wir in der Regel durch bestimmte
 Kennzahlen, wie den Mittelwert, die Standardabweichung oder den Gini-Index.
 Das erlaubt uns Informationen über die Daten in wenigen Zahlen zu
-kondensieren.<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a></p>
+kondensieren.<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a></p>
 <p>Dennoch werden beide Perspektiven auch häufig kombiniert, vor allem wenn wir
 einen empirischen Datensatz mit einem parametrischen Wahrscheinlichkeitsmodell
 beschreiben wollen. Das bedeutet, dass wir die empirischen Daten als Realisierung
 einer theoretischen Zufallsvariablen (ZV) interpretieren und die für die
-theoretische ZV relevanten Parameter dann aus den Daten heraus schätzen.<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a></p>
+theoretische ZV relevanten Parameter dann aus den Daten heraus schätzen.<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a></p>
 <p><strong>Anwendungsbeispiel</strong></p>
 <p>Stellen Sie sich vor Sie haben eine Stichprobe vor sich, welche die Verteilung in Abbildung <a href="formalia.html#fig:Stichprobenverteilung">6.8</a> (linker Graph) aufweist.</p>
 <p>Beachten Sie, dass die y-Achse die empirische Dichte der Beobachtungen auf der
@@ -1781,38 +1786,38 @@ symmetrisch.
 Wir können diese Annahme plausibilisieren indem wir mit <code>ggplot2::geom_density()</code> die
 <em>empirische Dichtefunktion</em> der Verteilung schätzen und über die Daten legen,
 wie im rechten Graph der Abbildung <a href="formalia.html#fig:Stichprobenverteilung">6.8</a>.</p>
-<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="formalia.html#cb649-1" aria-hidden="true" tabindex="-1"></a>Stichprobe <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> sample_data) <span class="sc">+</span></span>
-<span id="cb649-2"><a href="formalia.html#cb649-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_histogram</span>(</span>
-<span id="cb649-3"><a href="formalia.html#cb649-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>r, <span class="fu">stat</span>(density)), </span>
-<span id="cb649-4"><a href="formalia.html#cb649-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">binwidth =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb649-5"><a href="formalia.html#cb649-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span> </span>
-<span id="cb649-6"><a href="formalia.html#cb649-6" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_y_continuous</span>(</span>
-<span id="cb649-7"><a href="formalia.html#cb649-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)), <span class="at">name =</span> <span class="st">&quot;Dichte&quot;</span>) <span class="sc">+</span></span>
-<span id="cb649-8"><a href="formalia.html#cb649-8" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb649-9"><a href="formalia.html#cb649-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.border =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb649-10"><a href="formalia.html#cb649-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(),</span>
-<span id="cb649-11"><a href="formalia.html#cb649-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb649-12"><a href="formalia.html#cb649-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb649-13"><a href="formalia.html#cb649-13" aria-hidden="true" tabindex="-1"></a>Dichtefunktion <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> sample_data) <span class="sc">+</span></span>
-<span id="cb649-14"><a href="formalia.html#cb649-14" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_histogram</span>(</span>
-<span id="cb649-15"><a href="formalia.html#cb649-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>r, <span class="fu">stat</span>(density)), </span>
-<span id="cb649-16"><a href="formalia.html#cb649-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">binwidth =</span> <span class="fl">0.4</span>, <span class="at">alpha=</span><span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb649-17"><a href="formalia.html#cb649-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="dv">12</span>)) <span class="sc">+</span></span>
-<span id="cb649-18"><a href="formalia.html#cb649-18" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">stat_density</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>r), </span>
-<span id="cb649-19"><a href="formalia.html#cb649-19" aria-hidden="true" tabindex="-1"></a>               <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, </span>
-<span id="cb649-20"><a href="formalia.html#cb649-20" aria-hidden="true" tabindex="-1"></a>               <span class="at">geom=</span><span class="st">&quot;line&quot;</span>) <span class="sc">+</span></span>
-<span id="cb649-21"><a href="formalia.html#cb649-21" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_y_continuous</span>(</span>
-<span id="cb649-22"><a href="formalia.html#cb649-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)), <span class="at">name =</span> <span class="st">&quot;Dichte&quot;</span>) <span class="sc">+</span></span>
-<span id="cb649-23"><a href="formalia.html#cb649-23" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb649-24"><a href="formalia.html#cb649-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.border =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb649-25"><a href="formalia.html#cb649-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(),</span>
-<span id="cb649-26"><a href="formalia.html#cb649-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb649-27"><a href="formalia.html#cb649-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb649-28"><a href="formalia.html#cb649-28" aria-hidden="true" tabindex="-1"></a>dichte_plot <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggarrange</span>(Stichprobe, Dichtefunktion, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="formalia.html#cb653-1" aria-hidden="true" tabindex="-1"></a>Stichprobe <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> sample_data) <span class="sc">+</span></span>
+<span id="cb653-2"><a href="formalia.html#cb653-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_histogram</span>(</span>
+<span id="cb653-3"><a href="formalia.html#cb653-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>r, <span class="fu">stat</span>(density)), </span>
+<span id="cb653-4"><a href="formalia.html#cb653-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">binwidth =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb653-5"><a href="formalia.html#cb653-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb653-6"><a href="formalia.html#cb653-6" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_y_continuous</span>(</span>
+<span id="cb653-7"><a href="formalia.html#cb653-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)), <span class="at">name =</span> <span class="st">&quot;Dichte&quot;</span>) <span class="sc">+</span></span>
+<span id="cb653-8"><a href="formalia.html#cb653-8" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb653-9"><a href="formalia.html#cb653-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.border =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb653-10"><a href="formalia.html#cb653-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(),</span>
+<span id="cb653-11"><a href="formalia.html#cb653-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb653-12"><a href="formalia.html#cb653-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb653-13"><a href="formalia.html#cb653-13" aria-hidden="true" tabindex="-1"></a>Dichtefunktion <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> sample_data) <span class="sc">+</span></span>
+<span id="cb653-14"><a href="formalia.html#cb653-14" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_histogram</span>(</span>
+<span id="cb653-15"><a href="formalia.html#cb653-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>r, <span class="fu">stat</span>(density)), </span>
+<span id="cb653-16"><a href="formalia.html#cb653-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">binwidth =</span> <span class="fl">0.4</span>, <span class="at">alpha=</span><span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb653-17"><a href="formalia.html#cb653-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb653-18"><a href="formalia.html#cb653-18" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">stat_density</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>r), </span>
+<span id="cb653-19"><a href="formalia.html#cb653-19" aria-hidden="true" tabindex="-1"></a>               <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb653-20"><a href="formalia.html#cb653-20" aria-hidden="true" tabindex="-1"></a>               <span class="at">geom=</span><span class="st">&quot;line&quot;</span>) <span class="sc">+</span></span>
+<span id="cb653-21"><a href="formalia.html#cb653-21" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_y_continuous</span>(</span>
+<span id="cb653-22"><a href="formalia.html#cb653-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)), <span class="at">name =</span> <span class="st">&quot;Dichte&quot;</span>) <span class="sc">+</span></span>
+<span id="cb653-23"><a href="formalia.html#cb653-23" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb653-24"><a href="formalia.html#cb653-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.border =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb653-25"><a href="formalia.html#cb653-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(),</span>
+<span id="cb653-26"><a href="formalia.html#cb653-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb653-27"><a href="formalia.html#cb653-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb653-28"><a href="formalia.html#cb653-28" aria-hidden="true" tabindex="-1"></a>dichte_plot <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggarrange</span>(Stichprobe, Dichtefunktion, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:Stichprobenverteilung"></span>
 <img src="figures/Formalia/linalg_stichprobe-dichte.png" alt="Stichprobe (linker Graph) und Stichprobe mit empirischer Dichtefunktion (rechter Graph)" width="80%" height="75%" />
 <p class="caption">
-Figure 6.8: Stichprobe (linker Graph) und Stichprobe mit empirischer Dichtefunktion (rechter Graph)
+Abbildung 6.8: Stichprobe (linker Graph) und Stichprobe mit empirischer Dichtefunktion (rechter Graph)
 </p>
 </div>
 <p>Das bedeutet, dass wir unsere Daten mit Hilfe der Dichtefunktion
@@ -1842,7 +1847,7 @@ Das bedeutet wir ‘fitten’ die Verteilung zu unseren Daten. Abbildung <a href
 <div class="figure" style="text-align: center"><span id="fig:fitting"></span>
 <img src="figures/Formalia/linalg_fit-normal.png" alt="Beispiel zur Verdeutlichung von Fits verschiedener Normalverteilungen mit unterschiedlichen Parameterwerten" width="75%" height="75%" />
 <p class="caption">
-Figure 6.9: Beispiel zur Verdeutlichung von Fits verschiedener Normalverteilungen mit unterschiedlichen Parameterwerten
+Abbildung 6.9: Beispiel zur Verdeutlichung von Fits verschiedener Normalverteilungen mit unterschiedlichen Parameterwerten
 </p>
 </div>
 <p>Die Normalverteilung mit <span class="math inline">\(\mu=4\)</span> und <span class="math inline">\(\sigma^2=4\)</span> passt zu den Daten recht gut.
@@ -1862,12 +1867,12 @@ wenn Sie eine unpassende Verteilung mit Maximum Likelihood fitten, bekommen Sie
 selbst für die besten Parameter einen schlechten Fit.</p>
 <p>In unserem Fall wollen wir nun eine Normalverteilung zu unseren Daten fitten.
 Dazu verwenden wir die Funktion <code>fitdist()</code> aus dem Paket
-<a href="https://github.com/cran/fitdistrplus">fitdistrplus</a> <span class="citation">(<a href="git.html#ref-R-fit" role="doc-biblioref">Delignette-Muller and Dutang 2015</a>)</span>.
+<a href="https://github.com/cran/fitdistrplus">fitdistrplus</a> <span class="citation">(<a href="git.html#ref-R-fit" role="doc-biblioref">Delignette-Muller und Dutang 2015</a>)</span>.
 Dieser Funktion geben wir über das Argument <code>data</code> unsere Stichprobe und über das
-Argument <code>distr</code> das Kürzel für die Verteilungsklasse, die wir annehmen.<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a></p>
-<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="formalia.html#cb650-1" aria-hidden="true" tabindex="-1"></a>fit_dist <span class="ot">&lt;-</span> fitdistrplus<span class="sc">::</span><span class="fu">fitdist</span>(<span class="at">data =</span> sample_data<span class="sc">$</span>r, </span>
-<span id="cb650-2"><a href="formalia.html#cb650-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">distr =</span> <span class="st">&quot;norm&quot;</span>)</span>
-<span id="cb650-3"><a href="formalia.html#cb650-3" aria-hidden="true" tabindex="-1"></a>fit_dist[[<span class="st">&quot;estimate&quot;</span>]]</span></code></pre></div>
+Argument <code>distr</code> das Kürzel für die Verteilungsklasse, die wir annehmen.<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a></p>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="formalia.html#cb654-1" aria-hidden="true" tabindex="-1"></a>fit_dist <span class="ot">&lt;-</span> fitdistrplus<span class="sc">::</span><span class="fu">fitdist</span>(<span class="at">data =</span> sample_data<span class="sc">$</span>r, </span>
+<span id="cb654-2"><a href="formalia.html#cb654-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">distr =</span> <span class="st">&quot;norm&quot;</span>)</span>
+<span id="cb654-3"><a href="formalia.html#cb654-3" aria-hidden="true" tabindex="-1"></a>fit_dist[[<span class="st">&quot;estimate&quot;</span>]]</span></code></pre></div>
 <pre><code>#&gt;     mean       sd 
 #&gt; 4.023254 1.967130</code></pre>
 <p>Wir sehen also, dass die optimale Parametrisierung zu <span class="math inline">\(\mu=4.02\)</span> und
@@ -1880,9 +1885,9 @@ tatsächlich plausibel ist, wir testen also die Hypothese, dass die Daten aus ei
 Für den Fall der Normalverteilung können wir dies z.B. mit einem
 <a href="https://de.wikipedia.org/wiki/Shapiro-Wilk-Test">Shapiro-Wilk-Test</a> machen.</p>
 <p>Hier testen wir die <span class="math inline">\(H_0\)</span>, dass die Daten tatsächlich durch eine
-Normalverteilung generiert wurden.<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a></p>
-<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="formalia.html#cb652-1" aria-hidden="true" tabindex="-1"></a>shapiro_test <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(sample_data<span class="sc">$</span>r)</span>
-<span id="cb652-2"><a href="formalia.html#cb652-2" aria-hidden="true" tabindex="-1"></a>shapiro_test</span></code></pre></div>
+Normalverteilung generiert wurden.<a href="#fn59" class="footnote-ref" id="fnref59"><sup>59</sup></a></p>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="formalia.html#cb656-1" aria-hidden="true" tabindex="-1"></a>shapiro_test <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(sample_data<span class="sc">$</span>r)</span>
+<span id="cb656-2"><a href="formalia.html#cb656-2" aria-hidden="true" tabindex="-1"></a>shapiro_test</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt;  Shapiro-Wilk normality test
 #&gt; 
@@ -1896,9 +1901,9 @@ erhalten.</p>
 <p>Es gibt viele verschiedene Verteilungstests, je nach dem welche Verteilung Sie
 testen wollen.
 Dies ist ein komplexes Thema, das wir in diesem Kapitel nicht weitergehend
-behandeln. <span class="citation"><a href="git.html#ref-clauset" role="doc-biblioref">Clauset, Shalizi, and Newman</a> (<a href="git.html#ref-clauset" role="doc-biblioref">2009</a>)</span> ist ein sehr bekanntest Paper, das eine praktische Anleitung
+behandeln. <span class="citation"><a href="git.html#ref-clauset" role="doc-biblioref">Clauset, Shalizi, und Newman</a> (<a href="git.html#ref-clauset" role="doc-biblioref">2009</a>)</span> ist ein sehr bekanntest Paper, das eine praktische Anleitung
 für den Fall der Pareto-Verteilung enthält, aber auch für andere Verteilungen
-verwendet werden kann.<a href="#fn59" class="footnote-ref" id="fnref59"><sup>59</sup></a>
+verwendet werden kann.<a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a>
 Ansonsten finden Sie
 <a href="https://cran.r-project.org/web/packages/fitdistrplus/vignettes/paper2JSS.pdf">hier</a> oder
 <a href="https://stats.stackexchange.com/questions/132652/how-to-determine-which-distribution-fits-my-data-best">hier</a> praktische Anleitungen und Diskussionen.</p>
@@ -1912,7 +1917,7 @@ möglichen Ausreißern und zu sonstigen <strong>Besonderheiten</strong> gemacht 
 Tabelle <a href="formalia.html#tab:Kennzahlen">6.3</a> listet die bekanntesten Kennzahlen in den jeweiligen
 Bereichen auf.</p>
 <table>
-<caption><span id="tab:Kennzahlen">Table 6.3: </span> Kennzahlen zur Beschreibung empirischer Verteilungen.</caption>
+<caption><span id="tab:Kennzahlen">Tabelle 6.3: </span> Kennzahlen zur Beschreibung empirischer Verteilungen.</caption>
 <thead>
 <tr class="header">
 <th><strong>Kennzahl</strong></th>
@@ -1990,7 +1995,7 @@ Bereichen auf.</p>
 </table>
 <p>Für die folgenden Illustrationen nehmen wir an, dass wir es mit einem Datensatz
 mit <span class="math inline">\(N\)</span> kontinuiertlichen Beobachtungen <span class="math inline">\(x_1, x_2, ..., x_n\)</span> zu tun haben.
-Als Beispiel dient uns der Datensatz zu ökonomischen Journalen aus <span class="citation"><a href="git.html#ref-AER" role="doc-biblioref">Kleiber and Zeileis</a> (<a href="git.html#ref-AER" role="doc-biblioref">2008</a>)</span>:<a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a></p>
+Als Beispiel dient uns der Datensatz zu ökonomischen Journalen aus <span class="citation"><a href="git.html#ref-AER" role="doc-biblioref">Kleiber und Zeileis</a> (<a href="git.html#ref-AER" role="doc-biblioref">2008</a>)</span>:<a href="#fn61" class="footnote-ref" id="fnref61"><sup>61</sup></a></p>
 <pre><code>#&gt;    Kuerzel                                               Titel
 #&gt; 1:    APEL                   Asian-Pacific Economic Literature
 #&gt; 2:  SAJoEH           South African Journal of Economic History
@@ -2018,8 +2023,8 @@ Es ist anwendbar wenn wir es mit kontinuierlichen und mindestens
 intervall-skalierten Daten zu tun haben und ist definiert als:</p>
 <p><span class="math display">\[\bar{x}=\frac{1}{N}\sum_{i=1}^Nx_i\]</span></p>
 <p>In R wird das arithmetische Mittel mit der Funktion <code>mean()</code> berechnet:</p>
-<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="formalia.html#cb655-1" aria-hidden="true" tabindex="-1"></a>avg_preis <span class="ot">&lt;-</span> <span class="fu">mean</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span>
-<span id="cb655-2"><a href="formalia.html#cb655-2" aria-hidden="true" tabindex="-1"></a>avg_preis</span></code></pre></div>
+<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="formalia.html#cb659-1" aria-hidden="true" tabindex="-1"></a>avg_preis <span class="ot">&lt;-</span> <span class="fu">mean</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span>
+<span id="cb659-2"><a href="formalia.html#cb659-2" aria-hidden="true" tabindex="-1"></a>avg_preis</span></code></pre></div>
 <pre><code>#&gt; [1] 417.7222</code></pre>
 <p>Der durchschnittliche Preis der Journale ist also 417.72 Dollar.</p>
 <p>Das arithmetische Mittel ist sehr anfällig gegenüber Ausreißern.
@@ -2033,10 +2038,10 @@ x_{0.5} = \begin{cases}
 \end{align}\]</span></p>
 <p>wobei wir annehmen, dass die Werte der Verteilung ihrer Größe nach geordnet
 sind, also <span class="math inline">\((x_1\leq x_2\leq x_3 \leq...\leq x_n)\)</span> und <span class="math inline">\(\lfloor x \rfloor\)</span>
-die <em>Abrundungsfunktion</em> bezeichnet.<a href="#fn61" class="footnote-ref" id="fnref61"><sup>61</sup></a></p>
+die <em>Abrundungsfunktion</em> bezeichnet.<a href="#fn62" class="footnote-ref" id="fnref62"><sup>62</sup></a></p>
 <p>In R wird der Median mit der Funktion <code>median()</code> berechnet:</p>
-<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="formalia.html#cb657-1" aria-hidden="true" tabindex="-1"></a>med_preis <span class="ot">&lt;-</span> <span class="fu">median</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span>
-<span id="cb657-2"><a href="formalia.html#cb657-2" aria-hidden="true" tabindex="-1"></a>med_preis</span></code></pre></div>
+<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="formalia.html#cb661-1" aria-hidden="true" tabindex="-1"></a>med_preis <span class="ot">&lt;-</span> <span class="fu">median</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span>
+<span id="cb661-2"><a href="formalia.html#cb661-2" aria-hidden="true" tabindex="-1"></a>med_preis</span></code></pre></div>
 <pre><code>#&gt; [1] 282</code></pre>
 <p>Da es insgesamt 180 Journale gibt gilt, dass 90 Journale teurer und 90 Journale
 billiger als 282 Dollar sind.</p>
@@ -2055,7 +2060,7 @@ x_{\alpha} = \begin{cases}
 <p>In R können wir Quantile einfach mit der Funktion <code>quantile()</code> berechnen.
 Diese Funktion akzeptiert als erstes Argument einen Vektor von Daten und als
 zweites Argument ein oder mehrere Werte für <span class="math inline">\(\alpha\)</span>:</p>
-<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="formalia.html#cb659-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="formalia.html#cb663-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>))</span></code></pre></div>
 <pre><code>#&gt;    25%    50%    75% 
 #&gt; 134.50 282.00 540.75</code></pre>
 <p>Wie wir hier sehen ist der Median gleich dem <span class="math inline">\(50\%\)</span>-Quantil.</p>
@@ -2065,9 +2070,9 @@ Daher ist der Modus auch schon für nominal-skalierte Daten verfügbar.</p>
 <p>In R gibt es aber leider keine Funktion, die den Modus direkt berechnet.
 Vielleicht erinnern Sie sich aber, dass wir mit der Funktion <code>table()</code> eine
 Häufigkeitstabelle ausgeben können.
-Daher bekommen wir den Modus über folgenden Umweg:<a href="#fn62" class="footnote-ref" id="fnref62"><sup>62</sup></a></p>
-<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="formalia.html#cb661-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">table</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span>
-<span id="cb661-2"><a href="formalia.html#cb661-2" aria-hidden="true" tabindex="-1"></a>      )[<span class="fu">table</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])<span class="sc">==</span><span class="fu">max</span>(<span class="fu">table</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]]))]</span></code></pre></div>
+Daher bekommen wir den Modus über folgenden Umweg:<a href="#fn63" class="footnote-ref" id="fnref63"><sup>63</sup></a></p>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="formalia.html#cb665-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">table</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span>
+<span id="cb665-2"><a href="formalia.html#cb665-2" aria-hidden="true" tabindex="-1"></a>      )[<span class="fu">table</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])<span class="sc">==</span><span class="fu">max</span>(<span class="fu">table</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]]))]</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;90&quot;</code></pre>
 <p><strong>Kennzahlen zur Streuung einer Verteilung</strong></p>
 <p>Von besonderem Interesse in der sozioökonomischen Forschung ist die Analyse
@@ -2089,14 +2094,14 @@ definitiert:</p>
 v_x=\frac{s_x}{\bar{x}}
 \end{align}\]</span></p>
 <p>In R können die drei Maße folgendermaßen berechnet werden:</p>
-<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="formalia.html#cb663-1" aria-hidden="true" tabindex="-1"></a>var_preis <span class="ot">&lt;-</span> <span class="fu">var</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span>
-<span id="cb663-2"><a href="formalia.html#cb663-2" aria-hidden="true" tabindex="-1"></a>var_preis</span></code></pre></div>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="formalia.html#cb667-1" aria-hidden="true" tabindex="-1"></a>var_preis <span class="ot">&lt;-</span> <span class="fu">var</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span>
+<span id="cb667-2"><a href="formalia.html#cb667-2" aria-hidden="true" tabindex="-1"></a>var_preis</span></code></pre></div>
 <pre><code>#&gt; [1] 148868.3</code></pre>
-<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="formalia.html#cb665-1" aria-hidden="true" tabindex="-1"></a>sd_preis <span class="ot">&lt;-</span> <span class="fu">sd</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span>
-<span id="cb665-2"><a href="formalia.html#cb665-2" aria-hidden="true" tabindex="-1"></a>sd_preis</span></code></pre></div>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="formalia.html#cb669-1" aria-hidden="true" tabindex="-1"></a>sd_preis <span class="ot">&lt;-</span> <span class="fu">sd</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span>
+<span id="cb669-2"><a href="formalia.html#cb669-2" aria-hidden="true" tabindex="-1"></a>sd_preis</span></code></pre></div>
 <pre><code>#&gt; [1] 385.8346</code></pre>
-<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="formalia.html#cb667-1" aria-hidden="true" tabindex="-1"></a>varcoef_preis <span class="ot">&lt;-</span> <span class="fu">sd</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]]) <span class="sc">/</span> <span class="fu">mean</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span>
-<span id="cb667-2"><a href="formalia.html#cb667-2" aria-hidden="true" tabindex="-1"></a>varcoef_preis</span></code></pre></div>
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="formalia.html#cb671-1" aria-hidden="true" tabindex="-1"></a>varcoef_preis <span class="ot">&lt;-</span> <span class="fu">sd</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]]) <span class="sc">/</span> <span class="fu">mean</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span>
+<span id="cb671-2"><a href="formalia.html#cb671-2" aria-hidden="true" tabindex="-1"></a>varcoef_preis</span></code></pre></div>
 <pre><code>#&gt; [1] 0.9236631</code></pre>
 <p>Ein ebenfalls häufig verwendetes Streuungsmaß ist der <strong>Interquantilsabstand</strong>
 (*inter-quantile-range, IQR), welcher als die Differenz zwischen dem <span class="math inline">\(25\%-\)</span> und
@@ -2105,7 +2110,7 @@ v_x=\frac{s_x}{\bar{x}}
 <p>Hierbei handelt es sich also um das Intervall, das die ‘mittlere Hälfte’ der
 Verteilung umfasst.
 In R können wir den IQR mit der Funktion <code>IQR</code> berechnen:</p>
-<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="formalia.html#cb669-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="formalia.html#cb673-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span></code></pre></div>
 <pre><code>#&gt; [1] 406.25</code></pre>
 <p>Ein weit verbreitetes Maß zur Messung der Streuung ist der
 <a href="https://de.wikipedia.org/wiki/Gini-Koeffizient">Gini-Index</a>.
@@ -2117,11 +2122,11 @@ dem Fall, dass ein Beobachtungssubjekt alles und alle anderen nichts besitzen.</
 <a href="https://cran.r-project.org/package=ineq">ineq</a> <span class="citation">(<a href="git.html#ref-R-ineq" role="doc-biblioref">Zeileis 2014</a>)</span> berechnen, wobei wir
 hier die Korrektur für Stichproben verwenden müssen indem wir das Argument
 <code>corr = TRUE</code> setzen:</p>
-<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="formalia.html#cb671-1" aria-hidden="true" tabindex="-1"></a>test_data_equality <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fl">0.5</span>, <span class="dv">5</span>)</span>
-<span id="cb671-2"><a href="formalia.html#cb671-2" aria-hidden="true" tabindex="-1"></a>test_data_inequality <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">4</span>), <span class="dv">1</span>)</span>
-<span id="cb671-3"><a href="formalia.html#cb671-3" aria-hidden="true" tabindex="-1"></a>ineq<span class="sc">::</span><span class="fu">Gini</span>(test_data_equality, <span class="at">corr =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="formalia.html#cb675-1" aria-hidden="true" tabindex="-1"></a>test_data_equality <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fl">0.5</span>, <span class="dv">5</span>)</span>
+<span id="cb675-2"><a href="formalia.html#cb675-2" aria-hidden="true" tabindex="-1"></a>test_data_inequality <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">4</span>), <span class="dv">1</span>)</span>
+<span id="cb675-3"><a href="formalia.html#cb675-3" aria-hidden="true" tabindex="-1"></a>ineq<span class="sc">::</span><span class="fu">Gini</span>(test_data_equality, <span class="at">corr =</span> T)</span></code></pre></div>
 <pre><code>#&gt; [1] 0</code></pre>
-<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="formalia.html#cb673-1" aria-hidden="true" tabindex="-1"></a>ineq<span class="sc">::</span><span class="fu">Gini</span>(test_data_inequality, <span class="at">corr =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="formalia.html#cb677-1" aria-hidden="true" tabindex="-1"></a>ineq<span class="sc">::</span><span class="fu">Gini</span>(test_data_inequality, <span class="at">corr =</span> T)</span></code></pre></div>
 <pre><code>#&gt; [1] 1</code></pre>
 <p>Um die Besonderheiten des Gini’s zu verstehen wollen wir
 uns genauer mit der Berechnung des Indexes vertraut machen.
@@ -2143,7 +2148,7 @@ gegenübergestellt werden:</p>
 <div class="figure" style="text-align: center"><span id="fig:Lorenz-Kurven"></span>
 <img src="figures/Formalia/linalg_lorenz-plot.png" alt="Vergleich zweier Lorenz-Kurven" width="75%" height="75%" />
 <p class="caption">
-Figure 6.10: Vergleich zweier Lorenz-Kurven
+Abbildung 6.10: Vergleich zweier Lorenz-Kurven
 </p>
 </div>
 <p>Der Gini-Index <span class="math inline">\(\mathcal{G}\)</span> misst diese Abweichung über die normierte Distanz
@@ -2183,8 +2188,8 @@ solchen aus dem Index abgeleitet werden.</p>
 Person <span class="math inline">\(i\)</span> und <span class="math inline">\(\bar{x}\)</span> das arithmetische Mittel der Ressourcenausstattung ist.</p>
 <p>In R können wir den Theil Index mit der Funktion <code>Theil()</code> aus dem Paket
 <code>ineq</code> berechnen:</p>
-<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="formalia.html#cb675-1" aria-hidden="true" tabindex="-1"></a>dist_expl <span class="ot">&lt;-</span> <span class="fu">rpareto</span>(<span class="dv">100</span>, <span class="dv">3</span>, <span class="fl">2.1</span>)</span>
-<span id="cb675-2"><a href="formalia.html#cb675-2" aria-hidden="true" tabindex="-1"></a>ineq<span class="sc">::</span><span class="fu">Theil</span>(dist_expl)</span></code></pre></div>
+<div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb679-1"><a href="formalia.html#cb679-1" aria-hidden="true" tabindex="-1"></a>dist_expl <span class="ot">&lt;-</span> <span class="fu">rpareto</span>(<span class="dv">100</span>, <span class="dv">3</span>, <span class="fl">2.1</span>)</span>
+<span id="cb679-2"><a href="formalia.html#cb679-2" aria-hidden="true" tabindex="-1"></a>ineq<span class="sc">::</span><span class="fu">Theil</span>(dist_expl)</span></code></pre></div>
 <pre><code>#&gt; [1] 1.290735</code></pre>
 <p>Welches Verteilungsmaß für den jeweiligen Anwendungsfall am besten geeignet
 ist hängt auch von der Art der zugrundeliegenden Verteilung ab.
@@ -2193,7 +2198,7 @@ zu analysierenden Verteilung allerdings um eine bei Einkommen sehr häufig
 vorkommende Pareto-Verteilung handelt ist die Verwendung dieses Maßes ziemlich
 irreführend, da die Varianz für diese Verteilungen in vielen Fällen nicht
 sinnvoll definiert werden kann und wir mit der Formel für die Varianz indirekt
-unsere Stichprobengröße messen <span class="citation">(<a href="git.html#ref-torsten-dist" role="doc-biblioref">Yang et al. 2019</a>)</span>.
+unsere Stichprobengröße messen <span class="citation">(<a href="git.html#ref-torsten-dist" role="doc-biblioref">Yang u. a. 2019</a>)</span>.
 Das richtige Maß hängt also immer von unseren theoretischen Vorüberlegungen zur
 zugrundeliegenden Verteilung und unserem konkreten Erkenntnisinteresse ab.</p>
 <p>In diesem Sinne ist vor allem die weite Verbreitung des Gini-Indexes als
@@ -2208,7 +2213,7 @@ der Theil-Index vor allem bei der Analyse von Änderungen über die Zeit in der
 gleichen Gruppe, da er nicht normiert ist. Er reagiert deutlich besser auf
 Änderungen an den Extremen als der Gini-Index.</p>
 <p>Für eine gute kritische Auseinandersetzung mit dem Gini-Index und einen
-konstruktiven Gegenvorschlag siehe z.B. <span class="citation"><a href="git.html#ref-gini-critique" role="doc-biblioref">Clementi et al.</a> (<a href="git.html#ref-gini-critique" role="doc-biblioref">2019</a>)</span>.</p>
+konstruktiven Gegenvorschlag siehe z.B. <span class="citation"><a href="git.html#ref-gini-critique" role="doc-biblioref">Clementi u. a.</a> (<a href="git.html#ref-gini-critique" role="doc-biblioref">2019</a>)</span>.</p>
 <p>Zahlreiche gängige Verteilungsmaße sind in dem Paket
 <a href="https://cran.r-project.org/package=ineq">ineq</a> von <span class="citation"><a href="git.html#ref-R-ineq" role="doc-biblioref">Zeileis</a> (<a href="git.html#ref-R-ineq" role="doc-biblioref">2014</a>)</span> implementiert.</p>
 <p><strong>Uni- und Multimodale Verteilungen</strong></p>
@@ -2220,13 +2225,13 @@ Verteilung wenn Sie nur einen Gipfel hat, also nur einen Modus
 Ansonsten sprechen wir von einer <strong>multimodalen</strong> oder <strong>mehrgipfligen</strong>
 (oder genauer <em>zwei</em>gipfligen, <em>drei</em>gipfligen, …) Verteilung.</p>
 <p>In der Praxis haben viele Funktionen einen eindeutigen Modus,
-besitzen aber mehrere andere lokale Optima, also kleinere “Gipfel,” sodass wir
+besitzen aber mehrere andere lokale Optima, also kleinere “Gipfel”, sodass wir
 in der Regel von einer multimodalen Verteilung sprechen sobald es mehrere lokale
 Maxima gibt. Beispiele einer solch multimodalen Verteilung sind in Abbildung <a href="formalia.html#fig:multimodal">6.11</a> dargestellt.</p>
 <div class="figure" style="text-align: center"><span id="fig:multimodal"></span>
 <img src="figures/Formalia/linalg_multimodal-plot.png" alt="Beispiele multimodaler Verteilungen" width="75%" height="75%" />
 <p class="caption">
-Figure 6.11: Beispiele multimodaler Verteilungen
+Abbildung 6.11: Beispiele multimodaler Verteilungen
 </p>
 </div>
 <p><strong>Kennzahlen zur Form der Verteilung</strong></p>
@@ -2248,20 +2253,20 @@ Abbildung <a href="formalia.html#fig:Symmetrie">6.12</a> verdeutlichen.</p>
 <div class="figure" style="text-align: center"><span id="fig:Symmetrie"></span>
 <img src="figures/Formalia/linalg_symmetry-plot.png" alt="Beispiele für Verteilungen mit unterschiedlichen Schiefen" width="75%" height="75%" />
 <p class="caption">
-Figure 6.12: Beispiele für Verteilungen mit unterschiedlichen Schiefen
+Abbildung 6.12: Beispiele für Verteilungen mit unterschiedlichen Schiefen
 </p>
 </div>
 <p>In R können wir die Schiefe einer Verteilung mit der Funktion <code>skewness()</code>
-aus dem Paket <a href="https://cran.r-project.org/package=moments">moments</a> <span class="citation">(<a href="git.html#ref-R-moments" role="doc-biblioref">Komsta and Novomestky 2015</a>)</span>
+aus dem Paket <a href="https://cran.r-project.org/package=moments">moments</a> <span class="citation">(<a href="git.html#ref-R-moments" role="doc-biblioref">Komsta und Novomestky 2015</a>)</span>
 berechnen:</p>
-<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="formalia.html#cb677-1" aria-hidden="true" tabindex="-1"></a>moments<span class="sc">::</span><span class="fu">skewness</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb681-1"><a href="formalia.html#cb681-1" aria-hidden="true" tabindex="-1"></a>moments<span class="sc">::</span><span class="fu">skewness</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span></code></pre></div>
 <pre><code>#&gt; [1] 1.691223</code></pre>
 <p>Wir würden hier also von einer <em>rechts-schiefen</em> Verteilung der Preise
 sprechen. Das sehen wir hier auch grafisch in Abbildung <a href="formalia.html#fig:rechtsschief">6.13</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:rechtsschief"></span>
 <img src="figures/Formalia/linalg_rechtsschief.png" alt="Rechts-schiefe Verteilung der Journalpreise" width="75%" height="75%" />
 <p class="caption">
-Figure 6.13: Rechts-schiefe Verteilung der Journalpreise
+Abbildung 6.13: Rechts-schiefe Verteilung der Journalpreise
 </p>
 </div>
 <p>Die <strong>Steile</strong> (auch: Kurtosis) <span class="math inline">\(\omega_x\)</span> einer Verteilung gibt ihre
@@ -2274,7 +2279,7 @@ Freiheitsgrade korrigieren, sodass die praktische Schätzfunktion gegeben ist du
 <p><span class="math display">\[\hat{\omega}_x = \frac{1}{(n-1)(n-2)}\sum_{i=1}^n\left( \frac{x_i-\bar{x}}{s_x}\right)^4\]</span></p>
 <p>Wir können die Kurtosis einer Verteilung mit der Funktion <code>kurtosis()</code> aus dem
 Paket <a href="https://cran.r-project.org/package=moments">moments</a> berechnen:</p>
-<div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb679-1"><a href="formalia.html#cb679-1" aria-hidden="true" tabindex="-1"></a>moments<span class="sc">::</span><span class="fu">kurtosis</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="formalia.html#cb683-1" aria-hidden="true" tabindex="-1"></a>moments<span class="sc">::</span><span class="fu">kurtosis</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span></code></pre></div>
 <pre><code>#&gt; [1] 5.992058</code></pre>
 <p>Da der Wert der Kurtosis <span class="math inline">\(\omega_x\)</span> an sich nicht leicht zu interpretieren ist wird er
 häufig mit dem einer Standardnormalverteilung verglichen. Da deren Wert
@@ -2288,7 +2293,7 @@ steilgipfligen Verteilung zu tun, d.h. die Verteilung der Journalpreise ist ‘s
 <div class="figure" style="text-align: center"><span id="fig:Kurtosis"></span>
 <img src="figures/Formalia/linalg_kurtosis.png" alt="Beispiel von Verteilungen mit verschiedener Kurtosis" width="75%" height="75%" />
 <p class="caption">
-Figure 6.14: Beispiel von Verteilungen mit verschiedener Kurtosis
+Abbildung 6.14: Beispiel von Verteilungen mit verschiedener Kurtosis
 </p>
 </div>
 <p><strong>Ausreißer und Schwanz-Eigenschaften</strong></p>
@@ -2306,18 +2311,18 @@ Dies führt häufig zu einer zu recht restriktiven Definition von Ausreißern, i
 aber ein guter erster Schritt.
 Wir können die Ausreißer hier einfach identifizieren indem wir den Datensatz
 entsprechend filtern, z.B.:</p>
-<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb681-1"><a href="formalia.html#cb681-1" aria-hidden="true" tabindex="-1"></a>IQR_Grenzen <span class="ot">&lt;-</span> <span class="fu">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))</span>
-<span id="cb681-2"><a href="formalia.html#cb681-2" aria-hidden="true" tabindex="-1"></a>untere_grenze <span class="ot">&lt;-</span> IQR_Grenzen[<span class="st">&quot;25%&quot;</span>] <span class="sc">-</span> <span class="fl">1.5</span><span class="sc">*</span><span class="fu">IQR</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span>
-<span id="cb681-3"><a href="formalia.html#cb681-3" aria-hidden="true" tabindex="-1"></a>obere_grenze <span class="ot">&lt;-</span> IQR_Grenzen[<span class="st">&quot;75%&quot;</span>] <span class="sc">+</span> <span class="fl">1.5</span><span class="sc">*</span><span class="fu">IQR</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span>
-<span id="cb681-4"><a href="formalia.html#cb681-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb681-5"><a href="formalia.html#cb681-5" aria-hidden="true" tabindex="-1"></a>outlier_teuer <span class="ot">&lt;-</span> journal_daten <span class="sc">%&gt;%</span></span>
-<span id="cb681-6"><a href="formalia.html#cb681-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Preis <span class="sc">&gt;</span> obere_grenze)</span>
-<span id="cb681-7"><a href="formalia.html#cb681-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb681-8"><a href="formalia.html#cb681-8" aria-hidden="true" tabindex="-1"></a>outlier_billig <span class="ot">&lt;-</span> journal_daten <span class="sc">%&gt;%</span></span>
-<span id="cb681-9"><a href="formalia.html#cb681-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Preis <span class="sc">&lt;</span> untere_grenze)</span>
-<span id="cb681-10"><a href="formalia.html#cb681-10" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb681-11"><a href="formalia.html#cb681-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb681-12"><a href="formalia.html#cb681-12" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">select</span>(outlier_teuer, Titel, Preis)</span></code></pre></div>
+<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="formalia.html#cb685-1" aria-hidden="true" tabindex="-1"></a>IQR_Grenzen <span class="ot">&lt;-</span> <span class="fu">quantile</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]], <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))</span>
+<span id="cb685-2"><a href="formalia.html#cb685-2" aria-hidden="true" tabindex="-1"></a>untere_grenze <span class="ot">&lt;-</span> IQR_Grenzen[<span class="st">&quot;25%&quot;</span>] <span class="sc">-</span> <span class="fl">1.5</span><span class="sc">*</span><span class="fu">IQR</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span>
+<span id="cb685-3"><a href="formalia.html#cb685-3" aria-hidden="true" tabindex="-1"></a>obere_grenze <span class="ot">&lt;-</span> IQR_Grenzen[<span class="st">&quot;75%&quot;</span>] <span class="sc">+</span> <span class="fl">1.5</span><span class="sc">*</span><span class="fu">IQR</span>(journal_daten[[<span class="st">&quot;Preis&quot;</span>]])</span>
+<span id="cb685-4"><a href="formalia.html#cb685-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb685-5"><a href="formalia.html#cb685-5" aria-hidden="true" tabindex="-1"></a>outlier_teuer <span class="ot">&lt;-</span> journal_daten <span class="sc">%&gt;%</span></span>
+<span id="cb685-6"><a href="formalia.html#cb685-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Preis <span class="sc">&gt;</span> obere_grenze)</span>
+<span id="cb685-7"><a href="formalia.html#cb685-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb685-8"><a href="formalia.html#cb685-8" aria-hidden="true" tabindex="-1"></a>outlier_billig <span class="ot">&lt;-</span> journal_daten <span class="sc">%&gt;%</span></span>
+<span id="cb685-9"><a href="formalia.html#cb685-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Preis <span class="sc">&lt;</span> untere_grenze)</span>
+<span id="cb685-10"><a href="formalia.html#cb685-10" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb685-11"><a href="formalia.html#cb685-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb685-12"><a href="formalia.html#cb685-12" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">select</span>(outlier_teuer, Titel, Preis)</span></code></pre></div>
 <pre><code>#&gt;                                           Titel Preis
 #&gt;  1:                        Ecological Economics  1170
 #&gt;  2:                           Applied Economics  2120
@@ -2331,7 +2336,7 @@ entsprechend filtern, z.B.:</p>
 #&gt; 10:                     Journal of Econometrics  1893
 #&gt; 11:                  Journal of Economic Theory  1400
 #&gt; 12:              Journal of Financial Economics  1339</code></pre>
-<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="formalia.html#cb683-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">select</span>(outlier_billig, Titel, Preis)</span></code></pre></div>
+<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb687-1"><a href="formalia.html#cb687-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">select</span>(outlier_billig, Titel, Preis)</span></code></pre></div>
 <pre><code>#&gt; Empty data.table (0 rows and 2 cols): Titel,Preis</code></pre>
 <p>Wir sehen hier, dass es nur Ausreißer nach oben, also nur besonders teure
 Journale gibt.
@@ -2386,9 +2391,9 @@ Beobachtung ausgelassen worden wäre.</p>
 Funktion <code>cooks.distance()</code> berechnen.
 Zum Zwecke der Illustration regressieren wir in dem Journaldatensatz die Variable
 ‘Preis’ auf die Variablen ‘Seitenanzahl’ und ‘Zitationen’:</p>
-<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="formalia.html#cb685-1" aria-hidden="true" tabindex="-1"></a>reg_objekt <span class="ot">&lt;-</span> <span class="fu">lm</span>(Preis <span class="sc">~</span> Seitenanzahl <span class="sc">+</span> Zitationen, </span>
-<span id="cb685-2"><a href="formalia.html#cb685-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> journal_daten)</span>
-<span id="cb685-3"><a href="formalia.html#cb685-3" aria-hidden="true" tabindex="-1"></a>distanzen <span class="ot">&lt;-</span> <span class="fu">cooks.distance</span>(reg_objekt)</span></code></pre></div>
+<div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="formalia.html#cb689-1" aria-hidden="true" tabindex="-1"></a>reg_objekt <span class="ot">&lt;-</span> <span class="fu">lm</span>(Preis <span class="sc">~</span> Seitenanzahl <span class="sc">+</span> Zitationen, </span>
+<span id="cb689-2"><a href="formalia.html#cb689-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> journal_daten)</span>
+<span id="cb689-3"><a href="formalia.html#cb689-3" aria-hidden="true" tabindex="-1"></a>distanzen <span class="ot">&lt;-</span> <span class="fu">cooks.distance</span>(reg_objekt)</span></code></pre></div>
 <p>Ab wann eine Beobachtung als Ausreißer im Sinne von der
 Cook’schen Distanz gilt ist nicht klar zu definieren. Als Daumenregel hat sich
 die Grenze <span class="math inline">\(\frac{4}{n-k-1}\)</span> etabliert, aber in der Praxis ergibt es immer Sinn
@@ -2404,7 +2409,7 @@ aus Abbildung <a href="formalia.html#fig:CookScheDistanz">6.15</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:CookScheDistanz"></span>
 <img src="figures/Formalia/linalg_cook-distance.png" alt="Betrachtung der Ausreißer nach der Cook'schen Distanz" width="75%" height="75%" />
 <p class="caption">
-Figure 6.15: Betrachtung der Ausreißer nach der Cook’schen Distanz
+Abbildung 6.15: Betrachtung der Ausreißer nach der Cook’schen Distanz
 </p>
 </div>
 </div>
@@ -2414,31 +2419,31 @@ Figure 6.15: Betrachtung der Ausreißer nach der Cook’schen Distanz
 <strong>Boxplot</strong>.
 Bei dem Boxplot handelt es sich um eine grafischen Zusammenfassung einiger
 zentraler deskriptiver Kennzahlen, wie in Abbildung <a href="formalia.html#fig:BoxplotBsp">6.16</a> zu sehen ist.</p>
-<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb687-1"><a href="formalia.html#cb687-1" aria-hidden="true" tabindex="-1"></a>boxplot_plot <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(</span>
-<span id="cb687-2"><a href="formalia.html#cb687-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> wb_data, </span>
-<span id="cb687-3"><a href="formalia.html#cb687-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>region, <span class="at">y=</span>Lebenserwartung)</span>
-<span id="cb687-4"><a href="formalia.html#cb687-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb687-5"><a href="formalia.html#cb687-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb687-6"><a href="formalia.html#cb687-6" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb687-7"><a href="formalia.html#cb687-7" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(</span>
-<span id="cb687-8"><a href="formalia.html#cb687-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Lebenserwartungen in den Weltregionen&quot;</span>, </span>
-<span id="cb687-9"><a href="formalia.html#cb687-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Quelle: Weltbank&quot;</span>) <span class="sc">+</span></span>
-<span id="cb687-10"><a href="formalia.html#cb687-10" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(</span>
-<span id="cb687-11"><a href="formalia.html#cb687-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb687-12"><a href="formalia.html#cb687-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">10</span>, <span class="at">vjust =</span> <span class="fl">0.65</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="formalia.html#cb688-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(plot_file, <span class="at">auto_pdf =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="formalia.html#cb691-1" aria-hidden="true" tabindex="-1"></a>boxplot_plot <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(</span>
+<span id="cb691-2"><a href="formalia.html#cb691-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> wb_data, </span>
+<span id="cb691-3"><a href="formalia.html#cb691-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>region, <span class="at">y=</span>Lebenserwartung)</span>
+<span id="cb691-4"><a href="formalia.html#cb691-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb691-5"><a href="formalia.html#cb691-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb691-6"><a href="formalia.html#cb691-6" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb691-7"><a href="formalia.html#cb691-7" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(</span>
+<span id="cb691-8"><a href="formalia.html#cb691-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Lebenserwartungen in den Weltregionen&quot;</span>, </span>
+<span id="cb691-9"><a href="formalia.html#cb691-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Quelle: Weltbank&quot;</span>) <span class="sc">+</span></span>
+<span id="cb691-10"><a href="formalia.html#cb691-10" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(</span>
+<span id="cb691-11"><a href="formalia.html#cb691-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb691-12"><a href="formalia.html#cb691-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">10</span>, <span class="at">vjust =</span> <span class="fl">0.65</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="formalia.html#cb692-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(plot_file, <span class="at">auto_pdf =</span> T)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:BoxplotBsp"></span>
 <img src="figures/Formalia/linalg_boxplot-plot.png" alt="Darstellung der Lebenserwartungen in den Weltregionen anhand eines Boxplots" width="75%" height="75%" />
 <p class="caption">
-Figure 6.16: Darstellung der Lebenserwartungen in den Weltregionen anhand eines Boxplots
+Abbildung 6.16: Darstellung der Lebenserwartungen in den Weltregionen anhand eines Boxplots
 </p>
 </div>
 <p>Im Boxplot werden mehrere relevante Kennzahlen zusammengefasst.
 Eine schöne Übersicht bietet Abbildung <a href="formalia.html#fig:boxplot">6.17</a>:</p>
 <div class="figure" style="text-align: center"><span id="fig:boxplot"></span>
-<img src="figures/boxplot-anatomy.png" alt="Boxplot Anatomie. Quelle: https://www.leansigmacorporation.com/box-plot-with-minitab/" width="75%" height="75%" />
+<img src="figures/Formalia/boxplot-anatomy.png" alt="Boxplot Anatomie. Quelle: https://www.leansigmacorporation.com/box-plot-with-minitab/" width="75%" height="75%" />
 <p class="caption">
-Figure 6.17: Boxplot Anatomie. Quelle: <a href="https://www.leansigmacorporation.com/box-plot-with-minitab/" class="uri">https://www.leansigmacorporation.com/box-plot-with-minitab/</a>
+Abbildung 6.17: Boxplot Anatomie. Quelle: <a href="https://www.leansigmacorporation.com/box-plot-with-minitab/" class="uri">https://www.leansigmacorporation.com/box-plot-with-minitab/</a>
 </p>
 </div>
 <p>Die Box in der Mitte des Boxplots repräsentiert die IQR der Daten, der Median
@@ -2455,7 +2460,7 @@ und <a href="https://www.r-graph-gallery.com/boxplot.html">hier</a>.</p>
 <p>In <a href="https://www.data-to-viz.com/caveat/boxplot.html">diesem Post</a> werden auch
 die Nachteile dieser Visualisierungsform sehr gut beschrieben.
 Der größte Nachteil liegt zweifellos im Verstecken der eigentlichen Verteilung
-‘hinter der Box.’ Es ist nicht klar, ob sich ein Großteil der Daten am oberen
+‘hinter der Box’. Es ist nicht klar, ob sich ein Großteil der Daten am oberen
 oder unteren Teil befindet oder ob die Daten eher gleichverteilt sind. Eine
 einfache Lösung für kleinere Datensätze liegt in der Ergänzung der einzelnen
 Beobachtungen durch <code>boxplot_jitter</code>, wobei sie hier die Transparenz durch
@@ -2464,41 +2469,41 @@ Beobachtungen plotten sollten.
 Für größere Datensätzen können Sie einfach einen
 <a href="https://www.r-graph-gallery.com/violin.html">Violinenplot</a>
 verwenden, wie in Abbildung <a href="formalia.html#fig:Violinenplot">6.18</a> gezeigt.</p>
-<div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="formalia.html#cb689-1" aria-hidden="true" tabindex="-1"></a>boxplot_classic <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> wb_data, </span>
-<span id="cb689-2"><a href="formalia.html#cb689-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>region, <span class="at">y=</span>Lebenserwartung)</span>
-<span id="cb689-3"><a href="formalia.html#cb689-3" aria-hidden="true" tabindex="-1"></a>       ) <span class="sc">+</span></span>
-<span id="cb689-4"><a href="formalia.html#cb689-4" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb689-5"><a href="formalia.html#cb689-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb689-6"><a href="formalia.html#cb689-6" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Klassisch&quot;</span>) <span class="sc">+</span></span>
-<span id="cb689-7"><a href="formalia.html#cb689-7" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb689-8"><a href="formalia.html#cb689-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
-<span id="cb689-9"><a href="formalia.html#cb689-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb689-10"><a href="formalia.html#cb689-10" aria-hidden="true" tabindex="-1"></a>boxplot_jitter <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> wb_data, </span>
-<span id="cb689-11"><a href="formalia.html#cb689-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>region, <span class="at">y=</span>Lebenserwartung)</span>
-<span id="cb689-12"><a href="formalia.html#cb689-12" aria-hidden="true" tabindex="-1"></a>       ) <span class="sc">+</span></span>
-<span id="cb689-13"><a href="formalia.html#cb689-13" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb689-14"><a href="formalia.html#cb689-14" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_jitter</span>(<span class="at">alpha=</span><span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb689-15"><a href="formalia.html#cb689-15" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb689-16"><a href="formalia.html#cb689-16" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Klassisch mit jitter&quot;</span>) <span class="sc">+</span></span>
-<span id="cb689-17"><a href="formalia.html#cb689-17" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb689-18"><a href="formalia.html#cb689-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
-<span id="cb689-19"><a href="formalia.html#cb689-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb689-20"><a href="formalia.html#cb689-20" aria-hidden="true" tabindex="-1"></a>violin_plot <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> wb_data, </span>
-<span id="cb689-21"><a href="formalia.html#cb689-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>region, <span class="at">y=</span>Lebenserwartung)</span>
-<span id="cb689-22"><a href="formalia.html#cb689-22" aria-hidden="true" tabindex="-1"></a>       ) <span class="sc">+</span></span>
-<span id="cb689-23"><a href="formalia.html#cb689-23" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb689-24"><a href="formalia.html#cb689-24" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb689-25"><a href="formalia.html#cb689-25" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Violinen-Plot&quot;</span>) <span class="sc">+</span></span>
-<span id="cb689-26"><a href="formalia.html#cb689-26" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb689-27"><a href="formalia.html#cb689-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
-<span id="cb689-28"><a href="formalia.html#cb689-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb689-29"><a href="formalia.html#cb689-29" aria-hidden="true" tabindex="-1"></a>compare_plot <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggarrange</span>(</span>
-<span id="cb689-30"><a href="formalia.html#cb689-30" aria-hidden="true" tabindex="-1"></a>  boxplot_classic, boxplot_jitter, violin_plot, </span>
-<span id="cb689-31"><a href="formalia.html#cb689-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="formalia.html#cb693-1" aria-hidden="true" tabindex="-1"></a>boxplot_classic <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> wb_data, </span>
+<span id="cb693-2"><a href="formalia.html#cb693-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>region, <span class="at">y=</span>Lebenserwartung)</span>
+<span id="cb693-3"><a href="formalia.html#cb693-3" aria-hidden="true" tabindex="-1"></a>       ) <span class="sc">+</span></span>
+<span id="cb693-4"><a href="formalia.html#cb693-4" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb693-5"><a href="formalia.html#cb693-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb693-6"><a href="formalia.html#cb693-6" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Klassisch&quot;</span>) <span class="sc">+</span></span>
+<span id="cb693-7"><a href="formalia.html#cb693-7" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb693-8"><a href="formalia.html#cb693-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb693-9"><a href="formalia.html#cb693-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb693-10"><a href="formalia.html#cb693-10" aria-hidden="true" tabindex="-1"></a>boxplot_jitter <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> wb_data, </span>
+<span id="cb693-11"><a href="formalia.html#cb693-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>region, <span class="at">y=</span>Lebenserwartung)</span>
+<span id="cb693-12"><a href="formalia.html#cb693-12" aria-hidden="true" tabindex="-1"></a>       ) <span class="sc">+</span></span>
+<span id="cb693-13"><a href="formalia.html#cb693-13" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb693-14"><a href="formalia.html#cb693-14" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_jitter</span>(<span class="at">alpha=</span><span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb693-15"><a href="formalia.html#cb693-15" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb693-16"><a href="formalia.html#cb693-16" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Klassisch mit jitter&quot;</span>) <span class="sc">+</span></span>
+<span id="cb693-17"><a href="formalia.html#cb693-17" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb693-18"><a href="formalia.html#cb693-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb693-19"><a href="formalia.html#cb693-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb693-20"><a href="formalia.html#cb693-20" aria-hidden="true" tabindex="-1"></a>violin_plot <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> wb_data, </span>
+<span id="cb693-21"><a href="formalia.html#cb693-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>region, <span class="at">y=</span>Lebenserwartung)</span>
+<span id="cb693-22"><a href="formalia.html#cb693-22" aria-hidden="true" tabindex="-1"></a>       ) <span class="sc">+</span></span>
+<span id="cb693-23"><a href="formalia.html#cb693-23" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb693-24"><a href="formalia.html#cb693-24" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb693-25"><a href="formalia.html#cb693-25" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Violinen-Plot&quot;</span>) <span class="sc">+</span></span>
+<span id="cb693-26"><a href="formalia.html#cb693-26" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb693-27"><a href="formalia.html#cb693-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb693-28"><a href="formalia.html#cb693-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb693-29"><a href="formalia.html#cb693-29" aria-hidden="true" tabindex="-1"></a>compare_plot <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggarrange</span>(</span>
+<span id="cb693-30"><a href="formalia.html#cb693-30" aria-hidden="true" tabindex="-1"></a>  boxplot_classic, boxplot_jitter, violin_plot, </span>
+<span id="cb693-31"><a href="formalia.html#cb693-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:Violinenplot"></span>
 <img src="figures/Formalia/compare_violin.png" alt="Vergleich von klassischen Darstellungen und dem Violinenplot" width="100%" height="75%" />
 <p class="caption">
-Figure 6.18: Vergleich von klassischen Darstellungen und dem Violinenplot
+Abbildung 6.18: Vergleich von klassischen Darstellungen und dem Violinenplot
 </p>
 </div>
 <p>Beachten Sie, dass es immer wichtig ist, eine Verteilung nicht nur mit
@@ -2517,91 +2522,91 @@ keine wohldefinierte Varianz.
 Daher haben aus Stichproben geschätzte Kennzahlen, die sich dieser Konzepte
 bedienen, keine wirkliche Aussagekraft.
 Eine exzellente Beschreibung der Probleme, möglicher Alternativen und ein
-gutes Anwendungsbeispiel findet sich z.B. in <span class="citation"><a href="git.html#ref-torsten-dist" role="doc-biblioref">Yang et al.</a> (<a href="git.html#ref-torsten-dist" role="doc-biblioref">2019</a>)</span>.</p>
+gutes Anwendungsbeispiel findet sich z.B. in <span class="citation"><a href="git.html#ref-torsten-dist" role="doc-biblioref">Yang u. a.</a> (<a href="git.html#ref-torsten-dist" role="doc-biblioref">2019</a>)</span>.</p>
 
 </div>
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="43">
-<li id="fn43"><p>Der Funktionsname ‘lag’ und ‘lead’
+<ol start="44">
+<li id="fn44"><p>Der Funktionsname ‘lag’ und ‘lead’
 wird leider in sehr vielen Paketen verwendet, u.a. auch in <code>data.table</code>.
 Deswegen ist es gerade bei diesen Funktionen besser den expliziten Aufruf
-<code>dplyr::lag()</code> und <code>dplyr::lead()</code> zu verwenden.<a href="formalia.html#fnref43" class="footnote-back">↩︎</a></p></li>
-<li id="fn44"><p>Zur
+<code>dplyr::lag()</code> und <code>dplyr::lead()</code> zu verwenden.<a href="formalia.html#fnref44" class="footnote-back">↩︎</a></p></li>
+<li id="fn45"><p>Zur
 Transformation der y-Achse verwenden wir in <code>ggplot2</code> die Funktion
-<code>scale_y_continuous()</code> und setzen das Argument <code>trans = "log"</code>.<a href="formalia.html#fnref44" class="footnote-back">↩︎</a></p></li>
-<li id="fn45"><p>Diese Klassifizierung ist nicht erschöpfend und in einigen Fällen uneindeutig. Tatsächlich gilt Folgendes: sei <span class="math inline">\(f^n(x)\)</span> die <span class="math inline">\(n\)</span>-te Ableitung von <span class="math inline">\(f(x)\)</span>. Wenn <span class="math inline">\(f&#39;(x)=0\)</span> und
+<code>scale_y_continuous()</code> und setzen das Argument <code>trans = "log"</code>.<a href="formalia.html#fnref45" class="footnote-back">↩︎</a></p></li>
+<li id="fn46"><p>Diese Klassifizierung ist nicht erschöpfend und in einigen Fällen uneindeutig. Tatsächlich gilt Folgendes: sei <span class="math inline">\(f^n(x)\)</span> die <span class="math inline">\(n\)</span>-te Ableitung von <span class="math inline">\(f(x)\)</span>. Wenn <span class="math inline">\(f&#39;(x)=0\)</span> und
 die erste von Null verschiedene höhere Ableitung eine Ableitung gerader Ordnung ist
 haben wir einen Extrempunkt, ansonsten einen Sattelpunkt. Ansonsten gilt auch,
-dass bei <span class="math inline">\(f^n(x)&gt;0\)</span> ein Minimum und bei <span class="math inline">\(f^n(x)&lt;0\)</span> ein Maximum vorliegt.<a href="formalia.html#fnref45" class="footnote-back">↩︎</a></p></li>
-<li id="fn46"><p>Gerade bei komplexeren Methoden müssen
+dass bei <span class="math inline">\(f^n(x)&gt;0\)</span> ein Minimum und bei <span class="math inline">\(f^n(x)&lt;0\)</span> ein Maximum vorliegt.<a href="formalia.html#fnref46" class="footnote-back">↩︎</a></p></li>
+<li id="fn47"><p>Gerade bei komplexeren Methoden müssen
 Sie als Nutzer*in jedoch in der Regel
 nachhelfen und der Opimierungsfunktion weitere Hinweise zur Funktion angeben.
 Für unsere Anwendungsbeispiele ist das nicht weiter relevant, Sie sollten die
-Problematik jedoch im Hinterkopf behalten.<a href="formalia.html#fnref46" class="footnote-back">↩︎</a></p></li>
-<li id="fn47"><p>Es gibt auch
+Problematik jedoch im Hinterkopf behalten.<a href="formalia.html#fnref47" class="footnote-back">↩︎</a></p></li>
+<li id="fn48"><p>Es gibt auch
 zwei Optimierungsfunktionen in <code>base</code>, allerdings sind diese mittlerweile ein
 wenig in die Jahre gekommen. Es wird daher empfohlen, anstatt <code>optim()</code> und
 <code>optimize()</code> die Funktion <code>optimx::optimr()</code> zu verwenden, die größtenteils
 aber auch die gleiche Syntax verwendet. Eine Übersicht über die meisten
 verfügbaren Funktionen finden Sie
-<a href="https://cran.r-project.org/web/views/Optimization.html">hier</a>.<a href="formalia.html#fnref47" class="footnote-back">↩︎</a></p></li>
-<li id="fn48"><p>Minimale Rundungsfehler sind bei solchen
+<a href="https://cran.r-project.org/web/views/Optimization.html">hier</a>.<a href="formalia.html#fnref48" class="footnote-back">↩︎</a></p></li>
+<li id="fn49"><p>Minimale Rundungsfehler sind bei solchen
 numerischen Verfahren normal, daher wird Ihnen in diesem Fall nicht ‘exakt’ Null
-als Ergebnisangezeigt.<a href="formalia.html#fnref48" class="footnote-back">↩︎</a></p></li>
-<li id="fn49"><p>Das liegt daran, dass jede <span class="math inline">\(n\times k\)</span>-Matrix <span class="math inline">\(A\)</span>, also eine eine Matrix mit
+als Ergebnisangezeigt.<a href="formalia.html#fnref49" class="footnote-back">↩︎</a></p></li>
+<li id="fn50"><p>Das liegt daran, dass jede <span class="math inline">\(n\times k\)</span>-Matrix <span class="math inline">\(A\)</span>, also eine eine Matrix mit
 <span class="math inline">\(n\)</span> Zeilen und <span class="math inline">\(k\)</span> Spalten, als eine Funktion <span class="math inline">\(f(x)=Ax\)</span> dargestellt werden
 kann, für die gilt: <span class="math inline">\(f: \mathbb{R}^{n}\rightarrow \mathbb{R}^k\)</span>. Diese Funktion
 ist immer <em>linear</em>.
 Tatsächlich gilt, dass jede Funktion <span class="math inline">\(f\)</span> nur dann linear ist, wenn es eine
-Matrix <span class="math inline">\(A\)</span> gibt, für die gilt <span class="math inline">\(f(x)=Ax\)</span>.<a href="formalia.html#fnref49" class="footnote-back">↩︎</a></p></li>
-<li id="fn50"><p>Alternativ können Sie auch die
+Matrix <span class="math inline">\(A\)</span> gibt, für die gilt <span class="math inline">\(f(x)=Ax\)</span>.<a href="formalia.html#fnref50" class="footnote-back">↩︎</a></p></li>
+<li id="fn51"><p>Alternativ können Sie auch die
 Funktion <code>solve()</code> aus <code>base</code> verwenden; hier ist das erste Argument <code>a</code> und
-der Output ist weniger informativ.<a href="formalia.html#fnref50" class="footnote-back">↩︎</a></p></li>
-<li id="fn51"><p>Wenn Sie die
+der Output ist weniger informativ.<a href="formalia.html#fnref51" class="footnote-back">↩︎</a></p></li>
+<li id="fn52"><p>Wenn Sie die
 einzelnen Schritte zur Lösung nachverfolgen wollen, rufen Sie die Funktion mit
-dem Argument <code>verbose=TRUE</code> auf!<a href="formalia.html#fnref51" class="footnote-back">↩︎</a></p></li>
-<li id="fn52"><p>Die genaue Herleitung finden Sie im
-<a href="formalia.html#ols-deriv">nächsten (optionalen) Abschnitt</a>.<a href="formalia.html#fnref52" class="footnote-back">↩︎</a></p></li>
-<li id="fn53"><p>Beachte dabei, dass
-<span class="math inline">\(\boldsymbol{Y&#39;X\hat{\beta}}=(\boldsymbol{Y&#39;X\hat{\beta}})&#39;=\boldsymbol{\hat{\beta}&#39;X&#39;Y}\)</span>.<a href="formalia.html#fnref53" class="footnote-back">↩︎</a></p></li>
-<li id="fn54"><p>
+dem Argument <code>verbose=TRUE</code> auf!<a href="formalia.html#fnref52" class="footnote-back">↩︎</a></p></li>
+<li id="fn53"><p>Die genaue Herleitung finden Sie im
+<a href="formalia.html#ols-deriv">nächsten (optionalen) Abschnitt</a>.<a href="formalia.html#fnref53" class="footnote-back">↩︎</a></p></li>
+<li id="fn54"><p>Beachte dabei, dass
+<span class="math inline">\(\boldsymbol{Y&#39;X\hat{\beta}}=(\boldsymbol{Y&#39;X\hat{\beta}})&#39;=\boldsymbol{\hat{\beta}&#39;X&#39;Y}\)</span>.<a href="formalia.html#fnref54" class="footnote-back">↩︎</a></p></li>
+<li id="fn55"><p>
 Hier liegt übrigens auch der Grund für die OLS-Annahme, dass keine perfekte
 Multikollinearität besteht: denn in diesem Fall wäre eine Zeile der Matrix
 <span class="math inline">\(\boldsymbol{X}\)</span> eine lineare Kombination einer anderen Zeile und <span class="math inline">\(\boldsymbol{X}\)</span>
 wäre damit nicht mehr invertiertbar, also <span class="math inline">\(\boldsymbol{X}^{-1}\)</span> würde nicht
-existieren und <span class="math inline">\(\boldsymbol{\hat{\beta}}\)</span> wäre nicht mehr definiert.<a href="formalia.html#fnref54" class="footnote-back">↩︎</a></p></li>
-<li id="fn55"><p>Wir sehen unten aber auch, dass solche Kennzahlen immer mit
-einer grafischen Darstellung kombiniert werden sollten.<a href="formalia.html#fnref55" class="footnote-back">↩︎</a></p></li>
-<li id="fn56"><p>
+existieren und <span class="math inline">\(\boldsymbol{\hat{\beta}}\)</span> wäre nicht mehr definiert.<a href="formalia.html#fnref55" class="footnote-back">↩︎</a></p></li>
+<li id="fn56"><p>Wir sehen unten aber auch, dass solche Kennzahlen immer mit
+einer grafischen Darstellung kombiniert werden sollten.<a href="formalia.html#fnref56" class="footnote-back">↩︎</a></p></li>
+<li id="fn57"><p>
 Ein “parametrisches Warhscheinlichkeitsmodell” meint dabei eine ZV mit
-bestimmten Parametern.<a href="formalia.html#fnref56" class="footnote-back">↩︎</a></p></li>
-<li id="fn57"><p>Die
+bestimmten Parametern.<a href="formalia.html#fnref57" class="footnote-back">↩︎</a></p></li>
+<li id="fn58"><p>Die
 bekanntesten Verteilungen werden in Kapitel <a href="stat-stoch.html#stat-stoch">7</a> beschrieben. Die
 vollständige Liste der Verteilungskürzel in R finden Sie
-<a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Distributions.html">hier</a>.<a href="formalia.html#fnref57" class="footnote-back">↩︎</a></p></li>
-<li id="fn58"><p>Beachten Sie, dass ein solcher Test
+<a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Distributions.html">hier</a>.<a href="formalia.html#fnref58" class="footnote-back">↩︎</a></p></li>
+<li id="fn59"><p>Beachten Sie, dass ein solcher Test
 weniger gut geeignet ist, wenn Sie entscheiden wollen ob Ihre Daten
 normalverteilt ‘genug’ sind um bestimmte Methoden anzuwenden, die eine
 Normalverteilung voraussetzen. Dazu sollten Sie unbedingt auch grafische
 Methoden wie <a href="https://ggplot2.tidyverse.org/reference/geom_qq.html">QQ-Plots</a>
 verwenden. Für mehr Details schauen Sie mal in
-<a href="http://blog.fellstat.com/?p=61">diesen Blogartikel</a>.<a href="formalia.html#fnref58" class="footnote-back">↩︎</a></p></li>
-<li id="fn59"><p>Eine frei zugängliche Version des Papers findet sich
-<a href="https://arxiv.org/abs/0706.1062">hier</a>.<a href="formalia.html#fnref59" class="footnote-back">↩︎</a></p></li>
-<li id="fn60"><p>
+<a href="http://blog.fellstat.com/?p=61">diesen Blogartikel</a>.<a href="formalia.html#fnref59" class="footnote-back">↩︎</a></p></li>
+<li id="fn60"><p>Eine frei zugängliche Version des Papers findet sich
+<a href="https://arxiv.org/abs/0706.1062">hier</a>.<a href="formalia.html#fnref60" class="footnote-back">↩︎</a></p></li>
+<li id="fn61"><p>
 Dieser Datensatz enthält Informationen über Preise, Seiten, Zitationen und
 Abonennten von 180 Journalen aus der Ökonomik im Jahr 2004.Bei den hier
 verwendeten Daten handelt es sich um eine Übersetzung des Datensatzes <code>Journals</code>
-aus dem Paket <code>AER</code> <span class="citation">(<a href="git.html#ref-AER" role="doc-biblioref">Kleiber and Zeileis 2008</a>)</span>.<a href="formalia.html#fnref60" class="footnote-back">↩︎</a></p></li>
-<li id="fn61"><p>Eine Abrundungsfunktion rundet eine
+aus dem Paket <code>AER</code> <span class="citation">(<a href="git.html#ref-AER" role="doc-biblioref">Kleiber und Zeileis 2008</a>)</span>.<a href="formalia.html#fnref61" class="footnote-back">↩︎</a></p></li>
+<li id="fn62"><p>Eine Abrundungsfunktion rundet eine
 Dezimalzahl auf die nächst-kleinere ganze Zahl ab.
-So ist z.B. <span class="math inline">\(\lfloor 1.9 \rfloor=1\)</span> und <span class="math inline">\(\lfloor 1.2 \rfloor=1\)</span>.<a href="formalia.html#fnref61" class="footnote-back">↩︎</a></p></li>
-<li id="fn62"><p>Es gibt natürlich noch
+So ist z.B. <span class="math inline">\(\lfloor 1.9 \rfloor=1\)</span> und <span class="math inline">\(\lfloor 1.2 \rfloor=1\)</span>.<a href="formalia.html#fnref62" class="footnote-back">↩︎</a></p></li>
+<li id="fn63"><p>Es gibt natürlich noch
 viele andere Möglichkeiten, siehe z.B.
-<a href="https://stackoverflow.com/questions/2547402/is-there-a-built-in-function-for-finding-the-mode">hier</a>.<a href="formalia.html#fnref62" class="footnote-back">↩︎</a></p></li>
+<a href="https://stackoverflow.com/questions/2547402/is-there-a-built-in-function-for-finding-the-mode">hier</a>.<a href="formalia.html#fnref63" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

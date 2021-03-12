@@ -1,8 +1,5 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
+
+
 # Wiederholung: Drei Verfahren der schließenden Statistik {#stat-rep}
 
 In diesem Kapitel werden wir drei zentrale Verfahren der schließenden Statistik 
@@ -173,7 +170,7 @@ b_test_object[["p.value"]]
 ```
 
 ```
-## [1] 0.05688793
+#> [1] 0.05688793
 ```
 
 > Die Wahrscheinlichkeit liegt also bei 
@@ -343,7 +340,7 @@ typeof(b_test_object)
 ```
 
 ```
-## [1] "list"
+#> [1] "list"
 ```
 
 Bevor wir uns mit dem Ergebnis befassen wollen wir uns die notwendigen Argumente
@@ -369,17 +366,17 @@ b_test_object
 ```
 
 ```
-## 
-## 	Exact binomial test
-## 
-## data:  60 and 100
-## number of successes = 60, number of trials = 100, p-value = 0.05689
-## alternative hypothesis: true probability of success is not equal to 0.5
-## 95 percent confidence interval:
-##  0.4972092 0.6967052
-## sample estimates:
-## probability of success 
-##                    0.6
+#> 
+#> 	Exact binomial test
+#> 
+#> data:  60 and 100
+#> number of successes = 60, number of trials = 100, p-value = 0.05689
+#> alternative hypothesis: true probability of success is not equal to 0.5
+#> 95 percent confidence interval:
+#>  0.4972092 0.6967052
+#> sample estimates:
+#> probability of success 
+#>                    0.6
 ```
 
 Die Überschrift macht deutlich was für ein Test durchgeführt wurde und die 
@@ -419,22 +416,22 @@ str(b_test_object)
 ```
 
 ```
-## List of 9
-##  $ statistic  : Named num 60
-##   ..- attr(*, "names")= chr "number of successes"
-##  $ parameter  : Named num 100
-##   ..- attr(*, "names")= chr "number of trials"
-##  $ p.value    : num 0.0569
-##  $ conf.int   : num [1:2] 0.497 0.697
-##   ..- attr(*, "conf.level")= num 0.95
-##  $ estimate   : Named num 0.6
-##   ..- attr(*, "names")= chr "probability of success"
-##  $ null.value : Named num 0.5
-##   ..- attr(*, "names")= chr "probability of success"
-##  $ alternative: chr "two.sided"
-##  $ method     : chr "Exact binomial test"
-##  $ data.name  : chr "60 and 100"
-##  - attr(*, "class")= chr "htest"
+#> List of 9
+#>  $ statistic  : Named num 60
+#>   ..- attr(*, "names")= chr "number of successes"
+#>  $ parameter  : Named num 100
+#>   ..- attr(*, "names")= chr "number of trials"
+#>  $ p.value    : num 0.0569
+#>  $ conf.int   : num [1:2] 0.497 0.697
+#>   ..- attr(*, "conf.level")= num 0.95
+#>  $ estimate   : Named num 0.6
+#>   ..- attr(*, "names")= chr "probability of success"
+#>  $ null.value : Named num 0.5
+#>   ..- attr(*, "names")= chr "probability of success"
+#>  $ alternative: chr "two.sided"
+#>  $ method     : chr "Exact binomial test"
+#>  $ data.name  : chr "60 and 100"
+#>  - attr(*, "class")= chr "htest"
 ```
 
 Wir sehen hier, dass wir viele der Werte wie bei Listen üblich direkt anwählen
@@ -446,7 +443,7 @@ b_test_object[["p.value"]]
 ```
 
 ```
-## [1] 0.05688793
+#> [1] 0.05688793
 ```
 
 Oder den Punktschätzer für $p$:
@@ -457,8 +454,8 @@ b_test_object[["estimate"]]
 ```
 
 ```
-## probability of success 
-##                    0.6
+#> probability of success 
+#>                    0.6
 ```
 
 Wenn wir eine andere Verteilung annehmen, verwenden wir auch eine andere Testfunktion,
@@ -548,9 +545,9 @@ b_test_object[["conf.int"]]
 ```
 
 ```
-## [1] 0.4972092 0.6967052
-## attr(,"conf.level")
-## [1] 0.95
+#> [1] 0.4972092 0.6967052
+#> attr(,"conf.level")
+#> [1] 0.95
 ```
 
 

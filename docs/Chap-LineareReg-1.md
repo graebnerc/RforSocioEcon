@@ -2,20 +2,16 @@
 
 
 
-## Einleitung und Überblick 
-
-### Einführung in die lineare Regression
-
 Zentrales Lernziel dieses Kapitels ist der Umgang mit einfachen linearen 
 Regressionsmodellen in R.
 Dabei werden die Inhalte der Kapitel zu Wahrscheinlichkeitstheorie sowie
 deskriptiver und schließender Statistik als bekannt vorausgesetzt 
 (Kapitel \@ref(stat-stoch), \@ref(desk-stat) und \@ref(stat-rep)). 
-Schauen Sie als erstes in diesen Kapiteln nach wenn Sie ein hier verwendetes 
+Schauen Sie als erstes in diesen Kapitel nach wenn Sie ein hier verwendetes 
 Konzept nicht verstehen und konsultieren Sie ansonsten ein Statistiklehrbuch
 (und freundliche Kommiliton\*innen) Ihrer Wahl.
 
-In diesem Kapitel werden die folgenden R Pakete verwendet:
+## Verwendete Pakete {-}
 
 
 ```r
@@ -29,8 +25,10 @@ library(ggpubr)
 
 
 
-Ziel solcher Modelle ist es, ausgehend von einem Datensatz ein lineares Modell 
-zu schätzen. 
+## Einführung in die lineare Regression
+
+Ziel linearer Regressionsmodelle ist es, ausgehend von einem 
+Datensatz ein lineares Modell zu schätzen. 
 Ein solches lineares Modell hat in der Regel die Form
 
 $$Y_i = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_n x_n + \epsilon_i$$

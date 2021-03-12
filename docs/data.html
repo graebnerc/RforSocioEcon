@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="de" xml:lang="de">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Datenkunde und Datenaufbereitung | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Datenkunde und Datenaufbereitung | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 4 Datenkunde und Datenaufbereitung | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2021-03-11" />
+<meta name="date" content="2021-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,6 +139,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie"><i class="fa fa-check"></i>Änderungshistorie</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#colophon"><i class="fa fa-check"></i>Colophon</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#referenzen"><i class="fa fa-check"></i>Referenzen</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a>
 <ul>
@@ -208,7 +210,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>5</b> Visualisierung von Daten</a>
 <ul>
 <li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#verwendete-pakete-1"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
 <li class="chapter" data-level="5.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>5.1</b> Optional: Theoretische Grundlagen</a>
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="vis.html"><a href="vis.html#vis-base-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> <code>ggplot2</code> vs. <code>base plot</code></a></li>
@@ -317,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>8</b> Wiederholung: Deskriptive Statistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-und-datensätze"><i class="fa fa-check"></i>Verwendete Pakete und Datensätze</a></li>
+<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-4"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="8.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>8.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
 <li class="chapter" data-level="8.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmaße"><i class="fa fa-check"></i><b>8.2</b> Korrelationsmaße</a></li>
 <li class="chapter" data-level="8.3" data-path="desk-stat.html"><a href="desk-stat.html#descVis"><i class="fa fa-check"></i><b>8.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
@@ -325,18 +326,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>9</b> Wiederholung: Drei Verfahren der schließenden Statistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-4"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-5"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="9.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>9.1</b> Punktschätzung</a></li>
 <li class="chapter" data-level="9.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>9.2</b> Hypothesentests</a></li>
 <li class="chapter" data-level="9.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>9.3</b> Berechnung von Konfidenzintervallen</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>10</b> Lineare statistische Modelle in R</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>10.1</b> Einleitung und Überblick</a>
+<li class="chapter" data-level="" data-path="linmodel.html"><a href="linmodel.html#verwendete-pakete-6"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1</b> Einführung in die lineare Regression</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1.1</b> Einführung in die lineare Regression</a></li>
-<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.2</b> Einführungsbeispiel</a></li>
-<li class="chapter" data-level="10.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
+<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.1</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.2</b> Überblick über die Inhalte des Kapitels</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>10.2</b> Grundlagen der einfachen linearen Regression</a>
 <ul>
@@ -356,6 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>11</b> Fortgeschrittene Themen der linearen Regression</a>
 <ul>
+<li class="chapter" data-level="" data-path="advlin.html"><a href="advlin.html#verwendete-pakete-7"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="11.1" data-path="advlin.html"><a href="advlin.html#annahmen-und-eigenschaften-des-einfachen-ols-modells"><i class="fa fa-check"></i><b>11.1</b> Annahmen und Eigenschaften des einfachen OLS Modells</a>
 <ul>
 <li class="chapter" data-level="11.1.1" data-path="advlin.html"><a href="advlin.html#annahmen-im-matrixschreibweise"><i class="fa fa-check"></i><b>11.1.1</b> Annahmen im Matrixschreibweise</a></li>
@@ -408,6 +410,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>12</b> Ausgewählte nichtlineare Schätzverfahren</a>
 <ul>
+<li class="chapter" data-level="" data-path="nonlin.html"><a href="nonlin.html#verwendete-pakete-8"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="12.1" data-path="nonlin.html"><a href="nonlin.html#logit"><i class="fa fa-check"></i><b>12.1</b> Binäre abhängige Variablen: Logit- und Probit-Modelle</a>
 <ul>
 <li class="chapter" data-level="12.1.1" data-path="nonlin.html"><a href="nonlin.html#warum-nicht-ols"><i class="fa fa-check"></i><b>12.1.1</b> Warum nicht OLS?</a></li>
@@ -465,7 +468,7 @@ Forschungsprojekts.</p>
 <div class="figure" style="text-align: center"><span id="fig:Arbeitsablauf"></span>
 <img src="figures/Datenaufbereitung/Ablaufschema.png" alt="Typischer Arbeitsablauf eines Forschungsprojekts" width="75%" height="75%" />
 <p class="caption">
-Figure 4.1: Typischer Arbeitsablauf eines Forschungsprojekts
+Abbildung 4.1: Typischer Arbeitsablauf eines Forschungsprojekts
 </p>
 </div>
 <p>In diesem Kapitel liegt der Fokus auf den ersten beiden Abschnitten, der Akquise
@@ -547,7 +550,7 @@ Variablen abzielen.</p>
 <p>Eine sehr prominente Unterscheidung wird zwischen <strong>quantitativen</strong> und
 <strong>qualitativen Daten</strong> getroffen.
 Bei <em>quantitativen</em> Daten handelt es sich grob gesagt um <em>numerische</em> Daten, also
-Daten, die Sie in Zahlen ausdrücken können. ‘Größe,’ ‘Preis,’ ‘BIP’ oder ‘Gehalt’
+Daten, die Sie in Zahlen ausdrücken können. ‘Größe’, ‘Preis’, ‘BIP’ oder ‘Gehalt’
 sind typische Beispiele.
 <em>Qualitative</em> Daten werden intuitiv <em>nicht-numerisch</em> ausgedrückt.
 Häufig handelt es sich um text-basierte oder beschreibende Daten.
@@ -590,7 +593,7 @@ wie aus der Abbildung <a href="data.html#fig:skalenniveaus">4.2</a> hervorgeht:<
 <div class="figure" style="text-align: center"><span id="fig:skalenniveaus"></span>
 <img src="figures/Datenaufbereitung/Skalenniveaus.png" alt="Skalenniveaus von Daten" width="75%" height="100%" />
 <p class="caption">
-Figure 4.2: Skalenniveaus von Daten
+Abbildung 4.2: Skalenniveaus von Daten
 </p>
 </div>
 <p>Wir sprechen von <strong>nominalskalierten</strong> Daten wenn wir den einzelnen Ausprägungen
@@ -598,7 +601,7 @@ der Daten zwar bestimmte Werte oder eindeutige Beschreibungen zuordnen können,
 diese aber keine natürliche Rangfolge aufweisen.
 So können wir einer Person eine Haarfarbe zuordnen, allerdings die verschiedenen
 Haarfarben in keine natürliche Rangfolge einordnen.
-Ebenso können wir z.B. Tiere in die Kategorien “Hund,” “Katze” und
+Ebenso können wir z.B. Tiere in die Kategorien “Hund”, “Katze” und
 “Sonstiges” einordnen, aber eine natürliche Rangfolge dieser Kategorien gibt es
 nicht.
 Als Konsequenz können wir die einzelnen Ausprägungen zwar zählen, aber sonst keine
@@ -633,7 +636,7 @@ in Abschnitt <a href="basics.html#introfactors">3.3.9</a>.</p>
 <p>Bei <strong>ordinalskalierten</strong> Daten können die einzelnen Ausprägungen in eine
 klare Rangfolge gebracht werden, aber die Abstände sind nicht sinnvoll
 interpretierbar.
-Das klassische Beispiel sind Schulnoten: eine ‘1’ ist besser als eine ‘2,’ aber
+Das klassische Beispiel sind Schulnoten: eine ‘1’ ist besser als eine ‘2’, aber
 weder ist eine 1 ‘doppelt so gut’ wie eine 2, noch sind zwei einser genauso gut
 wie eine 2.</p>
 <p>Ordinalskalierte Daten werden in R am besten auch als <code>factor</code> behandelt, allerdings
@@ -706,7 +709,7 @@ und Maße. Tabelle <a href="data.html#tab:measures">4.2</a> fasst das für die u
 bekannten statistischen Maße kurz zusammen.
 Alle diese Konzepte werden im Kapitel <a href="desk-stat.html#desk-stat">8</a> vertiefter behandelt.</p>
 <table style="width:100%;">
-<caption><span id="tab:scales">Table 4.1: </span> Skalenniveaus und die dazugehörigen R-Objekte.</caption>
+<caption><span id="tab:scales">Tabelle 4.1: </span> Skalenniveaus und die dazugehörigen R-Objekte.</caption>
 <colgroup>
 <col width="21%" />
 <col width="16%" />
@@ -749,7 +752,7 @@ Alle diese Konzepte werden im Kapitel <a href="desk-stat.html#desk-stat">8</a> v
 </tbody>
 </table>
 <table>
-<caption><span id="tab:measures">Table 4.2: </span> Skalenniveaus und die anwendbaren statistischen Operationen.</caption>
+<caption><span id="tab:measures">Tabelle 4.2: </span> Skalenniveaus und die anwendbaren statistischen Operationen.</caption>
 <thead>
 <tr class="header">
 <th></th>
@@ -845,13 +848,13 @@ In vielen Datensätzen werden Länder unterschiedlich abgekürzt.
 So mögen manche Datensätze zwar ausgeschriebene Ländernamen wie “Deutschland”
 verwenden, andere verwenden aber eher den
 <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">iso3c-Code</a>
-“DEU,” während wieder andere den
+“DEU”, während wieder andere den
 <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">iso2c-Code</a>
 “DE” verwenden.
 Wenn Sie sich dann Daten vom IWF herunterladen wundern Sie sich vielleicht, dass
 Deutschland dort mit der Zahl <code>134</code> kodiert wird.</p>
 <p>Zum Glück gibt es ein R-Paket, das die Übersetzung der Codes kinderleicht macht:
-<code>countrycode</code> <span class="citation">(<a href="git.html#ref-R-countrycode" role="doc-biblioref">Arel-Bundock, Enevoldsen, and Yetman 2018</a>)</span>.
+<code>countrycode</code> <span class="citation">(<a href="git.html#ref-R-countrycode" role="doc-biblioref">Arel-Bundock, Enevoldsen, und Yetman 2018</a>)</span>.
 Es stellt Ihnen unter anderem die Funktion <code>countrycode()</code> zur Verfügung, mit der
 Sie die Codes einfach übersetzen können. Die Funktion benötigt die folgenden
 Argumente:
@@ -887,7 +890,7 @@ lesbar sind.</p>
 <p>Das Problem mit ausgeschriebenen Ländernamen lässt sich anhand der
 Tschechischen Republik gut verdeutlichen.
 Der <code>iso3c</code>-Code ist hier eindeutig <code>CZE</code>, allerding verwenden manche Datenbanken
-den Namen ‘Czechia’ und andere ‘Czech Republik.’
+den Namen ‘Czechia’ und andere ‘Czech Republik’.
 Das <code>countrycode</code>-Paket übersetzt beide Namen in <code>CZE</code>:</p>
 <div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="data.html#cb303-1" aria-hidden="true" tabindex="-1"></a>countrycode<span class="sc">::</span><span class="fu">countrycode</span>(<span class="st">&quot;Czech Republic&quot;</span>, <span class="st">&quot;country.name&quot;</span>, <span class="st">&quot;iso3c&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;CZE&quot;</code></pre>
@@ -970,7 +973,7 @@ Indikators ab, wie in Abbildung <a href="data.html#fig:WDI">4.3</a> dargestellt:
 <div class="figure" style="text-align: center"><span id="fig:WDI"></span>
 <img src="figures/Datenaufbereitung/world-bank.png" alt="Ablesen des Codes aus der URL" width="75%" height="75%" />
 <p class="caption">
-Figure 4.3: Ablesen des Codes aus der URL
+Abbildung 4.3: Ablesen des Codes aus der URL
 </p>
 </div>
 <p>Über die Weltbankseite finden Sie heraus, dass die beiden von Ihnen gesuchten
@@ -1176,7 +1179,7 @@ für die auch andere Formate zur Verfügung stehen.</p>
 <p>Ein in der Ökonomik häufig verwendetes Format ist das von der Software
 <a href="https://de.wikipedia.org/wiki/Stata">STATA</a> verwendete Format <code>.dta</code>.
 Um Dateien in diesem Format lesen zu können verwenden Sie die Funktion
-<code>read_dta()</code> aus dem Paket <a href="https://github.com/tidyverse/haven">haven</a> <span class="citation">(<a href="git.html#ref-R-haven" role="doc-biblioref">Wickham and Miller 2019</a>)</span>,
+<code>read_dta()</code> aus dem Paket <a href="https://github.com/tidyverse/haven">haven</a> <span class="citation">(<a href="git.html#ref-R-haven" role="doc-biblioref">Wickham und Miller 2019</a>)</span>,
 die als einziges Argumente den Dateinamen akzeptiert:</p>
 <div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="data.html#cb336-1" aria-hidden="true" tabindex="-1"></a>dta_datei <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/tidy/export_daten.dta&quot;</span>)</span>
 <span id="cb336-2"><a href="data.html#cb336-2" aria-hidden="true" tabindex="-1"></a>dta_daten <span class="ot">&lt;-</span> haven<span class="sc">::</span><span class="fu">read_dta</span>(dta_datei)</span>
@@ -1188,6 +1191,39 @@ die als einziges Argumente den Dateinamen akzeptiert:</p>
 #&gt; 2 AT     2013    53.4</code></pre>
 <p>Das Paket <a href="https://github.com/tidyverse/haven">haven</a> stellt auch Funktionen zum
 Lesen von SAS oder SPSS-Dateien bereit.</p>
+<blockquote>
+<p><strong>Exkurs: Große Zahlen und Probleme mit <code>int64</code></strong> Wir haben in Kapital
+<a href="basics.html#basics">3</a> ja bereits den etwas besonderen Datentyp
+<code>bit64::integer64</code> kennen gelernt.
+Da dieser Datentyp mit einigen Operatoren inkompatibel ist und merkwürdiges
+Verhalten verursacht wenn das Paket <code>bit64</code> nicht installiert ist,
+sollten wir seine Verwendung unbedingt vermeiden. Wenn Sie aber mit
+<code>data.table::fread</code> einen Datensatz einlesen, der ganze Zahlen beinhaltet,
+die größer sind als 2147483647, dann werden diese automatisch als
+<code>bit64::integer64</code> kodiert.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a></p>
+</blockquote>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="data.html#cb338-1" aria-hidden="true" tabindex="-1"></a>large_nb_frame <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(</span>
+<span id="cb338-2"><a href="data.html#cb338-2" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/tidy/BIPKonsum.csv&quot;</span>))</span>
+<span id="cb338-3"><a href="data.html#cb338-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(large_nb_frame, <span class="at">vec.len=</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   27 obs. of  3 variables:
+#&gt;  $ Jahr          : int  1992 1993 1994 1995 1996 1997 1998 1999 ...
+#&gt;  $ Konsumausgaben:integer64 1601342020000 1611040070000 1647698700000 1681059990000 1706080960000 1719658230000 ... 
+#&gt;  $ BIP           :integer64 2077722320000 2057855860000 2108425030000 2145061880000 2162606290000 2202597220000 ... 
+#&gt;  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</code></pre>
+<blockquote>
+<p>Das können wir verhindern, indem wir die Spaltentypen
+explizit über <code>colClasses</code> spezifizieren oder aber zur Sicherheit das
+Argument <code>integer64</code> auf <code>"double"</code> setzen:</p>
+</blockquote>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="data.html#cb340-1" aria-hidden="true" tabindex="-1"></a>large_nb_frame <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(</span>
+<span id="cb340-2"><a href="data.html#cb340-2" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/tidy/BIPKonsum.csv&quot;</span>), </span>
+<span id="cb340-3"><a href="data.html#cb340-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">integer64 =</span> <span class="st">&quot;double&quot;</span>)</span>
+<span id="cb340-4"><a href="data.html#cb340-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(large_nb_frame, <span class="at">vec.len=</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>#&gt; Classes &#39;data.table&#39; and &#39;data.frame&#39;:   27 obs. of  3 variables:
+#&gt;  $ Jahr          : int  1992 1993 1994 1995 1996 1997 1998 1999 ...
+#&gt;  $ Konsumausgaben: num  1.60e+12 1.61e+12 1.65e+12 1.68e+12 ...
+#&gt;  $ BIP           : num  2.08e+12 2.06e+12 2.11e+12 2.15e+12 ...
+#&gt;  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</code></pre>
 </div>
 <div id="speichern-von-daten" class="section level3" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Speichern von Daten</h3>
@@ -1204,8 +1240,8 @@ csv-Dateien ist die Funktion <code>fwrite()</code> aus dem Paket <code>data.tabl
 Angenommen wir haben einen Datensatz <code>test_data</code>, den wir im Unterordner
 <code>data/tidy</code> als <code>test_data.csv</code> speichern wollen.
 Das geht mit <code>data.table::fwrite()</code> ganz einfach:</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="data.html#cb338-1" aria-hidden="true" tabindex="-1"></a>datei_name <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/tidy/test_data.csv&quot;</span>)</span>
-<span id="cb338-2"><a href="data.html#cb338-2" aria-hidden="true" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(test_data, <span class="at">file =</span> datei_name)</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="data.html#cb342-1" aria-hidden="true" tabindex="-1"></a>datei_name <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/tidy/test_data.csv&quot;</span>)</span>
+<span id="cb342-2"><a href="data.html#cb342-2" aria-hidden="true" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(test_data, <span class="at">file =</span> datei_name)</span></code></pre></div>
 <p>Neben dem zu schreibenden Objekt als erstem Argument benötigen Sie noch das
 Argument <code>file</code>, welches den Namen und Pfad der zu schreibenden Datei spezifiziert.
 Der Übersicht halber ist es oft empfehlenswert diesen Pfad zuerst als
@@ -1219,12 +1255,12 @@ es sich an die csv-Datei zu komprimieren.
 Natürlich könnten Sie das händisch in Ihrem Datei-Explorer machen, aber das ist vollkommen überholt.
 Sie können das gleich in R miterledigen indem Sie z.B. die Funktion <code>gzip</code>
 aus dem Paket <code>R.utils</code> <span class="citation">(<a href="git.html#ref-R-R.utils" role="doc-biblioref">Bengtsson 2019</a>)</span> verwenden:</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="data.html#cb339-1" aria-hidden="true" tabindex="-1"></a>csv_datei_name <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/tidy/test_data.csv&quot;</span>)</span>
-<span id="cb339-2"><a href="data.html#cb339-2" aria-hidden="true" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(test_data, <span class="at">file =</span> csv_datei_name)</span>
-<span id="cb339-3"><a href="data.html#cb339-3" aria-hidden="true" tabindex="-1"></a>R.utils<span class="sc">::</span><span class="fu">gzip</span>(</span>
-<span id="cb339-4"><a href="data.html#cb339-4" aria-hidden="true" tabindex="-1"></a>  csv_datei_name,</span>
-<span id="cb339-5"><a href="data.html#cb339-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">destname=</span><span class="fu">paste0</span>(csv_datei_name, <span class="st">&quot;.gz&quot;</span>), </span>
-<span id="cb339-6"><a href="data.html#cb339-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">overwrite =</span> <span class="cn">TRUE</span>, <span class="at">remove=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="data.html#cb343-1" aria-hidden="true" tabindex="-1"></a>csv_datei_name <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/tidy/test_data.csv&quot;</span>)</span>
+<span id="cb343-2"><a href="data.html#cb343-2" aria-hidden="true" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(test_data, <span class="at">file =</span> csv_datei_name)</span>
+<span id="cb343-3"><a href="data.html#cb343-3" aria-hidden="true" tabindex="-1"></a>R.utils<span class="sc">::</span><span class="fu">gzip</span>(</span>
+<span id="cb343-4"><a href="data.html#cb343-4" aria-hidden="true" tabindex="-1"></a>  csv_datei_name,</span>
+<span id="cb343-5"><a href="data.html#cb343-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">destname=</span><span class="fu">paste0</span>(csv_datei_name, <span class="st">&quot;.gz&quot;</span>), </span>
+<span id="cb343-6"><a href="data.html#cb343-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">overwrite =</span> <span class="cn">TRUE</span>, <span class="at">remove=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Diese Funktion akzeptiert als erstes Argument den Pfad zu der zu komprimierenden
 Datei, also zweites Argument (<code>destname</code>) den Namen, den die komprimierte Datei
 tragen soll und einige weitere optionale Argumente. Häufig bietet sich
@@ -1246,12 +1282,12 @@ Dateien, die mit <code>R.utils::bzip2()</code> komprimiert wurden, sollten mit d
 gekennzeichnet werden. Entsprechend sieht der Code von oben mit <code>R.utils::bzip2()</code>
 anstatt <code>R.utils::gzip()</code> folgendermaßen aus:</p>
 </blockquote>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="data.html#cb340-1" aria-hidden="true" tabindex="-1"></a>csv_datei_name <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/tidy/test_data.csv&quot;</span>)</span>
-<span id="cb340-2"><a href="data.html#cb340-2" aria-hidden="true" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(test_data, csv_datei_name)</span>
-<span id="cb340-3"><a href="data.html#cb340-3" aria-hidden="true" tabindex="-1"></a>R.utils<span class="sc">::</span><span class="fu">bzip2</span>(</span>
-<span id="cb340-4"><a href="data.html#cb340-4" aria-hidden="true" tabindex="-1"></a>  csv_datei_name,</span>
-<span id="cb340-5"><a href="data.html#cb340-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">destname=</span><span class="fu">paste0</span>(csv_datei_name, <span class="st">&quot;.bz2&quot;</span>), </span>
-<span id="cb340-6"><a href="data.html#cb340-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="data.html#cb344-1" aria-hidden="true" tabindex="-1"></a>csv_datei_name <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/tidy/test_data.csv&quot;</span>)</span>
+<span id="cb344-2"><a href="data.html#cb344-2" aria-hidden="true" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(test_data, csv_datei_name)</span>
+<span id="cb344-3"><a href="data.html#cb344-3" aria-hidden="true" tabindex="-1"></a>R.utils<span class="sc">::</span><span class="fu">bzip2</span>(</span>
+<span id="cb344-4"><a href="data.html#cb344-4" aria-hidden="true" tabindex="-1"></a>  csv_datei_name,</span>
+<span id="cb344-5"><a href="data.html#cb344-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">destname=</span><span class="fu">paste0</span>(csv_datei_name, <span class="st">&quot;.bz2&quot;</span>), </span>
+<span id="cb344-6"><a href="data.html#cb344-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <blockquote>
 <p>Einen Vergleich der Kompressionseigenschaften und Lese- und Schreibgeschwindigkeiten
 ist immer auch kontextabhängig, im Internet finden sich viele Diskussionen zu dem
@@ -1265,7 +1301,7 @@ Einziger Nachteil:
 alle Irren, die nicht R benutzen, können Ihre Daten nicht öffnen.
 Manchmal mag das eine verdiente Strafe, manchmal aber auch ein Ausschlusskriterium
 sein.</p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="data.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(<span class="at">object =</span> test_data,  <span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/tidy/export_daten.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="data.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(<span class="at">object =</span> test_data,  <span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/tidy/export_daten.rds&quot;</span>))</span></code></pre></div>
 <p>Wie Sie sehen sind zwei Argumente zentral: das erste Argument, <code>object</code>
 spezifiziert das zu speichernde Objekt und <code>file</code> den Dateipfad.
 Darüber hinaus können Sie mit dem optionalen Argument <code>compress</code> hier die
@@ -1279,10 +1315,10 @@ Argumente an die Funktion übergeben, es ist aber übersichtlicher das
 über das Argument <code>list</code> zu erledigen.
 Der folgende Code speichert die beiden Objekte <code>test_data</code> und <code>daten</code> in der
 Datei <code>"data/tidy/datensammlung.Rdata"</code>:</p>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="data.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(</span>
-<span id="cb342-2"><a href="data.html#cb342-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">list=</span><span class="fu">c</span>(<span class="st">&quot;test_data&quot;</span>, <span class="st">&quot;daten&quot;</span>), </span>
-<span id="cb342-3"><a href="data.html#cb342-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/tidy/datensammlung.RData&quot;</span>)</span>
-<span id="cb342-4"><a href="data.html#cb342-4" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="data.html#cb346-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(</span>
+<span id="cb346-2"><a href="data.html#cb346-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">list=</span><span class="fu">c</span>(<span class="st">&quot;test_data&quot;</span>, <span class="st">&quot;daten&quot;</span>), </span>
+<span id="cb346-3"><a href="data.html#cb346-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/tidy/datensammlung.RData&quot;</span>)</span>
+<span id="cb346-4"><a href="data.html#cb346-4" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p>Wie <code>saveRDS()</code> können Sie bei <code>save()</code> über das Argument <code>compress</code> den
 Kompressionsalgorithmus auswählen,
 allerdings können Sie mit <code>compression_level</code> zusätzlich noch die Stärke von <code>1</code>
@@ -1293,8 +1329,8 @@ auswählen.</p>
 kurz erkläutern, wie man einen Datensatz im STATA-Format <code>.dta</code> speichern kann.
 Dazu verwenden wir die Funktion <code>write_dta()</code>
 aus dem Paket <a href="https://github.com/tidyverse/haven">haven</a>.</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="data.html#cb343-1" aria-hidden="true" tabindex="-1"></a>haven<span class="sc">::</span><span class="fu">write_dta</span>(</span>
-<span id="cb343-2"><a href="data.html#cb343-2" aria-hidden="true" tabindex="-1"></a>  test_data, here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/tidy/test_daten.dta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="data.html#cb347-1" aria-hidden="true" tabindex="-1"></a>haven<span class="sc">::</span><span class="fu">write_dta</span>(</span>
+<span id="cb347-2"><a href="data.html#cb347-2" aria-hidden="true" tabindex="-1"></a>  test_data, here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/tidy/test_daten.dta&quot;</span>))</span></code></pre></div>
 <p>Für <code>SAS</code>- und <code>SPSS</code>-Daten gibt es ähnliche Funktionen, die ebenfalls durch das
 <a href="https://github.com/tidyverse/haven">haven</a>-Paket bereitgestellt werden.</p>
 <blockquote>
@@ -1340,7 +1376,7 @@ im Prinzip keine Mehrarbeit (siehe Abbildung <a href="data.html#fig:rawtidy">4.4
 <div class="figure" style="text-align: center"><span id="fig:rawtidy"></span>
 <img src="figures/Datenaufbereitung/raw-tidy.png" alt="Eine übersichtliche Art und Weise Ihre Daten zu speichern. Die Dateien im Unterordner `raw` werden nie geändert. Die Datei `exports-tidy` im Ordner `tidy` wurde mit dem Skript `exports-preparation.R` aus dem Rohdatensatz `exports-raw.csv` erstellt." width="40%" height="75%" />
 <p class="caption">
-Figure 4.4: Eine übersichtliche Art und Weise Ihre Daten zu speichern. Die Dateien im Unterordner <code>raw</code> werden nie geändert. Die Datei <code>exports-tidy</code> im Ordner <code>tidy</code> wurde mit dem Skript <code>exports-preparation.R</code> aus dem Rohdatensatz <code>exports-raw.csv</code> erstellt.
+Abbildung 4.4: Eine übersichtliche Art und Weise Ihre Daten zu speichern. Die Dateien im Unterordner <code>raw</code> werden nie geändert. Die Datei <code>exports-tidy</code> im Ordner <code>tidy</code> wurde mit dem Skript <code>exports-preparation.R</code> aus dem Rohdatensatz <code>exports-raw.csv</code> erstellt.
 </p>
 </div>
 <p>In diesem Abschnitt lernen Sie Lösungen für Probleme,
@@ -1368,7 +1404,7 @@ während eines Seminars das Paper replizieren sollte, bekam er Probleme.
 Dankenswerterweise sendete ihm Carmen Reinhard den Datensatz zu, allerdings
 stellte sich heraus, dass durch einen Excel-Fehler einige Länder aus der
 Stichprobe gefallen waren. Mit der kompletten Stichprobe löste sich der im
-ursprünglichen Paper identifizierte Zusammenhang auf <span class="citation">(<a href="git.html#ref-Herndon" role="doc-biblioref">Herndon, Ash, and Pollin 2013</a>)</span>.
+ursprünglichen Paper identifizierte Zusammenhang auf <span class="citation">(<a href="git.html#ref-Herndon" role="doc-biblioref">Herndon, Ash, und Pollin 2013</a>)</span>.
 Das ist besonders dramatisch, da das Paper nicht nur zahlreiche Preise gewonnen
 hat, sondern auch als wichtige Begründung für die in Europa implementierte
 Austeritätspolitik fungierte.
@@ -1382,7 +1418,7 @@ früher gefunden worden.</p>
 oft eine abenteuerliche Form und wir können in der Regel nicht direkt mit der
 statistischen Analyse anfangen.
 Die meisten Statistik-Pakete und Funktionen setzen eine bestimmte ‘aufgeräumte’
-Form der Daten voraus. <span class="citation"><a href="git.html#ref-tidy" role="doc-biblioref">Wickham</a> (<a href="git.html#ref-tidy" role="doc-biblioref">2014</a>)</span> beschreibt diese Form als <code>tidy data</code><a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> und es ist unser Ziel durch die Datenaufbereitung die
+Form der Daten voraus. <span class="citation"><a href="git.html#ref-tidy" role="doc-biblioref">Wickham</a> (<a href="git.html#ref-tidy" role="doc-biblioref">2014</a>)</span> beschreibt diese Form als <code>tidy data</code><a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a> und es ist unser Ziel durch die Datenaufbereitung die
 verschiedenen Rohdatensätze in <code>tidy data</code> zu verwandeln. Die daraus resultierenden
 Datensätze können dann separat gespeichert werden, damit wir die Datenaufbereitung
 nicht jedes Mal erneut durchführen müssen (im Abschnitt
@@ -1390,7 +1426,7 @@ nicht jedes Mal erneut durchführen müssen (im Abschnitt
 Vorschlag für eine hilfreiche Ordnerstruktur beschrieben).</p>
 <p>Aber was zeichnet <code>tidy data</code> aus? Wie von <span class="citation"><a href="git.html#ref-tidy" role="doc-biblioref">Wickham</a> (<a href="git.html#ref-tidy" role="doc-biblioref">2014</a>)</span> beschrieben kann ein Datensatz
 auf vielerlei Art und Weise ‘unordentlich’ sein, aber nur auf eine Art und Weise
-‘tidy.’ Ein ‘tidy’ Datensatz ist durch folgende drei Eigenschaften gekennzeichnet:</p>
+‘tidy’. Ein ‘tidy’ Datensatz ist durch folgende drei Eigenschaften gekennzeichnet:</p>
 <ol style="list-style-type: decimal">
 <li>Jede <strong>Spalte</strong> korrespondiert zu genau einer <strong>Variable</strong></li>
 <li>Jede <strong>Zeile</strong> korrespondiert zu genau einer <strong>Beobachtung</strong></li>
@@ -1429,7 +1465,7 @@ einen Wert, jeweils für das Land, das Jahr, die Exporte und die Arbeitslosigkei
 </blockquote>
 <blockquote>
 <p><strong>Beispiel: Verstoß gegen (1) </strong>: Der folgende Datensatz, welcher nur Informationen
-zu den Exporten und für das Jahr 2014 enthält, ist nicht ‘tidy,’ da er gegen
+zu den Exporten und für das Jahr 2014 enthält, ist nicht ‘tidy’, da er gegen
 Anforderung (1) verstößt:</p>
 </blockquote>
 <pre><code>#&gt;   Land Variable     2014
@@ -1471,9 +1507,9 @@ widerspricht:</p>
 <p><strong>Beispiel: Verstoß gegen (3)</strong> Verstöße gegen die dritte Anforderung
 kommen in der Praxis in der Regel seltener vor, sind aber auch unschön:</p>
 </blockquote>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="data.html#cb348-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Land=</span><span class="fu">c</span>(<span class="st">&quot;DE&quot;</span>, <span class="st">&quot;AT&quot;</span>))</span>
-<span id="cb348-2"><a href="data.html#cb348-2" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span><span class="st">`</span><span class="at">Wichtige Industrien</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;Autos&quot;</span>, <span class="st">&quot;Medikamente&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;Stahlproduktion&quot;</span>, <span class="st">&quot;Holz&quot;</span>))</span>
-<span id="cb348-3"><a href="data.html#cb348-3" aria-hidden="true" tabindex="-1"></a>d</span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="data.html#cb352-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Land=</span><span class="fu">c</span>(<span class="st">&quot;DE&quot;</span>, <span class="st">&quot;AT&quot;</span>))</span>
+<span id="cb352-2"><a href="data.html#cb352-2" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span><span class="st">`</span><span class="at">Wichtige Industrien</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;Autos&quot;</span>, <span class="st">&quot;Medikamente&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;Stahlproduktion&quot;</span>, <span class="st">&quot;Holz&quot;</span>))</span>
+<span id="cb352-3"><a href="data.html#cb352-3" aria-hidden="true" tabindex="-1"></a>d</span></code></pre></div>
 <pre><code>#&gt;   Land   Wichtige Industrien
 #&gt; 1   DE    Autos, Medikamente
 #&gt; 2   AT Stahlproduktion, Holz</code></pre>
@@ -1501,16 +1537,16 @@ langen und einmal im breiten Format dargestellt.</p>
 #&gt; 2   DE  Exporte 45.39788 45.64482</code></pre>
 <p>Häufig werden Sie während Ihrer Datenaufbereitung mehrmals zwischen den beiden
 Formaten hin und her wechseln, da für manche statistischen Zwischenschritte das
-eine, für andere das andere Format besser ist.<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a></p>
+eine, für andere das andere Format besser ist.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a></p>
 <p>Um zwischen den Formaten hin und herzuwechseln verwenden wir vor allem die
 Funktionen <code>pivot_longer()</code> und <code>pivot_wider()</code> aus dem Paket
-<a href="https://github.com/tidyverse/tidyr">tidyr</a> <span class="citation">(<a href="git.html#ref-R-tidyr" role="doc-biblioref">Wickham and Henry 2019</a>)</span>, welches auch Teil des
-<code>tidyverse</code> ist.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a></p>
+<a href="https://github.com/tidyverse/tidyr">tidyr</a> <span class="citation">(<a href="git.html#ref-R-tidyr" role="doc-biblioref">Wickham und Henry 2019</a>)</span>, welches auch Teil des
+<code>tidyverse</code> ist.<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a></p>
 <p>Wir verwenden <code>tidyr::pivot_longer()</code> um einen Datensatz ‘länger’ zu machen.
 Wir verwenden dazu folgenden Datensatz als Ausgangsbeispiel, der Werte
 für die Arbeitslosigkeit in Deutschland und Österreich in zwei Jahren
 enthält:</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="data.html#cb352-1" aria-hidden="true" tabindex="-1"></a>data_wide</span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="data.html#cb356-1" aria-hidden="true" tabindex="-1"></a>data_wide</span></code></pre></div>
 <pre><code>#&gt;   Land  2013  2014
 #&gt; 1   AT 5.335 5.620
 #&gt; 2   DE 5.231 4.981</code></pre>
@@ -1530,13 +1566,13 @@ Werte des verlängerten Datensatzes beschreibt.
 In unserem Falle bietet sich der Name <code>Arbeitslosenquote</code> an, da es sich bei dem
 Datensatz um Arbeitslosenquotenstatistiken handelt.</p>
 <p>Insgesamt erhalten wir damit den folgenden Funktionsaufruf:</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="data.html#cb354-1" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
-<span id="cb354-2"><a href="data.html#cb354-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_wide,</span>
-<span id="cb354-3"><a href="data.html#cb354-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cols =</span> <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;2013&quot;</span>, <span class="st">&quot;2014&quot;</span>)), </span>
-<span id="cb354-4"><a href="data.html#cb354-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </span>
-<span id="cb354-5"><a href="data.html#cb354-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_to =</span> <span class="st">&quot;Arbeitslosenquote&quot;</span></span>
-<span id="cb354-6"><a href="data.html#cb354-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb354-7"><a href="data.html#cb354-7" aria-hidden="true" tabindex="-1"></a>data_long</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="data.html#cb358-1" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb358-2"><a href="data.html#cb358-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_wide,</span>
+<span id="cb358-3"><a href="data.html#cb358-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cols =</span> <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;2013&quot;</span>, <span class="st">&quot;2014&quot;</span>)), </span>
+<span id="cb358-4"><a href="data.html#cb358-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </span>
+<span id="cb358-5"><a href="data.html#cb358-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_to =</span> <span class="st">&quot;Arbeitslosenquote&quot;</span></span>
+<span id="cb358-6"><a href="data.html#cb358-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb358-7"><a href="data.html#cb358-7" aria-hidden="true" tabindex="-1"></a>data_long</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 4 x 3
 #&gt;   Land  Jahr  Arbeitslosenquote
 #&gt;   &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;
@@ -1548,7 +1584,7 @@ Datensatz um Arbeitslosenquotenstatistiken handelt.</p>
 machen wollen, verwenden wir die Funktion <code>tidyr::pivot_wider()</code>.
 Hier wird die Anzahl der Zeilen reduziert und die Anzahl der Spalten erhöht
 Gehen wir einmal vom gerade produzierten Datensatz aus:</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="data.html#cb356-1" aria-hidden="true" tabindex="-1"></a>data_long</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="data.html#cb360-1" aria-hidden="true" tabindex="-1"></a>data_long</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 4 x 3
 #&gt;   Land  Jahr  Arbeitslosenquote
 #&gt;   &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;
@@ -1572,13 +1608,13 @@ Werte für die neuen Spalten genommen werden sollen.
 In unserem Falle wäre das die Spalte <code>Arbeitslosenquote</code>, da wir ja in die
 Spalten für die einzelnen Jahre die Arbeitslosenquoten schreiben wollen.</p>
 <p>Insgesamt sieht der Funktionsaufruf also so aus:</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="data.html#cb358-1" aria-hidden="true" tabindex="-1"></a>data_wide_neu <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
-<span id="cb358-2"><a href="data.html#cb358-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_long,</span>
-<span id="cb358-3"><a href="data.html#cb358-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id_cols =</span> <span class="fu">any_of</span>(<span class="st">&quot;Land&quot;</span>), </span>
-<span id="cb358-4"><a href="data.html#cb358-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_from =</span> <span class="st">&quot;Jahr&quot;</span>, </span>
-<span id="cb358-5"><a href="data.html#cb358-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_from =</span> <span class="st">&quot;Arbeitslosenquote&quot;</span></span>
-<span id="cb358-6"><a href="data.html#cb358-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb358-7"><a href="data.html#cb358-7" aria-hidden="true" tabindex="-1"></a>data_wide_neu</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="data.html#cb362-1" aria-hidden="true" tabindex="-1"></a>data_wide_neu <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb362-2"><a href="data.html#cb362-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_long,</span>
+<span id="cb362-3"><a href="data.html#cb362-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id_cols =</span> <span class="fu">any_of</span>(<span class="st">&quot;Land&quot;</span>), </span>
+<span id="cb362-4"><a href="data.html#cb362-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_from =</span> <span class="st">&quot;Jahr&quot;</span>, </span>
+<span id="cb362-5"><a href="data.html#cb362-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_from =</span> <span class="st">&quot;Arbeitslosenquote&quot;</span></span>
+<span id="cb362-6"><a href="data.html#cb362-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb362-7"><a href="data.html#cb362-7" aria-hidden="true" tabindex="-1"></a>data_wide_neu</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 3
 #&gt;   Land  `2013` `2014`
 #&gt;   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;
@@ -1614,13 +1650,13 @@ Wir machen uns dabei zu Nutze, dass wir dem Argument <code>cols</code> auch die 
 Spalten geben können, die wir <em>nicht</em> transformieren wollen. Dazu stellen wir
 der Liste der Namen ein <code>-</code> voran und R wird entsprechend alle hier nicht
 genannten Spalten für die Transformation verwenden:</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="data.html#cb362-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_longer <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
-<span id="cb362-2"><a href="data.html#cb362-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_al_exp, </span>
-<span id="cb362-3"><a href="data.html#cb362-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cols =</span> <span class="sc">-</span><span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>)), </span>
-<span id="cb362-4"><a href="data.html#cb362-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </span>
-<span id="cb362-5"><a href="data.html#cb362-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_to =</span> <span class="st">&quot;Wert&quot;</span></span>
-<span id="cb362-6"><a href="data.html#cb362-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb362-7"><a href="data.html#cb362-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_al_exp_longer, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="data.html#cb366-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_longer <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb366-2"><a href="data.html#cb366-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_al_exp, </span>
+<span id="cb366-3"><a href="data.html#cb366-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cols =</span> <span class="sc">-</span><span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>)), </span>
+<span id="cb366-4"><a href="data.html#cb366-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </span>
+<span id="cb366-5"><a href="data.html#cb366-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_to =</span> <span class="st">&quot;Wert&quot;</span></span>
+<span id="cb366-6"><a href="data.html#cb366-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb366-7"><a href="data.html#cb366-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_al_exp_longer, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 4
 #&gt;   Land  Variable Jahr   Wert
 #&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;
@@ -1634,13 +1670,13 @@ Das ist vor allem dann hilfreich wenn wir sehr viele Spalten zusammenfassen
 wollen, was häufig vorkommt, wenn es sich bei den Spalten um Jahre handelt.</p>
 <p>Um unser gewünschtes Endergebnis zu erhalten müssen wir diesen Datensatz nun nur
 noch breiter machen:</p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="data.html#cb364-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_tidy <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
-<span id="cb364-2"><a href="data.html#cb364-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_al_exp_longer, </span>
-<span id="cb364-3"><a href="data.html#cb364-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id_cols =</span> <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>)), </span>
-<span id="cb364-4"><a href="data.html#cb364-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </span>
-<span id="cb364-5"><a href="data.html#cb364-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_from =</span> <span class="st">&quot;Variable&quot;</span></span>
-<span id="cb364-6"><a href="data.html#cb364-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb364-7"><a href="data.html#cb364-7" aria-hidden="true" tabindex="-1"></a>data_al_exp_tidy</span></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="data.html#cb368-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_tidy <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb368-2"><a href="data.html#cb368-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_al_exp_longer, </span>
+<span id="cb368-3"><a href="data.html#cb368-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id_cols =</span> <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>)), </span>
+<span id="cb368-4"><a href="data.html#cb368-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </span>
+<span id="cb368-5"><a href="data.html#cb368-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_from =</span> <span class="st">&quot;Variable&quot;</span></span>
+<span id="cb368-6"><a href="data.html#cb368-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb368-7"><a href="data.html#cb368-7" aria-hidden="true" tabindex="-1"></a>data_al_exp_tidy</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 6 x 4
 #&gt;   Land  Jahr  Exporte Arbeitslosigkeit
 #&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;            &lt;dbl&gt;
@@ -1651,17 +1687,17 @@ noch breiter machen:</p>
 #&gt; 5 DE    2013     45.4             5.23
 #&gt; 6 DE    2014     45.6             4.98</code></pre>
 <p>Insgesamt sähe der Code damit folgendermaßen aus:</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="data.html#cb366-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_longer <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
-<span id="cb366-2"><a href="data.html#cb366-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_al_exp, </span>
-<span id="cb366-3"><a href="data.html#cb366-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cols =</span> <span class="sc">-</span><span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>)), </span>
-<span id="cb366-4"><a href="data.html#cb366-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </span>
-<span id="cb366-5"><a href="data.html#cb366-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_to =</span> <span class="st">&quot;Wert&quot;</span>)</span>
-<span id="cb366-6"><a href="data.html#cb366-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb366-7"><a href="data.html#cb366-7" aria-hidden="true" tabindex="-1"></a>data_al_exp_tidy <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
-<span id="cb366-8"><a href="data.html#cb366-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_al_exp_longer, </span>
-<span id="cb366-9"><a href="data.html#cb366-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">id_cols =</span> <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>)), </span>
-<span id="cb366-10"><a href="data.html#cb366-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </span>
-<span id="cb366-11"><a href="data.html#cb366-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_from =</span> <span class="st">&quot;Variable&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="data.html#cb370-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_longer <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb370-2"><a href="data.html#cb370-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_al_exp, </span>
+<span id="cb370-3"><a href="data.html#cb370-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cols =</span> <span class="sc">-</span><span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>)), </span>
+<span id="cb370-4"><a href="data.html#cb370-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </span>
+<span id="cb370-5"><a href="data.html#cb370-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_to =</span> <span class="st">&quot;Wert&quot;</span>)</span>
+<span id="cb370-6"><a href="data.html#cb370-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-7"><a href="data.html#cb370-7" aria-hidden="true" tabindex="-1"></a>data_al_exp_tidy <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb370-8"><a href="data.html#cb370-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_al_exp_longer, </span>
+<span id="cb370-9"><a href="data.html#cb370-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">id_cols =</span> <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>)), </span>
+<span id="cb370-10"><a href="data.html#cb370-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </span>
+<span id="cb370-11"><a href="data.html#cb370-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_from =</span> <span class="st">&quot;Variable&quot;</span>)</span></code></pre></div>
 <p>Da die Kombination solcher Schritte in der Praxis sehr häufig vorkommt und
 man die vielen Zuweisungen der Übersicht halber vermeiden möchte, bieten die
 Pakete des <code>tidyverse</code> eine schöne Möglichkeit, den Code zu verkürzen:
@@ -1670,15 +1706,15 @@ die so genannte <strong>Pipe</strong> <code>%&gt;%</code>.</p>
 Dort wird das Ergebnis des vorherigen Aufrufs automatisch als erstes Argument
 verwendet.
 Wir könnten also auch schreiben:</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="data.html#cb367-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_tidy <span class="ot">&lt;-</span> data_al_exp <span class="sc">%&gt;%</span></span>
-<span id="cb367-2"><a href="data.html#cb367-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
-<span id="cb367-3"><a href="data.html#cb367-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span><span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>)), </span>
-<span id="cb367-4"><a href="data.html#cb367-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </span>
-<span id="cb367-5"><a href="data.html#cb367-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;Wert&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb367-6"><a href="data.html#cb367-6" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
-<span id="cb367-7"><a href="data.html#cb367-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>)), </span>
-<span id="cb367-8"><a href="data.html#cb367-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </span>
-<span id="cb367-9"><a href="data.html#cb367-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">&quot;Variable&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="data.html#cb371-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_tidy <span class="ot">&lt;-</span> data_al_exp <span class="sc">%&gt;%</span></span>
+<span id="cb371-2"><a href="data.html#cb371-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb371-3"><a href="data.html#cb371-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span><span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>)), </span>
+<span id="cb371-4"><a href="data.html#cb371-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </span>
+<span id="cb371-5"><a href="data.html#cb371-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;Wert&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb371-6"><a href="data.html#cb371-6" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb371-7"><a href="data.html#cb371-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>)), </span>
+<span id="cb371-8"><a href="data.html#cb371-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </span>
+<span id="cb371-9"><a href="data.html#cb371-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">&quot;Variable&quot;</span>)</span></code></pre></div>
 <p>Das ist gleich viel besser lesbar!
 In der ersten Zeile schreiben wir nur das Ausgangsobjekt <code>data_al_exp</code>,
 welches über <code>%&gt;%</code> dann unmittelbar als erstes Argument an <code>tidyr::pivot_longer()</code>
@@ -1697,17 +1733,17 @@ verwenden.</p>
 <blockquote>
 <p>Wir könnten also auch expliziter schreiben:</p>
 </blockquote>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="data.html#cb368-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_tidy <span class="ot">&lt;-</span> data_al_exp <span class="sc">%&gt;%</span></span>
-<span id="cb368-2"><a href="data.html#cb368-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
-<span id="cb368-3"><a href="data.html#cb368-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> .,</span>
-<span id="cb368-4"><a href="data.html#cb368-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span><span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>)), </span>
-<span id="cb368-5"><a href="data.html#cb368-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </span>
-<span id="cb368-6"><a href="data.html#cb368-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;Wert&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb368-7"><a href="data.html#cb368-7" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
-<span id="cb368-8"><a href="data.html#cb368-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> .,</span>
-<span id="cb368-9"><a href="data.html#cb368-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>)), </span>
-<span id="cb368-10"><a href="data.html#cb368-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </span>
-<span id="cb368-11"><a href="data.html#cb368-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">&quot;Variable&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="data.html#cb372-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_tidy <span class="ot">&lt;-</span> data_al_exp <span class="sc">%&gt;%</span></span>
+<span id="cb372-2"><a href="data.html#cb372-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb372-3"><a href="data.html#cb372-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> .,</span>
+<span id="cb372-4"><a href="data.html#cb372-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span><span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>)), </span>
+<span id="cb372-5"><a href="data.html#cb372-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </span>
+<span id="cb372-6"><a href="data.html#cb372-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;Wert&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb372-7"><a href="data.html#cb372-7" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb372-8"><a href="data.html#cb372-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> .,</span>
+<span id="cb372-9"><a href="data.html#cb372-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>)), </span>
+<span id="cb372-10"><a href="data.html#cb372-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </span>
+<span id="cb372-11"><a href="data.html#cb372-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">&quot;Variable&quot;</span>)</span></code></pre></div>
 <blockquote>
 <p>Das ist hilfreich, wenn Sie den Output einer Zeile nicht als erstes, sondern
 z.B. als zweites Argument in der nächsten Funktion verwenden wollen.
@@ -1715,17 +1751,17 @@ Dann verwenden Sie den <code>.</code> einfach explizit da wo Sie ihn brauchen. D
 die Argumente ja nicht in der richtigen Reihenfolge angeben müssen solange die
 Namen stimmen funktioniert also auch folgender Code:</p>
 </blockquote>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="data.html#cb369-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_tidy <span class="ot">&lt;-</span> data_al_exp <span class="sc">%&gt;%</span></span>
-<span id="cb369-2"><a href="data.html#cb369-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
-<span id="cb369-3"><a href="data.html#cb369-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span><span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>)), </span>
-<span id="cb369-4"><a href="data.html#cb369-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </span>
-<span id="cb369-5"><a href="data.html#cb369-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;Wert&quot;</span>,</span>
-<span id="cb369-6"><a href="data.html#cb369-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> .) <span class="sc">%&gt;%</span></span>
-<span id="cb369-7"><a href="data.html#cb369-7" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
-<span id="cb369-8"><a href="data.html#cb369-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>)), </span>
-<span id="cb369-9"><a href="data.html#cb369-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </span>
-<span id="cb369-10"><a href="data.html#cb369-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">&quot;Variable&quot;</span>,</span>
-<span id="cb369-11"><a href="data.html#cb369-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> .)</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="data.html#cb373-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_tidy <span class="ot">&lt;-</span> data_al_exp <span class="sc">%&gt;%</span></span>
+<span id="cb373-2"><a href="data.html#cb373-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb373-3"><a href="data.html#cb373-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span><span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Variable&quot;</span>)), </span>
+<span id="cb373-4"><a href="data.html#cb373-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;Jahr&quot;</span>, </span>
+<span id="cb373-5"><a href="data.html#cb373-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;Wert&quot;</span>,</span>
+<span id="cb373-6"><a href="data.html#cb373-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> .) <span class="sc">%&gt;%</span></span>
+<span id="cb373-7"><a href="data.html#cb373-7" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb373-8"><a href="data.html#cb373-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>)), </span>
+<span id="cb373-9"><a href="data.html#cb373-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="st">&quot;Wert&quot;</span>, </span>
+<span id="cb373-10"><a href="data.html#cb373-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">&quot;Variable&quot;</span>,</span>
+<span id="cb373-11"><a href="data.html#cb373-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> .)</span></code></pre></div>
 <p>Beide Funktionen, <code>tidyr::pivot_wider()</code> and <code>tidyr::pivot_longer()</code>, können noch viel
 komplexere Probleme lösen.
 Für weitere Anwendungen verweisen wir auf die offizielle
@@ -1771,7 +1807,7 @@ Wenn eine Beobachtung nur in <code>y</code> vorkommt, wird diese im finalen Date
 berücksichtigt.
 Wenn eine Beobachtung nur in <code>x</code> vorkommt, wird in den Spalten aus <code>y</code> der Wert
 <code>NA</code> eingefügt.
-Man könnte sagen, der ‘linke’ Datensatz hat in <code>dplyr::left_join()</code> ‘Priorität.’</p>
+Man könnte sagen, der ‘linke’ Datensatz hat in <code>dplyr::left_join()</code> ‘Priorität’.</p>
 <p>Um zu spezifizieren gemäß welcher Spalten die Datensätze verbunden werden sollen
 können wir über das optionale Argument <code>id</code> die ‘ID-Spalten’ definieren.
 Diese Spalten identifizieren eine gemeinsame Beobachtung in <code>x</code> und <code>y</code>.
@@ -1782,9 +1818,9 @@ Jahren entsprechend zusammenführen schreiben wir:
 <code>by=c("Jahr"="year", "Land"="country")</code>, also den Spaltennamen in <code>x</code> auf die
 linke Seite von <code>=</code> und das Pendant in <code>y</code> auf der rechten Seite vom <code>=</code>.</p>
 <p>Im Falle von <code>dplyr::left_join()</code> ergibt sich also:</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="data.html#cb372-1" aria-hidden="true" tabindex="-1"></a>data_bip_gini_left_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">left_join</span>(</span>
-<span id="cb372-2"><a href="data.html#cb372-2" aria-hidden="true" tabindex="-1"></a>  data_BIP, data_gini, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Jahr&quot;</span><span class="ot">=</span><span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span><span class="ot">=</span><span class="st">&quot;country&quot;</span>))</span>
-<span id="cb372-3"><a href="data.html#cb372-3" aria-hidden="true" tabindex="-1"></a>data_bip_gini_left_join</span></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="data.html#cb376-1" aria-hidden="true" tabindex="-1"></a>data_bip_gini_left_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">left_join</span>(</span>
+<span id="cb376-2"><a href="data.html#cb376-2" aria-hidden="true" tabindex="-1"></a>  data_BIP, data_gini, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Jahr&quot;</span><span class="ot">=</span><span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span><span class="ot">=</span><span class="st">&quot;country&quot;</span>))</span>
+<span id="cb376-3"><a href="data.html#cb376-3" aria-hidden="true" tabindex="-1"></a>data_bip_gini_left_join</span></code></pre></div>
 <pre><code>#&gt;   Jahr Land BIP Gini
 #&gt; 1 2010  DEU   1    1
 #&gt; 2 2011  DEU   2    2
@@ -1796,9 +1832,9 @@ linke Seite von <code>=</code> und das Pendant in <code>y</code> auf der rechten
 gibt <code>dplyr::left_join()</code> einen kürzeren gemeinsamen Datensatz aus, da es nur die
 Beobachtungen aus dem rechten Datensatz übernimmt, für die es ein Pendant im
 linken Datensatz gibt.</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="data.html#cb374-1" aria-hidden="true" tabindex="-1"></a>data_gini_bip_left_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">left_join</span>(</span>
-<span id="cb374-2"><a href="data.html#cb374-2" aria-hidden="true" tabindex="-1"></a>  data_gini, data_BIP, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;year&quot;</span><span class="ot">=</span><span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;country&quot;</span><span class="ot">=</span><span class="st">&quot;Land&quot;</span>))</span>
-<span id="cb374-3"><a href="data.html#cb374-3" aria-hidden="true" tabindex="-1"></a>data_gini_bip_left_join</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="data.html#cb378-1" aria-hidden="true" tabindex="-1"></a>data_gini_bip_left_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">left_join</span>(</span>
+<span id="cb378-2"><a href="data.html#cb378-2" aria-hidden="true" tabindex="-1"></a>  data_gini, data_BIP, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;year&quot;</span><span class="ot">=</span><span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;country&quot;</span><span class="ot">=</span><span class="st">&quot;Land&quot;</span>))</span>
+<span id="cb378-3"><a href="data.html#cb378-3" aria-hidden="true" tabindex="-1"></a>data_gini_bip_left_join</span></code></pre></div>
 <pre><code>#&gt;   year country Gini BIP
 #&gt; 1 2010     DEU    1   1
 #&gt; 2 2011     DEU    2   2
@@ -1807,18 +1843,18 @@ linken Datensatz gibt.</p>
 <p>Die Funktion <code>dplyr::inner_join()</code> unterscheidet sich von <code>dplyr::left_join()</code> darin, dass
 nur die Zeilen in den gemeinsamen Datensatz übernommen werden, die sowohl in <code>x</code> als
 auch in <code>y</code> enthalten sind:</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="data.html#cb376-1" aria-hidden="true" tabindex="-1"></a>data_bip_gini_inner_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">inner_join</span>(</span>
-<span id="cb376-2"><a href="data.html#cb376-2" aria-hidden="true" tabindex="-1"></a>  data_BIP, data_gini, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Jahr&quot;</span><span class="ot">=</span><span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span><span class="ot">=</span><span class="st">&quot;country&quot;</span>))</span>
-<span id="cb376-3"><a href="data.html#cb376-3" aria-hidden="true" tabindex="-1"></a>data_bip_gini_inner_join</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="data.html#cb380-1" aria-hidden="true" tabindex="-1"></a>data_bip_gini_inner_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">inner_join</span>(</span>
+<span id="cb380-2"><a href="data.html#cb380-2" aria-hidden="true" tabindex="-1"></a>  data_BIP, data_gini, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Jahr&quot;</span><span class="ot">=</span><span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span><span class="ot">=</span><span class="st">&quot;country&quot;</span>))</span>
+<span id="cb380-3"><a href="data.html#cb380-3" aria-hidden="true" tabindex="-1"></a>data_bip_gini_inner_join</span></code></pre></div>
 <pre><code>#&gt;   Jahr Land BIP Gini
 #&gt; 1 2010  DEU   1    1
 #&gt; 2 2011  DEU   2    2
 #&gt; 3 2012  AUT   6    3</code></pre>
 <p>Das Verhalten von <code>dplyr::right_join()</code> ist analog zu <code>dplyr::left_join()</code>, nur hat hier der
 ‘rechte’ Datensatz, also der dem Argument <code>y</code> übergebene Datensatz Priorität:</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="data.html#cb378-1" aria-hidden="true" tabindex="-1"></a>data_gini_bip_right_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">right_join</span>(</span>
-<span id="cb378-2"><a href="data.html#cb378-2" aria-hidden="true" tabindex="-1"></a>  data_gini, data_BIP, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;year&quot;</span><span class="ot">=</span><span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;country&quot;</span><span class="ot">=</span><span class="st">&quot;Land&quot;</span>))</span>
-<span id="cb378-3"><a href="data.html#cb378-3" aria-hidden="true" tabindex="-1"></a>data_gini_bip_right_join</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="data.html#cb382-1" aria-hidden="true" tabindex="-1"></a>data_gini_bip_right_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">right_join</span>(</span>
+<span id="cb382-2"><a href="data.html#cb382-2" aria-hidden="true" tabindex="-1"></a>  data_gini, data_BIP, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;year&quot;</span><span class="ot">=</span><span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;country&quot;</span><span class="ot">=</span><span class="st">&quot;Land&quot;</span>))</span>
+<span id="cb382-3"><a href="data.html#cb382-3" aria-hidden="true" tabindex="-1"></a>data_gini_bip_right_join</span></code></pre></div>
 <pre><code>#&gt;   year country Gini BIP
 #&gt; 1 2010     DEU    1   1
 #&gt; 2 2011     DEU    2   2
@@ -1829,9 +1865,9 @@ auch in <code>y</code> enthalten sind:</p>
 <p>Wenn Sie keinem der beiden Datensätze eine Priorität einräumen möchten und
 alle Zeilen in jedem Fall behalten wollen, dann wählen Sie am besten die Funktion
 <code>dplyr::full_join()</code>:</p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="data.html#cb380-1" aria-hidden="true" tabindex="-1"></a>data_bip_gini_full_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">full_join</span>(</span>
-<span id="cb380-2"><a href="data.html#cb380-2" aria-hidden="true" tabindex="-1"></a>  data_BIP, data_gini, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Jahr&quot;</span><span class="ot">=</span><span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span><span class="ot">=</span><span class="st">&quot;country&quot;</span>))</span>
-<span id="cb380-3"><a href="data.html#cb380-3" aria-hidden="true" tabindex="-1"></a>data_bip_gini_full_join</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="data.html#cb384-1" aria-hidden="true" tabindex="-1"></a>data_bip_gini_full_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">full_join</span>(</span>
+<span id="cb384-2"><a href="data.html#cb384-2" aria-hidden="true" tabindex="-1"></a>  data_BIP, data_gini, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Jahr&quot;</span><span class="ot">=</span><span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span><span class="ot">=</span><span class="st">&quot;country&quot;</span>))</span>
+<span id="cb384-3"><a href="data.html#cb384-3" aria-hidden="true" tabindex="-1"></a>data_bip_gini_full_join</span></code></pre></div>
 <pre><code>#&gt;   Jahr Land BIP Gini
 #&gt; 1 2010  DEU   1    1
 #&gt; 2 2011  DEU   2    2
@@ -1849,9 +1885,9 @@ enthält, für die es auch in <code>y</code> einen entsprechenden Wert gibt.
 Der resultierende Datensatz enthält aber <em>nur die Spalten vom linken Datensatz</em>
 (<code>x</code>). Das kann hilfreich sein, wenn der Datensatz <code>x</code> deutlich kleiner ist und
 Sie in <code>x</code> keinerlei fehlende Werte haben wollen:</p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="data.html#cb382-1" aria-hidden="true" tabindex="-1"></a>data_bip_gini_semi_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">semi_join</span>(</span>
-<span id="cb382-2"><a href="data.html#cb382-2" aria-hidden="true" tabindex="-1"></a>  data_BIP, data_gini, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Jahr&quot;</span><span class="ot">=</span><span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span><span class="ot">=</span><span class="st">&quot;country&quot;</span>))</span>
-<span id="cb382-3"><a href="data.html#cb382-3" aria-hidden="true" tabindex="-1"></a>data_bip_gini_semi_join</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="data.html#cb386-1" aria-hidden="true" tabindex="-1"></a>data_bip_gini_semi_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">semi_join</span>(</span>
+<span id="cb386-2"><a href="data.html#cb386-2" aria-hidden="true" tabindex="-1"></a>  data_BIP, data_gini, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Jahr&quot;</span><span class="ot">=</span><span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span><span class="ot">=</span><span class="st">&quot;country&quot;</span>))</span>
+<span id="cb386-3"><a href="data.html#cb386-3" aria-hidden="true" tabindex="-1"></a>data_bip_gini_semi_join</span></code></pre></div>
 <pre><code>#&gt;   Jahr Land BIP
 #&gt; 1 2010  DEU   1
 #&gt; 2 2011  DEU   2
@@ -1860,9 +1896,9 @@ Sie in <code>x</code> keinerlei fehlende Werte haben wollen:</p>
 genau wie <code>semi_join()</code> produziert es einen Datensatz, der nur die Spalten von
 <code>x</code> enthält, und zwar diese, für die es in <code>y</code> <strong>keinen</strong> entsprechenden Wert
 gibt:</p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="data.html#cb384-1" aria-hidden="true" tabindex="-1"></a>data_bip_gini_anti_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">anti_join</span>(</span>
-<span id="cb384-2"><a href="data.html#cb384-2" aria-hidden="true" tabindex="-1"></a>  data_BIP, data_gini, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Jahr&quot;</span><span class="ot">=</span><span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span><span class="ot">=</span><span class="st">&quot;country&quot;</span>))</span>
-<span id="cb384-3"><a href="data.html#cb384-3" aria-hidden="true" tabindex="-1"></a>data_bip_gini_anti_join</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="data.html#cb388-1" aria-hidden="true" tabindex="-1"></a>data_bip_gini_anti_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">anti_join</span>(</span>
+<span id="cb388-2"><a href="data.html#cb388-2" aria-hidden="true" tabindex="-1"></a>  data_BIP, data_gini, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Jahr&quot;</span><span class="ot">=</span><span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span><span class="ot">=</span><span class="st">&quot;country&quot;</span>))</span>
+<span id="cb388-3"><a href="data.html#cb388-3" aria-hidden="true" tabindex="-1"></a>data_bip_gini_anti_join</span></code></pre></div>
 <pre><code>#&gt;   Jahr Land BIP
 #&gt; 1 2012  DEU   3
 #&gt; 2 2010  AUT   4
@@ -1870,11 +1906,11 @@ gibt:</p>
 <p>Zum Schluss kommen wir mit <code>dplyr::nest_join()</code> zu der komplexesten Funktion in der
 <code>*_join()</code>-Familie.
 Hier wird für jede Zeile im linken Datensatz in einer neuen Spalte ein ganzer
-<code>data.frame</code><a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a> hinzugefügt,
+<code>data.frame</code><a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a> hinzugefügt,
 der alle Zeilen vom rechten Datensatz enthält, die zu der entsprechenden linken Zeile passen:</p>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="data.html#cb386-1" aria-hidden="true" tabindex="-1"></a>data_bip_gini_nest_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">nest_join</span>(</span>
-<span id="cb386-2"><a href="data.html#cb386-2" aria-hidden="true" tabindex="-1"></a>  data_BIP, data_gini, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Jahr&quot;</span><span class="ot">=</span><span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span><span class="ot">=</span><span class="st">&quot;country&quot;</span>))</span>
-<span id="cb386-3"><a href="data.html#cb386-3" aria-hidden="true" tabindex="-1"></a>data_bip_gini_nest_join</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="data.html#cb390-1" aria-hidden="true" tabindex="-1"></a>data_bip_gini_nest_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">nest_join</span>(</span>
+<span id="cb390-2"><a href="data.html#cb390-2" aria-hidden="true" tabindex="-1"></a>  data_BIP, data_gini, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Jahr&quot;</span><span class="ot">=</span><span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span><span class="ot">=</span><span class="st">&quot;country&quot;</span>))</span>
+<span id="cb390-3"><a href="data.html#cb390-3" aria-hidden="true" tabindex="-1"></a>data_bip_gini_nest_join</span></code></pre></div>
 <pre><code>#&gt;   Jahr Land BIP data_gini
 #&gt; 1 2010  DEU   1         1
 #&gt; 2 2011  DEU   2         2
@@ -1883,10 +1919,10 @@ der alle Zeilen vom rechten Datensatz enthält, die zu der entsprechenden linken
 #&gt; 5 2011  AUT   5          
 #&gt; 6 2012  AUT   6         3</code></pre>
 <p>In der Spalte <code>y</code> finden sich nun also sechs Data Frames (einer pro Zeile):</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="data.html#cb388-1" aria-hidden="true" tabindex="-1"></a>data_bip_gini_nest_join[[<span class="st">&quot;y&quot;</span>]] <span class="co"># die neue Spalte</span></span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="data.html#cb392-1" aria-hidden="true" tabindex="-1"></a>data_bip_gini_nest_join[[<span class="st">&quot;y&quot;</span>]] <span class="co"># die neue Spalte</span></span></code></pre></div>
 <pre><code>#&gt; NULL</code></pre>
 <p>Jedes einzelne Element der Spalte <code>y</code> ist dabei ein eigener <code>data.frame</code>:</p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="data.html#cb390-1" aria-hidden="true" tabindex="-1"></a>data_bip_gini_nest_join[[<span class="st">&quot;y&quot;</span>]][[<span class="dv">1</span>]] <span class="co"># erste Zeile der neuen Spalte</span></span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="data.html#cb394-1" aria-hidden="true" tabindex="-1"></a>data_bip_gini_nest_join[[<span class="st">&quot;y&quot;</span>]][[<span class="dv">1</span>]] <span class="co"># erste Zeile der neuen Spalte</span></span></code></pre></div>
 <pre><code>#&gt; NULL</code></pre>
 <p>Das bedeutet, dass zur ersten Zeile des Datensatzes <code>data_BIP</code> aus dem Datensatz
 <code>data_gini</code> genau eine Spalte passt und diese Spalte den Wert <code>1</code> enthält.</p>
@@ -1905,12 +1941,12 @@ Zwar geben sie zur Info eine Warnung aus, aber Sie sollten das trotzdem
 immer vermeiden und möglichst explizit sein.
 Daher sollte <code>by</code> immer explizit gesetzt werden!
 Ansonsten erhalten Sie (ohne Warnung) solche ungewünschten Ergebnisse:</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="data.html#cb392-1" aria-hidden="true" tabindex="-1"></a>debt_data_IWF <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb392-2"><a href="data.html#cb392-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Land=</span><span class="fu">c</span>(<span class="st">&quot;DEU&quot;</span>, <span class="st">&quot;GRC&quot;</span>), <span class="at">Schulden=</span><span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">50</span>))</span>
-<span id="cb392-3"><a href="data.html#cb392-3" aria-hidden="true" tabindex="-1"></a>debt_data_WELTBANK <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb392-4"><a href="data.html#cb392-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Land=</span><span class="fu">c</span>(<span class="st">&quot;GRC&quot;</span>, <span class="st">&quot;DEU&quot;</span>), <span class="at">Schulden=</span><span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">25</span>))</span>
-<span id="cb392-5"><a href="data.html#cb392-5" aria-hidden="true" tabindex="-1"></a>debt_data <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">full_join</span>(debt_data_IWF, debt_data_WELTBANK)</span>
-<span id="cb392-6"><a href="data.html#cb392-6" aria-hidden="true" tabindex="-1"></a>debt_data</span></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="data.html#cb396-1" aria-hidden="true" tabindex="-1"></a>debt_data_IWF <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb396-2"><a href="data.html#cb396-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Land=</span><span class="fu">c</span>(<span class="st">&quot;DEU&quot;</span>, <span class="st">&quot;GRC&quot;</span>), <span class="at">Schulden=</span><span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">50</span>))</span>
+<span id="cb396-3"><a href="data.html#cb396-3" aria-hidden="true" tabindex="-1"></a>debt_data_WELTBANK <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb396-4"><a href="data.html#cb396-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Land=</span><span class="fu">c</span>(<span class="st">&quot;GRC&quot;</span>, <span class="st">&quot;DEU&quot;</span>), <span class="at">Schulden=</span><span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">25</span>))</span>
+<span id="cb396-5"><a href="data.html#cb396-5" aria-hidden="true" tabindex="-1"></a>debt_data <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">full_join</span>(debt_data_IWF, debt_data_WELTBANK)</span>
+<span id="cb396-6"><a href="data.html#cb396-6" aria-hidden="true" tabindex="-1"></a>debt_data</span></code></pre></div>
 <pre><code>#&gt;   Land Schulden
 #&gt; 1  DEU       10
 #&gt; 2  GRC       50
@@ -1924,29 +1960,29 @@ Datensatz voneinander abzugrenzen. Standardmäßig ist dieses Argument auf
 <code>.x, .y</code> eingestellt. Das bedeutet, dass wenn beide Datensätze eine Spalte <code>Schulden</code>
 haben, diese aber nicht als ID-Spalte verwendet wird, beide Spalten als
 <code>Schulden.x</code> und <code>Schulden.y</code> in den gemeinsamen Datensatz aufgenommen werden:</p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="data.html#cb394-1" aria-hidden="true" tabindex="-1"></a>debt_data_IWF <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb394-2"><a href="data.html#cb394-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Land=</span><span class="fu">c</span>(<span class="st">&quot;DEU&quot;</span>, <span class="st">&quot;GRC&quot;</span>), <span class="at">Schulden=</span><span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">50</span>))</span>
-<span id="cb394-3"><a href="data.html#cb394-3" aria-hidden="true" tabindex="-1"></a>debt_data_WELTBANK <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb394-4"><a href="data.html#cb394-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Land=</span><span class="fu">c</span>(<span class="st">&quot;GRC&quot;</span>, <span class="st">&quot;DEU&quot;</span>), <span class="at">Schulden=</span><span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">25</span>))</span>
-<span id="cb394-5"><a href="data.html#cb394-5" aria-hidden="true" tabindex="-1"></a>debt_data <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">full_join</span>(</span>
-<span id="cb394-6"><a href="data.html#cb394-6" aria-hidden="true" tabindex="-1"></a>  debt_data_IWF, debt_data_WELTBANK, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>))</span>
-<span id="cb394-7"><a href="data.html#cb394-7" aria-hidden="true" tabindex="-1"></a>debt_data</span></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="data.html#cb398-1" aria-hidden="true" tabindex="-1"></a>debt_data_IWF <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb398-2"><a href="data.html#cb398-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Land=</span><span class="fu">c</span>(<span class="st">&quot;DEU&quot;</span>, <span class="st">&quot;GRC&quot;</span>), <span class="at">Schulden=</span><span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">50</span>))</span>
+<span id="cb398-3"><a href="data.html#cb398-3" aria-hidden="true" tabindex="-1"></a>debt_data_WELTBANK <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb398-4"><a href="data.html#cb398-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Land=</span><span class="fu">c</span>(<span class="st">&quot;GRC&quot;</span>, <span class="st">&quot;DEU&quot;</span>), <span class="at">Schulden=</span><span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">25</span>))</span>
+<span id="cb398-5"><a href="data.html#cb398-5" aria-hidden="true" tabindex="-1"></a>debt_data <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">full_join</span>(</span>
+<span id="cb398-6"><a href="data.html#cb398-6" aria-hidden="true" tabindex="-1"></a>  debt_data_IWF, debt_data_WELTBANK, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>))</span>
+<span id="cb398-7"><a href="data.html#cb398-7" aria-hidden="true" tabindex="-1"></a>debt_data</span></code></pre></div>
 <pre><code>#&gt;   Land Schulden.x Schulden.y
 #&gt; 1  DEU         10         25
 #&gt; 2  GRC         50        100</code></pre>
 <p>Oder wir geben für den finalen Datensatz ein explizites <code>suffix</code> an, damit die
 Variablennamen aussagekräftig werden:</p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="data.html#cb396-1" aria-hidden="true" tabindex="-1"></a>debt_data <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">full_join</span>(</span>
-<span id="cb396-2"><a href="data.html#cb396-2" aria-hidden="true" tabindex="-1"></a>  debt_data_IWF, debt_data_WELTBANK, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>), </span>
-<span id="cb396-3"><a href="data.html#cb396-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">suffix=</span><span class="fu">c</span>(<span class="st">&quot;.IWF&quot;</span>, <span class="st">&quot;.WELTBANK&quot;</span>))</span>
-<span id="cb396-4"><a href="data.html#cb396-4" aria-hidden="true" tabindex="-1"></a>debt_data</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="data.html#cb400-1" aria-hidden="true" tabindex="-1"></a>debt_data <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">full_join</span>(</span>
+<span id="cb400-2"><a href="data.html#cb400-2" aria-hidden="true" tabindex="-1"></a>  debt_data_IWF, debt_data_WELTBANK, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>), </span>
+<span id="cb400-3"><a href="data.html#cb400-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">suffix=</span><span class="fu">c</span>(<span class="st">&quot;.IWF&quot;</span>, <span class="st">&quot;.WELTBANK&quot;</span>))</span>
+<span id="cb400-4"><a href="data.html#cb400-4" aria-hidden="true" tabindex="-1"></a>debt_data</span></code></pre></div>
 <pre><code>#&gt;   Land Schulden.IWF Schulden.WELTBANK
 #&gt; 1  DEU           10                25
 #&gt; 2  GRC           50               100</code></pre>
 <p>Tabelle <a href="data.html#tab:joins">4.3</a> fasst die gerade diskutierten Funktionen noch einmal
 zusammen.</p>
 <table>
-<caption><span id="tab:joins">Table 4.3: </span> Überblick zu den Funktionen der <code>*_join()</code>-Familie des Pakets <code>dplyr</code>. ‘DS’ steht für ‘Datensatz,’ mit <code>x</code> ist der linke und mit<code>y</code> der rechte Datensatz gemeint, wie in den Argumenten von <code>*_join()</code>.</caption>
+<caption><span id="tab:joins">Tabelle 4.3: </span> Überblick zu den Funktionen der <code>*_join()</code>-Familie des Pakets <code>dplyr</code>. ‘DS’ steht für ‘Datensatz’, mit <code>x</code> ist der linke und mit<code>y</code> der rechte Datensatz gemeint, wie in den Argumenten von <code>*_join()</code>.</caption>
 <colgroup>
 <col width="15%" />
 <col width="40%" />
@@ -2010,39 +2046,39 @@ herum häufig Duplikate auf. Damit kann man umgehen, man muss es aber erst einma
 merken. Ich benutze z.B. immer die folgende selbst geschriebene Funktion um zu
 überprüfen ob es in einem neu generierten Datensatz Duplikate gibt:</p>
 </blockquote>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="data.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Test uniqueness of data table</span></span>
-<span id="cb398-2"><a href="data.html#cb398-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
-<span id="cb398-3"><a href="data.html#cb398-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Tests whether a data.table has unique rows.</span></span>
-<span id="cb398-4"><a href="data.html#cb398-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
-<span id="cb398-5"><a href="data.html#cb398-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param data_table A data frame or data table of which uniqueness should</span></span>
-<span id="cb398-6"><a href="data.html#cb398-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;  be tested.</span></span>
-<span id="cb398-7"><a href="data.html#cb398-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param index_vars Vector of strings, which specify the columns of</span></span>
-<span id="cb398-8"><a href="data.html#cb398-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;  data_table according to which uniqueness should be tested</span></span>
-<span id="cb398-9"><a href="data.html#cb398-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;  (e.g. country and year).</span></span>
-<span id="cb398-10"><a href="data.html#cb398-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return TRUE if data_table is unique, FALSE and a warning if it is not.</span></span>
-<span id="cb398-11"><a href="data.html#cb398-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @import data.table</span></span>
-<span id="cb398-12"><a href="data.html#cb398-12" aria-hidden="true" tabindex="-1"></a>test_uniqueness <span class="ot">&lt;-</span> <span class="cf">function</span>(data_table, index_vars, <span class="at">print_pos=</span><span class="cn">TRUE</span>){</span>
-<span id="cb398-13"><a href="data.html#cb398-13" aria-hidden="true" tabindex="-1"></a>  data_table <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">as.data.table</span>(data_table)</span>
-<span id="cb398-14"><a href="data.html#cb398-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">nrow</span>(data_table)<span class="sc">!=</span>data.table<span class="sc">::</span><span class="fu">uniqueN</span>(data_table, <span class="at">by =</span> index_vars)){</span>
-<span id="cb398-15"><a href="data.html#cb398-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="fu">paste0</span>(<span class="st">&quot;Rows in the data.table: &quot;</span>, <span class="fu">nrow</span>(data_table),</span>
-<span id="cb398-16"><a href="data.html#cb398-16" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;, rows in the unique data.table:&quot;</span>,</span>
-<span id="cb398-17"><a href="data.html#cb398-17" aria-hidden="true" tabindex="-1"></a>                   data.table<span class="sc">::</span><span class="fu">uniqueN</span>(data_table, <span class="at">by =</span> index_vars)))</span>
-<span id="cb398-18"><a href="data.html#cb398-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">FALSE</span>)</span>
-<span id="cb398-19"><a href="data.html#cb398-19" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb398-20"><a href="data.html#cb398-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (print_pos){</span>
-<span id="cb398-21"><a href="data.html#cb398-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;No duplicates in &quot;</span>, <span class="fu">as.list</span>(<span class="fu">sys.call</span>()[[<span class="dv">2</span>]])))</span>
-<span id="cb398-22"><a href="data.html#cb398-22" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb398-23"><a href="data.html#cb398-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">TRUE</span>)</span>
-<span id="cb398-24"><a href="data.html#cb398-24" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb398-25"><a href="data.html#cb398-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="data.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Test uniqueness of data table</span></span>
+<span id="cb402-2"><a href="data.html#cb402-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb402-3"><a href="data.html#cb402-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Tests whether a data.table has unique rows.</span></span>
+<span id="cb402-4"><a href="data.html#cb402-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb402-5"><a href="data.html#cb402-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param data_table A data frame or data table of which uniqueness should</span></span>
+<span id="cb402-6"><a href="data.html#cb402-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;  be tested.</span></span>
+<span id="cb402-7"><a href="data.html#cb402-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param index_vars Vector of strings, which specify the columns of</span></span>
+<span id="cb402-8"><a href="data.html#cb402-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;  data_table according to which uniqueness should be tested</span></span>
+<span id="cb402-9"><a href="data.html#cb402-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;  (e.g. country and year).</span></span>
+<span id="cb402-10"><a href="data.html#cb402-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return TRUE if data_table is unique, FALSE and a warning if it is not.</span></span>
+<span id="cb402-11"><a href="data.html#cb402-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @import data.table</span></span>
+<span id="cb402-12"><a href="data.html#cb402-12" aria-hidden="true" tabindex="-1"></a>test_uniqueness <span class="ot">&lt;-</span> <span class="cf">function</span>(data_table, index_vars, <span class="at">print_pos=</span><span class="cn">TRUE</span>){</span>
+<span id="cb402-13"><a href="data.html#cb402-13" aria-hidden="true" tabindex="-1"></a>  data_table <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">as.data.table</span>(data_table)</span>
+<span id="cb402-14"><a href="data.html#cb402-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">nrow</span>(data_table)<span class="sc">!=</span>data.table<span class="sc">::</span><span class="fu">uniqueN</span>(data_table, <span class="at">by =</span> index_vars)){</span>
+<span id="cb402-15"><a href="data.html#cb402-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="fu">paste0</span>(<span class="st">&quot;Rows in the data.table: &quot;</span>, <span class="fu">nrow</span>(data_table),</span>
+<span id="cb402-16"><a href="data.html#cb402-16" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;, rows in the unique data.table:&quot;</span>,</span>
+<span id="cb402-17"><a href="data.html#cb402-17" aria-hidden="true" tabindex="-1"></a>                   data.table<span class="sc">::</span><span class="fu">uniqueN</span>(data_table, <span class="at">by =</span> index_vars)))</span>
+<span id="cb402-18"><a href="data.html#cb402-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">FALSE</span>)</span>
+<span id="cb402-19"><a href="data.html#cb402-19" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb402-20"><a href="data.html#cb402-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (print_pos){</span>
+<span id="cb402-21"><a href="data.html#cb402-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;No duplicates in &quot;</span>, <span class="fu">as.list</span>(<span class="fu">sys.call</span>()[[<span class="dv">2</span>]])))</span>
+<span id="cb402-22"><a href="data.html#cb402-22" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb402-23"><a href="data.html#cb402-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">TRUE</span>)</span>
+<span id="cb402-24"><a href="data.html#cb402-24" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb402-25"><a href="data.html#cb402-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <blockquote>
 <p>Hier ein kleines Anwendungsbeispiel:</p>
 </blockquote>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="data.html#cb399-1" aria-hidden="true" tabindex="-1"></a>data_bip_gini_full_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">full_join</span>(</span>
-<span id="cb399-2"><a href="data.html#cb399-2" aria-hidden="true" tabindex="-1"></a>  data_BIP, data_gini, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Jahr&quot;</span><span class="ot">=</span><span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span><span class="ot">=</span><span class="st">&quot;country&quot;</span>))</span>
-<span id="cb399-3"><a href="data.html#cb399-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb399-4"><a href="data.html#cb399-4" aria-hidden="true" tabindex="-1"></a><span class="fu">test_uniqueness</span>(</span>
-<span id="cb399-5"><a href="data.html#cb399-5" aria-hidden="true" tabindex="-1"></a>  data_bip_gini_full_join, <span class="at">index_vars =</span> <span class="fu">c</span>(<span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;Land&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="data.html#cb403-1" aria-hidden="true" tabindex="-1"></a>data_bip_gini_full_join <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">full_join</span>(</span>
+<span id="cb403-2"><a href="data.html#cb403-2" aria-hidden="true" tabindex="-1"></a>  data_BIP, data_gini, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Jahr&quot;</span><span class="ot">=</span><span class="st">&quot;year&quot;</span>, <span class="st">&quot;Land&quot;</span><span class="ot">=</span><span class="st">&quot;country&quot;</span>))</span>
+<span id="cb403-3"><a href="data.html#cb403-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb403-4"><a href="data.html#cb403-4" aria-hidden="true" tabindex="-1"></a><span class="fu">test_uniqueness</span>(</span>
+<span id="cb403-5"><a href="data.html#cb403-5" aria-hidden="true" tabindex="-1"></a>  data_bip_gini_full_join, <span class="at">index_vars =</span> <span class="fu">c</span>(<span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;Land&quot;</span>))</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;No duplicates in data_bip_gini_full_join&quot;</code></pre>
 <pre><code>#&gt; [1] TRUE</code></pre>
 <blockquote>
@@ -2052,30 +2088,30 @@ aber die <code>countrycode</code> Funktion differenziert nicht zwischen den Name
 sie in Ländercodes übersetzen. In der Folge entstehen Duplikate, die beim
 Zusammenführen der Daten dann offensichtlich werden (können):</p>
 </blockquote>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="data.html#cb402-1" aria-hidden="true" tabindex="-1"></a>bip_data</span></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="data.html#cb406-1" aria-hidden="true" tabindex="-1"></a>bip_data</span></code></pre></div>
 <pre><code>#&gt;   Land Jahr BIP
 #&gt; 1  DEU 1989   1
 #&gt; 2  DEU 1990   2
 #&gt; 3  DEU 1991   3</code></pre>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="data.html#cb404-1" aria-hidden="true" tabindex="-1"></a>gini_data</span></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="data.html#cb408-1" aria-hidden="true" tabindex="-1"></a>gini_data</span></code></pre></div>
 <pre><code>#&gt;           Land Jahr Gini
 #&gt; 1 West Germany 1989    1
 #&gt; 2      Germany 1989    2
 #&gt; 3 West Germany 1990    3
 #&gt; 4      Germany 1990    4
 #&gt; 5      Germany 1991    5</code></pre>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="data.html#cb406-1" aria-hidden="true" tabindex="-1"></a>gini_data <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb406-2"><a href="data.html#cb406-2" aria-hidden="true" tabindex="-1"></a>  gini_data, <span class="at">Land=</span><span class="fu">countrycode</span>(Land, <span class="st">&quot;country.name&quot;</span>, <span class="st">&quot;iso3c&quot;</span>))</span>
-<span id="cb406-3"><a href="data.html#cb406-3" aria-hidden="true" tabindex="-1"></a>full_data <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">full_join</span>(</span>
-<span id="cb406-4"><a href="data.html#cb406-4" aria-hidden="true" tabindex="-1"></a>  bip_data, gini_data, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>))</span>
-<span id="cb406-5"><a href="data.html#cb406-5" aria-hidden="true" tabindex="-1"></a>full_data</span></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="data.html#cb410-1" aria-hidden="true" tabindex="-1"></a>gini_data <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb410-2"><a href="data.html#cb410-2" aria-hidden="true" tabindex="-1"></a>  gini_data, <span class="at">Land=</span><span class="fu">countrycode</span>(Land, <span class="st">&quot;country.name&quot;</span>, <span class="st">&quot;iso3c&quot;</span>))</span>
+<span id="cb410-3"><a href="data.html#cb410-3" aria-hidden="true" tabindex="-1"></a>full_data <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">full_join</span>(</span>
+<span id="cb410-4"><a href="data.html#cb410-4" aria-hidden="true" tabindex="-1"></a>  bip_data, gini_data, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>))</span>
+<span id="cb410-5"><a href="data.html#cb410-5" aria-hidden="true" tabindex="-1"></a>full_data</span></code></pre></div>
 <pre><code>#&gt;   Land Jahr BIP Gini
 #&gt; 1  DEU 1989   1    1
 #&gt; 2  DEU 1989   1    2
 #&gt; 3  DEU 1990   2    3
 #&gt; 4  DEU 1990   2    4
 #&gt; 5  DEU 1991   3    5</code></pre>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="data.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_uniqueness</span>(full_data, <span class="at">index_vars =</span> <span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="data.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_uniqueness</span>(full_data, <span class="at">index_vars =</span> <span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>))</span></code></pre></div>
 <pre><code>#&gt; [1] FALSE</code></pre>
 <blockquote>
 <p><strong>Alternative in data.table:</strong> Eine Anleitung für das Zusammenführen von
@@ -2095,7 +2131,7 @@ In diesem Fall sprechen wir von <em>filtern</em>.</p>
 <code>select()</code> aus dem Paket <code>dplyr</code>, welches auch Teil des <code>tidyverse</code> ist, lösen
 können.</p>
 <p>Betrachten wir folgenden Beispieldatensatz:</p>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="data.html#cb410-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_tidy</span></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="data.html#cb414-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_tidy</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 6 x 4
 #&gt;   Land  Jahr  Exporte Arbeitslosigkeit
 #&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;            &lt;dbl&gt;
@@ -2110,17 +2146,17 @@ Diese verlangt als erstes Argument den zu manipulierenden Datensatz und
 danach die Namen oder Indices der Spalten, die behalten oder eliminiert
 werden sollen. Spalten die behalten werden sollen werden einfach benannt,
 bei Spalten, die eliminiert werden sollen schreiben Sie ein <code>-</code> vor den Namen:</p>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="data.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(</span>
-<span id="cb412-2"><a href="data.html#cb412-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(data_al_exp_tidy, Land, Exporte), </span>
-<span id="cb412-3"><a href="data.html#cb412-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="data.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(</span>
+<span id="cb416-2"><a href="data.html#cb416-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(data_al_exp_tidy, Land, Exporte), </span>
+<span id="cb416-3"><a href="data.html#cb416-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 2
 #&gt;   Land  Exporte
 #&gt;   &lt;chr&gt;   &lt;dbl&gt;
 #&gt; 1 AT       54.0
 #&gt; 2 AT       53.4</code></pre>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="data.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(</span>
-<span id="cb414-2"><a href="data.html#cb414-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(data_al_exp_tidy, <span class="sc">-</span>Exporte), </span>
-<span id="cb414-3"><a href="data.html#cb414-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="data.html#cb418-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(</span>
+<span id="cb418-2"><a href="data.html#cb418-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(data_al_exp_tidy, <span class="sc">-</span>Exporte), </span>
+<span id="cb418-3"><a href="data.html#cb418-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 3
 #&gt;   Land  Jahr  Arbeitslosigkeit
 #&gt;   &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
@@ -2131,17 +2167,17 @@ Das ist nicht nur besser lesbar, es wird später auch einfacher komplexere
 Vorgänge zu programmieren indem Sie Funktionen schreiben, die den Namen von
 Spalten als Argumente akzeptieren.
 In diesem Fall können Sie wieder die Hilfsfunktion <code>any_of()</code> verwenden:</p>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="data.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(</span>
-<span id="cb416-2"><a href="data.html#cb416-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(data_al_exp_tidy, <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>))), </span>
-<span id="cb416-3"><a href="data.html#cb416-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="data.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(</span>
+<span id="cb420-2"><a href="data.html#cb420-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(data_al_exp_tidy, <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>))), </span>
+<span id="cb420-3"><a href="data.html#cb420-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 2
 #&gt;   Land  Jahr 
 #&gt;   &lt;chr&gt; &lt;chr&gt;
 #&gt; 1 AT    2012 
 #&gt; 2 AT    2013</code></pre>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="data.html#cb418-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(</span>
-<span id="cb418-2"><a href="data.html#cb418-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(data_al_exp_tidy, <span class="sc">-</span><span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>))), </span>
-<span id="cb418-3"><a href="data.html#cb418-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="data.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(</span>
+<span id="cb422-2"><a href="data.html#cb422-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(data_al_exp_tidy, <span class="sc">-</span><span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>))), </span>
+<span id="cb422-3"><a href="data.html#cb422-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 2
 #&gt;   Exporte Arbeitslosigkeit
 #&gt;     &lt;dbl&gt;            &lt;dbl&gt;
@@ -2161,9 +2197,9 @@ bietet sich in solchen Fällen die Pipe <code>%&gt;%</code> an um Ihren Code zu 
 besser lesbar zu machen. Es hat sich eingebürgert in die erste Zeile immer den
 Ausgangsdatensatz zu schreiben und select dann in der nächsten Zeile mit implizitem
 ersten Argument zu verwenden:</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="data.html#cb420-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_selected <span class="ot">&lt;-</span> data_al_exp_tidy <span class="sc">%&gt;%</span></span>
-<span id="cb420-2"><a href="data.html#cb420-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;Exporte&quot;</span>)))</span>
-<span id="cb420-3"><a href="data.html#cb420-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_al_exp_selected, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="data.html#cb424-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_selected <span class="ot">&lt;-</span> data_al_exp_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb424-2"><a href="data.html#cb424-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;Land&quot;</span>, <span class="st">&quot;Jahr&quot;</span>, <span class="st">&quot;Exporte&quot;</span>)))</span>
+<span id="cb424-3"><a href="data.html#cb424-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_al_exp_selected, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 3
 #&gt;   Land  Jahr  Exporte
 #&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;
@@ -2179,11 +2215,11 @@ Danach können wir beliebig viele logische Abfragen, jeweils durch Komma getrenn
 an die Funktion übergeben.
 Wenn wir z.B. nur Beobachtungen für Österreich nach 2012 im Datensatz belassen
 wollen geht das mit:</p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="data.html#cb422-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_filtered <span class="ot">&lt;-</span> data_al_exp_tidy <span class="sc">%&gt;%</span></span>
-<span id="cb422-2"><a href="data.html#cb422-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
-<span id="cb422-3"><a href="data.html#cb422-3" aria-hidden="true" tabindex="-1"></a>    Land <span class="sc">==</span> <span class="st">&quot;AT&quot;</span>,</span>
-<span id="cb422-4"><a href="data.html#cb422-4" aria-hidden="true" tabindex="-1"></a>    Jahr <span class="sc">&gt;</span> <span class="dv">2012</span>)</span>
-<span id="cb422-5"><a href="data.html#cb422-5" aria-hidden="true" tabindex="-1"></a>data_al_exp_filtered</span></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="data.html#cb426-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_filtered <span class="ot">&lt;-</span> data_al_exp_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb426-2"><a href="data.html#cb426-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb426-3"><a href="data.html#cb426-3" aria-hidden="true" tabindex="-1"></a>    Land <span class="sc">==</span> <span class="st">&quot;AT&quot;</span>,</span>
+<span id="cb426-4"><a href="data.html#cb426-4" aria-hidden="true" tabindex="-1"></a>    Jahr <span class="sc">&gt;</span> <span class="dv">2012</span>)</span>
+<span id="cb426-5"><a href="data.html#cb426-5" aria-hidden="true" tabindex="-1"></a>data_al_exp_filtered</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 4
 #&gt;   Land  Jahr  Exporte Arbeitslosigkeit
 #&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;            &lt;dbl&gt;
@@ -2194,11 +2230,11 @@ komplizierte logische Abfragen einbauen. Wenn wir z.B. nur Beobachtungen wollen,
 die für Österreich im Jahr 2012 oder 2014 und für Deutschland 2013 erhoben wurden
 und in Deutschland zudem mit einer Arbeitslosigkeit über 5.3 % einhergehen,
 geht das mit:</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="data.html#cb424-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_filtered <span class="ot">&lt;-</span> data_al_exp_tidy <span class="sc">%&gt;%</span></span>
-<span id="cb424-2"><a href="data.html#cb424-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
-<span id="cb424-3"><a href="data.html#cb424-3" aria-hidden="true" tabindex="-1"></a>    (Land <span class="sc">==</span> <span class="st">&quot;AT&quot;</span> <span class="sc">&amp;</span> Jahr <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2012</span>, <span class="dv">2014</span>)) <span class="sc">|</span> (Land<span class="sc">==</span><span class="st">&quot;DE&quot;</span> <span class="sc">&amp;</span> Arbeitslosigkeit<span class="sc">&gt;</span><span class="fl">5.3</span>)</span>
-<span id="cb424-4"><a href="data.html#cb424-4" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb424-5"><a href="data.html#cb424-5" aria-hidden="true" tabindex="-1"></a>data_al_exp_filtered</span></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="data.html#cb428-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_filtered <span class="ot">&lt;-</span> data_al_exp_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb428-2"><a href="data.html#cb428-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb428-3"><a href="data.html#cb428-3" aria-hidden="true" tabindex="-1"></a>    (Land <span class="sc">==</span> <span class="st">&quot;AT&quot;</span> <span class="sc">&amp;</span> Jahr <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2012</span>, <span class="dv">2014</span>)) <span class="sc">|</span> (Land<span class="sc">==</span><span class="st">&quot;DE&quot;</span> <span class="sc">&amp;</span> Arbeitslosigkeit<span class="sc">&gt;</span><span class="fl">5.3</span>)</span>
+<span id="cb428-4"><a href="data.html#cb428-4" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb428-5"><a href="data.html#cb428-5" aria-hidden="true" tabindex="-1"></a>data_al_exp_filtered</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 3 x 4
 #&gt;   Land  Jahr  Exporte Arbeitslosigkeit
 #&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;            &lt;dbl&gt;
@@ -2210,12 +2246,12 @@ Das geht ganz einfach mit der Funktion <code>dplyr::rename()</code>, welche als 
 den Datensatz, und dann die Umbenennungsvorgänge in der Form <code>Name_neu = Name_alt</code>
 verlangt.</p>
 <p>Als Beispiel:</p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="data.html#cb426-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_tidy <span class="sc">%&gt;%</span></span>
-<span id="cb426-2"><a href="data.html#cb426-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(</span>
-<span id="cb426-3"><a href="data.html#cb426-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">country=</span>Land, </span>
-<span id="cb426-4"><a href="data.html#cb426-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">year_observation=</span>Jahr, </span>
-<span id="cb426-5"><a href="data.html#cb426-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">exports=</span>Exporte, </span>
-<span id="cb426-6"><a href="data.html#cb426-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">unemployment=</span>Arbeitslosigkeit)</span></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="data.html#cb430-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb430-2"><a href="data.html#cb430-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(</span>
+<span id="cb430-3"><a href="data.html#cb430-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">country=</span>Land, </span>
+<span id="cb430-4"><a href="data.html#cb430-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">year_observation=</span>Jahr, </span>
+<span id="cb430-5"><a href="data.html#cb430-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">exports=</span>Exporte, </span>
+<span id="cb430-6"><a href="data.html#cb430-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">unemployment=</span>Arbeitslosigkeit)</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 6 x 4
 #&gt;   country year_observation exports unemployment
 #&gt;   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;        &lt;dbl&gt;
@@ -2232,18 +2268,18 @@ den Code, mit dem wir</p>
 <li><p>nur die Beobachtungen für Deutschland nach 2012 betrachten und</p></li>
 <li><p>die Spaltennamen dabei noch ins Englische übersetzen:</p></li>
 </ol>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="data.html#cb428-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_tidy <span class="sc">%&gt;%</span></span>
-<span id="cb428-2"><a href="data.html#cb428-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(</span>
-<span id="cb428-3"><a href="data.html#cb428-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span><span class="fu">any_of</span>(<span class="st">&quot;Arbeitslosigkeit&quot;</span>)</span>
-<span id="cb428-4"><a href="data.html#cb428-4" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb428-5"><a href="data.html#cb428-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
-<span id="cb428-6"><a href="data.html#cb428-6" aria-hidden="true" tabindex="-1"></a>    Jahr<span class="sc">&gt;</span><span class="dv">2012</span>,</span>
-<span id="cb428-7"><a href="data.html#cb428-7" aria-hidden="true" tabindex="-1"></a>    Land<span class="sc">==</span><span class="st">&quot;DE&quot;</span></span>
-<span id="cb428-8"><a href="data.html#cb428-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb428-9"><a href="data.html#cb428-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(</span>
-<span id="cb428-10"><a href="data.html#cb428-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">country=</span>Land, </span>
-<span id="cb428-11"><a href="data.html#cb428-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">year_observation=</span>Jahr, </span>
-<span id="cb428-12"><a href="data.html#cb428-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">exports=</span>Exporte)</span></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="data.html#cb432-1" aria-hidden="true" tabindex="-1"></a>data_al_exp_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb432-2"><a href="data.html#cb432-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(</span>
+<span id="cb432-3"><a href="data.html#cb432-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span><span class="fu">any_of</span>(<span class="st">&quot;Arbeitslosigkeit&quot;</span>)</span>
+<span id="cb432-4"><a href="data.html#cb432-4" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb432-5"><a href="data.html#cb432-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb432-6"><a href="data.html#cb432-6" aria-hidden="true" tabindex="-1"></a>    Jahr<span class="sc">&gt;</span><span class="dv">2012</span>,</span>
+<span id="cb432-7"><a href="data.html#cb432-7" aria-hidden="true" tabindex="-1"></a>    Land<span class="sc">==</span><span class="st">&quot;DE&quot;</span></span>
+<span id="cb432-8"><a href="data.html#cb432-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb432-9"><a href="data.html#cb432-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(</span>
+<span id="cb432-10"><a href="data.html#cb432-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">country=</span>Land, </span>
+<span id="cb432-11"><a href="data.html#cb432-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">year_observation=</span>Jahr, </span>
+<span id="cb432-12"><a href="data.html#cb432-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">exports=</span>Exporte)</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 3
 #&gt;   country year_observation exports
 #&gt;   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;
@@ -2266,11 +2302,11 @@ Variablen berechnen oder Ihren Datensatz zusammenfassen, z.B. indem Sie über al
 Beobachtungen über die Zeit für einzelne Länder den Mittelwert bilden. Zu diesem
 Zweck werden wir hier die Funktionen <code>mutate()</code>, <code>summarise()</code> und <code>group_by()</code>
 aus dem Paket <a href="https://github.com/tidyverse/dplyr">dplyr</a>
-<span class="citation">(<a href="git.html#ref-R-dplyr" role="doc-biblioref">Wickham et al. 2019</a>)</span> verwenden.</p>
+<span class="citation">(<a href="git.html#ref-R-dplyr" role="doc-biblioref">Wickham u. a. 2019</a>)</span> verwenden.</p>
 <p>Wir verwenden <code>dplyr::mutate()</code> um bestehende Spalten zu verändern oder neue Spalten zu
 erstellen.
 Betrachten wir dafür folgenden Beispieldatensatz:</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="data.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(unemp_data_wb)</span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="data.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(unemp_data_wb)</span></code></pre></div>
 <pre><code>#&gt;    country year laborforce_female workforce_total population_total
 #&gt; 1:      AT 2010          46.13933         4276558          8363404
 #&gt; 2:      AT 2011          46.33455         4305310          8391643
@@ -2281,11 +2317,11 @@ Betrachten wir dafür folgenden Beispieldatensatz:</p>
 <p>Angenommen wir möchten das Land mit den <code>iso3c</code>-Codes anstatt der <code>iso2c</code>-Codes
 angeben, dann könnten wir mit der Funktion <code>dplyr::mutate()</code> die Spalte
 <code>country</code> ganz einfach verändern:</p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="data.html#cb432-1" aria-hidden="true" tabindex="-1"></a>unemp_data_wb2 <span class="ot">&lt;-</span> unemp_data_wb <span class="sc">%&gt;%</span></span>
-<span id="cb432-2"><a href="data.html#cb432-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb432-3"><a href="data.html#cb432-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">country =</span> countrycode<span class="sc">::</span><span class="fu">countrycode</span>(country, <span class="st">&quot;iso2c&quot;</span>, <span class="st">&quot;iso3c&quot;</span>)</span>
-<span id="cb432-4"><a href="data.html#cb432-4" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb432-5"><a href="data.html#cb432-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(unemp_data_wb, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="data.html#cb436-1" aria-hidden="true" tabindex="-1"></a>unemp_data_wb2 <span class="ot">&lt;-</span> unemp_data_wb <span class="sc">%&gt;%</span></span>
+<span id="cb436-2"><a href="data.html#cb436-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb436-3"><a href="data.html#cb436-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">country =</span> countrycode<span class="sc">::</span><span class="fu">countrycode</span>(country, <span class="st">&quot;iso2c&quot;</span>, <span class="st">&quot;iso3c&quot;</span>)</span>
+<span id="cb436-4"><a href="data.html#cb436-4" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb436-5"><a href="data.html#cb436-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(unemp_data_wb, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>#&gt;    country year laborforce_female workforce_total population_total
 #&gt; 1:      AT 2010          46.13933         4276558          8363404
 #&gt; 2:      AT 2011          46.33455         4305310          8391643</code></pre>
@@ -2303,11 +2339,11 @@ Das bedeutet, wir müssen die Spalten <code>laborforce_female</code> und <code>w
 multiplizieren und durch 100 Teilen, da laborforce_female in Prozent angegeben ist.
 Das machen wir mit der Funktion <code>dplyr::mutate()</code>, wobei wir eine neue
 Spalte mit dem Namen <code>workers_female_total</code> erstellen wollen:</p>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="data.html#cb434-1" aria-hidden="true" tabindex="-1"></a>unemp_data_wb <span class="ot">&lt;-</span> unemp_data_wb <span class="sc">%&gt;%</span></span>
-<span id="cb434-2"><a href="data.html#cb434-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb434-3"><a href="data.html#cb434-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">workers_female_total =</span> laborforce_female<span class="sc">*</span>workforce_total<span class="sc">/</span><span class="dv">100</span></span>
-<span id="cb434-4"><a href="data.html#cb434-4" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb434-5"><a href="data.html#cb434-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(unemp_data_wb, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="data.html#cb438-1" aria-hidden="true" tabindex="-1"></a>unemp_data_wb <span class="ot">&lt;-</span> unemp_data_wb <span class="sc">%&gt;%</span></span>
+<span id="cb438-2"><a href="data.html#cb438-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb438-3"><a href="data.html#cb438-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">workers_female_total =</span> laborforce_female<span class="sc">*</span>workforce_total<span class="sc">/</span><span class="dv">100</span></span>
+<span id="cb438-4"><a href="data.html#cb438-4" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb438-5"><a href="data.html#cb438-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(unemp_data_wb, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>#&gt;    country year laborforce_female workforce_total population_total
 #&gt; 1:      AT 2010          46.13933         4276558          8363404
 #&gt; 2:      AT 2011          46.33455         4305310          8391643
@@ -2320,12 +2356,12 @@ durchschnittliche Anzahl an Frauen in der Erwerbsbevölkerung berechnen.
 Das würde bedeuten, dass wir die Anzahl der Spalten in unserem Datensatz
 reduzieren - etwas das bei der Anwendung von <code>dplyr::mutate()</code> nie passieren
 würde.
-Dafür gibt es die Funktion <code>dplyr::summarise()</code>:<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a></p>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="data.html#cb436-1" aria-hidden="true" tabindex="-1"></a>unemp_data_wb_summarized <span class="ot">&lt;-</span> unemp_data_wb <span class="sc">%&gt;%</span></span>
-<span id="cb436-2"><a href="data.html#cb436-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
-<span id="cb436-3"><a href="data.html#cb436-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">fem_workers_avg =</span> <span class="fu">mean</span>(workers_female_total)</span>
-<span id="cb436-4"><a href="data.html#cb436-4" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb436-5"><a href="data.html#cb436-5" aria-hidden="true" tabindex="-1"></a>unemp_data_wb_summarized</span></code></pre></div>
+Dafür gibt es die Funktion <code>dplyr::summarise()</code>:<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a></p>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="data.html#cb440-1" aria-hidden="true" tabindex="-1"></a>unemp_data_wb_summarized <span class="ot">&lt;-</span> unemp_data_wb <span class="sc">%&gt;%</span></span>
+<span id="cb440-2"><a href="data.html#cb440-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb440-3"><a href="data.html#cb440-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">fem_workers_avg =</span> <span class="fu">mean</span>(workers_female_total)</span>
+<span id="cb440-4"><a href="data.html#cb440-4" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb440-5"><a href="data.html#cb440-5" aria-hidden="true" tabindex="-1"></a>unemp_data_wb_summarized</span></code></pre></div>
 <pre><code>#&gt;   fem_workers_avg
 #&gt; 1        10761223</code></pre>
 <p>Wie Sie sehen, funktioniert die Syntax quasi äquivalent zu <code>dplyr::mutate()</code>, allerdings
@@ -2340,12 +2376,12 @@ Das funktioniert mit der Funktion <code>dplyr::group_by()</code>, die als Argume
 Spalten, nach denen wir gruppieren wollen, akzeptiert.
 Sie sollten sich in jedem Fall angewöhnen, nach dem Gruppieren den Datensatz mit
 <code>dplyr::ungroup()</code> wieder in den ursprünglichen Zustand zurückzuführen:</p>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="data.html#cb438-1" aria-hidden="true" tabindex="-1"></a>unemp_data_wb <span class="sc">%&gt;%</span></span>
-<span id="cb438-2"><a href="data.html#cb438-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
-<span id="cb438-3"><a href="data.html#cb438-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
-<span id="cb438-4"><a href="data.html#cb438-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fem_workers_avg =</span> <span class="fu">mean</span>(workers_female_total)</span>
-<span id="cb438-5"><a href="data.html#cb438-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb438-6"><a href="data.html#cb438-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="data.html#cb442-1" aria-hidden="true" tabindex="-1"></a>unemp_data_wb <span class="sc">%&gt;%</span></span>
+<span id="cb442-2"><a href="data.html#cb442-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb442-3"><a href="data.html#cb442-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb442-4"><a href="data.html#cb442-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fem_workers_avg =</span> <span class="fu">mean</span>(workers_female_total)</span>
+<span id="cb442-5"><a href="data.html#cb442-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb442-6"><a href="data.html#cb442-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>()</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 2 x 2
 #&gt;   country fem_workers_avg
 #&gt;   &lt;chr&gt;             &lt;dbl&gt;
@@ -2354,12 +2390,12 @@ Sie sollten sich in jedem Fall angewöhnen, nach dem Gruppieren den Datensatz mi
 <p>Natürlich können Sie <code>dplyr::group_by()</code> auch im Zusammenhang mit <code>dplyr::mutate()</code> oder anderen
 Funktionen verwenden.
 Wie Sie sehen ist der Effekt aber durchaus unterschiedlich:</p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="data.html#cb440-1" aria-hidden="true" tabindex="-1"></a>unemp_data_wb <span class="sc">%&gt;%</span></span>
-<span id="cb440-2"><a href="data.html#cb440-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
-<span id="cb440-3"><a href="data.html#cb440-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb440-4"><a href="data.html#cb440-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fem_workers_avg =</span> <span class="fu">mean</span>(workers_female_total)</span>
-<span id="cb440-5"><a href="data.html#cb440-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb440-6"><a href="data.html#cb440-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="data.html#cb444-1" aria-hidden="true" tabindex="-1"></a>unemp_data_wb <span class="sc">%&gt;%</span></span>
+<span id="cb444-2"><a href="data.html#cb444-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb444-3"><a href="data.html#cb444-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb444-4"><a href="data.html#cb444-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fem_workers_avg =</span> <span class="fu">mean</span>(workers_female_total)</span>
+<span id="cb444-5"><a href="data.html#cb444-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb444-6"><a href="data.html#cb444-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>()</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 14 x 7
 #&gt;    country  year laborforce_fema… workforce_total population_total
 #&gt;    &lt;chr&gt;   &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;            &lt;dbl&gt;
@@ -2388,25 +2424,25 @@ weiblichen Erwertbstätigen in Österreich und Deutschland ermitteln und
 dann vergleichen ob dieser Wert größer ist als das Bevölkerungswachstum in dieser
 Zeit.
 Dazu verwenden wir die Funktion <code>dplyr::lag()</code> um den Wert vor dem aktuellen
-Wert zu bekommen.<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a>
+Wert zu bekommen.<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a>
 Zuletzt wollen wir nur noch die berechneten Spalten im Datensatz behalten.</p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="data.html#cb442-1" aria-hidden="true" tabindex="-1"></a>unemp_data_wb_growth <span class="ot">&lt;-</span> unemp_data_wb <span class="sc">%&gt;%</span></span>
-<span id="cb442-2"><a href="data.html#cb442-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
-<span id="cb442-3"><a href="data.html#cb442-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb442-4"><a href="data.html#cb442-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">pop_growth=</span>(</span>
-<span id="cb442-5"><a href="data.html#cb442-5" aria-hidden="true" tabindex="-1"></a>      population_total<span class="sc">-</span><span class="fu">lag</span>(population_total))<span class="sc">/</span><span class="fu">lag</span>(population_total),</span>
-<span id="cb442-6"><a href="data.html#cb442-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">fem_force_growth=</span>(</span>
-<span id="cb442-7"><a href="data.html#cb442-7" aria-hidden="true" tabindex="-1"></a>      workers_female_total<span class="sc">-</span><span class="fu">lag</span>(workers_female_total))<span class="sc">/</span><span class="fu">lag</span>(workers_female_total)</span>
-<span id="cb442-8"><a href="data.html#cb442-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb442-9"><a href="data.html#cb442-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb442-10"><a href="data.html#cb442-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb442-11"><a href="data.html#cb442-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">fem_force_growth_bigger=</span>fem_force_growth<span class="sc">&gt;</span>pop_growth</span>
-<span id="cb442-12"><a href="data.html#cb442-12" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb442-13"><a href="data.html#cb442-13" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(</span>
-<span id="cb442-14"><a href="data.html#cb442-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;pop_growth&quot;</span>, </span>
-<span id="cb442-15"><a href="data.html#cb442-15" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;fem_force_growth&quot;</span>, <span class="st">&quot;fem_force_growth_bigger&quot;</span>))</span>
-<span id="cb442-16"><a href="data.html#cb442-16" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb442-17"><a href="data.html#cb442-17" aria-hidden="true" tabindex="-1"></a>unemp_data_wb_growth</span></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="data.html#cb446-1" aria-hidden="true" tabindex="-1"></a>unemp_data_wb_growth <span class="ot">&lt;-</span> unemp_data_wb <span class="sc">%&gt;%</span></span>
+<span id="cb446-2"><a href="data.html#cb446-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb446-3"><a href="data.html#cb446-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb446-4"><a href="data.html#cb446-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">pop_growth=</span>(</span>
+<span id="cb446-5"><a href="data.html#cb446-5" aria-hidden="true" tabindex="-1"></a>      population_total<span class="sc">-</span><span class="fu">lag</span>(population_total))<span class="sc">/</span><span class="fu">lag</span>(population_total),</span>
+<span id="cb446-6"><a href="data.html#cb446-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">fem_force_growth=</span>(</span>
+<span id="cb446-7"><a href="data.html#cb446-7" aria-hidden="true" tabindex="-1"></a>      workers_female_total<span class="sc">-</span><span class="fu">lag</span>(workers_female_total))<span class="sc">/</span><span class="fu">lag</span>(workers_female_total)</span>
+<span id="cb446-8"><a href="data.html#cb446-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb446-9"><a href="data.html#cb446-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb446-10"><a href="data.html#cb446-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb446-11"><a href="data.html#cb446-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">fem_force_growth_bigger=</span>fem_force_growth<span class="sc">&gt;</span>pop_growth</span>
+<span id="cb446-12"><a href="data.html#cb446-12" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb446-13"><a href="data.html#cb446-13" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(</span>
+<span id="cb446-14"><a href="data.html#cb446-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;pop_growth&quot;</span>, </span>
+<span id="cb446-15"><a href="data.html#cb446-15" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;fem_force_growth&quot;</span>, <span class="st">&quot;fem_force_growth_bigger&quot;</span>))</span>
+<span id="cb446-16"><a href="data.html#cb446-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb446-17"><a href="data.html#cb446-17" aria-hidden="true" tabindex="-1"></a>unemp_data_wb_growth</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 14 x 5
 #&gt;    country  year pop_growth fem_force_growth fem_force_growth_bigger
 #&gt;    &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;            &lt;dbl&gt; &lt;lgl&gt;                  
@@ -2461,7 +2497,7 @@ Wir haben einen dieser Helper bereits kennen gelernt - <code>dplyr::any_of()</co
 Insgesamt gibt es 9 diesen Hilfsfunktionen, die in Tabelle <a href="data.html#tab:selectors">4.4</a>
 zusammengefasst sind.</p>
 <table>
-<caption><span id="tab:selectors">Table 4.4: </span> Ein Überblick den <code>select_helpers()</code> in <code>R</code>. Alle gehören zum Paket <code>dplyr</code>.</caption>
+<caption><span id="tab:selectors">Tabelle 4.4: </span> Ein Überblick den <code>select_helpers()</code> in <code>R</code>. Alle gehören zum Paket <code>dplyr</code>.</caption>
 <thead>
 <tr class="header">
 <th>Funktion</th>
@@ -2511,21 +2547,21 @@ zusammengefasst sind.</p>
 <code>dplyr::starts_with()</code> illustrieren. Nehmen wir an, wir wollen alle Spalten auswählen,
 die mit <code>AIS</code> beginnen. In diesem Fall verwenden wir die Funktion
 <code>dplyr::starts_with()</code> in Kombination mit <code>dplyr::select()</code>:</p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="data.html#cb445-1" aria-hidden="true" tabindex="-1"></a>ais_subset1 <span class="ot">&lt;-</span> eu_ais_data <span class="sc">%&gt;%</span></span>
-<span id="cb445-2"><a href="data.html#cb445-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(dplyr<span class="sc">::</span><span class="fu">starts_with</span>(<span class="st">&quot;AIS&quot;</span>))</span>
-<span id="cb445-3"><a href="data.html#cb445-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ais_subset1, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="data.html#cb449-1" aria-hidden="true" tabindex="-1"></a>ais_subset1 <span class="ot">&lt;-</span> eu_ais_data <span class="sc">%&gt;%</span></span>
+<span id="cb449-2"><a href="data.html#cb449-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(dplyr<span class="sc">::</span><span class="fu">starts_with</span>(<span class="st">&quot;AIS&quot;</span>))</span>
+<span id="cb449-3"><a href="data.html#cb449-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ais_subset1, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>#&gt;    AIS_mean   AIS_MIP AIS_SGP   AIS_INT
 #&gt; 1:     0.50 0.5833333     0.5 0.2500000
 #&gt; 2:     0.50 0.5000000     0.5 0.5000000
 #&gt; 3:     0.55 0.5000000     0.5 0.5833333</code></pre>
 <p>Eventuell wollen wir auch die Informationen über das Beobachtungsjahr und das
 Land behalten. Dann können wir die <code>select_helpers</code> auch kombinieren:</p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="data.html#cb447-1" aria-hidden="true" tabindex="-1"></a>ais_subset1 <span class="ot">&lt;-</span> eu_ais_data <span class="sc">%&gt;%</span></span>
-<span id="cb447-2"><a href="data.html#cb447-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(</span>
-<span id="cb447-3"><a href="data.html#cb447-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;iso3c&quot;</span>, <span class="st">&quot;year&quot;</span>)), </span>
-<span id="cb447-4"><a href="data.html#cb447-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">starts_with</span>(<span class="st">&quot;AIS&quot;</span>)</span>
-<span id="cb447-5"><a href="data.html#cb447-5" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb447-6"><a href="data.html#cb447-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ais_subset1, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="data.html#cb451-1" aria-hidden="true" tabindex="-1"></a>ais_subset1 <span class="ot">&lt;-</span> eu_ais_data <span class="sc">%&gt;%</span></span>
+<span id="cb451-2"><a href="data.html#cb451-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(</span>
+<span id="cb451-3"><a href="data.html#cb451-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;iso3c&quot;</span>, <span class="st">&quot;year&quot;</span>)), </span>
+<span id="cb451-4"><a href="data.html#cb451-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">starts_with</span>(<span class="st">&quot;AIS&quot;</span>)</span>
+<span id="cb451-5"><a href="data.html#cb451-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb451-6"><a href="data.html#cb451-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ais_subset1, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>#&gt;    iso3c year AIS_mean   AIS_MIP AIS_SGP   AIS_INT
 #&gt; 1:   FRA 2012     0.50 0.5833333     0.5 0.2500000
 #&gt; 2:   SVN 2012     0.50 0.5000000     0.5 0.5000000
@@ -2536,12 +2572,12 @@ Das wird besonders hilfreich wenn wir die Auswahl von Spalten über die Funktion
 <code>dplyr::across()</code> mit anderen Funktionen aus dem <code>tidyverse</code> kombinieren.
 Nehmen wir z.B. an wir wollen den Mittelwert von allen Spalten bilden, die
 mit ‘AIS’ anfangen und dabei die Daten pro Jahr gruppieren:</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="data.html#cb449-1" aria-hidden="true" tabindex="-1"></a>eu_ais_data <span class="sc">%&gt;%</span></span>
-<span id="cb449-2"><a href="data.html#cb449-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
-<span id="cb449-3"><a href="data.html#cb449-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
-<span id="cb449-4"><a href="data.html#cb449-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">across</span>(</span>
-<span id="cb449-5"><a href="data.html#cb449-5" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">starts_with</span>(<span class="st">&quot;AIS&quot;</span>), <span class="sc">~</span><span class="fu">mean</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), </span>
-<span id="cb449-6"><a href="data.html#cb449-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups=</span><span class="st">&quot;drop&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="data.html#cb453-1" aria-hidden="true" tabindex="-1"></a>eu_ais_data <span class="sc">%&gt;%</span></span>
+<span id="cb453-2"><a href="data.html#cb453-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb453-3"><a href="data.html#cb453-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb453-4"><a href="data.html#cb453-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">across</span>(</span>
+<span id="cb453-5"><a href="data.html#cb453-5" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">starts_with</span>(<span class="st">&quot;AIS&quot;</span>), <span class="sc">~</span><span class="fu">mean</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), </span>
+<span id="cb453-6"><a href="data.html#cb453-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups=</span><span class="st">&quot;drop&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 5 x 5
 #&gt;    year AIS_mean AIS_MIP AIS_SGP AIS_INT
 #&gt;   &lt;int&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
@@ -2561,14 +2597,14 @@ neuen Spalten manuell festlegen.
 Das ist hilfreich wenn wir z.B. nicht nur die Mittelwerte, sonder auch die
 Standardabweichung berechnen wollen.
 Dazu bietet sich folgende Schreibweise an:</p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="data.html#cb451-1" aria-hidden="true" tabindex="-1"></a>eu_ais_data <span class="sc">%&gt;%</span></span>
-<span id="cb451-2"><a href="data.html#cb451-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(group) <span class="sc">%&gt;%</span></span>
-<span id="cb451-3"><a href="data.html#cb451-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb451-4"><a href="data.html#cb451-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">contains</span>(<span class="st">&quot;SGP&quot;</span>), </span>
-<span id="cb451-5"><a href="data.html#cb451-5" aria-hidden="true" tabindex="-1"></a>           <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">sd =</span> sd),</span>
-<span id="cb451-6"><a href="data.html#cb451-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">.names =</span> <span class="st">&quot;{.col}-{.fn}&quot;</span>), </span>
-<span id="cb451-7"><a href="data.html#cb451-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups=</span><span class="st">&quot;drop&quot;</span></span>
-<span id="cb451-8"><a href="data.html#cb451-8" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="data.html#cb455-1" aria-hidden="true" tabindex="-1"></a>eu_ais_data <span class="sc">%&gt;%</span></span>
+<span id="cb455-2"><a href="data.html#cb455-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(group) <span class="sc">%&gt;%</span></span>
+<span id="cb455-3"><a href="data.html#cb455-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb455-4"><a href="data.html#cb455-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">contains</span>(<span class="st">&quot;SGP&quot;</span>), </span>
+<span id="cb455-5"><a href="data.html#cb455-5" aria-hidden="true" tabindex="-1"></a>           <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">sd =</span> sd),</span>
+<span id="cb455-6"><a href="data.html#cb455-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">.names =</span> <span class="st">&quot;{.col}-{.fn}&quot;</span>), </span>
+<span id="cb455-7"><a href="data.html#cb455-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups=</span><span class="st">&quot;drop&quot;</span></span>
+<span id="cb455-8"><a href="data.html#cb455-8" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 4 x 7
 #&gt;   group `AIS_SGP-mean` `AIS_SGP-sd` `SGP_new-mean` `SGP_new-sd` `SGP_avg-mean`
 #&gt;   &lt;chr&gt;          &lt;dbl&gt;        &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;          &lt;dbl&gt;
@@ -2588,25 +2624,25 @@ Das ist z.B. hilfreich, wenn wir eine Funktion auf alle Spalten anwenden
 wollen, die Input eines bestimmten Typs (z.B. <code>character</code>) enthalten.
 Der folgende Code zählt die Anzahl der eindeutigen Werte für alle Spalten
 vom Typ <code>character</code>:</p>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="data.html#cb453-1" aria-hidden="true" tabindex="-1"></a>eu_ais_data <span class="sc">%&gt;%</span></span>
-<span id="cb453-2"><a href="data.html#cb453-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), <span class="sc">~</span><span class="fu">length</span>(<span class="fu">unique</span>(.))))</span></code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="data.html#cb457-1" aria-hidden="true" tabindex="-1"></a>eu_ais_data <span class="sc">%&gt;%</span></span>
+<span id="cb457-2"><a href="data.html#cb457-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), <span class="sc">~</span><span class="fu">length</span>(<span class="fu">unique</span>(.))))</span></code></pre></div>
 <pre><code>#&gt;   iso3c group
 #&gt; 1    10     4</code></pre>
 <p>Und der folgende Code berechnet den Mittelwert für alle Spalten vom Typ
 <code>double</code>:</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="data.html#cb455-1" aria-hidden="true" tabindex="-1"></a>eu_ais_data <span class="sc">%&gt;%</span></span>
-<span id="cb455-2"><a href="data.html#cb455-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.double), <span class="sc">~</span><span class="fu">mean</span>(., <span class="at">na.rm=</span>T)))</span></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="data.html#cb459-1" aria-hidden="true" tabindex="-1"></a>eu_ais_data <span class="sc">%&gt;%</span></span>
+<span id="cb459-2"><a href="data.html#cb459-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.double), <span class="sc">~</span><span class="fu">mean</span>(., <span class="at">na.rm=</span>T)))</span></code></pre></div>
 <pre><code>#&gt;    AIS_mean   AIS_MIP   AIS_SGP   AIS_INT   SGP_new   SGP_avg
 #&gt; 1 0.4511416 0.3933485 0.5357143 0.4752976 0.4797278 0.5226087</code></pre>
 <p>Falls Sie übrigens die Mittelwerte über Spalten hinweg berechnen wollen, also
 eine Operation zeilenweise durchführen wollen, dann können Sie die die Variante
 <code>dplyr::c_across()</code> mit der Funktion <code>dplyr::rowwise()</code> kombinieren:</p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="data.html#cb457-1" aria-hidden="true" tabindex="-1"></a>eu_ais_data <span class="sc">%&gt;%</span></span>
-<span id="cb457-2"><a href="data.html#cb457-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb457-3"><a href="data.html#cb457-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb457-4"><a href="data.html#cb457-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ais_mean =</span> <span class="fu">mean</span>(<span class="fu">c_across</span>(dplyr<span class="sc">::</span><span class="fu">starts_with</span>(<span class="st">&quot;AIS&quot;</span>)))</span>
-<span id="cb457-5"><a href="data.html#cb457-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb457-6"><a href="data.html#cb457-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="data.html#cb461-1" aria-hidden="true" tabindex="-1"></a>eu_ais_data <span class="sc">%&gt;%</span></span>
+<span id="cb461-2"><a href="data.html#cb461-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb461-3"><a href="data.html#cb461-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb461-4"><a href="data.html#cb461-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ais_mean =</span> <span class="fu">mean</span>(<span class="fu">c_across</span>(dplyr<span class="sc">::</span><span class="fu">starts_with</span>(<span class="st">&quot;AIS&quot;</span>)))</span>
+<span id="cb461-5"><a href="data.html#cb461-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb461-6"><a href="data.html#cb461-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 3 x 10
 #&gt; # Rowwise: 
 #&gt;   iso3c  year group    AIS_mean AIS_MIP AIS_SGP AIS_INT SGP_new SGP_avg ais_mean
@@ -2642,7 +2678,7 @@ aufgezeigte oder eine ähnliche Ordnerstruktur bewährt:</p>
 <div class="figure" style="text-align: center"><span id="fig:Ordnerstruktur-data"></span>
 <img src="figures/Datenaufbereitung/Ordnerstruktur.png" alt="Bewährte Ordnerstruktur für Forschungsprojekte mit R." width="40%" height="75%" />
 <p class="caption">
-Figure 4.5: Bewährte Ordnerstruktur für Forschungsprojekte mit R.
+Abbildung 4.5: Bewährte Ordnerstruktur für Forschungsprojekte mit R.
 </p>
 </div>
 <p>Der Vorteil an dieser Ordnerstruktur ist, dass Sie die Rohdaten in einem separaten
@@ -2688,9 +2724,9 @@ Es sollte jedoch klar sein, dass es nur eine Option
 unter mehreren ist, weswegen ich versuche in meinen Paketen vollständig auf
 das <code>tidyverse</code> zu verzichten - auch weil es in puncto Performance deutlich
 schlechter ist als z.B. <a href="https://rdatatable.gitlab.io/data.table/">data.table</a>
-<span class="citation">(<a href="git.html#ref-R-data.table" role="doc-biblioref">Dowle and Srinivasan 2019</a>)</span>, das auch für mehrere hundert GB große Datensätze gut geeignet ist.
+<span class="citation">(<a href="git.html#ref-R-data.table" role="doc-biblioref">Dowle und Srinivasan 2019</a>)</span>, das auch für mehrere hundert GB große Datensätze gut geeignet ist.
 Zur Aneignung des Pakets
-<a href="https://rdatatable.gitlab.io/data.table/">data.table</a> <span class="citation">(<a href="git.html#ref-R-data.table" role="doc-biblioref">Dowle and Srinivasan 2019</a>)</span>
+<a href="https://rdatatable.gitlab.io/data.table/">data.table</a> <span class="citation">(<a href="git.html#ref-R-data.table" role="doc-biblioref">Dowle und Srinivasan 2019</a>)</span>
 ist das <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">offizielle Tutorial</a>
 gut geeignet, macht m.E. aber auch deutlich,
 dass es für die ersten Schritte mit R etwas unintuitiver ist als das <code>tidyverse</code>.</p>
@@ -2705,7 +2741,7 @@ in einer Pluralen Ökonomik.</p>
 <hr />
 <ol start="14">
 <li id="fn14"><p>Das klassische Beispiel in der
-Psychologie ist ‘Intelligenz.’<a href="data.html#fnref14" class="footnote-back">↩︎</a></p></li>
+Psychologie ist ‘Intelligenz’.<a href="data.html#fnref14" class="footnote-back">↩︎</a></p></li>
 <li id="fn15"><p>Interessanterweise hat der maßgeblich an der Entwicklung des Indikators BIP beteiligte Simon Kuznets in <span class="citation"><a href="git.html#ref-BIP" role="doc-biblioref">Kuznets</a> (<a href="git.html#ref-BIP" role="doc-biblioref">1934</a>)</span> davon abgeraten, diese Operationalisierung
 als Indikator für wirtschaftliche Entwicklung zu verwenden.
 Für mehr Infos dazu siehe z.B. <span class="citation"><a href="git.html#ref-BIPHIST" role="doc-biblioref">Lepenies</a> (<a href="git.html#ref-BIPHIST" role="doc-biblioref">2016</a>)</span>.<a href="data.html#fnref15" class="footnote-back">↩︎</a></p></li>
@@ -2733,37 +2769,39 @@ meiner Erfahrung nach nicht optimal.<a href="data.html#fnref19" class="footnote-
 <li id="fn20"><p>Auch hier gilt,
 dass die automatische Erkennung von <code>data.table::fread()</code> schon sehr gut funktioniert, aber
 die manuelle Eingabe immer sicherer und transparenter ist.<a href="data.html#fnref20" class="footnote-back">↩︎</a></p></li>
-<li id="fn21"><p>Wie
+<li id="fn21"><p>Wenn Sie das Paket <code>bit64</code> nicht installiert haben,
+bekommen Sie zudem eine etwas merkwürdig anmutende Warnung zu lesen.<a href="data.html#fnref21" class="footnote-back">↩︎</a></p></li>
+<li id="fn22"><p>Wie
 <a href="http://www.win-vector.com/blog/2019/05/what-is-tidy-data/">hier beschrieben</a>
 ist das Konzept von ‘tidy data’ nicht neu:
 Statistiker*innen sprechen bei einem ‘tidy’ Datensatz häufig von einer
-‘Datenmatrix.’ Wer sich mehr mit der zugrundeliegenden Theorie beschäftigen
+‘Datenmatrix’. Wer sich mehr mit der zugrundeliegenden Theorie beschäftigen
 möchte sollte zunächst die
 <a href="https://en.wikipedia.org/wiki/Codd%27s_12_rules">12 Regeln von Edgar Codd</a> und
-ihre Begründung nachlesen.<a href="data.html#fnref21" class="footnote-back">↩︎</a></p></li>
-<li id="fn22"><p>Das steht nicht im Widerspruch
+ihre Begründung nachlesen.<a href="data.html#fnref22" class="footnote-back">↩︎</a></p></li>
+<li id="fn23"><p>Das steht nicht im Widerspruch
 zu dem oben formulierten Ziel am Ende <code>tidy</code> Daten zu haben. Es ist nur so,
 dass Sie für manche statistischen Transformationen als Zwischenschritt in
 ein anderes Format wechseln müssen, oder der Weg hin zu <code>tidy</code> Daten das
 Wechseln zwischen langen und breiten Datensätzen erforderlich macht. Das wird
-durch die Beispiele später in diesem Kapitel praktisch deutlich werden.<a href="data.html#fnref22" class="footnote-back">↩︎</a></p></li>
-<li id="fn23"><p>Die Funktionen <code>pivot_longer()</code> und <code>pivot_wider()</code> wurden in
+durch die Beispiele später in diesem Kapitel praktisch deutlich werden.<a href="data.html#fnref23" class="footnote-back">↩︎</a></p></li>
+<li id="fn24"><p>Die Funktionen <code>pivot_longer()</code> und <code>pivot_wider()</code> wurden in
 der neuesten Version von <code>tidyr</code> eingeführt. Achten Sie also darauf, dass Sie
 die neueste Version installiert haben. Sie ersetzen die Funktionen <code>tidyr::spread()</code> und
 <code>tidyr::gather()</code>, die natürlich noch weiterhin funktionieren und die Sie in älterem Code
 sicher noch häufig finden werden.
 In diesem <a href="https://www.tidyverse.org/blog/2019/09/tidyr-1-0-0/">Blog-Post</a>
 beschreibt Chefentwickler Hadley Wickham die neuen Funktionen und grenzt sie
-von den älteren Implementierungen ab.<a href="data.html#fnref23" class="footnote-back">↩︎</a></p></li>
-<li id="fn24"><p>Eigentlich ein <a href="https://r4ds.had.co.nz/tibbles.html">tibble</a>.<a href="data.html#fnref24" class="footnote-back">↩︎</a></p></li>
-<li id="fn25"><p>Die Funktionen
-<code>dplyr::summarize()</code> und <code>dplyr::summarise()</code> sind Synonyme.<a href="data.html#fnref25" class="footnote-back">↩︎</a></p></li>
-<li id="fn26"><p>Es gibt neben den Funktionen <code>dplyr::lag()</code> und
+von den älteren Implementierungen ab.<a href="data.html#fnref24" class="footnote-back">↩︎</a></p></li>
+<li id="fn25"><p>Eigentlich ein <a href="https://r4ds.had.co.nz/tibbles.html">tibble</a>.<a href="data.html#fnref25" class="footnote-back">↩︎</a></p></li>
+<li id="fn26"><p>Die Funktionen
+<code>dplyr::summarize()</code> und <code>dplyr::summarise()</code> sind Synonyme.<a href="data.html#fnref26" class="footnote-back">↩︎</a></p></li>
+<li id="fn27"><p>Es gibt neben den Funktionen <code>dplyr::lag()</code> und
 <code>dplyr::lead()</code> auch die Funktionen <code>dplyr::first()</code> und <code>dplyr::last()</code>, die
 Sie verwenden können um Änderungen über den gesamten Zeitraum zu berechnen.
 Achten Sie jedoch auf den möglichen Konflikt zwischen den Funktionen
 <code>data.table::first()</code> und <code>dplyr::first()</code> sowie <code>data.table::last()</code> und
-<code>dplyr::last()</code>!<a href="data.html#fnref26" class="footnote-back">↩︎</a></p></li>
+<code>dplyr::last()</code>!<a href="data.html#fnref27" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

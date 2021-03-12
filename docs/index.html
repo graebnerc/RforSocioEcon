@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="de" xml:lang="de">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2021-03-11" />
+<meta name="date" content="2021-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,6 +139,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie"><i class="fa fa-check"></i>Änderungshistorie</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#colophon"><i class="fa fa-check"></i>Colophon</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#referenzen"><i class="fa fa-check"></i>Referenzen</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a>
 <ul>
@@ -208,7 +210,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>5</b> Visualisierung von Daten</a>
 <ul>
 <li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#verwendete-pakete-1"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
 <li class="chapter" data-level="5.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>5.1</b> Optional: Theoretische Grundlagen</a>
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="vis.html"><a href="vis.html#vis-base-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> <code>ggplot2</code> vs. <code>base plot</code></a></li>
@@ -317,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>8</b> Wiederholung: Deskriptive Statistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-und-datensätze"><i class="fa fa-check"></i>Verwendete Pakete und Datensätze</a></li>
+<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-4"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="8.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>8.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
 <li class="chapter" data-level="8.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmaße"><i class="fa fa-check"></i><b>8.2</b> Korrelationsmaße</a></li>
 <li class="chapter" data-level="8.3" data-path="desk-stat.html"><a href="desk-stat.html#descVis"><i class="fa fa-check"></i><b>8.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
@@ -325,18 +326,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>9</b> Wiederholung: Drei Verfahren der schließenden Statistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-4"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-5"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="9.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>9.1</b> Punktschätzung</a></li>
 <li class="chapter" data-level="9.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>9.2</b> Hypothesentests</a></li>
 <li class="chapter" data-level="9.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>9.3</b> Berechnung von Konfidenzintervallen</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>10</b> Lineare statistische Modelle in R</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>10.1</b> Einleitung und Überblick</a>
+<li class="chapter" data-level="" data-path="linmodel.html"><a href="linmodel.html#verwendete-pakete-6"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1</b> Einführung in die lineare Regression</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1.1</b> Einführung in die lineare Regression</a></li>
-<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.2</b> Einführungsbeispiel</a></li>
-<li class="chapter" data-level="10.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
+<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.1</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.2</b> Überblick über die Inhalte des Kapitels</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>10.2</b> Grundlagen der einfachen linearen Regression</a>
 <ul>
@@ -356,6 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>11</b> Fortgeschrittene Themen der linearen Regression</a>
 <ul>
+<li class="chapter" data-level="" data-path="advlin.html"><a href="advlin.html#verwendete-pakete-7"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="11.1" data-path="advlin.html"><a href="advlin.html#annahmen-und-eigenschaften-des-einfachen-ols-modells"><i class="fa fa-check"></i><b>11.1</b> Annahmen und Eigenschaften des einfachen OLS Modells</a>
 <ul>
 <li class="chapter" data-level="11.1.1" data-path="advlin.html"><a href="advlin.html#annahmen-im-matrixschreibweise"><i class="fa fa-check"></i><b>11.1.1</b> Annahmen im Matrixschreibweise</a></li>
@@ -408,6 +410,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>12</b> Ausgewählte nichtlineare Schätzverfahren</a>
 <ul>
+<li class="chapter" data-level="" data-path="nonlin.html"><a href="nonlin.html#verwendete-pakete-8"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="12.1" data-path="nonlin.html"><a href="nonlin.html#logit"><i class="fa fa-check"></i><b>12.1</b> Binäre abhängige Variablen: Logit- und Probit-Modelle</a>
 <ul>
 <li class="chapter" data-level="12.1.1" data-path="nonlin.html"><a href="nonlin.html#warum-nicht-ols"><i class="fa fa-check"></i><b>12.1.1</b> Warum nicht OLS?</a></li>
@@ -456,9 +459,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">R für die sozio-ökonomische Forschung</h1>
-<h2 class="subtitle"><em>Version 0.9.4</em></h2>
+<h2 class="subtitle"><em>Version 0.9.5</em></h2>
 <p class="author"><em><a href="http://claudius-graebner.com/">Dr. Claudius Gräbner</a></em></p>
-<p class="date"><em>2021-03-11</em></p>
+<p class="date"><em>2021-03-12</em></p>
 </div>
 <div id="willkommen" class="section level1 unnumbered">
 <h1>Willkommen</h1>
@@ -486,9 +489,10 @@ auf meiner Homepage.
 Vielen Dank!</p>
 <p>Ein Hinweis zu den unterschiedlichen Versionen:
 das Skript ist aktuell in einer HTML und einer PDF-Variante verfügbar.
-Ich empfehle Ihnen die PDF-Variante zu verwenden, das diese Version die final
-lektorierte Version ist und bestimmte Formatierungen für die HMTL-Version (noch)
-nicht funktionieren. Entsprechend ist diese Variante leicht unvollständig.
+Bis auf wenige Ausnahmen sind die beiden Varianten äquivalent.
+Allerdings gibt es einige wenige Tabellen und Querverweise, die sich in HTML
+nicht richtig darstellen lassen. Diese werden nur mit ‘??’ im HTML dargestellt,
+sind aber in der PDF-Variante problemlos sichtbar.
 Sie können die PDF auf der
 Homepage des Skripts
 (<a href="https://graebnerc.github.io/RforSocioEcon/">https://graebnerc.github.io/RforSocioEcon/</a>)
@@ -564,6 +568,1107 @@ lizensiert.</p>
 </tr>
 </tbody>
 </table>
+</div>
+<div id="colophon" class="section level2 unnumbered">
+<h2>Colophon</h2>
+<p>Das Skript wurde mit
+<a href="https://bookdown.org/">bookdown</a> <span class="citation">(<a href="git.html#ref-R-bookdown" role="doc-biblioref">Xie 2019</a>)</span> und
+<a href="https://www.rstudio.com/ide/">RStudio</a>
+unter Vervendung von <a href="https://rstudio.github.io/renv/index.html">renv</a> <span class="citation">(<a href="git.html#ref-renv" role="doc-biblioref">Ushey 2020</a>)</span>
+verfasst.
+Der gesamte Code ist über <a href="https://github.com/graebnerc/RforSocioEcon">GitHub</a>
+verfügbar.
+Die aktuelleste Version des Skripts wurde unter<br />
+R version 4.0.3 (2020-10-10) erstellt und verwendet die folgenden Pakete:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Package</th>
+<th align="left">Version</th>
+<th align="left">Source</th>
+<th align="left">Repository</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">AER</td>
+<td align="left">1.2-9</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">BH</td>
+<td align="left">1.72.0-3</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">DBI</td>
+<td align="left">1.1.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">Formula</td>
+<td align="left">1.2-3</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">MASS</td>
+<td align="left">7.3-51.6</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">Matrix</td>
+<td align="left">1.2-18</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">MatrixModels</td>
+<td align="left">0.4-1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">R.methodsS3</td>
+<td align="left">1.8.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">R.oo</td>
+<td align="left">1.24.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">R.utils</td>
+<td align="left">2.10.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">R6</td>
+<td align="left">2.4.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">RColorBrewer</td>
+<td align="left">1.1-2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">RJSONIO</td>
+<td align="left">1.3-1.4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">Rcpp</td>
+<td align="left">1.0.5</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">RcppArmadillo</td>
+<td align="left">0.9.900.3.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">RcppEigen</td>
+<td align="left">0.3.3.7.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">Rdpack</td>
+<td align="left">1.0.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">SparseM</td>
+<td align="left">1.78</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">WDI</td>
+<td align="left">2.7.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">abind</td>
+<td align="left">1.4-5</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">askpass</td>
+<td align="left">1.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">assertthat</td>
+<td align="left">0.2.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">backports</td>
+<td align="left">1.1.9</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">base64enc</td>
+<td align="left">0.1-3</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">bdsmatrix</td>
+<td align="left">1.3-4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">bibtex</td>
+<td align="left">0.4.2.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">bit</td>
+<td align="left">4.0.4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">bit64</td>
+<td align="left">4.0.5</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">blob</td>
+<td align="left">1.2.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">bookdown</td>
+<td align="left">0.21</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">boot</td>
+<td align="left">1.3-25</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">broom</td>
+<td align="left">0.7.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">callr</td>
+<td align="left">3.4.4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">car</td>
+<td align="left">3.0-9</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">carData</td>
+<td align="left">3.0-4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">cellranger</td>
+<td align="left">1.1.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">cli</td>
+<td align="left">2.0.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">clipr</td>
+<td align="left">0.7.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">codetools</td>
+<td align="left">0.2-16</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">colorspace</td>
+<td align="left">1.4-1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">commonmark</td>
+<td align="left">1.7</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">conquer</td>
+<td align="left">1.0.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">corrplot</td>
+<td align="left">0.84</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">countrycode</td>
+<td align="left">1.2.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">cowplot</td>
+<td align="left">1.0.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">cpp11</td>
+<td align="left">0.2.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">crayon</td>
+<td align="left">1.3.4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">crosstalk</td>
+<td align="left">1.1.0.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">curl</td>
+<td align="left">4.3</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">data.table</td>
+<td align="left">1.13.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">dbplyr</td>
+<td align="left">1.4.4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">desc</td>
+<td align="left">1.2.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">digest</td>
+<td align="left">0.6.25</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">dplyr</td>
+<td align="left">1.0.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">ellipsis</td>
+<td align="left">0.3.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">evaluate</td>
+<td align="left">0.14</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">fansi</td>
+<td align="left">0.4.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">farver</td>
+<td align="left">2.0.3</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">fastmap</td>
+<td align="left">1.0.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">fitdistrplus</td>
+<td align="left">1.1-1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">forcats</td>
+<td align="left">0.5.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">foreign</td>
+<td align="left">0.8-80</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">fs</td>
+<td align="left">1.5.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">gapminder</td>
+<td align="left">0.3.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">gbRd</td>
+<td align="left">0.4-11</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">generics</td>
+<td align="left">0.0.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">ggplot2</td>
+<td align="left">3.3.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">ggpubr</td>
+<td align="left">0.4.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">ggrepel</td>
+<td align="left">0.8.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">ggsci</td>
+<td align="left">2.9</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">ggsignif</td>
+<td align="left">0.6.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">glue</td>
+<td align="left">1.4.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">gridExtra</td>
+<td align="left">2.3</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">gtable</td>
+<td align="left">0.3.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">haven</td>
+<td align="left">2.3.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">here</td>
+<td align="left">0.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">highr</td>
+<td align="left">0.8</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">hms</td>
+<td align="left">0.5.3</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">htmltools</td>
+<td align="left">0.5.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">htmlwidgets</td>
+<td align="left">1.5.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">httpuv</td>
+<td align="left">1.5.4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">httr</td>
+<td align="left">1.4.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">icaeDesign</td>
+<td align="left">0.1.3</td>
+<td align="left">GitHub</td>
+<td align="left">graebnerc/icaeDesign</td>
+</tr>
+<tr class="even">
+<td align="left">ineq</td>
+<td align="left">0.2-13</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">isoband</td>
+<td align="left">0.2.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">jsonlite</td>
+<td align="left">1.7.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">knitr</td>
+<td align="left">1.31</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">labeling</td>
+<td align="left">0.3</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">later</td>
+<td align="left">1.1.0.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">latex2exp</td>
+<td align="left">0.4.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">lattice</td>
+<td align="left">0.20-41</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">lazyeval</td>
+<td align="left">0.2.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">lifecycle</td>
+<td align="left">0.2.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">lme4</td>
+<td align="left">1.1-23</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">lmtest</td>
+<td align="left">0.9-37</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">lubridate</td>
+<td align="left">1.7.9</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">magrittr</td>
+<td align="left">1.5</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">manipulateWidget</td>
+<td align="left">0.10.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">maptools</td>
+<td align="left">1.0-2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">markdown</td>
+<td align="left">1.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">matlib</td>
+<td align="left">0.9.3</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">matrixStats</td>
+<td align="left">0.56.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">maxLik</td>
+<td align="left">1.4-4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">mgcv</td>
+<td align="left">1.8-31</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">mime</td>
+<td align="left">0.9</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">miniUI</td>
+<td align="left">0.1.1.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">minqa</td>
+<td align="left">1.2.4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">miscTools</td>
+<td align="left">0.6-26</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">modelr</td>
+<td align="left">0.1.8</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">moments</td>
+<td align="left">0.14</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">munsell</td>
+<td align="left">0.5.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">nlme</td>
+<td align="left">3.1-148</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">nloptr</td>
+<td align="left">1.2.2.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">nnet</td>
+<td align="left">7.3-14</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">numDeriv</td>
+<td align="left">2016.8-1.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">openssl</td>
+<td align="left">1.4.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">openxlsx</td>
+<td align="left">4.1.5</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">optimx</td>
+<td align="left">2020-4.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">pbkrtest</td>
+<td align="left">0.4-8.6</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">pillar</td>
+<td align="left">1.4.6</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">pkgbuild</td>
+<td align="left">1.1.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">pkgconfig</td>
+<td align="left">2.0.3</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">pkgload</td>
+<td align="left">1.1.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">plm</td>
+<td align="left">2.2-4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">polynom</td>
+<td align="left">1.4-0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">praise</td>
+<td align="left">1.0.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">prettyunits</td>
+<td align="left">1.1.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">processx</td>
+<td align="left">3.4.4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">progress</td>
+<td align="left">1.2.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">promises</td>
+<td align="left">1.1.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">ps</td>
+<td align="left">1.3.4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">purrr</td>
+<td align="left">0.3.4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">quantreg</td>
+<td align="left">5.61</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">readr</td>
+<td align="left">1.3.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">readxl</td>
+<td align="left">1.3.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">rematch</td>
+<td align="left">1.0.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">renv</td>
+<td align="left">0.12.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">reprex</td>
+<td align="left">0.3.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">rgl</td>
+<td align="left">0.100.54</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">rio</td>
+<td align="left">0.5.16</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">rjson</td>
+<td align="left">0.2.20</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">rlang</td>
+<td align="left">0.4.7</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">rmarkdown</td>
+<td align="left">2.7</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">rmutil</td>
+<td align="left">1.1.5</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">rprojroot</td>
+<td align="left">1.3-2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">rstatix</td>
+<td align="left">0.6.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">rstudioapi</td>
+<td align="left">0.11</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">rvest</td>
+<td align="left">0.3.6</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">sandwich</td>
+<td align="left">2.5-1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">scales</td>
+<td align="left">1.1.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">selectr</td>
+<td align="left">0.4-2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">shiny</td>
+<td align="left">1.5.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">sourcetools</td>
+<td align="left">0.1.7</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">sp</td>
+<td align="left">1.4-2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">statmod</td>
+<td align="left">1.4.34</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">stringi</td>
+<td align="left">1.4.6</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">stringr</td>
+<td align="left">1.4.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">survival</td>
+<td align="left">3.1-12</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">sys</td>
+<td align="left">3.4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">testthat</td>
+<td align="left">2.3.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">tibble</td>
+<td align="left">3.0.3</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">tidyr</td>
+<td align="left">1.1.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">tidyselect</td>
+<td align="left">1.1.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">tidyverse</td>
+<td align="left">1.3.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">tinytex</td>
+<td align="left">0.25</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">tufte</td>
+<td align="left">0.6</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">utf8</td>
+<td align="left">1.1.4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">vctrs</td>
+<td align="left">0.3.4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">viridis</td>
+<td align="left">0.5.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">viridisLite</td>
+<td align="left">0.3.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">webshot</td>
+<td align="left">0.5.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">whisker</td>
+<td align="left">0.4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">withr</td>
+<td align="left">2.2.0</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">xfun</td>
+<td align="left">0.21</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">xml2</td>
+<td align="left">1.3.2</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">xtable</td>
+<td align="left">1.8-4</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">yaml</td>
+<td align="left">2.2.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="even">
+<td align="left">zip</td>
+<td align="left">2.1.1</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+<tr class="odd">
+<td align="left">zoo</td>
+<td align="left">1.8-8</td>
+<td align="left">Repository</td>
+<td align="left">CRAN</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="referenzen" class="section level2 unnumbered">
+<h2>Referenzen</h2>
 
 </div>
 </div>

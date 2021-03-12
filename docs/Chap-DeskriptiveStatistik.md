@@ -30,7 +30,7 @@ Das ist konsistent mit dem praktischen Vorgehen: bevor wir irgendwelche Methoden
 der induktiven Statistik anwenden müssen wir immer zunächst unsere Daten mit
 Hilfe deskriptiver Statistik besser verstehen.
 
-## Verwendete Pakete und Datensätze {-}
+## Verwendete Pakete {-}
 
 
 ```r
