@@ -857,7 +857,7 @@ die Zahl tatsächlich als ganze Zahl interpretiert wird.<a href="#fn7" class="fo
 <li>Ganze Zahlen und Dezimalzahlen werden häufig unter der Kategorie <code>numeric</code>
 zusammengefasst. Dies ist in der Praxis aber quasi nie hilfreich und man sollte
 diese Kategorie möglichst nie verwenden.</li>
-<li>Wörter (<code>character</code>): sie sind dadurch gekennzeichnet, dass sie auch
+<li><code>character</code> (Wörter): sie sind dadurch gekennzeichnet, dass sie auch
 Buchstaben enthalten können und am Anfang und Ende ein <code>"</code> haben. Beispiele hier
 wären <code>"Hallo"</code>, <code>"500"</code> oder <code>"1_2_Drei"</code>.</li>
 <li>Es gibt noch zwei weitere besondere ‘Typen’, die strikt gesehen keine
@@ -1518,7 +1518,7 @@ aber nicht, z.B. Addition:</p>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="basics.html#cb217-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>] <span class="sc">+</span> x[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>#&gt; [1] NA</code></pre>
 <p>Dafür können wir andere nützliche Dinge mit Faktoren anstellen, z.B. die
-absoluten Häufigkeiten über die Funktion <code>table</code> anzeigen:</p>
+absoluten Häufigkeiten über die Funktion <code>table()</code> anzeigen:</p>
 <div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="basics.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(x)</span></code></pre></div>
 <pre><code>#&gt; x
 #&gt;   Mann   Frau Divers 
@@ -1642,7 +1642,7 @@ im Zusammenhang von Data Frames einführen.</p>
 <p>An dieser Stelle sei schon angemerkt, dass um Zeilen, Spalten oder
 einzelne Elemente auszuwählen die gleichen Befehle wie bei Matrizen
 verwendet werden können:</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="basics.html#cb248-1" aria-hidden="true" tabindex="-1"></a>df_4[, <span class="dv">1</span>] <span class="co"># erste Spalte</span></span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="basics.html#cb248-1" aria-hidden="true" tabindex="-1"></a>df_4[, <span class="dv">1</span>] <span class="co"># Werte der ersten Spalte</span></span></code></pre></div>
 <pre><code>#&gt; [1] &quot;male&quot;   &quot;male&quot;   &quot;male&quot;   &quot;female&quot; &quot;female&quot;</code></pre>
 <div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="basics.html#cb250-1" aria-hidden="true" tabindex="-1"></a>df_4[, <span class="dv">2</span>] <span class="co"># Werte der zweiten Spalte</span></span></code></pre></div>
 <pre><code>#&gt; [1] 189 175 180 166 150</code></pre>
@@ -1777,7 +1777,7 @@ Wir können das illustrieren indem wir den Namen des Objekts eingeben:</p>
 #&gt; {
 #&gt;     UseMethod(&quot;lead&quot;)
 #&gt; }
-#&gt; &lt;bytecode: 0x7fa01efa23a8&gt;
+#&gt; &lt;bytecode: 0x7fc748025300&gt;
 #&gt; &lt;environment: namespace:plm&gt;</code></pre>
 <p>Aus der letzten Zeile wird ersichtlich, dass <code>lead</code> hier aus dem Paket <code>plm</code>
 kommt.</p>
@@ -1800,7 +1800,7 @@ kommt.</p>
 #&gt;     vec_c(vec_slice(inputs$x, -seq_len(n)), vec_rep(inputs$default, 
 #&gt;         n))
 #&gt; }
-#&gt; &lt;bytecode: 0x7fa05d750158&gt;
+#&gt; &lt;bytecode: 0x7fc7485548d0&gt;
 #&gt; &lt;environment: namespace:dplyr&gt;</code></pre>
 <p>Wenn es zu Maskierungen kommt ist es also der Transparenz wegen besser in beiden
 Fällen <code>::</code> zu verwenden, also <code>plm::lead</code> und <code>dplyr::lead</code>.</p>
@@ -1810,7 +1810,7 @@ Fällen <code>::</code> zu verwenden, also <code>plm::lead</code> und <code>dply
 </blockquote>
 <blockquote>
 <p><strong>Optionale Info</strong>: Um zu überprüfen in welcher Reihenfolge R nach Objekten sucht, kann die
-Funktion <code>search</code> verwendet werden. Wenn ein Objekt aufgerufen wird schaut
+Funktion <code>search()</code> verwendet werden. Wenn ein Objekt aufgerufen wird schaut
 R zuerst im ersten Element des Vektors nach, der globalen Umgebung. Wenn das
 Objekt dort nicht gefunden wird, schaut es im zweiten, etc.
 Wie man hier auch erkennen kann, werden einige Pakete standardmäßig eingelesen.
