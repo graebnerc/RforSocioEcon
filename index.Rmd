@@ -1,6 +1,6 @@
 --- 
 title: "R für die sozio-ökonomische Forschung"
-subtitle: "Version 0.9.4"
+subtitle: "Version 0.9.5"
 author: "[Dr. Claudius Gräbner](http://claudius-graebner.com/)"
 date: "`r Sys.Date()`" 
 site: bookdown::bookdown_site
@@ -10,7 +10,8 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: graebnerc/RforSocioEcon
-description: "Einführung in R für die sozioökonomische Forschung; Version 0.9.4"
+description: "Einführung in R für die sozioökonomische Forschung; Version 0.9.5"
+lang: de
 ---
 
 # Willkommen {-}
@@ -41,9 +42,10 @@ Vielen Dank!
 
 Ein Hinweis zu den unterschiedlichen Versionen: 
 das Skript ist aktuell in einer HTML und einer PDF-Variante verfügbar.
-Ich empfehle Ihnen die PDF-Variante zu verwenden, das diese Version die final
-lektorierte Version ist und bestimmte Formatierungen für die HMTL-Version (noch)
-nicht funktionieren. Entsprechend ist diese Variante leicht unvollständig.
+Bis auf wenige Ausnahmen sind die beiden Varianten äquivalent. 
+Allerdings gibt es einige wenige Tabellen und Querverweise, die sich in HTML
+nicht richtig darstellen lassen. Diese werden nur mit '??' im HTML dargestellt,
+sind aber in der PDF-Variante problemlos sichtbar.
 Sie können die PDF auf der 
 Homepage des Skripts 
 ([https://graebnerc.github.io/RforSocioEcon/](https://graebnerc.github.io/RforSocioEcon/)) 
@@ -91,3 +93,58 @@ Datum    | Version | Wichtigste Änderungen         |
 06.12.20 | 0.9.2    | Korrektur Typos; Ergänzung Kapital zur fortgeschrittenen Regression; kleine Ergänzungen Datenkapitel, inkl. `one_of()` zu `any_of()` |
 05.03.21 | 0.9.3    | Korrektur Typo: Kap 7, OLS in Matrixform ($\beta_0$ vergessen) |
 10.03.21 | 0.9.4    | Kleinere Korrekturen; Abbildungen werden zwischengespeichert |
+12.03.21 | 0.9.5    | Textliche Verbesserungen und Klarstellungen |
+
+## Colophon {-}
+
+Das Skript wurde mit 
+[bookdown](https://bookdown.org/) [@R-bookdown] und 
+[RStudio](https://www.rstudio.com/ide/)
+unter Vervendung von [renv](https://rstudio.github.io/renv/index.html) [@renv]
+verfasst.
+Der gesamte Code ist über [GitHub](https://github.com/graebnerc/RforSocioEcon) 
+verfügbar.
+Die aktuelleste Version des Skripts wurde unter  
+`r R.version.string` erstellt und verwendet die folgenden Pakete:
+
+```{r, echo = FALSE}
+renv_lock_file <- rjson::fromJSON(file = here::here("renv.lock"))
+`%||%` <- function(lhs, rhs) {
+  if (!is.null(lhs)) {
+    lhs
+  } else {
+    rhs
+  }
+}
+
+package_names <- names(renv_lock_file$Packages)
+package_versions <- rep(NA, length(package_names))
+package_source <- rep(NA, length(package_names))
+package_repo <- rep(NA, length(package_names))
+
+for (i in 1:length(package_names)){
+  package_name <- package_names[i]
+  package_versions[i] <- 
+    renv_lock_file[["Packages"]][[package_name]][["Version"]] %||% ""
+  package_source[i] <- 
+    renv_lock_file[["Packages"]][[package_name]][["Source"]] %||% ""
+  if (package_name=="icaeDesign"){
+    package_repo[i] <- "graebnerc/icaeDesign"
+  } else{
+    package_repo[i] <- 
+      renv_lock_file[["Packages"]][[package_name]][["Repository"]] %||% ""
+  }
+  
+}
+
+package_overview <- tibble::tibble(
+  "Package"=package_names,
+  "Version"=package_versions,
+  "Source"=package_source,
+  "Repository"=package_repo
+)
+
+knitr::kable(package_overview, format = "markdown")
+```
+
+## Referenzen {-}

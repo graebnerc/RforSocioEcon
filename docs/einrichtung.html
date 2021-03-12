@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="de" xml:lang="de">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Einrichtung | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Einrichtung | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 2 Einrichtung | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2021-03-11" />
+<meta name="date" content="2021-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,6 +139,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie"><i class="fa fa-check"></i>Änderungshistorie</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#colophon"><i class="fa fa-check"></i>Colophon</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#referenzen"><i class="fa fa-check"></i>Referenzen</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a>
 <ul>
@@ -208,7 +210,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>5</b> Visualisierung von Daten</a>
 <ul>
 <li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#verwendete-pakete-1"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
 <li class="chapter" data-level="5.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>5.1</b> Optional: Theoretische Grundlagen</a>
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="vis.html"><a href="vis.html#vis-base-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> <code>ggplot2</code> vs. <code>base plot</code></a></li>
@@ -317,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>8</b> Wiederholung: Deskriptive Statistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-und-datensätze"><i class="fa fa-check"></i>Verwendete Pakete und Datensätze</a></li>
+<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-4"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="8.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>8.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
 <li class="chapter" data-level="8.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmaße"><i class="fa fa-check"></i><b>8.2</b> Korrelationsmaße</a></li>
 <li class="chapter" data-level="8.3" data-path="desk-stat.html"><a href="desk-stat.html#descVis"><i class="fa fa-check"></i><b>8.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
@@ -325,18 +326,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>9</b> Wiederholung: Drei Verfahren der schließenden Statistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-4"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-5"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="9.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>9.1</b> Punktschätzung</a></li>
 <li class="chapter" data-level="9.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>9.2</b> Hypothesentests</a></li>
 <li class="chapter" data-level="9.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>9.3</b> Berechnung von Konfidenzintervallen</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>10</b> Lineare statistische Modelle in R</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>10.1</b> Einleitung und Überblick</a>
+<li class="chapter" data-level="" data-path="linmodel.html"><a href="linmodel.html#verwendete-pakete-6"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1</b> Einführung in die lineare Regression</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1.1</b> Einführung in die lineare Regression</a></li>
-<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.2</b> Einführungsbeispiel</a></li>
-<li class="chapter" data-level="10.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
+<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.1</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.2</b> Überblick über die Inhalte des Kapitels</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>10.2</b> Grundlagen der einfachen linearen Regression</a>
 <ul>
@@ -356,6 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>11</b> Fortgeschrittene Themen der linearen Regression</a>
 <ul>
+<li class="chapter" data-level="" data-path="advlin.html"><a href="advlin.html#verwendete-pakete-7"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="11.1" data-path="advlin.html"><a href="advlin.html#annahmen-und-eigenschaften-des-einfachen-ols-modells"><i class="fa fa-check"></i><b>11.1</b> Annahmen und Eigenschaften des einfachen OLS Modells</a>
 <ul>
 <li class="chapter" data-level="11.1.1" data-path="advlin.html"><a href="advlin.html#annahmen-im-matrixschreibweise"><i class="fa fa-check"></i><b>11.1.1</b> Annahmen im Matrixschreibweise</a></li>
@@ -408,6 +410,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>12</b> Ausgewählte nichtlineare Schätzverfahren</a>
 <ul>
+<li class="chapter" data-level="" data-path="nonlin.html"><a href="nonlin.html#verwendete-pakete-8"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="12.1" data-path="nonlin.html"><a href="nonlin.html#logit"><i class="fa fa-check"></i><b>12.1</b> Binäre abhängige Variablen: Logit- und Probit-Modelle</a>
 <ul>
 <li class="chapter" data-level="12.1.1" data-path="nonlin.html"><a href="nonlin.html#warum-nicht-ols"><i class="fa fa-check"></i><b>12.1.1</b> Warum nicht OLS?</a></li>
@@ -456,7 +459,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="einrichtung" class="section level1" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Einrichtung</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="einrichtung.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div>
 <div id="installation-von-r-und-r-studio" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Installation von R und R-Studio</h2>
 <p>Die Installation von R ist in der Regel unproblematisch.
@@ -482,7 +484,7 @@ unmittelbar relevant für uns sind.</p>
 <div class="figure" style="text-align: center"><span id="fig:gui"></span>
 <img src="figures/Einrichtung/r-studio-light-marked.png" alt="Die Benutzeroberfläche von R-Studio." width="100%" />
 <p class="caption">
-Figure 2.1: Die Benutzeroberfläche von R-Studio.
+Abbildung 2.1: Die Benutzeroberfläche von R-Studio.
 </p>
 </div>
 <ul>
@@ -520,7 +522,7 @@ unseren Code produzieren.
 Die anderen Bereiche brauchen uns aktuell noch nicht zu interessieren.</p></li>
 <li><p>Wenn wir ein neues R Skript erstellen wollen, können wir das über den Button
 <strong>Neu</strong> (9) erledigen.
-Wir klicken darauf und wählen die Option ‘R Skript.’
+Wir klicken darauf und wählen die Option ‘R Skript’.
 Mit den alternativen Dateiformaten brauchen wir uns aktuell nicht beschäftigen.</p></li>
 <li><p>Der Botton <strong>Neues Projekt anlegen</strong> (10) erstellt eine neues R Studio
 Projekt - mehr dazu in Kürze.</p></li>
@@ -613,7 +615,7 @@ Abbildung <a href="einrichtung.html#fig:newproj1">2.2</a> dargestellte Fenster s
 <div class="figure" style="text-align: center"><span id="fig:newproj1"></span>
 <img src="figures/Einrichtung/r-studio-new-project.png" alt="Ein neues Projekt erstellen." width="60%" />
 <p class="caption">
-Figure 2.2: Ein neues Projekt erstellen.
+Abbildung 2.2: Ein neues Projekt erstellen.
 </p>
 </div>
 <p>Falls Sie in Schritt 1 den Projektordner bereits erstellt haben wählen Sie hier
@@ -625,7 +627,7 @@ einfach den vorher erstellten Ordner aus und klicken auf <code>Create Project</c
 <div class="figure" style="text-align: center"><span id="fig:newproj2"></span>
 <img src="figures/Einrichtung/r-studio-new-project-exis-dir.png" alt="Ein neues R-Projekt aus einem existierenden (links) oder in einem neuen Projektordner (rechts) erstellen." width="40%" /><img src="figures/Einrichtung/r-studio-new-project-new-dir.png" alt="Ein neues R-Projekt aus einem existierenden (links) oder in einem neuen Projektordner (rechts) erstellen." width="40%" />
 <p class="caption">
-Figure 2.3: Ein neues R-Projekt aus einem existierenden (links) oder in einem neuen Projektordner (rechts) erstellen.
+Abbildung 2.3: Ein neues R-Projekt aus einem existierenden (links) oder in einem neuen Projektordner (rechts) erstellen.
 </p>
 </div>
 <p>Falls Sie <code>New Directory</code> gewählt haben, landen Sie dann auf dem rechten in
@@ -635,7 +637,7 @@ Namen (das wird der Name des Projektordners sein), wählen den Speicherort für 
 Ordner aus und klicken auf <code>Create Project</code>.</p>
 <p>In beiden Fällen wurde nun ein Ordner erstellt, in dem sich ein File <code>*.Rproj</code>
 befindet. Damit ist die formale Erstellung eines Projekts abgeschlossen.
-Es empfiehlt sich jedoch dringend gleich eine sinnvolle Unterordnerstruktur mit
+Es empfiehlt sich jedoch dringend, gleich eine sinnvolle Unterordnerstruktur mit
 anzulegen.</p>
 </div>
 <div id="unterordner" class="section level3" number="2.3.4">
@@ -680,14 +682,17 @@ mit den Inhalten der Ordner <code>data</code> und <code>R</code> replizieren las
 eigentliche Forschungspapier, ihre Hausarbeit oder Ihre Vorlesungsmitschriften.</p></li>
 <li><p>Einen Ordner <code>misc</code> in den Sie alles packen, was in keinen der anderen
 Ordner passt. Ein solcher Ordner ist wichtig und Sie sollten nicht zuordbare
-Dateien nie in den übergeordneten Projektordner als solchen speichern.</p></li>
+Dateien bis auf wenige Ausnahmen nicht in den übergeordneten Projektordner
+als solchen speichern. Ausnahmen sind z.B. die <code>.Rproj</code>-Datei, ggf. die
+Lizenz ihres Programmes oder eine Readme-Datei, welche die Funktion ihres
+Codes und ihre Ordnerstruktur erklärt.</p></li>
 </ul>
-<p>Wenn wir annehmen unser Projektordner heißt <code>2019-Methoden</code> ergibt sich damit
+<p>Wenn wir annehmen unser Projektordner heißt <code>Methodenprojekt</code> ergibt sich damit
 insgesamt die in Abbildung <a href="einrichtung.html#fig:folder">2.4</a> dargestellte Ordner und Datenstruktur.</p>
 <div class="figure" style="text-align: center"><span id="fig:folder"></span>
 <img src="figures/Einrichtung/wd-structure.png" alt="Die vorgeschlagene Ordnerstruktur für R-Projekte." height="50%" />
 <p class="caption">
-Figure 2.4: Die vorgeschlagene Ordnerstruktur für R-Projekte.
+Abbildung 2.4: Die vorgeschlagene Ordnerstruktur für R-Projekte.
 </p>
 </div>
 <p>In einem vierten Schritt sollten Sie nun noch eine <code>.here</code>-Datei erstellen.
@@ -729,22 +734,22 @@ Anhand eines Beispiels lässt sich das am einfachsten nachvollziehen.
 Gehen wir davon aus, dass Birte und Claudius gemeinsam an einem R-Skript
 arbeiten.
 Im Code kommt dabei folgende Zeile vor:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="einrichtung.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">file =</span> <span class="st">&quot;output/vektor.txt&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="einrichtung.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">file =</span> <span class="st">&quot;output/vektor.txt&quot;</span>)</span></code></pre></div>
 <p>Hier wird ein Vektor in einer Textdatei im Unterordner <code>output/</code> gespeichert.
 Damit R die Datei am richtigen Ort speichert müssen Birte und Claudius das gleiche
 Arbeitsverzeichnis verwenden, sonst wirkt der relative Pfad auf ihren jeweiligen
 Computern anders.
 Alternativ könnte Claudius den Pfad auch absolut angeben:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="einrichtung.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), </span>
-<span id="cb7-2"><a href="einrichtung.html#cb7-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">file =</span> <span class="st">&quot;/Users/claudius/projekte/R-Projekt-Birte/output/vektor.txt&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="einrichtung.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), </span>
+<span id="cb6-2"><a href="einrichtung.html#cb6-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">file =</span> <span class="st">&quot;/Users/claudius/projekte/R-Projekt-Birte/output/vektor.txt&quot;</span>)</span></code></pre></div>
 <p>Dann würde die Datei auf seinem Computer immer am richtigen Ort gespeichert,
 egal in welchem Arbeitsverzeichnis er sich gerade befindet.
 Wenn Birte nun allerdings diesen Code bei sich ausführt wird sie mit ziemlicher
 Sicherheit eine Fehlermeldung erhalten.
 Denn auf ihrem Computer liegt das Skript bestimmt an einem anderen Ort.
 Sie müsste also z.B. schreiben:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="einrichtung.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), </span>
-<span id="cb8-2"><a href="einrichtung.html#cb8-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">file =</span> <span class="st">&quot;/Users/birte/projekte/R-Projekt-Claudius/output/vektor.txt&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="einrichtung.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), </span>
+<span id="cb7-2"><a href="einrichtung.html#cb7-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">file =</span> <span class="st">&quot;/Users/birte/projekte/R-Projekt-Claudius/output/vektor.txt&quot;</span>)</span></code></pre></div>
 <p>Dieser Code wiederum würde bei Claudius nicht funktionieren.
 Natürlich könnten die beiden den Code immer individuell vor dem Ausführen auf
 ihrem Computer anpassen.
@@ -753,7 +758,7 @@ dass er ohne Modifikation auf unterschieldlichen Computern funktioniert.
 Sonst macht Zusammenarbeit wenig Spaß.</p>
 <p>Die Funktion <code>here()</code> löst dieses Problem.
 Hier könnten die beiden einfach schreiben:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="einrichtung.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;output/vektor.txt&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="einrichtung.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;output/vektor.txt&quot;</span>))</span></code></pre></div>
 <p>Die Funktion <code>here()</code> baut dann automatisch einen absoluten Pfad.
 Der Output von <code>here("output/vektor.txt")</code> sähe auf Claudius’ Computer so aus:</p>
 <pre><code>~/claudius-projekte/R-Projekt-Birte/output/vektor.txt</code></pre>
@@ -770,15 +775,24 @@ Ausgangspunkt für die relativen Pfade explizit mitzuteilen.
 Dafür muss beim Erstellen eines Arbeitsverzeichnis <em>einmalig</em> eine Datei
 <code>.here</code> erstellt werden, und zwar in dem Ordner, der als Ausgangspunkt für
 die relativen Pfade fungieren soll.
-Das ist in aller Regel der Ordner, in dem auch die <code>.Rproj</code> Datei liegt.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+Das ist in aller Regel der Ordner, in dem auch die <code>.Rproj</code> Datei liegt.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>
+Damit würde sich die in Abbildung <a href="einrichtung.html#fig:folderfinal">2.5</a> dargestellte Ordner-
+und Datenstruktur ergeben.</p>
+<div class="figure" style="text-align: center"><span id="fig:folderfinal"></span>
+<img src="figures/Einrichtung/wd-structure-here.png" alt="Die vorgeschlagene Ordnerstruktur für R-Projekte inklusive der .here-Datei." height="50%" />
+<p class="caption">
+Abbildung 2.5: Die vorgeschlagene Ordnerstruktur für R-Projekte inklusive der .here-Datei.
+</p>
+</div>
+<p>dargestellte Struktur.</p>
 <p>Dazu führen wir nach Schritt 3 noch folgende Befehle aus:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="einrichtung.html#cb12-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="einrichtung.html#cb11-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>()</span></code></pre></div>
 <p>Wenn der angezeigte Pfad mit dem Pfad zu Ihrem gewünschten Arbeitsverzeichnis
 übereinstimmt, führen Sie nun folgenden Befehl aus:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="einrichtung.html#cb13-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">set_here</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="einrichtung.html#cb12-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">set_here</span>()</span></code></pre></div>
 <p>Falls nicht geben Sie der Funktion <code>here::set_here()</code> den absoluten Pfad
 zu Ihrem Arbeitsverzeichnis als Argument, z.B.:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="einrichtung.html#cb14-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">set_here</span>(<span class="st">&quot;/Users/claudius/projekte/R-Projekt-Birte&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="einrichtung.html#cb13-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">set_here</span>(<span class="st">&quot;/Users/claudius/projekte/R-Projekt-Birte&quot;</span>)</span></code></pre></div>
 <p>Sie sollten nun eine Nachricht bekommen haben, dass in Ihrem Arbeitsverzeichnis
 eine neue Datei <code>.here</code> erstellt wurde.
 Damit ist die Einrichtung Ihres Projekts vollständig abgeschlossen.</p>

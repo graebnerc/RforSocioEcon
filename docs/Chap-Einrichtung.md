@@ -7,12 +7,6 @@ output:
 
 
 
-
-```r
-library(here)
-```
-
-
 ## Installation von R und R-Studio
 
 Die Installation von R ist in der Regel unproblematisch.
@@ -240,7 +234,7 @@ Ordner aus und klicken auf `Create Project`.
 
 In beiden Fällen wurde nun ein Ordner erstellt, in dem sich ein File `*.Rproj`
 befindet. Damit ist die formale Erstellung eines Projekts abgeschlossen. 
-Es empfiehlt sich jedoch dringend gleich eine sinnvolle Unterordnerstruktur mit
+Es empfiehlt sich jedoch dringend, gleich eine sinnvolle Unterordnerstruktur mit
 anzulegen.
 
 ### Schritt 3: Relevante Unterordner erstellen {#unterordner}
@@ -288,9 +282,12 @@ eigentliche Forschungspapier, ihre Hausarbeit oder Ihre Vorlesungsmitschriften.
 
 * Einen Ordner `misc` in den Sie alles packen, was in keinen der anderen 
 Ordner passt. Ein solcher Ordner ist wichtig und Sie sollten nicht zuordbare
-Dateien nie in den übergeordneten Projektordner als solchen speichern.
+Dateien bis auf wenige Ausnahmen nicht in den übergeordneten Projektordner 
+als solchen speichern. Ausnahmen sind z.B. die `.Rproj`-Datei, ggf. die 
+Lizenz ihres Programmes oder eine Readme-Datei, welche die Funktion ihres
+Codes und ihre Ordnerstruktur erklärt.
 
-Wenn wir annehmen unser Projektordner heißt `2019-Methoden` ergibt sich damit 
+Wenn wir annehmen unser Projektordner heißt `Methodenprojekt` ergibt sich damit 
 insgesamt die in Abbildung \@ref(fig:folder) dargestellte Ordner und Datenstruktur.
 
 \begin{figure}
@@ -423,6 +420,19 @@ nächste `.Rproj`-Datei findet. Es ist aber besser hier explizit zu seine
 `.here`-Datei beim Einrichten eines neuen Projekts immer mit zu erstellen.
 Dann funktioniert der Code in jedem Fall immer.
 ]
+Damit würde sich die in Abbildung \@ref(fig:folderfinal) dargestellte Ordner- 
+und Datenstruktur ergeben.
+
+\begin{figure}
+
+{\centering \includegraphics[height=0.5\textheight]{/Volumes/develop/packages/RforSocioEcon/figures/Einrichtung/wd-structure-here} 
+
+}
+
+\caption{Die vorgeschlagene Ordnerstruktur für R-Projekte inklusive der .here-Datei.}(\#fig:folderfinal)
+\end{figure}
+
+dargestellte Struktur.
 
 Dazu führen wir nach Schritt 3 noch folgende Befehle aus:
 

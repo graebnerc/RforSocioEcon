@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="de" xml:lang="de">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Wiederholung: Drei Verfahren der schließenden Statistik | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Wiederholung: Drei Verfahren der schließenden Statistik | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 9 Wiederholung: Drei Verfahren der schließenden Statistik | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2021-03-11" />
+<meta name="date" content="2021-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,6 +139,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie"><i class="fa fa-check"></i>Änderungshistorie</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#colophon"><i class="fa fa-check"></i>Colophon</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#referenzen"><i class="fa fa-check"></i>Referenzen</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a>
 <ul>
@@ -208,7 +210,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>5</b> Visualisierung von Daten</a>
 <ul>
 <li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#verwendete-pakete-1"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
 <li class="chapter" data-level="5.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>5.1</b> Optional: Theoretische Grundlagen</a>
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="vis.html"><a href="vis.html#vis-base-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> <code>ggplot2</code> vs. <code>base plot</code></a></li>
@@ -317,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>8</b> Wiederholung: Deskriptive Statistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-und-datensätze"><i class="fa fa-check"></i>Verwendete Pakete und Datensätze</a></li>
+<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-4"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="8.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>8.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
 <li class="chapter" data-level="8.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmaße"><i class="fa fa-check"></i><b>8.2</b> Korrelationsmaße</a></li>
 <li class="chapter" data-level="8.3" data-path="desk-stat.html"><a href="desk-stat.html#descVis"><i class="fa fa-check"></i><b>8.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
@@ -325,18 +326,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>9</b> Wiederholung: Drei Verfahren der schließenden Statistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-4"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-5"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="9.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>9.1</b> Punktschätzung</a></li>
 <li class="chapter" data-level="9.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>9.2</b> Hypothesentests</a></li>
 <li class="chapter" data-level="9.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>9.3</b> Berechnung von Konfidenzintervallen</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>10</b> Lineare statistische Modelle in R</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>10.1</b> Einleitung und Überblick</a>
+<li class="chapter" data-level="" data-path="linmodel.html"><a href="linmodel.html#verwendete-pakete-6"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1</b> Einführung in die lineare Regression</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1.1</b> Einführung in die lineare Regression</a></li>
-<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.2</b> Einführungsbeispiel</a></li>
-<li class="chapter" data-level="10.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
+<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.1</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.2</b> Überblick über die Inhalte des Kapitels</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>10.2</b> Grundlagen der einfachen linearen Regression</a>
 <ul>
@@ -356,6 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>11</b> Fortgeschrittene Themen der linearen Regression</a>
 <ul>
+<li class="chapter" data-level="" data-path="advlin.html"><a href="advlin.html#verwendete-pakete-7"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="11.1" data-path="advlin.html"><a href="advlin.html#annahmen-und-eigenschaften-des-einfachen-ols-modells"><i class="fa fa-check"></i><b>11.1</b> Annahmen und Eigenschaften des einfachen OLS Modells</a>
 <ul>
 <li class="chapter" data-level="11.1.1" data-path="advlin.html"><a href="advlin.html#annahmen-im-matrixschreibweise"><i class="fa fa-check"></i><b>11.1.1</b> Annahmen im Matrixschreibweise</a></li>
@@ -408,6 +410,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>12</b> Ausgewählte nichtlineare Schätzverfahren</a>
 <ul>
+<li class="chapter" data-level="" data-path="nonlin.html"><a href="nonlin.html#verwendete-pakete-8"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="12.1" data-path="nonlin.html"><a href="nonlin.html#logit"><i class="fa fa-check"></i><b>12.1</b> Binäre abhängige Variablen: Logit- und Probit-Modelle</a>
 <ul>
 <li class="chapter" data-level="12.1.1" data-path="nonlin.html"><a href="nonlin.html#warum-nicht-ols"><i class="fa fa-check"></i><b>12.1.1</b> Warum nicht OLS?</a></li>
@@ -505,7 +508,7 @@ Hier beschäftigen wir uns jedoch nur mit den parametrischen Verfahren.</p>
 </ol>
 <p>Wir wollen die verschiedenen Vorgehensweisen anhand eines Beispiels durchspielen:
 Nehnem wir an wir haben einen Datensatz und wir nehmen an, dass diese Daten von
-einer <em>Binominalverteilung</em> stammen.<a href="#fn75" class="footnote-ref" id="fnref75"><sup>75</sup></a>
+einer <em>Binominalverteilung</em> stammen.<a href="#fn76" class="footnote-ref" id="fnref76"><sup>76</sup></a>
 Wir wissen, dass die Binominalverteilung durch zwei Parameter spezifiziert wird:
 <span class="math inline">\(n\)</span> als die Anzahl der Versuche und <span class="math inline">\(p\)</span> als die Erfolgswahrscheinlichkeit für
 den einzelnen Versuch.
@@ -523,14 +526,14 @@ Wenn wir schließlich ein Intervall für <span class="math inline">\(p\)</span> 
 Beobachtungen kompatibel ist, dann suchen wir nach einem <em>Konfidenzintervall</em>
 für <span class="math inline">\(p\)</span>.</p>
 <p>Im Folgenden werden die drei Verfahren in größerem Detail besprochen.</p>
-<div id="verwendete-pakete-4" class="section level2 unnumbered">
+<div id="verwendete-pakete-5" class="section level2 unnumbered">
 <h2>Verwendete Pakete</h2>
-<div class="sourceCode" id="cb751"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb751-1"><a href="stat-rep.html#cb751-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb751-2"><a href="stat-rep.html#cb751-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb751-3"><a href="stat-rep.html#cb751-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb751-4"><a href="stat-rep.html#cb751-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
-<span id="cb751-5"><a href="stat-rep.html#cb751-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AER)</span>
-<span id="cb751-6"><a href="stat-rep.html#cb751-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div>
+<div class="sourceCode" id="cb755"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb755-1"><a href="stat-rep.html#cb755-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb755-2"><a href="stat-rep.html#cb755-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb755-3"><a href="stat-rep.html#cb755-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb755-4"><a href="stat-rep.html#cb755-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
+<span id="cb755-5"><a href="stat-rep.html#cb755-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AER)</span>
+<span id="cb755-6"><a href="stat-rep.html#cb755-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div>
 </div>
 <div id="punktschätzung" class="section level2" number="9.1">
 <h2><span class="header-section-number">9.1</span> Punktschätzung</h2>
@@ -595,9 +598,9 @@ wäre, tatsächlich 60 mal Zahl zu beobachten. Diese Wahrscheinlichkeit können 
 berechnen, aus Tabellen auslesen oder von R bestimmen lassen (die genaue
 Verwendung der Funktion <code>binom.test()</code> wird unten genauer besprochen):</p>
 </blockquote>
-<div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="stat-rep.html#cb752-1" aria-hidden="true" tabindex="-1"></a>b_test_object <span class="ot">&lt;-</span> <span class="fu">binom.test</span>(<span class="at">x =</span> <span class="dv">60</span>, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">p =</span> <span class="fl">0.5</span>)</span>
-<span id="cb752-2"><a href="stat-rep.html#cb752-2" aria-hidden="true" tabindex="-1"></a>b_test_object[[<span class="st">&quot;p.value&quot;</span>]]</span></code></pre></div>
-<pre><code>## [1] 0.05688793</code></pre>
+<div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb756-1"><a href="stat-rep.html#cb756-1" aria-hidden="true" tabindex="-1"></a>b_test_object <span class="ot">&lt;-</span> <span class="fu">binom.test</span>(<span class="at">x =</span> <span class="dv">60</span>, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">p =</span> <span class="fl">0.5</span>)</span>
+<span id="cb756-2"><a href="stat-rep.html#cb756-2" aria-hidden="true" tabindex="-1"></a>b_test_object[[<span class="st">&quot;p.value&quot;</span>]]</span></code></pre></div>
+<pre><code>#&gt; [1] 0.05688793</code></pre>
 <blockquote>
 <p>Die Wahrscheinlichkeit liegt also bei
 5.7 %.
@@ -607,7 +610,7 @@ vorliegenden Falle ist unsere Hypothese einer fairen Münze aber kompatibel mit
 der Beobachtung von 60 mal Zahl.</p>
 </blockquote>
 <p>Wir wollen nun das Vorgehen aus dem Beispiel generalisieren und das
-standardmäßige Vorgehen bei einem statistischen Test zusammenfassen:<a href="#fn76" class="footnote-ref" id="fnref76"><sup>76</sup></a></p>
+standardmäßige Vorgehen bei einem statistischen Test zusammenfassen:<a href="#fn77" class="footnote-ref" id="fnref77"><sup>77</sup></a></p>
 <p><strong>1. Schritt: Aufstellen eines wahrscheinlichkeitstheoretischen Modells</strong>
 Zunächst müssen wir eine Annahme über den Prozess treffen, welcher der
 Generierung unserer Daten zugrunde liegt.
@@ -622,7 +625,7 @@ genannt.
 Wir wollen also immer fragen, ob <span class="math inline">\(H_0\)</span> gegeben der Daten plausibel ist.
 Die Formulierung von <span class="math inline">\(H_0\)</span> wird also durch unser Erkenntnisinteresse bestimmt.
 In der Regel formulieren wir eine Hypothese, die wir verwerfen wollen als
-<span class="math inline">\(H_0\)</span>.<a href="#fn77" class="footnote-ref" id="fnref77"><sup>77</sup></a>
+<span class="math inline">\(H_0\)</span>.<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a>
 Wenn wir also die Hypothese bezüglich eines Parameters <span class="math inline">\(\theta\)</span> testen
 wollen, dass <span class="math inline">\(\beta\neq 0\)</span>, dann formulieren wir <span class="math inline">\(H_0: \theta = 0\)</span>.
 Anders formuliert: wir möchten andere mit den Daten überzeugen, dass <span class="math inline">\(H_0\)</span> falsch
@@ -670,7 +673,7 @@ veranschaulicht dies.</p>
 <div class="figure" style="text-align: center"><span id="fig:hypothesentest"></span>
 <img src="figures/SchliesendeStatistik/hypothesentest_plot.png" alt="Vergleich unseres eingetretenen Ereignisses mit der theoretischen Verteilung unter $H_0$."  />
 <p class="caption">
-Figure 9.1: Vergleich unseres eingetretenen Ereignisses mit der theoretischen Verteilung unter <span class="math inline">\(H_0\)</span>.
+Abbildung 9.1: Vergleich unseres eingetretenen Ereignisses mit der theoretischen Verteilung unter <span class="math inline">\(H_0\)</span>.
 </p>
 </div>
 <p><strong>4. Schritt: Festlegung des Signifikanzniveaus</strong>:
@@ -688,7 +691,7 @@ Von einem <em>Fehler 2. Art</em> sprechen wir, wenn wir <span class="math inline
 <span class="math inline">\(H_0\)</span> eigentlich falsch ist.</p>
 <p>Aus dem gewählten Signifikanzniveau ergibt sich dann der <strong>Verwerfungsbereich</strong>
 für unsere Nullhypothese. Wenn unsere beobachteten Daten im Verwerfungsbereich
-liegen wollen wir <span class="math inline">\(H_0\)</span> als verworfen betrachten.<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a></p>
+liegen wollen wir <span class="math inline">\(H_0\)</span> als verworfen betrachten.<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a></p>
 <p>Es ergibt sich logisch aus dem vorher Gesagten, dass ein höheres <span class="math inline">\(\alpha\)</span> mit
 einem größeren Verwerfungsbereich einhergeht.</p>
 <p>Der Verwerfungsbereich für das oben darstellte Beispiel mit
@@ -697,7 +700,7 @@ einem größeren Verwerfungsbereich einhergeht.</p>
 <div class="figure" style="text-align: center"><span id="fig:verwerfungsbereich"></span>
 <img src="figures/SchliesendeStatistik/verwerfungsbereich-plot.png" alt="Verwerfungsbereich der theoretischen Verteilung unter $H_0$ für $\alpha=0.05$."  />
 <p class="caption">
-Figure 9.2: Verwerfungsbereich der theoretischen Verteilung unter <span class="math inline">\(H_0\)</span> für <span class="math inline">\(\alpha=0.05\)</span>.
+Abbildung 9.2: Verwerfungsbereich der theoretischen Verteilung unter <span class="math inline">\(H_0\)</span> für <span class="math inline">\(\alpha=0.05\)</span>.
 </p>
 </div>
 <p><strong>5. Schritt: Die Entscheidung</strong>
@@ -714,9 +717,9 @@ Im Falle der Binomialverteilung verwenden wir die Funktion <code>binom.test()</c
 welche eine Liste mit relevanten Informationen über den Test erstellt.
 Es macht Sinn, dieser Liste einen Namen zuzuweisen und dann die relevanten
 Informationen explizit abzurufen:</p>
-<div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb754-1"><a href="stat-rep.html#cb754-1" aria-hidden="true" tabindex="-1"></a>b_test_object <span class="ot">&lt;-</span> <span class="fu">binom.test</span>(<span class="at">x =</span> <span class="dv">60</span>, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
-<span id="cb754-2"><a href="stat-rep.html#cb754-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(b_test_object)</span></code></pre></div>
-<pre><code>## [1] &quot;list&quot;</code></pre>
+<div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb758-1"><a href="stat-rep.html#cb758-1" aria-hidden="true" tabindex="-1"></a>b_test_object <span class="ot">&lt;-</span> <span class="fu">binom.test</span>(<span class="at">x =</span> <span class="dv">60</span>, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
+<span id="cb758-2"><a href="stat-rep.html#cb758-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(b_test_object)</span></code></pre></div>
+<pre><code>#&gt; [1] &quot;list&quot;</code></pre>
 <p>Bevor wir uns mit dem Ergebnis befassen wollen wir uns die notwendigen Argumente
 von <code>binom.test()</code> genauer anschauen (eine gute Erläuterung liefert wie immer
 <code>help(binom.test)</code>).</p>
@@ -731,18 +734,18 @@ einseitigen Test nach unten (<code>alternative = "less"</code>) durchführen wol
 Objekt direkt aufrufen. Die Liste wurde innerhalb der Funktion <code>binom.test</code>
 so modifiziert, dass uns die Zusammenfassung visuell ansprechend aufbereitet
 angezeigt wird:</p>
-<div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb756-1"><a href="stat-rep.html#cb756-1" aria-hidden="true" tabindex="-1"></a>b_test_object</span></code></pre></div>
-<pre><code>## 
-##  Exact binomial test
-## 
-## data:  60 and 100
-## number of successes = 60, number of trials = 100, p-value = 0.05689
-## alternative hypothesis: true probability of success is not equal to 0.5
-## 95 percent confidence interval:
-##  0.4972092 0.6967052
-## sample estimates:
-## probability of success 
-##                    0.6</code></pre>
+<div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb760-1"><a href="stat-rep.html#cb760-1" aria-hidden="true" tabindex="-1"></a>b_test_object</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt;  Exact binomial test
+#&gt; 
+#&gt; data:  60 and 100
+#&gt; number of successes = 60, number of trials = 100, p-value = 0.05689
+#&gt; alternative hypothesis: true probability of success is not equal to 0.5
+#&gt; 95 percent confidence interval:
+#&gt;  0.4972092 0.6967052
+#&gt; sample estimates:
+#&gt; probability of success 
+#&gt;                    0.6</code></pre>
 <p>Die Überschrift macht deutlich was für ein Test durchgeführt wurde und die
 ersten beiden Zeilen fassen noch einmal die Daten zusammen.
 In der zweiten Zeile findet sich zudem der <strong>p-Wert</strong>.
@@ -754,7 +757,7 @@ Abbildung <a href="stat-rep.html#fig:p-wert">9.3</a> aufgezeigt.</p>
 <div class="figure" style="text-align: center"><span id="fig:p-wert"></span>
 <img src="figures/SchliesendeStatistik/pwert-plot.png" alt="Ablesen des p-Werts aus der theoretischen Verteilung."  />
 <p class="caption">
-Figure 9.3: Ablesen des p-Werts aus der theoretischen Verteilung.
+Abbildung 9.3: Ablesen des p-Werts aus der theoretischen Verteilung.
 </p>
 </div>
 <p>Die nächste Zeile formuliert dann die Alternativhypothese aus (und hängt entsprechend
@@ -764,31 +767,31 @@ und den Punktschätzer für den zu testenden Parameter (siehe vorheriger Abschni
 <p>Wenn wir wissen wollen welche Informationen die so erstellte Liste sonst noch für
 uns bereit hält, bzw. wie wir uns diese Informationen direkt ausgeben lassen können,
 sollten wir uns die Struktur der Liste genauer ansehen:</p>
-<div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb758-1"><a href="stat-rep.html#cb758-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(b_test_object)</span></code></pre></div>
-<pre><code>## List of 9
-##  $ statistic  : Named num 60
-##   ..- attr(*, &quot;names&quot;)= chr &quot;number of successes&quot;
-##  $ parameter  : Named num 100
-##   ..- attr(*, &quot;names&quot;)= chr &quot;number of trials&quot;
-##  $ p.value    : num 0.0569
-##  $ conf.int   : num [1:2] 0.497 0.697
-##   ..- attr(*, &quot;conf.level&quot;)= num 0.95
-##  $ estimate   : Named num 0.6
-##   ..- attr(*, &quot;names&quot;)= chr &quot;probability of success&quot;
-##  $ null.value : Named num 0.5
-##   ..- attr(*, &quot;names&quot;)= chr &quot;probability of success&quot;
-##  $ alternative: chr &quot;two.sided&quot;
-##  $ method     : chr &quot;Exact binomial test&quot;
-##  $ data.name  : chr &quot;60 and 100&quot;
-##  - attr(*, &quot;class&quot;)= chr &quot;htest&quot;</code></pre>
+<div class="sourceCode" id="cb762"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb762-1"><a href="stat-rep.html#cb762-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(b_test_object)</span></code></pre></div>
+<pre><code>#&gt; List of 9
+#&gt;  $ statistic  : Named num 60
+#&gt;   ..- attr(*, &quot;names&quot;)= chr &quot;number of successes&quot;
+#&gt;  $ parameter  : Named num 100
+#&gt;   ..- attr(*, &quot;names&quot;)= chr &quot;number of trials&quot;
+#&gt;  $ p.value    : num 0.0569
+#&gt;  $ conf.int   : num [1:2] 0.497 0.697
+#&gt;   ..- attr(*, &quot;conf.level&quot;)= num 0.95
+#&gt;  $ estimate   : Named num 0.6
+#&gt;   ..- attr(*, &quot;names&quot;)= chr &quot;probability of success&quot;
+#&gt;  $ null.value : Named num 0.5
+#&gt;   ..- attr(*, &quot;names&quot;)= chr &quot;probability of success&quot;
+#&gt;  $ alternative: chr &quot;two.sided&quot;
+#&gt;  $ method     : chr &quot;Exact binomial test&quot;
+#&gt;  $ data.name  : chr &quot;60 and 100&quot;
+#&gt;  - attr(*, &quot;class&quot;)= chr &quot;htest&quot;</code></pre>
 <p>Wir sehen hier, dass wir viele der Werte wie bei Listen üblich direkt anwählen
 können, z.B. den p-Wert:</p>
-<div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb760-1"><a href="stat-rep.html#cb760-1" aria-hidden="true" tabindex="-1"></a>b_test_object[[<span class="st">&quot;p.value&quot;</span>]]</span></code></pre></div>
-<pre><code>## [1] 0.05688793</code></pre>
+<div class="sourceCode" id="cb764"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb764-1"><a href="stat-rep.html#cb764-1" aria-hidden="true" tabindex="-1"></a>b_test_object[[<span class="st">&quot;p.value&quot;</span>]]</span></code></pre></div>
+<pre><code>#&gt; [1] 0.05688793</code></pre>
 <p>Oder den Punktschätzer für <span class="math inline">\(p\)</span>:</p>
-<div class="sourceCode" id="cb762"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb762-1"><a href="stat-rep.html#cb762-1" aria-hidden="true" tabindex="-1"></a>b_test_object[[<span class="st">&quot;estimate&quot;</span>]]</span></code></pre></div>
-<pre><code>## probability of success 
-##                    0.6</code></pre>
+<div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb766-1"><a href="stat-rep.html#cb766-1" aria-hidden="true" tabindex="-1"></a>b_test_object[[<span class="st">&quot;estimate&quot;</span>]]</span></code></pre></div>
+<pre><code>#&gt; probability of success 
+#&gt;                    0.6</code></pre>
 <p>Wenn wir eine andere Verteilung annehmen, verwenden wir auch eine andere Testfunktion,
 das Prinzip ist aber sehr ähnlich.
 Wollen wir z.B. für einen beobachtbaren Datensatz die Hypothese testen, ob
@@ -821,7 +824,7 @@ die definiert ist als:</p>
 Aus Konvention (und vielleicht auch der Furcht, ein Hypothese
 fälscherlicherweise zu verwerfen) wird in der Wissenschaft vor allem auf den
 Fehler erster Art geschaut.
-Diese Konvention ist jedoch durchaus kontrovers, siehe z.B. <span class="citation"><a href="git.html#ref-power" role="doc-biblioref">Ioannidis, Stanley, and Doucouliagos</a> (<a href="git.html#ref-power" role="doc-biblioref">2017</a>)</span>.</p>
+Diese Konvention ist jedoch durchaus kontrovers, siehe z.B. <span class="citation"><a href="git.html#ref-power" role="doc-biblioref">Ioannidis, Stanley, und Doucouliagos</a> (<a href="git.html#ref-power" role="doc-biblioref">2017</a>)</span>.</p>
 <p><strong>Die Wahl zwischen einseitigen und zweiseitigen Tests</strong>:</p>
 <p>Wir haben oben am Beispiel der potenziell manipulierten Münze folgendermaßen
 zwischen einseitigen und zweiseitigen Tests unterschieden:
@@ -855,11 +858,11 @@ Signifikanzniveau <span class="math inline">\(\alpha\)</span> als Nullhypothese 
 <p>Wir haben oben auch schon gesehen, dass das Konfidenzintervall ganz leicht aus
 den typischen Test-Funktionen in R ausgelesen werden kann.
 Für das Beispiel der Binomialverteilung schreiben wir daher nur:</p>
-<div class="sourceCode" id="cb764"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb764-1"><a href="stat-rep.html#cb764-1" aria-hidden="true" tabindex="-1"></a>b_test_object <span class="ot">&lt;-</span> <span class="fu">binom.test</span>(<span class="at">x =</span> <span class="dv">60</span>, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
-<span id="cb764-2"><a href="stat-rep.html#cb764-2" aria-hidden="true" tabindex="-1"></a>b_test_object[[<span class="st">&quot;conf.int&quot;</span>]]</span></code></pre></div>
-<pre><code>## [1] 0.4972092 0.6967052
-## attr(,&quot;conf.level&quot;)
-## [1] 0.95</code></pre>
+<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="stat-rep.html#cb768-1" aria-hidden="true" tabindex="-1"></a>b_test_object <span class="ot">&lt;-</span> <span class="fu">binom.test</span>(<span class="at">x =</span> <span class="dv">60</span>, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
+<span id="cb768-2"><a href="stat-rep.html#cb768-2" aria-hidden="true" tabindex="-1"></a>b_test_object[[<span class="st">&quot;conf.int&quot;</span>]]</span></code></pre></div>
+<pre><code>#&gt; [1] 0.4972092 0.6967052
+#&gt; attr(,&quot;conf.level&quot;)
+#&gt; [1] 0.95</code></pre>
 <p>Die Interpretation dieses Intervals ist dabei die Folgende:
 wenn der zugrundeliegende Datengenerierungsprozess sehr häufig wiederholt werden würde,
 dann würde 95% der jeweils berechneten 95%-Konfidenzintervalle diesen wahren Wert
@@ -867,25 +870,25 @@ enthalten.
 Wir können <strong>auf gar keinen Fall</strong> behaupten, dass ein bestimmtes Konfidenzintervall den
 wahren Parameterwert mit einer Wahrscheinlichkeit von <span class="math inline">\(95\)</span>% enthält. Eine solche
 Aussage macht auch keinen Sinn: der wahre Wert ist - wie eingangs beschrieben -
-keine Zufallsvariable.<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a></p>
+keine Zufallsvariable.<a href="#fn80" class="footnote-ref" id="fnref80"><sup>80</sup></a></p>
 
 
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="75">
-<li id="fn75"><p>Wenn Sie nicht mehr wissen, was eine
+<ol start="76">
+<li id="fn76"><p>Wenn Sie nicht mehr wissen, was eine
 Binominalverteilung ist, dann lesen Sie nochmal das Kapitel <a href="stat-stoch.html#stat-stoch">7</a>
-zur Wahrscheinlichkeitstheorie.<a href="stat-rep.html#fnref75" class="footnote-back">↩︎</a></p></li>
-<li id="fn76"><p>Wir
+zur Wahrscheinlichkeitstheorie.<a href="stat-rep.html#fnref76" class="footnote-back">↩︎</a></p></li>
+<li id="fn77"><p>Wir
 beschränken uns hier auf so genannte <em>parametrische</em> Tests. Das bedeutet,
 dass wir zunächst ein bestimmtes Modell für den Datengenerierungsprozess
 annehmen. Im Beispiel war dieses Modell die Binomialverteilung. Es gibt auch
 Tests, die ohne eine solche Annahme auskommen. Sie werden <em>nicht-parametrisch</em>
 genannt, aber im Rahmen dieses Buches nicht behandelt. Eine eingängige Einführung
-findet sich z.B. in <span class="citation"><a href="git.html#ref-wasserman" role="doc-biblioref">Wasserman</a> (<a href="git.html#ref-wasserman" role="doc-biblioref">2006</a>)</span>.<a href="stat-rep.html#fnref76" class="footnote-back">↩︎</a></p></li>
-<li id="fn77"><p>An manchen Stellen der sozial- und wirtschaftswissenschaftlichen Literatur
+findet sich z.B. in <span class="citation"><a href="git.html#ref-wasserman" role="doc-biblioref">Wasserman</a> (<a href="git.html#ref-wasserman" role="doc-biblioref">2006</a>)</span>.<a href="stat-rep.html#fnref77" class="footnote-back">↩︎</a></p></li>
+<li id="fn78"><p>An manchen Stellen der sozial- und wirtschaftswissenschaftlichen Literatur
 wird anstelle von “verwerfen” auch das Wort “falsifizieren” benutzt um die
 Zurückweisung der Null-Hypothese zu umschreiben.
 Diese Wortwahl ist allerdings vor dem Hintergrund der Verwendung von
@@ -895,18 +898,18 @@ die einen gewissen Zusammenhang behaupten.
 Im Gegensatz wird die Hypothese zurückgewiesen, dass der vermutete Zusammenhang
 eben nicht besteht - die zu Grunde gelegte Theorie wird also durch die
 Zurückweisung der Null-Hypothese im Normalfall nicht widerlegt sondern vielmehr
-bestätigt.<a href="stat-rep.html#fnref77" class="footnote-back">↩︎</a></p></li>
-<li id="fn78"><p>
+bestätigt.<a href="stat-rep.html#fnref78" class="footnote-back">↩︎</a></p></li>
+<li id="fn79"><p>
 Zu beachten ist allerdings, dass wir nicht davon sprechen, <span class="math inline">\(H_1\)</span> (<span class="math inline">\(H_0\)</span>)
 <em>anzunehmen</em>, wenn <span class="math inline">\(H_0\)</span> (<span class="math inline">\(H_1\)</span>) abgelehnt wurde. Es geht hier nur um das
-Verwerfen von Hypothesen.<a href="stat-rep.html#fnref78" class="footnote-back">↩︎</a></p></li>
-<li id="fn79"><p>
+Verwerfen von Hypothesen.<a href="stat-rep.html#fnref79" class="footnote-back">↩︎</a></p></li>
+<li id="fn80"><p>
 Diese Interpretation ist etwas sperrig und das hängt mit dem
 <a href="https://de.wikipedia.org/wiki/Frequentistischer_Wahrscheinlichkeitsbegriff">frequentistischen Wahrscheinlichkeitsbegriff</a>
 zusammen, den wir hier verwenden. Einen philosophisch attraktiveren Weg stellt der
 <a href="https://de.wikipedia.org/wiki/Bayesscher_Wahrscheinlichkeitsbegriff">bayessche Wahrscheinlichkeitsbegriff</a>,
 auf dem die die Bayesianische Statistik aufbaut.
-Letztere werden wir hier allerdings nicht behandeln können<a href="stat-rep.html#fnref79" class="footnote-back">↩︎</a></p></li>
+Letztere werden wir hier allerdings nicht behandeln können<a href="stat-rep.html#fnref80" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

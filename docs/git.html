@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="de" xml:lang="de">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 15 Eine kurze Einführung in die Versionskontrolle mit Git | R für die sozio-ökonomische Forschung</title>
-  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta name="description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 15 Eine kurze Einführung in die Versionskontrolle mit Git | R für die sozio-ökonomische Forschung" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta property="og:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   <meta name="github-repo" content="graebnerc/RforSocioEcon" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 15 Eine kurze Einführung in die Versionskontrolle mit Git | R für die sozio-ökonomische Forschung" />
   
-  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.4" />
+  <meta name="twitter:description" content="Einführung in R für die sozioökonomische Forschung; Version 0.9.5" />
   
 
 <meta name="author" content="Dr. Claudius Gräbner" />
 
 
-<meta name="date" content="2021-03-11" />
+<meta name="date" content="2021-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,6 +139,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#danksagung"><i class="fa fa-check"></i>Danksagung</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#änderungshistorie"><i class="fa fa-check"></i>Änderungshistorie</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#colophon"><i class="fa fa-check"></i>Colophon</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#referenzen"><i class="fa fa-check"></i>Referenzen</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="precons.html"><a href="precons.html"><i class="fa fa-check"></i><b>1</b> Vorbemerkungen</a>
 <ul>
@@ -208,7 +210,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>5</b> Visualisierung von Daten</a>
 <ul>
 <li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#verwendete-pakete-1"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
-<li class="chapter" data-level="" data-path="vis.html"><a href="vis.html#einleitung"><i class="fa fa-check"></i>Einleitung</a></li>
 <li class="chapter" data-level="5.1" data-path="vis.html"><a href="vis.html#vis-theorie"><i class="fa fa-check"></i><b>5.1</b> Optional: Theoretische Grundlagen</a>
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="vis.html"><a href="vis.html#vis-base-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> <code>ggplot2</code> vs. <code>base plot</code></a></li>
@@ -317,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="desk-stat.html"><a href="desk-stat.html"><i class="fa fa-check"></i><b>8</b> Wiederholung: Deskriptive Statistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-und-datensätze"><i class="fa fa-check"></i>Verwendete Pakete und Datensätze</a></li>
+<li class="chapter" data-level="" data-path="desk-stat.html"><a href="desk-stat.html#verwendete-pakete-4"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="8.1" data-path="desk-stat.html"><a href="desk-stat.html#kennzahlen-zur-lage-und-streuung-der-daten"><i class="fa fa-check"></i><b>8.1</b> Kennzahlen zur Lage und Streuung der Daten</a></li>
 <li class="chapter" data-level="8.2" data-path="desk-stat.html"><a href="desk-stat.html#korrelationsmaße"><i class="fa fa-check"></i><b>8.2</b> Korrelationsmaße</a></li>
 <li class="chapter" data-level="8.3" data-path="desk-stat.html"><a href="desk-stat.html#descVis"><i class="fa fa-check"></i><b>8.3</b> Hinweise zur quantitativen und visuellen Datenbeschreibung</a></li>
@@ -325,18 +326,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="stat-rep.html"><a href="stat-rep.html"><i class="fa fa-check"></i><b>9</b> Wiederholung: Drei Verfahren der schließenden Statistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-4"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="" data-path="stat-rep.html"><a href="stat-rep.html#verwendete-pakete-5"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="9.1" data-path="stat-rep.html"><a href="stat-rep.html#punktschätzung"><i class="fa fa-check"></i><b>9.1</b> Punktschätzung</a></li>
 <li class="chapter" data-level="9.2" data-path="stat-rep.html"><a href="stat-rep.html#hypothesentests"><i class="fa fa-check"></i><b>9.2</b> Hypothesentests</a></li>
 <li class="chapter" data-level="9.3" data-path="stat-rep.html"><a href="stat-rep.html#berechnung-von-konfidenzintervallen"><i class="fa fa-check"></i><b>9.3</b> Berechnung von Konfidenzintervallen</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="linmodel.html"><a href="linmodel.html"><i class="fa fa-check"></i><b>10</b> Lineare statistische Modelle in R</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einleitung-und-überblick"><i class="fa fa-check"></i><b>10.1</b> Einleitung und Überblick</a>
+<li class="chapter" data-level="" data-path="linmodel.html"><a href="linmodel.html#verwendete-pakete-6"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
+<li class="chapter" data-level="10.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1</b> Einführung in die lineare Regression</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführung-in-die-lineare-regression"><i class="fa fa-check"></i><b>10.1.1</b> Einführung in die lineare Regression</a></li>
-<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.2</b> Einführungsbeispiel</a></li>
-<li class="chapter" data-level="10.1.3" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.3</b> Überblick über die Inhalte des Kapitels</a></li>
+<li class="chapter" data-level="10.1.1" data-path="linmodel.html"><a href="linmodel.html#einführungsbeispiel"><i class="fa fa-check"></i><b>10.1.1</b> Einführungsbeispiel</a></li>
+<li class="chapter" data-level="10.1.2" data-path="linmodel.html"><a href="linmodel.html#überblick-über-die-inhalte-des-kapitels"><i class="fa fa-check"></i><b>10.1.2</b> Überblick über die Inhalte des Kapitels</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="linmodel.html"><a href="linmodel.html#lin-grundlagen"><i class="fa fa-check"></i><b>10.2</b> Grundlagen der einfachen linearen Regression</a>
 <ul>
@@ -356,6 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11" data-path="advlin.html"><a href="advlin.html"><i class="fa fa-check"></i><b>11</b> Fortgeschrittene Themen der linearen Regression</a>
 <ul>
+<li class="chapter" data-level="" data-path="advlin.html"><a href="advlin.html#verwendete-pakete-7"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="11.1" data-path="advlin.html"><a href="advlin.html#annahmen-und-eigenschaften-des-einfachen-ols-modells"><i class="fa fa-check"></i><b>11.1</b> Annahmen und Eigenschaften des einfachen OLS Modells</a>
 <ul>
 <li class="chapter" data-level="11.1.1" data-path="advlin.html"><a href="advlin.html#annahmen-im-matrixschreibweise"><i class="fa fa-check"></i><b>11.1.1</b> Annahmen im Matrixschreibweise</a></li>
@@ -408,6 +410,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12" data-path="nonlin.html"><a href="nonlin.html"><i class="fa fa-check"></i><b>12</b> Ausgewählte nichtlineare Schätzverfahren</a>
 <ul>
+<li class="chapter" data-level="" data-path="nonlin.html"><a href="nonlin.html#verwendete-pakete-8"><i class="fa fa-check"></i>Verwendete Pakete</a></li>
 <li class="chapter" data-level="12.1" data-path="nonlin.html"><a href="nonlin.html#logit"><i class="fa fa-check"></i><b>12.1</b> Binäre abhängige Variablen: Logit- und Probit-Modelle</a>
 <ul>
 <li class="chapter" data-level="12.1.1" data-path="nonlin.html"><a href="nonlin.html#warum-nicht-ols"><i class="fa fa-check"></i><b>12.1.1</b> Warum nicht OLS?</a></li>
@@ -460,172 +463,180 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-linalg" class="csl-entry">
-Aleskerov, Fuad, Hasan Ersel, and Dmitri Piontkovski. 2011. <em>Linear Algebra for Economists</em>. Springer. <a href="\url{https://www.springer.com/de/book/9783642205699}">\url{https://www.springer.com/de/book/9783642205699}</a>.
+Aleskerov, Fuad, Hasan Ersel, und Dmitri Piontkovski. 2011. <em>Linear Algebra for Economists</em>. Springer. <a href="\url{https://www.springer.com/de/book/9783642205699}">\url{https://www.springer.com/de/book/9783642205699}</a>.
 </div>
 <div id="ref-Anscombe" class="csl-entry">
-Anscombe, Francis J. 1973. <span>“Graphs in Statistical Analysis.”</span> <em>The American Statistician</em> 27: 17–21. <a href="https://doi.org/10.2307/2682899">https://doi.org/10.2307/2682899</a>.
+Anscombe, Francis J. 1973. <span>„Graphs in statistical analysis“</span>. <em>The American Statistician</em> 27: 17–21. <a href="https://doi.org/10.2307/2682899">https://doi.org/10.2307/2682899</a>.
 </div>
 <div id="ref-R-WDI" class="csl-entry">
 Arel-Bundock, Vincent. 2019. <em>WDI: World Development Indicators (World Bank)</em>. <a href="https://CRAN.R-project.org/package=WDI">https://CRAN.R-project.org/package=WDI</a>.
 </div>
 <div id="ref-R-countrycode" class="csl-entry">
-Arel-Bundock, Vincent, Nils Enevoldsen, and CJ Yetman. 2018. <span>“Countrycode: An r Package to Convert Country Names and Country Codes.”</span> <em>Journal of Open Source Software</em> 3 (28): 848. <a href="https://doi.org/10.21105/joss.00848">https://doi.org/10.21105/joss.00848</a>.
+Arel-Bundock, Vincent, Nils Enevoldsen, und CJ Yetman. 2018. <span>„countrycode: An R package to convert country names and country codes“</span>. <em>Journal of Open Source Software</em> 3 (28): 848. <a href="https://doi.org/10.21105/joss.00848">https://doi.org/10.21105/joss.00848</a>.
 </div>
 <div id="ref-R-R.utils" class="csl-entry">
 Bengtsson, Henrik. 2019. <em>R.utils: Various Programming Utilities</em>. <a href="https://CRAN.R-project.org/package=R.utils">https://CRAN.R-project.org/package=R.utils</a>.
 </div>
 <div id="ref-AnscombeNew1" class="csl-entry">
-Chatterjee, Sangit, and Aykut Firat. 2007. <span>“Generating Data with Identical Statistics but Dissimilar Graphics.”</span> <em>The American Statistician</em> 61 (3): 248–54. <a href="https://doi.org/10.1198/000313007X220057">https://doi.org/10.1198/000313007X220057</a>.
+Chatterjee, Sangit, und Aykut Firat. 2007. <span>„Generating Data with Identical Statistics but Dissimilar Graphics“</span>. <em>The American Statistician</em> 61 (3): 248–54. <a href="https://doi.org/10.1198/000313007X220057">https://doi.org/10.1198/000313007X220057</a>.
 </div>
 <div id="ref-clauset" class="csl-entry">
-Clauset, Aaron, Cosma Rohilla Shalizi, and M E J Newman. 2009. <span>“<span class="nocase">Power-Law Distributions in Empirical Data</span>.”</span> <em>SIAM Review</em> 51 (4): 661–703. <a href="https://doi.org/10.1137/070710111">https://doi.org/10.1137/070710111</a>.
+Clauset, Aaron, Cosma Rohilla Shalizi, und M E J Newman. 2009. <span>„<span>Power-Law Distributions in Empirical Data</span>“</span>. <em>SIAM Review</em> 51 (4): 661–703. <a href="https://doi.org/10.1137/070710111">https://doi.org/10.1137/070710111</a>.
 </div>
 <div id="ref-gini-critique" class="csl-entry">
-Clementi, Fabio, Mauro Gallegati, Lisa Gianmoena, Simone Landini, and Joseph E Stiglitz. 2019. <span>“<span class="nocase">Mis-measurement of inequality: a critical reflection and new insights</span>.”</span> <em>Journal of Economic Interaction and Coordination</em> 14 (4): 891–921. <a href="https://doi.org/10.1007/s11403-019-00257-2">https://doi.org/10.1007/s11403-019-00257-2</a>.
+Clementi, Fabio, Mauro Gallegati, Lisa Gianmoena, Simone Landini, und Joseph E Stiglitz. 2019. <span>„<span>Mis-measurement of inequality: a critical reflection and new insights</span>“</span>. <em>Journal of Economic Interaction and Coordination</em> 14 (4): 891–921. <a href="https://doi.org/10.1007/s11403-019-00257-2">https://doi.org/10.1007/s11403-019-00257-2</a>.
 </div>
 <div id="ref-R-fit" class="csl-entry">
-Delignette-Muller, Marie Laure, and Christophe Dutang. 2015. <span>“<span class="nocase">fitdistrplus</span>: An <span>R</span> Package for Fitting Distributions.”</span> <em>Journal of Statistical Software</em> 64 (4): 1–34. <a href="http://www.jstatsoft.org/v64/i04/">http://www.jstatsoft.org/v64/i04/</a>.
+Delignette-Muller, Marie Laure, und Christophe Dutang. 2015. <span>„<span>fitdistrplus</span>: An <span>R</span> Package for Fitting Distributions“</span>. <em>Journal of Statistical Software</em> 64 (4): 1–34. <a href="http://www.jstatsoft.org/v64/i04/">http://www.jstatsoft.org/v64/i04/</a>.
 </div>
 <div id="ref-R-data.table" class="csl-entry">
-Dowle, Matt, and Arun Srinivasan. 2019. <em>Data.table: Extension of ‘Data.frame‘</em>. <a href="https://CRAN.R-project.org/package=data.table">https://CRAN.R-project.org/package=data.table</a>.
+Dowle, Matt, und Arun Srinivasan. 2019. <em>data.table: Extension of ‘data.frame‘</em>. <a href="https://CRAN.R-project.org/package=data.table">https://CRAN.R-project.org/package=data.table</a>.
 </div>
 <div id="ref-chicken" class="csl-entry">
-Epple, Dennis, and Bennett T. McCallum. 2006. <span>“Simultaneous Equation Econometrics: The Missing Example.”</span> <em>Economic Inquiry</em> 44 (2).
+Epple, Dennis, und Bennett T. McCallum. 2006. <span>„Simultaneous Equation Econometrics: The Missing Example“</span>. <em>Economic Inquiry</em> 44 (2).
 </div>
 <div id="ref-fitz" class="csl-entry">
-Fitzmaurice, Garrett, Nan Laird, and James Ware. 2011. <em><span>Applied Longitudinal Analysis</span></em>. 2nd ed. Hoboken, NJ: John Wiley; Sons.
+Fitzmaurice, Garrett, Nan Laird, und James Ware. 2011. <em><span>Applied Longitudinal Analysis</span></em>. 2. Aufl. Hoboken, NJ: John Wiley; Sons.
 </div>
 <div id="ref-R-matlib" class="csl-entry">
-Friendly, Michael, John Fox, and Phil Chalmers. 2019. <em>Matlib: Matrix Functions for Teaching and Learning Linear Algebra and Multivariate Statistics</em>. <a href="https://CRAN.R-project.org/package=matlib">https://CRAN.R-project.org/package=matlib</a>.
+Friendly, Michael, John Fox, und Phil Chalmers. 2019. <em>matlib: Matrix Functions for Teaching and Learning Linear Algebra and Multivariate Statistics</em>. <a href="https://CRAN.R-project.org/package=matlib">https://CRAN.R-project.org/package=matlib</a>.
 </div>
 <div id="ref-R-icae" class="csl-entry">
-Gräbner, Claudius. 2019. <em>icaeDesign: Corporate Design-Like Functions for the ICAE</em>. <a href="https://github.com/graebnerc/icaeDesign">https://github.com/graebnerc/icaeDesign</a>.
+Gräbner, Claudius. 2019. <em>icaeDesign: Corporate design-like functions for the ICAE</em>. <a href="https://github.com/graebnerc/icaeDesign">https://github.com/graebnerc/icaeDesign</a>.
 </div>
 <div id="ref-CJE" class="csl-entry">
-Gräbner, Claudius, Philipp Heimberger, Jakob Kapeller, and Bernhard Schütz. 2020. <span>“<span class="nocase">Is Europe disintegrating? Macroeconomic divergence, structural polarization, trade and fragility</span>.”</span> <em>Cambridge Journal of Economics</em> 44 (3): 647–69. <a href="https://doi.org/10.1093/cje/bez059">https://doi.org/10.1093/cje/bez059</a>.
+Gräbner, Claudius, Philipp Heimberger, Jakob Kapeller, und Bernhard Schütz. 2020. <span>„<span>Is Europe disintegrating? Macroeconomic divergence, structural polarization, trade and fragility</span>“</span>. <em>Cambridge Journal of Economics</em> 44 (3): 647–69. <a href="https://doi.org/10.1093/cje/bez059">https://doi.org/10.1093/cje/bez059</a>.
 </div>
 <div id="ref-greene" class="csl-entry">
 Greene, William H. 2018. <em>Econometric Analysis</em>. New York, NY: Pearson.
 </div>
 <div id="ref-hanson" class="csl-entry">
-Hanson, Gordon H. 2012. <span>“The Rise of Middle Kingdoms: Emerging Economies in Global Trade.”</span> <em>Journal of Economic Perspectives</em> 26 (2): 41–64. <a href="https://doi.org/10.1257/jep.26.2.41">https://doi.org/10.1257/jep.26.2.41</a>.
+Hanson, Gordon H. 2012. <span>„The Rise of Middle Kingdoms: Emerging Economies in Global Trade“</span>. <em>Journal of Economic Perspectives</em> 26 (2): 41–64. <a href="https://doi.org/10.1257/jep.26.2.41">https://doi.org/10.1257/jep.26.2.41</a>.
 </div>
 <div id="ref-heckman" class="csl-entry">
-Heckman, James. 1979. <span>“<span class="nocase">Sample Selection Bias as a Specification Error</span>.”</span> <em>Econometrica</em>. <a href="https://doi.org/doi:10.2307/1912352">https://doi.org/doi:10.2307/1912352</a>.
+Heckman, James. 1979. <span>„<span>Sample Selection Bias as a Specification Error</span>“</span>. <em>Econometrica</em>. <a href="https://doi.org/doi:10.2307/1912352">https://doi.org/doi:10.2307/1912352</a>.
 </div>
 <div id="ref-Herndon" class="csl-entry">
-Herndon, Thomas, Michael Ash, and Robert Pollin. 2013. <span>“<span class="nocase">Does high public debt consistently stifle economic growth? A critique of Reinhart and Rogoff</span>.”</span> <em>Cambridge Journal of Economics</em> 38 (2): 257–79. <a href="https://doi.org/10.1093/cje/bet075">https://doi.org/10.1093/cje/bet075</a>.
+Herndon, Thomas, Michael Ash, und Robert Pollin. 2013. <span>„<span>Does high public debt consistently stifle economic growth? A critique of Reinhart and Rogoff</span>“</span>. <em>Cambridge Journal of Economics</em> 38 (2): 257–79. <a href="https://doi.org/10.1093/cje/bet075">https://doi.org/10.1093/cje/bet075</a>.
 </div>
 <div id="ref-dataviz" class="csl-entry">
-Holtz, Yan, and Conor Healy. 2020. <span>“From Data to Viz.”</span> <a href="https://www.data-to-viz.com/">https://www.data-to-viz.com/</a>.
+Holtz, Yan, und Conor Healy. 2020. <span>„From Data to Viz“</span>. <a href="https://www.data-to-viz.com/">https://www.data-to-viz.com/</a>.
 </div>
 <div id="ref-power" class="csl-entry">
-Ioannidis, John, Tom Stanley, and Hristos Doucouliagos. 2017. <span>“<span class="nocase">The Power of Bias in Economics Research</span>.”</span> <em>The Economic Journal</em>. <a href="https://doi.org/doi:10.1111/ecoj.12461">https://doi.org/doi:10.1111/ecoj.12461</a>.
+Ioannidis, John, Tom Stanley, und Hristos Doucouliagos. 2017. <span>„<span>The Power of Bias in Economics Research</span>“</span>. <em>The Economic Journal</em>. <a href="https://doi.org/doi:10.1111/ecoj.12461">https://doi.org/doi:10.1111/ecoj.12461</a>.
 </div>
 <div id="ref-fes" class="csl-entry">
-Kapeller, Jakob, Claudius Gräbner, and Philipp Heimberger. 2019. <em><span class="nocase">Wirtschaftliche Polarisierung in Europa: Ursachen und Handlungsoptionen</span></em>. Bonn: Friedrich-Ebert Stiftung. <a href="https://www.fes.de/wirtschaftliche-polarisierung-in-europa">https://www.fes.de/wirtschaftliche-polarisierung-in-europa</a>.
+Kapeller, Jakob, Claudius Gräbner, und Philipp Heimberger. 2019. <em><span>Wirtschaftliche Polarisierung in Europa: Ursachen und Handlungsoptionen</span></em>. Bonn: Friedrich-Ebert Stiftung. <a href="https://www.fes.de/wirtschaftliche-polarisierung-in-europa">https://www.fes.de/wirtschaftliche-polarisierung-in-europa</a>.
 </div>
 <div id="ref-R-ggpubr" class="csl-entry">
-Kassambara, Alboukadel. 2019. <em>Ggpubr: ’Ggplot2’ Based Publication Ready Plots</em>. <a href="https://CRAN.R-project.org/package=ggpubr">https://CRAN.R-project.org/package=ggpubr</a>.
+Kassambara, Alboukadel. 2019. <em>ggpubr: ’ggplot2’ Based Publication Ready Plots</em>. <a href="https://CRAN.R-project.org/package=ggpubr">https://CRAN.R-project.org/package=ggpubr</a>.
 </div>
 <div id="ref-AER" class="csl-entry">
-Kleiber, Christian, and Achim Zeileis. 2008. <em>Applied Econometrics with <span>R</span></em>. New York: Springer-Verlag. <a href="https://CRAN.R-project.org/package=AER">https://CRAN.R-project.org/package=AER</a>.
+Kleiber, Christian, und Achim Zeileis. 2008. <em>Applied Econometrics with <span>R</span></em>. New York: Springer-Verlag. <a href="https://CRAN.R-project.org/package=AER">https://CRAN.R-project.org/package=AER</a>.
 </div>
 <div id="ref-R-moments" class="csl-entry">
-Komsta, Lukasz, and Frederick Novomestky. 2015. <em>Moments: Moments, Cumulants, Skewness, Kurtosis and Related Tests</em>. <a href="https://CRAN.R-project.org/package=moments">https://CRAN.R-project.org/package=moments</a>.
+Komsta, Lukasz, und Frederick Novomestky. 2015. <em>moments: Moments, cumulants, skewness, kurtosis and related tests</em>. <a href="https://CRAN.R-project.org/package=moments">https://CRAN.R-project.org/package=moments</a>.
 </div>
 <div id="ref-luegen" class="csl-entry">
-Krämer, Walter. 2015. <em>So lügt Man Mit Statistik</em>. Frankfurt und New York: Campus Verlag.
+Krämer, Walter. 2015. <em>So lügt man mit Statistik</em>. Frankfurt und New York: Campus Verlag.
 </div>
 <div id="ref-BIP" class="csl-entry">
 Kuznets, Simon. 1934. <em>National Income, 1929-1932</em>. Washington D.C.: U.S. Government Printing Office. <a href="https://fraser.stlouisfed.org/title/971">https://fraser.stlouisfed.org/title/971</a>.
 </div>
 <div id="ref-BIPHIST" class="csl-entry">
-Lepenies, Philipp. 2016. <em><span class="nocase">The Power of a Single Number</span></em>. New York, NY: Columbia University Press.
+Lepenies, Philipp. 2016. <em><span>The Power of a Single Number</span></em>. New York, NY: Columbia University Press.
 </div>
 <div id="ref-AnscombeNew2" class="csl-entry">
-Matejka, Justin, and George Fitzmaurice. 2017. <span>“Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics Through Simulated Annealing.”</span> In <em>Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems</em>, 1290–94. New York, NY: ACM. <a href="https://doi.org/10.1145/3025453.3025912">https://doi.org/10.1145/3025453.3025912</a>.
+Matejka, Justin, und George Fitzmaurice. 2017. <span>„Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics Through Simulated Annealing“</span>. In <em>Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems</em>, 1290–94. New York, NY: ACM. <a href="https://doi.org/10.1145/3025453.3025912">https://doi.org/10.1145/3025453.3025912</a>.
 </div>
 <div id="ref-R-latex" class="csl-entry">
-Meschiari, Stefano. 2015. <em>Latex2exp: Use LaTeX Expressions in Plots</em>. <a href="https://CRAN.R-project.org/package=latex2exp">https://CRAN.R-project.org/package=latex2exp</a>.
+Meschiari, Stefano. 2015. <em>latex2exp: Use LaTeX Expressions in Plots</em>. <a href="https://CRAN.R-project.org/package=latex2exp">https://CRAN.R-project.org/package=latex2exp</a>.
 </div>
 <div id="ref-here" class="csl-entry">
-Müller, Kirill. 2017. <em>Here: A Simpler Way to Find Your Files</em>. <a href="https://CRAN.R-project.org/package=here">https://CRAN.R-project.org/package=here</a>.
+Müller, Kirill. 2017. <em>here: A Simpler Way to Find Your Files</em>. <a href="https://CRAN.R-project.org/package=here">https://CRAN.R-project.org/package=here</a>.
 </div>
 <div id="ref-optimx" class="csl-entry">
-Nash, John C., and Ravi Varadhan. 2011. <span>“Unifying Optimization Algorithms to Aid Software System Users: <span class="nocase">optimx</span> for <span>R</span>.”</span> <em>Journal of Statistical Software</em> 43 (9): 1–14. <a href="http://www.jstatsoft.org/v43/i09/">http://www.jstatsoft.org/v43/i09/</a>.
+Nash, John C., und Ravi Varadhan. 2011. <span>„Unifying Optimization Algorithms to Aid Software System Users: <span>optimx</span> for <span>R</span>“</span>. <em>Journal of Statistical Software</em> 43 (9): 1–14. <a href="http://www.jstatsoft.org/v43/i09/">http://www.jstatsoft.org/v43/i09/</a>.
 </div>
 <div id="ref-oecd" class="csl-entry">
-OECD. 2019. <span>“<span class="nocase">Share of employed who are managers, by sex</span>.”</span> OECD.stat. <a href="https://doi.org/10.7910/DVN/H8SFD2">https://doi.org/10.7910/DVN/H8SFD2</a>.
+OECD. 2019. <span>„<span>Share of employed who are managers, by sex</span>“</span>. OECD.stat. <a href="https://doi.org/10.7910/DVN/H8SFD2">https://doi.org/10.7910/DVN/H8SFD2</a>.
 </div>
 <div id="ref-R-units" class="csl-entry">
-Pebesma, Edzer, Thomas Mailund, and James Hiebert. 2016. <span>“Measurement Units in <span>R</span>.”</span> <em>R Journal</em> 8 (2): 486–94. <a href="https://doi.org/10.32614/RJ-2016-061">https://doi.org/10.32614/RJ-2016-061</a>.
+Pebesma, Edzer, Thomas Mailund, und James Hiebert. 2016. <span>„Measurement Units in <span>R</span>“</span>. <em>R Journal</em> 8 (2): 486–94. <a href="https://doi.org/10.32614/RJ-2016-061">https://doi.org/10.32614/RJ-2016-061</a>.
 </div>
 <div id="ref-R-Team" class="csl-entry">
 R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
 </div>
 <div id="ref-schwabischVis" class="csl-entry">
-Schwabish, Jonathan A. 2014. <span>“An Economist’s Guide to Visualizing Data.”</span> <em>Journal of Economic Perspectives</em> 28 (1): 209–34. <a href="https://doi.org/10.1257/jep.28.1.209">https://doi.org/10.1257/jep.28.1.209</a>.
+Schwabish, Jonathan A. 2014. <span>„An Economist’s Guide to Visualizing Data“</span>. <em>Journal of Economic Perspectives</em> 28 (1): 209–34. <a href="https://doi.org/10.1257/jep.28.1.209">https://doi.org/10.1257/jep.28.1.209</a>.
 </div>
 <div id="ref-r-ggrepel" class="csl-entry">
-Slowikowski, Kamil. 2019. <em>Ggrepel: Automatically Position Non-Overlapping Text Labels with ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=ggrepel">https://CRAN.R-project.org/package=ggrepel</a>.
+Slowikowski, Kamil. 2019. <em>ggrepel: Automatically Position Non-Overlapping Text Labels with ’ggplot2’</em>. <a href="https://CRAN.R-project.org/package=ggrepel">https://CRAN.R-project.org/package=ggrepel</a>.
 </div>
 <div id="ref-atlas-hanson" class="csl-entry">
-The Growth Lab at Harvard University. 2019. <span>“<span>International Trade Data (SITC, Rev. 2)</span>.”</span> Harvard Dataverse. <a href="https://doi.org/10.7910/DVN/H8SFD2">https://doi.org/10.7910/DVN/H8SFD2</a>.
+The Growth Lab at Harvard University. 2019. <span>„<span>International Trade Data (SITC, Rev. 2)</span>“</span>. Harvard Dataverse. <a href="https://doi.org/10.7910/DVN/H8SFD2">https://doi.org/10.7910/DVN/H8SFD2</a>.
+</div>
+<div id="ref-renv" class="csl-entry">
+Ushey, Kevin. 2020. <em>renv: Project Environments</em>. <a href="https://CRAN.R-project.org/package=renv">https://CRAN.R-project.org/package=renv</a>.
 </div>
 <div id="ref-R-mass" class="csl-entry">
-Venables, W. N., and B. D. Ripley. 2002. <em>Modern Applied Statistics with s</em>. Fourth. New York: Springer. <a href="http://www.stats.ox.ac.uk/pub/MASS4">http://www.stats.ox.ac.uk/pub/MASS4</a>.
+Venables, W. N., und B. D. Ripley. 2002. <em>Modern Applied Statistics with S</em>. Fourth. New York: Springer. <a href="http://www.stats.ox.ac.uk/pub/MASS4">http://www.stats.ox.ac.uk/pub/MASS4</a>.
 </div>
 <div id="ref-chiang" class="csl-entry">
-Wainwright, Kevin, and Alpha Chiang. 2005. <em>Fundamental Methods of Mathematical Economics</em>. McGraw-Hill.
+Wainwright, Kevin, und Alpha Chiang. 2005. <em>Fundamental Methods of Mathematical Economics</em>. McGraw-Hill.
 </div>
 <div id="ref-wasserman" class="csl-entry">
 Wasserman, Larry. 2006. <em>All of Nonparametric Statistics</em>. New York, NY: Springer.
 </div>
 <div id="ref-wickhamggplot" class="csl-entry">
-Wickham, Hadley. 2010. <span>“A Layered Grammar of Graphics.”</span> <em>Journal of Computational and Graphical Statistics</em> 19 (1): 3–28. <a href="https://doi.org/10.1198/jcgs.2009.07098">https://doi.org/10.1198/jcgs.2009.07098</a>.
+Wickham, Hadley. 2010. <span>„A layered grammar of graphics“</span>. <em>Journal of Computational and Graphical Statistics</em> 19 (1): 3–28. <a href="https://doi.org/10.1198/jcgs.2009.07098">https://doi.org/10.1198/jcgs.2009.07098</a>.
 </div>
 <div id="ref-tidy" class="csl-entry">
-———. 2014. <span>“Tidy Data.”</span> <em>The Journal of Statistical Software</em> 59. <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>.
+———. 2014. <span>„Tidy data“</span>. <em>The Journal of Statistical Software</em> 59. <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>.
 </div>
 <div id="ref-R-ggplot2" class="csl-entry">
-———. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+———. 2016. <em>ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
 </div>
 <div id="ref-R-scales" class="csl-entry">
-———. 2018. <em>Scales: Scale Functions for Visualization</em>. <a href="https://CRAN.R-project.org/package=scales">https://CRAN.R-project.org/package=scales</a>.
+———. 2018. <em>scales: Scale Functions for Visualization</em>. <a href="https://CRAN.R-project.org/package=scales">https://CRAN.R-project.org/package=scales</a>.
 </div>
 <div id="ref-adv-r" class="csl-entry">
-———. 2019. <em>Advanced <span>R</span></em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/">https://adv-r.hadley.nz/</a>.
+———. 2019. <em>Advanced <span>R</span></em>. 2nd Aufl. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/">https://adv-r.hadley.nz/</a>.
 </div>
 <div id="ref-Packages" class="csl-entry">
-Wickham, Hadley, and Jennifer Bryan. 2019. <em>Advanced <span>R</span></em>. 2nd ed. Sebastopol, CA: O’Reilly Media. <a href="https://r-pkgs.org/">https://r-pkgs.org/</a>.
+Wickham, Hadley, und Jennifer Bryan. 2019. <em>Advanced <span>R</span></em>. 2nd Aufl. Sebastopol, CA: O’Reilly Media. <a href="https://r-pkgs.org/">https://r-pkgs.org/</a>.
 </div>
 <div id="ref-R-dplyr" class="csl-entry">
-Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2019. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
+Wickham, Hadley, Romain François, Lionel Henry, und Kirill Müller. 2019. <em>dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
 </div>
 <div id="ref-R-tidyr" class="csl-entry">
-Wickham, Hadley, and Lionel Henry. 2019. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.
+Wickham, Hadley, und Lionel Henry. 2019. <em>tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.
 </div>
 <div id="ref-R-haven" class="csl-entry">
-Wickham, Hadley, and Evan Miller. 2019. <em>Haven: Import and Export ’SPSS’, ’Stata’ and ’SAS’ Files</em>. <a href="https://CRAN.R-project.org/package=haven">https://CRAN.R-project.org/package=haven</a>.
+Wickham, Hadley, und Evan Miller. 2019. <em>haven: Import and Export ’SPSS’, ’Stata’ and ’SAS’ Files</em>. <a href="https://CRAN.R-project.org/package=haven">https://CRAN.R-project.org/package=haven</a>.
 </div>
 <div id="ref-GrammarGraphics" class="csl-entry">
 Wilkinson, Leland. 1999. <em>The Grammar of Graphics</em>. New York: Springer. <a href="https://www.springer.com/de/book/9781475731002">https://www.springer.com/de/book/9781475731002</a>.
 </div>
+<div id="ref-R-bookdown" class="csl-entry">
+Xie, Yihui. 2019. <em>bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.
+</div>
 <div id="ref-torsten-dist" class="csl-entry">
-Yang, Jangho, Torsten Heinrich, Julian Winkler, Francois Lafond, Pantelis Koutroumpis, and J.Doyne Farmer. 2019. <span>“Measuring Productivity Dispersion: A Parametric Approach Using the Levy Alpha-Stable Distribution.”</span> <em>INET Oxford Working Paper</em> 2019-14. <a href="https://www.inet.ox.ac.uk/publications/no-2019-14-measuring-productivity-dispersion-a-parametric-approach-using-the-l%C3%A9vy-alpha-stable-distribution/">https://www.inet.ox.ac.uk/publications/no-2019-14-measuring-productivity-dispersion-a-parametric-approach-using-the-l%C3%A9vy-alpha-stable-distribution/</a>.
+Yang, Jangho, Torsten Heinrich, Julian Winkler, Francois Lafond, Pantelis Koutroumpis, und J.Doyne Farmer. 2019. <span>„Measuring productivity dispersion: a parametric approach using the Levy alpha-stable distribution“</span>. <em>INET Oxford Working Paper</em> 2019-14. <a href="https://www.inet.ox.ac.uk/publications/no-2019-14-measuring-productivity-dispersion-a-parametric-approach-using-the-l%C3%A9vy-alpha-stable-distribution/">https://www.inet.ox.ac.uk/publications/no-2019-14-measuring-productivity-dispersion-a-parametric-approach-using-the-l%C3%A9vy-alpha-stable-distribution/</a>.
 </div>
 <div id="ref-R-sandwich" class="csl-entry">
-Zeileis, Achim. 2004. <span>“Econometric Computing with <span>HC</span> and <span>HAC</span> Covariance Matrix Estimators.”</span> <em>Journal of Statistical Software</em> 11 (10): 1–17. <a href="https://doi.org/10.18637/jss.v011.i10">https://doi.org/10.18637/jss.v011.i10</a>.
+Zeileis, Achim. 2004. <span>„Econometric Computing with <span>HC</span> and <span>HAC</span> Covariance Matrix Estimators“</span>. <em>Journal of Statistical Software</em> 11 (10): 1–17. <a href="https://doi.org/10.18637/jss.v011.i10">https://doi.org/10.18637/jss.v011.i10</a>.
 </div>
 <div id="ref-R-ineq" class="csl-entry">
-———. 2014. <em>Ineq: Measuring Inequality, Concentration, and Poverty</em>. <a href="https://CRAN.R-project.org/package=ineq">https://CRAN.R-project.org/package=ineq</a>.
+———. 2014. <em>ineq: Measuring Inequality, Concentration, and Poverty</em>. <a href="https://CRAN.R-project.org/package=ineq">https://CRAN.R-project.org/package=ineq</a>.
 </div>
 <div id="ref-R-lmtest" class="csl-entry">
-Zeileis, Achim, and Torsten Hothorn. 2002. <span>“Diagnostic Checking in Regression Relationships.”</span> <em>R News</em> 2 (3): 7–10. <a href="https://CRAN.R-project.org/doc/Rnews/">https://CRAN.R-project.org/doc/Rnews/</a>.
+Zeileis, Achim, und Torsten Hothorn. 2002. <span>„Diagnostic Checking in Regression Relationships“</span>. <em>R News</em> 2 (3): 7–10. <a href="https://CRAN.R-project.org/doc/Rnews/">https://CRAN.R-project.org/doc/Rnews/</a>.
 </div>
 </div>
 </div>
+
+
 
 
 

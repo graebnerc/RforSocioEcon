@@ -32,7 +32,7 @@ klar verletzt.
 In diesem Kapitel lernen wir dabei logit- und probit-Modelle als alternative
 Schätzverfahren kennen.
 
-Dabei werden die folgenden Pakete verwendet:
+## Verwendete Pakete {-}
 
 
 ```r

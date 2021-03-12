@@ -304,13 +304,12 @@ noten
 #> Levels: 1 < 2 < 3 < 4 < 5 < 6
 ```
 
-Da wir ordinal-skalierte Daten ordnen können, ist es hier z.B. auch möglich 
-empirische Quantile zu berechnen. 
-Allerdings müssen wir bei der Funktion noch das Argument `type=1` oder `type=3`^[
+Da wir ordinal-skalierte Daten ordnen können, ist es hier z.B. auch möglich mit
+Hilfe der Funktion `quantile()` empirische Quantile zu berechnen:^[
+Allerdings müssen wir bei der Funktion noch das Argument `type=1` oder `type=3` 
+ergänzen, um einen Quantilsalgorithmus zu wählen, der auch mit Faktoren funktioniert.
 Eine Beschreibung der unterschiedlichen Algorithmen finden Sie über 
 `help(quantile)`.] 
-ergänzen, um einen Quantilsalgorithmus zu wählen, der auch mit Faktoren 
-funktioniert:
 
 
 ```r
@@ -744,7 +743,7 @@ Das können wir folgendermaßen überprüfen:
 
 
 ```r
-typeof(daten$year)
+typeof(daten[["year"]])
 ```
 
 ```
@@ -770,7 +769,7 @@ daten_pfad <- here::here("data/tidy/export_daten.csv")
 daten <- data.table::fread(
   daten_pfad, colClasses = c("character", "double", "double")
   )
-typeof(daten$year)
+typeof(daten[["year"]])
 ```
 
 ```
@@ -956,6 +955,52 @@ head(dta_daten, 2)
 Das Paket [haven](https://github.com/tidyverse/haven) stellt auch Funktionen zum 
 Lesen von SAS oder SPSS-Dateien bereit.
 
+> **Exkurs: Große Zahlen und Probleme mit `int64`** Wir haben in Kapital 
+\@ref(basics) ja bereits den etwas besonderen Datentyp 
+`bit64::integer64` kennen gelernt. 
+Da dieser Datentyp mit einigen Operatoren inkompatibel ist und merkwürdiges
+Verhalten verursacht wenn das Paket `bit64` nicht installiert ist, 
+sollten wir seine Verwendung unbedingt vermeiden. Wenn Sie aber mit
+`data.table::fread` einen Datensatz einlesen, der ganze Zahlen beinhaltet,
+die größer sind als 2147483647, dann werden diese automatisch als 
+`bit64::integer64` kodiert.^[Wenn Sie das Paket `bit64` nicht installiert haben, 
+bekommen Sie zudem eine etwas merkwürdig anmutende Warnung zu lesen.] 
+
+
+```r
+large_nb_frame <- data.table::fread(
+  here::here("data/tidy/BIPKonsum.csv"))
+str(large_nb_frame, vec.len=3)
+```
+
+```
+#> Classes 'data.table' and 'data.frame':	27 obs. of  3 variables:
+#>  $ Jahr          : int  1992 1993 1994 1995 1996 1997 1998 1999 ...
+#>  $ Konsumausgaben:integer64 1601342020000 1611040070000 1647698700000 1681059990000 1706080960000 1719658230000 ... 
+#>  $ BIP           :integer64 2077722320000 2057855860000 2108425030000 2145061880000 2162606290000 2202597220000 ... 
+#>  - attr(*, ".internal.selfref")=<externalptr>
+```
+
+> Das können wir verhindern, indem wir die Spaltentypen
+explizit über `colClasses` spezifizieren oder aber zur Sicherheit das
+Argument `integer64` auf `"double"` setzen:
+
+
+```r
+large_nb_frame <- data.table::fread(
+  here::here("data/tidy/BIPKonsum.csv"), 
+  integer64 = "double")
+str(large_nb_frame, vec.len=3)
+```
+
+```
+#> Classes 'data.table' and 'data.frame':	27 obs. of  3 variables:
+#>  $ Jahr          : int  1992 1993 1994 1995 1996 1997 1998 1999 ...
+#>  $ Konsumausgaben: num  1.60e+12 1.61e+12 1.65e+12 1.68e+12 ...
+#>  $ BIP           : num  2.08e+12 2.06e+12 2.11e+12 2.15e+12 ...
+#>  - attr(*, ".internal.selfref")=<externalptr>
+```
+
 ### Speichern von Daten
 
 
@@ -996,7 +1041,7 @@ Falls Ihr Datensatz im csv-Format doch zu groß ist, Sie aber aufgrund von
 Kompatibilitätsanforderungen kein spezialisiertes Format benutzen wollen, bietet
 es sich an die csv-Datei zu komprimieren. 
 Natürlich könnten Sie das händisch in Ihrem Datei-Explorer machen, aber das ist vollkommen überholt. 
-Sie können das gleich in R miterledigen indem Sie z.B. die Funktion `gzip`
+Sie können das gleich in R miterledigen indem Sie z.B. die Funktion `gzip()`
 aus dem Paket `R.utils` [@R-R.utils] verwenden:
 
 
@@ -1264,9 +1309,10 @@ Anforderung (1) verstößt:
 #> 2   DE  Exporte 45.64482
 ```
 
-> Hier haben wir drei Variablen, `Land`, `Jahr` und `Exporte`, aber die Spalte 
-`2013` korrespondiert zu einer Ausprägung der Variable
-`Jahr`, aber nicht zur Variablen als solchen. 
+> Hier haben wir drei Variablen, `Land`, `Jahr` und `Exporte`, die im Jahr 2014
+erhoben wurden. In der Spalte `Variable` kommen aber die ersten drei Variablen
+vor und die Spalte `2013` korrespondiert zu einer Ausprägung der Variable
+`Jahr`, aber nicht zu den eigentlichen Variablen als solchen. 
 Die Bedeutung dieser Unterscheidung wird im nächsten Beispiel deutlich.
 
 > **Beispiel: Verstoß gegen (1) und (2):**
@@ -1307,7 +1353,8 @@ kommen in der Praxis in der Regel seltener vor, sind aber auch unschön:
 
 ```r
 d <- data.frame(Land=c("DE", "AT"))
-d$`Wichtige Industrien` <- list(c("Autos", "Medikamente"), c("Stahlproduktion", "Holz"))
+d[["Wichtige Industrien"]] <- list(
+  c("Autos", "Medikamente"), c("Stahlproduktion", "Holz"))
 d
 ```
 
@@ -2026,7 +2073,7 @@ Tabelle \@ref(tab:joins) fasst die gerade diskutierten Funktionen noch einmal
 zusammen.
 
 
-Table: (\#tab:joins) Überblick zu den Funktionen der `*_join()`-Familie des Pakets `dplyr`. 'DS' steht für 'Datensatz', mit `x` ist der linke und mit`y` der rechte Datensatz gemeint, wie in den Argumenten von `*_join()`.
+Table: (\#tab:joins) Überblick zu den Funktionen der `*_join()`-Familie des Pakets `dplyr`. Mit `x` ist der linke und mit `y` der rechte Datensatz gemeint, wie in den Argumenten von `*_join()`.
 
 | Funktion | Effekt                   | Veränderung Anzahl Zeilen? | 
 |----------+--------------------------+----------------------------|

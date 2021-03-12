@@ -7,28 +7,6 @@ output:
 
 
 
-## Verwendete Pakete {-}
-
-
-```r
-library(here)
-library(tidyverse)
-library(data.table)
-library(ggpubr)
-library(ggrepel)
-library(scales)
-library(tufte)
-library(gapminder)
-library(viridis)
-library(latex2exp)
-library(WDI)
-library(countrycode)
-```
-
-
-
-## Einleitung {-}
-
 In diesem Kapitel lernen Sie mit Hilfe des Pakets `ggplot2` Ihre Daten
 ansprechend zu visualisieren.
 
@@ -59,6 +37,27 @@ Im fünften Abschnitt zeigen wir aufbauend auf @schwabischVis wie
 Der sechste Abschnitt illustriert ausgewählte
 [Manipulationsstrategien](#vis-manip) bei der Datenvisualisierung.
 Im letzten Abschnitt finden Sie Empfehlungen für [weiterführende Literatur](#vis-lit).
+
+## Verwendete Pakete {-}
+
+
+```r
+library(here)
+library(tidyverse)
+library(data.table)
+library(ggpubr)
+library(ggrepel)
+library(scales)
+library(tufte)
+library(gapminder)
+library(viridis)
+library(latex2exp)
+library(WDI)
+library(countrycode)
+```
+
+
+
 
 ## Optional: Theoretische Grundlagen {#vis-theorie}
 
