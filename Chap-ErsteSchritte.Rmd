@@ -6,6 +6,7 @@ knitr::opts_chunk$set(comment = "#>", warning = F, message = F)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tufte)
+library(bit64)
 ```
 
 Nach den (wichtigen) Vorbereitungsschritten im vorangehenden Kapitel 
@@ -593,16 +594,12 @@ Da R nicht weiß wie man aus dem Wort 'Hallo' eine Dezimalzahl machen soll,
 transformiert R das Wort in einen 'Fehlenden Wert', der in R als `NA` 
 bekannt ist und unten noch genauer diskutiert wird.
 
-
 Für die Grundtypen ergibt sich folgende logische Hierachie an trivialen 
 Transformationen: `logical` &rarr; `integer` &rarr; `double` &rarr; `character`,
 d.h. man kann eine Dezimalzahl ohne Probleme in ein Wort transformieren, 
 aber nicht umgekehrt:
 
-***
-
-> **Warum überhaupt transformieren?**
-> 
+> **Exkurs: Warum überhaupt transformieren?**
 > Für eine Programmiersprache sind Datentypen extrem wichtig, weil sonst unklar
 bliebe wie mathematische Operationen auf unterschiedliche Objekte wie Zahlen
 oder Wörter anzuwenden wären.
@@ -613,8 +610,6 @@ Das kann zum Beispiel passieren wenn Sie Daten einlesen oder Wörter selbst in
 Zahlenwerte übersetzen. Wenn in Ihrem Code unerwartete Fehler mit kryptischen
 Fehlermeldungen auftauchen ist es immer eine gute Idee, erst einmal die Typen
 der verwendeten Objekte zu checken und die Objekte ggf. zu transformieren.
-
-***
 
 ```{r}
 x <- 2
@@ -745,6 +740,48 @@ x =  c(1, 2, 3)
 len_x <- length(x)
 len_x
 ```
+
+> **Exkurs: Wie groß kann eine ganze Zahl sein?**
+In R werden `integer` als 32-Bit Daten gespeichert. 
+Das bedeutet, dass für einen einzelnen `integer` 32 Bit Speicherplatz zur
+Verfügung steht. Das bedeutet, dass sehr große ganze Zahlen nicht als `integer` 
+gespeichert werden können, einfach weil die 32 Bit nicht ausreichen.
+
+```{r}
+x <- 2147483647L
+typeof(x)
+```
+
+```{r, warning=TRUE, message=TRUE}
+y <- 2147483648L
+typeof(y)
+```
+
+> Mit 32-Bit Integern kann man also maximal die Zahl 2147483647 speichern. 
+Größere Zahlen können nur als `double` gespeichert werden. Das geht allerdings
+möglicherweise mit einem Verlust an Präzision einher. 
+Wenn man letzteres vermeiden möchte kann man auch 64-Bit Integer verwenden. 
+Diese wurden nachträglich in R eingeführt um auch sehr große Zahlen als Integer speichern zu können. Das geht über das Paket `bit64` (mehr zu Paketen unten 
+in Abschnit \@ref(es:pakete)):
+
+```{r, warning=TRUE}
+z <- bit64::as.integer64(2147483648)
+bit64::is.integer64(z)
+```
+
+> Da aber dieser Datentyp später hinzugefügt wurde funktionieren einige Funktionen damit nicht, wenn das Paket `bit64` nicht installiert ist und einige Standard-
+Funktionen geben irreführende Ergebnisse, z.B.:
+
+```{r}
+typeof(z)
+```
+
+> Deswegen, und weil `bit64` nicht 
+Teil der Standard-Installation von R ist, sollten wir sehr große ganze Zahlen 
+und die Verwendung vom Datentyp `integer64` dringend vermeiden, es sei
+denn wir haben gute Gründe dazu. Sehr große ganze Zahlen sollten also entweder
+als Dezimalzahlen gespeichert werden wenn kleine Verluste an Präzision keine
+Rolle spielen, oder aber sie sollten angemessen skaliert werden.
 
 ### Logische Werte (logical) {#basics-logic}
 

@@ -769,6 +769,34 @@ head(dta_daten, 2)
 Das Paket [haven](https://github.com/tidyverse/haven) stellt auch Funktionen zum 
 Lesen von SAS oder SPSS-Dateien bereit.
 
+> **Exkurs: Große Zahlen und Probleme mit `int64`** Wir haben in Kapital 
+\@ref(basics) ja bereits den etwas besonderen Datentyp 
+`bit64::integer64` kennen gelernt. 
+Da dieser Datentyp mit einigen Operatoren inkompatibel ist und merkwürdiges
+Verhalten verursacht wenn das Paket `bit64` nicht installiert ist, 
+sollten wir seine Verwendung unbedingt vermeiden. Wenn Sie aber mit
+`data.table::fread` einen Datensatz einlesen, der ganze Zahlen beinhaltet,
+die größer sind als 2147483647, dann werden diese automatisch als 
+`bit64::integer64` kodiert.^[Wenn Sie das Paket `bit64` nicht installiert haben, 
+bekommen Sie zudem eine etwas merkwürdig anmutende Warnung zu lesen.] 
+
+```{r}
+large_nb_frame <- data.table::fread(
+  here::here("data/tidy/BIPKonsum.csv"))
+str(large_nb_frame, vec.len=3)
+```
+
+> Das können wir verhindern, indem wir die Spaltentypen
+explizit über `colClasses` spezifizieren oder aber zur Sicherheit das
+Argument `integer64` auf `"double"` setzen:
+
+```{r}
+large_nb_frame <- data.table::fread(
+  here::here("data/tidy/BIPKonsum.csv"), 
+  integer64 = "double")
+str(large_nb_frame, vec.len=3)
+```
+
 ### Speichern von Daten
 
 ```{r, echo=FALSE}
