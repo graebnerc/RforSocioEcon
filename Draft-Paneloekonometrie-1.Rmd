@@ -2,24 +2,52 @@
 title: 'Panel econometrics: introduction'
 author: "Claudius"
 date: "3/10/2021"
-output: 
-  bookdown::pdf_book:
-  includes:
-    in_header: preamble.tex
-    before_body: title.tex
-  latex_engine: xelatex
-  citation_package: natbib
-  keep_tex: no
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r include=FALSE}
+knitr::opts_chunk$set(comment = "#>", message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(out.height = '50%', out.width = '50%', fig.align = 'center') 
 ```
 
-## Panel Ökonometrie: Einführung
+EINLEITUNGSTEXT
+Dabei greifen wir an zahlreichen Stellen auf das Paket `plm` [@plm] zurück,
+welches zahlreiche Schätzer und Testverfahren für Panel-Daten in R 
+implementiert hat.
+
+Theoretische Aspekte der Panel-Ökonometrie werden in diesem Kapitel 
+regelmäßig aufgegriffen, aber stehen definitiv nicht im Fokus.
+Diese Aspekte werden in zahlreichen Lehrbüchern diskutiert, z.B. in @wooldridge
+oder @greene. 
+Besonders erwähnenswert ist hier @Baltagi, der sich durch eine besonders
+umfassende Auseinandersetzung mit Panel-Daten auszeichnet (der Fokus bei
+den erstgenannten Büchern liegt eher auf der Mikroökonometrie, s.u.).
+
+<!--
+Add: Baltagi, Trivedi: Microeconometrics
+-->
+
+## Verwendete Pakete {-}
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(data.table)
+library(here)
+library(viridis)
+library(plm)
+```
+
+```{r, echo=FALSE}
+source(here::here("R/helpers.R"))
+```
+
+## Panel-Daten: Klarstellungen und Vorbemerkungen
 
 Bislang haben wir wir uns im Kontext der Regression auf Methoden zur Analyse 
-von *Querschnittsdaten* (cross-sectional data) fokussiert.
+von **Querschnittsdaten** (cross-sectional data) fokussiert.
 Die Schätzer, die wir bisher kennen gelernt haben, sind dafür gemacht, 
 Datensätze zu analysieren, in denen für jedes einzelne Untersuchungsobjekt
 genau eine Beobachtung, typischerweise zum gleichen Zeitpunkt, existiert.
@@ -31,7 +59,7 @@ So ist die *Konsistenz* eine asymptotische Eigenschaft des OLS-Schätzers, die
 gilt wenn die Stichprobe immer größer wird, also wenn $N\rightarrow\infty$.
 
 Wenn wir für das gleiche Untersuchungsobjekt mehrere Beobachtungen zu 
-unterschiedlichen Zeitpunkten haben, sprechen wir von einer *Zeitreihe*.
+unterschiedlichen Zeitpunkten haben, sprechen wir von einer **Zeitreihe**.
 In diesem Fall werden die einzelnen Beobachtungen mit $t=1,2,3,...,T$ 
 indiziert und wir sprechen von einer Variation in der $T$-Dimension.
 Schätzer, die zur Analyse von Zeitreihendaten entwickelt wurden, haben 
@@ -40,7 +68,7 @@ $T\rightarrow\infty$, wenn die Stichprobe also immer größer wird weil wir für
 den gleichen Untersuchungsgegenstand Beobachtungen für immer mehr Zeitpunkte 
 haben.
 
-Das Thema dieses Kapitels sind *Panel-Daten*.
+Das Thema dieses Kapitels sind **Panel-Daten**.
 Diese immer weiter verbreiteten Datensätze haben Variation sowohl in der 
 $N$- als auch der $T$-Dimension.
 Es bestehen also Beobachtungen für unterschiedliche Untersuchungsobjekte zu
@@ -55,7 +83,260 @@ ganz neue Möglichkeiten und Herausforderungen, sodass zahlreiche spezielle
 Schätzer für Panel-Datensätze entwickelt wurden - insbesondere weil Schätzer
 für Querschnittsdaten in der Regel wenig attraktive Eigenschaften besitzen, 
 wenn sie für die Analyse von Panel-Daten verwendet werden.
-Dabei sind die bestehenden Schätzer viel diverse und manche sind eher für
-'lange' Panels (hohes $T$, kleines $N$), andere für 'breite' Panels (kleines
+Dabei sind die bestehenden Schätzer viel diverser und manche sind eher für
+**lange** Panels (hohes $T$, kleines $N$), andere für **breite** Panels (kleines
 $T$ und großes $N$) geeignet.
+
+Zudem werden **balancierte und unbalancierte Panels** unterschieden:
+in ersterem Fall haben wir für jedes Untersuchungsobjekt zu jedem Zeitpunkt
+ein Beobachtung. Das Panel ist so zu sagen vollständig.
+Im unbalancierten Fall fehlen für einige Untersuchungsobjekte zu einigen 
+Zeitpunkten eine Beobachtung.
+Das verkompliziert die Berechnungen ungemein, weswegen einige Schätzer und
+Testverfahren ausschließlich für balancierte Panels umsetzbar sind.
+
+Noch ein abschließendes Wort zur Notation. 
+
+* Subsets
+* warum wir $\alpha$ anstatt $\beta_0$ verwenden
+
+## Besonderheiten von langen Panels
+
+```{r}
+gdp_ineq_data <- data.table::fread(
+  file = here::here("data/tidy/gdp_inequality.csv"), 
+  colClasses = c("character", rep("double", 4))
+  )
+```
+
+Allgemein sprechen wir von langen Panels wenn $T>N$, aber aktuell auch noch
+$T\approx N$. In diesem Bereich findet aktuell noch viel grundlegende Forschung
+statt und es gibt eine große Bandbreite an Schätzern und Testverfahren mit oft
+nur spezifischem Anwendungsgebiet.
+Gleichzeitig erlauben lange Panels zunehmend die empirische Analyse von 
+sehr spannenden Fragen, insbesondere in der Makroökonomik, z.B. nicht nur die Stärke 
+des langfristigen Zusammenhangs zwischen Einkommensungleichheit und Einkommen,
+sondern auch seine Heterogenität zwischen Ländern.
+
+An dieser Stelle wollen wir drei typische Herausforderungen mit langen Panels 
+einführen und in diesem Zusammenhang ausgewählte Schätz- und Tesverfahren, die
+speziell für diesen Kontext entwickelt wurden, einführen.
+Konkret handelt es sich dabei um (1) die Annahme homogener Steigungskoeffizienten 
+für alle Untersuchungsobjekte (i.e. $\beta_i = \beta_j \forall i,j \in n$) und 
+ihre Abschwächung (Abschnitt \@ref(sec:panels-hetcoefs)); 
+(2) die Bedeutung von *cross sectional dependence* (CSD)
+zwischen Untersuchungsobjekten, also (Abschnitt \@ref(sec:panels-csd));
+(3) und zuletzt die Rolle von Einheitswurzeln in und Ko-Integrationsbeziehungen
+zwischen den untersuchten Zeitreihen (Abschnitt \@ref(sec:unitcoint)).
+
+
+
+
+### Heterogene Regressionskoeffizienten {#sec:panels-hetcoefs}
+
+In unseren bisherigen Modellen haben wir angenommen, dass der zu schätzende
+Parameter $\beta$ für alle Untersuchungsobjekte gleich ist.
+Diese Annahme wird in der Literatur als *Pooling*-Annahme bezeichnet, weil
+alle Untersuchungsobjekte gewissermaßen in einen Topf geworfen werden um 
+ein Modell zu schätzen.
+Heterogenität wird in einem solchen Kontext nur über individuelle Achsenabschnitte,
+ggf. im Kontext eines FE Settings, berücksichtigt. Aber der eigentliche 
+Zusammenhang zwischen abhängier und unabhängigen Variabeln in Form der
+Steigungsparameter wird als homogener Zusammenhang modelliert.
+Das kann sich in der Praxis als problematisch herausstellen:
+die Nichtberücksichtigung von tatsächlich vorhandener Heterogenität führt
+in der Praxis zu verzerrten Schätzern [@BaltagiHet].
+
+Zum Glück können wir eine Modellspezifikation mit homogenen Koeffizienten $\beta$
+
+\begin{equation}
+\label{eq:homoeq}
+y_{nt} = \alpha + \beta x_{nt} + \eta_n + v_{nt}
+\end{equation}
+
+als Sonderfall eines Modelles mit heterogenen Koeffizienten
+
+\begin{equation}
+\label{eq:heteroeq}
+y_{nt} = \alpha + \beta_n x_{nt} + \eta_n + v_{nt}
+\end{equation}
+
+betrachten, wobei Modelle \@ref(eq:homoeq) annimmt, dass 
+$\beta=\beta_n \forall n$.
+Diese Annahme können wir in der Praxis zum Glück relativ einfach testen.
+
+
+
+* MG und PMG 
+
+* Tests auf Poolability
+
+### Cross-Sectional Dependence in Panel-Daten {#sec:panels-csd}
+
+* Loca vs. global
+
+### Tests auf Einheitswurzeln und Ko-Integration {#sec:panels-unitcoint}
+
+Hier verwenden wir Beispiel den Datensatz, mit dem @FlechtnerCoint 
+des langfristigen Zusammenhangs zwischen Einkommensungleichheit und 
+Bruttoinlandsprodukt analysiert haben. 
+Es handelt sich in um ein unbalanciertes Panel mit Beobachtungen aus
+`r length(unique(gdp_ineq_data$country))` Ländern zwischen
+`r min(gdp_ineq_data$year)` und `r max(gdp_ineq_data$year)`. 
+Das Bruttoinlandsprodukt wird in pro Kopf Einheiten in PPP gemessen 
+(Variable `gdp_pc_chppp`), die Einkommensungleichheit über den 
+Prä- und Post-Steuer-Gini-Koeffizienten (`gini_mkt` und `gini_disp`) von 
+@SoltGini.
+
+```{r}
+str(gdp_ineq_data, vec.len=3)
+```
+
+* Simulation in 8.4. am Anfang als Motivation für spurious regression
+
+Bei den Tests auf Einheitswurzeln unterscheiden wir zwischen so genannten
+*First-Generation Tests* und *Second-Generation Tests*.
+Während erstere annehmen, dass es keine CSD gibt, sind letztere gegen CSD
+robust.
+In der Praxis sollten daher wann immer möglich letztere verwendet werden, 
+allerdings ist ihre Entwicklung noch ein sehr aktives Forschungsfeld.
+
+Der Test auf Kointegration ist wichtig, denn falls zwei Zeitreihen 
+eine Einheitswurzel aufweisen ist eine Regressionsanalyse mit ihnen nur
+möglich wenn sie auch ko-integriert sind.
+Für zwei Variablen $x$ und $y$ gehen wir von einer Ko-Integrationsbeziehung
+aus, wenn in folgender Regressionsgleichung ein $\beta$ gibt, sodass die
+Fehler $\epsilon$ stationär sind:
+
+\begin{align}
+y=\alpha + \beta x + \epsilon 
+\end{align}\label{eq:cointreg}
+
+Daher ergibt sich folgende Strategie um auf eine Ko-Integrationsbeziehung zu 
+testen: 
+
+1. Wir testen ob $x$ und $y$ überhaupt Einheitswurzeln haben
+2. Wir schätzen das Modell \@ref(eq:cointreg).
+3. Wir testen ob die Residuen $e$ aus Schritt 2 eine Einheitswurzel aufweisen. 
+Wenn nein, liegt eine Ko-Integrationsbeziehung.
+
+* ADF - Augmented Dickey Fuller
+* CADF - Cross-Sectionally Augmented Dickey Fuller
+* IPS - Im, Pesaran, Shin Test
+* CIPS - Cross-Sectionally Augmented Im, Pesaran, Shin Test
+* CCE - Common Correlated Effects Modell (robust gegen CSD)
+
+```{r}
+# data("HousePricesUS", package = "pder") 
+HousePricesUS <- data.table::fread(
+  file = here("data/tidy/HousePricesUS.csv"))
+
+php <- pdata.frame(HousePricesUS)
+cipstest(log(php$price), type = "drift")
+cipstest(diff(log(php$price)), type = "none")
+cipstest(log(php$income), type = "drift")
+cipstest(diff(log(php$income)), type = "none")
+```
+
+```{r}
+php_ineq <- pdata.frame(gdp_ineq_data, index = c("country", "year"))
+cipstest(php_ineq$gdp_pc_chppp, type = "drift")
+cipstest(php_ineq$gini_disp, type = "drift")
+cipstest(php_ineq$gini_mkt, type = "drift")
+
+cipstest(diff(php_ineq$gdp_pc_chppp), type = "none")
+cipstest(diff(php_ineq$gini_disp), type = "none")
+cipstest(diff(php_ineq$gini_mkt), type = "none")
+```
+Hier jetzt die Schätzung durchführen um die Residuen zu erhalten:
+
+```{r}
+ccemgmod <- pcce(
+  log(price) ~ log(income), 
+  data=HousePricesUS, model="mg") 
+summary(ccemgmod)
+```
+
+```{r}
+cipstest(resid(ccemgmod), type="none")
+cipstest(resid(ccemgmod), type="none")
+```
+
+The unit root hypothesis is rejected for both the residuals of the ccemg and the ccep models. The conclusion is that both models represent cointegrating regressions.
+
+## Example 1: Flechtner Gräbner
+
+```{r}
+php_ineq <- pdata.frame(gdp_ineq_data, index = c("country", "year"))
+cipstest(log(php_ineq$gdp_pc_chppp), type = "drift")
+cipstest(log(php_ineq$gini_disp), type = "drift")
+cipstest(log(php_ineq$gini_mkt), type = "drift")
+
+cipstest(diff(log(php_ineq$gdp_pc_chppp)), type = "none")
+cipstest(diff(log(php_ineq$gini_disp)), type = "none")
+cipstest(diff(log(php_ineq$gini_mkt)), type = "none")
+```
+
+```{r}
+ccemgmod_disp <- pcce(
+  log(gdp_pc_chppp) ~ log(gini_disp), 
+  data=gdp_ineq_data, model="mg", index = c("country", "year")) 
+summary(ccemgmod_disp)
+
+ccepmod_disp <- pcce(
+  log(gdp_pc_chppp) ~ log(gini_disp), 
+  data=gdp_ineq_data, model="p", index = c("country", "year")) 
+summary(ccepmod_disp)
+```
+
+```{r}
+cipstest(resid(ccemgmod_disp), type="none")
+cipstest(resid(ccepmod_disp), type="none")
+```
+
+## Example 2: Kapeller Heimberger
+
+Read in data:
+
+```{r}
+kaldor_data <- fread(here("data/intermed/work_data_act_corr.csv"))
+php_kaldor <- pdata.frame(kaldor_data, index = c("ccode", "year"))
+```
+
+Überprüfung für die Variablen: logEXP, logRULC, logTECH
+**1. Test auf Unit roots**
+
+```{r}
+cipstest(log(php_kaldor$EXP), type = "drift")
+cipstest(log(php_kaldor$RULC), type = "drift")
+#cipstest(log(php_kaldor$TECH), type = "drift")
+
+cipstest(diff(log(php_kaldor$EXP)), type = "none")
+cipstest(diff(log(php_kaldor$RULC)), type = "none")
+#cipstest(diff(log(php_kaldor$TECH)), type = "none")
+```
+
+
+**2. Schätzung der cce models**:
+
+* Problem: `TECH` geht nicht mit Log
+
+```{r}
+ccemgmod_kaldor <- pcce(
+  log(EXP) ~ log(RULC) ,# + log(TECH)
+  data=kaldor_data, model="mg", index = c("ccode", "year")) 
+summary(ccemgmod_disp)
+
+ccepmod_kaldor <- pcce(
+  log(EXP) ~ log(RULC) ,# + log(TECH)
+  data=kaldor_data, model="p", index = c("ccode", "year")) 
+summary(ccepmod_disp)
+```
+
+**3. Ko-Integration**
+
+```{r}
+cipstest(resid(ccemgmod_kaldor), type="none")
+cipstest(resid(ccepmod_kaldor), type="none")
+```
 
