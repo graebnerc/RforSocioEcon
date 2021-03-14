@@ -12,6 +12,7 @@ output:
 knitr::opts_chunk$set(comment = "#>", message = FALSE, warning = FALSE)
 knitr::opts_chunk$set(out.height = '50%', out.width = '50%', fig.align = 'center') 
 ```
+# Regressionsanalyse für Panel-Daten
 
 EINLEITUNGSTEXT
 Dabei greifen wir an zahlreichen Stellen auf das Paket `plm` [@plm] zurück,
@@ -44,7 +45,7 @@ library(plm)
 source(here::here("R/helpers.R"))
 ```
 
-## Panel-Daten: Klarstellungen und Vorbemerkungen
+## Panel-Daten: Klarstellungen und Vorbemerkungen {#sec:panel-prelims}
 
 Bislang haben wir wir uns im Kontext der Regression auf Methoden zur Analyse 
 von **Querschnittsdaten** (cross-sectional data) fokussiert.
@@ -100,14 +101,9 @@ Noch ein abschließendes Wort zur Notation.
 * Subsets
 * warum wir $\alpha$ anstatt $\beta_0$ verwenden
 
-## Besonderheiten von langen Panels
+## Die Baseline-Modelle für Panel-Daten: Fixed and Random Effects {#sec:panel-fixedrandom}
 
-```{r}
-gdp_ineq_data <- data.table::fread(
-  file = here::here("data/tidy/gdp_inequality.csv"), 
-  colClasses = c("character", rep("double", 4))
-  )
-```
+## Besonderheiten von langen Panels {#sec:panels-longpanels}
 
 Allgemein sprechen wir von langen Panels wenn $T>N$, aber aktuell auch noch
 $T\approx N$. In diesem Bereich findet aktuell noch viel grundlegende Forschung
@@ -127,18 +123,15 @@ ihre Abschwächung (Abschnitt \@ref(sec:panels-hetcoefs));
 (2) die Bedeutung von *cross sectional dependence* (CSD)
 zwischen Untersuchungsobjekten, also (Abschnitt \@ref(sec:panels-csd));
 (3) und zuletzt die Rolle von Einheitswurzeln in und Ko-Integrationsbeziehungen
-zwischen den untersuchten Zeitreihen (Abschnitt \@ref(sec:unitcoint)).
-
-
-
+zwischen den untersuchten Zeitreihen (Abschnitt \@ref(sec:panel-unitcoint)).
 
 ### Heterogene Regressionskoeffizienten {#sec:panels-hetcoefs}
 
 In unseren bisherigen Modellen haben wir angenommen, dass der zu schätzende
 Parameter $\beta$ für alle Untersuchungsobjekte gleich ist.
 Diese Annahme wird in der Literatur als *Pooling*-Annahme bezeichnet, weil
-alle Untersuchungsobjekte gewissermaßen in einen Topf geworfen werden um 
-ein Modell zu schätzen.
+alle Untersuchungsobjekte gewissermaßen in einen Topf (oder 'Pool') 
+geworfen werden um ein Modell zu schätzen.
 Heterogenität wird in einem solchen Kontext nur über individuelle Achsenabschnitte,
 ggf. im Kontext eines FE Settings, berücksichtigt. Aber der eigentliche 
 Zusammenhang zwischen abhängier und unabhängigen Variabeln in Form der
@@ -146,6 +139,9 @@ Steigungsparameter wird als homogener Zusammenhang modelliert.
 Das kann sich in der Praxis als problematisch herausstellen:
 die Nichtberücksichtigung von tatsächlich vorhandener Heterogenität führt
 in der Praxis zu verzerrten Schätzern [@BaltagiHet].
+Gleichzeitig geht die Schätzung heterogener Koeffizienten mit deutlich höheren
+Anforderungen an die Stichprobengröße einher, da bei zu wenig Beobachtungen
+der Schätzer für heterogene Koeffizienten instabil wird.
 
 Zum Glück können wir eine Modellspezifikation mit homogenen Koeffizienten $\beta$
 
@@ -163,22 +159,46 @@ y_{nt} = \alpha + \beta_n x_{nt} + \eta_n + v_{nt}
 
 betrachten, wobei Modelle \@ref(eq:homoeq) annimmt, dass 
 $\beta=\beta_n \forall n$.
-Diese Annahme können wir in der Praxis zum Glück relativ einfach testen.
+Diese Annahme können wir in der Praxis relativ einfach testen indem wir 
+sowohl Modell \@ref(eq:homoeq) als auch Modell \@ref(eq:heteroeq) schätzen und
+die Koeffizienten über einen Chow-Test^[Der Chow Test ist ein Test, bei dem 
+wir die Koeffizienten zweier Regressionsmodelle vergleichen. Unter der 
+Nullhypothese gleicher Koeffizienten folgt die Teststatistik einer 
+F-Verteilung mit $NT-K$ Freiheitsgraden.] vergleichen.
+Bevor wir diesen Test jedoch durchführen können, müssen wir uns zunächst mit
+möglichen Schätzern für Modell \@ref(eq:heteroeq) vertraut machen. 
+Wie in Abschnitt \@ref(sec:panel-fixedrandom) unterscheiden wir hier 
+Fixed und Random Effects Modelle.
 
+Für den *fixed effects* Fall werden *de facto* $N$ verschiedene OLS Regressionen
+mit individuellen Effekten geschätzt - genauso wie in Abschnitt
+\@ref(sec:panel-fixedrandom) beschrieben. Die Schätzgleichungen sind in diesem
+Falle einfach durch Gleichung \@ref(eq:heteroeq) gegeben.
+Theoretisch könnten wir das manuell implementieren indem
+wir für jedes einzelne Beobachtungssubjekte einen Sub-Datensatz erstellen und dort
+dann die Funktion `plm::plm()` anwenden und die Koeffizienten jeweils speichern.
+Das gleiche erreichen wir aber auch einfacher durch Verwendung der Funktion
+`plm::pvcm()`, welche in den Argumenten sehr ähnlich zu `plm::plm()` ist, aber
+die geschätzten Koeffizienten gleichfür alle Beobachtungssubjekte schätzt und
+in einer Liste speichert.
+Um also Modell \@ref(eq:heteroeq) zu schätzen verwenden wir einfach 
+`plm::pvcm()` mit dem Argument `model="within`.
+Der Nachteil ist, dass wir nicht wirklich einen Vorteil durch die Verwendung
+des Panels im Bezug auf die Effizienz der Schätzung haben, da wir hier *de facto*
+$NK$ Parameter mit $NT$ Datenpunkten schätzen.
 
+```{r, echo=FALSE}
+gdp_ineq_data <- data.table::fread(
+  file = here::here("data/tidy/gdp_inequality.csv"), 
+  colClasses = c("character", rep("double", 4))
+  )
+gdp_ineq_pdata <- pdata.frame(
+  gdp_ineq_data, index = c("country", "year"))
+```
 
-* MG und PMG 
-
-* Tests auf Poolability
-
-### Cross-Sectional Dependence in Panel-Daten {#sec:panels-csd}
-
-* Loca vs. global
-
-### Tests auf Einheitswurzeln und Ko-Integration {#sec:panels-unitcoint}
-
-Hier verwenden wir Beispiel den Datensatz, mit dem @FlechtnerCoint 
-des langfristigen Zusammenhangs zwischen Einkommensungleichheit und 
+> **Anwendungsbeispiel: Der heterogene Zusammenhang zwischen Ungleichheit und Nationaleinkommen**
+> Hier verwenden wir Beispiel den Datensatz, mit dem @FlechtnerCoint 
+den langfristigen Zusammenhang zwischen Einkommensungleichheit und 
 Bruttoinlandsprodukt analysiert haben. 
 Es handelt sich in um ein unbalanciertes Panel mit Beobachtungen aus
 `r length(unique(gdp_ineq_data$country))` Ländern zwischen
@@ -192,8 +212,319 @@ Prä- und Post-Steuer-Gini-Koeffizienten (`gini_mkt` und `gini_disp`) von
 str(gdp_ineq_data, vec.len=3)
 ```
 
-* Simulation in 8.4. am Anfang als Motivation für spurious regression
+```{r, echo=FALSE}
+HousePricesUS <- data.table::fread(
+  file = here("data/tidy/HousePricesUS.csv"))
+HousePricesUS_pdata <- pdata.frame(HousePricesUS)
+```
 
+> Das gepoolte OLS Modell und das *within*-Modell schätzen wir wie üblich mit
+der Funktion `plm::plm()`, jeweils mit dem Argument `model = "pooling"`, bzw.
+`model = "within"`. Für das Modell mit heterogenen Koeffizienten verwenden
+wir die Funktion `plm::pvcm()`. Die Argumente sind sehr ähnlich. Im vorliegenden
+Falle wollen wir auch individuelle *fixed effects* berücksichtigen und verwenden
+entsprechend das Argument `model = "within"`:
+
+```{r, echo=FALSE}
+model.het <- plm::pvcm(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS_pdata, model = "within")
+model.pool <- plm(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS_pdata, model = "pooling")
+model.within <- plm(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS_pdata, model = "within")
+```
+
+```{r}
+model.het <- plm::pvcm(
+  formula = log(gdp_pc_chppp) ~ log(gini_disp), 
+  data = gdp_ineq_pdata, model = "within")
+model.pool <- plm(
+  formula = log(gdp_pc_chppp) ~ log(gini_disp), 
+  data = gdp_ineq_pdata, model = "pooling")
+model.within <- plm(
+  formula = log(gdp_pc_chppp) ~ log(gini_disp), 
+  data = gdp_ineq_pdata, model = "within")
+```
+
+> Die geschätzten Koeffizienten des gepoolten und des *within* Modells können
+wir über die klassische Output-Tabelle betrachten:
+
+```{r, include=T}
+texreg::screenreg(
+  list("OLS (Pooled)"=model.pool, 
+       "Within-Modell"=model.within)
+  )
+```
+
+Bei den heterogenen Koeffizienten funktioniert das natürlich nicht.
+Hier können wir uns aus dem Schätzobjekt deskriptive Statistiken ausgeben 
+lassen:
+
+```{r}
+summary(model.het)
+```
+
+> Oder aber wir visualisieren die geschätzten Koeffizienten grafisch, indem 
+wir sie aus dem Schätzobjet über `coef()` extrahieren:
+
+```{r}
+make_plot <- function(data_used, var_name){
+  ggplot(data_used, aes_string(x = var_name)) + 
+  scale_y_continuous(expand = expansion(), name = "Häufigkeit") +
+  geom_histogram(bins = 8) + xlab("Geschätzter Koeffizient") + theme_bw() +
+  theme(
+    panel.border = element_blank(), axis.line = element_line())
+}
+estimates_intercept <- make_plot(
+  tibble::tibble("Achsenabschnitt"=coef(model.het)[[1]]), "Achsenabschnitt")
+
+estimates_beta <- make_plot(
+  tibble::tibble(
+    "Steigungskoeffizient"=coef(model.het)[[2]]), "Steigungskoeffizient")
+```
+
+```{r, echo=FALSE}
+het_estimates <- ggpubr::ggarrange(
+  estimates_intercept, estimates_beta, ncol = 2, labels = c("a)", "b)")
+)
+het_estimates <- ggpubr::annotate_figure(
+  het_estimates, 
+  top = ggpubr::text_grob("Geschätzte Koeffizienten"))
+
+plot_file <- here::here(
+  "figures/PanelReg/heterogene-koeffizienten-bsp.png")
+save_pdf_png(
+  filename = plot_file, plot = het_estimates, 
+  width = 5, height = 2.5)
+```
+
+```{r, echo=FALSE, warning=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+
+> Wir können nun die Stabilität der Koeffizienten testen indem wir das Modell
+mit heterogenen Koeffizienten (`model.het`) gegen das gepoolte Modell mit
+(`model.within`) oder ohne (`model.pool`) *fixed effects* vergleichen. 
+Dafür verwenden wir die Funktion `plm::pooltest()`, welche die Nullhypothese
+homogener Koeffizienten testet.
+Für den ersten Vergleich:
+
+```{r}
+pooltest(model.pool, model.het)
+```
+
+Die Nullhypothese homogener Koeffizienten muss also klar abgelehnt werden.
+Der Vergleich mit dem *fixed effects* Modell liefert ein ähnliches Ergebnis:
+
+```{r}
+pooltest(model.within, model.het)
+```
+
+> Auch hier muss die Nullhypothese von homogenen Koeffizienten verworfen werden 
+und prinzipiell wäre ein Modell mit heterogenen Koeffizienten zu bevorzugen, 
+so denn es denn die Datenlage hergibt.
+> Beachten Sie bei den Tests auch die unterschiedlichen Freiheitsgrade der Modelle: 
+Das Modell mit heterogenen Koeffizienten hat $N(T-K-1)$, das gepoolte OLS Modell
+$NT-K-1$ und das *within*-Modell $N(T-1)-K$ Freiheitsgrade.
+
+Wie oben beschrieben verlieren wir bei Verwendung eines *fixed effects* Modells
+viele Freiheitsgrade, da insgesamt $NK$ Parameter geschätzt werden müssen 
+($K$ Parameter jeweils für $N$ Untersuchungssubjekte).
+
+Eine Alternative Möglichkeit heterogene Koeffizienten zu schätzen bieten sich
+im *Random Effects* Kontext.
+Besonders bekannt ist dabei das so genannte *Swamy Modell*, dessen 
+Ausgangspunkt folgender ist:
+
+\begin{equation}
+\label{eq:swamy-base}
+y_{n,t} = \gamma_n^Tz_{n,t}+v_{n,t}
+\end{equation}
+
+Wenn $\gamma_n\propto\mathcal{N}(\gamma, \Delta)$
+(wobei $\Delta$ die Varianz **CHECK**), $\delta_n=\gamma_n-\gamma$ und $\epsilon=v_{n,t}+\delta_n^Tz_{n,t}$:
+
+\begin{equation}
+\label{eq:swamy-ind}
+y_{n,t} = \gamma^Tz_{n,t}+\epsilon_{n,t}
+\end{equation}
+
+Die Strategie ist zunächst die Koeffizienten individuell mit OLS zu schätzen:
+
+\begin{equation}
+\label{eq:swamy-ind-ests}
+\hat{\gamma}_n = (Z^T_nZ_n)^{-1}Z_n^Ty_n = \delta_n + (Z^T_nZ_n)^{-1}Z_n^Tv_n,
+\end{equation}
+
+dann den entsprechenden Mittelwert zu berechnen:
+
+\begin{equation}
+\label{eq:swamy-mean}
+\bar{\hat{\gamma}} = \frac{1}{N}\sum_{n=1}^N \hat{\gamma}_n
+\end{equation}
+
+Die Varianz $Delta$ wird über die Formel
+
+\begin{equation}
+\label{eq:swamy-var}
+\hat{\Delta}=\frac{1}{N-1}\sum_{n=1}^N(\hat{\gamma}_n-\gamma)^2 - \frac{1}{N}\sum_{n=1}^N\sigma_n^2(Z_n^TZ)^{-1}
+\end{equation}
+
+geschätzt (für die Herleitung siehe XXX).**CHECK SIGMA**
+Um dieses Modell zu schätzen verwenden wir die Funktion `plm::pvcm()`mit dem
+Argument `model = "random"`.
+Eine vereinfachte Variante dieses Schätzers ist der *Panel Mean Group Estimator* 
+(PMG), welcher lediglich den Durchschnitt der einzelnen OLS-Schätzer
+$\hat{\gamma}_{OLS}$ darstellt:
+
+\begin{equation}
+\label{eq:pmg}
+\hat{\gamma}_{PMG} = \frac{1}{N}\sum_{n=1}^N \hat{\gamma}_{OLS,n}
+\end{equation}
+
+In diesem Fall wird die Varianz des Schätzers folgendermaßen geschätzt:
+
+\begin{equation}
+\label{eq:pmg-var}
+V(\hat{\gamma}_{PMG}) = \frac{1}{N(N-1)}\sum_{n=1}^N(\hat{\gamma}_{OLS,n} - \hat{\gamma}_{PMG})(\hat{\gamma}_{OLS,n} - \hat{\gamma}_{PMG})^T
+\end{equation}
+
+Der Vorteil liegt in den weniger restriktiven Annahmen: 
+wir nehmen keine bestimmte Verteilung für die $\gamma_n$ an. 
+Dafür ist der vereinfachte Schätzer der Varianz in kleinen Samples inkonsistent
+wenn die restriktiveren Annahmen von Modell \@ref(eq:swamy-ind) gelten.
+Für große $T$ konvergieren die beiden Schätzer allerdings.
+Um den PMG-Schätzer zu berechnen verwenden wir die Funktion `plm::pmg()`
+mit dem Argument `model="mg"`. 
+
+> **Anwendungsbeispiel: Determinanten von Hauspreisen** Der Beispieldatensatz
+enthält Informationen über Hauspreise und generelle Eigenschaften verschiedener
+US-Bundesstaaten. Das Interesse von @HollyHouses galt dem Effekt dieser 
+Eigenschafte auf die Hauspreise. In diesem Beispiel replizieren wir ihre
+Ergebnisse bezüglich des Effekts des Gesamteinkommens.
+Um die Ähnlichkeit des Swamy-Modells und dem PMG-Modell zu illustrieren schätzen
+wir zunächst beide Modelle:
+
+```{r}
+HousePricesUS <- data.table::fread(
+  file = here("data/tidy/HousePricesUS.csv"))
+HousePricesUS_pdata <- pdata.frame(HousePricesUS)
+
+swamymodel <- pvcm(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS, 
+  model= "random") 
+pmgmodel <- pmg(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS, 
+  model = "mg") 
+```
+
+> Eine Inspektion der geschätzten Koeffizienten zeigt wie ähnlich sie im 
+vorliegenden Falle sind:
+
+```{r}
+coefs <- cbind(coef(swamymodel), coef(pmgmodel))
+
+dimnames(coefs)[[2]] <- c("Swamy", "PMG")
+coefs
+```
+
+Der PMG-Schätzer kann übrigens leicht für den dynamischen Kontext angepasst 
+werden. Wenn das Panel hier vergleichsweise lang ist (also $T\rightarrow \infty$)
+ist dieser Schätzer konsistent sowohl für die Parameter als auch deren 
+Standardfehler. 
+Das zu schätzende Modell in diesem Falle ist:
+
+\begin{equation}
+y_{n,t}=\rho y_{n, t-1} + \delta_n^T x_{n,t} + v_{n,t}
+\end{equation}
+
+Auch dieses Modell kann einfach durch die Funktion `plm::pmg()` geschätzt werden,
+nur eben mit der gelaggten unabhängigen Variable und ggf. mit einem 
+Trend über `trend=TRUE`.
+
+### Cross-Sectional Dependence in Panel-Daten {#sec:panels-csd}
+
+* Loca vs. global
+
+### Tests auf Einheitswurzeln und Ko-Integration {#sec:panel-unitcoint}
+
+Eine besondere Bedeutung bei der Analyse von langen Panels spielt die Frage,
+ob die im Panel zusammengefassten Zeitreihen Einheitswurzeln ausweisen und, 
+wenn ja, zwischen ihnen eine Ko-Integrationsbeziehung existiert. 
+Wenn die Zeitreihen nämlich Einheitswurzeln aufweisen, aber keine
+Ko-Integrationsbeziehung existiert, führen Schätzungen zu sehr irreführenden
+Ergebnissen. 
+Bevor wir uns den einzelnen Konzepten genauer widmen, wollen wir uns die 
+Bedeutung des Themas durch eine einfache Simulation vor Augen führen.
+
+Hier $\rho=0.2$:
+
+```{r}
+autoreg <- function(rho = 0.1, T = 100){
+  e <- rnorm(T)
+  for (t in 2:(T)) e[t] <- e[t] + rho *e[t-1]
+  e
+}
+
+tstat <- function(rho = 0.1, T = 100){
+  y <- autoreg(rho, T)
+  x <- autoreg(rho, T)
+  z <- lm(y ~ x)
+  coef(z)[2] / sqrt(diag(vcov(z))[2])
+}
+result <- c()
+R <- 1000
+for (i in 1:R) result <- c(result, tstat(rho = 0.2, T = 40))
+quantile(result, c(0.025, 0.975))
+```
+
+Ergebnis wie erwartet: nur in 5 Prozent *false positives*:
+
+```{r}
+prop.table(table(abs(result) > 2))
+```
+
+Jetzt den Fall mit einer Einheitswurzel in den Zeitreihen:
+
+```{r}
+result <- c()
+R <- 1000
+for (i in 1:R) result <- c(result, tstat(rho = 1, T = 40))
+quantile(result, c(0.025, 0.975))
+prop.table(table(abs(result) > 2))
+```
+
+Wir sehen hier das Phänomen einer *spurious regression*: 
+in einer Mehrheit der Fälle legen unsere Ergebnisse einen signifikanten 
+Zusammenhang nahe, der aber definitiv nicht exsitiert.
+
+Wenn man einen klassischen Test verwendet ist das nicht so super:
+**ADD EXPLANATION**
+
+```{r}
+R <- 1000
+T <- 100
+result <- c()
+
+for (i in 1:R){
+  y <- autoreg(rho=1, T=100) 
+  Dy <- y[2:T] - y[1:(T-1)] 
+  Ly <- y[1:(T-1)]
+  z <- lm(Dy ~ Ly)
+  result <- c(result, coef(z)[2] / sqrt(diag(vcov(z))[2]))
+}
+prop.table(table(result < -1.64))
+```
+
+Diese kleine Simulation zeigt, dass das Testen auf Einheitswurzeln und 
+eine entsprechende Reaktion absolut entscheidend ist.
+Dazu müssen wir als erstes testen ob die relevanten Zeitreihen überhaupt
+erst einmal eine Einheitswurzel aufweisen.
 Bei den Tests auf Einheitswurzeln unterscheiden wir zwischen so genannten
 *First-Generation Tests* und *Second-Generation Tests*.
 Während erstere annehmen, dass es keine CSD gibt, sind letztere gegen CSD
@@ -201,7 +532,7 @@ robust.
 In der Praxis sollten daher wann immer möglich letztere verwendet werden, 
 allerdings ist ihre Entwicklung noch ein sehr aktives Forschungsfeld.
 
-Der Test auf Kointegration ist wichtig, denn falls zwei Zeitreihen 
+Sollte sich herausstellen, dass zwei Zeitreihen 
 eine Einheitswurzel aufweisen ist eine Regressionsanalyse mit ihnen nur
 möglich wenn sie auch ko-integriert sind.
 Für zwei Variablen $x$ und $y$ gehen wir von einer Ko-Integrationsbeziehung
@@ -230,7 +561,6 @@ Wenn nein, liegt eine Ko-Integrationsbeziehung.
 # data("HousePricesUS", package = "pder") 
 HousePricesUS <- data.table::fread(
   file = here("data/tidy/HousePricesUS.csv"))
-
 php <- pdata.frame(HousePricesUS)
 cipstest(log(php$price), type = "drift")
 cipstest(diff(log(php$price)), type = "none")
