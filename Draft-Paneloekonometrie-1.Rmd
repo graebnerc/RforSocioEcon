@@ -691,7 +691,7 @@ Schätzer $\hat{\beta}_{CCE,n}$:
 
 \begin{align}
 \label{eq:cce-est}
-\hat{\beta}_{CCE,n}=(\boldsymbol{X}'_i\bar{\boldsymbol{M}}\boldsymbol{X}_i)^{-1}\boldsymbol{X}'_n\boldsymbol{\bar{M}y}_i}
+\hat{\beta}_{CCE,n}=(\boldsymbol{X}'_i\bar{\boldsymbol{M}}\boldsymbol{X}_i)^{-1}\boldsymbol{X}'_n\boldsymbol{\bar{M}y}_i
 \end{align}
 
 wobei $\boldsymbol{X}_i=(\boldsymbol{x}_{i1}, \boldsymbol{x}_{i2}, ..., \boldsymbol{x}_{iT})$ und
@@ -730,13 +730,14 @@ auf zwei verschiedene Arten und Weisen berechnen.
 Entweder wir verwenden die Funktion `plm::pmg()` mit dem Argument `model="cmg"`.
 Oder aber wir nutzen `plm::pcce()` mit dem Argument 
 `model="mg"`.
-Der einzige Unterschied zwischen den beiden liegt darin, in 
-bei der Schätzung mit `plm::pcce()` weniger Diagnostiken 
-ausgegeben werden.
-
-Den gepoolten CCEP Schätzer
-$\hat{\boldsymbol{\beta}}_{CCEP}$
-können wir 'nur' über die Funktion `plm::pcce()` mit dem Argument `model="p"` berechnen.
+Der einzige Unterschied zwischen den beiden liegt darin, in bei der Schätzung 
+mit `plm::pcce()` weniger Diagnostiken ausgegeben werden.
+Zudem können die Ergebnisse dieser Funktion nicht unmittelbar mit Paketen wie
+`texreg` oder `stargazer` in Form schöner Tabellen dargestellt werden, was den
+Umgang mit den Ergebnissen etwas erschwert.
+Den gepoolten CCEP Schätzer $\hat{\boldsymbol{\beta}}_{CCEP}$
+können wir aber ohnehin 'nur' über die Funktion `plm::pcce()` mit dem Argument 
+`model="p"` berechnen.
 
 > **Anwendungsbeispiel: Hauspreise**
 An dieser Stelle wollen wir erneut einige Ergebnisse von @HollyHouses
@@ -776,7 +777,29 @@ ccemg_model_2 <- plm::pcce(
   model = "mg")
 ```
 
-> Zudem berechnen wir noch den gepoolten CCEP Schätzer
+> Als Vergleichspunkt schätzen wir auch dem *PMG*-Schätzer 
+aus Abschnitt \@ref(sec:panels-hetcoefs), der die CSD in diesem Datensatz nicht berücksichtigt:
+
+```{r}
+mg_model <- plm::pmg(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS_pdata, 
+  model = "mg")
+```
+
+Der Vergleich mit dem im vorliegenden Falle konsistenten CCEMG Schätzer zeigt,
+wie deutlich der PMG-Schätzer aufgrund der Nicht-Berücksichtigung von CSD
+verzerrt ist:
+
+```{r, echo=FALSE}
+texreg::screenreg(list(
+  "PMG"=mg_model, 
+  "CCEMG (pmg)"=ccemg_model
+  ), digits = 3
+  )
+```
+
+> Zuletzt berechnen wir noch den gepoolten CCEP Schätzer
 $\hat{\boldsymbol{\beta}}_{CCEP}$:
 
 ```{r}
@@ -786,45 +809,92 @@ ccep_model <- plm::pcce(
   model = "p")
 ```
 
-> Als Vergleichspunkt schätzen wir auch dem *PMG*-Schätzer 
-aus Abschnitt \@ref(panels-hetcoefs), der die CSD in diesem Datensatz nicht berücksichtigt:
+>  Abschließend nehmen wir einen Vergleich der geschätzten Koeffizienten vor. 
+Da die Objekte, welche die Funktion 
+`plm::pcce()` produziert, nicht unmittelbar gemeinsam mit anderen Ergebnissen
+durch Pakete wie `stargazer` oder `texreg` visualisiert werden können, müssen
+wir das ganze händisch über eine eigens erstellte Liste machen:
+
+```{r}
+coefs_income <- list(
+  "PMG"=summary(mg_model)[["CoefTable"]][2,],
+  "CCEMG_pmg"=summary(ccemg_model)[["CoefTable"]][2,],
+  "CCEMG_pcce"=summary(ccemg_model_2)[["CoefTable"]][1,],
+  "CCEP"=summary(ccep_model)[["CoefTable"]][1,]
+)
+
+tibble::as_tibble(t(
+  data.frame(coefs_income)), 
+  rownames = "Model")
+```
+
+
+> Zum einen sehen wir, dass sich der PMG-Schätzer deutlich von den anderen 
+Ergebnissen unterscheidet. 
+Das liegt daran, dass er im Kontext von CSD stark verzerrt ist. 
+Gleichzeitig sehen wir, dass zwischen dem CCEMG und CCEP Schätzer kaum ein 
+Unterschied besteht. Das spricht dafür, dass die Pooling-Annahme im 
+vorliegenden Fall tatsächlich erfüllt ist. Die Funktionen `plm::pcce()` und 
+`plm::pmg()` geben für den CCEMG Schätzer wie erwartet die gleichen Ergebnisse
+aus.
+
+### Tests auf Cross-Sectional-Dependence
+
+In der Literatur wurden mittlerweile verschiedene Tests auf CSD entwickelt.
+Ein guter Überblick findet sich in @pesarantest.
+Die bekanntesten dieser Tests sind in der Funktion `plm::pcdtest()` implementiert
+worden. 
+Grundsätzlich gibt es verschiedene Möglichkeiten, die Funktion zu nutzen, aber
+die transparenteste und flexibelste und gleichzeit der Theorie am nächsten 
+kommende Variante ist es, zuerst ein Modell zu schätzen und dieses dann an 
+die Funktion zu übergeben. Die Residuen werden dann automatisch extrahiert und
+für die Tests verwendet. Der Vorteil hier ist, dass wir testen können, ob wir
+in einem Modell die eventuell ursprünglich existierende CSD bereits ausreichend
+berücksichtig haben, z.B. durch das Hinzufügen von *time fixed effects* im
+Kontext eines *within*-Modells.
+
+Von den verschiedenen in `plm::pcdtest()` implementierten Tests sind zwei von
+besonderem Interesse: der *CD-Test* von @pesarantest und der 
+*biased corrected LM test* von @baltagi12test. Ersterer ist eine gute 
+Default-Option aber besonders gut ist er für breite Panels geeignet. 
+Wenn das Ausgangsmodell ein *fixed effects* Modell mit
+homogenen Steigungsparametern ist, bietet sich zudem der Test von @baltagi12test
+an, der besonders gut funktioniert wenn $N$ und $T$ ähnlich groß sind.
+In beiden Fällen besteht die Nullhypothese in der *Abwesenheit* von CSD.
+Wenn sie verworfen werden muss, sollte das Basismodell solange angepasst werden,
+bis der Test $H_0$ verwirft.
+
+Im Folgenden wollen wir die praktische Anwendung der Tests anhand des CD-Tests 
+illustrieren. 
+Für die Theorie des Tests siehe @pesarantest, hier fokussieren wir uns auf die
+Praxis.
+Der CD-Test kann über das Argument `test="cd"` verwendet werden. Im Folgenden
+betrachten wir das oben bereits diskutierte Beispiel aus @HollyHouses:
+zunächst schätzen wir den Einfluss von Einkommen auf Hauspreise mit einem
+PMG-Schätzer, der nicht für CSD kontrolliert:
 
 ```{r}
 mg_model <- plm::pmg(
   formula = log(price) ~ log(income), 
   data = HousePricesUS_pdata, 
   model = "mg")
+pcdtest(mg_model, test = "cd")
 ```
+Wie zu erwarten mit die $H_0$ klar verworfen werden und die Spezifikation sollte 
+verfeinert werden um CSD zu berücksichtigen. 
+Nehmen wir an wie verwenden als Reaktion darauf den gepoolten CCEP Schätzer:
 
-> Im Folgenden vergleichen wir die Schätzergebnisse:
 
 ```{r}
-texreg::screenreg(list(
-  "PMG"=mg_model, 
-  #"CCEP"=ccep_model, 
-  "CCEMG (pmg)"=ccemg_model# , "CCEMG (pcce)"=ccemg_model_2
-  ), digits = 3
-  )
+ccep_model <- plm::pcce(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS_pdata, 
+  model = "p")
+pcdtest(ccep_model, test = "cd")
 ```
 
-> Zum einen sehen wir, dass sich der PMG-Schätzer deutlich von den
-anderen Ergebnissen unterscheidet. Das liegt daran, dass er im 
-Kontext von CSD deutlich verzerrt ist. Gleichzeitig sehen wir, dass
-zwischen dem CCEMG und CCEP Schätzer kaum ein Unterschied besteht.
-Das spricht dafür, dass die Pooling-Annahme im vorliegenden Fall
-erfüllt ist.
-
-### Tests auf Cross-Sectional-Dependence
-
-In der Literatur wurden mittlerweile verschiedene Tests
-auf CSD entwickelt.
-
-### Anwendungsbeispiel
-
-
-
-[Tests auf CSD](https://rdrr.io/rforge/plm/man/pcdtest.html)
-
+Hier kann $H_0$ nicht abgelehnt werden und wir können davon ausgehen, die CSD
+angemessen berücksichtigt zu haben.
 
 ## Einheitswurzeln und Ko-Integration {#sec:panel-unitcoint}
 
