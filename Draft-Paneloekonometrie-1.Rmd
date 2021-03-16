@@ -12,6 +12,10 @@ output:
 knitr::opts_chunk$set(comment = "#>", message = FALSE, warning = FALSE)
 knitr::opts_chunk$set(out.height = '50%', out.width = '50%', fig.align = 'center') 
 ```
+
+* Check $X$ und $Z$ Notation bei unabhängigen Variablen
+* Nimm immer $x'$ für Transpose und nicht $x^T$
+
 # Regressionsanalyse für Panel-Daten
 
 EINLEITUNGSTEXT
@@ -103,7 +107,7 @@ Noch ein abschließendes Wort zur Notation.
 
 ## Die Baseline-Modelle für Panel-Daten: Fixed and Random Effects {#sec:panel-fixedrandom}
 
-## Besonderheiten von langen Panels {#sec:panels-longpanels}
+# Besonderheiten von langen Panels {#sec:panels-longpanels}
 
 Allgemein sprechen wir von langen Panels wenn $T>N$, aber aktuell auch noch
 $T\approx N$. In diesem Bereich findet aktuell noch viel grundlegende Forschung
@@ -125,7 +129,7 @@ zwischen Untersuchungsobjekten, also (Abschnitt \@ref(sec:panels-csd));
 (3) und zuletzt die Rolle von Einheitswurzeln in und Ko-Integrationsbeziehungen
 zwischen den untersuchten Zeitreihen (Abschnitt \@ref(sec:panel-unitcoint)).
 
-### Heterogene Regressionskoeffizienten {#sec:panels-hetcoefs}
+## Heterogene Regressionskoeffizienten {#sec:panels-hetcoefs}
 
 In unseren bisherigen Modellen haben wir angenommen, dass der zu schätzende
 Parameter $\beta$ für alle Untersuchungsobjekte gleich ist.
@@ -447,11 +451,382 @@ Auch dieses Modell kann einfach durch die Funktion `plm::pmg()` geschätzt werde
 nur eben mit der gelaggten unabhängigen Variable und ggf. mit einem 
 Trend über `trend=TRUE`.
 
-### Cross-Sectional Dependence in Panel-Daten {#sec:panels-csd}
+## Cross-Sectional Dependence in Panel-Daten {#sec:panels-csd}
 
-* Loca vs. global
+Bei Cross-Sectional Dependence (CSD) geht es um den möglicherweise heterogenen Effekt von potenziell unbeobachtbaren
+Faktoren auf alle Untersuchungssubjekte.
+Grundsätzlich lassen sich hier zwei Fälle unterscheiden:
+im Falle *schwacher* CSD geht man von einem expliziten oder impliziten Raum
+aus, auf dem die Untersuchungssubjekte angesiedelt sind, und dass die Subjekte 
+unterschiedlich stark von dem gemeinsamen Faktor betroffen sind, je nachdem 
+'wie weit entfernt' sie von der Faktorursache sind. Alternativ kann man 
+sich vorstellen, dass die Effekte von Subjekt zu Subjekt wandern, allerdings
+in abnehmender Intensität.
+Schwache CSD wird im Kontext der *räumlichen Ökonometrie* 
+(spatial econometrics) berücksichtigt.
 
-### Tests auf Einheitswurzeln und Ko-Integration {#sec:panel-unitcoint}
+Dagegen sprechen wir von *starker* CSD wenn alle Untersuchungssubjekte
+unabhängig von der Distanz durch einen gemeinsamen Faktor beeinflusst
+wurden. Ein Beispiel wäre eine Änderung im Ölpreis, einer
+globalen Finanzkrise oder eine Änderung im Set verfügbarer
+Technologien (i.e. abrupter technologischer Wandel). 
+Im Gegensatz zur schwachen CSD ist bei der starken CSD also kein
+Abschwächen des Effektes zu erwarten. 
+So wird eine globale Finanzkrise, die ihren Ausgang an der New Yorker Börse
+hat, nicht geringere Auswirkungen in Frankreich denn in Südafrika haben, nur
+weil letzteres geografisch weiter von New York entfernt ist.
+Entsprechend sprechen wir hier auch von *globaler* CSD.
+
+Das Problem von gemeinsamen Faktoren gleich welcher Art ist, dass sie häufig 
+unbeobachtbar sind.
+Wenn sie in einem solchen Fall mit einer anderen erklärenden Variable korrellieren
+kann eine Nicht-Berücksichtigung zu einem *Omitted Variable Bias* führen.
+Wie oben erwähnt wird schwache CSD vor allem über Methoden der räumlichen 
+Ökonometrie berücksichtigt. Starke CSD wird dagegen über *common factor* oder
+*common correlated effects* Modelle addressiert.
+In diesem Kapitel wollen wir uns nur mit dieser Art von Modellen befassen.
+
+Bereits an dieser Stelle sei angemert, dass wir einen sehr
+speziellen Fall der starken CSD bereits im Kontext des
+*within*-Schätzers mit *time fixes effects* kennen gelernt 
+haben: hier gehen wir nur von einem gemeinsamen Faktor aus, 
+der alle Untersuchungssubjekte gleich trifft. 
+Die Methoden unten sind auch anwendbar wenn es beliebig viele
+solcher Faktoren gibt, die einen heterogenen Effekt auf die
+unterschiedlichen Untersuchungssubjekte haben.
+
+### Schätzer im Kontext von Cross-Sectional-Dependence
+
+Ein *common factor model* (CFM) geht von folgendem Ausgangsmodell aus:
+
+\begin{align}
+\label{eq:fap-model}
+y_{nt} = \gamma_n^Tz_{nt} + \delta^T_nf_t + \epsilon_{nt}
+\end{align}
+
+wobei $f_t$ hier ein Vektor mit einem unbeobachtbarem gemeinsamen Faktor ist, 
+dessen Effekt über den die Koeffizienten im Vektor $\delta_n$ gemessen wird.
+Man beachte, dass das CFM im Falle homogener Reaktionen auf einen einzigen 
+gemeinsamen Faktor, i.e. $\delta_n=\delta\forall n$, nichts anderes ist als
+ein *Fixed Effects* Modell mit *time fixed effects*, das konsistent mit einem
+*within*-Schätzer aus Abschnitt \@ref(sec:panel-fixedrandom) geschätzt werden 
+kann.
+
+Der gemeinsame Faktor beeinflusst die abhängige Variable über zwei Kanäle:
+der direkte Effekt wird über den Parameter $\delta_n$ direkt geschätzt.
+Da der Faktor aber zusätzlich noch mit den anderen erklärenden Variablen 
+korrelieren kann, ist auch ein indirekter Effekt auf die abhängige Variable
+möglich. In jedem Fall führt eine Nicht-Berücksichtigung der gemeinsamen 
+Faktoren zu inkonsistenten und verzerrten Schätzern.
+
+Wie können wir nun also gemeinsame Faktoren angemessen 
+berücksichtigen, die nicht den gleichen Effekt auf alle
+Untersuchungssubjekte haben, also nicht einfach mit 
+*time fixed effects* im Kontext des *within*-Modells 
+addressiert werden können?
+
+Eine beliebte Variante ist der *common correlated effects*
+(CCE) Schätzer von @pesarancce.
+Dieser Schätzer baut auf dem Ergebnis auf, dass wenn $N$ und $T$ groß genug 
+sind, die unbeobachteten Faktoren $\boldsymbol{f}_t$ durch gewichtete Durchschnitte der abhängigen und
+unabhängigen Variablen approximiert werden können.
+Der resultierende Schätzer ist dann robust gegen (starke und
+schwache) CSD -- auch wenn die Faktoren mit den anderen 
+erklärenden Variablen und ggf. den *fixed effects* 
+korrelieren -- und erlaubt sowohl die Schätzung heterogener
+Koeffizienten als auch dynamischer Spezifikationen mit Lags
+der abhängigen Variable auf der RHS. Die Anzahl an gemeinsamer
+Faktoren, $m$, in $\boldsymbol{f}_t$ spielt dabei keine Rolle.
+Der Schätzer ist sowohl für kurze Panels (kleines $T$, großer 
+$N$) als auch lange und große Panels (großes $T$ und großes 
+$N$) geeignet [@pesarancce.]. 
+
+Ausgangspunkt ist dabei das folgende Modell:
+
+\begin{align}
+\label{eq:cce-base}
+y_{it} =  \boldsymbol{\alpha}_i  \boldsymbol{d}_t +  \boldsymbol{\beta}_i \boldsymbol{x}_{it} + \epsilon_{it}
+\end{align}
+
+wobei $\beta_i$ der Vektor mit den zu schätzenden
+Steigungsparameters ist, $x_{it}$ eine Matrix mit den 
+abhängigen Variablen, $d_t$ ein Vektor mit beobachtbaren 
+gemeinsamen Effekten (Achsenabschnitte, *time dummies*, o.ä.)
+und $\epsilon_{it}$ der Fehlerterm,
+der folgende Komponenten enthält:
+
+\begin{align}
+\label{eq:cce-error}
+\epsilon_{it} &= \boldsymbol{\gamma}'_i\boldsymbol{f}_t + u_{it}
+\end{align}
+
+wobei $f_t$ ein $m\times 1$ Vektor mit $m$ unbeobachtbaren 
+Faktoren und $u_{it}$ die idiosynkratischen Fehler darstellen.
+Hierbei müssen wir nur annehmen, dass $u_{it}$ unabhängig ist
+von der abhängigen Variable und den Faktoren, sie können aber
+zwischen den Untersuchungssubjekten korrelieren und
+autokorreliert sein.
+Genauso können die Faktoren $f_t$ sowohl mit der abhängigen 
+als auch den unabhängigen Variablen korrellieren und 
+autokorreliert sein.
+
+Genauso wie wir einen linearen Effekt der Faktoren auf die
+Fehler annehmen, tun wir dies auch für die erklärenden 
+Variablen $x_{it}$:
+
+\begin{align}
+\label{eq:cce-indepvar}
+\boldsymbol{x}_{it} &= \boldsymbol{A}_i\boldsymbol{d}_t + \boldsymbol{\Gamma}'_i \boldsymbol{f}_t + \boldsymbol{v}_{it}
+\end{align}
+
+wobei $\boldsymbol{A}_i$ eine $N\times K$-Matrix und $\boldsymbol{\Gamma}'_i$ eine $m\times K$ Matrix mit den Koeffizienten 
+der beobachtbaren ($\boldsymbol{A}_i$) und unbeobachtbaren ($\boldsymbol{\Gamma}'_i$) Faktoren, genannt Faktorladungen, ist und $v_{it}$ die
+individuellen Fehler beinhaltet.
+
+> **Exkurs: Das Prinzip hinter dem CCE-Schätzer**
+Nehmen wir $\boldsymbol{z}_{it}=\left(\begin{array}{c}y_{it}\\\boldsymbol{x}_{it} \end{array}\right)$ als einen $K+1\times 1$
+Vektor. Dann gilt
+
+\begin{align}
+\label{eq:cce-factors}
+\boldsymbol{z}_{it} = \boldsymbol{B}_i\boldsymbol{d}_t + \boldsymbol{C}'_i\boldsymbol{f}_t + \boldsymbol{\varsigma}_{it}
+\end{align}
+
+> wobei $\boldsymbol{\varsigma}_{it}=\left(\begin{array}{c}u_{it}+\boldsymbol{\beta}'_i\boldsymbol{v}_{it}\\\boldsymbol{v}_{it} \end{array}\right)$ die Fehler enthält und die weiteren Terme
+folgendermaßen definiert sind (die Intuition hinter den 
+einzelnen Termen ist vor allem technischer Natur, sie sind
+aber für die Berechnung des Schätzers später von Bedeutung):
+
+\begin{align}
+\boldsymbol{B}_i &=
+\left(\begin{array}{cc}
+1 & \boldsymbol{\beta}'_i\\
+\boldsymbol{0}&\boldsymbol{I}_k
+\end{array}\right)
+\left(\begin{array}{c}
+\alpha_i\\
+\boldsymbol{A}_i
+\end{array}\right)\\
+\boldsymbol{C}'_i &=
+\left(\begin{array}{cc}\gamma_i & \Gamma_i
+\end{array}\right)
+\left(\begin{array}{cc}
+1 & \boldsymbol{0}\\
+\boldsymbol{\beta}_i&\boldsymbol{I}_k
+\end{array}\right)
+\end{align}
+
+> wobei $\boldsymbol{I}_K$ eine Identitätsmätix ist. 
+Beachtet, dass das uns bereits bekannte *Fixed Effects*-Modell
+ein Sonderfall dieses Modells mit $d_t=1$, $\boldsymbol{\beta}_i=\boldsymbol{\beta}$ und $\boldsymbol{\gamma}_i=\boldsymbol{0}\forall i$ ist.
+Der Clou vom CCE Schätzer ist nun die Durschnitte über die
+Querschnittsdimension von $y_{it}$ und $\boldsymbol{x}_{it}$
+als Proxies für die Faktoren $\boldsymbol{f}_t$ in den
+Gleichungen\@ref(eq:cce-error) und
+\@ref(eq:cce-indepvar) zu verwenden. Um zu sehen warum
+das in Panels mit ausreichend vielen Beobachtungen Sinn macht
+definieren wir zunächst die Durchschnitte der abhängigen und
+unabhängigen Variable,
+$\boldsymbol{\bar{z}}_{t}=N^{-1}\sum_{i=1}^N \boldsymbol{z}_{it}$, der Fehler, 
+$\boldsymbol{\bar{\varsigma}}_{t}=N^{-1}\sum_{i=1}^N \boldsymbol{\varsigma}_{it}$ 
+und der oben definierten Hilfsvariablen,
+$\boldsymbol{\bar{d}}=N^{-1}\sum_{i=1}^N \boldsymbol{d}_{i}$ und
+$\boldsymbol{\bar{C}}=N^{-1}\sum_{i=1}^N \boldsymbol{C}_{i}$.
+Betrachten wir nun die Durchschnittsvariante von Gleichtung
+\@ref(eq:cce-factors):
+
+\begin{align}
+\label{eq:cce-intermed}
+\boldsymbol{\bar{z}}_{t} = 
+\boldsymbol{\bar{B}}_i\boldsymbol{d}_t + \boldsymbol{\bar{C}}'\boldsymbol{f}_t + \boldsymbol{\bar{\varsigma}}_{t}
+\end{align}
+
+> Es gilt unter den klassischen Annahmen, dass $\boldsymbol{f}_t=(\boldsymbol{\bar{C}}\boldsymbol{\bar{C}}')^{-1}\boldsymbol{\bar{C}}(\boldsymbol{\bar{z}}_t-\boldsymbol{\bar{B}}_i\boldsymbol{d}_t-\boldsymbol{\bar{\varsigma}}_{t})$.
+Gemäß der oben gemachten Annahmen gilt $\boldsymbol{\bar{\varsigma}}_{t}\rightarrow \boldsymbol{0}$ wenn $N\rightarrow \infty$ und somit:
+
+\begin{align}
+\boldsymbol{f}_t-(\boldsymbol{\bar{C}}\boldsymbol{\bar{C}}')^{-1}\boldsymbol{\bar{C}}(\boldsymbol{\bar{z}}_t-\boldsymbol{\bar{B}}_i\boldsymbol{d}_t) \rightarrow \boldsymbol{0}\text{, wenn } N\rightarrow \infty
+\end{align}
+
+> Daher macht es Sinn, $\boldsymbol{h}_t(\boldsymbol{d}'_t, \boldsymbol{\bar{z}}'_{t})'$ als
+beobachtbaren Proxie für die unbeobachtbaren
+$\boldsymbol{f}_t$ zu verwenden. Das machen wir in der Praxis
+indem wir eine Matrix 
+$\bar{H}=(\boldsymbol{D}, \boldsymbol{\bar{Z}})$ 
+mit $\boldsymbol{D}=\boldsymbol{d}_1, \boldsymbol{d}_2, ..., \boldsymbol{d}_T$ und
+$\boldsymbol{\bar{Z}}$ als Matrix mit den $T$ Elementen
+$\boldsymbol{\bar{z}}_t$ definieren, die wir dann als Gewicht
+in unseren OLS-Schätzer der Gleichung \@ref(eq:cce-base)
+einsetzen (siehe unten).
+
+Je nach Heterogenität ergeben sich hieraus zwei Schätzer,
+jeweils für den mittleren Effekt. 
+Zum einen der *CCE mean group* (CCEMG)-Schätzer, der nichts
+anderes ist als der Mittelwert der individuellen CCE Schätzer
+$\hat{\beta}_{CCE,i}$ aus Gleichung \@ref(eq:cce-est):
+
+\begin{align}
+\label{eq:ccemg}
+\hat{\boldsymbol{\beta}}_{CCEMG} = \frac{1}{N} \sum_{i=1}^N\hat{\beta}_{CCE,i}
+\end{align}
+
+Die individuellen CCE Schätzer in Gleichung
+\@ref(eq:ccemg) erhalten wir indem wir OLS auf die nun 
+folgendermaßen angepasste Schätzgleichung \@ref(eq:cce-base)
+anwenden:
+
+\begin{align}
+\label{eq:est-eq}
+\hat{y}_i=\boldsymbol{D\alpha}_i + \boldsymbol{X}_i\boldsymbol{\beta}_i + \boldsymbol{F\gamma}_i + \boldsymbol{\epsilon}_i
+\end{align}
+
+Anders als in Gleichung \@ref(eq:cce-base) drücken wir hier
+gleich das gesamte Panel aus, sodass
+$\boldsymbol{\epsilon}_i = (\epsilon_{i1}, \epsilon_{i2},...,\epsilon_{iT})$, 
+$\boldsymbol{D}=(\boldsymbol{d}_1, \boldsymbol{d}_2,..\boldsymbol{d}_T)$ und
+$\boldsymbol{F}=(\boldsymbol{f}_1, \boldsymbol{f}_2,..\boldsymbol{f}_T)$.
+
+Die Anwendung von ergibt den folgenden Ausdruck für die 
+Schätzer $\hat{\beta}_{CCE,n}$:
+
+\begin{align}
+\label{eq:cce-est}
+\hat{\beta}_{CCE,n}=(\boldsymbol{X}'_i\bar{\boldsymbol{M}}\boldsymbol{X}_i)^{-1}\boldsymbol{X}'_n\boldsymbol{\bar{M}y}_i}
+\end{align}
+
+wobei $\boldsymbol{X}_i=(\boldsymbol{x}_{i1}, \boldsymbol{x}_{i2}, ..., \boldsymbol{x}_{iT})$ und
+$\boldsymbol{y_i}=(y_{i1}, y_{i2},...,y_{iT})$.
+Bei $\bar{M}$ handelt es sich um eine Matrix
+$\bar{M}=I_T-\bar{H}(\bar{H}^T\bar{H})^{-1}\bar{H}^T$
+wobei 
+$\bar{H}=(\boldsymbol{D}, \boldsymbol{\bar{Z}})$ 
+mit $\boldsymbol{D}=\boldsymbol{d}_1, \boldsymbol{d}_2, ..., \boldsymbol{d}_T$ und
+$\boldsymbol{\bar{Z}}$ als Matrix mit den $T$ Elementen
+$\boldsymbol{\bar{z}}_t$ (für die Herleitung siehe den
+optionalen Exkurs oben).
+
+Alternativ können wir die Effizienz der Schätzung erhöhen,
+wenn die Beobachtungen gepoolt werden können, wir also keine
+individuellen Steigungsparameter $\hat{\beta}_i$ schätzen 
+müssen, sondern nur $\hat{\beta}=\hat{\beta}_i\forall i$.
+Der resultierende Schätzer wird entsprechend *CCE pooled*
+(CCEP) genannt und ist einfach definiert als:
+
+\begin{align}
+\label{eq:ccep}
+\hat{\boldsymbol{\beta}}_{CCEP}=
+  \left(\sum_{i=1}^N \boldsymbol{X}'_i \boldsymbol{\bar{M}} \boldsymbol{X}_i\right)^{-1} \sum_{i=1}^N \boldsymbol{X}'_i \boldsymbol{\bar{M}} \boldsymbol{y}_i
+\end{align}
+ 
+Welchen der beiden Schätzer wir verwenden hängt von der 
+Angemessenheit der Pooling-Annahme ab: 
+wenn die Annahme, dass $\hat{\beta}=\hat{\beta}_i\forall i$
+gerechtfertig ist, ist der CCEP Schätzer definitiv die 
+bessere Wahl (höhere Stabilität und Effizienz). Wenn nicht,
+dann sollten wir den CCEMG Schätzer verwenden.
+
+In `R` können wir den CCEMG Schätzer $\hat{\boldsymbol{\beta}}_{CCEMG}$
+auf zwei verschiedene Arten und Weisen berechnen.
+Entweder wir verwenden die Funktion `plm::pmg()` mit dem Argument `model="cmg"`.
+Oder aber wir nutzen `plm::pcce()` mit dem Argument 
+`model="mg"`.
+Der einzige Unterschied zwischen den beiden liegt darin, in 
+bei der Schätzung mit `plm::pcce()` weniger Diagnostiken 
+ausgegeben werden.
+
+Den gepoolten CCEP Schätzer
+$\hat{\boldsymbol{\beta}}_{CCEP}$
+können wir 'nur' über die Funktion `plm::pcce()` mit dem Argument `model="p"` berechnen.
+
+> **Anwendungsbeispiel: Hauspreise**
+An dieser Stelle wollen wir erneut einige Ergebnisse von @HollyHouses
+replizieren, die eine sehr gute und übersichtliche 
+Anwendungsstudie des CCE Schätzers liefern.
+Um die Anwendung des CCE Verfahrens zu illustrieren schätzen
+die Autor:innen die Rolle von fundementalen ökonomischen 
+Größen (wie Einkommen, Demografie und Zinsraten) für die 
+Entwicklung von Hauspreisen in verschiedenen US-Bundesstaaten. Hier beschränken wir uns auf die Rolle von Einkommen:
+
+```{r}
+HousePricesUS <- data.table::fread(
+  file = here("data/tidy/HousePricesUS.csv"),
+  select = c(
+    "names"="character", "year"="double",
+    "income"="double", "price"="double"))
+
+HousePricesUS_pdata <- pdata.frame(
+  HousePricesUS, index = c("names", "year"))
+
+head(HousePricesUS, 3)
+```
+
+> Zunächst schätzen wir $\hat{\boldsymbol{\beta}}_{CCEMG}$
+mit beiden oben genannten Funktionen, die, wir wir unten 
+sehen werden, wenig überraschend äquivalente Ergebnisse liefern:
+
+```{r}
+ccemg_model <- plm::pmg(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS_pdata, 
+  model = "cmg")
+
+ccemg_model_2 <- plm::pcce(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS_pdata, 
+  model = "mg")
+```
+
+> Zudem berechnen wir noch den gepoolten CCEP Schätzer
+$\hat{\boldsymbol{\beta}}_{CCEP}$:
+
+```{r}
+ccep_model <- plm::pcce(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS_pdata, 
+  model = "p")
+```
+
+> Als Vergleichspunkt schätzen wir auch dem *PMG*-Schätzer 
+aus Abschnitt \@ref(panels-hetcoefs), der die CSD in diesem Datensatz nicht berücksichtigt:
+
+```{r}
+mg_model <- plm::pmg(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS_pdata, 
+  model = "mg")
+```
+
+> Im Folgenden vergleichen wir die Schätzergebnisse:
+
+```{r}
+texreg::screenreg(list(
+  "PMG"=mg_model, 
+  #"CCEP"=ccep_model, 
+  "CCEMG (pmg)"=ccemg_model# , "CCEMG (pcce)"=ccemg_model_2
+  ), digits = 3
+  )
+```
+
+> Zum einen sehen wir, dass sich der PMG-Schätzer deutlich von den
+anderen Ergebnissen unterscheidet. Das liegt daran, dass er im 
+Kontext von CSD deutlich verzerrt ist. Gleichzeitig sehen wir, dass
+zwischen dem CCEMG und CCEP Schätzer kaum ein Unterschied besteht.
+Das spricht dafür, dass die Pooling-Annahme im vorliegenden Fall
+erfüllt ist.
+
+### Tests auf Cross-Sectional-Dependence
+
+In der Literatur wurden mittlerweile verschiedene Tests
+auf CSD entwickelt.
+
+### Anwendungsbeispiel
+
+
+
+[Tests auf CSD](https://rdrr.io/rforge/plm/man/pcdtest.html)
+
+
+## Einheitswurzeln und Ko-Integration {#sec:panel-unitcoint}
 
 Eine besondere Bedeutung bei der Analyse von langen Panels spielt die Frage,
 ob die im Panel zusammengefassten Zeitreihen Einheitswurzeln ausweisen und, 
@@ -594,7 +969,7 @@ cipstest(resid(ccemgmod), type="none")
 
 The unit root hypothesis is rejected for both the residuals of the ccemg and the ccep models. The conclusion is that both models represent cointegrating regressions.
 
-## Example 1: Flechtner Gräbner
+### Example 1: Flechtner Gräbner
 
 ```{r}
 php_ineq <- pdata.frame(gdp_ineq_data, index = c("country", "year"))
@@ -624,7 +999,7 @@ cipstest(resid(ccemgmod_disp), type="none")
 cipstest(resid(ccepmod_disp), type="none")
 ```
 
-## Example 2: Kapeller Heimberger
+### Example 2: Kapeller Heimberger
 
 Read in data:
 
