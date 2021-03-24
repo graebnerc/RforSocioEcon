@@ -1,0 +1,1461 @@
+# Fortgeschrittene Methoden der Panel-Analyse: lange Panels {#sec:panels2}
+
+```{r include=FALSE}
+knitr::opts_chunk$set(comment = "#>", message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(out.height = '75%', out.width = '75%', fig.align = 'center') 
+```
+
+Allgemein sprechen wir von langen Panels wenn $T>N$ oder
+$T\approx N$ und $T>20$. In diesem Bereich findet aktuell noch viel grundlegende Forschung
+statt und es gibt eine große Bandbreite an Schätzern und Testverfahren mit oft
+nur spezifischem Anwendungsgebiet.
+Gleichzeitig erlauben lange Panels zunehmend die empirische Analyse von 
+sehr spannenden Fragen, insbesondere in der Makroökonomik, z.B. nicht nur die Stärke 
+des langfristigen Zusammenhangs zwischen Einkommensungleichheit und Einkommen,
+sondern auch seine Heterogenität zwischen Ländern.
+
+An dieser Stelle wollen wir drei typische Herausforderungen mit langen Panels 
+einführen und in diesem Zusammenhang ausgewählte Schätz- und Tesverfahren, die
+speziell für diesen Kontext entwickelt wurden, einführen.
+Konkret handelt es sich dabei um (1) die Annahme homogener Steigungskoeffizienten 
+für alle Untersuchungsobjekte (i.e. $\beta_i = \beta_j \forall i,j \in n$) und 
+ihre Abschwächung (Abschnitt \@ref(sec:panels-hetcoefs)); 
+(2) die Bedeutung von *cross sectional dependence* (CSD)
+zwischen Untersuchungsobjekten (Abschnitt \@ref(sec:panels-csd));
+(3) und zuletzt die Rolle von Einheitswurzeln in und Ko-Integrationsbeziehungen
+zwischen den untersuchten Zeitreihen (Abschnitt \@ref(sec:panel-unitcoint)).
+
+## Verwendete Pakete {-}
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(data.table)
+library(here)
+library(viridis)
+library(plm)
+library(texreg)
+library(latex2exp)
+```
+
+```{r, echo=FALSE}
+source(here::here("R/helpers.R"))
+```
+
+## Heterogene Regressionskoeffizienten {#sec:panels-hetcoefs}
+
+In unseren bisherigen Modellen haben wir angenommen, dass der zu schätzende
+Parameter $\beta$ für alle Untersuchungsobjekte gleich ist.
+Diese Annahme wird in der Literatur als *Pooling*-Annahme bezeichnet, weil
+alle Untersuchungsobjekte gewissermaßen in einen Topf (oder 'Pool') 
+geworfen werden um ein Modell zu schätzen.
+Heterogenität wird in einem solchen Kontext nur über individuelle Achsenabschnitte,
+ggf. im Kontext eines FE Settings, berücksichtigt. Aber der eigentliche 
+Zusammenhang zwischen abhängier und unabhängigen Variabeln in Form der
+Steigungsparameter wird als homogener Zusammenhang modelliert.
+Das kann sich in der Praxis als problematisch herausstellen:
+die Nichtberücksichtigung von tatsächlich vorhandener Heterogenität führt
+in der Praxis zu verzerrten Schätzern [@BaltagiHet].
+Gleichzeitig geht die Schätzung heterogener Koeffizienten mit deutlich höheren
+Anforderungen an die Stichprobengröße einher, da bei zu wenig Beobachtungen
+der Schätzer für heterogene Koeffizienten instabil wird.
+
+Zum Glück können wir eine Modellspezifikation mit homogenen Koeffizienten $\beta$
+
+\begin{equation}
+\label{eq:homoeq}
+y_{nt} = \alpha + \beta x_{nt} + \eta_n + v_{nt}
+\end{equation}
+
+als Sonderfall eines Modelles mit heterogenen Koeffizienten
+
+\begin{equation}
+\label{eq:heteroeq}
+y_{nt} = \alpha + \beta_n x_{nt} + \eta_n + v_{nt}
+\end{equation}
+
+betrachten, wobei Modelle \@ref(eq:homoeq) annimmt, dass 
+$\beta=\beta_n \forall n$.
+Diese Annahme können wir in der Praxis relativ einfach testen indem wir 
+sowohl Modell \@ref(eq:homoeq) als auch Modell \@ref(eq:heteroeq) schätzen und
+die Koeffizienten über einen Chow-Test^[Der Chow Test ist ein Test, bei dem 
+wir die Koeffizienten zweier Regressionsmodelle vergleichen. Unter der 
+Nullhypothese gleicher Koeffizienten folgt die Teststatistik einer 
+F-Verteilung mit $NT-K$ Freiheitsgraden.] vergleichen.
+Bevor wir diesen Test jedoch durchführen können, müssen wir uns zunächst mit
+möglichen Schätzern für Modell \@ref(eq:heteroeq) vertraut machen. 
+Wie in Abschnitt \@ref(sec:panel-fixedrandom) unterscheiden wir hier 
+Fixed und Random Effects Modelle.
+
+Für den *fixed effects* Fall werden *de facto* $N$ verschiedene OLS Regressionen
+mit individuellen Effekten geschätzt - genauso wie in Abschnitt
+\@ref(sec:panel-fixedrandom) beschrieben. Die Schätzgleichungen sind in diesem
+Falle einfach durch Gleichung \@ref(eq:heteroeq) gegeben.
+Theoretisch könnten wir das manuell implementieren indem
+wir für jedes einzelne Beobachtungssubjekte einen Sub-Datensatz erstellen und dort
+dann die Funktion `plm::plm()` anwenden und die Koeffizienten jeweils speichern.
+Das gleiche erreichen wir aber auch einfacher durch Verwendung der Funktion
+`plm::pvcm()`, welche in den Argumenten sehr ähnlich zu `plm::plm()` ist, aber
+die geschätzten Koeffizienten gleichfür alle Beobachtungssubjekte schätzt und
+in einer Liste speichert.
+Um also Modell \@ref(eq:heteroeq) zu schätzen verwenden wir einfach 
+`plm::pvcm()` mit dem Argument `model="within`.
+Der Nachteil ist, dass wir nicht wirklich einen Vorteil durch die Verwendung
+des Panels im Bezug auf die Effizienz der Schätzung haben, da wir hier *de facto*
+$NK$ Parameter mit $NT$ Datenpunkten schätzen.
+
+```{r, echo=FALSE}
+gdp_ineq_data <- data.table::fread(
+  file = here::here("data/tidy/gdp_inequality.csv"), 
+  colClasses = c("character", rep("double", 4))
+  )
+gdp_ineq_pdata <- pdata.frame(
+  gdp_ineq_data, index = c("country", "year"))
+```
+
+> **Anwendungsbeispiel: Der heterogene Zusammenhang zwischen Ungleichheit und Nationaleinkommen**
+> Hier verwenden wir Beispiel den Datensatz, mit dem @FlechtnerCoint 
+den langfristigen Zusammenhang zwischen Einkommensungleichheit und 
+Bruttoinlandsprodukt analysiert haben. 
+Es handelt sich in um ein unbalanciertes Panel mit Beobachtungen aus
+`r length(unique(gdp_ineq_data$country))` Ländern zwischen
+`r min(gdp_ineq_data$year)` und `r max(gdp_ineq_data$year)`. 
+Das Bruttoinlandsprodukt wird in pro Kopf Einheiten in PPP gemessen 
+(Variable `gdp_pc_chppp`), die Einkommensungleichheit über den 
+Prä- und Post-Steuer-Gini-Koeffizienten (`gini_mkt` und `gini_disp`) von 
+@SoltGini.
+
+```{r}
+str(gdp_ineq_data, vec.len=3)
+```
+
+```{r, echo=FALSE}
+HousePricesUS <- data.table::fread(
+  file = here("data/tidy/HousePricesUS.csv"))
+HousePricesUS_pdata <- pdata.frame(HousePricesUS)
+```
+
+> Das gepoolte OLS Modell und das *within*-Modell schätzen wir wie üblich mit
+der Funktion `plm::plm()`, jeweils mit dem Argument `model = "pooling"`, bzw.
+`model = "within"`. Für das Modell mit heterogenen Koeffizienten verwenden
+wir die Funktion `plm::pvcm()`. Die Argumente sind sehr ähnlich. Im vorliegenden
+Falle wollen wir auch individuelle *fixed effects* berücksichtigen und verwenden
+entsprechend das Argument `model = "within"`:
+
+```{r, echo=FALSE}
+model.het <- plm::pvcm(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS_pdata, model = "within")
+model.pool <- plm(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS_pdata, model = "pooling")
+model.within <- plm(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS_pdata, model = "within")
+```
+
+```{r}
+model.het <- plm::pvcm(
+  formula = log(gdp_pc_chppp) ~ log(gini_disp), 
+  data = gdp_ineq_pdata, model = "within")
+model.pool <- plm(
+  formula = log(gdp_pc_chppp) ~ log(gini_disp), 
+  data = gdp_ineq_pdata, model = "pooling")
+model.within <- plm(
+  formula = log(gdp_pc_chppp) ~ log(gini_disp), 
+  data = gdp_ineq_pdata, model = "within")
+```
+
+> Die geschätzten Koeffizienten des gepoolten und des *within* Modells können
+wir über die klassische Output-Tabelle betrachten:
+
+```{r, include=T}
+texreg::screenreg(
+  list("OLS (Pooled)"=model.pool, 
+       "Within-Modell"=model.within)
+  )
+```
+
+Bei den heterogenen Koeffizienten funktioniert das natürlich nicht.
+Hier können wir uns aus dem Schätzobjekt deskriptive Statistiken ausgeben 
+lassen:
+
+```{r}
+summary(model.het)
+```
+
+> Oder aber wir visualisieren die geschätzten Koeffizienten grafisch, indem 
+wir sie aus dem Schätzobjet über `coef()` extrahieren:
+
+```{r}
+make_plot <- function(data_used, var_name){
+  ggplot(data_used, aes_string(x = var_name)) + 
+  scale_y_continuous(expand = expansion(), name = "Häufigkeit") +
+  geom_histogram(bins = 8) + xlab("Geschätzter Koeffizient") + theme_bw() +
+  theme(
+    panel.border = element_blank(), axis.line = element_line())
+}
+estimates_intercept <- make_plot(
+  tibble::tibble("Achsenabschnitt"=coef(model.het)[[1]]), "Achsenabschnitt")
+
+estimates_beta <- make_plot(
+  tibble::tibble(
+    "Steigungskoeffizient"=coef(model.het)[[2]]), "Steigungskoeffizient")
+```
+
+```{r, echo=FALSE}
+het_estimates <- ggpubr::ggarrange(
+  estimates_intercept, estimates_beta, ncol = 2, labels = c("a)", "b)")
+)
+het_estimates <- ggpubr::annotate_figure(
+  het_estimates, 
+  top = ggpubr::text_grob("Geschätzte Koeffizienten"))
+
+plot_file <- here::here(
+  "figures/PanelReg/heterogene-koeffizienten-bsp.png")
+save_pdf_png(
+  filename = plot_file, plot = het_estimates, 
+  width = 5, height = 2.5)
+```
+
+```{r, echo=FALSE, warning=FALSE}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+
+> Wir können nun die Stabilität der Koeffizienten testen indem wir das Modell
+mit heterogenen Koeffizienten (`model.het`) gegen das gepoolte Modell mit
+(`model.within`) oder ohne (`model.pool`) *fixed effects* vergleichen. 
+Dafür verwenden wir die Funktion `plm::pooltest()`, welche die Nullhypothese
+homogener Koeffizienten testet.
+Für den ersten Vergleich:
+
+```{r}
+pooltest(model.pool, model.het)
+```
+
+> Die Nullhypothese homogener Koeffizienten muss also klar abgelehnt werden.
+Der Vergleich mit dem *fixed effects* Modell liefert ein ähnliches Ergebnis:
+
+```{r}
+pooltest(model.within, model.het)
+```
+
+> Auch hier muss die Nullhypothese von homogenen Koeffizienten verworfen werden 
+und prinzipiell wäre ein Modell mit heterogenen Koeffizienten zu bevorzugen, 
+so denn es denn die Datenlage hergibt.
+> Beachten Sie bei den Tests auch die unterschiedlichen Freiheitsgrade der Modelle: 
+Das Modell mit heterogenen Koeffizienten hat $N(T-K-1)$, das gepoolte OLS Modell
+$NT-K-1$ und das *within*-Modell $N(T-1)-K$ Freiheitsgrade.
+
+Wie oben beschrieben verlieren wir bei Verwendung eines *fixed effects* Modells
+viele Freiheitsgrade, da insgesamt $NK$ Parameter geschätzt werden müssen 
+($K$ Parameter jeweils für $N$ Untersuchungssubjekte).
+
+Eine Alternative Möglichkeit heterogene Koeffizienten zu schätzen bieten sich
+im *Random Effects* Kontext.
+Besonders bekannt ist dabei das so genannte *Swamy Modell*, dessen 
+Ausgangspunkt folgender ist:
+
+\begin{equation}
+\label{eq:swamy-base}
+y_{n,t} = \gamma_n^Tz_{n,t}+v_{n,t}
+\end{equation}
+
+Wenn $\gamma_n\propto\mathcal{N}(\gamma, \Delta)$
+(wobei $\Delta$ die Varianz **CHECK**), $\delta_n=\gamma_n-\gamma$ und $\epsilon=v_{n,t}+\delta_n^Tz_{n,t}$:
+
+\begin{equation}
+\label{eq:swamy-ind}
+y_{n,t} = \gamma^Tz_{n,t}+\epsilon_{n,t}
+\end{equation}
+
+Die Strategie ist zunächst die Koeffizienten individuell mit OLS zu schätzen:
+
+\begin{equation}
+\label{eq:swamy-ind-ests}
+\hat{\gamma}_n = (Z^T_nZ_n)^{-1}Z_n^Ty_n = \delta_n + (Z^T_nZ_n)^{-1}Z_n^Tv_n,
+\end{equation}
+
+dann den entsprechenden Mittelwert zu berechnen:
+
+\begin{equation}
+\label{eq:swamy-mean}
+\bar{\hat{\gamma}} = \frac{1}{N}\sum_{n=1}^N \hat{\gamma}_n
+\end{equation}
+
+Die Varianz $Delta$ wird über die Formel
+
+\begin{equation}
+\label{eq:swamy-var}
+\hat{\Delta}=\frac{1}{N-1}\sum_{n=1}^N(\hat{\gamma}_n-\gamma)^2 - \frac{1}{N}\sum_{n=1}^N\sigma_n^2(Z_n^TZ)^{-1}
+\end{equation}
+
+geschätzt (für die Herleitung siehe XXX).**CHECK SIGMA**
+Um dieses Modell zu schätzen verwenden wir die Funktion `plm::pvcm()`mit dem
+Argument `model = "random"`.
+Eine vereinfachte Variante dieses Schätzers ist der *Panel Mean Group Estimator* 
+(PMG), welcher lediglich den Durchschnitt der einzelnen OLS-Schätzer
+$\hat{\gamma}_{OLS}$ darstellt:
+
+\begin{equation}
+\label{eq:pmg}
+\hat{\gamma}_{PMG} = \frac{1}{N}\sum_{n=1}^N \hat{\gamma}_{OLS,n}
+\end{equation}
+
+In diesem Fall wird die Varianz des Schätzers folgendermaßen geschätzt:
+
+\begin{equation}
+\label{eq:pmg-var}
+V(\hat{\gamma}_{PMG}) = \frac{1}{N(N-1)}\sum_{n=1}^N(\hat{\gamma}_{OLS,n} - \hat{\gamma}_{PMG})(\hat{\gamma}_{OLS,n} - \hat{\gamma}_{PMG})^T
+\end{equation}
+
+Der Vorteil liegt in den weniger restriktiven Annahmen: 
+wir nehmen keine bestimmte Verteilung für die $\gamma_n$ an. 
+Dafür ist der vereinfachte Schätzer der Varianz in kleinen Samples inkonsistent
+wenn die restriktiveren Annahmen von Modell \@ref(eq:swamy-ind) gelten.
+Für große $T$ konvergieren die beiden Schätzer allerdings.
+Um den PMG-Schätzer zu berechnen verwenden wir die Funktion `plm::pmg()`
+mit dem Argument `model="mg"`. 
+
+> **Anwendungsbeispiel: Determinanten von Hauspreisen** Der Beispieldatensatz
+enthält Informationen über Hauspreise und generelle Eigenschaften verschiedener
+US-Bundesstaaten. Das Interesse von @HollyHouses galt dem Effekt dieser 
+Eigenschafte auf die Hauspreise. In diesem Beispiel replizieren wir ihre
+Ergebnisse bezüglich des Effekts des Gesamteinkommens.
+Um die Ähnlichkeit des Swamy-Modells und dem PMG-Modell zu illustrieren schätzen
+wir zunächst beide Modelle:
+
+```{r}
+HousePricesUS <- data.table::fread(
+  file = here("data/tidy/HousePricesUS.csv"))
+HousePricesUS_pdata <- pdata.frame(HousePricesUS)
+
+swamymodel <- pvcm(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS, 
+  model= "random") 
+pmgmodel <- pmg(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS, 
+  model = "mg") 
+```
+
+> Eine Inspektion der geschätzten Koeffizienten zeigt wie ähnlich sie im 
+vorliegenden Falle sind:
+
+```{r}
+coefs <- cbind(coef(swamymodel), coef(pmgmodel))
+
+dimnames(coefs)[[2]] <- c("Swamy", "PMG")
+coefs
+```
+
+Der PMG-Schätzer kann übrigens leicht für den dynamischen Kontext angepasst 
+werden. Wenn das Panel hier vergleichsweise lang ist (also $T\rightarrow \infty$)
+ist dieser Schätzer konsistent sowohl für die Parameter als auch deren 
+Standardfehler. 
+Das zu schätzende Modell in diesem Falle ist:
+
+\begin{equation}
+y_{n,t}=\rho y_{n, t-1} + \delta_n^T x_{n,t} + v_{n,t}
+\end{equation}
+
+Auch dieses Modell kann einfach durch die Funktion `plm::pmg()` geschätzt werden,
+nur eben mit der gelaggten unabhängigen Variable und ggf. mit einem 
+Trend über `trend=TRUE`.
+
+## Cross-Sectional Dependence in Panel-Daten {#sec:panels-csd}
+
+Bei Cross-Sectional Dependence (CSD) geht es um den möglicherweise heterogenen Effekt von potenziell unbeobachtbaren
+Faktoren auf alle Untersuchungssubjekte.
+Grundsätzlich lassen sich hier zwei Fälle unterscheiden:
+im Falle *schwacher* CSD geht man von einem expliziten oder impliziten Raum
+aus, auf dem die Untersuchungssubjekte angesiedelt sind, und dass die Subjekte 
+unterschiedlich stark von dem gemeinsamen Faktor betroffen sind, je nachdem 
+'wie weit entfernt' sie von der Faktorursache sind. Alternativ kann man 
+sich vorstellen, dass die Effekte von Subjekt zu Subjekt wandern, allerdings
+in abnehmender Intensität.
+Schwache CSD wird im Kontext der *räumlichen Ökonometrie* 
+(spatial econometrics) berücksichtigt.
+
+Dagegen sprechen wir von *starker* CSD wenn alle Untersuchungssubjekte
+unabhängig von der Distanz durch einen gemeinsamen Faktor beeinflusst
+wurden. Ein Beispiel wäre eine Änderung im Ölpreis, einer
+globalen Finanzkrise oder eine Änderung im Set verfügbarer
+Technologien (i.e. abrupter technologischer Wandel). 
+Im Gegensatz zur schwachen CSD ist bei der starken CSD also kein
+Abschwächen des Effektes zu erwarten. 
+So wird eine globale Finanzkrise, die ihren Ausgang an der New Yorker Börse
+hat, nicht geringere Auswirkungen in Frankreich denn in Südafrika haben, nur
+weil letzteres geografisch weiter von New York entfernt ist.
+Entsprechend sprechen wir hier auch von *globaler* CSD.
+
+Das Problem von gemeinsamen Faktoren gleich welcher Art ist, dass sie häufig 
+unbeobachtbar sind.
+Wenn sie in einem solchen Fall mit einer anderen erklärenden Variable korrellieren
+kann eine Nicht-Berücksichtigung zu einem *Omitted Variable Bias* führen.
+Wie oben erwähnt wird schwache CSD vor allem über Methoden der räumlichen 
+Ökonometrie berücksichtigt. Starke CSD wird dagegen über *common factor* oder
+*common correlated effects* Modelle addressiert.
+In diesem Kapitel wollen wir uns nur mit dieser Art von Modellen befassen.
+
+Bereits an dieser Stelle sei angemert, dass wir einen sehr
+speziellen Fall der starken CSD bereits im Kontext des
+*within*-Schätzers mit *time fixes effects* kennen gelernt 
+haben: hier gehen wir nur von einem gemeinsamen Faktor aus, 
+der alle Untersuchungssubjekte gleich trifft. 
+Die Methoden unten sind auch anwendbar wenn es beliebig viele
+solcher Faktoren gibt, die einen heterogenen Effekt auf die
+unterschiedlichen Untersuchungssubjekte haben.
+
+### Schätzer im Kontext von Cross-Sectional-Dependence {#subsec:panel-csd-est}
+
+Ein *common factor model* (CFM) geht von folgendem Ausgangsmodell aus:
+
+\begin{align}
+\label{eq:fap-model}
+y_{nt} = \gamma_n^Tz_{nt} + \delta^T_nf_t + \epsilon_{nt}
+\end{align}
+
+wobei $f_t$ hier ein Vektor mit einem unbeobachtbarem gemeinsamen Faktor ist, 
+dessen Effekt über den die Koeffizienten im Vektor $\delta_n$ gemessen wird.
+Man beachte, dass das CFM im Falle homogener Reaktionen auf einen einzigen 
+gemeinsamen Faktor, i.e. $\delta_n=\delta\forall n$, nichts anderes ist als
+ein *Fixed Effects* Modell mit *time fixed effects*, das konsistent mit einem
+*within*-Schätzer aus Abschnitt \@ref(sec:panel-fixedrandom) geschätzt werden 
+kann.
+
+Der gemeinsame Faktor beeinflusst die abhängige Variable über zwei Kanäle:
+der direkte Effekt wird über den Parameter $\delta_n$ direkt geschätzt.
+Da der Faktor aber zusätzlich noch mit den anderen erklärenden Variablen 
+korrelieren kann, ist auch ein indirekter Effekt auf die abhängige Variable
+möglich. In jedem Fall führt eine Nicht-Berücksichtigung der gemeinsamen 
+Faktoren zu inkonsistenten und verzerrten Schätzern.
+
+Wie können wir nun also gemeinsame Faktoren angemessen 
+berücksichtigen, die nicht den gleichen Effekt auf alle
+Untersuchungssubjekte haben, also nicht einfach mit 
+*time fixed effects* im Kontext des *within*-Modells 
+addressiert werden können?
+
+Eine beliebte Variante ist der *common correlated effects*
+(CCE) Schätzer von @pesarancce.
+Dieser Schätzer baut auf dem Ergebnis auf, dass wenn $N$ und $T$ groß genug 
+sind, die unbeobachteten Faktoren $\boldsymbol{f}_t$ durch gewichtete 
+Durchschnitte der abhängigen und
+unabhängigen Variablen approximiert werden können.
+Der resultierende Schätzer ist dann robust gegen (starke und
+schwache) CSD -- auch wenn die Faktoren mit den anderen 
+erklärenden Variablen und ggf. den *fixed effects* 
+korrelieren -- und erlaubt sowohl die Schätzung heterogener
+Koeffizienten als auch dynamischer Spezifikationen mit Lags
+der abhängigen Variable auf der RHS. Die Anzahl an gemeinsamer
+Faktoren, $m$, in $\boldsymbol{f}_t$ spielt dabei keine Rolle.
+Der Schätzer ist sowohl für kurze Panels (kleines $T$, großer 
+$N$) als auch lange und große Panels (großes $T$ und großes 
+$N$) geeignet [@pesarancce.]. 
+
+Ausgangspunkt ist dabei das folgende Modell:
+
+\begin{align}
+\label{eq:cce-base}
+y_{it} =  \boldsymbol{\alpha}_i  \boldsymbol{d}_t +  \boldsymbol{\beta}_i \boldsymbol{x}_{it} + \epsilon_{it}
+\end{align}
+
+wobei $\beta_i$ der Vektor mit den zu schätzenden
+Steigungsparameters ist, $x_{it}$ eine Matrix mit den 
+abhängigen Variablen, $d_t$ ein Vektor mit beobachtbaren 
+gemeinsamen Effekten (Achsenabschnitte, *time dummies*, o.ä.)
+und $\epsilon_{it}$ der Fehlerterm,
+der folgende Komponenten enthält:
+
+\begin{align}
+\label{eq:cce-error}
+\epsilon_{it} &= \boldsymbol{\gamma}'_i\boldsymbol{f}_t + u_{it}
+\end{align}
+
+wobei $f_t$ ein $m\times 1$ Vektor mit $m$ unbeobachtbaren 
+Faktoren und $u_{it}$ die idiosynkratischen Fehler darstellen.
+Hierbei müssen wir nur annehmen, dass $u_{it}$ unabhängig ist
+von der abhängigen Variable und den Faktoren, sie können aber
+zwischen den Untersuchungssubjekten korrelieren und
+autokorreliert sein.
+Genauso können die Faktoren $f_t$ sowohl mit der abhängigen 
+als auch den unabhängigen Variablen korrellieren und 
+autokorreliert sein.
+
+Genauso wie wir einen linearen Effekt der Faktoren auf die
+Fehler annehmen, tun wir dies auch für die erklärenden 
+Variablen $x_{it}$:
+
+\begin{align}
+\label{eq:cce-indepvar}
+\boldsymbol{x}_{it} &= \boldsymbol{A}_i\boldsymbol{d}_t + \boldsymbol{\Gamma}'_i \boldsymbol{f}_t + \boldsymbol{v}_{it}
+\end{align}
+
+wobei $\boldsymbol{A}_i$ eine $N\times K$-Matrix und $\boldsymbol{\Gamma}'_i$ eine $m\times K$ Matrix mit den Koeffizienten 
+der beobachtbaren ($\boldsymbol{A}_i$) und unbeobachtbaren ($\boldsymbol{\Gamma}'_i$) Faktoren, genannt Faktorladungen, ist und $v_{it}$ die
+individuellen Fehler beinhaltet.
+
+> **Exkurs: Das Prinzip hinter dem CCE-Schätzer**
+Nehmen wir $\boldsymbol{z}_{it}=\left(\begin{array}{c}y_{it}\\\boldsymbol{x}_{it} \end{array}\right)$ als einen $K+1\times 1$
+Vektor. Dann gilt
+
+\begin{align}
+\label{eq:cce-factors}
+\boldsymbol{z}_{it} = \boldsymbol{B}_i\boldsymbol{d}_t + \boldsymbol{C}'_i\boldsymbol{f}_t + \boldsymbol{\varsigma}_{it}
+\end{align}
+
+> wobei $\boldsymbol{\varsigma}_{it}=\left(\begin{array}{c}u_{it}+\boldsymbol{\beta}'_i\boldsymbol{v}_{it}\\\boldsymbol{v}_{it} \end{array}\right)$ die Fehler enthält und die weiteren Terme
+folgendermaßen definiert sind (die Intuition hinter den 
+einzelnen Termen ist vor allem technischer Natur, sie sind
+aber für die Berechnung des Schätzers später von Bedeutung):
+
+\begin{align}
+\boldsymbol{B}_i &=
+\left(\begin{array}{cc}
+1 & \boldsymbol{\beta}'_i\\
+\boldsymbol{0}&\boldsymbol{I}_k
+\end{array}\right)
+\left(\begin{array}{c}
+\alpha_i\\
+\boldsymbol{A}_i
+\end{array}\right)\\
+\boldsymbol{C}'_i &=
+\left(\begin{array}{cc}\gamma_i & \Gamma_i
+\end{array}\right)
+\left(\begin{array}{cc}
+1 & \boldsymbol{0}\\
+\boldsymbol{\beta}_i&\boldsymbol{I}_k
+\end{array}\right)
+\end{align}
+
+> wobei $\boldsymbol{I}_K$ eine Identitätsmätix ist. 
+Beachtet, dass das uns bereits bekannte *Fixed Effects*-Modell
+ein Sonderfall dieses Modells mit $d_t=1$, $\boldsymbol{\beta}_i=\boldsymbol{\beta}$ und $\boldsymbol{\gamma}_i=\boldsymbol{0}\forall i$ ist.
+Der Clou vom CCE Schätzer ist nun die Durschnitte über die
+Querschnittsdimension von $y_{it}$ und $\boldsymbol{x}_{it}$
+als Proxies für die Faktoren $\boldsymbol{f}_t$ in den
+Gleichungen\@ref(eq:cce-error) und
+\@ref(eq:cce-indepvar) zu verwenden. Um zu sehen warum
+das in Panels mit ausreichend vielen Beobachtungen Sinn macht
+definieren wir zunächst die Durchschnitte der abhängigen und
+unabhängigen Variable,
+$\boldsymbol{\bar{z}}_{t}=N^{-1}\sum_{i=1}^N \boldsymbol{z}_{it}$, der Fehler, 
+$\boldsymbol{\bar{\varsigma}}_{t}=N^{-1}\sum_{i=1}^N \boldsymbol{\varsigma}_{it}$ 
+und der oben definierten Hilfsvariablen,
+$\boldsymbol{\bar{d}}=N^{-1}\sum_{i=1}^N \boldsymbol{d}_{i}$ und
+$\boldsymbol{\bar{C}}=N^{-1}\sum_{i=1}^N \boldsymbol{C}_{i}$.
+Betrachten wir nun die Durchschnittsvariante von Gleichtung
+\@ref(eq:cce-factors):
+
+\begin{align}
+\label{eq:cce-intermed}
+\boldsymbol{\bar{z}}_{t} = 
+\boldsymbol{\bar{B}}_i\boldsymbol{d}_t + \boldsymbol{\bar{C}}'\boldsymbol{f}_t + \boldsymbol{\bar{\varsigma}}_{t}
+\end{align}
+
+> Es gilt unter den klassischen Annahmen, dass $\boldsymbol{f}_t=(\boldsymbol{\bar{C}}\boldsymbol{\bar{C}}')^{-1}\boldsymbol{\bar{C}}(\boldsymbol{\bar{z}}_t-\boldsymbol{\bar{B}}_i\boldsymbol{d}_t-\boldsymbol{\bar{\varsigma}}_{t})$.
+Gemäß der oben gemachten Annahmen gilt $\boldsymbol{\bar{\varsigma}}_{t}\rightarrow \boldsymbol{0}$ wenn $N\rightarrow \infty$ und somit:
+
+\begin{align}
+\boldsymbol{f}_t-(\boldsymbol{\bar{C}}\boldsymbol{\bar{C}}')^{-1}\boldsymbol{\bar{C}}(\boldsymbol{\bar{z}}_t-\boldsymbol{\bar{B}}_i\boldsymbol{d}_t) \rightarrow \boldsymbol{0}\text{, wenn } N\rightarrow \infty
+\end{align}
+
+> Daher macht es Sinn, $\boldsymbol{h}_t(\boldsymbol{d}'_t, \boldsymbol{\bar{z}}'_{t})'$ als
+beobachtbaren Proxie für die unbeobachtbaren
+$\boldsymbol{f}_t$ zu verwenden. Das machen wir in der Praxis
+indem wir eine Matrix 
+$\bar{H}=(\boldsymbol{D}, \boldsymbol{\bar{Z}})$ 
+mit $\boldsymbol{D}=\boldsymbol{d}_1, \boldsymbol{d}_2, ..., \boldsymbol{d}_T$ und
+$\boldsymbol{\bar{Z}}$ als Matrix mit den $T$ Elementen
+$\boldsymbol{\bar{z}}_t$ definieren, die wir dann als Gewicht
+in unseren OLS-Schätzer der Gleichung \@ref(eq:cce-base)
+einsetzen (siehe unten).
+
+Je nach Heterogenität ergeben sich hieraus zwei Schätzer,
+jeweils für den mittleren Effekt. 
+Zum einen der *CCE mean group* (CCEMG)-Schätzer, der nichts
+anderes ist als der Mittelwert der individuellen CCE Schätzer
+$\hat{\beta}_{CCE,i}$ aus Gleichung \@ref(eq:cce-est):
+
+\begin{align}
+\label{eq:ccemg}
+\hat{\boldsymbol{\beta}}_{CCEMG} = \frac{1}{N} \sum_{i=1}^N\hat{\beta}_{CCE,i}
+\end{align}
+
+Die individuellen CCE Schätzer in Gleichung
+\@ref(eq:ccemg) erhalten wir indem wir OLS auf die nun 
+folgendermaßen angepasste Schätzgleichung \@ref(eq:cce-base)
+anwenden:
+
+\begin{align}
+\label{eq:est-eq}
+\hat{y}_i=\boldsymbol{D\alpha}_i + \boldsymbol{X}_i\boldsymbol{\beta}_i + \boldsymbol{F\gamma}_i + \boldsymbol{\epsilon}_i
+\end{align}
+
+Anders als in Gleichung \@ref(eq:cce-base) drücken wir hier
+gleich das gesamte Panel aus, sodass
+$\boldsymbol{\epsilon}_i = (\epsilon_{i1}, \epsilon_{i2},...,\epsilon_{iT})$, 
+$\boldsymbol{D}=(\boldsymbol{d}_1, \boldsymbol{d}_2,..\boldsymbol{d}_T)$ und
+$\boldsymbol{F}=(\boldsymbol{f}_1, \boldsymbol{f}_2,..\boldsymbol{f}_T)$.
+
+Die Anwendung von ergibt den folgenden Ausdruck für die 
+Schätzer $\hat{\beta}_{CCE,n}$:
+
+\begin{align}
+\label{eq:cce-est}
+\hat{\beta}_{CCE,n}=(\boldsymbol{X}'_i\bar{\boldsymbol{M}}\boldsymbol{X}_i)^{-1}\boldsymbol{X}'_n\boldsymbol{\bar{M}y}_i
+\end{align}
+
+wobei $\boldsymbol{X}_i=(\boldsymbol{x}_{i1}, \boldsymbol{x}_{i2}, ..., \boldsymbol{x}_{iT})$ und
+$\boldsymbol{y_i}=(y_{i1}, y_{i2},...,y_{iT})$.
+Bei $\bar{M}$ handelt es sich um eine Matrix
+$\bar{M}=I_T-\bar{H}(\bar{H}^T\bar{H})^{-1}\bar{H}^T$
+wobei 
+$\bar{H}=(\boldsymbol{D}, \boldsymbol{\bar{Z}})$ 
+mit $\boldsymbol{D}=\boldsymbol{d}_1, \boldsymbol{d}_2, ..., \boldsymbol{d}_T$ und
+$\boldsymbol{\bar{Z}}$ als Matrix mit den $T$ Elementen
+$\boldsymbol{\bar{z}}_t$ (für die Herleitung siehe den
+optionalen Exkurs oben).
+
+Alternativ können wir die Effizienz der Schätzung erhöhen,
+wenn die Beobachtungen gepoolt werden können, wir also keine
+individuellen Steigungsparameter $\hat{\beta}_i$ schätzen 
+müssen, sondern nur $\hat{\beta}=\hat{\beta}_i\forall i$.
+Der resultierende Schätzer wird entsprechend *CCE pooled*
+(CCEP) genannt und ist einfach definiert als:
+
+\begin{align}
+\label{eq:ccep}
+\hat{\boldsymbol{\beta}}_{CCEP}=
+  \left(\sum_{i=1}^N \boldsymbol{X}'_i \boldsymbol{\bar{M}} \boldsymbol{X}_i\right)^{-1} \sum_{i=1}^N \boldsymbol{X}'_i \boldsymbol{\bar{M}} \boldsymbol{y}_i
+\end{align}
+ 
+Welchen der beiden Schätzer wir verwenden hängt von der 
+Angemessenheit der Pooling-Annahme ab: 
+wenn die Annahme, dass $\hat{\beta}=\hat{\beta}_i\forall i$
+gerechtfertig ist, ist der CCEP Schätzer definitiv die 
+bessere Wahl (höhere Stabilität und Effizienz). Wenn nicht,
+dann sollten wir den CCEMG Schätzer verwenden.
+
+In `R` können wir den CCEMG Schätzer $\hat{\boldsymbol{\beta}}_{CCEMG}$
+auf zwei verschiedene Arten und Weisen berechnen.
+Entweder wir verwenden die Funktion `plm::pmg()` mit dem Argument `model="cmg"`.
+Oder aber wir nutzen `plm::pcce()` mit dem Argument 
+`model="mg"`.
+Der einzige Unterschied zwischen den beiden liegt darin, in bei der Schätzung 
+mit `plm::pcce()` weniger Diagnostiken ausgegeben werden.
+Zudem können die Ergebnisse dieser Funktion nicht unmittelbar mit Paketen wie
+`texreg` oder `stargazer` in Form schöner Tabellen dargestellt werden, was den
+Umgang mit den Ergebnissen etwas erschwert.
+Den gepoolten CCEP Schätzer $\hat{\boldsymbol{\beta}}_{CCEP}$
+können wir aber ohnehin 'nur' über die Funktion `plm::pcce()` mit dem Argument 
+`model="p"` berechnen.
+
+> **Anwendungsbeispiel: Hauspreise**
+An dieser Stelle wollen wir erneut einige Ergebnisse von @HollyHouses
+replizieren, die eine sehr gute und übersichtliche 
+Anwendungsstudie des CCE Schätzers liefern.
+Um die Anwendung des CCE Verfahrens zu illustrieren schätzen
+die Autor:innen die Rolle von fundementalen ökonomischen 
+Größen (wie Einkommen, Demografie und Zinsraten) für die 
+Entwicklung von Hauspreisen in verschiedenen US-Bundesstaaten. Hier beschränken wir uns auf die Rolle von Einkommen:
+
+```{r}
+HousePricesUS <- data.table::fread(
+  file = here("data/tidy/HousePricesUS.csv"),
+  select = c(
+    "names"="character", "year"="double",
+    "income"="double", "price"="double"))
+
+HousePricesUS_pdata <- pdata.frame(
+  HousePricesUS, index = c("names", "year"))
+
+head(HousePricesUS, 3)
+```
+
+> Zunächst schätzen wir $\hat{\boldsymbol{\beta}}_{CCEMG}$
+mit beiden oben genannten Funktionen, die, wir wir unten 
+sehen werden, wenig überraschend äquivalente Ergebnisse liefern:
+
+```{r}
+ccemg_model <- plm::pmg(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS_pdata, 
+  model = "cmg")
+
+ccemg_model_2 <- plm::pcce(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS_pdata, 
+  model = "mg")
+```
+
+> Als Vergleichspunkt schätzen wir auch dem *PMG*-Schätzer 
+aus Abschnitt \@ref(sec:panels-hetcoefs), der die CSD in diesem Datensatz nicht berücksichtigt:
+
+```{r}
+mg_model <- plm::pmg(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS_pdata, 
+  model = "mg")
+```
+
+Der Vergleich mit dem im vorliegenden Falle konsistenten CCEMG Schätzer zeigt,
+wie deutlich der PMG-Schätzer aufgrund der Nicht-Berücksichtigung von CSD
+verzerrt ist:
+
+```{r, echo=FALSE}
+texreg::screenreg(list(
+  "PMG"=mg_model, 
+  "CCEMG (pmg)"=ccemg_model
+  ), digits = 3
+  )
+```
+
+> Zuletzt berechnen wir noch den gepoolten CCEP Schätzer
+$\hat{\boldsymbol{\beta}}_{CCEP}$:
+
+```{r}
+ccep_model <- plm::pcce(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS_pdata, 
+  model = "p")
+```
+
+>  Abschließend nehmen wir einen Vergleich der geschätzten Koeffizienten vor. 
+Da die Objekte, welche die Funktion 
+`plm::pcce()` produziert, nicht unmittelbar gemeinsam mit anderen Ergebnissen
+durch Pakete wie `stargazer` oder `texreg` visualisiert werden können, müssen
+wir das ganze händisch über eine eigens erstellte Liste machen:
+
+```{r}
+coefs_income <- list(
+  "PMG"=summary(mg_model)[["CoefTable"]][2,],
+  "CCEMG_pmg"=summary(ccemg_model)[["CoefTable"]][2,],
+  "CCEMG_pcce"=summary(ccemg_model_2)[["CoefTable"]][1,],
+  "CCEP"=summary(ccep_model)[["CoefTable"]][1,]
+)
+
+tibble::as_tibble(t(
+  data.frame(coefs_income)), 
+  rownames = "Model")
+```
+
+
+> Zum einen sehen wir, dass sich der PMG-Schätzer deutlich von den anderen 
+Ergebnissen unterscheidet. 
+Das liegt daran, dass er im Kontext von CSD stark verzerrt ist. 
+Gleichzeitig sehen wir, dass zwischen dem CCEMG und CCEP Schätzer kaum ein 
+Unterschied besteht. Das spricht dafür, dass die Pooling-Annahme im 
+vorliegenden Fall tatsächlich erfüllt ist. Die Funktionen `plm::pcce()` und 
+`plm::pmg()` geben für den CCEMG Schätzer wie erwartet die gleichen Ergebnisse
+aus.
+
+### Tests auf Cross-Sectional-Dependence {#panels-csdtests}
+
+* TODO: Baltagi Test für große Panels
+
+In der Literatur wurden mittlerweile verschiedene Tests auf CSD entwickelt.
+Ein guter Überblick findet sich in @pesarantest.
+Die bekanntesten dieser Tests sind in der Funktion `plm::pcdtest()` implementiert
+worden. 
+Grundsätzlich gibt es verschiedene Möglichkeiten, die Funktion zu nutzen, aber
+die transparenteste und flexibelste und gleichzeit der Theorie am nächsten 
+kommende Variante ist es, zuerst ein Modell zu schätzen und dieses dann an 
+die Funktion zu übergeben. Die Residuen werden dann automatisch extrahiert und
+für die Tests verwendet. Der Vorteil hier ist, dass wir testen können, ob wir
+in einem Modell die eventuell ursprünglich existierende CSD bereits ausreichend
+berücksichtig haben, z.B. durch das Hinzufügen von *time fixed effects* im
+Kontext eines *within*-Modells.
+
+Von den verschiedenen in `plm::pcdtest()` implementierten Tests sind zwei von
+besonderem Interesse: der *CD-Test* von @pesarantest und der 
+*biased corrected LM test* von @baltagi12test. Ersterer ist eine gute 
+Default-Option aber besonders gut ist er für breite Panels geeignet. 
+Wenn das Ausgangsmodell ein *fixed effects* Modell mit
+homogenen Steigungsparametern ist, bietet sich zudem der Test von @baltagi12test
+an, der besonders gut funktioniert wenn $N$ und $T$ ähnlich groß sind.
+In beiden Fällen besteht die Nullhypothese in der *Abwesenheit* von CSD.
+Wenn sie verworfen werden muss, sollte das Basismodell solange angepasst werden,
+bis der Test $H_0$ verwirft.
+
+Im Folgenden wollen wir die praktische Anwendung der Tests anhand des CD-Tests 
+illustrieren. 
+Für die Theorie des Tests siehe @pesarantest, hier fokussieren wir uns auf die
+Praxis.
+Der CD-Test kann über das Argument `test="cd"` verwendet werden. Im Folgenden
+betrachten wir das oben bereits diskutierte Beispiel aus @HollyHouses:
+zunächst schätzen wir den Einfluss von Einkommen auf Hauspreise mit einem
+PMG-Schätzer, der nicht für CSD kontrolliert:
+
+```{r}
+mg_model <- plm::pmg(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS_pdata, 
+  model = "mg")
+pcdtest(mg_model, test = "cd")
+```
+Wie zu erwarten mit die $H_0$ klar verworfen werden und die Spezifikation sollte 
+verfeinert werden um CSD zu berücksichtigen. 
+Nehmen wir an wie verwenden als Reaktion darauf den gepoolten CCEP Schätzer:
+
+
+```{r}
+ccep_model <- plm::pcce(
+  formula = log(price) ~ log(income), 
+  data = HousePricesUS_pdata, 
+  model = "p")
+pcdtest(ccep_model, test = "cd")
+```
+
+Hier kann $H_0$ nicht abgelehnt werden und wir können davon ausgehen, die CSD
+angemessen berücksichtigt zu haben.
+
+## Einheitswurzeln und Ko-Integration {#sec:panel-unitcoint}
+
+Eine besondere Bedeutung bei der Analyse von langen Panels spielt die Frage,
+ob die im Panel zusammengefassten Zeitreihen Einheitswurzeln ausweisen und, 
+wenn ja, ob zwischen ihnen eine Ko-Integrationsbeziehung existiert. 
+Einheitswurzeln sind ein wichtiger Grund für die Nicht-Stationarität einer
+Zeitreihe. Und Zeitreiehen, die nicht stationär sind, müssen in einer Analyse
+besonders behandelt werden, denn bei diesen Zeitreihen sind die 
+Verteilungseigenschaften per definitionem nicht über die Zeit hinweg konstant.
+In der Konsequenz gilt, dass wenn die Zeitreihen Einheitswurzeln aufweisen und #
+damit nicht stationär sind, sie aber gleichzeitig in keiner
+Ko-Integrationsbeziehung zueinander stehen, Schätzungen zu sehr irreführenden
+Ergebnissen führen. 
+Daher spielt der Test auf Einheitswurzeln und Ko-Integrationsbeziehungen in 
+auch in der Panel-Ökonometrie immer dann eine Rolle, wenn die $T$-Dimension 
+nicht extrem klein im Vergleich zu $N$ ist. Im Folgenden wollen wir zunächst
+die Folgen einer Nicht-Berücksichtigung von Einheitswurzeln und 
+Ko-Integrationsbeziehungen anhand einer Simulation verdeutlichen 
+(Abschnitt \@ref(subsec:coint-motiv)), danach Tests auf Einheitswurzeln 
+(Abschnitt \@ref(subsec:unitroots-test)) und Ko-Integrationsbeziehungen 
+(Abschnitt \@ref(subsec:coint-test)) beschreiben und zuletzt das generelle 
+Vorgehen zusammenfassen (Abschnitt \@ref(subsec:coint-proced)).
+
+### Motivation: Einheitswurzeln und das Problem der spurious regression {#subsec:coint-motiv}
+
+Bevor wir uns den einzelnen Konzepten genauer widmen, wollen wir uns die 
+Bedeutung des Themas durch eine einfache Simulation vor Augen führen.
+Wie wir gleich sehen werden, suggeriert die OLS-Analyse zweier nichtstationärer Zeitreihen, die *nicht* in einer Ko-Integrationsbeziehung stehen, einen signifikanten Zusammenhang, der in der Realität so aber gar nicht existiert.
+
+Zu diesem Zweck betrachten wir folgendes Modell, in dem wir der 
+Einfachheit halber $N=1$ setzen und die Querschnittsdimension nicht
+betrachten:
+
+\begin{align}
+\label{eq:ts-base}
+y_t = \rho y_{t-1} + z'_t\gamma + \epsilon_t
+\end{align}
+
+In `R` (assuming that $y_0=0$):
+
+```{r}
+autoreg <- function(rho, t_steps){
+  y_vals <- c(0, rep(NA, t_steps-1))
+  errors <- rnorm(t_steps)
+  for (t in 2:(t_steps)) y_vals[t] <- rho*y_vals[t-1] + errors[t]
+  y_vals
+}
+```
+
+
+Um die Sache noch weiter zu vereinfachen, gehen wir davon aus, dass
+keine der unabhängigen Variablen in $z$ einen Einfluss auf $y$ hat,
+also $\gamma=0$. Hier hängt $y$ also *nur* von seinen vergangenen
+Werten ab. Die Persistenz über die Zeit wird dabei über den Parameter
+$\rho$ bestimmt. Entsprechend können wir Gleichung \@ref(eq:ts-base)
+rekursiv in sich selbst einsetzen um folgenden Ausdruck zu bekommen,
+welcher $y_t$ auf $y_0$ zurückführt:
+
+\begin{align}
+\label{eq:ts-autoreg}
+y_t = \rho^t y_{0} + \rho^{t-1} \epsilon_1 + \rho^{t-2} \epsilon_2
++ ... + \rho^{1} \epsilon_{t-1} + \epsilon_t
+\end{align}
+
+Dieser Prozess weist eine Einheitswurzel auf wenn $\rho=1$.
+Eine Implikation ist, dass die Varianz des Prozesses nicht mehr
+zeit-invariant ist, sondern mit wachsendem $t$ zunimmt und im Limit
+unendlich groß wird. 
+Um zu sehen warum das so ist, nehmen wir an, dass ansonsten die 
+üblichen Annahmen erfüllt sind -- also $y_0$ deterministisch ist und  
+$\epsilon \stackrel{iid}{\propto}  \mathcal{N}(0, \sigma)$ -- und 
+schreiben für die Varianz von $y_t$:
+
+\begin{align}
+\label{eq:ts-autoreg-var}
+Var(y_t) &= (\rho^{t-1} + \rho^{t-2} + ... + \rho^1 + 1)\sigma^2\\\nonumber
+~ &= t\sigma^2
+\end{align}
+
+Die Varianz wächst also mit $t$ bis ins unendliche.
+Das wäre nicht der Fall wenn $\rho<1$ und der Prozess dementsprechend
+auch keine Einheitswurzel hätte. Dann würde der in Gleichung
+\@ref(eq:ts-autoreg-var) dargestellte Prozess nämlich folgendermaßen
+aussehen:
+
+\begin{align}
+\label{eq:ts-autoreg-var2}
+Var(y_t) &= (\rho^{t-1} + \rho^{t-2} + ... + \rho^1 + 1)\sigma^2\\\nonumber
+~ &= \frac{1-\rho^t}{1-\rho}\sigma^2 \rightarrow  \frac{1}{1-\rho} \sigma^2
+\end{align}
+
+Zeitreihen mit einer Einheitswurzel weisen einen besonderen stochastischen
+Trend auf. Das sieht man in Abbildung \@ref(fig:unitroots), welche
+den in Gleichung \@ref(eq:ts-autoreg) beschriebenen Prozess einmal mit
+$\rho=0.2$ (keine Einheitswurzel) und einmal mit $\rho=1$ (Einheitswurzel) abbildet. Wir sehen, dass sich in letztrem Fall ein
+positiver Trend herausbildet, ohne dass es dafür strukturelle Gründe in Gleichung \@ref(eq:ts-autoreg) gibt.
+
+```{r, echo=FALSE}
+set.seed(1)
+tsteps <- 100
+data_used <- tibble::tibble(
+  "y_unit_root" = autoreg(1.0, tsteps),
+  "y_no_unit_root" = autoreg(0.2, tsteps),
+  "t_steps" = 1:tsteps
+)
+
+plot_1 <- ggplot2::ggplot(
+  data = data_used, 
+  mapping = aes(x=t_steps, y=y_no_unit_root)
+  ) +
+  ggplot2::geom_line() +
+  ggplot2::labs(
+    title = latex2exp::TeX(
+      'Keine Einheitswurzel $(\\rho = 0.2$)'),
+    x = "t", y="y"
+  ) +
+  ggplot2::theme_bw() +
+  ggplot2::theme(
+    panel.border = element_blank(), 
+    axis.line = element_line()
+    )
+
+plot_2 <- ggplot2::ggplot(
+  data = data_used, 
+  mapping = aes(x=t_steps, y=y_unit_root)
+  ) +
+  ggplot2::geom_line() +
+  ggplot2::labs(
+    title = latex2exp::TeX(
+      'Einheitswurzel $(\\rho = 1.0$)'),
+    x = "t", y="y"
+  ) +
+  ggplot2::theme_bw() +
+  ggplot2::theme(
+    panel.border = element_blank(), 
+    axis.line = element_line()
+    )
+
+ts_comparison <- ggpubr::ggarrange(
+  plot_1, plot_2, ncol = 2, labels = c("a)", "b)")
+)
+plot_file <- here::here(
+  "figures/Panel-2/unit_root_ts.png")
+save_pdf_png(
+  filename = plot_file, plot = ts_comparison, 
+  width = 6, height = 3)
+```
+
+```{r unitroots, echo=FALSE, fig.cap="Zwei Zeitreihen, einmal ohne (Panel a) und einmal mit (Panel b) Einheitswurzel."}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+
+Besonders problematisch wird das Ganze nun wenn wir zwei Zeitreihen aufeinander regressieren, die jeweils eine Einheitswurzel aufweisen, aber nicht ko-integriert sind. Dazu kreieren wir zunächst einen 
+Vergleichsfall mit zwei Zeitreihen, die beide stationär sind ($\rho=0.2$),
+und die vollkommen unabhängig voneinander auf Basis von Gleichung 
+\@ref(eq:ts-autoreg) erstellt wurden. 
+Wenn wir hier eine Monte Carlo Simulation
+durchführen und jeweils testen ob es einen signifikanten Zusammenhang zwischen den Zeitreihen gibt, würden wir erwarten, dass die Hypothese eines solchen Zusammenhangs in der großen Mehrzahl der Fälle abgelehnt wird:
+
+```{r}
+set.seed(1)
+iterations <- 500
+tsteps <- 100
+rho_par <- 0.2
+pvals <- rep(NA, iterations)
+for (i in seq_len(iterations)){
+  data_used <- tibble::tibble(
+  "ts1" = autoreg(rho_par, tsteps),
+  "ts2" = autoreg(rho_par, tsteps)
+  )
+  pvals[i] <- coef(summary(
+    lm(ts1~ts2, data = data_used)))[8]
+}
+res_table <- prop.table(table(pvals<0.05))
+res_table
+```
+
+Wie zu erwarten wird die Nullhypothese keines signifikaten Zusammenhangs -- der wie gesagt qua Konstruktion der Zeitreihen auch nicht existiert -- in `r unname(res_table[1])*100` Prozent der Fälle
+nicht abgelehnt. 
+Nur in `r unname(res_table[2])*100` Prozent der Fälle kommt es zu einem 
+Fehler erster Art ('*false positives*') -- ein erwartbares Ergebnis.
+
+Wir wiederholen nun die Simulation mit zwei Zeitreihen, die beide
+nichtstationär sind ($\rho=1.0$), aber wieder vollkommen unabhängig voneinander
+auf Basis von Gleichung \@ref(eq:ts-autoreg) erstellt wurden. 
+Eigentlich dürfte die Nullhypothese wieder nur in ca. 5% der Fälle 
+abgelehnt werden. 
+Tatsächlich beobachten wir aber folgendes Ergebnis: 
+
+```{r}
+set.seed(1)
+iterations <- 500
+tsteps <- 100
+rho_par <- 1.0
+pvals <- rep(NA, iterations)
+for (i in seq_len(iterations)){
+  data_used <- tibble::tibble(
+  "ts1" = autoreg(rho_par, tsteps),
+  "ts2" = autoreg(rho_par, tsteps)
+  )
+  pvals[i] <- coef(summary(
+    lm(ts1~ts2, data = data_used)))[8]
+}
+res_table <- prop.table(table(pvals<0.05))
+res_table
+```
+
+Diesmal machen wir in Nur in `r unname(res_table[2])*100` Prozent der Fälle einen Fehler erster Art! Das heißt unsere Testverfahren
+suggerieren einen Zusammenhang, der aber aufgrund der Konstruktion der Zeitreihen definitiv nicht existiert. Daher sprechen wir hier von einer *spurious regression*.
+
+Diese kleine Simulation zeigt, dass das Testen auf Einheitswurzeln und 
+eine entsprechende Reaktion absolut entscheidend ist.
+Dazu müssen wir als erstes testen ob die relevanten Zeitreihen überhaupt
+erst einmal eine Einheitswurzel aufweisen.
+
+Sollte sich herausstellen, dass zwei Zeitreihen 
+eine Einheitswurzel aufweisen ist eine Regressionsanalyse mit ihnen nur
+möglich wenn sie auch ko-integriert sind.
+Wir gehen weiter unten genauer auf das Thema Ko-Integration ein, halten
+hier aber schon einmal fest, dass zwei Variablen $X$ und $Y$ ko-integriert sind, 
+wenn in folgender Regressionsgleichung ein $\beta$ gibt, sodass die
+Fehler $\epsilon$ stationär sind:
+
+\begin{align}
+\label{eq:cointreg}
+y=\alpha + \beta x + \epsilon 
+\end{align}
+
+Wenn wir im Kontext eines langen Panels also den Zusammenhang zwischen
+zwei Variablen, $X$ und $Y$ untersuchen wollen, ergibt sich folgendes
+Vorgehen:
+
+1. Wir testen ob $X$ und $Y$ eine Einheitswurzeln aufweisen. Falls nicht können wir die uns bekannten Schätzverfahren verwenden. Fall doch geht es weiter mit Schritt 2.
+2. Wir schätzen das Modell \@ref(eq:cointreg) und testen ob die Residuen $e$ 
+eine Einheitswurzel aufweisen. 
+Wenn nein, liegt eine Ko-Integrationsbeziehung vor und wir können den 
+Zusammenhang mit den uns bekannten Schätzverfahren 
+(bzw. noch effizienteren Ko-Integrationsverfahren) untersuchen. 
+Wenn doch müssen die Zeitreihen weiter transformiert werden ihre Stationarität 
+sicherzustellen. 
+
+Falls wir in Schritt 2 zu dem Schluss kommen, dass keine 
+Ko-Integrationsbeziehung vorliegt werden die Zeitreiehen in der Regel so lange
+differenziert, bis sie  stationär sind. Für die Regressionsanalyse werden dann
+die differenzierten Zeitreihen verwendet.
+
+Im Folgenden gehen wir auf die einzelnen Schritte genauer ein.
+
+<!--
+* ADF - Augmented Dickey Fuller
+* CADF - Cross-Sectionally Augmented Dickey Fuller
+* IPS - Im, Pesaran, Shin Test
+* CIPS - Cross-Sectionally Augmented Im, Pesaran, Shin Test
+* CCE - Common Correlated Effects Modell (robust gegen CSD)
+-->
+
+### Tests auf Einheitswurzeln {#subsec:unitroots-test}
+
+Zeitreihen auf Einheitswurzeln zu testen ist nicht trivial.
+Das mag zunächst überraschen, könnte man doch meinen bei Gleichung \@ref(eq:ts-base) 
+einfach $y_{t-1}$ auf beiden Seiten zu substrahieren und bei folgender Gleichung
+
+\begin{align}
+\label{eq:ts-naiv}
+y_t - y_{t-1} &= \rho y_{t-1} - y_{t-1} + \epsilon_t\\\nonumber
+\Delta y_t &= y_{t-1}(\rho - 1) + \epsilon_t
+\end{align}
+
+die Nullhypothese $H_0: \rho=1$ gegen $H_1: \rho<1$ zu testen indem wir 
+testen ob der Koeffizient von $y_{t-1}$ auf der RHS signifikant verschieden von
+$0$ ist. Leider ist das Ergebnis eher ernüchternd:
+
+```{r}
+set.seed(123)
+iterations <- 1000
+tsteps <- 100
+rho_par <- 1.0
+pvals <- rep(NA, iterations)
+tvals <- rep(NA, iterations)
+
+for (i in seq_len(iterations)){
+  ts_y <- autoreg(rho_par, tsteps)
+  ts_y_diff <- diff(ts_y)
+  
+  data_used <- tibble::tibble(
+  "ts_y" = ts_y[1:(tsteps-1)],
+  "ts_y_diff" = ts_y_diff
+  )
+  
+  est_model <- summary(lm(ts_y_diff~ts_y, data = data_used))
+  pvals[i] <- coef(est_model)[8]
+  tvals[i] <- coef(est_model)[6]
+}
+res_table <- prop.table(table(pvals<0.05))
+res_table
+```
+
+
+```{r, echo=FALSE}
+share_alpha_error <- round(res_table[2]*100, 1)
+```
+
+
+Die Hypothese einer Einheitswurzel wird in `r share_alpha_error` Prozent der 
+Fälle abgelehnt, obwohl diese per Konstruktion der Daten hier existiert. 
+Wir machen also in `r share_alpha_error` 
+Prozent der Fälle einen Fehler erster Art. Das ist eindeutig inakzeptabel.
+Der Grund liegt in der 'merkwürdigen' Verteilung der dem Test zugrundeliegenden
+t-Statistik. Im Normalfall wäre diese normalverteilt. Im vorliegenden Falle ist
+dies jedoch eindeutig nicht der Fall, wie die Visualisierung der t-Werte in 
+Abbildung \@ref(fig:tvals-bad) verdeutlicht. Wir müssen hier also raffiniertere
+Verfahren anwenden.
+
+```{r, echo=FALSE}
+tval_plot <- ggplot2::ggplot(
+  data = tibble::tibble("tWerte"=tvals),
+  mapping = aes_string(x="tWerte")
+) +
+  geom_line(
+    aes(y = ..density.., 
+        colour = 'Empirische Verteilung'), 
+    stat = 'density') +  
+  stat_function(
+    fun = dt, 
+    args = list(df = est_model$df[2]),
+    aes(colour = 't-Verteilung')) +
+  labs(
+    title = "Empirische und theoretische t-Werte",
+    x = "t-Werte", y = "Dichte"
+  ) +
+  geom_histogram(aes(y = ..density..), alpha = 0.4, bins = 40) + 
+  scale_x_continuous(limits = c(-4.75, 3.5)) +
+  scale_y_continuous(expand = expansion(c(0, 0), c(0, 0.05))) +
+  scale_color_viridis_d(option = "E") +
+  theme_bw() + theme(
+    panel.border = element_blank(), 
+    axis.line = element_line(),
+    legend.title = element_blank(),
+    legend.position = c(0.825, 0.85)
+  )
+```
+
+```{r}
+plot_file <- here::here(
+  "figures/Panel-2/tvals-unitroot-test.png")
+save_pdf_png(
+  filename = plot_file, plot = tval_plot, 
+  width = 5, height = 3)
+```
+
+```{r tvals-bad, echo=FALSE, fig.cap="Die tatsächliche Verteilung der t-Werte und die eigentlich zu erwartende t-Verteilung. Das zeigt, dass wir für den Test auf Einheitswurzeln andere kritische Werte verwenden müssen."}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+
+Grundsätzlich wird bei den Tests auf Einheitswurzeln zwischen so genannten
+*First-Generation Tests* und *Second-Generation Tests* unterschieden.
+Während erstere annehmen, dass es keine CSD gibt, sind letztere gegen CSD
+robust.
+In der Praxis ist es daher meistens empfehlenswert letztere zu verwenden, 
+allerdings ist ihre Entwicklung noch ein sehr aktives Forschungsfeld.
+Daher wollen wir im Folgenden auch kurz auf zwei der bekannteren 
+*First-Generation Tests* eingehen, die noch häufig verwendet werden:
+den von @ipstest vorgeschlagenen *IPS*-Test und den *MW*-Test von @maddalawu.
+Beide (und einige weitere) sind über die Funktion `plm::purtest()` verfügbar.
+Bei Ihnen handelt es sich um so genannt *Augmented Dickey-Fuller* (ADF) Tests,
+da sie den für den Zeitreihenkontext entwickelten Dickey-Fuller-Test für den
+Panel-Fall erweitern.
+
+Die Nullhypothese vom IPS-Test ist dass $\rho=1$ für alle Beobachtungssubjekte
+gilt. Die Alternativhypothese ist, dass es mindestens eine Subjekt mit $\rho<1$
+gibt. Der Test ist dabei robust gegen heterogene Werte für $\rho$ unter den
+Beobachtungssubjekten.
+Dabei arbeitet der Test mit den durchschnittlichen t-Statistiken 
+$\bar{t}=N^{-1}\sum_{n=1}^Nt_{\rho i}$, die sich aus der folgenden Regressionen für jedes einzelne Untersuchungssubjet $i\in\{1,..., N\}$ ergeben und
+die als eine Verallgemeinerung von unserem simplen Beispielmodell
+aus Gleichung \@ref(eq:ts-base) verstanden werden kann:
+
+\begin{align}
+\label{eq:ips-test-eq}
+\Delta y_{it} = (\rho_i - 1) y_{i(t-1)} + 
+\sum_{s=1}^{L_i}\theta_{is}\Delta y_{i(t-s)} +
+\alpha_{mi}'d_{mt}, \quad m=0,1,2
+\end{align}
+
+wobei $\theta_{is}$ der Vektor mit Koeffizienten für die gelaggten Werte und
+nicht wirklich von Interesse ist.
+Für die Anzahl von Lags $L_i$, die man bei der Regression 
+verwendet, gibt es keine strikte Regel. Falls es keine theoretischen
+Argumente gibt, bieten sich automatisierte Verfahren, z.B. unter Verwendung
+verschiedener Informationskriterien oder der Hall-Methode, die alle in der
+Regression signifikanten Lags berücksichtigt.
+Der Set an deterministischen Variablen $d_{mt}$ und der dazugehörige Vektor
+$\alpha$ umfasst entweder keine Variablen, eine Variable (ein Intercept) oder
+zwei Variablen (ein Intercept und ein Zeittrend). Auch hier sollte die
+Entscheidung über theoretische Überlegungen fundiert werden.
+Die Verteilung der aus den $N$ Schätzungen von Gleichung \@ref(eq:ips-test-eq)
+ergebenden t-Werte bilden dann die Grundlage für den IPS-Test, dessen 
+Teststatistik unter der Nullhypothese ($\rho=1$) normalverteilt ist.
+
+Der *MW*-Test von @maddalawu funktioniert sehr ähnlich und baut genauso wie der
+*IPS*-Test auf der Schätzung von Gleichung \@ref(eq:ips-test-eq) auf.
+Allerdings werden diesmal nicht die t-Werte, sondern die kritischen 
+p-Werte $p_i^*$ der individuellen Tests verwendet. Daraus konstruieren 
+@maddalawu eine Test-Statistik $P=-2\sum_{n=1}^N\ln p_i^*$, die unter der 
+Nullhypothese (Einheitswurzel für alle untersuchten Zeitreiehen) einer 
+$\chi^2$Verteilung mit $2N$ Freiheitsgraden folgt.
+
+In `R` können wir den IPS-Test über die Funktion `plm::purtest()` mit dem
+Argument `test="ips` und den MW-Test mit dem Argument `test='madwu'` verwenden.
+Das erste Argument ist immer eine einzelne Variable aus einem `plm::pdata.frame`.
+Für beide Tests spezifizieren wir die Anzahl der Lags in Gleichung
+\@ref(eq:ips-test-eq) über das Argument `lags`, dem wir entweder manuell die
+Anzahl der Lags oder das zu verwendende Kriterium 
+(`'AIC'` und `'SIC'` für das Akaike oder Schwarz Informationskriterium, 
+bzw. `'Hall'` für die oben beschriebene Hall-Methode) angeben.
+Welchen Set an exogenen Variablen $d_{mt}$ in Gleichung \@ref(eq:ips-test-eq)
+berücksichtigt werden soll wird über das Argument `exo` festgelegt:
+für keine exogenen Variablen nehmen wir `'none'`, für individuelle 
+Achsenabschnitte `'intercept'` und für Achenabschnitte und einen Trend nehmen
+wir `'trend'`.
+
+> **Anwendungsbeispiel: Einkommen und Ungleichheit**
+Wie möchten testen, ob die BIP und Gini-Zeitreihen aus dem Ungleichheitsdatensatz
+von @FlechtnerCoint (siehe oben) eine Einheitswurzel aufweisen.
+Dazu extrahieren wir zunächst die entsprechenden Variablen:
+
+```{r}
+gdp_ineq_pdata <- pdata.frame(
+  gdp_ineq_data, index = c("country", "year"))
+
+bip_obs <- gdp_ineq_pdata$gdp_pc_chppp
+gini_obs <- gdp_ineq_pdata$gini_disp
+```
+
+> Als nächster führen wir den *IPS*-Test durch, wobei wir 2 Lags
+berücksichtigen und einen Trend bei den Hilfsregressionen
+berücksichtigen:
+
+```{r}
+ips_bip <- plm::purtest(
+  log(bip_obs), test = "ips", lags = 2, exo = "trend")
+ips_bip
+```
+
+```{r}
+ips_gini <- plm::purtest(
+  log(gini_obs), test = "ips", lags = 2, exo = "trend")
+ips_bip
+```
+
+> In beiden Fällen wird die Nullhypothese einer Einheitswurzel klar abgelehnt.
+Für den MW-Test erhalten wir das gleiche Ergebnis:
+
+```{r}
+madwu_bip <- plm::purtest(
+  log(bip_obs), test = "madwu", lags = 2, exo = "trend")
+madwu_bip
+madwu_gini <- plm::purtest(
+  log(gini_obs), test = "madwu", lags = 2, exo = "trend")
+madwu_gini
+```
+
+> Beachten Sie jedoch, dass diese Tests die Abwesenheit von CSD voraussetzen.
+Wir werden weiter unten sehen, dass diese Ergebnisse sich ändern sobald für
+CSD kontrollier wird!
+
+Beide bislang besprochenen Tests sind jedoch anfällt für den Fall, dass das
+Panel durch CSD gekennzeichnet ist. Um diesem Problem zu begegnen wurden die so
+genannten *Second Generation Unit Root Tests* entwickelt, die robust gegen die
+Präsenz von CSD sind.
+Die meisten von Ihnen bauen auf dem in Abschnitt \@ref(subsec:panel-csd-est)
+diskutierten CCE-Framework auf, welches verwendet wird um die Regressionen aus
+Gleichung \@ref(eq:ips-test-eq) mit dem CSD-robusten CCE-Verfahren schätzen.
+Wir sprechen in diesem Fall von einem *cross-sectionally augmented Dickey-Fuller*
+(CADF) Test. Konkret können wir das Prinzip des IPS und MW-Test genauso wie 
+oben weiter verwenden, nur eben mit den $t$- und $p$-Werten, die auf Basis einer
+CSD-robusten Schätzung gewonnen wurden. Entprechend sprechen wir von einem
+*CIPS* oder *CMW* (*cross-sectionally augmented* IPS bzw MW) Test.
+
+In `R` verwenden wir für die Implementiert die Funktion `plm::cipstest()`, 
+welche ganz ähnlich zu der oben beschriebenen Funktion `plm::purtest()` 
+funktioniert.
+
+> **Anwendungsbeispiel: Häuserpreise**
+> Wir testen ob die Variable für die Hauspreise eine Einheitswurzel aufweist: 
+
+```{r}
+HousePricesUS <- data.table::fread(
+  file = here("data/tidy/HousePricesUS.csv"))
+hp_pdata <- pdata.frame(HousePricesUS)
+
+cipstest(log(hp_pdata$price), type = "drift")
+```
+> Die Nullhypothese einer Einheitswurzel kann hier nicht abgelehnt werden.
+Die Zeitreihe ist also nichtstationär. Um den Grad der Nichtstationarität 
+herauszubekommen müssen wir überprüfen, wie oft wir die Daten differenzieren 
+müssen bis sie stationär werden. Ein Test der einfach differenzierten Daten 
+bringt folgendes Ergebnis (beachten Sie, dass wir bei differenzierten Daten
+das Argument `type` auf `'none'` setzen, da ein Drift in differenzierten Daten
+keinen Sinn macht):
+
+```{r}
+cipstest(diff(log(hp_pdata$price)), type = "none")
+```
+
+> Jetzt wird die Nullhypothese einer Einheitswurzel klar abgelehnt. Wir können 
+also davon ausgehen, dass die Preisvariable nichtstationär vom Grad 1 ist und
+eine Einheitswurzel aufweist. Das Gleiche finden wir für die Einkommensvariable:
+
+```{r, message=FALSE, warning=FALSE}
+cips_income <- cipstest(log(hp_pdata$income), type = "drift")
+cips_income_diff <- cipstest(diff(log(hp_pdata$income)), type = "none")
+glue::glue(
+  "p-Wert Originaldaten: {round(cips_income$p.value, 3)}"
+  )
+glue::glue(
+  "p-Wert differenzierte Daten: {round(cips_income_diff$p.value, 3)}"
+  )
+```
+
+
+> Daher sollten wir in einem nächsten Schritt überprüfen ob hier eine
+Ko-Integrationsbeziehung vorliegt und wir die Zeitreihen sinnvoll aufeinander
+regressieren können.
+
+### Tests auf Ko-Integration {#subsec:coint-test}
+
+Wie oben beschrieben gelten zwei Variablen $X$ und $Y$ als ko-integriert, 
+wenn in folgender Regressionsgleichung ein $\beta$ gibt, sodass die
+Fehler $\epsilon$ stationär sind:
+
+\begin{align}
+\label{eq:cointreg2}
+y=\alpha + \beta x + \epsilon 
+\end{align}
+
+Um Probleme mit CSD zu vermeiden schätzen wir diese Gleichung am besten
+mit einem der CCE-Schätzer, die in Abschnitt \@ref(subsec:panel-csd-est)
+eingeführt wurden. Je nach Eigenschaften der Daten mit der gepoolten oder 
+heterogenen Variante.
+Danach werden die Residuen extrahiert und erneut ein Einheitswurzeltest
+durchgeführt. Da es sich bei der untersuchten Reihe um die Residuen aus einer
+vorherigen Regression handelt, sollte nun auf jeden Fall auf das Hinzufügen
+von Achsenabschnitten, Trends oder Drifts verzichtet werden. 
+
+> **Anwendungsbeispiel: Häuserpreise**
+Wir wissen von oben, dass die Einkommens- und Preisreihen jeweils eine
+Einheitswurzel aufweisen. Zudem wurde weiter oben gezeigt, dass die 
+Pooling-Annahme im vorliegenden Falle nicht erfüllt ist, weswegen wir 
+für die Schätzung von Gleichung \@ref(eq:cointreg2) das PMG-Modell verwenden:
+
+```{r}
+cce_mg <- pcce(
+  log(price) ~ log(income), 
+  data=HousePricesUS, model="mg") 
+```
+
+> Die Residuen extrahieren wir gleich im richtigen Format über die Funktion
+`resid()` und geben diese dann an `plm::cipstest()` weiter. Da es sich um 
+Residuen handelt setzen wir `type="none"`:
+
+```{r}
+plm::cipstest(resid(cce_mg), type="none")
+```
+
+> Da die Nullhypothese einer Einheitswurzel klar abgelehnt werden muss, können
+wir hier von einem Ko-Integrationsverhältnis ausgehen.
+
+### Zusammenfassung des Vorhenens {#subsec:coint-proced}
+
+An dieser Stelle wollen wir das Vorgehen noch einmal anhand des 
+Datensatzes von XXX durchgehen. Dazu vergegenwärtigen wir uns erneut den oben
+beschriebenen Ablaufplan:
+
+1. Wir testen ob $X$ und $Y$ eine Einheitswurzeln aufweisen. Falls nicht können wir die uns bekannten Schätzverfahren verwenden. Fall doch geht es weiter mit Schritt 2.
+2. Wir schätzen das Modell \@ref(eq:cointreg) und testen ob die Residuen $e$ 
+eine Einheitswurzel aufweisen. 
+Wenn nein, liegt eine Ko-Integrationsbeziehung vor und wir können den 
+Zusammenhang mit den uns bekannten Schätzverfahren 
+(bzw. noch effizienteren Ko-Integrationsverfahren) untersuchen. 
+Wenn doch müssen die Zeitreihen weiter transformiert werden ihre Stationarität 
+sicherzustellen. 
+
+In der Regel macht es Sinn gleich einen gegen CSD robusten Einheitswurzeltest
+zu verwenden. Um sicherzugehen testen wir jedoch im vorliegenden Fall
+explizit auf CSD (für eine Beschreibung des Verfahrens siehe Abschnitt 
+\@ref(panels-csdtests)):
+
+```{r}
+php_ineq <- pdata.frame(
+  gdp_ineq_data, index = c("country", "year"))
+
+mg_model <- plm::pmg(
+  formula = log(gdp_pc_chppp) ~ log(gini_disp), 
+  data = php_ineq, 
+  model = "mg")
+pcdtest(mg_model, test = "cd")
+```
+
+Der Test legt ganz eindeutig nahe, dass CSD in den Daten ein Problem ist.
+Wir verwenden daher einen Einheitswurzeltest der zweiten Generation.
+Der Übersichlichkeit halber sammeln wir die relevanten p-Werte in einer Tabelle:
+
+```{r, warning=FALSE, message=FALSE}
+cips_bip <- cipstest(log(php_ineq$gdp_pc_chppp), type = "drift")
+cips_gini_disp <- cipstest(log(php_ineq$gini_disp), type = "drift")
+
+cips_bip_diff <- diff <- cipstest(
+  diff(log(php_ineq$gdp_pc_chppp)), type = "none")
+cips_gini_disp_diff <- cipstest(
+  diff(log(php_ineq$gini_disp)), type = "none")
+
+results <- list(
+  "Variable"=c("BIP", "BIP", "Gini", "Gini"),
+  "Differenziert"=c(0, 1, 0, 1),
+  "p-Werte"=c(
+    cips_bip$p.value, cips_bip_diff$p.value, 
+    cips_gini_disp$p.value, cips_gini_disp_diff$p.value)
+)
+as_tibble(results)
+```
+
+Aus den Ergebnissen wir deutlich, dass beide Variablen -- BIP und Gini -- eine
+Einheitswurzel aufweisen. Im nächsten Schritt testen wir also auf eine
+Ko-Integrationsbeziehung. Dazu schätzen wir zunächst Gleichung \@ref(eq:cointreg2)
+mit einem PMG-Modell (da weiter oben gezeigt wurde, dass die Pooling-Annahme
+für den vorliegenden Fall nicht erfüllt ist):
+
+```{r}
+cce_mg <- pcce(
+  log(gdp_pc_chppp) ~ log(gini_disp), 
+  data=gdp_ineq_data, model="mg", index = c("country", "year")) 
+```
+
+Nun extrahieren wir die Residuen. Wir wissen von oben, dass eine 
+Ko-Integrationsbeziehung dann vorliegt, wenn diese Residuen stationär sind,
+also keine Einheitswurzel aufweisen:
+
+```{r}
+cipstest(resid(cce_mg), type="none")
+```
+
+Aus der Tatsache, dass die Residuen der geschätzten Modelle stationär zu sein
+scheinen können wir auf eine Ko-Integrationsbeziehung schließen und den 
+Zusammenhang zwischen Ungleichheit und Einkommen mit uns bekannten Methoden 
+untersuchen oder, wie in @FlechtnerCoint, spezielle Ko-Integrationsanalysen
+anwenden.
+
