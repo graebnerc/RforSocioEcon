@@ -35,15 +35,19 @@ library(tidyverse)
 library(data.table)
 library(here)
 library(viridis)
+library(lmtest)
 library(plm)
 library(texreg)
+library(latex2exp)
 ```
 
 ```{r, echo=FALSE}
 source(here::here("R/helpers.R"))
 ```
 
-## Panel-Daten: Klarstellungen und Vorbemerkungen {#sec:panel-prelims}
+## Panel-Daten: Motivation und Vorbemerkungen {#sec:panel-prelims}
+
+### Begriffliche Vorbemerkungen
 
 Bislang haben wir wir uns im Kontext der Regression auf Methoden zur Analyse 
 von **Querschnittsdaten** (cross-sectional data) fokussiert.
@@ -99,6 +103,685 @@ Noch ein abschließendes Wort zur Notation.
 * Subsets
 * warum wir $\alpha$ anstatt $\beta_0$ verwenden
 
+### Technische Motivation: Panel-Daten und unbeobachtete Heterogenität
+
+Einer der wichtigsten -- wenn nicht der wichtigste -- Vorteil von Panel-Daten ist
+die Möglichkeit für *unbeobachtbare Faktoren* zu kontrollieren. 
+Das erlaubt eine unverzerrte und konsistente Schätzen in Kontexten, die einer
+Querschnittsanalyse notwendigerweise verschlossen bleiben.
+Warum das so ist wollen wir uns an folgendem Beispiel verdeutlichen:
+gehen wir von folgendem Regressionsmodell aus:
+
+\begin{align}
+  \label{eq:baseexpl}
+  y = \alpha + \beta x + \gamma z + \epsilon
+\end{align}
+
+wobei $x$ und $z$ jeweils unsere unabhänigen Variablen darstellen.
+Wenn die Variablen in $z$ im Gegensatz zu $x$ nicht beobachtbar sind können wir
+in der Praxis lediglich das folgende Modell schätzen:
+
+\begin{align}
+  \label{eq:baseexpl2}
+  y = \alpha + \beta x + \gamma z + \epsilon
+\end{align}
+
+Das führt allerdings mit sehr großer Wahrscheinlichkeit zu einem
+*Omitted Variable Bias* (OVB, siehe Abschnitt \@ref(advlin-omitted-var)):
+$\hat{\beta}$ ist inkonsistent und verzerrt.
+Panel Daten erlauben uns unter bestimmten Bedingungen für unbeobachtbare Faktoren
+wir $z$ zu kontrollieren und auch Zusammenhänge wie die in Gleichung 
+\@ref(eq:baseexpl) konsistent und unverzerrt zu schätzen. 
+Die Voraussetzung dafür ist allerdings, dass die unbeobachtbaren Faktoren in $z$
+*zeitunabhängig* sind, sich also über den Beobachtungszeitraum nicht ändern.
+Später werden wir auch Verfahren kennen lernen, die unter bestimmten Umständen
+die Berücksichtigung von dynamischen unbeobachtbaren Faktoren erlauben, aber das
+Gros der Panel-Schätzer setzt diese Zeit-Invarianz zwingend voraus.
+
+> **Beispiel: Agraroutput**: Das klassische Motivationsbeispiel ist die 
+Analyse der Rolle von Bodenqualität für Agraroutput. Es ist davon auszugehen,
+dass der Output einer Parzelle Boden $y$ vom Arbeitseinsatz der Bauern $x$ und
+der Qualität des Bodens $z$ abhängt. Weitere zufällige Faktoren können dann als
+Zufallsprozess verstanden werden und sind damit Teil der Fehler $\epsilon$. 
+Die Qualität des Bodens $z$ ist aber in der Regel nicht beobachtbar, sodass wir
+in der Praxis nur ein Modell in der Form von \@ref(eq:baseexpl2) schätzen können.
+Der resultierende Schätzer für $y$ wäre verzerrt. Mit den im folgenden 
+vorgestellten Methoden können wir den Zusammenhang aber korrekt schätzen, weil 
+die Bodenqualität in der Regel als zeit-invariantes Phänomen betrachtet werden kann.
+
+Wir nehmen im Folgenden an, dass die unbeobachtbaren Faktoren in $z$ zeitinvariant
+sind. Dann können wir Gleichung \@ref(eq:baseexpl) folgendermaßen umschreiben:
+
+\begin{align}
+  \label{eq:basepanel}
+  y_{it} = \alpha I + \beta x_{it} + (\eta_i + v_{it})
+\end{align}
+
+In dieser Gleichung wurde der ursprüngliche Fehlerterm $\epsilon$ in zwei
+Komponenten aufgeteilt: einen individuellen und zeitinvarianten Teil, $\eta_i$,
+in dem alle zeitinvarianten Teile der Variable $z$ in Gleichung \@ref(baseexpl)
+enthalten wären, und einen individuellen und zeitlich nicht konstanten Teil, 
+$v_{it}$, welcher alle sonstigen Störaspekte enthält. Wir können letzteren 
+als Entsprechung des 'klassischen' Fehlerterms begreifen.
+Unsere Aufgabe ist es nun den Teil $\eta_i$ irgendwie zu eliminieren, denn
+er ist die Ursache für den oben beschriebenen OVB. Dazu gibt es *prinzipiell*
+drei Herangehensweisen.
+
+Die erste Strategie wäre es anstatt der Levels in Gleichung \@ref(eq:basepanel)
+einfach die Differenzen der Variablen zu betrachten, denn dann würde sich
+folgendes Modell ergeben:
+
+\begin{align}
+\label{eq:FD}
+  y_{nt} - y_{nt-i} &= (\alpha I- \alpha I) + \beta (x_{it}-x_{it-1}) + (\eta_i - \eta_i) + (v_{it}-v_{it-1})\\\nonumber
+  \Delta y_{nt} &= \beta \Delta x_{it} + \Delta v_{it}
+\end{align}
+
+Durch das Differenzieren werden alle zeitinvarianten Elemente aus Gleichung 
+\@ref(eq:basepanel) eliminiert. Das gilt nicht nur für die unbeobachtbaren 
+Fehler $\eta_i$, sondern auch für die Achsenabschnitte $\alpha$ - und übrigens 
+auch für alle zeitinvarianten Variablen in $x$ wie z.B. Geschlechts-Dummies.
+Zwar kann der Effekt solcher Variablen nun nicht mehr berücksichtigt werden, 
+wenn aber die klassischen OLS-Annahmen erfüllt sind können wir Gleichung 
+\@ref(eq:FD) konsistent mit OLS Schätzen. Den Schätzer, bei dem die Daten
+vorher entsprechend differenziert werden nennen wir den
+**First-Difference** oder **FD**-Schätzer $\hat{\beta}_{FD}$.
+
+Die zweite Strategie zur Schätzung von Gleichung \@ref(eq:baseexpl) inkludiert
+die $\eta_i$ explizit in die Schätzgleichung indem sie als Teil der 
+Achsenabschnitte $\alpha$ betrachtet werden. Das führt dazu, dass wir nun
+individuelle Achsenabschnitte $\alpha_i$ schätzen, welche den Effekt von
+$eta_i$ absorbieren:
+
+\begin{align}
+  \label{eq:lsdv}
+  y_{it} = \alpha_i I + \beta x_{it} + v_{it}
+\end{align}
+
+Das erhöht natürlich die Anzahl der zu schätzenden Parameter um $N$, da nun
+für jede Querschnittseinheit ein eigener Achsenabschnitt geschätzt werden muss.
+**warum nicht N-1**.
+Das reduziert die Freiheitsgrade, die zur Schätzung des Modells zur Verfügung 
+stehen auf $NT-N-K$. Man sollte zudem beachten, dass für die Schätzung der
+$\alpha_i$ zudem nur die Variation in der $T$-Dimension zur Verfügung steht, 
+denn in der $N$-Dimension sind sie ja per definitionem konstant.
+Da man in diesem Fall die zeitinvarianten Fehler als Dummy-Variablen hinzufügt,
+das Modell ansonsten aber normal mit der OLS-Methode schätzt nennt man den 
+resultierenden Schätzer den **least squares dummy variables** oder 
+**LSDV**-Schätzer $\hat{\beta}_{LSDV}$.
+
+Die dritte Strategie ist am weitesten verbreitet und kann als 
+Variante des zweiten Ansatzes betrachtet werden.
+Am Ende erhalten wir hier nämlich einen wertemäßig zum 
+$\hat{\beta}_{LSDV}$-Schätzer äquivalenten, aber einfacher zu berechnenden
+Schätzer. 
+Anstatt nämlich für jeden Untersuchungssubjekt einen individuellen 
+Achsenabschnitt $\alpha_i$ zu schätzen, werden die Daten vorher so transformiert, 
+dass die $\eta_i$ eliminiert werden.
+Die dafür verwendete Transformation wird *time demeaning* genannt und besteht 
+darin für jede unabhängige Variable den Zeitdurchschnitt 
+$\bar{x}_i=T ^{-1}\sum_{t=1}^Tx_{it}$ von jeder individuellen Beobachtung 
+abzuziehen.
+Das führt zu folgendem Modell:
+
+\begin{align}
+  \label{eq:fe-demeaning}
+  y_{it}-\bar{y}_i &= \beta(x_{it}-\bar{x}_i) +
+(\eta_i - \bar{\eta}_i) + (v_{it}-\bar{v}_{i})
+\end{align}
+
+Da $\eta_i = \bar{\eta}_i$ werden auch hier die unbeobachteten individuellen 
+Effekte erfolgreich eliminiert.
+Es kann gezeigt werden, dass die Schätzung von Gleichung \@ref(eq:fe-demeaning) 
+äquivalente Schätzergebnisse liefert wie die Schätzung des folgenden Modells:
+
+\begin{align}
+  \label{eq:fe-base}
+  y_{it}=\alpha_i + \beta x_{it} + v_{it}
+\end{align}
+
+Da hier also individuelle Achsenabschnitte $\hat{\alpha}_i$ geschätzt werden, 
+sprechen wir von einer *Fixed Effects* Methode. 
+Sie bildet den Ausgangspunkt für die am weitesten verbreiteten Baseline-Schätzer 
+für Panel-Daten.
+
+Bevor wir uns mit diesen Baseline-Schätzern genauer auseinandersetzen wollen 
+wir die Funktionsweise der hier vorgestellten Strategien anhand eines 
+simulierten Beispieldatensatzes vergegenwertigen.
+
+### Ein Simulationsbeispiel
+
+An dieser Stelle wollen wir die eingangs beschriebenen Strategien zum Umgang 
+mit den indivduellen Effekten $\eta_i$ anhang eines künstlich simulierten 
+Datensatzes verdeutlichen. 
+Um einen entsprechenden Datensatz zu simulieren schreiben verwenden wir die
+folgende Funktion, die es uns erlaubt, die Relevanz der $\eta_i$ manuell
+festzulegen und somit die Implikationen für die Schätzer zu untersuchen:
+
+```{r}
+get_data <- function(
+  T_dim, N_dim, alpha0, beta, 
+  x_persistence=0.2, x_fe_relevance=0.4, x_error_relevance=0.4){
+  fe_vals <- rnorm(N_dim)
+  xvals <- list()
+  weighting_sum <- x_persistence + x_fe_relevance + x_error_relevance
+  x_pers_weight <- x_persistence / weighting_sum
+  x_fe_weight <- x_fe_relevance / weighting_sum
+  x_error_weight <- x_error_relevance / weighting_sum
+  for (i in 1:N_dim) {
+    x_i <- c(rnorm(1), rep(NA, T_dim-1))
+    for (t in 2:T_dim){
+      x_i[t] <- x_pers_weight*x_i[t-1] + 
+        x_fe_weight*fe_vals[i] + x_error_weight*rnorm(1)
+      }
+    xvals[[i]] <- x_i
+    }
+  
+  constantdata <- tibble::tibble(id=1:N_dim, fe=fe_vals)
+  fulldata <- constantdata[rep(1:N_dim, each=T_dim),] %>%
+    dplyr::mutate(
+      tstep = rep(1:T_dim, N_dim),
+      x1 = unlist(xvals),
+      y = alpha0 + beta*x1 + fe + rnorm(N_dim),
+      id = factor(id)
+      )
+  fulldata
+}
+```
+
+Einen künstlichen Datensatz können wir dann folgendermaßen simulieren:
+
+```{r}
+set.seed(1)
+test_data <- get_data(
+      T_dim=5, N_dim=30, alpha0=1, beta=2.5, 
+      x_persistence=0.2, x_fe_relevance=0.6, x_error_relevance=0.4)
+head(test_data)
+```
+
+Als erstes verwenden wir den klassischen OLS-Schätzer:
+
+```{r}
+ols_model <- lm(y~x1, data = test_data)
+coeftest(ols_model)
+```
+
+Den gleichen Schätzer können wir mit der Funktion `plm::plm()` mit dem Argument 
+`model="pooling"` schätzen:
+
+```{r}
+ols_model <- plm::plm(
+  y~x1, data = test_data, index = c("id", "tstep"), model = "pooling")
+coeftest(ols_model)
+```
+
+Damit der Code der verschiedenen Schätzerunmittelbar vergleichbar bleibt, 
+verwenden wir im folgenden die Funktion `plm::plm()` anstatt von `lm()`.
+Die Funktionsweise ist sehr ähnlich, allerdings gibt es bei `plm::plm()`
+einige panel-spezifische Argumente. Aktuell ist für uns neben dem
+Argument `model` jedoch nur noch das Argument `index` von Interesse. 
+Hiermit informieren wir die Funktion über die Namen der Spalten, welche eine
+einzelne Beobachtung spezifizieren: das erste Element des zu übergebenden
+Vektors enthält die Spalte, welche die einzelnen Beobachtungssubjekte 
+spezifiziert, das zweie Element den Namen der Spalte, welche die Zeitdimension
+beschreibt.
+
+An den Ergebnissen sehen wir jedenfalls, dass der geschätzte Wert für `x1` 
+sich deutlich von dem  wahren Wert unterscheidet.
+Als nächstes schätzen wir das Modell mit dem *FD*-Schätzer. In einem ersten
+Schritt berechnen wir den Schätzer manuell indem wir zunächst die Daten 
+transformieren und die Differenzen berechnen:
+
+```{r}
+test_data_diff <- test_data %>%
+  group_by(id) %>%
+  dplyr::mutate(
+    y_diff = y - dplyr::lag(y),
+    x_diff = x1 - dplyr::lag(x1)
+  ) 
+head(test_data_diff[c("tstep", "x1", "x_diff", "y", "y_diff")], 5)
+```
+
+Und dann den gleichen Befehl wie oben ausführen:
+
+```{r}
+fd_model_man <- plm::plm(
+  y_diff~x_diff, data = test_data_diff, index = c("id", "tstep"),
+  model = "pooling")
+coeftest(fd_model_man)
+```
+
+Alternativ können wir die Funktion `diff()` innerhalb der Schätzgleichung
+verwenden:
+
+```{r}
+fd_model_man <- plm(
+  diff(y)~diff(x1), data = test_data, 
+  model = "pooling", index = c("id", "tstep"))
+coeftest(fd_model_man)
+```
+
+Oder aber wir nehmen die automatisierte Variante und verwenden die Funktion 
+`plm::plm()` mit dem Argument `model="fd"`. In diesem Fall werden die Daten
+automatisch durch die Funktion `plm::plm()` transformiert, bevor die Schätzung
+durchgeführt wird:
+
+```{r}
+fd_model <- plm(
+  y~x1, data = test_data, index = c("id", "tstep"), 
+  model = "fd")
+coeftest(fd_model)
+```
+
+Wir sehen, dass (1) alle drei Berechnungen zum gleichen Ergebnis führen und (2) 
+der geschätzte Wert diesmal deutlich näher am wahren Wert liegt.
+Als nächstes berechnen schätzen wir den *LSDV*-Schätzer:
+
+```{r}
+lsdv_model <- plm(
+  y~x1+id, data = test_data, 
+  model = "pooling", index = c("id", "tstep"))
+coeftest(lsdv_model)
+```
+
+Da die Berechnung dieses Schätzers ineffizient ist und er numerisch äquivalent
+zum FE-Schätzer ist, ist diese Schätzmethode als solche nicht im Paket `plm`
+implementiert.
+Wir gehen also direkt zur dritten Strategie über und berechnen $\hat{\beta}_{FE}$
+indem wir die Daten zunächst wie in Gleichung \@ref(eq:fe-demeaning) beschrieben 
+transformieren ('*time demeaning*'):
+
+```{r}
+test_data_time_demeaned <- test_data %>%
+  dplyr::group_by(id) %>%
+  dplyr::mutate(
+    x1_mean=mean(x1),
+    y_mean=mean(y)
+    ) %>%
+  dplyr::ungroup() %>%
+  dplyr::mutate(
+    y_demeaned=y-y_mean,
+    x1_demeaned=x1-x1_mean
+  )
+head(test_data_time_demeaned, 2)
+```
+
+Nun können wir wie oben das lineare Modell (ohne Intercept) schätzen:
+
+```{r}
+fe_model_man <- plm::plm(
+  y_demeaned~x1_demeaned-1, 
+  data = test_data_time_demeaned, index = c("id", "tstep"),
+  model = "pooling")
+coeftest(fe_model_man)
+```
+
+Alternativ können wir die Funktion `plm::plm()` mit den Argumenten `model='within'`
+und `effect='individual'` verwenden. Dabei werden die Daten automatisch wie
+oben transformiert und danach mit einem linearen Modell analysiert:
+
+```{r}
+fe_model <- plm(
+  y~x1, data = test_data, index = c("id", "tstep"),
+  model = "within", effect='individual'
+  )
+coeftest(fe_model)
+```
+
+Wenn wir die individuellen Achsenabschnitte, welche beim LSDV Schätzer mit
+angegeben wurden, betrachten wollen, können wir die Funktion `plm::fixef()` verwenden.
+Allerdings müssen wir darauf achten, hier noch den oben mitgeschätzten allgemeinen
+Achsenabschnitt von den Werten abzuziehen, damit er nicht doppelt berücksichtigt
+wird: logisch ist eine Unterscheidung nicht wirklich sinnvoll, weswegen bei 
+Fixed Effekts Modellen immer nur ein Fixed Effekt pro Untersuchungssubjekt und 
+kein allgemeiner Achsenabschnitt angegeben wird:
+
+```{r}
+unname(
+  fixef(fe_model) - coef(lsdv_model)["(Intercept)"]
+  )
+```
+
+Nun wollen wir noch alle Modelle vergleichen - der Übersicht halber überspringen
+wir die individuellen Achenabschnitte aus dem LSDV-Modell:
+
+```{r}
+texreg::screenreg(
+  list("OLS"=ols_model, "FD"=fd_model, "LSDV"=lsdv_model, "FE"=fe_model),  
+  omit.coef = "id"
+)
+```
+
+```{r dfmodels, echo=FALSE}
+knitr::kable(
+  tibble(
+  "Modell"=c("OLS", "FD", "LSDV", "FE"),
+  "Freiheitsgrade"=c(
+    ols_model$df.residual, fd_model$df.residual, 
+    lsdv_model$df.residual, fe_model$df.residual)
+  ),
+  caption = "Freiheitsgrade der Modelle", 
+  booktabs = TRUE
+)
+```
+
+Diese Betrachtung macht mehrere Punkte deutlich:
+
+1. Das Fixed-Effekts Modell verfügt als einziges über keinen Achsenabschnitt.
+Vielmehr ist dieser in die individuell geschätzten Effekten enthalten, welche
+wir mit der Funktion `plm::fixef()` extrahieren können.
+2. Das FD Modell weist mit $NT-N$ Beobachtungen $N$ Beobachtungen weniger auf 
+als die anderen Modelle, da durch das Differenzieren der Daten für jedes 
+der $N$ Untersuchungssubjekt die erste Beobachtung wegfällt. 
+3. Das hat Implikationen für die der Schätzung zugrundeliegenden Freiheitsgrade,
+die in der Tabelle zwar nicht angezeit werden, aber in Tabelle \@ref(tab:dfmodels)
+aufgeführt sind. Die meisten Freiheitsgrade haben wir mit $N-K$ im gepoolten 
+OLS-Modell. Die Freiheitsgrade im FD-Modell sind wegen der Verluste durch das
+Differenzieren noch einmal um $N$ reduziert. Das LSDV- und FE-Modell weisen 
+beide wie das OLS-Modell $N-K$ Freiheitsgrade auf. Da allerdings hier $N$ 
+zusätzliche Parameter geschätzt werden sind die Freiheitsgrade insgesamt 
+$N-1$ niedriger (da dafür der allgemeine Achsenabschnitt als zu schätzender
+Parameter wegfällt). Häufig werden die individuellen Effekte nicht als 'richtige'
+Parameter bezeichnet und man spricht beim FE-Modell von $N-(N-1)-K$ Freiheitsgraden.
+4. Numerisch sind die geschätzten Koeffizienten $\hat{\beta}$ für das LSDV und
+FE-Modell identisch, allerdings unterscheiden sich die Spezifikationsstatistiken
+$R^2$ und $\bar{R}^2$. Das liegt daran, dass die Funktion `plm::plm()` für das
+*within*-Modell als Grundlage die Variation in den transformierten Daten
+annimmt und nicht die Gesamtvariation des Modells (so genanntes *within*-$R^2$).
+Wir werden zu einem späteren Zeitpunkt genauer auf diesen Punkt eingehen, können
+hier jedoch schon festhalten, dass das $R^2$ des FE-Modells aussagekräftiger ist.
+5. Bezüglich der geschätzten Koeffizienten fällt auf, dass das FE und LSDV-Modell
+dem wahren Wert von `r beta_korrekt` am nächsten kommen. Auch der geschätzte
+Wert vom FD-Modell ist recht nahe an `r beta_korrekt`. Das OLS Modell liegt
+jedoch recht ordentlich daneben, was wir wegen der recht starken Verzerrung auch
+so erwarten würden.
+
+Dieser Vergleich beruht natürlich nur auf einem einzigen konkreten Datensatz.
+Die Ergebnisse könnten also auch zufällig sein.
+Daher führen wir im folgenden noch eine kleine 
+Monte-Carlo Simulation durch, in der wir auch die Fäll unterscheiden, in denen
+der unbeobachtete individuelle Effekt mit der unabhängigen Variable korrelliert
+und wo sie das nicht tut. 
+Um die Simulation durchzuführen definieren wir folgende Funktion:
+
+```{r}
+conduct_mcs <- function(
+  n_simuls, alpha_wahr, beta_wahr, T_dim, N_dim,
+  x_pers=0.2, x_fe_rel=0.4, x_error_rel=0.4){
+  
+  x1_estimates_pooled <- rep(NA, n_simuls)
+  x1_estimates_fd <- rep(NA, n_simuls)
+  x1_estimates_lsdv <- rep(NA, n_simuls)
+  x1_estimates_within <- rep(NA, n_simuls)
+  
+  for (i in 1:n_simuls){
+    data_used <- get_data(
+      T_dim, N_dim, alpha_wahr, beta_wahr, 
+      x_persistence=x_pers, x_fe_relevance=x_fe_rel, x_error_relevance=x_error_rel)
+    
+      est_model_pooled <- plm::plm(
+        y~x1, data = data_used, index = c("id", "tstep"), 
+        model = "pooling")
+      
+      est_model_fd <- plm(
+        y~x1, data = data_used,  index = c("id", "tstep"), 
+        model = "fd")
+      
+      est_model_lsdv <- plm(
+        y~x1+id, data = data_used, index = c("id", "tstep"),
+        model = "pooling", 
+        )
+      
+      est_model_within <- plm::plm(
+        y~x1, data = data_used, index = c("id", "tstep"),
+        model = "within", effect = "individual")
+    
+
+    x1_estimates_pooled[i] <- coef(est_model_pooled)["x1"]
+    x1_estimates_fd[i] <- coef(est_model_fd)["x1"]
+    x1_estimates_lsdv[i] <- coef(est_model_lsdv)["x1"]
+    x1_estimates_within[i] <- coef(est_model_within)["x1"]
+    
+  }
+  tibble::tibble(
+    OLS = x1_estimates_pooled,
+    FD = x1_estimates_fd,
+    LSDV = x1_estimates_lsdv,
+    FE = x1_estimates_within
+    )
+  }
+```
+
+Nun führen wir die Simulation aus:
+
+```{r, echo=FALSE}
+beta_korrekt <- 4
+```
+
+```{r, eval=FALSE}
+set.seed(123)
+beta_korrekt <- 4
+mcs_results_no_correl <- conduct_mcs(
+  n_simuls=1000, 
+  alpha_wahr=0, 
+  beta_wahr=beta_korrekt, 
+  T_dim=5, 
+  N_dim=50, x_pers=0, x_fe_rel=0.0
+  ) %>%
+  dplyr::mutate(fe_rel=factor(0.0))
+
+mcs_results_correl <- conduct_mcs(
+  n_simuls=1000, 
+  alpha_wahr=0, 
+  beta_wahr=beta_korrekt, 
+  T_dim=5, 
+  N_dim=50, x_pers=0, x_fe_rel=0.4
+) %>%
+  dplyr::mutate(fe_rel=factor(0.4))
+
+mcs_results_full <- rbind(
+  mcs_results_no_correl, mcs_results_correl
+)
+```
+
+```{r, echo=FALSE}
+csv_file <- here::here("data/tidy/panels/mcs-panel-intro.csv")
+```
+
+```{r, eval=FALSE, echo=FALSE}
+data.table::fwrite(
+  mcs_results_full, csv_file)
+```
+
+```{r, echo=FALSE}
+mcs_results_full <- data.table::fread(
+  file = csv_file, colClasses = c(rep("double", 4), "factor"))
+```
+
+Um die Qualität der Schätzer im Rahmen dieser MCS zu beurteilen verwenden
+wir das Maß des *mean squared error* (MSE), zu Deutsch die
+*mittlere quadratische Abweichung* eines Schätzers.
+Der MSE erlaubt einen kompakteren Vergleich als eine grafische Darstellung und
+ist definiert als das arithmetische Mittel aller quadrierten 
+Abweichungen vom geschätzten und wahren Wert.
+Sei konkret $\hat{\theta}$ ein schätzer für den Parameter $\theta$, dann
+ist der MSE von $\hat{\theta}$ definiert als
+
+\begin{align}
+  \label{eq:msedef}
+  MSE_{\hat{\theta}} = (\hat{\theta}-\theta)^2
+\end{align}
+
+oder, für den konkreten Stichprobenfall, wenn wir $N$ Beobachtungen 
+$\{y_i\}_{i=1}^N$ und $N$ Vorhersagen $\{\hat{y}_i\}_{i=1}^N$ haben:
+
+\begin{align}
+  \label{eq:msedefsample}
+  MSE_{\hat{\theta}} = N^{-1}\sum_{i=1}^N(\hat{y}-y)^2
+\end{align}
+
+In `R` können wir den MSE folgendermaßen berechnen:
+
+```{r}
+#' Berechne den MSE
+#' @param estimates Vektor mit den Vorhersagen
+#' @param true_value Der wahre Wert
+#' @return Dezimalzahl mit MSE
+compute_mse <- function(estimates, true_value, na.rm=TRUE){
+  estimates <- ifelse(na.rm, estimates[!is.na(estimates)], estimates)
+  sum((estimates - true_value)**2) / length(estimates)
+}
+```
+
+```{r, echo=FALSE}
+mcs_results_fe_cor <- dplyr::filter(mcs_results_full, fe_rel==0.4)
+mcs_results_fe_not_cor <- dplyr::filter(mcs_results_full, fe_rel==0.0)
+
+mse_pooled_fe_rel <- compute_mse(mcs_results_fe_cor$OLS, beta_korrekt)
+mse_pooled_fe_norel <- compute_mse(mcs_results_fe_not_cor$OLS, beta_korrekt)
+
+mse_fd_fe_rel <- compute_mse(mcs_results_fe_cor$FD, beta_korrekt)
+mse_fd_fe_norel <- compute_mse(mcs_results_fe_not_cor$FD, beta_korrekt)
+
+mse_fe_fe_rel <- compute_mse(mcs_results_fe_cor$FE, beta_korrekt)
+mse_fe_fe_norel <- compute_mse(mcs_results_fe_not_cor$FE, beta_korrekt)
+
+
+mse_overview <- tibble::tibble(
+  "Modell"=c("OLS", "FD", "FE/LSDV"),
+  "Individuelle Effekte"=c(mse_pooled_fe_rel, mse_fd_fe_rel, mse_fe_fe_rel),
+  "Keine individuelle Effekte"=c(mse_pooled_fe_norel, mse_fd_fe_norel, mse_fe_fe_norel)
+)
+```
+
+```{r mse-base, echo=FALSE}
+knitr::kable(
+  mse_overview,
+  caption = "MSE der Modelle", 
+  booktabs = TRUE, digits = 5, align = "c"
+)
+```
+
+Wenn wir diese Funktion auf die Ergebnisse unsere Simulation anwenden,
+erhalten wir die Ergebnisse in Tabelle \@ref(tab:mse-base), welche 
+hier noch in den Panels b) und c) in Abbildung \@ref(fig:baseest) komplementiert 
+werden. 
+Insgesamt verdeutlicht die Analyse, dass der OLS-Schätzer im Falle einer 
+Korrelation zwischen den individuellen Effekten $\eta_i$ mit der unabhängigen
+Variable stark verzerrt ist, die alternativen Verfahren allerdings erfolgreich
+für die Effekte kontrollieren und sowohl erwartungtreu als auch mit guter
+Performance im Sinne des MSE schätzen. Gleichzeitig wird hier aber auch deutlich,
+dass die FE-Schätzer dem FD-Schätzer im Sinne des MSE noch einmal überlegen ist.
+Im nächsten Abschnitt wollen wir uns nun genauer mit den am häufigsten 
+verwendeten Schätzern im Panel-Kontext auseinander setzen. Wenig überraschend
+bauen diese vor allem auf der hier sich bereits als superior herausgestellten
+FE-Strategie auf.
+
+
+```{r, echo=FALSE}
+mcs_results_correl_plot <- mcs_results_full %>% 
+  dplyr::filter(fe_rel==0.4) %>%
+  dplyr::rename(FELSDV=FE) %>%
+  tidyr::pivot_longer(
+    cols = -fe_rel,
+    names_to = "Model", 
+    values_to = "Werte") %>%
+  dplyr::filter(Model!="LSDV") %>%
+  ggplot(., aes_string(x="Werte", color="Model", fill="Model")) +
+  geom_vline(xintercept = beta_korrekt) +
+  scale_fill_viridis_d(
+    labels = c("FD"="FD", "FELSDV"="FE/LSDV", "OLS"="OLS"), 
+    aesthetics = c("fill", "color")) +
+  labs(title = latex2exp::TeX("$cov(X_i, \\eta_i)\\neq 0$")) +
+  scale_y_continuous(name = "Dichte", expand = expansion(mult = c(0, 0.1))) +
+  geom_density(alpha=0.5) +
+  theme_light() + theme(
+    legend.position = "bottom",
+    legend.title = element_blank()
+  )
+
+mcs_results_no_correl_plot <- mcs_results_full %>% 
+  dplyr::filter(fe_rel==0.0) %>%
+  dplyr::rename(FELSDV=FE) %>%
+  tidyr::pivot_longer(
+    cols = -fe_rel,
+    names_to = "Model", 
+    values_to = "Werte") %>%
+  dplyr::filter(Model!="LSDV") %>%
+  ggplot(., aes_string(x="Werte", color="Model", fill="Model")) +
+  geom_vline(xintercept = beta_korrekt) +
+  scale_fill_viridis_d(
+    labels = c("FD"="FD", "FELSDV"="FE/LSDV", "OLS"="OLS"), 
+    aesthetics = c("fill", "color")) +
+  labs(title = TeX("$cov(X_i, \\eta_i) = 0$")) +
+  scale_y_continuous(name = "Dichte", expand = expansion(mult = c(0, 0.1))) +
+  geom_density(alpha=0.5) +
+  theme_light() + theme(
+    legend.position = "bottom",
+    legend.title = element_blank(),
+    plot.title = element_text(hjust = 0.5)
+  )
+
+mse_hist <- mse_overview %>%
+  tidyr::pivot_longer(cols = -Modell, names_to = "Fall", values_to = "MSE") %>%
+  ggplot(., aes(x=Modell, y=MSE, color=Fall, fill=Fall)) +
+  scale_fill_viridis_d(aesthetics = c("fill", "color")) +
+  coord_flip() + labs(title = "MSE der Modelle") +
+  geom_bar(stat = "identity", position = "dodge2") + theme_bw() + theme(
+    axis.line = element_line(), panel.border = element_blank(),
+    legend.position = "bottom", legend.title = element_blank(), 
+    panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank(),
+    axis.title.y = element_blank(), plot.title = element_text(hjust = 0.5)
+  )
+
+full_plot_hists <- ggpubr::ggarrange(
+  mcs_results_correl_plot, mcs_results_no_correl_plot, 
+  ncol = 2, labels = c("b)", "c)"), common.legend = T, legend = "bottom")
+full_plot <- ggpubr::ggarrange(
+  mse_hist, full_plot_hists, ncol = 2, widths = c(1,2), labels = c("a)"))
+full_plot <- ggpubr::annotate_figure(
+  full_plot, top = ggpubr::text_grob("Vergleich der Schätzverfahren", size = 18))
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/PanelReg-1/MCS-schaetzverfahren.png")
+save_pdf_png(
+  filename = plot_file, plot = full_plot, 
+  width = 8, height = 4)
+```
+
+```{r baseest, echo=FALSE, fig.cap="Vergleich der drei Schätzverfahren."}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+
 ## Die Baseline-Modelle für Panel-Daten: Fixed and Random Effects {#sec:panel-fixedrandom}
 
+Wie im letzten Abschnitt bereits angedeutet ist zeichnen sich die mit 
+der Funktion `plm::plm()` geschätzten Standard-Modelle dadurch aus, dass
+die Daten vor der Analyse transformiert werden. Das wurde auch durch unsere
+manuelle Berechnung des FD- und FE-Schätzers oben deutlich.^[
+  Tatsächlich wird die Funktion in der offiziellen Beschreibung folgendermaßen
+  charakterisiert: "Linear models for panel data estimated using the `lm` 
+  function on transformed data.". Im Folgenden schauen wir uns genau diese 
+  Transformationen genauer an.
+]
+Am besten kann man sich den Standard-Panelmodellen daher annähern, wenn wir
+zunächst verschiedene Transformationsstrategien für die Rohdaten unserer Analyse 
+einführen.
 
+
+* Pre-Transformation der Daten aufgreifen
+
+## Modell-Diagnose und robuste Schätzverfahren {#sec:panel-dignostics}
+
+## Dynamische Panels {#sec:panel-dynamics}
+
+Unterschieden werden sollten Schätzverfahren für breite ($N>T$) und für 
+lange ($T\approx N$ oder $T>N$) Panels. 
+
+* Gründe
+
+Im folgenden wollen wir uns zunächst auf breite Panels fokussieren.
+Methoden, die zur Analyse von langen Panels geeignet sind, werden in Kapitel
+\@ref(sec:panels2) behandelt.
