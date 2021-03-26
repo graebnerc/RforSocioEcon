@@ -123,7 +123,7 @@ in der Praxis lediglich das folgende Modell schätzen:
 
 \begin{align}
   \label{eq:baseexpl2}
-  y = \alpha + \beta x + \gamma z + \epsilon
+  y = \alpha + \beta x + \epsilon
 \end{align}
 
 Das führt allerdings mit sehr großer Wahrscheinlichkeit zu einem
@@ -173,7 +173,7 @@ folgendes Modell ergeben:
 
 \begin{align}
 \label{eq:FD}
-  y_{nt} - y_{nt-i} &= (\alpha I- \alpha I) + \beta (x_{it}-x_{it-1}) + (\eta_i - \eta_i) + (v_{it}-v_{it-1})\\\nonumber
+  y_{it} - y_{it-1} &= (\alpha I- \alpha I) + \beta (x_{it}-x_{it-1}) + (\eta_i - \eta_i) + (v_{it}-v_{it-1})\\\nonumber
   \Delta y_{nt} &= \beta \Delta x_{it} + \Delta v_{it}
 \end{align}
 
@@ -804,7 +804,7 @@ Dazu definieren wir
   \begin{array}{c}
     y_{11}\\y_{12}\\\vdots\\y_{1T}\\y_{21}\\\vdots\\
     y_{2T}\\\vdots\\y_{N1}\\\vdots\\y_{NT}
-  \end{array}\right])
+  \end{array}\right)
 \end{align}
 
 als $1\times NT$-Vektor mit den Beobachtungen für die abhängige Variable und 
@@ -1007,7 +1007,7 @@ hier haben wir f\"ur $B$:
   \end{array}\right)
 \end{align*}
 
-Wir k\"onnen das nun konkret auf einen mit unserer Funktion oben produzierten Beispieldatensatz anwenden:
+Wir können das nun konkret auf einen mit unserer Funktion oben produzierten Beispieldatensatz anwenden:
 
 ```{r}
 T_dim <- 3
@@ -1146,42 +1146,55 @@ round(
 
 Diese Eigenschaften werden später noch wichtig werden.
 
-### Drei Schätzer mit fixen Effekten
+### Zwei Transformationen, drei Schätzer: Pooled OLS, der between- und der within-Schätzer
 
 Auf Basis der bisher kennen gelernten Transformationen wollen wir 
 drei verschiedene Schätzer unterscheiden, die sich alle dadurch auszeichnen,
 dass die Rohdaten zunächst transformiert und danach ganz normal mit OLS
 geschätzt werden:
 
-1. Der **Pooling**-Schätzer $\hat{\beta}$, bei dem wir OLS unmittelbar auf
+1. Der **Pooling**-Schätzer $\hat{\beta}_{POLS}$, bei dem wir OLS unmittelbar auf
 die Rohdaten anwenden:
 \begin{align}
   \label{eq:ols-pooled}
-  \hat{\beta}_{pooled}= (\boldsymbol{X'X})^{-1}\boldsymbol{X'y}
+  \hat{\beta}_{POLS}= (\boldsymbol{X'X})^{-1}\boldsymbol{X'y}
 \end{align}
 Man kann zeigen, dass dieser Schätzer verzerrte Standardfehler produziert und
 zudem ineffizient ist, selbt wenn er wegen nicht-Korrelation der individuellen
 Effekte mit den erklärenden Variablen erwartungstreu ist.
-2. Der **Between**-Schätzer $\hat{\gamma}_{between}$, bei dem wir OLS auf
+2. Der **Between**-Schätzer $\hat{\gamma}_{B}$, bei dem wir OLS auf
 die mit der Matrix $B$ multiplizierten Rohdaten anwenden:
 \begin{align}
   \label{eq:ols-between}
-  \hat{\gamma}_{between}= (\boldsymbol{Z'BZ})^{-1}\boldsymbol{Z'By}
+  \hat{\gamma}_{B}= (\boldsymbol{Z'BZ})^{-1}\boldsymbol{Z'By}
 \end{align}
 oder
 \begin{align}
   \label{eq:ols-between2}
-  \hat{\beta}_{between}= (\boldsymbol{X'\bar{B}X})^{-1}\boldsymbol{Z'\bar{B}y}
+  \hat{\beta}_{B}= (\boldsymbol{X'\bar{B}X})^{-1}\boldsymbol{X'\bar{B}y}
 \end{align}
-mit $\bar{B}=B-\boldsymbol{1}$.
-3. Der **Within**-Schätzer $\hat{\gamma}_{between}$, bei dem wir OLS auf
+mit $\bar{B}=B-\boldsymbol{1}$. Dieser Schätzer untersucht ausschließlich die Variation *zwischen* den Untersuchungssubjekten.
+3. Der **Within**-Schätzer $\hat{\beta}_{W}$, bei dem wir OLS auf
 die mit der Matrix $W$ multiplizierten Rohdaten anwenden:
 \begin{align}
   \label{eq:ols-within}
-  \hat{\beta}_{within}= (\boldsymbol{X'WX})^{-1}\boldsymbol{X'Wy}
+  \hat{\beta}_{W}= (\boldsymbol{X'WX})^{-1}\boldsymbol{X'Wy}
 \end{align}
+Dieser Schätzer untersucht die Variation *innerhalb* der Untersuchungssubjekte über den gemeinsamen Steigungskoeffizienten $\hat{\beta}$ und berücksichtigt individuelle Effekte durch individuelle Achsenabschnitte $\hat{\alpha}_i$.
 
-Meist ist letzterer gemeint, wenn wir von einem *Fixed-Effects*-Schätzer
+> **Exkurs: die unterschiedlichen $R^2$**: weiter oben haben
+wir auf die unterschiedlichen Werte für $R^2$ hingewiesen, welche
+die Funktion `plm::plm()` für das manuell spezifizierte LSDV-Modell
+und das automatische *within*-Modell ausgibt. An dieser Stelle
+wird die unterschiedliche Berechnungsgrundlage deutlich:
+bei Schätzung des *within*-Modells wird der Anteil der erklärten
+Variation an der Variation *zwischen* den Individuen betrachtet.
+Als Ausgangspunkt für die Berechnung der Gesamtvariation wird
+also der transformierte Datensatz verwendet. Gleiches gilt auch
+für den *between*-Schätzer. Das muss beim Vergleich verschiedener
+Modelle unbedingt beachtet werden.
+
+Meist ist der *within*-Schätzer gemeint, wenn wir von einem *Fixed-Effects*-Schätzer
 sprechen, denn nur er kontrolliert wirklich für die individuellen Effekte $\eta_i$. 
 Dennoch ist es aus Gründen der Exaktheit dann besser vom 
 *within*-Schätzer zu sprechen, denn später werden wir noch viele weitere Schätzer
@@ -1203,9 +1216,6 @@ noch anhand eines Beispiels anwenden.
 über Importe (`imports`) und das Nationalprodukt (`gnp`) verschiedener 
 Entwicklungsländer:
 
-
-
-
 ```{r, echo=FALSE}
 import_gnp_data <- data.table::fread(
   here("data/tidy/panels/trade_developing.csv"), 
@@ -1219,7 +1229,7 @@ import_gnp_data <- data.table::fread(
 head(import_gnp_data)
 ```
 
-Wir berechnen zunächst die Schätzer manuell. Dazu bereiten wir zuerst die
+> Wir berechnen zunächst die Schätzer manuell. Dazu bereiten wir zuerst die
 Daten entsprechend auf:
 
 ```{r}
@@ -1238,7 +1248,7 @@ import_gnp_data_y_within <- t(W_matrix%*%import_gnp_data_y)
 import_gnp_data_y_between <- t(B_matrix%*%import_gnp_data_y)
 ```
 
-Dann berechnen wir die Schätzer:
+> Dann berechnen wir die Schätzer:
 
 ```{r}
 X_matrix <- cbind(1, import_gnp_data_X) # Intercept 
@@ -1260,7 +1270,7 @@ knitr::kable(
 )
 ```
 
-Alternativ können wir die Modelle auch unmittelbar mit der Funktion `plm::plm()`
+> Alternativ können wir die Modelle auch unmittelbar mit der Funktion `plm::plm()`
 berechnen. Damit wir uns die explizite Nennung von `index` in jedem 
 Funktionsaufruf sparen, definieren wir gleich zu Beginn einen Paneldatensatz, 
 ein Objekt des Typs `pdata.frame`, der sehr ähnlich zum `data.frame` ist, aber
@@ -1337,6 +1347,8 @@ tradeplot <- import_gnp_data %>%
     )
 ```
 
+**FIX COLORS**
+
 ```{r, echo=FALSE}
 plot_file <- here::here(
   "figures/PanelReg-1/model-comparison-trade-1.png")
@@ -1349,20 +1361,381 @@ save_pdf_png(
 knitr::include_graphics(plot_file, auto_pdf = T)
 ```
 
-Die geschätzten Koeffizienten unterscheiden sich also deutlich voneinander.
+> Die geschätzten Koeffizienten unterscheiden sich also deutlich voneinander.
 Das liegt daran, dass sie sehr unterschiedliche Variation mit in Betracht
 ziehen. Eine grafische Betrachtung wie die in Abbildung \@ref(fig:model-compa1)
 macht dies besonders deutlich:
+Der *between*-Schätzer und der *Pooled OLS*-Schätzer berücksichtigen
+die individuellen Effekte $\eta_i$ beide nicht.
+Der *between*-Schätzer analysiert ausschließlich die Variation
+*zwischen* den Ländern und erlaubt es uns Fragen nach den
+Länderunterschieden zu beantworten. 
+Der *Pooled OLS*-Schätzer liefert sehr ähnliche Ergebnisse.
+Der *within*-Schätzer dagegen berücksichtigt die individuellen Effekte $\eta_i$ 
+und erlaubt eine konsistente Schätzung des generellen Zusammenhangs zwischen 
+Importen und BNP.
+Die beiden anderen Schätzer würden diesen Zusammenhang drastisch unterschätzen.
+Daraus können wir jedoch noch keine generelle Empfehlung für einen der Schätzer
+ableiten, denn uns fehlt noch die Betrachtung der zweiten absoluten 
+Standard-Schätzmethode im Panel-Kontext: dem *Random-Effects*-Verfahren.
+
+### Das Random-Effects Verfahren
+
+Der Schätzer - oder besser: die Klasse an Schätzern - die wir in diesem Abscnitt
+kennen lernen wird *Generalized Least Squares*-Schätzer genannt, da sie auf eine
+gewisse Art und Weite eine Generalisierung der bisher kennen gelernten Schätzer
+darstellen.
+Wir werden sehen, dass wir die *Pooled-OLS*- **BETWEEN?** und *within*-Schätzer 
+von oben als Spezialfälle des GLS-Schätzers begreifen können.
+Grundsätzlich ist der GLS-Schätzer der effizienteste Schätzer, der uns im 
+Panel-Kontext mit den bislang kennen gelernten Methoden zur Verfügung steht.
+Allerdings baut er auch auf den stärksten Annahmen. 
+Das bedeutet, dass wenn diese Annahmen erfüllt sind er das beste ist was wir
+kriegen können. Aber es bedeutet auch, dass er leicht seine Konsistenz verliert
+wenn die Annahmen nicht erfüllt sind. Daher ist es wichtig die zugrundeliegende
+Idee gut verstanden zu haben.
+
+Ähnlich wie oben erhalten wir den GLS-Schätzer indem wir unsere Daten durch
+Anwendung einer besonderen Matrix transformieren und dann auf die 
+transformierten Daten den klassischen OLS-Schätzer anwenden.
+Diesmal verwenden wir die Matrix $C$, welche definiert ist als:
+
+\begin{align}
+  \label{eq:Cmatrix}
+  C  = \frac{1}{\sigma_l}B + \frac{1}{\sigma_v}W = \Omega^{-0.5}
+\end{align}
+woebei $B$ und $W$ die uns bereits bekannten *between*- und 
+*within*-Transformationsmatrizen sind. 
+Bei $\sigma_l^2$ und $\sigma_v^2$ handelt es sich um die Varianzen der beiden 
+Fehlerkomponenten, wobei $\sigma_l^2=\sigma_v^2+T\sigma_\eta^2$.
+$\Omega$ ist die Varianz-Kovarianz-Matrix der Fehlerterme, mit der wir uns 
+weiter unten genauer auseinandersetzten werden, die aber einfach als
+$\Omega=\sigma^2_vW+\sigma_l^2B$ definiert ist.
+
+Bereits hier erkennen wir aber, dass der GLS-Schätzer sowohl Elemente
+des *within*- als auch des *between*-Schätzers in sich vereint:
+Die $C$-Transformation kann als eine gewichtete Kombination der 
+*within*- und *between*-Transformation verstanden werden, wobei die
+Gewichtungen der beiden Transformationen von den Varianzen der Fehlerkomponenten
+abhängen: je größer der Anteil der Varianz der individuellen Effekte $\eta_i$,
+$\sigma_\eta$, desto ähnlicher wird der Schätzer dem *within*-Schätzer. 
+Je geringer der Anteil, desto ähnlicher wird der GLS-Schätzer dagegen dem 
+*POLS*-Schätzer.
+
+In jedem Fall erhalten wir den GLS-Schätzer $\hat{\gamma}_{GLS}$ als
+
+\begin{align}
+  \label{eq:gls-est}
+\hat{\gamma}_{GLS} &= (\boldsymbol{Z'C'CZ})^{-1} \boldsymbol{Z'C'Cy}\\
+\ &= ( \boldsymbol{Z'\Omega}^{-1} \boldsymbol{Z})^{-1} \boldsymbol{Z'\Omega}^{-1} \boldsymbol{y}\nonumber
+\end{align}
+
+Oder, wenn wir die Matrix $C$ ausschreiben und uns auf die Steigungsparameter
+$\beta$ beschränken:
+
+\begin{align}
+  \label{eq:gls-beta}
+  \hat{\beta}_{GLS} &= \left(
+  \frac{1}{\sigma_v^2}\boldsymbol{X'WX} + 
+  \frac{1}{\sigma_l^2}\boldsymbol{X'\bar{B}X}\right)^{-1}
+  \left(
+  \frac{1}{\sigma_v^2}\boldsymbol{X'Wy} + 
+  \frac{1}{\sigma_l^2}\boldsymbol{X'\bar{B}y}
+  \right)\\
+\end{align}
+
+wobei wie schon in Gleichung \@ref(eq:ols-between2) gilt, 
+dass $\bar{B}=B-\boldsymbol{1}$.
+
+Die praktische Herausforderung ist nun: 
+wie bekommen wir die beiden Varianzen $\sigma_\eta$ und $\sigma_v$?
+Hier gibt es verschiedene Möglichkeiten und entsprechend gibt es 
+diverse Varianten von $\hat{\gamma}_{GLS}$ - die Unterschiede sind in der
+Praxis aber wenig relevant. Das wollen wir anhand des folgenden Beispiels 
+illustrieren.
+Wir verwenden hier Daten aus einer klassischen Firmenstudie, welche am
+Zusammenhang zwischen (`ikn`) und (`qn`) interessiert sind. Die Indices sind
+`cusip` für die einzelnen Firmen und `year` für das Beobachtungsjahr:
+
+```{r, eval=FALSE}
+data("TobinQ", package = "pder")
+firm_data <- TobinQ %>%
+  select(all_of(c("cusip", "year", "ikn", "qn")))
+data.table::fwrite(firm_data, here::here("data/tidy/panels/firm_data.csv"))
+```
+
+```{r, echo=FALSE}
+firm_data <- data.table::fread(
+  file = here::here("data/tidy/panels/firm_data.csv"), 
+  colClasses = c("character", rep("double", 3)))
+```
+
+```{r}
+head(firm_data, 3)
+```
+
+<!--
+In erster Instanz wollen wir den Schätzer wieder einmal händisch implementieren.
+
+HIER CHECKEN WIE MAN DIE VARIANZEN SCHÄTZT UND DANN MAL HÄNDISCH MACHEN 
+-->
+
+Wir verwenden nun wieder die Funktion `plm::plm()` mit dem Argument 
+`model="random"`:
+
+```{r}
+firm_data_p <- plm::pdata.frame(firm_data, index = c("cusip", "year"))
+re_base <- plm::plm(ikn~qn, data = firm_data_p, model = "random")
+summary(re_base)
+```
+
+Dieser Output enthält alle uns bekannten Output-Statistiken plus einige 
+Angaben mehr.
+So gibt die zweite Zeile der Überschrift die genaue Art der Transformation
+der Rohdaten an. Diese unterscheidet sich je nachdem auf welche Art und Weise
+die Varianzen $\sigma_\eta$ und $\sigma_v$ geschätzt werden. Unterschiedliche
+Varianten können mit den Argumenten `random.method`, `random.models` und 
+`random.dfcor` spezifiziert werden. Die Entscheidung hat selten größere 
+praktische Relevanz, wie das folgende Beispiel zeigt:
+
+```{r}
+re_models <- list(
+  "swar" = plm::plm(
+    ikn~qn, data = firm_data_p, model = "random", random.method = "swar"),
+  "amemiya" = plm::plm(
+    ikn~qn, data = firm_data_p, model = "random", random.method = "amemiya"),
+  "nerlove" = plm::plm(
+    ikn~qn, data = firm_data_p, model = "random", random.method = "nerlove"),
+  "walhus" = plm::plm(
+    ikn~qn, data = firm_data_p, model = "random", random.method = "walhus")
+)
+knitr::kable(sapply(re_models, coef), digits = 4, booktabs=TRUE)
+```
+
+Wie wir sehen sind die geschätzten Koeffizienten ziemlich ähnlich.
+Interessant ist im Regressionsoutput die Tabelle unter der Überschrift *Effects*, 
+denn hier erhalten
+wir Informationen über die Relevanz der einzelnen Komponenten des Fehlerterms
+für die Gesamtvarianz.
+Im vorliegenden Falle gehen ca. $27.5$ Prozent auf Variation in den 
+individuellen Effekten zurück.
+Der Parameter $\theta$ gibt an wie nahe der Schätzer an einem *within*-Modell
+liegt: für $\theta=1$ wäre $\hat{\beta}_{GLS}$ äquivalent zu 
+$\hat{\beta}_{W}$. Bei $\theta=0$ würde $\hat{\beta}_{GLS}$ dagegen mit 
+gepoolten OLS-Schätzer $\hat{\beta}_{POLS}$ übereinstimmen.
 
 
+```{r, echo=FALSE}
+pooling_model <- plm::plm(
+  imports~gnp, data = import_gnp_pdata, model = "pooling")
 
-### Random-Effects Schätzer
+between_model <- plm::plm(
+  imports~gnp, data = import_gnp_pdata, model = "between")
+
+within_model <- plm::plm(
+  imports~gnp, data = import_gnp_pdata, model = "within")
+
+re_model <- plm::plm(
+  imports~gnp, data = import_gnp_pdata, model = "random")
+
+countries_considered <- c(
+  "India", "South Africa",  "Costa Rica", 
+  "Jamaica", "Mexico", "Greece", "Jordan")
+
+ltypes <- c("OLS"="dashed", "Between"="dotdash", 
+            "Within"="solid", "GLS"="dotted")
+
+tradeplot_re <- import_gnp_data %>%
+  dplyr::filter(country %in% countries_considered) %>%
+  ggplot(., aes(x=gnp, y=imports, color=country)) +
+    geom_point() + theme_bw() + 
+    scale_color_viridis_d(name = "Land") +
+  labs(title = "Modelle im Vergleich") +
+    geom_abline(
+      aes(
+        intercept = coef(pooling_model)["(Intercept)"], 
+        slope = coef(pooling_model)["gnp"], 
+        linetype = "OLS"), 
+      color=viridis(4, option = "A", end = 0.8)[1], size=1.0
+      ) +
+    geom_abline(
+      aes(
+        intercept = coef(between_model)["(Intercept)"], 
+        slope = coef(between_model)["gnp"], 
+        linetype = "Between"), 
+      color=viridis(4, option = "A", end = 0.8)[2], size=1.0
+      ) +
+    geom_abline(
+      aes(
+        intercept = mean(fixef(within_model)), 
+        slope = coef(within_model)["gnp"], 
+        linetype = "Within"), 
+      color=viridis(4, option = "A", end = 0.8)[3], size=1.0
+      ) +
+    geom_abline(
+      aes(
+        intercept = coef(re_model)["(Intercept)"], 
+        slope = coef(re_model)["gnp"], 
+        linetype = "GLS"), 
+      color=viridis(4, option = "A", end = 0.8)[4], size=1.0
+      ) +
+  scale_linetype_manual(
+      name = "Modell",
+      values = ltypes
+      ) +
+    # guides(
+    #     linetype = guide_legend(override.aes = list(
+    #       # linetype = "solid", 
+    #       # color=c(viridis(4, option = "A", end = 0.8)))
+    #       )
+    #     ) +
+    theme(
+      panel.border = element_blank(), axis.line = element_line()
+    )
+```
+
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/PanelReg-1/model-comparison-trade-2.png")
+save_pdf_png(
+  filename = plot_file, plot = tradeplot_re, 
+  width = 6, height = 4)
+```
+
+```{r model-compa2, echo=FALSE, fig.cap="Vergleich der drei Schätzverfahren."}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+
+Das wollen wir abschließend noch kurz mit dem Beispiel aus dem letzten 
+Abschnitt illustrieren, in dem wir $\hat{\beta}_{POLS}$, $\hat{\beta}_{W}$ und
+$\hat{\beta}_{B}$ direkt in Abbildung \@ref(fig:model-compa1) verglichen haben.
+Abbildung \@ref(fig:model-compa2) fügt zusätzlich noch $\hat{\beta}_{GLS}$ hinzu.
+Dazu betrachten wir folgenden Regressionsoutput:
+
+```{r}
+summary(re_model)
+```
+
+Wir sehen, dass hier ein großer Teil der Gesamtvarianz auf die Varianz der 
+individuellen Effekt zurückzuführen ist. Mit anderen Worten, 
+in Gleichung \@ref(eq:Cmatrix) ist $\sigma_l^2=\sigma_v^2+T\sigma_\eta^2$
+deutlich größer als $\sigma^2_v$, weswegen $C$ deutlich ähnlicher zu $W$ ist
+als zu $B$. Das spiegelt sich in den Schätzern wieder, die in Abbildung
+\@ref(fig:model-compa2) zu sehen sind: der RE-Schätzer ist fast äquivalent
+zum *within*-Schätzer.
+Dementsprechend liegt $\theta$ im Regressionsoutput auch bei 
+`r round(re_model$ercomp$theta, 2)`.
+
+> **Exkurs: zur Herkunft von $\theta$**: TBA
+
+
 
 ### Die Wahl des richtigen Schätzers
 
+Bislang haben wir also vier Schätzer für den Panel-Kontext kennen
+gelernt:
+
+1. Der **Pooled-OLS**-Schätzer $\hat{\beta}_{POLS}$, bei dem wir OLS unmittelbar auf die Rohdaten anwenden.
+2. Der **Between**-Schätzer $\hat{\beta}_{B}$, bei dem wir OLS auf die mit der Matrix $B$ multiplizierten Rohdaten anwenden und ausschließlich die Variation *zwischen* den Untersuchungssubjekten berücksichtigen.
+3. Der **Within**-Schätzer $\hat{\gamma}_{W}$, bei dem wir OLS auf die mit der Matrix $W$ multiplizierten Rohdaten anwendenund über die gemeinsamen Steigungskoeffizienten $\hat{\beta}$ die Variation *innerhalb* der Untersuchungssubjekte, und über die individuelle Achsenabschnitte $\hat{\alpha}_i$ die individuelle Effekte abbilden.
+4. Die Klasse von **GLS**-Schätzern, bei denen die individuellen Effekte als Züge aus einer Verteilung begriffen werden, deren Parameter im Zuge der Analyse geschätzt werden.
+
+Um die enge Beziehung der Schätzer zueinander und die Bedeutung der 
+Transformationen mit den Matrizen $B$ und $W$ zu verdeutlichen hier nochmal
+alle Definitionen untereinander:
+
+\begin{align*}
+\hat{\beta}_{POLS} &= (\boldsymbol{X'X})^{-1}\boldsymbol{X'y}\\
+\hat{\beta}_{B} &= (\boldsymbol{X'\bar{B}X})^{-1}\boldsymbol{X'\bar{B}y}\\
+\hat{\beta}_{W} &= (\boldsymbol{X'WX})^{-1}\boldsymbol{X'Wy}\\
+\hat{\beta}_{GLS} &= \left(
+  \frac{1}{\sigma_v^2}\boldsymbol{X'WX} + 
+  \frac{1}{\sigma_l^2}\boldsymbol{X'\bar{B}X}\right)^{-1}
+  \left(
+  \frac{1}{\sigma_v^2}\boldsymbol{X'Wy} + 
+  \frac{1}{\sigma_l^2}\boldsymbol{X'\bar{B}y}
+  \right)
+\end{align*}
+
+Bei allen diesen Schätzern ist das Grundprinzip, dass man die Rohdaten 
+zunächst mit den Matrizen $B$ und $W$ transformiert und dann ganz normal den
+klassischen OLS-Schätzer anwendet.
+
+Welcher dieser Schätzer ist aber nun am besten geeignet?
+Hier spielen sowohl erkenntnisleitende als technische Argumente eine Rolle.
+
+* Trivedi Argument: out of sample vs. in sample
+* daraus ergibt sich mikro makro unterscheidung
+
+Am einfachsten fällt die Antwort für den **Pooled-OLS**-Schätzer $\hat{\beta}_{POLS}$ aus:
+dieser Schätzer ist *nie* eine gute Wahl, denn er produziert verzerrte Standardfehler und ist nicht effizient.
+Der **RE**-Schätzer ist konsistent und effizient wenn...
+. Das bedeutet, dass wenn die Annahme...erfüllt ist, ist er die
+beste Wahl.
+Wenn diese Annahme aber nicht erfüllt ist und ... dann sollte man den *within*-Schätzer verwenden, da nur er in diesem Kontext erwartungstreue und konsistente Schätzungen der Steigungsparameter ermöglicht. Zudem kann dieser Schätzer besonders attraktiv sein, wenn wir an den geschätzten Werten für die individuellen Effekte $\eta_i$ interessiert sind.
+Der *Between*-Schätzer ist eher ein Sonderfall, der für bestimmte Forschungsfragen interessant sein kann, wenn wir lediglich an der Variation zwischen Untersuchungssubjekten interessiert sind und keine relevanten individuellen Effekte vorliegen.
+In der Praxis stellt sich also vor allem die Frage, ob die Daten die Anwendung des effizienteren RE-Schätzers zulassen, oder ob wir einen *within*-Schätzer verwenden müssen. 
+
+* Annahmen die bei allen gelten müssen: homogene Steigungsparameter
+* Zusammenfassung mit Entscheidungsbaum und Mikro- Marko Interesse an $\eta_i$
+* Vergleich der Annahmen und Tabelle wie in Trivedi
+* Problem von zeit-invarianten Effekten wie Geschlecht
+
+
 ### Noch mehr fixe Effekte
 
-Time fixed effects
+Bislang sind wir davon ausgegangen, dass es unbeobachtbare Heterogenität
+nur in der Querschnittsdimension gibt. 
+Dieser unbeobachtbaren Heterogenität sind wir durch die Betrachtung der
+individuellen Effekte $\eta_i$ begegnet.
+Nun kann es solche Effekte natürlich nicht nur in der Querschnitts- sondern
+auch in der Zeit-Dimension geben.
+Zum Glück ist deren Berücksichtigung theoretisch nahezu äquivalent zu der
+der Querschnittseffekte. 
+Alles was wir machen ist, dass wir noch eine dritte Komponente zu den 
+Fehlern $\epsilon$ im Ausgangsmodell aus Gleichung \@ref(eq:basepanel) 
+hinzufügen.
+Diese Komponente ist über die Querschnittsdimension hinweg konstant, 
+variiert aber in der Zeitdimension. Daher sprechen wir hier auch von
+*time fixed effects* $\delta_t$.
+Damit ergibt sich für die ein einzelne Beobachtung folgendes Modell:
+
+\begin{align}
+  \label{eq:timefe}
+  y_{it} = \alpha + \beta x_{it} + (\eta_i + \delta_t + v_{it})
+\end{align}
+
+Viel ändert sich hier nicht und alle theoretischen Ergebnisse von oben
+gelten weiterhin. Nur müssen eben zusätzlich noch die *time fixed effects*
+berücksichtigt werden. 
+Hier wollen wir uns auf die Implementierung in `R` mit der Funktion 
+`plm::plm()` beschränken. Relevant wird jetzt das Argument `effect`, in dem 
+wir nun mehrere Optionen zu Auswahl haben:
+
+1. Wir berücksichtigen *nur* individuelle Effekte $\eta_i$. In diesem Falle 
+setzen wir `effect='individual'`.
+2. Wir berücksichtigen *nur* zeitliche Effekte $\delta_t$. In diesem Falle 
+setzen wir `effect='time'`.
+3. Wir berücksichtigen *sowohl* individuelle Effekte $\eta_i$ *als auch* 
+zeitliche Effekte $\delta_t$. In diesem Falle setzen wir `effect='twoways'`.
+Diese Option steht allerdings nicht zur Verfügung wenn wir vorher
+`model='between'` gewählt haben, da hier die Variation in der zeitlichen Dimension
+gar nicht berücksichtigt wird.
+
+Die Funktionsweise wollen wir kurz an folgendem Beispiel illustrieren:
+
+BIER BEISPIEL AUS ONLINE BUCH
+
+Dieses Beispiel zeigt auch, dass die Verwendung von *fixed effects* immer 
+auf Kosten der Genauigkeit des Modells geht. Wir sollten zeitliche oder
+individuelle Effekte nicht einfach nur so zur Sicherheit verwenden, sondern nur
+wenn es wirklich geboten ist. Wie wir das herausfinden, das lernen wir in 
+im letzten Abschnitt dieses Kapitels.
+
+* test ob relevant
+* anwendungsbeispiel
+* 2.4.1. technischer Comparison
 
 
 ## Modell-Diagnose und robuste Schätzverfahren {#sec:panel-dignostics}
