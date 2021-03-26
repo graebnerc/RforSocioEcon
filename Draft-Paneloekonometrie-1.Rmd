@@ -293,8 +293,9 @@ Einen künstlichen Datensatz können wir dann folgendermaßen simulieren:
 
 ```{r}
 set.seed(1)
+beta_korrekt <- 4
 test_data <- get_data(
-      T_dim=5, N_dim=30, alpha0=1, beta=2.5, 
+      T_dim=5, N_dim=30, alpha0=1, beta=beta_korrekt, 
       x_persistence=0.2, x_fe_relevance=0.6, x_error_relevance=0.4)
 head(test_data)
 ```
@@ -677,7 +678,6 @@ verwendeten Schätzern im Panel-Kontext auseinander setzen. Wenig überraschend
 bauen diese vor allem auf der hier sich bereits als superior herausgestellten
 FE-Strategie auf.
 
-
 ```{r, echo=FALSE}
 mcs_results_correl_plot <- mcs_results_full %>% 
   dplyr::filter(fe_rel==0.4) %>%
@@ -757,7 +757,96 @@ knitr::include_graphics(plot_file, auto_pdf = T)
 
 ## Die Baseline-Modelle für Panel-Daten: Fixed and Random Effects {#sec:panel-fixedrandom}
 
-Wie im letzten Abschnitt bereits angedeutet ist zeichnen sich die mit 
+In den Standard-Panelmodellen gehen wir davon aus, dass die zu schätzenden
+Steigungsparameter $\beta$ für alle Untersuchungssubjekte gleich sind.
+Letztere unterscheiden sich lediglich durch die individuellen Effekte $\eta_i$,
+was sich in individuellen Achsenabschnitten widerspiegelt.
+Der Einfachheit halber formulieren wir das Ausgangsmodell in einer mit der
+Notation aus früheren Kapiteln konsistenten Form als.
+Für ein einzelnes Individuum $i$ in Periode $t$ bedeutet das:
+
+\begin{align}
+  \label{eq:ec-base}
+  y_{it} = \alpha + x'_{it}\beta + \epsilon_{it}
+\end{align}
+
+wobei wir die Koeffizienten auch in einem gemeinsamen Vektor $\gamma=(\alpha, \beta)$ 
+sammeln können, sodass mit $z'_{it}=(1,x'_{it})$ Gleichung \@ref(eq:ec-base)
+auch geschrieben werden kann als:
+
+\begin{align}
+  \label{eq:ec-base2}
+  y_{it} =z'_{it}\gamma + \epsilon_{it}
+\end{align}
+
+Der Fehlerterm besteht wie oben beschrieben aus einem individuellen und 
+zeitunabhängigem Effekt $\eta_i$ und dem idiosynkratischen Fehler $v_{it}$,
+an den wir die gleichen Anforderungen stellen wie in den vorangehenden Kapiteln.
+Insbesondere nehmen wir für beide Komponenten eine konstante Varianz an,
+i.e. $\sigma^2_\eta$ und $\sigma_v^2$.
+Darüber hinaus gehen wir davon aus, dass die beiden Fehlerterme sowohl 
+untereinander nicht korrellieren (also $cov(\eta_i, \eta_j)=0\forall i,j$ und 
+$cov(v_{it}, v_{jt})=0\forall i,j,t$) also auch voneinander unabhängig sind
+(also $cov(\eta_{i}, v_{jt})=0\forall i,j,t$).
+Insgesamt haben wir hier also:
+
+\begin{align}
+  \label{eq:ec-error}
+  \epsilon_{it} = eta_i + v_{it} \quad \forall i,t  
+\end{align}
+
+In der Regel ist es aber auch für Panel-Daten besser das Modell in 
+Matrizen-Schreibweise zu formulieren. 
+Dazu definieren wir 
+
+\begin{align}
+  \boldsymbol{y}=\left(
+  \begin{array}{c}
+    y_{11}\\y_{12}\\\vdots\\y_{1T}\\y_{21}\\\vdots\\
+    y_{2T}\\\vdots\\y_{N1}\\\vdots\\y_{NT}
+  \end{array}\right])
+\end{align}
+
+als $1\times NT$-Vektor mit den Beobachtungen für die abhängige Variable und 
+
+\begin{align}
+  \boldsymbol{X}=\left(
+  \begin{array}{cccc}
+  x_{11}^1 & x_{11}^2 & \hdots & x_{11}^K\\
+  x_{12}^1 & x_{12}^2 & \hdots & x_{12}^K\\
+  \vdots & \vdots & \vdots & \vdots\\
+  x_{1T}^1 & x_{1T}^2 & \hdots & x_{1T}^K\\
+  x_{21}^1 & x_{21}^2 & \hdots & x_{21}^K\\
+  \vdots\\
+  x_{2T}^1 & x_{2T}^2 & \hdots & x_{2T}^K\\
+  \vdots\\
+  x_{N1}^1 & x_{N1}^2 & \hdots & x_{N1}^K\\
+  \vdots\\
+  x_{NT}^1 & x_{NT}^2 & \hdots & x_{NT}^K\\
+  \end{array}
+  \right)
+\end{align}
+
+als $NT\times K$-Matrix mit den Beobachtungen aller unabhängigen Variablen.
+Zudem verwenden wir $\boldsymbol{i_n}=\{1\}_{i=1}^n$ als $1\times n$ Vektor voll
+mit Einsen und $\boldsymbol{I_n}$ als Einheitsmatrix der Dimension $n\times n$.
+
+Daraus ergibt sich für das Basismodell folgender Ausdruck:
+
+\begin{align}
+  \label{eq:ec-basic-matrix}
+  \boldsymbol{y} = \alpha \boldsymbol{i_n} + \boldsymbol{X\beta} \boldsymbol{\epsilon}
+\end{align}
+
+bzw. mit $\gamma=(\alpha, \beta)$ und 
+$\boldsymbol{Z}=(\boldsymbol{i_N},\boldsymbol{X})$:
+
+\begin{align}
+  \label{eq:ec-basic-matrix-red}
+  \boldsymbol{y} = \boldsymbol{Z\gamma} \boldsymbol{\epsilon}
+\end{align}
+
+Wie im letzten Abschnitt bereits angedeutet ist zeichnen sich diese mit 
 der Funktion `plm::plm()` geschätzten Standard-Modelle dadurch aus, dass
 die Daten vor der Analyse transformiert werden. Das wurde auch durch unsere
 manuelle Berechnung des FD- und FE-Schätzers oben deutlich.^[
@@ -770,10 +859,515 @@ Am besten kann man sich den Standard-Panelmodellen daher annähern, wenn wir
 zunächst verschiedene Transformationsstrategien für die Rohdaten unserer Analyse 
 einführen.
 
+### Pre-Transformationen der Daten
 
-* Pre-Transformation der Daten aufgreifen
+Im Folgenden werden wir einige auf den ersten Blick recht häßliche 
+Matrix-Operationen durchführen müssen. Allerdings lohnt es sich diese Operationen
+genau nachzuvollziehen, weil sie einem doch ein deutlich besseres Verständnis 
+der resultierenden Schätzer ermöglichen.
+Eine wichtige und auf den ersten Blick unintuitive Operation ist dabei das so
+genannte *Kronecker-Produkt* zweier Matrizen.
+Dieser Operator generiert aus zwei Matrizen eine neue Matrix, die alle 
+Element-weisen Produkte der beiden Ursprungsmatrizen enthält.
+
+> **Exkurs: das Kronecker-Produkt**
+
+> Konkret ist das Kronecker-Produkt einer $m\times n$-Matrix $A$ und einer
+$k\times l$-Matrix $B$ definiert als die $mk\times nl$-Matrix $C$:
+\begin{align}
+A\otimes B=\left(
+\begin{array}{cccc}
+a_{1,1}B & a_{1,2}B & \cdots & a_{1,n}B \\
+a_{2,1}B & a_{2,2}B & \cdots & a_{2,n}B \\
+\vdots & \vdots & \ddots & \vdots\\
+a_{m,1}B & a_{m,2}B & \cdots & a_{m,n}B 
+\end{array}
+\right)
+\end{align}
+> wobei $a_{h,j}$ das Element von $A$ in der $h$-ten Zeile und $j$-ten Spalte bezeichnet.
+Dieser Ausdruck macht unmittelbar deutlich, dass die resultierende Matrix sehr schnell sehr gro\ss\ wird.
+Daher illustrieren wir die Operation mit dem einfachen Beispiel einer $2\times2$-Matrix $A$ und einer $2\times3$-Matrix $B$, wobei:
+\begin{align*}
+	A=\left(\begin{array}{cc}
+	1 & 2\\
+	3 & 4	
+\end{array}\right) & \quad 
+B=\left(\begin{array}{ccc}
+	1 & 2 & 3\\
+	4 & 5 & 6	
+\end{array}\right).
+\end{align*}
+> Dann gilt f\"ur das Kronecker-Produkt $A\otimes B$:
+\begin{align*}
+  A\otimes B=
+  \left(\begin{array}{cc}
+	1\cdot B & 2\cdot B\\
+	3\cdot B & 4\cdot B	
+\end{array}\right)&=
+\left(\begin{array}{cccccc}
+	1\cdot1 & 1\cdot2 & 1\cdot3 & 2\cdot1 & 2\cdot2 & 2\cdot3\\
+	1\cdot4 & 1\cdot5 & 1\cdot6	& 2\cdot4 & 2\cdot5 & 2\cdot6\\
+	3\cdot1 & 3\cdot2 & 3\cdot3 & 4\cdot1 & 4\cdot2 & 4\cdot3\\
+	3\cdot4 & 3\cdot5 & 3\cdot6	& 4\cdot4 & 4\cdot5 & 4\cdot6
+\end{array}\right)\\
+\ & = 
+\left(\begin{array}{cccccc}
+	1 & 2 & 3 & 2 & 4 & 6\\
+	4 & 5 & 6 & 8 & 10 & 12\\
+	3 & 6 & 9 & 4 & 8 & 12\\
+	12 & 15 & 18 & 16 & 20 & 24
+\end{array}\right)
+\end{align*}
+> Das Kronecker-Produkt weist einige wichtige Eigenschaften auf, die wir im Kontext der Panel-\"Okonometrie h\"aufig voraussetzen werden.
+1. Beim Kronecker-Produkt handelt es sich um eine lineare Transformation, sodass gilt:
+\begin{align}
+	A\otimes(\alpha B) = \alpha(A\otimes B)= (\alpha A)\otimes B 
+\end{align}
+2. Das Assoziativgesetz und Distributivgesetz ist entsprechend ebenfalls auf das Kronecker-Produkt anwendbar:
+\begin{align}
+(A+B)\otimes C &= (A\otimes C) + (B\otimes C)\\
+A\otimes(B+C) &= (A\otimes B)+ (A\otimes C) \\
+(A\otimes B)\otimes C &= A\otimes(B\otimes C)
+\end{align}
+3. Das transponierte Kronecker-Produkt zweier Matrizen ist gleich dem Kronecker-Produkt der transponierten Matrizen:
+\begin{align}
+	(A\otimes B)^T = A^T \otimes B^T
+\end{align} 
+4. Handelt es sich bei $A$ um eine $n\times m$-Matrix und bei $C$ um eine $m\times k$-Matrix, sowie bei $B$ um eine $l\times j$-Matrix und bei $D$ um eine $j\times k$-Matrix, dann gilt:
+\begin{align}
+	(A\otimes B)(C\otimes D) = AC\otimes BD.
+\end{align}
+5. Handelt es sich bei $A$ und $B$ um invertierbare und quadratische Matrizen gilt: 
+\begin{align}
+(A\otimes B)^{-1} = A^{-1}\otimes B^{-1}.
+\end{align}
+
+> Wer die Eigenschaften besser verstehen will tut vielleicht gut daran, sie mit einfachen Beispielen in `R` einmal nachzubauen.
+
+Dieses Kronecker-Produkt ist wichtig, weil es in zwei der absolut zentralen
+Transformationen der Panel-Ökonometrie eine wichtige Rolle spielt, nämlich
+der *between*-Transformation und der *within*-Transformation.
+Und ja, letztere liegt der Herleitung des bereits oben verwendeten 
+*within*-FE-Schätzers zugrunde.
+
+Die ***between***-Transformation, oder auch **inter-individuelle** 
+Transformation, besteht in der Anwendung einer passenden Transformationsmatrix
+$B$ auf die Daten. 
+$B$ ist dabei definiert als:
+
+\begin{align}
+  \label{eq:Bmatrix}
+  B = \left( 
+  \boldsymbol{I_N} \otimes \boldsymbol{i_T}\boldsymbol{i_T}'/T
+  \right)
+\end{align}
+
+Die Anwendung dieser Matrix auf die Rohdaten $\boldsymbol{X}$ produziert einen $1\times T$-Vektor mit individuellen Mittelwerten:
+
+\begin{align}
+  \label{eq:Bmatrixapplied}
+  B\boldsymbol{X} = \left(\{\bar{x}_1\}_T, \{\bar{x}_2\}_T,...,\{\bar{x}_N\}_T\right)
+\end{align}
+
+Nach der Transformation wurde also jegliche *intra-individuelle* Variation aus den Daten eliminiert. 
+Es bleibt nur noch die Variation zwischen den Beobachtungssubjekten \"ubrig.
+Daher der Name *between*-Transformation.
+
+Betrachten wir ein Beispiel mit $N=2$ und $T=3$. 
+hier haben wir f\"ur $B$:
+
+\begin{align*}
+  B &= \left( 
+  \boldsymbol{I_N} \otimes \boldsymbol{i_T}\boldsymbol{i_T}'/T
+  \right)\\
+  \ &= \left(\begin{array}{cc}
+  	1 & 0 \\
+  	0 & 1
+  \end{array}\right) \otimes \left[
+  \left(\begin{array}{c}1\\1\\1\end{array} \right) 
+  \left(\begin{array}{ccc}1&1&1\end{array}\right) / 3
+  \right]\\
+  & = 
+  \left(\begin{array}{cc}
+  	1 & 0 \\
+  	0 & 1
+  \end{array}\right) \otimes \left(\begin{array}{ccc}
+  	1/3 & 1/3 & 1/3 \\
+  	1/3 & 1/3 & 1/3 \\
+  	1/3 & 1/3 & 1/3
+  \end{array}\right)\\
+  \ &=
+  \left(\begin{array}{cccccc}
+  	1/3 & 1/3 & 1/3 & 0 & 0 & 0\\
+  	1/3 & 1/3 & 1/3 & 0 & 0 & 0\\
+  	1/3 & 1/3 & 1/3 & 0 & 0 & 0\\
+  	0 & 0 & 0 & 1/3 & 1/3 & 1/3\\
+  	0 & 0 & 0 & 1/3 & 1/3 & 1/3\\
+  	0 & 0 & 0 & 1/3 & 1/3 & 1/3\\
+  \end{array}\right)
+\end{align*}
+
+Wir k\"onnen das nun konkret auf einen mit unserer Funktion oben produzierten Beispieldatensatz anwenden:
+
+```{r}
+T_dim <- 3
+N_dim <- 2
+test_data <- get_data(
+  T_dim=T_dim, N_dim=N_dim, alpha0=1, beta=2.5, 
+  x_persistence=0.2, x_fe_relevance=0.6, x_error_relevance=0.4)
+test_data_X <- as.matrix(test_data["x1"])
+```
+
+Dann definieren wir die Transformationsmatrix:
+
+```{r}
+get_B_matrix <- function(n_dim, t_dim){
+  kronecker(
+    diag(n_dim),  matrix(rep(1, t_dim)) %*% t(matrix(rep(1, t_dim))) / t_dim)
+}
+B <- get_B_matrix(N_dim, T_dim)
+B
+```
+
+Diese wenden wir dann auf die unabhängigen Variablen an:
+
+```{r}
+betweem_transformed <- t(B%*%test_data_X)
+betweem_transformed
+```
+
+Mit dem folgenden Code zeigen wir, dass es sich hier tatsächlich um 
+die $T$-mal wiederholten Mittelwerte der $N$ Beobachtungssubjekte handelt:
+
+```{r}
+test_data %>%
+  dplyr::group_by(id) %>%
+  dplyr::summarise(x1=mean(x1), .groups = "drop")
+```
+
+
+Die zweite wichtige Transformation ist die ***within***-Transformation.
+Dazu definieren wir die Matrix $\boldsymbol{W}$:
+
+\begin{align}
+  \label{eq:Wmatrix}
+   \boldsymbol{W} = \boldsymbol{I_{NT}} - \boldsymbol{I_N} \otimes \boldsymbol{i_T}\boldsymbol{i_T}'/T
+\end{align}
+
+Ein genauer vergleich mit Gleichung \@ref(eq:Bmatrix) zeigt und, dass
+
+\begin{align*}
+  \boldsymbol{W} = \boldsymbol{I_{NT}} - \boldsymbol{B}
+\end{align*}
+
+Diese Matrix wiederum hilft uns aus den Rohdaten die Variation *innerhalb*
+der einzelnen Beobachtungssubjete zu extrahieren, d.h. die jeweiligen 
+Abweichungen vom individuellen Mittelwert.
+Dazu definieren wir zunächst die W-Matrix:
+
+```{r}
+get_W_matrix <- function(n_dim, t_dim){
+  diag(n_dim*t_dim) - kronecker(
+    diag(n_dim),  matrix(rep(1, t_dim)) %*% t(matrix(rep(1, t_dim))) / t_dim)
+}
+W <- get_W_matrix(N_dim, T_dim)
+W
+```
+Und wenden diese dann auf die Rohdaten an:
+
+```{r}
+within_transformed <- t(W%*%test_data_X)
+within_transformed
+```
+
+Auch hier verifizieren wir mit alternativem Code, dass es sich hier
+um die $NT$ Abweichungen der Variablen von ihren individuellen Mittelwerten
+handelt:
+
+```{r}
+test_data %>%
+  dplyr::select(all_of(c("tstep", "id", "x1"))) %>%
+  dplyr::group_by(id) %>%
+  dplyr::mutate(x1_means=mean(x1)) %>%
+  ungroup() %>%
+  dplyr::mutate(x1_mean_dev=x1-x1_means)
+```
+
+Die beiden Matrizen $W$ und $B$ haben einige interessante und später
+hilfreiche Eigenschaften: 
+
+1. Die Matrizen sind symmetrisch, d.h. $B'=B$ und $W'=W$:
+
+```{r}
+W
+```
+
+```{r}
+t(W)
+```
+
+2. Die Matrizen sind *idempotent*, d.h. $W\times W=W$ und $B\times B=B$
+
+```{r}
+W%*%W
+```
+
+Da $W=I-B$ gilt, dass 
+
+\begin{align}
+  BX + WX = X
+\end{align}
+
+Wir sprechen davon, dass die Matrizen eine Vektor-Zerlegung produzieren:
+
+```{r}
+t(test_data_X)
+```
+
+```{r}
+t(W%*%test_data_X) + t(B%*%test_data_X)
+```
+
+Zudem sind die beiden Matrizen *orthogonal*, d.g. $W'B=0$$:
+
+```{r}
+round(W%*%t(B))
+```
+Aus den letzten beiden Eigenschaften ergibt sich, dass die beiden Matrizen
+einen Vektor orthogonal zerlegen, d.h. in zwei Vektoren aufsplitten, die in 
+der Summe den ursprünglichen Vektor ergeben (siehe oben) und orthogonal zueinander stehen.
+Letzteres impliziert, dass deren inneres Produkt gleich Null ist:
+
+```{r}
+round(
+  t(W%*%test_data_X) %*% B%*%test_data_X
+)
+```
+
+Diese Eigenschaften werden später noch wichtig werden.
+
+### Drei Schätzer mit fixen Effekten
+
+Auf Basis der bisher kennen gelernten Transformationen wollen wir 
+drei verschiedene Schätzer unterscheiden, die sich alle dadurch auszeichnen,
+dass die Rohdaten zunächst transformiert und danach ganz normal mit OLS
+geschätzt werden:
+
+1. Der **Pooling**-Schätzer $\hat{\beta}$, bei dem wir OLS unmittelbar auf
+die Rohdaten anwenden:
+\begin{align}
+  \label{eq:ols-pooled}
+  \hat{\beta}_{pooled}= (\boldsymbol{X'X})^{-1}\boldsymbol{X'y}
+\end{align}
+Man kann zeigen, dass dieser Schätzer verzerrte Standardfehler produziert und
+zudem ineffizient ist, selbt wenn er wegen nicht-Korrelation der individuellen
+Effekte mit den erklärenden Variablen erwartungstreu ist.
+2. Der **Between**-Schätzer $\hat{\gamma}_{between}$, bei dem wir OLS auf
+die mit der Matrix $B$ multiplizierten Rohdaten anwenden:
+\begin{align}
+  \label{eq:ols-between}
+  \hat{\gamma}_{between}= (\boldsymbol{Z'BZ})^{-1}\boldsymbol{Z'By}
+\end{align}
+oder
+\begin{align}
+  \label{eq:ols-between2}
+  \hat{\beta}_{between}= (\boldsymbol{X'\bar{B}X})^{-1}\boldsymbol{Z'\bar{B}y}
+\end{align}
+mit $\bar{B}=B-\boldsymbol{1}$.
+3. Der **Within**-Schätzer $\hat{\gamma}_{between}$, bei dem wir OLS auf
+die mit der Matrix $W$ multiplizierten Rohdaten anwenden:
+\begin{align}
+  \label{eq:ols-within}
+  \hat{\beta}_{within}= (\boldsymbol{X'WX})^{-1}\boldsymbol{X'Wy}
+\end{align}
+
+Meist ist letzterer gemeint, wenn wir von einem *Fixed-Effects*-Schätzer
+sprechen, denn nur er kontrolliert wirklich für die individuellen Effekte $\eta_i$. 
+Dennoch ist es aus Gründen der Exaktheit dann besser vom 
+*within*-Schätzer zu sprechen, denn später werden wir noch viele weitere Schätzer
+kennen lernen, bei denen potenziell beide Transformationen eine Rolle spielen,
+dabei für die $\eta_i$ kontrollieren, sich aber dennoch vom *within*-Schätzer
+wie hier definiert unterscheiden.
+Was einen *Fixed-Effects*-Schätzer in seinem Kern ausmacht ist die Annahme, dass
+die individuellen Effekte $\eta_i$ fix sind - daher der Name.
+Eine Alternative zu diesen *Fixed-Effects*-Schätzern im Panel-Kontext bieten
+die so genannten *Random-Effects*-Modelle, bei denen die individuellen
+Effekte $\eta_i$ als Zufallszahlen begriffen werden, die aus einer fixen 
+Verteilung gezogen werden. Entsprechend ist das Ziel eines *Random-Effects*-Modells
+nicht die Schätzung der einzelnen $\eta_i$, sondern die Schätzung der Parameter
+der Verteilung aus der die  $\eta_i$ gezogen werden.
+Bevor wir uns diesen Schätzern zuwenden, wollen wir unsere drei obigen Schätzer
+noch anhand eines Beispiels anwenden.
+
+> **Anwendungsbeispiel** Wir verwenden hier einen Datensatz mit Informationen
+über Importe (`imports`) und das Nationalprodukt (`gnp`) verschiedener 
+Entwicklungsländer:
+
+
+
+
+```{r, echo=FALSE}
+import_gnp_data <- data.table::fread(
+  here("data/tidy/panels/trade_developing.csv"), 
+  select = c(
+    "country"="character", "year"="double", 
+    "imports"="double", "gnp"="double"), data.table = FALSE
+  ) 
+```
+
+```{r}
+head(import_gnp_data)
+```
+
+Wir berechnen zunächst die Schätzer manuell. Dazu bereiten wir zuerst die
+Daten entsprechend auf:
+
+```{r}
+T_dim <- length(unique(import_gnp_data$year))
+N_dim <- length(unique(import_gnp_data$country))
+
+B_matrix <- get_B_matrix(N_dim, T_dim)
+W_matrix <- get_W_matrix(N_dim, T_dim)
+
+import_gnp_data_y <- as.matrix(import_gnp_data["imports"])
+import_gnp_data_X <- as.matrix(import_gnp_data["gnp"])
+
+import_gnp_data_X_within <- t(W_matrix%*%import_gnp_data_X)
+import_gnp_data_X_between <- t(B_matrix%*%import_gnp_data_X)
+import_gnp_data_y_within <- t(W_matrix%*%import_gnp_data_y)
+import_gnp_data_y_between <- t(B_matrix%*%import_gnp_data_y)
+```
+
+Dann berechnen wir die Schätzer:
+
+```{r}
+X_matrix <- cbind(1, import_gnp_data_X) # Intercept 
+
+pooling_model <- solve(
+  t(X_matrix)%*%X_matrix) %*% (t(X_matrix) %*%import_gnp_data_y)
+between_model <- solve(
+  t(X_matrix)%*%B_matrix%*%X_matrix) %*% (
+    t(X_matrix)%*%B_matrix %*%import_gnp_data_y)
+within_model <- solve(
+  t(X_matrix)%*%W_matrix%*%X_matrix) %*% (
+    t(X_matrix)%*%W_matrix %*%import_gnp_data_y)
+
+knitr::kable(
+  tibble::tibble(
+    "Model"=c("Pooled OLS", "Between", "Within"),
+    "Steigungsparameter"=c(pooling_model[2], between_model[2], within_model[2])
+  ), digits = 4
+)
+```
+
+Alternativ können wir die Modelle auch unmittelbar mit der Funktion `plm::plm()`
+berechnen. Damit wir uns die explizite Nennung von `index` in jedem 
+Funktionsaufruf sparen, definieren wir gleich zu Beginn einen Paneldatensatz, 
+ein Objekt des Typs `pdata.frame`, der sehr ähnlich zum `data.frame` ist, aber
+z.B. die Informationen über die Indices enthält:
+
+```{r}
+import_gnp_pdata <- plm::pdata.frame(
+  import_gnp_data, index = c("country", "year"))
+
+pooling_model <- plm::plm(
+  imports~gnp, data = import_gnp_pdata, model = "pooling")
+
+between_model <- plm::plm(
+  imports~gnp, data = import_gnp_pdata, model = "between")
+
+within_model <- plm::plm(
+  imports~gnp, data = import_gnp_pdata, model = "within")
+
+knitr::kable(
+  tibble::tibble(
+    "Model"=c("Pooled OLS", "Between", "Within"),
+    "Steigungsparameter"=c(
+      coef(pooling_model)["gnp"], coef(between_model)["gnp"], 
+      coef(within_model)["gnp"])
+    ), digits = 4
+)
+```
+
+```{r, echo=FALSE}
+countries_considered <- c(
+  "India", "South Africa",  "Costa Rica", 
+  "Jamaica", "Mexico", "Greece", "Jordan")
+
+ltypes <- c("OLS"="solid", "Between"="solid", "Within"="solid")
+
+tradeplot <- import_gnp_data %>%
+  dplyr::filter(country %in% countries_considered) %>%
+  ggplot(., aes(x=gnp, y=imports, color=country)) +
+    geom_point() + theme_bw() + 
+    scale_color_viridis_d(name = "Land") +
+  labs(title = "Modelle im Vergleich") +
+    geom_abline(
+      aes(
+        intercept = coef(pooling_model)["(Intercept)"], 
+        slope = coef(pooling_model)["gnp"], 
+        linetype = "OLS"), 
+      color=viridis(4, option = "E")[1], size=1.0
+      ) +
+    geom_abline(
+      aes(
+        intercept = coef(between_model)["(Intercept)"], 
+        slope = coef(between_model)["gnp"], 
+        linetype = "Between"), 
+      color=viridis(4, option = "E")[2], size=1.0
+      ) +
+    geom_abline(
+      aes(
+        intercept = mean(fixef(within_model)), 
+        slope = coef(within_model)["gnp"], 
+        linetype = "Within"), 
+      color=viridis(4, option = "E")[3], size=1.0
+      ) +
+  scale_linetype_manual(
+      name = "Modell",
+      values = ltypes
+      ) +
+    guides(
+        linetype = guide_legend(override.aes = list(
+          linetype = "solid", color=c(viridis(4, option = "E")[1:3]))
+          )
+        ) +
+    theme(
+      panel.border = element_blank(), axis.line = element_line()
+    )
+```
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/PanelReg-1/model-comparison-trade-1.png")
+save_pdf_png(
+  filename = plot_file, plot = tradeplot, 
+  width = 6, height = 4)
+```
+
+```{r model-compa1, echo=FALSE, fig.cap="Vergleich der drei Schätzverfahren."}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+
+Die geschätzten Koeffizienten unterscheiden sich also deutlich voneinander.
+Das liegt daran, dass sie sehr unterschiedliche Variation mit in Betracht
+ziehen. Eine grafische Betrachtung wie die in Abbildung \@ref(fig:model-compa1)
+macht dies besonders deutlich:
+
+
+
+### Random-Effects Schätzer
+
+### Die Wahl des richtigen Schätzers
+
+### Noch mehr fixe Effekte
+
+Time fixed effects
+
 
 ## Modell-Diagnose und robuste Schätzverfahren {#sec:panel-dignostics}
+
+Neben dem Test auf fixed oder random effects....
 
 ## Dynamische Panels {#sec:panel-dynamics}
 
