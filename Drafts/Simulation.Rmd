@@ -1,0 +1,318 @@
+---
+title: "Untitled"
+author: "Claudius"
+date: "3/29/2021"
+output: 
+  pdf_document:
+    includes:
+      in_header: "preamble_drafts.tex"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment = "#>", message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(out.height = '75%', out.width = '75%', fig.align = 'center') 
+```
+
+```{r, warning=F, message=F}
+library(tidyverse)
+library(data.table)
+library(here)
+library(viridis)
+library(lmtest)
+library(plm)
+library(texreg)
+library(latex2exp)
+library(ggridges)
+library(icaeDesign)
+source(here("R/panel_mcs_funs.R"))
+```
+
+```{r, echo=FALSE}
+source(here::here("R/helpers.R"))
+```
+
+## Abschließende Simulation
+
+Wir wollen alles in diesem Kapitel gelernte noch einmal in einer umfassenden
+Simulation zusammenfassen. Damit wollen wir insgesonsdere die Performanz
+der verschiedenen Schätzer in unterschiedlichen Situationen verdeutlichen.
+Dabei bauen wir auf vorherigen Simulationen auf, erweitern aber unsere 
+Funktion zur Simulation künstlicher Daten um auch Besonderheiten wie
+CSD oder XXX zu berücksichtigen. In jedem Fall werden wir immmer die 
+fünf hier vorgestellten Schätzer -- 
+$\hat{\beta}_{POLS}$, $\hat{\beta}_{FD}$, $\hat{\beta}_{B}$, $\hat{\beta}_{W}$ und 
+$\hat{\beta}_{GLS}$ -- in den Vergleich mit einbeziehen.
+
+Zudem werden wir die Ergebnisse unserer Simulationen jetzt ein wenig anders
+darstellen müssen, da wir doch an einigen Stellschrauben drehen werden und
+eine vollstände Grafische darstellung für jeden einzelnen Fall wie in 
+Abbildung \@ref(fig:baseest) impraktikabel ist. 
+Daher werden wir die Schätzer vor allem im Hinblick auf ihren MSE 
+und den mittleren geschätzten Wert vergleichen. Während der MSE ein 
+generelles Maß für die Performance des Schätzers ist, gibt uns der 
+Mittelwert noch einmal einen genauen Hinweis darauf ob der Schätzer im 
+konkreten Fall verzerrt ist oder nicht.
+
+Abschließend sei noch darauf hingewiesen, dass einige Kombinationen bei den
+folgenden Simulationen nicht berücksichtigt werden:
+
+* Für das POLS-Modell spielt das Argument `effect` keine Rolle.
+* Das Hinzufügen von *time fixed effects* macht für das FD-Modell keinen Sinn.
+Daher werden FD-Modelle mit der Spezifikation `effect='time'` oder `model='twoways'` 
+nicht geschätzt.
+* Für das *Between*-Modell spielen individuelle Effekte keine Rolle.
+
+### Exogenität der Fixed Effects
+
+Das ist mit Sicherheit die absolute Gretchenfrage in der Panel-Ökonometrie:
+gibt es eine Korrelation der unabhängigen Variablen mit dem Fehlerterm?
+In anderen Worten, ist Annahme A2 des linearen Regressionsmodells verletzt.
+Um das Problem gehen wir von folgendem Modell für die einzelne Beobachtung 
+der abhängigen Variable aus:
+
+\begin{align}
+\label{eq:simuldepvar}
+  y_{it} &= \alpha + \beta x_{it} +\epsilon \nonumber\\
+  y_{it} &= \alpha + \beta x_{it} + (\eta_i + \delta_t + v_{it})\\
+\end{align}
+
+In allen Fällen gehen wir davon aus, dass 
+$\eta_i\overset{i.i.d.}{\propto}\mathcal{N}(\mu_\eta, \sigma_\eta)$ und
+$\delta_t\overset{i.i.d.}{\propto}\mathcal{N}(\mu_\delta, \sigma_\delta)$
+(diese und alle weiteren Parameter werden in Tabelle \@ref(tab:simulpars) 
+zusammengefasst).
+
+Für die Simulation müssen wir natürlich auch die unabhängigen Variablen 
+$\boldsymbol{X}$ simulieren. Der Einfachheit halber gehen wir im Folgenden nur
+von einer einzigen unabhängigen Variable aus. Diese erstellen wir gemäß der
+folgenden Gleichung.
+
+\begin{align}
+  \label{eq:indepvar}
+  x_{it} &= \rho x_{it-1} + \pi\eta_i + \iota\delta_t + \zeta_{it}
+\end{align}
+
+In dieser Gleichung gibt und $\rho$ die Persistenz der unabhängigen Variablen
+über die Zeit an. Die Parameter $\pi$ und $\iota$ bestimmten die Relevanz
+der unbeobachteten individuellen Effekte für die unabhängige Variable.
+
+\begin{table}
+\centering
+\label{tab:simulpars}
+\begin{tabular}{cccc}
+\toprule
+\textbf{Szenario} & \textbf{Parameter} & \textbf{Wert} & \textbf{Beschreibung} \\
+\midrule
+~ & $N$ & $50$\\
+~ & $T$ & $10$\\
+~ & $\alpha_0$ & $0$\\
+~ & $\beta$ & $1$\\
+~ & $\mu_\eta$ & $x$\\
+~ & $\sigma_\eta$ & $x$\\
+~ & $\mu_\delta$ & $x$\\
+~ & $\sigma_\delta$ & $x$ \\
+~ & $\mu_v$ & $0$\\
+~ & $\sigma_v$ & $1$\\
+~ & $\mu_\zeta$ & $1$\\
+~ & $\sigma_\zeta$ & $1 (0.2,1,5)$ \\ 
+~ & $\rho$ & $0.95$ Persistenz von $\boldsymbol{x}_i$\\
+1 & $\pi$ & $0-1$ Relevanz der $\eta_i$ für $\boldsymbol{x}_i$\\
+1 & $\iota$ & $0$ Relevanz der $\delta_t$ für $\boldsymbol{x}_i$\\
+2 & $\pi$ & $0$ Relevanz der $\eta_i$ für $\boldsymbol{x}_i$\\
+2 & $\iota$ & $0-1$ Relevanz der $\delta_t$ für $\boldsymbol{x}_i$\\
+3 & $\pi$ & $0-1$ Relevanz der $\eta_i$ für $\boldsymbol{x}_i$\\
+3 & $\iota$ & $0-1$ Relevanz der $\delta_t$ für $\boldsymbol{x}_i$\\
+\bottomrule
+\end{tabular}
+\caption{Die Parameter für die Simulation.}
+\end{table}
+
+
+Da der Fehlerterm $\epsilon$ in \@ref(eq:simuldepvar) drei Komponenten hat, 
+können wir folgende Fälle unterscheiden:
+
+1. $E(\epsilon | \boldsymbol{X})=0$: Alle Komponenten des Fehlers sind strikt exogen. Das ist der Fall wenn in Gleichung \@ref(eq:indepvar) $\pi=\iota=0$ oder in Gleichung \@ref(eq:simuldepvar) gilt, 
+dass $\eta_i=0\forall i$ und $\delta_t=0\forall t$.
+2. $E(\eta | \boldsymbol{X})\neq0$: Es gibt eine Korrelation zwischen individuellen 
+Effekten und den unabhängigen Variablen. Das ist der Fall wenn in Gleichung
+\@ref(eq:simuldepvar) $\exists i: \eta_i\neq0$ und in Gleichung \@ref(eq:indepvar) 
+$\pi\neq 0$.
+3. $E(\delta | \boldsymbol{X})\neq0$: Es gibt eine Korrelation zwischen zeitlichen 
+Effekten und den unabhängigen Variablen. Das ist der Fall wenn in Gleichung
+\@ref(eq:simuldepvar) $\exists t: \delta_t\neq0$ und in Gleichung \@ref(eq:indepvar) 
+$\iota\neq 0$.
+
+
+Zudem gäbe es noch den Fall, dass $E(v | \boldsymbol{X})\neq0$, i.e.es gibt eine 
+Korrelation zwischen 
+idiosynkratischen Fehlern und den unabhängigen Variablen. Das wäre der Fall
+wenn $Cov(x_{it}, \epsilon_{it})\neq 0$ und dann wäre die Regression ohnehin
+unbrauchbar. Daher wird dieser Fall nicht genauer betrachtet. 
+
+Nun vergleichen wir die Performanz der Fehler für die anderen drei Fälle.
+In allen Fällen bleiben die folgenden Parameter konstant:
+
+```{r}
+par_setting <- list(
+  "T_dim" = 10,
+  "N_dim" = 50,
+  "alpha0" = 0,
+  "beta" = 1,
+  "mean_fe"=0,
+  "sd_fe" = 1,
+  "mean_tfe"=0,
+  "sd_tfe" = 1,
+  "x_persistence" = 0.95,
+  "sd_x_errors" = 0.25,
+  "y_persistence" = 0.0,
+  "sd_y_errors" = 1,
+  "seed" = "1"
+)
+```
+
+In einem ersten Experiment untersuchen wir die Implikationen für unterschiedliche
+Werte von $\pi$. Beachten Sie, dass nur wenn $\pi=0$ eine Nichtberücksichtigung 
+der individuellen Effekten zu keiner Verzerrung des klassischen OLS-Schätzers führt.
+
+```{r, eval=F}
+x_fe_relevance <- c(0.0, 0.25, 0.5, 0.75, 1.0)
+n_simuls <- 500
+simul_results <- list()
+simul_dists <- list()
+
+for (i in seq_along(x_fe_relevance)){
+  par_setting[["x_fe_relevance"]] <- x_fe_relevance[i]
+  par_setting[["x_tfe_relevance"]] <- 0
+  mcs_result <- conduct_mcs(
+    n_simuls = n_simuls, data_parameters = par_setting, show_pb = F)
+  simul_results[[as.character(i)]] <- mcs_result$est_summary %>%
+    dplyr::mutate(
+      pi_value = par_setting[["x_fe_relevance"]]
+    )
+  simul_dists[[as.character(i)]] <- mcs_result$est_dist %>%
+    dplyr::mutate(
+      pi_value = par_setting[["x_fe_relevance"]]
+    )
+}
+results_summary <- data.table::rbindlist(simul_results)
+results_dist <- data.table::rbindlist(simul_dists)
+```
+
+```{r, echo=FALSE, eval=FALSE}
+data.table::fwrite(
+  results_summary, here("data/tidy/panels/p1-finalsimul-summary.csv"))
+data.table::fwrite(
+  results_dist, here("data/tidy/panels/p1-finalsimul-dist.csv"))
+```
+
+```{r, echo=FALSE}
+results_summary <- data.table::fread(
+  here("data/tidy/panels/p1-finalsimul-summary.csv"), 
+  colClasses = c("character", rep("double", 5)))
+results_dist <- data.table::fread(
+  here("data/tidy/panels/p1-finalsimul-dist.csv"), 
+  colClasses = c("double"))
+```
+
+```{r, echo=FALSE}
+create_summary_table <- function(x, varied_parameter, models_considered){
+  x %>%
+  dplyr::select(
+    dplyr::all_of(
+      c(varied_parameter, "model", "mean_deviation", "rmse")), 
+    dplyr::everything()
+  ) %>%
+  dplyr::filter(model %in% models_considered) %>%
+  dplyr::group_by(!!as.name(varied_parameter)) %>%
+  dplyr::arrange(pi_value, rmse, .by_group = T) %>%
+  dplyr::ungroup() 
+}
+```
+
+Die übersichtlichste Darstellungsform ist die einer Tabelle ähnlich zu 
+Tabelle \@ref(tab:sim1tab).
+Der besseren Vergleichbarkeit betrachten wir für diese eine Simulation aber
+auch noch einen grafischen Output (siehe Abbildungen \@ref(fig:sim1fig) und 
+\@ref(fig:sim1figdist)).
+
+```{r, echo=FALSE}
+models_considered <- c(
+  "Between_fe", "FD", "GLS_fe", "POLS", "Within_fe", "Within_twow"
+)
+varied_parameter <- "pi_value"
+sum_table <- create_summary_table(
+  results_summary, varied_parameter, 
+  models_considered) 
+
+knitr::kable(
+  sum_table, digits = 4, 
+  caption = "The results of the simulation", 
+  label = "tab:sim1tab")
+```
+
+```{r, echo=FALSE}
+point_plot <- sum_table %>%
+  dplyr::filter(model!="Between_fe") %>%
+  ggplot(
+    data = ., mapping = aes(x=pi_value, y=rmse, color=model)
+  ) +
+  geom_point() + geom_line() + theme_bw() +
+  labs(
+    title = TeX("Performance der Schätzer in Abhängigkeit von $\\pi$"),
+    x = TeX("$\\pi$"), y= "Root MSE"
+  ) +
+  scale_color_viridis_d() +
+  theme(
+    legend.position = "bottom", legend.title = element_blank(),
+    panel.border = element_blank(), axis.line = element_line()
+  )
+```
+
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/PanelReg-1/final_simulation_lines.png")
+save_pdf_png(
+  filename = plot_file, plot = point_plot, 
+  width = 6, height = 4)
+```
+
+```{r sim1fig, echo=FALSE, fig.cap="Performance der Schätzverfahren in Abhängigkeit davon wie start die unabhängigen Variablen mit der unbeobachtbaren Heterogenität korrelieren.."}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+
+
+```{r, echo=FALSE}
+models_considered <- c(
+  "FD", "GLS_fe", "POLS", "Within_fe", "Within_twow"
+)
+results_dist_red <- results_dist %>%
+  tidyr::pivot_longer(
+    cols = -dplyr::all_of(varied_parameter), 
+    names_to = "model", values_to = "estimates") %>%
+  dplyr::filter(model %in% models_considered) 
+
+dist_plot <- ggplot(results_dist_red, aes(
+  x = estimates, y = factor(pi_value), color=model, fill=model)) + 
+  geom_vline(xintercept = 1.0) +
+  geom_density_ridges(panel_scaling = T, alpha=0.25) +
+  labs(
+    title = TeX("Verteilung der Schätzer in Abhängigkeit von $\\pi$"),
+    x = TeX("$\\hat{\\beta}$"), y= TeX("$\\pi$")
+  ) +
+  theme_icae()
+```
+
+
+```{r, echo=FALSE}
+plot_file <- here::here(
+  "figures/PanelReg-1/final_simulation_dist.png")
+save_pdf_png(
+  filename = plot_file, plot = dist_plot, 
+  width = 6, height = 4)
+```
+
+```{r sim1figdist, echo=FALSE, fig.cap="Verteilung der durch die verschiedenen Schätzverfahren produzierten Schätzer."}
+knitr::include_graphics(plot_file, auto_pdf = T)
+```
+

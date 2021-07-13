@@ -1,0 +1,1098 @@
+---
+title: "Panelökonometrie II: GMM und kurze Panels"
+author: "Claudius"
+date: "3/29/2021"
+output: 
+  bookdown::pdf_book:
+    toc: true
+    toc_depth: 4
+    number_sections: true
+    latex_engine: xelatex
+    citation_package: natbib
+    includes:
+      in_header: "preamble_drafts.tex"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment = "#>", message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(out.height = '75%', out.width = '75%', fig.align = 'center') 
+```
+
+```{r}
+library(tidyverse)
+library(here)
+library(plm)
+library(texreg)
+library(pder)
+library(stargazer)
+```
+
+```{r}
+data("DemocracyIncome", package = "pder")
+```
+
+
+# Dynamische Panels I: der GMM-Ansatz für breite Panels
+
+Die GMM Methode ist seit den 90ern immer beliebter geworden, wenn es 
+darum geht dynamische Panels zu schätzen. 
+Das liegt daran, dass die Methode prinzipiell dazu geeignet ist, mehrere
+praktisch sehr relevante Herausforderungen zu addressieren:
+zum einen erlauben Sie die Schätzung dynamischer Panels unter 
+Berücksichtigung von Fixed Effekts bei gleichzeitiger Vermeidung
+des Bias der klassischen *within*-Schätzer. 
+Zum anderen sind sie dazu geeignet, der Endogenität von erklärenden 
+Variablen zu begegnen.
+Und darüber hinaus ist die Methode so häufig verwendet worden, dass
+sie für viele praktisch relevante Situationen angepasst wurde:
+unbalancierte Panels, Autokorrelation, Heteroskedastie und Endogenität
+mehrerer abhängiger Variablen wurden mittlerweile alle recht gut
+addressiert.
+Gleichzeitig handelt es sich um eine Methode mit vergleichsweise vielen
+Freiheitsgraden und gewisse Probleme wurden in der Forschungspraxis nur
+unzureichend ernst genommen \citep[e.g.][]{Roodman09}.
+Im Folgenden wollen  wir die Methode daher anhand eines einfachen Beispiels
+motivieren und dann beschreiben wie man sie sauber anwendet und die
+Annahmen über entsprechende Tests absichert.
+
+## Setting und Beispieldatensatz
+
+Wir gehen davon aus, dass wir es mit einem balancierten Panel mit
+$N$ Subjekten und $T$ Zeitschritten zu tun haben. Die Annahme
+des balancierten Panels ist praktisch irrelevant und vereinfacht nur
+die Notation bei der Definition der Schätzer. Alles was im folgenden
+beschrieben wird gilt genauso für unbalancierte Panels.
+
+Wir betrachten für diesen Kontext ein dynamisches Modell in der Form:
+
+\begin{align}
+  \label{eq:gmmsetting}
+y_{it} &= \alpha y_{i, t-1} + \boldsymbol{x}_{it} \boldsymbol{\beta} + \epsilon_{it}
+\end{align}
+
+wobei $y$ die abhängige Variable, $\alpha$ der Autokorrelationsparameter, 
+$\boldsymbol{x}$ der Vektor mit Kontrollvariablen (die mit unterschiedlichen Lags eingehen können), $\beta$ der Vekor mit den zu
+schätzenden Parametern und $\epsilon$ der Fehlerterm.
+Letzterer besteht aus zwei orthogonalen Teilen:
+
+\begin{align}
+  \label{eq:gmmerror}
+  \epsilon_{it} &= \mu_i + v_{it}\\
+  \mathbb{E}(\nu_i) &= \mathbb{E}(v_{it}) = 0
+\end{align}
+
+Wenn wir bei dieser Gleichung links und rechts $y_{i, t-1}$ abziehen
+bekommen wir die Wachstumsgleichung, die noch häufiger verwendet
+werden wird:
+
+\begin{align}
+  \label{eq:gmmdiff}
+  \Delta y_{it} = \left(\alpha - 1\right)y_{i,t-1} + \boldsymbol{x}_{it} \boldsymbol{\beta} + \epsilon_{it}
+\end{align}
+
+Als kleiner Preview warum wir sowohl Gleichung \ref{eq:gmmsetting} also auch \ref{eq:gmmdiff} betrachten:
+die Schätzung von Gleichung \ref{eq:gmmsetting} führt zum so genannten
+*Differenzen-GMM*-Schätzer, die simultane Schätzer beider Gleichungen
+zum *System-GMM*-Schätzer. Aber dazu später mehr.
+
+Der Beispieldatensatz, den wir im folgenden verwenden kommt aus
+\citet{acedemocracy}, wo die Autoren den kausalen Zusammenhang
+zwischen BIP und Demokratie schätzen.
+Ersteres wird gemessen durch das logarithmierte pro-Kopf Einkommen
+(`income`), zweiteres durch einen Index zwischen X und Y.
+Beim hier verwendeten Teildatensatz handelt es sich um ein Panel
+mit 211 Ländern ($N=211$), für die zwischen 1950 und 2000 jeweils in 
+5-Jahresperioden ein Index für Demokratie und Einkommen erhoben wurde.
+Wir haben also für jedes Land 11 Beobachtungen ($T=11$) und befinden
+uns eigentlich in einem typischen 'Mikro'-Setting mit $N>>T$, also
+genau die Situation für die GMM ursprünglich entwickelt wurde:
+
+```{r}
+pdim(DemocracyIncome)
+```
+
+```{r}
+head(DemocracyIncome, 3)
+```
+
+Die Spalte `sample` hilft uns später den Teildatensatz der
+Autoren zu verwenden und ihre Ergebnisse zu replizieren, aber hat
+keine inhaltliche Interpretation.
+
+## Motivation: die Verzerrung von des OLS und within-Schätzers
+
+Wir vereinfachen Gleichung \ref{eq:gmmsetting} noch weiter und 
+betrachten das Modell ohne erklärende Variablen:
+
+\begin{align}
+  \label{eq:gmmeq}
+  y_{i,t} = \alpha y_{i, t-1} + \mu_i + v_{i,t}
+\end{align}
+
+Diese Gleichung mit dem klassischen OLS-Schätzer zu schätzen ist 
+keine gute Idee. Um zu sehen warum betrachten wir die Periode $t-1$:
+
+\begin{align}
+  \label{eq:gmmprev}
+  y_{i,t-1} = \alpha y_{i, t-2} + \mu_i + v_{i,t-1}
+\end{align}
+
+Da davon auszugehen ist, dass es einen Zusammenhang zwischen der 
+abhängigen Variable und den individuellen Effekten $\mu$ gibt,
+ist in diesem Falle $y_{i,t-1}$ mit der Fehlerkomponente $\mu_i$
+korreliert.
+Zwar ist das für sich genommen in Gleichung \eqref{gmmprev} kein Problem, allerdings taucht $y_{i,t-1}$ ja in Gleichung \eqref{gmmeq} erneut auf, nur diesmal auf der rechten Seite als unabhängige Variable. Und hier führt die Korrelation mit $\mu_i$ dazu, dass das Modell  durch OLS nur unkonsistent geschätzt werden kann.
+Konkret kann man analytisch zeigen, dass
+
+\begin{align}
+  \label{eq:olsbias}
+  plim \hat{\alpha} = \frac{\left(1-\alpha^2\right)\sigma_\nu^2}{\left(1+\alpha\right)\sigma^2_\nu+\left(1-\alpha\right)\sigma_v^2}
+\end{align}
+
+Der OLS-Schätzer ist also positiv verzerrt. 
+Wir illustrieren diese Verzerrung unten mit einer Simulation.
+Die analytische Herleitung findet sich z.B. in XXX.
+
+Das Problem lässt sich nicht dadurch lösen, dass wir die individuellen Effekte im Rahmen des *within*-Modells eliminieren: zwar verschwindet
+durch die *within*-Transformation die Korrelation zwischen 
+$y_{i,t-1}$ und $\mu_i$, dafür wird über die Transformation eine
+Korrelation zwischen $y_{i,t-1}$ und $\bar{v}_i$, dem zeitlichen Durchschnitt der Fehler, eingeführt:^[Da dieses Ergebnis auf \citet{Nickel1981} zurückgeht, sprechen wir hier auch vom *Nickel-Bias*.]
+die *within*-Transformation eliminiert ja die individuellen Effekte dadurch, dass von jeder Beobachtung für Individuum $i$ der Durchschnitt über die Zeit abgezogen wird. Dieser Durchschnitt für die Fehler enthält aber eben die Fehler für alle Zeitschritte, weswegen es in einem dynamischen Setting notwendigerweise zu einer Verzerrung kommt.
+Ziehen wir nämlich die zeitlichen Durchschnitte aller Variablen aus Gleichung \eqref{eq:gmmeq} ab, erhalten wir:
+
+\begin{align}
+  \label{eq:nickel1}
+  y_{i,t} - \bar{y} &= \alpha y_{i, t-1} - \alpha \bar{y}_i + \mu_i - \mu_i + v_{i,t} - \bar{v}_{i}\\
+  y_{i,t} - \bar{y} &=  \alpha (y_{i, t-1} - \bar{y}_i) + (v_{i,t} - \bar{v}_{i})
+\end{align}
+
+Die Verzerrung ergibt sich daraus, dass $y_{i, t-1}$ *per definitionem* mit $\bar{v}_{i}$ korreliert ist.
+Der resultierende Bias verschwindet zwar wenn $T\rightarrow \infty$, 
+allerdings ist das zumindest in Mikropanels mit $N>T$ nicht der Fall
+und $T\rightarrow \infty$ bringt andere Probleme mit sich, die wir
+im nächsten Kapitel behandeln werden. Insgesamt hilft die Anwendung
+der *within*-Transformation im dynamischen Panel-Kontext also nicht
+wirklich weiter.
+
+### Eine Monte-Carlo Perspektive auf die Verzerrung
+
+..
+
+### Anwendungsbeispiel  {-}
+
+Wir nehmen unseren Beispieldatensatz und schätzen den folgenden
+Zusammenhang:
+
+\begin{align}
+  \label{eq:demols}
+  DEM_t = \alpha DEM_{t-1} + \beta \log(INC_{t-1}) + \mu_i + \gamma_t + v_{it}
+\end{align}
+
+mit $\mu_i$ und $\gamma_t$ als Zeit- und Länder-Fixed Effects.
+Wir sehen im folgenden, dass der nach unten verzerrte 
+*within*-Schätzer deutlich niedriger ist als der nach oben
+verzerrte OLS-Schätzer:
+
+```{r, results="asis"}
+ols_dem <- plm::plm(
+  formula = democracy ~ lag(democracy) + lag(income) + year -1, 
+  # year wegen time effects, -1 um Intercept zu eliminieren
+  model = "pooling",
+  data = DemocracyIncome, subset = sample==1)
+
+# equivalent:
+ols_dem <- plm::plm(
+  formula = democracy ~ lag(democracy) + lag(income), 
+  model = "within", effect = "time",
+  data = DemocracyIncome, subset = sample==1)
+
+within_dem <- plm::plm(
+  formula = democracy ~ lag(democracy) + lag(income), 
+  model = "within", effect = "twoways",
+  data = DemocracyIncome, subset = sample==1)
+texreg(list("OLS"=ols_dem, "Within"=within_dem), 
+       table = F, center = T)
+```
+
+## Konsistene Schätzung dynamischer Panels: der GMM Ansatz
+
+Von allen Alternativen hat sich der GMM-Ansatz für den oben 
+beschriebenen Kontext als superior herausgestellt. Das liegt
+vor allem daran, dass die klassischen Alternativen wie Maximum Likelikhood
+mit noch größeren Nachteilen einhergehen und mit dem GMM Ansatz
+gleich eine Strategie zur Addressierung der Endogenitätsprobleme
+einhergeht.
+
+GMM bedeutet zunächst einmal, dass man die Momente der Population 
+- also die Parameter, die uns eigentlich interessieren - durch 
+ihre Stichprobenäquivalente aus den Daten berechnet.
+Diese generelle Idee wird mit der Anwendung eines 
+Instrumentenvariablen-Ansatzes kombiniert, wobei wir keine externen
+Instrumente verwenden, sondern so genannte *interne Instrumtene*. Dabei handelt es sich einfach um die gelaggten Werte der abhängigen
+Variablen (und ggf. endogenen unabhängigen Variablen).
+
+Im Folgenden wollen wir uns Schritt für Schritt an die heute
+verwendeten GMM-Schätzer herantasten. 
+Dafür starten wir mit dem IV-Schätzer von \citet{AndersonHsiao82},
+welcher den ersten großen Schritt Richtung GMM darstellt, im Kern aber ein reiner IV-Schätzer ist. 
+Das führt dazu, dass er asymptotisch ineffizient ist. 
+In ihrem bekannten Artikel von 1981 ersetzten \citet{ArellanoBond81} 
+den IV-Ansatz durch die GMM-Methode und legten so den 
+Grundstein für den bis heute beliebten *Diff-GMM*-Schätzer.
+Dessen Eigenschaften können unter bestimmten Umständen für kleine
+Stichproben und Variablen mit geringer zeitlicher Variation verbessert werden, wenn man nicht nur das Modell in 
+Differenzen, sondern auch in Leveln schätzt. Das resultierende Modell
+ist dann der ebenfalls weit verbreitete *Sys-GMM*-Schätzer von
+\citet{BlundellBond98}.
+
+### Der IV-Schätzer von Anderson und Hsiao
+
+#### Anwendungsbeispiel {-}
+
+Der AS-Schätzer kann wie 'normale' IV-Schätzer über die Funktion 
+`plm::plm()` implementiert werden.
+Dazu wird in der Formel sowohl die abhängige als auch die 
+unabhängigen Variablen mit `plm::diff()` differenziert und 
+die zweiten Lags als Instrumente spezifiziert. Wie ausführlich in Kapitel
+\ref{IVchap} beschrieben, wir die Formel mit Hilfe des Pakets
+`Formula` \citep[][]{Formula} über `Formula::Formula()` spezifiziert:
+der Teil vor dem `|` ist die 
+originale Schätzgleichung (hier: `lag(diff(democracy)) + lag(diff(income))`)
+und der Teil nach dem `|` die Instrumente, hier jeweils der zweite Lag
+der abhängigen und unabhängigen Variable:
+
+```{r}
+dh_formula <- Formula::Formula(
+  diff(democracy) ~ lag(diff(democracy)) + lag(diff(income)) | 
+    lag(democracy, 2) + lag(income, 2))
+
+dem_hsia <- plm::plm(
+  formula = dh_formula, 
+  model = "within", effect = "time", 
+  data = DemocracyIncome, index = c("country", "year"), subset = sample == 1)
+```
+
+```{r, results="asis"}
+texreg(
+  l = list("OLS"=ols_dem, "Within"=within_dem, "AndersonHsiao"=dem_hsia), 
+  table = F, center = T, booktabs = T, use.packages=FALSE)
+```
+
+Wie zu erwarten fällt der konsistente IV-Schätzer genau zwischen den 
+nach unten verzerrten *within*- und den nach oben verzerrten OLS-Schätzer.
+<!--
+Gleichzeitig fallen die um 107 reduzierten Beochatungen auf - das entspricht
+der Anzahl der Länder in der Subsample, da aufgrund des Differenzierens genau
+eine Beobachtung pro Subjekt verloren geht.
+CHECK DIFFERENZ
+-->
+
+### Der Differenzen-GMM-Schätzer von Arellano und Bond
+
+\citet{ArellanoBond91} haben den Schätzer von \citet{AndersonHsiao81} in den 
+GMM-Kontext überführt und konnten damit die Effizienz der Verfahrens deutlich
+verbessern. Bevor wir in die Details des Schätzers einsteigen, wollen
+wir das Prinzip von GMM anhand eines einfacheren Beispiels verdeutlichen:
+
+Bei der GMM Methode schätzen wir die interessierenden Parameter
+indem wir Annahmen über bestimmte Momente der Verteilung des
+interessierenden Zufallsvariable treffen.^[Das ist ein 
+wichtiger Unterschied im Vergleich zur Maximum Likelihood Methode:
+Bei letzterer treffen wir konkrete Annahmen über die gesamte Verteilung
+der abhängigen Variablen (ODER GEMEINSAMEN VERTEILUNG DER DATEN?).
+Bei der GMM Methode sind die getroffenen Annahmen weniger stark, 
+weil sie sich nur auf einzelne Momente der Verteilung beziehen.
+Im Effekt ist GMM robuster, aber weniger effizient.]
+Diese Annahmen nennen wir *moment conditions* und sie nehmen
+die Form von Erwartungswerten an. 
+Sie spezifizieren den Erwartungswert für einen zu schätzenden 
+Parameter in Abhängigkeit der echten Momente der Verteilung.
+Diese können wir dann über ihre Stichprobenäquivalente so 
+formulieren, dass wir sie mit den Daten schätzen könenn, indem
+wir die Parameter so auswählen, dass die *moment conditions* 
+möglichst gut erfüllt sind.
+Wenn der geschätzte Wert gleich dem wahren Wert entspräche, wäre der empirische 
+Wert der *moment condition* gleich ihrem Erwartungswert.
+
+Betrachten wir dazu ein Beispiel: 
+wir gehen davon aus, dass die interessierende Variable $Y$ einer
+$\chi^2$-Verteilung folgt. 
+Der Parameter, den wir schätzen wollen ist der Mittelwert von $Y$.
+Wir wissen, dass der Erwartungswert
+einer aus dieser Verteilung gezogenen ZV gleich der Anzahl der
+Freiheitsgrade $d$ ist. 
+Daraus ergibt sich die *moment condition*:
+
+\begin{align}
+  \mathbb{E}(Y-d) = 0
+\end{align}
+
+Die *moment conditions* können in der Zahl
+größer sein als die Anzahl der zu schätzenden Parameter $X$.
+In diesem Falle sprechen wir von *Überidentifikation*.
+Mit diesem Fall kann der GMM-Schätzer gut umgehen: es handelt
+sich dabei um die effizienteste Methode die wir haben, welche
+die zusätzlichen Informationen der größeren Anzahl von 
+*moment conditions* in größere Schätz-Effizienz übersetzt.
+Für unser Beispiel können wir also eine zweite *moment condition*
+formulieren, welche die Tatsache ausnutzt, dass die Varianz
+einer $\chi^2$-verteilten ZV $2d$ beträgt. Daraus ergibt sich
+die zweite Bedingung:
+
+\begin{align}
+  \mathbb{E}\left(\left(Y-d\right)^2-2d\right)=0
+\end{align}
+
+Die beiden Bedingungen wurden in Form der theoretischen
+Erwartungswerte formuliert. Damit wir das ganze operationalisieren
+müssen wir diese Annahmen noch in ihre Stichprobenäquivalente
+übersetzen, also den Stichprobenmittelwert und die Stichprobenvarianz.
+Daraus ergibt sich:
+
+\begin{align}
+  \frac{1}{N}\sum_{i=1}^N\left(y_i-\hat{d} \right) = 0\\
+  \frac{1}{N}\sum_{i=1}^N\left[ \left(y_i-\hat{d} \right)^2 - 2\hat{d} \right] = 0\\
+\end{align}
+
+Man könnte jetzt für die Schätzung des Parameters entweder nur
+eine der beiden Bedingungen verwenden. In diesem Falle sollten
+wir die erste nehmen, weil man zeigen kann, dass sie eine 
+deutlich effizientere Schätzung erlaubt.
+Aber GMM erlaubt uns wie gesagt auch beide Bedingungen zu verwenden.
+Dann wählen wir die Parameter so, dass die empirischen Abweichungen
+von den Bedingungen minimiert werden. 
+Und wenn wir eben mehr Bedingungen haben als Parameter, dann werden für dieses Minimierungsproblem die Bedingungen nach ihrer Relevanz gewichtet. Aber dazu unten mehr.
+<!--
+DAS IST DIE GEWICHTUNGSMATRIX A UNTEN
+-->
+
+Kehren wir zurück zu unserem konkreten Anwendungsfall:
+ein wichtiges Element des neuen Schätzers von \citet{ArellanoBond91} im Vergleich zu \citet{AndersonHsiao81}
+ist also, dass er berücksichtigt, dass die
+Anzahl der möglichen Instrumente mit der Anzahl der Zeitschritte zunimmt.
+Betrachten wir dafür die ersten vier Zeitschritte: der erste Zeitschritt ist 
+sowieso nicht zu schätzen, weil unser dynamisches Modells Lags enthält, die für
+$t=1$ nicht definiert sind. Auf der zweite Zeitschritt fällt für unsere 
+Schätzung aus, weil das Modell ja auch noch Differenzen enthält. Interessant
+wird es also beim dritten Zeitschritt: aus Gleichung \eqref{eq:gmmdiff} ergibt 
+sich da:
+
+\begin{align}
+  \label{eq:}
+  y_{i, 3} - y_{i, 2} = \alpha \left(y_{i, 2} - y_{i, 1} \right) + \left(v_{i,3}-v_{i, 2}\right)
+\end{align}
+
+Für diese Schätzung haben wir genau ein Instrument, das wir anstelle von 
+$\left(y_{i, 2} - y_{i, 1} \right)$ nehmen können: 
+$y_{i, 1}$, denn es korreliert zwar mit $\left(y_{i, 2} - y_{i, 1} \right)$
+, aber nicht mit $\left(v_{i,3}-v_{i, 2}\right)$ Wie schaut das für den 
+vierten Zeitschritt aus? Hier haben wir:
+
+\begin{align}
+  \label{eq:}
+  y_{i, 4} - y_{i, 3} = \alpha \left(y_{i, 3} - y_{i, 2} \right) + \left(v_{i,4}-v_{i, 3}\right)
+\end{align}
+
+So wie der Fehlerterm hier formuliert ist, können wir nun $y_{i, 1}$ *und* 
+$y_{i, 2}$ als Instrument für $\left(y_{i, 3} - y_{i, 2} \right)$ verwenden. 
+Aus diesem Prinzip ergibt sich, dass wir
+für spätere Zeitschritte mehr potenzielle Instrumente zur Verfügung haben, 
+nämlich immer genau $T-2$.
+Für das weitere Vorgehen definieren wir die 
+$\left(T-2\right)\times\left(T-2\right)$-Matrix $L_i$, welche für 
+Beobachtungssubjekt $i$ in ihren $T-2$ Zeilen jeweils alle möglichen 
+Instrumente sammelt:
+
+* Stimmt Dimension? Bond et al Gleichung 7 sagt: T-w * m
+
+\begin{align}
+  \label{eq:instmatrix}
+  L_i = 
+  \left[
+  \begin{array}{cccccccccccc}
+  y_{i, 1} & 0 & 0 & 0 & 0 & 0 & \cdots & 0 & 0 & 0 & 0 \\
+   0 & y_{i, 1} & y_{i, 2}  & 0 & 0 & 0 & \cdots & 0 & 0 & 0 & 0 \\
+   0 & 0 & 0 & y_{i, 1} & y_{i, 2} & y_{i, 3} & \cdots & 0 & 0 & 0 & 0 \\
+   \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots\\
+   0 & 0 & 0 & 0 & \cdots & \cdots & \cdots & y_{i, 1} & y_{i, 2} & \cdots & y_{i, \left(T-2\right)} \\
+  \end{array}
+  \right]
+\end{align}
+
+In dieser Matrix sind also die Instrumente für jeden Zeitschritt
+in eine eigene Zeile geschrieben.
+
+Indem wir diese Matrix mit den Fehlern multiplizieren ergibt sich der Vektor
+
+\begin{align}
+  \label{eq:momcondvar}
+  \mu_i = L_i'\Delta v_i
+\end{align}
+
+dessen Erwartungswert unter der Annahme, dass die Instrumente und die 
+differenzierten Fehler nicht miteinander korrellieren, gleich Null ist:
+
+\begin{align}
+  \label{eq:momcond}
+  \mathbb{E}\left(\mu_i \right) = \mathbb{E}\left(L_i'\Delta v_i \right)=0
+\end{align}
+
+Diese Annahmen sind unsere *moment conditions*.
+Natürlich können wir die Fehler nicht direkt beobachten, operationalisieren Gleichung \eqref{eq:momcond} also indem wir 
+also $\Delta v_i$ mit den Residuen $\Delta y_i-\Delta X_n\beta$ als Stichprobenäquivalent ersetzen
+
+\begin{align}
+  m_i = L'_i\Delta \left(\Delta y_i-\Delta X_i\beta \right)
+\end{align}
+
+und berechnen davon der Durchschnitt über alle Beobachtungssubjekte
+
+\begin{align}
+  \label{eq:moms}
+  m=N^{-1}\sum_{i=1}^N m_i
+\end{align}
+
+
+CHECK :
+
+Wenn die Anzahl der zu schätzenden Parameter gleich der Anzahl 
+der *moment conditions* ist, dann setzen wir einfach Gleichung \eqref{eq:} $m \stackrel{!}{=} 0$ und 
+lösen nach $\beta$ auf um den GMM-Schätzer $\hat{\beta}_{DGMM}$ zu bekommen:
+
+\begin{align}
+  \label{eq:dgmm}
+  \hat{\beta}_{DGMM} = S. 177
+\end{align}
+
+Wenn $J>K$ gibt es keine exakte Lösung und wir müssen $\beta$ so wählen, dass
+$m$ möglichst klein wird. Dazu definieren wir eine Gewichtungsmatrix $\boldsymbol{A}$ und
+schreiben die quadrierten Fehler als:
+ 
+ ADD
+ 
+Wenn wir das minimieren indem wir die Ableitung gleich Null setzen und dann 
+nach $\beta$ auflösen bekommen wir den allgemeinen GMM-Schätzer 
+$\hat{\beta}_{DGMM}$: 
+
+\begin{align}
+  \label{eq:dgmmest}
+  \hat{\beta}_{DGMM} = S. 177
+\end{align}
+
+Wenn natürlich $J<K$ gilt, dann gibt es unendlich viele Lösungen für das 
+Minimierungsproblem und der Schätzer ist nicht definiert.
+
+Um Gleichung \ref{eq:dgmmest} in der Praxis zu schätzen müssen wir noch eine
+angemesse Gewichtsmatrix $\boldsymbol{A}$ wählen. Für den Fall von homoskedastischen
+und nicht autokorrelierten Fehlern kann man zeigen, dass die effizienteste 
+Wahl der Matrix in der Inversen der Varianz-Kovarianz Matrix der Momenten-Matrix
+$\boldsymbol{S}$:
+
+\begin{align}
+  \label{eq:vcovmom}
+    \boldsymbol{S} = 
+\end{align}
+
+Die Herleitung dieses nicht ganz trivialen Ergebnisses geht zurück auf 
+\citet{Hansen1982}.
+Die Intuition ist dabei, dass die Teile mit einer geringeren Varianz größeres
+Gewicht bekommen sollten und die Tatsache, dass miteinander korrelierte Fehler 
+gemeinsame Information enthalten ebenfalls mit berücksichtigt werden sollte.
+
+Da bei diesem Vorgehen die Gewichtsmatrix direkt vorgegeben ist und auf dieser 
+Basis dann die Parameter geschätzt werden, sprechen wir vom *one-step*-Schätzer.
+Wenn aber nun die Fehler des Modells heteroskedastisch oder
+autokorreliert sind, dann ist diese Matrix nicht mehr optimal
+und die Schätzung büst an Effizienz ein. 
+Das können wir zumindest teilweise addressieren, indem wir ein
+zweistufiges Verfahren anwenden, den *two-step*-Schätzer.
+
+Hierzu wir der erste Schritt wie oben beschrieben durchgeführt.
+Wir nehmen dann die resultierenden Residuen $\Delta \hat{v}_n^{(1)}$, und setzen die in Schätzgleichung \ref{eq:EST} ein, sodass sich ergibt:
+
+\begin{align}
+  \label{eq:gmm2step}
+  \mathbb{E}\left[\left(\sum_n L'_n \hat{v}_n^{(1)} \hat{v}_n^{(1)'}\right) \right]
+\end{align}
+
+Der Vorteil ist, dass wir nun einen Schätzer haben, der robust
+gegen Autokorrelation und Heteroskedastie ist.0
+
+#### Anwendungsbeispiel {-}
+
+Die eigentliche Berechnung der beiden Schätzer ist sehr einfach.
+Wir verwenden dazu die Funktion `plm::pgmm()`.
+Wie bei der Instrumentenvariablen-Schätzung verwenden wir eine
+erweiterte Schätzgleichung als erstes Argument, die diesmal allerdings
+aus drei Teilen besteht: 
+Zuerst kommt die klassischen Schätzgleichung - in unserem Beispiel 
+`democracy ~ lag(democracy) + lag(income)`.
+Der zweite Teil enthält die GMM Instrumente, in unserem Fall also 
+`lag(democracy, 2:99)`. Mit dem Zusatz `2:99` machen wir deutlich, dass wir alle 
+möglichen Lags verwenden wollen (mehr dazu in Abschnitt \ref{sec:instprolif}).
+Der dritte Teil enthält dann die normalen Instrumente für endogene Variablen. 
+Hier wäre das also `lag(income, 2)`.
+
+* DAS MIT DEN ARTEN VON INSTRUMENTEN DEUTLICH MACHEN
+
+Über das Argument `model` bestimmen wir dann ob wir den *one-step*
+(`'onestep'`) oder den *two-step*-Schätzer berechnen wollen.
+Wenn wir neben individuellen Effekten auch zeitliche Fixed Effects verwenden 
+wollen geht das über das Argument `effect`, das wir in letzterem Falle auf 
+`twoways` setzen.
+
+Um also sowohl den *one-step* also auch den *two-step*-Schätzer
+für unser Anwendungsbeispiel zu berechnen verwenden wir den folgenden Code:
+
+```{r}
+dem_formula <- Formula::Formula(
+  democracy ~ lag(democracy) + lag(income) | 
+    lag(democracy, 2:99) | lag(income, 2)) 
+
+abond_1step <- pgmm(
+  formula = dem_formula,
+  data = DemocracyIncome, subset = sample==1, 
+  index = c("country", "year"),
+  model = "onestep", effect = "twoways")
+
+abond_2step <- pgmm(
+  formula = dem_formula,
+  data = DemocracyIncome, subset = sample==1, 
+  index = c("country", "year"),
+  model = "twostep", effect = "twoways")
+```
+
+Beachten Sie, dass die verwendete Schätzgleichung auf der RHS dieses Mal aus 
+drei Teilen besteht: der erste Teil - `lag(democracy) + lag(income)` -  
+beschreibt wieder die unabhängigen 
+Variablen, also den ersten Lag der Demokratie- und Einkommensvariable.
+Der zweite Teil - `lag(democracy, 2:99)` - beschreibt die GMM-Instrumente.
+Das sind in diesem Falle die $0.5\cdot (10-2) \cdot (10-1)=45$ Lags der
+Demokratie-Variable.
+Der dritte Teil - `lag(income, 2)` - enthält die herkömmlichen Instrumente.
+In diesem Fall also der zweite Lag der Einkommensvariable und die Zeit-FE.
+Wenn dieser Teil fehlt, übernimmt `plm::pgmm()` automatisch alle Teile aus dem
+ersten Teil der RHS, die nicht als GMM-Instrumente verwendet werden, in diesen
+dritten Teil.
+
+Die Ergebnisse können dann ganz normal dargestellt werden:
+
+```{r, results="asis"}
+stargazer(
+  abond_1step, abond_2step, float = F, header = F, style="ajps",
+  column.labels = c("One-Step GMM", "Two-Step GMM"))
+```
+
+
+## Der System-GMM-Schätzer 
+
+Der letzte hier diskutierte Variante von GMM ist unter dem Namen *System-GMM*
+bekannt. Motiviert wird dieses Verfahren dadurch, dass der *Diff-GMM* aus dem
+vorherigen Abschnitt häufig darunter leidet, dass die Level-Lags der abhängigen
+Variablen nicht notwendigerweise stark mit den Differenzen 
+korrellieren: wenn sich das BIP pro Kopf z.B. wenig ändernt, dann sind Levels
+aus der Vergangenheit keine guten Instrumente für Veränderungen in der Zukunft.
+Das führt dann zu einem *weak instruments* Problem, das wir bereits
+vorher kennen gelernt haben. 
+Der *System-GMM* Schätzer ist eine mögliche Antwort auf dieses Problem: hier
+ergänzt das Differenzen-Modell um eine Schätzung in Levels und betrachtet 
+entsprechend zusätzliche Momentenbedingungen für den Level-Fall.
+
+** DETAILS TBA
+
+* **Problem S.144 aus Roodman (2009): Where system GMM offers the most hope, it may offer the least help.**
+
+#### Anwendungsbeispiel {-}
+
+Die Implementierung des *System-GMM*-Schätzers in `R` ist nicht sonderlich 
+aufwendig: wir belassen es bei der Spezifikation wie im Standardfall vom
+*Diff-GMM*-Schätzer, setzen das Argument `transformation` aber auf `ld`
+(also für eine Schätzung in Levels *und* Differenzen):
+
+```{r}
+eq_sys <- Formula::Formula(
+  democracy ~ lag(democracy) + lag(income) | 
+    lag(democracy, 2:99) | lag(income, 2))
+
+sys_gmm <- pgmm(
+  formula = eq_sys,
+  data = DemocracyIncome, subset = sample==1, index = c("country", "year"),
+  model = "twostep", effect = "twoways", transformation = "ld")
+```
+
+```{r, results="asis"}
+stargazer(
+  abond_2step, sys_gmm,
+  float = F, header = F, style="ajps",
+  column.labels = c(
+    "2Step GMM (normal)", "System-GMM"))
+```
+
+Das verändert die Ergebnisse deutlich: Einkommen ist jetzt hochsignifikant.
+
+## Zu viele Instrumente? {#sec:instprolif}
+
+In der bisherigen Beschreibung von Sys-GMM und Diff-GMM wurden immer alle zur 
+Verfügung stehenden Instrumente auch tatsächlich
+in der Schätzung verwendet. Das können bei wachsendem $T$ ziemlich viele 
+werden, schließlich stellt jeder zusätzliche Zeitschritt für jede Variable einen
+zusätzlichen Lag als Instrument zur Verfügung. Allein für die letzte Beobachtung
+sind es $T-2$ Instrumente allein und insgesamt $0.5(T-1)(T-2)$.
+Auf den ersten Blick mag das positiv erscheienen, tatsächlich ist es jedoch ein
+Problem, das in der Literatur unter dem Label *instrument proliferation*
+bekannt ist.
+Das führt zu drei zentralen Problemen 
+\citep[für eine detaillierte Diskussion siehe][]{roodman2009}:
+
+Erstens führen zu viele Instrumente zu einem Overfitting der
+instrumentierten Variable. Man stelle sich z.B. vor die Anzahl 
+der Instrumtente ist gleich der Anzahl an Beobachtungen.
+In diesem Falle geht der erste Schritt der IV-Schätzung 
+notwendigerweise mit einem perfekten Fit zwischen Instrumenten
+und instrumentierten Variablen einher. Wie aber sollen
+die Instrumente dann die endogenen Teile der instrumentierten
+Variable eliminieren, wenn sie doch zu einem perfekten Fit 
+(i.e. einem Fit mit $R^2=1$) führen? Das zeigt eindeutig, dass zu viele 
+Instrumente problematisch sind, allerdings sagt und das wenig ab wann wir es mit 
+'zu vielen' Instrumenten zu tun haben. Dementsprechend kommen wir nicht darum 
+herum in der Praxis immer zu testen ob 'zu viele' Instrumente vorliegen 
+(mehr dazu unten).
+
+Zweitens führen zu viele Instrumente zu Problemen bei der Schätzung der optimalen 
+Gewichtsmatrix $\boldsymbol{A=S}^{-1}$ (Gleichung \eqref{eq:vcovmom}), denn 
+deren Größe wächst quadratisch mit der Anzahl an Instrumenten (und damit zu $T$). 
+Dieses Problem wird noch dadurch verstärkt, dass es sich bei den Elementen 
+dieser Matrix um Korrelationen zwischen den Instrumenten und Residuen handelt - 
+also um die vierten Momente der eigentlichen Daten. 
+Um solche hohen Momente zu schätzen braucht man in der Regel erst 
+recht extrem viele Datenpunkte. Ein Symptom dieses Problems in der Praxis ist,
+dass die Gewichtsmatrix singulär wird.^[Praktisch tritt das häufig auf, wenn 
+sich der Anzahl der Instrumente der Querschnittsdimension $N$ annähert.] 
+In diesem Fall rechnet man mit der Pseudoinverse weiter, was häufig funktioniert, 
+aber das grundsätzliche Problem zu vieler Instrumente erneut verdeutlicht.
+
+Drittens führen zu viele Instrumente dazu, dass die $p$-Werte zweier 
+zentraler Spezifikationstests für GMM-Schätzungen, dem Sargan-Hansen und 
+Difference-in-Hansen-Test (siehe Abschnitte \ref{hansentest} und 
+\ref{diffhansentest}), künstlich nach oben getrieben werden. Die Formulierung 
+dieser Tests ist dabei so, dass wir für eine konsistente GMM-Schätzung die 
+Nullhypothese *nicht* ablehnen wollen. Zu hohe $p$-Werte wägen uns also in 
+falscher Sicherheit und sind somit besonders problematisch. Die genauen
+Implikationen für die Tests werden in deren entsprechenden Abschnitten 
+besprochen, diese bedeutsame Implikation zu vieler Instrumente sei aber schon
+an dieser Stelle angemerkt.
+
+Zu viele Instrumente sind also ein ernstzunehmendes Problem, das noch dadurch
+verstärkt wird, dass wir in der Praxis gar nicht genau sagen können wann genau
+wir es mit 'zu vielen' Instrumenten zu tun haben.
+Daher empfiehlt sich folgendes Vorgehen: wir reduzieren die Anzahl der 
+Instrumente mit Hilfe eines oder besser beider gleich beschriebenen Verfahren 
+und überprüfen ob sich die geschätzten Werte signifikant geändert haben.
+Wenn das der Fall ist, dann scheinen wir ein Problem mit zu vielen Instrumenten
+zu haben und sollten mit dem redzierten Set an Instrumenten weiterarbeiten.
+Falls die Reduktion aber keinen signifikanten Effekt hat brauchen wir die 
+Anzahl der Instrumente nicht zu reduzieren, außer vielleich für die unten
+beschriebenen Sargan-Hansen und Diff-in-Hansen-Tests.^[Wie unten beschrieben
+kann eine Reduktion der Instrumente die Varianz des Schätzers erhöhen, weswegen
+wir deren Anzahl für die Schätzung nur reduzieren sollten wenn das auch wirklich
+geboten ist.]
+
+Die beiden Strategien zur Reduktion der Instrumente sind dabei folgende:
+zum einen könnten wir einfach die Anzahl der als Instrumente
+zu verwendeten Lags reduzieren, also z.B. für $y_t$ nur die letzten beiden
+Lags ($y_{t-1}$ bis $y_{t-2}$) als Instrumente heranziehen und nicht alle Lags, 
+welche die Daten hergeben würden. Dann steigt die gesamte Anzahl an Instrumenten
+nicht mehr quadratisch, sondern nur noch linear mit $T$.
+Das gleiche gilt für die zweite Strategie: 
+hier wird die Instrumentenmatrix \eqref{eq:instmatrix} verkleinert.
+Konkret nehmen wir die 
+$\left(T-2\right)\times\left(T-2\right)$-Matrix \eqref{eq:instmatrix}:
+
+\begin{align*}
+  L_i = 
+  \left[
+  \begin{array}{cccccccccccc}
+  y_{i, 1} & 0 & 0 & 0 & 0 & 0 & \cdots & 0 & 0 & 0 & 0 \\
+   0 & y_{i, 1} & y_{i, 2}  & 0 & 0 & 0 & \cdots & 0 & 0 & 0 & 0 \\
+   0 & 0 & 0 & y_{i, 1} & y_{i, 2} & y_{i, 3} & \cdots & 0 & 0 & 0 & 0 \\
+   \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots\\
+   0 & 0 & 0 & 0 & \cdots & \cdots & \cdots & y_{i, 1} & y_{i, 2} & \cdots & y_{i, \left(T-2\right)} \\
+  \end{array}
+  \right]
+\end{align*}
+
+und 
+'schieben sie zusammen' (oder 'kollabieren') sie sodass sich folgende 
+$X \times X$-Matrix ergibt:
+
+\begin{align}
+  \label{eq:instmatrixcoll}
+  L_i = 
+  \left[
+  \begin{array}{cccccccccccc}
+  y_{i, 1} & 0 & 0 & 0 &\cdots & 0 & 0 & 0 \\
+   y_{i, 1} & y_{i, 2} & 0 & 0 & \cdots & 0 & 0 & 0 \\
+   y_{i, 1} & y_{i, 2} & y_{i, 3} & 0 &\cdots & 0 & 0 & 0  \\
+   \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots \\
+   y_{i, \left(T-3\right)} & y_{i, \left(T-4\right)} & y_{i, \left(T-5\right)} & y_{i, \left(T-6\right)}& \cdots & y_{i,2} & y_{i,1} & 0 \\
+   y_{i, \left(T-2\right)} & y_{i, \left(T-3\right)} & y_{i, \left(T-4\right)} & y_{i, \left(T-5\right)}& \cdots & y_{i,3} & y_{i,2} & y_{i,1} \\
+  \end{array}
+  \right]
+\end{align}
+
+Natürlich können beide Ansätze auch kombiniert werden - dann ist die Anzahl der
+Instrumente sogar unabhängig von $T$.
+
+\citet{Roodman2009} führt einige MCS durch um die Effekte der Strategien zu
+illustrieren. Dabei sind die folgenden Ergebnisse zentral:
+
+1. Die Reduktion der Instrumente erhöht den Standardfehler der geschätzten
+Koeffizienten. Vor diesem Hintergrund soltlte die Instrumentenanzahl für die
+Parameterschätzung also nur reduziert werden wenn das wirklich notwendig ist.
+
+2. Die Verwendung eine kollabierten Instrumentenmatrix reduziert die 
+Verzerrung des Schätzers, zumindest in dieser Anwendung, die aus dem
+Overfitting der instrumentierten Variablen folgt. Letzteres scheint auch bei
+geringer Anzahl an Instrumenten ein Problem zu sein. Die Verwendung einer
+kollabierten Matrix scheint daher in jedem Fall sinnvoll zu sein.
+
+3. Die Kombination beider Strategien geht im Kontext der Parameterschätzungen
+kaum mit Verbesserungen aber leicht erhöhter Varianz der geschätzten Werte 
+einher. Wenn die Annahmen für GMM nicht erfüllt sind wird der Bias im Vergleich
+zur kollabierten Matrix sogar erhöht. Für die Parameterschätzung scheint nur
+die Verwendung der kollabierten Matrix die beste Option zu sein, in jedem Fall
+sollte nicht auf den Kollaps der Matrix verzichtet werden.
+
+4. Wenn es um die $p$-Werte des Sargan-Hansen Tests geht ist die Antwort sehr
+klar: man sollte die Anzahl der Lags reduzieren *und* die Instrumentenmatrix
+kollabieren, dann funktioniert der Test selbst bei sehr großem $T$ noch sehr gut.
+Gleichzeitig zeigt sich, dass bei Ausbleibender Kontrolle für zu viele Instrumente
+der Test praktisch nutzlos wird.
+
+Zwar handelt es sich bei diesen Ergebnissen 'nur' um MCS-Ergebnisse, sie legen
+jedoch nahe, dass für Tests immer die Anzahl der Lags reduziert und die 
+Instrumentenmatrix immer kollabiert werden sollte. Für die Schätzung der Parameter
+scheint der Nutzen der Kollabierung die Kosten höherer Standardfehler zu überwiegen,
+allerdings ist die Schlussfolgerung hier weniger eindeutig.
+
+Beide Strategien sind sowohl für Diff-GMM und Sys-GMM einfach in `R` zu impementieren: 
+um die Anzahl der Lags für die Konstruktion von Instrumenten zu kontrollieren 
+passen wir unmittelbar den zweiten Teil der GMM-Formel an, zur Kollabierung
+der Instrumentenmatrix ergänzen wir das Argumten `collapse = TRUE`.
+
+> **Anwendungsbeispiel:**
+
+```{r}
+abond_2step_lim <- pgmm(
+  formula = democracy ~ lag(democracy) + lag(income) | 
+    lag(democracy, 2:4) + lag(income, 2:4),
+  data = DemocracyIncome, subset = sample==1, index = c("country", "year"),
+  model = "twostep", effect = "twoways")
+
+abond_2step_col <- pgmm(
+  formula = democracy ~ lag(democracy) + lag(income) | 
+    lag(democracy, 2:99) + lag(income, 2:99),
+  data = DemocracyIncome, subset = sample==1, index = c("country", "year"),
+  model = "twostep", effect = "twoways", collapse = TRUE)
+```
+
+```{r, results="asis"}
+stargazer(
+  abond_2step, abond_2step_lim, abond_2step_col,
+  float = F, header = F, style="ajps",
+  column.labels = c(
+    "2Step GMM (normal)", "2Step GMM (lim)", "2Step GMM (collapsed)"))
+```
+
+In unserem Beispielfall sehen wir aber keinen großen Unterschied bei den 
+Schätzungen. Das deutet darauf hin, dass es im ersten Fall kein genuines 
+Problem mit zu vielen Instrumenten gab.
+
+
+## Inferenz und Diagnose
+
+Die Schätzung mit GMM erlaubt viele Freiheitsgrade. 
+Umso wichtiger ist es . 7.4!!!
+
+### Robuste Standardfehler
+
+Die theoretischen Formeln für die Varianz-Kovarianz-Matrix der GMM-Schätzer
+führen in der Praxis oft zu verzerrten Ergebnisse. Dafür gibt es mehrere 
+Gründe: 
+Die Formulierung für die *one-step*-GMM Schätzer ist extrem anfällig für
+Autokorrelation und Heteroskedastie. Zwar ist das für den *two-step*-GMM Schätzer
+nicht mehr der Fall, dafür ist die zugrundeliegende Formel hier nichtlinear und
+deren Schätzung wird aufgrund der großen Anzahl von 
+Instrumenten und damit Parametern sehr schnell ungenau, bzw. die geschätzten
+Standardfehler werden (in der Regel nach unten) verzerrt geschätzt.
+Die Lösung besteht darin eine robuste Variante der Varianz-Kovarianz Matrix
+zu schätzen.
+\citet{Windmeijer2005} hat ein entprechendes Verfahren sowohl für den 
+*one-step* als auch *two-steps*-Fall vorgeschlagen und ausführlich beschrieben.
+Die Implementierung in `R` ist über die Funktion `plm::vcovHC()` möglich und 
+sollte eigentlich routinemäßig verwendet werden.
+
+> **Anwendungsbeispiel:** Zunächst schätzen wir wie oben noch einmal den 
+einfachen GMM-Schätzer:
+
+```{r}
+abond_1step <- pgmm(
+  formula = democracy ~ lag(democracy) + lag(income) | 
+    lag(democracy, 2:99) | lag(income, 2),
+  data = DemocracyIncome, subset = sample==1, index = c("country", "year"),
+  model = "onestep", effect = "twoways")
+
+abond_2step <- pgmm(
+  formula = democracy ~ lag(democracy) + lag(income) | lag(democracy, 2:99) | lag(income, 2),
+  data = DemocracyIncome, subset = sample==1, index = c("country", "year"),
+  model = "twostep", effect = "twoways")
+```
+
+> Der Funktion `plm::vcovHC()` übergeben wir das geschätzte Objekt und 
+bekommen direkt die robuste Varianz-Kovarianz ausgegeben. 
+Am einfachsten ist es, diese Matrix dann der Funktion `lmtest::coeftest()` zu 
+übergeben, die gleich die p-Werte und Standardfehler mit berechnet. Diese 
+können wir dann wiederum einer Funktion zur Aufbereitung der Regressionstabelle
+übergeben, z.B. `stargazer::stargazer()`:
+
+```{r}
+standard_vcov_1step <- lmtest::coeftest(
+  x = abond_1step, vcov. = vcov(abond_1step)) 
+standard_vcov_2step <- lmtest::coeftest(
+  x = abond_2step, vcov. = vcov(abond_2step)) 
+
+rob_vcov_1step <- lmtest::coeftest(
+  x = abond_1step, vcov. = vcovHC(abond_1step)) 
+rob_vcov_2step <- lmtest::coeftest(
+  x = abond_2step, vcov. = vcovHC(abond_2step)) 
+```
+
+> Diese können wir dann manuell in den Ergebnistabellen berücksichtigen:
+
+```{r, results='asis'}
+stargazer::stargazer(
+  abond_2step, abond_2step, type = "latex", header = F, float = F,
+  column.labels = c("Standard", "Robust SE"), 
+  se = list(standard_vcov_2step[, 2], rob_vcov_2step[, 2]), 
+  t = list(standard_vcov_2step[, 3], rob_vcov_2step[, 3]),
+  p = list(standard_vcov_2step[, 4], rob_vcov_2step[, 4]))
+```
+
+### Hansen-Sargan Test auf Überidentifizierung {#hansentest}
+
+Dieser Test, der unter dem Namen *Hansen's J-Test*, bekannt ist, überprüft die 
+Validität der verwendeten Instrumente und sollte wann immer möglich durchgeführt
+werden. Da dieser Test nur anwendbar ist, wenn die Anzahl der Instrumente 
+größer ist als die Anzahl der *moment conditions*, Gleichung XX also
+*überidentifiziert* ist, sprechen wir hier häufig von Hansen's 
+*overidentification test*. Die Idee des Tests ist es die Residuen der 
+GMM-Schätzung auf alle Instrumente zu regressieren. Im Falle valider
+Instrumente sind diese mit den Fehlertermen unkorreliert. Entsprechend würden
+wir erwarten, dass die empirischen Momente um Null herum verteilt sind 
+(aber eben wegen der Überidentifikation nicht exakt Null sind).
+Die Teststatistik $J$ normalisiert den Wert der empirischen Momente durch
+ihre geschätzte Varianz-Kovarianz Matrix $\boldsymbol{S}$ (also der Matrix
+aus Gleichung \eqref{eq:vcovmom}) und summiert sie auf.
+Unter der Nullhypothese folgt sie einer $\chi^2$-Verteilung mit $m-k$ 
+Freiheitsgraden (wobei $m$ die Anzahl 
+der Instrumente und $k$ die Anzahl der endogenen Variablen ist). Letztere 
+korrespondieren also zum Grad der Überidentifikation von Gleichung X.
+
+Was tun wenn wir die Nullhypothese von Hansen's J-Test ablehnen müssen? 
+In diesem Fall sind unsere Instrumente nicht unabhängig von den Fehlern, 
+die erste Bedingung für valide Instrumente ist also verletzt.^[Die zweite
+Bedingung für valide Instrumente bezieht sich auf die Korrelation zwischen
+den Instrumenten und den instrumentierten Variablen. Falls diese 
+Bedingung nicht erfüllt ist, sprechen wir von *schwachen Instrumenten* - 
+Tests und Konsequenzen werden im nächsten Abschnitt diskutiert.]
+Da wir 
+in diesem Fall unseren geschätzten Werten unter keinen Umständen trauen können
+muss die Schätzgleichung angepasst werden. 
+Vor diesem Hintergrund sollten wir uns verdeutlichen, dass eine Ablehnung von
+$H_0$ grundsätzlich zwei Gründe haben kann: 
+zum einen könnten schlicht unsere Instrumente nicht valide sein, also nicht 
+den in Kapitel XX formulierten Anforderungen entsprechen.
+Zum anderen können wir aber auch unsere Schätzgleichung misspezifiziert haben:
+wenn wir z.B. eine wichtige Variable vergessen haben kann dies ebenfalls
+eine Korrelation zwischen dem Fehlerterm und den Instrumenten induzieren
+\citep[S. 141][]{roodman2009}.
+Daher ist eine mögliche Reaktion auf eine Ablehung von $H_0$ die kritische
+Prüfung der Schätzgleichung.
+Wenn $H_0$ nicht abgelehnt werden kann ist das noch nicht automatisch Grund
+zur Freude: wie in Abschnitt PROLIF beschrieben und ausführlich in 
+\citet[][]{roodman2009} diskutiert kann die Anzahl der Instrumente die 
+$p$-Wert des Sargan-Tests nach oben treiben.^[\citet[S. 142][]{roodman2009} macht 
+zudem richtigerweise
+darauf aufmerksam, dass aufgrund der Formulierung des Hypothesentests des 
+Sargan-Tests herkömmliche Grenzen für die Ablehnung von $H_0$ mit Vorsicht
+zu genießen sind: so würde ein $p$-Wert von $0.25$ zwar nicht dazu führen,
+dass wir $H_0$ nach herkömmlichen Konventionen ablehnen würden, es würde aber
+bedeuten, dass wenn unsere Instrumente tatsächlich valide *wären*, wir die
+empirische Teststatistik nur mit einer Wahrscheinlichkeit von 25% beobachten
+würden. Entsprechend sollte man deutlich höhere $p$-Werte anstreben als für
+die Ablehnung von $H_0$ notwendig.]
+Das sollte nicht überraschen weil die potenziell problematische 
+Matrix $\boldsymbol{S}$ direkt in der Gleichung der Teststatistik vom 
+Sargan-Test auftaucht. 
+Leider gibt es aber auch hier keine eindeutige theoretische Antwort darauf, 
+ab welcher Zahl von Instrumenten die Ergebnisse des Sargan-Tests unglaubwürdig
+werden, sodass uns nichts anderes übrig bleibt als *vor* dem Sargan-Test
+das Problem der *instrument proliferation* so gut es geht mit Hilfe der
+oben beschriebenen Strategien auszuschließen.
+
+> **Anwendungsbeispiel:** In `R` wird über die Funktion `plm::sargan()` 
+durchgeführt. Das Argument `weights` sollte passend zum gewählten Schätzverfahren 
+(`onestep` oder `twosteps`) gewählt werden.
+
+```{r}
+plm::sargan(abond_2step, weights = "twosteps")
+```
+
+> **Exkurs: Hansen oder Sargan-Test?** Hier und an anderer Stelle mag man leicht
+verwirrt sein ob der unterschiedlichen Benennung des Testverfahrens. Das ist
+insofern auch tatsächlich problematisch, da der Hansen-Test eigentlich 
+sinnvollerweise vom Sargan-Test abgegrenzt werden könnte, das in der Praxis aber
+de facto häufig nicht passiert. Der Sargan-Test geht auf \citet{sargan1958} 
+zurück. Dieser Test ist für den Fall geeignet, wenn das zugrundeliegende 
+Modell mit dem *one-step*-Verfahren geschätzt wurde, die optimale Gewichtsmatrix
+$\boldsymbol{A}$ also nicht geschätzt, sondern berechnet wurde. Dementsprechend
+basiert dieser Test auf der Annahme homoskedastischer und nicht autokorrelierter
+Fehlerterme - Annahmen, die in der Praxis kaum erfüllt sind. Gleichzeitig ist
+er auch nicht so anfällig für das Problem der *instrument proliferation*, weil 
+die problematische Matrix $\boldsymbol{S}$ ja gar nicht geschätzt, sondern
+analytisch berechnet wird.
+\citet{Hansen1982} hat den Sargan-Test dann für den Fall des *two-step*-Verfahrens 
+verallgemeinert. Die adaptierte Teststatistik berücksichtigt, dass 
+$\boldsymbol{S}$ geschätzt wird und das Verfahren basiert nicht mehr auf der 
+Annahme homoskedastischer und nicht autokorrelierter Fehlerterme - gleichzeitig
+wird es aufgrund der Schätzung von $\boldsymbol{S}$ anfäliiger für das Problem 
+der *instrument proliferation*
+
+### Difference-in-Hansen test {#diffhansentest}
+
+Der Difference-in-Hansen-Test (oft auch: 
+'Dfference-in-Sargan', 'incremental Hansen/Sargan', C.Test oder Hayashi-Test;
+hier im Folgenden DIH-Test)
+ist wenig überraschend eng mit dem Sargan-Test verwandt und hilfreich die
+Ursache für geringe $p$-Werte von letzterem zu identifizieren.
+Der Test basiert auf dem Vergleich der $J$-Teststatistik vom Sargan-Test für
+die Situation in der wir eine bestimmte Menge an Instrumenten zu unserer 
+Schätzgleichung hinzufügen. Beim Hinzufügen von $k$ Instrumenten ist die 
+Differenz in der $J$-Teststatistik unter $H_0$ $\chi^2(k)$-verteilt.
+Da der Test auf der Teststatistik des Sargan-Hansen-Tests aufbaut ist er 
+genauso anfällig für das Problem der *instrument proliferation* wie der
+vorher beschriebene Test.
+
+Der DIH-Test ist vor allem im Kontext von Wachstumsmodellen mit Kontrollvariablen
+sehr wichtig: **S. 148 in Roodman (2009)**.
+
+Meines Wissens gibt es keine automatische Implementierung des DIH-Tests in `R`.
+Das ist allerdings auch kein Problem, weil der Test sehr leicht auf Basis der
+Ergebnisse von `plm::sargan()` berechnet werden kann.
+
+### Autokorrelationstest
+
+Aus den Anahmen ergibt sich, dass das Modell nur konsistent ist wenn die
+Fehler nicht im zweiten Grad autokorreliert sind.
+Ein möglicher Grund für Autokorrelation auch im zweiten Grad ist die Verwendung 
+von Jahresdurchschnitten. Die Berechnung der Durchschnitte induziert 
+Autokorrelation, entsprechend lohnt es sich darüber nachzudenken, nur die 
+Beobachtungen alle $x$ Jahre zu verwenden \citep[][819]{Acemoglu2008}.
+
+Die Nullhypothese ist jeweils die Abstinenz von Autokorrelation. Über das
+Argument `order` können wir angeben, ob wir Autokorrelation von X (`order = 1`)
+oder Y (`oder = 2`) testen wollen. In der Praxis sollte die $H_0$ für 
+`order = 2` nicht abgelehnt werden können.
+
+```{r}
+plm::mtest(abond_2step, order = 2)
+```
+
+
+## Zusammenfassung: Ablauf einer GMM Schätzung
+
+Im Folgenden wollen wir den Ablauf einer GMM-Anwendung noch einmal Schritt
+für Schritt zusammenfassen, wobei die Reihenfolge nicht an jeder Stelle
+verbindlich ist.
+
+**1. Gleichung aufstellen und endogene Variablen identifizieren**
+
+Am Anfang steht selbstverständlich die Formulierung der Schätzgleichung.
+Dabei sollten Variablen gleich aufgeteilt werden nach exogenen und 
+endogenen Variablen. Die entsprechenden Instrumente können dann in einer
+durch `Formula::Formula()` definierten Formel spezifiziert werden.
+
+* GMM und normale Instrumente
+
+**2. Entscheidung ob Sys-GMM oder Diff-GMM**
+
+Bei der Entscheidung ob Sys-GMM oder Diff-GMM die bessere Wahl ist spielt zum
+einen die  Persistenz und inter- vs. intra-individual Variation der Variablen
+eine Rolle: bei persistenten Variablen und Variation v.a. zwischen den Subjekten 
+ist der Sys-GMM-Schätzer in der Regel zu bevorzugen, weil Diff-GMM dann nur auf 
+sehr schwachen Instrumenten aufbaut 
+\citep[siehe z.B.][]{CastelloCliment2019, Bond2001}.
+Gleichzeitig sind die Annahmen für Sys-GMM restriktiver und gerade die Frage 
+ob die Blundell-Bond-Voraussetzung erfüllt ist sollte explizit diskutiert werden
+\citep[siehe die ausführlichen Schilderungen in][Abschnitt IV]{Roodman2009}.
+
+**3. Entscheidung one-step oder two-step**
+
+Wenn es nicht starke Argumente für die *one-step*-Variante gibt, sollte die
+*two-step*-Variante gewählt werden, denn Heteroskedastie und Autokorrelation
+sind weit verbreitete Phänomene.
+
+* Aber: vgl. Bond2001, S. 18!!!
+
+**4. Reduktion der Anzahl an Instrumenten**
+
+Ohne Anpassungen besteht die große Gefahr der *instrument proliferation*.
+Daher bietet sich mindestens die Schätzung mit kollabierter Instrumentenmatrix 
+an, ggf. ergänzt um die Reduktion der für die Instrumente verwendeten Lags. 
+Mit diesen alternativen Spezifikationen kann auf die Gefahr einer 
+*instrument proliferation* hin getestet werden. Gerade für die späteren 
+Spezifikationstests sollte unbedingt die Variante mit der geringsten Anzahl
+an Instrumenten verwendet werden.
+
+**6. Robuste Varianz-Kovarianz-Matrix berechnen**
+
+Da die standardmäßig berechneten Standardfehler in der Praxis regelmäßig
+verzerrt sind, sollte man eigentlich immer die von \citet{Windmeijer2005}
+entwickelte Korrektur der Varianz-Kovarianz-Matrix vornehmen. Die Funktion
+`plm::vcovHC()` macht das relativ einfach möglich.
+
+**7. Überprüfung der Instrumentenvalidität durch den Hansen-Sargan-Test**
+
+Der Hansen-Sargan-Test sollte wann immer möglich durchgeführt werden.
+Dabei ist darauf zu achten, dass der Test sehr anfällig für 
+*instrument proliferation* ist und daher unbedingt auf die Schätzung mit
+kollabierter Instrumentenmatrix und reduzierten Lags für Instrumentengeneration
+angewendet werden sollte. Zudem sollten die $p$-Werte ausreichend hoch sein,
+da die klassischen Grenzen von $0.05$ bzw. $0.1$ hier viel zu niedrig 
+angesetzt wären.
+
+**8. Difference-in-Hansen test**
+
+* In system GMM, DIH tests for the full set of instruments for the levels 
+equation, as well as the subset based on the dependent variable, should be reported.
+
+**9. Arellano-Bond Autokorrelationstest**
+
+Deutlich relevanter als der Test auf Autokorrelation vom ersten Grad, der 
+v.a. Hinweise darauf gibt ob das *one-step*-Verfahren anwendbar ist, ist der 
+Test auf Autokorrelation zweiten Grades. Die GMM-Schätzung ist nämlich nur
+anwendbar wenn die Nullhypothese keiner Autokorrelation *nicht* abgelehnt 
+werden kann. Eine mögliche Ursache für Autokorrelation auf in zweiter Ebene
+ist die Verwendung von Jahresdurchschnitten.
+
+**10. Transparentes Reporting**
+
+* Am Ende auf jeden Fall die Anzahl der verwendeten Instrumente reporten
+
+* Gerade bei den Tests Sensitivität ggü. Reduktion der Instrumente testen und nur hohe $p$-Werte akzeptieren
+
+
+## Sonstiges
+
+
+ADD SIMULATION FROM HERE: https://blog.stata.com/2015/12/03/understanding-the-generalized-method-of-moments-gmm-a-simple-example/

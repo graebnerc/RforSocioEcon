@@ -1,0 +1,750 @@
+---
+title: "Instrumentenvariablen"
+author: "Claudius"
+date: "3/29/2021"
+output: 
+  bookdown::pdf_book:
+    toc: true
+    toc_depth: 4
+    number_sections: true
+    latex_engine: xelatex
+    citation_package: natbib
+    includes:
+      in_header: "preamble_drafts.tex"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment = "#>", message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(out.height = '75%', out.width = '75%', fig.align = 'center') 
+```
+
+```{r}
+library(tidyverse)
+library(here)
+library(plm)
+library(texreg)
+library(pder)
+library(stargazer)
+library(Formula)
+library(fabricatr)
+```
+
+# Instrumentenvariablen {#sec:csiv}
+
+Der Ausgangspunkt ist das Endogenitätsproblem, das in der sozioökonomischen Forschungspraxis (leider) allgegenwärtig sit.
+
+
+Das Problem, das allen Quellen von Endogenität zugrundeliegt, können wir folgendermaßen beschreiben.
+Wir gehen von unserem OLS-Schätzer
+
+\begin{align}
+  \label{eq:OLS}
+  \hat{gamma} = \left(\boldsymbol{Z'Z}\right)^{-1}\boldsymbol{Z'y}
+\end{align}
+
+aus. Wenn wir für $y$ die gefitteten Werte $\hat{y}=\boldsymbol{Z}\gamma+\epsilon$ einsetzen erhalten wir:
+
+\begin{align}
+  \label{eq:error}
+  \hat{gamma} = \gamma +  \left(\boldsymbol{Z'Z}\right)^{-1}\boldsymbol{Z'\epsilon}
+\end{align}
+
+wobei $\gamma$ der wahre, aber in der Praxis unbekannte Wert der zu schätzenden Parameter ist.
+Wir sagen, dass $\hat{\gamma}$ ein 
+*konsistenter* Schätzer für $\gamma$ ist, wenn er bei steigender Stichprobengröße immer genauer den wahren Wert von $\gamma$ trifft, also $\lim_{N\rightarrow \infty} \gamma-\hat{\gamma}=0$.
+
+Da gilt, dass 
+
+\begin{align}
+  \label{eq:OLSerror}
+  \hat{gamma} = \gamma +  \left(\frac{1}{N}\boldsymbol{Z'Z}\right)^{-1}\frac{\boldsymbol{Z'\epsilon}}{N}
+\end{align}
+
+ist das genau dann der Fall wenn 
+$\lim_{N\rightarrow \infty} \frac{\boldsymbol{Z'\epsilon}}{N}=0$.
+Da XX die Kovarianzen zwischen den unabhängigen Variablen und den Fehlern enthält, können wir davon ableiten, dass ein Schätzer genau dann konsistent ist, wenn die unabhängigen Varianblen nicht mit dem Fehlerterm korrellieren.
+
+In diesem Kapitel lernen wir eine alternative Schätzmethode kennen, die eine konsistente Schätzung möglich macht, wenn die unabhängigen Variablen und der Fehlerterm eben *nicht* unkorreliert sind.
+Diese Methode wird *Instrumentenvariablen-Schätzung* oder IV-Schätzung genannt.
+
+6.2.
+
+Eine Variable $z$ wird *Instrument* oder *Instrumentenvariable* für die abhängige Varaible $x$ in der Regressionsgleichung $y=\beta x +\epsilon$ genannt wenn (1) $z$ nicht mit $\epsilon$ korreliert und (2) mit $x$ korreliert.
+
+*Schwierigkeit das zu Testen: Paul's Blog
+* 2SLS erlaubt die Schätzung wenn wir mehr Instrumente als endogene Variablen haben
+
+## Spezifizieren einer Schätzgleichung
+
+Wenn wir ein Modlel mit der IV-Methode schätzen wollen, dann müssen wir in der Schätzgleichung sowohl Informationen über die erklärenden Variablen, als auch die verwendeten Instrumente unterbringen.
+Daher sind die Schätzgleichungen in diesem Falle zweigeteilt, wobei die einzelnen Teile durch ein `|` voneinander getrennt werden: 
+der erste Teil enthält die Schätzung mit den eigentlichen unabhängigen Variablen, der zweite Teil die Schätzgleichung mit den Instrumenten.
+
+Betrachten wir folgendes Beispiel: die abhängige Variable `y` wird auf drei unabhängige Variablen, `x1`, `x2` und `x3` regressiert. 
+Wir wissen, dass `x2` potenziell endogen ist und wollen daher das exogene Instrument `z` verwenden.
+Daher schreiben wir die Gleichung folgendermaßen:
+
+```
+y ~ x1 + x2 + x3 | x1 + x3 + z
+```
+
+Gerade bei langen Gleichungen kann das mühsam sein, deswegen können wir den zweiten Teil auch etwas anders spezifizieren: wir starten mit einem `.`,
+der quasi die Original-Gleichung entspricht.
+Dann markieren wir die instrumentierten Variablen mit einem `-`, hier also `-x2`, weil `x2` ja endogen ist, und fügen die Instrumente mit einem `+` hinzu, hier also `+z`.
+Entsprechend ist folgende Formulierung äquivalent zum gerade gebrachten Beispiel:
+
+```
+y ~ x1 + x2 + x3 | . -x2 + z
+```
+
+* Wie wenn wir zwei Instrumente nehmen?
+
+## Manuelle Berechnung der 2SLS
+
+Praktisch wir die Instrumentenvariablenschätzung in zwei Schritten durchgeführt.
+Denn dne IV-Schätzer erhalten wir, indem wir in einem ersten Schritt die 
+endogene Variable auf ihre Instrumtente regressieren ('first stage'), 
+und in einem zweiten Schritt die vorhergesagten Werte aus dem ersten Schritt
+als erklärende Variable im zweiten Schritt der Schätzung verwenden.
+Im Folgenden wollen wir dies anhand von Beispielen verdeutlichen, wobei wir
+uns vom Querschnitts- zum Panelfall vorarbeiten. 
+Der besseren Replikationsmöglichkeit verwenden wir künstliche Datensätze.
+
+### Cross Section Beispiel
+
+Wir verwenden folgenden künstlichen Datensatz, in dem `X1` eine endogene
+Variable darstellt, für die wir zwei potenzielle Instrumente `Z1` und `Z2`
+haben:
+
+```{r}
+set.seed(123)
+fab_data <- fabricatr::fabricate(
+  N = 100, 
+  Y = rpois(N, lambda = 4), # Abh. Variable
+  Z1 = rbinom(N, 1, prob = 0.4), # potenzielles Instrument 1
+  Z2 = rbinom(N, 1, prob = 0.4), # potenzielles Instrument 2
+  X1 = Z1 * rbinom(N, 1, prob = 0.8) + Z2 * rbinom(N, 1, prob = 0.8), # end. Variable
+  X2 = rnorm(N) # Control variable
+)
+```
+
+
+Berechnen wir zunächst den herkömmlichen OLS-Schätzer. Dieser ist jedoch
+VERZERRT, ABER BEI DIESEN DATAN HIER NOCH NICHT?
+
+```{r, results='asis'}
+ols <- lm(Y ~ X1 + X2, data = fab_data)
+stargazer(ols, column.labels = "OLS", #type = "text", 
+          keep.stat = c("n", "rsq"), style = "ajps", float = FALSE)
+```
+
+Wir berechnen der ersten Schritt händisch und verwenden dabei zunächst nur eine der möglichen Instrumente Wichtig: 
+alle Kontrollvariablen müssen auch im ersten Schritt enthalten sein (VARIATION filtern):
+
+```{r, results='asis'}
+first_stage <- lm(X1 ~ Z1 + X2, data = fab_data)
+stargazer(first_stage, column.labels = "First stage", #, type = "text"
+          keep.stat = c("n", "rsq"), style = "ajps", float = FALSE)
+```
+
+Wir sehen dass das Instrument stark mit der instrumentierten Variable 
+zusammenhängt und der Zusammenhang hochsignifikant ist - genau das was wir 
+wollen. Im nächsten Schritt erstellen wir nun die gefitteten Daten der 
+endogenen Variable auf Basis dieser Regression:
+
+```{r}
+X1_hat <- predict(first_stage)
+```
+
+Nun kommen wir zum zweiten Schritt von 2SLS ('second stage regression'):
+
+```{r, results='asis'}
+sec_stage_man <- lm(Y ~ X1_hat + X2, data = fab_data)
+stargazer(
+  ols, sec_stage_man, 
+  column.labels = c("OLS", "IV (man)"), # type = "text", 
+  keep.stat = c("n", "rsq"), style = "ajps", float = FALSE)
+```
+
+Eigentlich müssten wir jetzt noch die Standardfehler neu berechnen.
+Denn da $\hat{X1}$ geschätzt wurde ändert sich deren Berechnung.
+Zahlreiche Pakete automatisieren dieses Verfahren, z.B. `estimatr::iv_robust()`.
+Die Syntax zur Spezifizierung der Schätzgleichung ist dabei immer die
+gleiche: wir schreiben die ursprüngliche Formel normal auf und ergänzen nach
+dem `|` dann die first stage Schätzung:
+
+```{r}
+iv <- estimatr::iv_robust(
+  Y ~ X1 + X2 | Z1 + X2, 
+  data = fab_data, ci = F)
+iv$coefficients
+```
+
+Wie zu erwarten erhalten wir die gleichen Werte für den Koeffizienten
+von `X1`.
+
+An dieser Stelle sollten wir noch einige Diagnose-Tests durchführen, die
+in den meisten Funktionen automatisch berechnet werden. 
+Zum einen sollten wir die erste Anforderung an Instrumente, die der
+Relevanz überprüfen. Dazu reicht eine Betrachtung des ersten 
+Regressions-Schritts: hier sollte bei einem einzelnen Instrument
+der Koeffizient signifikant sein. Bei mehreren Instrumenten sollten
+wir die gemeinsame F-Statistik überprüfen. Eine beliebte Daumenregel
+ist, dass diese Statistik mindestens den Wert 10 übersteigen sollte.
+
+Die zweite Anforderung, die der Exogenität können wir nicht
+abschließend testen, sondern müssen sie theoretisch begründen. 
+Wir können aber, wenn wir mehr als ein Instrument verwenden, einen
+*overidentification test* durchführen und sollten das tatsächlich auch
+immer machen.
+
+Die Idee ist die folgende: wenn wir zwei Instrumente für eine endogene
+Variable haben und separat für jedes dieser Instrumente die FSR 
+durchführen, dann sollten die Ergebnisse eigenlich ähnlich sein.
+Falls nicht, dann gibt es zwei Möglichkeiten: entweder ein Instrument
+ist endogen und dementsprechend kein gutes Instrument.
+Oder die beiden Instrumente messen unterschiedliche Ursachen exogener
+Variation. Zweiteres ist in der Praxis eher selten, weswegen wir gemeinhin
+davon ausgehen, dass die Ergebnisse ähnlich sind, wenn alle Instrumtente
+tatsächlich exogen sind.
+Im overidentification Test wird die Hypothese getestet, dass die Instrumente
+gleiche Ergebnisse liefern. Geringe p-Werte und die Ablehnung
+der $H_0$ sind Grund zur Sorge: eines unserer Instrumente ist 
+wahrscheinlich endogen. Welches müssen wir dann allerdings selbst herausfinden.
+
+Das Paket `estimatr` erlaubt es uns diese Diagnose-Tests gleich mit
+auszuführen wenn wir das Argumtent `diagnostics = TRUE` setzen:
+
+```{r}
+iv_reg <- estimatr::iv_robust(
+  Y ~ X1 + X2 | Z1 + Z2 + X2, 
+  data = fab_data, diagnostics = TRUE)
+```
+
+Hier die F-Statistik für den Test auf gemeinsame Signifikanz der
+Instrumente in der FSR:
+
+```{r}
+scales::number(iv_reg$diagnostic_first_stage_fstatistic, accuracy = 0.2)
+```
+Das ist ein sehr gutes Ergebnis: hohe F-Statistik, geringer p-Wert.
+
+Und hier das Ergebnis für den *overidentification test*:
+
+```{r}
+iv_reg$diagnostic_overid_test
+```
+
+Auch hier können wir beruhigt sein: der hohe p-Wert suggeriert, dass
+beide Instrumente exogen sind. Sicher sein können wir aber natürlich 
+nicht. Ohne eine gute theoretische Begründung geht gar nichts!
+
+Im Folgenden das gleiche Beispiel noch einmal mit einem künstlichen
+Panel-Datensatz und dem Paket `plm`.
+
+
+```{r}
+dim_N <- 20
+dim_T <- 5
+n_obs <- dim_N*dim_T
+
+set.seed(123)
+fab_panel <- fabricatr::fabricate(
+  country = add_level(N = dim_N),
+  year = add_level(N=dim_T, nest = F), 
+  obs = cross_levels(
+    by = join(country, year),
+    Y = rpois(dim_N*dim_T, lambda = 4),
+    Z1 = rbinom(n_obs, 1, prob = 0.4), # potenzielles Instrument 1
+    Z2 = rbinom(n_obs, 1, prob = 0.4), # potenzielles Instrument 2
+    X1 = Z1 * rbinom(n_obs, 1, prob = 0.8) + Z2 * rbinom(n_obs, 1, prob = 0.8), # end. Variable
+    X2 = rnorm(n_obs) # Control variable
+    ))
+```
+
+```{r, eval=FALSE}
+ols_formula <- Formula::Formula(Y ~ X1 + X2)
+first_stage_iv <- Formula::Formula(X1 ~ Z1 + Z2 + X2)
+second_stage_iv <- Formula::Formula(Y ~ X1hat + X2)
+iv_formula <- Formula::Formula(Y ~ X1 + X2 | Z1 + Z2 + X2)
+```
+
+Zunächst das herkömmliche OLS-Modell:
+
+```{r}
+ols_reg_plm <- plm(
+  formula = Y ~ X1 + X2, model = "pooling", 
+  data = fab_panel, index = c("country", "year")
+  )
+
+ols_reg_lm <- lm(
+  formula = Y ~ X1 + X2, data = fab_panel
+  )
+
+list(coef(ols_reg_lm), coef(ols_reg_plm))
+```
+Dann die FSR:
+```{r}
+st1_plm <- plm(
+  formula = X1 ~ Z1 + Z2 + X2, model = "pooling", 
+  data = fab_panel, index = c("country", "year")
+  )
+
+st1_lm <- lm(
+  formula = X1 ~ Z1 + Z2 + X2, 
+  data = fab_panel
+  )
+
+list(coef(st1_plm), coef(st1_lm))
+```
+
+Auf dieser Basis erstellen wir die gefitteten Werte:
+
+```{r}
+x1hat_lm <- unname(predict(st1_lm))
+x1hat_plm <- unname(predict(st1_plm))
+```
+
+Hier gibt es tatsächlich minimale Unterschiede aufgrund der 
+technischen Implementierung. Daher ist is später wichtig, dass wir
+für die manuelle SSR die gefitteten Werte verwenden, die auch 
+tatsächlich konsistent mit der vorher verwendeten Funktion sind.
+
+Nun die SSR:
+
+```{r}
+st2_plm <- plm(
+  formula = Y ~ x1hat_plm + X2, model = "pooling", 
+  data = fab_panel, index = c("country", "year")
+  )
+
+st2_lm <- lm(
+  formula = Y ~ x1hat_lm + X2, 
+  data = fab_panel
+  )
+```
+
+Und noch einmal hier die 'Komplettpakete':
+
+```{r}
+iv_reg_plm <- plm(
+  Y ~ X1 + X2 | Z1 + Z2 + X2, 
+  data = fab_panel, model = "pooling", 
+  index = c("country", "year"))
+
+iv_reg_ivrobust <- estimatr::iv_robust(
+  Y ~ X1 + X2 | Z1 + Z2 + X2, data = fab_panel)
+
+list(
+  "PLM (man.)"=coef(st2_plm), "LM (man.)"=coef(st2_lm), 
+  "PLM"=coef(iv_reg_plm), "IVrobust"=coef(iv_reg_ivrobust)
+)
+```
+Wie zu erwarten erhalten wir für die geschätzten Koeffizienten die
+gleichen Ergebnisse, unabhängig von der verwendeten Funktion.
+Wie oben beschrieben ist es aber wichtig, im zweiten Schritt die gefitteten Werte zu verwenden, die zur verwendeten Funktion passen. Wenn wir die von `lm`
+produzierten gefitteten Werte für den zweiten Schritt mit `plm` verwenden
+und umgekehrt bekommen wir irreführende Ergebnisse:
+
+```{r}
+st2_plm_misfit <- plm(
+  formula = Y ~ x1hat_lm + X2, model = "pooling", 
+  data = fab_panel, index = c("country", "year")
+  )
+
+st2_lm_misfit <- lm(
+  formula = Y ~ x1hat_plm + X2, 
+  data = fab_panel
+  )
+list(
+  "Korrekt"=coef(iv_reg_plm), 
+  "lm | plm"=coef(st2_plm_misfit),
+  "plm | lm"=coef(st2_lm_misfit)
+  )
+```
+
+### Mehr Details zur Verwendung der multi-part Formel
+
+An dieser Stelle wollen wir uns genauer anschauen wie `R` mit der
+'merkwürdigen' mehrteiligen Formel umgeht, die wir oben erstellt haben.
+Diese mehrteiligen Formeln kommen aus dem Paket `Formula` [@Formula].
+Die folgende Beschreibung verwendet dabei die Beispiele aus der offiziellen
+Vignette und verwendet entsprechend folgenden Beispieldatensatz:
+
+```{r}
+set.seed(1090)
+dat <- as.data.frame(matrix(round(runif(21), digits =2), ncol = 7))
+colnames(dat) <- c("y1", "y2", "y3", "x1", "x2", "x3", "x4")
+for(i in c(2, 6:7)) dat[[i]] <- factor(dat[[i]] < 0.5, labels = c("a", "b"))
+dat$y2[1] <- NA
+head(dat)
+```
+
+Während die klassische `R`-Formel in der Regel nur aus *einer* LHS und 
+*einer* RHS besteht, ist das bei den Formeln aus dem Paket `Formula` anders.^[
+Wir können auch mehrteilige Funktionen mit der klassischen R-Funktionalität
+erstellen, allerdings fehlen uns dann viele angenehme Features des 
+`Formula`-Pakets, das implizit in zahlreichen Paketen, die mehrteilige 
+Formeln verwenden, benutzt wird.
+] 
+Sie werden über die Funktion `Formula::Formula()` erstellt:
+
+```{r}
+f_0 <- formula(y1 ~ x1 + x3)
+class(f_0)
+```
+
+```{r}
+f_1 <- Formula::Formula(y1 ~ x1 + x3 | x1 + x2)
+class(f_1)
+```
+
+Die Anzahl der Teile erfahren wir indem wir die Länge des Objekts inspizieren:
+
+```{r}
+length(f_1) # Laenge LHS: 1; Laenge RHS 2
+```
+
+```{r}
+f_2 <- Formula::Formula(y1 | y2 ~ x1 + x3 | x1 + x2 | x3)
+length(f_2) # Laenge LHS: 2; Laenge RHS 3
+```
+
+In der ökonometrischen Praxis haben wir es aber meistens mit Formeln zu
+tun, deren LHS die Länge von 1, und die RHS eine Länge von 1-3 hat.
+Die IV-Schätzung ist dabei das Kernthema, weil wir hier über die 
+verschiedenen Teile wie gesagt die verschiedenen Arten von Instrumenten
+spezifizieren.
+
+Die LHS wird von der RHS durch das `~` getrennt. Intern wird diese Trennung in 
+dem Formelobjekt über die Attribute `lhs` und `rhs` vorgenommen:^[Eine Liste
+mit allen Attributen eines Objekts erhalten wir mit der Funktion `attributes()`.
+]
+
+```{r}
+attr(f_1, "lhs")
+```
+
+```{r}
+attr(f_1, "rhs")
+```
+
+Die meisten Schätzfunktionen funktionieren nun so, dass sie den ihnen
+übergebenen Datensatz auf Basis der Informationen in der Schätzformel anpassen.
+Dazu verwenden sie intern die Funktionen `model.frame()`, bzw. `model.matrix()`.
+Erstere erstell einen `data.frame`, der alle in der Formel spezifizierten
+Variablen und einige für die Schätzung relevanten Informationen als Attribute
+enthält:^[Ein besonders wichtiges Attribut hier ist `"terms"`, auf das wir 
+später noch zurückkommen werden. Schauen Sie es sich mit `attr(mf_1, "terms")`
+doch einmal an! Das ist übrigens das gleiche wie `terms(f_1)`.]
+
+```{r}
+mf_1 <- model.frame(formula = f_1, data = dat)
+mf_1
+```
+
+```{r}
+formula(terms(f_1))
+```
+
+Die Funktion `model.matrix()` erstellt die in der Schätzung verwendete
+*Design-Matrix*.^[Die Funktion `model.matrix()` ist Teil von `Base-R`.
+Solche Funktionen sollten in der Regel nicht adaptiert werden damit die
+Kerinstallation von `R` möglichst einfach bleibt. Leider kann die Funktion
+aber nicht mit Funktionen umgehen, die mehr als ein Element auf der LHS haben.
+Entwickler sind in solchen Fällen gezwungen, eine neue, alternative Funktion 
+zu schreiben. Im Falle des `Formula`-Pakets ist das die Funktion `model.part()`.] Über das Argument `rhs` können wir angeben welcher Teil der
+Formel auf der rechten Seite berücksichtigt werden soll:
+`
+```{r}
+model.matrix(object = f_1, data = dat, rhs = 1)
+```
+
+```{r}
+model.matrix(object = f_1, data = dat, rhs = 2)
+```
+
+In der Praxis läuft es immer so, dass wir einer Schätzfunktion wie `lm()` eine
+Formel und einen Datensatz übergeben und die ganzen Übersetzungen wie 
+`model.frame()` und `model.matrix()` intern ablaufen. 
+Anhand einer Funktion `ivcoef()`, die für die IV-Schätzung verwendet werden
+könnte, wollen wir das illustrieren:
+
+```{r}
+ivcoef <- function(formula, data, subset, na.action, ...){  
+  # Teil I: Dieser Teil extrahiert optionale Argumente aus dem '...' Input
+  mf <- match.call(expand.dots = FALSE)    
+  m <- match(c("formula", "data", "subset", "na.action"),
+             names(mf), 0)    
+  mf <- mf[c(1, m)]    
+  # Teil II: Kreiert den model.frame
+  f <- Formula(formula)
+  mf[[1]] <- as.name("model.frame")
+  mf$formula <- f
+  mf <- eval(mf, parent.frame())
+  
+  # Teil III: Extraktion der abhänigen V., unabhänigen V. und der Instrumtente
+  y <- model.response(mf)
+  x <- model.matrix(f, data = mf, rhs = 1)
+  z <- model.matrix(f, data = mf, rhs = 2)
+  
+  # Teil IV: Schätzung von 2SLS
+  first_stage_reg <- lm.fit(z, x)
+  x_hat <- as.matrix(first_stage_reg$fitted.values)
+  second_stage_reg <- lm.fit(x_hat, y)
+  second_stage_reg$coefficients
+  }
+```
+
+Dieser Funktion sollten wir eine Formel mit einer LHS und zwei RHS geben, 
+wobei der erste Teil der RHS die unabhängigen Variablen, der zweite Teil die
+Instrumente enthält:
+
+```{r}
+f_2 <- Formula::Formula(log(y1) ~ x1 | x2)
+iv_est <- ivcoef(formula = f_2, data = dat)
+```
+
+Gehen wir dazu die einzelnen Teile durch. Der erste Teil bis `mf <- mf[c(1, m)]`
+ist uninteressant, da er nur dazu geeignet ist, mögliche optionale Argumente
+aus `...` zu extrahieren. Am Ende steht innerhalt der Funktion ein Objekt `mf`, 
+das folgendermaßen aussieht:
+
+```{r, echo=FALSE}
+ivcoef <- function(formula, data, subset, na.action, ...){  
+  # Dieser Teil extrahiert optionale Argumente aus dem '...' Input
+  mf <- match.call(expand.dots = FALSE)    
+  m <- match(c("formula", "data", "subset", "na.action"),
+             names(mf), 0)    
+  mf <- mf[c(1, m)]    
+  mf
+}
+mf_part1 <- ivcoef(formula = f_2, data = dat)
+mf_part1
+```
+
+Wobei:
+
+```{r}
+f_2
+```
+
+Aus diesem Call kann dann in Teil II der `model.frame`, also der Datensatz
+mit allen relevanten Variablen und Attributen, die Informationen über die
+Schätzung enthalten, erstellt werden:
+
+```{r, echo=FALSE}
+ivcoef <- function(formula, data, subset, na.action, ...){  
+  # Teil I: Dieser Teil extrahiert optionale Argumente aus dem '...' Input
+  mf <- match.call(expand.dots = FALSE)    
+  m <- match(c("formula", "data", "subset", "na.action"),
+             names(mf), 0)    
+  mf <- mf[c(1, m)]    
+  # Teil II: Kreiert den model.frame
+  f <- Formula(formula)
+  mf[[1]] <- as.name("model.frame")
+  mf$formula <- f
+  mf <- eval(mf, parent.frame())
+}
+mf <- ivcoef(formula = f_2, data = dat)
+mf
+```
+
+Die in diesem `data.frame` gespeicherten Informationen aus der Formel 
+beschreiben unter anderem welche Variablen als abhängige oder unabhängige 
+Variablen zu interpretieren sind, und welche als Instrumente dienen. 
+Erstere wird durch die Funktion `model.response()` extrahiert:
+
+```{r}
+y <- model.response(mf)
+y
+```
+
+Die unabhängigen Variablen erhalten wir indem wir auf die zugrundeliegende
+Formel rekurrieren und eine `model.matrix` erstellen:
+
+```{r}
+x <- model.matrix(Formula(log(y1) ~ x1 | x2), data = mf, rhs = 1)
+x
+```
+
+Gleiches gilt für die Instrumente: 
+
+```{r}
+z <- model.matrix(Formula(log(y1) ~ x1 | x2), data = mf, rhs = 2)
+z
+```
+
+Diese Daten können dann für die FSR verwendent werden (hier also `x1` auf `x2`). 
+Dazu wird die Funktion `lm.fit()` verwendet, die auch elementarer Teil der
+`lm()`-Funktion ist:
+
+```{r}
+first_stage_reg <- lm.fit(z, x)
+first_stage_reg$coefficients
+```
+
+Daraus konstruieren wir nun die gefitteten Werte, welche die endogene Variable
+in der SSR ersetzt:
+
+```{r}
+x_hat <- as.matrix(first_stage_reg$fitted.values)
+second_stage_reg <- lm.fit(x_hat, y)
+second_stage_reg$coefficients
+```
+
+Das ist das gleiche Ergebnis wie der direkte Call von `ivreg()` oben:
+
+```{r}
+iv_est
+```
+
+Die 'normalen' IV-Funktionen in `R` sind alle sehr ähnlich aufgebaut und 
+haben einfach noch mehrere hilfreiche Features. Aber vom Prinzip gehen alle
+Schätzfunktionen auf die gerade eben skizzierte Art von der Formel über die
+Design-Matrix bis zu den geschätzten Koeffizienten sehr ähnlich vor.
+
+Was passiert nun wenn wir mehrere endogene Variablen und mehrere Instrumente
+haben?
+
+```{r, echo=FALSE}
+ivcoef <- function(formula, data, subset, na.action, ...){  
+  # Teil I: Dieser Teil extrahiert optionale Argumente aus dem '...' Input
+  mf <- match.call(expand.dots = FALSE)    
+  m <- match(c("formula", "data", "subset", "na.action"),
+             names(mf), 0)    
+  mf <- mf[c(1, m)]    
+  # Teil II: Kreiert den model.frame
+  f <- Formula(formula)
+  mf[[1]] <- as.name("model.frame")
+  mf$formula <- f
+  mf <- eval(mf, parent.frame())
+  
+  # Teil III: Extraktion der abhänigen V., unabhänigen V. und der Instrumtente
+  y <- model.response(mf)
+  x <- model.matrix(f, data = mf, rhs = 1)
+  z <- model.matrix(f, data = mf, rhs = 2)
+  
+  # Teil IV: Schätzung von 2SLS
+  first_stage_reg <- lm.fit(z, x)
+  x_hat <- as.matrix(first_stage_reg$fitted.values)
+  second_stage_reg <- lm.fit(x_hat, y)
+  second_stage_reg$coefficients
+  list("1ststage"=first_stage_reg, "2ndstage"=second_stage_reg, "mf"=mf)
+  }
+```
+
+Wenn wir x3 mit x2 und x4 instrumentieren wollen:
+
+```{r}
+iv_reg1 <- ivcoef(formula = y ~ x1 + x3 | x1 + x2 + x4, data = dat)
+```
+
+Wenn wir x1 mit x2 und x3 mit x4 instrumentieren wollen:
+
+```{r}
+iv_reg2 <- ivcoef(formula = y ~ x1 + x3 | x2 + x4, data = dat)
+```
+
+### Dynamisches Panel
+
+Eine bekannte Anwendung der IV-Schätzung ist der 
+Anderson-Hsiao-Schätzer:
+
+```{r}
+data("DemocracyIncome", package = "pder")
+```
+
+```{r}
+DemocracyIncome_prep <- DemocracyIncome %>%
+  #filter(sample == 1) %>%
+  mutate(year = as.integer(year)) %>%
+  group_by(country) %>%
+  mutate(
+    democracy_diff = democracy - dplyr::lag(democracy),
+    democracy_diff_lag = dplyr::lag(democracy_diff),
+    income_diff = income - dplyr::lag(income),
+    income_diff_lag = dplyr::lag(income_diff),
+    democracy_lag2 = dplyr::lag(democracy, 2),
+    income_lag2 = dplyr::lag(income, 2)
+  ) %>%
+  ungroup()
+```
+
+```{r}
+ahsiao_inst_man <- plm(
+  democracy_diff ~ democracy_diff_lag + income_diff_lag + year -1 | democracy_lag2 + income_lag2 + year -1,
+  data = DemocracyIncome_prep, subset = sample==1, 
+  model = "pooling", index = c("country", "year")
+)  
+coef(ahsiao_inst_man)[1:2]
+```
+
+
+```{r}
+ahsiao_inst <- plm(
+  diff(democracy) ~ lag(diff(democracy)) + lag(diff(income)) + year -1 | lag(democracy, 2) + lag(income, 2) + year -1,
+  data = DemocracyIncome, subset = sample==1, 
+  model = "pooling"
+)  
+coef(ahsiao_inst)[1:2]
+```
+
+```{r}
+ah_first_stage1 <- plm(
+  democracy_diff_lag ~ democracy_lag2 + year -1,
+  data = DemocracyIncome_prep, subset = sample==1, 
+  model = "pooling", index = c("country", "year"))
+
+ah_first_stage2 <- plm(
+  income_diff_lag ~ income_lag2 + year -1,
+  data = DemocracyIncome_prep, subset = sample==1, 
+  model = "pooling", index = c("country", "year"))
+
+ah_predict1 <- predict(ah_first_stage1)
+ah_predict2 <- predict(ah_first_stage2)
+
+```
+
+```{r}
+instrument_dem <- DemocracyIncome_prep %>%
+  filter(
+    !is.na(democracy_diff_lag),
+    !is.na(democracy_lag2),
+    sample==1
+    ) %>%
+  mutate(
+    democracy_diff_lag_hat = ah_predict1
+  ) %>%
+  select(country, year, democracy_diff_lag_hat, sample)
+
+instrument_inc <- DemocracyIncome_prep %>%
+  filter(
+    !is.na(income_diff_lag),
+    !is.na(income_lag2),
+    sample==1
+    ) %>%
+  mutate(
+    income_diff_lag_hat = ah_predict2
+  ) %>%
+  select(country, year, income_diff_lag_hat, sample)
+
+instr <- full_join(instrument_inc, instrument_dem, by=c("country", "year", "sample"))
+```
+
+
+```{r}
+DemocracyIncome_prep2 <- left_join(DemocracyIncome_prep, instr, by=c("country", "year", "sample"))
+```
+
+
+
+```{r}
+ah_second_stage <- plm(
+  democracy_diff_lag ~ democracy_diff_lag_hat + income_diff_lag_hat + year -1,
+  data = DemocracyIncome_prep2, subset = sample==1, 
+  model = "pooling")
+coef(ah_second_stage)[1:2]
+```
+
+
