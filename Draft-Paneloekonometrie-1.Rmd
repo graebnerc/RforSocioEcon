@@ -1638,7 +1638,7 @@ gelernt:
 
 1. Der **Pooled-OLS**-Schätzer $\hat{\beta}_{POLS}$, bei dem wir OLS unmittelbar auf die Rohdaten anwenden.
 2. Der **Between**-Schätzer $\hat{\beta}_{B}$, bei dem wir OLS auf die mit der Matrix $B$ multiplizierten Rohdaten anwenden und ausschließlich die Variation *zwischen* den Untersuchungssubjekten berücksichtigen.
-3. Der **Within**-Schätzer $\hat{\gamma}_{W}$, bei dem wir OLS auf die mit der Matrix $W$ multiplizierten Rohdaten anwendenund über die gemeinsamen Steigungskoeffizienten $\hat{\beta}$ die Variation *innerhalb* der Untersuchungssubjekte, und über die individuelle Achsenabschnitte $\hat{\alpha}_i$ die individuelle Effekte abbilden.
+3. Der **Within**-Schätzer $\hat{\beta}_{W}$, bei dem wir OLS auf die mit der Matrix $W$ multiplizierten Rohdaten anwendenund über die gemeinsamen Steigungskoeffizienten $\hat{\beta}$ die Variation *innerhalb* der Untersuchungssubjekte, und über die individuelle Achsenabschnitte $\hat{\alpha}_i$ die individuelle Effekte abbilden.
 4. Die Klasse von **GLS**-Schätzern, bei denen die individuellen Effekte als Züge aus einer Verteilung begriffen werden, deren Parameter im Zuge der Analyse geschätzt werden.
 
 Um die enge Beziehung der Schätzer zueinander und die Bedeutung der 
@@ -1736,13 +1736,71 @@ im letzten Abschnitt dieses Kapitels.
 * test ob relevant
 * anwendungsbeispiel
 * 2.4.1. technischer Comparison
-
+* Abschließende Simulation mit MSE
 
 ## Modell-Diagnose und robuste Schätzverfahren {#sec:panel-dignostics}
 
 Neben dem Test auf fixed oder random effects....
 
-## Dynamische Panels {#sec:panel-dynamics}
+## Abschließende Simulation 
+
+Wir wollen alles in diesem Kapitel gelernte noch einmal in einer umfassenden
+Simulation zusammenfassen. Damit wollen wir insgesonsdere die Performanz
+der verschiedenen Schätzer in unterschiedlichen Situationen verdeutlichen.
+Dabei bauen wir auf vorherigen Simulationen auf, erweitern aber unsere 
+Funktion zur Simulation künstlicher Daten um auch Besonderheiten wie
+CSD oder XXX zu berücksichtigen. In jedem Fall werden wir immmer die 
+fünf hier vorgestellten Schätzer -- 
+$\hat{\beta}_{POLS}$, $\hat{\beta}_{FD}$, $\hat{\beta}_{B}$, $\hat{\beta}_{W}$ und 
+$\hat{\beta}_{GLS}$ -- in den Vergleich mit einbeziehen.
+
+Zudem werden wir die Ergebnisse unserer Simulationen jetzt ein wenig anders
+darstellen müssen, da wir doch an einigen Stellschrauben drehen werden und
+eine vollstände Grafische darstellung für jeden einzelnen Fall wie in 
+Abbildung \@ref(fig:baseest) impraktikabel ist. 
+Daher werden wir die Schätzer vor allem im Hinblick auf ihren MSE 
+und den mittleren geschätzten Wert vergleichen. Während der MSE ein 
+generelles Maß für die Performance des Schätzers ist, gibt uns der 
+Mittelwert noch einmal einen genauen Hinweis darauf ob der Schätzer im 
+konkreten Fall verzerrt ist oder nicht.
+
+Abschließend sei noch darauf hingewiesen, dass einige Kombinationen bei den
+folgenden Simulationen nicht berücksichtigt werden:
+
+* Für das POLS-Modell spielt das Argument `effect` keine Rolle.
+* Das Hinzufügen von *time fixed effects* macht für das FD-Modell keinen Sinn.
+Daher werden FD-Modelle mit der Spezifikation `effect='time'` oder `model='twoways'` 
+nicht geschätzt.
+* Für das *Between*-Modell spielen individuelle Effekte keine Rolle.
+
+### Exogenität der Fixed Effects
+
+Das ist mit Sicherheit die absolute Gretchenfrage in der Panel-Ökonometrie:
+gibt es eine Korrelation der unabhängigen Variablen mit dem Fehlerterm?
+In anderen Worten, ist Annahme A2 des linearen Regressionsmodells verletzt.
+Um das Problem gehen wir von folgendem Modell für die einzelne Beobachtung aus:
+
+\begin{align}
+  y_{it} &= \alpha + \beta x_{it} +\epsilon \nonumber\\
+  y_{it} &= \alpha + \beta x_{it} + (\eta_i + \delta_t + v_{it})\\
+\end{align}
+
+Da der Fehlerterm $\epsilon$ drei Komponenten hat, können wir folgende 
+Fälle unterscheiden:
+
+1. $E(\epsilon | \boldsymbol{X})=0$: Alle Komponenten des Fehlers sind strikt exogen.
+2. $E(\eta | \boldsymbol{X})\neq0$: Es gibt eine Korrelation zwischen individuellen 
+Effekten und den unabhängigen Variablen
+3. $E(\delta | \boldsymbol{X})\neq0$: Es gibt eine Korrelation zwischen zeitlichen 
+Effekten und den unabhängigen Variablen
+4. $E(v | \boldsymbol{X})\neq0$: Es gibt eine Korrelation zwischen 
+idiosynkratischen Fehlern und den unabhängigen Variablen
+
+Nun vergleichen wir die Performanz der Fehler für diese vier Fälle.
+
+
+
+# Fortgeschrittene Panelmethoden: dynamische Panels {#sec:panel-dynamics}
 
 Unterschieden werden sollten Schätzverfahren für breite ($N>T$) und für 
 lange ($T\approx N$ oder $T>N$) Panels. 
